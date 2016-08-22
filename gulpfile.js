@@ -5,6 +5,7 @@ const del = require('del');
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const gulpif = require('gulp-if');
+const helpers = require('handlebars-helpers')();
 const imagemin = require('gulp-imagemin');
 const prefix = require('gulp-autoprefixer');
 const rename = require('gulp-rename');
@@ -126,6 +127,7 @@ gulp.task('assembler', (done) => {
   assembler({
     logErrors: config.dev,
     dest: config.dest,
+    helpers: helpers,
   });
   done();
 });
