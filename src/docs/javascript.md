@@ -1,5 +1,5 @@
-This is a markdown document.
+One step at a time
 
 ```javascript
-var foo = 'bar'
+// nothing to see here... yet
 ```

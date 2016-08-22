@@ -1,0 +1,44 @@
+---
+notes: |
+  Note the bleed and the `vuw-column-container-wrapper` to allow it
+
+ximg: "http://www.victoria.ac.nz/knowyourmind/images/storys/hagen-banner.jpg"
+xtitle: "&ldquo;Victoria is a great place to study an arts degree."
+xsubtitle: "Wellington is the heart of government and a cauldron of bubbling creativity and culture.&rdquo;"
+---
+
+<div class="vuw-column-container-wrapper">
+<div class="vuw-column-container" >
+	<a href="javascript:void(0);" class="vuw-hero--image-container">
+	{{#if img}}
+		<img src="{{img}}" class="vuw-hero--image">
+	{{else}}
+		<img src="http://www.victoria.ac.nz/knowyourmind/images/storys/hagen-banner.jpg" class="vuw-hero--image">
+	{{/if}}
+	</a>
+	<div class="vuw-column vuw-column__span-3-of-12">
+	<!-- &nbsp; -->
+	{{>menu-nav}}
+	</div>
+	<div class="vuw-column vuw-column__span-3-of-12">
+	&nbsp;
+	</div>
+	<div class="vuw-column vuw-column__span-6-of-12">
+			<a href="javascript:void(0);">
+				<div class="vuw-hero--title">
+	{{#if title}}
+					<h1 style="text-transform: uppercase;">{{{title}}}</h1>
+	{{else}}
+					<h1 style="text-transform: uppercase;">&ldquo;Victoria is a great place to study an arts degree.</h1>
+	{{/if}}
+	{{#if subtitle}}
+					<h3>{{{subtitle}}}</h3>
+	{{else}}
+					<h3>Wellington is the heart of government and a cauldron of bubbling creativity and culture.&rdquo;</h3>
+	{{/if}}
+				</div>
+			</a>
+
+	</div>
+</div>
+</div>
