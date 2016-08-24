@@ -242,8 +242,13 @@ h3 {
 
     &--item {
         padding: .7em 1.5em;
+        display: block;
         float: left;
         opacity: .8;
+
+		&__search {
+			float: right;
+		}
 
         &+& {
             border-left: 1px solid rgba(0,0,0,.5);
@@ -414,7 +419,32 @@ h3 {
 
         }
 
+        &__level-2 {
+        	padding-left: 2.5rem;
+
+        	&:after{
+        		left: calc(1rem + 4px);
+        	}
+        }
+
+        &__level-3 {
+        	padding-left: 3.5rem;
+
+        	&:after{
+        		left: calc(2rem + 4px);
+        	}
+        }
+
+        &__level-4 {
+        	padding-left: 4.5rem;
+
+        	&:after{
+        		left: calc(3rem + 4px);
+        	}
+        }
+
         &__selected {
+        position: relative;
 
             &:after {
                 content: "";
@@ -524,8 +554,13 @@ h3 {
     padding: 0.3em 0.8em 0.5em;
     text-decoration: none !important; 
     cursor: pointer;
+    color:inherit;
 
-	&, &__primary {
+    &:last-child {
+    	margin-right: 0;
+    }
+
+	&__primary {
 	    background-color: #3468b0;
 	    color: #fff !important;
 
@@ -537,10 +572,28 @@ h3 {
 	    color: #333 !important;
 	}
 
-	&__search { //totally a thing
-	    background-color: rgba(0,0,0,0.7);
-	    color: #fff !important;		
+	&__flat { //totally a thing
+	    background-color: transparent;
+	    //color: inherit;		
+
+
+		border-left-width: 2px;
+		border-left-style: solid;
+		border-left-color: rgba(255,255,255,.3);
+		border-left-color: #1f4130;
+
+		// opacity: .7;
 	}
+
+	&__min {
+		min-width: 0;
+	}
+
+
+	// &__search { //totally a thing
+	//     background-color: rgba(0,0,0,0.7);
+	//     color: #fff !important;		
+	// }
 }
 
 .vuw-tag {
@@ -688,6 +741,10 @@ h3 {
 
 }
 
+.vuw-hide__desktop {
+	display: none;
+}
+
 
 // todo: dimensions as variables
 // todo: media queries inline with the base rules
@@ -728,6 +785,21 @@ h3 {
         margin: -1rem -1rem 0 1em !important;
     }
 
+    .vuw-global-header--item {
+    	float:none;
+
+    }
+
+    input {
+    	padding: .8em .5em;
+    }
+
+	.vuw-hide__mobile {
+		display: none;
+	}
+	.vuw-hide__desktop {
+		display: block;
+	}
 }
 
 @media only screen 

@@ -5,16 +5,46 @@ notes: |
 
 <nav class="vuw-clearfix vuw-global-header">
     <div class="vuw-column-container">
-        <div class="vuw-column__span-12-of-12">
+        <div class="vuw-column vuw-column__span-12-of-12">
+
+            <div class="vuw-global-header--item vuw-global-header--item__search">
+                <label style="background: rgba(0,0,0, 0.2); position: relative; display: block; padding-right: 4em;" role="search">
+                    <input class="vuw-input__max" type="search" placeholder="Search Victoria for..."
+                    style="border: none; background: transparent; color:inherit;" />
+                    <button class="vuw-button vuw-button__flat vuw-button__min" style="position:absolute; top:0; right:0; bottom:0;">Search</button>
+                </label>
+            </div>
+
+            <div class="vuw-global-header--item vuw-hide__desktop">
+                <a class="-vuw-global-header--item" href="#">Home</a>
+                <a class="-vuw-global-header--item" style="float:right;" href="#">Contact</a>
+            </div>
+
+            <a class="vuw-global-header--item" style="background:#1d2624" href="#">Victoria's main site</a>
             {{#each toolkit.secondary-nav}}
                 <a class="vuw-global-header--item" href="#">{{this}}</a>
             {{/each}}
+<!--             <a class="vuw-global-header--item" style="background:#1d2624" href="#">Faculty of Humanities and Social Sciences</a>
+                <a class="vuw-global-header--item" href="#">School's home</a>
+                <a class="vuw-global-header--item" href="#">Organisation structure</a>
 
-            <label class="vuw-global-header--item" style="float:right;" role="search">
-                <input type="search" placeholder="Search Victoria for..." />
-                <button class="vuw-button vuw-button__search">Search</button>
-            </label>
+                <a class="vuw-global-header--item vuw-navigation-menu--link__selected" href="#">About us</a>
+                <a class="vuw-global-header--item" href="#">Contacts</a> -->
+
+                <nav class="vuw-navigation-menu vuw-hide__desktop">
+                    <a class="vuw-navigation-menu--item" style="background:#1d2624" href="#">Faculty of Humanities and Social Sciences</a>
+                    <a href="javascript`:void(0);" class="vuw-navigation-menu--item vuw-navigation-menu--link ">School's home</a>
+                    <a href="javascript:void(0);" class="vuw-navigation-menu--item vuw-navigation-menu--link vuw-navigation-menu--link__level-2">Organisation structure</a>
+                    <a href="javascript:void(0);" class="vuw-navigation-menu--item vuw-navigation-menu--link vuw-navigation-menu--link__level-3 vuw-navigation-menu--link__selected">About us</a>
+                    <a href="javascript:void(0);" class="vuw-navigation-menu--item vuw-navigation-menu--link vuw-navigation-menu--link__level-4">Contacts</a>
+                    <a href="javascript:void(0);" class="vuw-navigation-menu--item vuw-navigation-menu--link
+                    vuw-navigation-menu--link__level-4">Research</a>
+                    <a href="javascript:void(0);" class="vuw-navigation-menu--item vuw-navigation-menu--link
+                    vuw-navigation-menu--link__level-4">Our philosophy</a>
+                </nav>
 
         </div>
     </div>
 </nav>
+            
+
