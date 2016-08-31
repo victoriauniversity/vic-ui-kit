@@ -1,0 +1,28 @@
+.container {
+    @include outer-container;
+
+    &>nav {
+        @include span-columns(3);
+    }
+
+    &>main {
+        @include span-columns(6);
+    }
+
+    &>aside {
+        @include span-columns(3);
+
+        margin-top: 1.5rem;
+    }
+
+    &>.half {
+        @include span-columns(6);
+
+        margin-top: 1em;
+    }
+    &>.third {
+        @include span-columns(4);
+
+        margin-top: 1em;
+    }
+}

@@ -5,7 +5,6 @@ const del = require('del');
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const gulpif = require('gulp-if');
-const helpers = require('handlebars-helpers')();
 const imagemin = require('gulp-imagemin');
 const prefix = require('gulp-autoprefixer');
 const rename = require('gulp-rename');
@@ -83,7 +82,12 @@ gulp.task('styles:toolkit', () => {
   gulp.src(config.styles.toolkit.src)
   .pipe(gulpif(config.dev, sourcemaps.init()))
   .pipe(sass({
-    includePaths: './node_modules',
+    includePaths: [
+    './node_modules',
+    require("bourbon").includePaths,
+    require("bourbon-neat").includePaths,
+    './lib',
+    ],
   }).on('error', sass.logError))
   .pipe(prefix('last 1 version'))
   .pipe(gulpif(!config.dev, csso()))
@@ -138,7 +142,6 @@ gulp.task('assembler', (done) => {
   assembler({
     logErrors: config.dev,
     dest: config.dest,
-    helpers: helpers,
   });
   done();
 });
@@ -166,9 +169,6 @@ gulp.task('serve', () => {
 
   gulp.task('images:watch', ['images'], browserSync.reload);
   gulp.watch(config.images.toolkit.watch, ['images:watch']);
-
-  gulp.task('fonts:watch', ['fonts'], reload);
-  gulp.watch(config.fonts.toolkit.src, ['fonts:watch']);
 
 });
 

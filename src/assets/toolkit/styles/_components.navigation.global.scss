@@ -1,0 +1,44 @@
+.global {
+
+
+    background: #1f4130;
+    background: #1f4130;
+    /* height: 2em; */
+    font-weight: 300;
+
+    nav {
+        @include outer-container;
+
+        @include clearfix();
+
+        a {
+            color: #fff;
+            padding: .7em 1.5em;
+            display: block;
+            float: left;
+            opacity: .8;
+
+            &.selected,
+            &:hover,
+            &:focus {
+                background:#1d2624;
+            }
+
+        }
+        
+        a + a {
+            //border-left: 1px solid rgba(0,0,0,.5);
+            border-left: 1px solid rgba(255,255,255,0.15);
+        }
+
+        label {
+            float: right;
+            // background: rgba(0,0,0, 0.2);
+            // position: relative;
+            // display: block;
+            // padding-right: 4em;
+        }
+
+    }
+
+}

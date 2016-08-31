@@ -1,0 +1,92 @@
+.site, .breadcrumbs {
+
+    background: $green-bottle-green;
+
+    // position:absolute;
+    z-index: 1;
+    margin-bottom: 2em;
+
+    overflow: hidden;
+
+    &--container {
+
+        position:relative;
+    }
+
+    a {
+
+        font-family: "National","Segoe WP Semibold","Nimbus Sans L",Arial,"Helvetica Neue","Helvetica",sans-serif;
+        font-size: 1em;
+
+
+        color: #fff;
+        display: block;
+        padding: 0.35em 0.5rem 0.4em 11.5rem;
+
+        margin-left: -10rem;
+
+        border-bottom: 1px solid rgba(0,0,0,.5);
+        border-bottom: 1px solid rgba(255,255,255,0.15);
+
+
+
+        position: relative;
+        cursor: pointer;
+
+        &.back {
+            // //todo: entypo icons
+            // background-image: url(../images/level-up.svg);
+            // background-size:100% 100%;
+            // background-position: center right;
+
+            &:before {
+                // content: url(../images/level-up.svg);
+                // content:"";
+                // background-image: url(../images/level-up.svg);
+                // width: 2em;
+                // height: 2em;
+                // background-size: 10px 20px;
+                // display: inline-block;
+            }
+        }
+
+        &.hide {
+            text-align: center;
+        }
+
+        &.selected, &:hover, &:focus {
+            // font-weight: normal;
+
+            background: rgba(255,255,255, .1);
+            background: rgba(0,0,0, .1);
+
+        }
+
+        &.selected {
+
+            &:after {
+                content: "";
+                display: block;
+                position: absolute;
+
+                width: 4px;
+                border: 1px solid #ccc;
+                background: #fff;
+
+                left: 4px;
+                top: 4px;
+                bottom: 4px;
+
+                left: 10.7rem;
+            }
+        }
+
+    }
+    li > a {
+        font-size: 1.357em;
+    }
+
+    li li {
+        padding-left: 1.5rem;
+    }
+}

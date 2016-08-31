@@ -1,0 +1,53 @@
+footer {
+
+    background: $color-footer-background;
+    font-size: .8em;
+
+    padding: 1em 1.5rem;
+    // margin: 2em 0 0 0;
+
+    a {
+        color: $color-body-text;
+        border-bottom: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    * + h2 {
+        margin: 1.5rem 0 0 0;
+    }
+
+    nav {
+        @include outer-container;
+
+        &>* {
+            @include span-columns(2 of 10);
+            // @include span-columns(1.5);
+
+            &:first-child {
+                // @include span-columns(3);
+                // @include shift-in-context(+2);
+                // @include span-columns(3);
+            }
+        }
+        
+    }
+}
+
+
+footer + footer {
+    background: $black-victoria;
+        color: $grey-silver;
+
+    a {
+        color: $white;
+
+        border-bottom: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

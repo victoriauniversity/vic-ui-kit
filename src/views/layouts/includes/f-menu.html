@@ -10,9 +10,6 @@
 		</li>
 
 		{{#each materials}}
-		{{#contains @key "_"}}
-		{{!don'trender anything, these are partials}}
-		{{else}}
 		<li>
 			<a href="{{@key}}.html" class="f-menu__heading">{{name}}</a>
 			<ul>
@@ -23,7 +20,6 @@
 				{{/each}}
 			</ul>
 		</li>
-		{{/contains}}
 		{{/each}}
 
 		{{#each views}}
