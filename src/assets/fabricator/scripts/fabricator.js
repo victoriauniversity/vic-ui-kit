@@ -15,7 +15,7 @@ fabricator.options = {
   toggles: {
     labels: true,
     notes: true,
-    code: false,
+    code: true,
   },
   menu: false,
   mq: '(min-width: 60em)',
