@@ -5,6 +5,7 @@ const del = require('del');
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const gulpif = require('gulp-if');
+const helpers = require('handlebars-helpers')();
 const imagemin = require('gulp-imagemin');
 const prefix = require('gulp-autoprefixer');
 const rename = require('gulp-rename');
@@ -142,6 +143,7 @@ gulp.task('assembler', (done) => {
   assembler({
     logErrors: config.dev,
     dest: config.dest,
+    helpers: helpers,
   });
   done();
 });
@@ -169,6 +171,9 @@ gulp.task('serve', () => {
 
   gulp.task('images:watch', ['images'], browserSync.reload);
   gulp.watch(config.images.toolkit.watch, ['images:watch']);
+
+  gulp.task('fonts:watch', ['fonts'], reload);
+  gulp.watch(config.fonts.toolkit.src, ['fonts:watch']);
 
 });
 
