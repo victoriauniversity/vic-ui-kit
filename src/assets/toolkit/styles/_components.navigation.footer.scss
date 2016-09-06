@@ -22,8 +22,24 @@ footer {
     nav {
         @include outer-container;
 
+        ul {
+            @include align-items(stretch);
+            @include display(flex);
+            @include flex-direction(row);
+            // @include justify-content(flex-start);
+            @include justify-content(space-between);
+        }
+
+        ul > li {
+            // @include flex(1);
+        }
+    }
+
+    nav {
+        //@include outer-container;
+
         &>* {
-            @include span-columns(2 of 10);
+            //@include span-columns(2 of 10);
             // @include span-columns(1.5);
 
             &:first-child {

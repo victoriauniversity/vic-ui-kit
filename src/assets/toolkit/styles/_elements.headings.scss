@@ -1,20 +1,9 @@
 aside {
     h2 {
-        color: #333;
-        text-transform: uppercase;
+        // color: #333;
+        // text-transform: uppercase;
     }
 }
-
-
-
-h1, h2, h3, h4, h5, h6 {
-    a {
-        color: #146999;
-        color: $color-links;
-        border-bottom: 1px solid #b8d2e0;
-    }
-}
-
 
 
 
@@ -24,5 +13,19 @@ main {
         border-top: 4px solid #115737;
         padding: 0.75em 0;
         margin-bottom: 1.5em;
+    }
+
+    .featured {
+    // &>div {
+
+                @include span-columns(12 of 12);
+                @include omega();
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+
+        padding: 1em 1.5rem;
+        font-size: 120%;
+        color: $color-headers;
+
     }
 }
