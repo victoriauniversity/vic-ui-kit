@@ -1,15 +1,22 @@
+
+@include media($desktop){
+
 .layout {
     @include outer-container;
 
     // &>nav {
     //     @include span-columns(3 of 12);
     // }
-
+@include media($desktop){
     &.has-nav .content:not(.has-aside) main {
         figure {
             margin: 0 0 1.5rem 0;
             @include span-columns(3 of 9);
             @include omega(3n);
+
+            // @include media($mobile) {
+            //     @include span-columns(12 of 12);
+            // }
         }
     }
 
@@ -18,8 +25,13 @@
             margin: 0 0 1.5rem 0;
             @include span-columns(3 of 6);
             @include omega(2n);
+
+            // @include media($mobile) {
+            //     @include span-columns(12 of 12);
+            // }
         }
     }
+}
 }
 
 
@@ -31,12 +43,20 @@
 
     .layout.has-nav > & {
         @include span-columns(9 of 12);
+
+        @include media($mobile) {
+            @include span-columns(12 of 12);
+        }
     }
 }
 
 nav {
     .layout.has-nav > & {
         @include span-columns(3 of 12);
+
+        @include media($mobile) {
+            @include span-columns(12 of 12);
+        }
     }
 }
 
@@ -50,21 +70,41 @@ main {
     }
     .layout > .content.has-aside > & {
         @include span-columns(9 of 12);
+
+        @include media($mobile) {
+            @include span-columns(12 of 12);
+        }
     }
     .layout.has-nav > .content > & {
         @include span-columns(9 of 9);
+
+        @include media($mobile) {
+            @include span-columns(12 of 12);
+        }
     }
     .layout.has-nav > .content.has-aside > & {
         @include span-columns(6 of 9);
+
+        @include media($mobile) {
+            @include span-columns(12 of 12);
+        }
     }
 }
 
 aside {
     .layout > .content.has-aside > & {
         @include span-columns(3 of 12);
+
+        @include media($mobile) {
+            @include span-columns(12 of 12);
+        }
     }
     .layout.has-nav > .content.has-aside > & {
         @include span-columns(3 of 9);
+
+        @include media($mobile) {
+            @include span-columns(12 of 12);
+        }
     }
 }
 
@@ -233,6 +273,8 @@ article {
     }
 }
 
+}
+
 .banner ~ .banner {
     background:#eeeeee;position:relative;overflow:hidden;
 
@@ -249,6 +291,9 @@ article {
 
             .banner figure {
                 margin: 2em 0;
+
+                padding: 0;
+
                 @include span-columns(12 of 12);
     // @include outer-container;
                 box-shadow: 0px 1px 5px rgba(0,0,0,0.15);
@@ -256,6 +301,7 @@ article {
 
 // @include row(table);
 
+@include media($desktop){
                 figcaption {
                     padding: 2.5rem;
                     @include span-columns(7 of 12);
@@ -263,7 +309,7 @@ article {
                     // vertical-align: middle;
   // @include fill-parent;
                     h3 {
-                        @extend h1;
+                        // @extend h1;
                     }
                 }
 
@@ -309,7 +355,7 @@ article {
                         width: 100%;
                     }
                 }
-
+}
                 &.photo {
                     figcaption {
                         *{
@@ -330,3 +376,6 @@ article {
 
 
             }
+
+
+        // }

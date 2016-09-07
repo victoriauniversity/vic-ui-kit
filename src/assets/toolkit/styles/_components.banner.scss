@@ -11,11 +11,10 @@
         padding: 1.5rem 0;
         
         a {
-
+            display: none;
             text-indent: -9999em;
-            display: block;
             height: 48px;
-            width: 192px;
+            // width: 192px;
             background-image: url("http://www.victoria.ac.nz/assets/images/logo_desktop.png");
             background-size: 94%;
             /* background-size: contain; */
@@ -32,15 +31,24 @@
             /* visibility: hidden; */
 
 
-            @include span-columns(3);
+            @include media($desktop){
+                @include span-columns(3);
+                display: block;
+            }
         }
 
         div {
-            @include span-columns(9);
+            text-align: center;
+            @include media($desktop){
+                @include span-columns(9);
+                text-align: left;
+            }
         }
 
         h1 {
-            font-size: 4.5em;
+            @include media($desktop){
+                font-size: 4.5em;
+            }
             font-weight: 300;
             margin: .1em 0 .2em 0;
             line-height: 0.8;
@@ -51,7 +59,9 @@
 
         p {
             display: block;
-            font-size: 1.8em;
+            @include media($desktop){
+                font-size: 1.8em;
+            }
             font-weight: 300;
             margin: 0;
             color: #fff;
