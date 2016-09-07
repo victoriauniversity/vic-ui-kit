@@ -1,3 +1,79 @@
+.layout {
+    @include outer-container;
+
+    // &>nav {
+    //     @include span-columns(3 of 12);
+    // }
+
+    &.has-nav .content:not(.has-aside) main {
+        figure {
+            margin: 0 0 1.5rem 0;
+            @include span-columns(3 of 9);
+            @include omega(3n);
+        }
+    }
+
+    &.has-nav .content.has-aside main {
+        figure, article {
+            margin: 0 0 1.5rem 0;
+            @include span-columns(3 of 6);
+            @include omega(2n);
+        }
+    }
+}
+
+
+
+.content {
+    .layout > & {
+        @include span-columns(12 of 12);
+    }
+
+    .layout.has-nav > & {
+        @include span-columns(9 of 12);
+    }
+}
+
+nav {
+    .layout.has-nav > & {
+        @include span-columns(3 of 12);
+    }
+}
+
+
+
+
+
+main {
+    .layout > .content > & {
+        @include span-columns(12 of 12);
+    }
+    .layout > .content.has-aside > & {
+        @include span-columns(9 of 12);
+    }
+    .layout.has-nav > .content > & {
+        @include span-columns(9 of 9);
+    }
+    .layout.has-nav > .content.has-aside > & {
+        @include span-columns(6 of 9);
+    }
+}
+
+aside {
+    .layout > .content.has-aside > & {
+        @include span-columns(3 of 12);
+    }
+    .layout.has-nav > .content.has-aside > & {
+        @include span-columns(3 of 9);
+    }
+}
+
+
+
+
+
+
+
 .container {
     @include outer-container;
     padding: 0;
@@ -104,7 +180,7 @@
 
         }
 
-        
+
 
         .featured {
         // &>div {
