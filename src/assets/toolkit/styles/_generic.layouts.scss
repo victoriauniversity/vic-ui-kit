@@ -8,6 +8,24 @@
     //     @include span-columns(3 of 12);
     // }
 @include media($desktop){
+    &:not(.has-nav) .content:not(.has-aside) main {
+
+        h1 {
+            padding: 0 1.5rem;
+        }
+
+        figure {
+            margin: 0 0 1.5rem 0;
+            // padding: 0;
+            @include span-columns(4 of 12);
+            @include omega(3n);
+
+            // @include media($mobile) {
+            //     @include span-columns(12 of 12);
+            // }
+        }
+
+    }
     &.has-nav .content:not(.has-aside) main {
         figure {
             margin: 0 0 1.5rem 0;
