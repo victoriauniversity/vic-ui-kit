@@ -85,6 +85,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
+
 h1 {
     font-family: "National","Segoe WP Semibold","Nimbus Sans L",Arial,"Helvetica Neue","Helvetica",sans-serif;
     font-weight: 600;
@@ -93,6 +94,10 @@ h1 {
     line-height: #{$base-line-height * 2}rem;
     margin-bottom: #{$base-line-height * 1 - 0.5}rem;
     padding-top: 0.5rem;
+
+    &.hero {
+    font-size: mod-scale(5) / $national-cap-height-ratio;
+    }
 }
 
 h2 {
@@ -161,17 +166,26 @@ a, a > *:before, a > *:after, .tooltip-icon  {
     // margin-right: -1.5rem;
     // padding-left: 1.5rem;
     list-style: square;
+  margin-bottom: 1.6rem;
+
+  li & {
+    margin-left: 1.6rem;
+  }
   }
 
   ol {
     list-style: decimal;
+  margin-bottom: 1.6rem;
+  li & {
+    margin-left: 1.6rem;
+  }
   }
 
-li {
-  margin-bottom: 1.6rem;
-  // margin-left: -1.5rem;
-  // margin-right: -1.5rem;
-}
+// li {
+//   margin-bottom: 1.6rem;
+//   // margin-left: -1.5rem;
+//   // margin-right: -1.5rem;
+// }
 
 
 p, ul, ol, table {
