@@ -1,14 +1,22 @@
 //github.com/thoughtbot/neat#using-neat
 @import "neat-helpers";
 
-$gutter: 1.5em;
+$gutter: $base-line-height * $base-font-size;
+// $gutter: 1.5em;
+
 // $max-width: 1280px;
-$max-width: 1232px;
 // $max-width: 1400px;
 // $max-width: 970px;
+$max-width: 84rem;
 
 // Define your breakpoints
 $tablet: new-breakpoint(max-width 768px 8);
 $mobile: new-breakpoint(max-width 480px 4);
 
 $desktop: new-breakpoint(min-width 769px 12);
+
+
+$visual-grid: true;
+$visual-grid-color: $green-bottle-green;
+$visual-grid-index: front;
+$visual-grid-opacity: 0.05;

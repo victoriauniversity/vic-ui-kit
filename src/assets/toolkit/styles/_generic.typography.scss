@@ -59,7 +59,16 @@ $national-cap-height-ratio: 61 / 74; //Helvetica/National cap height measured @1
   url("../fonts/vic-icons.svg#VicIcons") format("svg"); }
 
 html {
-  // font-size: 87.5%; // = 1rem;
+  font-size: 14px; //84em * 14px = 1176px
+  //include-media.com/#features
+  @import 'include-media/dist/_include-media.scss';
+
+  @include media(">=1366px") { //84em * 16px = 1344px
+    font-size: 16px;
+  }
+  @include media(">=1536px") { //84em * 18px = 1512px
+    // font-size: 18px;
+  }
 }
 
 body {

@@ -2,18 +2,22 @@
     // margin: 0;
     list-style: none;
 
-    li {
+    dt {
+        @extend h3;
+    }
+
+    li, dd {
 
         border-top: 1px solid $grey-alto;
         margin-bottom: 0;
 
-        margin-left: -1.5rem;
-        margin-right: -1.5rem;
+        // margin-left: -1.5rem;
+        // margin-right: -1.5rem;
     }
 
     a {
         display: block;
-        padding: 0.5em 1.5rem;
+        padding: $gutter/2 $gutter;
         border-bottom: none;
 
         &:hover {

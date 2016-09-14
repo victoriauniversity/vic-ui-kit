@@ -3,58 +3,13 @@
 
 .layout {
     @include outer-container;
-
-    // &>nav {
-    //     @include span-columns(3 of 12);
-    // }
-@include media($desktop){
-    &:not(.has-nav) .content:not(.has-aside) main {
-
-        h1 {
-            // padding: 0 1.5rem; <<<<<
-        }
-
-        figure {
-            margin: 0 0 1.5rem 0;
-            // padding: 0;
-            @include span-columns(4 of 12);
-            @include omega(3n);
-
-            // @include media($mobile) {
-            //     @include span-columns(12 of 12);
-            // }
-        }
-
-    }
-    &.has-nav .content:not(.has-aside) main {
-        figure {
-            margin: 0 0 1.5rem 0;
-            @include span-columns(3 of 9);
-            @include omega(3n);
-
-            // @include media($mobile) {
-            //     @include span-columns(12 of 12);
-            // }
-        }
-    }
-
-    &.has-nav .content.has-aside main {
-        figure, article {
-            margin: 0 0 1.5rem 0;
-            @include span-columns(3 of 6);
-            @include omega(2n);
-
-            // @include media($mobile) {
-            //     @include span-columns(12 of 12);
-            // }
-        }
-    }
-}
 }
 
 
 
 .content {
+    padding: $gutter 0;
+    
     .layout > & {
         @include span-columns(12 of 12);
     }
@@ -284,7 +239,7 @@ aside {
 
 article {
 
-    padding: 1em 1.5rem !important;
+    // padding: 1em 1.5rem !important;
 
     ul {
         // margin: 0 -1.5rem;
@@ -293,7 +248,7 @@ article {
 
 }
 
-.banner ~ .banner {
+.banner {
     background:#eeeeee;position:relative;overflow:hidden;
 
     &.pattern {
@@ -308,20 +263,23 @@ article {
 }
 
             .banner figure {
-                margin: 2em 0;
 
+                @include clearfix();
                 padding: 0;
 
-                @include span-columns(12 of 12);
+                // @include span-columns(12 of 12);
     // @include outer-container;
                 box-shadow: 0px 1px 5px rgba(0,0,0,0.15);
                 background: #fff;
+
+                margin: $gutter*1.5 $gutter*-1.5;
 
 // @include row(table);
 
 @include media($desktop){
                 figcaption {
-                    padding: 2.5rem;
+                    // padding: 2.5rem;
+                    padding: $gutter*1.5;
                     @include span-columns(7 of 12);
                         z-index: 1;
                     // vertical-align: middle;
