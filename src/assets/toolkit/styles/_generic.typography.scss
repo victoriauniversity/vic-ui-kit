@@ -88,7 +88,7 @@ h1, h2, h3, h4, h5, h6 {
     // line-height: 1.35;
 
     font-weight: normal;
-    // color: $color-headers;
+    color: $color-headers;
     line-height: $base-line-height;
 }
 
@@ -98,7 +98,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
     font-family: "National","Segoe WP Semibold","Nimbus Sans L",Arial,"Helvetica Neue","Helvetica",sans-serif;
     font-weight: 600;
-    color: $color-headers;
+    // color: $color-headers;
     font-size: mod-scale(4) / $national-cap-height-ratio;
     line-height: #{$base-line-height * 2}rem;
     margin-bottom: #{$base-line-height * 1 - 0.5}rem;
@@ -199,6 +199,11 @@ a, a > *:before, a > *:after, .tooltip-icon  {
 
 p, ul, ol, table {
 a {
+  @extend %vuw-link;
+}
+}
+
+%vuw-link {
     // color: $color-links;
     // text-decoration: none;
   // text-decoration: underline;
@@ -218,8 +223,9 @@ a {
   opacity: 0.8;
   border-bottom-color: $color-links;
   }
+
 }
-}
+
 // }
 
 table {
@@ -295,5 +301,11 @@ td {
   // padding-bottom: 1.6em;
   // vertical-align: baseline;
   border-bottom: 1px solid #ddd;
+}
+
+
+time {
+  // opacity: 0.6;
+  color: #8a8a8a;
 }
 

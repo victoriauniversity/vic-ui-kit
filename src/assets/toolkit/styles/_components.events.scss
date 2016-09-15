@@ -1,0 +1,88 @@
+/*dl*/.events {
+    // @include outer-container;
+        @include span-columns(8 of 12);
+        @include omega;
+        @include shift(2)
+    // @extend .links;
+
+dt {
+    @extend h3;
+}
+
+    dd {
+        // @include clearfix();
+    @include outer-container;
+
+        list-style: none;
+        margin-bottom: $default-spacing;
+        padding-bottom: $default-spacing;
+        // padding-bottom: $gutter;
+            border-bottom: 1px solid $grey-alto;
+
+        & + dd {
+
+            // border-top: 1px solid $grey-alto;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    article {
+        // @include outer-container;
+    }
+
+
+        .description {
+            @include span-columns(6 of 8);
+            @include shift-in-context(2);
+        }
+
+        .margin-notes {
+            @include span-columns(2 of 8);
+            @include omega;
+            @include shift-in-context(-8);
+            // padding-left: $gutter;
+        }
+
+
+    .highlight {
+        display: block;
+        padding-left: $gutter;
+        margin-left: -($default-spacing + $highlight-border-width);
+        // margin-top: -$gutter;
+        // float: left;
+
+        border-left: $highlight-border-width solid $green-bottle-green;
+
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    img {
+        float: right;
+        padding: 0 0 $gutter $gutter;
+    }
+
+    .date {
+        @extend h4;
+    }
+    .time {
+        @extend h5;
+    }
+
+    .meta {
+        color: #8a8a8a;
+        margin-bottom: 0;
+    }
+
+}
+    h3 + a {
+        // @extend p a;
+
+        margin-top: -2.95rem; //1.1rem h3 margin-bottom; 1.6rem a line-height ~adjustment//2.4rem line-height
+        float:right;
+        @extend %vuw-link;
+    }
