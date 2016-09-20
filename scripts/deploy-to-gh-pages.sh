@@ -12,9 +12,15 @@ git config --global user.name "Travis CI"
 # build (CHANGE THIS)
 npm run build
 
+# copy dist folder into folder named after current branch
+cp -r ./dist ./${TRAVIS_BRANCH}
+mv ./${TRAVIS_BRANCH} ./dist/${TRAVIS_BRANCH}
+
+
+
 # deploy
 cd dist
 git init
 git add .
-git commit -m "Deploy to Github Pages"
+git commit -m "Deploy ${TRAVIS_BRANCH} to Github Pages"
 git push --force --quiet "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPO}.git" master:gh-pages > /dev/null 2>&1
