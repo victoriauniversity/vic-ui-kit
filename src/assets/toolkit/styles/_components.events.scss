@@ -1,8 +1,11 @@
 /*dl*/.events {
+
+@include media($desktop){
     // @include outer-container;
         @include span-columns(8 of 12);
         @include omega;
-        @include shift(2)
+        @include shift(2);
+    }
     // @extend .links;
 
 dt {
@@ -34,6 +37,7 @@ dt {
     }
 
 
+@include media($desktop){
         .description {
             @include span-columns(6 of 8);
             @include shift-in-context(2);
@@ -45,6 +49,7 @@ dt {
             @include shift-in-context(-8);
             // padding-left: $gutter;
         }
+    }
 
 
     .highlight {

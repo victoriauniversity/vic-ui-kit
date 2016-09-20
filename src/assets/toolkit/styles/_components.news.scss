@@ -1,7 +1,11 @@
 .news {
+@include media($desktop){
+
         @include span-columns(8 of 12);
         @include omega;
-        @include shift(2)
+        @include shift(2);
+}
+        @include clearfix();
 
 dt {
     @extend h3;
@@ -24,6 +28,9 @@ dt {
         &:last-child {
             border-bottom: none;
         }
+
+@include media($desktop){
+
     &.has-media {
         .description {
             @include span-columns(5 of 8);
@@ -37,6 +44,9 @@ dt {
         }
 
     }
+}//media $desktop
+
+
     }
 
 
