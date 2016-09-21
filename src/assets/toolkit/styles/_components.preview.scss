@@ -1,60 +1,34 @@
 /*dl*/.preview {
     @include outer-container;
-        // @include span-columns(8 of 12);
-        @include omega;
-        // @include shift(2)
-    // @extend .links;
+    @include omega;
 
-    // dl {
-    //     @include span-columns(2 of 8);
-    // }
     img {
         @include span-columns(4 of 12);
     }
 
-        .description {
-            @include span-columns(5 of 12);
-            // @include shift-in-context(2);
-        }
-
-        .links {
-            @include span-columns(3 of 12);
-            @include omega;
-            // @include shift-in-context(-8);
-            // padding-left: $gutter;
-        }
-
-dt {
-    // @extend h3;
-    @extend h5;
-}
-
-
-    article {
-        // @include outer-container;
+    .description {
+        @include span-columns(5 of 12);
     }
 
+    .links {
+        @include span-columns(3 of 12);
+        @include omega;
+    }
 
-
+    dt {
+        @extend h5;
+    }
 
     .highlight {
         display: block;
-        padding-left: $gutter;
+        padding-left: $default-spacing;
         margin-left: -($default-spacing + $highlight-border-width);
-        // margin-top: -$gutter;
-        // float: left;
-
         border-left: $highlight-border-width solid $green-bottle-green;
 
         p {
             margin-bottom: 0;
         }
     }
-
-    // img {
-    //     float: right;
-    //     padding: 0 0 $gutter $gutter;
-    // }
 
     .date {
         @extend h4;
@@ -67,8 +41,7 @@ dt {
         color: #8a8a8a;
         margin-bottom: 0;
     }
-
-}
+    
     h3 + a {
         // @extend p a;
 
@@ -76,3 +49,5 @@ dt {
         float:right;
         @extend %vuw-link;
     }
+
+}

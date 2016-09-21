@@ -218,38 +218,14 @@ aside {
 
         margin-top: 1em;
     }
-
-
-            // .promo-panel {
-            //     margin: 2em 0;
-
-            //     @include direction-context(right-to-left) {
-            //     // @include span-columns(6 of 6);
-            //     // @include omega();
-            //     img {
-            //         @include span-columns(4 of 12);
-            //         // @include shift-in-context(3);
-            //     }
-                
-            //     }
-
-
-            // }
-}
-
-article {
-
-    // padding: 1em 1.5rem !important;
-
-    ul {
-        // margin: 0 -1.5rem;
-    }
 }
 
 }
 
 .banner {
-    background:#eeeeee;position:relative;overflow:hidden;
+    background:#eeeeee;
+    position:relative;
+    overflow:hidden;
 
     &.pattern {
         background: url("http://www.victoria.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png");
@@ -262,109 +238,58 @@ article {
 
 }
 
-            .banner figure {
+.banner figure {
 
-                @include clearfix();
-                padding: 0;
+    @include clearfix();
+    padding: 0;
 
-                // @include span-columns(12 of 12);
-    // @include outer-container;
-                box-shadow: 0px 1px 5px rgba(0,0,0,0.15);
-                background: #fff;
-
-// @include row(table);
+    box-shadow: 0px 1px 5px rgba(0,0,0,0.15);
+    background: #fff;
 
 @include media($desktop){
 
-                margin: $gutter*1.5 $gutter*-1.5;
-                figcaption {
-                    // padding: 2.5rem;
-                    padding: $gutter*1.5;
-                    @include span-columns(7 of 12);
-                        z-index: 1;
-                    // vertical-align: middle;
-  // @include fill-parent;
-                    h3 {
-                        // @extend h1;
-                    }
-                }
+    margin: $default-spacing * 1.5 $default-spacing * -1.5;
 
-                img {
-                    @include span-columns(5 of 12);
-                    // @include shift-in-context(3);
-                }
+    figcaption {
+        padding: $default-spacing * 1.5;
+        @include span-columns(7 of 12);
+        z-index: 1;
+    }
 
-                // &.pattern {
-                //     &:after {
-                //         content: url("http://www.victoria.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png");
-                //         display: block;
-                //         position: absolute;
-                //         top: 0;
-                //         left: 0;
-                //         right: 0;
-                //         width: 100%;
-                //     }
-                //     // background: url("http://www.victoria.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png");
-                // }
-                &.photo, &.pattern {
-                    figcaption {
-                        @include span-columns(6 of 12);
-                        @include shift(3);
-                        // min-height: 400px;
-                        padding: 3em 0;
-                        position: relative;
-                        z-index: 1;
-                        text-align: center;
+    img {
+        @include span-columns(5 of 12);
+    }
 
-                        *{
-                            // display: inline-block;
-                            // padding: .35rem .75rem;
-                            // color: #FFF;
-                            // background-color: rgba(100,166,89,0.9);
-                        }
-                    }
-                    img {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        width: 100%;
-                    }
-                }
-}
-                &.photo {
-                    figcaption {
-                        h1, h2, h3, h4, h5, h6, p{
-                            display: inline-block;
-                            padding: .35rem .75rem;
-                            margin-bottom: .5em;
-                            color: #FFF;
-                            background-color: rgba(100,166,89,0.9);
-                        }
-                    }
-                }
+    &.photo, &.pattern {
+        figcaption {
+            @include span-columns(6 of 12);
+            @include shift(3);
+            padding: $default-spacing * 2 0;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+        }
+    }
+}//media desktop
 
-                @include direction-context(right-to-left) {
-                // @include span-columns(6 of 6);
-                // @include omega();
-                
-                }
-
-
+    &.photo {
+        figcaption {
+            h1, h2, h3, h4, h5, h6, p{
+                display: inline-block;
+                padding: .35rem .75rem;
+                margin-bottom: .5em;
+                color: #FFF;
+                background-color: rgba(100,166,89,0.9);
             }
+        }
+    }
 
 
-        // }
-
-
-.layout .content .typography-sample{
-div {
-
-            @include span-columns(2 of 12);
-
-            // max-height: 50vh;
-            // max-height: 40em;
-            // overflow: hidden;
-// text-decoration:underline;
-}
 }

@@ -1,13 +1,10 @@
 footer {
 
     background: $color-footer-background;
-    font-size: .8em;
 
-    // padding: 1em 1.5rem;
-    padding: 2em 1.5rem;
-    // margin: 2em 0 0 0;
+    padding: $default-spacing;
 
-    font-size: 1.2em;
+    font-size: mod-scale(1); //from _settings.typography, basically "one size up"
 
     a {
         color: $color-body-text;
@@ -19,7 +16,7 @@ footer {
     }
 
     * + h2 {
-        margin: 1.5rem 0 0 0;
+        margin: $default-spacing 0 0 0;
     }
 
     nav {
@@ -29,7 +26,6 @@ footer {
             @include align-items(stretch);
             @include display(flex);
             @include flex-direction(row);
-            // @include justify-content(flex-start);
             @include justify-content(space-between);
 
             list-style: none;
@@ -37,38 +33,6 @@ footer {
 
         ul > li {
             // @include flex(1);
-        }
-    }
-
-    nav {
-        //@include outer-container;
-
-        &>* {
-            //@include span-columns(2 of 10);
-            // @include span-columns(1.5);
-
-            &:first-child {
-                // @include span-columns(3);
-                // @include shift-in-context(+2);
-                // @include span-columns(3);
-            }
-        }
-        
-    }
-}
-
-
-footer + footer {
-    background: $black-victoria;
-        color: $grey-silver;
-
-    a {
-        color: $white;
-
-        border-bottom: none;
-
-        &:hover {
-            text-decoration: underline;
         }
     }
 }
