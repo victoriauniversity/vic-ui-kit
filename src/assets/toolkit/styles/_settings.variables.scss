@@ -1,9 +1,67 @@
 
-$base-line-height: 1.6;
-$base-font-size: 1em;
-$modular-scale: 1.25;
+  /* ===== PATHS ============================================================ */
 
-//Helvetica/National cap height measured @100px font sizes
-$national-cap-height-ratio: 61 / 74;
+  $dir-fonts: "../fonts";
 
-$highlight-border-width: 0.25rem;
+
+
+
+
+  /* ===== FONTS ============================================================ */
+
+
+  // Settings
+  $font-supported-formats: woff woff2 ttf;
+
+
+  // Available weights
+  $weight-normal:    400;
+  $weight-semibold:  600;
+  $weight-extrabold: 800;
+
+
+  // Victoria font
+  $font-victoria:      "National";
+  $font-path-victoria: "#{$dir-fonts}/NationalWebLF";
+
+
+
+
+
+  /* ===== DEFAULTS ========================================================= */
+
+  /** Sizing */
+  $base-size:           14px;
+
+
+  /** Colours. */
+  $color-links:     $blue-endeavoura;
+  $color-headers:   $green-bottle-green;
+  $color-body-text: $black-mine-shaft;
+
+  $color-footer-background: $grey-alto;
+
+
+  /** Helpers */
+  $modular-scale:       1.25; // To scale things progressively (instead of randomly)
+
+
+  /** General typography */
+  $base-line-height:    1.6;
+
+  $base-font-size:      1em;
+  $base-font-color:     $color-body-text;
+  $base-body-family:    "Helvetica Neue","Segoe WP","Helvetica","Arial";
+
+  $base-heading-family: "#{$font-victoria}",$base-body-family;
+  $base-heading-color:  $color-headers;
+
+  $base-heading-to-body-ratio: 61 / 74;
+
+  /** Links */
+  $base-link-color:    $color-links;
+
+  /** Box model */
+  $highlight-border-width: .25rem;
+
+
