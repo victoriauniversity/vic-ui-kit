@@ -1,71 +1,59 @@
+
+$logo-max-height: 9rem; //TODO: Transfer to ems using function
+
+header {
+  background: $black-victoria;
+}
+
 .banner-header {
-    
-    background: $black-victoria;
+  @include outer-container;
+  padding: 1rem 0;
 
-    header {
+  /* Victoria main logotype */
+  .logo {
+    @include span-columns( 3.5 );
+    padding: .5rem $default-spacing;
+    border-right: 1px solid #39403f;
 
-
-      @include outer-container;
-
-        padding: $default-spacing 0;
-        
-        a {
-            display: none;
-            text-indent: -9999em;
-            height: 48px;
-            background-image: url("http://www.victoria.ac.nz/assets/images/logo_desktop.png");
-            background-size: 94%;
-            background-position: 0 50%;
-            background-repeat: no-repeat;
-            height: 8em;
-            border-right: 1px solid #39403f;
-
-
-            @include media($desktop){
-                @include span-columns(3);
-                display: block;
-            }
-        }
-
-        div {
-            text-align: center;
-            @include media($desktop){
-                @include span-columns(9);
-                text-align: left;
-            }
-        }
-
-        h1 {
-            @include media($desktop){
-                font-size: 4.5em;
-            }
-            font-weight: 300;
-            margin: .1em 0 .2em 0;
-            line-height: 0.8;
-            letter-spacing: -.03em;
-            color: #fff;
-            text-indent: -0.05em; 
-        }
-
-        p {
-            display: block;
-            @include media($desktop){
-                font-size: 1.8em;
-            }
-            font-weight: 300;
-            margin: 0;
-            color: #fff;
-
-        }
-
-        :lang(mi) {
-            font-size: 1em;
-            font-weight: normal;
-            opacity: .7;
-            color: #fff;
-        }
-
-
+    @include media($desktop){
+      display: block;
     }
 
+    // Logo image
+    img {
+      max-height: $logo-max-height;
+    }
+  }
+
+  // Site's introduction - eg. sitename, motto, short abstract
+  .site-intro {
+    padding: .4rem 0;
+    @include span-columns( 8.5 );
+    text-align: left;
+  }
+
+  /** Sitename */
+  h1 {
+    margin-bottom: .2rem;
+    font-size: scale-heading( 4 ) * .85;
+    font-weight: $weight-normal;
+    color: $white;
+
+    .preline,
+    small
+    {
+      display: block;
+    }
+
+    // Puts given part of the heading to a separate line
+    .preline { font-size: 75%; }
+
+    // Alternative translation
+    small {
+      margin-top:  .4rem;
+      font-size:   1rem;
+      font-weight: normal;
+      color:       $grey-silver;
+    }
+  }
 }

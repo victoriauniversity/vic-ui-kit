@@ -28,6 +28,11 @@
   @include font-face( $font-victoria, "#{$font-path-victoria}-Extrabold", $weight-extrabold, $file-formats: $font-supported-formats );
 
 
+  //TODO: Move to the icon definitions
+  /* Victoria's icon font */
+  @include font-face( $font-icons, $font-path-icons, $weight-normal, $file-formats: $font-supported-formats );
+
+
 
 
 
@@ -83,53 +88,47 @@
   }
 
   h1 {
-    font-size: scale-heading( 5 );
-    line-height: #{$base-line-height * 2}rem;
-    margin-bottom: #{$base-line-height * 1 - 0.5}rem;
+    font-size: scale-heading( 4 );
+    line-height: 1;
+    margin: 0;
 
-    &.hero { font-size: scale-font( 5 ); } // TODO: Relocate?
+    &.hero { font-size: scale-font( 4 ); } // TODO: Relocate?
   }
 
   h2 {
-    font-size: scale-heading( 4 );
+    font-size: scale-heading( 3 );
     line-height: #{$base-line-height * 1.5}rem;
-    margin-bottom: #{$base-line-height * 1 - 0.5}rem;
   }
 
   h3 {
-    font-size: scale-heading( 3 );
+    font-size: scale-heading( 2 );
     line-height: #{$base-line-height * 1.5}rem;
-    margin-bottom: #{$base-line-height * 1 - 0.5}rem;
   }
 
   h4 {
-    font-size: scale-heading( 2 );
+    font-size: scale-heading( 1 );
     line-height: #{$base-line-height * 1}rem;
-    margin-bottom: #{$base-line-height * 1}rem;
   }
 
   h5 {
-    font-size: scale-heading( 1 );
+    font-size: scale-heading( 0 ) + ( scale-heading( 1 ) - scale-heading( 0 ) )/2;
     line-height: #{$base-line-height * 1}rem;
-    margin-bottom: #{$base-line-height * 1}rem;
   }
 
   h6 {
-    font-size: scale-heading( -1 );
+    font-size: scale-heading( 0 );
     line-height: #{$base-line-height * 1}rem;
-    margin-bottom: #{$base-line-height * 1}rem;
   }
 
   p {
     line-height: #{$base-line-height * 1}rem;
-    margin-bottom: #{$base-line-height * 1}rem;
   }
 
 
   /** Lists */
 
   ul,
-  li {
+  ol {
     li & { margin-left: $default-spacing; }
 
     margin-bottom: $default-spacing;
@@ -220,7 +219,7 @@
 
   /** Miscs */
 
-  time { color: $gray; }
+  time { color: $grey; } // TODO: Too general, remove
 
 
   // TODO: Relocate?
