@@ -1,10 +1,13 @@
 /**
  * Toolkit JavaScript
  */
+var fastclick = require('fastclick');
 var Headroom = require('headroom.js');
 
 
 $(function(){
+
+	fastclick.attach(document.body);
 	var $body = $('body');
 	var $globalNav = $("#global-nav");
 	if ($globalNav.length) {
@@ -21,7 +24,7 @@ $(function(){
 		});
 		headroom.init();
 
-		$body.on('click  touchstart', '.js-toggle-global-nav', function(_event){
+		$body.on('click ', '.js-toggle-global-nav', function(_event){
 			$globalNav.toggleClass('is-open');
 		});
 	}
