@@ -1,14 +1,67 @@
-<div class="global">
-	<nav>
+<div class="global" id="global-nav">
+<div class="menu-toggle">
+	<div class="mobile logo-mini js-toggle-global-nav">
+	<!-- VICTORIA -->
+	<!-- <button class="icon-menu"> -->
+	</button>
+	<!-- <a href="#" class="icon-menu"></a> -->
+	</div>
+</div>
+<div class="menu">
+	<nav class="hide-on-desktop">
+
+
+	<form method="get" action="http://victoria.ac.nz/search">
+
+	    <label role="search">
+	    	<div class="input-wrapper -icon-search">
+	        <input type="search" autocomplete="off" name="q" placeholder="Search Victoria for…"  >
+  <input type="submit" value="Go">
+<!-- 	        <div class="button-container">
+	        <a href="#" class="icon-search">Search</a>
+	        </div> -->
+	        </div>
+	    </label>
+<!--   <div class="feature_search_fields">
+    <label for="feature_search_query" class="js_hide" style="display: none;">Search Victoria for…</label>
+    <input class="field_placeholder feature_search_query" id="feature_search_query" autocomplete="off" type="text" name="q" placeholder="Search Victoria for…" value="Search Victoria for…">
+  <select class="feature_search_filters" name="site">
+    <option value="global_search_collection">Everything</option>
+    <option value="course_search_collection">Courses</option>
+    <option value="people_search_collection">People</option>
+  </select>
+  <input type="submit" value="Go">
+  </div> -->
+</form>
+
+<!-- 	    <label role="search">
+	    	<div class="input-wrapper">
+	        <input type="search" placeholder="Search Victoria for..."  >
+	        <div class="button-container">
+	        <a href="#" class="icon-search">Search</a>
+	        </div>
+	        </div>
+	    </label> -->
+	    <div>
+
+		<a  href="#" class="icon-home">Home</a>
+		<a  href="#" class="icon-phone">Contact</a>
+
+		</div>
+
+	</nav>
+	<!-- <input id="show-menu" type="checkbox" class="mobile" /> -->
+	<!-- <a href="#menu" class="mobile">hamburger</a> -->
+	<nav id="menu">
 		
-		<a href="#" class="icon-home"></a>
+		<a href="#" class="home"><i class="icon-globe hanging-icon"></i><span class="hide-on-desktop">Victoria's main site</span></a>
 		<a href="#">Future students</a>
 		<a href="#">International students</a>
 		<a href="#">Current students</a>
 		<a href="#">Research</a>
 		<a href="#">Learning &amp; teaching</a>
 
-	    <label role="search">
+	    <label role="search" class="hide-on-mobile">
 	<!--         <input type="search" placeholder="Search Victoria for..." style="border: none; background: transparent; color:inherit;">
 	        <button style="position:absolute; top:0; right:0; bottom:0;">Search</button> -->
 	    	<a href="#" class="icon-search"></a>
@@ -17,4 +70,22 @@
 
 	</nav>
 
+	<!-- <div class="mobile"> -->
+
+<!-- duplicates side nav -->
+{{> navigation.site}}
+<!-- /duplicates side nav -->
+
+	<!-- </div> -->
+
+	</div>
+
 </div>
+
+<script src="https://unpkg.com/headroom.js">// grab an element
+// var myElement = document.querySelector(".global");
+// // construct an instance of Headroom, passing the element
+// var headroom  = new Headroom(myElement);
+// // initialise
+// headroom.init();
+</script>

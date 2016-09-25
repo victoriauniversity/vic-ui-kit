@@ -39,6 +39,12 @@
             @include media($desktop){
                 font-size: 4.5em;
             }
+            @include media($mobile){
+                font-size: mod-scale(2) / $national-cap-height-ratio;
+                line-height: #{$base-line-height * 1.5}rem;
+                margin-bottom: #{$base-line-height * 1 - 0.5}rem;
+                padding-top: 0.5rem;
+            }//media $mobile
             font-weight: 300;
             margin: .1em 0 .2em 0;
             line-height: 0.8;
