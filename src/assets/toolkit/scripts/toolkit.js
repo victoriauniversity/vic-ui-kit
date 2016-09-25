@@ -21,7 +21,7 @@ $(function(){
 		});
 		headroom.init();
 
-		$body.on('click', '.js-toggle-global-nav', function(_event){
+		$body.on('click  touchstart', '.js-toggle-global-nav', function(_event){
 			$globalNav.toggleClass('is-open');
 		});
 	}
