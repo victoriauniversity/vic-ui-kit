@@ -5,14 +5,14 @@
   $scale-font-base: $base-font-size !default;
 
   @function scale-font( $font-size: 1 ) {
-    @return pow( $modular-scale, $font-size ) * $base-font-size;
+    @return modular-scale( $font-size );
   }
 
 
   $heading-to-body-ratio: $base-heading-to-body-ratio !default;
 
   @function scale-heading( $heading-size ) {
-    @return scale-font( $heading-size ) / $heading-to-body-ratio;
+    @return modular-scale( $heading-size ) / $heading-to-body-ratio;
   }
 
 
@@ -28,7 +28,6 @@
   @include font-face( $font-victoria, "#{$font-path-victoria}-Extrabold", $weight-extrabold, $file-formats: $font-supported-formats );
 
 
-  //TODO: Move to the icon definitions
   /* Victoria's icon font */
   @include font-face( $font-icons, $font-path-icons, $weight-normal, $file-formats: $font-supported-formats );
 
@@ -38,6 +37,7 @@
 
   /* ===== CUSTOM NORMALISATION ============================================= */
 
+  // TODO: ? Relocate to normalisations
   q {
     &:before,
     &:after
@@ -54,18 +54,20 @@
 
 
   html {
-    font-size: $base-size; //84em * 14px = 1176px
-
-    //TODO: Make major media queries more variable
-
-    //include-media.com/#features
-    @import 'include-media/dist/_include-media.scss'; // TODO: Relocate?
-
-    @include media(">=1366px") { //84em * 16px = 1344px
-      font-size: 16px;
+    // TODO: Tweak at the end to find best UX fit
+    @include media( $mobile-large-and-smaller ) {
+      font-size: 85%;
     }
-    @include media(">=1536px") { //84em * 18px = 1512px
-      // font-size: 18px;
+
+    @include media( $tablet ) {
+      font-size: 92.5%;
+    }
+
+    font-size: 100%;
+
+    @include media( $desktop-large ) {
+      //font-size: 105%;
+      font-size: 100%; // Temporary to avoid incosistencies between graphic designs and
     }
   }
 
@@ -73,7 +75,11 @@
     font-family: $base-body-family;
     line-height: $base-line-height;
     color:       $base-font-color;
+
+    // Make fonts consistent and nice across browsers
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   h1,
@@ -92,7 +98,7 @@
     line-height: 1;
     margin: 0;
 
-    &.hero { font-size: scale-font( 4 ); } // TODO: Relocate?
+    &.hero { font-size: scale-heading( 4 ); } // TODO: Relocate to components?
   }
 
   h2 {
@@ -178,11 +184,11 @@
 
   table {
     margin-bottom: $default-spacing;
-    box-shadow: 0 1px 5px rgba( #000,.15 );
+    box-shadow: 0 1px 5px rgba( #000, .15 );
     border-collapse: collapse;
     border-spacing: 0;
 
-    // TODO: Relocate?
+    // TODO: Relocate to objects/components?
     &.bleed {
       @include media( $desktop ){
           margin-left:  -25%;
@@ -226,7 +232,7 @@
   /** Development helpers *ONLY* - !DO NOT USE IN PRODUCTION! */
 
   body.show-grid {
-    background-image:  linear-gradient(to bottom,#0FF 0,rgba( #FFF,0 )1px);
+    background-image:  linear-gradient( to bottom,#0FF 0,rgba( #FFF,0 )1px );
     background-repeat: repeat-y;
     background-size:   100% $base-font-size * $base-line-height;
   }
