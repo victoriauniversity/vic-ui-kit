@@ -116,6 +116,7 @@
     line-height: #{$base-line-height * 1}rem;
   }
 
+
   h5 {
     font-size: scale-heading( 0 ) + ( scale-heading( 1 ) - scale-heading( 0 ) )/2;
     line-height: #{$base-line-height * 1}rem;
@@ -128,6 +129,16 @@
 
   p {
     line-height: #{$base-line-height * 1}rem;
+  }
+
+  .table-container { //any other h-scrollable content?
+    display: block;
+    @include media( $mobile-large-and-smaller ){
+        max-width: 100%;
+        overflow-x: scroll;
+    }//media mobile
+    box-shadow: 0px 1px 5px rgba(0,0,0,0.15);
+    margin-bottom: $default-spacing;
   }
 
 

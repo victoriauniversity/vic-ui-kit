@@ -16,6 +16,8 @@
   background:    $black-victoria;
   border-bottom: 1px solid rgba( #FFF,.15 );
 
+  @include clearfix;
+
   .logo-mini {
     @include clearfix();
     height: 1.6rem;
@@ -36,20 +38,16 @@
     right: 0;
     z-index: 100;
 
-    form~div {
+    .horisontal-links {
         @include clearfix();
 
         >a{
             float: left;
             width: 50%;
             margin: 0;
-            padding: $default-spacing/2;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding: $default-spacing/2 $default-spacing;
+            border-bottom: none;
 
-            +a{
-                border-left: 1px solid rgba(255, 255, 255, 0.15);
-            }
         }
     }
 
@@ -76,7 +74,7 @@
                 float: left;
                 padding: $default-spacing/2;
 
-                &[type=search] {
+                &[type=text] {
                     width: 80%;
                 }
 

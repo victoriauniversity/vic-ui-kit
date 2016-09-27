@@ -221,9 +221,19 @@ aside {
 }
 
 .banner {
+@include media($desktop){
     background:#eeeeee;
     position:relative;
     overflow:hidden;
+}//media desktop
+@include media($mobile){
+    border-top: 3px solid #eee;
+    border-bottom: 3px solid #eee;
+
+    &+.banner {
+        border-top: none;
+    }
+}//media desktop
 
     &.pattern {
         background: url("http://www.victoria.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png");
@@ -238,9 +248,9 @@ aside {
 
 .banner figure {
 
+    position: relative;
     @include clearfix();
     padding: 0;
-
     box-shadow: 0px 1px 5px rgba( #000, .15);
     background: #fff;
 
@@ -260,10 +270,10 @@ aside {
 
     &.photo, &.pattern {
         figcaption {
+            position: relative;
             @include span-columns(6 of 12);
             @include shift(3);
             padding: $default-spacing * 2 0;
-            position: relative;
             z-index: 1;
             text-align: center;
         }
