@@ -52,7 +52,7 @@ const config = {
   },
   fonts: {
     toolkit: {
-      src: 'src/assets/toolkit/fonts/*',
+      src: ['src/assets/toolkit/fonts/*', 'lib/fontello/font/*'],
     },
   },
   templates: {

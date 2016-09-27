@@ -1,20 +1,44 @@
-<div class="global">
-	<nav>
-		
-		<a href="#"><!-- Victoria's main site --><img class="icon" src="http://www.entypo.com/images/home.svg" alt="Home pictogram"></a>
-		<a href="#">Future students</a>
-		<a href="#">International students</a>
-		<a href="#">Current students</a>
-		<a href="#">Research</a>
-		<a href="#">Learning &amp; teaching</a>
+<div class="global" id="global-nav">
+	<div class="menu-toggle js-toggle-global-nav">
+		<div class="mobile logo-mini"></div>
+	</div>
+	<div class="menu">
+		<nav class="hide-on-desktop">
+			<form method="get" action="http://victoria.ac.nz/search">
+			    <label role="search">
+			    	<div class="input-wrapper -icon-search">
+			        	<input type="search" autocomplete="off" name="q" placeholder="Search Victoria for…"  >
+		  				<input type="submit" value="Go">
+			        </div>
+			    </label>
+			</form>
+			
+			<div>
+				<a href="#" class="icon-home">Home</a>
+				<a href="#" class="icon-phone">Contact</a>
+			</div>
+		</nav>
 
-	    <label role="search">
-	<!--         <input type="search" placeholder="Search Victoria for..." style="border: none; background: transparent; color:inherit;">
-	        <button style="position:absolute; top:0; right:0; bottom:0;">Search</button> -->
-	    	<a href="#"><img class="icon" src="http://www.entypo.com/images/magnifying-glass.svg" alt="Magnifying glass pictogram"></a>
-	    </label>
+		<nav id="menu">
+			<a href="#" class="home">
+				<i class="icon-globe hanging-icon"></i>
+				<span class="hide-on-desktop">Victoria's main site</span>
+			</a>
+			<a href="#">Future students</a>
+			<a href="#">International students</a>
+			<a href="#">Current students</a>
+			<a href="#">Research</a>
+			<a href="#">Learning &amp; teaching</a>
 
+		    <label role="search" class="hide-on-mobile">
+		    	<a href="#" class="icon-search"></a>
+		    </label>
+		</nav>
 
-	</nav>
+		<!-- duplicates side nav -->
+		{{> navigation.site}}
+		<!-- /duplicates side nav -->
+
+	</div>
 
 </div>
