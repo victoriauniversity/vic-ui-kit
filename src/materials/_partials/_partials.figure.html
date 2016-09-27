@@ -1,0 +1,31 @@
+---
+notes: >
+
+---
+<figure class=" {{{class}}}">
+
+{{#if href}}
+	<a href="{{{href}}}">
+{{/if}}
+
+{{#if img}}
+{{#unless img-rtl}}
+	<img alt="Wellington waterfront" src="{{{img}}}">
+{{/unless}}
+{{/if}}
+
+	<figcaption>
+		{{> @partial-block}}
+	</figcaption>
+
+{{#if img}}
+{{#if img-rtl}}
+	<img alt="Wellington waterfront" src="{{{img}}}">
+{{/if}}
+{{/if}}
+
+{{#if href}}
+	</a>
+{{/if}}
+
+</figure>

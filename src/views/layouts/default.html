@@ -14,6 +14,10 @@
 	<link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}{{else}}.{{/if}}/assets/toolkit/styles/toolkit.css">
 	<!-- /toolkit styles -->
 
+  <!-- toolkit scripts -->
+  <script type="text/javascript" src="{{#if baseurl}}{{baseurl}}{{else}}.{{/if}}/assets/toolkit/scripts/picturefill.min.js"></script>
+  <!-- /toolkit scripts -->
+
 </head>
 <body>
 
@@ -28,13 +32,16 @@
 	{% body %}
 
 
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha256-ImQvICV38LovIsvla2zykaCTdEh1Z801Y+DSop91wMU=" crossorigin="anonymous"></script>
+
 	{{#if fabricator}}
 		</div>
-	<script src=".{{baseurl}}/assets/fabricator/scripts/f.js"></script>
+	<script src="{{#if baseurl}}{{baseurl}}{{else}}.{{/if}}/assets/fabricator/scripts/f.js"></script>
 	{{/if}}
 
 	<!-- toolkit scripts -->
-	<script src=".{{baseurl}}/assets/toolkit/scripts/toolkit.js"></script>
+	<script src="{{#if baseurl}}{{baseurl}}{{else}}.{{/if}}/assets/toolkit/scripts/toolkit.js"></script>
 	<!-- /toolkit scripts -->
 
 </body>

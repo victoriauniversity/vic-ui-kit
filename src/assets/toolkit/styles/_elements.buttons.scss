@@ -1,0 +1,40 @@
+$color-button-default: #e6e6e6;
+
+$color-button-primary: #3363b3;
+$color-button-secondary: #e72e2e;
+
+$color-button-disabled: #d0d0d0;
+
+button,
+.button {
+    border-radius: 2px;
+    // min-width: 5em;
+    display: inline-block;
+    padding: 0.3em 0.8em;
+    margin: -0.3em 0;
+
+    &:not(.flat){
+        border: 1px solid rgba(255,255,255, 0.5);
+        color: $color-body-text;
+        background: $color-button-default;
+    }
+
+    &.primary {
+        background-color: $color-button-primary;
+        border-color: $color-button-primary;
+        color: #fff;
+    }
+
+    &.secondary {
+        background-color: $color-button-secondary;
+        background-color: $color-button-secondary;
+        color: #fff;
+    }
+
+    &[disabled],
+    &.disabled {
+        border-color: $color-button-disabled;
+        background: $color-button-default;
+        color: #aaa;
+    }
+}

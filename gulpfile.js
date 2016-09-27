@@ -50,6 +50,11 @@ const config = {
       watch: 'src/assets/toolkit/images/**/*',
     },
   },
+  fonts: {
+    toolkit: {
+      src: ['src/assets/toolkit/fonts/*', 'lib/fontello/font/*'],
+    },
+  },
   templates: {
     watch: 'src/**/*.{html,md,json,yml}',
   },
@@ -78,7 +83,12 @@ gulp.task('styles:toolkit', () => {
   gulp.src(config.styles.toolkit.src)
   .pipe(gulpif(config.dev, sourcemaps.init()))
   .pipe(sass({
-    includePaths: './node_modules',
+    includePaths: [
+    './node_modules',
+    require("bourbon").includePaths,
+    require("bourbon-neat").includePaths,
+    './lib',
+    ],
   }).on('error', sass.logError))
   .pipe(prefix('last 1 version'))
   .pipe(gulpif(!config.dev, csso()))
@@ -121,6 +131,12 @@ gulp.task('favicon', () => {
   .pipe(gulp.dest(config.dest));
 });
 
+// fonts
+gulp.task('fonts', function () {
+  return gulp.src(config.fonts.toolkit.src)
+    .pipe(gulp.dest(config.dest + '/assets/toolkit/fonts'));
+});
+
 
 // assembler
 gulp.task('assembler', (done) => {
@@ -156,6 +172,9 @@ gulp.task('serve', () => {
   gulp.task('images:watch', ['images'], browserSync.reload);
   gulp.watch(config.images.toolkit.watch, ['images:watch']);
 
+  gulp.task('fonts:watch', ['fonts'], reload);
+  gulp.watch(config.fonts.toolkit.src, ['fonts:watch']);
+
 });
 
 
@@ -167,6 +186,7 @@ gulp.task('default', ['clean'], () => {
     'styles',
     'scripts',
     'images',
+    'fonts',
     'assembler',
   ];
 

@@ -1,0 +1,51 @@
+figure {
+    margin-bottom: $default-spacing;
+
+    img {
+        width: 100%;
+        // filter: grayscale(20%);
+        display: block;
+    }
+
+    p {
+        color: $color-body-text;
+    }
+
+    &:hover {
+        img{
+            filter: none;
+        }
+
+        h3 {
+            border-bottom-color: #5a96b7;
+        }
+    }
+
+}
+
+article {
+
+    margin-bottom: $default-spacing;
+
+    .grid & {
+        border-top: 4px solid #115737;
+    }
+
+    main > & {
+
+        border-top-color: transparent;
+
+    }
+
+    &.featured {
+
+        font-size: 100%;
+        color: $color-headers;
+
+
+        & > div {
+            font-size: 100%;
+        }
+
+    }
+}
