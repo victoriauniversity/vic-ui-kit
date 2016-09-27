@@ -1,15 +1,15 @@
 
-@include media($desktop){
+@include media($desktop-and-bigger){
 
 .layout {
-    @include outer-container;
+    @include outer-container; // Needs to
 }
 
 
 
 .content {
     padding: $gutter 0;
-    
+
     .layout > & {
         @include span-columns(12 of 12);
     }
@@ -23,15 +23,13 @@
     }
 }
 
-nav {
-    .layout.has-nav > & {
+    .layout.has-nav > nav {
         @include span-columns(3 of 12);
 
         @include media($mobile) {
             @include span-columns(12 of 12);
         }
     }
-}
 
 
 
@@ -93,7 +91,7 @@ aside {
 
     &>nav {
         @include span-columns(3);
-        @include media($tablet) {
+        @include media( $tablet ) {
           @include span-columns(4 of 12);
         }
     }
@@ -250,13 +248,13 @@ aside {
 
 .banner figure {
 
+    position: relative;
     @include clearfix();
     padding: 0;
-
-@include media($desktop){
-
-    box-shadow: 0px 1px 5px rgba(0,0,0,0.15);
+    box-shadow: 0px 1px 5px rgba( #000, .15);
     background: #fff;
+
+@include media( $tablet-and-bigger ){
 
     margin: $default-spacing * 1.5 $default-spacing * -1.5;
 
@@ -272,10 +270,10 @@ aside {
 
     &.photo, &.pattern {
         figcaption {
+            position: relative;
             @include span-columns(6 of 12);
             @include shift(3);
             padding: $default-spacing * 2 0;
-            position: relative;
             z-index: 1;
             text-align: center;
         }

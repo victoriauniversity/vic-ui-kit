@@ -1,0 +1,109 @@
+/*==================================================
+=            VICTORIA'S MIXINS COLLECTION          =
+==================================================*/
+
+// Mixins collection that can be used to simplify SCSS development.
+//
+// *HIGHLY RECOMMENDED* to read through all available mixins before
+// start of active development!
+
+
+
+/* ===== HELPERS ============================================================ */
+
+
+
+
+/* ===== BOX MODEL ========================================================== */
+
+/*******************************************************************************
+ * Transforms non-object element (eg. pseudo-elements) into object one.
+ *
+ * @display         - Type of box of the object element.
+ * @content         - Optional text content (useful for icons).
+ * @position        - Specifies type of positioning method used for an element.
+ */
+@mixin objectify( $display: inline-block, $content: "", $position: relative ) {
+    position:   $position;
+    display:    $display;
+    content:    $content,
+}
+
+
+
+
+
+/* ===== TYPOGRAPHY ========================================================= */
+
+
+/*******************************************************************************
+ * Shorter definition of all active states of an element.
+ *
+ * { @content }     - Definition of the active states' styles.
+ */
+@mixin hoverify() {
+    &:hover,
+    &:active,
+    &:focus {
+        @content;
+    }
+}
+
+
+/*******************************************************************************
+ * Makes custom square bullets in the list-item using its `::before` pseudo-element.
+ * *SHOULD BE* used in the <li> element.
+ *
+ * @size            - Size of the square.
+ * @colour          - Colour of the bullet.
+ */
+@mixin make-list-square-bullet( $size, $colour: $text-fade-colour ) {
+    &:before {
+        @include objectify( inline-block, $position: static );
+        @include size( $size );
+        background-color: $colour;
+
+        @content;
+    }
+}
+
+
+
+
+
+/* ===== IMAGES & ICONS ===================================================== */
+
+/*******************************************************************************
+ * Turns potentially non-object element into a font icon container.
+ *
+ * @display         - Type of box of the object element.
+ * @ico-code        - Unicode code of the icon from the $font-family.
+ * @font-family     - Name or type of the font icon.
+ */
+@mixin iconify( $display: inline-block, $ico-code: "", $font-icon-family: $font-victoria-icons ) {
+    @include objectify( $display, $ico-code );
+    font-family: $font-icon-family;
+}
+
+
+
+
+
+/* ===== ANIMATIONS ========================================================= */
+
+/*******************************************************************************
+ * Creates transition between element's original and future state.
+ *
+ * @duration        - How long should the element trasition between original and
+ *                    final state.
+ * @timing-function - Function defining the progress of the transition.
+ */
+@mixin transitionise( $duration: $base-transition-duration, $timing-function: $base-transition-function )
+{
+    @include transition-property( all );
+    @include transition-duration( $duration );
+    @include transition-timing-function( $timing-function );
+    @include transition-delay( 0 );
+}
+
+
