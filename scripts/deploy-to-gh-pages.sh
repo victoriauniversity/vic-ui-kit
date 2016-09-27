@@ -18,7 +18,7 @@ mv ./${TRAVIS_BRANCH} ./dist/${TRAVIS_BRANCH}
 
 echo TRAVIS_BRANCH: ${TRAVIS_BRANCH}
 
-if [ "${TRAVIS_BRANCH}" == "master" ] || [ "${TRAVIS_BRANCH}" == "develop" ]; then
+if [ ${TRAVIS_BRANCH} = master ] || [ ${TRAVIS_BRANCH} = develop ]; then
 	# deploy
 	echo deploying ${TRAVIS_BRANCH}
 	cd dist
