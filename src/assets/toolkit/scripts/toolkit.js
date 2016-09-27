@@ -18,9 +18,14 @@ $(function(){
 		  	up: 20,
 		  	down: 5
 		  },
+		  onPin: function (){
+		  	//reset in-menu scrolling 
+		  	$globalNav.find('.menu').scrollTop(0);
+		  },
 		  onUnpin: function (){
 		  	$globalNav.toggleClass('is-open', false);
 		  }
+
 		});
 		headroom.init();
 

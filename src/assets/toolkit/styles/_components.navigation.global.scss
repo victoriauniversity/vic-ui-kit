@@ -15,16 +15,15 @@
 
 .menu-toggle {
     background: $black-victoria;
-    padding: $default-spacing/2 $default-spacing;
     border-bottom: 1px solid rgba(255,255,255,0.15);
 
     z-index: 1;
     position: relative;
-    .logo-mini {
-        // width: 60%;
-        // margin: 0 20%;
-        @include clearfix();
-        height: 1.6rem;
+
+    @include clearfix;
+
+    a {
+        border-bottom: none;
     }
 }
 
@@ -44,21 +43,18 @@
     left: 0;
     right: 0;
     z-index: 100;
+    height: $default-spacing * 2;
 
-    form~div {
+    .horisontal-links {
         @include clearfix();
 
         >a{
             float: left;
             width: 50%;
             margin: 0;
-            padding: $default-spacing/2;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding: $default-spacing/2 $default-spacing;
+            border-bottom: none;
 
-            +a{
-                border-left: 1px solid rgba(255, 255, 255, 0.15);
-            }
         }
     }
 
@@ -85,7 +81,7 @@
                 float: left;
                 padding: $default-spacing/2;
 
-                &[type=search] {
+                &[type=text] {
                     width: 80%;
                 }
 
