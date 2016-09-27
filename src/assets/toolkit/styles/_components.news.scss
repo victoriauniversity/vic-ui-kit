@@ -1,6 +1,6 @@
 .news {
     &-container {
-@include media($desktop){
+@include media($tablet-and-bigger){
         @include span-columns(8 of 12);
         @include omega;
         @include shift(2);
@@ -22,7 +22,7 @@
             border-bottom: none;
         }
 
-@include media($desktop){
+@include media($tablet-and-bigger){
 
         &.has-media {
             .description {
@@ -44,9 +44,8 @@
 
     time {
         display: block;
-        margin-top: -$default-spacing;
     }
-    
+
     h3 + a {
         margin-top: -2.95rem; //1.1rem h3 margin-bottom; 1.6rem a line-height ~adjustment//2.4rem line-height
         float:right;

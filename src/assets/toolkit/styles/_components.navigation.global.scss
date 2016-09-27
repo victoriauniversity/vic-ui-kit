@@ -1,43 +1,34 @@
 
 
-@include media($mobile){
-    .hide-on-mobile {
-        display: none !important;
-    }
+@include media( $mobile-large-and-smaller ){
+  .hide-on-mobile { display: none !important; }
 }
 
-@include media($desktop){
-    .hide-on-desktop {
-        display: none !important;
-    }
+@include media( $tablet-and-bigger ){
+  .hide-on-desktop { display: none !important; }
 }
 
 
 .menu-toggle {
-    background: $black-victoria;
-    padding: $default-spacing/2 $default-spacing;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+  position:      relative;
+  z-index:       1;
+  padding:       $default-spacing / 2 $default-spacing;
+  background:    $black-victoria;
+  border-bottom: 1px solid rgba( #FFF,.15 );
 
-    z-index: 1;
-    position: relative;
-    .logo-mini {
-        // width: 60%;
-        // margin: 0 20%;
-        @include clearfix();
-        height: 1.6rem;
-    }
+  .logo-mini {
+    @include clearfix();
+    height: 1.6rem;
+  }
 }
 
-
-.banner-header {
-    padding-top: 3rem;
-}
+.site-header { padding-top: 3rem; } //TODO: Should be calculated dynamically by JS
 
 .global {
 
-@include media($desktop){  
-    background: $green-bottle-green;
-} //media desktop
+  @include media( $tablet-and-bigger ){
+      background: $green-bottle-green;
+  } //media desktop
     font-weight: 300;
     position: fixed;
     top:0;
@@ -62,7 +53,7 @@
         }
     }
 
-@include media($mobile){
+@include media( $mobile-large-and-smaller ){
 
     [role=search]{
 
@@ -128,6 +119,7 @@
         transition: transform 200ms ease-in-out;
         transform: translateY(-100vh);
     }
+
     &.is-open .menu {
         transform: translateY(0);
     }
@@ -136,16 +128,14 @@
         display: block;
         @include menu-item();
     }
-    .mobile {
-        display: block;
-    }
+
+    .mobile { display: block; }
 }
 
-@include media($desktop){
+@include media( $tablet-and-bigger ){
 
-    .mobile, .site, .menu-toggle {
-        display: none;
-    }
+  .mobile, .site, .menu-toggle { display: none; }
+
     nav {
         @include outer-container;
 
@@ -153,7 +143,7 @@
 
         a {
             color: #fff;
-            padding: .7em $default-spacing;
+            padding: .6em 1em;
             display: block;
             float: left;
             opacity: .8;
@@ -166,7 +156,7 @@
             }
 
         }
-        
+
         a + a {
             border-left: 1px solid rgba(255,255,255,0.15);
         }
@@ -177,6 +167,5 @@
 
     }
 
-}//media destkop
-
+  }//media destkop
 }

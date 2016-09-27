@@ -12,7 +12,7 @@ $logo-max-height: rem( 125px ); //TODO: Transfer to rems using function
   background: $black-victoria;
 
   .centraliser {
-    padding: .7em 1rem; //TODO: Stabilise as a default spacing
+    padding: .7em 1rem;
   }
 
   /* Victoria main logotype */
@@ -30,7 +30,7 @@ $logo-max-height: rem( 125px ); //TODO: Transfer to rems using function
   .site-intro {
     @include span-columns( 8.5 );
 
-    padding:    .4em 0;
+    padding: .4em 0;
     text-align: left;
   }
 
@@ -40,6 +40,12 @@ $logo-max-height: rem( 125px ); //TODO: Transfer to rems using function
     font-size:     scale-heading( 4 ) * .85; // 85% smaller than standard <h1>
     font-weight:   $weight-normal;
     color:         $white;
+
+    @include media( $mobile ){
+      line-height:   #{$base-line-height * 1.5}rem;
+      margin-bottom: #{$base-line-height * 1 - 0.5}rem;
+      padding-top:   0.5rem;
+    }
 
     .preline,
     small {
