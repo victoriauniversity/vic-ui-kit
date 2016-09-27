@@ -13,8 +13,8 @@ git config --global user.name "Travis CI"
 npm run build
 
 # copy dist folder into folder named after current branch
-# cp -r ./dist ./${TRAVIS_BRANCH}
-# mv ./${TRAVIS_BRANCH} ./dist/${TRAVIS_BRANCH}
+cp -r ./dist ./${TRAVIS_BRANCH}
+mv ./${TRAVIS_BRANCH} ./dist/${TRAVIS_BRANCH}
 
 echo TRAVIS_BRANCH: ${TRAVIS_BRANCH}
 
