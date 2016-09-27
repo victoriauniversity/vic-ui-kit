@@ -16,7 +16,9 @@ npm run build
 # cp -r ./dist ./${TRAVIS_BRANCH}
 # mv ./${TRAVIS_BRANCH} ./dist/${TRAVIS_BRANCH}
 
-if ["${TRAVIS_BRANCH}" == "master"] || ["${TRAVIS_BRANCH}" == "develop"]; then
+echo TRAVIS_BRANCH: ${TRAVIS_BRANCH}
+
+if [ "${TRAVIS_BRANCH}" == "master" ] || [ "${TRAVIS_BRANCH}" == "develop" ]; then
 	# deploy
 	echo deploying ${TRAVIS_BRANCH}
 	cd dist
