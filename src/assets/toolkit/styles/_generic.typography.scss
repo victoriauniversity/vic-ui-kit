@@ -196,9 +196,13 @@ p, ul, ol, table {
 
 
   .table-container {
-    max-width: 100%;
     display: block;
+@include media($mobile){
+    max-width: 100%;
     overflow-x: scroll;
+    padding-right: $default-spacing/2;
+    margin-right: -$default-spacing/2;
+}//media mobile
   }
 
 
