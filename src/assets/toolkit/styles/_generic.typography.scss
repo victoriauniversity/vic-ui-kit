@@ -136,13 +136,11 @@
   ul,
   ol {
     li & { margin-left: $default-spacing; }
-
-    margin-bottom: $default-spacing;
   }
 
   // TODO: Refactor! Does *not* match the graphic design!
   ul {
-    list-style: square;
+    list-style: none;
   }
 
   ol {
@@ -155,8 +153,6 @@
   %vuw-link {
     display:        inline;
     border-bottom:  1px solid;
-    padding-bottom: .08em;    // TODO: Is it necessary? Why?
-    margin-bottom:  -.08em;   // TODO: Is it necessary? Why?
     border-bottom:  1px solid transparentize( $color-links, .7 );
 
     &:hover {
@@ -187,14 +183,6 @@
     box-shadow: 0 1px 5px rgba( #000, .15 );
     border-collapse: collapse;
     border-spacing: 0;
-
-    // TODO: Relocate to objects/components?
-    &.bleed {
-      @include media( $desktop ){
-          margin-left:  -25%;
-          margin-right: -25%;
-      }
-    }
   }
 
     th,
@@ -216,7 +204,7 @@
     float: left;
     margin: 0 $default-spacing $default-spacing 0;
 
-    & ~ img {
+    ~ img {
       float: right;
       margin: 0 0 $default-spacing $default-spacing;
     }
