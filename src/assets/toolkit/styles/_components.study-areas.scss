@@ -1,4 +1,4 @@
-$gutter: 10px;
+$gutter: 8px;
 .centraliser {
     @include outer-container;
 }
@@ -8,12 +8,11 @@ $gutter: 10px;
 }
 
 .study-areas {
+    @include outer-container;
     .tiles-wrap {
-        @include outer-container;
+        @include fill-parent();
         li.tile {
             @include span-columns(3);
-            @include omega(4n);
-            @include pad(0);
             margin-right: $gutter;
             position: relative;
             img {
@@ -66,5 +65,11 @@ $gutter: 10px;
                 margin-top: 0.75em;
             }
         }
+    }
+    input[type=checkbox]:checked ~ .tiles-wrap .tile[data-pg="only"] {
+        display: block;
+    }
+    input[type=checkbox]:checked ~ .tiles-wrap li.tile {
+        display: none;
     }
 }
