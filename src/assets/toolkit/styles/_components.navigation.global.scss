@@ -1,169 +1,141 @@
-
-
-@include media( $mobile-large-and-smaller ){
-  .hide-on-mobile { display: none !important; }
+@include media( $mobile-large-and-smaller) {
+    .hide-on-mobile {
+        display: none !important;
+    }
 }
 
-@include media( $tablet-and-bigger ){
-  .hide-on-desktop { display: none !important; }
+@include media( $tablet-and-bigger) {
+    .hide-on-desktop {
+        display: none !important;
+    }
 }
-
 
 .menu-toggle {
-  position:      relative;
-  z-index:       1;
-  padding:       $default-spacing / 2 $default-spacing;
-  background:    $black-victoria;
-  border-bottom: 1px solid rgba( #FFF,.15 );
-
-  @include clearfix;
-
-  .logo-mini {
-    @include clearfix();
-    height: 1.6rem;
-  }
+    position: relative;
+    z-index: 1;
+    padding: $default-spacing / 2 $default-spacing;
+    background: $black-victoria;
+    border-bottom: 1px solid rgba( #FFF, .15);
+    @include clearfix;
+    .logo-mini {
+        @include clearfix();
+        height: 1.6rem;
+    }
 }
 
-.site-header { padding-top: 3rem; } //TODO: Should be calculated dynamically by JS
-
+.site-header {
+    padding-top: 3rem;
+} //TODO: Should be calculated dynamically by JS
 .global {
-
-  @include media( $tablet-and-bigger ){
-      background: $green-bottle-green;
-  } //media desktop
+    @include media($desktop) {
+        background: $green-victoria;
+    } //media desktop
     font-weight: 300;
     position: fixed;
     top:0;
     left: 0;
     right: 0;
     z-index: 100;
-
     .horisontal-links {
         @include clearfix();
-
-        >a{
+        >a {
             float: left;
             width: 50%;
             margin: 0;
             padding: $default-spacing/2 $default-spacing;
             border-bottom: none;
-
         }
     }
-
-@include media( $mobile-large-and-smaller ){
-
-    [role=search]{
-
-        @include clearfix();
-
-        padding: $default-spacing/2 $default-spacing;
-        width: 100%;
-        display: block;
-        position: relative;
-
-
-        .input-wrapper {
+    @include media( $mobile-large-and-smaller) {
+        [role=search] {
+            @include clearfix();
+            padding: $default-spacing/2 $default-spacing;
+            width: 100%;
             display: block;
             position: relative;
-
-            input {
-                background: rgba(0,0,0,0.15);
+            .input-wrapper {
+                display: block;
+                position: relative;
+                input {
+                    background: rgba(0, 0, 0, 0.15);
+                    border: none;
+                    color: #fff;
+                    float: left;
+                    padding: $default-spacing/2;
+                    &[type=text] {
+                        width: 80%;
+                    }
+                    &[type=submit] {
+                        width: 20%;
+                        border-left: 1px solid rgba(255, 255, 255, 0.15);
+                    }
+                }
+            }
+        }
+        .button-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            a {
+                padding: 0;
+                margin: 2px 0;
                 border: none;
+                border-left: 1px solid rgba(255, 255, 255, 0.15);
+                display: block;
+                padding: 0 .8rem;
+                text-align: right;
+            }
+        }
+        .menu {
+            background: $green-bottle-green;
+            max-height: 75vh;
+            overflow-y: scroll;
+        }
+        .menu {
+            will-change: transform;
+            transition: transform 200ms ease-in-out;
+            transform: translateY(-100vh);
+        }
+        &.is-open .menu {
+            transform: translateY(0);
+        }
+        a {
+            display: block;
+            @include menu-item();
+        }
+        .mobile {
+            display: block;
+        }
+    }
+    @include media( $tablet-and-bigger) {
+        .mobile,
+        .site,
+        .menu-toggle {
+            display: none;
+        }
+        nav {
+            @include outer-container;
+            @include clearfix();
+            a {
                 color: #fff;
+                padding: .6em 1em;
+                display: block;
                 float: left;
-                padding: $default-spacing/2;
-
-                &[type=text] {
-                    width: 80%;
-                }
-
-                &[type=submit] {
-                    width: 20%;
-                    border-left: 1px solid rgba(255, 255, 255, 0.15);
+                opacity: .8;
+                border-bottom: none;
+                &.selected,
+                &:hover,
+                &:focus {
+                    background: #1d2624;
                 }
             }
-        }
-
-    }
-
-    .button-container {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-
-        a {
-
-            padding: 0;
-            margin: 2px 0;
-            border: none;
-            border-left: 1px solid rgba(255, 255, 255, 0.15);
-            display: block;
-            padding: 0 .8rem;
-            text-align: right;
-
-        }
-    }
-
-    .menu {
-        background: $green-bottle-green;
-        max-height: 75vh;
-        overflow-y: scroll;
-    }
-
-    .menu {
-        will-change: transform;
-        transition: transform 200ms ease-in-out;
-        transform: translateY(-100vh);
-    }
-
-    &.is-open .menu {
-        transform: translateY(0);
-    }
-
-    a {
-        display: block;
-        @include menu-item();
-    }
-
-    .mobile { display: block; }
-}
-
-@include media( $tablet-and-bigger ){
-
-  .mobile, .site, .menu-toggle { display: none; }
-
-    nav {
-        @include outer-container;
-
-        @include clearfix();
-
-        a {
-            color: #fff;
-            padding: .6em 1em;
-            display: block;
-            float: left;
-            opacity: .8;
-            border-bottom: none;
-
-            &.selected,
-            &:hover,
-            &:focus {
-                background: #1d2624;
+            a + a {
+                border-left: 1px solid rgba(255, 255, 255, 0.15);
             }
-
+            label {
+                float: right;
+            }
         }
-
-        a + a {
-            border-left: 1px solid rgba(255,255,255,0.15);
-        }
-
-        label {
-            float: right;
-        }
-
-    }
-
-  }//media destkop
+    } //media destkop
 }
