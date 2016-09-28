@@ -1,3 +1,10 @@
+/*==========================================
+=        GENERAL TYPOGRAPHY SETUP          =
+==========================================*/
+
+
+
+
 
   /* ===== MIXINS =========================================================== */
 
@@ -35,26 +42,11 @@
 
 
 
-  /* ===== CUSTOM NORMALISATION ============================================= */
-
-  // TODO: ? Relocate to normalisations
-  q {
-    &:before,
-    &:after
-    {
-      content: '';
-    }
-  }
-
-
-
-
-
   /* ===== BASE TYPOGRAPHY ================================================== */
 
 
   html {
-    // TODO: Tweak at the end to find best UX fit
+    // TODO: Tweak % at the end to find best UX fit
     @include media( $mobile-large-and-smaller ) {
       font-size: 85%;
     }
@@ -94,11 +86,9 @@
   }
 
   h1 {
+    margin: 0;
     font-size: scale-heading( 4 );
     line-height: 1;
-    margin: 0;
-
-    &.hero { font-size: scale-heading( 4 ); } // TODO: Relocate to components?
   }
 
   h2 {
@@ -116,12 +106,12 @@
     line-height: #{$base-line-height * 1}rem;
   }
 
-
   h5 {
     font-size: scale-heading( 0 ) + ( scale-heading( 1 ) - scale-heading( 0 ) )/2;
     line-height: #{$base-line-height * 1}rem;
   }
 
+  //DEPRECATED: Do not create
   h6 {
     font-size: scale-heading( 0 );
     line-height: #{$base-line-height * 1}rem;
@@ -129,16 +119,6 @@
 
   p {
     line-height: #{$base-line-height * 1}rem;
-  }
-
-  .table-container { //any other h-scrollable content?
-    display: block;
-    @include media( $mobile-large-and-smaller ){
-        max-width: 100%;
-        overflow-x: scroll;
-    }//media mobile
-    box-shadow: 0px 1px 5px rgba(0,0,0,0.15);
-    margin-bottom: $default-spacing;
   }
 
 
@@ -163,12 +143,11 @@
 
   %vuw-link {
     display:        inline;
-    border-bottom:  1px solid;
-    border-bottom:  1px solid transparentize( $color-links, .7 );
+    border-bottom:  1px solid transparentize( $base-link-color, .7 );
 
     &:hover {
       opacity: .8;
-      border-bottom-color: $color-links;
+      border-bottom-color: $base-link-color;
     }
   }
 
@@ -186,15 +165,26 @@
 
 
   /** Tables */
+
   $table-border-color:    $grey-alto;
   $table-head-background: $green-nebula;
 
-  table {
+
+  .table-container { //TODO: ? Should be used for any other h-scrollable content? If yes, make more generic
+    display:       block;
+    box-shadow:    $base-shadow;
     margin-bottom: $default-spacing;
-    box-shadow: 0 1px 5px rgba( #000, .15 );
-    border-collapse: collapse;
-    border-spacing: 0;
+
+    @include media( $mobile-large-and-smaller ){
+      max-width:  100%;
+      overflow-x: scroll;
+    }
   }
+
+  table {
+    margin-bottom:   $default-spacing;
+    border-collapse: collapse;
+    border-spacing:  0;
 
     th,
     td {
@@ -207,16 +197,12 @@
 
     th { background-color: table-head-background; }
     td { border-bottom: 1px solid $table-border-color; }
+  }
 
-    //TODO: Move into objects?
-    .table-container {
-      max-width: 100%;
-      display: block;
-      overflow-x: scroll;
-    }
 
   /** Imagery */
 
+  //TODO: Refactor!
   p > img {
     float: left;
     margin: 0 $default-spacing $default-spacing 0;
@@ -230,14 +216,4 @@
 
   /** Miscs */
 
-  time { color: $grey; } // TODO: Too general, remove
-
-
-  // TODO: Relocate?
-  /** Development helpers *ONLY* - !DO NOT USE IN PRODUCTION! */
-
-  body.show-grid {
-    background-image:  linear-gradient( to bottom,#0FF 0,rgba( #FFF,0 )1px );
-    background-repeat: repeat-y;
-    background-size:   100% $base-font-size * $base-line-height;
-  }
+  time { color: $grey; } // TODO: Too generic, remove
