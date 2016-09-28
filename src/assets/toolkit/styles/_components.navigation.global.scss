@@ -66,6 +66,7 @@
         .input-wrapper {
             display: block;
             position: relative;
+            @include clearfix();
 
             input {
                 background: rgba(0,0,0,0.15);
@@ -84,6 +85,21 @@
                 }
             }
         }
+
+
+
+  @include media( $tablet-and-bigger ){
+    .input-wrapper {
+        padding-right: 4rem;
+        will-change: transform;
+        transition: transform 200ms ease-in-out;
+        transform: translateX(100%);
+    }
+
+    .input-wrapper.is-open {
+        transform: translateX(0);
+    }
+}
 
     }
 @include media( $mobile-large-and-smaller ){
@@ -140,21 +156,31 @@
 
         @include clearfix();
 
+.search {
+    position: relative;
+    overflow: hidden;
 
+    a {
+        position: absolute;
+        right: 0;
+        z-index: 1;
+        width: 4rem;
+    }
+}
     & > div/*.search*/ {
-        @include span-columns(3 of 12);
-        @include shift(9);
+        @include span-columns(4 of 12);
+        @include shift(8);
     }
 
     & > div + div/*.links*/ {
-        @include span-columns(9 of 12);
+        @include span-columns(8 of 12);
         @include shift(-12);
 
     }
 
         a {
             color: #fff;
-            padding: .6em 1em;
+            padding: .8em 1em;
             display: block;
             float: left;
             opacity: .8;
