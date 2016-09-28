@@ -10,6 +10,7 @@ $(function(){
 	fastclick.attach(document.body);
 	var $body = $('body');
 	var $globalNav = $("#global-nav");
+	var $globalSearch = $("#global-search");
 	if ($globalNav.length) {
 		var eGlobalNav = $globalNav[0];
 		var headroom  = new Headroom(eGlobalNav, {
@@ -33,4 +34,9 @@ $(function(){
 			$globalNav.toggleClass('is-open');
 		});
 	}
+
+
+	$body.on('click ', '.js-toggle-global-search', function(_event){
+		$globalSearch.toggleClass('is-open');
+	});
 });
