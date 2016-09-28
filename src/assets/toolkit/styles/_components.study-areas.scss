@@ -1,148 +1,148 @@
-    // ========================================
-    // ======== Study-areas block on homepages
-    // ========================================
-    //---- Settings ---
-    $gutter: 8px;
-    // ----------------
-    // -------------------------
-    // ------------------------
-    // - The gerneic tile grid 
-    // - Used for both Study-areas and Degrees & Qualifactions block
-    // ------------------------
-    .tile-grid {
-        .tiles-wrap {
-            @include fill-parent();
-            margin-top: 1rem;
-            li.tile {
-                @include media ($desktop-and-bigger) {
-                    @include span-columns(3);
-                    margin-right: $gutter;
-                }
-                @include media ($tablet) {
-                    @include span-columns(4);
-                    margin-right: $gutter;
-                }
-                position: relative;
-                // Not working yet but should be able to add a class to wrapper for more columns
-                @at-root .more-cols#{&} {
-                    @include span-columns(2.4);
-                    margin-right: $gutter;
-                }
-                img {
-                    width: 100%;
-                }
-                // All the text for the tile including the hidden text
-                .tile-text {
-                    width: 100%;
-                    background-color: $green-victoria;
-                    height: auto;
-                    display: block;
-                    position: absolute;
-                    z-index: 10;
-                    top: 0;
-                    .tile-title {
-                        display: flex;
-                        align-items: center;
-                        padding: 1em;
-                        h2 {
-                            float: left;
-                            width: 95%;
-                        }
-                        i {
-                            display: flex;
-                            align-items: centre;
-                            width: 5%;
-                            color: $white;
-                            font-size: 2.2em;
-                            &::before {
-                                margin: 0;
-                            }
-                        }
-                    }
-                }
-                h2,
-                h4,
-                p {
-                    color: #fff;
-                    padding: 0;
-                    margin: 0;
-                    line-height: 1.2;
-                }
-                p {
-                    line-height: 1.6;
-                }
-                a {
-                    display: block;
-                    // This will get rerfactored in a typohgraphy update  
-                    // TODO: Remove later!
-                    &:hover {
-                        opacity: 1;
-                        border: 0;
-                    }
+// ========================================
+// ======== Study-areas block on homepages
+// ========================================
+//---- Settings ---
+$gutter: 8px;
+// ----------------
+// -------------------------
+// ------------------------
+// - The gerneic tile grid 
+// - Used for both Study-areas and Degrees & Qualifactions block
+// ------------------------
+.tile-grid {
+    .tiles-wrap {
+        @include fill-parent();
+        margin-top: 1rem;
+        li.tile {
+            @include media ($desktop-and-bigger) {
+                @include span-columns(3);
+                margin-right: $gutter;
+            }
+            @include media ($tablet) {
+                @include span-columns(4);
+                margin-right: $gutter;
+            }
+            position: relative;
+            // Not working yet but should be able to add a class to wrapper for more columns
+            @at-root .more-cols#{&} {
+                @include span-columns(2.4);
+                margin-right: $gutter;
+            }
+            img {
+                width: 100%;
+            }
+            // All the text for the tile including the hidden text
+            .tile-text {
+                width: 100%;
+                background-color: $green-victoria;
+                height: auto;
+                display: block;
+                position: absolute;
+                z-index: 10;
+                top: 0;
+                .tile-title {
+                    display: flex;
+                    align-items: center;
+                    padding: 1em;
                     h2 {
-                        font-size: 1.5em;
+                        float: left;
+                        width: 95%;
+                    }
+                    i {
+                        display: flex;
+                        align-items: centre;
+                        width: 5%;
+                        color: $white;
+                        font-size: 2.2em;
+                        &::before {
+                            margin: 0;
+                        }
                     }
                 }
-                h4 {
-                    font-size: 1.2em;
-                    margin-bottom: 0.75em;
-                    margin-top: 0.75em;
+            }
+            h2,
+            h4,
+            p {
+                color: #fff;
+                padding: 0;
+                margin: 0;
+                line-height: 1.2;
+            }
+            p {
+                line-height: 1.6;
+            }
+            a {
+                display: block;
+                // This will get rerfactored in a typohgraphy update  
+                // TODO: Remove later!
+                &:hover {
+                    opacity: 1;
+                    border: 0;
                 }
-                // The hidden subjects span which is displayed on hover 
+                h2 {
+                    font-size: 1.5em;
+                }
+            }
+            h4 {
+                font-size: 1.2em;
+                margin-bottom: 0.75em;
+                margin-top: 0.75em;
+            }
+            // The hidden subjects span which is displayed on hover 
+            span {
+                display: block;
+                padding: 0 1em 1em 1em;
+                @include media ($tablet-and-bigger) {
+                    display: none;
+                }
+            }
+            &:hover {
                 span {
                     display: block;
-                    padding: 0 1em 1em 1em;
-                    @include media ($tablet-and-bigger) {
-                        display: none;
-                    }
-                }
-                &:hover {
-                    span {
-                        display: block;
-                    }
                 }
             }
         }
     }
-    
-    // -------------------------
-    // -------------------------
-    // -------------------------
-    // ----------------------------
-    // Styles specific to the Study-areas block 
-    // --------------------------
-    .study-areas {
-        h1 {
-            margin-bottom: 0.5em;
-        }
-        .pg-filter {
-            padding: 1em;
-            font-size: 1.2em;
-            padding-left: 0.5em;
-        }
-        //This operate the PG only check box the markup needs to have the tiles as general siblings of teh check box
-        // ie dont wrap the checkbox in a div container
-        input[type=checkbox]:checked ~ .tiles-wrap .tile[data-pg="only"] {
-            display: block;
-        }
-        input[type=checkbox]:checked ~ .tiles-wrap li.tile {
-            display: none;
-        }
+}
+
+// -------------------------
+// -------------------------
+// -------------------------
+// ----------------------------
+// Styles specific to the Study-areas block 
+// --------------------------
+.study-areas {
+    h1 {
+        margin-bottom: 0.5em;
     }
-    
-    // -------------------------
-    // -------------------------
-    // -------------------------
-    // These gerneric layout pieces will be added to the styles base in another commmit 
-    .block {
-        padding: $default-spacing;
-        @include media ($desktop-and-bigger) {
-            padding: $default-spacing 0;
-        }
+    .pg-filter {
+        padding: 1em;
+        font-size: 1.2em;
+        padding-left: 0.5em;
     }
-    
-    .tile-grid {
-        ul a {
-            border-bottom: 0;
-        }
+    //This operate the PG only check box the markup needs to have the tiles as general siblings of teh check box
+    // ie dont wrap the checkbox in a div container
+    input[type=checkbox]:checked ~ .tiles-wrap .tile[data-pg="only"] {
+        display: block;
     }
+    input[type=checkbox]:checked ~ .tiles-wrap li.tile {
+        display: none;
+    }
+}
+
+// -------------------------
+// -------------------------
+// -------------------------
+// These gerneric layout pieces will be added to the styles base in another commmit 
+.block {
+    padding: $default-spacing;
+    @include media ($desktop-and-bigger) {
+        padding: $default-spacing 0;
+    }
+}
+
+.tile-grid {
+    ul a {
+        border-bottom: 0;
+    }
+}
