@@ -1,5 +1,13 @@
+/*==========================================
+=            SETTINGS & OPTIONS            =
+==========================================*/
+
+
+
+
 
   /* ===== PATHS ============================================================ */
+
 
   $dir-fonts:  "../fonts";
   $dir-images: "../images";
@@ -27,7 +35,7 @@
   /* ===== POSITIONING ========================================================= */
 
 
-  // Z position
+  /** Placement on the Z axis */
   $z-index-max:       9999 !default;
   $z-index-top:       10 !default;
   $z-index-middle:    5 !default;
@@ -38,15 +46,14 @@
 
 
 
-
   /* ===== FONTS ============================================================ */
 
 
-  // Settings
+  /** Settings */
   $font-supported-formats: woff woff2 ttf;
 
 
-  // Available weights
+  /** Available weights */
   $weight-normal:    400;
   $weight-medium:    500;
   $weight-semibold:  600;
@@ -54,11 +61,12 @@
   $weight-extrabold: 800;
 
 
-  // Victoria font
+  /** Victoria font */
   $font-victoria:      "National";
   $font-path-victoria: "#{$dir-fonts}/NationalWebLF";
 
-  // Victoria icons
+
+  /** Victoria icons */
   $font-icons:         "VicIcons";
   $font-path-icons:    "#{$dir-fonts}/vic-icons";
 
@@ -69,16 +77,13 @@
   /* ===== DEFAULTS ========================================================= */
 
 
-  /** Colours. */
+  /** General colours */
 
-  $color-links:             $blue-endeavoura;
-  $color-headers:           $green-bottle-green;
+
   $color-body-text:         $black-mine-shaft;
 
-  $color-footer-background: $grey-alto;
 
-
-  /** General typography */
+  /** General typography. */
 
   // Bourbon's overrides for modular scaling
   $modular-scale-ratio: $major-third;   // = 1.25x
@@ -88,21 +93,32 @@
 
   $base-line-height:    1.6;
 
-  $base-font-size:      1em;            // Respects user's settings
+  $base-font-size:      1em;            // Respects user's settings (~usually 16px)
   $base-font-color:     $color-body-text;
   $base-body-family:    "Helvetica Neue","Segoe WP","Helvetica","Arial";
 
   $base-heading-family: "#{$font-victoria}",$base-body-family;
-  $base-heading-color:  $color-headers;
+  $base-heading-color:  $green-bottle-green;
 
 
   /** Links */
-  $base-link-color:    $color-links;
 
-  /** Box model */
-  $highlight-border-width: .25rem;
+  $base-link-color:    $blue-endeavoura;
+
 
   /** Margins and paddings */
+
   $default-spacing: $base-line-height * 1rem;
+
+
+  /** Shadows */
+
+  $base-shadow: 0 1px 5px rgba( #000, .15 );
+
+
+  /** Borders */
+
+  // TODO: Borders *MUST BE* in pixels
+  $highlight-border-width: .25rem;
 
 

@@ -1,118 +1,114 @@
+/*
 
-/**
- * CONTENTS
- *
- * SETTINGS
- * Colors...............Colour variables for use in the stylesheet
- * Grid.................Settings for Neat
- *
- * TOOLS
- * Bourbon..............Third party dep
- * Neat.................Third party dep
- *
- * LIBS
- * Normalize.css........Third party dep
- * Reset................A tiny reset to complement Normalize.css.
- * TODO:Icons...........Font/SVG icons for use in the stylesheet
- *
- * GENERIC
- * Base.................Global styles
- * Typography...........Polished headers, paragraphs
- * Layouts..............Using Neat grids
- *
- * ELEMENTS
- * Headings.............Headings 1 through 6.
- *
- * OBJECTS
- * Icons................TODO
- *
- * COMPONENTS
- * Navigation...........Global: desktop top menu across Victoria
- *                      Site: desktop left menu across the faculty/school site
- *                      Breadcrumbs: TBC
- * Banner...............Faculty/School name and branding
- * Links................Realated content list of links
- * Promo................Featured content
- *
- * UTILITIES
- * Clearfix.............Bind our clearfix onto a utility class.
- */
+  (Lowest to highest specificity)
 
-// IMPORTS
+  1 | SETTINGS - Configs, brand colors, spacing units, variables.
+
+  ↓
+
+  2 | TOOLS - Library's custom mixins, 3rd party mixins.
+
+  ↓
+
+  3 | GENERIC - Generic definitions, eg. resets, normalisations, imports of external styles and fonts.
+
+  ↓
+
+  4 | ELEMENTS - Non-specific elements (= without classes or IDs), eg. body, h1, p ...
+
+  ↓
+
+  5 | OBJECTS - Simple atomic design patterns (= using classes only), eg. buttons, icons,...
+
+  ↓
+
+  6 | COMPONENTS - More complex designs (using classes only), eg. header, footer, searchbar...
+
+  ↓
+
+  7 | TRUMPS - Most specific, mostly overrides (usage of !important and IDs).
+
+*/
+
+/** BASIC DEPENDENCIES */
+
 @import 'neat';
 @import 'bourbon';
 
 
-// SETTINGS (keep the order!)
-@import '_settings.colors';
-@import '_settings.variables';
-@import '_settings.grid';
-@import '_settings.responsive';
+/** SETTINGS (keep the order!) */
+
+@import '1-settings/_settings.colors';
+@import '1-settings/_settings.variables';
+@import '1-settings/_settings.grid';
+@import '1-settings/_settings.responsive';
 
 
-// TOOLS
-@import '_tools.mixins';
+/** TOOLS */
+
+@import '2-tools/_tools.mixins';
+@import '2-tools/_tools.navigation';
 
 
-// LIBS
+/** 3RD PARTY LIBS */
+
 @import 'normalize.css/normalize';
-@import 'fontello/css/fontello__modified-paths';
-@import 'reset';
-@import '_vendor.headroom';
+@import 'fontello/css/fontello__modified-paths'; // TODO: Remove and use it as a standard font with references from _objects.icons
 
 
-// MIXINS
-@import '_mixins.navigation';
+/** GENERIC */
 
-// GENERIC
-@import '_generic.base';
-@import '_generic.typography';
-@import '_generic.layouts';
+@import '3-generic/_generic.reset';
+@import '3-generic/_generic.development';
+@import '3-generic/_generic.normalisations';
 
 
-// ELEMENTS
-@import '_elements.headings';
-@import '_elements.figures';
-@import '_elements.buttons';
-@import '_elements.inputs';
+/** ELEMENTS ( > Atoms defined by an element) */
+
+@import '4-elements/_elements.typography';
+@import '4-elements/_elements.headings';
+@import '4-elements/_elements.figures';
+@import '4-elements/_elements.buttons';
+@import '4-elements/_elements.inputs';
 
 
-// OBJECTS
-@import '_objects.icons';
+/** OBJECTS ( > Atoms defined by a class) */
+
+@import '5-objects/_objects.icons';
+@import '5-objects/_objects.layouts';
 
 
-// COMPONENTS
-@import '_components.logos';
-@import '_components.highlight';
-@import '_components.navigation.global';
-@import '_components.navigation.site';
-@import '_components.navigation.footer';
-@import '_components.banner';
-@import '_components.banner-header';
-@import '_components.media';
-@import '_components.news';
-@import '_components.events';
-@import '_components.staff-profiles';
-@import '_components.grids';
-@import '_components.links';
-@import '_components.promo';
-@import '_components.badges';
-@import '_components.preview';
-@import '_components.teaser';
-@import '_components.study-areas';
-@import '_components.degrees-quals';
+/** COMPONENTS */
+
+// > Molecules
+@import '6-components/_components.grids';
+@import '6-components/_components.links';
+@import '6-components/_components.logos';
+@import '6-components/_components.highlight';
+@import '6-components/_components.media';
+@import '6-components/_components.badges';
+
+// > Organisms
+@import '6-components/_components.promo';
+@import '6-components/_components.preview';
+@import '6-components/_components.teaser';
+@import '6-components/_components.news';
+@import '6-components/_components.events';
+@import '6-components/_components.banner';
+@import '6-components/_components.banner-header';
+@import '6-components/_components.study-areas';
+@import '6-components/_components.staff-profiles';
+@import '6-components/_components.degrees-quals';
+@import '6-components/_components.navigation.global';
+@import '6-components/_components.navigation.site';
+@import '6-components/_components.navigation.footer';
 
 
-// UTILITIES
-@import '_tools.helpers';
-//@import '_tools.clearfix';
+/** TRUMPS */
 
+// Helpers
+@import '7-trumps/_trumps.helpers';
+@import '7-trumps/_trumps.print';
 
-
-
-
-
-
-
-
-
+// Libraries' overrides
+@import '7-trumps/_trumps.headroom';
