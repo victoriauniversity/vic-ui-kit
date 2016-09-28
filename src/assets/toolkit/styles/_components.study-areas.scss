@@ -1,0 +1,75 @@
+$gutter: 8px;
+.centraliser {
+    @include outer-container;
+}
+
+.block {
+    padding: $default-spacing 0;
+}
+
+.study-areas {
+    @include outer-container;
+    .tiles-wrap {
+        @include fill-parent();
+        li.tile {
+            @include span-columns(3);
+            margin-right: $gutter;
+            position: relative;
+            img {
+                width: 100%;
+            }
+            span {
+                display: none;
+            }
+            &:hover {
+                span {
+                    display: block;
+                }
+            }
+            .tile-text {
+                width: 100%;
+                background-color: $green-victoria;
+                height: auto;
+                display: block;
+                position: absolute;
+                z-index: 10;
+                top: 0;
+            }
+            h2,
+            h4,
+            p {
+                color: #fff;
+                padding: 0;
+                margin: 0;
+                line-height: 1.2;
+            }
+            p {
+                line-height: 1.6;
+            }
+            a {
+                padding: 1.2em;
+                display: block;
+                // serious wat
+                &:hover {
+                    opacity: 1;
+                    border: 0;
+                }
+                h2 {
+                    font-size: 1.5em;
+                    // margin-bottom: 1.2em;
+                }
+            }
+            h4 {
+                font-size: 1.2em;
+                margin-bottom: 0.75em;
+                margin-top: 0.75em;
+            }
+        }
+    }
+    input[type=checkbox]:checked ~ .tiles-wrap .tile[data-pg="only"] {
+        display: block;
+    }
+    input[type=checkbox]:checked ~ .tiles-wrap li.tile {
+        display: none;
+    }
+}
