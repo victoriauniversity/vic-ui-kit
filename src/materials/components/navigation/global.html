@@ -5,10 +5,12 @@
 		<!-- <div class="mobile logo-mini"></div> -->
 	</div>
 	<div class="menu">
-		<nav class="hide-on-desktop">
+	<nav>
+		<div class="-hide-on-desktop search">
 			<form method="get" action="http://victoria.ac.nz/search">
+			<a href="#" class="icon-search js-toggle-global-search"></a>
 			    <label role="search">
-			    	<div class="input-wrapper -icon-search">
+			    	<div class="input-wrapper -icon-search" id="global-search">
 
 			        	<input type="text" autocomplete="off" name="q" placeholder="Search Victoria for…"  >
 		  				<input type="submit" value="Go">
@@ -16,13 +18,13 @@
 			    </label>
 			</form>
 
-			<div class="horisontal-links align-center">
+			<div class="horisontal-links align-center hide-on-desktop">
 				<a href="#" class="icon-home">Home</a>
 				<a href="#" class="icon-phone">Contact</a>
 			</div>
-		</nav>
+		</div>
 
-		<nav id="menu">
+		<div id="menu">
 			<a href="#" class="home">
 				<i class="icon-globe hanging-icon"></i>
 				<span class="hide-on-desktop">Victoria's main site</span>
@@ -32,10 +34,13 @@
 			<a href="#">Current students</a>
 			<a href="#">Research</a>
 
-		    <label role="search" class="hide-on-mobile">
+<!-- 		    <label role="search" class="hide-on-mobile">
 		    	<a href="#" class="icon-search"></a>
-		    </label>
-		</nav>
+		    </label> -->
+		</div>
+
+
+	</nav>
 
 		<!-- duplicates side nav -->
 		{{> navigation.site}}

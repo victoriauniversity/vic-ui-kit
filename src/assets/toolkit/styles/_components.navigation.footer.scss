@@ -1,15 +1,12 @@
-
-//TODO: Move to the _objects and _generic
-footer {}
-
-.block {
-  padding: $default-spacing;
-}
+/*==================================================
+=                     FOOTERS                      =
+==================================================*/
 
 
   /** PRIMARY FOOTER (dark one), usually placed on the very end of the page. 1 MUST be used on a single page. */
 
   $footer-logo-width:         20% !default;
+  $footer-logo-max-width:     rem( 250px );
   $footer-primary-background: $black-victoria !default;
   $footer-primary-color:      $grey-silver !default;
   $footer-primary-separator:  1px solid $black-emperor !default;
@@ -31,7 +28,7 @@ footer {}
       }
     }
 
-    ul, ul li {
+    ul {
       &,
       & > li {
         display: inline-block;
@@ -51,14 +48,21 @@ footer {}
 
       // Logo & Contact info
       .logo {
-        display: inline-block;
-        margin-right: 5%;
-        width: $footer-logo-width;
         vertical-align: middle;
+        @include span-columns( 3 of 12, table );
+
+        img {
+          display: inline-block;
+          width: 100%;
+          max-width: $footer-logo-max-width;
+          vertical-align: middle;
+        }
       }
 
       .contacts {
-        padding: .5em 0;
+        vertical-align: middle;
+        @include span-columns( 9 of 12, table );
+        padding: .5em 0 .5em 3.5em;
 
         > li:last-child { margin-right: 0; }
         > li:first-child { margin-left: 0; }
@@ -84,6 +88,26 @@ footer {}
           &:first-child { margin-left: 0; }
         }
       }
+
+
+      @include media( $mobile-large-and-smaller ) {
+
+        text-align: center;
+
+        .contacts, .logo {
+          // Re-use this
+          display: block;
+          width: 100%;
+          float: none;
+        }
+
+        .contacts { padding-left: 0; }
+
+        .copyright, .minilinks { float: none; }
+
+        .copyright { margin-top: 1em; }
+        .logo { margin-bottom: .5em; }
+      }
   }
 
 
@@ -92,6 +116,7 @@ footer {}
   $footer-secondary-background: $grey-alto !default;
   $footer-secondary-separator:  1px solid $grey-silver !default;
   $footer-secondary-color:      $base-font-color !default;
+  $footer-heading-margin-bottom: .75em;
 
   .footer-secondary {
     background-color: $footer-secondary-background;
@@ -104,7 +129,7 @@ footer {}
     nav ul {
       a {
         font-family: $base-heading-family;
-        font-size: 18px;
+        font-size: 1.125em;
         border-color: $footer-secondary-color;
 
         @include hoverify() {
@@ -135,9 +160,12 @@ footer {}
       // Stretches all the links to rest of the available width
       nav ul {
         @include display(flex);
+        @include flex-wrap(wrap);
         @include align-items(stretch);
         @include flex-direction(row);
-        @include justify-content(space-between);
+        @include justify-content(flex-start);
+
+        > li { margin-right: 1.5em; }
       }
 
       .contacts {
@@ -172,7 +200,7 @@ footer {}
 
     // Two blocks next to each other
     &.two-columns {
-      h2 { margin-bottom: .75em; }
+      h2 { margin-bottom: $footer-heading-margin-bottom; }
 
       .block {
         @include span-columns( 1 of 2, table );
@@ -190,10 +218,12 @@ footer {}
 
       // Turn links list into 2-columns to conserve space
       nav ul {
+        overflow: hidden;
         li {
           display: block;
           float: left;
-          width: 50%;
+          width: 48%;
+          margin-right: 2%;
         }
       }
 
@@ -207,4 +237,37 @@ footer {}
     }
 
     .link-more { float: right; }
+
+
+    @include media( $mobile-large-and-smaller ) {
+
+      &:not(.two-columns) {
+        h2 {
+          float: none;
+          margin-bottom: $footer-heading-margin-bottom;
+        }
+      }
+
+      &.two-columns {
+        .block {
+          //TODO: Reuse
+          display: block;
+          width: 100%;
+          float: none;
+
+          &:last-child {
+            border-left: 0;
+            border-top: $footer-secondary-separator;
+            padding-top: $default-spacing;
+          }
+        }
+
+        nav ul {
+          > li {
+            float: none;
+            width: auto;
+          }
+        }
+      }
+    }
   }
