@@ -57,7 +57,9 @@
 
         @include clearfix();
 
+@include media( $mobile-large-and-smaller ){
         padding: $default-spacing/2 $default-spacing;
+}
         width: 100%;
         display: block;
         position: relative;
@@ -75,17 +77,18 @@
                 padding: $default-spacing/2;
 
                 &[type=text] {
-                    width: 80%;
+                    width: calc(100% - 4rem);
                 }
 
                 &[type=submit] {
-                    width: 20%;
+                    width: 4rem;
                     border-left: 1px solid rgba(255, 255, 255, 0.15);
                 }
             }
         }
 
     }
+@include media( $mobile-large-and-smaller ){
 
     .button-container {
         position: absolute;
@@ -138,6 +141,18 @@
         @include outer-container;
 
         @include clearfix();
+
+
+    & > div/*.search*/ {
+        @include span-columns(3 of 12);
+        @include shift(9);
+    }
+
+    & > div + div/*.links*/ {
+        @include span-columns(9 of 12);
+        @include shift(-12);
+
+    }
 
         a {
             color: #fff;
