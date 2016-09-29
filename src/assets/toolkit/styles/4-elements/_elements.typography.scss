@@ -3,9 +3,6 @@
 ==========================================*/
 
 
-
-
-
   /* ===== MIXINS =========================================================== */
 
 
@@ -83,42 +80,37 @@
     font-family: $base-heading-family;
     font-weight: $weight-semibold;
     color:       $base-heading-color;
+    line-height: 1;
   }
 
   h1 {
     margin: 0;
     font-size: scale-heading( 4 );
-    line-height: 1;
   }
 
   h2 {
     font-size: scale-heading( 3 );
-    line-height: #{$base-line-height * 1.5}rem;
   }
 
   h3 {
     font-size: scale-heading( 2 );
-    line-height: #{$base-line-height * 1.5}rem;
   }
 
   h4 {
     font-size: scale-heading( 1 );
-    line-height: #{$base-line-height * 1}rem;
   }
 
   h5 {
     font-size: scale-heading( 0 ) + ( scale-heading( 1 ) - scale-heading( 0 ) )/2;
-    line-height: #{$base-line-height * 1}rem;
   }
 
   //DEPRECATED: Do not create
   h6 {
     font-size: scale-heading( 0 );
-    line-height: #{$base-line-height * 1}rem;
   }
 
   p {
-    line-height: #{$base-line-height * 1}rem;
+    line-height: $base-line-height;
   }
 
 
@@ -169,34 +161,30 @@
   $table-border-color:    $grey-alto;
   $table-head-background: $green-nebula;
 
+  table {
+    width: 100%;
+
+    th,
+    td {
+      padding: $default-spacing / 2;
+      text-align: left;
+    }
+
+    th { background-color: $table-head-background; }
+    th { font-weight: $weight-bold; }
+    td { border-bottom: 1px solid $table-border-color; }
+  }
 
   .table-container { //TODO: ? Should be used for any other h-scrollable content? If yes, make more generic
+    width:         100%;
+    overflow-x:    auto;
     display:       block;
     box-shadow:    $base-shadow;
     margin-bottom: $default-spacing;
 
     @include media( $mobile-large-and-smaller ){
-      max-width:  100%;
       overflow-x: scroll;
     }
-  }
-
-  table {
-    margin-bottom:   $default-spacing;
-    border-collapse: collapse;
-    border-spacing:  0;
-
-    th,
-    td {
-      padding: $default-spacing / 2;
-      vertical-align: baseline;
-      text-align: left;
-
-      p { margin-bottom: 0; }
-    }
-
-    th { background-color: table-head-background; }
-    td { border-bottom: 1px solid $table-border-color; }
   }
 
 
@@ -204,7 +192,7 @@
 
   //TODO: Refactor!
   p > img {
-    float: left;
+    float: right;
     margin: 0 $default-spacing $default-spacing 0;
 
     ~ img {

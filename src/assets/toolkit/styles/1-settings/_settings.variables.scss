@@ -3,122 +3,126 @@
 ==========================================*/
 
 
+/*******************************************************************************
 
+  As a rule of thumb, *EVERY VARIABLE* that is used by two and more
+  *distinictive* components should be placed here.
 
+*******************************************************************************/
 
-  /* ===== PATHS ============================================================ */
 
+/* ===== PATHS ============================================================ */
 
-  $dir-fonts:  "../fonts";
-  $dir-images: "../images";
 
+$dir-fonts:  "../fonts";
+$dir-images: "../images";
 
 
 
 
-  /* ===== BASE, LAYOUT & GRID ============================================== */
 
+/* ===== BASE, LAYOUT & GRID ============================================== */
 
-  $base-size:     16px;           // Most browsers' default => Use for relative units' calculations
+// Most browsers' default => Use for relative units' calculations
+$base-size:     16px;
 
 
-  // Sets global base em size for the px-to-em and px-to-rem function. This should be the same size as your body font-size.
-  $em-base:       $base-size;     // For Bourbon's mixins and functions
+// Sets global base em size for the px-to-em and px-to-rem function. This should be the same size as your body font-size.
+$em-base:       $base-size;     // For Bourbon's mixins and functions
 
-  $base-width-px: 1280px;         // Maximum width of the content
-  $base-width:    rem( $base-width-px );
+$base-width-px: 1280px;         // Maximum width of the content
+$base-width:    rem( $base-width-px );
 
 
 
 
 
-  /* ===== POSITIONING ========================================================= */
+/* ===== POSITIONING ====================================================== */
 
 
-  /** Placement on the Z axis */
-  $z-index-max:       9999 !default;
-  $z-index-top:       10 !default;
-  $z-index-middle:    5 !default;
-  $z-index-lower:     1 !default;
-  $z-index-default:   0 !default;
+/** Placement on the Z axis */
 
+$z-index-max:       9999 !default;
+$z-index-top:       10 !default;
+$z-index-middle:    5 !default;
+$z-index-lower:     1 !default;
+$z-index-default:   0 !default;
 
 
 
 
-  /* ===== FONTS ============================================================ */
 
+/* ===== FONTS ============================================================ */
 
-  /** Settings */
-  $font-supported-formats: woff woff2 ttf;
 
+/** Settings */
+$font-supported-formats: woff woff2 ttf;
 
-  /** Available weights */
-  $weight-normal:    400;
-  $weight-medium:    500;
-  $weight-semibold:  600;
-  $weight-bold:      700;
-  $weight-extrabold: 800;
 
+/** Available weights */
+$weight-normal:    400;
+$weight-medium:    500; // *DO NOT* use for headings
+$weight-semibold:  600;
+$weight-bold:      700; // *DO NOT* use for headings
+$weight-extrabold: 800;
 
-  /** Victoria font */
-  $font-victoria:      "National";
-  $font-path-victoria: "#{$dir-fonts}/NationalWebLF";
 
+/** Victoria font */
+$font-victoria:      "National";
+$font-path-victoria: "#{$dir-fonts}/NationalWebLF";
 
-  /** Victoria icons */
-  $font-icons:         "VicIcons";
-  $font-path-icons:    "#{$dir-fonts}/vic-icons";
 
+/** Victoria icons */
+$font-icons:         "VicIcons";
+$font-path-icons:    "#{$dir-fonts}/vic-icons";
 
 
 
 
-  /* ===== DEFAULTS ========================================================= */
 
+/* ===== DEFAULTS ========================================================= */
 
-  /** General colours */
 
+/** General colours */
 
-  $color-body-text:         $black-mine-shaft;
+$color-body-text:     $black-mine-shaft;
 
 
-  /** General typography. */
+/** General typography. */
 
-  // Bourbon's overrides for modular scaling
-  $modular-scale-ratio: $major-third;   // = 1.25x
-  $modular-scale-base:  em( $em-base ); // Use ems for font sizing and anything relative to this size
+// Bourbon's overrides for modular scaling
+$modular-scale-ratio: $major-third;   // = 1.25x
+$modular-scale-base:  em( $em-base ); // Use ems for font sizing and anything relative to this size
 
-  $base-heading-to-body-ratio: 74 / 74; //TODO: Review how to do this properly
+$base-heading-to-body-ratio: 74 / 74; //TODO: Review how to do this properly
 
-  $base-line-height:    1.6;
+$base-line-height:    1.6;
 
-  $base-font-size:      1em;            // Respects user's settings (~usually 16px)
-  $base-font-color:     $color-body-text;
-  $base-body-family:    "Helvetica Neue","Segoe WP","Helvetica","Arial";
+$base-font-size:      1em;            // Respects user's settings (~usually 16px)
+$base-font-color:     $color-body-text;
+$base-body-family:    "Helvetica Neue","Segoe WP","Helvetica","Arial";
 
-  $base-heading-family: "#{$font-victoria}",$base-body-family;
-  $base-heading-color:  $green-bottle-green;
+$base-heading-family: "#{$font-victoria}",$base-body-family;
+$base-heading-color:  $green-victoria;
 
 
-  /** Links */
+/** Links */
 
-  $base-link-color:    $blue-endeavoura;
+$base-link-color:    $blue-endeavoura;
 
 
-  /** Margins and paddings */
+/** Margins and paddings */
 
-  $default-spacing: $base-line-height * 1rem;
+$default-spacing: $base-line-height * 1rem;
+$column-padding:  rem( 20px );
 
 
-  /** Shadows */
+/** Shadows (always in px units) */
 
-  $base-shadow: 0 1px 5px rgba( #000, .15 );
+$base-shadow: 0 1px 5px rgba( #000, .15 );
 
 
-  /** Borders */
+/** Borders (always in px units)*/
 
-  // TODO: Borders *MUST BE* in pixels
-  $highlight-border-width: .25rem;
-
-
+// TODO: Borders *MUST BE* in pixels
+$highlight-border-width: .25rem;

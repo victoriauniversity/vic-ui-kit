@@ -3,6 +3,7 @@
  */
 var fastclick = require('fastclick');
 var Headroom = require('headroom.js');
+var picturefill = require('picturefill');
 
 
 $(function(){
@@ -20,7 +21,7 @@ $(function(){
 		  	down: 5
 		  },
 		  onPin: function (){
-		  	//reset in-menu scrolling 
+		  	//reset in-menu scrolling
 		  	$globalNav.find('.menu').scrollTop(0);
 		  },
 		  onUnpin: function (){

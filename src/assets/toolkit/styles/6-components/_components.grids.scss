@@ -1,6 +1,5 @@
 .grid {
 
-    @include outer-container;
     // @include row(table);
 
     // .has-nav .has-aside & > * {
@@ -30,19 +29,19 @@
 
 // avoid omega resets like wildfire
 // http://www.joshfry.me/blog/2013/05/13/omega-reset-for-bourbon-neat
-.layout:not(.has-nav) .content:not(.has-aside) {
+.layout:not(.has-nav) .main:not(.has-aside) {
     .grid > * {
         @include span-columns(4 of 12);
         @include omega(3n);
     }
 }
-.layout.has-nav .content:not(.has-aside) {
+.layout.has-nav .main:not(.has-aside) {
     .grid > * {
         @include span-columns(3 of 9);
         @include omega(3n);
     }
 }
-.layout.has-nav .content.has-aside {
+.layout.has-nav .main.has-aside {
     .grid > * {
         @include span-columns(3 of 6);
         @include omega(2n);
