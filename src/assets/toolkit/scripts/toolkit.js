@@ -39,4 +39,19 @@ $(function(){
 	$body.on('click ', '.js-toggle-global-search', function(_event){
 		$globalSearch.toggleClass('is-open');
 	});
+
+
+	//Study areas tabs toggle
+
+	$('#study-area-tabs li a').click(function(){
+		console.log('test');
+		if ($(this).parent().hasClass('active')) {
+			return;
+		}
+		$('.active').removeClass('active');
+		$(this).parent().addClass('active');
+		$('.tile-grid').toggleClass('hidden');
+	});
+
+
 });

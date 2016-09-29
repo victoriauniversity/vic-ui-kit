@@ -10,26 +10,29 @@ $gutter: 8px;
 // - Used for both Study-areas and Degrees & Qualifactions block
 // ------------------------
 .tile-grid {
+    @include outer-container(100%);
     .tiles-wrap {
         @include fill-parent();
         margin-top: 1rem;
         li.tile {
+            position: relative;
+            max-height: 225px;
+            margin-bottom: $gutter;
+            overflow: hidden;
             @include media ($desktop-and-bigger) {
                 @include span-columns(3);
                 margin-right: $gutter;
+                max-height: none;
+                margin-bottom: 0;
             }
             @include media ($tablet) {
                 @include span-columns(4);
                 margin-right: $gutter;
             }
-            position: relative;
             // Not working yet but should be able to add a class to wrapper for more columns
             @at-root .more-cols#{&} {
                 @include span-columns(2.4);
                 margin-right: $gutter;
-            }
-            img {
-                width: 100%;
             }
             // All the text for the tile including the hidden text
             .tile-text {
@@ -89,19 +92,10 @@ $gutter: 8px;
                 margin-top: 0.75em;
             }
             // The hidden subjects span which is displayed on hover 
-            span {
-                display: block;
-                padding: 0 1em 1em 1em;
-                @include media ($tablet-and-bigger) {
-                    display: none;
-                }
-            }
-            &:hover {
-                span {
-                    display: block;
-                }
-            }
         }
+    }
+    &.hidden {
+        display: none;
     }
 }
 
@@ -128,8 +122,103 @@ $gutter: 8px;
     input[type=checkbox]:checked ~ .tiles-wrap li.tile {
         display: none;
     }
+    .tiles-wrap {
+        li.tile {
+            img {
+                width: 100%;
+                @include media ($tablet) {
+                    vertical-align: middle;
+                }
+            }
+            //This is a helper div to veritcally align the img when it overflows on small devices
+            .img-helper {
+                @include media ($tablet-and-smaller) {
+                    height: 100%;
+                    vertical-align: middle;
+                    display: inline-block;
+                }
+            }
+            span {
+                display: block;
+                padding: 0 1em 1em 1em;
+                @include media ($tablet-and-bigger) {
+                    display: none;
+                }
+            }
+            &:hover {
+                span {
+                    display: block;
+                }
+            }
+        }
+    }
 }
 
+// -------------------------
+// -------------------------
+// Tabbed nav controls
+// -------------------------
+.study-area-tabs {
+    margin-bottom: 1.5em;
+    ul {
+        @include media ($tablet-and-bigger) {
+            width: 70%;
+        }
+        @include outer-container(100%);
+        li {
+            @include span-columns(6, block-collapse);
+            a {
+                @include padding(1em);
+                @include display(block);
+                background-color: $grey-alto;
+                //Mobile styles for double lined text in tab
+                min-height: 80px;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                @include media ($tablet-and-bigger) {
+                    min-height: auto;
+                }
+                &:hover {
+                    background-color: $grey-silver;
+                }
+                h4 {
+                    color: $black-mine-shaft;
+                    // helps center the text on mobile
+                    margin: 0 auto;
+                }
+            }
+            &.active {
+                a {
+                    background-color: $green-victoria;
+                    &:hover {
+                        opacity: 1;
+                        cursor: default;
+                    }
+                    h4 {
+                        color: $white;
+                    }
+                }
+                &:after {
+                    position: relative;
+                    display: inline-block;
+                    content: "";
+                    left: 50%;
+                    bottom: 0;
+                    margin-left: -0.75em;
+                    margin-bottom: 1em;
+                    height: 0;
+                    width: 0;
+                    border-left: 0.75em solid transparent;
+                    border-right: 0.75em solid transparent;
+                    border-top: 0.5em solid $green-victoria;
+                }
+            }
+        }
+    }
+}
+
+// -------------------------
 // -------------------------
 // -------------------------
 // -------------------------
@@ -141,6 +230,8 @@ $gutter: 8px;
     }
 }
 
+//TODO: remove once refactored
+.study-area-tabs,
 .tile-grid {
     ul a {
         border-bottom: 0;
