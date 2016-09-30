@@ -3,6 +3,8 @@
  */
 var fastclick = require('fastclick');
 var Headroom = require('headroom.js');
+// var Velocity = require("velocity-animate");
+var TRANSITION_TIMEOUT = 200; //update in _settings.variables.scss(135)
 
 
 $(function(){
@@ -37,7 +39,26 @@ $(function(){
 
 
 	$body.on('click ', '.js-toggle-global-search', function(_event){
-		$globalSearch.toggleClass('is-open');
+		var $this = $(this);
+
+		if ($this.data('js-has-active-transition')) {
+			return false;
+		}
+
+		$this.data('js-has-active-transition', true);
+		if ($globalSearch.hasClass('is-open')) {
+			$globalSearch.toggleClass('is-open', false);
+			setTimeout(function(){
+				$this.data('js-has-active-transition', false);
+			}, TRANSITION_TIMEOUT);
+		} else {
+			$globalSearch.toggleClass('is-open', true);
+			setTimeout(function(){
+				$globalSearch.find('input:text').focus();
+				$this.data('js-has-active-transition', false);
+			}, TRANSITION_TIMEOUT);
+		}
+		// $globalSearch.velocity({'left': '85%'}, { duration: 1500 });
 	});
 
 

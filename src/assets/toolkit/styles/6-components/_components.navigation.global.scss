@@ -44,6 +44,7 @@
     left: 0;
     right: 0;
     z-index: 100;
+    height: $default-spacing * 2;
 
     .horisontal-links {
         @include clearfix();
@@ -99,7 +100,7 @@
     .input-wrapper {
         padding-right: 4rem;
         will-change: transform;
-        transition: transform 200ms ease-in-out;
+        transition: transform $transition-timeout ease-in-out;
         transform: translateX(100%);
     }
 
@@ -138,7 +139,7 @@
 
     .menu {
         will-change: transform;
-        transition: transform 200ms ease-in-out;
+        transition: transform $transition-timeout ease-in-out;
         transform: translateY(-100vh);
     }
 
