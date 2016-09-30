@@ -1,149 +1,114 @@
 
-/** Main footer */
-footer {}
+/** BLOCK - Universal building block with standard paddings. */
 
-/** Basic block with paddings */
-.block {
-  padding: $column-padding 0;
-}
+.block {  padding: $column-padding; }
 
 
+/** CENTRALISER - Restricts the width of the content to allowed maximum and aligns to center. */
 
-.formatting {
-  h1 {
-    font-weight: $weight-extrabold;
-    margin-bottom: .5em;
-  }
-
-  h2 {
-    margin-bottom: .5em;
-  }
-
-  h3 {
-    margin-bottom: .5em;
-  }
-
-  p {
-    margin-bottom: 1.6em;
-  }
-
-  a {
-    h1, h2, h3, h4, h5, h6 {
-        color: $base-link-color;
-
-        text-decoration: underline;
-
-        @include hoverify() {
-
-        }
-    }
-  }
+.centraliser { @include outer-container; }
 
 
-  p.intro {
-    font-size: scale-font( 1 );
-  }
-
-  figure {
-    img {
-      margin-bottom: 1rem;
-    }
-  }
-}
-
-
-.content {
-  padding: $column-padding*1.5 $column-padding;
-}
-
-
-
-
-@include media($desktop-and-bigger){
+/** LAYOUT - Contains all the content's columns and layout combinations */
 
 .layout {
-    @include outer-container; // Needs to be a centraliser
+  &.block {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+@include media( $tablet-and-smaller ){
+
+  .layout {
+    &.block {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+}
+
+
+@include media( $tablet-and-bigger ){
+
+  .content-panel {
+
+    // Sub-columns
+
+    /** Main content *ONLY* */
+
+    > main:last-child { width: 100%; }
+
+
+    /** 1st Content bar + 2nd widgets bar */
+
+    $widgetbar-to-content-width-ratio: .25; // 25% of the content container's width
+    $widgetbar-columns: $widgetbar-to-content-width-ratio * $grid-columns;
+
+    > main:not(:last-child) {
+      @include span-columns( $grid-columns - $widgetbar-columns, table );
+    }
+
+    > aside {
+      @include span-columns( $widgetbar-columns, table );
+    }
+  }
+
+}
+
+
+@include media( $desktop-and-bigger ){
+
+  /** Left sidebar */
+
+  $sidebar-to-document-width-ratio: .20; // 20% of the page's width
+  $sidebar-columns: $sidebar-to-document-width-ratio * $grid-columns;
+
+  .sidebar {
+    @include span-columns( $sidebar-columns, table );
+  }
+
+  // Can contain Content only column and Widget bar (optional).
+  .content-panel {
+
+    /** Content panel *ONLY* */
+
+    &:first-child {
+      width: 100%;
+
+      // Main content *ONLY*
+      > main:last-child {
+        > .block { padding-left: 0; }
+      }
+    }
+
+
+    > main:last-child {
+      > .block { padding-right: 0; }
+    }
+
+    /** 1st Sidebar + 2nd Content panel */
+
+    &:not(:first-child) {
+      vertical-align: top;
+      @include span-columns( $grid-columns - $sidebar-columns, table );
+    }
+
+    > aside {
+      > .block { padding-right: 0; }
+    }
+  }
 }
 
 
 
-.main {
-  @include clearfix();
-
-    .layout > & {
-        @include span-columns(12 of 12);
-    }
-
-    .layout.has-nav > & {
-        @include span-columns(9.5 of 12);
-
-        @include media($mobile) {
-            @include span-columns(12 of 12);
-        }
-    }
-}
 
 
-.layout.has-nav > nav {
-    @include span-columns( 2.5, block-collapse );
-
-    @include media( $mobile-large-and-smaller ) {
-      @include span-columns( 12 of 12 );
-    }
-}
+@include media( $desktop-and-bigger ){
 
 
-
-
-main {
-    .layout > .main > & {
-
-        @include span-columns(12 of 12);
-    }
-    .layout > .main.has-aside > & {
-        @include span-columns(9 of 12);
-
-        @include media($mobile) {
-            @include span-columns(12 of 12);
-        }
-    }
-    .layout.has-nav > .main > & {
-        @include span-columns(9 of 9);
-
-        @include media($mobile) {
-            @include span-columns(12 of 12);
-        }
-    }
-    .layout.has-nav > .main.has-aside > & {
-        @include span-columns( 6.4 of 9, block-collapse );
-        margin: 0;
-
-        @include media($mobile) {
-            @include span-columns(12 of 12);
-        }
-    }
-}
-
-aside {
-    .layout > .main.has-aside > & {
-        @include span-columns( 3 of 12 );
-
-        @include media($mobile) {
-            @include span-columns(12 of 12);
-        }
-    }
-    .layout.has-nav > .main.has-aside > & {
-        @include span-columns( 2.6 of 9, block-collapse );
-
-        @include media($mobile) {
-            @include span-columns(12 of 12);
-        }
-    }
-}
-
-
-
-
+//TODO: Refactor and remove what's no longer needed
 
 
 

@@ -1,0 +1,48 @@
+/*==========================================
+=            DEFAULT FORMATTING            =
+==========================================*/
+
+
+/** Use everywhere where standard formatting rules should be applied! */
+
+.formatting {
+  h1 {
+    font-weight: $weight-extrabold;
+    margin-bottom: .5em;
+  }
+
+  h2, h3, h4, h5, h6 {
+    margin-bottom: .5em;
+  }
+
+
+  p {
+    margin-bottom: 1.6em;
+
+    &:last-child { margin-bottom: 0; }
+  }
+
+  a {
+    h1, h2, h3, h4, h5, h6 {
+        color: $base-link-color;
+
+        text-decoration: underline;
+    }
+
+
+    @include hoverify() {
+
+      h1, h2, h3, h4, h5, h6 {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .intro {
+    font-size: scale-font( 1 );
+  }
+
+  figure {
+    img { margin-bottom: 1rem; }
+  }
+}
