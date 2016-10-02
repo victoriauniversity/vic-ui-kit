@@ -1,4 +1,6 @@
-
+//gradient (expected transparent -> bgcolor) on an element hinting it overlays something
+$overlay-hint-size: 50px;
+$overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH-offset) > 0
 
 @include media( $mobile-large-and-smaller ){
   .hide-on-mobile { display: none !important; }
@@ -75,6 +77,16 @@
             display: block;
             position: relative;
             @include clearfix();
+
+
+
+@include media( $tablet-and-bigger ){
+    background: linear-gradient(
+        to right,
+        rgba($green-bottle-green, 0) 0,
+        rgba($green-bottle-green, 1) $overlay-hint-size);
+    padding-left: $overlay-hint-size + $overlay-hint-offset;
+}
 
             input {
                 background: rgba(0,0,0,0.15);
@@ -164,27 +176,23 @@
 
         @include clearfix();
 
-.search {
-    position: relative;
-    overflow: hidden;
+        position: relative;
 
-    a {
-        position: absolute;
-        right: 0;
-        z-index: 1;
-        width: 4rem;
-    }
-}
-    & > div/*.search*/ {
-        @include span-columns(4 of 12);
-        @include shift(8);
-    }
+        .search {
+            overflow: hidden;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
 
-    & > div + div/*.links*/ {
-        @include span-columns(8 of 12);
-        @include shift(-12);
-
-    }
+            a {
+                position: absolute;
+                right: 0;
+                z-index: 1;
+                width: 4rem;
+            }
+        }
 
         a {
             color: #fff;
