@@ -1,15 +1,21 @@
 .promo {
     display: block;
-    padding: $default-spacing;
-    
-    border-top: none;
+    padding: $base-spacing;
+
+    a {
+        h2, h3 { text-decoration: none; }
+    }
+
+
+    @include hoverify {
+        opacity: $base-hover-opacity;
+        color: inherit;
+    }
 
     &.primary {
         background: $black-victoria;
 
-        * {
-            color: #fff;
-        }
+        * { color: #fff; }
     }
 
     &.secondary {

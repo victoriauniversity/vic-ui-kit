@@ -12,27 +12,58 @@
   }
 
   h2, h3, h4, h5, h6 {
-    margin-bottom: .5em;
+    margin-bottom: .7em;
   }
 
-
   p {
-    margin-bottom: 1.6em;
+    margin-bottom: 1.2em;
 
     &:last-child { margin-bottom: 0; }
   }
 
+  /** Links */
   a {
-    h1, h2, h3, h4, h5, h6 {
-        color: $base-link-color;
-
-        text-decoration: underline;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: $base-link-color;
+      text-decoration: underline;
     }
 
-
     @include hoverify() {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: $base-link-hover-color;
+        text-decoration: none;
+      }
 
-      h1, h2, h3, h4, h5, h6 {
+      img { opacity: $base-image-hover-opacity; }
+    }
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  ul,
+  ol,
+  table {
+    a {
+      color: $base-link-color;
+      text-decoration: underline;
+
+      @include hoverify() {
+        color: $base-link-hover-color;
         text-decoration: none;
       }
     }
@@ -42,7 +73,58 @@
     font-size: scale-font( 1 );
   }
 
-  figure {
-    img { margin-bottom: 1rem; }
+
+  article {
+    margin-bottom: $base-spacing;
+  }
+
+  // Items in a generic grid
+  .grid{
+
+    > * {
+      margin-bottom: $base-spacing;
+    }
+
+    figure img { margin-bottom: .75rem; }
+  }
+
+  ul,
+  ol {
+    margin-bottom: $base-spacing;
+    padding-left: 1.5rem;
+
+    li {
+      padding-left: .35rem;
+      margin-bottom: .35em;
+      list-style-position: outside;
+    }
+  }
+
+  ul li {
+    list-style-type: square;
+  }
+
+  ol li {
+    list-style-type: numeric;
+  }
+
+  /** Items in the right widget sidebar */
+  aside > & {
+
+    h2 {
+      font-size: scale-heading( 2 );
+
+      // Pre-heading delimiting line
+      &:before {
+        @include objectify( $display: block );
+        width: 2rem;
+        height: rem( 3px );
+        margin-bottom: .35rem;
+        background-color: $base-heading-color;
+      }
+
+    }
   }
 }
+
+

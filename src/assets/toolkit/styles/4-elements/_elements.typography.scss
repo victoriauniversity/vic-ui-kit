@@ -118,7 +118,7 @@
 
   ul,
   ol {
-    li & { margin-left: $default-spacing; }
+    li & { margin-left: $base-spacing; }
   }
 
   // TODO: Refactor! Does *not* match the graphic design!
@@ -148,13 +148,6 @@
     text-decoration: none;
   }
 
-  p,
-  ul,
-  ol,
-  table {
-    a { @extend %vuw-link; }
-  }
-
 
   /** Tables */
 
@@ -166,12 +159,19 @@
 
     th,
     td {
-      padding: $default-spacing / 2;
+      padding: $base-spacing / 2;
       text-align: left;
     }
 
-    th { background-color: $table-head-background; }
-    th { font-weight: $weight-bold; }
+    th {
+      font-weight: $weight-bold;
+      background-color: $table-head-background;
+
+      strong,
+      b {
+        font-weight: inherit;
+      }
+    }
     td { border-bottom: 1px solid $table-border-color; }
   }
 
@@ -180,7 +180,7 @@
     overflow-x:    auto;
     display:       block;
     box-shadow:    $base-shadow;
-    margin-bottom: $default-spacing;
+    margin-bottom: $base-spacing;
 
     @include media( $mobile-large-and-smaller ){
       overflow-x: scroll;
@@ -193,11 +193,11 @@
   //TODO: Refactor!
   p > img {
     float: right;
-    margin: 0 $default-spacing $default-spacing 0;
+    margin: 0 0 $base-spacing / 2 $base-spacing;
 
     ~ img {
       float: right;
-      margin: 0 0 $default-spacing $default-spacing;
+      margin: 0 0 $base-spacing $base-spacing;
     }
   }
 
