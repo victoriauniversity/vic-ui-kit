@@ -11,7 +11,11 @@
     margin-bottom: .5em;
   }
 
-  h2, h3, h4, h5, h6 {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin-bottom: .7em;
   }
 
@@ -69,16 +73,12 @@
     }
   }
 
-  .intro {
-    font-size: scale-font( 1 );
-  }
+
+  article { margin-bottom: $base-spacing; }
 
 
-  article {
-    margin-bottom: $base-spacing;
-  }
+  /** Items within general grid */
 
-  // Items in a generic grid
   .grid{
 
     > * {
@@ -87,6 +87,16 @@
 
     figure img { margin-bottom: .75rem; }
   }
+
+
+  /** Unique content elements */
+
+  .intro {
+    font-size: scale-font( 1 );
+  }
+
+
+  /** Lists */
 
   ul,
   ol {
@@ -98,17 +108,20 @@
       margin-bottom: .35em;
       list-style-position: outside;
     }
+
+    ul,
+    ol{
+      margin: .5rem 0 .7rem;
+    }
   }
 
   ul li {
     list-style-type: square;
   }
 
-  ol li {
-    list-style-type: numeric;
-  }
 
   /** Items in the right widget sidebar */
+
   aside > & {
 
     h2 {

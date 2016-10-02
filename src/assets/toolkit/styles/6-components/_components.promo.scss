@@ -1,28 +1,36 @@
 .promo {
     display: block;
-    padding: $base-spacing;
+    padding: $highlights-padding;
 
     a {
-        h2, h3 { text-decoration: none; }
+      h2,
+      h3 {
+        text-decoration: none;
+      }
     }
 
+    // Promo inside right-side widgetbar
+    aside & {
+      h2,
+      h3 {
+        &:before { display: none; }
+      }
+    }
 
     @include hoverify {
-        opacity: $base-hover-opacity;
-        color: inherit;
+      opacity: $base-hover-opacity;
+      color: inherit;
     }
 
     &.primary {
         background: $black-victoria;
 
-        * { color: #fff; }
+        * { color: $white; }
     }
 
     &.secondary {
-        background: #e4f3fb;
+        background: $blue-humming-bird;
 
-        h2 {
-            color: $color-body-text;
-        }
+        h2 { color: $color-body-text; }
     }
 }
