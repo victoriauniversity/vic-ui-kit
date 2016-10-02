@@ -5,7 +5,20 @@
   background: $green-bottle-green;
 
   @include media( $mobile-large-and-smaller ){
+    & > ul > li:last-child > a {
+      display: none;
+    }
     .layout & { display: none; }
+  }
+
+  @include media( $tablet-and-bigger ){
+    & > ul > li {
+      display: none;
+
+      &:last-child {
+        display: block;
+      }
+    }
   }
 
     &--container { position:relative; }
