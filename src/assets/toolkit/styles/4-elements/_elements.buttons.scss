@@ -1,34 +1,32 @@
-$color-button-default:   #e6e6e6;
-$color-button-primary:   #3363b3;
+$color-button-default: #e6e6e6;
+$color-button-primary: $blue-azure;
 $color-button-secondary: #e72e2e;
-$color-button-disabled:  #d0d0d0;
-
+$color-button-disabled: #d0d0d0;
 button,
 .button {
     font-family: $base-heading-family;
     display: inline-block;
-    padding: .3em .8em;
-    margin: -.3em 0;
-    border-radius: 2px;
-
-    &:not(.flat){
-        border: 1px solid rgba(#FFF, .5);
+    0.3em 0.8em;
+    //margin: -0.3em 0;
+    font-weight: 600;
+    &:not(.flat) {
+        border: 1px solid rgba(255, 255, 255, 0.5);
         color: $color-body-text;
         background: $color-button-default;
     }
-
     &.primary {
         background-color: $color-button-primary;
         border-color: $color-button-primary;
         color: #fff;
+        @include hoverify() {
+            background: $blue-st-tropaz;
+        }
     }
-
     &.secondary {
         background-color: $color-button-secondary;
         background-color: $color-button-secondary;
         color: #fff;
     }
-
     &[disabled],
     &.disabled {
         border-color: $color-button-disabled;
@@ -37,4 +35,6 @@ button,
     }
 }
 
-.link-more { float: right; }
+.link-more {
+    float: right;
+}
