@@ -4,7 +4,21 @@
   overflow:   hidden;
   background: $green-bottle-green;
 
+  [lang="mi"] {
+    opacity: 0.5;
+  }
+
   @include media( $mobile-large-and-smaller ){
+    & > ul > li {
+
+      @for $i from 0 through 5 {
+        &:nth-child(#{$i+1}) {
+          color: red;
+          padding-left: #{$i * $default-spacing};
+        }
+      }
+
+    }
     & > ul > li:last-child > a {
       display: none;
     }
@@ -17,17 +31,12 @@
 
       &:last-child {
         display: block;
+
+        li { padding-left: $default-spacing; }
       }
     }
   }
 
     &--container { position:relative; }
     a { @include menu-item; }
-
-    li {
-        margin: 0;
-        padding: 0;
-
-        li { padding-left: $default-spacing; }
-    }
 }
