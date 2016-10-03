@@ -62,6 +62,7 @@
 
     > main:not(:last-child) {
       @include span-columns( $grid-columns - $widgetbar-columns, table );
+      width: 10000px; // [HACK] Make the middle column stretch
     }
 
     > aside {
@@ -332,7 +333,7 @@ $banner-background: $grey-gallery;
     &.two-thirds {
         @include span-columns(8 of 12);
         @include shift(2);
-        
+
         figcaption {
           padding: $base-spacing;
           @include span-columns(4 of 8);

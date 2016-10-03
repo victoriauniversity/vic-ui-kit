@@ -84,6 +84,7 @@
   }
 
   h1 {
+    font-weight: $weight-extrabold;
     margin: 0;
     font-size: scale-heading( 4 );
   }
@@ -127,6 +128,12 @@
   a[href] {
     color: $base-link-color;
     text-decoration: none;
+  }
+
+  a > img {
+    @include hoverify() {
+      opacity: $base-image-hover-opacity;
+    }
   }
 
   // Extendable standard link
