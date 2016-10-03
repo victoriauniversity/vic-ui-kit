@@ -1,4 +1,91 @@
-.staff {
-    
 
+
+/** List with people cards. */
+
+$portrait-width: rem( 150px );
+
+
+.staff {
+    margin: $base-spacing 0 $base-spacing * 1.5 ;
+    width: 100%;
+
+    .articles-container & {
+
+      > li {
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+      }
+
+    }
+
+    .profile-picture {
+      float: left;
+      display: block;
+      margin-right: $column-padding;
+      width: $portrait-width;
+      height: auto;
+    }
+
+    .subtitle {
+      color: $black-emperor;
+
+      > strong {
+        &:after {
+          margin-left: .25em;
+          @include objectify( $content: ' \00B7' ); // '·' middle dot character
+        }
+      }
+    }
+
+    .summary {
+      // Incl. staff portrait
+      &:not(:first-child) {
+        display: block;
+        > header { margin-bottom: 1rem; }
+      }
+
+      // No staff portrait
+      &:first-child {
+        h3,
+        .subtitle {
+          display: inline-block;
+        }
+
+        h3 { margin-right: 1rem; }
+
+        > header { margin-bottom: .25rem; }
+
+        .meta > li {
+          display: inline-block;
+        }
+      }
+    }
+
+    // List of quick (meta) information
+    .meta {
+      > li {
+        display: block;
+        font-size: rem( 14px ); //TODO: Refactor into more dynamic solution
+        margin-bottom: .35rem;
+      }
+
+      .icon { display: none; } //TODO: Implement the icons!
+
+      .highlight {
+        display: inline-block;
+        margin-right: .1rem;
+
+        > a {
+          display: block;
+          padding: .2rem .5rem;
+          background-color: $green-nebula;
+          color: $base-heading-color;
+
+          @include hoverify() {
+            text-decoration: underline;
+            background-color: lighten( $green-nebula, $base-lighten-percentage );
+          }
+        }
+      }
+    }
 }
