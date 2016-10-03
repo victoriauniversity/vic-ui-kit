@@ -1,75 +1,54 @@
-/*dl*/.events {
 
-@include media( $tablet-and-bigger ){
-    &-container {
-        @include span-columns(8 of 12);
-        @include omega;
-        @include shift(2);
-    }
-}
+/** Event overview (list of articles). */
+.events {
 
-    dt {
-        @extend h3;
-    }
+    @include media( $tablet-and-bigger ){
 
-    dd {
-        @include outer-container;
+        .margin-notes {
+            @include span-columns( 3.5 of 12 );
+        }
 
-        list-style: none;
-        margin-bottom: $default-spacing;
-        padding-bottom: $default-spacing;
-        border-bottom: 1px solid $grey-alto;
-
-        &:last-child {
-            border-bottom: none;
+        .summary {
+            @include span-columns( 8.5 of 12 );
         }
     }
 
-@include media( $tablet-and-bigger ){
-    .description {
-        @include span-columns(6 of 8);
-        @include shift-in-context(2);
-    }
-
-    .margin-notes {
-        @include span-columns(2 of 8);
-        @include omega;
-        @include shift-in-context(-8);
-    }
-}
-
+    // Highlight strip
     .highlight {
         display: block;
-        padding-left: $gutter;
-        margin-left: -($default-spacing + $highlight-border-width);
+        padding-left: 1rem;
         border-left: $highlight-border-width solid $green-bottle-green;
 
-        p {
-            margin-bottom: 0;
-        }
+        p { margin-bottom: 0; }
     }
 
-    img {
-        float: right;
-        padding: 0 0 $gutter $gutter;
+    .summary h3 { margin-bottom: .7em; }
+
+    .margin-notes {
+        margin-bottom: .6rem;
+        padding-right: 1rem;
+    }
+
+    .date,
+    .time {
+        font-height: $weight-semibold;
+        display: block;
+        font-family: $base-heading-family;
+        color: $base-heading-color;
+        line-height: 1.1;
     }
 
     .date {
-        @extend h4;
+        margin-bottom: .2em;
+        font-size: scale-heading( 2 );
     }
+
     .time {
-        @extend h5;
+        font-size: scale-heading( 1 );
     }
 
     .meta {
-        color: #8a8a8a;
+        color: $grey;
         margin-bottom: 0;
     }
-
-    h3 + a {
-        margin-top: -2.95rem; //1.1rem h3 margin-bottom; 1.6rem a line-height ~adjustment//2.4rem line-height
-        float:right;
-        @extend %vuw-link;
-    }
-
 }

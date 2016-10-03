@@ -1,0 +1,178 @@
+/*==========================================
+=            DEFAULT FORMATTING            =
+==========================================*/
+
+
+/** Use everywhere where standard formatting rules should be applied! */
+
+.formatting {
+  h1 {
+    font-weight: $weight-extrabold;
+    margin-bottom: .5em;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: .7em;
+  }
+
+  p {
+    margin-bottom: 1.2em;
+
+    &:last-child { margin-bottom: 0; }
+  }
+
+  /** Links */
+  a {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: $base-link-color;
+      text-decoration: underline;
+    }
+
+    @include hoverify() {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: $base-link-hover-color;
+        text-decoration: none;
+      }
+
+      img { opacity: $base-image-hover-opacity; }
+    }
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  ul,
+  ol,
+  table {
+    a {
+      color: $base-link-color;
+      text-decoration: underline;
+
+      @include hoverify() {
+        color: $base-link-hover-color;
+        text-decoration: none;
+      }
+    }
+  }
+
+
+  article { margin-bottom: $base-spacing; }
+
+
+  /** Items within general grid */
+
+  .grid{
+
+    > * {
+      margin-bottom: $base-spacing;
+    }
+
+    figure img { margin-bottom: .75rem; }
+  }
+
+
+  /** Unique content elements */
+
+  .intro {
+    font-size: scale-font( 1 );
+  }
+
+
+  /** Imagery */
+
+  // Standard
+  .inline {
+    clear: right;
+  }
+
+  .inline,
+  .portrait,
+  > img,
+  p > img,
+  p > img ~ img {
+    width: 100%;
+    height: auto;
+    margin-bottom: $base-spacing / 2;
+  }
+
+  // Portrait size
+  .portrait {
+    float: right;
+    margin-left: $base-spacing;
+    width: $media-inline-portrait-width;
+  }
+
+  /** Align  */
+  @include media( $tablet-and-bigger ){
+    .inline,
+    p > img,
+    p > img ~ img {
+      float: right;
+      width: $media-inline-width;
+      margin-left: $base-spacing;
+    }
+  }
+
+  /** Lists */
+
+  ul,
+  ol {
+    margin-bottom: $base-spacing;
+    padding-left: 1.5rem;
+
+    li {
+      padding-left: .35rem;
+      margin-bottom: .35em;
+      list-style-position: outside;
+    }
+
+    ul,
+    ol{
+      margin: .5rem 0 .7rem;
+    }
+  }
+
+  ul li {
+    list-style-type: square;
+  }
+
+
+  /** Items in the right widget sidebar */
+
+  aside > & {
+
+    h2 {
+      font-size: scale-heading( 2 );
+
+      // Pre-heading delimiting line
+      &:before {
+        @include objectify( $display: block );
+        width: 2rem;
+        height: rem( 3px );
+        margin-bottom: .35rem;
+        background-color: $base-heading-color;
+      }
+
+    }
+  }
+}
+
+

@@ -1,25 +1,52 @@
-$color-pdf: #af1b1b;
+
+// File extensions colour variations
+$color-pdf: #dd3727;
+$color-excel: #318f5b;
+$color-word: #2a569a;
+$color-mp3: #d27200;
+$color-ppt: #ad3016;
+
 
 .label {
-    min-width: 2em;
-    text-align: center;
-    padding: 0.15em 0.3em;
-    font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  font-size: 75%;
+  text-transform: uppercase;
+  margin-right: .5em;
+  background: $grey-alto;
+  color: $base-font-color;
+
+  > i,
+  > span {
     display: inline-block;
+    padding: .3em .5em;
+  }
 
-    background: #e0e0e0;
-    color: $color-body-text;
+  > i {
+    float: left;
+    font-style: inherit;
+    color: $white;
+  }
 
-    & .label {
-        float: left;
-        margin-right: 0.3em;
+  /** File types/extensions */
+  &.file-pdf {
+    > i { background: $color-pdf; }
+  }
 
-    }
+  &.file-excel {
+    > i { background: $color-excel; }
+  }
 
-    &.file-pdf {
-    background: $color-pdf;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 75%;
-    }
+  &.file-word {
+    > i { background: $color-word; }
+  }
+
+  &.file-mp3 {
+    > i { background: $color-mp3; }
+  }
+
+  &.file-ppt {
+    > i { background: $color-ppt; }
+  }
 }

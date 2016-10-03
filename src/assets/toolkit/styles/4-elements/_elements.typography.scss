@@ -3,9 +3,6 @@
 ==========================================*/
 
 
-
-
-
   /* ===== MIXINS =========================================================== */
 
 
@@ -83,60 +80,46 @@
     font-family: $base-heading-family;
     font-weight: $weight-semibold;
     color:       $base-heading-color;
+    line-height: 1;
   }
 
   h1 {
     margin: 0;
     font-size: scale-heading( 4 );
-    line-height: 1;
   }
 
   h2 {
     font-size: scale-heading( 3 );
-    line-height: #{$base-line-height * 1.5}rem;
   }
 
   h3 {
     font-size: scale-heading( 2 );
-    line-height: #{$base-line-height * 1.5}rem;
   }
 
   h4 {
     font-size: scale-heading( 1 );
-    line-height: #{$base-line-height * 1}rem;
   }
 
   h5 {
     font-size: scale-heading( 0 ) + ( scale-heading( 1 ) - scale-heading( 0 ) )/2;
-    line-height: #{$base-line-height * 1}rem;
   }
 
   //DEPRECATED: Do not create
   h6 {
     font-size: scale-heading( 0 );
-    line-height: #{$base-line-height * 1}rem;
   }
 
   p {
-    line-height: #{$base-line-height * 1}rem;
+    line-height: $base-line-height;
   }
 
 
   /** Lists */
 
-  ul,
-  ol {
-    li & { margin-left: $default-spacing; }
-  }
 
   // TODO: Refactor! Does *not* match the graphic design!
-  ul {
-    list-style: none;
-  }
-
-  ol {
-    list-style: decimal;
-  }
+  ul { list-style: none; }
+  ol { list-style: decimal; }
 
 
   /** Links */
@@ -156,60 +139,42 @@
     text-decoration: none;
   }
 
-  p,
-  ul,
-  ol,
-  table {
-    a { @extend %vuw-link; }
-  }
-
 
   /** Tables */
 
   $table-border-color:    $grey-alto;
   $table-head-background: $green-nebula;
 
-
-  .table-container { //TODO: ? Should be used for any other h-scrollable content? If yes, make more generic
-    display:       block;
-    box-shadow:    $base-shadow;
-    margin-bottom: $default-spacing;
-
-    @include media( $mobile-large-and-smaller ){
-      max-width:  100%;
-      overflow-x: scroll;
-    }
-  }
-
   table {
-    margin-bottom:   $default-spacing;
-    border-collapse: collapse;
-    border-spacing:  0;
+    width: 100%;
 
     th,
     td {
-      padding: $default-spacing / 2;
-      vertical-align: baseline;
+      padding: $base-spacing / 2;
       text-align: left;
-
-      p { margin-bottom: 0; }
     }
 
-    th { background-color: table-head-background; }
+    th {
+      font-weight: $weight-bold;
+      background-color: $table-head-background;
+
+      strong,
+      b {
+        font-weight: inherit;
+      }
+    }
     td { border-bottom: 1px solid $table-border-color; }
   }
 
+  .table-container { //TODO: ? Should be used for any other h-scrollable content? If yes, make more generic
+    width:         100%;
+    overflow-x:    auto;
+    display:       block;
+    box-shadow:    $base-shadow;
+    margin-bottom: $base-spacing;
 
-  /** Imagery */
-
-  //TODO: Refactor!
-  p > img {
-    float: left;
-    margin: 0 $default-spacing $default-spacing 0;
-
-    ~ img {
-      float: right;
-      margin: 0 0 $default-spacing $default-spacing;
+    @include media( $mobile-large-and-smaller ){
+      overflow-x: scroll;
     }
   }
 

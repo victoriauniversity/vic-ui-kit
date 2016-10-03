@@ -1,34 +1,45 @@
-.links {
-    list-style: none;
+/** List with links or files */
+$links-bulletline-color: #4d8168;
 
-    dt {
-        @extend h3;
+ul.links {
+    margin-bottom: $base-spacing;
+  padding-left: 0;
+    line-height: 1.5;
+
+    li {
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: .6rem;
     }
 
-    li, dd {
+    // List of links in widget bar
+    aside & {
 
-        border-top: 1px solid $grey-alto;
-        margin-bottom: 0;
+        li {
+          margin: 0;
+          border-top: 1px solid $grey-alto;
+        }
+
+        a {
+          padding: $base-spacing/3 .1em;
+          text-decoration: none;
+
+          &:before { display: none; }
+
+          @include hoverify {
+              background-color: rgba( #000, .03 );
+          }
+        }
     }
 
     a {
-        display: block;
-        padding: $default-spacing/2 $default-spacing;
-        border-bottom: none;
+      display: block;
 
-        &:hover {
-            background: rgba(0,0,0,.05);
-        }
-
-        &:before {
-            color: #1e991c;
-
-            content: '\2014 ';
-            min-width: $default-spacing;
-            margin-left: -$default-spacing;
-            display: inline-block;
-            text-align: center;
-        }
+      &:before {
+        display: inline-block;
+        margin: 0 .5rem 0 .35rem;
+        color: $links-bulletline-color;
+        content: '\2014';
+      }
     }
-
 }

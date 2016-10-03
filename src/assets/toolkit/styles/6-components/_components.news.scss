@@ -1,55 +1,64 @@
-.news {
-    &-container {
-@include media($tablet-and-bigger){
-        @include span-columns(8 of 12);
-        @include omega;
-        @include shift(2);
-}//media $desktop
+/** Generic holder for all article-like overviews */
+.articles-container {
+
+    @include media( $tablet-and-bigger ){
+        max-width: rem( 800px );
+        margin: 0 auto;
     }
 
-    dt {
-        @extend h3;
-    }
+    > header { margin: $base-spacing 0; }
 
-    dd {
-        @include outer-container;
-
-        list-style: none;
-        margin-bottom: $default-spacing;
+    > ul > li {
+        @include clearfix();
+        padding-bottom: $base-spacing;
+        margin-bottom: $base-spacing;
         border-bottom: 1px solid $grey-alto;
+        list-style: none;
 
         &:last-child {
             border-bottom: none;
+            margin-bottom: 0;
+        }
+    }
+
+    .summary {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            margin-bottom: .25em;
         }
 
-@include media($tablet-and-bigger){
-
-        &.has-media {
-            .description {
-                @include span-columns(5 of 8);
-                // @include shift-in-context(2);
-            }
-
-            .media {
-                @include span-columns(3 of 8);
-                @include omega;
-
-            }
-
+        time,
+        p {
+            margin-bottom: .7em;
         }
-}//media $desktop
-
     }
 
-
-    time {
-        display: block;
+    .media {
+        img,
+        iframe {
+            margin-bottom: 0;
+        }
     }
+}
 
-    h3 + a {
-        margin-top: -2.95rem; //1.1rem h3 margin-bottom; 1.6rem a line-height ~adjustment//2.4rem line-height
-        float:right;
-        @extend %vuw-link;
+
+/** News overview (list of articles) */
+.news {
+    time { display: block; }
+
+    @include media( $tablet-and-bigger ){
+
+        // Has got `media` or another add-on
+        .summary:not(:last-child) {
+            @include span-columns( 7.5 of 12 );
+        }
+
+        .media {
+            @include span-columns( 4.5 of 12 );
+            @include omega;
+        }
     }
-
 }

@@ -3,6 +3,7 @@
  */
 var fastclick = require('fastclick');
 var Headroom = require('headroom.js');
+var picturefill = require('picturefill');
 // var Velocity = require("velocity-animate");
 var TRANSITION_TIMEOUT = 200; //update in _settings.variables.scss(135)
 
@@ -22,7 +23,7 @@ $(function(){
 		  	down: 5
 		  },
 		  onPin: function (){
-		  	//reset in-menu scrolling 
+		  	//reset in-menu scrolling
 		  	$globalNav.find('.menu').scrollTop(0);
 		  },
 		  onUnpin: function (){
@@ -73,6 +74,4 @@ $(function(){
 		$(this).parent().addClass('active');
 		$('.tile-grid').toggleClass('hidden');
 	});
-
-
 });

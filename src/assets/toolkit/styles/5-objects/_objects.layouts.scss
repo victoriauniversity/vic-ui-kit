@@ -1,96 +1,122 @@
 
-/** Main footer */
-footer {}
+/** BLOCK - Universal building block with standard paddings. */
 
-/** Basic block with paddings */
-.block {
-  padding: $default-spacing;
-}
+.block {  padding: $column-padding; }
 
 
+/** CENTRALISER - Restricts the width of the content to allowed maximum and aligns to center. */
+
+.centraliser { @include outer-container; }
 
 
-@include media($desktop-and-bigger){
+/** LAYOUT - Contains all the content's columns and layout combinations */
 
 .layout {
-    @include outer-container; // Needs to
+  &.block {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+
+.content-panel {
+  > main, > aside {
+    vertical-align: top;
+
+    > .block {
+      padding-bottom: 1.5 * $column-padding;
+      padding-top: 1.5 * $column-padding;
+    }
+  }
+}
+
+@include media( $tablet-and-smaller ){
+
+  .layout {
+    &.block {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+
+@include media( $tablet-and-bigger ){
+
+  .content-panel {
+
+    // Sub-columns
+
+    /** Main content *ONLY* */
+
+    > main:last-child { width: 100%; }
+
+
+    /** 1st Content bar + 2nd widgets bar */
+
+    $widgetbar-to-content-width-ratio: .25; // 25% of the content container's width
+    $widgetbar-columns: $widgetbar-to-content-width-ratio * $grid-columns;
+
+    > main:not(:last-child) {
+      @include span-columns( $grid-columns - $widgetbar-columns, table );
+    }
+
+    > aside {
+      @include span-columns( $widgetbar-columns, table );
+    }
+  }
+
+}
+
+
+@include media( $desktop-and-bigger ){
+
+  /** Left sidebar */
+
+  $sidebar-to-document-width-ratio: .20; // 20% of the page's width
+  $sidebar-columns: $sidebar-to-document-width-ratio * $grid-columns;
+
+  .sidebar {
+    @include span-columns( $sidebar-columns, table );
+  }
+
+  // Can contain Content only column and Widget bar (optional).
+  .content-panel {
+
+    /** Content panel *ONLY* */
+
+    &:first-child {
+      width: 100%;
+
+      // Main content *ONLY*
+      > main:last-child {
+        > .block { padding-left: 0; }
+      }
+    }
+
+    > main:last-child {
+      > .block { padding-right: 0; }
+    }
+
+    /** 1st Sidebar + 2nd Content panel */
+
+    &:not(:first-child) {
+      vertical-align: top;
+      @include span-columns( $grid-columns - $sidebar-columns, table );
+    }
+
+    > aside {
+      > .block { padding-right: 0; }
+    }
+  }
 }
 
 
 
-.content {
-    padding: $gutter 0;
 
-    .layout > & {
-        @include span-columns(12 of 12);
-    }
+//TODO: Refactor and remove what's no longer needed
 
-    .layout.has-nav > & {
-        @include span-columns(9 of 12);
-
-        @include media($mobile) {
-            @include span-columns(12 of 12);
-        }
-    }
-}
-
-    .layout.has-nav > nav {
-        @include span-columns(3 of 12);
-
-        @include media($mobile) {
-            @include span-columns(12 of 12);
-        }
-    }
-
-
-
-
-
-main {
-    .layout > .content > & {
-        @include span-columns(12 of 12);
-    }
-    .layout > .content.has-aside > & {
-        @include span-columns(9 of 12);
-
-        @include media($mobile) {
-            @include span-columns(12 of 12);
-        }
-    }
-    .layout.has-nav > .content > & {
-        @include span-columns(9 of 9);
-
-        @include media($mobile) {
-            @include span-columns(12 of 12);
-        }
-    }
-    .layout.has-nav > .content.has-aside > & {
-        @include span-columns(6 of 9);
-
-        @include media($mobile) {
-            @include span-columns(12 of 12);
-        }
-    }
-}
-
-aside {
-    .layout > .content.has-aside > & {
-        @include span-columns(3 of 12);
-
-        @include media($mobile) {
-            @include span-columns(12 of 12);
-        }
-    }
-    .layout.has-nav > .content.has-aside > & {
-        @include span-columns(3 of 9);
-
-        @include media($mobile) {
-            @include span-columns(12 of 12);
-        }
-    }
-}
-
-
+@include media( $desktop-and-bigger ){
 
 
 
@@ -231,18 +257,24 @@ aside {
 
 }
 
+$banner-background: $grey-gallery;
+
+.separated {
+    border-bottom: 1px solid $grey-alto;
+}
+
 .banner {
-@include media($desktop){
-    background:#eeeeee;
+@include media($desktop-and-bigger){
+    background: $banner-background;
     position:relative;
     overflow:hidden;
 }//media desktop
 @include media($mobile){
-    border-top: 3px solid #eee;
-    border-bottom: 3px solid #eee;
+    border-top: 3px solid $banner-background;
+    border-bottom: 3px solid $banner-background;
 
     &+.banner {
-        border-top: none;
+      border-top: none;
     }
 }//media desktop
 
@@ -257,36 +289,45 @@ aside {
 
 }
 
-.banner figure {
-
-    position: relative;
+.banner {
     @include clearfix();
+}
+
+.banner figure {
+    overflow: hidden; //TODO: Change to something safer
+    position: relative;
     padding: 0;
-    box-shadow: 0px 1px 5px rgba( #000, .15);
-    background: #fff;
+    background: $white;
+
+    figcaption{
+      padding-bottom: $base-spacing;
+    }
 
 @include media( $tablet-and-bigger ){
 
-    margin: $default-spacing * 1.5 $default-spacing * -1.5;
+    box-shadow: $base-shadow;
 
     figcaption {
-        padding: $default-spacing * 1.5;
-        @include span-columns(7 of 12);
-        z-index: 1;
+      padding: $base-spacing * 1.5;
+      @include span-columns( 7 of 12, block-collapse );
+      z-index: 1;
     }
 
     img {
-        @include span-columns(5 of 12);
+      @include span-columns( 5 of 12, block-collapse );
     }
 
-    &.photo, &.pattern {
+    &.photo,
+    &.pattern {
         figcaption {
             position: relative;
-            @include span-columns(6 of 12);
-            @include shift(3);
-            padding: $default-spacing * 2 0;
+            max-width: rem( 600px );
+            width: auto;
+            margin: 0 auto;
+            padding: $base-spacing * 1.5 0;
             z-index: 1;
             text-align: center;
+            float: none;
         }
         img {
             position: absolute;
@@ -302,13 +343,13 @@ aside {
         figcaption {
             h1, h2, h3, h4, h5, h6, p{
                 display: inline-block;
-                padding: .35rem .75rem;
+                padding: .5rem 1rem;
                 margin-bottom: .5em;
                 color: #FFF;
-                background-color: rgba(100,166,89,0.9);
+                background-color: rgba(100,166,89, .9 );
             }
+
+            p { margin-bottom: 1.3em; }
         }
     }
-
-
 }
