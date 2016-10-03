@@ -91,17 +91,17 @@
 
   /** Unique content elements */
 
+  // Abstract text
   .intro {
     font-size: scale-font( 1 );
+    color: $base-heading-color;
   }
 
 
   /** Imagery */
 
-  // Standard
-  .inline {
-    clear: right;
-  }
+  // Default image - full width
+  .inline { clear: right; }
 
   .inline,
   .portrait,
@@ -113,14 +113,14 @@
     margin-bottom: $base-spacing / 2;
   }
 
-  // Portrait size
+  // Portrait size inline image
   .portrait {
     float: right;
     margin-left: $base-spacing;
     width: $media-inline-portrait-width;
   }
 
-  /** Align  */
+  // Inline and auto-alignments
   @include media( $tablet-and-bigger ){
     .inline,
     p > img,
@@ -130,6 +130,7 @@
       margin-left: $base-spacing;
     }
   }
+
 
   /** Lists */
 
@@ -150,8 +151,8 @@
     }
   }
 
-  ul li {
-    list-style-type: square;
+  ul {
+    li { list-style-type: square; }
   }
 
 

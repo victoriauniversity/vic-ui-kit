@@ -1,38 +1,75 @@
-$color-button-default: #e6e6e6;
-$color-button-primary: $blue-azure;
-$color-button-secondary: #e72e2e;
-$color-button-disabled: #d0d0d0;
+
+
+/** Standard buttons */
+
+$color-button-default:       $grey-gallery;
+$color-button-default-hover: $grey-alto;
+
+$color-button-primary:       $blue-azure;
+$color-button-primary-hover: $blue-st-tropaz;
+
+$color-button-danger:        $red-alizarin-crimson;
+$color-button-danger-hover:  $red-persian-red;
+
+$color-button-disabled:      $grey-alto; // Has got no hover
+
+
 button,
 .button {
+    display:     inline-block;
+    padding:     .3em .8em;
     font-family: $base-heading-family;
-    display: inline-block;
-    font-weight: 600;
+    font-weight: $weight-semibold;
+
     &:not(.flat) {
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        color: $color-body-text;
-        background: $color-button-default;
+      color:      $color-body-text;
+      background: $color-button-default;
+
+      @include hoverify() {
+        background: $color-button-default-hover;
+      }
     }
+
+    // Call-to-action button
     &.primary {
         background-color: $color-button-primary;
-        border-color: $color-button-primary;
-        color: #fff;
+        border-color:     $color-button-primary;
+        color:            $white;
+
         @include hoverify() {
-            background: $blue-st-tropaz;
+          background: $color-button-primary-hover;
         }
     }
-    &.secondary {
-        background-color: $color-button-secondary;
-        background-color: $color-button-secondary;
-        color: #fff;
+
+    // Critical/Destructive operations button
+    &.danger {
+      background-color: $color-button-danger;
+      background-color: $color-button-danger;
+      color: $white;
+
+      @include hoverify() {
+        background: $color-button-danger-hover;
+      }
     }
+
     &[disabled],
     &.disabled {
-        border-color: $color-button-disabled;
-        background: $color-button-default;
-        color: #aaa;
+      border-color: $color-button-disabled;
+      background:   $color-button-default;
+      color:        $grey-silver-chalice;
     }
 }
 
-.link-more {
-    float: right;
+
+/** Important (button-like) links */
+
+a.link-more {
+  float: right;
+  @extend %base-link;
+
+  //TODO: Replace with real icon
+  &:after {
+    @include objectify( $content: '\003E' ); // '>' caret
+    margin-left: .25em;
+  }
 }
