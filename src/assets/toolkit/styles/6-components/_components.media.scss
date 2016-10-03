@@ -1,40 +1,57 @@
+/** Embedded media (images, videos, galleries etc.) */
+
 
 .media {
 
-    img,
-    iframe {
-        display: block;
-        float: none;
-        margin-bottom: $base-spacing;
-        width: 100%;
-        height: auto;
+  // Floats a medium into right on devices with higher resolution
+  &.inline {
+
+    @include media( $tablet-and-bigger ){
+      float: right;
+      width: $media-inline-width;
+      margin: 0 0 0 $base-spacing;
+
+      figcaption {
+        font-size: 90%;
+        border-left-width: $highlight-border-width * .75;
+      }
     }
+  }
 
-    figcaption {
-        display: block;
+  img,
+  iframe,
+  .table-container {
+      display: block;
+      float: none;
+      width: 100%;
+      height: auto;
+      margin-bottom: .7em;
 
-        // padding-left: $default-spacing - $highlight-border-width;
-        padding-left: $default-spacing;
+      &:last-child { margin-bottom: $base-spacing; }
+  }
 
-        border-left: $highlight-border-width solid;
-
-        color: #8a8a8a;
-    }
-
+  figcaption {
+      display: block;
+      padding: .2em 0 .2em $base-spacing / 2;
+      border-left: $strip-light;
+      color: $black-emperor;
+      margin-bottom: $base-spacing;
+  }
 }
 
-.embed-wrapper {
-    height: 0;
-    padding: 0 0 56.25%; //16:9 ratio magic; use different wrapper for other ratio embeds?
+  // To wrap iframed media dynamically
+  .embed-wrapper,
+  .embed {
+      height: 0;
+      padding: 0 0 56.25%; //16:9 ratio magic; use different wrapper for other ratio embeds?
+      position: relative;
+      margin-bottom: $base-spacing / 2;
 
-    position: relative;
-    margin-bottom: $default-spacing /2;
-
-    iframe {
+      iframe {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-    }
-}
+      }
+  }

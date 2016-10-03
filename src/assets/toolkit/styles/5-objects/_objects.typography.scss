@@ -96,6 +96,41 @@
   }
 
 
+  /** Imagery */
+
+  // Standard
+  .inline {
+    clear: right;
+  }
+
+  .inline,
+  .portrait,
+  > img,
+  p > img,
+  p > img ~ img {
+    width: 100%;
+    height: auto;
+    margin-bottom: $base-spacing / 2;
+  }
+
+  // Portrait size
+  .portrait {
+    float: right;
+    margin-left: $base-spacing;
+    width: $media-inline-portrait-width;
+  }
+
+  /** Align  */
+  @include media( $tablet-and-bigger ){
+    .inline,
+    p > img,
+    p > img ~ img {
+      float: right;
+      width: $media-inline-width;
+      margin-left: $base-spacing;
+    }
+  }
+
   /** Lists */
 
   ul,

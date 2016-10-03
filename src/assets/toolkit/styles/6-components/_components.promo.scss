@@ -1,11 +1,22 @@
 .promo {
     display: block;
-    padding: $highlights-padding;
 
-    a {
+    > a {
+      display: block;
+      padding: $highlights-padding;
+      color: inherit;
+
       h2,
       h3 {
         text-decoration: none;
+      }
+
+      @include hoverify() {
+        h2,
+        h3 {
+          text-decoration: underline;
+          color: inherit;
+        }
       }
     }
 
@@ -17,20 +28,33 @@
       }
     }
 
-    @include hoverify {
-      opacity: $base-hover-opacity;
-      color: inherit;
+    // 'Find out more' at the end of the promo
+    b,
+    strong {
+      display: block;
     }
 
-    &.primary {
-        background: $black-victoria;
 
-        * { color: $white; }
+    /** Promo types */
+
+    &.primary {
+      background-color: $black-victoria;
+
+      * { color: $white; }
+
+      @include hoverify {
+        background-color: lighten( $black-victoria, $base-lighten-percentage );
+      }
     }
 
     &.secondary {
-        background: $blue-humming-bird;
+      background-color: $blue-humming-bird;
 
-        h2 { color: $color-body-text; }
+      h2 { color: $color-body-text; }
+      p { color: $base-link-color; }
+
+      @include hoverify {
+        background-color: darken( $blue-humming-bird, $base-darken-percentage );
+      }
     }
 }

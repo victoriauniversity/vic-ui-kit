@@ -106,23 +106,26 @@ $base-heading-family: "#{$font-victoria}",$base-body-family;
 $base-heading-color:  $green-victoria;
 
 
-/** Links */
+/** Links & Hovers */
 
-$base-link-color:    $blue-endeavoura;
-$base-link-hover-color: $blue-curious;
+$base-link-color:          $blue-endeavoura;
+$base-link-hover-color:    $blue-curious;
 
 $base-image-hover-opacity: .9;
-$base-hover-opacity: .9;
+$base-hover-opacity:       .9;
+
+$base-darken-percentage:   3;
+$base-lighten-percentage:  6;
 
 
 /** Margins and paddings */
 
-$default-spacing: $base-line-height * 1rem; // Deprecated, use $base-spacing for vertical flow
-$column-padding:  rem( 20px );
+$default-spacing:    $base-line-height * 1rem; // Deprecated, use $base-spacing for vertical flow
+$column-padding:     rem( 20px );
 
-$base-spacing: 1.6rem;
+$base-spacing:       1.6rem;
 
-$highlights-padding: 1.25rem;
+$highlights-padding: $column-padding;
 
 
 /** Shadows (always in px units) */
@@ -136,8 +139,14 @@ $base-shadow: 0 1px 5px rgba( #000, .15 );
 // TODO: Borders *MUST BE* in pixels
 $highlight-border-width: .25rem;
 
-/** Miscs */
+$strip-light: $highlight-border-width solid #d1e0da;
 
+/** Miscs */
 
 $transition-timeout: 200ms; //update in toolkit.js(7)
 
+
+/** Default dimensions */
+
+$media-inline-width:          rem( 270px );
+$media-inline-portrait-width: rem( 160px );
