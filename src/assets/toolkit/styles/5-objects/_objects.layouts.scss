@@ -320,6 +320,28 @@ $banner-background: $grey-gallery;
       @include span-columns( 5 of 12, block-collapse );
     }
 
+
+    &.two-thirds {
+        @include span-columns(8 of 12);
+        @include shift(2);
+        
+        figcaption {
+          padding: $base-spacing;
+          @include span-columns(4 of 8);
+          @include shift(4);
+          background: $white;
+          position: relative;
+        }
+
+        img {
+          position: absolute;
+          width: auto;
+          top: 0;
+          left: 0;
+          height: 100%;
+        }
+    }
+
     &.photo,
     &.pattern {
         figcaption {
