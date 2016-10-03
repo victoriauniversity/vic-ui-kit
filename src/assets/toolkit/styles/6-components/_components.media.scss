@@ -38,6 +38,60 @@
       color: $black-emperor;
       margin-bottom: $base-spacing;
   }
+
+  .formatting .grid &.featured img {
+      margin-bottom: 0;
+  }
+
+  &.featured {
+    position: relative;
+
+    img {
+      margin-bottom: 0;
+    }
+
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      background-color: rgba($black, 0.4);
+      transition: background-color 200ms ease-in-out;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    &:hover:before {
+      background-color: rgba($black, 0.2);
+    }
+
+    figcaption { //TODO: extend .tile-text
+      background-color: $green-victoria;
+      // color: $white;
+      border-left: none;
+      z-index: 1;
+
+      @include media( $tablet-and-bigger ){
+        width: 66%;
+        max-width: 20rem;
+        position: absolute;
+        top: $base-spacing;
+        left: $base-spacing;
+      }
+
+      h1, h2, h3, h4, h5, h6, p{
+        color: $white;
+        display: flex;
+        align-items: center;
+        padding: .5em;
+      }
+
+      p { margin-bottom: 1.3em; }
+
+    }
+  }
 }
 
 
