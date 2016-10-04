@@ -34,6 +34,8 @@ $(function(){
 		headroom.init();
 
 		$body.on('click ', '.js-toggle-global-nav', function(_event){
+			var $this = $(this);
+			$this.toggleClass('close');
 			$globalNav.toggleClass('is-open');
 		});
 	}
