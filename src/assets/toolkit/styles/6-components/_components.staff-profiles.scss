@@ -1,6 +1,6 @@
 
 
-/** List with people cards. */
+/** List with people information */
 
 $portrait-width: rem( 150px );
 
@@ -10,7 +10,6 @@ $portrait-width: rem( 150px );
   width: 100%;
 
   .articles-container & {
-
     > li {
       padding-bottom: 1rem;
       margin-bottom: 1rem;
@@ -50,6 +49,7 @@ $portrait-width: rem( 150px );
 
 .profile-picture { width: 100%; }
 
+// Contact information
 address.contact {
   > img {
     display: block;
@@ -79,12 +79,12 @@ ul.meta {
     > a {
       display: block;
       padding: .2rem .5rem;
-      background-color: $green-nebula;
+      background-color: lighten( $green-nebula, $base-lighten-percentage );
       color: $base-heading-color;
+      text-decoration: none;
 
       @include hoverify() {
         text-decoration: underline;
-        background-color: lighten( $green-nebula, $base-lighten-percentage );
       }
     }
   }

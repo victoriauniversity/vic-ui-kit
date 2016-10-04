@@ -1,60 +1,7 @@
-/** Generic holder for all article-like overviews */
-.articles-container {
-
-    @include media( $tablet-and-bigger ){
-        max-width: rem( 800px );
-        margin: 0 auto;
-    }
-
-    > header { margin: $base-spacing 0; }
-
-    h2,
-    h3 {
-      > em {
-        font-style: normal;
-        margin-left: .35em;
-        color: $grey;
-      }
-    }
-
-    > ul > li {
-        @include clearfix();
-        padding-bottom: $base-spacing;
-        margin-bottom: $base-spacing;
-        border-bottom: 1px solid $grey-alto;
-        list-style: none;
-
-        &:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-    }
-
-    .summary {
-        h1,
-        h2,
-        h3,
-        h4,
-        h5 {
-            margin-bottom: .25em;
-        }
-
-        time,
-        p {
-            margin-bottom: .7em;
-        }
-    }
-
-    .media {
-        img,
-        iframe {
-            margin-bottom: 0;
-        }
-    }
-}
-
 
 /** News overview (list of articles) */
+
+
 .news {
     time { display: block; }
 
