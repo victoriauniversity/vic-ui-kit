@@ -1,27 +1,24 @@
 <!-- Banner header + menu with full-width content bar underneath -->
 {{> navigation.global}} {{> banner-header}}
-
 <!-- TODO: Add full width banner with sidebar menu -->
 <!-- Center 'content' and right 'widget' columns -->
-<div class="content-panel">
+<div class="homepage-base layout">
     <!-- Center 'content' column -->
-    <main>
-        <section>
-
-            {{> homepage-intro}}
-
-
-
-            {{> promo-with-1x-image}}
-        </section>
-        <section class="centraliser block">
-            <div class="study-area-tabs" id="study-area-tabs">
-                <ul>
-                    <li class="active"><a href="javascript:void(0)"><h4>Study areas</h4></a></li>
-                    <li><a href="javascript:void(0)"><h4>Degrees and qualifications</h4></a></li>
-                </ul>
-            </div>
-            {{> study-areas}}{{> study-area-single}} {{> degrees-quals}}
-        </section>
-    </main>
+    <div class="content-panel">
+        <main>
+            <section>
+                {{> homepage-intro}}
+                <section class="centraliser block">
+                    <div class="study-area-tabs" id="study-area-tabs">
+                        <ul>
+                            <li class="active"><a href="javascript:void(0)"><h4>Study areas</h4></a></li>
+                            <li><a href="javascript:void(0)"><h4>Degrees and qualifications</h4></a></li>
+                        </ul>
+                    </div>
+                    {{> study-areas}} {{! > study-area-single}} {{> degrees-quals}}
+                </section>
+                {{> promo-with-1x-image}} {{> text-promo-panel}} {{> two-thirds-promo-panel}} {{> three-cols-images}}
+            </section>
+        </main>
+    </div>
 </div>
