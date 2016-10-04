@@ -4,6 +4,8 @@
 
 
 /** Use everywhere where standard formatting rules should be applied! */
+$text-block-spacing: 1.2em;
+
 
 .formatting {
   h1 { margin-bottom: .5em; }
@@ -17,7 +19,7 @@
   }
 
   p {
-    margin-bottom: 1.2em;
+    margin-bottom: $text-block-spacing;
 
     &:last-child { margin-bottom: 0; }
   }
@@ -93,6 +95,31 @@
   .intro {
     font-size: scale-font( 1 );
     color: $base-heading-color;
+  }
+
+  // Subtitle
+  .subtitle {
+    color: $black-emperor;
+    line-height: 1.4;
+
+    > strong {
+      &:after {
+        margin-left: .5em;
+        margin-right: .25em;
+        @include objectify( $display: inline-block, $content: '\00B7' ); // '·' middle dot character
+      }
+    }
+  }
+
+  h1 + .subtitle {
+    font-size: scale-font( 1 );
+  }
+
+  // Header section that restarts the
+  > header {
+    margin-bottom: $text-block-spacing;
+
+    h1 { margin-bottom: .25em; }
   }
 
 
