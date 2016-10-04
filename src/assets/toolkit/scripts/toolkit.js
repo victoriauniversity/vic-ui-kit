@@ -66,6 +66,7 @@ $(function(){
 			}, TRANSITION_TIMEOUT);
 		}
 		// $globalSearch.velocity({'left': '85%'}, { duration: 1500 });
+		_event.preventDefault();
 	});
 
 
