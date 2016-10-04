@@ -1,91 +1,91 @@
 
 
-/** List with people cards. */
+/** List with people information */
 
 $portrait-width: rem( 150px );
 
 
 .staff {
-    margin: $base-spacing 0 $base-spacing * 1.5 ;
-    width: 100%;
+  margin: $base-spacing 0 $base-spacing * 1.5 ;
+  width: 100%;
 
-    .articles-container & {
-
-      > li {
-        padding-bottom: 1rem;
-        margin-bottom: 1rem;
-      }
-
+  .articles-container & {
+    > li {
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
     }
+  }
 
-    .profile-picture {
-      float: left;
+  .profile-picture {
+    float: left;
+    display: block;
+    margin-right: $column-padding;
+    width: $portrait-width;
+    height: auto;
+  }
+
+  .summary {
+    // Incl. staff portrait
+    &:not(:first-child) {
       display: block;
-      margin-right: $column-padding;
-      width: $portrait-width;
-      height: auto;
+      > header { margin-bottom: 1rem; }
     }
 
-    .subtitle {
-      color: $black-emperor;
-
-      > strong {
-        &:after {
-          margin-left: .25em;
-          @include objectify( $content: ' \00B7' ); // '·' middle dot character
-        }
-      }
-    }
-
-    .summary {
-      // Incl. staff portrait
-      &:not(:first-child) {
-        display: block;
-        > header { margin-bottom: 1rem; }
-      }
-
-      // No staff portrait
-      &:first-child {
-        h3,
-        .subtitle {
-          display: inline-block;
-        }
-
-        h3 { margin-right: 1rem; }
-
-        > header { margin-bottom: .25rem; }
-
-        .meta > li {
-          display: inline-block;
-        }
-      }
-    }
-
-    // List of quick (meta) information
-    .meta {
-      > li {
-        display: block;
-        font-size: rem( 14px ); //TODO: Refactor into more dynamic solution
-        margin-bottom: .35rem;
-      }
-
-      .icon { display: none; } //TODO: Implement the icons!
-
-      .highlight {
+    // No staff portrait
+    &:first-child {
+      h3,
+      .subtitle {
         display: inline-block;
-        margin-right: .1rem;
+      }
 
-        > a {
-          display: block;
-          padding: .2rem .5rem;
-          background-color: $green-nebula;
-          color: $base-heading-color;
+      h3 { margin-right: 1rem; }
 
-          @include hoverify() {
-            text-decoration: underline;
-            background-color: lighten( $green-nebula, $base-lighten-percentage );
-          }
-        }
+      > header { margin-bottom: .25rem; }
+
+      .meta > li { display: inline-block; }
+    }
+  }
+}
+
+.profile-picture { width: 100%; }
+
+// Contact information
+address.contact {
+  > img {
+    display: block;
+    margin-bottom: .7rem;
+  }
+
+  > ul { font-style: normal; }
+}
+
+// List of quick (meta) information
+ul.meta {
+  padding-left: 0; // Reset
+
+  > li {
+    display: block;
+    padding-left: 0; // Reset
+    margin-bottom: .35rem;
+    font-size: rem( 14px ); //TODO: Refactor into more dynamic solution
+  }
+
+  .icon { display: none; } //TODO: Implement the icons!
+
+  .highlight {
+    display: inline-block;
+    margin-right: .1rem;
+
+    > a {
+      display: block;
+      padding: .2rem .5rem;
+      background-color: lighten( $green-nebula, $base-lighten-percentage );
+      color: $base-heading-color;
+      text-decoration: none;
+
+      @include hoverify() {
+        text-decoration: underline;
       }
     }
+  }
 }
