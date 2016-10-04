@@ -1,36 +1,28 @@
-
-
-
 $banner-background: $grey-gallery;
-
-
 .promo-panel {
-@include media($desktop-and-bigger){
-    background: $banner-background;
-    position:relative;
-    overflow:hidden;
-}//media desktop
-@include media($mobile){
-    border-top: 3px solid $banner-background;
-    border-bottom: 3px solid $banner-background;
-
-    &+.promo-panel {
-      border-top: none;
-    }
-}//media desktop
-
+    @include media($desktop-and-bigger) {
+        p {
+            // font-size: 1.125em;
+        }
+        background: $banner-background;
+        position:relative;
+        overflow:hidden;
+    } //media desktop
+    @include media($mobile) {
+        border-top: 3px solid $banner-background;
+        border-bottom: 3px solid $banner-background;
+        &+.promo-panel {
+            border-top: none;
+        }
+    } //media desktop
     &.pattern {
         background: url("http://www.victoria.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png");
-
         figure {
             background: transparent;
             box-shadow: none;
         }
     }
-
 }
-
-
 
 .promo {
     @include clearfix();
@@ -41,76 +33,91 @@ $banner-background: $grey-gallery;
     position: relative;
     padding: 0;
     background: $white;
-
-    figcaption{
-      padding-bottom: $base-spacing;
-    }
-
-@include media( $tablet-and-bigger ){
-
-    box-shadow: $base-shadow;
-
     figcaption {
-      padding: $base-spacing * 1.5;
-      @include span-columns( 7 of 12, block-collapse );
-      z-index: 1;
+        padding-bottom: $base-spacing;
     }
-
-    img {
-      @include span-columns( 5 of 12, block-collapse );
-    }
-
-
-    &.two-thirds {
-        @include span-columns(8 of 12);
-        @include shift(2);
-        
+    @include media( $tablet-and-bigger) {
+        box-shadow: $base-shadow;
         figcaption {
-          padding: $base-spacing;
-          @include span-columns(4 of 8);
-          @include shift(4);
-          background: $white;
-          position: relative;
-        }
-
-        img {
-          position: absolute;
-          width: auto;
-          top: 0;
-          left: 0;
-          height: 100%;
-        }
-    }
-
-    &.photo,
-    &.pattern {
-        figcaption {
-            position: relative;
-            max-width: rem( 600px );
-            width: auto;
-            margin: 0 auto;
-            padding: $base-spacing * 1.5 0;
+            padding: $base-spacing * 1.5;
+            @include span-columns( 7 of 12,
+            block-collapse);
             z-index: 1;
-            text-align: center;
-            float: none;
         }
         img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
+            @include span-columns( 5 of 12,
+            block-collapse);
         }
-    }
-}//media desktop
-
+        &.two-thirds {
+            @include span-columns(8 of 12);
+            @include shift(2);
+            figcaption {
+                padding: $base-spacing;
+                @include span-columns(4 of 8);
+                @include shift(4);
+                background: $white;
+                position: relative;
+            }
+            img {
+                position: absolute;
+                width: auto;
+                top: 0;
+                left: 0;
+                height: 100%;
+            }
+        }
+        &.photo,
+        &.pattern {
+            figcaption {
+                position: relative;
+                max-width: rem( 600px);
+                width: auto;
+                margin: 0 auto;
+                padding: $base-spacing * 1.5 0;
+                z-index: 1;
+                text-align: center;
+                float: none;
+            }
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+            }
+        }
+    } //media desktop
     &.photo {
         figcaption {
-            h1, h2, h3, h4, h5, h6, p{
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p {
                 @extend %vuw-highlight-caption;
             }
+            p {
+                margin-bottom: 1.3em;
+            }
+        }
+    }
+}
 
-            p { margin-bottom: 1.3em; }
+.text-promo-panel {
+    padding: 1.5em 0;
+    border-bottom: $base-border;
+    .text-wrap {
+        // font-size: 1.125em;
+        @include media( $tablet-and-bigger) {
+            @include span-columns(6 of 8);
+        }
+    }
+    .button-wrap {
+        margin-top: 2.5em;
+        @include media( $tablet-and-bigger) {
+            @include span-columns(2 of 8);
         }
     }
 }
