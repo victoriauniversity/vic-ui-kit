@@ -1,7 +1,66 @@
-
-/* ===== PAGE BANNERS ====================================================== */
+/* ===== THE REAL PAGE BANNERS ====================================================== */
 
 // Full-width banner cover on the top of the content and widgetbar
 .content-panel > img:first-child {
-  width: 100%;
+    width: 100%;
+}
+
+.homepage-banner {
+    position: relative;
+    @include media( $tablet-and-bigger) {
+        //why?? irwinna
+        //top: -1.5 * $column-padding;
+        //How to handle this better? irwinna
+        &.bleed {
+            margin-left: calc(-25% - #{$column-padding}*1.25); //remember to account for table
+            width: calc(125% + #{$column-padding}*1.25);
+            img {
+                z-index: -1;
+                position: relative;
+            }
+        }
+    }
+
+    //Why wont my hover work!!
+    a {
+        img {
+            @include hoverify() {
+                opacity: 0.8;
+            }
+        }
+    }
+    figcaption {
+        //TODO: extend .tile-text  Dont use extend - irwinna
+        background-color: $green-victoria;
+        padding: 1rem;
+        @include media( $tablet-and-bigger) {
+            width: 50%;
+            position: absolute;
+            bottom: 40%;
+            right: 0;
+            &.wider {
+                width: 50%;
+            }
+            &.bottom {
+                bottom: 0;
+            }
+            &.top {
+                bottom: initial;
+                top: 0;
+            }
+        }
+        @include media( $desktop-and-bigger) {
+            width: 40%;
+            opacity: 0.9;
+        }
+        h1,
+        h2,
+        h3 {
+            color: $white;
+            display: flex;
+            align-items: center;
+            //wat
+            //padding: 1em;
+        }
+    }
 }
