@@ -8,6 +8,11 @@
     opacity: 0.5;
   }
 
+  .icon-right-open {
+    float: right;
+    margin: 0 -0.6em; //fontello icon width 1em + (0 .2em) margins
+  }
+
   @include media( $mobile-large-and-smaller ){
     & > ul > li {
 
@@ -38,5 +43,8 @@
   }
 
     &--container { position:relative; }
-    a { @include menu-item; }
+    a {
+      @include clearfix;
+      @include menu-item;
+    }
 }
