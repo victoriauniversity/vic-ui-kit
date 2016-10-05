@@ -7,6 +7,7 @@ var picturefill = require('picturefill');
 // var Velocity = require("velocity-animate");
 var lity = require('lity');
 
+require('./study-areas.js');
 
 var TRANSITION_TIMEOUT = 200; //update in _settings.variables.scss(135)
 
