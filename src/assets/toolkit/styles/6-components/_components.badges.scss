@@ -5,6 +5,7 @@ $color-excel: #318f5b;
 $color-word: #2a569a;
 $color-mp3: #d27200;
 $color-ppt: #ad3016;
+$color-file: $black-emperor;
 
 
 .label {
@@ -30,6 +31,10 @@ $color-ppt: #ad3016;
   }
 
   /** File types/extensions */
+  &.file { // default file
+    > i { background: $color-file; }
+  }
+
   &.file-pdf {
     > i { background: $color-pdf; }
   }
