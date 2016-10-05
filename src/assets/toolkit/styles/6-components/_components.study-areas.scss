@@ -19,6 +19,14 @@ $gutter: 8px;
             max-height: 225px;
             margin-bottom: $gutter;
             overflow: hidden;
+
+            &.is-matching {
+                filter: saturate(200%);
+
+            }
+            &.is-not-matching {
+                filter: saturate(0%);
+            }
             @include media ($desktop-and-bigger) {
                 @include span-columns(3);
                 margin-right: $gutter;
