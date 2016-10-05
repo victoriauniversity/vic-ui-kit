@@ -1,0 +1,60 @@
+
+/** Advanced lists */
+
+ul.complex-list {
+
+  // .formatting reset
+  padding-left: 0;
+
+  > li {
+    list-style: none;
+    margin-bottom: 0;
+    padding-left: 0;
+  }
+  // End of resets
+
+  width: 100%;
+
+  > li {
+    @include clearfix;
+    display: table;
+    width: 100%;
+    padding: .7rem .1rem;
+    line-height: 1.2;
+    border-bottom: $base-border;
+  }
+
+  .caption,
+  .description {
+    vertical-align: middle;
+  }
+
+  .caption {
+    @include span-columns( 8, table );
+
+    > span {
+      margin-right: .35em;
+      color: $grey;
+    }
+  }
+
+  .description {
+    @include span-columns( 4, table );
+
+    > em {
+      font-style: normal;
+      color: $black-emperor;
+      font-size: rem( 14px );
+    }
+  }
+
+  @include media( $mobile-large-and-smaller ){
+    .caption,
+    .description {
+      display: block;
+      width: 100%;
+    }
+
+    .caption { margin-bottom: .35em; }
+  }
+}
