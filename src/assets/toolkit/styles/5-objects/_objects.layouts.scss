@@ -1,444 +1,148 @@
+/*=========================================
+=      LAYOUTS, CONTAINERS & BLOCKS       =
+=========================================*/
 
 
-// .homepage-base {
-//     font-size: 1em;
-// }
+/*******************************************************************************
+
+  Contains basic building containers, layouts, columns and grids.
+
+  It's *HIGHLY RECOMMENDED* to understand how to build structures with these
+  before development of new objects and components.
+
+*******************************************************************************/
 
 
-/** BLOCK - Universal building block with standard paddings. */
-
-.block {  padding: 1.75rem; }
+  /* ===== BASIC BUILDING BLOCKS ============================================ */
 
 
-/** CENTRALISER - Restricts the width of the content to allowed maximum and aligns to center. */
+  /** BLOCK - Universal building block with standard paddings. */
 
-.centraliser { @include outer-container; }
+  .block {  padding: 1.75rem; } //TODO: Review - too big!
 
-.sector {
+
+  /** CENTRALISER - Restricts the width of the content to allowed maximum and aligns to center. */
+
+  .centraliser { @include outer-container; }
+
+
+  /** SECTOR - Single page section container with unlimited width and no paddings/margins. Can be used to group related components. */
+
+  .sector,
+  .separated {
     border-bottom: $base-border;
-}
-
-/** LAYOUT - Contains all the content's columns and layout combinations */
-
-.layout {
-  display: table; // Fixes the issue with misbehavior of inner containers
-  width: 100%;
-
-  &.block {
-    padding-top: 0;
-    padding-bottom: 0;
   }
-}
 
 
-.content-panel {
-  > main, > aside {
-    vertical-align: top;
-
-    > .block {
-      padding-bottom: 1.5 * $column-padding;
-      padding-top: 1.5 * $column-padding;
-    }
-  }
-}
-
-@include media( $tablet-and-smaller ){
+  /** LAYOUT - Contains all the content's columns and layout combinations */
 
   .layout {
+    display: table; // Fixes the issue with misbehavior of inner containers
+    width: 100%;
+
     &.block {
-      padding-left: 0;
-      padding-right: 0;
+      padding-top: 0;
+      padding-bottom: 0;
     }
   }
-}
 
 
-@include media( $tablet-and-bigger ){
+
+
+
+  /* ===== 3-COLUMN LAYOUT ================================================== */
+
 
   .content-panel {
-
-    // Sub-columns
-
-    /** Main content *ONLY* */
-
-    > main:last-child { width: 100%; }
-
-
-    /** 1st Content bar + 2nd widgets bar */
-
-    $widgetbar-to-content-width-ratio: .25; // 25% of the content container's width
-    $widgetbar-columns: $widgetbar-to-content-width-ratio * $grid-columns;
-
-    > main:not(:last-child) {
-      @include span-columns( $grid-columns - $widgetbar-columns, table );
-      width: 10000px; // [HACK] Make the middle column stretch
-    }
-
+    > main,
     > aside {
-      @include span-columns( $widgetbar-columns, table );
-    }
-  }
+      vertical-align: top;
 
-}
-
-
-@include media( $desktop-and-bigger ){
-
-  /** Left sidebar */
-
-  $sidebar-to-document-width-ratio: .20; // 20% of the page's width
-  $sidebar-columns: $sidebar-to-document-width-ratio * $grid-columns;
-
-  .sidebar {
-    @include span-columns( $sidebar-columns, table );
-  }
-
-  // Can contain Content only column and Widget bar (optional).
-  .content-panel {
-
-    /** Content panel *ONLY* */
-
-    &:first-child {
-      width: 100%;
-
-      // Main content *ONLY*
-      > main:last-child {
-        > .block { padding-left: 0; }
+      > .block {
+        padding-bottom: 1.5 * $column-padding;
+        padding-top: 1.5 * $column-padding;
       }
     }
+  }
 
-    > main:last-child {
-      > .block { padding-right: 0; }
-    }
 
-    /** 1st Sidebar + 2nd Content panel */
+  @include media( $tablet-and-smaller ){
 
-    &:not(:first-child) {
-      vertical-align: top;
-      @include span-columns( $grid-columns - $sidebar-columns, table );
-    }
-
-    > aside {
-      > .block { padding-right: 0; }
+    .layout {
+      &.block {
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
   }
-}
 
 
+  @include media( $tablet-and-bigger ){
+
+    .content-panel {
+
+      // Sub-columns
+
+      /** Main content *ONLY* */
+
+      > main:last-child { width: 100%; }
 
 
-//TODO: Refactor and remove what's no longer needed
+      /** 1st Content bar + 2nd widgets bar */
 
-@include media( $desktop-and-bigger ){
+      $widgetbar-to-content-width-ratio: .25; // 25% of the content container's width
+      $widgetbar-columns: $widgetbar-to-content-width-ratio * $grid-columns;
+
+      > main:not(:last-child) {
+        @include span-columns( $grid-columns - $widgetbar-columns, table );
+        width: 10000px; // [HACK] Make the middle column stretch to maximum
+      }
+
+      > aside {
+        @include span-columns( $widgetbar-columns, table );
+      }
+    }
+  }
 
 
+  @include media( $desktop-and-bigger ){
 
+    /** Left sidebar */
 
+    $sidebar-to-document-width-ratio: .20; // 20% of the page's width
+    $sidebar-columns: $sidebar-to-document-width-ratio * $grid-columns;
 
-.container {
-    @include outer-container;
-    padding: 0;
+    .sidebar {
+      @include span-columns( $sidebar-columns, table );
+    }
 
-    &>nav {
-        @include span-columns(3);
-        @include media( $tablet ) {
-          @include span-columns(4 of 12);
+    // Can contain Content only column and Widget bar (optional).
+    .content-panel {
+
+      /** Content panel *ONLY* */
+
+      &:first-child {
+        width: 100%;
+
+        // Main content *ONLY*
+        > main:last-child {
+          > .block { padding-left: 0; }
         }
+      }
+
+      > main:last-child {
+        > .block { padding-right: 0; }
+      }
+
+      /** 1st Sidebar + 2nd Content panel */
+
+      &:not(:first-child) {
+        vertical-align: top;
+        @include span-columns( $grid-columns - $sidebar-columns, table );
+      }
+
+      > aside {
+        > .block { padding-right: 0; }
+      }
     }
-
-    &>main {
-        @include span-columns(6);
-        @include media($tablet) {
-          @include span-columns(4 of 12);
-        }
-    }
-
-    &>aside {
-        @include span-columns(3);
-        @include media($tablet) {
-          @include span-columns(4 of 12);
-        }
-
-        // margin-top: 1.5rem;
-    }
-
-    &>.half {
-        @include span-columns(6);
-
-        margin-top: 1em;
-    }
-
-    &>.flex {
-
-        // @include align-items(stretch);
-        // @include display(flex);
-        // @include flex-direction(row);
-        // // @include justify-content(flex-start);
-        // @include justify-content(space-between);
-
-        // @include flex-wrap(wrap);
-
-
-        & > article {
-            @include span-columns(3 of 6);
-            @include omega(2n);
-            // @include span-columns(6 of 6);
-            // @include omega(1n);
-
-            // // @include flex(1);
-            // width: 50%;
-            // // margin: 0 1rem;
-            // width: calc(50% - 1rem);
-            // // box-sizing: border-box;
-            // margin: 1.5rem 0 0 0;
-            // @include media($tablet) {
-            //     width: 100%;
-            // }
-
-        }
-
-
-        & > figure {
-            // margin: 1.5rem 0 0 0;
-            margin: 0 0 1.5rem 0;
-            @include span-columns(3 of 6);
-            @include omega(2n);
-
-            // &.promo-panel {
-            //     @include span-columns(6 of 6);
-            //     @include omega();
-
-
-
-
-            // }
-
-            img {
-                width: 100%;
-                filter: grayscale(20%);
-            }
-
-            &:hover img{
-                filter: none;
-            }
-
-            h3 {
-                color: $base-link-color;
-                border-bottom: 1px solid #b8d2e0;
-                display: inline;
-                font-weight: 300;
-
-            }
-
-            &:hover h3 {
-                border-bottom-color: #5a96b7;
-            }
-
-            p {
-                color: $color-body-text;
-            }
-
-
-        }
-
-
-
-        .featured {
-        // &>div {
-
-                    @include span-columns(12 of 12);
-                    @include omega();
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-
-            padding: 1em 1.5rem;
-            font-size: 120%;
-            color: $base-heading-color;
-
-        }
-    }
-
-
-
-    &>.third {
-        @include span-columns(4);
-
-
-        margin-top: 1em;
-    }
-}
-
-}
-
-
-
-//irwinna - I moved this to _components.promo-panel.scss and updated the class to .promo-panel
-
-// The class .banner for anything other than the actucal top of page imagebanner is now deprecated
-// Use .promo-panel
-$banner-background: $grey-gallery;
-
-.separated {
-    border-bottom: 1px solid $grey-alto;
-}
-
-.banner {
-@include media($desktop-and-bigger){
-    background: $banner-background;
-    position:relative;
-    overflow:hidden;
-}//media desktop
-@include media($mobile){
-    border-top: 3px solid $banner-background;
-    border-bottom: 3px solid $banner-background;
-
-    &+.banner {
-      border-top: none;
-    }
-}//media desktop
-
-    &.pattern {
-        background: url("http://www.victoria.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png");
-
-        figure {
-            background: transparent;
-            box-shadow: none;
-        }
-    }
-
-}
-
-
-//irwinna - I moved this to _components.promo-panel.scss and updated the class to .promo-panel
-.banner {
-    @include clearfix();
-}
-
-.banner figure {
-    overflow: hidden; //TODO: Change to something safer
-    position: relative;
-    padding: 0;
-    background: $white;
-
-    figcaption{
-      padding-bottom: $base-spacing;
-    }
-
-@include media( $tablet-and-bigger ){
-
-    box-shadow: $base-shadow;
-
-    figcaption {
-      padding: $base-spacing * 1.5;
-      @include span-columns( 7 of 12, block-collapse );
-      z-index: 1;
-    }
-
-    img {
-      @include span-columns( 5 of 12, block-collapse );
-    }
-
-
-    &.two-thirds {
-        @include span-columns(8 of 12);
-        @include shift(2);
-
-        figcaption {
-          padding: $base-spacing;
-          @include span-columns(4 of 8);
-          @include shift(4);
-          background: $white;
-          position: relative;
-        }
-
-        img {
-          position: absolute;
-          width: auto;
-          top: 0;
-          left: 0;
-          height: 100%;
-        }
-    }
-
-    &.photo,
-    &.pattern {
-        figcaption {
-            position: relative;
-            max-width: rem( 600px );
-            width: auto;
-            margin: 0 auto;
-            padding: $base-spacing * 1.5 0;
-            z-index: 1;
-            text-align: center;
-            float: none;
-        }
-        img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-        }
-    }
-}//media desktop
-
-    &.photo {
-        figcaption {
-            h1, h2, h3, h4, h5, h6, p{
-                @extend %vuw-highlight-caption;
-            }
-
-            p { margin-bottom: 1.3em; }
-        }
-    }
-}
-
-%vuw-highlight-caption {
-    display: inline-block;
-    padding: .5rem 1rem;
-    margin-bottom: .5em;
-    color: #FFF;
-    background-color: rgba(100,166,89, .9 );
-
-}
-
-
-.banner-in-page {
-    position: relative;
-
-@include media( $tablet-and-bigger ){
-    top: -1.5 * $column-padding; //.content-panel > main|aside > .block
-    // margin-top: -1.5 * $column-padding; //.content-panel > main|aside > .block
-    // margin-bottom: 1.5 * $column-padding; //.content-panel > main|aside > .block
-
-    &.bleed {
-        margin-left: calc(-25% - #{$column-padding}*1.25);//remember to account for table
-        width: calc(125% + #{$column-padding}*1.25);
-
-        img {
-        z-index: -1;
-        position: relative;
-        }
-    }
-}
-
-    figcaption { //TODO: extend .tile-text
-        background-color: $green-victoria;
-
-@include media( $tablet-and-bigger ){
-        width: 33%;
-        position: absolute;
-        top: 6rem;
-        right: 0;
-}
-
-        h1, h2, h3, h4, h5, h6, p{
-            color: $white;
-            display: flex;
-            align-items: center;
-            padding: 1em;
-        }
-
-        p { margin-bottom: 1.3em; }
-    }
-}
+  }

@@ -1,5 +1,22 @@
+
+%vuw-highlight-caption {
+    display: inline-block;
+    padding: .5rem 1rem;
+    margin-bottom: .5em;
+    color: $white;
+    background-color: rgba(100,166,89, .9 );
+}
+
+
+/** In-page block with promotion */
+
 $banner-background: $grey-gallery;
+$promo-max-width:   rem( 600px );
+
+
 .promo-panel {
+    @include clearfix();
+
     @include media($desktop-and-bigger) {
         p {
             // font-size: 1.125em;
@@ -16,93 +33,93 @@ $banner-background: $grey-gallery;
         }
     } //media desktop
     &.pattern {
-        background: url("http://www.victoria.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png");
+        background: url("http://www.victoria.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png"); //TODO: Autolink from CDN!
         figure {
             background: transparent;
             box-shadow: none;
         }
     }
+
+    figure {
+        overflow: hidden; //TODO: Change to something safer
+        position: relative;
+        padding: 0;
+        background: $white;
+        figcaption {
+            padding-bottom: $base-spacing;
+        }
+        @include media( $tablet-and-bigger) {
+            box-shadow: $base-shadow;
+            figcaption {
+                padding: $base-spacing * 1.5;
+                @include span-columns( 7 of 12,
+                block-collapse);
+                z-index: 1;
+            }
+            img {
+                @include span-columns( 5 of 12,
+                block-collapse);
+            }
+            &.two-thirds {
+                @include span-columns(8 of 12);
+                @include shift(2);
+                figcaption {
+                    padding: $base-spacing;
+                    @include span-columns(4 of 8);
+                    @include shift(4);
+                    background: $white;
+                    position: relative;
+                }
+                img {
+                    position: absolute;
+                    width: auto;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                }
+            }
+            &.photo,
+            &.pattern {
+                figcaption {
+                    position: relative;
+                    max-width: rem( $promo-max-width );
+                    width: auto;
+                    margin: 0 auto;
+                    padding: $base-spacing * 1.5 0;
+                    z-index: 1;
+                    text-align: center;
+                    float: none;
+                }
+                img {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    width: 100%;
+                }
+            }
+        } //media desktop
+        &.photo {
+            figcaption {
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6,
+                p {
+                    @extend %vuw-highlight-caption;
+                }
+                p {
+                    margin-bottom: 1.3em;
+                }
+            }
+        }
+      }
 }
 
 .promo {
-    @include clearfix();
-}
-
-.promo-panel figure {
-    overflow: hidden; //TODO: Change to something safer
-    position: relative;
-    padding: 0;
-    background: $white;
-    figcaption {
-        padding-bottom: $base-spacing;
-    }
-    @include media( $tablet-and-bigger) {
-        box-shadow: $base-shadow;
-        figcaption {
-            padding: $base-spacing * 1.5;
-            @include span-columns( 7 of 12,
-            block-collapse);
-            z-index: 1;
-        }
-        img {
-            @include span-columns( 5 of 12,
-            block-collapse);
-        }
-        &.two-thirds {
-            @include span-columns(8 of 12);
-            @include shift(2);
-            figcaption {
-                padding: $base-spacing;
-                @include span-columns(4 of 8);
-                @include shift(4);
-                background: $white;
-                position: relative;
-            }
-            img {
-                position: absolute;
-                width: auto;
-                top: 0;
-                left: 0;
-                height: 100%;
-            }
-        }
-        &.photo,
-        &.pattern {
-            figcaption {
-                position: relative;
-                max-width: rem( 600px);
-                width: auto;
-                margin: 0 auto;
-                padding: $base-spacing * 1.5 0;
-                z-index: 1;
-                text-align: center;
-                float: none;
-            }
-            img {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                width: 100%;
-            }
-        }
-    } //media desktop
-    &.photo {
-        figcaption {
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6,
-            p {
-                @extend %vuw-highlight-caption;
-            }
-            p {
-                margin-bottom: 1.3em;
-            }
-        }
-    }
+  @include clearfix();
 }
 
 .text-promo-panel {

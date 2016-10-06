@@ -3,11 +3,17 @@
 ==========================================*/
 
 
-  /* ===== MIXINS =========================================================== */
+  /* ===== FUNCTION HELPERS ================================================= */
 
 
   $scale-font-base: $base-font-size !default;
 
+  /** Scales the font using pre-defined ratio to keep the consistency.
+   *
+   *  $font-size (default: 1) - indexed from 0, where 0 = $base-font-size;
+   *                            > 0 = Bigger fonts
+   *                            < 0 = Smaller fonts
+   */
   @function scale-font( $font-size: 1 ) {
     @return modular-scale( $font-size );
   }
@@ -15,6 +21,12 @@
 
   $heading-to-body-ratio: $base-heading-to-body-ratio !default;
 
+  /** Similar to @function scale-font(). Additionally, it multiplies the size
+    * with `heading to body text` ratio. Useful to compensate sizing when the
+    * heading font is visibly different default size than body font
+    * (eg. 16px heading is significantly bigger/smaller than 16px of body).
+    *
+    */
   @function scale-heading( $heading-size ) {
     @return modular-scale( $heading-size ) / $heading-to-body-ratio;
   }
@@ -43,7 +55,7 @@
 
 
   html {
-    // TODO: Tweak % at the end to find best UX fit
+    //TODO: Tweak % at the end to find best UX fit
     @include media( $mobile-large-and-smaller ) {
       font-size: 85%;
     }
@@ -56,7 +68,7 @@
 
     @include media( $desktop-large ) {
       //font-size: 105%;
-      font-size: 100%; // Temporary to avoid incosistencies between graphic designs and
+      font-size: 100%; // Temporary to avoid incosistencies between graphic designs and templates
     }
   }
 
@@ -70,6 +82,9 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
+
+
+  /** Headings */
 
   h1,
   h2,
@@ -85,7 +100,6 @@
 
   h1 {
     font-weight: $weight-extrabold;
-    margin: 0;
     font-size: scale-heading( 4 );
   }
 
@@ -102,13 +116,17 @@
   }
 
   h5 {
+    // Exactly between h4 and h6
     font-size: scale-heading( 0 ) + ( scale-heading( 1 ) - scale-heading( 0 ) )/2;
   }
 
-  //DEPRECATED: Do not create
+  //DEPRECATED: *Do not use* in any templates
   h6 {
     font-size: scale-heading( 0 );
   }
+
+
+  /** Paragraphs */
 
   p {
     line-height: $base-line-height;
@@ -117,8 +135,6 @@
 
   /** Lists */
 
-
-  // TODO: Refactor! Does *not* match the graphic design!
   ul { list-style: none; }
   ol { list-style: decimal; }
 
@@ -137,67 +153,35 @@
   }
 
   // Extendable standard link
+
   %base-link {
-    color: $base-link-color;
+    color:           $base-link-color;
     text-decoration: underline;
 
     &:hover {
-      color: $base-link-hover-color;
+      color:           $base-link-hover-color;
       text-decoration: none;
     }
   }
 
 
-  /** Tables */
+  /** Figures */
 
-  $table-border-color:    $grey-alto;
-  $table-head-background: $green-nebula;
-
-  table {
-    width: 100%;
-
-    th,
-    td {
-      padding: $base-spacing / 2;
-      text-align: left;
+  figure {
+    img {
+      display: block;
+      width: 100%;
     }
 
-    th {
-      font-weight: $weight-bold;
-      background-color: $table-head-background;
+    p { color: $base-font-color; }
 
-      strong,
-      b {
-        font-weight: inherit;
-      }
-    }
-    td { border-bottom: 1px solid $table-border-color; }
-  }
-
-  // Fall-back from unwrapped table
-  .table-container,
-  table {
-    box-shadow: $base-shadow;
-    margin-bottom: $base-spacing;
-  }
-
-  .table-container {
-    overflow-x:    auto;
-    display:       block;
-    width:         100%;
-
-    // Reseting fall-back from unwrapped table
-    table {
-      box-shadow: none;
-      margin-bottom: 0;
-    }
-
-    @include media( $mobile-large-and-smaller ){
-      overflow-x: scroll;
+    @include hoverify() {
+      img{ filter: none; } //TODO: Can be safely dropped?
     }
   }
 
 
   /** Miscs */
 
-  time { color: $grey; } // TODO: Too generic, remove
+  time { color: $grey; }
+

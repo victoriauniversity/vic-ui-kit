@@ -36,7 +36,7 @@
 @import 'bourbon';
 
 
-/** SETTINGS (keep the order!) */
+/** SETTINGS (order sensitive!) */
 
 @import '1-settings/_settings.colors';
 @import '1-settings/_settings.variables';
@@ -47,14 +47,14 @@
 /** TOOLS */
 
 @import '2-tools/_tools.mixins';
-@import '2-tools/_tools.navigation';
+@import '2-tools/_tools.app-mixins';
 
 
 /** 3RD PARTY LIBS */
 
 @import 'normalize.css/normalize';
 @import 'fontello/css/fontello__modified-paths'; // TODO: Remove and use it as a standard font with references from _objects.icons
-@import 'lity/dist/lity.min';
+//@import 'lity/dist/lity.min';
 
 
 /** GENERIC */
@@ -67,18 +67,18 @@
 /** ELEMENTS ( > Atoms defined by an element) */
 
 @import '4-elements/_elements.typography';
-@import '4-elements/_elements.figures';
-@import '4-elements/_elements.buttons';
+@import '4-elements/_elements.tables';
 @import '4-elements/_elements.inputs';
 
 
-/** OBJECTS ( > Atoms defined by a class) */
+/** OBJECTS ( > Atoms defined by a single class) */
 
+@import '5-objects/_objects.banners';
+@import '5-objects/_objects.buttons';
 @import '5-objects/_objects.icons';
 @import '5-objects/_objects.layouts';
-@import '5-objects/_objects.typography';
 @import '5-objects/_objects.listings';
-@import '5-objects/_objects.forms';
+@import '5-objects/_objects.typography';
 
 
 /** COMPONENTS */
@@ -88,7 +88,8 @@
 @import '6-components/_components.links';
 @import '6-components/_components.lists';
 @import '6-components/_components.logos';
-@import '6-components/_components.highlight';
+@import '6-components/_components.forms';
+@import '6-components/_components.highlights';
 @import '6-components/_components.media';
 @import '6-components/_components.badges';
 

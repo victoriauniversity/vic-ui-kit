@@ -111,7 +111,6 @@ $base-heading-color:  $green-victoria;
 $base-link-color:          $blue-endeavoura;
 $base-link-hover-color:    $blue-curious;
 
-$base-image-hover-opacity: .9;
 $base-hover-opacity:       .9;
 
 $base-darken-percentage:   3;
@@ -120,10 +119,9 @@ $base-lighten-percentage:  6;
 
 /** Margins and paddings */
 
-$default-spacing:    $base-line-height * 1rem; // Deprecated, use $base-spacing for vertical flow
 $column-padding:     rem( 20px );
 
-$base-spacing:       1.6rem;
+$base-spacing:       $base-line-height * 1rem;
 
 $highlights-padding: $column-padding;
 
@@ -135,20 +133,24 @@ $base-shadow: 0 1px 5px rgba( #000, .15 );
 
 /** Borders (always in px units)*/
 
-// TODO: Borders *MUST BE* in pixels
-$highlight-border-width: .25rem;
 
-$strip-light: $highlight-border-width solid $green-nebula;
+$highlight-border-width: .25rem; // TODO: Borders *MUST BE* in pixels
 
-$base-border: 1px solid $grey-gallery;
+$strip-light:            $highlight-border-width solid $green-nebula;
+
+$base-border:            1px solid $grey-gallery;
+
+
+/** Imagery */
+
+$media-inline-width:          rem( 270px );
+$media-inline-portrait-width: rem( 160px );
+
+$base-image-hover-opacity:    $base-hover-opacity;
 
 
 /** Miscs */
 
+// Transitions and animations
 $transition-timeout: 200ms; //update in toolkit.js(7)
 
-
-/** Default dimensions */
-
-$media-inline-width:          rem( 270px );
-$media-inline-portrait-width: rem( 160px );
