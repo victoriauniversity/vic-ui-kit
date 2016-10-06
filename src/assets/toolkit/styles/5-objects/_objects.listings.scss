@@ -1,64 +1,64 @@
 
-/* ===== GENERAL LISTINGS =================================================== */
+  /* ===== GENERAL LISTINGS =================================================== */
 
-$article-item-max-width: rem( 800px );
+  $article-item-max-width: rem( 800px );
 
 
-/** Generic holder for list of all article-like overviews. */
-.articles-container {
+  /** Generic holder for list of all article-like overviews. */
+  .articles-container {
 
-  // .formatting resets
-  > ul,
-  > ul > li {
-    padding-left: 0;
-    list-style-type: none;
-  }
+    // .formatting resets
+    > ul,
+    > ul > li {
+      padding-left: 0;
+      list-style-type: none;
+    }
 
-  article { margin-bottom: 0; }
-  // End of resets
+    article { margin-bottom: 0; }
+    // End of resets
 
-  @include media( $tablet-and-bigger ){
-      max-width: $article-item-max-width;
-      margin: 0 auto;
-  }
+    @include media( $tablet-and-bigger ){
+        margin: 0 auto;
+        max-width: $article-item-max-width;
+    }
 
-  > header { margin: $base-spacing 0; }
+    > header { margin: $base-spacing 0; }
 
-  > ul {
+    > ul {
 
-    > li {
-      @include clearfix();
-      padding-bottom: $base-spacing;
-      margin-bottom: $base-spacing;
-      border-bottom: 1px solid $grey-alto;
-      list-style: none;
+      > li {
+        @include clearfix();
+        padding-bottom: $base-spacing;
+        margin-bottom: $base-spacing;
+        border-bottom: 1px solid $grey-alto;
+        list-style: none;
 
-      &:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
+        &:last-child {
+          border-bottom: none;
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .summary {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+          margin-bottom: .25em;
+      }
+
+      time,
+      p {
+          margin-bottom: .7em;
+      }
+    }
+
+    .media {
+      img,
+      iframe {
+          margin-bottom: 0;
       }
     }
   }
-
-  .summary {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-        margin-bottom: .25em;
-    }
-
-    time,
-    p {
-        margin-bottom: .7em;
-    }
-  }
-
-  .media {
-    img,
-    iframe {
-        margin-bottom: 0;
-    }
-  }
-}
