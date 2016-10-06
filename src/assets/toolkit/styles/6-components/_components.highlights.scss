@@ -1,15 +1,26 @@
 
-.highlight_secondary {
-    @include clearfix();
-    padding: $highlights-padding;
-    margin-bottom: $base-spacing;
-    background: #f4f4e9; //TODO: Update the colour!
 
-    // Promo inside right-side widgetbar
-    aside & {
-      h2,
-      h3 {
-        &:before { display: none; }
+  /** Non-clickable highlight boxes */
+
+  .highlight {
+      @include clearfix();
+      padding: $highlights-padding;
+      margin-bottom: $base-spacing;
+
+      // Promo inside right-side widgetbar
+      aside & {
+        h2,
+        h3 {
+          &:before { display: none; }
+        }
       }
-    }
-}
+
+      /** Highlight types */
+      &.primary {
+        background: #f4f4e9; //TODO: Update the colour!
+      }
+
+      &.secondary {
+        // Add secondary highlights
+      }
+  }
