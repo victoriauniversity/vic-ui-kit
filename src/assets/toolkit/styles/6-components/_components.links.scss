@@ -1,35 +1,19 @@
-/** List with links or files */
-$links-bulletline-color: #4d8168;
 
-ul.links {
+
+  /** List with links or files */
+
+  $links-bulletline-color: #4d8168;
+
+
+  ul.links {
     margin-bottom: $base-spacing;
-  padding-left: 0;
+    padding-left: 0;
     line-height: 1.5;
 
     li {
+      margin-bottom: .6rem;
       padding-left: 0;
       list-style: none;
-      margin-bottom: .6rem;
-    }
-
-    // List of links in widget bar
-    aside & {
-
-        li {
-          margin: 0;
-          border-top: 1px solid $grey-alto;
-        }
-
-        a {
-          padding: $base-spacing/3 .1em;
-          text-decoration: none;
-
-          &:before { display: none; }
-
-          @include hoverify {
-              background-color: rgba( #000, .03 );
-          }
-        }
     }
 
     a {
@@ -39,7 +23,27 @@ ul.links {
         display: inline-block;
         margin: 0 .5rem 0 .35rem;
         color: $links-bulletline-color;
-        content: '\2014';
+        content: '\2014'; // m-dash
       }
     }
-}
+
+    // List of links in widget bar
+    aside & {
+
+      li {
+        margin: 0;
+        border-top: 1px solid $grey-alto;
+      }
+
+      a {
+        padding: $base-spacing/3 .1em;
+        text-decoration: none;
+
+        &:before { display: none; }
+
+        @include hoverify {
+          background-color: rgba( #000, $base-darken-percentage / 100 );
+        }
+      }
+    }
+  }
