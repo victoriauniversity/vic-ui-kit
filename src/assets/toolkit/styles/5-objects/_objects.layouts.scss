@@ -37,6 +37,7 @@
   /** LAYOUT - Contains all the content's columns and layout combinations */
 
   .layout {
+    overflow: hidden;
     display: table; // Fixes the issue with misbehavior of inner containers
     width: 100%;
 
@@ -118,6 +119,10 @@
 
     // Can contain Content only column and Widget bar (optional).
     .content-panel {
+
+      > main {
+        height: $base-min-content-height;
+      }
 
       /** Content panel *ONLY* */
 

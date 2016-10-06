@@ -160,6 +160,7 @@ $text-block-spacing: 1.2em;
     .inline,
     p > img,
     p > img ~ img {
+      clear: right;
       float: right;
       width: $media-inline-width;
       margin-left: $base-spacing;
@@ -211,4 +212,15 @@ $text-block-spacing: 1.2em;
   }
 }
 
+// Breaks the page and clears the floating
+.break {
+  display: block;
+  visibility: hidden;
+  width: 100%;
+  @include clearfix;
+
+  @include media( $tablet-and-bigger ){
+    margin-bottom: $base-spacing;
+  }
+}
 

@@ -26,7 +26,7 @@
       float: none;
       width: 100%;
       height: auto;
-      margin-bottom: .7em;
+      margin-bottom: .5em;
 
       &:last-child { margin-bottom: $base-spacing; }
   }
@@ -65,14 +65,15 @@
     }
 
     &:hover:before {
-      background-color: rgba($black, 0.2);
+      background-color: rgba($black, .2);
     }
 
-    figcaption { //TODO: extend .tile-text
+    //TODO: extend .tile-text
+    figcaption {
+      z-index: 1;
       background-color: $green-victoria;
       // color: $white;
       border-left: none;
-      z-index: 1;
 
       @include media( $tablet-and-bigger ){
         width: 66%;
