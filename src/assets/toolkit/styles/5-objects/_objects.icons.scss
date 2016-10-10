@@ -5,72 +5,81 @@
 
   /* ===== FONT ICON'S CODES ================================================ */
 
-  // TODO: Add icon of down + up quotes
+  // TODO: Add icon of down + up quotes, music note
 
-  $icon-search:           '\e800';
-  $icon-mail:             '\e801';
-  $icon-heart:            '\e802';
-  $icon-check:            '\e803';
-  $icon-star:             '\e804';
-  $icon-help:             '\e805';
-  $icon-people:           '\e806';
-  $icon-user:             '\e807';
-  $icon-info:             '\e808';
-  $icon-home:             '\e809';
-  $icon-back:             '\e80A';
-  $icon-pictures:         '\e80B';
-  $icon-popup:            '\e80C';
-  $icon-clock:            '\e80D';
-  $icon-tag:              '\e80E';
-  $icon-book:             '\e80F';
-  $icon-book-open:        '\e810';
-  $icon-pin:              '\e811';
-  $icon-vcard:            '\e812';
-  $icon-chat:             '\e813';
-  $icon-flag:             '\e814';
-  $icon-external:         '\e815';
-  $icon-printer:          '\e816';
-  $icon-camera:           '\e817';
-  $icon-lock:             '\e818';
-  $icon-lock-open:        '\e819';
-  $icon-phone:            '\e81A';
-  $icon-attention:        '\e81B';
-  $icon-resize-up:        '\e81C';
-  $icon-resize-down:      '\e81D';
-  $icon-mic:              '\e81E';
-  $icon-cog:              '\e81F';
-  $icon-share:            '\e820';
-  $icon-basket:           '\e821';
-  $icon-comment:          '\e822';
-  $icon-caret-down-thin:  '\e823';
-  $icon-caret-left-thin:  '\e824';
-  $icon-caret-right-thin: '\e825';
-  $icon-caret-up-thin:    '\e826';
-  $icon-caret-down:       '\e827';
-  $icon-caret-left:       '\e828';
-  $icon-caret-right:      '\e829';
-  $icon-caret-up:         '\e82A';
-  $icon-triangle-down:    '\e82B';
-  $icon-triangle-left:    '\e82C';
-  $icon-triangle-right:   '\e82D';
-  $icon-triangle-up:      '\e82E';
-  $icon-refresh:          '\e82F';
-  $icon-graduation-cap:   '\e830';
-  $icon-ticket:           '\e831';
-  $icon-megaphone:        '\e832';
-  $icon-calendar:         '\e833';
-  $icon-globe:            '\e834';
-  $icon-dots:             '\e835';
-  $icon-arrow-down:       '\e836';
-  $icon-arrow-left:       '\e837';
-  $icon-layout:           '\e838';
-  $icon-attach:           '\e839';
-  $icon-menu:             '\e83A';
-  $icon-arrow-right:      '\e83B';
-  $icon-up-small:         '\e83C';
-  $icon-edit:             '\e83D';
-  $icon-download:         '\e83E';
+  /** List of unicode character codes assigned to given icons.
+   *
+   *  The name of the code is then used as an class identifier
+   *  prefixed with 'icon-'. Eg. code with key 'search' will
+   *  get automatically turned into '.icon-search'.
+   */
+  $icon-class-prefix: 'icon-';
 
+  $icon-codes: (
+    search:           '\e800',
+    mail:             '\e801',
+    heart:            '\e802',
+    check:            '\e803',
+    star:             '\e804',
+    help:             '\e805',
+    people:           '\e806',
+    user:             '\e807',
+    info:             '\e808',
+    home:             '\e809',
+    back:             '\e80A',
+    pictures:         '\e80B',
+    popup:            '\e80C',
+    clock:            '\e80D',
+    tag:              '\e80E',
+    book:             '\e80F',
+    book-open:        '\e810',
+    pin:              '\e811',
+    vcard:            '\e812',
+    chat:             '\e813',
+    flag:             '\e814',
+    external:         '\e815',
+    printer:          '\e816',
+    camera:           '\e817',
+    lock:             '\e818',
+    lock-open:        '\e819',
+    phone:            '\e81A',
+    attention:        '\e81B',
+    resize-up:        '\e81C',
+    resize-down:      '\e81D',
+    mic:              '\e81E',
+    cog:              '\e81F',
+    share:            '\e820',
+    basket:           '\e821',
+    comment:          '\e822',
+    caret-down-thin:  '\e823',
+    caret-left-thin:  '\e824',
+    caret-right-thin: '\e825',
+    caret-up-thin:    '\e826',
+    caret-down:       '\e827',
+    caret-left:       '\e828',
+    caret-right:      '\e829',
+    caret-up:         '\e82A',
+    triangle-down:    '\e82B',
+    triangle-left:    '\e82C',
+    triangle-right:   '\e82D',
+    triangle-up:      '\e82E',
+    refresh:          '\e82F',
+    graduation-cap:   '\e830',
+    ticket:           '\e831',
+    megaphone:        '\e832',
+    calendar:         '\e833',
+    globe:            '\e834',
+    dots:             '\e835',
+    arrow-down:       '\e836',
+    arrow-left:       '\e837',
+    layout:           '\e838',
+    attach:           '\e839',
+    menu:             '\e83A',
+    arrow-right:      '\e83B',
+    up-small:         '\e83C',
+    edit:             '\e83D',
+    download:         '\e83E'
+  );
 
 
 
@@ -78,10 +87,32 @@
   /* ===== STANDARD ICONS =================================================== */
 
 
-  .icon {
-    height: 1em;
-    margin: -.15em .3em;
+  %base-icon {
+    font-size: 100%;
+    font-style: normal;
+
+    &:after {
+      @include iconify;
+      top: .05em;
+      margin: 0 .5em;
+    }
   }
+
+  [class^=#{$icon-class-prefix}] {
+    @extend %base-icon;
+  }
+
+
+  /** Generate all the icon identifiers. Prefix them with 'icon-' */
+
+  @each $icon-code-class, $code in $icon-codes {
+    &.#{$icon-class-prefix}#{$icon-code-class} {
+      &:after {
+        content: $code;
+      }
+    }
+  }
+
 
   .hanging-icon {
     float: left;
@@ -98,7 +129,7 @@
 
   .social-icon {
     &:hover {
-    	opacity: $base-hover-opacity;
+      opacity: $base-hover-opacity;
     }
 
     img {
@@ -106,3 +137,25 @@
       margin-right: .3rem;
     }
   }
+
+
+  /* ===== ALIASES AND EXTENSIONS =========================================== */
+
+
+  /** Can be used to alias or extend default icon under unique class. */
+  @mixin extend-icon( $new-class, $icon-code ) {
+    .#{$new-class} {
+      @extend %base-icon;
+      @extend .#{$icon-class-prefix}#{$icon-code};
+
+      &:after {
+        @content;
+      }
+    }
+  }
+
+  @include extend-icon( link-external, external );
+  @include extend-icon( link-more, caret-right ) { font-size: 110% };
+  @include extend-icon( link-download, download ) { font-size: 90% };
+  @include extend-icon( "has-subpages > a", triangle-right ) {  };
+
