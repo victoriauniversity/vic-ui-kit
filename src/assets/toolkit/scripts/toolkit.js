@@ -12,6 +12,27 @@ require('./study-areas.js');
 var TRANSITION_TIMEOUT = 200; //update in _settings.variables.scss(135)
 
 
+
+
+/** Wrap YT videos in .embed wrapper that helps with responsiveness. */
+function wrapYouTubeVideos() {
+  var youtubeVideos = $('iframe[src*="youtube"'),
+  singleVideo = null;
+
+  youtubeVideos.each( function( index ) {
+    singleVideo = $( this );
+
+    // If it doesn't already have wrapper, wrap it!
+    if ( !singleVideo.parent().hasClass( 'embed' ) ){
+      singleVideo.wrap( '<div class="embed"></div>' );
+    }
+  });
+}
+
+
+
+
+
 $(function(){
 
 	fastclick.attach(document.body);
@@ -82,4 +103,10 @@ $(function(){
 		$(this).parent().addClass('active');
 		$('.tile-grid').toggleClass('hidden');
 	});
+
+
+  /** DOM manipulation */
+
+  wrapYouTubeVideos();
+
 });
