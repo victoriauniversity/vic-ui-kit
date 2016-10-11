@@ -23,13 +23,13 @@
     position: relative;
     display: block;
     margin-left: -$faux-spacing;
-    padding: .35em .5rem .4em $faux-spacing + $base-spacing;
+    padding: .6em 1rem .6em $faux-spacing + 1rem ;
 
     font-family: $base-heading-family;
-    font-size: 1em;
+    line-height: 1.35;
     color: $white;
 
-    border-bottom: 1px solid rgba( #FFF, .15 );
+    border-bottom: 1px solid $green-bush;
     cursor: pointer;
 
     @include media($mobile-large-and-smaller){
@@ -52,20 +52,20 @@
     }
 
     &.selected {
+      font-weight: $weight-semibold;
+      border-bottom: none;
 
       // Strip item highlight
       &:after {
         @include objectify( block, $position: absolute );
+        top: rem( 8px );
+        bottom: rem( 8px );
 
-        left: 4px;
-        top: 4px;
-        bottom: 4px;
+        width: rem( 4px );
+        margin-left: rem( -12px );
 
-        width: 4px;
         border: 1px solid $grey-silver;
         background: $white;
-
-        left: $faux-spacing + .7rem;
       }
     }
   }

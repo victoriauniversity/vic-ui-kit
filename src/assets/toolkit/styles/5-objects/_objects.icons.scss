@@ -78,8 +78,12 @@
     arrow-right:      '\e83B',
     up-small:         '\e83C',
     edit:             '\e83D',
-    download:         '\e83E'
+    download:         '\e83E',
+    audio:            '\e83F',
+    quote-down:       '\e840',
+    quote-up:         '\e841'
   );
+
 
 
 
@@ -88,8 +92,6 @@
 
 
   %base-icon {
-    font-size: 100%;
-    font-style: normal;
 
     &:after {
       @include iconify;
@@ -98,7 +100,18 @@
     }
   }
 
+  %base-icon-before {
+
+    &:before {
+      @include iconify;
+      top: .05em;
+      margin: 0 .5em;
+    }
+  }
+
   [class^=#{$icon-class-prefix}] {
+    font-size: 100%;
+    font-style: normal;
     @extend %base-icon;
   }
 
@@ -113,12 +126,10 @@
     }
   }
 
+  .hanging-icon { float: left; }
 
-  .hanging-icon {
-    float: left;
-  }
-
-  .icon-2x:before {
+  .icon-2x:before,
+  .icon-2x:after {
     transform: scale(2);
   }
 
@@ -133,29 +144,37 @@
     }
 
     img {
-      @include size( $social-icon-size );
       margin-right: .3rem;
+      @include size( $social-icon-size );
     }
   }
+
+
+
 
 
   /* ===== ALIASES AND EXTENSIONS =========================================== */
 
 
   /** Can be used to alias or extend default icon under unique class. */
-  @mixin extend-icon( $new-class, $icon-code ) {
-    .#{$new-class} {
-      @extend %base-icon;
-      @extend .#{$icon-class-prefix}#{$icon-code};
+  @mixin extend-icon( $icon-code ) {
+    @extend %base-icon;
+    @extend .#{$icon-class-prefix}#{$icon-code};
 
-      &:after {
-        @content;
-      }
+    &:after { @content; }
+  }
+
+  /** Can be used to alias or extend default icon under unique specifier. */
+  @mixin extend-icon-before( $icon-code ) {
+    @extend %base-icon-before;
+
+    &:before {
+      content: $icon-code;
+      @content;
     }
   }
 
-  @include extend-icon( link-external, external );
-  @include extend-icon( link-more, caret-right ) { font-size: 110% };
-  @include extend-icon( link-download, download ) { font-size: 90% };
-  @include extend-icon( "has-subpages > a", triangle-right ) {  };
 
+  .link-external { @include extend-icon( external ); }
+  .link-more { @include extend-icon( caret-right ) { font-size: 110% }; }
+  .link-download { @include extend-icon( download ) { font-size: 90% }; }

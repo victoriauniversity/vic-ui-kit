@@ -3,13 +3,15 @@
 ==================================================*/
 
 
-  /** PRIMARY FOOTER (dark one), usually placed on the very end of the page. 1 MUST be used on a single page. */
+  /** PRIMARY FOOTER (dark one), usually placed on the very end of
+      the page. 1 *MUST BE* used on a single page. */
 
   $footer-logo-width:         20% !default;
   $footer-logo-max-width:     rem( 250px );
   $footer-primary-background: $black-victoria !default;
   $footer-primary-color:      $grey-silver !default;
   $footer-primary-separator:  1px solid $black-emperor !default;
+
 
   .footer-primary {
     background-color: $footer-primary-background;
@@ -24,7 +26,7 @@
       @include hoverify() {
         text-decoration: underline;
 
-       img { text-decoration: none; }
+        img { text-decoration: none; }
       }
     }
 
@@ -73,12 +75,13 @@
         }
       }
 
+
       // Foot-note like mini-menu + copyright at the end of the footer
       .small > * { font-size: .9em; }
 
       .copyright {
+        float: right;
         display: block;
-        float: right
       }
 
       .minilinks {
@@ -196,7 +199,33 @@
 
           @include hoverify() { text-decoration: none; }
         }
+
+        ul {
+
+          // Icons setup
+          &:before {
+            line-height: 1.4;
+            position: absolute;
+            margin-left: -1.6rem;
+            font-size: 115%;
+          }
+        }
       }
+    }
+
+    // Contact-types
+    .phones,
+    .mails {
+      position: relative;
+      padding-left: 1.6rem;
+    }
+
+    .phones {
+      @include extend-icon-before( map-get($icon-codes, phone) );
+    }
+
+    .mails {
+      @include extend-icon-before( map-get($icon-codes, mail) );
     }
 
 
@@ -225,15 +254,15 @@
         li {
           display: block;
           float: left;
-          width: 48%;
           margin-right: 2%;
+          width: 48%;
         }
       }
 
       ul {
         margin-bottom: .8em;
 
-        > li { margin: .15em 0; }
+        > li { margin: 0 0 .35em; }
 
         &:last-child { margin-bottom: 0; }
       }
