@@ -38,8 +38,6 @@
   /** LAYOUT - Contains all the content's columns and layout combinations */
 
   .layout {
-    overflow: hidden;
-    display:  table; // Fixes the issue with misbehavior of inner containers
     width:    100%;
 
     &.block {
@@ -89,8 +87,6 @@
   @include media( $tablet-and-bigger ){
 
     .content-panel {
-      position: relative;
-
       // Sub-columns
 
       /** Main content *ONLY* */
@@ -105,11 +101,12 @@
 
       > main:not(:last-child) {
         @include span-columns( $grid-columns - $widgetbar-columns, table );
-        width: 10000px; // [HACK] Make the middle column stretch to maximum
+        float: left;
       }
 
       > aside {
         @include span-columns( $widgetbar-columns, table );
+        float: left;
       }
     }
   }
@@ -117,17 +114,24 @@
 
   @include media( $desktop-and-bigger ){
 
+    .layout {
+      overflow: hidden;
+      display:  table; // Fixes the issue with misbehavior of inner containers
+    }
+
     /** Left sidebar */
 
     $sidebar-to-document-width-ratio: .20; // 20% of the page's width
     $sidebar-columns: $sidebar-to-document-width-ratio * $grid-columns;
 
     .sidebar {
+      float: left;
       @include span-columns( $sidebar-columns, table );
     }
 
     // Can contain Content only column and Widget bar (optional).
     .content-panel {
+      float: left;
 
       /** Content panel *ONLY* */
 

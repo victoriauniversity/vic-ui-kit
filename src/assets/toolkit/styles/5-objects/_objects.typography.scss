@@ -66,6 +66,8 @@ $text-block-spacing: 1.2em;
       color: $base-link-color;
       text-decoration: underline;
 
+      > span:after { text-decoration: none; }
+
       @include hoverify() {
         color: $base-link-hover-color;
         text-decoration: none;
@@ -81,9 +83,7 @@ $text-block-spacing: 1.2em;
 
   .grid{
 
-    > * {
-      margin-bottom: $base-spacing;
-    }
+    > * { margin-bottom: $base-spacing; }
 
     figure img { margin-bottom: .75rem; }
   }
@@ -126,8 +126,8 @@ $text-block-spacing: 1.2em;
   h2,
   h3 {
     > em {
-      font-style: normal;
       margin-left: .35em;
+      font-style: normal;
       color: $grey;
     }
   }
@@ -143,9 +143,9 @@ $text-block-spacing: 1.2em;
   > img,
   p > img,
   p > img ~ img {
+    margin-bottom: $base-spacing / 2;
     width: 100%;
     height: auto;
-    margin-bottom: $base-spacing / 2;
   }
 
   // Portrait size inline image
@@ -162,8 +162,8 @@ $text-block-spacing: 1.2em;
     p > img ~ img {
       clear: right;
       float: right;
-      width: $media-inline-width;
       margin-left: $base-spacing;
+      width: $media-inline-width;
     }
   }
 

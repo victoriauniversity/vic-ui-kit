@@ -21,34 +21,33 @@
 
   img,
   iframe,
-  .table-container {
-      display: block;
-      float: none;
-      width: 100%;
-      height: auto;
-      margin-bottom: .5em;
+  .table-container,
+  .embed {
+    float: none;
+    display: block;
+    margin-bottom: .5em;
+    @include size( 100% auto );
 
-      &:last-child { margin-bottom: $base-spacing; }
+    &:last-child { margin-bottom: $base-spacing; }
   }
 
   figcaption {
-      display: block;
-      padding: .2em 0 .2em $base-spacing / 2;
-      border-left: $strip-light;
-      color: $black-emperor;
-      margin-bottom: $base-spacing;
+    display: block;
+    padding: .2em 0 .2em $base-spacing / 2;
+    border-left: $strip-light;
+    color: $black-emperor;
+    margin-bottom: $base-spacing;
   }
 
   .formatting .grid &.featured img {
-      margin-bottom: 0;
+    margin-bottom: 0;
   }
 
+  //TODO: Remove?
   &.featured {
     position: relative;
 
-    img {
-      margin-bottom: 0;
-    }
+    img { margin-bottom: 0; }
 
     &:before {
       content: "";
@@ -76,11 +75,11 @@
       border-left: none;
 
       @include media( $tablet-and-bigger ){
-        width: 66%;
-        max-width: 20rem;
         position: absolute;
         top: $base-spacing;
         left: $base-spacing;
+        width: 66%;
+        max-width: 20rem;
       }
 
       h1, h2, h3, h4, h5, h6, p{

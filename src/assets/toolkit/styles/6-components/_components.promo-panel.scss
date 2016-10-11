@@ -17,15 +17,12 @@ $promo-max-width:   rem( 600px );
 .promo-panel {
     @include clearfix();
 
-    @include media($desktop-and-bigger) {
-        p {
-            // font-size: 1.125em;
-        }
+    @include media($tablet-and-bigger) {
         background: $banner-background;
         position:relative;
         overflow:hidden;
     } //media desktop
-    @include media($mobile) {
+    @include media($mobile-large-and-smaller ) {
         border-top: 3px solid $banner-background;
         border-bottom: 3px solid $banner-background;
         &+.promo-panel {

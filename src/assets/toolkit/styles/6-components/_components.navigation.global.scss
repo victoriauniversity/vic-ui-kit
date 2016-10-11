@@ -36,38 +36,50 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 }
 
 .global {
-    font-weight: 300;
-    position: fixed;
-    top:0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    height: $base-spacing * 2;
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  font-weight: 300;
+  height: $base-spacing * 2;
 
-    @include media( $tablet-and-bigger ){
-        background: $green-bottle-green;
-    }
+  @include media( $tablet-and-bigger ){
+      background: $green-bottle-green;
+  }
 
-    .horisontal-links {
-        @include clearfix();
+  .horisontal-links {
+      @include clearfix();
 
-        >a{
-            float: left;
-            width: 50%;
-            margin: 0;
-            padding: $base-spacing/2 $base-spacing;
-            border-bottom: none;
-
-        }
-    }
-
-    [role=search]{
-
-        @include clearfix();
-
-@include media( $mobile-large-and-smaller ){
+      > a {
+        float: left;
+        width: 50%;
+        margin: 0;
         padding: $base-spacing/2 $base-spacing;
-}
+        border-bottom: none;
+      }
+  }
+
+  [class^="icon-"] {
+    &:after {
+      margin-left: 0;
+      margin-right: 0;
+
+
+      @include media( $mobile-large-and-smaller ){
+        margin-right: .5rem;
+        line-height: 1;
+      }
+    }
+  }
+
+  [role=search]{
+
+  @include clearfix();
+
+  @include media( $mobile-large-and-smaller ){
+    padding: $base-spacing/2 $base-spacing;
+  }
         width: 100%;
         display: block;
         position: relative;
@@ -190,7 +202,7 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
                 position: absolute;
                 right: 0;
                 z-index: 1;
-                width: 4rem;
+                width: 3rem;
             }
         }
 

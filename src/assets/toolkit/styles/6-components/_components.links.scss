@@ -27,7 +27,7 @@
       }
     }
 
-    // List of links in widget bar
+    // in the widget bar
     aside & {
 
       li {
@@ -39,11 +39,26 @@
         padding: $base-spacing/3 .1em;
         text-decoration: none;
 
+        // Against icons wrapping
+        &:after,
+        span:after {
+          display: inline;
+        }
+
         &:before { display: none; }
 
         @include hoverify {
           background-color: rgba( #000, $base-darken-percentage / 100 );
         }
+      }
+    }
+
+    // in the grid
+    .grid & {
+      @include media( $mobile-large-and-smaller ){
+
+        // All the lists in single column => Remove the margins except from the last one.
+        &:not(:last-child) { margin-bottom: 0; }
       }
     }
   }
