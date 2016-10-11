@@ -76,7 +76,7 @@
     attach:           '\e839',
     menu:             '\e83A',
     arrow-right:      '\e83B',
-    up-small:         '\e83C',
+    arrow-up:         '\e83C',
     edit:             '\e83D',
     download:         '\e83E',
     audio:            '\e83F',
@@ -97,6 +97,8 @@
       @include iconify;
       top: .05em;
       margin: 0 .5em;
+      width: 1em;
+      text-align: center;
     }
   }
 
@@ -106,6 +108,8 @@
       @include iconify;
       top: .05em;
       margin: 0 .5em;
+      width: 1em;
+      text-align: center;
     }
   }
 
@@ -132,6 +136,9 @@
   .icon-2x:after {
     transform: scale(2);
   }
+
+  // Icons designed to be on *the beginning* of the element
+  a > .icon-audio:after { margin-left: 0; }
 
 
   /** Special icons */
