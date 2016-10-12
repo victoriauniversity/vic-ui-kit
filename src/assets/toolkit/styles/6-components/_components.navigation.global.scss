@@ -27,7 +27,7 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 
 //TODO: Should be calculated dynamically by JS
 .site-header {
-  padding-top: 3rem;
+  // padding-top: 3rem;
 
   @include media( $mobile-large-and-smaller ){
     padding-top: 4.7rem;
@@ -35,11 +35,13 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 }
 
 .global {
-  position: fixed;
-  top:0;
-  left: 0;
-  right: 0;
-  z-index: 100;
+  @include media( $mobile-large-and-smaller ){
+      position: fixed;
+      top:0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+  }
   font-weight: 300;
 
   @include media( $tablet-and-bigger ){

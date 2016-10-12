@@ -6,11 +6,12 @@ var Headroom = require('headroom.js');
 var picturefill = require('picturefill');
 // var Velocity = require("velocity-animate");
 var lity = require('lity');
+var enquire = require('enquire.js');
 
-require('./study-areas.js');
+require('./study-areas.js'); //TODO: set up multiple entry points for webpack bundles
 
 var TRANSITION_TIMEOUT = 200; //update in _settings.variables.scss(135)
-
+var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 43.6875em)'; //update in _settings.responsive.scss(57)
 
 
 
@@ -39,32 +40,38 @@ $(function(){
 	var $body = $('body');
 	var $globalNav = $("#global-nav");
 	var $globalSearch = $("#global-search");
-	if ($globalNav.length) {
-		var eGlobalNav = $globalNav[0];
-		var headroom  = new Headroom(eGlobalNav, {
-		  "offset": eGlobalNav.clientHeight,
-		  "tolerance": {
-		  	up: 20,
-		  	down: 5
-		  },
-		  onPin: function (){
-		  	//reset in-menu scrolling
-		  	$globalNav.find('.menu').scrollTop(0);
-		  },
-		  onUnpin: function (){
-		  	$globalNav.toggleClass('is-open', false);
-		  	$('.js-toggle-global-nav').toggleClass('close', false);
-		  }
 
-		});
-		headroom.init();
+	//http://wicky.nillia.ms/enquire.js/
+	enquire.register(MOBILE_LARGE_AND_SMALLER, function() {
 
-		$body.on('click ', '.js-toggle-global-nav', function(_event){
-			var $this = $(this);
-			$this.find('.tcon').toggleClass('tcon-transform');
-			$globalNav.toggleClass('is-open');
-		});
-	}
+		if ($globalNav.length) {
+			var eGlobalNav = $globalNav[0];
+			var headroom  = new Headroom(eGlobalNav, {
+			  "offset": eGlobalNav.clientHeight,
+			  "tolerance": {
+			  	up: 20,
+			  	down: 5
+			  },
+			  onPin: function (){
+			  	//reset in-menu scrolling
+			  	$globalNav.find('.menu').scrollTop(0);
+			  },
+			  onUnpin: function (){
+			  	$globalNav.toggleClass('is-open', false);
+			  	$('.js-toggle-global-nav').toggleClass('close', false);
+			  }
+
+			});
+			headroom.init();
+
+			$body.on('click ', '.js-toggle-global-nav', function(_event){
+				var $this = $(this);
+				$this.find('.tcon').toggleClass('tcon-transform');
+				$globalNav.toggleClass('is-open');
+			});
+		}
+
+	});
 
 
 	$body.on('click ', '.js-toggle-global-search', function(_event){
