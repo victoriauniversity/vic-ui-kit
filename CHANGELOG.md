@@ -9,6 +9,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+### Added 
+
+- Link to the audio file can be specified through class `.link-audio`.
+
+
+### Fixed
+
+- List of links made more flexible: Adds constant left padding for multiple lines, allows for non-link elements (such as descriptions or authors), improves the quality of the bullet point-like strip line.
+- Improves the positioning of icons by default (at beginning of the element instead of its end).
+
+
+
 
 
 

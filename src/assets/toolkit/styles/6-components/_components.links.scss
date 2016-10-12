@@ -2,8 +2,10 @@
 
   /** List with links or files */
 
-  $links-bulletline-color: #4d8168;
-
+  $links-bulletline-color:        #4f8368;
+  $links-bulletline-margin-left:  .25rem;
+  $links-bulletline-margin-right: .7rem;
+  $links-bulletline-width:        1rem;
 
   ul.links {
     margin-bottom: $base-spacing;
@@ -11,31 +13,36 @@
     line-height: 1.5;
 
     li {
-      margin-bottom: .6rem;
-      padding-left: 0;
+      position: relative;
+      margin-bottom: .65rem;
+      padding-left: $links-bulletline-margin-left + $links-bulletline-width + $links-bulletline-margin-right;
       list-style: none;
-    }
-
-    a {
-      display: block;
 
       &:before {
-        display: inline-block;
-        margin: 0 .5rem 0 .35rem;
-        color: $links-bulletline-color;
-        content: '\2014'; // m-dash
+        @include objectify( inline-block, '', absolute ); // \2014 ~ m-dash character
+        top: .75em;
+        width: 1rem;
+        height: 2px;
+        margin: 0 .5rem 0 -1*($links-bulletline-width + $links-bulletline-margin-right);
+        background-color: $links-bulletline-color;
       }
     }
+
+    a { display: inline; }
 
     // in the widget bar
     aside & {
 
       li {
         margin: 0;
+        padding-left: 0;
         border-top: 1px solid $grey-alto;
+
+        &:before { display: none; }
       }
 
       a {
+        display: block;
         padding: $base-spacing/3 .1em;
         text-decoration: none;
 
@@ -44,8 +51,6 @@
         span:after {
           display: inline;
         }
-
-        &:before { display: none; }
 
         @include hoverify {
           background-color: rgba( #000, $base-darken-percentage / 100 );
