@@ -9,6 +9,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+
+
+
+## Production release: [v0.9.1] - 2016-10-13
+
 ### Added 
 
 - Link to the audio file can be specified through class `.link-audio`.
@@ -34,7 +39,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-## Production release: [v0.9.0] - 2016-10-12
+## Production release: v0.9.0 - 2016-10-12
 
 
 ### Added
@@ -71,4 +76,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/topics-programmes/compare/v0.9.0...develop
+[Unreleased]: https://github.com/victoriauniversity/topics-programmes/compare/v0.9.1...develop
+
+[v0.9.1]: https://github.com/victoriauniversity/topics-programmes/compare/v0.9.0...v0.9.1
