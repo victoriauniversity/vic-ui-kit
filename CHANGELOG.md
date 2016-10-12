@@ -9,6 +9,26 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+### Added 
+
+- Link to the audio file can be specified through class `.link-audio`.
+- Staff listing and staff profiles now have contact icons.
+
+
+### Fixed
+
+- `List of links` made more flexible: Adds constant left padding for multiple lines, allows for non-link elements (such as descriptions or authors), improves the quality of the bullet point-like strip line.
+- Improves the `positioning of icons by default` (at beginning of the element instead of its end).
+- Fixes margins of `document labels` when placed inside formatted paragraph. Label must be *always* placed on the end of an element (compared to list of links where label is always on the start of the element).
+
+
+### Enhanced 
+
+- Staff profile, detail - vertical alignment of the job description was adjusted.
+- Staff profile, detail, currently taught courses - Spacing between elements increased.
+- Staff listing made more responsive.
+
+
 
 
 

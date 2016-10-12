@@ -10,11 +10,11 @@ $color-file: $black-emperor;
 
 .label {
   display: inline-block;
+  margin-right: .5em;
   line-height: 1;
   vertical-align: middle;
   font-size: 75%;
   text-transform: uppercase;
-  margin-right: .5em;
   background: $grey-alto;
   color: $base-font-color;
 
@@ -53,5 +53,14 @@ $color-file: $black-emperor;
 
   &.file-ppt {
     > i { background: $color-ppt; }
+  }
+
+  /** Variations */
+
+  // Inside standard paragraphs, labels should be placed on the *end* of
+  // the bearing element.
+  .formatting p & {
+    margin-right: .1em;
+    margin-left: .35em;
   }
 }

@@ -49,8 +49,8 @@
   .time {
     font-size: scale-heading( 1 );
 
-    @include extend-icon-before( map-get( $icon-codes, clock ) ){
-      top: -.1em;
+    @include extend-icon-before( clock ){
+      top: -.1rem;
       margin-left: 0;
       font-size: 75%;
     };
@@ -59,13 +59,13 @@
   .meta {
     color: $grey;
 
-    [class^="icon-"] {
+    @include icon-selector() {
       display: inline-block;
 
-      &:after {
+      &:before {
         top: 0;
         margin-left: 0;
       }
-    }
+    };
   }
 }

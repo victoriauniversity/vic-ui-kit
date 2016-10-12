@@ -14,7 +14,6 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 .menu-toggle {
   position:      relative;
   z-index:       1;
-  padding:       $base-spacing / 2 $base-spacing;
   background:    $black-victoria;
   border-bottom: 1px solid rgba( #FFF,.15 );
 
@@ -28,7 +27,7 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 
 //TODO: Should be calculated dynamically by JS
 .site-header {
-  padding-top: 3rem;
+  // padding-top: 3rem;
 
   @include media( $mobile-large-and-smaller ){
     padding-top: 4.7rem;
@@ -36,13 +35,14 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 }
 
 .global {
-  position: fixed;
-  top:0;
-  left: 0;
-  right: 0;
-  z-index: 100;
+  @include media( $mobile-large-and-smaller ){
+      position: fixed;
+      top:0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+  }
   font-weight: 300;
-  height: $base-spacing * 2;
 
   @include media( $tablet-and-bigger ){
       background: $green-bottle-green;
@@ -60,8 +60,8 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
       }
   }
 
-  [class^="icon-"] {
-    &:after {
+  @include icon-selector() {
+    &:before {
       margin-left: 0;
       margin-right: 0;
 
@@ -105,7 +105,7 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
                 border: none;
                 color: #fff;
                 float: left;
-                padding: $base-spacing/2;
+                padding: $base-spacing/4 $base-spacing/2;
 
                 &[type=text] {
                     width: calc(100% - 4rem);
@@ -202,13 +202,14 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
                 position: absolute;
                 right: 0;
                 z-index: 1;
-                width: 3rem;
+                width: 4rem;
+                text-align: center;
             }
         }
 
         a {
             color: #fff;
-            padding: .8em 1em;
+            padding: $base-spacing/4 $base-spacing/2;
             display: block;
             float: left;
             opacity: .8;
