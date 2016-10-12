@@ -58,7 +58,7 @@ $(function(){
 			  },
 			  onUnpin: function (){
 			  	$globalNav.toggleClass('is-open', false);
-			  	$('.js-toggle-global-nav').toggleClass('close', false);
+			  	$globalNav.find('.tcon').toggleClass('tcon-transform', false);
 			  }
 
 			});
