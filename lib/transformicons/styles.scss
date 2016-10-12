@@ -12,6 +12,10 @@ $tcon-menu-arrowleft-transformation: (
 $tcon-menu-arrow360left-transformation: (
   transform: scale3d(.8, .8, .8) rotate3d(0, 0, 1, 360deg)
 ) !default;
+
+$tcon-size: 2em;
+$tcon-menu-color: #fff;
+
 .tcon {
   appearance: none;
   border: none;
@@ -43,7 +47,7 @@ $tcon-menu-arrow360left-transformation: (
 
 @mixin tcon-menu-lines {
   display: inline-block;
-  height: ($tcon-size / 7);
+  height: ($tcon-size / 9);
   width: $tcon-size;
   border-radius: $tcon-menu-radius;
   transition: $tcon-transition;
@@ -128,6 +132,10 @@ $tcon-search-glass-color: white !default;
 $tcon-search-handle-width: ($tcon-size / 10) !default;
 $tcon-search-glass-radius: ($tcon-size / 3.3333) !default;
 $tcon-search-glass-border-width: ($tcon-size / 20) !default;
+
+$tcon-search-color: #fff;
+$tcon-search-glass-color: $green-victoria;
+$tcon-search-glass-radius: ($tcon-size /2.5);
 @mixin search-item {
   display: inline-block;
   height: $tcon-search-size;
@@ -166,7 +174,7 @@ $tcon-search-glass-border-width: ($tcon-size / 20) !default;
     border-radius: 50%;
     width: $tcon-search-glass-radius;
     height: $tcon-search-glass-radius;
-    border: $tcon-search-glass-border-width solid black;
+    border: $tcon-search-glass-border-width solid #fff;
     transform-origin: 50% 50%;
   }
 }
