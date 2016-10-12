@@ -13,6 +13,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Link to the audio file can be specified through class `.link-audio`.
 - Staff listing and staff profiles now have contact icons.
+- Quotes blocks (citation and source or author) - you can now use ```<figure class="quote full"> ... </figure>``` for important citations (eg. at the beginning or end of an article) or ```<figure class="quote"> ... </figure>``` for standard quoting.
+- Quotes (just a citation) - ```<blockquote class="quote"> ... </blockquote>```
 
 
 ### Fixed
