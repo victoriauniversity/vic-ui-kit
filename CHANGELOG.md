@@ -27,6 +27,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - `List of links` made more flexible: Adds constant left padding for multiple lines, allows for non-link elements (such as descriptions or authors), improves the quality of the bullet point-like strip line.
 - Improves the `positioning of icons by default` (at beginning of the element instead of its end).
 - Fixes margins of `document labels` when placed inside formatted paragraph. Label must be *always* placed on the end of an element (compared to list of links where label is always on the start of the element).
+- Fixed series of UI issues in Global navigation bar and mobile menu. 
 
 
 ### Enhanced 
