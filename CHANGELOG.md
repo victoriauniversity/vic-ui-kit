@@ -77,6 +77,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/topics-programmes/compare/v0.9.1...develop
+[Unreleased]: https://github.com/victoriauniversity/vuw-styleguide/compare/v0.9.1...develop
 
-[v0.9.1]: https://github.com/victoriauniversity/topics-programmes/compare/v0.9.0...v0.9.1
+[v0.9.1]: https://github.com/victoriauniversity/vuw-styleguide/compare/v0.9.0...v0.9.1
