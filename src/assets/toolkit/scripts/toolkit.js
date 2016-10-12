@@ -61,7 +61,7 @@ $(function(){
 
 		$body.on('click ', '.js-toggle-global-nav', function(_event){
 			var $this = $(this);
-			$this.toggleClass('close');
+			$this.find('.tcon').toggleClass('tcon-transform');
 			$globalNav.toggleClass('is-open');
 		});
 	}
@@ -75,6 +75,8 @@ $(function(){
 		}
 
 		$this.data('js-has-active-transition', true);
+		$this.find('.tcon').toggleClass('tcon-transform');
+
 		if ($globalSearch.hasClass('is-open')) {
 			$globalSearch.toggleClass('is-open', false);
 			setTimeout(function(){
