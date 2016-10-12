@@ -104,9 +104,9 @@ $text-block-spacing: 1.2em;
 
     > strong {
       &:after {
+        @include objectify( inline-block, '\00B7' ); // '·' middle dot character
         margin-left: .5em;
         margin-right: .25em;
-        @include objectify( $display: inline-block, $content: '\00B7' ); // '·' middle dot character
       }
     }
   }
@@ -115,11 +115,16 @@ $text-block-spacing: 1.2em;
     font-size: scale-font( 1 );
   }
 
-  // Header section that restarts the
+  // Header section that restarts the vertical alignment
   > header {
     margin-bottom: $text-block-spacing;
 
     h1 { margin-bottom: .25em; }
+  }
+
+  // Workaround where it cannot be implemented in the Squiz
+  h1 + .subtitle {
+    margin-top: -.5em;
   }
 
   // 'Notes' inside headings

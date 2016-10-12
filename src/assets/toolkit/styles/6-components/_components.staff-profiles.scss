@@ -20,11 +20,18 @@ $portrait-width: rem( 150px );
     float: left;
     display: block;
     margin-right: $column-padding;
-    width: $portrait-width;
-    height: auto;
+    @include size( $portrait-width auto );
+
+
+
+    @include media( $mobile-large-and-smaller ){
+      width: 20%;
+      max-width: $portrait-width;
+    }
   }
 
   .summary {
+    overflow: hidden;
     // Incl. staff portrait
     &:not(:first-child) {
       display: block;
@@ -61,20 +68,35 @@ address.contact {
 
 // List of quick (meta) information
 ul.meta {
-  padding-left: 0; // Reset
+
+  @include icon-selector() {
+    color: $grey;
+    font-size: 115%;
+
+    &:before { display: inline; } // Prevent icon wrapping
+  };
+
+  &,
+  > li {
+    padding-left: 0; // Reset
+  }
 
   > li {
     display: block;
-    padding-left: 0; // Reset
-    margin-bottom: .35rem;
+    margin-bottom: .2em;
     font-size: rem( 14px ); //TODO: Refactor into more dynamic solution
   }
-
-  .icon { display: none; } //TODO: Implement the icons!
 
   .highlight {
     display: inline-block;
     margin-right: .1rem;
+    padding: 0; // Reset
+
+    @include icon-selector() {
+      color: inherit;
+
+      &:before { margin-right: .35em; }
+    };
 
     > a {
       display: block;
