@@ -104,20 +104,20 @@
   %base-icon-before {
     &:before {
       @include iconify;
+      top: .05em;
       margin: 0 $icon-margin 0 0;
       width: 1em;
       text-align: center;
-      top: .05em;
     }
   }
 
   %base-icon-after {
     &:after {
       @include iconify;
-      margin: 0 $icon-margin;
+      top: .05em;
+      margin: 0 0 0 $icon-margin;
       width: 1em;
       text-align: center;
-      top: .05em;
     }
   }
 
@@ -158,6 +158,34 @@
     img {
       margin-right: .3rem;
       @include size( $social-icon-size );
+    }
+  }
+
+
+
+
+
+  /* ===== CUSTOM-BUILT ICONS =============================================== */
+
+
+  // Line strip prefixing a block element (eg. citation, source, list item)
+
+  $bulletline-color:        #4f8368;
+  $bulletline-margin-left:  .25rem;
+  $bulletline-margin-right: .7rem;
+  $bulletline-width:        1rem;
+
+
+  %bulletline-base {
+    position: relative;
+    padding-left: $bulletline-margin-left + $bulletline-width + $bulletline-margin-right;
+
+    &:before {
+      @include objectify( inline-block, '', absolute );
+      top: .75em;
+      @include size( 1rem 2px );
+      margin: 0 $bulletline-margin-right 0 -1 * ($bulletline-width + $bulletline-margin-right);
+      background-color: $bulletline-color;
     }
   }
 

@@ -61,7 +61,8 @@ $text-block-spacing: 1.2em;
   h6,
   ul,
   ol,
-  table {
+  table,
+  figcaption {
     a {
       color: $base-link-color;
       text-decoration: underline;
@@ -112,6 +113,7 @@ $text-block-spacing: 1.2em;
   }
 
   h1 + .subtitle {
+    margin-top: -.5em; // Workaround where it cannot be implemented in the Squiz
     font-size: scale-font( 1 );
   }
 
@@ -122,10 +124,6 @@ $text-block-spacing: 1.2em;
     h1 { margin-bottom: .25em; }
   }
 
-  // Workaround where it cannot be implemented in the Squiz
-  h1 + .subtitle {
-    margin-top: -.5em;
-  }
 
   // 'Notes' inside headings
   h2,
