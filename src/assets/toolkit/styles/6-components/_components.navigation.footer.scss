@@ -97,7 +97,8 @@
 
         text-align: center;
 
-        .contacts, .logo {
+        .contacts,
+        .logo {
           // Re-use this
           display: block;
           width: 100%;
@@ -106,7 +107,10 @@
 
         .contacts { padding-left: 0; }
 
-        .copyright, .minilinks { float: none; }
+        .copyright,
+        .minilinks {
+          float: none;
+        }
 
         .copyright { margin-top: 1em; }
         .logo { margin-bottom: .5em; }
@@ -144,9 +148,7 @@
     }
 
     ul {
-      a {
-        color: inherit;
-      }
+      a { color: inherit; }
     }
 
     & + .footer-secondary,
@@ -164,11 +166,11 @@
 
       // Stretches all the links to rest of the available width
       nav ul {
-        @include display(flex);
-        @include flex-wrap(wrap);
-        @include align-items(stretch);
-        @include flex-direction(row);
-        @include justify-content(flex-start);
+        @include display( flex );
+        @include flex-wrap( wrap );
+        @include align-items( stretch );
+        @include flex-direction( row );
+        @include justify-content( flex-start );
 
         > li { margin-right: 1.5em; }
       }
@@ -221,11 +223,11 @@
     }
 
     .phones {
-      @include extend-icon-before( map-get($icon-codes, phone) );
+      @include extend-icon-before( phone );
     }
 
     .mails {
-      @include extend-icon-before( map-get($icon-codes, mail) );
+      @include extend-icon-before( mail );
     }
 
 
@@ -281,14 +283,14 @@
       &.two-columns {
         .block {
           //TODO: Reuse
+          float: none;
           display: block;
           width: 100%;
-          float: none;
 
           &:last-child {
+            padding-top: $base-spacing;
             border-left: 0;
             border-top: $footer-secondary-separator;
-            padding-top: $base-spacing;
           }
         }
 

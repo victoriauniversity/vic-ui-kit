@@ -7,9 +7,9 @@ ul.complex-list {
   padding-left: 0;
 
   > li {
-    list-style: none;
     margin-bottom: 0;
     padding-left: 0;
+    list-style: none;
   }
   // End of resets
 
@@ -19,9 +19,9 @@ ul.complex-list {
     @include clearfix;
     display: table;
     width: 100%;
-    padding: .7rem .1rem;
+    padding: .8rem .1rem;
     line-height: 1.2;
-    border-bottom: $base-border;
+    border-bottom: 1px solid $grey-alto; //TODO: Make it $base-border
   }
 
   .caption,
@@ -30,7 +30,8 @@ ul.complex-list {
   }
 
   .caption {
-    @include span-columns( 8, table );
+    @include span-columns( 9, table );
+    padding-right: 1.6rem;
 
     > span {
       margin-right: .35em;
@@ -39,7 +40,7 @@ ul.complex-list {
   }
 
   .description {
-    @include span-columns( 4, table );
+    @include span-columns( 3, table );
 
     > em {
       font-style: normal;
@@ -55,6 +56,9 @@ ul.complex-list {
       width: 100%;
     }
 
-    .caption { margin-bottom: .35em; }
+    .caption {
+      padding-right: 0;
+      margin-bottom: .35em;
+    }
   }
 }

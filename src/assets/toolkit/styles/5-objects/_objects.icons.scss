@@ -85,46 +85,54 @@
   );
 
 
+  @mixin icon-selector() {
+    [class^=#{$icon-class-prefix}]{
+      @content;
+    }
+  }
+
+
 
 
 
   /* ===== STANDARD ICONS =================================================== */
 
 
-  %base-icon {
+  $icon-margin: .5em !default;
 
-    &:after {
-      @include iconify;
-      top: .05em;
-      margin: 0 .5em;
-      width: 1em;
-      text-align: center;
-    }
-  }
 
   %base-icon-before {
-
     &:before {
       @include iconify;
-      top: .05em;
-      margin: 0 .5em;
+      margin: 0 $icon-margin 0 0;
       width: 1em;
       text-align: center;
+      top: .05em;
     }
   }
 
-  [class^=#{$icon-class-prefix}] {
+  %base-icon-after {
+    &:after {
+      @include iconify;
+      margin: 0 $icon-margin;
+      width: 1em;
+      text-align: center;
+      top: .05em;
+    }
+  }
+
+  @include icon-selector() {
     font-size: 100%;
     font-style: normal;
-    @extend %base-icon;
-  }
+    @extend %base-icon-before;
+  };
 
 
   /** Generate all the icon identifiers. Prefix them with 'icon-' */
 
   @each $icon-code-class, $code in $icon-codes {
     &.#{$icon-class-prefix}#{$icon-code-class} {
-      &:after {
+      &:before {
         content: $code;
       }
     }
@@ -136,9 +144,6 @@
   .icon-2x:after {
     transform: scale(2);
   }
-
-  // Icons designed to be on *the beginning* of the element
-  a > .icon-audio:after { margin-left: 0; }
 
 
   /** Special icons */
@@ -164,24 +169,52 @@
 
 
   /** Can be used to alias or extend default icon under unique class. */
-  @mixin extend-icon( $icon-code ) {
-    @extend %base-icon;
+  @mixin extend-icon-before( $icon-code ) {
+    @extend %base-icon-before;
     @extend .#{$icon-class-prefix}#{$icon-code};
 
-    &:after { @content; }
+    &:before { @content; }
   }
 
   /** Can be used to alias or extend default icon under unique specifier. */
-  @mixin extend-icon-before( $icon-code ) {
-    @extend %base-icon-before;
+  @mixin extend-icon-after( $icon-code ) {
+    @extend %base-icon-after;
 
-    &:before {
-      content: $icon-code;
+    &:after {
+      content: map-get( $icon-codes, #{$icon-code} );
       @content;
     }
   }
 
 
-  .link-external { @include extend-icon( external ); }
-  .link-more { @include extend-icon( caret-right ) { font-size: 110%; margin-right: 0; }; }
-  .link-download { @include extend-icon( download ) { font-size: 90% }; }
+  .link-external {
+    @include extend-icon-after( external ) {
+      top: 0;
+    }
+  }
+
+  .link-download {
+    @include extend-icon-before( download ) {
+      font-size: 90%;
+    };
+  }
+
+  .link-more {
+    @include extend-icon-after( caret-right ) {
+      font-size: 110%;
+      margin-right: 0;
+      margin-left: .3em;
+    };
+  }
+
+  .link-audio {
+    @include extend-icon-before( audio );
+  }
+
+
+  /** Add icons with unusual positioning (end of the item instead of the start) */
+
+  .icon-arrow-right:before{
+    margin-right: 0;
+    margin-left: $icon-margin;
+  }
