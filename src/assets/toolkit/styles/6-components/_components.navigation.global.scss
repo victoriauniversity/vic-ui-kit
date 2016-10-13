@@ -15,7 +15,7 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
   position:      relative;
   z-index:       1;
   background:    $black-victoria;
-  border-bottom: 1px solid rgba( #FFF,.15 );
+  border-bottom: 1px solid rgba( #000,.15 );
 
   @include clearfix;
 
@@ -116,9 +116,10 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 }
 
             input {
-                background: rgba(0,0,0,0.15);
+
+              background: rgba( #000, .15);
                 border: none;
-                color: $global-panel-text-color;
+                color: $white;
                 float: left;
                 padding: .45rem $base-spacing/2;
 
@@ -128,7 +129,7 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 
                 &[type=submit] {
                     width: 4rem;
-                    border-left: 1px solid rgba(255, 255, 255, 0.15);
+                    border-left: 1px solid rgba(#000, .15);
                 }
             }
         }
@@ -136,11 +137,18 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 
 
   @include media( $tablet-and-bigger ){
+
     .input-wrapper {
-        padding-right: 2.5rem;
-        will-change: transform;
-        transition: transform $transition-timeout ease-in-out;
-        transform: translateX(100%);
+
+      input {
+        background: $global-panel-hover-color;
+        color: $global-panel-text-color;
+      }
+
+      padding-right: 2.5rem;
+      will-change: transform;
+      transition: transform $transition-timeout ease-in-out;
+      transform: translateX(100%);
     }
 
     .input-wrapper.is-open {
@@ -163,15 +171,13 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
         bottom: 0;
 
         a {
-
-            padding: 0;
-            margin: 2px 0;
-            border: none;
-            border-left: 1px solid rgba( $white, .15);
-            display: block;
-            padding: 0 .8rem;
-            text-align: right;
-
+          padding: 0;
+          margin: 2px 0;
+          border: none;
+          border-left: 1px solid rgba( $white, .15);
+          display: block;
+          padding: 0 .8rem;
+          text-align: right;
         }
     }
 
@@ -244,6 +250,7 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
           display: block;
           float: left;
           opacity: .8;
+          font-size: rem( 15px );
           border-bottom: none;
 
           &.selected,
@@ -259,7 +266,7 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
         }
 
         a + a {
-          border-left: 1px solid rgba( $white,.15 );
+          border-left: 1px solid rgba( #000,.15 );
         }
 
         label { float: right; }
