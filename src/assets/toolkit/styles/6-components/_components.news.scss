@@ -1,20 +1,38 @@
 
-/** News overview (list of articles) */
 
+  /** News overview (list of articles) */
 
-.news {
+  .news {
     time { display: block; }
+
+    .media {
+      .embed, img { margin-bottom: 0; } // Reset
+    }
 
     @include media( $tablet-and-bigger ){
 
-        // Has got `media` or another add-on
-        .summary:not(:last-child) {
-            @include span-columns( 7.5 of 12 );
-        }
+      // Has got `media` or another add-on
+      .summary { overflow: hidden; }
 
-        .media {
-            @include span-columns( 4.5 of 12 );
-            @include omega;
+      //TODO: Remove grid
+      .media {
+        @include span-columns( 4.5 of 12 );
+        float: right;
+        @include omega;
+        margin-left: $column-padding;
+
+        // Image with portrait-like width to height ratio
+        &.portrait {
+          text-align: right;
+          @include span-columns( 3 of 12 );
+          float: right;
+          @include omega;
+
         }
+      }
     }
-}
+
+    @include media( $mobile-large-and-smaller ){
+      .media { margin-bottom: 1em; }
+    }
+  }

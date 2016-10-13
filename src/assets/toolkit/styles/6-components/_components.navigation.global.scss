@@ -34,7 +34,6 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 
 .global {
   font-weight: $weight-normal;
-  box-shadow: 0 1px 8px rgba( #000, .35 );
 
   @include media( $mobile-large-and-smaller ){
       position: fixed;
@@ -108,11 +107,12 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 
 
 @include media( $tablet-and-bigger ){
-    background: linear-gradient(
-        to right,
-        rgba($global-panel-color, 0) 0,
-        rgba($global-panel-color, 1) $overlay-hint-size);
-    padding-left: $overlay-hint-size + $overlay-hint-offset;
+  box-shadow: 0 1px 8px rgba( #000, .35 );
+  background: linear-gradient(
+      to right,
+      rgba($global-panel-color, 0) 0,
+      rgba($global-panel-color, 1) $overlay-hint-size);
+  padding-left: $overlay-hint-size + $overlay-hint-offset;
 }
 
             input {
