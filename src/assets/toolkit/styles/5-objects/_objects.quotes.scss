@@ -1,0 +1,70 @@
+/*=========================================
+=     QUOTES, CITATION, BIBLIOGRAPHY      =
+=========================================*/
+
+  // Just a quote style
+  blockquote.quote {
+    font-style: italic;
+  }
+
+  // Quote with source
+  .quote {
+    margin-bottom: $base-spacing;
+
+    /** Inline (related) block /w source */
+
+    blockquote {
+      margin-bottom: .35em;
+      font-style: italic;
+    }
+
+    figcaption {
+      @extend %bulletline-base;
+    }
+
+    &:not(.full) {
+      margin-left: .85rem;
+      padding: 0 0 0 1rem;
+      border-left: $strip-light;
+
+      figcaption strong { font-weight: $weight-medium; }
+    }
+
+
+    /** Full block quotation /w source */
+
+    &.full {
+
+      // Citation itself
+      blockquote {
+        font-size: scale-font( 1 );
+
+        // Starting quote icon
+        @include extend-icon-before( quote-down ){
+          top: -.1em;
+          margin-right: .3em;
+        };
+
+        // Ending quote icon
+        @include extend-icon-after( quote-up ){
+          margin-left: .3em;
+        };
+
+        &:before,
+        &:after {
+          display: inline;
+          font-style: normal;
+          font-size: 130%;
+          line-height: 1;
+          color: $grey-silver;
+        }
+      }
+
+      // Source, author, URL
+      figcaption {
+        font-weight: $weight-medium;
+        font-size: rem( 18px );
+        color: $green-victoria;
+      }
+    }
+  }

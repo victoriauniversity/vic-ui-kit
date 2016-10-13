@@ -1,0 +1,40 @@
+// ========================================
+// ======== Degrees & Qualifications block on homepages
+// ========================================
+//---- Settings ---
+$sub-title-color: rgba($white, 0.75);
+;
+// -------------------------
+// -------------------------
+// Overrides and unquie styles on the tile-grid for degrees-qual only
+// -------------------------
+.degrees-quals.tile-grid {
+    .tiles-wrap {
+        li.tile {
+            margin-bottom: 0.5rem;
+            .tile-text {
+                position: relative;
+
+                 @include media ($desktop-and-bigger) {
+                    min-height: 140px;
+                }
+                a {
+                    padding: 1em;
+                }
+                .tile-title {
+                    padding: 0;
+                    margin-bottom: 1em;
+                }
+                .sub-title {
+                    color: $sub-title-color;
+                    margin: 0;
+                }
+                .title-break {
+                    width: 30px;
+                    border-top: 2px solid $sub-title-color;
+                    margin-bottom: 0.5em;
+                }
+            }
+        }
+    }
+}

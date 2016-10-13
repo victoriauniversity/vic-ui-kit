@@ -1,0 +1,55 @@
+
+
+  /** List with links or files */
+
+  ul.links {
+    margin-bottom: $base-spacing;
+    padding-left: 0;
+    line-height: 1.5;
+
+    li {
+      @extend %bulletline-base;
+      position: relative;
+      margin-bottom: .65rem;
+      list-style: none;
+    }
+
+    a { display: inline; }
+
+    // in the widget bar
+    aside & {
+
+      li {
+        margin: 0;
+        padding-left: 0;
+        border-top: 1px solid $grey-alto;
+
+        &:before { display: none; }
+      }
+
+      a {
+        display: block;
+        padding: $base-spacing/3 .1em;
+        text-decoration: none;
+
+        // Against icons wrapping
+        &:after,
+        span:after {
+          display: inline;
+        }
+
+        @include hoverify {
+          background-color: rgba( #000, $base-darken-percentage / 100 );
+        }
+      }
+    }
+
+    // in the grid
+    .grid & {
+      @include media( $mobile-large-and-smaller ){
+
+        // All the lists in single column => Remove the margins except from the last one.
+        &:not(:last-child) { margin-bottom: 0; }
+      }
+    }
+  }

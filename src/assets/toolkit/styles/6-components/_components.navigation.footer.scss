@@ -1,0 +1,305 @@
+/*==================================================
+=                     FOOTERS                      =
+==================================================*/
+
+
+  /** PRIMARY FOOTER (dark one), usually placed on the very end of
+      the page. 1 *MUST BE* used on a single page. */
+
+  $footer-logo-width:         20% !default;
+  $footer-logo-max-width:     rem( 250px );
+  $footer-primary-background: $black-victoria !default;
+  $footer-primary-color:      $grey-silver !default;
+  $footer-primary-separator:  1px solid $black-emperor !default;
+
+
+  .footer-primary {
+    background-color: $footer-primary-background;
+    color:            $footer-primary-color;
+
+    //TODO: Should be refactored to include underlines (currently, it's not clear these are links)
+    ul a {
+      text-decoration: none;
+      border-bottom: 0;
+      color: inherit;
+
+      @include hoverify() {
+        text-decoration: underline;
+
+        img { text-decoration: none; }
+      }
+    }
+
+    ul {
+      &,
+      & > li {
+        display: inline-block;
+      }
+
+      > li {  margin: 0 .35em; }
+    }
+
+    .block {
+      + .block {
+        @include clearfix();
+        border-top: $footer-primary-separator;
+      }
+
+      &.small { padding-top: .5em; }
+    }
+
+      // Logo & Contact info
+      .logo {
+        vertical-align: middle;
+        @include span-columns( 3 of 12, table );
+
+        img {
+          display: inline-block;
+          width: 100%;
+          max-width: $footer-logo-max-width;
+          vertical-align: middle;
+        }
+      }
+
+      .contacts {
+        vertical-align: middle;
+        @include span-columns( 9 of 12, table );
+        padding: .5em 0 .5em 3.5em;
+
+        > li:last-child { margin-right: 0; }
+        > li:first-child { margin-left: 0; }
+
+        a {
+          color: $white;
+          font-weight: $weight-bold;
+        }
+      }
+
+
+      // Foot-note like mini-menu + copyright at the end of the footer
+      .small > * { font-size: .9em; }
+
+      .copyright {
+        float: right;
+        display: block;
+      }
+
+      .minilinks {
+        float: left;
+
+        > li {
+          &:first-child { margin-left: 0; }
+        }
+      }
+
+
+      @include media( $mobile-large-and-smaller ) {
+
+        text-align: center;
+
+        .contacts,
+        .logo {
+          // Re-use this
+          display: block;
+          width: 100%;
+          float: none;
+        }
+
+        .contacts { padding-left: 0; }
+
+        .copyright,
+        .minilinks {
+          float: none;
+        }
+
+        .copyright { margin-top: 1em; }
+        .logo { margin-bottom: .5em; }
+      }
+  }
+
+
+  /** SECONDARY FOOTER (light one), usually before the primary footer. 0-many CAN be used on a single page. */
+
+  $footer-secondary-background: $grey-alto !default;
+  $footer-secondary-separator:  1px solid $grey-silver !default;
+  $footer-secondary-color:      $base-font-color !default;
+  $footer-heading-margin-bottom: .75em;
+
+  .footer-secondary {
+    background-color: $footer-secondary-background;
+
+    h2 {
+      line-height: 1.3;
+      font-size: modular-scale( 1 ); // ~ stadard <h4>'s size
+    }
+
+    nav ul {
+      a {
+        font-family: $base-heading-family;
+        font-size: 1.125em;
+        border-color: $footer-secondary-color;
+        text-decoration: underline;
+
+        @include hoverify() {
+          border-bottom: none;
+          text-decoration: none;
+        }
+      }
+    }
+
+    ul {
+      a { color: inherit; }
+    }
+
+    & + .footer-secondary,
+    .block + .block {
+      border-top: $footer-secondary-separator;
+    }
+
+    // One block alone
+    &:not(.two-columns) {
+
+      h2 {
+        float: left;
+        margin-right: 2em;
+      }
+
+      // Stretches all the links to rest of the available width
+      nav ul {
+        @include display( flex );
+        @include flex-wrap( wrap );
+        @include align-items( stretch );
+        @include flex-direction( row );
+        @include justify-content( flex-start );
+
+        > li { margin-right: 1.5em; }
+      }
+
+      .contacts {
+        ul {
+
+          &,
+          > li {
+            display: inline-block;
+            margin-right: .75em;
+          }
+        }
+      }
+    }
+
+    .contacts {
+      address {
+        font-style: inherit;
+        color: $black-emperor;
+
+        a {
+          margin-right: .35em;
+          color: $footer-secondary-color;
+          font-weight: $weight-medium;
+          border-bottom: 0;
+          text-decoration: underline;
+
+          @include hoverify() { text-decoration: none; }
+        }
+
+        ul {
+
+          // Icons setup
+          &:before {
+            line-height: 1.4;
+            position: absolute;
+            margin-left: -1.6rem;
+            font-size: 115%;
+          }
+        }
+      }
+    }
+
+    // Contact-types
+    .phones,
+    .mails {
+      position: relative;
+      padding-left: 1.6rem;
+    }
+
+    .phones {
+      @include extend-icon-before( phone );
+    }
+
+    .mails {
+      @include extend-icon-before( mail );
+    }
+
+
+    // Two blocks next to each other
+    &.two-columns {
+      h2 { margin-bottom: $footer-heading-margin-bottom; }
+
+      .block {
+        @include span-columns( 1 of 2, table );
+
+        &:first-child {
+          padding-right: $base-spacing;
+        }
+
+        &:last-child {
+          padding-left: $base-spacing;
+          border-top: 0;
+          border-left: $footer-secondary-separator;
+        }
+      }
+
+      // Turn links list into 2-columns to conserve space
+      nav ul {
+        overflow: hidden;
+
+        li {
+          display: block;
+          float: left;
+          margin-right: 2%;
+          width: 48%;
+        }
+      }
+
+      ul {
+        margin-bottom: .8em;
+
+        > li { margin: 0 0 .35em; }
+
+        &:last-child { margin-bottom: 0; }
+      }
+    }
+
+
+    @include media( $mobile-large-and-smaller ) {
+
+      &:not(.two-columns) {
+        h2 {
+          float: none;
+          margin-bottom: $footer-heading-margin-bottom;
+        }
+      }
+
+      &.two-columns {
+        .block {
+          //TODO: Reuse
+          float: none;
+          display: block;
+          width: 100%;
+
+          &:last-child {
+            padding-top: $base-spacing;
+            border-left: 0;
+            border-top: $footer-secondary-separator;
+          }
+        }
+
+        nav ul {
+          > li {
+            float: none;
+            width: auto;
+          }
+        }
+      }
+    }
+  }

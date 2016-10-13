@@ -28,7 +28,7 @@ const config = {
     toolkit: {
       src: 'src/assets/toolkit/styles/toolkit.scss',
       dest: 'dist/assets/toolkit/styles',
-      watch: 'src/assets/toolkit/styles/**/*.scss',
+      watch: 'src/assets/toolkit/styles/**/**/*.scss',
     },
   },
   scripts: {

@@ -1,0 +1,66 @@
+
+// File extensions colour variations
+$color-pdf: #dd3727;
+$color-excel: #318f5b;
+$color-word: #2a569a;
+$color-mp3: #d27200;
+$color-ppt: #ad3016;
+$color-file: $black-emperor;
+
+
+.label {
+  display: inline-block;
+  margin-right: .5em;
+  line-height: 1;
+  vertical-align: middle;
+  font-size: 75%;
+  text-transform: uppercase;
+  background: $grey-alto;
+  color: $base-font-color;
+
+  > i,
+  > span {
+    display: inline-block;
+    padding: .3em .5em;
+  }
+
+  > i {
+    float: left;
+    font-style: inherit;
+    color: $white;
+  }
+
+  /** File types/extensions */
+  &.file { // default file
+    > i { background: $color-file; }
+  }
+
+  &.file-pdf {
+    > i { background: $color-pdf; }
+  }
+
+  &.file-excel {
+    > i { background: $color-excel; }
+  }
+
+  &.file-word {
+    > i { background: $color-word; }
+  }
+
+  &.file-mp3 {
+    > i { background: $color-mp3; }
+  }
+
+  &.file-ppt {
+    > i { background: $color-ppt; }
+  }
+
+  /** Variations */
+
+  // Inside standard paragraphs, labels should be placed on the *end* of
+  // the bearing element.
+  .formatting p & {
+    margin-right: .1em;
+    margin-left: .35em;
+  }
+}

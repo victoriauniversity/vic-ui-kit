@@ -1,0 +1,22 @@
+/*==========================================
+=        DEVELOPMENT HELPER STYLES         =
+==========================================*/
+
+
+/*******************************************************************************
+
+  For usage during development *ONLY* - !DO NOT USE IN PRODUCTION TEMPLATES!
+
+*******************************************************************************/
+
+
+body {
+  // Shows grid
+  &.show-grid {
+    background-image:  linear-gradient( to bottom,#0FF 0,rgba( #FFF,0 )1px );
+    background-repeat: repeat-y;
+    background-size:   100% $base-font-size * $base-line-height;
+  }
+
+  &:not(.dev):before { display: none; }
+}

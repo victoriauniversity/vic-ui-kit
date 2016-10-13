@@ -1,0 +1,65 @@
+// ========================================
+// ======== Intro block on homepages
+// ========================================
+//---- Settings ---
+// ----------------
+// -------------------------
+.homepage-intro {
+    @include span-columns(8);
+    @include media ($tablet-and-smaller) {
+        @include span-columns(8);
+    }
+    .intro-text {
+        margin-bottom: 1.5rem;
+        p {
+            font-size: 1.125em;
+            color: $green-victoria;
+        }
+    }
+    .links-wrap {
+        p {
+            // font-size: 1.2em;
+            float: left;
+            padding-right: 1em;
+            line-height: 2.2;
+        }
+        @include outer-container;
+        div {
+            @include span-columns(4 of 8);
+            @include media ($tablet-and-smaller) {
+                @include span-columns(8);
+                &.social-links {
+                    margin-top: 1.5rem;
+                }
+            }
+            &.button-links {
+                a.button {
+                    margin-right: 0.5rem;
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+    &+ .text-promo-panel {
+        padding: 0;
+        border-bottom: none;
+        border-left: $base-border;
+        @include span-columns(4);
+        @include media ($tablet-and-smaller) {
+            @include span-columns(8);
+            border-left: none;
+            border-top: $base-border;
+        }
+        .text-wrap,
+        .button-wrap {
+            @include span-columns(4 of 4);
+        }
+        .button-wrap {
+            margin-top: 1rem;
+        }
+    }
+}
+
+// ==========================================

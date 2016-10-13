@@ -1,0 +1,79 @@
+// ========================================
+// ======== Study-areas block on homepages
+// ========================================
+//---- Settings ---
+$gutter: 8px;
+// ----------------
+// -------------------------
+// ------------------------
+// - The gerneic tile grid 
+// - Used for both Study-areas and Degrees & Qualifactions block
+// ------------------------
+.study-area-single {
+    .study-area-wide-panel {
+        margin-top: 1.5em;
+        @include outer-container(100%);
+        @include fill-parent();
+        .img-wrap {
+            @include media ($mobile-large-and-smaller) {
+                display: none;
+            }
+            @include span-columns(5);
+            img {
+                width: 100%;
+            }
+        }
+        .content-wrap {
+            @include span-columns(7);
+            @include media ($mobile-large-and-smaller) {
+                @include span-columns(6);
+            }
+            .text-subjects-wrap {
+                @include outer-container(100%);
+                @include omega(3n);
+                .text-wrap {
+                    @include span-columns(4 of 6);
+                    @include media ($tablet-and-smaller) {
+                        @include span-columns(8);
+                    }
+                    h2 {
+                        margin-bottom: 1rem;
+                    }
+                    p {
+                        font-size: 1.125em;
+                        line-height: 1.8rem;
+                        margin-bottom: 2rem;
+                    }
+                }
+                .subjects-wrap {
+                    @include media ($tablet-and-smaller) {
+                        @include span-columns(8);
+                    }
+                    @include span-columns(2 of 6);
+                    margin-right: 0;
+                    h4 {
+                        color: $grey;
+                    }
+                    ul {
+                        padding-top: 0.5rem;
+                        li {
+                            font-size: 1.1em;
+                            border-bottom: 1px solid $grey-gallery;
+                            padding: 0.5em;
+                            &:last-child {
+                                border-bottom: none;
+                            }
+                        }
+                    }
+                }
+            }
+            a.button {
+                margin-top: 1em;
+                float: left;
+            }
+        }
+    }
+    &.hidden {
+        display: none;
+    }
+}

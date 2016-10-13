@@ -1,0 +1,71 @@
+
+/** Event overview (list of articles). */
+.events {
+
+  @include media( $tablet-and-bigger ){
+
+    .margin-notes {
+      @include span-columns( 3.5 of 12 );
+    }
+
+    .summary {
+      @include span-columns( 8.5 of 12 );
+    }
+  }
+
+  // Highlight strip
+  .highlight-strip {
+    display: block;
+    padding-left: 1rem;
+    border-left: $highlight-border-width solid $green-victoria;
+
+    p { margin-bottom: 0; }
+  }
+
+  .summary {
+    h3 { margin-bottom: .7em; }
+    .meta { margin-bottom: .25em; }
+  }
+
+  .margin-notes {
+    margin-bottom: .6rem;
+    padding-right: 1rem;
+  }
+
+  .date,
+  .time {
+    display: block;
+    font-family: $base-heading-family;
+    color: $base-heading-color;
+    line-height: 1.1;
+  }
+
+  .date {
+    margin-bottom: .2em;
+    font-weight: $weight-semibold;
+    font-size: scale-heading( 2 );
+  }
+
+  .time {
+    font-size: scale-heading( 1 );
+
+    @include extend-icon-before( clock ){
+      top: -.1rem;
+      margin-left: 0;
+      font-size: 75%;
+    };
+  }
+
+  .meta {
+    color: $grey;
+
+    @include icon-selector() {
+      display: inline-block;
+
+      &:before {
+        top: 0;
+        margin-left: 0;
+      }
+    };
+  }
+}

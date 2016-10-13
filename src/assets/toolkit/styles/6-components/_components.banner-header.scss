@@ -1,0 +1,71 @@
+$logo-max-height: rem( 125px ); //TODO: Transfer to rems using function
+
+
+.site-header{
+  background: $black-victoria;
+
+  .block {
+    padding-top:    .7em;
+    padding-bottom: .7em;
+  }
+
+  /* Victoria main logotype */
+  .logo {
+    @include span-columns( 3.5 );
+
+    padding:      .5rem $base-spacing;
+    border-right: 1px solid $black-emperor;
+
+    // Logo image
+    img { max-height: $logo-max-height; }
+  }
+
+  // Site's introduction - eg. sitename, motto, short abstract
+  .site-intro {
+    @include span-columns( 8.5 );
+
+    padding: .4em 0;
+    text-align: left;
+  }
+
+  /** Sitename */
+  h1 {
+    margin-bottom: .2em;
+    font-size:     scale-heading( 4 ) * .85; // 85% smaller than standard <h1>
+    font-weight:   $weight-normal;
+    color:         $white;
+
+    .large {
+      font-size: 140%;
+      line-height: .8;
+    }
+
+    @include media( $mobile ){
+      margin-bottom: #{$base-line-height * 1 - 0.5}rem;
+      padding-top:   .5rem;
+      line-height:   #{$base-line-height * 1.5}rem;
+    }
+
+    .preline,
+    small {
+      display: block;
+    }
+
+    // Puts given part of the heading to a separate line
+    .preline { font-size: 75%; }
+
+    // Alternative translation
+    small {
+      margin-top:  .4em;
+      font-size:   50%;
+      font-weight: normal;
+      color:       $grey-silver;
+    }
+  }
+
+  @include media( $mobile-large-and-smaller ) {
+    .logo { display: none; }
+    .site-intro { width: 100%; }
+    h1 { text-align: center;}
+  }
+}
