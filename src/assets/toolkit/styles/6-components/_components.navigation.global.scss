@@ -27,14 +27,16 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 
 //TODO: Should be calculated dynamically by JS
 .site-header {
-  // padding-top: 3rem;
-
   @include media( $mobile-large-and-smaller ){
     padding-top: 4.7rem;
   }
 }
 
 .global {
+  padding: 0 .35rem;
+  font-weight: $weight-normal;
+  box-shadow: 0 1px 8px rgba( #000, .35 );
+
   @include media( $mobile-large-and-smaller ){
       position: fixed;
       top:0;
@@ -42,12 +44,28 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
       right: 0;
       z-index: 100;
   }
-  font-weight: 300;
 
   @include media( $tablet-and-bigger ){
-      background: $green-bottle-green;
+      background: $green-victoria;
   }
 
+  .menu a {
+    font-family: $base-heading-family;
+    line-height: 1.85;
+
+    //TODO: Refactor
+    &.home,
+    &.back {
+      line-height: 1.7;
+    }
+
+    &.home > span {
+
+      margin-top: rem( 1px );
+    }
+  }
+
+  //TODO: Is this deprecated?
   .horisontal-links {
       @include clearfix();
 
@@ -64,7 +82,6 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
     &:before {
       margin-left: 0;
       margin-right: 0;
-
 
       @include media( $mobile-large-and-smaller ){
         margin-right: .5rem;
@@ -95,17 +112,17 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 @include media( $tablet-and-bigger ){
     background: linear-gradient(
         to right,
-        rgba($green-bottle-green, 0) 0,
-        rgba($green-bottle-green, 1) $overlay-hint-size);
+        rgba($green-victoria, 0) 0,
+        rgba($green-victoria, 1) $overlay-hint-size);
     padding-left: $overlay-hint-size + $overlay-hint-offset;
 }
 
             input {
                 background: rgba(0,0,0,0.15);
                 border: none;
-                color: #fff;
+                color: $white;
                 float: left;
-                padding: $base-spacing/4 $base-spacing/2;
+                padding: .45rem $base-spacing/2;
 
                 &[type=text] {
                     width: calc(100% - 4rem);
@@ -122,7 +139,7 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 
   @include media( $tablet-and-bigger ){
     .input-wrapper {
-        padding-right: 4rem;
+        padding-right: 2.5rem;
         will-change: transform;
         transition: transform $transition-timeout ease-in-out;
         transform: translateX(100%);
@@ -134,6 +151,11 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 }
 
     }
+
+  @include media( $tablet-and-smaller ){
+    padding: 0;
+  }
+
 @include media( $mobile-large-and-smaller ){
 
     .button-container {
@@ -147,7 +169,7 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
             padding: 0;
             margin: 2px 0;
             border: none;
-            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba( $white, .15);
             display: block;
             padding: 0 .8rem;
             text-align: right;
@@ -156,7 +178,7 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
     }
 
     .menu {
-        background: $green-bottle-green;
+        background: $green-victoria;
         max-height: 75vh;
         overflow-y: scroll;
     }
@@ -181,7 +203,9 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 
 @include media( $tablet-and-bigger ){
 
-  .mobile, .site, .menu-toggle { display: none; }
+  .mobile,
+  .site,
+  .menu-toggle { display: none; }
 
     nav {
         @include outer-container;
@@ -202,14 +226,23 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
                 position: absolute;
                 right: 0;
                 z-index: 1;
-                width: 4rem;
+                padding-left: 0;
+                padding-right: 0;
+                font-size: 85%;
+                width: 2.5rem;
                 text-align: center;
+            }
+
+            // Transformation icon
+            .tcon {
+              margin-top: .3rem;
+
             }
         }
 
         a {
             color: #fff;
-            padding: $base-spacing/4 $base-spacing/2;
+            padding: $base-spacing/5 $base-spacing/2;
             display: block;
             float: left;
             opacity: .8;
@@ -218,18 +251,21 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
             &.selected,
             &:hover,
             &:focus {
+              background: #1d2624;
+
+              span:not(.tcon-transform) .tcon-search__item::after {
+                transition: none;
                 background: #1d2624;
+              }
             }
 
         }
 
         a + a {
-            border-left: 1px solid rgba(255,255,255,0.15);
+          border-left: 1px solid rgba( $white,.15 );
         }
 
-        label {
-            float: right;
-        }
+        label { float: right; }
 
     }
 
