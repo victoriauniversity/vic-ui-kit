@@ -33,7 +33,6 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 }
 
 .global {
-  padding: 0 .35rem;
   font-weight: $weight-normal;
   box-shadow: 0 1px 8px rgba( #000, .35 );
 
@@ -46,7 +45,7 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
   }
 
   @include media( $tablet-and-bigger ){
-      background: $green-victoria;
+    background: $global-panel-color;
   }
 
   .menu a {
@@ -60,7 +59,6 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
     }
 
     &.home > span {
-
       margin-top: rem( 1px );
     }
   }
@@ -112,15 +110,15 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 @include media( $tablet-and-bigger ){
     background: linear-gradient(
         to right,
-        rgba($green-victoria, 0) 0,
-        rgba($green-victoria, 1) $overlay-hint-size);
+        rgba($global-panel-color, 0) 0,
+        rgba($global-panel-color, 1) $overlay-hint-size);
     padding-left: $overlay-hint-size + $overlay-hint-offset;
 }
 
             input {
                 background: rgba(0,0,0,0.15);
                 border: none;
-                color: $white;
+                color: $global-panel-text-color;
                 float: left;
                 padding: .45rem $base-spacing/2;
 
@@ -241,24 +239,23 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
         }
 
         a {
-            color: #fff;
-            padding: $base-spacing/5 $base-spacing/2;
-            display: block;
-            float: left;
-            opacity: .8;
-            border-bottom: none;
+          color: $global-panel-text-color;
+          padding: $base-spacing/5 $base-spacing/2;
+          display: block;
+          float: left;
+          opacity: .8;
+          border-bottom: none;
 
-            &.selected,
-            &:hover,
-            &:focus {
-              background: #1d2624;
+          &.selected,
+          &:hover,
+          &:focus {
+            background: $global-panel-hover-color;
 
-              span:not(.tcon-transform) .tcon-search__item::after {
-                transition: none;
-                background: #1d2624;
-              }
+            span:not(.tcon-transform) .tcon-search__item::after {
+              transition: none;
+              background: $global-panel-hover-color;
             }
-
+          }
         }
 
         a + a {
@@ -266,7 +263,6 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
         }
 
         label { float: right; }
-
     }
 
   }//media destkop
