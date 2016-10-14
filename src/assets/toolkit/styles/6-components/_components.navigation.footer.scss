@@ -239,6 +239,7 @@
         @include span-columns( 1 of 2, table );
 
         &:first-child {
+          width: 10000px; // Correct widths hack
           padding-right: $base-spacing;
         }
 
@@ -286,6 +287,8 @@
           float: none;
           display: block;
           width: 100%;
+
+          &:first-child { width: auto; }
 
           &:last-child {
             padding-top: $base-spacing;
