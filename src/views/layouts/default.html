@@ -17,6 +17,9 @@
 </head>
 <body>
 
+
+  <!-- If 'fabricator=true' is present in page's annotation. -->
+
 	{{#if fabricator}}
 		{{> f-icons}}
 		{{> f-menu}}
@@ -25,7 +28,28 @@
 	{{/if}}
 
 
+  <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
+  {{#unless fabricator}}
+
+    {{> navigation.global}}
+    {{>_header}}
+
+  {{/unless}}
+
+
+
+
 	{% body %}
+
+
+
+
+  <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
+  {{#unless fabricator}}
+
+    {{> _footer }}
+
+  {{/unless}}
 
 
 

@@ -1,9 +1,5 @@
----
-notes: >
-  http://w3c.github.io/html/common-idioms-without-dedicated-elements.html#subheadings-subtitles-alternative-titles-and-taglines
----
 <header role="banner" class="site-header">
-	<div class="block centraliser">
+  <div class="block centraliser">
 
     <!-- Logotype -->
     <div class="logo">
@@ -17,16 +13,21 @@ notes: >
 
     <!-- Introductory block -->
     <div class="site-intro">
-  		<a href="#" title="Humanities and Social Sciences homepage">
-    		<h1>
-          <span class="preline">Faculty of</span>
-    		  History, Philosophy, Political Science and International&nbsp;Relations
-          <!-- <span class="large">Law</span> -->
-    		  <small lang="mi">Te Kauhanganui Tātai Ture</small>
+
+      <a href="#" title="{{{title}}} homepage">
+        <h1>
+          {{#if header.subtitle}}
+            <span class="preline">{{{header.subtitle}}}</span>
+          {{/if}}
+
+          {{#if header.titleClass}} <span class="{{{header.titleClass}}}"> {{/if}}
+            {{#if header.title}} {{{header.title}}} {{/if}}
+          {{#if header.titleClass}} </span> {{/if}}
+          {{#if header.titleMaori}} <small lang="mi"> {{{header.titleMaori}}} </small> {{/if}}
         </h1>
-  		</a>
+      </a>
     </div>
 
-	</div>
+  </div>
 </header>
 

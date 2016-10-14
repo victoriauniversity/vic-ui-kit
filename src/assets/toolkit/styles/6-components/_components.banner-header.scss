@@ -1,71 +1,101 @@
-$logo-max-height: rem( 125px ); //TODO: Transfer to rems using function
 
 
-.site-header{
-  background: $black-victoria;
+  $logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
 
-  .block {
-    padding-top:    .7em;
-    padding-bottom: .7em;
-  }
+  .site-header{
+    background: $black-victoria;
 
-  /* Victoria main logotype */
-  .logo {
-    @include span-columns( 3.5 );
-
-    padding:      .5rem $base-spacing;
-    border-right: 1px solid $black-emperor;
-
-    // Logo image
-    img { max-height: $logo-max-height; }
-  }
-
-  // Site's introduction - eg. sitename, motto, short abstract
-  .site-intro {
-    @include span-columns( 8.5 );
-
-    padding: .4em 0;
-    text-align: left;
-  }
-
-  /** Sitename */
-  h1 {
-    margin-bottom: .2em;
-    font-size:     scale-heading( 4 ) * .85; // 85% smaller than standard <h1>
-    font-weight:   $weight-normal;
-    color:         $white;
-
-    .large {
-      font-size: 140%;
-      line-height: .8;
+    .block {
+      padding-top:    1rem;
+      padding-bottom: 1rem;
     }
 
-    @include media( $mobile ){
-      margin-bottom: #{$base-line-height * 1 - 0.5}rem;
-      padding-top:   .5rem;
-      line-height:   #{$base-line-height * 1.5}rem;
+    .logo,
+    .site-intro {
+      vertical-align: middle;
+
+      a {
+        display: block;
+        @include hoverify() {
+          opacity: $base-hover-opacity;
+        }
+      }
     }
 
-    .preline,
-    small {
-      display: block;
+    /* Victoria main logotype */
+    .logo {
+      // Logo image
+      img {
+        vertical-align: middle;
+        max-height: $logo-max-height;
+      }
     }
 
-    // Puts given part of the heading to a separate line
-    .preline { font-size: 75%; }
+    /* Site's introduction - eg. sitename, motto, short abstract */
 
-    // Alternative translation
-    small {
-      margin-top:  .4em;
-      font-size:   50%;
-      font-weight: normal;
-      color:       $grey-silver;
+      // Sitename
+      h1 {
+        font-size:     scale-heading( 4 ) * .85; // 85% smaller than standard <h1>
+        font-weight:   $weight-normal;
+        color:         $white;
+
+        .large {
+          font-size: 140%;
+
+          &:not(:first-child) {
+            line-height: .8; // Decrease the margins
+          }
+        }
+
+        .preline,
+        small {
+          display: block;
+        }
+
+        // Puts given part of the heading to a separate line
+        .preline { font-size: 75%; }
+
+        // Alternative translation
+        small {
+          margin-top:  .15rem;
+          font-size:   50%;
+          font-weight: normal;
+          color:       $grey-silver;
+        }
+      }
+
+
+    @include media( $tablet-and-bigger ) {
+
+      .site-intro {
+        @include span-columns( 9 of 12, table );
+        padding: .3rem $column-padding .5rem $column-padding * 1.5;
+      }
+
+      .logo {
+        @include span-columns( 3 of 12, table );
+        width: 10000px; // Correct widths hack
+
+        padding: .1rem $column-padding * 1.5 .1rem $column-padding;
+        border-right: 1px solid $black-emperor;
+      }
+
+    }
+
+    @include media( $mobile-large-and-smaller ) {
+      .logo { display: none; }
+
+      .site-intro {
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+      }
+
+      h1 {
+        line-height: #{$base-line-height * 1.2}rem;
+        text-align: center;
+
+        .large { font-size: 120%; }
+      }
     }
   }
-
-  @include media( $mobile-large-and-smaller ) {
-    .logo { display: none; }
-    .site-intro { width: 100%; }
-    h1 { text-align: center;}
-  }
-}

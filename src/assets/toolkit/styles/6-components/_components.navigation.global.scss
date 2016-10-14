@@ -28,12 +28,16 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
 //TODO: Should be calculated dynamically by JS
 .site-header {
   @include media( $mobile-large-and-smaller ){
-    padding-top: 4.7rem;
+    padding-top: 3.8rem;
   }
 }
 
 .global {
   font-weight: $weight-normal;
+
+    @include media( $tablet-and-bigger ){
+      background: $global-panel-color;
+    }
 
   @include media( $mobile-large-and-smaller ){
       position: fixed;
@@ -41,10 +45,6 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
       left: 0;
       right: 0;
       z-index: 100;
-  }
-
-  @include media( $tablet-and-bigger ){
-    background: $global-panel-color;
   }
 
   .menu a {
@@ -88,122 +88,107 @@ $overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH
   }
 
   [role=search]{
+    @include clearfix();
+    display: block;
+    position: relative;
+    width: 100%;
 
-  @include clearfix();
-
-  @include media( $mobile-large-and-smaller ){
-    padding: $base-spacing/2 $base-spacing;
-  }
-        width: 100%;
-        display: block;
-        position: relative;
-
-
-        .input-wrapper {
-            display: block;
-            position: relative;
-            @include clearfix();
-
-
-
-@include media( $tablet-and-bigger ){
-  box-shadow: 0 1px 8px rgba( #000, .35 );
-  background: linear-gradient(
-      to right,
-      rgba($global-panel-color, 0) 0,
-      rgba($global-panel-color, 1) $overlay-hint-size);
-  padding-left: $overlay-hint-size + $overlay-hint-offset;
-}
-
-            input {
-
-              background: rgba( #000, .15);
-                border: none;
-                color: $white;
-                float: left;
-                padding: .45rem $base-spacing/2;
-
-                &[type=text] {
-                    width: calc(100% - 4rem);
-                }
-
-                &[type=submit] {
-                    width: 4rem;
-                    border-left: 1px solid rgba(#000, .15);
-                }
-            }
-        }
-
-
-
-  @include media( $tablet-and-bigger ){
+    @include media( $mobile-large-and-smaller ){
+      padding: $base-spacing/2 $base-spacing;
+    }
 
     .input-wrapper {
+      display: block;
+      position: relative;
+      @include clearfix();
 
       input {
-        background: $global-panel-hover-color;
-        color: $global-panel-text-color;
+        background: rgba( #000, .15);
+        border: none;
+        color: $white;
+        float: left;
+        padding: .45rem $base-spacing/2;
+
+        &[type=text] {
+            width: calc(100% - 4rem);
+        }
+
+        &[type=submit] {
+            width: 4rem;
+            border-left: 1px solid rgba(#000, .15);
+        }
       }
-
-      padding-right: 2.5rem;
-      will-change: transform;
-      transition: transform $transition-timeout ease-in-out;
-      transform: translateX(100%);
     }
 
-    .input-wrapper.is-open {
-        transform: translateX(0);
-    }
-}
+    @include media( $tablet-and-bigger ){
+      box-shadow: 0 1px 8px rgba( #000, .35 );
 
+      .input-wrapper {
+        background: linear-gradient(
+            to right,
+            rgba($global-panel-color, 0) 0,
+            rgba($global-panel-color, 1) $overlay-hint-size);
+        padding-left: $overlay-hint-size + $overlay-hint-offset;
+        padding-right: 2.5rem;
+
+        will-change: transform;
+        transition: transform $transition-timeout ease-in-out;
+        transform: translateX(100%);
+
+        input {
+          background: $global-panel-hover-color;
+          color: $global-panel-text-color;
+        }
+
+        &.is-open {
+          transform: translateX( 0 );
+        }
+      }
     }
+  }
 
   @include media( $tablet-and-smaller ){
     padding: 0;
   }
 
-@include media( $mobile-large-and-smaller ){
-
+  @include media( $mobile-large-and-smaller ){
     .button-container {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
 
-        a {
-          padding: 0;
-          margin: 2px 0;
-          border: none;
-          border-left: 1px solid rgba( $white, .15);
-          display: block;
-          padding: 0 .8rem;
-          text-align: right;
-        }
+      a {
+        padding: 0;
+        margin: 2px 0;
+        border: none;
+        border-left: 1px solid rgba( $white, .15);
+        display: block;
+        padding: 0 .8rem;
+        text-align: right;
+      }
     }
 
     .menu {
-        background: $green-victoria;
-        max-height: 75vh;
-        overflow-y: scroll;
-    }
-
-    .menu {
-        will-change: transform;
-        transition: transform $transition-timeout ease-in-out;
-        transform: translateY(-100vh);
+      background: $green-victoria;
+      max-height: 75vh;
+      overflow-y: scroll;
+      will-change: transform;
+      transition: transform $transition-timeout ease-in-out;
+      transform: translateY(-100vh);
     }
 
     &.is-open .menu {
-        transform: translateY(0);
+      transform: translateY(0);
     }
 
     a {
-        display: block;
-        @include menu-item();
+      display: block;
+      @include menu-item();
     }
 
     .mobile { display: block; }
-}
+  }
 
 @include media( $tablet-and-bigger ){
 

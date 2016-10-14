@@ -1,0 +1,82 @@
+---
+title: "Testing page (MVP)"
+
+header:
+  subtitle:   "Faculty of"
+  title:      "Law"
+  titleMaori: "Te Wāhanga Waihanga-Hoahoa"
+  titleClass: "large"
+
+footer:
+  links:
+    - Deadlines and dates for 2016
+    - Organising events
+    - PhD guidelines
+    - Contacts and directories
+    - Deadlines for last year
+
+  phones:
+    - phone1:
+      number: +64 4 472 1000
+      label:  general enquiries
+    - phone2:
+      number: 64221231210
+      label:  personal advisory
+
+  mails:
+    - info@vbs.victoria.ac.nz
+
+---
+
+
+<!-- Variation 2) -->
+
+<section class="layout centraliser block">
+
+  <!-- Left 'submenu' column -->
+  <div class="sidebar"> {{> navigation.site}} </div>
+
+  <!-- Center 'content' and right 'widget' columns -->
+  <div class="content-panel">
+
+    <!-- Center 'content' column -->
+    <main>
+      <div class="block formatting">
+
+        <h1>Example of some extremely very long heading that will break</h1>
+
+        <p>There is gonna be no intro, just paragraph right away.</p>
+
+        {{#>_article
+          class="promo primary"
+          href="http://www.victoria.ac.nz/about/global-engagement"
+          }}
+            <h2>Global and national engagement</h2>
+            <p>We seek to bring the world to Victoria and Victoria to the world. <b>Find out more…</b></p>
+        {{/_article}}
+
+        {{> downloads}}
+
+        <div class="highlight primary" id="course_advice">
+          <h2>Talk to us about your study options</h2>
+          <p>
+            Our liaison officers provide objective advice to help you make the right decisions when planning your first year of study and can provide assistance with selecting your admission type when you apply to enrol.
+          </p>
+          <p>
+            <a href="http://www.victoria.ac.nz/study/course-planning/appointments">Book a course planning appointment</a> for one-to-one advice, email <a href="mailto:course-advice@vuw.ac.nz">course-advice@vuw.ac.nz</a>, or call 0800 VICTORIA (0800 842 867).
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right 'Widgetbar' column -->
+    <aside role="complementary">
+      <div class="block formatting">
+        {{> downloads}}
+      </div>
+    </aside>
+  </div>
+</section>
+
+
+
