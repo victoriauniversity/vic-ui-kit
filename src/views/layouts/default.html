@@ -32,9 +32,16 @@
   {{#unless fabricator}}
 
     {{> navigation.global}}
-    {{>_header}}
+
+    {{#if header }}
+      {{> _header }}
+    {{else}}
+      <!-- Default fallback for header when not specified in the template. -->
+      {{> _header header=header-default }}
+    {{/if}}
 
   {{/unless}}
+
 
 
 
@@ -44,10 +51,17 @@
 
 
 
+
   <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
   {{#unless fabricator}}
 
-    {{> _footer }}
+    {{#if footer }}
+      {{> _footer }}
+    {{else}}
+      <!-- Default fallback for footer when not specified in the template. -->
+      {{> _footer footer=footer-default }}
+    {{/if}}
+
 
   {{/unless}}
 
