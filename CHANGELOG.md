@@ -8,14 +8,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+
 ### Added 
 
 - News overview - `.portrait` version of the image when width-to-height ratio is portrait-like.
+- Automatic wrapping and support for Vimeo and Google Maps embeds (both full size and inlined).
 
 
 ### Fixed
 
 - Alignment, spacing and margins in news articles were improved.
+
+
+
+### Enhanced
+
+- Structure, flexibility and customisation options of the library (eg. header and footer all fully customisable for every single template page).
+
+
 
 
 
