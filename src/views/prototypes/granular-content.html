@@ -1,28 +1,35 @@
 ---
-title: "Testing page (MVP)"
+title: "Prototype | Granular content and its elements"
 
 header:
-  title:      "Victoria Business School"
-  titleMaori: "Orauariki"
+  subtitle:   "Faculty of"
+  title:      "Law"
+  titleMaori: "Te Wāhanga Waihanga-Hoahoa"
   titleClass: "large"
 
 footer:
+  links:
+    - Deadlines and dates for 2016
+    - Organising events
+    - PhD guidelines
+    - Contacts and directories
+    - Deadlines for last year
 
   phones:
     - phone1:
-      number: +64 4 463 5376
-      label: Contact Student &amp; Academic Services
+      number: +64 4 472 1000
+      label:  general enquiries
     - phone2:
-      number: +64 4 463 5821
-      label: Contact the Dean’s Office
+      number: 64221231210
+      label:  personal advisory
 
   mails:
-    - fcom-sas@vuw.ac.nz
-    - commerce-dean@vuw.ac.nz
+    - info@vbs.victoria.ac.nz
 
 ---
 
-<!-- Granular content, tables and other smaller stuff -->
+
+<!-- Variation 2) -->
 
 <section class="layout centraliser block">
 
@@ -35,6 +42,32 @@ footer:
     <!-- Center 'content' column -->
     <main>
       <div class="block formatting">
+
+        <h1>Example of some extremely very long heading that will break</h1>
+
+        <p>There is gonna be no intro, just paragraph right away.</p>
+
+        {{#>_article
+          class="promo primary"
+          href="http://www.victoria.ac.nz/about/global-engagement"
+          }}
+            <h2>Global and national engagement</h2>
+            <p>We seek to bring the world to Victoria and Victoria to the world. <b>Find out more…</b></p>
+        {{/_article}}
+
+        {{> downloads}}
+
+        <div class="highlight primary" id="course_advice">
+          <h2>Talk to us about your study options</h2>
+          <p>
+            Our liaison officers provide objective advice to help you make the right decisions when planning your first year of study and can provide assistance with selecting your admission type when you apply to enrol.
+          </p>
+          <p>
+            <a href="http://www.victoria.ac.nz/study/course-planning/appointments">Book a course planning appointment</a> for one-to-one advice, email <a href="mailto:course-advice@vuw.ac.nz">course-advice@vuw.ac.nz</a>, or call 0800 VICTORIA (0800 842 867).
+          </p>
+        </div>
+
+
 
         <h1>Student and Academic Services</h1><ul><li><a href="http://cms.victoria.ac.nz/fhss/student-admin#welcome">Welcome</a></li><li><a href="http://cms.victoria.ac.nz/fhss/student-admin#servicetostudents">Services Provided to Students</a></li><li><a href="http://cms.victoria.ac.nz/fhss/student-admin#servicestostaff">Services Provided to Staff</a></li><li><a href="http://cms.victoria.ac.nz/fhss/student-admin#officehours">Location and Office Hours</a></li></ul><h2><a id="welcome" name="welcome"></a>Welcome</h2><p><img style="border: 0px solid rgb(0, 0, 0);" class="left portrait" alt="Dr Kristina McGuiness-King, Manager, Student and Academic Services, FHSS" src="http://cms.victoria.ac.nz/fhss/student-admin/publications/kristina-mcguiness-king.jpg" width="130" height="195">The Faculty Student and Academic Services Office aims to enhance the student experience at Victoria by providing support to students in an accessible and timely manner. The services provided to students include enrolment, degree planning, credit transfer, approval of exchange programmes, examinations&nbsp;and graduation.</p><p>All Humanities and Social Sciences students are encouraged to take advantage of our services. The Student and Academic Services Office works closely with student support services, such as Student Health, Student Counselling, the Māori and Pacific Support Coordinators, and Victoria International to ensure that our students have access to and are encouraged to utilise support services available.</p><p>The team also provides Faculty staff with academic administration services, including advice on drafting proposals to change courses, qualifications and major requirements, etc., compilation and compliance checking of all Faculty publications and the Faculty's sections in centrally-produced publications, maintenance of the Faculty website, executive assistance to Faculty committees and the Faculty Board and&nbsp;compliance checking of course outlines.</p><p>For further information on the services we offer, please <a title="Link to FHSS Contact Us page" href="http://cms.victoria.ac.nz/fhss/about/contact">contact us</a> or drop in to the office on Level 4 of the Murphy Building (MY 411). The Student and Academic Services team look forward to your call, your email and or your visit.</p><p><strong>Dr Kristina McGuiness-King<br> Manager, Student and Academic Services</strong></p><p class="page-top" align="right">
            <a href="#page-top">Back to top ^</a>
@@ -288,15 +321,18 @@ footer:
               </td><td headers="table21312r1c3">
                  PDF</td></tr></tbody></table></div>               <!--// Body of the page content using the XHTML Editor //-->
 
+
       </div>
     </main>
-
 
     <!-- Right 'Widgetbar' column -->
     <aside role="complementary">
       <div class="block formatting">
+        {{> downloads}}
       </div>
     </aside>
-
   </div>
 </section>
+
+
+

@@ -1,8 +1,5 @@
 <!-- Media (video, images, galleries) handling -->
 
-{{> navigation.global}}
-{{>_header}}
-
 <section class="layout centraliser block">
 
   <!-- Left 'submenu' column -->
@@ -17,8 +14,103 @@
         <h1>Media handling</h1>
 
 
+        <p><strong>Default behaviour (~ no classes + outside of paragraph) - an image stretches to full width.</strong></p>
+        <img src="http://www.victoria.ac.nz/__data/assets/image/0019/346330/about_2000x800.jpg" alt="Building">
 
-        <h2>Lot of logos on the page</h2>
+
+
+
+        <h2>Inline media natural flow </h2>
+
+        <p><strong>Demonstrates natural flow of inline media (images, videos, maps) when placed right behind each other, followed by enough content. If there is not enough content, breaks must be used to separate the section from each other.</strong></p>
+
+        <img class="inline" title="" src="http://www.victoria.ac.nz/__data/assets/image/0004/370948/ls_medium.jpg" alt="Victoria health researchers Professor Kevin Dew and Dr Kirsten Smiler">
+
+        <iframe class="inline" width="1280" height="720" src="https://www.youtube.com/embed/6nD-kAsV-rk?rel=0" frameborder="0" allowfullscreen=""></iframe>
+
+        <p>Dr Smiler is continuing this research—funded by a HRC Erihapeti Rehu-Murchie Postdoctoral Scholarship—in her role as a postdoctoral researcher in Victoria’s Health Services Research Centre.</p><p>“Support services for Māori Deaf and their whānau are often unaware that they exist at the intersection of languages and cultures, all of which have differing profiles, roles and status in New Zealand. My research has worked toward providing a better understanding of these complexities, and recommends that Māori and Deaf knowledge inform how services and professionals respond,” says Dr Smiler.</p><p>“This work is an acknowledgement of the importance of whānau, language, and culture on our overall health and wellbeing. I feel extremely privileged to have been able to do this work.”</p>
+
+
+
+
+        <h2>Inline media with not enough text content</h2>
+
+
+        <p><strong>Natural flow of media must be broken with usage of a 'break'.</strong></p>
+
+
+        <p>
+          <img src="http://cms.victoria.ac.nz/__data/assets/image/0003/307938/ird.jpg" alt="logo">
+
+          <img src="http://cms.victoria.ac.nz/__data/assets/image/0007/191149/msd-logo.gif">
+
+          Some pretty short paragraph
+        </p>
+
+        <!-- *MUST BE* used in the place to make the break -->
+        <hr class="break">
+
+        <p>
+
+          <img src="https://cdn.colorlib.com/wp/wp-content/uploads/sites/2/2014/02/Olympic-logo.png">
+
+          Another pretty short paragraph
+        </p>
+
+        <!-- *MUST BE* used in the place to make the break -->
+        <hr class="break">
+
+
+
+
+        <h2>Maps</h2>
+
+        <p><strong>Copy-paste Google Maps' code without wrapping it into any extra markup (this is done automatically on a page load). To make a video part of your content, add class 'inline' to the iframe.</strong></p>
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2997.8484954583428!2d174.76647281629434!3d-41.29040167927309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d38b02952575dbb%3A0xadf3ba89622116f0!2sVictoria+University+of+Wellington!5e0!3m2!1sen!2snz!4v1476656083281" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+
+        <p>In 1904, the first stage of what is today known as the Hunter Building was begun, and the building was opened in 1906 by the Governor of New Zealand, Lord Plunket.</p>
+
+        <iframe class="inline" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2997.8484954583428!2d174.76647281629434!3d-41.29040167927309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d38b02952575dbb%3A0xadf3ba89622116f0!2sVictoria+University+of+Wellington!5e0!3m2!1sen!2snz!4v1476656083281" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <p>
+        A pattern of growth was quickly established. Student numbers rose from 254 in 1905 to over 700 in 1923, with three additions made to the building over this period. A reputation for fine teaching and research also grew, thanks to the efforts of early academics such as Professors ‘Tommy’ Hunter, J.C. Beaglehole and George von Zedlitz.
+        </p>
+
+        <p>
+          In 1961, the University of New Zealand system was dissolved, and on 1 January 1962, Victoria College became Victoria University of Wellington.
+        </p>
+
+
+
+
+        <h2>Videos</h2>
+
+        <p><strong>Copy-paste YouTube's or Vimeo's code without wrapping it into any extra markup (this is done automatically on a page load). To make a video part of your content, add class 'inline' to the iframe.</strong></p>
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/MV3tNB6MP60" frameborder="0" allowfullscreen></iframe>
+
+        <iframe src="https://player.vimeo.com/video/148124447?byline=0&portrait=0" width="250" height="141" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <p>
+          Victoria University is characterised by the depth, consistency and effectiveness of our culture of domestic and international engagement. Our commitment to reciprocal, high-quality relationships springs from identifying and understanding the need for New Zealand to achieve sustainable development.
+        </p>
+
+
+        <iframe class="inline" src="https://player.vimeo.com/video/66287748?title=0&byline=0&portrait=0" width="250" height="141" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+        <p>
+          Victoria’s historic strength in public policy has been fully demonstrated by substantial contributions to major government projects, and entrepreneurship education is an emerging strength on which we intend to build. Victoria also gives high priority to engagement with Māori and Pacific communities.
+        </p>
+
+        <p>
+          Victoria has developed close ties with a wide range of businesses and government organisations, and several recent initiatives are aimed at improving the University’s engagement with industry.
+        </p>
+
+
+
+        <h2>Multiple custom sized images</h2>
+
+        <p><strong>To be used when sizing of one or more images must be respected (eg. partners' logos).</strong></p>
 
         <p>The Chair in Public Finance is co-funded by Victoria University of Wellington in conjunction with support from the following sponsors:</p>
 
@@ -62,24 +154,6 @@
         </figure>
 
 
-        <h2>Breaking inline media within a small paragraph</h2>
-        <p>
-          <img src="http://cms.victoria.ac.nz/__data/assets/image/0003/307938/ird.jpg" alt="logo">
-
-          <img src="http://cms.victoria.ac.nz/__data/assets/image/0007/191149/msd-logo.gif">
-
-          Some pretty short paragraph
-        </p>
-
-        <!-- *MUST BE* used in the place to make the break -->
-        <hr class="break">
-
-        <p>
-
-          <img src="https://cdn.colorlib.com/wp/wp-content/uploads/sites/2/2014/02/Olympic-logo.png">
-
-          Another pretty short paragraph
-        </p>
 
 
       </section>
@@ -98,5 +172,3 @@
   </div>
 
 </section>
-
-{{> _footer }}
