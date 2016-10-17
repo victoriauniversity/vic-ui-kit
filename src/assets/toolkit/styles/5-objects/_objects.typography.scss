@@ -105,11 +105,11 @@ $text-block-spacing: 1.2em;
     color: $black-emperor;
     line-height: 1.4;
 
-    > strong {
-      &:after {
+    strong + span {
+      &:before {
         @include objectify( inline-block, '\00B7' ); // '·' middle dot character
-        margin-left: .5em;
-        margin-right: .25em;
+        margin-right: .5em;
+        margin-left: .25em;
       }
     }
   }
