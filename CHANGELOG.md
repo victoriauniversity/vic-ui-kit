@@ -14,12 +14,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - News overview - `.portrait` version of the image when width-to-height ratio is portrait-like.
 - Automatic wrapping and support for Vimeo and Google Maps embeds (both full size and inlined).
 - 4 different notification messages - error, warning, information and successful.
+- Tags for filtering.
 
 
 
 ### Fixed
 
 - Alignment, spacing and margins in news articles were improved.
+- Staff listing - if there is no department in the introduction, do not use delimiting dot. 
 
 
 
