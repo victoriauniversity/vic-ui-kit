@@ -13,6 +13,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - News overview - `.portrait` version of the image when width-to-height ratio is portrait-like.
 - Automatic wrapping and support for Vimeo and Google Maps embeds (both full size and inlined).
+- 4 different notification messages - error, warning, information and successful.
+
 
 
 ### Fixed
