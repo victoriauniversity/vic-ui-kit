@@ -23,10 +23,16 @@
 
   /** CENTRALISER - Restricts the width of the content to allowed maximum and aligns to center. */
 
-  .centraliser { @include outer-container; }
+  .centraliser {
+    @include outer-container;
+    position: relative;
+  }
 
 
   /** SECTOR - Single page section container with unlimited width and no paddings/margins. Can be used to group related components. */
+
+  .sector {
+  }
 
   .sector,
   .separated {
@@ -38,7 +44,7 @@
   /** LAYOUT - Contains all the content's columns and layout combinations */
 
   .layout {
-    width:    100%;
+    width: 100%;
 
     &.block {
       padding-top: 0;
