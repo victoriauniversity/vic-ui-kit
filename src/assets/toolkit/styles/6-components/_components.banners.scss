@@ -5,12 +5,14 @@
 
   /** Banner used on homepages. */
 
+  $homepage-banner-max-height: rem( 520px );
+
   .homepage-banner {
 
     .banner { position: relative; }
 
     @include media( $desktop-and-bigger ) {
-      min-height: rem( 520px );
+      min-height: $homepage-banner-max-height;
 
       .sidebar {
         width: 25%;
@@ -27,17 +29,15 @@
         @include size( 100% );
 
         img {
-          position: absolute;
-          right: 0;
+          position: absolute; right: 0;
           @include size( auto 100% );
         }
       }
     }
 
-    //Why wont my hover work!!
     a[href] {
-      img {
-        @include hoverify() {
+      @include hoverify() {
+        img {
           opacity: $base-hover-opacity;
         }
       }
@@ -46,22 +46,17 @@
     figcaption {
       // extend .tile-text  Dont use extend - irwinna
       padding: 1rem;
-      pointer-events: none;
       background-color: $green-victoria;
 
       @include media( $tablet-and-bigger) {
-        width: 50%;
         position: absolute;
         bottom: 40%;
         right: 0;
+        width: 50%;
 
-        &.wider {
-          width: 50%;
-        }
+        &.wider { width: 50%; }
 
-        &.bottom {
-          bottom: 0;
-        }
+        &.bottom { bottom: 0; }
 
         &.top {
           bottom: initial;

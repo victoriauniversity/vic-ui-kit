@@ -29,6 +29,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Structure, flexibility and customisation options of the library (eg. header and footer all fully customisable for every single template page).
 - Homepage banner - improved responsive behavior, added hovering animation.
+- Alignment and styling of the tabbed content bar on the homepage.
 
 
 

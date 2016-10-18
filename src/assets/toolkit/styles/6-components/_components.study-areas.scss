@@ -51,7 +51,7 @@ $gutter: 8px;
                 position: absolute;
                 z-index: 10;
                 top: 0;
-               
+
                 .tile-title {
                     display: flex;
                     align-items: center;
@@ -170,75 +170,63 @@ $gutter: 8px;
 // -------------------------
 // Tabbed nav controls
 // -------------------------
+
+$tab-caret-size: 1.6rem;
+
 .study-area-tabs {
-    margin-bottom: 1.5em;
-    ul {
-        @include media ($tablet-and-bigger) {
-            width: 70%;
-        }
-        @include outer-container(100%);
-        li {
-            @include span-columns(6, block-collapse);
-            a {
-                @include padding(1em);
-                @include display(block);
-                background-color: $grey-alto;
-                //Mobile styles for double lined text in tab
-                min-height: 80px;
-                display: flex;
-                align-items: center;
-                text-align: center;
-                @include media ($tablet-and-bigger) {
-                    min-height: auto;
-                }
-                &:hover {
-                    background-color: $grey-silver;
-                }
-                h4 {
-                    color: $black-mine-shaft;
-                    // helps center the text on mobile
-                    margin: 0 auto;
-                }
-            }
-            &.active {
-                a {
-                    background-color: $green-victoria;
-                    &:hover {
-                        opacity: 1;
-                        cursor: default;
-                    }
-                    h4 {
-                        color: $white;
-                    }
-                }
-                &:after {
-                    position: relative;
-                    display: inline-block;
-                    content: "";
-                    left: 50%;
-                    bottom: 0;
-                    margin-left: -0.75em;
-                    margin-bottom: 1em;
-                    height: 0;
-                    width: 0;
-                    border-left: 0.75em solid transparent;
-                    border-right: 0.75em solid transparent;
-                    border-top: 0.5em solid $green-victoria;
-                }
-            }
-        }
-    }
-}
+  margin-bottom: $base-spacing * 1.5;
 
-.section {
-        display: block;
-        border-bottom: 1px solid $grey-gallery;
-}
+  ul {
+    max-width: $base-max-content-height;
+    margin: 0 auto;
+    @include clearfix;
 
-//TODO: remove once refactored
-.study-area-tabs,
-.tile-grid {
-    ul a {
-        border-bottom: 0;
+    li {
+      @include span-columns( 6, block-collapse );
+
+      a {
+        @include padding(1em);
+        @include display(block);
+        background-color: $grey-alto;
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        @include media ( $mobile-large-and-smaller ) {
+          height: rem( 60px );
+        }
+
+        &:hover {
+          background-color: $grey-silver;
+        }
+        h4 {
+          color: $black-mine-shaft;
+          // helps center the text on mobile
+          margin: 0 auto;
+        }
+      }
+
+      &.active {
+        position: relative;
+
+        a {
+          background-color: $green-victoria;
+
+          &:hover {
+            opacity: 1;
+            cursor: default;
+          }
+
+          h4 { color: $white; }
+        }
+        &:after {
+          @include objectify( block, $position: absolute );
+          left: 50%;
+          margin-left: -1 * $tab-caret-size/2;
+          @include size( 0 );
+          @include triangle( $tab-caret-size $tab-caret-size / 3, $green-victoria, down );
+        }
+      }
     }
+  }
 }
