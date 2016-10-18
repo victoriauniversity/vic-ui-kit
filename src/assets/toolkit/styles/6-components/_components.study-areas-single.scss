@@ -6,7 +6,7 @@ $gutter: 8px;
 // ----------------
 // -------------------------
 // ------------------------
-// - The gerneic tile grid 
+// - The gerneic tile grid
 // - Used for both Study-areas and Degrees & Qualifactions block
 // ------------------------
 .study-area-single {
@@ -23,15 +23,19 @@ $gutter: 8px;
                 width: 100%;
             }
         }
+
         .content-wrap {
             @include span-columns(7);
             @include media ($mobile-large-and-smaller) {
                 @include span-columns(6);
             }
             .text-subjects-wrap {
-                @include outer-container(100%);
-                @include omega(3n);
+
+                    @include media ($tablet-and-bigger) {
+                      display: inline;
+                    }
                 .text-wrap {
+
                     @include span-columns(4 of 6);
                     @include media ($tablet-and-smaller) {
                         @include span-columns(8);
@@ -42,34 +46,47 @@ $gutter: 8px;
                     p {
                         font-size: 1.125em;
                         line-height: 1.8rem;
-                        margin-bottom: 2rem;
+                        margin-bottom: 1.8rem;
                     }
                 }
                 .subjects-wrap {
                     @include media ($tablet-and-smaller) {
                         @include span-columns(8);
                     }
+
+                    @include media ($tablet-and-bigger) {
+                      float: right;
+                    }
+
                     @include span-columns(2 of 6);
                     margin-right: 0;
-                    h4 {
-                        color: $grey;
-                    }
+
+                    h4 { color: $grey; }
+
                     ul {
                         padding-top: 0.5rem;
+                        margin-bottom: .75rem;
+
                         li {
                             font-size: 1.1em;
-                            border-bottom: 1px solid $grey-gallery;
-                            padding: 0.5em;
-                            &:last-child {
-                                border-bottom: none;
-                            }
+                            border-bottom: $base-border;
+                            padding: .5em .15em;
+
+                            &:last-child { border-bottom: none; }
                         }
                     }
                 }
             }
             a.button {
-                margin-top: 1em;
                 float: left;
+
+                @include media ($tablet-and-bigger) {
+                  clear: left;
+                }
+
+                @include media ( $mobile-large-and-smaller ) {
+                  margin-bottom: .35rem;
+                }
             }
         }
     }

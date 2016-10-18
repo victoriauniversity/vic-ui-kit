@@ -15,20 +15,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Automatic wrapping and support for Vimeo and Google Maps embeds (both full size and inlined).
 - 4 different notification messages - error, warning, information and successful.
 - Tags for filtering.
-
+- Adds icons to the content tabbed bar on the homepage.
 
 
 ### Fixed
 
 - Alignment, spacing and margins in news articles were improved.
 - Staff listing - if there is no department in the introduction, do not use delimiting dot. 
-
+- Homepage, introduction block - simplified and optimised, delimiting line is now separating two columns correctly (without gaps).
 
 
 ### Enhanced
 
 - Structure, flexibility and customisation options of the library (eg. header and footer all fully customisable for every single template page).
-
+- Homepage banner - improved responsive behavior, added hovering animation.
+- Alignment and styling of the tabbed content bar on the homepage.
+- Full width study area block is now floating properly: call-to-action button is positioned after description on desktop and after subjects on mobile.
 
 
 
