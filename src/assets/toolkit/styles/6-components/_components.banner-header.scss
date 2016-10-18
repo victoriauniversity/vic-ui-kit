@@ -24,6 +24,7 @@
 
     /* Victoria main logotype */
     .logo {
+      text-align: center;
       // Logo image
       img {
         vertical-align: middle;
@@ -67,6 +68,12 @@
 
     @include media( $tablet-and-bigger ) {
 
+      .block {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+      }
+
       .site-intro {
         @include span-columns( 9 of 12, table );
         padding: .3rem $column-padding .5rem $column-padding * 1.5;
@@ -74,7 +81,6 @@
 
       .logo {
         @include span-columns( 3 of 12, table );
-        width: 10000px; // Correct widths hack
 
         padding: .1rem $column-padding * 1.5 .1rem $column-padding;
         border-right: 1px solid $black-emperor;
@@ -86,9 +92,9 @@
       .logo { display: none; }
 
       .site-intro {
+        width: 100%;
         padding-left: 0;
         padding-right: 0;
-        width: 100%;
       }
 
       h1 {
