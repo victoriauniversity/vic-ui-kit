@@ -155,12 +155,11 @@
   }
 
   // Extendable standard link
-
   %base-link {
     color: $base-link-color;
     text-decoration: underline;
 
-    &:hover {
+    @include hoverify() {
       color: $base-link-hover-color;
       text-decoration: none;
     }
