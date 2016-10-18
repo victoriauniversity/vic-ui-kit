@@ -15,7 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Automatic wrapping and support for Vimeo and Google Maps embeds (both full size and inlined).
 - 4 different notification messages - error, warning, information and successful.
 - Tags for filtering.
-
+- Adds icons to the content tabbed bar on the homepage.
 
 
 ### Fixed

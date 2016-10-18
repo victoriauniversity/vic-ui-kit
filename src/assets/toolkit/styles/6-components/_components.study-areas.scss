@@ -179,15 +179,15 @@ $tab-caret-size: 1.6rem;
   margin-bottom: $base-spacing * 1.5;
 
   ul {
+    @include clearfix;
     max-width: $base-max-content-height;
     margin: 0 auto;
-    @include clearfix;
 
     li {
       @include span-columns( 6, block-collapse );
 
       a {
-        @include padding(1em);
+        padding: 1em;
         @include display(block);
         background-color: $grey-alto;
         display: flex;
@@ -201,6 +201,14 @@ $tab-caret-size: 1.6rem;
         &:hover {
           background-color: $grey-silver;
         }
+
+        @include icon-selector() {
+          font-weight: $weight-normal;
+          line-height: 0;
+        }
+
+        // Icon size modificators
+        .icon-book-open { font-size: 90%; }
 
         h4 {
           color: $black-mine-shaft;
