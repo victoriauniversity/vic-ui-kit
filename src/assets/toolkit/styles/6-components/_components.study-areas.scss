@@ -121,11 +121,13 @@ $gutter: 8px;
     h1 {
         margin-bottom: 0.5em;
     }
+
     .pg-filter {
         padding: 1em;
         font-size: 1.2em;
         padding-left: 0.5em;
     }
+
     //This operate the PG only check box the markup needs to have the tiles as general siblings of teh check box
     // ie dont wrap the checkbox in a div container
     input[type=checkbox]:checked ~ .tiles-wrap .tile[data-pg="only"] {
@@ -199,6 +201,7 @@ $tab-caret-size: 1.6rem;
         &:hover {
           background-color: $grey-silver;
         }
+
         h4 {
           color: $black-mine-shaft;
           // helps center the text on mobile
@@ -219,12 +222,13 @@ $tab-caret-size: 1.6rem;
 
           h4 { color: $white; }
         }
+
         &:after {
           @include objectify( block, $position: absolute );
           left: 50%;
           margin-left: -1 * $tab-caret-size/2;
           @include size( 0 );
-          @include triangle( $tab-caret-size $tab-caret-size / 3, $green-victoria, down );
+          @include triangle( $tab-caret-size $tab-caret-size/3, $green-victoria, down );
         }
       }
     }
