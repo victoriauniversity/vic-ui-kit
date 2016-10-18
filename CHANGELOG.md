@@ -22,13 +22,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Alignment, spacing and margins in news articles were improved.
 - Staff listing - if there is no department in the introduction, do not use delimiting dot. 
-
+- Homepage, introduction block - simplified and optimised, delimiting line is now separating two columns correctly (without gaps).
 
 
 ### Enhanced
 
 - Structure, flexibility and customisation options of the library (eg. header and footer all fully customisable for every single template page).
-
+- Homepage banner - improved responsive behavior, added hovering animation.
 
 
 
