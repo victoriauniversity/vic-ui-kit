@@ -16,6 +16,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - 4 different notification messages - error, warning, information and successful.
 - Tags for filtering.
 - Adds icons to the content tabbed bar on the homepage.
+- Breadcrumbs navigation for desktop and tablet devices.
+- Simple gallery for media with captions. Can be used by wrapping media items (= figures with class `media` applied to them) into ```<section class="gallery"> ... </section>```.
 
 
 ### Fixed
@@ -23,6 +25,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Alignment, spacing and margins in news articles were improved.
 - Staff listing - if there is no department in the introduction, do not use delimiting dot. 
 - Homepage, introduction block - simplified and optimised, delimiting line is now separating two columns correctly (without gaps).
+- Mobile devices - users are now able to perform click actions on the top 2/3 of the screen.
 
 
 ### Enhanced
