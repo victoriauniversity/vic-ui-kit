@@ -24,6 +24,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Alignment, spacing and margins in news articles were improved.
 - Staff listing - if there is no department in the introduction, do not use delimiting dot. 
 - Homepage, introduction block - simplified and optimised, delimiting line is now separating two columns correctly (without gaps).
+- Mobile devices - users are now able to perform click actions on the top 2/3 of the screen.
 
 
 ### Enhanced
