@@ -21,10 +21,14 @@ $gutter: 8px;
           display: block;
         }
 
+        $tile-height: rem( 250px );
+        $tile-image-max-width: 3.2258 * $tile-height; // width-to-height ratio * height
+
         li.tile {
+            float: left;
             overflow: hidden;
             position: relative;
-            height: rem( 225px );
+            height: rem( 250px );
             margin-bottom: $gutter;
 
             // Background image
@@ -33,19 +37,13 @@ $gutter: 8px;
               height: 100%;
               position: absolute;
               top: 0; left: 0; right: 0; bottom: 0;
-              margin-left: -1 * rem( 725px ) / 2;
+              margin-left: -1 * $tile-image-max-width / 2;
               left: 50%;
             }
 
-            &.is-matching {
-                filter: saturate(200%);
+            &.is-matching { filter: saturate(200%); }
+            &.is-not-matching { filter: saturate(0%); }
 
-            }
-            &.is-not-matching {
-                filter: saturate(0%);
-            }
-
-            float: left;
 
             $four-grid-tile-margin:  1%;
             $three-grid-tile-margin: 1%;
@@ -204,28 +202,24 @@ $gutter: 8px;
             img {
                 width: 100%;
                 @include media ($tablet) {
-                    vertical-align: middle;
-                }
-            }
-            //This is a helper div to veritcally align the img when it overflows on small devices
-            .img-helper {
-                @include media ($tablet-and-smaller) {
-                    height: 100%;
-                    vertical-align: middle;
-                    display: inline-block;
+                  vertical-align: middle;
                 }
             }
             span {
                 display: block;
-                padding: 0 1em 1em 1em;
-                @include media ($tablet-and-bigger) {
-                    display: none;
+                padding: 0 1em 1em;
+                @include media ($desktop-and-bigger) {
+                  display: none;
                 }
             }
             &:hover {
+
+              @include media ($desktop-and-bigger) {
                 span {
-                    display: block;
+                  height: rem( 180px ); //TODO: Do cleanly
+                  display: block;
                 }
+              }
             }
         }
     }
