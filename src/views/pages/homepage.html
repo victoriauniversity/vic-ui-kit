@@ -1,0 +1,39 @@
+<!-- Banner header + menu with full-width content bar underneath -->
+{{> navigation.global}} 
+<!-- TODO: Add full width banner with sidebar menu -->
+<!-- Center 'content' and right 'widget' columns -->
+<div class="layout centraliser">
+    <div class="sidebar "> {{> navigation.site}} </div>
+    <div class="content-panel">
+        <figure class="homepage-banner bleed">
+            <a href="#">
+                <img src="http://www.victoria.ac.nz/__data/assets/image/0017/344105/crocodile-bike-2000x800px.jpg">
+                <!-- Use class="wider, bottom or top" to position the text box -->
+                <figcaption class="">
+                    <h1>Centre for Strategic Studies: New Zealand <i class="icon-right-open"></i></h1>
+                </figcaption>
+            </a>
+        </figure>
+    </div>
+</div>
+<div class="homepage-base layout">
+    <!-- Center 'content' column -->
+    <div class="content-panel">
+        <main>
+            <!-- Banner -->
+            <section>
+                {{> homepage-intro}}
+                <section class="centraliser block">
+                    <div class="study-area-tabs" id="study-area-tabs">
+                        <ul>
+                            <li class="active"><a href="javascript:void(0)"><h4>Study areas</h4></a></li>
+                            <li><a href="javascript:void(0)"><h4>Degrees and qualifications</h4></a></li>
+                        </ul>
+                    </div>
+                    {{> study-areas}} {{! > study-area-single}} {{> degrees-quals-new}}
+                </section>
+                {{> promo-with-1x-image}} {{> text-promo-panel}} {{> two-thirds-promo-panel}} {{> three-cols-images}}
+            </section>
+        </main>
+    </div>
+</div>
