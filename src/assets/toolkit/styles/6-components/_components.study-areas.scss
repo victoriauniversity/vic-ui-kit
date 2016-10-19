@@ -11,14 +11,31 @@ $gutter: 8px;
 // ------------------------
 .tile-grid {
     @include outer-container(100%);
+
     .tiles-wrap {
         @include fill-parent();
         margin-top: 1rem;
+
+        > ul {
+          @include clearfix;
+          display: block;
+        }
+
         li.tile {
-            position: relative;
-            max-height: 225px;
-            margin-bottom: $gutter;
             overflow: hidden;
+            position: relative;
+            height: rem( 225px );
+            margin-bottom: $gutter;
+
+            // Background image
+            .img-helper + img {
+              width: auto;
+              height: 100%;
+              position: absolute;
+              top: 0; left: 0; right: 0; bottom: 0;
+              margin-left: -1 * rem( 725px ) / 2;
+              left: 50%;
+            }
 
             &.is-matching {
                 filter: saturate(200%);
@@ -27,51 +44,72 @@ $gutter: 8px;
             &.is-not-matching {
                 filter: saturate(0%);
             }
-            @include media ($desktop-and-bigger) {
-                @include span-columns(3);
-                margin-right: $gutter;
-                max-height: none;
-                margin-bottom: 0;
+
+            float: left;
+
+            $four-grid-tile-margin:  1%;
+            $three-grid-tile-margin: 1%;
+            $two-grid-tile-margin:   1.3%;
+
+            @include media ($desktop-large) {
+              width: ( 100 - 3 * $four-grid-tile-margin ) / 4 ;
+              margin-right: $four-grid-tile-margin;
+
+              &:nth-child( 4n ) {
+                margin-right: 0;
+              }
             }
+
+            @include media ($desktop) {
+              width: ( 100 - 2 * $three-grid-tile-margin ) / 3 ;
+              margin-right: $three-grid-tile-margin;
+
+              &:nth-child( 3n ) {
+                margin-right: 0;
+              }
+            }
+
             @include media ($tablet) {
-                @include span-columns(4);
-                margin-right: $gutter;
+              width: ( 100 - 1 * $two-grid-tile-margin ) / 2 ;
+              margin-right: $two-grid-tile-margin;
+
+              &:nth-child( 2n ) {
+                margin-right: 0;
+              }
             }
-            // Not working yet but should be able to add a class to wrapper for more columns
-            @at-root .more-cols#{&} {
-                @include span-columns(2.4);
-                margin-right: $gutter;
-            }
+
             // All the text for the tile including the hidden text
             .tile-text {
-                width: 100%;
-                background-color: $green-victoria;
-                height: auto;
-                display: block;
-                position: absolute;
-                z-index: 10;
-                top: 0;
-
-                .tile-title {
-                    display: flex;
-                    align-items: center;
-                    padding: 1em;
-                    h2 {
-                        float: left;
-                        width: 95%;
-                    }
-                    i {
-                        display: flex;
-                        align-items: centre;
-                        width: 5%;
-                        color: $white;
-                        font-size: 2.2em;
-                        &::before {
-                            margin: 0;
-                        }
-                    }
-                }
+              width: 100%;
+              background-color: $green-victoria;
+              height: auto;
+              display: block;
+              position: absolute;
+              z-index: 10;
+              top: 0;
             }
+
+              .tile-title {
+                display: flex;
+                align-items: center;
+                padding: 1em;
+
+                h2 {
+                    float: left;
+                    width: 95%;
+                }
+                i {
+                  margin-left: .5rem;
+                  display: flex;
+                  align-items: centre;
+                  width: 5%;
+                  color: $white;
+                  font-size: 2.2em;
+
+                  &::before { margin: 0; }
+                }
+              }
+
             h2,
             h4,
             p {
@@ -96,10 +134,35 @@ $gutter: 8px;
                 }
             }
             h4 {
-                font-size: 1.2em;
-                margin-bottom: 0.5em;
+              color: #DDD;
+              font-size: 1.2em;
+              margin-bottom: 0.5em;
+
+              &:before { font-size: 85%; }
             }
             // The hidden subjects span which is displayed on hover
+
+
+            @include media ( $mobile-large-and-smaller ) {
+              float: none;
+
+              .tile-title {
+                padding-top: .5em;
+                padding-bottom: 0;
+              }
+
+              .img-helper + img {
+                max-height: none;
+              }
+
+              h4 {
+                display: inline-block;
+                font-size: 1.1em;
+                margin-right: .5em;
+              }
+
+              p { display: inline-block; }
+            }
         }
     }
     &.hidden {
