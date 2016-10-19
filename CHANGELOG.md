@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - 4 different notification messages - error, warning, information and successful.
 - Tags for filtering.
 - Adds icons to the content tabbed bar on the homepage.
+- Breadcrumbs navigation for desktop and tablet devices.
 
 
 ### Fixed
