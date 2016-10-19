@@ -33,7 +33,7 @@
 
   figcaption {
     display: block;
-    padding: .2em 0 .2em $base-spacing / 2;
+    padding: .2em 0 .2em .8em;
     border-left: $strip-light;
     color: $black-emperor;
     margin-bottom: $base-spacing;
@@ -119,4 +119,36 @@
           padding-bottom: 22.5%;
         }
       }
+  }
+
+
+  /** Simple gallery (images + breadcrumbs) */
+
+  $gallery-image-height: rem( 220px );
+
+
+  @include media( $tablet-and-bigger ){
+
+    .gallery {
+      margin-bottom: $base-spacing;
+      @include clearfix;
+
+      img {
+        @include size( auto $gallery-image-height );
+      }
+
+      figcaption {
+        margin-bottom: 0;
+        font-size: 85%;
+        border-left-width: 3px;
+      }
+
+      .media {
+        float: left;
+        width: min-content;
+        margin-right: 1.2rem;
+        margin-bottom: 1.2rem;
+      }
+    }
+
   }

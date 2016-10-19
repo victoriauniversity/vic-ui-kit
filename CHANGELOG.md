@@ -17,6 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Tags for filtering.
 - Adds icons to the content tabbed bar on the homepage.
 - Breadcrumbs navigation for desktop and tablet devices.
+- Simple gallery for media with captions. Can be used by wrapping media items (= figures with class `media` applied to them) into ```<section class="gallery"> ... </section>```.
 
 
 ### Fixed
