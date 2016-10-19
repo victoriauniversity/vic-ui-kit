@@ -15,7 +15,7 @@ var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 43.6875em)', //update in 
 
 
 
-/* CONSTANT ATTRIBUTES */
+  /* CONSTANT ATTRIBUTES */
 
   // Iframe selectors
   YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
@@ -23,6 +23,7 @@ var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 43.6875em)', //update in 
   VIMEO_IFRAME_SELECTOR = 'iframe[src*="vimeo"]';
 
 
+  /* SUPPORTING FUNCTIONS */
 
   /** Wrap YT videos in .embed wrapper that helps with responsiveness. */
   function wrapEmbeddedIframes() {
@@ -44,6 +45,16 @@ var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 43.6875em)', //update in 
   }
 
 
+  /** Deletes all study areas tiles that are display: none from DOM to
+  keep the markup clean (and easily handled by the CSS) */
+  function removedUnusedTiles() {
+    $( '.tiles-wrap .tile').each( function() {
+        console.log( "HERE " );
+      if ($(this).css("display") == "none") {
+        $(this).remove();
+      }
+    });
+  }
 
 
 
@@ -132,5 +143,6 @@ $(function(){
   /** DOM manipulation */
 
   wrapEmbeddedIframes();
+  removedUnusedTiles(); //TODO: Review - Can be removed after all the study areas are migrated
 
 });
