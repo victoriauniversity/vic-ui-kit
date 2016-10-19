@@ -37,16 +37,25 @@
 
     a[href] {
       @include hoverify() {
-        img {
-          opacity: $base-hover-opacity;
-        }
+        img { opacity: $base-hover-opacity; }
       }
     }
 
     figcaption {
-      // extend .tile-text  Dont use extend - irwinna
       padding: 1rem;
       background-color: $green-victoria;
+
+      h1 {
+        margin-bottom: .25em;
+
+        @include icon-selector() {
+          margin-left: .5em;
+
+          &:before { display: inline; }
+        }
+      }
+
+      h3 { line-height: 1.2; }
 
       @include media( $tablet-and-bigger) {
         position: absolute;

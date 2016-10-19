@@ -49,7 +49,6 @@ var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 43.6875em)', //update in 
   keep the markup clean (and easily handled by the CSS) */
   function removedUnusedTiles() {
     $( '.tiles-wrap .tile').each( function() {
-        console.log( "HERE " );
       if ($(this).css("display") == "none") {
         $(this).remove();
       }
@@ -128,7 +127,6 @@ $(function(){
 	//Study areas tabs toggle
 
 	$('#study-area-tabs li a').click(function(){
-		console.log('test');
 		if ($(this).parent().hasClass('active')) {
 			return;
 		}
