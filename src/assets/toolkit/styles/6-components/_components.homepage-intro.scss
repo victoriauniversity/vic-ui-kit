@@ -2,98 +2,87 @@
 // ======== Intro block on homepages
 // ========================================
 //
-
 //---- Settings ---
 // ----------------
 // -------------------------
 .homepage-intro {
     @include clearfix;
-
     @include media ($tablet-and-bigger) {
-      width: 100/3 * 2%;
-
-      &:last-child { margin: 0 auto; }
-
-      &:not(:last-child) {
-        float: left;
-
-        // Only if not last
-        &:after {
-          @include objectify();
-          @include size( 0 100% );
-          position: absolute;
-          left: ( 100 / 12 ) * 8%;
-          top: 0;
-          border-right: $base-border;
+        width: 100/3 * 2%;
+        &:last-child {
+            margin: 0 auto;
         }
-      }
+        &:not(:last-child) {
+            float: left;
+            // Only if not last
+        }
     }
-
     @include media ($mobile-large-and-smaller) {
-      &:not(:last-child) {
-        border-bottom: $base-border;
-      }
+        &:not(:last-child) {
+            border-bottom: $base-border;
+        }
     }
-
-
     .intro-text {
-      margin-bottom: 1.5rem;
-
-      p {
-        font-size: 1.125em;
-        color: $green-victoria;
-      }
+        margin-bottom: 1.5rem;
+        p {
+            font-size: 1.125em;
+            color: $green-victoria;
+        }
     }
     .links-wrap {
-      p {
-        display: inline-block;
-        margin-bottom: 0; // Reset
-        padding-right: 1em;
-        line-height: 2.2;
-      }
-
-      .social-icon {
-        display: inline-block;
-        vertical-align: middle;
-      }
-
-      div {
-        @include span-columns(4 of 8);
-        @include media ($tablet-and-smaller) {
-            @include span-columns(8);
-
-            &.social-links {
-              margin-top: 1.5rem;
-            }
+        p {
+            display: inline-block;
+            margin-bottom: 0; // Reset
+            padding-right: 1em;
+            line-height: 2.2;
         }
-        &.button-links {
-            a.button {
-                margin-right: .5rem;
-                &:last-child {
-                    margin-right: 0;
+        .social-icon {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        div {
+            @include span-columns(4 of 8);
+            @include media ($tablet-and-smaller) {
+                @include span-columns(8);
+                &.social-links {
+                    margin-top: 1.5rem;
+                }
+            }
+            &.button-links {
+                a.button {
+                    margin-right: .5rem;
+                    &:last-child {
+                        margin-right: 0;
+                    }
                 }
             }
         }
-      }
     }
-
-    & + .text-promo-panel {
-      padding: 0;
-      border-bottom: none;
-
-      @include media ($tablet-and-bigger) {
-        float: left;
-        width: 100/3 * 1%;
-      }
-
-      .text-wrap,
-      .button-wrap {
-          @include span-columns(4 of 4);
-      }
-
-      .button-wrap {
-          margin-top: 1rem;
-      }
+    & + .text-promo-panel,
+    & + .intro-promo {
+        padding: 0;
+        border-bottom: none;
+        @include media ($tablet-and-bigger) {
+            float: left;
+            width: 100/3 * 1%;
+        }
+        .text-wrap,
+        .button-wrap {
+            @include span-columns(4 of 4);
+        }
+        .button-wrap {
+            margin-top: 1rem;
+        }
+    }
+}
+.intro-promo:not(.promo), {
+    &:before {
+        @include objectify();
+        @include size( 0 100%);
+        position: absolute;
+        left: ( 100 / 12) * 8%;
+        top: 0;
+        border-left: $base-border;
     }
 }
 
