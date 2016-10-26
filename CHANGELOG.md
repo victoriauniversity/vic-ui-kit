@@ -18,6 +18,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Adds icons to the content tabbed bar on the homepage.
 - Breadcrumbs navigation for desktop and tablet devices.
 - Simple gallery for media with captions. Can be used by wrapping media items (= figures with class `media` applied to them) into ```<section class="gallery"> ... </section>```.
+- Full width study area blocks stretch to full width even view without an image.
+
 
 
 ### Fixed

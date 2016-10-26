@@ -9,88 +9,101 @@ $gutter: 8px;
 // - The gerneic tile grid
 // - Used for both Study-areas and Degrees & Qualifactions block
 // ------------------------
-.study-area-single {
+  .study-area-single {
+
+
+
     .study-area-wide-panel {
-        margin-top: 1.5em;
         @include outer-container(100%);
         @include fill-parent();
+        margin-bottom: $base-spacing;
+
+        &:not(:last-child) {
+          padding-bottom: $base-spacing;
+          border-bottom: $base-border;
+        }
+
         .img-wrap {
-            @include media ($mobile-large-and-smaller) {
-                display: none;
-            }
-            @include span-columns(5);
-            img {
-                width: 100%;
-            }
+          @include media ($mobile-large-and-smaller) {
+            display: none;
+          }
+
+          @include span-columns(5);
+
+          img { width: 100%; }
         }
 
         .content-wrap {
-            @include span-columns(7);
-            @include media ($mobile-large-and-smaller) {
-                @include span-columns(6);
+
+          &:first-child { width: 100%;} // Study area without an image
+
+          @include span-columns(7);
+          @include media ( $mobile-large-and-smaller ) {
+            @include span-columns(6);
+          }
+
+          .text-subjects-wrap {
+            @include media ($tablet-and-bigger) {
+              display: inline;
             }
-            .text-subjects-wrap {
 
-                    @include media ($tablet-and-bigger) {
-                      display: inline;
-                    }
-                .text-wrap {
-
-                    @include span-columns(4 of 6);
-                    @include media ($tablet-and-smaller) {
-                        @include span-columns(8);
-                    }
-                    h2 {
-                        margin-bottom: 1rem;
-                    }
-                    p {
-                        font-size: 1.125em;
-                        line-height: 1.8rem;
-                        margin-bottom: 1.8rem;
-                    }
-                }
-                .subjects-wrap {
-                    @include media ($tablet-and-smaller) {
-                        @include span-columns(8);
-                    }
-
-                    @include media ($tablet-and-bigger) {
-                      float: right;
-                    }
-
-                    @include span-columns(2 of 6);
-                    margin-right: 0;
-
-                    h4 { color: $grey; }
-
-                    ul {
-                        padding-top: 0.5rem;
-                        margin-bottom: .75rem;
-
-                        li {
-                            font-size: 1.1em;
-                            border-bottom: $base-border;
-                            padding: .5em .15em;
-
-                            &:last-child { border-bottom: none; }
-                        }
-                    }
-                }
+            .text-wrap {
+              @include span-columns(4 of 6);
+              @include media ($tablet-and-smaller) {
+                  @include span-columns(8);
+              }
+              h2 {
+                  margin-bottom: 1rem;
+              }
+              p {
+                font-size: 1.125em;
+                line-height: 1.8rem;
+                margin-bottom: $base-spacing;
+              }
             }
-            a.button {
-                float: left;
+            .subjects-wrap {
+              @include media ($tablet-and-smaller) {
+                  @include span-columns(8);
+              }
 
-                @include media ($tablet-and-bigger) {
-                  clear: left;
-                }
+              @include media ($tablet-and-bigger) {
+                float: right;
+              }
 
-                @include media ( $mobile-large-and-smaller ) {
-                  margin-bottom: .35rem;
-                }
+              @include span-columns(2 of 6);
+              margin-right: 0;
+
+              h4 {
+                margin-top: .35em;
+                color: $grey;
+              }
+
+              ul {
+                  padding-top: 0.5rem;
+
+                  li {
+                      font-size: 1.1em;
+                      border-bottom: $base-border;
+                      padding: .5em .15em;
+
+                      &:last-child { border-bottom: none; }
+                  }
+              }
             }
-        }
+          }
+          a.button {
+              float: left;
+
+              @include media ($tablet-and-bigger) {
+                clear: left;
+              }
+
+              @include media ( $mobile-large-and-smaller ) {
+                margin-bottom: .35rem;
+              }
+          }
+      }
     }
-    &.hidden {
-        display: none;
-    }
-}
+
+    &.hidden { display: none; }
+  }
