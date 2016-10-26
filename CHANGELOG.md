@@ -19,6 +19,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Breadcrumbs navigation for desktop and tablet devices.
 - Simple gallery for media with captions. Can be used by wrapping media items (= figures with class `media` applied to them) into ```<section class="gallery"> ... </section>```.
 - Full width study area blocks stretch to full width even view without an image.
+- Adds better social icons for: YouTube, Twitter, LinkedIN, Facebook and Instagram.
 
 
 

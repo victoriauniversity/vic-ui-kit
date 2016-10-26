@@ -75,15 +75,20 @@
         }
     }
 }
-.text-promo-panel.intro-promo {
-    &:before {
+
+  @include media ($tablet-and-bigger) {
+
+    .text-promo-panel.intro-promo {
+      &:before {
         @include objectify();
-        @include size( 0 100%);
+        @include size( 0 100% );
         position: absolute;
         left: ( 100 / 12) * 8%;
         top: 0;
         border-left: $base-border;
+      }
     }
-}
+  }
+
 
 // ==========================================
