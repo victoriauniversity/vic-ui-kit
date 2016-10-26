@@ -21,9 +21,11 @@
       }
 
     }
+
     & > ul > li:last-child > a {
       display: none;
     }
+
     .layout & { display: none; }
   }
 
@@ -31,19 +33,36 @@
     & > ul > li {
       display: none;
 
+      // Previous page, current page and its children
       &:last-child {
         display: block;
 
-        li { padding-left: $base-spacing / 2; }
+        // Previous page
+        > a {
+          @include extend-icon-before( arrow-up ) ;
+          color: $grey-silver;
+          font-size: 90%;
+
+          @include hoverify { color: $white; }
+        }
+
+        // The parent + children
+        > ul > li {
+          // Parent
+          > a {
+            &.selected { padding-left: 11.5em; } //TODO: Refactor!
+          }
+
+          // Children
+          li { padding-left: $base-spacing / 2; }
+        }
       }
     }
   }
 
     &--container { position:relative; }
 
-    a {
-      @include menu-item;
-    }
+    a { @include menu-item; }
 
 
     .has-subpages {

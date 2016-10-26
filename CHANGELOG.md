@@ -37,6 +37,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Alignment and styling of the tabbed content bar on the homepage.
 - Full width study area block is now floating properly: call-to-action button is positioned after description on desktop and after subjects on mobile.
 - Footer is now 'sticky' on desktop devices - if there's a very little content, the footer sticks to the bottom of the page.
+- Side menu - Adds icon and decreases font size of the 'back' button, improves alignment and positioning of the nested elements.
 
 
 
