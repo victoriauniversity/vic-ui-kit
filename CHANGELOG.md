@@ -18,6 +18,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Adds icons to the content tabbed bar on the homepage.
 - Breadcrumbs navigation for desktop and tablet devices.
 - Simple gallery for media with captions. Can be used by wrapping media items (= figures with class `media` applied to them) into ```<section class="gallery"> ... </section>```.
+- Full width study area blocks stretch to full width even view without an image.
+
 
 
 ### Fixed
@@ -26,6 +28,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Staff listing - if there is no department in the introduction, do not use delimiting dot. 
 - Homepage, introduction block - simplified and optimised, delimiting line is now separating two columns correctly (without gaps).
 - Mobile devices - users are now able to perform click actions on the top 2/3 of the screen.
+- Content tabbed bar arrow works for all display sizes on IE11+. 
+- Tables, highlight and promo boxes are being properly cleared when there are preceded by a floated element.
 
 
 ### Enhanced
@@ -34,6 +38,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Homepage banner - improved responsive behavior, added hovering animation.
 - Alignment and styling of the tabbed content bar on the homepage.
 - Full width study area block is now floating properly: call-to-action button is positioned after description on desktop and after subjects on mobile.
+- Footer is now 'sticky' on desktop devices - if there's a very little content, the footer sticks to the bottom of the page.
+- Side menu - Adds icon and decreases font size of the 'back' button, improves alignment and positioning of the nested elements.
 
 
 
