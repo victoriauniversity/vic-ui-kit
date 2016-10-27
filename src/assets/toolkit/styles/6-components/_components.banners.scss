@@ -5,7 +5,8 @@
 
   /** Banner used on homepages. */
 
-  $homepage-banner-max-height: rem( 520px );
+  $homepage-banner-max-height:         rem( 520px );
+  $homepage-banner-compact-max-height: rem( 300px );
 
   .homepage-banner {
     display: block;
@@ -15,14 +16,19 @@
     @include media( $desktop-and-bigger ) {
       min-height: $homepage-banner-max-height;
 
-      .sidebar {
-        width: 25%;
-        margin-bottom: $column-padding;
+      // Banner types
+      &.compact {
+        min-height: $homepage-banner-compact-max-height;
+
+        .banner img { width: 100%; height: auto; }
       }
 
-      .site a {
-        font-size: rem( 18px );
+      .sidebar {
+        margin-bottom: $column-padding;
+        width: 25%;
       }
+
+      .site a { font-size: rem( 18px );}
 
       .banner {
         position: absolute;
@@ -72,7 +78,6 @@
           top: 0;
         }
       }
-
 
       @include media( $tablet) {
         width: 65%;
