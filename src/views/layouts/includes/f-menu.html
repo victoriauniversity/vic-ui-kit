@@ -9,6 +9,16 @@
       <a href="index.html" class="f-menu__heading">Quick Start</a>
     </li>
 
+    <li>
+      <a href="architecture-layout.html" class="f-menu__heading">Architecture &amp; Layout</a>
+      <ul>
+        <li>
+          <a href="architecture-layout.html#architecture">Architecture</a>
+          <a href="architecture-layout.html#layout">Layout</a>
+        </li>
+      </ul>
+    </li>
+
 		{{#each materials}}
 		{{#contains @key "_"}}
 		{{!don'trender anything, these are partials}}
@@ -38,17 +48,6 @@
 			</ul>
 		</li>
 		{{/each}}
-
-		<li>
-			<a href="docs.html" class="f-menu__heading">Docs</a>
-			<ul>
-				{{#each docs}}
-				<li>
-					<a href="docs.html#{{@key}}">{{name}}</a>
-				</li>
-				{{/each}}
-			</ul>
-		</li>
 
 	</ul>
 

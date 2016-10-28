@@ -695,6 +695,9 @@ var accent_map = {
 'Ǯ':'z',
 'ǯ':'z',
 'ƺ':'z'};
+
+
+
 function accent_fold (s) {
   if (!s) { return ''; }
   var ret = '';
@@ -703,15 +706,3 @@ function accent_fold (s) {
   }
   return ret;
 };
-
-
-
-
-
-
-
-
-
-
-
-
