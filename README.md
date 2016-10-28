@@ -38,10 +38,10 @@ If you want to contribute to the project by adding new features, enhancing exist
 
 1. Fork off from [develop branch](https://github.com/victoriauniversity/vuw-styleguide/tree/develop).
 2. To run the project on a local machine, execute the following command in the root directory of your fork: 
-```shell
-  npm start
-``` 
-  This command will build the code, spawn a simple web server and automatically open the Style Guide in your default browser. Javascript, styles and templates are being 'watched' so any changes will instantly rebuild the project and live reload the browser.
+    ```shell
+      npm start
+    ``` 
+    This command will build the code, spawn a simple web server and automatically open the Style Guide in your default browser. Javascript, styles and templates are being 'watched' so any changes will instantly rebuild the project and live reload the browser.
 
 3. Hack your feature/enhancement/fix.
 4. Test your changes in all supported browsers.
