@@ -1,5 +1,7 @@
 [![GitHub stable release](https://img.shields.io/github/release/victoriauniversity/vuw-styleguide.svg?label=last%20stable%20release)]() 
-[![Build Status](https://travis-ci.org/victoriauniversity/vuw-styleguide.svg)](https://travis-ci.org/victoriauniversity/vuw-styleguide) ([Changelog](https://github.com/victoriauniversity/vuw-styleguide/blob/develop/CHANGELOG.md)) &mdash; [Full Documentation](https://victoriauniversity.github.io/vuw-styleguide/)
+[![Build Status](https://travis-ci.org/victoriauniversity/vuw-styleguide.svg)](https://travis-ci.org/victoriauniversity/vuw-styleguide) 
+
+([Changelog](https://github.com/victoriauniversity/vuw-styleguide/blob/develop/CHANGELOG.md)) &mdash; [Full Documentation](https://victoriauniversity.github.io/vuw-styleguide/)
 
 
 # Victoria UI Kit
@@ -19,7 +21,7 @@ By building new web projects on top of this library, developers can quickly reus
 
 ## Quick Start 
 
-To use the UI Kit in your project(s), [read the documentation](https://victoriauniversity.github.io/vuw-styleguide/#start).
+To use the UI Kit in your project(s), [read the Style Guide](https://victoriauniversity.github.io/vuw-styleguide/#start).
 
 
 
@@ -39,7 +41,7 @@ If you want to contribute to the project by adding new features, enhancing exist
 ```shell
   npm start
 ``` 
-This command will build the code, spawn a simple web server and automatically open the Style Guide in your default browser. Javascript, styles and templates are being 'watched' so any changes will instantly rebuild the project and live reload the browser.
+  This command will build the code, spawn a simple web server and automatically open the Style Guide in your default browser. Javascript, styles and templates are being 'watched' so any changes will instantly rebuild the project and live reload the browser.
 
 3. Hack your feature/enhancement/fix.
 4. Test your changes in all supported browsers.
