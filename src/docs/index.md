@@ -3,7 +3,9 @@
 # Victoria UI Kit
 
 [![GitHub stable release](https://img.shields.io/github/release/victoriauniversity/vuw-styleguide.svg?label=last%20stable%20release)]() 
-[![Build Status](https://travis-ci.org/victoriauniversity/vuw-styleguide.svg)](https://travis-ci.org/victoriauniversity/vuw-styleguide) ([Changelog](https://github.com/victoriauniversity/vuw-styleguide/blob/develop/CHANGELOG.md)) &mdash; [Project at GitHub](https://github.com/victoriauniversity/vuw-styleguide)
+[![Build Status](https://travis-ci.org/victoriauniversity/vuw-styleguide.svg)](https://travis-ci.org/victoriauniversity/vuw-styleguide) 
+
+[Changelog](https://github.com/victoriauniversity/vuw-styleguide/blob/develop/CHANGELOG.md) &mdash; [Project at GitHub](https://github.com/victoriauniversity/vuw-styleguide) &mdash; [Releases/Download](https://github.com/victoriauniversity/vuw-styleguide/releases)
 
 
 **Victoria UI Kit is a style guide and UI pattern library providing base CSS, JavaScript and HTML markup required to build websites and applications affiliated with [Victoria University of Wellington](www.victoria.ac.nz)**.

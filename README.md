@@ -39,7 +39,7 @@ If you want to contribute to the project by adding new features, enhancing exist
 1. Fork off from [develop branch](https://github.com/victoriauniversity/vuw-styleguide/tree/develop).
 2. To run the project on a local machine, execute the following command in the root directory of your fork: 
     ```shell
-      npm start
+    npm start
     ``` 
     This command will build the code, spawn a simple web server and automatically open the Style Guide in your default browser. Javascript, styles and templates are being 'watched' so any changes will instantly rebuild the project and live reload the browser.
 
@@ -59,7 +59,7 @@ If you want to contribute to the project by adding new features, enhancing exist
  * Safari 9+ (OS X and iOS only)
  * Chrome 44+
  * Firefox 42+
- * Opera 39+
+ * Opera 39+ (desktop only)
 
 
 
@@ -69,3 +69,4 @@ If you want to contribute to the project by adding new features, enhancing exist
 
  * jQuery 3.1+
  * *(only contributing developers)* Node.js 5+ and npm 3+
+ * *(only contributing developers)* Git 2+
