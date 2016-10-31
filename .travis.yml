@@ -7,7 +7,7 @@ notifications:
     on_success: change
     on_failure: always
 script:
-  - ${TRAVIS_BRANCH} == develop && bash ./build-scripts/deploy-development.sh
+  - if [ $TRAVIS_BRANCH = 'develop' ]; se-interpreter test/selenium/interpreter_config.json; fi
 env:
   global:
   - GITHUB_REPO: victoriauniversity/vuw-styleguide
