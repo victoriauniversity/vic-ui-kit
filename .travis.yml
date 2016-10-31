@@ -7,7 +7,7 @@ notifications:
     on_success: change
     on_failure: always
 script:
-  - bash ./build-scripts/deploy-development.sh
+  - ${TRAVIS_BRANCH} == develop && bash ./build-scripts/deploy-development.sh
 env:
   global:
   - GITHUB_REPO: victoriauniversity/vuw-styleguide
