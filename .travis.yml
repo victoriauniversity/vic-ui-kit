@@ -1,13 +1,13 @@
 sudo: false
 language: node_js
 node_js:
-  - '5'
+- '5'
 notifications:
-webhooks:
+  webhooks:
     on_success: change
     on_failure: always
 script:
-  - $TRAVIS_BRANCH == "develop" && echo Hello World
+  - $TRAVIS_BRANCH == 'develop' && bash ./build-scripts/deploy-development.sh
 env:
   global:
   - GITHUB_REPO: victoriauniversity/vuw-styleguide
