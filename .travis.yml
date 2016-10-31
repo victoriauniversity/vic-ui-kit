@@ -7,8 +7,8 @@ webhooks:
     on_success: change
     on_failure: always
 script:
-  - $TRAVIS_BRANCH == "develop" && bash ./deploy-scripts/deploy-development.sh
-  - $TRAVIS_BRANCH == "master" && bash ./deploy-scripts/deploy-production.sh
+  - $TRAVIS_BRANCH == "develop" && bash ./build-scripts/deploy-development.sh
+  - $TRAVIS_BRANCH == "master" && bash ./build-scripts/deploy-production.sh
 env:
   global:
   - GITHUB_REPO: victoriauniversity/vuw-styleguide
