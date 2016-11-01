@@ -7,7 +7,7 @@ notifications:
     on_success: change
     on_failure: always
 script:
-  - if [ $TRAVIS_BRANCH = 'develop' ]; echo Hello World; fi;
+  - bash ./build-scripts/build.sh
 env:
   global:
   - GITHUB_REPO: victoriauniversity/vuw-styleguide
