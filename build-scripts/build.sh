@@ -9,7 +9,7 @@ fi
 
 
 
-if [ ${TRAVIS_BRANCH} = develop ] ; then
+if [ ${TRAVIS_BRANCH} = enhancements-jl-deployment ] ; then
   # developmenet
   bash ./deploy-development.sh
   exit 0
