@@ -13,3 +13,10 @@ if [ ${TRAVIS_BRANCH} = develop ] ; then
   bash ./deploy-development.sh
 
 fi
+
+
+if [ ${TRAVIS_BRANCH} != develop && ${TRAVIS_BRANCH} != master ] ; then
+  # no branch
+  echo "Nothing deployable, ending CI build."
+
+fi
