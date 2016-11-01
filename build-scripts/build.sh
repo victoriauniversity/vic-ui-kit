@@ -4,6 +4,7 @@
 if [ ${TRAVIS_BRANCH} = master ] ; then
 	# production
   bash ./deploy-production.sh
+  exit 0
 fi
 
 
@@ -11,12 +12,9 @@ fi
 if [ ${TRAVIS_BRANCH} = develop ] ; then
   # developmenet
   bash ./deploy-development.sh
+  exit 0
 
 fi
 
 
-if [ ${TRAVIS_BRANCH} != develop && ${TRAVIS_BRANCH} != master ] ; then
-  # no branch
-  echo "Nothing deployable, ending CI build."
-
-fi
+echo "Nothing deployable, ending CI build."
