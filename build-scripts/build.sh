@@ -3,7 +3,7 @@
 
 if [ ${TRAVIS_BRANCH} = master ] ; then
 	# production
-  bash ./deploy-production.sh
+  bash ./build-scripts/deploy-production.sh
   exit 0
 fi
 
@@ -11,7 +11,7 @@ fi
 
 if [ ${TRAVIS_BRANCH} = enhancements-jl-deployment ] ; then
   # developmenet
-  bash ./deploy-development.sh
+  bash ./build-scripts/deploy-development.sh
   exit 0
 
 fi
