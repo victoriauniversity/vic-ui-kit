@@ -12,14 +12,8 @@ if [ $TRAVIS_BRANCH = 'master' ] ; then
   bash ./build-scripts/deploy-production.sh
   exit 0
 
-fi
-
-
-
-
-
 # DEVELOPMENT-specific build & deployment
-if [ $TRAVIS_BRANCH = 'enhancements-jl-deployment' ] ; then
+else
 
   bash ./build-scripts/deploy-development.sh
   exit 0
