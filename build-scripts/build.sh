@@ -1,15 +1,24 @@
 #!/bin/bash
 
+# Environment independent commands
 
-# PRODUCTION build & deployment
+
+
+
+
+# PRODUCTION-specific build & deployment
 if [ $TRAVIS_BRANCH = 'master' ] ; then
 
   bash ./build-scripts/deploy-production.sh
   exit 0
+
 fi
 
 
-# DEVELOPMENT build & deployment
+
+
+
+# DEVELOPMENT-specific build & deployment
 if [ $TRAVIS_BRANCH = 'enhancements-jl-deployment' ] ; then
 
   bash ./build-scripts/deploy-development.sh
@@ -17,5 +26,9 @@ if [ $TRAVIS_BRANCH = 'enhancements-jl-deployment' ] ; then
 
 fi
 
-# NO build & deployment
+
+
+
+
+# NO specific d
 echo "Nothing deployable, ending CI build."

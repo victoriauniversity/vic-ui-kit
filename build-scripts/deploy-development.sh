@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Build -> Deploy for production
 
-echo This is DEVELOPMENT deploy script
+echo 'Running development-specific build & deployment...'
 
