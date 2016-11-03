@@ -31,24 +31,27 @@ DIR_DIST = 'dist',
 
 /** Project settings. */
 
-// Repositories //TODO: Set tokens as environment variables
-GITHUB_RELEASE_REPO  = 'https://947373604c9cb264bca42c1c4ebe126b09f37f6c@github.com/victoriauniversity/victoria-ui-releases.git'
-GITHUB_SOURCE_REPO   = 'https://947373604c9cb264bca42c1c4ebe126b09f37f6c@github.com/victoriauniversity/vuw-styleguide.git',
-GITHUB_SOURCE_BRANCH = 'test';
+
+// Repositories
+
+GITHUB_SECRET_TOKEN = process.env.GITHUB_TOKEN || '', // Environmental variable `GITHUB_TOKEN` has to be set up on the CI or within the user's environment to make the builds successful!
+
+GITHUB_RELEASE_REPO   = 'https://' + GITHUB_SECRET_TOKEN + '@github.com/victoriauniversity/victoria-ui-releases.git',
+GITHUB_RELEASE_BRANCH = 'releases',
+GITHUB_SOURCE_REPO    = 'https://' + GITHUB_SECRET_TOKEN + '@github.com/victoriauniversity/vuw-styleguide.git',
+GITHUB_SOURCE_BRANCH  = 'gh-pages';
 
 
-packageJSON = JSON.parse( fs.readFileSync('./package.json'), 'utf8' ) || {}, // See package.json for more details
+// Build information
 
-
-/** Environmental configuration. */
-
+packageJSON = JSON.parse( fs.readFileSync( './package.json'), 'utf8' ) || {}, // See package.json for more details
 
 
 /** Main configuration object. */
 
 config = {
   host: 'https/localhost:3000', // 'http' or 'https' *ONLY* //TODO: Should be environment-based!
-  version: packageJSON.version + '-test',
+  version: packageJSON.version,
   pkg: packageJSON,
   dev: gutil.env.dev,
   styles: {
@@ -139,7 +142,7 @@ gulp.task('styles', ['styles:fabricator', 'styles:toolkit']);
 
 // Files revver
 gulp.task('rev', function() {
-  gulp
+  return gulp
     .src( config.tmp + '/**')
     .pipe( revAll.revision({
       //prefix: HOST,
@@ -243,7 +246,7 @@ gulp.task('fonts', function () {
 
 gulp.task( 'git:init', function( done ) {
    git.init({
-      cwd: config.dist + '/' + config.version
+      cwd: config.dist
     }, function( err ) {
       done();
    });
@@ -264,7 +267,7 @@ gulp.task( 'git:cloneReleaseRepo', function( done ) {
 
 
 gulp.task('git:commitAll', function(){
-  process.chdir(config.dist + '/' + config.version );
+  process.chdir(config.dist );
 
   return gulp.src( './*' )
     .pipe( git.add( { args: '-f'} ) )
@@ -286,23 +289,85 @@ gulp.task( 'git:pushToGHPages', function( done ) {
 });
 
 
-gulp.task('git:exec', ( done ) => {
-  process.chdir( config.dist + '/' + config.version );
+gulp.task( 'git:exec', ( done ) => {
 
-  exec( 'git init && git remote add origin ' + GITHUB_SOURCE_REPO + ' && git fetch origin ' + GITHUB_SOURCE_BRANCH + ' && git fetch origin --tags && git reset origin/' + GITHUB_SOURCE_BRANCH + ' && git checkout -t origin/' + GITHUB_SOURCE_BRANCH +' && git rm -r --cached . && git add . && git tag -d v' + config.version + ' && git push origin :refs/tags/v' + config.version + ' && git commit -am "Release v' + config.version + '" && git tag -a -m "Release of v' + config.version + '" v' + config.version + ' && git push origin ' + GITHUB_SOURCE_BRANCH + ' --tags', function ( error, okOut, errOut ) {
+  const FETCH_TAG_CMD = 'git fetch origin v' + config.version,
+  PUSH_RELEASE_CMD    = 'git reset origin/' + GITHUB_RELEASE_BRANCH + ' && git checkout origin/' + GITHUB_RELEASE_BRANCH +' -t && git rm -r --cached . && git add . && git commit -am "Release v' + config.version + '" && git tag -a -m "Release of v' + config.version + '" v' + config.version + ' && git push origin ' + GITHUB_RELEASE_BRANCH + ' --tags';
+
+  const PUSH_RELEASE_WITH_RECREATED_TAG_CMD = 'git tag -d v' + config.version + ' && git push origin :refs/tags/v' + config.version + ' && ' + PUSH_RELEASE_CMD;
+
+
+  gutil.log( 'Executing: ' + FETCH_TAG_CMD );
+  exec( FETCH_TAG_CMD, function ( error, okOut, errOut ) {
 
     if ( error ){
+      gutil.log( error );
+      gutil.log( errOut );
+      gutil.log( 'Tag `v' + config.version + '` does not exist - create new one.');
+
+      gutil.log( 'Executing: ' + PUSH_RELEASE_CMD );
+
+      exec( PUSH_RELEASE_CMD, function ( error, okOut, errOut ) {
+
+        if ( error ){
+          gutil.log( gutil.colors.red( "Release cannot be pushed to the release repository - are you sure there was any changed made to the 'to-be released' files?" ));
+
+          gutil.log(gutil.colors.red(error));
+          gutil.log(gutil.colors.red(errOut));
+        } else {
+          gutil.log( 'New release commit pushed through with a new tag.' );
+          gutil.log( okOut );
+        }
+
+        done();
+      });
+
+    } else {
+      gutil.log( okOut );
+      gutil.log( 'Tag `v' + config.version + '` does exist - replace it!');
+
+      gutil.log( 'Executing: ' + PUSH_RELEASE_WITH_RECREATED_TAG_CMD );
+
+      exec( PUSH_RELEASE_WITH_RECREATED_TAG_CMD, function ( error, okOut, errOut ) {
+
+        if ( error ){
+          gutil.log(gutil.colors.red(error));
+          gutil.log(gutil.colors.red(errOut));
+        } else {
+          gutil.log( 'New release commit pushed through with a recreated tag.' );
+          gutil.log( okOut );
+        }
+
+        done();
+      });
+    }
+
+  });
+});
+
+
+gulp.task('git:shallowClone', ( done ) => {
+  process.chdir( config.dist + '/' + config.version );
+
+  const SHALLOW_CLONE_CMD = 'git init && git remote add origin ' + GITHUB_RELEASE_REPO + ' && git fetch origin ' + GITHUB_RELEASE_BRANCH + ' --tags';
+
+  gutil.log( 'Executing: ' + SHALLOW_CLONE_CMD );
+
+  exec( SHALLOW_CLONE_CMD, function ( error, okOut, errOut ) {
+
+    if ( error ){
+      gutil.log(gutil.colors.red( 'Cannot shallow clone the repository ' + GITHUB_SOURCE_REPO + '...' ));
       gutil.log(gutil.colors.red(error));
       gutil.log(gutil.colors.red(errOut));
     } else {
+      gutil.log( 'Shallow clone of the release repo successfully created.' );
       gutil.log( okOut );
     }
 
     done();
-
   });
-
 });
+
 
 
 
@@ -333,7 +398,7 @@ gulp.task('copyDistToRelease', () => {
 /** Development helpers and tools. */
 
 // Serving & Source wathing
-gulp.task('serve', () => {
+gulp.task( 'serveAndWatch', () => {
 
   browserSync({
     server: {
@@ -343,19 +408,19 @@ gulp.task('serve', () => {
     logPrefix: 'FABRICATOR',
   });
 
-  gulp.task('assembler:watch', ['assembler'], browserSync.reload);
+  gulp.task('assembler:watch', ['assembler', 'rev'], browserSync.reload);
   gulp.watch(config.templates.watch, ['assembler:watch']);
 
-  gulp.task('styles:watch', ['styles']);
+  gulp.task('styles:watch', ['styles', 'rev']);
   gulp.watch([config.styles.fabricator.watch, config.styles.toolkit.watch], ['styles:watch']);
 
-  gulp.task('scripts:watch', ['scripts'], browserSync.reload);
+  gulp.task('scripts:watch', ['scripts', 'rev'], browserSync.reload);
   gulp.watch([config.scripts.fabricator.watch, config.scripts.toolkit.watch], ['scripts:watch']);
 
-  gulp.task('images:watch', ['images'], browserSync.reload);
+  gulp.task('images:watch', ['images', 'rev'], browserSync.reload);
   gulp.watch(config.images.toolkit.watch, ['images:watch']);
 
-  gulp.task('fonts:watch', ['fonts'], reload);
+  gulp.task('fonts:watch', ['fonts', 'rev'], reload);
   gulp.watch(config.fonts.toolkit.src, ['fonts:watch']);
 
 });
@@ -366,9 +431,26 @@ gulp.task('serve', () => {
 
 /** Standard build & deployment tasks. */
 
-gulp.task('release:dev', ( done ) => {
+
+gulp.task( 'build', ['clean'], ( done ) => {
+  runSequence(
+    'styles',
+    'scripts',
+    'images',
+    'fonts',
+    'assembler',
+    () => {
+      done();
+    }
+  );
+});
+
+
+gulp.task( 'release:dev', ( done ) => {
 
   runSequence(
+    'build',
+    'rev', // Revv all the static files
     'git:init',
     'git:commitAll',
     'git:pushToGHPages',
@@ -379,40 +461,33 @@ gulp.task('release:dev', ( done ) => {
 });
 
 
-gulp.task('release:prod', ( ) => {
+gulp.task( 'release:prod', ( done ) => {
 
+  runSequence(
+    'build',
+    'copyTempToDist',
+    'copyDistToRelease',
+    'git:shallowClone',
+    'git:exec',
+    () => {
+      done();
+  });
 
 });
 
 
-// default build task
-gulp.task('default', ['clean'], () => {
-
-  // define build tasks
-  const tasks = [
-    'styles',
-    'scripts',
-    'images',
-    'fonts',
-    'assembler'
-  ];
+gulp.task( 'serve', () => {
 
   // run build
-  runSequence(tasks,
-    'copyTempToDist',
-    'copyDistToRelease',
-    'git:exec',
-    () => {
+  runSequence(
+    'build',
+    'rev',
+    'serveAndWatch' );
 
-    // Revv all the static files
-    //gulp.run( 'rev' );
-    //
+});
 
-    if (config.dev) {
-      gulp.start('serve');
-    } else {
 
-    }
-  });
-
+// default build task (alias to 'serve')
+gulp.task('default', () => {
+  gulp.start( 'serve' );
 });
