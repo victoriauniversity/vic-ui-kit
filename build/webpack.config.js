@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
+webpack    = require('webpack');
 
 
 /**
@@ -58,11 +58,12 @@ function getLoaders() {
 module.exports = (config) => {
   return {
     entry: {
-      'fabricator/scripts/f': config.scripts.fabricator.src,
-      'toolkit/scripts/toolkit': config.scripts.toolkit.src,
+      // Add objects: { 'dest': 'source' }
+      [ config.scripts.fabricator.pathInDest ]: config.scripts.fabricator.src,
+      [ config.scripts.toolkit.pathInDest ]:    config.scripts.toolkit.src,
     },
     output: {
-      path: path.resolve(__dirname, config.dest, 'assets'),
+      path: path.resolve( __dirname, '..', config.tmp ),
       filename: '[name].js',
     },
     devtool: 'source-map',
