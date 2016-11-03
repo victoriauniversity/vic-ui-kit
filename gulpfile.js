@@ -271,7 +271,7 @@ gulp.task('git:commitAll', function(){
 
   return gulp.src( './*' )
     .pipe( git.add( { args: '-f'} ) )
-    .pipe( git.commit( 'Release v' + config.version ));
+    .pipe( git.commit( 'Release v' + config.version + ' | [skip ci]' ));
 });
 
 
