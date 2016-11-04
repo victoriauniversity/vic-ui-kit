@@ -16,4 +16,5 @@ npm install
 echo 'Running production-specific build & deployment...'
 
 npm run release-prod
-rsync -avzP --delete --chmod=u=rwX,g=rX ./dist/ lobotkjo@rsync.keycdn.com:zones/static
+rsync -avzP --exclude='^\d.*' --delete --chmod=u=rwX,g=rX ./dist/ lobotkjo@rsync.keycdn.com:zones/static
+rsync -avzP --delete --chmod=u=rwX,g=rX ./dist/\d.* lobotkjo@rsync.keycdn.com:zones/static
