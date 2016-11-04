@@ -242,9 +242,11 @@ gulp.task('styles:toolkit', () => {
     ],
   }).on('error', sass.logError))
   .pipe(prefix('last 1 version'))
-  .pipe(gulpif(!config.dev, csso()))
-  .pipe(gulpif(config.dev, sourcemaps.write()))
+  .pipe(gulpif(config.dev, sourcemaps.write()) )
   .pipe(gulp.dest(config.styles.toolkit.dest))
+  .pipe(csso())
+  .pipe(rename('toolkit.min.css'))
+  .pipe(gulp.dest(config.tmp))
   .pipe(gulpif(config.dev, reload({ stream: true })));
 });
 
