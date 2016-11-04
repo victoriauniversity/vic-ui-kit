@@ -3,12 +3,12 @@
 # Victoria UI Kit
 
 [![GitHub stable release](https://img.shields.io/github/release/victoriauniversity/vuw-styleguide.svg?label=last%20stable%20release)]() 
-[![Build Status](https://travis-ci.org/victoriauniversity/vuw-styleguide.svg)](https://travis-ci.org/victoriauniversity/vuw-styleguide) 
+[ ![Codeship Status for victoriauniversity/vuw-styleguide](https://app.codeship.com/projects/6f8cf750-81fe-0134-4879-1e33cd15468d/status)](https://app.codeship.com/projects/182365)
 
-[Changelog](https://github.com/victoriauniversity/vuw-styleguide/blob/develop/CHANGELOG.md) &mdash; [Project at GitHub](https://github.com/victoriauniversity/vuw-styleguide) &mdash; [Releases/Download](https://github.com/victoriauniversity/vuw-styleguide/releases)
+[Changelog](https://github.com/victoriauniversity/vuw-styleguide/blob/develop/CHANGELOG.md) &mdash; [Project at GitHub](https://github.com/victoriauniversity/vuw-styleguide) &mdash; [Releases/Download](https://github.com/victoriauniversity/victoria-ui-releases/releases)
 
 
-**Victoria UI Kit is a style guide and UI pattern library providing base CSS, JavaScript and HTML markup required to build websites and applications affiliated with [Victoria University of Wellington](www.victoria.ac.nz)**.
+**Victoria UI Kit is a style guide and UI pattern library providing base CSS, JavaScript and HTML markup required to build websites and applications affiliated with [Victoria University of Wellington](https://www.victoria.ac.nz)**.
 
 By building new web projects on top of this library, developers can quickly reuse out of the box layouts and UI components, gaining following advantages:
 
@@ -28,22 +28,22 @@ By building new web projects on top of this library, developers can quickly reus
 To include Victoria's UI styles in your project, copy-paste the following code snippet into the ```<head>``` element in your project:
 
 ```html
-<link rel="stylesheet" type="text/css" href="https://github.com/victoriauniversity/vuw-styleguide/blob/gh-pages/assets/toolkit/styles/toolkit.css">
+<link rel="stylesheet" type="text/css" href="https://static.victoria.ac.nz/toolkit.css">
 ```
 
 
-If you wish to use complex dynamic components that **require JavaScript** to work properly (see [Components](/components.html)), include jQuery and Victoria's UI Scripts library just before the closing ```</body``` tag:
+If you wish to use complex dynamic components that **require JavaScript** to work properly (see [Components](/components.html)), include jQuery and Victoria's UI Scripts library just before the closing ```</body>``` tag:
 
 ```html
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
-<script src="https://github.com/victoriauniversity/vuw-styleguide/blob/gh-pages/assets/toolkit/scripts/toolkit.js"></script>
+<script src="https://static.victoria.ac.nz/toolkit.js"></script>
 ```
 
-<div class="flash-message info">
-  <p>
-  In the foreseeable future, all JS and CSS files should be versioned and served from by CDN. 
-  </p>
-</div>
+It is recommend to hotlink the libraries from CDN as shown above. However, if you wish to bundle them with your project, you can [Download any given release](https://github.com/victoriauniversity/victoria-ui-releases/releases) or even use a package manager, such as Bower:
+
+```shell
+bower install https://github.com/victoriauniversity/victoria-ui-releases.git#releases --save
+```
 
 
 

@@ -20,6 +20,8 @@ sourcemaps      = require('gulp-sourcemaps'),
 webpack         = require('webpack'),
 revAll          = require('gulp-rev-all'),
 exec            = require('child_process').exec,
+header          = require('gulp-header'),
+
 
 
 
@@ -101,11 +103,16 @@ config = {
   },
   dist: DIR_DIST,
   tmp: DIR_TMP
-};
+},
+
+BUILD_TIME = new Date(),
+BUILD_MSG = 'Version: ' + config.version + ' ' +
+  ( process.env.CI_COMMIT_ID ? '(build #' + process.env.CI_COMMIT_ID + ') ' : '' ) +
+  '| ' + BUILD_TIME.toDateString() + ' ' + BUILD_TIME.getHours() + ':' + ( '0' + BUILD_TIME.getMinutes() ).slice( -2 ),
 
 
 // Pack scripts using WebPack
-const webpackConfig = require('./build/webpack.config')(config);
+webpackConfig = require('./build/webpack.config')(config);
 
 
 
@@ -141,9 +148,8 @@ gulp.task('styles', ['styles:fabricator', 'styles:toolkit']);
 
 
 // Files revver
-gulp.task('rev', function() {
-  return gulp
-    .src( config.tmp + '/**')
+gulp.task('rev', () => {
+  return gulp.src( config.tmp + '/**')
     .pipe( revAll.revision({
       //prefix: HOST,
       // hashLength: 8, // Default = 8
@@ -159,6 +165,25 @@ gulp.task('rev', function() {
     .pipe( gulp.dest( config.dist ));
 });
 
+
+gulp.task( 'decorate:templates', () => {
+
+  return gulp.src( config.tmp + '/**/*.html' ) // HTML
+    .pipe( header( '<!-- ' + BUILD_MSG + ' -->\n'))
+    .pipe( gulp.dest( config.tmp ) );
+});
+
+
+gulp.task( 'decorate:assets', () => {
+  return gulp.src( config.tmp + '/*.{js,css}' ) // JS + CSS
+    .pipe( header( '/** ' + BUILD_MSG + ' */\n') )
+    .pipe( gulp.dest( config.tmp ) );
+});
+
+gulp.task( 'decorate', ['decorate:assets', 'decorate:templates'], ( done ) => {
+  done();
+  return;
+});
 
 
 
@@ -439,6 +464,7 @@ gulp.task( 'build', ['clean'], ( done ) => {
     'images',
     'fonts',
     'assembler',
+    'decorate',
     () => {
       done();
     }
