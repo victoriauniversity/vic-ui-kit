@@ -1,7 +1,7 @@
 [![GitHub stable release](https://img.shields.io/github/release/victoriauniversity/vuw-styleguide.svg?label=last%20stable%20release)]() 
 [ ![Codeship Status for victoriauniversity/vuw-styleguide](https://app.codeship.com/projects/6f8cf750-81fe-0134-4879-1e33cd15468d/status)](https://app.codeship.com/projects/182365)
 
-([Changelog](https://github.com/victoriauniversity/vuw-styleguide/blob/develop/CHANGELOG.md)) &mdash; [Full Documentation](https://victoriauniversity.github.io/vuw-styleguide/)
+([Changelog](https://github.com/victoriauniversity/vuw-styleguide/blob/master/CHANGELOG.md)) &mdash; [Full Documentation](https://static.victoria.ac.nz/)
 
 
 # Victoria UI Kit
@@ -21,7 +21,7 @@ By building new web projects on top of this library, developers can quickly reus
 
 ## Quick Start 
 
-To use the UI Kit in your project(s), [read the Style Guide](https://victoriauniversity.github.io/vuw-styleguide/#start).
+To use the UI Kit in your project(s), [read the Style Guide](https://static.victoria.ac.nz/#start).
 
 
 
@@ -31,7 +31,7 @@ To use the UI Kit in your project(s), [read the Style Guide](https://victoriauni
 
 If you want to contribute to the project by adding new features, enhancing existing ones or fixing bugs, it is good to do few things first:
 
-* Read through the [documentation](https://victoriauniversity.github.io/vuw-styleguide/) - focus on sections [Architecture & Layout](https://victoriauniversity.github.io/vuw-styleguide/architecture-layout.html) to understand how is the library built and [Components](https://victoriauniversity.github.io/vuw-styleguide/architecture-layout.html) to know what's already included.
+* Read through the [documentation](https://static.victoria.ac.nz/) - focus on sections [Architecture & Layout](https://static.victoria.ac.nz/vuw-styleguide/architecture-layout.html) to understand how is the library built and [Components](https://static.victoria.ac.nz/vuw-styleguide/architecture-layout.html) to know what's already included.
 * If you're not sure how to contribute to a GitHub project, familiarise yourself with [how it works](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project) first.
 
 

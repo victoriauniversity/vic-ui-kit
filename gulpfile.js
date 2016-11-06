@@ -1,7 +1,7 @@
 /** Dependencies imports. */
 
 const assembler = require('fabricator-assemble'),
-fs              = require( 'fs' ),
+fs              = require('fs'),
 browserSync     = require('browser-sync'),
 csso            = require('gulp-csso'),
 del             = require('del'),
@@ -13,15 +13,17 @@ helpers         = require('handlebars-helpers')(),
 imagemin        = require('gulp-imagemin'),
 prefix          = require('gulp-autoprefixer'),
 rename          = require('gulp-rename'),
-reload          = browserSync.reload,
 runSequence     = require('run-sequence'),
 sass            = require('gulp-sass'),
 sourcemaps      = require('gulp-sourcemaps'),
 webpack         = require('webpack'),
 revAll          = require('gulp-rev-all'),
-exec            = require('child_process').exec,
 header          = require('gulp-header'),
+bump            = require('gulp-bump'),
+semver          = require('semver'),
 
+reload          = browserSync.reload,
+exec            = require('child_process').exec,
 
 
 
@@ -76,9 +78,10 @@ config = {
       watch:      'src/assets/fabricator/scripts/**/*',
     },
     toolkit: {
-      src:        './src/assets/toolkit/scripts/toolkit.js',
-      pathInDest: 'toolkit',  // *MUST BE* without a .js extension
-      watch:      'src/assets/toolkit/scripts/**/*',
+      src:                './src/assets/toolkit/scripts/toolkit.js',
+      pathInDest:         'toolkit',  // *MUST BE* without a .js extension
+      minifiedPathInDest: 'toolkit.min',  // *MUST BE* without a .js extension
+      watch:              'src/assets/toolkit/scripts/**/*',
     }
   },
   images: {
@@ -102,7 +105,7 @@ config = {
     watch: 'src/**/*.{html,md,json,yml}',
   },
   dist: DIR_DIST,
-  tmp: DIR_TMP
+  tmp:  DIR_TMP
 },
 
 BUILD_TIME = new Date(),
@@ -264,6 +267,56 @@ gulp.task('fonts', function () {
   return gulp.src(config.fonts.toolkit.src)
     .pipe(gulp.dest( config.fonts.toolkit.dest ));
 });
+
+
+
+
+
+/** Package(s) versioning. */
+
+
+/** Initialises special grunt task in a format of 'version:[subtaskName]'. */
+function initVersionCommand( subtaskName ) {
+
+  var commandName    = 'version' + ( subtaskName ? ':' + subtaskName : '');
+
+  gulp.task( commandName, function( done ) {
+
+    var semverType = subtaskName || 'patch',
+    newVersion     = semver.inc( config.version, semverType );
+
+    gulp.src( '{build/release-templates/,.}/package.json' )
+      .pipe(bump({ version: newVersion }))
+      .pipe(gulp.dest( './' ))
+      .on('end', () => {
+        exec( 'git add . && git commit -am "Release of v' + newVersion + '." && git tag -a v' + newVersion + ' -m "Release of v' + newVersion + '."', function ( error, okOut, errOut ) {
+
+            if ( error ){
+              gutil.log(gutil.colors.red( 'Sorry - cannot create automatic git tag v' + newVersion + ' and commit the changes. Pleasy, try to do it manually.'));
+              gutil.log(gutil.colors.red(error));
+              gutil.log(gutil.colors.red(errOut));
+            } else {
+              gutil.log( okOut );
+              gutil.log(gutil.colors.green( 'Version updated to v' + newVersion + '. Commit ready and tag added - run \'git push && git push --tags\' to finish the release by pushing it into \'develop\' or \'master\' branch.'));
+            }
+
+            done();
+          })
+      });
+  });
+}
+
+// 'Bumps' the version of the project to the nearest minor increment.
+
+initVersionCommand(); // Default ~ patch ~ release
+
+initVersionCommand( 'major' );
+initVersionCommand( 'minor' );
+initVersionCommand( 'patch' );
+
+initVersionCommand( 'premajor' );
+initVersionCommand( 'preminor' );
+initVersionCommand( 'prepatch' ); initVersionCommand( 'prerelease' );
 
 
 
