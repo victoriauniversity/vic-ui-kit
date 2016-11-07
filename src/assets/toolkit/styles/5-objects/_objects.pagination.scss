@@ -1,0 +1,72 @@
+
+
+  /* ===== PAGINATION =================================================== */
+
+
+  .pagination {
+    @include clearfix;
+    text-align: right;
+
+    // Placed on the very BEGINNING of the section
+    &:last-child {
+      border-top: 1px solid $grey-alto;
+      padding-top: $base-spacing;
+    }
+
+    // Placed on the very END of the section
+    &:last-child {
+      border-top: 1px solid $grey-alto;
+      padding-top: $base-spacing;
+    }
+
+    .button {
+      margin-bottom: .4rem;
+
+      // Currently visited page
+      &.active {
+        background-color: $green-bottle;
+      }
+
+      //TODO: Replace with real icons
+      > .icon { display: none; }
+    }
+
+    // '...'
+    > .icon { margin: 0 .5rem; }
+
+    // 'Previous page' button/link
+    .previous {
+      float: left;
+      margin-right: .3rem;
+
+      &:before {
+        @include objectify( $content: '\003C' );  // '<'
+        margin-right: .5em;
+      }
+    }
+
+    // 'Next page' button/link
+    .next {
+      float: right;
+      margin-left: .3rem;
+
+      &:after {
+        @include objectify( $content: '\003E' ); // '>'
+        margin-left: .5em;
+      }
+    }
+
+    .pages {
+      float: left;
+      white-space: nowrap;
+    }
+
+    @include media( $mobile ){
+      text-align: center;
+
+      .previous,
+      .next {
+        float: none;
+      }
+    }
+  }

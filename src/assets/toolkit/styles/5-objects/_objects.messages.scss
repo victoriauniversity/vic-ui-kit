@@ -1,0 +1,72 @@
+/*=========================================
+=      SYSTEM MESSAGES, NOTIFICATIONS     =
+=========================================*/
+
+
+  /* ===== FLASH MESSAGES =================================================== */
+
+  $message-strip-darken-percentage: 7;
+
+  .flash-message {
+    color: $white;
+    padding: $column-padding;
+    margin-bottom: $base-spacing;
+
+    // Message types
+
+    &.error {
+      background-color: $red-oyster-pink;
+      border-left: 2px solid darken( $red-oyster-pink, $message-strip-darken-percentage );
+
+      > * { color: $red-tamarillo; }
+
+      > h2  {
+        @include extend-icon-before( attention );
+      }
+    }
+
+    &.warning {
+      background-color: $yellow-pearl-lusta;
+      border-left: 2px solid darken( $yellow-pearl-lusta, $message-strip-darken-percentage );
+
+      > * {  color: $yellow-cinamon; }
+
+      > h2  {
+        @include extend-icon-before( megaphone );
+      }
+    }
+
+    &.info {
+      background-color: $blue-humming-bird;
+      border-left: 2px solid darken( $blue-humming-bird, $message-strip-darken-percentage );
+
+      > * { color: $blue-callypso; }
+
+      > h2  {
+        @include extend-icon-before( info );
+      }
+    }
+
+    &.success {
+      background-color: $green-tara;
+      border-left: 2px solid darken( $green-tara, $message-strip-darken-percentage );
+
+      > * { color: #2c6b2c; }
+
+      > h2  {
+        @include extend-icon-before( check );
+      }
+    }
+
+
+    h2 { margin-bottom: .5em; }
+
+    > * {
+      &:last-child { margin-bottom: 0; }
+    }
+
+    a[href] {
+      color: inherit;
+      @include hoverify() { color: inherit; }
+    }
+  }

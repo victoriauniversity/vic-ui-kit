@@ -1,0 +1,123 @@
+---
+notes: >
+  [TA] - Events Widget
+  https://victoriauniversity.atlassian.net/browse/WIP-1707
+
+
+  [TA] - Event Listing Pages (MVP)
+  https://victoriauniversity.atlassian.net/browse/WIP-1706
+
+
+  [TA] - events item full column width (+HP)(MVP)
+  https://victoriauniversity.atlassian.net/browse/WIP-2082
+
+
+  https://schema.org/Event
+  ld+json is the recommended format and doesn't pollute markup
+  https://developers.google.com/search/docs/guides/intro-structured-data#testing-and-publishing-your-markup
+
+
+  Testing metadata: https://search.google.com/structured-data/testing-tool/u/0/
+---
+
+<section class="centraliser articles-container block">
+    <header>
+        <a href="#" title="" class="link-more">All events</a>
+        <h2>Upcoming events</h2>
+    </header>
+
+    <ul class="events">
+        <li>
+            <article>
+                <p class="margin-notes">
+                    <time class="highlight-strip">
+                        <span>in a month</span>
+                        <span class="date">17–18 October 2016</span>
+                        <span class="time">from 9.00 am</span>
+                    </time>
+                </p>
+                <div class="summary formatting">
+                    <h3><a href="#" title="See event details">New Historians Conference 2016</a></h3>
+
+                    <p>The History Programme invites current postgraduates and recent graduates to its annual New Historians Conference. Now in its 11th year, the conference brings together researchers from local, national and regional institutions and organisations.</p>
+
+                    <p class="meta venue"><span class="icon-pin"></span>Alan Macdiarmid Lecture Theatre 105</p>
+                    <p class="meta fees"><span class="icon-ticket"></span>The registration fee is $25, with an optional conference dinner at approx. $28-$35 per head.</p>
+                </div>
+
+            </article>
+
+            <script type="application/ld+json">
+            {
+              "@context": "http://schema.org/",
+              "@type": "Event",
+              "name": "New Historians Conference 2016",
+              "startDate": "2016-10-17T09:00",
+              "endDate": "2016-10-18",
+              "isAccessibleForFree": false,
+              "offers": [
+                {
+                  "@type": "Offer",
+                  "price": "25.00",
+                  "priceCurrency": "NZD"
+                }
+                ],
+              "description": "The History Programme invites current postgraduates and recent graduates to its annual New Historians Conference. Now in its 11th year, the conference brings together researchers from local, national and regional institutions and organisations.",
+              "location": {
+                "@type": "Place",
+                "name": "Alan Macdiarmid Lecture Theatre 105",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Wellington"
+                },
+                "hasMap": "http://www.victoria.ac.nz/about/explore-victoria/campuses/kelburn/kelburn-campus-map.pdf"
+                },
+                "url": "http://www.victoria.ac.nz/events/event-123-details"
+            }
+            </script>
+        </li>
+
+        <li>
+
+            <article>
+                <p class="margin-notes">
+                    <time class="highlight-strip">
+                        <span>in two months</span>
+                        <span class="date">16–18 November 2016</span>
+                        <span class="time">5:30pm</span>
+                    </time>
+                </p>
+                <div class="summary formatting">
+                    <h3><a href="#" title="See event details">The New Zealand Polymath - Colenso and his contemporaries</a></h3>
+
+                    <p>The History Programme invites current postgraduates and recent graduates to its annual New Historians Conference. Now in its 11th year, the conference brings together researchers from local, national and regional institutions and organisations.</p>
+
+                    <p class="meta venue"><span class="icon-pin"></span>Alan Macdiarmid Lecture Theatre 105</p>
+                    <p class="meta fees"><span class="icon-ticket"></span>The registration fee is $25, with an optional conference dinner at approx. $28-$35 per head.</p>
+                </div>
+
+            </article>
+        </li>
+
+        <li>
+            <article>
+                <p class="margin-notes">
+                    <time class="highlight-strip">
+                        <span>archived</span>
+                        <span class="date">9 September 2016</span>
+                        <span class="time">12:10pm</span>
+                    </time>
+                </p>
+                <div class="summary formatting">
+                    <h3><a href="#" title="See event details">History Programme Seminar: The Czechoslovak Orient: Carpathian Ruthenia as an Imagined Colonial Space</a></h3>
+
+                    <p>This study considers interwar Czechoslovakia’s easternmost province of Ruthenia, today a region of Ukraine, as an example of colonial administrative practices and mentality in a European context. Czechs and Rusyns shared a common Slavic ethnicity, yet the vast difference in their economic and cultural levels at the outset of the republic led to the establishment of a colonial framework in the Czech media and political administration.</p>
+
+                    <p class="meta venue"><span class="icon-pin"></span>Old Kirk 406 (F L Wood Seminar Room)</p>
+                </div>
+
+            </article>
+        </li>
+
+    </ul>
+</section>

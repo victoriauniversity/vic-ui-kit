@@ -1,0 +1,50 @@
+
+
+  /** Standard tags (filtering, tag cloud etc.) */
+
+  $tag-background-color: #dbe6f3 !default;
+
+  .tags {
+    margin-bottom: 1.2rem;
+  }
+
+  .tag {
+
+    aside & {
+      font-size: rem( 14px );
+    }
+
+    white-space: nowrap;
+    display: inline-block;
+    padding: .15rem .6rem;
+    margin: 0 0 .3rem;
+    border-radius: $base-corner-radius;
+    background-color: $tag-background-color;
+
+    // Selected tag
+    &.active {
+      background-color: $green-victoria;
+      color: $white;
+    }
+
+    // 'x' button
+    .close {
+      display: inline-block;
+      margin-left: .5rem;
+      font-weight: $weight-bold;
+    }
+  }
+
+  a.tag {
+    @include hoverify() {
+      text-decoration: underline;
+      background-color: lighten( $tag-background-color, 4 );
+    }
+
+    &.active {
+      @include hoverify() {
+        background-color: $green-bottle;
+        text-decoration: none;
+      }
+    }
+  }

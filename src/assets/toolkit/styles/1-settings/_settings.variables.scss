@@ -1,0 +1,165 @@
+/*==========================================
+=            SETTINGS & OPTIONS            =
+==========================================*/
+
+
+/*******************************************************************************
+
+  As a rule of thumb, *EVERY VARIABLE* that is used by two and more
+  *distinictive* components should be placed here.
+
+*******************************************************************************/
+
+
+/* ===== PATHS ============================================================ */
+
+
+// Path in the dist/ directory
+$dir-fonts:  "./fonts";
+$dir-images: "./images";
+
+
+
+
+
+/* ===== BASE, LAYOUT & GRID ============================================== */
+
+// Most browsers' default => Use for relative units' calculations
+$base-size:     16px;
+
+
+// Sets global base em size for the px-to-em and px-to-rem function. This should be the same size as your body font-size.
+$em-base:       $base-size;     // For Bourbon's mixins and functions
+
+$base-width-px: 1280px;         // Maximum width of the content
+$base-width:    rem( $base-width-px );
+
+
+$base-max-content-height: rem( 770px );
+
+
+
+
+
+/* ===== POSITIONING ====================================================== */
+
+
+/** Placement on the Z axis */
+
+$z-index-max:       9999 !default;
+$z-index-top:       10 !default;
+$z-index-middle:    5 !default;
+$z-index-lower:     1 !default;
+$z-index-default:   0 !default;
+
+
+
+
+
+/* ===== FONTS ============================================================ */
+
+
+/** Settings */
+$font-supported-formats: woff woff2 ttf;
+
+
+/** Available weights */
+$weight-normal:    400;
+$weight-medium:    500; // *DO NOT* use for headings
+$weight-semibold:  600;
+$weight-bold:      700; // *DO NOT* use for headings
+$weight-extrabold: 800;
+
+
+/** Victoria font */
+$font-victoria:      "National";
+$font-path-victoria: "#{$dir-fonts}/NationalWebLF";
+
+
+/** Victoria icons */
+$font-icons:         "VicIcons";
+$font-path-icons:    "#{$dir-fonts}/vic-icons";
+
+
+
+
+
+/* ===== DEFAULTS ========================================================= */
+
+
+/** General colours */
+
+$color-body-text:     $black-mine-shaft;
+
+
+/** General typography. */
+
+// Bourbon's overrides for modular scaling
+$modular-scale-ratio: $major-third;   // = 1.25x
+$modular-scale-base:  em( $em-base ); // Use ems for font sizing and anything relative to this size
+
+$base-heading-to-body-ratio: 74 / 74; //TODO: Review how to do this properly
+
+$base-line-height:    1.6;
+
+$base-font-size:      1em;            // Respects user's settings (~usually 16px)
+$base-font-color:     $color-body-text;
+$base-body-family:    "Helvetica Neue","Segoe WP","Helvetica","Arial";
+
+$base-heading-family: "#{$font-victoria}",$base-body-family;
+$base-heading-color:  $green-victoria;
+
+
+/** Links & Hovers */
+
+$base-link-color:          $blue-endeavoura;
+$base-link-hover-color:    $blue-curious;
+
+$base-hover-opacity:       .9;
+
+$base-darken-percentage:   3;
+$base-lighten-percentage:  6;
+
+
+/** Margins and paddings */
+
+$column-padding:     rem( 20px );
+
+$base-spacing:       $base-line-height * 1rem;
+
+$highlights-padding: $column-padding;
+
+
+/** Shadows (always in px units) */
+
+$base-shadow: 0 1px 5px rgba( #000, .15 );
+
+
+/** Borders, corners (always in px units)*/
+
+$highlight-border-width: .25rem; // TODO: Borders *MUST BE* in pixels
+
+$strip-light:            $highlight-border-width solid $green-nebula;
+
+$base-border:            1px solid $grey-gallery;
+$base-corner-radius:     2px;
+
+
+/** Imagery */
+
+$media-inline-width:          rem( 270px );
+$media-inline-portrait-width: rem( 160px );
+
+$base-image-hover-opacity:    $base-hover-opacity;
+
+
+/** Miscs */
+
+// Transitions and animations
+$transition-timeout: 200ms; //update in toolkit.js(7)
+
+
+// Top menu panel
+$global-panel-color:       $grey-silver;
+$global-panel-hover-color: #BBB;
+$global-panel-text-color:  $base-font-color;

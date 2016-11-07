@@ -1,0 +1,33 @@
+<header role="banner" class="site-header">
+  <div class="block centraliser">
+
+    <!-- Logotype -->
+    <div class="logo">
+      <a href="/" title="Victoria University of Wellington homepage">
+        <picture>
+          <source media="(max-width: 68em)" srcset="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-portrait.svg">
+          <img src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-full.svg" alt="Victoria University of Wellington - Te Whare Wānanga o te Ūpoko o te Ika a Māui">
+        </picture>
+      </a>
+    </div>
+
+    <!-- Introductory block -->
+    <div class="site-intro">
+
+      <a href="#" title="{{{title}}} homepage">
+        <h1>
+          {{#if header.subtitle}}
+            <span class="preline">{{{header.subtitle}}}</span>
+          {{/if}}
+
+          {{#if header.titleClass}} <span class="{{{header.titleClass}}}"> {{/if}}
+            {{#if header.title}} {{{header.title}}} {{/if}}
+          {{#if header.titleClass}} </span> {{/if}}
+          {{#if header.titleMaori}} <small lang="mi"> {{{header.titleMaori}}} </small> {{/if}}
+        </h1>
+      </a>
+    </div>
+
+  </div>
+</header>
+

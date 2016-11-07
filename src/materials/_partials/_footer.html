@@ -1,0 +1,135 @@
+<footer role="contentinfo">
+
+  <!-- Links and contacts that can vary between sub-sites -->
+  <section class="footer-secondary {{#if footer.links}}two-columns{{/if}}">
+    <div class="centraliser">
+
+      {{#if footer.links}}
+      <!-- Sub-site's related or recommended links -->
+      <div class="block">
+
+        <h2>Useful links</h2>
+        <nav role="navigation">
+          <ul role="menubar">
+            {{#each footer.links}}
+            <li>
+              <a href="#" role="menuitem" title="Read {{{ this }}}">{{{ this }}}</a>
+            </li>
+            {{/each}}
+          </ul>
+        </nav>
+
+      </div>
+      {{/if}}
+
+      <!-- Sub-site's related links -->
+      <div class="block contacts">
+
+        <a href="#" title="See more contact information" class="link-more">Other contacts</a>
+        <h2>Useful contacts</h2>
+
+        <address>
+
+          {{#if footer.phones}}
+          <!-- Phone numbers -->
+          <ul class="phones">
+
+            {{#each footer.phones}}
+            <li>
+              <a href="tel:{{{ this.number }}}" title="Call to {{{ this.label }}}">{{{ this.number }}}</a>
+              {{{ this.label }}}
+            </li>
+            {{/each}}
+          </ul>
+          {{/if}}
+
+          {{#if footer.mails}}
+          <!-- Mail addresses -->
+          <ul class="mails">
+            {{#each footer.mails}}
+            <li>
+              <a href="mailto:{{{ this }}}" title="Send an email to {{{ this }}}">{{{ this }}}</a>
+            </li>
+            {{/each}}
+          </ul>
+          {{/if}}
+        </address>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Related links from global site -->
+  <section class="footer-secondary">
+    <div class="centraliser">
+      <div class="block">
+        <h2>Victoria University</h2>
+
+        <nav role="navigation">
+          <ul role="menubar">
+            <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Faculties</a></li>
+            <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Contacts and directories</a></li>
+            <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Campuses</a></li>
+            <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Study</a></li>
+            <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Students</a></li>
+            <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Students</a></li>
+            <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Staff</a></li>
+            <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Careers</a></li>
+            <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Alumni</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meta-links and contacts that are shared between sub-sites -->
+  <section class="footer-primary">
+    <div class="centraliser">
+
+      <div class="block">
+
+        <!-- Smaller version of logotype -->
+        <div class="logo">
+          <a href="/" title="Victoria University of Wellington homepage">
+            <img class="logo"  src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-full.svg" alt="Victoria University of Wellington - Te Whare Wānanga o te Ūpoko o te Ika a Māui">
+          </a>
+        </div>
+
+        <!-- Global contacts -->
+        <ul class="contacts">
+          <li>
+            <a title="Call Victoria about general enquiries" href="tel:+6444721000">+64 4 472 1000</a>
+          </li>
+          <li>
+            <a title="Write Victoria an email" href="mailto:info@victoria.ac.nz">info@victoria.ac.nz</a>
+          </li>
+          <li>
+            Enrolments: <a title="Call Victoria regarding enrolments" href="tel:+64800842867">0800 VICTORIA</a>
+          </li>
+          <li>
+            Emergency: <a title="Call in case of emergency" href="tel:+6444639999">+64 4 463 9999</a> or ext. 8888 (internal)
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="block small">
+
+        <nav role="navigation">
+          <ul role="menubar" class="minilinks">
+            <li role="menuitem"><a title="See ..." href="http://www.victoria.ac.nz/site-info">Site info</a></li>
+            <li role="menuitem"><a title="See ..." href="http://www.victoria.ac.nz/site-info/site-map">Site map</a></li>
+            <li role="menuitem"><a title="See ..." href="http://www.victoria.ac.nz/site-info/feedback">Feedback</a></li>
+            <li role="menuitem"><a title="See ..." href="http://www.victoria.ac.nz/site-info/glossary">Glossary</a></li>
+          </ul>
+        </nav>
+
+        <small class="copyright">Copyright &copy; Victoria University of Wellington, New Zealand</small>
+
+      </div>
+
+    </div>
+  </section>
+
+</footer>

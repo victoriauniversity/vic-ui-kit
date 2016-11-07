@@ -30,9 +30,11 @@ body {
 	@include clearfix;
 	@include border-box;
 	position: relative;
+  margin-bottom: 5rem;
 	padding: 0 1em;
 	z-index: 0;
 	min-height: 100vh;
+  max-width: map-get($settings, content-max-width);
 
 	.f-menu-active & {
 		transform: translate($menu-width, 0);

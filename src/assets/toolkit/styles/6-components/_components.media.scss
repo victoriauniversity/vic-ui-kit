@@ -1,0 +1,155 @@
+
+
+/** Embedded media (images, videos, galleries etc.) */
+
+.media {
+
+  // Floats a medium into right on devices with higher resolution
+  &.inline {
+
+    @include media( $tablet-and-bigger ){
+      float: right;
+      width: $media-inline-width;
+      margin: 0 0 0 $base-spacing;
+
+      figcaption {
+        font-size: 90%;
+        border-left-width: $highlight-border-width * .75;
+      }
+    }
+  }
+
+  img,
+  iframe,
+  .table-container,
+  .embed {
+    float: none;
+    display: block;
+    margin-bottom: .5em;
+    @include size( 100% auto );
+
+    &:last-child { margin-bottom: $base-spacing; }
+  }
+
+  figcaption {
+    display: block;
+    padding: .2em 0 .2em .8em;
+    border-left: $strip-light;
+    color: $black-emperor;
+    margin-bottom: $base-spacing;
+  }
+
+  .formatting .grid &.featured img {
+    margin-bottom: 0;
+  }
+
+  //TODO: Remove?
+  &.featured {
+    position: relative;
+
+    img { margin-bottom: 0; }
+
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      background-color: rgba($black, 0.4);
+      transition: background-color 200ms ease-in-out;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    &:hover:before {
+      background-color: rgba($black, .2);
+    }
+
+    //TODO: extend .tile-text
+    figcaption {
+      z-index: 1;
+      background-color: $green-victoria;
+      // color: $white;
+      border-left: none;
+
+      @include media( $tablet-and-bigger ){
+        position: absolute;
+        top: $base-spacing;
+        left: $base-spacing;
+        width: 66%;
+        max-width: 20rem;
+      }
+
+      h1, h2, h3, h4, h5, h6, p{
+        color: $white;
+        display: flex;
+        align-items: center;
+        padding: .5em;
+      }
+
+      p { margin-bottom: 1.3em; }
+
+    }
+  }
+}
+
+
+  // To wrap iframed media dynamically
+  .embed {
+      height: 0;
+      padding: 0 0 56.25%; //16:9 ratio magic; use different wrapper for other ratio embeds?
+      position: relative;
+      margin-bottom: $base-spacing;
+
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      @include clearfix;
+
+
+      @include media( $tablet-and-bigger ){
+        &.inline {
+          padding-bottom: 22.5%;
+        }
+      }
+  }
+
+
+  /** Simple gallery (images + breadcrumbs) */
+
+  $gallery-image-height: rem( 220px );
+
+
+  @include media( $tablet-and-bigger ){
+
+    .gallery {
+      margin-bottom: $base-spacing;
+      @include clearfix;
+
+      img {
+        @include size( auto $gallery-image-height );
+      }
+
+      figcaption {
+        margin-bottom: 0;
+        font-size: 85%;
+        border-left-width: 3px;
+      }
+
+      .media {
+        vertical-align: top;
+        display: inline-block;
+        width: min-content; // Not supported in IE and older browsers!
+        margin-right: 1.2rem;
+        margin-bottom: 1.2rem;
+      }
+    }
+
+  }

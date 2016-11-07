@@ -1,0 +1,102 @@
+// ========================================
+// ======== Degrees & Qualifications block on homepages
+// ========================================
+
+//---- Settings ---
+$sub-title-color: rgba($white, 0.75);
+
+
+  .degrees-quals {
+    h1 { margin: 1em 0 .7em; }
+
+    &.tile-grid {
+      margin-bottom: $base-spacing;
+
+      .tiles-wrap {
+          li.tile {
+              margin-bottom: 0.5rem;
+              height: auto;
+              .tile-text {
+                  position: relative;
+                  @include media ($desktop-and-bigger) {
+                      min-height: 140px;
+                  }
+                  a {
+                      padding: 1em;
+                  }
+                  .tile-title {
+                      padding: 0;
+                      margin-bottom: 1em;
+                  }
+                  .sub-title {
+                      color: $sub-title-color;
+                      margin: 0;
+                  }
+                  .title-break {
+                      width: 30px;
+                      border-top: 2px solid $sub-title-color;
+                      margin-bottom: 0.5em;
+                  }
+              }
+          }
+      }
+    }
+
+
+    // -------------------------
+    // -------------------------
+    // Overrides and unquie styles on the tile-grid for degrees-qual only
+    // -------------------------
+    &.ui-update.tile-grid {
+      margin-bottom: $base-spacing;
+
+      .tiles-wrap {
+          li.tile {
+              @include media ($desktop-and-bigger) {
+                  @include span-columns(6);
+                  margin-right: $gutter;
+                  max-height: none;
+                  // margin-bottom: 0;
+              }
+              margin-bottom: 0.5rem;
+              .tile-text {
+                  position: relative;
+                  width: 100%;
+                  background-color: $grey-alto;
+                  @include media ($desktop-and-bigger) {
+                      min-height: inherit;
+                  }
+                  a {
+                      padding: 1em;
+                  }
+                  .tile-title {
+                      padding: 0;
+                      margin-bottom: 0;
+                      h2,
+                      i {
+                          color: $green-victoria;
+                          // & span {
+                          //     color: $black-emperor;
+                          //     font-size: 0.75em;
+                          //     // font-weight: bold;
+                          // }
+                      }
+                      i {
+                          color: $black-emperor;
+                      }
+                  }
+                  .sub-title {
+                      color: $black-emperor;
+                      margin: 0;
+                  }
+                  .title-break {
+                      width: 30px;
+                      border-top: 2px solid $grey;
+                      margin-bottom: 0.15em;
+                  }
+              }
+          }
+      }
+    }
+
+  }

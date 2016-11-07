@@ -1,0 +1,48 @@
+/*=========================================
+=         BREADCRUMBS NAVIGATION          =
+=========================================*/
+
+
+  /** Default breadcrumbs navigation for desktop-only. */
+
+  .breadcrumbs {
+    padding-bottom: 0;
+    font-family:    $base-heading-family;
+    font-size:      $h5-font-size;
+
+    > li {
+      display: inline-block;
+      white-space: nowrap;
+
+      &:first-child a {
+        @include extend-icon-before( home ){
+          top: 0;
+          margin-right: .35em;
+        }
+
+        &:before {
+          font-size: 90%
+        }
+      }
+
+      @include extend-icon-after( triangle-right ) {
+        margin: 0 .35em;
+        font-size: 85%;
+        color: $grey-silver-chalice;
+      };
+
+      &:last-child {
+        font-weight: $weight-semibold;
+        color: $black-emperor;
+
+        &:after { display: none; }
+      }
+    }
+
+    a { @extend %base-link; }
+
+    @include media( $mobile-large-and-smaller ){
+      display: none;
+    }
+  }
+

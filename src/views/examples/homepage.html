@@ -1,0 +1,35 @@
+<!-- Center 'content' and right 'widget' columns -->
+<div class="layout centraliser homepage-banner">
+    <div class="sidebar "> {{> navigation.site-home }} </div>
+    <figure class="banner">
+      <a href="#">
+          <img src="//www.victoria.ac.nz/__data/assets/image/0017/344105/crocodile-bike-2000x800px.jpg">
+          <!-- Use class="wider, bottom or top" to position the text box -->
+          <figcaption>
+              <h1>Centre for Strategic Studies: New Zealand <i class="icon-caret-right"></i></h1>
+          </figcaption>
+      </a>
+    </figure>
+</div>
+
+<div class="homepage-base layout">
+    <!-- Center 'content' column -->
+    <div class="content-panel">
+        <main>
+            <!-- Banner -->
+            <section>
+                {{> homepage-intro}}
+                <section class="centraliser block">
+                    <div class="study-area-tabs" id="study-area-tabs">
+                        <ul>
+                            <li class="active"><a href="javascript:void(0)"><h4><span class="icon-book-open"></span>Study areas</h4></a></li>
+                            <li><a href="javascript:void(0)"><h4><span class="icon-graduation-cap"></span>Degrees and qualifications</h4></a></li>
+                        </ul>
+                    </div>
+                    {{> study-area-single}} {{> degrees-quals}}
+                </section>
+                {{> promo-with-1x-image}} {{> text-promo-panel}} {{> two-thirds-promo-panel}} {{> three-cols-images}}
+            </section>
+        </main>
+    </div>
+</div>

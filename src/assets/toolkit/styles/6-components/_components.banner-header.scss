@@ -1,0 +1,108 @@
+
+
+  $logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
+
+  .site-header{
+    background: $black-victoria;
+
+    .block {
+      padding-top:    1rem;
+      padding-bottom: 1rem;
+    }
+
+    .logo,
+    .site-intro {
+      vertical-align: middle;
+
+      a {
+        display: block;
+        @include hoverify() {
+          opacity: $base-hover-opacity;
+        }
+      }
+    }
+
+    /* Victoria main logotype */
+    .logo {
+      text-align: center;
+      // Logo image
+      img {
+        vertical-align: middle;
+        max-height: $logo-max-height;
+      }
+    }
+
+    /* Site's introduction - eg. sitename, motto, short abstract */
+
+      // Sitename
+      h1 {
+        font-size:     scale-heading( 4 ) * .85; // 85% smaller than standard <h1>
+        font-weight:   $weight-normal;
+        color:         $white;
+
+        .large {
+          font-size: 140%;
+
+          &:not(:first-child) {
+            line-height: .8; // Decrease the margins
+          }
+        }
+
+        .preline,
+        small {
+          display: block;
+        }
+
+        // Puts given part of the heading to a separate line
+        .preline { font-size: 75%; }
+
+        // Alternative translation
+        small {
+          margin-top:  .25rem;
+          font-size:   50%;
+          font-weight: normal;
+          color:       $grey-silver;
+          line-height: 1.2;
+        }
+      }
+
+
+    @include media( $tablet-and-bigger ) {
+
+      .block {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+      }
+
+      .site-intro {
+        @include span-columns( 9 of 12, table );
+        padding: .3rem $column-padding .5rem $column-padding * 1.5;
+      }
+
+      .logo {
+        @include span-columns( 3 of 12, table );
+
+        padding: .1rem $column-padding * 1.5 .1rem $column-padding;
+        border-right: 1px solid $black-emperor;
+      }
+
+    }
+
+    @include media( $mobile-large-and-smaller ) {
+      .logo { display: none; }
+
+      .site-intro {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      h1 {
+        line-height: #{$base-line-height * 1.2}rem;
+        text-align: center;
+
+        .large { font-size: 120%; }
+      }
+    }
+  }

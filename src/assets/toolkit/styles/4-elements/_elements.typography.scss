@@ -1,0 +1,188 @@
+/*==========================================
+=        GENERAL TYPOGRAPHY SETUP          =
+==========================================*/
+
+
+  /* ===== FUNCTION HELPERS ================================================= */
+
+
+  $scale-font-base: $base-font-size !default;
+
+  /** Scales the font using pre-defined ratio to keep the consistency.
+   *
+   *  $font-size (default: 1) - indexed from 0, where 0 = $base-font-size;
+   *                            > 0 = Bigger fonts
+   *                            < 0 = Smaller fonts
+   */
+  @function scale-font( $font-size: 1 ) {
+    @return modular-scale( $font-size );
+  }
+
+
+  $heading-to-body-ratio: $base-heading-to-body-ratio !default;
+
+  /** Similar to @function scale-font(). Additionally, it multiplies the size
+    * with `heading to body text` ratio. Useful to compensate sizing when the
+    * heading font is visibly different default size than body font
+    * (eg. 16px heading is significantly bigger/smaller than 16px of body).
+    *
+    */
+  @function scale-heading( $heading-size ) {
+    @return modular-scale( $heading-size ) / $heading-to-body-ratio;
+  }
+
+
+
+
+
+  /* ===== DEFINE & IMPORT FONTS ============================================ */
+
+
+  /* Victoria's font `National` */
+  @include font-face( $font-victoria, "#{$font-path-victoria}-Regular", $weight-normal, $file-formats: $font-supported-formats );
+  @include font-face( $font-victoria, "#{$font-path-victoria}-Semibold", $weight-semibold, $file-formats: $font-supported-formats );
+  @include font-face( $font-victoria, "#{$font-path-victoria}-Extrabold", $weight-extrabold, $file-formats: $font-supported-formats );
+
+
+  /* Victoria's icon font */
+  @include font-face( $font-icons, $font-path-icons, $weight-normal, $file-formats: $font-supported-formats );
+
+
+
+
+
+  /* ===== BASE TYPOGRAPHY ================================================== */
+
+
+  html {
+    //TODO: Tweak % at the end to find best UX fit
+    @include media( $mobile-large-and-smaller ) {
+      font-size: 85%;
+    }
+
+    @include media( $tablet ) {
+      font-size: 92.5%;
+    }
+
+    font-size: 100%;
+
+    @include media( $desktop-large ) {
+      //font-size: 105%;
+      font-size: 100%; // Temporary to avoid incosistencies between graphic designs and templates
+    }
+  }
+
+  body {
+    font-family: $base-body-family;
+    line-height: $base-line-height;
+    color:       $base-font-color;
+
+    // Make fonts consistent and nice across browsers
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+
+  /** Headings */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $base-heading-family;
+    font-weight: $weight-semibold;
+    color:       $base-heading-color;
+    line-height: 1;
+  }
+
+  h1 {
+    font-weight: $weight-extrabold;
+    font-size: scale-heading( 4 );
+  }
+
+  h2 {
+    font-size: scale-heading( 3 );
+  }
+
+  h3 {
+    font-size: scale-heading( 2 );
+  }
+
+  h4 {
+    font-size: scale-heading( 1 );
+  }
+
+  $h5-font-size: scale-heading( 0 ) + ( scale-heading( 1 ) - scale-heading( 0 ) )/2;
+
+  h5 {
+    // Exactly between h4 and h6
+    font-size: $h5-font-size;
+  }
+
+  //DEPRECATED: *Do not use* in any templates
+  h6 {
+    font-size: scale-heading( 0 );
+  }
+
+
+  /** Paragraphs */
+
+  p {
+    line-height: $base-line-height;
+  }
+
+
+  /** Lists */
+
+  ul { list-style: none; }
+  ol { list-style: decimal; }
+
+
+  /** Links */
+
+  a[href] {
+    color: $base-link-color;
+    text-decoration: none;
+  }
+
+  a > img {
+    @include hoverify() {
+      opacity: $base-image-hover-opacity;
+    }
+  }
+
+  // Extendable standard link
+  %base-link {
+    color: $base-link-color;
+    text-decoration: underline;
+
+    @include hoverify() {
+      color: $base-link-hover-color;
+      text-decoration: none;
+    }
+  }
+
+
+  /** Figures */
+
+  figure {
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    p { color: $base-font-color; }
+
+    @include hoverify() {
+      img{ filter: none; } //TODO: Can be safely dropped?
+    }
+  }
+
+
+  /** Miscs */
+
+  time { color: $grey; }
+

@@ -1,0 +1,200 @@
+/*=========================================
+=      LAYOUTS, CONTAINERS & BLOCKS       =
+=========================================*/
+
+
+/*******************************************************************************
+
+  Contains basic building containers, layouts, columns and grids.
+
+  It's *HIGHLY RECOMMENDED* to understand how to build structures with these
+  before development of new objects and components.
+
+*******************************************************************************/
+
+
+
+  // Sticky footer
+  html { height: 100%; }
+
+  body {
+    min-height: 100%;
+    @include display(flex);
+    @include flex-direction( column );
+
+    > footer { overflow: hidden; } // IE extra margin after flex-box fix
+  }
+
+
+
+
+  /* ===== BASIC BUILDING BLOCKS ============================================ */
+
+
+  /** BLOCK - Universal building block with standard paddings. */
+
+  .block { padding: $column-padding; } //TODO: Review - too big!
+
+
+  /** CENTRALISER - Restricts the width of the content to allowed maximum and aligns to center. */
+
+  .centraliser {
+    @include outer-container;
+    position: relative;
+  }
+
+
+  /** SECTOR - Single page section container with unlimited width and no paddings/margins. Can be used to group related components. */
+
+  .sector,
+  .separated {
+    @include clearfix;
+  }
+
+  .separated,
+  .sector {
+    border-bottom: $base-border;
+  }
+
+
+  //TODO: Use either 'section' or 'sector'
+  .section {
+    display: block;
+    border-bottom: $base-border;
+  }
+
+
+  /** LAYOUT - Contains all the content's columns and layout combinations */
+
+  .layout {
+    width: 100%;
+
+    &.block {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  // Sticky footer - stretch content to maximum
+  body > .layout {
+    display: block;
+    @include flex( 1 1 auto ); // = 1 (1 1 auto is required for IE-based browsers!)
+  }
+
+
+
+
+
+
+  /* ===== 3-COLUMN LAYOUT ================================================== */
+
+
+  .content-panel {
+    position: relative;
+
+    > img { width: 100%; }
+
+    > main,
+    > aside {
+      vertical-align: top;
+
+      > .block {
+        padding-bottom: 1.5 * $column-padding;
+        padding-top: 1.5 * $column-padding;
+      }
+    }
+  }
+
+  .sidebar {
+    position: relative;
+    z-index: $z-index-top;
+  }
+
+
+  @include media( $tablet-and-smaller ){
+
+    .layout {
+      &.block {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+
+
+  @include media( $tablet-and-bigger ){
+
+    .content-panel {
+      // Sub-columns
+
+      /** Main content *ONLY* */
+
+      > main:last-child { width: 100%; }
+
+
+      /** 1st Content bar + 2nd widgets bar */
+
+      $widgetbar-to-content-width-ratio: .25; // 25% of the content container's width
+      $widgetbar-columns: $widgetbar-to-content-width-ratio * $grid-columns;
+
+      > main:not(:last-child) {
+        @include span-columns( $grid-columns - $widgetbar-columns, table );
+        float: left;
+      }
+
+      > aside {
+        @include span-columns( $widgetbar-columns, table );
+        float: left;
+      }
+    }
+  }
+
+
+  @include media( $desktop-and-bigger ){
+
+    .layout {
+      overflow: hidden;
+      display:  table; // Fixes the issue with misbehavior of inner containers
+    }
+
+    /** Left sidebar */
+
+    $sidebar-to-document-width-ratio: .20; // 20% of the page's width
+    $sidebar-columns: $sidebar-to-document-width-ratio * $grid-columns;
+
+    .sidebar {
+      float: left;
+      @include span-columns( $sidebar-columns, table );
+    }
+
+    // Can contain Content only column and Widget bar (optional).
+    .content-panel {
+      float: left;
+
+      /** Content panel *ONLY* */
+
+      &:first-child {
+        width: 100%;
+
+        // Main content *ONLY*
+        > main:last-child {
+          > .block { padding-left: 0; }
+        }
+      }
+
+      > main:last-child {
+        > .block { padding-right: 0; }
+      }
+
+      /** 1st Sidebar + 2nd Content panel */
+
+      &:not(:first-child) {
+        vertical-align: top;
+        @include span-columns( $grid-columns - $sidebar-columns, table );
+      }
+
+      > aside {
+        > .block { padding-right: 0; }
+      }
+    }
+  }
