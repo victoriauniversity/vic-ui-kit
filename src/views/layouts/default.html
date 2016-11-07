@@ -7,11 +7,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<title>{{title}}</title>
+  <link rel="icon" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}favicon.ico" type="image/x-icon" />
 
-	{{#if fabricator}}<link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}{{else}}.{{/if}}/assets/fabricator/styles/f.css">{{/if}}
+	{{#if fabricator}}<link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}styleguide-assets/f.css">{{/if}}
 
 	<!-- toolkit styles -->
-	<link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}{{else}}.{{/if}}/assets/toolkit/styles/toolkit.css">
+	<link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}toolkit.css">
 	<!-- /toolkit styles -->
 
 </head>
@@ -65,17 +66,24 @@
 
   {{/unless}}
 
-
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha256-ImQvICV38LovIsvla2zykaCTdEh1Z801Y+DSop91wMU=" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
 
 	{{#if fabricator}}
 		</div>
-	<script src="{{#if baseurl}}{{baseurl}}{{else}}.{{/if}}/assets/fabricator/scripts/f.js"></script>
+	<script src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}styleguide-assets/f.js"></script>
+
+  <script type="text/javascript">
+    // Prefix tag with 'f-'
+    Prism.plugins.customClass.map({
+      tag: 'f-tag'
+    })
+  </script>
+
+
 	{{/if}}
 
 	<!-- toolkit scripts -->
-	<script src="{{#if baseurl}}{{baseurl}}{{else}}.{{/if}}/assets/toolkit/scripts/toolkit.js"></script>
+	<script src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}toolkit.js"></script>
 	<!-- /toolkit scripts -->
 
 </body>

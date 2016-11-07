@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
+webpack    = require('webpack');
 
 
 /**
@@ -7,7 +7,7 @@ const webpack = require('webpack');
  * @param {boolean} isDev If in development mode
  * @return {Array}
  */
-function getPlugins(isDev) {
+function getPlugins( isDev ) {
 
   const plugins = [
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -19,16 +19,16 @@ function getPlugins(isDev) {
   } else {
     plugins.push(new webpack.optimize.DedupePlugin());
     plugins.push(new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
+      minimize:  true,
+      include:   /\.min\.js$/,
       sourceMap: false,
       compress: {
-        warnings: false,
+        warnings: false
       },
     }));
   }
 
   return plugins;
-
 }
 
 
@@ -58,11 +58,13 @@ function getLoaders() {
 module.exports = (config) => {
   return {
     entry: {
-      'fabricator/scripts/f': config.scripts.fabricator.src,
-      'toolkit/scripts/toolkit': config.scripts.toolkit.src,
+      // Add objects: { 'dest': 'source' }
+      [ config.scripts.fabricator.pathInDest ]:      config.scripts.fabricator.src,
+      [ config.scripts.toolkit.pathInDest ]:         config.scripts.toolkit.src,
+      [ config.scripts.toolkit.minifiedPathInDest ]: config.scripts.toolkit.src,
     },
     output: {
-      path: path.resolve(__dirname, config.dest, 'assets'),
+      path: path.resolve( __dirname, '..', config.tmp ),
       filename: '[name].js',
     },
     devtool: 'source-map',

@@ -1,26 +1,28 @@
 /**
  * Toolkit JavaScript
  */
-var fastclick = require('fastclick');
-var Headroom = require('headroom.js');
-var picturefill = require('picturefill');
-// var Velocity = require("velocity-animate");
-var lity = require('lity');
-var enquire = require('enquire.js');
 
-require('./study-areas.js'); //TODO: set up multiple entry points for webpack bundles
 
-var TRANSITION_TIMEOUT = 200; //update in _settings.variables.scss(135)
-var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 43.6875em)', //update in _settings.responsive.scss(57)
+ /* DEPENDENCIES & 3RD PARTY LIBRARIES IMPORTS */
+  var fastclick = require('fastclick'),
+  Headroom      = require('headroom.js'),
+  picturefill   = require('picturefill'),
+  lity          = require('lity'),
+  enquire       = require('enquire.js');
+
+  require('./study-areas.js'); //TODO: set up multiple entry points for webpack bundles
 
 
 
   /* CONSTANT ATTRIBUTES */
 
+  var TRANSITION_TIMEOUT       = 200; //update in _settings.variables.scss(135)
+  var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 43.6875em)', //update in _settings.responsive.scss(57)
+
   // Iframe selectors
   YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
-  GMAPS_IFRAME_SELECTOR = 'iframe[src*="/maps/"]',
-  VIMEO_IFRAME_SELECTOR = 'iframe[src*="vimeo"]';
+  GMAPS_IFRAME_SELECTOR   = 'iframe[src*="/maps/"]',
+  VIMEO_IFRAME_SELECTOR   = 'iframe[src*="vimeo"]';
 
 
   /* SUPPORTING FUNCTIONS */
