@@ -159,9 +159,11 @@ gulp.task('rev', () => {
       //www.npmjs.com/package/gulp-rev-all#options
       includeFilesInManifest: ['.js', '.css', '.svg', '.woff', '.woff2', '.ttf', '.ico'],
       dontRenameFile: [
+        'CNAME',
         '.html'
       ],
       dontUpdateReference: [
+        'CNAME',
         '.html'
       ]
     }))
@@ -209,9 +211,16 @@ gulp.task('styles:fabricator', () => {
 
 
 // Style guide's icon
-gulp.task('favicon', () => {
-  return gulp.src('src/favicon.ico')
-  .pipe(gulp.dest(config.tmp));
+gulp.task( 'favicon', () => {
+  return gulp.src( 'src/favicon.ico' )
+  .pipe( gulp.dest( config.tmp ));
+});
+
+
+// CNAME record for custom domain running on GitHubPages
+gulp.task( 'cname', () => {
+  return gulp.src( 'src/CNAME' )
+  .pipe( gulp.dest( config.tmp ));
 });
 
 
@@ -255,7 +264,7 @@ gulp.task('styles:toolkit', () => {
 
 
 // Layout-related imagery
-gulp.task('images', ['favicon'], () => {
+gulp.task('images', ['favicon', 'cname'], () => {
   return gulp.src(config.images.toolkit.src)
     .pipe(imagemin())
     .pipe(gulp.dest(config.images.toolkit.dest));
