@@ -120,18 +120,43 @@ $promo-max-width:   rem( 600px );
 }
 
 .text-promo-panel {
-    padding: 1.5em 0;
-    border-bottom: $base-border;
-    .text-wrap {
-        // font-size: 1.125em;
-        @include media( $tablet-and-bigger) {
-            @include span-columns(6 of 8);
-        }
+  padding: 1.5em 0;
+  border-bottom: $base-border;
+
+  .text-wrap {
+    // font-size: 1.125em;
+    @include media( $tablet-and-bigger) {
+        @include span-columns(6 of 8);
     }
-    .button-wrap {
-      margin-top: 2.5em;
-        @include media( $tablet-and-bigger) {
-            @include span-columns(2 of 8);
-        }
+  }
+
+  .button-wrap {
+    margin-top: 2.5em;
+    @include media( $tablet-and-bigger) {
+      @include span-columns(2 of 8);
     }
+  }
+
+  // TODO: Move into its standalone .promo-video class
+  &.video {
+
+    // Figure
+    .media .outside {
+      position: relative; top: auto; left: auto;
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 0;
+    }
+
+    .outside {
+
+      h4 {
+        margin-bottom: 0;
+        padding: .65em .5em;
+
+        i { margin-left: .5em; }
+      }
+    }
+
+  }
 }

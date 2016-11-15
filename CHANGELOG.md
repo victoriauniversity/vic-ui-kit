@@ -9,6 +9,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+### Enhanced
+
+- 1/3 video promo box - class `.outside` added to <figure> puts the video description ouside of the video so the video image is not covered by it. 
 
 
 
