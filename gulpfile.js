@@ -187,7 +187,6 @@ gulp.task( 'decorate:assets', () => {
 
 gulp.task( 'decorate', ['decorate:assets', 'decorate:templates'], ( done ) => {
   done();
-  return;
 });
 
 
@@ -198,7 +197,7 @@ gulp.task( 'decorate', ['decorate:assets', 'decorate:templates'], ( done ) => {
 
 // Fabricator's styles
 gulp.task('styles:fabricator', () => {
-  gulp.src(config.styles.fabricator.src)
+  return gulp.src(config.styles.fabricator.src)
   .pipe(sourcemaps.init())
   .pipe(sass().on('error', sass.logError))
   .pipe(prefix('last 1 version'))
@@ -213,14 +212,14 @@ gulp.task('styles:fabricator', () => {
 // Style guide's icon
 gulp.task( 'favicon', () => {
   return gulp.src( 'src/favicon.ico' )
-  .pipe( gulp.dest( config.tmp ));
+    .pipe( gulp.dest( config.tmp ));
 });
 
 
 // CNAME record for custom domain running on GitHubPages
 gulp.task( 'cname', () => {
   return gulp.src( 'src/CNAME' )
-  .pipe( gulp.dest( config.tmp ));
+    .pipe( gulp.dest( config.tmp ));
 });
 
 
@@ -243,23 +242,23 @@ gulp.task('assembler', (done) => {
 
 // Victoria UI Styles
 gulp.task('styles:toolkit', () => {
-  gulp.src(config.styles.toolkit.src)
-  .pipe(gulpif(config.dev, sourcemaps.init()))
-  .pipe(sass({
-    includePaths: [
-    './node_modules',
-    require("bourbon").includePaths,
-    require("bourbon-neat").includePaths,
-    './lib',
-    ],
-  }).on('error', sass.logError))
-  .pipe(prefix('last 1 version'))
-  .pipe(gulpif(config.dev, sourcemaps.write()) )
-  .pipe(gulp.dest(config.styles.toolkit.dest))
-  .pipe(csso())
-  .pipe(rename('toolkit.min.css'))
-  .pipe(gulp.dest(config.tmp))
-  .pipe(gulpif(config.dev, reload({ stream: true })));
+  return gulp.src(config.styles.toolkit.src)
+    .pipe(gulpif(config.dev, sourcemaps.init()))
+    .pipe(sass({
+      includePaths: [
+      './node_modules',
+      require("bourbon").includePaths,
+      require("bourbon-neat").includePaths,
+      './lib',
+      ],
+    }).on('error', sass.logError))
+    .pipe(prefix('last 1 version'))
+    .pipe(gulpif(config.dev, sourcemaps.write()) )
+    .pipe(gulp.dest(config.styles.toolkit.dest))
+    .pipe(csso())
+    .pipe(rename('toolkit.min.css'))
+    .pipe(gulp.dest(config.tmp))
+    .pipe(gulpif(config.dev, reload({ stream: true })));
 });
 
 
@@ -286,7 +285,6 @@ gulp.task('fonts', function () {
 
 /** Initialises special grunt task in a format of 'version:[subtaskName]'. */
 function initVersionCommand( subtaskName ) {
-
   var commandName    = 'version' + ( subtaskName ? ':' + subtaskName : '');
 
   gulp.task( commandName, function( done ) {
@@ -486,6 +484,57 @@ gulp.task('copyDistToRelease', () => {
 
 /** Development helpers and tools. */
 
+gulp.task( 'rebuild:assembler', ( done ) => {
+  runSequence(
+    'assembler',
+    'rev',
+    () => {
+      done();
+    }
+  );
+});
+
+gulp.task( 'rebuild:styles', ( done ) => {
+  runSequence(
+    'styles',
+    'rev',
+    () => {
+      done();
+    }
+  );
+});
+
+gulp.task( 'rebuild:scripts', ( done ) => {
+  runSequence(
+    'scripts',
+    'rev',
+    () => {
+      done();
+    }
+  );
+});
+
+gulp.task( 'rebuild:images', ( done ) => {
+  runSequence(
+    'images',
+    'rev',
+    () => {
+      done();
+    }
+  );
+});
+
+gulp.task( 'rebuild:fonts', ( done ) => {
+  runSequence(
+    'fonts',
+    'rev',
+    () => {
+      done();
+    }
+  );
+});
+
+
 // Serving & Source wathing
 gulp.task( 'serveAndWatch', () => {
 
@@ -497,19 +546,19 @@ gulp.task( 'serveAndWatch', () => {
     logPrefix: 'FABRICATOR',
   });
 
-  gulp.task('assembler:watch', ['assembler', 'rev'], browserSync.reload);
+  gulp.task('assembler:watch', ['rebuild:assembler'], browserSync.reload);
   gulp.watch(config.templates.watch, ['assembler:watch']);
 
-  gulp.task('styles:watch', ['styles', 'rev']);
+  gulp.task('styles:watch', ['rebuild:styles'], browserSync.reload);
   gulp.watch([config.styles.fabricator.watch, config.styles.toolkit.watch], ['styles:watch']);
 
-  gulp.task('scripts:watch', ['scripts', 'rev'], browserSync.reload);
+  gulp.task('scripts:watch', ['rebuild:scripts'], browserSync.reload);
   gulp.watch([config.scripts.fabricator.watch, config.scripts.toolkit.watch], ['scripts:watch']);
 
-  gulp.task('images:watch', ['images', 'rev'], browserSync.reload);
+  gulp.task('images:watch', ['rebuild:images'], browserSync.reload);
   gulp.watch(config.images.toolkit.watch, ['images:watch']);
 
-  gulp.task('fonts:watch', ['fonts', 'rev'], reload);
+  gulp.task('fonts:watch', ['rebuild:fonts'], reload);
   gulp.watch(config.fonts.toolkit.src, ['fonts:watch']);
 
 });

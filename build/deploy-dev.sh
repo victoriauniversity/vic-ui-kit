@@ -16,4 +16,3 @@ npm install
 echo 'Running development-specific build & deployment...'
 
 npm run release-dev
-# rsync -avzP --delete --chmod=u=rwX,g=rX ./dist/ lobotkjo@rsync.keycdn.com:zones/static
