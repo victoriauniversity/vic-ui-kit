@@ -42,7 +42,7 @@ GITHUB_SECRET_TOKEN = process.env.GITHUB_TOKEN || '', // Environmental variable 
 
 GITHUB_RELEASE_REPO   = 'https://' + GITHUB_SECRET_TOKEN + '@github.com/victoriauniversity/victoria-ui-releases.git',
 GITHUB_RELEASE_BRANCH = 'releases',
-GITHUB_SOURCE_REPO    = 'https://' + GITHUB_SECRET_TOKEN + '@github.com/victoriauniversity/vuw-styleguide.git',
+GITHUB_SOURCE_REPO    = 'https://' + GITHUB_SECRET_TOKEN + '@github.com/victoriauniversity/vic-ui-kit.git',
 GITHUB_SOURCE_BRANCH  = 'gh-pages';
 
 

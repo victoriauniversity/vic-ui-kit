@@ -16,7 +16,7 @@ By building new web projects on top of this library, developers can quickly reus
 
 ## Quick Start 
 
-To use the UI library in your project(s), [read the Style Guide](https://victoriauniversity.github.io/vuw-styleguide/#start).
+To use the UI library in your project(s), [read the Style Guide](https://static.victoria.ac.nz/#start).
 
 
 
@@ -24,7 +24,7 @@ To use the UI library in your project(s), [read the Style Guide](https://victori
 
 ## Development and Contributions
 
-If you want to contribute to the project by adding new features, enhancing existing ones or fixing bugs, you can do so in the source repository of [Victoria UI Kit](https://github.com/victoriauniversity/vuw-styleguide).
+If you want to contribute to the project by adding new features, enhancing existing ones or fixing bugs, you can do so in the source repository of [Victoria UI Kit](https://github.com/victoriauniversity/vic-ui-kit).
 
 
 

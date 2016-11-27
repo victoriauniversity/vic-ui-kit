@@ -9,10 +9,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+### Added 
+
+- Support for Yarn package manager.
+
+
+
 ### Enhanced
 
 - 1/3 video promo box - class `.outside` added to <figure> puts the video description ouside of the video so the video image is not covered by it. 
-
+- Renames the repository and updates all the references.
 
 
 
@@ -121,7 +127,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/vuw-styleguide/compare/v0.9.2...develop
+[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.2...develop
 
-[v0.9.2]: https://github.com/victoriauniversity/vuw-styleguide/compare/v0.9.1...v0.9.2
-[v0.9.1]: https://github.com/victoriauniversity/vuw-styleguide/compare/v0.9.0...v0.9.1
+[v0.9.2]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.1...v0.9.2
+[v0.9.1]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.0...v0.9.1

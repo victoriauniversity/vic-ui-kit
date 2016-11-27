@@ -6,7 +6,7 @@ Learn what architectural design principles does the Victoria UI Kit follow. Its 
 
 ## Versioning
 
-Project adheres to [Semantic Versioning](http://semver.org/). All releases and pre-releases are tagged in GitHub and changes summarised in [project's changelog](https://github.com/victoriauniversity/vuw-styleguide/blob/develop/CHANGELOG.md).
+Project adheres to [Semantic Versioning](http://semver.org/). All releases and pre-releases are tagged in GitHub and changes summarised in [project's changelog](https://github.com/victoriauniversity/vic-ui-kit/blob/develop/CHANGELOG.md).
 
 <div class="flash-message success">
   <p>

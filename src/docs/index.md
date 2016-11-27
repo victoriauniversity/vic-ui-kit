@@ -2,10 +2,10 @@
 
 # Victoria UI Kit
 
-[![GitHub stable release](https://img.shields.io/github/release/victoriauniversity/vuw-styleguide.svg?label=last%20stable%20release)]() 
-[ ![Codeship Status for victoriauniversity/vuw-styleguide](https://app.codeship.com/projects/6f8cf750-81fe-0134-4879-1e33cd15468d/status)](https://app.codeship.com/projects/182365)
+[![GitHub stable release](https://img.shields.io/github/release/victoriauniversity/vic-ui-kit.svg?label=last%20stable%20release)]() 
+[ ![Codeship Status for victoriauniversity/vic-ui-kit](https://app.codeship.com/projects/6f8cf750-81fe-0134-4879-1e33cd15468d/status)](https://app.codeship.com/projects/182365)
 
-[Changelog](https://github.com/victoriauniversity/vuw-styleguide/blob/master/CHANGELOG.md) &mdash; [Project at GitHub](https://github.com/victoriauniversity/vuw-styleguide) &mdash; [Releases/Download](https://github.com/victoriauniversity/victoria-ui-releases/releases)
+[Changelog](https://github.com/victoriauniversity/vic-ui-kit/blob/master/CHANGELOG.md) &mdash; [Project at GitHub](https://github.com/victoriauniversity/vic-ui-kit) &mdash; [Releases/Download](https://github.com/victoriauniversity/victoria-ui-releases/releases)
 
 
 **Victoria UI Kit is a style guide and UI pattern library providing base CSS, JavaScript and HTML markup required to build websites and applications affiliated with [Victoria University of Wellington](https://www.victoria.ac.nz)**.
@@ -36,13 +36,13 @@ If you wish to use complex dynamic components that **require JavaScript** to wor
 
 ```html
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
-<script src="https://static.victoria.ac.nz/toolkit.js"></script>
+<script src="https://static.victoria.ac.nz/toolkit.min.js"></script>
 ```
 
-It is recommend to hotlink the libraries from CDN as shown above. However, if you wish to bundle them with your project, you can [Download any given release](https://github.com/victoriauniversity/victoria-ui-releases/releases) or even use a package manager, such as Bower:
+It is recommend to hotlink the libraries from CDN as shown above. However, if you wish to bundle them with your project, you can [Download any given release](https://github.com/victoriauniversity/victoria-ui-releases/releases) or even use a package manager, such as NPM or Yarn:
 
 ```shell
-bower install https://github.com/victoriauniversity/victoria-ui-releases.git#releases --save
+yarn add https://github.com/victoriauniversity/victoria-ui-releases.git#releases --save
 ```
 
 
@@ -71,8 +71,8 @@ In case you are **only maintaining** already built application based on Victoria
 Even though the Victoria UI library is mostly maintained by the [Web Team], any form of contribution is highly appreciated.
 
 To report a bug, request a feature or simply discuss your ideas, please either: 
- * submit a ticket in [project's GitHub repository](https://github.com/victoriauniversity/vuw-styleguide/issues), or
- * directly contribute to the code base by [creating a pull request](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project) into project's [develop branch](https://github.com/victoriauniversity/vuw-styleguide/tree/develop).
+ * submit a ticket in [project's GitHub repository](https://github.com/victoriauniversity/vic-ui-kit/issues), or
+ * directly contribute to the code base by [creating a pull request](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project) into project's [dev branch](https://github.com/victoriauniversity/vic-ui-kit/tree/dev).
 
 
 

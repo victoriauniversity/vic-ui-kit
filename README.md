@@ -1,7 +1,7 @@
-[![GitHub stable release](https://img.shields.io/github/release/victoriauniversity/vuw-styleguide.svg?label=last%20stable%20release)]() 
-[ ![Codeship Status for victoriauniversity/vuw-styleguide](https://app.codeship.com/projects/6f8cf750-81fe-0134-4879-1e33cd15468d/status)](https://app.codeship.com/projects/182365)
+[![GitHub stable release](https://img.shields.io/github/release/victoriauniversity/vic-ui-kit.svg?label=last%20stable%20release)]() 
+[ ![Codeship Status for victoriauniversity/vic-ui-kit](https://app.codeship.com/projects/6f8cf750-81fe-0134-4879-1e33cd15468d/status)](https://app.codeship.com/projects/182365)
 
-([Changelog](https://github.com/victoriauniversity/vuw-styleguide/blob/master/CHANGELOG.md)) &mdash; [Full Documentation](https://static.victoria.ac.nz/)
+([Changelog](https://github.com/victoriauniversity/vic-ui-kit/blob/master/CHANGELOG.md)) &mdash; [Full Documentation](https://static.victoria.ac.nz/)
 
 
 # Victoria UI Kit
@@ -31,12 +31,12 @@ To use the UI Kit in your project(s), [read the Style Guide](https://static.vict
 
 If you want to contribute to the project by adding new features, enhancing existing ones or fixing bugs, it is good to do few things first:
 
-* Read through the [documentation](https://static.victoria.ac.nz/) - focus on sections [Architecture & Layout](https://static.victoria.ac.nz/vuw-styleguide/architecture-layout.html) to understand how is the library built and [Components](https://static.victoria.ac.nz/vuw-styleguide/architecture-layout.html) to know what's already included.
+* Read through the [documentation](https://static.victoria.ac.nz/) - focus on sections [Architecture & Layout](https://static.victoria.ac.nz/architecture-layout.html) to understand how is the library built and [Components](https://static.victoria.ac.nz/architecture-layout.html) to know what's already included.
 * If you're not sure how to contribute to a GitHub project, familiarise yourself with [how it works](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project) first.
 
 
 
-1. Fork off from [develop branch](https://github.com/victoriauniversity/vuw-styleguide/tree/develop).
+1. Fork off from [dev branch](https://github.com/victoriauniversity/vic-ui-kit/tree/dev).
 2. To run the project on a local machine, execute the following command in the root directory of your fork: 
     ```shell
     npm start
@@ -45,7 +45,7 @@ If you want to contribute to the project by adding new features, enhancing exist
 
 3. Hack your feature/enhancement/fix.
 4. Test your changes in all supported browsers.
-5. Create a pull request into the [develop branch](https://github.com/victoriauniversity/vuw-styleguide/tree/develop).
+5. Create a pull request into the [dev branch](https://github.com/victoriauniversity/vic-ui-kit/tree/dev).
 6. Your pull request will be reviewed and tested - if everything is OK, it will be added to a next production release. 
 7. Feel good!
 
