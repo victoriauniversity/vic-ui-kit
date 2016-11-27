@@ -38,7 +38,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Adds better social icons for: YouTube, Twitter, LinkedIN, Facebook and Instagram.
 
 
-
 ### Fixed
 
 - Alignment, spacing and margins in news articles were improved.
