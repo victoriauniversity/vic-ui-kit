@@ -14,11 +14,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Support for Yarn package manager.
 
 
-
 ### Enhanced
 
 - 1/3 video promo box - class `.outside` added to <figure> puts the video description ouside of the video so the video image is not covered by it. 
 - Renames the repository and updates all the references.
+
+
+### Fixed
+
+- Top menu bar - Menu links aligned on the right are now clickable on smaller resolutions (eg. tablets, smaller desktops). 
+- Small version of the Victoria logo is no longer missing on the mobile devices.
+
 
 
 
