@@ -9,9 +9,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+### Added 
+
+- Support for Yarn package manager.
+
+
 ### Enhanced
 
 - 1/3 video promo box - class `.outside` added to <figure> puts the video description ouside of the video so the video image is not covered by it. 
+- Renames the repository and updates all the references.
+
+
+### Fixed
+
+- Top menu bar - Menu links aligned on the right are now clickable on smaller resolutions (eg. tablets, smaller desktops). 
+- Small version of the Victoria logo is no longer missing on the mobile devices.
 
 
 
@@ -30,7 +42,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Simple gallery for media with captions. Can be used by wrapping media items (= figures with class `media` applied to them) into ```<section class="gallery"> ... </section>```.
 - Full width study area blocks stretch to full width even view without an image.
 - Adds better social icons for: YouTube, Twitter, LinkedIN, Facebook and Instagram.
-
 
 
 ### Fixed
@@ -121,7 +132,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/vuw-styleguide/compare/v0.9.2...develop
+[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.2...develop
 
-[v0.9.2]: https://github.com/victoriauniversity/vuw-styleguide/compare/v0.9.1...v0.9.2
-[v0.9.1]: https://github.com/victoriauniversity/vuw-styleguide/compare/v0.9.0...v0.9.1
+[v0.9.2]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.1...v0.9.2
+[v0.9.1]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.0...v0.9.1

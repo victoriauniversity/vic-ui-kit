@@ -42,7 +42,7 @@ GITHUB_SECRET_TOKEN = process.env.GITHUB_TOKEN || '', // Environmental variable 
 
 GITHUB_RELEASE_REPO   = 'https://' + GITHUB_SECRET_TOKEN + '@github.com/victoriauniversity/victoria-ui-releases.git',
 GITHUB_RELEASE_BRANCH = 'releases',
-GITHUB_SOURCE_REPO    = 'https://' + GITHUB_SECRET_TOKEN + '@github.com/victoriauniversity/vuw-styleguide.git',
+GITHUB_SOURCE_REPO    = 'https://' + GITHUB_SECRET_TOKEN + '@github.com/victoriauniversity/vic-ui-kit.git',
 GITHUB_SOURCE_BRANCH  = 'gh-pages';
 
 
@@ -125,6 +125,8 @@ webpackConfig = require('./build/webpack.config')(config);
 
 // Temporary and distribution directories cleanup
 gulp.task('clean', del.bind(null, [config.tmp, config.dist]));
+gulp.task('clean:dist', del.bind(null, [config.dist]));
+gulp.task('clean:tmp', del.bind(null, [config.tmp]));
 
 
 // JavaScripts compiled by WebPack
@@ -487,6 +489,7 @@ gulp.task('copyDistToRelease', () => {
 gulp.task( 'rebuild:assembler', ( done ) => {
   runSequence(
     'assembler',
+    'clean:dist',
     'rev',
     () => {
       done();
@@ -497,6 +500,7 @@ gulp.task( 'rebuild:assembler', ( done ) => {
 gulp.task( 'rebuild:styles', ( done ) => {
   runSequence(
     'styles',
+    'clean:dist',
     'rev',
     () => {
       done();
@@ -507,6 +511,7 @@ gulp.task( 'rebuild:styles', ( done ) => {
 gulp.task( 'rebuild:scripts', ( done ) => {
   runSequence(
     'scripts',
+    'clean:dist',
     'rev',
     () => {
       done();
@@ -517,6 +522,7 @@ gulp.task( 'rebuild:scripts', ( done ) => {
 gulp.task( 'rebuild:images', ( done ) => {
   runSequence(
     'images',
+    'clean:dist',
     'rev',
     () => {
       done();
@@ -527,6 +533,7 @@ gulp.task( 'rebuild:images', ( done ) => {
 gulp.task( 'rebuild:fonts', ( done ) => {
   runSequence(
     'fonts',
+    'clean:dist',
     'rev',
     () => {
       done();
