@@ -9,6 +9,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+
+
+
+
+
+## Production release: [v0.9.2] - 2016-11-07
+
 ### Added 
 
 - Support for Yarn package manager.
@@ -136,3 +143,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [v0.9.2]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.1...v0.9.2
 [v0.9.1]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.0...v0.9.1
+
