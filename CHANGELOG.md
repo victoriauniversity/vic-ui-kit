@@ -10,11 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-
-
-
-
-## Production release: [v0.9.2] - 2016-11-07
+## Production release: [v0.9.3] - 2016-11-28
 
 ### Added 
 
@@ -139,8 +135,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.2...develop
-
+[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.3...develop
+[v0.9.3]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.2...v0.9.3
 [v0.9.2]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.1...v0.9.2
 [v0.9.1]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.0...v0.9.1
 
