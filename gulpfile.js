@@ -87,8 +87,7 @@ config = {
   images: {
     toolkit: {
       src: [
-        'src/assets/toolkit/images/**/*',
-        'src/favicon.ico'
+        'src/assets/toolkit/images/**/*'
       ],
       dest:  DIR_TMP + '/images',
       watch: 'src/assets/toolkit/images/**/*',

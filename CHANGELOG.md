@@ -1,4 +1,5 @@
 # Change Log
+
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
@@ -9,10 +10,25 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+## Production release: [v0.9.4] - 2017-01-30
+
+### Added
+
+- Victoria's logo - green and black coloured versions. Standard, high and extra high quality versions of all colour combinations.
+- Events listing now allow an inline image.
+
+
+### Fixed
+
+- Replaces Fabricator's favicon by Victoria's one.
+
+
+
+
 
 ## Production release: [v0.9.3] - 2016-11-28
 
-### Added 
+### Added
 
 - Support for Yarn package manager.
 
@@ -25,7 +41,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
-- Top menu bar - Menu links aligned on the right are now clickable on smaller resolutions (eg. tablets, smaller desktops). 
+- Top menu bar - Menu links aligned on the right are now clickable on smaller resolutions (eg. tablets, smaller desktops).
 - Small version of the Victoria logo is no longer missing on the mobile devices.
 
 
@@ -34,7 +50,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Production release: [v0.9.2] - 2016-11-07
 
-### Added 
+### Added
 
 - News overview - `.portrait` version of the image when width-to-height ratio is portrait-like.
 - Automatic wrapping and support for Vimeo and Google Maps embeds (both full size and inlined).
@@ -116,17 +132,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Adds icons into the footer and events listing.
 
 
-### Enhanced 
+### Enhanced
 
 - Better icons in sidebar menu and decreased padding from the edges, currently active item made more visible.
 
 
-### Removed 
+### Removed
 
 - Duplicate font icon files.
 
 
-### Fixed 
+### Fixed
 
 - Removes the fixed height of the main content column to avoid vertical overflow issues on the homepage.
 - Main layout columns do no longer overflow when elements (eg. tables) inside calculate their width incorrectly.
@@ -135,7 +151,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.3...develop
+[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.4...dev
+
+[v0.9.4]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.3...v0.9.4
 [v0.9.3]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.2...v0.9.3
 [v0.9.2]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.1...v0.9.2
 [v0.9.1]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.0...v0.9.1
