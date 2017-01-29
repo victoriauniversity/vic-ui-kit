@@ -10,7 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
-## Production release: [v0.9.4] - 2016-01-30
+## Production release: [v0.9.4] - 2017-01-30
 
 ### Added
 
@@ -132,17 +132,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Adds icons into the footer and events listing.
 
 
-### Enhanced 
+### Enhanced
 
 - Better icons in sidebar menu and decreased padding from the edges, currently active item made more visible.
 
 
-### Removed 
+### Removed
 
 - Duplicate font icon files.
 
 
-### Fixed 
+### Fixed
 
 - Removes the fixed height of the main content column to avoid vertical overflow issues on the homepage.
 - Main layout columns do no longer overflow when elements (eg. tables) inside calculate their width incorrectly.
@@ -153,7 +153,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.4...dev
 
-[v0.9.3]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.3...v0.9.4
+[v0.9.4]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.3...v0.9.4
 [v0.9.3]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.2...v0.9.3
 [v0.9.2]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.1...v0.9.2
 [v0.9.1]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.0...v0.9.1
