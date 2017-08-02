@@ -14,11 +14,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - News/Events pagination - improved floating of the pagination on all devices.
 
-
-
-
-
-
 ## Production release: [v0.9.4] - 2017-01-30
 
 ### Added
