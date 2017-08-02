@@ -5,6 +5,8 @@
 
   .pagination {
     @include clearfix;
+
+    display:    flex;
     text-align: right;
 
     // Placed on the very BEGINNING of the section
@@ -31,12 +33,8 @@
       > .icon { display: none; }
     }
 
-    // '...'
-    > .icon { margin: 0 .5rem; }
-
     // 'Previous page' button/link
     .previous {
-      float: left;
       margin-right: .3rem;
 
       &:before {
@@ -47,7 +45,7 @@
 
     // 'Next page' button/link
     .next {
-      float: right;
+      order: 3;
       margin-left: .3rem;
 
       &:after {
@@ -56,17 +54,36 @@
       }
     }
 
-    .pages {
-      float: left;
+    .previous,
+    .next {
+      display: inline-block;
       white-space: nowrap;
+      align-self: flex-start;
+    }
+
+    .pages {
+      order: 2;
+      flex-grow: 1;
+      padding: 0 .75em;
+      text-align: center;
+
+      // '...'
+      > .icon { margin: 0 .5rem; }
+
     }
 
     @include media( $mobile ){
+      display: block;
       text-align: center;
 
       .previous,
       .next {
         float: none;
+      }
+
+      .pages {
+        padding: initial;
+        text-align: inherit;
       }
     }
   }
