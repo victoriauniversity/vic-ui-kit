@@ -1,5 +1,5 @@
 
-/** Advanced lists */
+/** Advanced list */
 
 ul.complex-list {
 
@@ -62,3 +62,23 @@ ul.complex-list {
     }
   }
 }
+
+// Basic list
+
+ $widgetbar-heading-font-size:    scale-heading( 2 );
+
+.list {
+  h2 {
+      font-size: $widgetbar-heading-font-size;
+
+      // Pre-heading delimiting line
+      &:before {
+        @include objectify( block );
+        margin-bottom: .35rem;
+        @include size( 2rem rem( 3px ) );
+        background-color: $base-heading-color;
+      }
+
+    }
+}
+    
