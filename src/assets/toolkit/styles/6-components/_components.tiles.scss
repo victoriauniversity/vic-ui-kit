@@ -20,7 +20,7 @@ $tile-height: rem( 230px);
 
 //MIXIN - for shared text element across grid-tile and strip-tiles
 
-@mixin extend-tile-text{
+%extend-tile-text {
   a {
         padding: 16px;
         height: 100%;
@@ -155,7 +155,7 @@ $tile-height: rem( 230px);
           margin-right: 0;
         }
       } // All the text for the tile
-      @include extend-tile-text;
+      @extend %extend-tile-text;
 
       a {
          h4 {
@@ -218,7 +218,7 @@ $tile-height: rem( 230px);
         border-left: 4px solid $blue-st-tropaz;
       }
 
-      @include extend-tile-text;
+      @extend %extend-tile-text;
 
       i {
         font-size: 1.5em;

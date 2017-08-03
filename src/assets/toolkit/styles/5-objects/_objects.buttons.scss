@@ -29,6 +29,7 @@
       font-family: $base-heading-family;
       font-weight: $weight-semibold;
 
+  
       .formatting & {
         text-decoration: none; // Reset
       }
@@ -44,6 +45,11 @@
           color: inherit;
           background: $color-button-default-hover;
         }
+      }
+
+      &:not(.flat, .no-icon) {
+        //Include the arrow from the _object.icons file
+        @extend .button-arrow;
       }
 
       // Call-to-action button
@@ -76,6 +82,7 @@
         background:   $color-button-default;
         color:        $grey-silver-chalice;
       }
+      
   }
 
 
