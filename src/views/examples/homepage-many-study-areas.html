@@ -1,9 +1,8 @@
 <!-- Center 'content' and right 'widget' columns -->
 <div class="layout centraliser homepage-banner">
-    <div class="sidebar "> {{> navigation.site}} </div>
-
-    <figure class="banner">
-      <a href="#">
+  <div class="sidebar "> {{> navigation.site}} </div>
+  <figure class="banner">
+    <a href="#">
           <img src="//cms.victoria.ac.nz/?a=394045">
           <!-- Use class="wider, bottom or top" to position the text box -->
           <figcaption class="bottom">
@@ -11,27 +10,28 @@
             <h3>Alex Barrow is studying a Bachelor of Arts in Cultural Anthropology and Media Studies.</h3>
           </figcaption>
       </a>
-    </figure>
+  </figure>
 </div>
-
 <div class="homepage-base layout">
-    <!-- Center 'content' column -->
-    <div class="content-panel">
-        <main>
-            <!-- Banner -->
-            <section>
-                {{> homepage-intro}}
-                <section class="centraliser block">
-                    <div class="study-area-tabs" id="study-area-tabs">
-                        <ul>
-                            <li class="active"><a href="javascript:void(0)"><h4><span class="icon-book-open"></span>Study areas</h4></a></li>
-                            <li><a href="javascript:void(0)"><h4><span class="icon-graduation-cap"></span>Degrees and qualifications</h4></a></li>
-                        </ul>
-                    </div>
-                    {{> study-areas}} {{> degrees-quals}}
-                </section>
-                {{> promo-with-1x-image}} {{> text-promo-panel}} {{> two-thirds-promo-panel}} {{> three-cols-images}}
-            </section>
-        </main>
-    </div>
+  <!-- Center 'content' column -->
+  <div class="content-panel">
+    <main>
+      <!-- Banner -->
+      <section>
+        {{> homepage-intro}}
+        <section class=" tiles-panel">
+          <div class="centraliser block">
+            <div class="study-area-tabs" id="study-area-tabs">
+              <ul>
+                <li class="active"><a href="javascript:void(0)"><h4><span class="icon-book-open"></span>Study areas</h4></a></li>
+                <li><a href="javascript:void(0)"><h4><span class="icon-graduation-cap"></span>Degrees and qualifications</h4></a></li>
+              </ul>
+            </div>
+            {{> study-areas}} {{> degrees-quals}}
+          </div>
+        </section>
+        {{> promo-with-1x-image}} {{> text-promo-panel}} {{> two-thirds-promo-panel}} {{> three-cols-images}}
+      </section>
+    </main>
+  </div>
 </div>
