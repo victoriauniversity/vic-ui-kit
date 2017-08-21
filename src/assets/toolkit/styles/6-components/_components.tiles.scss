@@ -1,0 +1,383 @@
+// ========================================
+// ======== Tile elements
+// ========================================
+//---- Settings ---
+$gutter: 20px; //px?! why not em? - irwinna 3/8/17
+// ----------------
+// -------------------------
+// ------------------------
+// - The gerneic tile grid
+// - Used for the new Study-areas and Degrees & Qualifactions block - irwinna 3/8/17
+// ------------------------
+
+/** Custom dolors */
+$background-color: $grey-gallery; //Used for borders to stop elements moving on hover
+$blue-hover-shade: tint($blue-st-tropaz, 40%);
+$tile-active-shade: #e3e3e3;
+
+
+$tile-height: rem( 200px);
+
+//MIXIN - for shared text element across grid-tile and strip-tiles
+
+%extend-tile-text {
+  a {
+        padding: 16px;
+        height: 100%;
+        
+        display: block;
+        border: 4px solid $white;
+        border-left: none;
+       
+        &:hover {
+          opacity: 1;
+          // padding-top: 12px;
+          border: 4px solid $blue-st-tropaz;
+          border-left: none;
+
+
+          h2, p, i {
+            color: $blue-st-tropaz;
+          }
+
+          h4, {
+            color: $blue-hover-shade;
+          }
+
+          .sub-text {
+            border-left: 2px solid $blue-hover-shade;
+          }
+          &:active {
+            background-color: $tile-active-shade;
+          } 
+
+        }
+        .sub-text {
+          border-left: 2px solid $grey-silver;
+          padding-left: 0.5em;
+        }
+
+        h2,
+        h4,
+        p, 
+        i {
+          padding: 0;
+          margin: 0;
+          line-height: 1.2;
+        }
+        
+        h2 {
+          font-size: 1.3em;
+          color: $black-tundora;
+          margin-bottom: 0.25em;
+        }
+        h4 {
+          color: $grey-silver-chalice;
+        }
+       
+        p {
+          line-height: 1.5;
+          font-size: 1em;
+          color: $grey-dove;
+        }
+        
+      }
+}
+
+.tiles-panel {
+  background-color: $background-color;
+}
+
+.updated-tile-grid {
+  @include outer-container(100%);
+
+  .tiles-wrap {
+    @include fill-parent();
+    margin-top: 1rem;
+
+    >ul {
+      @include clearfix;
+      display: block;
+    }
+
+    
+    
+    li.tile {
+      
+      height: auto;
+      background-color: $white;
+      box-shadow: $base-shadow;
+      border-left: 4px solid $green-victoria;
+      float: left;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: $gutter;
+
+      &:hover {
+        box-shadow: none;
+        border-left: 4px solid $blue-st-tropaz;
+      }
+      // Search filtering
+      &.is-matching {
+        filter: saturate(200%);
+      }
+      &.is-not-matching {
+        filter: saturate(0%);
+      }
+      // -----
+      $four-grid-tile-margin: 1%;
+      $three-grid-tile-margin: 1%;
+      $two-grid-tile-margin: 1.3%;
+
+      @include media ($desktop-large) {
+        width: ( 100 - 3 * $four-grid-tile-margin) / 4;
+        margin-right: $four-grid-tile-margin;
+
+        &:nth-child( 4n) {
+          margin-right: 0;
+        }
+      }
+
+      @include media ($desktop) {
+        width: ( 100 - 2 * $three-grid-tile-margin) / 3;
+        margin-right: $three-grid-tile-margin;
+
+        &:nth-child( 3n) {
+          margin-right: 0;
+        }
+      }
+
+      @include media ($tablet) {
+        width: ( 100 - 1 * $two-grid-tile-margin) / 2;
+        margin-right: $two-grid-tile-margin;
+
+        &:nth-child( 2n) {
+          margin-right: 0;
+        }
+      } // All the text for the tile
+      @extend %extend-tile-text;
+
+      a {
+         h4 {
+          color: $grey-silver-chalice;
+          font-size: .95em;
+          padding-top: 0.5em;
+          // padding-bottom: 0.25em;
+          &:before {
+            font-size: 85%;
+          }
+        }
+      }
+
+      i {
+        font-size: 1.5em;
+        color: $grey;
+        position: absolute;
+        bottom: .5em;
+        right: .5em;
+      } // The hidden subjects span which is displayed on hover
+      @include media ( $mobile-large-and-smaller) {
+        float: none;
+
+        h4 {
+          display: inline-block;
+          font-size: 1.1em;
+          margin-right: .5em;
+        }
+
+        p {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+.tile-strip-grid {
+  @include outer-container(100%);
+
+  .tiles-wrap {
+    @include fill-parent();
+    margin-top: 1rem;
+
+    >ul {
+      @include clearfix;
+      display: block;
+    }
+
+
+    li.tile {
+      width: 100%;
+      height: auto;
+      background-color: $white;
+      box-shadow: $base-shadow;
+      border-left: 4px solid $green-victoria;
+      overflow: hidden;
+      margin-bottom: $gutter - 2;
+
+      &:hover {
+        box-shadow: none;
+        border-left: 4px solid $blue-st-tropaz;
+      }
+
+      @extend %extend-tile-text;
+
+      i {
+        font-size: 1.5em;
+        color: $grey;
+        float: right;
+      }
+
+      a {
+
+        h2,
+        h4,
+        i {
+          display: inline;
+        }
+
+        h2 {
+          padding-right: 0.5em;
+        }
+
+        h4{
+
+          padding: 0 0.75rem;
+          border-left: 2px solid $grey-gallery;
+         
+        }  
+      }
+    }
+  }
+}
+
+.fixed-height-tiles {
+  .tiles-wrap li.tile {
+    height: $tile-height;
+    a {
+      .sub-text {
+        h4 {
+          
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+// -------------------------
+// -------------------------
+// -------------------------
+// ----------------------------
+// Styles specific to the Study-areas block
+// --------------------------
+// .study-areas,
+// .study-area-single {
+//   h1 {
+//     margin-bottom: .7em;
+//   }
+// }
+// .study-areas {
+//   .pg-filter {
+//     padding: 1em 1em 1em .5em;
+//     font-size: 1.2em;
+//   } //This operate the PG only check box the markup needs to have the tiles as general siblings of teh check box
+//   // ie dont wrap the checkbox in a div container
+//   input[type=checkbox]:checked~.tiles-wrap .tile[data-pg="only"] {
+//     display: block;
+//   }
+//   input[type=checkbox]:checked~.tiles-wrap li.tile {
+//     display: none;
+//   }
+//   .tiles-wrap {
+//     li.tile {
+//       height: rem( 250px);
+//       img {
+//         width: 100%;
+//         @include media ($tablet) {
+//           vertical-align: middle;
+//         }
+//       }
+//       span {
+//         display: block;
+//         padding: 0 1em 1em;
+//         @include media ($desktop-and-bigger) {
+//           display: none;
+//         }
+//       }
+//       &:hover {
+//         @include media ($desktop-and-bigger) {
+//           span {
+//             height: rem( 180px); //TODO: Do cleanly
+//             display: block;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+// -------------------------
+// -------------------------
+// Tabbed nav controls
+// -------------------------
+// $tab-caret-size: 1.6rem;
+// .study-area-tabs {
+//   margin-bottom: $base-spacing * 1.5;
+//   ul {
+//     @include clearfix;
+//     max-width: $base-max-content-height;
+//     margin: 0 auto;
+//     li {
+//       @include span-columns( 6, block-collapse);
+//       a {
+//         padding: 1em;
+//         @include display(block);
+//         background-color: $grey-alto;
+//         display: flex;
+//         align-items: center;
+//         text-align: center;
+//         @include media ( $mobile-large-and-smaller) {
+//           height: rem( 60px);
+//         }
+//         &:hover {
+//           background-color: $grey-silver;
+//         }
+//         @include icon-selector() {
+//           font-weight: $weight-normal;
+//           line-height: 0;
+//         } // Icon size modificators
+//         .icon-book-open {
+//           font-size: 90%;
+//         }
+//         h4 {
+//           color: $black-mine-shaft; // helps center the text on mobile
+//           margin: 0 auto;
+//         }
+//       }
+//       &.active {
+//         position: relative;
+//         a {
+//           background-color: $green-victoria;
+//           &:hover {
+//             opacity: 1;
+//             cursor: default;
+//           }
+//           h4 {
+//             color: $white;
+//           }
+//         }
+//         &:after {
+//           @include objectify( block, $position: absolute);
+//           left: 50%;
+//           margin-left: -1 * $tab-caret-size/2;
+//           @include size( 0);
+//           @include triangle( $tab-caret-size $tab-caret-size/3, $green-victoria, down);
+//         }
+//       }
+//     }
+//   }
+// }

@@ -1,9 +1,9 @@
 /*=========================================
-=                FORMS                    =
+=          _COMPONENTS.FORMS           =
 =========================================*/
 
 
-  /* ===== FORMS & INPUTS =================================================== */
+  /* ===== FORMS & INPUTS ============================== */
 
 
   .form {
@@ -15,6 +15,9 @@
     .group {
       @include clearfix;
       margin-bottom: .5em;
+      .error-text {
+        color: $red-roof-terratcotta;
+      }
     }
 
     label {
@@ -25,12 +28,26 @@
       vertical-align: top;
       font-weight: $weight-bold;
       line-height: 1.3;
+
+      em {
+        font-weight: $weight-normal;
+      }
     }
 
     input,
     textarea {
       padding: .2rem .6rem;
-      border: 1px solid $grey-silver;
+      border: 2px solid $grey-silver;
+
+      
+      &.error {
+        border: 2px solid $red-roof-terratcotta;
+        background-color: $red-oyster-pink;
+      }
+      &:focus {
+        outline: none;
+        border: 2px solid $blue-azure;
+      }
     }
 
     textarea {  width: 50%; }
