@@ -113,6 +113,53 @@ $promo-max-width:   rem( 600px );
             }
         }
       }
+
+    &.study-hub {
+
+        figure {
+            padding: $base-spacing 0;
+            color: $grey;
+
+            p {
+                color: $grey;
+            }
+            
+            figcaption {
+                padding: $base-spacing $base-spacing * 1.5;
+                @include span-columns( 5 of 12,
+                    block-collapse);
+
+                &:first-child {
+                    @include span-columns( 7 of 12,
+                    block-collapse);
+
+                    h1 {
+                        color: $green-light-victoria;
+                    }
+                }
+
+                &:last-child {
+                    border-left: 2px solid $grey-alto;
+    
+                    >h3 {
+                        color: $grey;
+                    }
+                    >ul {
+                        padding-left: 0;
+
+                        li {
+                            padding-left: 0;
+                            list-style: none;
+                            span {
+                                color: $green-light-victoria ;
+                                font-weight: $weight-bold;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 .promo {
