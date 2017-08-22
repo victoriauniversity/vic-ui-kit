@@ -264,6 +264,144 @@ $tile-height: rem( 200px);
   }
 }
 
+//modifier for study hub tiles
+.tiles-study-hub {
+  .tiles-wrap {
+    li.tile {  
+      border-left: 4px solid $green-light-victoria;
+      a {
+        .sub-text {
+          border-left: none;
+          padding-left: 0;
+        }
+        h2 {
+          color: $green-light-victoria;
+        }
+
+
+        &:hover {
+          opacity: 1;
+          // padding-top: 12px;
+          border: 4px solid $green-light-victoria;
+          border-left: none;
+
+
+          h2, p, i, span {
+            color: $green-light-victoria;
+          }
+
+          h4, {
+            color: $green-light-victoria;
+          }
+
+          .sub-text {
+            border-left: none;
+          }
+          &:active {
+            background-color: $tile-active-shade;
+          } 
+        }
+      }
+      .tile-icon {
+        font-size: inherit;
+        color: $grey;
+        position: absolute;
+        bottom: .5em;
+        right: .5em;
+    
+        i {
+          font-size: 1.5rem;
+          position: relative; 
+          bottom: 0;
+          right: 0;
+        }
+      }
+      &:hover {
+        box-shadow: none;
+        border-left: 4px solid $green-light-victoria;
+      }
+    }
+  }
+}
+
+//step tiles for study hub mod
+.tiles-panel {
+  &.tile-steps {
+    background-color: $white;
+
+    .tiles-wrap {
+      .tile {
+        height: 300px;
+        background-color: $green-light-victoria;
+        border-left: none;
+
+        a {
+          border: 4px solid $green-light-victoria;
+          
+          p,
+          h3,
+          i {
+            color: $white;
+          }
+          h3 {
+            font-size: 1.5em;
+            padding-bottom: 0.25em;
+          }
+
+          .tile-number {
+            font-size: 5em;
+            color: $white;
+            line-height: 1;
+          }
+
+          .tile-icon {
+            font-size: inherit;
+            color: $white;
+            position: absolute;
+            bottom: .5em;
+            right: .5em;
+        
+            i {
+              font-size: 1.5rem;
+              position: relative; 
+              bottom: 0;
+              right: 0;
+            }
+          }
+
+          &:hover {
+            border: 4px solid $green-light-victoria;
+            p,
+            i {
+              color: $white;
+            }
+          }
+        }
+
+        .title-first-step {
+          display: flex;
+          align-items: center;
+          font-size: 1.6em;
+
+          &:hover {
+            // border: none;
+            // border-left: none;
+          }
+          
+          h3 {
+            line-height: 1.2;
+          }
+        }
+        
+        &:hover {
+          border: none;
+          border-left: none;
+        }
+      }
+    }
+  }
+}
+
 
 
 
