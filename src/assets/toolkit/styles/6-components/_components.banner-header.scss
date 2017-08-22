@@ -1,18 +1,73 @@
+// _components.banner-header.scss
+
+//TO DO: rename this file to site-header.scss
+
 
 
   $logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
 
-  .site-header{
+  .site-header, .main-site-header {
     background: $black-victoria;
+    border-bottom: 6px solid $green-victoria;
+
 
     .block {
-      padding-top:    1rem;
-      padding-bottom: 1rem;
+      padding-top:    2rem;
+      padding-bottom: 2rem;
     }
+
+    .horizontal-menu {
+      @include clearfix();
+      @include span-columns( 10 of 12, table);
+      display: flex;
+      align-items: center;
+      .menu-bar {
+        padding: 0.25em 1em;
+        a {
+          font-size: scale-heading( 4) * .75; // 85% smaller 
+          font-weight: $weight-medium;
+          color: $white; // float: left;
+          margin: 0;
+          margin-bottom: .65em;
+          padding: $base-spacing/2 $base-spacing/1.5;
+          border-bottom: none;
+          line-height: 1.2;
+          display: block;
+          
+          text-transform: capitalize;
+
+          &.experience-active {
+            border-bottom: 2px solid $white;
+            &:hover {
+             border-bottom: 2px solid $grey-silver;
+            }
+          }
+          &:hover {
+            border-bottom: 2px solid $grey-silver;
+          }
+        }
+
+      }
+      .search-item {
+        float: right;
+        padding: 0 0 0 3.5em; 
+        margin-bottom: 1em;
+        >.icon-search {
+          color: $white;
+          font-size: 2.25rem;
+          padding: 0 $base-spacing/1.5; // float: right;
+        }
+      }
+
+     
+    }
+
+
 
     .logo,
     .site-intro {
       vertical-align: middle;
+    
 
       a {
         display: block;
@@ -78,6 +133,19 @@
       .site-intro {
         @include span-columns( 9 of 12, table );
         padding: .3rem $column-padding .5rem $column-padding * 1.5;
+        
+      }
+
+      .horizontal-menu {
+        @include clearfix();
+
+        a {
+          float: left;
+          // width: 25%;
+          margin: 0;
+          padding: $base-spacing/2 $base-spacing/1.5;
+          border-bottom: none;
+        }
       }
 
       .logo {
