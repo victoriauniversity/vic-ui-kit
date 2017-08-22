@@ -126,8 +126,6 @@ $promo-max-width:   rem( 600px );
             
             figcaption {
                 padding: $base-spacing $base-spacing * 1.5;
-                @include span-columns( 5 of 12,
-                    block-collapse);
 
                 &:first-child {
                     @include span-columns( 7 of 12,
@@ -137,23 +135,26 @@ $promo-max-width:   rem( 600px );
                         color: $green-light-victoria;
                     }
                 }
+            }
 
-                &:last-child {
-                    border-left: 2px solid $grey-alto;
-    
-                    >h3 {
-                        color: $grey;
-                    }
-                    >ul {
+            &>:last-child {
+                border-left: 2px solid $grey-alto;
+                padding: $base-spacing $base-spacing * 1.5;
+                @include span-columns( 5 of 12,
+                block-collapse);
+
+                >h3 {
+                    color: $grey;
+                }
+                >ul {
+                    padding-left: 0;
+
+                    li {
                         padding-left: 0;
-
-                        li {
-                            padding-left: 0;
-                            list-style: none;
-                            span {
-                                color: $green-light-victoria ;
-                                font-weight: $weight-bold;
-                            }
+                        list-style: none;
+                        span {
+                            color: $green-light-victoria ;
+                            font-weight: $weight-bold;
                         }
                     }
                 }
