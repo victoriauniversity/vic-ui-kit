@@ -64,6 +64,24 @@
           }
       }
 
+      &.flat-border {
+        border-color: $color-button-primary;
+        background-color:     transparent;
+        border: 2px solid;
+        color:           $color-button-primary;
+
+        @include hoverify() {
+          color: $white;
+          background: $color-button-primary;
+          border-color: $color-button-primary;
+        }
+      }
+
+      &.extra-large {
+        font-size: 1.5em;
+      }
+
+
       // Critical/Destructive operations button
       &.danger {
         background-color: $color-button-danger;
