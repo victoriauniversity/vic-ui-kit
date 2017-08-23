@@ -265,37 +265,40 @@ $tile-height: rem( 200px);
 }
 
 //modifier for study hub tiles
+//colour for study hub - study page
+$base-study-hub-colour--study: $green-light-victoria;
+
 .tiles-study-hub {
   .tiles-wrap {
     li.tile {  
-      border-left: 4px solid $green-light-victoria;
+      border-left: 4px solid $base-study-hub-colour--study;
       a {
         .sub-text {
-          border-left: none;
-          padding-left: 0;
+          // border-left: none;
+          // padding-left: 0;
         }
         h2 {
-          color: $green-light-victoria;
+          color: $base-study-hub-colour--study;
         }
 
 
         &:hover {
           opacity: 1;
           // padding-top: 12px;
-          border: 4px solid $green-light-victoria;
+          border: 4px solid $base-study-hub-colour--study;
           border-left: none;
 
 
           h2, p, i, span {
-            color: $green-light-victoria;
+            color: $base-study-hub-colour--study;
           }
 
           h4, {
-            color: $green-light-victoria;
+            color: $base-study-hub-colour--study;
           }
 
           .sub-text {
-            border-left: none;
+            // border-left: none;
           }
           &:active {
             background-color: $tile-active-shade;
@@ -318,7 +321,24 @@ $tile-height: rem( 200px);
       }
       &:hover {
         box-shadow: none;
-        border-left: 4px solid $green-light-victoria;
+        border-left: 4px solid $base-study-hub-colour--study;
+      }
+      $three-grid-tile-margin-hub: 3%;
+
+      @include media ($desktop-large) {
+        width: ( 100 - 2 * $three-grid-tile-margin-hub) / 3; 
+        margin-right: $three-grid-tile-margin-hub;
+
+        &:nth-child(-n+3) {
+          margin-bottom: $three-grid-tile-margin-hub;
+        }
+
+        &:nth-child( 3n) {
+          margin-right: 0;
+        }
+        &:nth-child( 4n) {
+          margin-right: $three-grid-tile-margin-hub;
+        }
       }
     }
   }
@@ -330,13 +350,13 @@ $tile-height: rem( 200px);
     background-color: $white;
 
     .tiles-wrap {
-      .tile {
+      li.tile {
         height: 300px;
-        background-color: $green-light-victoria;
+        background-color: $base-study-hub-colour--study;
         border-left: none;
 
         a {
-          border: 4px solid $green-light-victoria;
+          border: 4px solid $base-study-hub-colour--study;
           
           p,
           h3,
@@ -370,7 +390,7 @@ $tile-height: rem( 200px);
           }
 
           &:hover {
-            border: 4px solid $green-light-victoria;
+            border: 4px solid $base-study-hub-colour--study;
             p,
             i {
               color: $white;
@@ -396,6 +416,23 @@ $tile-height: rem( 200px);
         &:hover {
           border: none;
           border-left: none;
+        }
+        $three-grid-tile-margin-hub: 3%;
+
+        @include media ($desktop-large) {
+          width: ( 100 - 2 * $three-grid-tile-margin-hub) / 3; 
+          margin-right: $three-grid-tile-margin-hub;
+          
+          &:nth-child(-n+3) {
+            margin-bottom: $three-grid-tile-margin-hub;
+          }
+
+          &:nth-child( 3n) {
+            margin-right: 0;
+          }
+          &:nth-child( 4n) {
+            margin-right: $three-grid-tile-margin-hub;
+          }
         }
       }
     }
