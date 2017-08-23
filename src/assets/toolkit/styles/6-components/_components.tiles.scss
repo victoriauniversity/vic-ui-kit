@@ -264,6 +264,185 @@ $tile-height: rem( 200px);
   }
 }
 
+//modifier for study hub tiles
+//colour for study hub - study page
+$base-study-hub-colour--study: $green-light-victoria;
+
+.tiles-study-hub {
+  .tiles-wrap {
+    li.tile {  
+      height: rem( 275px );
+      border-left: 4px solid $base-study-hub-colour--study;
+      a {
+        .sub-text {
+          // border-left: none;
+          // padding-left: 0;
+          &:hover {
+            border-left-color: $grey-silver;
+          }
+        }
+        h2 {
+          color: $base-study-hub-colour--study;
+        }
+
+
+        &:hover {
+          opacity: 1;
+          // padding-top: 12px;
+          border: 4px solid $base-study-hub-colour--study;
+          border-left: none;
+
+
+          h2, p, i, span {
+            color: $base-study-hub-colour--study;
+          }
+
+          h4, {
+            color: $base-study-hub-colour--study;
+          }
+
+          .sub-text {
+            // border-left: none;
+          }
+          &:active {
+            background-color: $tile-active-shade;
+          } 
+        }
+      }
+      .tile-icon {
+        font-size: inherit;
+        color: $grey;
+        position: absolute;
+        bottom: .5em;
+        right: .5em;
+    
+        i {
+          font-size: 1.5rem;
+          position: relative; 
+          bottom: 0;
+          right: 0;
+        }
+      }
+      &:hover {
+        box-shadow: none;
+        border-left: 4px solid $base-study-hub-colour--study;
+      }
+      $three-grid-tile-margin-hub: 3%;
+
+      @include media ($desktop-large) {
+        width: ( 100 - 2 * $three-grid-tile-margin-hub) / 3; 
+        margin-right: $three-grid-tile-margin-hub;
+
+        &:nth-child(-n+3) {
+          margin-bottom: $three-grid-tile-margin-hub;
+        }
+
+        &:nth-child( 3n) {
+          margin-right: 0;
+        }
+        &:nth-child( 4n) {
+          margin-right: $three-grid-tile-margin-hub;
+        }
+      }
+    }
+  }
+}
+
+//step tiles for study hub mod
+.tiles-panel {
+  &.tile-steps {
+    background-color: $white;
+
+    .tiles-wrap {
+      li.tile {
+        height: rem( 350px );
+        background-color: $base-study-hub-colour--study;
+        border-left: none;
+
+        a {
+          border: 4px solid $base-study-hub-colour--study;
+          
+          p,
+          h3,
+          i {
+            color: $white;
+          }
+          h3 {
+            font-size: 1.5em;
+            padding-bottom: 0.25em;
+          }
+
+          .tile-number {
+            font-size: 5em;
+            color: $white;
+            line-height: 1;
+          }
+
+          .tile-icon {
+            font-size: inherit;
+            color: $white;
+            position: absolute;
+            bottom: .5em;
+            right: .5em;
+        
+            i {
+              font-size: 1.5rem;
+              position: relative; 
+              bottom: 0;
+              right: 0;
+            }
+          }
+
+          &:hover {
+            border: 4px solid $base-study-hub-colour--study;
+            p,
+            i {
+              color: $white;
+            }
+          }
+        }
+
+        .title-first-step {
+          display: flex;
+          align-items: center;
+          font-size: 1.6em;
+
+          &:hover {
+            // border: none;
+            // border-left: none;
+          }
+          
+          h3 {
+            line-height: 1.2;
+          }
+        }
+        
+        &:hover {
+          border: none;
+          border-left: none;
+        }
+        $three-grid-tile-margin-hub: 3%;
+
+        @include media ($desktop-large) {
+          width: ( 100 - 2 * $three-grid-tile-margin-hub) / 3; 
+          margin-right: $three-grid-tile-margin-hub;
+          
+          &:nth-child(-n+3) {
+            margin-bottom: $three-grid-tile-margin-hub;
+          }
+
+          &:nth-child( 3n) {
+            margin-right: 0;
+          }
+          &:nth-child( 4n) {
+            margin-right: $three-grid-tile-margin-hub;
+          }
+        }
+      }
+    }
+  }
+}
+
 
 
 
