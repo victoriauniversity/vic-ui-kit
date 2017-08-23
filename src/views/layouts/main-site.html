@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="">
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>{{title}}</title>
+  <link rel="icon" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}favicon.ico" type="image/x-icon" />
+
+	{{#if fabricator}}<link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}styleguide-assets/f.css">{{/if}}
+
+	<!-- toolkit styles -->
+	<link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}toolkit.css">
+	<!-- /toolkit styles -->
+
+</head>
+<body>
+
+
+  <!-- If 'fabricator=true' is present in page's annotation. -->
+
+	{{#if fabricator}}
+		{{> f-icons}}
+		{{> f-menu}}
+		<div class="f-container">
+			{{> f-control-bar}}
+	{{/if}}
+
+
+  <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
+  {{#unless fabricator}}
+
+
+
+    {{#if _main-header }}
+      {{> _main-header }}
+    {{else}}
+      <!-- Default fallback for header when not specified in the template. -->
+      {{> _header header=header-default }}
+    {{/if}}
+
+  {{/unless}}
+
+
+
+
+
+	{% body %}
+
+
+
+
+
+  <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
+  {{#unless fabricator}}
+
+    {{#if footer }}
+      {{> _footer }}
+    {{else}}
+      <!-- Default fallback for footer when not specified in the template. -->
+      {{> _footer footer=footer-default }}
+    {{/if}}
+
+
+  {{/unless}}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
+
+	{{#if fabricator}}
+		</div>
+	<script src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}styleguide-assets/f.js"></script>
+
+  <script type="text/javascript">
+    // Prefix tag with 'f-'
+    Prism.plugins.customClass.map({
+      tag: 'f-tag'
+    })
+  </script>
+
+
+	{{/if}}
+
+	<!-- toolkit scripts -->
+	<script src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}toolkit.js"></script>
+	<!-- /toolkit scripts -->
+
+</body>
+</html>

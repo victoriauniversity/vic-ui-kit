@@ -33,13 +33,16 @@
 
   /** BLOCK - Universal building block with standard paddings. */
 
-  .block { padding: $column-padding; } //TODO: Review - too big!
+  .block { padding: $block-padding; } 
 
 
   /** CENTRALISER - Restricts the width of the content to allowed maximum and aligns to center. */
 
   .centraliser {
-    @include outer-container;
+    max-width: 88em;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
   }
 

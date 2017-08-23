@@ -1,6 +1,12 @@
 ---
 notes: >
-  ```something```: fdsfsd
+  
+  Basic styles for forms. Note the `.error` class on inputs, you should also include error text - its helpful.
+
+
+  TODO: Add select options and radio buttons
+
+
 ---
 
 <!-- Standard, simple form -->
@@ -17,8 +23,11 @@ notes: >
   </div>
 
   <div class="group">
-    <label for="department">School / Faculty / CSU (if applicable)</label>
-    <input type="text" name="department" id="department">
+  <p class="error-text">This error message will show above the field . That way on mobile it's not covered by the keyboard.</p>
+    <label for="department">School / Faculty / CSU <em>(required)</em></label>
+    <input type="text" name="department" id="department" class="error">
+    
+    
   </div>
 
   <div class="group">

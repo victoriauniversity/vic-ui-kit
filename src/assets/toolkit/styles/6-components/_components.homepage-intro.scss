@@ -74,6 +74,47 @@
             margin-top: 1rem;
         }
     }
+
+    &.study-hub {
+        $base-study-hub-colour--study: $green-light-victoria;
+
+        .intro-text,
+        & + .text-promo-panel,
+        & + .intro-promo {
+            h1,
+            h2 {
+                color: $base-study-hub-colour--study;
+            }
+
+            h3,
+            p,
+            li {
+                color: $grey;
+            }
+        }
+
+        & + .text-promo-panel {
+            
+            @include media($tablet-and-bigger) {
+                border-left: 2px solid $grey-alto;
+            }
+
+            .text-wrap {
+                ul {
+                    padding-left: 0;
+
+                    li {
+                        padding-left: 0;
+                        list-style: none;
+                        span {
+                            color: $green-light-victoria ;
+                            font-weight: $weight-bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
   @include media ($tablet-and-bigger) {
