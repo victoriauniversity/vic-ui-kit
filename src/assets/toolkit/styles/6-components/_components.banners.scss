@@ -96,3 +96,39 @@
       }
     }
   }
+
+  .study-hub-banner {
+    @extend .homepage-banner;
+
+    @include media( $desktop-and-bigger ) {
+      min-height: $homepage-banner-max-height;
+
+      // Banner types
+      &.compact {
+        min-height: $homepage-banner-compact-max-height;
+
+        .banner img { width: 100%; height: auto; }
+      }
+
+      .sidebar {
+        margin-bottom: $column-padding;
+        width: 25%;
+        position: absolute;
+        left: rem(100px);
+      }
+
+      .site a { font-size: rem( 18px );}
+
+      .banner {
+        position: absolute;
+        @include size( 100% );
+
+        img {
+          position: absolute; right: 0;
+          @include size( 100% auto );
+        }
+      }
+    }
+
+
+  }
