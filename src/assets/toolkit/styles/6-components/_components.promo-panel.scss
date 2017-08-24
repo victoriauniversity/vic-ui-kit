@@ -37,6 +37,14 @@ $promo-max-width:   60em;
         }
     }
 
+    &.no-pattern {
+        background: $banner-background;
+        figure {
+            background: transparent;
+            box-shadow: none;
+        }
+    }
+
     figure {
         overflow: hidden; //TODO: Change to something safer
         position: relative;
@@ -80,7 +88,8 @@ $promo-max-width:   60em;
                 }
             }
             &.photo,
-            &.pattern {
+            &.pattern,
+            &.no-pattern {
                 figcaption {
                     position: relative;
                     max-width: $promo-max-width;
