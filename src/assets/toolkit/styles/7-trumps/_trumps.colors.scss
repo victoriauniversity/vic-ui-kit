@@ -1,0 +1,68 @@
+
+
+$study-hub-primary: $green-victoria;
+
+@mixin studyHubColor($color) { 
+
+
+	.intro-text {
+		h1 {
+			color: $color;
+		}
+
+		p {
+			color: $black-tundora;
+		}
+	}
+
+	.promo-panel,
+	.tiles-panel {
+		h1, 
+		h2,
+		h3 {
+			color: $color;
+		}
+	}
+
+	.block > h1,
+	.block > h2,
+	.block > h3 {
+		color: $color;
+	}
+
+	.grid {
+		h1, 
+		h2,
+		h3 {
+			color: $color;
+		}
+	}
+
+
+
+	.tiles-wrap {
+		li.tile {
+		  border-left: 4px solid $color;
+			&:hover {
+			  	border-left-color: $blue-st-tropaz;
+			}
+			a {
+		    
+		    h2 {
+		      color: $color;
+		    }
+
+			&:hover {
+				border-left-color: none;
+			}
+		  }
+		}
+	}
+
+
+
+}
+
+.study-hub-about {
+	@include studyHubColor($green-victoria);
+}
