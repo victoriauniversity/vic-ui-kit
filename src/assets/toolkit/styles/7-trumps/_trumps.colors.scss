@@ -59,10 +59,56 @@ $study-hub-primary: $green-victoria;
 		}
 	}
 
+	h1, 
+	h2,
+	h3 {
+		color: $color;
+	}
+
+	.homepage-intro.study-hub {
+		.intro-text {
+			h1,
+			h2,
+			h3 {
+				color: $color;
+			}
+		}
+
+		&+.intro-promo {
+			.text-wrap {
+				span {
+					color: $color;
+				}
+			}
+		}
+	}
+
+	.tiles-panel.tile-steps {
+		.tiles-wrap {
+			.tile {
+				background-color: $color;
+
+				a {
+					border-color: $color;
+
+					&:hover {
+						border-color: $color;						
+					}
+				}
+			}
+		}
+	}
+
 
 
 }
 
 .study-hub-about {
 	@include studyHubColor($green-victoria);
+}
+
+//$green-light-victoria
+
+.study-hub-study {
+	@include studyHubColor($green-light-victoria);
 }
