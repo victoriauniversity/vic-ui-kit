@@ -2,7 +2,7 @@
 // ======== Tile elements
 // ========================================
 //---- Settings ---
-$gutter: 20px; //px?! why not em? - irwinna 3/8/17
+$gutter: 1em; //px?! why not em? - irwinna 3/8/17
 // ----------------
 // -------------------------
 // ------------------------
@@ -191,6 +191,9 @@ $tile-height: rem( 200px);
       }
     }
   }
+  &.hidden {
+        display: none;
+  }
 }
 
 .tile-strip-grid {
@@ -213,7 +216,7 @@ $tile-height: rem( 200px);
       box-shadow: $base-shadow;
       border-left: 4px solid $green-victoria;
       overflow: hidden;
-      margin-bottom: $gutter - 2;
+      margin-bottom: $gutter;
 
       &:hover {
         box-shadow: none;
