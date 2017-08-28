@@ -36,7 +36,7 @@ $tile-height: rem( 200px);
           border-left: none;
 
 
-          h2, p, i, span {
+          h2, p, i {
             color: $blue-st-tropaz;
           }
 
@@ -269,10 +269,6 @@ $tile-height: rem( 200px);
 $base-study-hub-colour--study: $green-light-victoria;
 
 .tiles-study-hub {
-  h2,
-  h3 {
-    color: $base-study-hub-colour--study;
-  }
   .tiles-wrap {
     li.tile {  
       height: rem( 275px );
@@ -281,11 +277,37 @@ $base-study-hub-colour--study: $green-light-victoria;
         .sub-text {
           // border-left: none;
           // padding-left: 0;
+          &:hover {
+            border-left-color: $grey-silver;
+          }
         }
         h2 {
           color: $base-study-hub-colour--study;
         }
 
+
+        &:hover {
+          opacity: 1;
+          // padding-top: 12px;
+          border: 4px solid $base-study-hub-colour--study;
+          border-left: none;
+
+
+          h2, p, i, span {
+            color: $base-study-hub-colour--study;
+          }
+
+          h4, {
+            color: $base-study-hub-colour--study;
+          }
+
+          .sub-text {
+            // border-left: none;
+          }
+          &:active {
+            background-color: $tile-active-shade;
+          } 
+        }
       }
       .tile-icon {
         font-size: inherit;
@@ -301,7 +323,10 @@ $base-study-hub-colour--study: $green-light-victoria;
           right: 0;
         }
       }
-      
+      &:hover {
+        box-shadow: none;
+        border-left: 4px solid $base-study-hub-colour--study;
+      }
       $three-grid-tile-margin-hub: 3%;
 
       @include media ($desktop-large) {
@@ -321,28 +346,6 @@ $base-study-hub-colour--study: $green-light-victoria;
       }
     }
   }
-}
-
-.tiles-study-hub-about {
-  @extend .tiles-study-hub;
-
-// do with style trump maybe?
-  // h1,
-  // h2,
-  // h3 {
-  //   color: $green-victoria;
-  // }
-  
-  // .tiles-wrap {
-  //   li.tile {
-  //     border-left: 4px solid $green-victoria;
-  //     a {
-  //       h2 {
-  //         color: $green-victoria;
-  //       }
-  //     }
-  //   }
-  // }
 }
 
 //step tiles for study hub mod
