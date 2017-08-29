@@ -135,6 +135,7 @@ $(function(){
 		$('.active').removeClass('active');
 		$(this).parent().addClass('active');
 		$('.tile-grid').toggleClass('hidden');
+		$('.updated-tile-grid').toggleClass('hidden');
 		$('.study-area-single').toggleClass('hidden');
 
 	});

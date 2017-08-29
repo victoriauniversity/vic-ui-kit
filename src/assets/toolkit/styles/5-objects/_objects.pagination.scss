@@ -23,35 +23,42 @@
 
     .button {
       margin-bottom: .4rem;
+      background-color: $grey-alto;
+      color: $black;
+      &:hover {
+        background-color: $grey;
+      }
 
       // Currently visited page
       &.active {
-        background-color: $green-bottle;
+        background-color: $grey;
+        color: $white;
       }
 
-      //TODO: Replace with real icons
+      //TODO: Replace with real icons. 
+      //?? looks to be done: irwinna 28/8/2017
       > .icon { display: none; }
     }
 
     // 'Previous page' button/link
     .previous {
       margin-right: .3rem;
+      @include extend-icon-before( arrow-left ) {
+        top: 1px
+      };
 
-      &:before {
-        @include objectify( $content: '\003C' );  // '<'
-        margin-right: .5em;
-      }
+     
     }
 
     // 'Next page' button/link
     .next {
       order: 3;
       margin-left: .3rem;
+      @include extend-icon-after( arrow-right ) {
+        top: 1px
+      };
 
-      &:after {
-        @include objectify( $content: '\003E' ); // '>'
-        margin-left: .5em;
-      }
+    
     }
 
     .previous,

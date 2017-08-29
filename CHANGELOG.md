@@ -8,11 +8,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased]
+## Pre-release: [v0.10.0] - 2017-08-29
 
+### Added
+
+- New 'tiles' component - clickable area for list of important things. Has 3 variations - one for short lists and large tiles, longer list with smaller tiles and strip tiles.
+- Prototypes - New hubs for the IA project; Study, Experience, Research and About.
+- 
 
 ### Enhanced
 
-- News/Events pagination - improved floating of the pagination on all devices.
+- Updated the UI Kit documentation to be less Faculty and Site site specific.
+- News/Events pagination - improved floating of the pagination on all devices. Also Improved colour of pagination buttons.
+- Improve base button styles - now includes an icon by default
+- Improved form styling
+- Imporved the lists presentation in the Components section.
+- Group the components better in the UI Kit Components section.
 
 ## Production release: [v0.9.4] - 2017-01-30
 
