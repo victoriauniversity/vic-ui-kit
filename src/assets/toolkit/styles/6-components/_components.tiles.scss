@@ -190,6 +190,27 @@ $tile-height: rem( 200px);
         }
       }
     }
+
+    &.three-up {
+      li.tile {
+        $three-grid-tile-margin-hub: 3%;
+        @include media ($desktop-large) {
+          width: ( 100 - 2 * $three-grid-tile-margin-hub) / 3; 
+          margin-right: $three-grid-tile-margin-hub;
+
+          &:nth-child(-n+3) {
+            margin-bottom: 1rem;
+          }
+
+          &:nth-child( 3n) {
+            margin-right: 0;
+          }
+          &:nth-child( 4n) {
+            margin-right: $three-grid-tile-margin-hub;
+          }
+        }
+      }
+    }
   }
   &.hidden {
         display: none;
@@ -304,48 +325,12 @@ $base-study-hub-colour--study: $green-light-victoria;
           right: 0;
         }
       }
-      
-      $three-grid-tile-margin-hub: 3%;
-
-      @include media ($desktop-large) {
-        width: ( 100 - 2 * $three-grid-tile-margin-hub) / 3; 
-        margin-right: $three-grid-tile-margin-hub;
-
-        &:nth-child(-n+3) {
-          margin-bottom: 1rem;
-        }
-
-        &:nth-child( 3n) {
-          margin-right: 0;
-        }
-        &:nth-child( 4n) {
-          margin-right: $three-grid-tile-margin-hub;
-        }
-      }
     }
   }
 }
 
 .tiles-study-hub-about {
   @extend .tiles-study-hub;
-
-// do with style trump maybe?
-  // h1,
-  // h2,
-  // h3 {
-  //   color: $green-victoria;
-  // }
-  
-  // .tiles-wrap {
-  //   li.tile {
-  //     border-left: 4px solid $green-victoria;
-  //     a {
-  //       h2 {
-  //         color: $green-victoria;
-  //       }
-  //     }
-  //   }
-  // }
 }
 
 //step tiles for study hub mod
