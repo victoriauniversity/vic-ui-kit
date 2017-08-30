@@ -36,7 +36,7 @@ $tile-height: rem( 200px);
           border-left: none;
 
 
-          h2, p, i, span {
+          h2, p, i, span, q {
             color: $blue-st-tropaz;
           }
 
@@ -215,6 +215,39 @@ $tile-height: rem( 200px);
   &.hidden {
         display: none;
   }
+  &.media-quote {
+    .tiles-wrap {
+      li.tile {
+
+        h2 {
+          color: $black-tundora;
+        }
+        img {
+          width: 100%;
+          display: block;
+          margin-bottom: 2%;
+        }
+
+        q {
+          color: $green-light-victoria;
+          font-size: 1rem;
+          font-weight: bold;
+
+          &:before {
+            content: open-quote;
+          }
+          &:after {
+            content: close-quote;
+          }
+        }
+
+        .sub-text {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+
 }
 
 .tile-strip-grid {
@@ -388,8 +421,8 @@ $base-study-hub-colour--study: $green-light-victoria;
         }
 
         .title-first-step {
-          display: flex;
-          align-items: center;
+          @include display(flex);
+          @include align-items(center);
           font-size: 1.6em;
 
           &:hover {
