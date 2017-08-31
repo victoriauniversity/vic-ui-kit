@@ -219,13 +219,29 @@ $tile-height: rem( 200px);
     .tiles-wrap {
       li.tile {
 
+        figure {
+          position: relative;
+
+          .play-button {
+            position: absolute;
+            margin-top: 0;
+            left: 50%;
+            @include transform(translateX(-50%));
+            top: 40%;
+          }
+          img {
+            width: 100%;
+            display: block;
+            margin-bottom: 2%;
+          }
+        }
+
         h2 {
           color: $black-tundora;
         }
-        img {
-          width: 100%;
-          display: block;
-          margin-bottom: 2%;
+
+        p {
+          margin-bottom: 0.25em;
         }
 
         q {
