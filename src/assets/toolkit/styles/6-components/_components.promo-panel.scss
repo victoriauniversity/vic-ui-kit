@@ -4,7 +4,7 @@
     padding: .5rem 1rem;
     margin-bottom: .5em;
     color: $white;
-    background-color: rgba(100,166,89, .9 );
+    background-color: rgba(99, 166, 89, 0.90);
 }
 
 
@@ -43,6 +43,10 @@ $promo-max-width:   60em;
             background: transparent;
             box-shadow: none;
         }
+    }
+
+    &.white-bg {
+        background-color: $white;
     }
 
     figure {
@@ -174,6 +178,63 @@ $promo-max-width:   60em;
             }
         }
     }
+
+    &.dual-content {
+        > div {
+            
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+        }
+        .dual-content-block {
+            @include clearfix();
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+            background-color: $white;
+            figure {
+                &:first-child {
+                    @include span-columns( 7 of 12,
+                            block-collapse);
+                    padding: $base-spacing * 1.5;
+                    box-shadow: none;
+
+                    @include media($mobile-large-and-smaller ) {
+                        @include span-columns( 12 of 12,
+                            block-collapse);
+                    }
+
+                    figcaption {
+                        padding: 0;
+                        width: 100%;
+                    }
+                    
+                }
+
+                &:last-child {
+                     @include span-columns( 5 of 12, block-collapse);
+
+                     img {
+                        width: 100%;
+                     }
+
+
+                    figcaption {
+                        .play-button {
+                            position: absolute;
+                            right: 1rem;
+                            bottom: 1rem;
+                        }
+                    }
+                     @include media($mobile-large-and-smaller ) {
+                        @include span-columns( 12 of 12,
+                            block-collapse);
+
+                        figcaption {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
 }
 
 .promo {
@@ -221,3 +282,4 @@ $promo-max-width:   60em;
 
   }
 }
+

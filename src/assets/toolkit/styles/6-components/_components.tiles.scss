@@ -36,7 +36,7 @@ $tile-height: rem( 200px);
           border-left: none;
 
 
-          h2, p, i, span {
+          h2, p, i, span, q {
             color: $blue-st-tropaz;
           }
 
@@ -190,10 +190,80 @@ $tile-height: rem( 200px);
         }
       }
     }
+
+    &.three-up {
+      li.tile {
+        $three-grid-tile-margin-hub: 3%;
+        @include media ($desktop-large) {
+          width: ( 100 - 2 * $three-grid-tile-margin-hub) / 3; 
+          margin-right: $three-grid-tile-margin-hub;
+
+          &:nth-child(-n+3) {
+            margin-bottom: 1rem;
+          }
+
+          &:nth-child( 3n) {
+            margin-right: 0;
+          }
+          &:nth-child( 4n) {
+            margin-right: $three-grid-tile-margin-hub;
+          }
+        }
+      }
+    }
   }
   &.hidden {
         display: none;
   }
+  &.media-quote {
+    .tiles-wrap {
+      li.tile {
+
+        figure {
+          position: relative;
+
+          .play-button {
+            position: absolute;
+            margin-top: 0;
+            left: 50%;
+            @include transform(translateX(-50%));
+            top: 40%;
+          }
+          img {
+            width: 100%;
+            display: block;
+            margin-bottom: 2%;
+          }
+        }
+
+        h2 {
+          color: $black-tundora;
+        }
+
+        p {
+          margin-bottom: 0.25em;
+        }
+
+        q {
+          color: $green-light-victoria;
+          font-size: 1rem;
+          font-weight: bold;
+
+          &:before {
+            content: open-quote;
+          }
+          &:after {
+            content: close-quote;
+          }
+        }
+
+        .sub-text {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+
 }
 
 .tile-strip-grid {
@@ -304,48 +374,12 @@ $base-study-hub-colour--study: $green-light-victoria;
           right: 0;
         }
       }
-      
-      $three-grid-tile-margin-hub: 3%;
-
-      @include media ($desktop-large) {
-        width: ( 100 - 2 * $three-grid-tile-margin-hub) / 3; 
-        margin-right: $three-grid-tile-margin-hub;
-
-        &:nth-child(-n+3) {
-          margin-bottom: $three-grid-tile-margin-hub;
-        }
-
-        &:nth-child( 3n) {
-          margin-right: 0;
-        }
-        &:nth-child( 4n) {
-          margin-right: $three-grid-tile-margin-hub;
-        }
-      }
     }
   }
 }
 
 .tiles-study-hub-about {
   @extend .tiles-study-hub;
-
-// do with style trump maybe?
-  // h1,
-  // h2,
-  // h3 {
-  //   color: $green-victoria;
-  // }
-  
-  // .tiles-wrap {
-  //   li.tile {
-  //     border-left: 4px solid $green-victoria;
-  //     a {
-  //       h2 {
-  //         color: $green-victoria;
-  //       }
-  //     }
-  //   }
-  // }
 }
 
 //step tiles for study hub mod
@@ -403,8 +437,8 @@ $base-study-hub-colour--study: $green-light-victoria;
         }
 
         .title-first-step {
-          display: flex;
-          align-items: center;
+          @include display(flex);
+          @include align-items(center);
           font-size: 1.6em;
 
           &:hover {
