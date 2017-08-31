@@ -14,7 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - New 'tiles' component - clickable area for list of important things. Has 3 variations - one for short lists and large tiles, longer list with smaller tiles and strip tiles.
 - Prototypes - New hubs for the IA project; Study, Experience, Research and About.
-- 
+- Updated patterns 
 
 ### Enhanced
 
