@@ -134,12 +134,24 @@ $(function(){
 		}
 		$('.active').removeClass('active');
 		$(this).parent().addClass('active');
-		$('.tile-grid').toggleClass('hidden');
-		$('.updated-tile-grid').toggleClass('hidden');
-		$('.study-area-single').toggleClass('hidden');
+		$('.study-areas').toggleClass('hidden');
+		$('.degrees-quals').toggleClass('hidden');
 
 	});
 
+	/* dynamic height for tiles. setting height of all tiles from largest tile height */
+	$('.dynamic-height-tiles ').each(function(n){
+		//get array of heights for each group of class
+		var tileHeights = $(this).find('li.tile').map(function(){
+			return $(this).height(); 
+		}).get();
+
+		//check heights for largest
+		var maxHeight = Math.max.apply(null, tileHeights);
+		
+		//apply maxheight to tiles
+		$(this).find('li.tile').height(maxHeight + 16);
+	});
 
   /** DOM manipulation */
 

@@ -86,6 +86,10 @@ $tile-height: rem( 200px);
 
 .tiles-panel {
   background-color: $background-color;
+
+  &.hidden {
+    display: none;
+  }
 }
 
 .updated-tile-grid {
@@ -213,7 +217,7 @@ $tile-height: rem( 200px);
     }
   }
   &.hidden {
-        display: none;
+    display: none;
   }
   &.media-quote {
     .tiles-wrap {
@@ -336,6 +340,11 @@ $tile-height: rem( 200px);
       }
     }
   }
+}
+
+.dynamic-height-tiles {
+  //apply to use js from toolkit.js to set height based on height of biggest tile
+  //to be used when needed in place of .fixed-height-tiles
 }
 
 //modifier for study hub tiles
