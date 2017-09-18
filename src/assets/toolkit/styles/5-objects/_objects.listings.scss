@@ -66,3 +66,57 @@
       }
     }
   }
+
+  //grey panel version
+/*     .articles-two-up {
+      background-color: $grey-gallery;
+      padding: $block-padding;
+  
+      > .centraliser {
+        
+      }
+      
+      .articles-container {
+        background-color: $white;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+  
+        @include media( $desktop-and-bigger ){
+  
+  
+          @include span-columns( 6 of 12 );
+          @include omega( 2n );
+        }
+      }
+    } */
+
+
+    //white bg center divider line
+    .articles-two-up {
+      position: relative;
+
+      @include media( $desktop-and-bigger ) {
+        &:before {
+          @include objectify();
+          @include size( 0 100% );
+          position: absolute;
+          left: calc(50% - 5px);
+          top: 0;
+          border-left: 5px solid $grey-gallery;
+        }
+      }
+  
+      > .centraliser {
+
+      }
+      
+      .articles-container {
+  
+        @include media( $desktop-and-bigger ) {
+  
+  
+          @include span-columns( 6 of 12 );
+          @include omega( 2n ); 
+        }
+
+      }
+    }
