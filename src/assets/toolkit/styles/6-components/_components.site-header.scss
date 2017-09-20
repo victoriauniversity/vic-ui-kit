@@ -17,7 +17,7 @@
     }
 
     .menu-container {
-      @include flex(1);
+      @include flex(1 1 100%);
       @include align-self(center);
     }
     
@@ -174,14 +174,14 @@
     @include media( $tablet-and-bigger ) {
 
       .block {
-        display: table;
-        table-layout: fixed;
+        // display: table;
+        // table-layout: fixed;
         width: 100%;
-        // @include display(flex);
+        @include display(flex);
       }
 
       .site-intro {
-        @include span-columns( 9 of 12, table );
+        @include span-columns( 9 of 12 );
         padding: .3rem $column-padding .5rem $column-padding * 1.5;
         
       }
@@ -199,7 +199,7 @@
       }
 
       .logo {
-        @include span-columns( 3 of 12, table );
+        @include span-columns( 3 of 12 );
 
         padding: .1rem $column-padding * 1.5 .1rem $column-padding;
         border-right: 1px solid $black-emperor;
@@ -209,8 +209,35 @@
 
     @include media( $mobile-large-and-smaller ) {
 
+      .block {
+        // @include flex-direction(column);
+        @include flex-wrap(wrap);
+        @include justify-content(space-between);
+      }
+
       .main-menu-toggle {
         display: block;
+        font-size: 2.5em;
+        color: $white;
+      }
+
+      .menu-container {
+        .sub-nav {
+          display: none;
+        }
+
+        .horizontal-menu {
+          .main-nav {
+            background-color: $black-tundora;
+            padding: 0;
+            a {
+              font-size: 1.4rem;
+              padding: 1rem 1.5rem;
+              margin-bottom: 0;
+              border-bottom: 1px solid $black;
+            }
+          }
+        }
       }
 
       .logo { 
