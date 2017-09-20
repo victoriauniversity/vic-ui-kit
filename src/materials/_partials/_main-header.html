@@ -4,22 +4,37 @@
     <div class="logo">
       <a href="/" title="Victoria University of Wellington homepage">
         <picture>
-          <source media="(max-width: 68em)" srcset="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-portrait.svg">
+          <source media="(min-width: 47.5em) and (max-width: 68em)" srcset="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-portrait.svg">
+          <source media="(max-width: 47.4375em)" srcset="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-mini.svg">
           <img src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-full.svg" alt="Victoria University of Wellington - Te Whare Wānanga o te Ūpoko o te Ika a Māui">
         </picture>
       </a>
     </div>
+    <!-- Mobile Menu toggle -->
+    <a class="main-menu-toggle">Sections <span class="icon-menu"></span></a>
     <!-- Introductory block -->
-    <div role="menu" class="horizontal-menu">
-      <div role="menu-bar" class="menu-bar">
-        
-          {{#if main-header.main-ia}} {{#each main-header.main-ia}}
-          <a role="menu-item" href="#" title="{{{this}}} page" class="{{this}}-active">{{ this}}</a>
-          {{/each}} {{/if}}
-       
+    <nav class="menu-container">
+      <div role="sub-menu" class="sub-nav horizontal-menu">
+        <div class="menu-bar">
+          <a href="">About Victoria</a>
+          <a href="">Staff</a>
+          <a href="">Library</a>
+          <a href="">Blackboard</a>
+          <a href="">Maps</a>
+        </div>
+  
       </div>
-      <a class="search-item" href=""><span class="icon-search"></span></a>
-    </div>
+      <div role="menu" class="horizontal-menu">
+        <div role="menu-bar" class="menu-bar">
+          
+            {{#if main-header.main-ia}} {{#each main-header.main-ia}}
+            <a role="menu-item" href="#" title="{{{this}}} page" class="{{this}}-active">{{ this}}</a>
+            {{/each}} {{/if}}
+         
+            <a  role="search" class="menu-item search-item" href=""><span class="icon-search"></span></a>
+          </div>
+      </div>
+    </nav>
     <!--  {{#if header.subtitle}}`
             <span class="preline">{{{header.subtitle}}}</span>
           {{/if}}

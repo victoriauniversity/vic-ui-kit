@@ -8,17 +8,27 @@
   .site-header, .main-site-header {
     background: $black-victoria;
     border-bottom: 6px solid $green-victoria;
-
+    padding-top: 0.5rem;
 
     .block {
       padding-top:    1rem;
       padding-bottom: 1rem;
+      @include display(flex);
+    }
+
+    .menu-container {
+      @include flex(1);
+      @include align-self(center);
+    }
+    
+    .main-menu-toggle {
+      display: none;
     }
 
     .horizontal-menu {
+      @include clearfix();
 
       @include media( $desktop-large ) {
-        @include clearfix();
         @include span-columns( 10 of 12, table);
         display: flex;
       }
@@ -29,6 +39,8 @@
 
       .menu-bar {
         padding: 0.25em 1em;
+        @include clearfix();
+        
         a {
           
           color: $white; // float: left;
@@ -45,8 +57,8 @@
 
 
             font-weight: $weight-medium;
-            padding: $base-spacing/2 $base-spacing/1.5;
           }
+          padding: 0 $base-spacing/1.5;
           @include media( $desktop-and-smaller ) {
             font-size: 2.5vw;
           }
@@ -67,19 +79,31 @@
             }
           }
           &:hover {
-            border-bottom: 2px solid $grey-silver;
+            opacity: $base-hover-opacity;
           }
         }
 
       }
-      .search-item {
-        float: right;
-        padding: 0; 
-        margin-bottom: 1em;
-        >.icon-search {
-          color: $white;
-          font-size: 2.25rem;
-          padding: 0 $base-spacing/1.5; // float: right;
+
+      // .search-item {
+      //   float: right;
+      //   padding: 0; 
+      //   margin-bottom: 1em;
+      //   >.icon-search {
+      //     color: $white;
+      //     font-size: 2rem;
+      //     padding: 0 $base-spacing/1.5; // float: right;
+      //   }
+      // }
+
+      &.sub-nav {
+
+        a {
+          padding: 0 $base-spacing/1.5;
+          font-size: 0.8rem;
+          margin-bottom: 0;
+          color: $grey;
+          text-transform: uppercase;
         }
       }
 
@@ -103,6 +127,7 @@
 
     /* Victoria main logotype */
     .logo {
+      @include align-self(center);
       text-align: center;
       // Logo image
       img {
@@ -152,6 +177,7 @@
         display: table;
         table-layout: fixed;
         width: 100%;
+        // @include display(flex);
       }
 
       .site-intro {
@@ -182,7 +208,15 @@
     }
 
     @include media( $mobile-large-and-smaller ) {
-      .logo { display: none; }
+
+      .main-menu-toggle {
+        display: block;
+      }
+
+      .logo { 
+        // display: none; 
+        width: 12rem;
+      }
 
       .site-intro {
         width: 100%;
