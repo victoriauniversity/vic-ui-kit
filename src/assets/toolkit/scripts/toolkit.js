@@ -160,6 +160,7 @@ $(function(){
 		$('.menu-toggle-icon').toggleClass('open');
 	 });
 
+	 /* Show search bar on desktop */
 	 $('.search-item').on('click', function () { 
 		$('.search-bar').slideToggle();
 	  });
