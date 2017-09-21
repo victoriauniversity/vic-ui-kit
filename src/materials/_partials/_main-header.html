@@ -38,13 +38,16 @@
             <a role="menu-item" href="#" title="{{{this}}} page" class="{{this}}-active">{{ this}}</a>
             {{/each}} {{/if}}
          
-            <a  role="search" class="menu-item search-item" href=""><span class="icon-search"></span></a>
+            <a  role="search" class="menu-item search-item" href="javascript:void(0)"><span class="icon-search"></span></a>
           </div>
       </div>
     </nav>
-    <div class="centraliser block search-bar">
+    <div class="centraliser search-bar">
 
-      <div>have a searchhere please</div>
+      <form class="search-form" action="//www.victoria.ac.nz/search" role="search">
+        <input id="search-query" class="search-input" aria-label="Search term:" autocomplete="off" autocorrect="off" type="search" name="q" placeholder="Search Victoria for..">
+        <input id="search-submit" class="primary button" type="submit" value="Go">
+      </form>
 
     </div>
     <!--  {{#if header.subtitle}}`

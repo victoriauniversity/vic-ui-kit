@@ -156,8 +156,13 @@ $(function(){
 	/* Navigation toggle on mobile */
 	$('.main-menu-toggle').on('click', function () { 
 		$('.main-nav').slideToggle();
+		$('.search-bar').slideToggle();
 		$('.menu-toggle-icon').toggleClass('open');
 	 });
+
+	 $('.search-item').on('click', function () { 
+		$('.search-bar').slideToggle();
+	  });
 
   /** DOM manipulation */
 
