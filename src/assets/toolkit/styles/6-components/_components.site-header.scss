@@ -17,8 +17,12 @@
     }
 
     .menu-container {
-      @include flex(1 1 100%);
+      @include flex(1 0 70%);
       @include align-self(center);
+    }
+
+    .search-bar {
+      @include flex(1 1 100%);
     }
     
     .main-menu-toggle {
@@ -45,7 +49,7 @@
           
           color: $white; // float: left;
           margin: 0;
-          margin-bottom: .65em;
+          margin-bottom: .35em;
           
           border-bottom: none;
           line-height: 1.2;
@@ -81,6 +85,16 @@
           &:hover {
             opacity: $base-hover-opacity;
           }
+      
+/*           &:not(:first-child) {
+            &:before {
+              padding-right: .3em;
+              content: "|";
+              color: #555;
+              font-size: 18px;
+              font-weight: 400;
+            }
+          } */
         }
 
       }
@@ -102,7 +116,7 @@
           padding: 0 $base-spacing/1.5;
           font-size: 0.8rem;
           margin-bottom: 0;
-          color: $grey;
+          color: $grey-silver;
           text-transform: uppercase;
         }
       }
@@ -178,6 +192,7 @@
         // table-layout: fixed;
         width: 100%;
         @include display(flex);
+        @include flex-wrap(wrap);
       }
 
       .site-intro {
@@ -188,6 +203,12 @@
 
       .horizontal-menu {
         @include clearfix();
+
+        &.main-nav {
+          a {
+            padding-bottom: 0.3em;  
+          }
+        }
 
         a {
           float: left;
@@ -219,22 +240,38 @@
         display: block;
         font-size: 2.5em;
         color: $white;
+        cursor: pointer;
+
+        .icon-menu {
+          &:before {
+            margin-right: 0;
+          }
+        }
       }
 
       .menu-container {
+        @include flex(1 1 100%);
         .sub-nav {
           display: none;
         }
 
         .horizontal-menu {
-          .main-nav {
-            background-color: $black-tundora;
-            padding: 0;
-            a {
-              font-size: 1.4rem;
-              padding: 1rem 1.5rem;
-              margin-bottom: 0;
-              border-bottom: 1px solid $black;
+          &.main-nav {
+            display: none;
+            
+            .menu-bar {
+              background-color: $black-tundora;
+              padding: 0;
+              a {
+                font-size: 1.4rem;
+                padding: 1rem 1.5rem;
+                margin-bottom: 0;
+                border-bottom: 2px solid $grey-dove;
+
+                &:last-child {
+                  border-bottom-color: transparent; 
+                }
+              }
             }
           }
         }
@@ -259,3 +296,80 @@
       }
     }
   }
+
+
+  /* menu toggle icon css only transform */
+  .menu-toggle-icon {
+    width: 60px;
+    height: 45px;
+    position: relative;
+    // margin: 50px auto;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+
+    @include transform(scale(0.5));
+  }
+  
+ .menu-toggle-icon span {
+    display: block;
+    position: absolute;
+    height: 9px;
+    width: 100%;
+    background: $white;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .25s ease-in-out;
+    -moz-transition: .25s ease-in-out;
+    -o-transition: .25s ease-in-out;
+    transition: .25s ease-in-out;
+  }
+
+.menu-toggle-icon span:nth-child(1) {
+  top: 0px;
+}
+
+.menu-toggle-icon span:nth-child(2),.menu-toggle-icon span:nth-child(3) {
+  top: 18px;
+}
+
+.menu-toggle-icon span:nth-child(4) {
+  top: 36px;
+}
+
+.menu-toggle-icon.open span:nth-child(1) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
+.menu-toggle-icon.open span:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.menu-toggle-icon.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.menu-toggle-icon.open span:nth-child(4) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}

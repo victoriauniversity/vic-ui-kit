@@ -153,6 +153,12 @@ $(function(){
 		$(this).find('li.tile').height(maxHeight + 16);
 	});
 
+	/* Navigation toggle on mobile */
+	$('.main-menu-toggle').on('click', function () { 
+		$('.main-nav').slideToggle();
+		$('.menu-toggle-icon').toggleClass('open');
+	 });
+
   /** DOM manipulation */
 
   wrapEmbeddedIframes();
