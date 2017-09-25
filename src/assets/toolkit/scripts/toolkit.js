@@ -153,6 +153,18 @@ $(function(){
 		$(this).find('li.tile').height(maxHeight + 16);
 	});
 
+	/* Navigation toggle on mobile */
+	$('.main-menu-toggle').on('click', function () { 
+		$('.main-nav').slideToggle();
+		$('.search-bar').slideToggle();
+		$('.menu-toggle-icon').toggleClass('open');
+	 });
+
+	 /* Show search bar on desktop */
+	 $('.search-item').on('click', function () { 
+		$('.search-bar').slideToggle();
+	  });
+
   /** DOM manipulation */
 
   wrapEmbeddedIframes();

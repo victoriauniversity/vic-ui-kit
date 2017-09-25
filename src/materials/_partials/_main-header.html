@@ -4,21 +4,51 @@
     <div class="logo">
       <a href="/" title="Victoria University of Wellington homepage">
         <picture>
-          <source media="(max-width: 68em)" srcset="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-portrait.svg">
+          <source media="(min-width: 40em) and (max-width: 68em)" srcset="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-portrait.svg">
+          <source media="(max-width: 40em)" srcset="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-mini.svg">
           <img src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-full.svg" alt="Victoria University of Wellington - Te Whare Wānanga o te Ūpoko o te Ika a Māui">
         </picture>
       </a>
     </div>
-    <!-- Introductory block -->
-    <div role="menu" class="horizontal-menu">
-      <div role="menu-bar" class="menu-bar">
-        
-          {{#if main-header.main-ia}} {{#each main-header.main-ia}}
-          <a role="menu-item" href="#" title="{{{this}}} page" class="{{this}}-active">{{ this}}</a>
-          {{/each}} {{/if}}
-       
+    <!-- Mobile Menu toggle -->
+    <a class="main-menu-toggle" role="toggle-mobile-menu"> 
+      <div class="menu-toggle-icon"> 
+        <span></span> 
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-      <a class="search-item" href=""><span class="icon-search"></span></a>
+    </a>
+    <!-- Introductory block -->
+    <nav class="menu-container">
+      <div role="sub-menu" class="sub-nav horizontal-menu">
+        <div class="menu-bar">
+          <a href="">About Victoria</a>
+          <a href="">Staff</a>
+          <a href="">Library</a>
+          <a href="">Blackboard</a>
+          <a href="">Maps</a>
+        </div>
+  
+      </div>
+      <div role="menu" class="main-nav horizontal-menu">
+        <div role="menu-bar" class="menu-bar">
+          
+            {{#if main-header.main-ia}} {{#each main-header.main-ia}}
+            <a role="menu-item" href="#" title="{{{this}}} page" class="{{this}}-active">{{ this}}</a>
+            {{/each}} {{/if}}
+         
+            <a  role="search" class="menu-item search-item" href="javascript:void(0)"><span class="icon-search"></span></a>
+          </div>
+      </div>
+    </nav>
+    <div class="centraliser search-bar">
+
+      <form class="search-form" action="//www.victoria.ac.nz/search" role="search">
+        <input id="search-query" class="search-input" aria-label="Search term:" autocomplete="off" autocorrect="off" type="search" name="q" placeholder="Search Victoria for..">
+        <input id="search-submit" class="primary button" type="submit" value="Go">
+      </form>
+
     </div>
     <!--  {{#if header.subtitle}}`
             <span class="preline">{{{header.subtitle}}}</span>
