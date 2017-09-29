@@ -153,3 +153,39 @@
     }
 
   }
+
+  /* Gallery Using Photoswipe */
+
+  .gallery-container {
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    &.thumbnails {
+      .gallery-hero {
+        position: relative;
+
+        @include span-columns( 7 of 12,
+        block-collapse);
+
+        .gallery-title {
+          position: absolute;
+          top: 0;
+          background-color: rgba($green-victoria, 0.9);
+
+          h2,h3,h4 {
+            color: $white;
+          }
+        }
+      }
+      .gallery-shown {
+        @include span-columns( 5 of 12,
+        block-collapse);
+
+        img {
+          @include span-columns( 1 of 2);
+        }
+      }
+    }
+  }
