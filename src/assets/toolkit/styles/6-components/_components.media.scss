@@ -237,7 +237,7 @@
           position: absolute;
           top: 1.5em;
           background-color: rgba($green-victoria, 0.9);
-          max-width: 45%;
+          max-width: 55%;
           padding-right: 3em;
           z-index: $z-index-top;
 
@@ -328,6 +328,10 @@
         &.single-feature {
           .gallery-title {
             max-width: 45%;
+            
+            @include media( $tablet-and-smaller ) {
+              max-width: 85%;
+            }
           }
           .gallery-images {
             img {
