@@ -178,9 +178,11 @@
               position: absolute;
               top: 1em;
               background-color: rgba($green-victoria, 0.9);
+              max-width: 95%;
     
               h2,h3,h4 {
                 color: $white;
+                margin-bottom: 0.5em;
               }
             }
           }
@@ -195,6 +197,8 @@
               // float: left;
               width: 50%;
               height: 50%;
+              -o-object-fit: cover;
+              object-fit: cover;
 
               &:nth-child(n+5) {
                 display: none;
@@ -211,5 +215,58 @@
         }
       }
     }
+
+    // Using only image list
+
+    .gallery-container {
+      margin: 1em 0;
+
+      img {
+        max-width: 100%;
+      }
+      .gallery {
+        &.thumbnails {
+          position: relative;
+
+          .gallery-title {
+            position: absolute;
+            top: 1em;
+            background-color: rgba($green-victoria, 0.9);
+            max-width: 45%;
+            z-index: 10;
+  
+            h2,h3,h4 {
+              color: $white;
+              margin-bottom: 0.5em;
+            }
+          }
+
+          & .gallery-images {
+            @include clearfix();
+            // height: auto;
+            img {
+              // ************ Try widths with neat.. 
+              width: 25%; 
+              // @include span-columns( 3 of 12, block-collapse );
+              height: auto;
+              float: left;
+
+              &:first-child {
+                width: 50%;
+                // @include span-columns( 6 of 12, block-collapse );
+                height: auto;
+              }
+
+              &:nth-child(n+6) {
+                display: none;
+              }
+            }
+            
+          }
+
+        }
+      }
+    }
+
 
   
