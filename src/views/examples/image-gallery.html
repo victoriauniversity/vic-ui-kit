@@ -10,13 +10,24 @@
 
     <!-- Center 'content' column -->
     <main>
+
+      <!-- gallery scripts -->
+      <!-- CSS file -->
+      <link rel="stylesheet" href="http://cms.victoria.ac.nz/_designs/responsive/javascript/photoswipe-gallery/photoswipe.css">
+      <!-- Skin CSS file (styling of UI - buttons, caption, etc.) -->
+      <link rel="stylesheet" href="http://cms.victoria.ac.nz/_designs/responsive/javascript/photoswipe-gallery/default-skin.css">
+      <!-- JS file -->
+      <script src="http://cms.victoria.ac.nz/_designs/responsive/javascript/photoswipe-gallery/photoswipe.js"></script>
+      <!-- UI JS file -->
+      <script src="http://cms.victoria.ac.nz/_designs/responsive/javascript/photoswipe-gallery/photoswipe-ui-default.js"></script>
+
       <section class="block formatting">
         <h1>Image gallery</h1>
 
         <h2>Gallery Shown</h2>
 
         <div class="gallery-container thumbnails">
-          <a href="#">
+          <a href="#" class="">
             <div class="gallery-hero">
               <figure>
                   <img src="https://www.victoria.ac.nz/__data/assets/image/0003/317658/varieties/ls_medium.jpg" alt="">
@@ -39,7 +50,7 @@
         </div>
         <!-- //second type just images -->
         <div class="gallery-container">
-          <a href="#">
+          <a href="#" class="open_gallery">
             <div class="gallery thumbnails">
               <div class="gallery-title block">
                 <h2>Projects from <span class="icon-caret-down"></span></h2>
@@ -77,175 +88,324 @@
         </div>
 
 
-        <p><strong>Default behaviour (~ no classes + outside of paragraph) - an image stretches to full width.</strong></p>
-        <img src="//www.victoria.ac.nz/__data/assets/image/0019/346330/about_2000x800.jpg" alt="Building">
-
-
-
-
-        <h2>Inline media natural flow </h2>
-
-        <p><strong>Demonstrates natural flow of inline media (images, videos, maps) when placed right behind each other, followed by enough content. If there is not enough content, breaks must be used to separate the section from each other.</strong></p>
-
-        <img class="inline" title="" src="//www.victoria.ac.nz/__data/assets/image/0004/370948/ls_medium.jpg" alt="Victoria health researchers Professor Kevin Dew and Dr Kirsten Smiler">
-
-        <iframe class="inline" width="1280" height="720" src="https://www.youtube.com/embed/6nD-kAsV-rk?rel=0" frameborder="0" allowfullscreen=""></iframe>
-
-        <p>Dr Smiler is continuing this research—funded by a HRC Erihapeti Rehu-Murchie Postdoctoral Scholarship—in her role as a postdoctoral researcher in Victoria’s Health Services Research Centre.</p><p>“Support services for Māori Deaf and their whānau are often unaware that they exist at the intersection of languages and cultures, all of which have differing profiles, roles and status in New Zealand. My research has worked toward providing a better understanding of these complexities, and recommends that Māori and Deaf knowledge inform how services and professionals respond,” says Dr Smiler.</p><p>“This work is an acknowledgement of the importance of whānau, language, and culture on our overall health and wellbeing. I feel extremely privileged to have been able to do this work.”</p>
-
-
-
-
-        <h2>Inline media with not enough text content</h2>
-
-
-        <p><strong>Natural flow of media must be broken with usage of a 'break'.</strong></p>
-
-
-        <p>
-          <img src="//cms.victoria.ac.nz/__data/assets/image/0003/307938/ird.jpg" alt="logo">
-
-          <img src="//cms.victoria.ac.nz/__data/assets/image/0007/191149/msd-logo.gif">
-
-          Some pretty short paragraph
-        </p>
-
-        <!-- *MUST BE* used in the place to make the break -->
-        <hr class="break">
-
-        <p>
-
-          <img src="https://cdn.colorlib.com/wp/wp-content/uploads/sites/2/2014/02/Olympic-logo.png">
-
-          Another pretty short paragraph
-        </p>
-
-        <!-- *MUST BE* used in the place to make the break -->
-        <hr class="break">
-
-
-
-
-        <h2>Maps</h2>
-
-        <p><strong>Copy-paste Google Maps' code without wrapping it into any extra markup (this is done automatically on a page load). To make a video part of your content, add class 'inline' to the iframe.</strong></p>
-
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2997.8484954583428!2d174.76647281629434!3d-41.29040167927309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d38b02952575dbb%3A0xadf3ba89622116f0!2sVictoria+University+of+Wellington!5e0!3m2!1sen!2snz!4v1476656083281" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-
-
-        <p>In 1904, the first stage of what is today known as the Hunter Building was begun, and the building was opened in 1906 by the Governor of New Zealand, Lord Plunket.</p>
-
-        <iframe class="inline" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2997.8484954583428!2d174.76647281629434!3d-41.29040167927309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d38b02952575dbb%3A0xadf3ba89622116f0!2sVictoria+University+of+Wellington!5e0!3m2!1sen!2snz!4v1476656083281" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-        <p>
-        A pattern of growth was quickly established. Student numbers rose from 254 in 1905 to over 700 in 1923, with three additions made to the building over this period. A reputation for fine teaching and research also grew, thanks to the efforts of early academics such as Professors ‘Tommy’ Hunter, J.C. Beaglehole and George von Zedlitz.
-        </p>
-
-        <p>
-          In 1961, the University of New Zealand system was dissolved, and on 1 January 1962, Victoria College became Victoria University of Wellington.
-        </p>
-
-
-
-
-        <h2>Videos</h2>
-
-        <p><strong>Copy-paste YouTube's or Vimeo's code without wrapping it into any extra markup (this is done automatically on a page load). To make a video part of your content, add class 'inline' to the iframe.</strong></p>
-
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/MV3tNB6MP60" frameborder="0" allowfullscreen></iframe>
-
-        <iframe src="https://player.vimeo.com/video/148124447?byline=0&portrait=0" width="250" height="141" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        <p>
-          Victoria University is characterised by the depth, consistency and effectiveness of our culture of domestic and international engagement. Our commitment to reciprocal, high-quality relationships springs from identifying and understanding the need for New Zealand to achieve sustainable development.
-        </p>
-
-
-        <iframe class="inline" src="https://player.vimeo.com/video/66287748?title=0&byline=0&portrait=0" width="250" height="141" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
-        <p>
-          Victoria’s historic strength in public policy has been fully demonstrated by substantial contributions to major government projects, and entrepreneurship education is an emerging strength on which we intend to build. Victoria also gives high priority to engagement with Māori and Pacific communities.
-        </p>
-
-        <p>
-          Victoria has developed close ties with a wide range of businesses and government organisations, and several recent initiatives are aimed at improving the University’s engagement with industry.
-        </p>
-
-
-        <h2>Simple gallery (list of images with captions)</h2>
-        <section class="gallery">
-          <figure class="media"><img src="//cms.victoria.ac.nz/__data/assets/image/0006/268260/tim-corballis.jpg" alt="Author image: Tim Corballis" title="Author image: Tim Corballis" />
-          <figcaption> 2015 Tim Corballis &copy; Robert Cross </figcaption>
-          </figure>
-          <figure class="media"><img alt="Image of Hinemoana Baker by Robert Cross" src="//cms.victoria.ac.nz/__data/assets/image/0004/214474/hinemoana-baker.jpg" />
-              <figcaption> 2014 Hinemoana Baker &copy; Robert Cross </figcaption>
-          </figure>
-          <figure class="media"><img alt="Carl Shuker" src="//cms.victoria.ac.nz/__data/assets/image/0009/229734/carl-shuker.jpg" />
-              <figcaption> 2013 Carl Shuker &copy; Robert Cross </figcaption>
-          </figure>
-          <figure class="media"><img alt="Image of Bernard Becket by Robert Cross" src="//cms.victoria.ac.nz/__data/assets/image/0007/87127/bernard-beckett.jpg" />
-              <figcaption> 2012 Bernard Beckett &copy; Robert Cross </figcaption>
-          </figure>
-          <figure class="media"><img alt="Albert Belz" src="//cms.victoria.ac.nz/__data/assets/image/0007/194596/albert-belz.jpg" />
-              <figcaption> 2011 Albert Belz &copy; Robert Cross </figcaption>
-          </figure>
-          <figure class="media"><img alt="Jenny Bornholdt" src="//cms.victoria.ac.nz/__data/assets/image/0010/87229/jenny-bornholdt.jpg" />
-              <figcaption> 2010 Jenny Bornholdt &copy; Robert Cross </figcaption>
-          </figure>
-          <figure class="media"><img alt="paula-boock-thumb" src="//cms.victoria.ac.nz/?a=22975" />
-              <figcaption> 2009 Paula Boock &copy; Robert Cross </figcaption>
-          </figure>
-          <figure class="media"><img alt="David Geary" src="//cms.victoria.ac.nz/__data/assets/image/0016/22921/wir08-geary.jpg" />
-              <figcaption> 2008 David Geary &copy; Robert Cross </figcaption>
-          </figure>
-
-        </section>
-
-
-
-        <h2>Multiple custom sized images</h2>
-
-        <p><strong>To be used when sizing of one or more images must be respected (eg. partners' logos).</strong></p>
-
-        <p>The Chair in Public Finance is co-funded by Victoria University of Wellington in conjunction with support from the following sponsors:</p>
-
-        <!-- Default images container - holds default sizing -->
-        <div class="images">
-          <a href="#" title="go to website">
-            <img alt="logo" src="//cms.victoria.ac.nz/__data/assets/image/0017/191150/PwC-logo.jpg">
-          </a>
-
-          <a href="#" title="go to website">
-            <img alt="logo" src="//cms.victoria.ac.nz/__data/assets/image/0019/191152/NZ-treasury.jpg">
-          </a>
-
-          <a href="#" title="go to website">
-            <img alt="logo" src="//cms.victoria.ac.nz/__data/assets/image/0015/309021/Productivity-Commission.jpg">
-          </a>
-        </div>
-
-
-
-        <h2>Two full-width images with captions</h2>
-
-        <figure class="media">
-
-          <img title="" src="//www.victoria.ac.nz/__data/assets/image/0004/388003/varieties/ls_medium.jpg" alt="Victoria health researchers Professor Kevin Dew and Dr Kirsten Smiler">
-
-          <figcaption>
-            The CloudSpec team at the Raman Lab at Victoria's School of Chemical and Physical Sciences. (L-R) Professor Eric Le Ru, Matthias Meyer and Brendan Darby.
-          </figcaption>
-
-        </figure>
-
-        <figure class="media">
-
-          <img title="" src="//www.victoria.ac.nz/news/2016/10/international-students-join-the-police/isa-students-web.jpg/ls_medium.jpg" alt="Victoria health researchers Professor Kevin Dew and Dr Kirsten Smiler">
-
-          <figcaption>
-            Victoria University International Student Ambassadors, Victoria International staff and Ethnic Liaison Officer Sergeant Philip Pithyou at the ISA initiative launch
-          </figcaption>
-
-        </figure>
-
+        <script>
+          setTimeout(function() {
+            
+         
+            $(function() {
+                var pswpElement = document.querySelectorAll('.pswp')[0];
+            
+                $('.open_gallery').click(function(e) {
+            e.preventDefault();
+                    // build items array
+                    var items = [  {
+    originalImage: {
+        src: 'http://cms.victoria.ac.nz/__data/assets/image/0003/317658/main-gym.jpg',
+        w: 3200,
+        h: 1800,
+        title: '',
+        pid: 'image-1'
+    },
+    mediumImage: {
+        src: 'http://cms.victoria.ac.nz/__data/assets/image/0003/317658/varieties/ls_medium.jpg',
+        w: 1600,
+        h: 900,
+        title: '',
+        pid: 'image-1'
+    },
+    smallImage: {
+        src: 'http://cms.victoria.ac.nz/__data/assets/image/0003/317658/varieties/ls_small.jpg',
+        w: 640,
+        h: 360,
+        title: '',
+        pid: 'image-1'
+    }
+},
+ {
+    originalImage: {
+        src: 'http://cms.victoria.ac.nz/__data/assets/image/0005/317651/basketball-shot.jpg',
+        w: 3200,
+        h: 1800,
+        title: '',
+        pid: 'image-2'
+    },
+    mediumImage: {
+        src: 'http://cms.victoria.ac.nz/__data/assets/image/0005/317651/varieties/ls_medium.jpg',
+        w: 1600,
+        h: 900,
+        title: '',
+        pid: 'image-2'
+    },
+    smallImage: {
+        src: 'http://cms.victoria.ac.nz/__data/assets/image/0005/317651/varieties/ls_small.jpg',
+        w: 640,
+        h: 360,
+        title: '',
+        pid: 'image-2'
+    }
+},
+ {
+    originalImage: {
+        src: 'http://cms.victoria.ac.nz/__data/assets/image/0005/317660/netball-hoop.jpg',
+        w: 3200,
+        h: 1800,
+        title: '',
+        pid: 'image-3'
+    },
+    mediumImage: {
+        src: 'http://cms.victoria.ac.nz/__data/assets/image/0005/317660/varieties/ls_medium.jpg',
+        w: 1600,
+        h: 900,
+        title: '',
+        pid: 'image-3'
+    },
+    smallImage: {
+        src: 'http://cms.victoria.ac.nz/__data/assets/image/0005/317660/varieties/ls_small.jpg',
+        w: 640,
+        h: 360,
+        title: '',
+        pid: 'image-3'
+    }
+},
+ {
+    originalImage: {
+        src: 'http://cms.victoria.ac.nz/__data/assets/image/0006/317661/netball-shoot.jpg',
+        w: 3200,
+        h: 1800,
+        title: '',
+        pid: 'image-4'
+    },
+    mediumImage: {
+        src: 'http://cms.victoria.ac.nz/__data/assets/image/0006/317661/varieties/ls_medium.jpg',
+        w: 1600,
+        h: 900,
+        title: '',
+        pid: 'image-4'
+    },
+    smallImage: {
+        src: 'http://cms.victoria.ac.nz/__data/assets/image/0006/317661/varieties/ls_small.jpg',
+        w: 640,
+        h: 360,
+        title: '',
+        pid: 'image-4'
+    }
+},
+ {
+    originalImage: {
+        src: 'http://cms.victoria.ac.nz/__data/assets/image/0007/317662/volleyball-net.jpg',
+        w: 3200,
+        h: 1800,
+        title: '',
+        pid: 'image-5'
+    },
+    mediumImage: {
+        src: 'http://cms.victoria.ac.nz/__data/assets/image/0007/317662/varieties/ls_medium.jpg',
+        w: 1600,
+        h: 900,
+        title: '',
+        pid: 'image-5'
+    },
+    smallImage: {
+        src: 'http://cms.victoria.ac.nz/__data/assets/image/0007/317662/varieties/ls_small.jpg',
+        w: 640,
+        h: 360,
+        title: '',
+        pid: 'image-5'
+    }
+},
+ {
+        originalImage: {
+            src: 'http://cms.victoria.ac.nz/__data/assets/image/0008/317663/volleyball-team.jpg',
+            w: 3200,
+            h: 1800,
+            title: '',
+            pid: 'image-6'
+        },
+        mediumImage: {
+            src: 'http://cms.victoria.ac.nz/__data/assets/image/0008/317663/varieties/ls_medium.jpg',
+            w: 1600,
+            h: 900,
+            pid: 'image-6'
+        },
+         smallImage: {
+            src: 'http://cms.victoria.ac.nz/__data/assets/image/0008/317663/varieties/ls_small.jpg',
+            w: 640,
+            h: 360,
+            pid: 'image-6'
+        }
+    } ];
+            
+                    // define options (if needed)
+                    var options = {
+                        // optionName: 'option value'
+                        // for example:
+                        history: true,
+                        galleryPIDs: true,
+                        index: 0 // start at first slide
+                    };
+            
+                    // Initializes and opens PhotoSwipe
+                    var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+            
+                    // create variable that will store real size of viewport
+                    var realViewportWidth,
+                        useLargeImages = false,
+                        useSmallImages = false,
+                        firstResize = true,
+                        imageSrcWillChange;
+            
+                    // beforeResize event fires each time size of gallery viewport updates
+                    gallery.listen('beforeResize', function() {
+                        // gallery.viewportSize.x - width of PhotoSwipe viewport
+                        // gallery.viewportSize.y - height of PhotoSwipe viewport
+                        // window.devicePixelRatio - ratio between physical pixels and device independent pixels (Number)
+                        //                          1 (regular display), 2 (@2x, retina) ...
+            
+            
+                        // calculate real pixels when size changes
+                        realViewportWidth = gallery.viewportSize.x * window.devicePixelRatio;
+            
+                        // Code below is needed if you want image to switch dynamically on window.resize
+            
+                        // Find out if current images need to be changed
+                        if (!useLargeImages && realViewportWidth <= 640) {
+                            useLargeImages = false;
+                            useSmallImages = true;
+                            imageSrcWillChange = true;
+                        } else if (!useLargeImages && realViewportWidth >= 1600) {
+                            useLargeImages = true;
+                            imageSrcWillChange = true;
+                        } else {
+                            useLargeImages = false;
+                            useSmallImages = false;
+                            imageSrcWillChange = true;
+                        }
+            
+                        // Invalidate items only when source is changed and when it's not the first update
+                        if (imageSrcWillChange && !firstResize) {
+                            // invalidateCurrItems sets a flag on slides that are in DOM,
+                            // which will force update of content (image) on window.resize.
+                            gallery.invalidateCurrItems();
+                        }
+            
+                        if (firstResize) {
+                            firstResize = false;
+                        }
+            
+                        imageSrcWillChange = false;
+            
+                    });
+            
+            
+                    // gettingData event fires each time PhotoSwipe retrieves image source & size
+                    gallery.listen('gettingData', function(index, item) {
+            
+                        // Set image source & size based on real viewport width
+                        if (useLargeImages) {
+                            item.src = item.originalImage.src;
+                            item.w = item.originalImage.w;
+                            item.h = item.originalImage.h;
+                            item.title = item.originalImage.title;
+                            item.pid = item.originalImage.pid;
+                        } else if (useSmallImages) {
+                            item.src = item.smallImage.src;
+                            item.w = item.smallImage.w;
+                            item.h = item.smallImage.h;
+                            item.title = item.smallImage.title;
+                            item.pid = item.smallImage.pid;
+                        } else {
+                            item.src = item.mediumImage.src;
+                            item.w = item.mediumImage.w;
+                            item.h = item.mediumImage.h;
+                            item.title = item.smallImage.title;
+                            item.pid = item.smallImage.pid;
+                        }
+            
+                        // It doesn't really matter what will you do here, 
+                        // as long as item.src, item.w and item.h have valid values.
+                        // 
+                        // Just avoid http requests in this listener, as it fires quite often
+            
+                    });
+            
+                    // console.log('monkkeees');
+                    gallery.init();
+                });
+            
+            });
+          }, 1000);
+            </script>
+            
+            
+            <!-- Root element of PhotoSwipe. Must have class pswp. -->
+            <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+            
+                <!-- Background of PhotoSwipe. 
+                     It's a separate element as animating opacity is faster than rgba(). -->
+                <div class="pswp__bg"></div>
+            
+                <!-- Slides wrapper with overflow:hidden. -->
+                <div class="pswp__scroll-wrap">
+            
+                    <!-- Container that holds slides. 
+                        PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                        Don't modify these 3 pswp__item elements, data is added later on. -->
+                    <div class="pswp__container">
+                        <div class="pswp__item"></div>
+                        <div class="pswp__item"></div>
+                        <div class="pswp__item"></div>
+                    </div>
+            
+                    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                    <div class="pswp__ui pswp__ui--hidden">
+            
+                        <div class="pswp__top-bar">
+            
+                            <!--  Controls are self-explanatory. Order can be changed. -->
+            
+                            <div class="pswp__counter"></div>
+            
+                            <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+            
+                             <!-- <button class="pswp__button pswp__button--share" title="Share"></button> -->
+            
+                            <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+            
+                            <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+            
+                            <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                            <!-- element will get class pswp__preloader--active when preloader is running -->
+                            <div class="pswp__preloader">
+                                <div class="pswp__preloader__icn">
+                                  <div class="pswp__preloader__cut">
+                                    <div class="pswp__preloader__donut"></div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                            <div class="pswp__share-tooltip"></div> 
+                        </div>
+            
+                        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                        </button>
+            
+                        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                        </button>
+            
+                        <div class="pswp__caption">
+                            <div class="pswp__caption__center"></div>
+                        </div>
+            
+                    </div>
+            
+                </div>
+            
+            </div>
+
+
+        
 
 
 
@@ -255,9 +415,10 @@
 
 
     <!-- Right 'widget' column -->
+
   	<aside role="complementary">
       <div class="block formatting">
-
+        
 
       </div>
   	</aside>
