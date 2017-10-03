@@ -29,6 +29,25 @@
 		float: right;
 		 width: 100/3 * 1%;
 	}
+
+	@include media( $mobile-large-and-smaller ) { 
+		figcaption {
+			>div {
+				flex-direction: column;
+			}
+		}
+		.block:first-child {
+			width: 100/3 * 3%;
+			padding-bottom: 0;
+
+			h1 {
+				width: 100%;
+			}
+		}
+		.block:last-child {
+			 width: 100/3 * 3%;
+		}
+	}
 }
 
 .promo-panel.strip-banner figure figcaption {
