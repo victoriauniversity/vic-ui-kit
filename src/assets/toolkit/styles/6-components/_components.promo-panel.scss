@@ -260,6 +260,54 @@ $promo-max-width:   60em;
             display: -webkit-box;
             display: -ms-flexbox;
             display: flex;
+
+
+            @include media($mobile-large-and-smaller) {
+                flex-direction: column;
+
+                >:first-child,
+                >:last-child {
+                    width: 100%;
+                }
+            }
+
+            &.half-panel {
+                
+                >:first-child {
+                    width: 100/3 * 2%;
+                    margin-right: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+
+                    @include media($tablet-and-smaller) {
+                        flex-direction: column;
+                        
+                        figcaption:first-child {
+                            width: 100%;
+                        }
+                    }
+                    
+                    >:first-child {
+                        width: 50%;
+                    }
+
+                   
+
+                }
+                >:last-child {
+                    width: 100/3 * 1%;
+                }
+
+                @include media($mobile-large-and-smaller) {
+    
+                    >:first-child,
+                    >:last-child {
+                        width: 100%;
+                    }
+                }
+            }
+
         }
 
         figure {
