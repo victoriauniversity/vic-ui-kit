@@ -254,6 +254,40 @@ $promo-max-width:   60em;
             
         }
     }
+
+    &.two-one-third {
+        > div {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        figure {
+            figcaption {
+                padding: 1.4em;
+            }
+
+            &:first-child {
+                width: 100/3 * 2%;
+                margin-right: $block-padding;
+
+                img {
+                    height: 100%;
+                    -o-object-fit: cover;
+                    object-fit: cover;
+                }
+            }
+
+            &:last-child {
+                width: 100/3 * 1%;
+
+                figcaption {
+                    width: 100%;
+                    text-align: right;
+                }
+            }
+        }
+    }
 }
 
 .promo {
