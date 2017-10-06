@@ -254,6 +254,88 @@ $promo-max-width:   60em;
             
         }
     }
+
+    &.two-one-third {
+        > div {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+
+
+            @include media($mobile-large-and-smaller) {
+                flex-direction: column;
+
+                >:first-child,
+                >:last-child {
+                    width: 100%;
+                }
+            }
+
+            &.half-panel {
+                
+                >:first-child {
+                    width: 100/3 * 2%;
+                    margin-right: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+
+                    @include media($tablet-and-smaller) {
+                        flex-direction: column;
+                        
+                        figcaption:first-child {
+                            width: 100%;
+                        }
+                    }
+                    
+                    >:first-child {
+                        width: 50%;
+                    }
+
+                   
+
+                }
+                >:last-child {
+                    width: 100/3 * 1%;
+                }
+
+                @include media($mobile-large-and-smaller) {
+    
+                    >:first-child,
+                    >:last-child {
+                        width: 100%;
+                    }
+                }
+            }
+
+        }
+
+        figure {
+            figcaption {
+                padding: 1.4em;
+            }
+
+            &:first-child {
+                width: 100/3 * 2%;
+                margin-right: $block-padding;
+
+                img {
+                    height: 100%;
+                    -o-object-fit: cover;
+                    object-fit: cover;
+                }
+            }
+
+            &:last-child {
+                width: 100/3 * 1%;
+
+                figcaption {
+                    width: 100%;
+                    text-align: right;
+                }
+            }
+        }
+    }
 }
 
 .promo {
