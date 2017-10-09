@@ -121,7 +121,8 @@ input.cmn-toggle-round:checked + label:after {
 }
 
 .switch-label-on {
-  padding-right: 2px;
+  /* padding-right: 2px; */
+  margin-left: 3px;
 }
 
 /*
@@ -133,7 +134,7 @@ input.cmn-toggle-round:checked + label:after {
 */
 
 .switch-input {
-  display: none;
+  /* display: none; */
 }
 
 .switch-input:checked + .switch-label {
@@ -173,16 +174,51 @@ input.cmn-toggle-round:checked + label:after {
   transition: left 0.15s ease-out;
 }
 
+/* focus state */
+input[type="radio"] {
+  position: absolute;
+  clip: rect(0,0,0,0);
+  left: -9999px;
+}
+
+input[type="radio"]:checked ~ .switch-selection {
+    color: #fff;
+    /* background-color: #025aa5; */
+    background-image: none;
+    border-color: #01549b;
+    background-image: none;
+    outline: 0;
+}
+
+input[type="radio"]:focus ~ .switch-selection {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+    color: #fff;
+    /* background-color: #025aa5; */
+    /* border-color: #01549b; */
+}       
+
+
+/* input[type="radio"]:checked:focus ~ .switch-selection,
+input[type="radio"]:checked:hover ~ .switch-selection {
+    color: #fff;
+    background-color: #014682;
+    border-color: #01315a;
+}     */
 
 
 
                 </style>
   <div class="switch">
-      <a href="javascript:void(0)">  <input type="radio" class="switch-input" name="view" value="week" id="week" checked>
-   <label for="week" class="switch-label switch-label-off">Undergraduate</label></a>
-      <input type="radio" class="switch-input" name="view" value="month" id="month">
-      <a href="javascript:void(0)"><label for="month" class="switch-label switch-label-on">Postgraduate</label>
-      <span class="switch-selection"></span></a>
+  
+        <input type="radio" class="switch-input" name="view" value="week" id="week" checked>
+        <label for="week" class="switch-label switch-label-off">Undergraduate</label>
+        
+        <input type="radio" class="switch-input" name="view" value="month" id="month">
+        <label for="month" class="switch-label switch-label-on">Postgraduate</label>
+        <span class="switch-selection"></span>
+
     </div>
 
   <div class="switch--">
