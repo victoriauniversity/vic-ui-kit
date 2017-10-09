@@ -208,15 +208,15 @@ input[type="radio"]:checked:hover ~ .switch-selection {
 }     */
 
 
-
                 </style>
+
   <div class="switch">
   
-        <input type="radio" class="switch-input" name="view" value="week" id="week" checked>
-        <label for="week" class="switch-label switch-label-off">Undergraduate</label>
+        <input type="radio" class="switch-input" name="view" value="undergraduate" id="undergraduate" checked>
+        <label for="undergraduate" class="switch-label switch-label-off">Undergraduate</label>
         
-        <input type="radio" class="switch-input" name="view" value="month" id="month">
-        <label for="month" class="switch-label switch-label-on">Postgraduate</label>
+        <input type="radio" class="switch-input" name="view" value="postgraduate" id="postgraduate">
+        <label for="postgraduate" class="switch-label switch-label-on">Postgraduate</label>
         <span class="switch-selection"></span>
 
     </div>
@@ -234,8 +234,8 @@ input[type="radio"]:checked:hover ~ .switch-selection {
                 <li><a href="javascript:void(0)"><h4><span class="icon-graduation-cap"></span>Degrees and qualifications</h4></a></li>
               </ul>
             </div>
-           <section class="study-areas-undergrad">{{> study-areas}} {{> degrees-quals}}</section>
-           <section class="study-areas-postgrad">{{> study-areas}} {{> degrees-quals}}</section>
+           <section class="study-areas-undergrad"><h2>under</h2>{{> study-areas}} {{> degrees-quals}}</section>
+           <section class="study-areas-postgrad"><h2>post</h2>{{> study-areas}} {{> degrees-quals}}</section>
           </div>
         </section>
         {{> promo-with-1x-image}} {{> promo-panels.text-promo-panel}}  {{> three-cols-images}}

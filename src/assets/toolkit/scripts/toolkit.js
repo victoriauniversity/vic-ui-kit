@@ -139,6 +139,23 @@ $(function(){
 
 	});
 
+	/* study areas toggle programme level initially hide postgrad */
+	$('.study-areas-postgrad').hide();
+	$('.switch .switch-input').on( 'change', function () { 
+
+		console.log( $(this).attr('value') );
+
+		if( $(this).attr('value') == 'undergraduate' ) {
+			$('.study-areas-undergrad').show();
+			$('.study-areas-postgrad').hide();
+		}
+		if( $(this).attr('value') == 'postgraduate' ) {
+			$('.study-areas-postgrad').show();
+			$('.study-areas-undergrad').hide();
+		}
+
+	 });
+
 	/* dynamic height for tiles. setting height of all tiles from largest tile height */
 	$('.dynamic-height-tiles ').each(function(n){
 		//get array of heights for each group of class
