@@ -146,12 +146,12 @@ $(function(){
 		console.log( $(this).attr('value') );
 
 		if( $(this).attr('value') == 'undergraduate' ) {
-			$('.study-areas-undergrad').show();
-			$('.study-areas-postgrad').hide();
+			$('.study-areas-undergrad').show('medium');
+			$('.study-areas-postgrad').hide('medium');
 		}
 		if( $(this).attr('value') == 'postgraduate' ) {
-			$('.study-areas-postgrad').show();
-			$('.study-areas-undergrad').hide();
+			$('.study-areas-postgrad').show('medium');
+			$('.study-areas-undergrad').hide('medium');
 		}
 
 	 });
