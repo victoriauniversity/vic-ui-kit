@@ -300,3 +300,102 @@ $tab-caret-size: 1.6rem;
     }
   }
 }
+
+// Study areas undergrad postgrad switch
+/* switcher */
+
+.switch {
+
+  @include media($mobile-large-and-smaller) {
+    transform: scale(1.2);
+  }
+  transform: scale(1.4);
+
+  position: relative;
+  margin: 0px auto 20px;
+  height: 26px;
+  width: 240px;
+  background: #dddddd;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+
+  .switch-label {
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 116px;
+    line-height: 26px;
+    font-size: 11px;
+    color: rgba(39, 39, 39, 0.9);
+    text-align: center;
+    cursor: pointer;
+    
+  }
+
+  .switch-label:active {
+    font-weight: bold;
+  }
+
+  .switch-label-off {
+    padding-left: 2px;
+  }
+
+  .switch-label-on {
+    margin-left: 3px;
+  }
+
+  input[type="radio"] {
+    position: absolute;
+    clip: rect(0,0,0,0);
+    left: -9999px;
+  }
+
+  .switch-input:checked + .switch-label {
+    font-weight: bold;
+    color: #fff;
+    -webkit-transition: 0.15s ease-out;
+    -moz-transition: 0.15s ease-out;
+    -o-transition: 0.15s ease-out;
+    transition: 0.15s ease-out;
+  }
+
+  .switch-input:checked + .switch-label-on ~ .switch-selection {
+    left: 120px;
+  }
+
+  .switch-selection {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 2px;
+    left: 2px;
+    width: 118px;
+    height: 22px;
+    background: #115737;
+    border-radius: 3px;
+    -webkit-transition: left 0.15s ease-out;;
+    -moz-transition: left 0.15s ease-out;
+    -o-transition: left 0.15s ease-out;
+    transition: left 0.15s ease-out;
+  }
+
+  /* focus state 
+    **** @screen only..??
+  */
+
+  input[type="radio"]:checked ~ .switch-selection {
+      color: #fff;
+      background-image: none;
+      border-color: #01549b;
+      background-image: none;
+      outline: 0;
+  }
+
+  input[type="radio"]:focus ~ .switch-selection {
+      outline: thin dotted;
+      outline: 5px auto -webkit-focus-ring-color;
+      outline-offset: -2px;
+      color: #fff;
+  }       
+}
