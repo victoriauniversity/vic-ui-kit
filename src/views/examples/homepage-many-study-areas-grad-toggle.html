@@ -23,12 +23,29 @@
         <section class=" tiles-panel">
           <div class="centraliser block">
             <div class="study-area-tabs" id="study-area-tabs">
+
+              <style>
+
+                </style>
+
+  <div class="switch">
+  
+        <input type="radio" class="switch-input" name="view" value="undergraduate" id="undergraduate" checked>
+        <label for="undergraduate" class="switch-label switch-label-off">Undergraduate</label>
+        
+        <input type="radio" class="switch-input" name="view" value="postgraduate" id="postgraduate">
+        <label for="postgraduate" class="switch-label switch-label-on">Postgraduate</label>
+        <span class="switch-selection"></span>
+
+  </div>   
+
               <ul>
                 <li class="active"><a href="javascript:void(0)"><h4><span class="icon-book-open"></span>Study areas</h4></a></li>
                 <li><a href="javascript:void(0)"><h4><span class="icon-graduation-cap"></span>Degrees and qualifications</h4></a></li>
               </ul>
             </div>
-            {{> study-areas}} {{> degrees-quals}}
+           <section class="study-areas-undergrad">{{> study-areas-undergrad}} {{> degrees-quals-undergrad}}</section>
+           <section class="study-areas-postgrad"> {{> study-areas-postgrad}} {{> degrees-quals-postgrad}}</section>
           </div>
         </section>
         {{> promo-with-1x-image}} {{> promo-panels.text-promo-panel}}  {{> three-cols-images}}
