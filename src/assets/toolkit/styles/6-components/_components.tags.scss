@@ -73,6 +73,23 @@
 
   a.tag,
   a > .tag {
+
+    cursor: pointer;
+    border: 1px solid $tag-font-color;
+    
+    &.tag-green {
+      border: 1px solid $tag-font-color-green;
+    }
+    &.tag-red {
+      border: 1px solid $tag-font-color-red;
+    }
+    &.tag-yellow {
+      border: 1px solid $tag-font-color-yellow;
+    }
+    &.tag-grey {
+      border: 1px solid $tag-font-color-grey;
+    }
+
     @include hoverify() {
       text-decoration: underline;
       background-color: lighten( $tag-background-color, 4 );
