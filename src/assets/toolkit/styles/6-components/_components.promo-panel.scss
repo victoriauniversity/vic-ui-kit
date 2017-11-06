@@ -145,6 +145,48 @@ $promo-max-width:   60em;
 
             }
         }
+        //Research hub new panel, promo panel with left align grey text panel
+        &.photo {
+            &.left-text {
+                
+                figcaption {
+                    
+                    max-width: 88em;
+
+                    > div {
+                        background-color: rgba(#fff, 0.9);
+                        box-shadow: 0px 3px 6.86px 0.14px rgba(0, 0, 0, 0.21);
+                        margin: 3em 1.1111em;
+                        text-align: left;
+                        max-width: 60%;
+                        position: relative;
+                        padding: 2em;
+
+                        h1,h2,h3,p {
+                            text-align: left;
+                        }
+
+                        h1,h2,h3 {
+                            position: absolute;
+                            top: -1.8rem;
+                            padding: .8rem 1rem;
+                            background-color: $green-victoria;
+                        }
+
+                        p {
+                            background-color: transparent;
+                            color: inherit;
+                            padding-left: 0;
+                            padding-top: 2em;
+                        }
+
+                        p, .button {
+                            margin-left: 1rem;
+                        }
+                    }
+                }
+            }
+        }
       }
 
     &.study-hub {
@@ -197,6 +239,7 @@ $promo-max-width:   60em;
         }
     }
 
+    // half panels with green title and image above content
     &.half-panels {
         > div {
             @include display(flex);
@@ -213,7 +256,7 @@ $promo-max-width:   60em;
                     background-color: #fff; 
                     padding-top: 0;
                     
-                    h1 {
+                    h1, h2 {
                         margin-top: -1em;
                     }
                 }
@@ -222,7 +265,7 @@ $promo-max-width:   60em;
             figcaption {
                 width: 100%;
 
-                h1 {
+                h1, h2 {
                     color: $white;
                     background-color: $green-victoria;
                     padding: 0.4em 0.5em;
