@@ -197,6 +197,28 @@ $promo-max-width:   60em;
         }
     }
 
+    &.half-panels {
+        > div {
+            @include display(flex);
+        }
+
+        figure {
+            flex: 0 1 50%;
+
+            img {
+                width: 100%;
+            }
+
+            figcaption {
+                width: 100%;
+            }
+
+            &:first-child {
+                margin-right: 1em;
+            }
+        }
+    }
+
     &.dual-content {
         > div {
             
