@@ -36,3 +36,44 @@
       .media { margin-bottom: 1em; }
     }
   }
+
+  // news section for horizontal grid
+  .news-horizontal {
+    header {
+      margin: 1.6rem 0;
+    }
+    .news {
+      li {
+        @include clearfix();
+        padding-bottom: 1.6rem;
+        margin-bottom: 1.6rem;
+        border-bottom: 1px solid #DDD;
+        list-style: none;
+      }
+
+      @include media($desktop-and-bigger) {
+      
+          display: flex; 
+          flex-wrap: wrap;
+
+          li {
+            width: 33%;
+            border-bottom: none;
+            padding: 1rem;
+            position: relative;
+
+            &:not(:nth-child(3n)):after {
+              content: "";
+              height: 75%;
+              width: 1px;
+              background-color: #DDD;
+              position: absolute;
+              right: 0;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+          }
+        }
+      }
+    }
+  
