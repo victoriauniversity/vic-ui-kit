@@ -188,17 +188,17 @@ $(function(){
   removedUnusedTiles(); //TODO: Review - Can be removed after all the study areas are migrated
 
 
-  //tile accordian 
+  //tile accordion 
 
-  $('.tile-accordian .tile').on('click', function (evt) { 
+  $('.tile-accordion .tile').on('click', function (evt) { 
 		evt.preventDefault();
 
-		if( $(this).hasClass('accordian-closed') ) {
-			$(this).children('.accordian-content ').slideDown();
-			$(this).removeClass('accordian-closed').addClass('accordian-open');
-		} else if ( $(this).hasClass('accordian-open') ) {
-			$(this).children('.accordian-content ').slideUp();
-			$(this).removeClass('accordian-open').addClass('accordian-closed');
+		if( $(this).hasClass('accordion-closed') ) {
+			$(this).children('.accordion-content ').slideDown();
+			$(this).removeClass('accordion-closed').addClass('accordion-open');
+		} else if ( $(this).hasClass('accordion-open') ) {
+			$(this).children('.accordion-content ').slideUp();
+			$(this).removeClass('accordion-open').addClass('accordion-closed');
 		}
    });
 
