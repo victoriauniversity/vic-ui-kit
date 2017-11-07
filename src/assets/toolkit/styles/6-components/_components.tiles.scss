@@ -329,6 +329,72 @@ $tile-height: rem( 200px);
       }
     }
   }
+
+  &.tile-accordian {
+
+    .tile {
+      position: relative;
+      
+      > a {
+        padding-right: 1.5em;
+      }
+      h4 {
+        font-size: 1em;
+      }
+      i {
+        position: absolute;
+        right: 0.5em;
+        top: 16px;
+        transition: 0.3s ease-in-out;
+      }
+
+      &.accordian-closed {
+
+      }
+
+      &.accordian-open {
+        > a {
+         &:hover {
+            border-color: transparent;
+          }
+        }
+        i {
+          transform: rotate(90deg);
+          right: 5px; 
+          top: 13px;
+        }
+      }
+    }
+    .accordian-content {
+      padding: 1em;
+      padding-top: 0;
+      display: none;
+      
+
+      &.closed {
+        display: none;
+      }
+
+      &.open {
+        display: block;
+      }
+
+      ul {
+        margin-bottom: 0;
+        li {
+          a {
+            padding: 0;
+            display: inline;
+            border: none;
+
+            &:hover {
+              border: none;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .fixed-height-tiles {

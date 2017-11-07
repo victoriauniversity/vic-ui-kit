@@ -187,4 +187,19 @@ $(function(){
   wrapEmbeddedIframes();
   removedUnusedTiles(); //TODO: Review - Can be removed after all the study areas are migrated
 
+
+  //tile accordian 
+
+  $('.tile-accordian .tile').on('click', function (evt) { 
+		evt.preventDefault();
+
+		if( $(this).hasClass('accordian-closed') ) {
+			$(this).children('.accordian-content ').slideDown();
+			$(this).removeClass('accordian-closed').addClass('accordian-open');
+		} else if ( $(this).hasClass('accordian-open') ) {
+			$(this).children('.accordian-content ').slideUp();
+			$(this).removeClass('accordian-open').addClass('accordian-closed');
+		}
+   });
+
 });
