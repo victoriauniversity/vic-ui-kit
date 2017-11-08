@@ -71,6 +71,12 @@ $tile-height: rem( 200px);
           color: $black-tundora;
           margin-bottom: 0.25em;
         }
+
+        h3 {
+          color: $black-tundora;
+          margin-bottom: 0.25em;
+        }
+
         h4 {
           color: $grey-silver-chalice;
         }
@@ -192,6 +198,10 @@ $tile-height: rem( 200px);
           display: inline-block;
         }
       }
+
+      .button {
+        margin-top: 2em;
+      }
     }
 
     &.three-up {
@@ -210,6 +220,25 @@ $tile-height: rem( 200px);
           }
           &:nth-child( 4n) {
             margin-right: $three-grid-tile-margin-hub;
+          }
+        }
+      }
+
+      &.image-no-gutter {
+        ul {
+          @include display(flex);
+          flex-wrap: wrap;
+        }
+        li.tile {
+          img {
+            max-width: 100%;
+          }
+
+          a {
+
+            &:hover {
+              border-color: transparent;
+            }
           }
         }
       }
@@ -326,6 +355,72 @@ $tile-height: rem( 200px);
           border-left: 2px solid $grey-gallery;
          
         }  
+      }
+    }
+  }
+
+  &.tile-accordion {
+
+    .tile {
+      position: relative;
+      
+      > a {
+        padding-right: 1.5em;
+      }
+      h4 {
+        font-size: 1em;
+      }
+      i {
+        position: absolute;
+        right: 0.5em;
+        top: 16px;
+        transition: 0.3s ease-in-out;
+      }
+
+      &.accordion-closed {
+
+      }
+
+      &.accordion-open {
+        > a {
+         &:hover {
+            border-color: transparent;
+          }
+        }
+        i {
+          transform: rotate(90deg);
+          right: 5px; 
+          top: 13px;
+        }
+      }
+    }
+    .accordion-content {
+      padding: 1em;
+      padding-top: 0;
+      display: none;
+      
+
+      &.closed {
+        display: none;
+      }
+
+      &.open {
+        display: block;
+      }
+
+      ul {
+        margin-bottom: 0;
+        li {
+          a {
+            padding: 0;
+            display: inline;
+            border: none;
+
+            &:hover {
+              border: none;
+            }
+          }
+        }
       }
     }
   }
