@@ -184,6 +184,25 @@ $promo-max-width:   60em;
                             margin-left: 1rem;
                         }
                     }
+
+                    @include media($mobile-large-and-smaller ) {
+
+                        > div {
+                            max-width: 100%;
+
+                            .button {
+                                &:not(:first-child) {
+                                    margin-top: 0.5rem;
+                                }
+                            }
+                        }
+                    }
+
+                    @include media($tablet) {
+                        > div {
+                            max-width: 85%;
+                        }
+                    }
                 }
             }
         }
@@ -252,7 +271,7 @@ $promo-max-width:   60em;
                 width: 100%;
 
                 &+figcaption {
-                    margin-top: -180px;
+                    margin-top: -25%;
                     background-color: #fff; 
                     padding-top: 0;
                     
@@ -276,6 +295,29 @@ $promo-max-width:   60em;
 
             &:first-child {
                 margin-right: 1em;
+            }
+
+        }
+
+        @include media($mobile-large-and-smaller ) {
+            > div {
+                flex-wrap: wrap;
+            }
+            figure {
+                flex: 0 1 100%;
+
+                img {
+                    width: 100%;
+    
+                    &+figcaption {
+                        margin-top: 0;
+                        padding-left: 1em;
+                    }
+                }
+
+                &:first-child {
+                    margin-right: 0;
+                }
             }
         }
     }
