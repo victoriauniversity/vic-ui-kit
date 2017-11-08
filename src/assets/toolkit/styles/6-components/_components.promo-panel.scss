@@ -145,6 +145,67 @@ $promo-max-width:   60em;
 
             }
         }
+        //Research hub new panel, promo panel with left align grey text panel
+        &.photo {
+            &.left-text {
+                
+                figcaption {
+                    
+                    max-width: 88em;
+
+                    > div {
+                        background-color: rgba(#fff, 0.9);
+                        box-shadow: 0px 3px 6.86px 0.14px rgba(0, 0, 0, 0.21);
+                        margin: 3em 1.1111em;
+                        text-align: left;
+                        max-width: 55%;
+                        position: relative;
+                        padding: 2em;
+
+                        h1,h2,h3,p {
+                            text-align: left;
+                        }
+
+                        h1,h2,h3 {
+                            position: absolute;
+                            top: -1.8rem;
+                            padding: .8rem 1rem;
+                            background-color: $green-victoria;
+                        }
+
+                        p {
+                            background-color: transparent;
+                            color: inherit;
+                            padding-left: 0;
+                            padding-top: 2em;
+                        }
+
+                        p, .button {
+                            margin-left: 1rem;
+                        }
+                    }
+
+                    @include media($mobile-large-and-smaller ) {
+
+                        > div {
+                            max-width: 100%;
+
+                            .button {
+                                &:not(:first-child) {
+                                    margin-top: 0.5rem;
+                                }
+                            }
+                        }
+                    }
+
+                    @include media($tablet) {
+                        > div {
+                            max-width: 85%;
+                        }
+                    }
+                }
+            }
+        }
       }
 
     &.study-hub {
@@ -192,6 +253,70 @@ $promo-max-width:   60em;
                             font-weight: $weight-bold;
                         }
                     }
+                }
+            }
+        }
+    }
+
+    // half panels with green title and image above content
+    &.half-panels {
+        > div {
+            @include display(flex);
+        }
+
+        figure {
+            flex: 0 1 50%;
+
+            img {
+                width: 100%;
+
+                &+figcaption {
+                    margin-top: -25%;
+                    background-color: #fff; 
+                    padding-top: 0;
+                    
+                    h1, h2 {
+                        margin-top: -1em;
+                    }
+                }
+            }
+
+            figcaption {
+                width: 100%;
+
+                h1, h2 {
+                    color: $white;
+                    background-color: $green-victoria;
+                    padding: 0.4em 0.5em;
+                    display: inline-block;
+                    margin-left: -0.5em;
+                }
+            }
+
+            &:first-child {
+                margin-right: 1em;
+            }
+
+        }
+
+        @include media($mobile-large-and-smaller ) {
+            > div {
+                flex-wrap: wrap;
+            }
+            figure {
+                flex: 0 1 100%;
+
+                img {
+                    width: 100%;
+    
+                    &+figcaption {
+                        margin-top: 0;
+                        padding-left: 1em;
+                    }
+                }
+
+                &:first-child {
+                    margin-right: 0;
                 }
             }
         }
