@@ -38,6 +38,46 @@ $(function(){
 	});
 });
 
+$(function(){
+	var $targetElements = $('#areas-of-study li');
+	var $searchInput = $('#search-aos');
+	var MIN_QUERY_LENGTH = 3;
+
+	// console.time('removing accents from all elements');
+	$targetElements.each(function(){
+		var $this = $(this);
+
+		$this.data('search-text', accent_fold($this.text()).toLowerCase());
+		$this.data('search-keywords', accent_fold($this.data('search-keywords')).toLowerCase());
+	});
+	// console.timeEnd('removing accents from all elements');
+
+	$searchInput.on('propertychange change click keyup input paste', function(_event) {
+		var _query = _event.currentTarget.value;
+
+		if (_query.length < MIN_QUERY_LENGTH) {
+			$targetElements.toggleClass('is-matching', false);
+			$targetElements.toggleClass('is-not-matching', false);
+			return;
+		}
+
+		_query = accent_fold(_query).toLowerCase();
+
+		$targetElements.each(function(){
+			var $this = $(this);
+
+			if ($this.data('search-text').indexOf(_query) !== -1 ||
+				$this.data('search-keywords').indexOf(_query) !== -1) {
+				$this.toggleClass('is-matching', true);
+				$this.toggleClass('is-not-matching', false);
+			} else {
+				$this.toggleClass('is-matching', false);
+				$this.toggleClass('is-not-matching', true);
+			}
+		});
+	});
+});
+
 
 
 //alistapart.com/article/accent-folding-for-auto-complete
