@@ -76,6 +76,23 @@ $(function(){
 			}
 		});
 	});
+
+	var tags = $('.quals-filter .tag');
+	
+	tags.each( function() {
+		$(this).on('click', function(){
+			console.log($(this).text() );
+
+			if ( $(this).text() !== "All" ) {
+				$('#filter-quals').val('');
+				$('#filter-quals').val($(this).text()).change();
+			} else {
+				$('#filter-quals').val('').change();
+			}
+			
+		});
+	
+	})
 });
 
 
