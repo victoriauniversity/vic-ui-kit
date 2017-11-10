@@ -39,8 +39,8 @@ $(function(){
 });
 
 $(function(){
-	var $targetElements = $('#areas-of-study li');
-	var $searchInput = $('#search-aos');
+	var $targetElements = $('.postgrad-quals li');
+	var $searchInput = $('#filter-quals');
 	var MIN_QUERY_LENGTH = 3;
 
 	// console.time('removing accents from all elements');
