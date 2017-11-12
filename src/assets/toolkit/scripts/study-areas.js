@@ -87,11 +87,9 @@ $(function(){
 			
 			tags.each( function() {
 				$(this).on('click', function(e){
-					e.preventDefault();
 					$(this).siblings().removeClass('tag-active');
 					$(this).addClass('tag-active');
 
-					
 					console.log($(this).text() );
 		
 					if ( $(this).text() !== "All" ) {
