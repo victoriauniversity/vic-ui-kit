@@ -39,7 +39,7 @@ $(function(){
 	// 	});
 	// });
 
-	//filter tags only needed for postgrad quals filter..
+	//filterTags parameter only needed for postgrad quals filter..
 	function searchFilter(targetElements, searchInput, minQueryLength, filterTags) {
 		
 		var $targetElements = $(targetElements);
@@ -81,7 +81,6 @@ $(function(){
 		});
 	
 		var tags = $(filterTags);
-		console.log(tags);
 
 		if (tags !== null) {
 			
@@ -90,12 +89,10 @@ $(function(){
 					$(this).siblings().removeClass('tag-active');
 					$(this).addClass('tag-active');
 
-					console.log($(this).text() );
 		
 					if ( $(this).text() !== "All" ) {
 						$(searchInput).val('');
 						$(searchInput).val($(this).text()).change();
-						console.log($(searchInput).val($(this).text()));
 					} else {
 						$(searchInput).val('').change();
 					}
