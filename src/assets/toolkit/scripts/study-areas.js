@@ -47,6 +47,7 @@ $(function(){
 		if (tags !== null) {
 			
 			tags.each( function() {
+				//on tag click update input to filter
 				$(this).on('click', function(e){
 					$(this).siblings().removeClass('tag-active');
 					$(this).addClass('tag-active');
@@ -55,8 +56,22 @@ $(function(){
 					if ( $(this).text() !== "All" ) {
 						$(searchInput).val('');
 						$(searchInput).val($(this).text()).change();
+
+						$(this).css('margin-right', '');
+
+						//update margins to prevent grid breaking
+						$('.is-matching').each( function (index) {
+							$(this).css('margin-right', '1%');
+
+							if( (index + 1) % 4 === 0 ) {
+								$(this).css('margin-right', '0%');
+							}
+							
+						});
+
 					} else {
 						$(searchInput).val('').change();
+						$(targetElements).css('margin-right', '');
 					}
 					
 				});

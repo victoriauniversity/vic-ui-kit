@@ -101,12 +101,28 @@ $sub-title-color: rgba($white, 0.75);
 
     &.tile-filter-tags {
 
-        #filter-quals {
+        .quals-filter {
+
+            #filter-quals {
+                display: none;
+            }
+
+            label {
+                font-size: 1.2em;
+            }
+        }
+
+
+        .tile.is-not-matching {
             display: none;
         }
 
-      li.is-not-matching {
-        display: none;
+        .tile.is-matching {
+            margin-right: 1%;
+
+            &:nth-child(4n) {
+                margin-right: 0;
+            }
         }
     }
 
