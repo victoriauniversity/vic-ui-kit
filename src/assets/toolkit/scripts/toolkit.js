@@ -200,6 +200,10 @@ $(function(){
 			$(this).children('.accordion-content ').slideUp();
 			$(this).removeClass('accordion-open').addClass('accordion-closed');
 		}
+
+		$(this).find('.links a').on('click', function (event) { 
+			event.stopPropagation();
+		 });
    });
 
 });
