@@ -36,7 +36,7 @@ $tile-height: rem( 200px);
           border-left: none;
 
 
-          h2, p, i, span, q {
+          h2, h3, p, i, span, q {
             color: $blue-st-tropaz;
           }
 
@@ -204,7 +204,7 @@ $tile-height: rem( 200px);
       }
     }
 
-    &.three-up {
+    &.three-col {
       li.tile {
         $three-grid-tile-margin-hub: 3%;
         @include media ($desktop-large) {
@@ -235,6 +235,7 @@ $tile-height: rem( 200px);
           }
 
           a {
+            height: auto;
 
             &:hover {
               border-color: transparent;
@@ -361,18 +362,18 @@ $tile-height: rem( 200px);
 
   &.tile-accordion {
 
-    .tile {
+    li.tile {
       position: relative;
       
       > a {
-        padding-right: 1.5em;
+        padding-right: 2em;
       }
       h4 {
         font-size: 1em;
       }
       i {
         position: absolute;
-        right: 0.5em;
+        right: 0.4em;
         top: 16px;
         transition: 0.3s ease-in-out;
       }
@@ -389,7 +390,7 @@ $tile-height: rem( 200px);
         }
         i {
           transform: rotate(90deg);
-          right: 0.7em; 
+          right: 0.6em; 
           top: 20px;
         }
       }
