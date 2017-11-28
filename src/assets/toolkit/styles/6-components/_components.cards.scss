@@ -39,4 +39,29 @@ $card-padding: 2.5em; //rem(20px) from settings.variables
 		}
 	
 	}
+
+	@include media ($mobile-large-and-smaller) {
+
+		flex-direction: column;
+
+		.card {
+			width: 100%;
+
+			&:nth-last-child(2) {
+				margin-bottom: 1.5em;
+			}
+		}
+	}
+
+	@include media ($tablet-and-smaller) {
+
+		.card {
+			.button {
+				&:first-of-type {
+					margin-bottom: 10px;
+				}
+			}
+		}
+	}
 }
+
