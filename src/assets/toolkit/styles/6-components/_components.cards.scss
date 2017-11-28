@@ -40,6 +40,57 @@ $card-padding: 2.5em; //rem(20px) from settings.variables
 	
 	}
 
+	.contact-card {
+		background-color: $grey-gallery;
+		box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+		padding: $card-padding;
+		width: 100%;
+
+		.contact-card-details {
+			display: flex;
+			padding: 0 1em 1em;
+			align-items: center;
+
+			> * {
+				width: 50%;
+				padding-right: 2.5em;
+			}
+
+			.contact-title {
+				h3 {
+					color: $black-tundora;
+				}
+
+			}
+
+			.contact-info {
+				ul {
+					li {
+						list-style: none;
+
+						span, a {
+							color: $black-tundora;
+							font-size: 1.5em;
+							font-style: normal;
+						}
+					}
+				}
+			}
+		}
+
+		// embed wrapper automatically applied to iframes
+		.embed {
+			height: auto;
+			padding: 0;
+			margin: 0 -2.5em  -2.5em;
+
+			iframe {
+				display: block;
+				position: static;
+			}
+		}
+	}
+
 	@include media ($mobile-large-and-smaller) {
 
 		flex-direction: column;
