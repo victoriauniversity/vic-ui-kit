@@ -1,0 +1,42 @@
+//_components.cards.scss
+
+$card-padding: 2.5em; //rem(20px) from settings.variables
+
+.card-panel {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+
+	.card {
+		flex: 0 1 auto;
+		width: calc( 50% - 0.75em);
+		background-color: $grey-gallery;
+		box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+		padding: $card-padding;
+		margin-bottom: 1.5em;
+
+		> h1:first-child, 
+		> h2:first-child, 
+		> h3:first-child, 
+		> h4:first-child {
+			position: relative;
+			padding-bottom: 15px;
+
+			&:after {
+				content: '';
+				position: absolute;
+				background-color: $green-victoria;
+				width: 50px;
+				height: 5px;
+				bottom: 0;
+				left: 0;
+			}
+		}
+
+		&:nth-last-child(2), &:last-child {
+			margin-bottom: 0;
+		}
+	
+	}
+}
