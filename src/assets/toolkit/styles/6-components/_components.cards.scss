@@ -50,10 +50,32 @@ $card-padding: 2.5em; //rem(20px) from settings.variables
 			display: flex;
 			padding: 0 1em 1em;
 			align-items: center;
+			margin-bottom: 0.5em;
 
 			> * {
 				width: 50%;
 				padding-right: 2.5em;
+
+				@include media($tablet-and-smaller) {
+					padding-right: 0;
+				}
+			}
+			
+			@include media($mobile-large-and-smaller) {
+				flex-direction: column;
+				margin-bottom: 0;
+
+				> * {
+					width: 100%;
+
+					&:first-child {
+						margin-bottom: 1em;
+					}
+
+					ul {
+						padding-left: 0;
+					}
+				}
 			}
 
 			.contact-title {
