@@ -54,13 +54,30 @@
 
         padding: 2em 1.2em;
 
+        @include media($tablet-and-smaller) {
+          flex-wrap: wrap;
+        }
+
         > * {
           &:first-child {
             flex: 0 0 20%;
+
+            @include media($tablet-and-smaller) {
+              flex-basis: 100%; 
+              margin-bottom: 0.5em;
+            }
           }
 
           &:not(:first-child) {
             flex: 0 0 23%;
+            
+            @include media($tablet-and-smaller) {
+              flex-basis: 31%; 
+            }
+            @include media($mobile-large-and-smaller) {
+              flex-basis: 100%; 
+              margin-bottom: 0.5em;
+            }
           }
 
         }
