@@ -5,16 +5,43 @@
 
   .page-sub-nav {
     @extend .footer-secondary;
-    border-bottom: 5px solid #115737;
+    border-bottom: 5px solid $green-victoria;
+    background-color: $black-victoria;
 
-    .block {
-      nav ul {
-        justify-content: center;
+    .centraliser {
 
-        li {
-          margin-right: 3.5em;
-          a {
-            font-size: 1.4em;
+      nav {
+
+        ul {
+          justify-content: center;
+
+          @include media($tablet-and-smaller) {
+            justify-content: flex-start;
+          }
+
+          li {
+            margin-right: 0;
+
+            a {
+              font-size: 1.4em;
+              color: $white;
+              padding: 0.5em 1.5em;
+              display: block;
+              text-decoration: none;
+
+              &.active {
+                background-color: $green-victoria;
+              }
+
+              @include hoverify() {
+                text-decoration: underline;
+                // background-color: $green-victoria;
+              }
+            }
+
+            @include media($mobile-large-and-smaller) {
+              width: 50%;
+            }
           }
         }
       }

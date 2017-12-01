@@ -190,6 +190,10 @@ $promo-max-width:   60em;
                         > div {
                             max-width: 100%;
 
+                            p {
+                                padding-top: 3.5em;
+                            }
+
                             .button {
                                 &:not(:first-child) {
                                     margin-top: 0.5rem;
@@ -460,6 +464,79 @@ $promo-max-width:   60em;
                 }
             }
         }
+    }
+
+    // image with offset title and text on right
+    &.title-image {
+        background-color: $white;
+        > div {
+            display: flex;
+            align-items: center;
+        }
+        figure {
+            box-shadow: none;
+            padding: 1em;
+            @include span-columns( 5 of 12,
+            block-collapse);
+            flex: 1 0 auto;
+
+            img {
+                width: 100%;
+            }
+            figcaption {
+                position: absolute;
+                background-color: $green-victoria;
+                width: 80%;
+                padding: 1em;
+                left: 0;
+                top: 2em;
+
+                h1,
+                h2,
+                h3 {
+                    color: $white;
+                    margin-bottom: 0;
+                }
+
+            }
+
+        }
+
+        section {
+            padding: 1em 1em 1em 2em ;
+        }
+
+        @include media( $tablet) {
+
+            > div {
+                align-items: stretch;
+            }
+
+            figure {
+
+                img {
+                    position: relative;
+                    top: 35%;
+                }
+
+                figcaption {
+                    top: 0;
+                }
+            }   
+        }
+
+        @include media( $mobile-large-and-smaller) {
+
+            > div {
+                flex-direction: column;
+
+                figure {
+                    width: 100%;
+                }
+            }
+        }
+
+
     }
 }
 
