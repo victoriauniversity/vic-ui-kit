@@ -46,61 +46,7 @@
         @include extend-icon-before( info );
       }
 
-      // for info message fact row research hub
-      &.info-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
 
-        padding: 2em 1.2em;
-
-        @include media($tablet-and-smaller) {
-          flex-wrap: wrap;
-        }
-
-        > * {
-          &:first-child {
-            flex: 0 0 20%;
-
-            @include media($tablet-and-smaller) {
-              flex-basis: 100%; 
-              margin-bottom: 0.5em;
-            }
-          }
-
-          &:not(:first-child) {
-            flex: 0 0 23%;
-            
-            @include media($tablet-and-smaller) {
-              flex-basis: 31%; 
-            }
-            @include media($mobile-large-and-smaller) {
-              flex-basis: 100%; 
-              margin-bottom: 0.5em;
-            }
-          }
-
-        }
-
-        > h2 {
-          margin-bottom: 0;
-
-          &:before {
-            display: none;
-          }
-        }
-
-        .info-col {
-          border-bottom: 1px solid $blue-callypso;
-          padding-bottom: 0.5em;
-
-          h4, h5 {
-            color: $blue-callypso;
-          }
-
-        }
-
-      }
     }
 
     &.success {
@@ -124,5 +70,62 @@
     a[href] {
       color: inherit;
       @include hoverify() { color: inherit; }
+    }
+
+    // for info message fact row research hub
+    &.info-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 2em 1.2em;
+
+      @include media($tablet-and-smaller) {
+        flex-wrap: wrap;
+      }
+
+      > * {
+        &:first-child {
+          flex: 0 0 20%;
+
+          @include media($tablet-and-smaller) {
+            flex-basis: 100%; 
+            margin-bottom: 0.5em;
+          }
+        }
+
+        &:not(:first-child) {
+          flex: 0 0 23%;
+          
+          @include media($tablet-and-smaller) {
+            flex-basis: 31%; 
+          }
+          @include media($mobile-large-and-smaller) {
+            flex-basis: 100%; 
+            margin-bottom: 0.5em;
+          }
+        }
+
+      }
+
+      > h2 {
+        margin-bottom: 0;
+
+        &:before {
+          display: none;
+        }
+      }
+
+      .info-col {
+        border-bottom: 1px solid $blue-callypso;
+        border-bottom-color: inherit;
+        padding-bottom: 0.5em;
+
+        h4, h5 {
+          color: inherit;
+        }
+
+      }
+
     }
   }
