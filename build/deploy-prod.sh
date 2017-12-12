@@ -19,7 +19,7 @@ npm run release-prod
 
 
 ## 1/ Sync everything EXCEPT version directories
-rsync -avzP --exclude='[0-9]*/' --delete --chmod=u=rwX,g=rX ./dist/ victoriacdn@rsync.keycdn.com:zones/static
+rsync -rvz --exclude='[0-9]*/' --delete --chmod=u=rwX,g=rX ./dist/ victoriacdn@rsync.keycdn.com:zones/static
 
 ## 2/ Sync everything inside the versioned directory EXCEPT meta data
-rsync -avzP --delete --exclude={.*,*.md,*.json} --chmod=u=rwX,g=rX ./dist/[0-9]* victoriacdn@rsync.keycdn.com:zones/static
+rsync -rvz --delete --exclude={.*,*.md,*.json} --chmod=u=rwX,g=rX ./dist/[0-9]* victoriacdn@rsync.keycdn.com:zones/static
