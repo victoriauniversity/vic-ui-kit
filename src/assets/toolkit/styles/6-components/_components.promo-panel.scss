@@ -72,11 +72,15 @@ $promo-max-width:   60em;
         position: relative;
         padding: 0;
         background: $white;
+
         figcaption {
             padding-bottom: $base-spacing;
         }
         @include media( $tablet-and-bigger) {
             box-shadow: $base-shadow;
+            display: flex;
+            align-items: center;
+            
             figcaption {
                 padding: $base-spacing * 1.5;
                 @include span-columns( 7 of 12,
@@ -270,6 +274,7 @@ $promo-max-width:   60em;
 
         figure {
             flex: 0 1 50%;
+            display: block;
 
             img {
                 width: 100%;
