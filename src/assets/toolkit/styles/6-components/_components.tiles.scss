@@ -248,6 +248,29 @@ $tile-height: rem( 200px);
         }
       }
     }
+
+    &.four-col {
+
+      &.image-no-gutter {
+        ul {
+          @include display(flex);
+          flex-wrap: wrap;
+        }
+        li.tile {
+          img {
+            max-width: 100%;
+          }
+
+          a {
+            height: auto;
+
+            &:hover {
+              border-color: transparent;
+            }
+          }
+        }
+      }
+    }
     &.hidden {
       display: none;
     }
