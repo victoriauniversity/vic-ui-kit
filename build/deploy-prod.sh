@@ -26,7 +26,4 @@ echo 'Uploading the release into the CDN...'
 rsync -rvz --exclude='[0-9]*/' --delete --chmod=u=rwX,g=rX -e 'ssh' ./dist/ victoriacdn@rsync.keycdn.com:static/
 
 ## 2/ Sync everything inside the versioned directory EXCEPT meta data
-rsync -rvz --delete --exclude={.*,*.md,*.json} --chmod=u=rwX,g=rX -e 'ssh' ./dist/[0-9]* victoriacdn@rsync.keycdn.com:static/
-
-
-echo 'Upload successful!'
+rsync -rvz --delete --exclude={.*,*.md,*.json} --chmod=u=rwX,g=rX -e 'ssh' ./dist/[0-9]* victoriacdn@rsync.keycdn.com:stati
