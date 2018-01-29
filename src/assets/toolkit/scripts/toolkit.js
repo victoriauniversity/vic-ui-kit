@@ -146,10 +146,12 @@ $(function(){
 		console.log( $(this).attr('value') );
 
 		if( $(this).attr('value') == 'undergraduate' ) {
+			$('#study-area-tabs > ul > li:nth-child(1) h4').html('<span class="icon-book-open"></span>Subject areas');
 			$('.study-areas-undergrad').show(500);
 			$('.study-areas-postgrad').hide(500);
 		}
 		if( $(this).attr('value') == 'postgraduate' ) {
+			$('#study-area-tabs > ul > li:nth-child(1) h4').html('<span class="icon-book-open"></span> Postgraduate subjects');
 			$('.study-areas-postgrad').show(500);
 			$('.study-areas-undergrad').hide(500);
 		}
