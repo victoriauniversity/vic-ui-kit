@@ -23,18 +23,23 @@
 				}
 			}
 		}
+		.block:last-child {
+			float: right;
+			width: 100/3 * 1%;
+		}
 		.block:first-child {
 			width: 100/3 * 2%;
 			float: left;
 			padding-bottom: 0;
 			// background-color: rgba(100,166,89, .9 );
 		}
-		.block:last-child {
-			float: right;
-			width: 100/3 * 1%;
-		}
 
+		
 		@include media( $mobile-large-and-smaller ) {
+
+			border-top: none;
+			border-bottom: none;
+			
 			figcaption {
 				>div {
 					flex-direction: column;
@@ -43,7 +48,7 @@
 			.block:first-child {
 				width: 100/3 * 3%;
 				padding-bottom: 0;
-
+				
 				h1 {
 					display: block;
 				}
@@ -52,15 +57,49 @@
 				width: 100/3 * 3%;
 			}
 		}
+		
+		@include media($tablet-and-smaller ) {
+			figure {
 
+				figcaption {
+
+					.block:first-child {
+						width: 100/3 * 3%;
+						padding-bottom: 1em;
+					}
+
+				}
+
+				// background-color: red;
+			}
+		}
 
 		@include media($tablet-and-bigger) {
 			figure.photo {
 				figcaption {
-					margin-top: 10%;
+					// margin-top: 10%;
 				}
 			}
 		}
+
+		@include media( $desktop-and-bigger ) {
+			figure {
+				
+				figcaption {
+					margin-bottom: 1em;
+					margin-top: 10%;
+				} 
+			}
+		}
+		@include media( $desktop ) {
+			figure {
+
+				figcaption {
+					margin-top: 4%;
+				} 
+			}
+		}
+
 	}
 }
 
@@ -68,7 +107,6 @@
 	max-width: 88em;
 	padding: 0;
 	// margin bottom depending on sub nav...
-	margin-bottom: 1em;
 }
 
 .study-hub-light-green .promo-panel.strip-banner > .photo figcaption p, 
