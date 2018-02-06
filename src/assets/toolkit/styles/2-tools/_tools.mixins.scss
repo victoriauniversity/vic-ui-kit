@@ -27,10 +27,10 @@
  * @content         - Optional text content (useful for icons).
  * @position        - Specifies type of positioning method used for an element.
  */
-@mixin objectify( $display: inline-block, $content: "", $position: relative ) {
-    position:   $position;
-    display:    $display;
-    content:    $content,
+@mixin objectify( $display: inline-block, $content: '', $position: relative ) {
+  position:   $position;
+  display:    $display;
+  content:    $content;
 }
 
 
@@ -46,11 +46,11 @@
  * { @content }     - Definition of the active states' styles.
  */
 @mixin hoverify() {
-    &:hover,
-    &:active,
-    &:focus {
-        @content;
-    }
+  &:hover,
+  &:active,
+  &:focus {
+    @content;
+  }
 }
 
 
@@ -62,13 +62,13 @@
  * @colour          - Colour of the bullet.
  */
 @mixin make-list-square-bullet( $size, $colour: $text-fade-colour ) {
-    &:before {
-        @include objectify( inline-block, $position: static );
-        @include size( $size );
-        background-color: $colour;
+  &::before {
+    @include objectify( inline-block, $position: static );
+    @include size( $size );
+    background-color: $colour;
 
-        @content;
-    }
+    @content;
+  }
 }
 
 
@@ -84,7 +84,7 @@
  * @ico-code        - Unicode code of the icon from the $font-family.
  * @font-family     - Name or type of the font icon.
  */
-@mixin iconify( $display: inline-block, $ico-code: "", $font-icon-family: $font-icons ) {
-    @include objectify( $display, $ico-code, relative );
-    font-family: $font-icon-family;
+@mixin iconify( $display: inline-block, $ico-code: '', $font-icon-family: $font-icons ) {
+  @include objectify( $display, $ico-code, relative );
+  font-family: $font-icon-family;
 }

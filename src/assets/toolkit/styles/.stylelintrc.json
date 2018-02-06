@@ -1,0 +1,68 @@
+{
+  "extends": [
+    "stylelint-config-sass-guidelines"
+  ],
+  "rules": {
+    "scss/dollar-variable-colon-space-after": null,
+    "declaration-colon-space-after":          null,
+    "selector-no-qualifying-type":            null,
+
+    "number-leading-zero":                    "never",
+    "function-parentheses-space-inside":      "always",
+    "media-feature-parentheses-space-inside": "always",
+
+    "max-nesting-depth":                      5,
+    "color-hex-case":                         "upper",
+
+    "order/properties-order": [
+      [
+        "z-index",
+        "clear",
+        "overflow",
+        "overflow-x",
+        "overflow-y",
+        "position",
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "display",
+        "content",
+        "margin",
+        "margin-top",
+        "margin-right",
+        "margin-bottom",
+        "margin-left",
+        "padding",
+        "padding-top",
+        "padding-right",
+        "padding-bottom",
+        "padding-left",
+        "width",
+        "height"
+      ],
+      { "unspecified": "bottom" }
+     ],
+     "order/properties-alphabetical-order":   null,
+
+    "at-rule-no-unknown": [ true,
+      {
+        "ignoreAtRules": [
+          "function",
+          "if",
+          "content",
+          "mixin",
+          "include",
+          "for",
+          "return",
+          "each",
+          "while"
+        ]
+      }
+    ],
+    "selector-pseudo-class-no-unknown": [ true,
+      {
+        "ignorePseudoClasses": [ "/#.*/" ]
+      }]
+  }
+}

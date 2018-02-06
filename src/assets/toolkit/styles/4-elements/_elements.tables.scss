@@ -3,59 +3,59 @@
 ==========================================*/
 
 
-  /** Standard table */
+/** Standard table */
 
-  $table-border-color:    $grey-alto;
-  $table-head-background: $green-nebula;
+$table-border-color:    $grey-alto;
+$table-head-background: $green-nebula;
 
+table {
+  width: 100%;
+
+  th,
+  td {
+    padding:    $base-spacing / 2;
+    text-align: left;
+  }
+
+  th {
+    font-weight:      $weight-bold;
+    background-color: $table-head-background;
+
+    strong,
+    b {
+      font-weight: inherit;
+    }
+  }
+
+  td { border-bottom: 1px solid $table-border-color; }
+
+  img {
+    display: inline-block;
+    width: auto;
+  }
+}
+
+// Fall-back completely unwrapped table
+.table-container,
+table {
+  clear: both;
+  margin-bottom: $base-spacing;
+  box-shadow:    $base-shadow;
+}
+
+.table-container {
+  _overflow:  auto;
+  overflow-x: auto;
+  display:    block;
+  width:      100%;
+
+  @include media( $mobile-large-and-smaller ) {
+    overflow-x: scroll;
+  }
+
+  // Reseting fall-back from unwrapped table
   table {
-    width: 100%;
-
-    th,
-    td {
-      padding:    $base-spacing / 2;
-      text-align: left;
-    }
-
-    th {
-      font-weight:      $weight-bold;
-      background-color: $table-head-background;
-
-      strong,
-      b {
-        font-weight: inherit;
-      }
-    }
-
-    td { border-bottom: 1px solid $table-border-color; }
-
-    img {
-      display: inline-block;
-      width: auto;
-    }
+    margin-bottom: 0;
+    box-shadow: none;
   }
-
-  // Fall-back completely unwrapped table
-  .table-container,
-  table {
-    clear: both;
-    box-shadow:    $base-shadow;
-    margin-bottom: $base-spacing;
-  }
-
-  .table-container {
-    _overflow:  auto;
-    overflow-x: auto;
-    display:    block;
-    width:      100%;
-
-    // Reseting fall-back from unwrapped table
-    table {
-      margin-bottom: 0;
-      box-shadow: none;
-    }
-
-    @include media( $mobile-large-and-smaller ){
-      overflow-x: scroll;
-    }
-  }
+}

@@ -13,59 +13,57 @@
 /*******************************************************************************/
 
 
-  /** Single menu/submenu item */
+/** Single menu/submenu item */
 
-  //faux padding for border-bottom to go across all nav even for indented elements
-  //(think child pages in the nav)
-  $faux-spacing: 10rem;
+//faux padding for border-bottom to go across all nav even for indented elements
+//(think child pages in the nav)
+$faux-spacing: 10rem;
 
-  @mixin menu-item {
-    position: relative;
-    display: block;
-    margin-left: -$faux-spacing;
-    padding: .6em 1rem .6em $faux-spacing + 1rem ;
+@mixin menu-item {
+  position: relative;
+  display: block;
+  margin-left: -$faux-spacing;
+  padding: .6em 1rem .6em $faux-spacing + 1rem;
 
-    font-family: $base-heading-family;
-    line-height: 1.35;
-    color: $white;
+  font-family: $base-heading-family;
+  line-height: 1.35;
+  color: $white;
 
-    border-bottom: 1px solid $green-bottle;
-    cursor: pointer;
+  border-bottom: 1px solid $green-bottle;
+  cursor: pointer;
 
-    @include media($mobile-large-and-smaller){
-      &.home,
-      &.back {
-        background: $black-victoria !important;
-        color: #b4b3b3;
-      }
-    }
-
-    &.hide {
-      display: none;
-      text-align: center;
-    }
-
-    &.selected,
-    &:hover,
-    &:focus {
-      background-color: rgba( #000, .15 );
-    }
-
-    &.selected {
-      font-weight: $weight-semibold;
-      border-bottom: none;
-
-      // Strip item highlight
-      &:before {
-        @include objectify( block, $position: absolute );
-        top: rem( 8px );
-        bottom: rem( 8px );
-
-        width: rem( 4px );
-        margin-left: rem( -10px );
-
-        border: 1px solid $grey-silver;
-        background: $white;
-      }
+  @include media( $mobile-large-and-smaller ) {
+    &.home,
+    &.back {
+      background: $black-victoria !important;
+      color: #B4B3B3;
     }
   }
+
+  &.hide {
+    display: none;
+    text-align: center;
+  }
+
+  &.selected,
+  &:hover,
+  &:focus {
+    background-color: rgba( #000, .15 );
+  }
+
+  &.selected {
+    border-bottom: 0;
+    font-weight: $weight-semibold;
+
+    // Strip item highlight
+    &::before {
+      @include objectify( block, $position: absolute );
+      top: rem( 8px );
+      bottom: rem( 8px );
+      margin-left: rem( -10px );
+      width: rem( 4px );
+      border: 1px solid $grey-silver;
+      background: $white;
+    }
+  }
+}
