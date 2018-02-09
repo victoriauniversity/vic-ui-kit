@@ -3,7 +3,7 @@
   overflow:   hidden;
   background: $green-victoria;
 
-  [lang="mi"] { opacity: .5; }
+  [lang='mi'] { opacity: .5; }
 
   //TODO: Remove after productin
   .icon-right-open {
@@ -11,26 +11,25 @@
     margin: 0 -.6em;
   }
 
-  @include media( $mobile-large-and-smaller ){
-    & > ul > li {
+  @include media( $mobile-large-and-smaller ) {
+    > ul > li {
 
       @for $i from 0 through 5 {
-        &:nth-child(#{$i+1}) {
-          padding-left: #{$i * $base-spacing/2 };
+        &:nth-child(#{$i + 1}) {
+          padding-left: #{$i * $base-spacing / 2 };
         }
       }
-
     }
 
-    & > ul > li:last-child > a {
+    > ul > li:last-child > a {
       display: none;
     }
 
     .layout & { display: none; }
   }
 
-  @include media( $tablet-and-bigger ){
-    & > ul > li {
+  @include media( $tablet-and-bigger ) {
+    > ul > li {
       display: none;
 
       // Previous page, current page and its children
@@ -47,10 +46,11 @@
         }
 
         // The parent + children
+        //TODO: Refactor!
         > ul > li {
           // Parent
           > a {
-            &.selected { padding-left: 11.5em; } //TODO: Refactor!
+            &.selected { padding-left: 11.5em; }
           }
 
           // Children
@@ -60,28 +60,27 @@
     }
   }
 
-    &--container { position:relative; }  //TODO: Refactor!
+  &--container { position:relative; }  //TODO: Refactor!
 
-    a { @include menu-item; }
+  a { @include menu-item; }
 
+  .has-subpages {
+    a {
+      // triangle icon on the edge of the menu button
+      @include base-icon( after );
 
-    .has-subpages {
-      a {
-        padding-right: 2.2rem;
+      padding-right: 2.2rem;
 
-        // triangle icon on the edge of the menu button
-        @include base-icon( after );
-
-        &:after {
-          @include triangle( .7em, $white, right );
-          position: absolute;
-          top: 50%;
-          right: 0;
-          margin-top: -.25em;
-          margin-right: 1rem;
-        }
+      &::after {
+        @include triangle( .7em, $white, right );
+        position: absolute;
+        top: 50%;
+        right: 0;
+        margin-top: -.25em;
+        margin-right: 1rem;
       }
     }
+  }
 }
 
 

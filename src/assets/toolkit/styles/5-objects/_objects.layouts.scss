@@ -14,203 +14,189 @@
 
 
 
-  // Sticky footer
-  html { height: 100%; }
+// Sticky footer
+html { height: 100%; }
 
-  body {
-    min-height: 100%;
-    @include display(flex);
-    @include flex-direction( column );
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 
-    > footer { overflow: hidden; } // IE extra margin after flex-box fix
-  }
-
-
+  > footer { overflow: hidden; } // IE extra margin after flex-box fix
+}
 
 
-  /* ===== BASIC BUILDING BLOCKS ============================================ */
 
 
-  /** BLOCK - Universal building block with standard paddings. */
-
-  .block { padding: $block-padding; } 
+/* ===== BASIC BUILDING BLOCKS ============================================ */
 
 
-  /** CENTRALISER - Restricts the width of the content to allowed maximum and aligns to center. */
+/** BLOCK - Universal building block with standard paddings. */
 
-  .centraliser {
-    max-width: 88em;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    @include clearfix;
-  }
+.block { padding: $block-padding; }
 
 
-  /** SECTOR - Single page section container with unlimited width and no paddings/margins. Can be used to group related components. */
+/** CENTRALISER - Restricts the width of the content to allowed maximum and aligns to center. */
 
-  .sector,
-  .separated {
-    @include clearfix;
-  }
-
-  .separated,
-  .sector {
-    border-bottom: $base-border;
-  }
-
-
-  //TODO: Use either 'section' or 'sector'
-  .section {
-    display: block;
-    border-bottom: $base-border;
-  }
+.centraliser {
+  @include clearfix;
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  max-width: 88em;
+}
 
 
-  /** LAYOUT - Contains all the content's columns and layout combinations */
+/** SECTOR - Single page section container with unlimited width and no paddings/margins. Can be used to group related components. */
 
-  .layout {
-    width: 100%;
+.sector,
+.separated {
+  @include clearfix;
+}
 
-    &.block {
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-  }
+.separated,
+.sector {
+  border-bottom: $base-border;
+}
 
-  /* IE fix for tablet and smaller where layout has white space below*/
 
-@media screen and (max-width:58em) and (-ms-high-contrast: none), (-ms-high-contrast: active)  {
-  
-  
-          /* IE10+ CSS styles go here */
-          .layout {
-              height: 100%;
-          }
-      
+//TODO: Use either 'section' or 'sector'
+.section {
+  display: block;
+  border-bottom: $base-border;
+}
+
+
+/** LAYOUT - Contains all the content's columns and layout combinations */
+
+.layout {
+  width: 100%;
+
+  &.block {
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   // Sticky footer - stretch content to maximum
-  body > .layout {
+  body > & {
     display: block;
-    @include flex( 1 1 auto ); // = 1 (1 1 auto is required for IE-based browsers!)
+    flex: 1 1 auto; // = 1 (1 1 auto is *required* for IE-based browsers!)
   }
+}
+
+/* IE10+ fix for tablet and smaller where layout has white space below */
+@media screen and ( max-width: 58em ) and ( -ms-high-contrast: none ), ( -ms-high-contrast: active ) {
+  .layout { height: 100%; }
+}
 
 
 
 
 
+/* ===== 3-COLUMN LAYOUT ================================================== */
 
-  /* ===== 3-COLUMN LAYOUT ================================================== */
 
+.content-panel {
+  position: relative;
 
-  .content-panel {
-    position: relative;
+  > img { width: 100%; }
 
-    > img { width: 100%; }
+  > main,
+  > aside {
+    vertical-align: top;
 
-    > main,
-    > aside {
-      vertical-align: top;
-
-      > .block {
-        padding-bottom: 1.5 * $column-padding;
-        padding-top: 1.5 * $column-padding;
-      }
+    > .block {
+      padding-top:    1.5 * $column-padding;
+      padding-bottom: 1.5 * $column-padding;
     }
+  }
+}
+
+.sidebar {
+  z-index:  $z-index-top;
+  position: relative;
+}
+
+
+@include media( $tablet-and-smaller ) {
+  .layout {
+    &.block {
+      padding-right: 0;
+      padding-left:  0;
+    }
+  }
+}
+
+
+@include media( $tablet-and-bigger ) {
+  .content-panel {
+
+    /** 1st Content bar + 2nd widgets bar */
+    $widgetbar-to-content-width-ratio: .25; // 25% of the content container's width
+    $widgetbar-columns: $widgetbar-to-content-width-ratio * $grid-columns;
+
+    > main:last-child { width: 100%; }
+
+    /** Main content *ONLY* */
+    > main:not(:last-child) {
+      @include span-columns( $grid-columns - $widgetbar-columns, table );
+      float: left;
+    }
+
+    // Sub-columns
+    > aside {
+      @include span-columns( $widgetbar-columns, table );
+      float: left;
+    }
+  }
+}
+
+
+@include media( $desktop-and-bigger ) {
+
+  /** Left sidebar */
+  $sidebar-to-document-width-ratio: .2; // 20% of the page's width
+  $sidebar-columns:                 $sidebar-to-document-width-ratio * $grid-columns;
+
+  .layout {
+    overflow: hidden;
+    display:  table; // Fixes the issue with misbehavior of inner containers
   }
 
   .sidebar {
-    position: relative;
-    z-index: $z-index-top;
+    @include span-columns( $sidebar-columns, table );
+    float: left;
   }
 
+  // Can contain Content only column and Widget bar (optional).
+  .content-panel {
+    float: left;
 
-  @include media( $tablet-and-smaller ){
+    /** Content panel *ONLY* */
 
-    .layout {
-      &.block {
-        padding-left: 0;
-        padding-right: 0;
-      }
-    }
-  }
+    &:first-child {
+      width: 100%;
 
-
-  @include media( $tablet-and-bigger ){
-
-    .content-panel {
-      // Sub-columns
-
-      /** Main content *ONLY* */
-
-      > main:last-child { width: 100%; }
-
-
-      /** 1st Content bar + 2nd widgets bar */
-
-      $widgetbar-to-content-width-ratio: .25; // 25% of the content container's width
-      $widgetbar-columns: $widgetbar-to-content-width-ratio * $grid-columns;
-
-      > main:not(:last-child) {
-        @include span-columns( $grid-columns - $widgetbar-columns, table );
-        float: left;
-      }
-
-      > aside {
-        @include span-columns( $widgetbar-columns, table );
-        float: left;
-      }
-    }
-  }
-
-
-  @include media( $desktop-and-bigger ){
-
-    .layout {
-      overflow: hidden;
-      display:  table; // Fixes the issue with misbehavior of inner containers
-    }
-
-    /** Left sidebar */
-
-    $sidebar-to-document-width-ratio: .20; // 20% of the page's width
-    $sidebar-columns: $sidebar-to-document-width-ratio * $grid-columns;
-
-    .sidebar {
-      float: left;
-      @include span-columns( $sidebar-columns, table );
-    }
-
-    // Can contain Content only column and Widget bar (optional).
-    .content-panel {
-      float: left;
-
-      /** Content panel *ONLY* */
-
-      &:first-child {
-        width: 100%;
-
-        // Main content *ONLY*
-        > main:last-child {
-          > .block { padding-left: 0; }
-        }
-      }
-
+      // Main content *ONLY*
       > main:last-child {
-        > .block { padding-right: 0; }
-      }
-
-      /** 1st Sidebar + 2nd Content panel */
-
-      &:not(:first-child) {
-        vertical-align: top;
-        @include span-columns( $grid-columns - $sidebar-columns, table );
-      }
-
-      > aside {
-        > .block { padding-right: 0; }
+        > .block { padding-left: 0; }
       }
     }
+
+    > main:last-child {
+      > .block { padding-right: 0; }
+    }
+
+    /** 1st Sidebar + 2nd Content panel */
+
+    &:not(:first-child) {
+      @include span-columns( $grid-columns - $sidebar-columns, table );
+      vertical-align: top;
+    }
+
+    > aside {
+      > .block { padding-right: 0; }
+    }
   }
+}

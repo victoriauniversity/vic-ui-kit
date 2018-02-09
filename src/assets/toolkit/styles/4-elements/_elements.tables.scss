@@ -49,13 +49,13 @@ table {
   display:    block;
   width:      100%;
 
-  @include media( $mobile-large-and-smaller ) {
-    overflow-x: scroll;
-  }
-
   // Reseting fall-back from unwrapped table
   table {
     margin-bottom: 0;
     box-shadow: none;
+  }
+
+  @include media( $mobile-large-and-smaller ) {
+    overflow-x: scroll;
   }
 }

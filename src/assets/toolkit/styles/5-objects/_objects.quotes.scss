@@ -2,100 +2,94 @@
 =     QUOTES, CITATION, BIBLIOGRAPHY      =
 =========================================*/
 
-  // Just a quote style
-  blockquote.quote {
+// Just a quote style
+blockquote.quote { font-style: italic; }
+
+// Quote with source
+.quote {
+  margin-bottom: $base-spacing;
+
+  /** Inline (related) block /w source */
+
+  blockquote {
+    margin-bottom: .35em;
     font-style: italic;
   }
 
-  // Quote with source
-  .quote {
-    margin-bottom: $base-spacing;
+  figcaption {
+    @include bulletline-base;
+  }
 
-    /** Inline (related) block /w source */
+  &:not(.full) {
+    margin-left: .85rem;
+    padding: 0 0 0 1rem;
+    border-left: $strip-light;
+
+    figcaption strong { font-weight: $weight-medium; }
+  }
+
+
+  /** Full block quotation /w source */
+
+  &.full {
+    // Citation itself
+    blockquote {
+      font-size: scale-font( 1 );
+
+      // Starting quote icon
+      @include extend-icon-before( quote-down ) {
+        top: -.1em;
+        margin-right: .3em;
+      };
+
+      // Ending quote icon
+      @include extend-icon-after( quote-up ) {
+        margin-left: .3em;
+      };
+
+      &::before,
+      &::after {
+        display: inline;
+        font-style: normal;
+        font-size: 130%;
+        line-height: 1;
+        color: $grey-silver;
+      }
+    }
+
+    // Source, author, URL
+    figcaption {
+      font-weight: $weight-medium;
+      font-size: rem( 18px );
+      color: $green-victoria;
+    }
+  }
+}
+
+// hub page Quote panel
+.quote-panel {
+  background-color: $grey-gallery;
+
+  .quote {
+    margin-bottom: 0;
+    padding: em( 30px );
+    border-left: 5px solid $green-victoria;
 
     blockquote {
-      margin-bottom: .35em;
-      font-style: italic;
+      color: $green-victoria;
+
+      &::before,
+      &::after {
+        color: $green-victoria;
+      }
     }
 
     figcaption {
-      @extend %bulletline-base;
-    }
+      text-align: right;
+      color: $black-tundora;
+      font-size: scale-font( 1 );
 
-    &:not(.full) {
-      margin-left: .85rem;
-      padding: 0 0 0 1rem;
-      border-left: $strip-light;
-
-      figcaption strong { font-weight: $weight-medium; }
-    }
-
-
-    /** Full block quotation /w source */
-
-    &.full {
-
-      // Citation itself
-      blockquote {
-        font-size: scale-font( 1 );
-
-        // Starting quote icon
-        @include extend-icon-before( quote-down ){
-          top: -.1em;
-          margin-right: .3em;
-        };
-
-        // Ending quote icon
-        @include extend-icon-after( quote-up ){
-          margin-left: .3em;
-        };
-
-        &:before,
-        &:after {
-          display: inline;
-          font-style: normal;
-          font-size: 130%;
-          line-height: 1;
-          color: $grey-silver;
-        }
-      }
-
-      // Source, author, URL
-      figcaption {
-        font-weight: $weight-medium;
-        font-size: rem( 18px );
-        color: $green-victoria;
-      }
+      &::before { display: none; }
     }
   }
-
-  // hub page Quote panel
-  .quote-panel {
-    background-color: $grey-gallery;
-    
-    .quote {
-      border-left: 5px solid $green-victoria;
-      padding: em(30px);
-      margin-bottom: 0;
-
-      blockquote {
-        color: $green-victoria;
-        
-        &:before,
-        &:after {
-          color: $green-victoria;
-        }
-      }
-
-      figcaption {
-        text-align: right;
-        color: #444;
-        font-size: scale-font( 1 );
-
-        &:before {
-          display: none;
-        }
-        
-      }
-    }
-  }
+}

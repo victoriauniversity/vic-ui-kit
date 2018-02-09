@@ -3,19 +3,21 @@
 =========================================*/
 
 
-  // Default container - persist images sizing and positioning.
-  // Use *ONLY* as a fall-back solution!
-  .images {
-    margin-bottom: $base-spacing;
+// Default container - persist images sizing and positioning.
+// Use *ONLY* as a fall-back solution!
+.images {
+  margin-bottom: $base-spacing;
 
-    img {
-      display: inline-block;
-      margin: 0 .35rem .35rem 0;
-      width: auto; height: auto;
-    }
+  img {
+    @include size( auto auto );
+    display: inline-block;
+    margin: 0 .35rem .35rem 0;
   }
+}
 
-  img { vertical-align: middle; }
+img {
+  vertical-align: middle;
 
   // Make logos white by default
-  img .a { fill: #fff; }
+  .a { fill: #FFF; }
+}

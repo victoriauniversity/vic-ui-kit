@@ -1,185 +1,154 @@
+/** Colour themes. */
 
+@mixin study-hub-theme( $color ) {
+  .intro-text {
+    h1 { color: $color; }
+    p { color: $black-tundora; }
+  }
 
-$study-hub-primary: $green-victoria;
+  .promo-panel,
+  .tiles-panel {
+    h1,
+    h2,
+    h3 {
+      color: $color;
+    }
+  }
 
-@mixin studyHubColor($color) { 
+  .block {
+    > h1,
+    > h2,
+    > h3 {
+      color: $color;
+    }
+  }
 
+  .grid {
+    h1,
+    h2,
+    h3 {
+      color: $color;
+    }
+  }
 
-	.intro-text {
-		h1 {
-			color: $color;
-		}
+  .tiles-wrap {
+    li.tile {
+      border-left: 4px solid $color;
 
-		p {
-			color: $black-tundora;
-		}
-	}
+      &:hover { border-left-color: $blue-st-tropaz; }
 
-	.promo-panel,
-	.tiles-panel {
-		h1, 
-		h2,
-		h3 {
-			color: $color;
-		}
-	}
+      a {
+        h2 { color: $color; }
 
-	.block > h1,
-	.block > h2,
-	.block > h3 {
-		color: $color;
-	}
+        &:hover { border-left-color: none; }
+      }
+    }
+  }
 
-	.grid {
-		h1, 
-		h2,
-		h3 {
-			color: $color;
-		}
-	}
+  .media-quote {
+    .tiles-wrap {
+      li.tile {
+        q { color: $color; }
 
-	.tiles-wrap {
-		li.tile {
-		  border-left: 4px solid $color;
-			&:hover {
-			  	border-left-color: $blue-st-tropaz;
-			}
-			a {
-		    
-		    h2 {
-		      color: $color;
-		    }
+        figure {
+          .play-button {
+            background-color: rgba( $color, 80% );
 
-			&:hover {
-				border-left-color: none;
-			}
-		  }
-		}
-	}
+            &::after { border-color: transparent transparent transparent $white; }
+          }
+        }
+      }
+    }
+  }
 
-	.media-quote {
-		.tiles-wrap {
-			li.tile { 
-				q {
-					color: $color;
-				}
+  h1,
+  h2,
+  h3 {
+    color: $color;
+  }
 
-				figure {
-					.play-button {
-						background-color: rgba($color, 0.8);
-						&:after {
-							border-color: transparent transparent transparent $white;
-						}
-					}
-				}
-			}
-		}
-	}
+  .homepage-intro.study-hub {
+    .intro-text {
+      h1,
+      h2,
+      h3 {
+        color: $color;
+      }
+    }
 
-	h1, 
-	h2,
-	h3 {
-		color: $color;
-	}
+    + .intro-promo .text-wrap span {
+      color: $color;
+    }
+  }
 
-	.homepage-intro.study-hub {
-		.intro-text {
-			h1,
-			h2,
-			h3 {
-				color: $color;
-			}
-		}
+  .tiles-panel.tile-steps {
+    .tiles-wrap {
+      .tile {
+        background-color: $color;
 
-		&+.intro-promo {
-			.text-wrap {
-				span {
-					color: $color;
-				}
-			}
-		}
-	}
+        a {
+          border-color: $color;
 
-	.tiles-panel.tile-steps {
-		.tiles-wrap {
-			.tile {
-				background-color: $color;
+          &:hover { border-color: $color; }
+        }
+      }
+    }
+  }
 
-				a {
-					border-color: $color;
+  .study-hub-banner {
+    .sidebar {
+      nav {
+        background-color: $color;
 
-					&:hover {
-						border-color: $color;						
-					}
-				}
-			}
-		}
-	}
+        li {
+          a {
+            border-bottom-color: darken( $color, 10% );
+            font-size: rem( 19px );
+          }
+        }
+      }
+    }
 
-	.study-hub-banner {
+    .banner {
+      figcaption { background-color: rgba( $color, 70% ); }
+    }
+  }
 
-		.sidebar {
-			nav {
-				background-color: $color;
+  .promo-panel {
+    > .photo {
+      figcaption {
+        h1,
+        h2,
+        h3,
+        p {
+          background-color: rgba( $color, 90% );
+        }
+      }
+    }
+  }
 
-				li {
-					a {
-						border-bottom-color: darken($color, 10%);
-						font-size: rem(19px);
-					}
-				}
-			}
-		}
+  .promo.themed {
+    background-color: rgba( $color, 90% );
 
-		.banner {
-			figcaption {
-				background-color: rgba($color, 0.7);
-			}
-		}
-	}
+    a {
+      h1,
+      h2,
+      h3,
+      p {
+        color: $white;
+      }
+    }
 
-	.promo-panel {
-		> .photo {
-			figcaption {
-				h1,
-				h2,
-				h3,
-				p {
-					background-color: rgba($color, 0.9);
-				}
-			}
-		}
-	}
-
-	.promo.themed {
-		background-color: rgba($color, 0.9);
-		a {
-
-			h1, 
-			h2,
-			h3,
-			p {
-				color: $white;
-			}
-
-		}
-
-		.play-button {
-			&:after {
-				border-color: transparent transparent transparent rgba($color, 0.9);
-			}
-			
-		}
-	}
-
-
+    .play-button::after {
+      border-color: transparent transparent transparent rgba( $color, 90% );
+    }
+  }
 }
 
 .study-hub-dark-green {
-	@include studyHubColor($green-victoria);
+  @include study-hub-theme( $green-victoria );
 }
 
-
 .study-hub-light-green {
-	@include studyHubColor($green-light-victoria);
+  @include study-hub-theme( $green-light-victoria );
 }

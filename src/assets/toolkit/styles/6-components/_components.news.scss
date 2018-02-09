@@ -1,79 +1,75 @@
+/** News overview (list of articles) */
 
+.news {
+  time { display: block; }
 
-  /** News overview (list of articles) */
-
-  .news {
-    time { display: block; }
-
-    .media {
-      .embed, img { margin-bottom: 0; } // Reset
-    }
-
-    @include media( $tablet-and-bigger ){
-
-      // Has got `media` or another add-on
-      .summary { overflow: hidden; }
-
-      //TODO: Remove grid
-      .media {
-        @include span-columns( 4.5 of 12 );
-        float: right;
-        @include omega;
-        margin-left: $column-padding;
-
-        // Image with portrait-like width to height ratio
-        &.portrait {
-          text-align: right;
-          @include span-columns( 3 of 12 );
-          float: right;
-          @include omega;
-
-        }
-      }
-    }
-
-    @include media( $mobile-large-and-smaller ){
-      .media { margin-bottom: 1em; }
+  .media {
+    .embed,
+    img {
+      margin-bottom: 0; // Reset
     }
   }
 
-  // news section for horizontal grid
-  .news-row {
-    header {
-      margin: 1.6rem 0;
-    }
-    .news {
-      li {
-        @include clearfix();
-        padding-bottom: 1.6rem;
-        margin-bottom: 1.6rem;
-        border-bottom: 1px solid #DDD;
-        list-style: none;
+  @include media( $tablet-and-bigger ) {
+    // Has got `media` or another add-on
+    .summary { overflow: hidden; }
+
+    //TODO: Remove grid
+    .media {
+      @include omega;
+      @include span-columns( 4.5 of 12 );
+      float: right;
+      margin-left: $column-padding;
+
+      // Image with portrait-like width to height ratio
+      &.portrait {
+        @include omega;
+        @include span-columns( 3 of 12 );
+        float: right;
+        text-align: right;
       }
+    }
+  }
 
-      @include media($desktop-and-bigger) {
-      
-          display: flex; 
-          flex-wrap: wrap;
+  @include media( $mobile-large-and-smaller ) {
+    .media { margin-bottom: 1em; }
+  }
+}
 
-          li {
-            width: 33%;
-            border-bottom: none;
-            padding: 1.5rem;
-            position: relative;
+// news section for horizontal grid
+.news-row {
+  header { margin: 1.6rem 0; }
 
-            &:not(:nth-child(3n)):after {
-              content: "";
-              height: 75%;
-              width: 1px;
-              background-color: #DDD;
-              position: absolute;
-              right: 0;
-              top: 50%;
-              transform: translateY(-50%);
-            }
+  .news {
+    li {
+      @include clearfix();
+      margin-bottom: 1.6rem;
+      padding-bottom: 1.6rem;
+      border-bottom: 1px solid $grey-alto;
+      list-style: none;
+    }
+
+    @include media( $desktop-and-bigger ) {
+      display: flex;
+      flex-wrap: wrap;
+
+      li {
+        position: relative;
+        padding: 1.5rem;
+        width: 33%;
+        border-bottom: 0;
+
+        &:not(:nth-child( 3n )) {
+          @include after( $display: static, $position: absolute ) {
+            @include size( 1px 75% );
+            top: 50%;
+            right: 0;
+            background-color: $grey-alto;
+            transform: translateY( -50% );
           }
         }
       }
+
     }
-  
+  }
+}

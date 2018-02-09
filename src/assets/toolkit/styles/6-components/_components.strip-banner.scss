@@ -1,80 +1,83 @@
-//_components.strip-banner.scss
 .promo-panel {
-	&.strip-banner {
-		figcaption {
-			padding: 0;
-			>div {
-				display: flex;
-				align-items: center;
-			}
-			.block {
-				text-align: left;
-				padding: 1.5em;
+  &.strip-banner {
+    figcaption {
+      padding: 0;
 
-				h1{
-					font-size: 3em;
-					margin-bottom: 0;
-				}
-				p {
-					font-size: 1.45em;
-				}
-				> * {
-					background-color: rgba($green-victoria, 0.9);
-				}
-			}
-		}
-		.block:first-child {
-			width: 100/3 * 2%;
-			float: left;
-			padding-bottom: 0;
-			// background-color: rgba(100,166,89, .9 );
-		}
-		.block:last-child {
-			float: right;
-			width: 100/3 * 1%;
-		}
+      > div {
+        display: flex;
+        align-items: center;
+      }
 
-		@include media( $mobile-large-and-smaller ) {
-			figcaption {
-				>div {
-					flex-direction: column;
-				}
-			}
-			.block:first-child {
-				width: 100/3 * 3%;
-				padding-bottom: 0;
+      .block {
+        padding: 1.5em;
+        text-align: left;
 
-				h1 {
-					display: block;
-				}
-			}
-			.block:last-child {
-				width: 100/3 * 3%;
-			}
-		}
+        h1 {
+          margin-bottom: 0;
+          font-size: 3em;
+        }
 
+        p { font-size: 1.45em; }
 
-		@include media($tablet-and-bigger) {
-			figure.photo {
-				figcaption {
-					margin-top: 10%;
-				}
-			}
-		}
-	}
-}
+        > * {
+          background-color: rgba( $green-victoria, .9 );
+        }
+      }
+    }
 
-.promo-panel.strip-banner figure figcaption {
-	max-width: 88em;
-	padding: 0;
-	// margin bottom depending on sub nav...
-	margin-bottom: 1em;
-}
+    figure {
+      figcaption {
+        margin-bottom: 1em;  // margin bottom depending on sub nav...
+        padding: 0;
+        max-width: 88em;
+      }
+    }
 
-.study-hub-light-green .promo-panel.strip-banner > .photo figcaption p, 
-.study-hub-light-green .promo-panel.strip-banner > .photo figcaption h1,
-.study-hub-dark-green .promo-panel.strip-banner > .photo figcaption p, 
-.study-hub-dark-green .promo-panel.strip-banner > .photo figcaption h1 {
-	// background-color: transparent;
-	margin-bottom: 0;
+    .block {
+      &:first-child {
+        float: left;
+        padding-bottom: 0;
+        width: 100% / 3 * 2;
+      }
+
+      &:last-child {
+        float: right;
+        width: 100% / 3;
+      }
+    }
+
+    .study-hub-light-green &,
+    .study-hub-dark-green & {
+      > .photo figcaption {
+        p,
+        h1 {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    @include media( $mobile-large-and-smaller ) {
+      figcaption {
+        > div { flex-direction: column; }
+      }
+
+      .block {
+        &:first-child {
+          padding-bottom: 0;
+          width: 100%;
+
+          h1 { display: block; }
+        }
+
+        &:last-child { width: 100%; }
+      }
+    }
+
+    @include media( $tablet-and-bigger ) {
+      figure.photo {
+        figcaption { margin-top: 10%; }
+      }
+    }
+
+  }
 }

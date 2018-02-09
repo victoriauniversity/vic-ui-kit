@@ -29,16 +29,14 @@ button,
   font-family: $base-heading-family;
   font-weight: $weight-semibold;
 
-  .formatting & {
-    text-decoration: none; // Reset
-  }
+  .formatting & { text-decoration: none; } // Reset
 
   &.large { font-size: 1.125em; }
 
   &:not(.flat) {
     border-radius: $button-corner-radius;
-    color:      $color-body-text;
-    background: $color-button-default;
+    color:         $color-body-text;
+    background:    $color-button-default;
 
     @include hoverify() {
       color: inherit;
@@ -48,7 +46,7 @@ button,
 
   &:not(.flat, .no-icon) {
     //Include the arrow from the _object.icons file
-    @extend .button-arrow;
+    @include icon-arrow-right();
   }
 
   // Call-to-action button
@@ -64,10 +62,10 @@ button,
   }
 
   &.flat-border {
-    border-color: $color-button-primary;
-    background-color:     transparent;
-    border: 2px solid;
-    color:           $color-button-primary;
+    border-color:     $color-button-primary;
+    background-color: transparent;
+    border:           2px solid;
+    color:            $color-button-primary;
 
     @include hoverify() {
       color: $white;
@@ -76,10 +74,7 @@ button,
     }
   }
 
-  &.extra-large {
-    font-size: 1.5em;
-  }
-
+  &.extra-large { font-size: 1.5em; }
 
   // Critical/Destructive operations button
   &.danger {
@@ -119,12 +114,9 @@ a.link-more {
   background-color: #FFF;
   border-radius: 12px;
 
-  &::after {
-    position: absolute;
+  @include after( $display: block, $position: absolute ) {
     top: 10.5px;
     left: 26px;
-    display: block;
-    content: '';
     margin: 0 auto;
     border-style: solid;
     border-width: 9.5px 0 9.5px 17px;
@@ -152,7 +144,7 @@ $transition:  .3s; // increase this to see the transformations in slow-motion
 
 .lines-button {
   display: inline-block;
-  padding: $button-size/2 $button-size/4;
+  padding: $button-size / 2 $button-size / 4;
   transition: .3s;
   cursor: pointer;
   user-select: none;
@@ -170,12 +162,12 @@ $transition:  .3s; // increase this to see the transformations in slow-motion
       background-color: $grey-silver;
 
       &::before {
-        top: $button-size/3.5;
+        top: $button-size / 3.5;
         background-color: $grey-silver;
       }
 
       &::after {
-        top: -$button-size/3.5;
+        top: -$button-size / 3.5;
         background-color: $grey-silver;
       }
     }
@@ -203,11 +195,10 @@ $transition:  .3s; // increase this to see the transformations in slow-motion
 }
 
 @mixin line {
+  @include size( $button-size $button-size / 7 );
   display: inline-block;
-  width: $button-size;
-  height: $button-size/7;
   background: $white;
-  border-radius: $button-size/14;
+  border-radius: $button-size / 14;
   transition: $transition;
 }
 
@@ -223,13 +214,10 @@ $transition:  .3s; // increase this to see the transformations in slow-motion
     position: absolute;
     left: 0;
     content: '';
-    transform-origin: $button-size/14 center;
+    transform-origin: $button-size / 14 center;
   }
 
 
-  &::before { top: $button-size/4; }
-
-  &::after {
-    top: -$button-size/4;
-  }
+  &::before { top: $button-size / 4; }
+  &::after { top: -$button-size / 4; }
 }

@@ -4,16 +4,10 @@
   ],
   "rules": {
     "scss/dollar-variable-colon-space-after": null,
-    "declaration-colon-space-after":          null,
-    "selector-no-qualifying-type":            null,
+    "scss/operator-no-unspaced":              true,
+    "scss/at-rule-no-unknown":                true,
 
-    "number-leading-zero":                    "never",
-    "function-parentheses-space-inside":      "always",
-    "media-feature-parentheses-space-inside": "always",
-
-    "max-nesting-depth":                      5,
-    "color-hex-case":                         "upper",
-
+    "order/properties-alphabetical-order":   null,
     "order/properties-order": [
       [
         "z-index",
@@ -26,7 +20,15 @@
         "right",
         "bottom",
         "left",
+        "float",
+        "visibility",
         "display",
+        "flex",
+        "align-items",
+        "justify-content",
+        "flex-basis",
+        "flex-grow",
+        "order",
         "content",
         "margin",
         "margin-top",
@@ -39,27 +41,44 @@
         "padding-bottom",
         "padding-left",
         "width",
-        "height"
+        "max-width",
+        "min-width",
+        "height",
+        "max-height",
+        "min-height"
       ],
       { "unspecified": "bottom" }
-     ],
-     "order/properties-alphabetical-order":   null,
-
-    "at-rule-no-unknown": [ true,
+    ],
+    "order/order": [
+      "custom-properties",
+      "dollar-variables",
       {
-        "ignoreAtRules": [
-          "function",
-          "if",
-          "content",
-          "mixin",
-          "include",
-          "for",
-          "return",
-          "each",
-          "while"
-        ]
+        "type":     "at-rule",
+        "hasBlock": false
+      },
+      "declarations",
+      "rules",
+      {
+        "type":      "at-rule",
+        "name":      "include",
+        "parameter": "media",
+        "hasBlock":  true
       }
     ],
+
+    "declaration-colon-space-after":          null,
+    "selector-no-qualifying-type":            null,
+
+    "number-leading-zero":                    "never",
+    "function-parentheses-space-inside":      "always",
+    "media-feature-parentheses-space-inside": "always",
+
+    "max-nesting-depth":                      5,
+    "selector-max-compound-selectors":        5,
+    "color-hex-case":                         "upper",
+
+    "declaration-block-single-line-max-declarations": 1,
+
     "selector-pseudo-class-no-unknown": [ true,
       {
         "ignorePseudoClasses": [ "/#.*/" ]

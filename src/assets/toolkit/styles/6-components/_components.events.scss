@@ -1,23 +1,6 @@
 
 /** Event overview (list of articles). */
 .events {
-
-  @include media( $tablet-and-bigger ){
-
-    .margin-notes {
-      @include span-columns( 3.5 of 12 );
-    }
-
-    .summary {
-      @include span-columns( 8.5 of 12 );
-    }
-  }
-
-  @include media( $mobile-large-and-smaller ){
-    .media img { margin-bottom: .8rem; }
-  }
-
-  // Highlight strip
   .highlight-strip {
     display: block;
     padding-left: 1rem;
@@ -53,7 +36,7 @@
   .time {
     font-size: scale-heading( 1 );
 
-    @include extend-icon-before( clock ){
+    @include extend-icon-before( clock ) {
       top: -.1rem;
       margin-left: 0;
       font-size: 75%;
@@ -66,10 +49,24 @@
     @include icon-selector() {
       display: inline-block;
 
-      &:before {
+      &::before {
         top: 0;
         margin-left: 0;
       }
     };
+  }
+
+  @include media( $tablet-and-bigger ) {
+    .margin-notes {
+      @include span-columns( 3.5 of 12 );
+    }
+
+    .summary {
+      @include span-columns( 8.5 of 12 );
+    }
+  }
+
+  @include media( $mobile-large-and-smaller ) {
+    .media img { margin-bottom: .8rem; }
   }
 }

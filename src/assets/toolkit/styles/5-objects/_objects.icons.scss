@@ -186,12 +186,11 @@ $bulletline-margin-right: .7rem;
 $bulletline-width:        1rem;
 
 
-%bulletline-base {
+@mixin bulletline-base {
   position: relative;
   padding-left: $bulletline-margin-left + $bulletline-width + $bulletline-margin-right;
 
-  &::before {
-    @include objectify( inline-block, '', absolute );
+  @include before( $position: absolute ) {
     @include size( 1rem 2px );
     top: .75em;
     margin: 0 $bulletline-margin-right 0 -1 * ($bulletline-width + $bulletline-margin-right);
@@ -247,10 +246,15 @@ $bulletline-width:        1rem;
   @include extend-icon-before( audio );
 }
 
-.button-arrow {
+@mixin icon-arrow-right() {
   @include extend-icon-after( arrow-right ) {
     top: 0;
   }
+}
+
+// TODO: Rename & Refactor the name (cannot be used outside of 'button')
+.button-arrow {
+  @include icon-arrow-right();
 }
 
 

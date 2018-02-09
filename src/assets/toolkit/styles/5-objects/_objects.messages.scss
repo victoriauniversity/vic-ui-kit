@@ -3,130 +3,124 @@
 =========================================*/
 
 
-  /* ===== FLASH MESSAGES =================================================== */
+/* ===== FLASH MESSAGES =================================================== */
 
-  $message-strip-darken-percentage: 7;
+$message-strip-darken-percentage: 7;
 
-  .flash-message {
-    color: $white;
-    padding: $column-padding;
-    margin-bottom: $base-spacing;
+.flash-message {
+  margin-bottom: $base-spacing;
+  padding: $column-padding;
+  color: $white;
 
-    // Message types
+  // Message types
+  &.error {
+    background-color: $red-oyster-pink;
+    border-left: 2px solid darken( $red-oyster-pink, $message-strip-darken-percentage );
 
-    &.error {
-      background-color: $red-oyster-pink;
-      border-left: 2px solid darken( $red-oyster-pink, $message-strip-darken-percentage );
+    > * { color: $red-tamarillo; }
 
-      > * { color: $red-tamarillo; }
-
-      > h2  {
-        @include extend-icon-before( attention );
-      }
+    > h2 {
+      @include extend-icon-before( attention );
     }
+  }
 
-    &.warning {
-      background-color: $yellow-pearl-lusta;
-      border-left: 2px solid darken( $yellow-pearl-lusta, $message-strip-darken-percentage );
+  &.warning {
+    background-color: $yellow-pearl-lusta;
+    border-left: 2px solid darken( $yellow-pearl-lusta, $message-strip-darken-percentage );
 
-      > * {  color: $yellow-cinamon; }
+    > * { color: $yellow-cinamon; }
 
-      > h2  {
-        @include extend-icon-before( megaphone );
-      }
+    > h2 {
+      @include extend-icon-before( megaphone );
     }
+  }
 
-    &.info {
-      background-color: $blue-humming-bird;
-      border-left: 2px solid darken( $blue-humming-bird, $message-strip-darken-percentage );
+  &.info {
+    background-color: $blue-humming-bird;
+    border-left: 2px solid darken( $blue-humming-bird, $message-strip-darken-percentage );
 
-      > * { color: $blue-callypso; }
+    > * { color: $blue-callypso; }
 
-      > h2  {
-        @include extend-icon-before( info );
-      }
-
-
+    > h2 {
+      @include extend-icon-before( info );
     }
+  }
 
-    &.success {
-      background-color: $green-tara;
-      border-left: 2px solid darken( $green-tara, $message-strip-darken-percentage );
+  &.success {
+    background-color: $green-tara;
+    border-left: 2px solid darken( $green-tara, $message-strip-darken-percentage );
 
-      > * { color: #2c6b2c; }
+    > * { color: $green-killarney; }
 
-      > h2  {
-        @include extend-icon-before( check );
-      }
+    > h2 {
+      @include extend-icon-before( check );
     }
+  }
 
 
-    h2 { margin-bottom: .5em; }
+  h2 { margin-bottom: .5em; }
+
+  > * {
+    &:last-child { margin-bottom: 0; }
+  }
+
+  a[href] {
+    color: inherit;
+    @include hoverify() { color: inherit; }
+  }
+
+  // for info message fact row research hub
+  &.info-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2em 1.2em;
+
+    @include media($tablet-and-smaller) {
+      flex-wrap: wrap;
+    }
 
     > * {
-      &:last-child { margin-bottom: 0; }
+      &:first-child {
+        flex: 0 0 20%;
+
+        @include media($tablet-and-smaller) {
+          flex-basis: 100%;
+          margin-bottom: .5em;
+        }
+      }
+
+      &:not(:first-child) {
+        flex: 0 0 23%;
+
+        @include media($tablet-and-smaller) {
+          flex-basis: 31%;
+        }
+
+        @include media($mobile-large-and-smaller) {
+          flex-basis: 100%;
+          margin-bottom: .5em;
+        }
+      }
     }
 
-    a[href] {
-      color: inherit;
-      @include hoverify() { color: inherit; }
+    > h2 {
+      margin-bottom: 0;
+
+      &::before { display: none; }
     }
 
-    // for info message fact row research hub
-    &.info-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .info-col {
+      padding-bottom: .5em;
+      border-bottom: 1px solid $blue-callypso;
+      border-bottom-color: inherit;
 
-      padding: 2em 1.2em;
-
-      @include media($tablet-and-smaller) {
-        flex-wrap: wrap;
-      }
-
-      > * {
-        &:first-child {
-          flex: 0 0 20%;
-
-          @include media($tablet-and-smaller) {
-            flex-basis: 100%; 
-            margin-bottom: 0.5em;
-          }
-        }
-
-        &:not(:first-child) {
-          flex: 0 0 23%;
-          
-          @include media($tablet-and-smaller) {
-            flex-basis: 31%; 
-          }
-          @include media($mobile-large-and-smaller) {
-            flex-basis: 100%; 
-            margin-bottom: 0.5em;
-          }
-        }
-
-      }
-
-      > h2 {
-        margin-bottom: 0;
-
-        &:before {
-          display: none;
-        }
-      }
-
-      .info-col {
-        border-bottom: 1px solid $blue-callypso;
-        border-bottom-color: inherit;
-        padding-bottom: 0.5em;
-
-        h4, h5 {
-          color: inherit;
-          margin-bottom: 0.35em;
-        }
-
+      h4,
+      h5 {
+        margin-bottom: .35em;
+        color: inherit;
       }
 
     }
   }
+}

@@ -34,6 +34,36 @@
 }
 
 
+/*******************************************************************************
+ * Basic most commonly used skeleton for :after pseudo-class that turns it into
+ * stylable element.
+ *
+ * @content - :after's additional properties.
+ */
+@mixin after( $display: inline-block, $text: '', $position: static ) {
+  &::after {
+    @include objectify( $display, $text, $position );
+
+    @content;
+  }
+}
+
+
+/*******************************************************************************
+ * Basic most commonly used skeleton for :before pseudo-class that turns it into
+ * stylable element.
+ *
+ * @content - :before's additional properties.
+ */
+@mixin before( $display: inline-block, $text: '', $position: static ) {
+  &::before {
+    @include objectify( $display, $text, $position );
+
+    @content;
+  }
+}
+
+
 
 
 
@@ -54,6 +84,15 @@
 }
 
 
+/***************************************************************************
+* Non-underlined decoration to underlined on hover.
+*/
+@mixin hoverify-underline() {
+  text-decoration: none;
+  @include hoverify() { text-decoration: underline; }
+}
+
+
 /*******************************************************************************
  * Makes custom square bullets in the list-item using its `::before`
  * pseudo-element. *SHOULD BE* used in the <li> element.
@@ -65,9 +104,8 @@
   &::before {
     @include objectify( inline-block, $position: static );
     @include size( $size );
-    background-color: $colour;
-
     @content;
+    background-color: $colour;
   }
 }
 
