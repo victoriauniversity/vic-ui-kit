@@ -16,7 +16,7 @@ $icon-class-prefix: 'icon-';
   * @param $pseudoelement ~ before | after (default: before)
   */
 @mixin base-icon( $pseudoelement: before ) {
-  &:#{ $pseudoelement } {
+  &::#{$pseudoelement} {
     @include iconify;
     top: .05em;
     @if $pseudoelement == 'before' { margin: 0 $icon-margin 0 0; }
@@ -35,8 +35,8 @@ $icon-class-prefix: 'icon-';
   * @param $pseudoelement ~ before | after (default: before)
   */
 @mixin add-icon-character( $icon-code, $pseudoelement: before ) {
-  &:#{ $pseudoelement } {
-    content: #{$icon-class-prefix}$icon-code;
+  &::#{$pseudoelement} {
+    content: $icon-code;
   }
 }
 
@@ -145,7 +145,9 @@ $icon-codes: (
 
 /** Generate all the icon identifiers. Prefix them with 'icon-' */
 @each $icon-code-class, $code in $icon-codes {
-  @include add-icon-character( $code );
+  &.#{$icon-class-prefix}#{$icon-code-class} {
+    @include add-icon-character( $code );
+  }
 }
 
 
@@ -208,7 +210,7 @@ $bulletline-width:        1rem;
 /** Can be used to create alias or extend default icon under unique class. */
 @mixin extend-icon-before( $icon-code ) {
   @include base-icon;
-  @include add-icon-character( $icon-code );
+  @include add-icon-character( map-get( $icon-codes, $icon-code ) );
 
   &::before { @content; }
 }
@@ -216,11 +218,10 @@ $bulletline-width:        1rem;
 /** Can be used to alias or extend default icon under unique specifier. */
 @mixin extend-icon-after( $icon-code ) {
   @include base-icon( after );
-  @include add-icon-character( $icon-code, after );
+  @include add-icon-character( map-get( $icon-codes, $icon-code ), after );
 
   &::after { @content; }
 }
-
 
 .link-external {
   @include extend-icon-after( external ) {
@@ -256,7 +257,6 @@ $bulletline-width:        1rem;
 .button-arrow {
   @include icon-arrow-right();
 }
-
 
 /** Add icons with unusual positioning (end of the item instead of the start) */
 .icon-arrow-right::before {

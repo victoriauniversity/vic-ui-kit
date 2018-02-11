@@ -44,9 +44,10 @@ button,
     }
   }
 
-  &:not(.flat, .no-icon) {
+  &:not(.flat),
+  &:not(.no-icon) {
     //Include the arrow from the _object.icons file
-    @include icon-arrow-right();
+    @include icon-arrow-right;
   }
 
   // Call-to-action button
@@ -151,10 +152,6 @@ $transition:  .3s; // increase this to see the transformations in slow-motion
   border: 0;
   background-color: transparent;
 
-  @include media( $desktop-and-bigger ) {
-    display: none;
-  }
-
   &:hover {
     opacity: 1;
 
@@ -170,6 +167,10 @@ $transition:  .3s; // increase this to see the transformations in slow-motion
         top: -$button-size / 3.5;
         background-color: $grey-silver;
       }
+    }
+
+    @include media( $desktop-and-bigger ) {
+      display: none;
     }
   }
 
