@@ -58,13 +58,61 @@
   }
 
 
+  const SIDEMENU_CLASS          = 'sidemenu';
+  const SIDEMENU_EXPANDER_CLASS = 'btn-expander';
+  const SIDEMENU_SUBMENU        = 'has-submenu';
+
+  const SIDEMENU_SELECTED_ITEM_CLASS = 'active';
+  const SIDEMENU_EXPANDED_CLASS      = 'expanded';
+
+
+
+  function initExpandableSubmenu() {
+    const expandableButtonElement = $( this );
+    const submenuContainer = expandableButtonElement.parent().parent( '.' + SIDEMENU_SUBMENU );
+
+    // Init default state
+    var isExpanded = submenuContainer.hasClass( SIDEMENU_SELECTED_ITEM_CLASS );
+
+    function apply() {
+      if ( isExpanded ) {
+        submenuContainer.addClass( SIDEMENU_EXPANDED_CLASS );
+      } else {
+        submenuContainer.removeClass( SIDEMENU_EXPANDED_CLASS );
+      }
+    }
+
+    // Init
+    apply();
+
+    // Bind `click` events to all expandable buttons
+    expandableButtonElement.on( 'click', function( e ) {
+      e.preventDefault();
+      e.stopPropagation();
+      isExpanded = !isExpanded;
+      apply();
+    });
+  }
+
+  function initSidemenuExpandability() {
+    const menuElement = $( '.' + SIDEMENU_CLASS );
+
+    menuElement.find( '.' + SIDEMENU_EXPANDER_CLASS ).each( initExpandableSubmenu );
+  }
+
+
 
 $(function(){
 
 	fastclick.attach(document.body);
 	var $body = $('body');
 	var $globalNav = $("#global-nav");
-	var $globalSearch = $("#global-search");
+  var $globalSearch = $("#global-search");
+
+  /** Init side-menu, if it's present */
+  if ( $( '.' + SIDEMENU_CLASS ).length ) {
+    initSidemenuExpandability();
+  }
 
 	//http://wicky.nillia.ms/enquire.js/
 	enquire.register(MOBILE_LARGE_AND_SMALLER, function() {
@@ -141,7 +189,7 @@ $(function(){
 
 	/* study areas toggle programme level initially hide postgrad */
 	$('.study-areas-postgrad').hide();
-	$('.switch .switch-input').on( 'change', function () { 
+	$('.switch .switch-input').on( 'change', function () {
 
 		console.log( $(this).attr('value') );
 
@@ -162,25 +210,25 @@ $(function(){
 	$('.dynamic-height-tiles ').each(function(n){
 		//get array of heights for each group of class
 		var tileHeights = $(this).find('li.tile').map(function(){
-			return $(this).height(); 
+			return $(this).height();
 		}).get();
 
 		//check heights for largest
 		var maxHeight = Math.max.apply(null, tileHeights);
-		
+
 		//apply maxheight to tiles
 		$(this).find('li.tile').height(maxHeight + 16);
 	});
 
 	/* Navigation toggle on mobile */
-	$('.main-menu-toggle').on('click', function () { 
+	$('.main-menu-toggle').on('click', function () {
 		$('.main-nav').slideToggle();
 		$('.search-bar').slideToggle();
 		$('.menu-toggle-icon').toggleClass('open');
 	 });
 
 	 /* Show search bar on desktop */
-	 $('.search-item').on('click', function () { 
+	 $('.search-item').on('click', function () {
 		$('.search-bar').slideToggle();
 	  });
 
@@ -190,9 +238,9 @@ $(function(){
   removedUnusedTiles(); //TODO: Review - Can be removed after all the study areas are migrated
 
 
-  //tile accordion 
+  //tile accordion
 
-  $('.tile-accordion .tile').on('click', function (evt) { 
+  $('.tile-accordion .tile').on('click', function (evt) {
 		evt.preventDefault();
 
 		if( $(this).hasClass('accordion-closed') ) {
@@ -203,7 +251,7 @@ $(function(){
 			$(this).removeClass('accordion-open').addClass('accordion-closed');
 		}
 
-		$(this).find('.links a').on('click', function (event) { 
+		$(this).find('.links a').on('click', function (event) {
 			event.stopPropagation();
 		 });
    });
