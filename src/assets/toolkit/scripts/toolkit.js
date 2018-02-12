@@ -60,7 +60,7 @@
 
   const SIDEMENU_CLASS          = 'sidemenu';
   const SIDEMENU_EXPANDER_CLASS = 'btn-expander';
-  const SIDEMENU_SUBMENU        = 'has-submenu';
+  const SIDEMENU_SUBMENU_CLASS  = 'has-submenu';
 
   const SIDEMENU_SELECTED_ITEM_CLASS = 'active';
   const SIDEMENU_EXPANDED_CLASS      = 'expanded';
@@ -69,7 +69,7 @@
 
   function initExpandableSubmenu() {
     const expandableButtonElement = $( this );
-    const submenuContainer = expandableButtonElement.parent().parent( '.' + SIDEMENU_SUBMENU );
+    const submenuContainer = expandableButtonElement.parent().parent( '.' + SIDEMENU_SUBMENU_CLASS );
 
     // Init default state
     var isExpanded = submenuContainer.hasClass( SIDEMENU_SELECTED_ITEM_CLASS );
@@ -97,7 +97,29 @@
   function initSidemenuExpandability() {
     const menuElement = $( '.' + SIDEMENU_CLASS );
 
+    enhanceSidemenu( menuElement );
+
     menuElement.find( '.' + SIDEMENU_EXPANDER_CLASS ).each( initExpandableSubmenu );
+  }
+
+  //TODO: Remove after this was implemented on the backend (~ in Squiz)
+  /** Adds necessary classes and expanding/collapsing elements if the item has got submenu. */
+  const btnExpanderHtml = '<span class="btn-expander" title="Toggle subpages"></span>';
+
+  function enhanceSidemenu( menuElement ) {
+      menuElement.find( 'li' ).each( function() {
+        const listItem = $( this );
+
+        // a) already has got a proper class in place? Skip!
+        if ( listItem.hasClass( SIDEMENU_SUBMENU_CLASS )) return;
+
+        // b) No submenu in <li>? Skip!
+        if ( listItem.children( 'ul' ).length === 0 ) return;
+
+        // c) Has got a submenu => Enhance sidemenu's HTML
+        listItem.addClass( SIDEMENU_SUBMENU_CLASS );
+        listItem.children( 'a' ).append( btnExpanderHtml );
+      });
   }
 
 
