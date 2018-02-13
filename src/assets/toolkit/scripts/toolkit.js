@@ -70,7 +70,7 @@
 
   function initExpandableSubmenu() {
     const expandableButtonElement = $( this );
-    const submenuContainer = expandableButtonElement.parent().parent( '.' + SIDEMENU_SUBMENU_CLASS );
+    const submenuContainer = expandableButtonElement.parent( '.' + SIDEMENU_SUBMENU_CLASS );
 
     // Init default state
     var isExpanded = submenuContainer.hasClass( SIDEMENU_SELECTED_ITEM_CLASS );
@@ -126,7 +126,7 @@
 
         // c) Has got a submenu => Enhance sidemenu's HTML
         listItem.addClass( SIDEMENU_SUBMENU_CLASS );
-        listItem.children( 'a' ).append( btnExpanderHtml );
+        $( btnExpanderHtml).insertAfter( listItem.children( 'a' ) );
       });
   }
 

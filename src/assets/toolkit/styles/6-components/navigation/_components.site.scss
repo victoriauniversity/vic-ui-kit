@@ -173,21 +173,31 @@ $sidemenu-delimiter-color: $green-bottle !default;
   }
 
   .has-submenu {
+    display: flex;
+
+    // Flex behaviour
+    > a { flex: 1 1; }
+
+    > ul {
+      flex: 0 0 100%;
+    }
+
+
     &.expanded {
       overflow: hidden;
+      flex-wrap: wrap;
 
       > ul { display: block; }
 
-      > a .btn-expander::after {
-        @include objectify( inline );
-        @include triangle( .5em .225em, $white, up );
-        top: -.62em;
-        line-height: 0;
+      > .btn-expander::after {
+        @include objectify( $position: relative );
+        top: -.15em;
+        @include triangle( .5em .2em, $sidemenu-text-color, up );
       }
     }
 
     &:not(.expanded){
-      > a .btn-expander::after { content: '+'; }
+      .btn-expander::after { content: '+'; }
     }
 
     &.active {
@@ -197,10 +207,11 @@ $sidemenu-delimiter-color: $green-bottle !default;
     // 2nd level menu & items
     > ul {
       font-size: 95%;
-      margin: .2em 0 .75em .9em;
-      border-left: 1px solid rgba( $white, .1 );
+      padding: .2em 0 .75em .9em;
 
       > li {
+        border-left: 1px solid rgba( $white, .1 );
+
         > a {
           padding: .3em .85em .3em .7em;
         }
@@ -218,41 +229,35 @@ $sidemenu-delimiter-color: $green-bottle !default;
 
     // 3rd level menu & items
     .has-submenu > ul {
-      border-left: 0;
+      > li {
+        border-left: 0;
 
-      > li > a {
-        padding-left: .3em;
+        > a {
+          padding-left: .3em;
 
-        &::before { display: none; }
+          &::before { display: none; }
+        }
       }
     }
   }
 
   .btn-expander {
-    z-index: 1;
-    display: inline-block;
-    flex: 1 1 auto;
+    display: block;
+    cursor: pointer;
+    color: $sidemenu-text-color;
     align-self: center;
     text-align: right;
-    line-height: 0;
     font-weight: $weight-bold;
+    margin: 0 .5rem;
+    width: 1.4em;
+    height: 1.4em;
+    text-align: center;
+    line-height: 1.4;
     font-size: 1.2em;
-    margin-left: .5em;
-
-    &::before {
-      @include objectify( $position: absolute );
-      z-index: -1;
-      margin-top: -.6em;
-      margin-left: -.35em;
-      @include size( 1.2em 1.2em );
-      border-radius: .6em;
-      background-color: transparent;
-    }
+    border-radius: .7em;
 
     @include hoverify() {
-      &::before {
-        background-color: rgba( $black, .2 );
-      }
+      background-color: rgba( $black, .2 );
     }
   }
 
