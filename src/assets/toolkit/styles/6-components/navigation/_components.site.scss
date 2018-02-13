@@ -177,7 +177,10 @@ $sidemenu-delimiter-color: $green-bottle !default;
 
     // Flex behaviour
     > a { flex: 1 1; }
-    > ul { flex: 0 0 100%; }
+    > ul {
+      flex-grow: 0;
+      flex-basis: 100%;
+    }
 
     &.expanded {
       overflow: hidden;
