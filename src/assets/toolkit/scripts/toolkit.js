@@ -59,6 +59,7 @@
 
 
   const SIDEMENU_CLASS          = 'sidemenu';
+  const SIDEMENU_TOGGLE_CLASS   = 'sidemenu-toggle';
   const SIDEMENU_EXPANDER_CLASS = 'btn-expander';
   const SIDEMENU_SUBMENU_CLASS  = 'has-submenu';
 
@@ -98,6 +99,13 @@
     const menuElement = $( '.' + SIDEMENU_CLASS );
 
     enhanceSidemenu( menuElement );
+
+    // Expanding/Collapsing of the entire side menu on mobile devices
+    menuElement.children( '.' + SIDEMENU_TOGGLE_CLASS ).children( 'a' ).on( 'click', function( e ) {
+      e.preventDefault();
+      e.stopPropagation();
+      $(this).parent().toggleClass( SIDEMENU_EXPANDED_CLASS );
+    });
 
     menuElement.find( '.' + SIDEMENU_EXPANDER_CLASS ).each( initExpandableSubmenu );
   }
