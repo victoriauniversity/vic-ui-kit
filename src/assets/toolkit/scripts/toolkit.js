@@ -59,6 +59,7 @@
 
 
   const SIDEMENU_CLASS          = 'sidemenu';
+  const SIDEMENU_TOGGLE_CLASS   = 'sidemenu-toggle';
   const SIDEMENU_EXPANDER_CLASS = 'btn-expander';
   const SIDEMENU_SUBMENU_CLASS  = 'has-submenu';
 
@@ -69,7 +70,7 @@
 
   function initExpandableSubmenu() {
     const expandableButtonElement = $( this );
-    const submenuContainer = expandableButtonElement.parent().parent( '.' + SIDEMENU_SUBMENU_CLASS );
+    const submenuContainer = expandableButtonElement.parent( '.' + SIDEMENU_SUBMENU_CLASS );
 
     // Init default state
     var isExpanded = submenuContainer.hasClass( SIDEMENU_SELECTED_ITEM_CLASS );
@@ -99,6 +100,13 @@
 
     enhanceSidemenu( menuElement );
 
+    // Expanding/Collapsing of the entire side menu on mobile devices
+    menuElement.children( '.' + SIDEMENU_TOGGLE_CLASS ).children( 'a' ).on( 'click', function( e ) {
+      e.preventDefault();
+      e.stopPropagation();
+      $(this).parent().toggleClass( SIDEMENU_EXPANDED_CLASS );
+    });
+
     menuElement.find( '.' + SIDEMENU_EXPANDER_CLASS ).each( initExpandableSubmenu );
   }
 
@@ -118,7 +126,7 @@
 
         // c) Has got a submenu => Enhance sidemenu's HTML
         listItem.addClass( SIDEMENU_SUBMENU_CLASS );
-        listItem.children( 'a' ).append( btnExpanderHtml );
+        $( btnExpanderHtml).insertAfter( listItem.children( 'a' ) );
       });
   }
 

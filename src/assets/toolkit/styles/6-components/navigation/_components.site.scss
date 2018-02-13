@@ -173,39 +173,46 @@ $sidemenu-delimiter-color: $green-bottle !default;
   }
 
   .has-submenu {
+    display: flex;
+
+    // Flex behaviour
+    > a { flex: 1 1; }
+    > ul { flex: 0 0 100%; }
 
     &.expanded {
       overflow: hidden;
+      flex-wrap: wrap;
 
       > ul { display: block; }
 
-      > a .btn-expander::after {
-        @include objectify( inline );
-        @include triangle( .5em .225em, $white, up );
-        top: -.62em;
-        line-height: 0;
-        content: '';
+      > .btn-expander {
+        &::after {
+          @include objectify( $position: relative );
+          top: -.15em;
+          @include triangle( .5em .2em, $sidemenu-text-color, up );
+        }
+
+        @include hoverify() {
+          &::after { @include triangle( .5em .2em, $sidemenu-text-hover-color, up ); }
+        }
       }
     }
 
     &:not(.expanded){
-      > a .btn-expander::after { content: '+'; }
+      .btn-expander::after { content: '+'; }
     }
 
-    &.active {
-      background-color: $sidemenu-background-selected;
-    }
+    &.active { background-color: $sidemenu-background-selected; }
 
     // 2nd level menu & items
     > ul {
       font-size: 95%;
-      margin: .2em 0 .75em .9em;
-      border-left: 1px solid rgba( $white, .1 );
+      padding: .2em 0 .75em .9em;
 
       > li {
-        > a {
-          padding: .3em .85em .3em .7em;
-        }
+        border-left: 1px solid rgba( $white, .1 );
+
+        > a { padding: .3em .85em .3em .7em; }
 
         &.active > a {
           padding-left: 0;
@@ -220,52 +227,72 @@ $sidemenu-delimiter-color: $green-bottle !default;
 
     // 3rd level menu & items
     .has-submenu > ul {
-      border-left: 0;
+      > li {
+        border-left: 0;
 
-      > li > a {
-        padding-left: .3em;
+        > a {
+          padding-left: .3em;
 
-        &::before { display: none; }
+          &::before { display: none; }
+        }
       }
     }
   }
 
   .btn-expander {
-    z-index: 1;
-    display: inline-block;
-    flex: 1 1 auto;
+    display: block;
+    margin: 0 .5rem;
+    @include size( 1.4em 1.4em );
     align-self: center;
-    text-align: right;
-    line-height: 0;
+    cursor: pointer;
+    text-align: center;
     font-weight: $weight-bold;
+    color: $sidemenu-text-color;
+    line-height: 1.4;
     font-size: 1.2em;
-    margin-left: .5em;
-
-    &::before {
-      @include objectify( $position: absolute );
-      z-index: -1;
-      margin-top: -.6em;
-      margin-left: -.35em;
-      @include size( 1.2em 1.2em );
-      border-radius: .6em;
-      background-color: transparent;
-    }
+    border-radius: .7em;
 
     @include hoverify() {
-      &::before {
-        background-color: rgba( $black, .2 );
+      color: $sidemenu-text-hover-color;
+      background-color: rgba( $black, .2 );
+    }
+  }
+
+  // Mobile devices *only*, allows to hide/show the sidemenu
+  .sidemenu-toggle {
+    padding: .8rem .9rem;
+    font-size: modular-scale( 2 );
+    font-weight: $weight-semibold;
+
+    a {
+      display: block;
+
+      @include extend-icon-after( list ){
+        float: right;
+        top: -.05em;
+        font-size: 115%;
       }
     }
+
+    &.expanded {
+      a::after { content: get-icon-code( caret-up-thin ); }
+    }
+  }
+
+  @include media( $desktop-and-bigger ){
+    .sidemenu-toggle { display: none; }
   }
 
   @include media( $tablet-and-smaller ){
     margin-top: 0;
     margin-bottom: 0;
+
+    .sidemenu-toggle {
+      + ul { display: none; } // The menu
+      &.expanded + ul { display: block; }
+    }
   }
 
-  @include media( $mobile-large-and-smaller ){
-    display: none;
-  }
 }
 
 
