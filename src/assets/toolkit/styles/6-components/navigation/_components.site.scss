@@ -177,11 +177,7 @@ $sidemenu-delimiter-color: $green-bottle !default;
 
     // Flex behaviour
     > a { flex: 1 1; }
-
-    > ul {
-      flex: 0 0 100%;
-    }
-
+    > ul { flex: 0 0 100%; }
 
     &.expanded {
       overflow: hidden;
@@ -189,10 +185,16 @@ $sidemenu-delimiter-color: $green-bottle !default;
 
       > ul { display: block; }
 
-      > .btn-expander::after {
-        @include objectify( $position: relative );
-        top: -.15em;
-        @include triangle( .5em .2em, $sidemenu-text-color, up );
+      > .btn-expander {
+        &::after {
+          @include objectify( $position: relative );
+          top: -.15em;
+          @include triangle( .5em .2em, $sidemenu-text-color, up );
+        }
+
+        @include hoverify() {
+          &::after { @include triangle( .5em .2em, $sidemenu-text-hover-color, up ); }
+        }
       }
     }
 
@@ -200,9 +202,7 @@ $sidemenu-delimiter-color: $green-bottle !default;
       .btn-expander::after { content: '+'; }
     }
 
-    &.active {
-      background-color: $sidemenu-background-selected;
-    }
+    &.active { background-color: $sidemenu-background-selected; }
 
     // 2nd level menu & items
     > ul {
@@ -212,9 +212,7 @@ $sidemenu-delimiter-color: $green-bottle !default;
       > li {
         border-left: 1px solid rgba( $white, .1 );
 
-        > a {
-          padding: .3em .85em .3em .7em;
-        }
+        > a { padding: .3em .85em .3em .7em; }
 
         &.active > a {
           padding-left: 0;
@@ -243,20 +241,19 @@ $sidemenu-delimiter-color: $green-bottle !default;
 
   .btn-expander {
     display: block;
-    cursor: pointer;
-    color: $sidemenu-text-color;
-    align-self: center;
-    text-align: right;
-    font-weight: $weight-bold;
     margin: 0 .5rem;
-    width: 1.4em;
-    height: 1.4em;
+    @include size( 1.4em 1.4em );
+    align-self: center;
+    cursor: pointer;
     text-align: center;
+    font-weight: $weight-bold;
+    color: $sidemenu-text-color;
     line-height: 1.4;
     font-size: 1.2em;
     border-radius: .7em;
 
     @include hoverify() {
+      color: $sidemenu-text-hover-color;
       background-color: rgba( $black, .2 );
     }
   }
@@ -278,9 +275,7 @@ $sidemenu-delimiter-color: $green-bottle !default;
     }
 
     &.expanded {
-      a::after {
-        content: get-icon-code( caret-up-thin );
-      }
+      a::after { content: get-icon-code( caret-up-thin ); }
     }
   }
 
@@ -297,6 +292,7 @@ $sidemenu-delimiter-color: $green-bottle !default;
       &.expanded + ul { display: block; }
     }
   }
+
 }
 
 
