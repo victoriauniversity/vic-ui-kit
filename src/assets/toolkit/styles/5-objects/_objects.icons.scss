@@ -81,7 +81,8 @@
     download:         '\e83E',
     audio:            '\e83F',
     quote-down:       '\e840',
-    quote-up:         '\e841'
+    quote-up:         '\e841',
+    list:             '\e842'
   );
 
 
@@ -91,6 +92,10 @@
     }
   }
 
+
+  @function get-icon-code( $icon-id ){
+    @return map-get( $icon-codes, #{$icon-id} );
+  }
 
 
 
