@@ -76,6 +76,13 @@ $promo-max-width:   60em;
         figcaption {
             padding-bottom: $base-spacing;
         }
+        @include media($mobile-large-and-smaller ) { 
+            figcaption {
+                h1 {
+                    margin-top: 0.5em;
+                }
+            }
+        }
         @include media( $tablet-and-bigger) {
             box-shadow: $base-shadow;
             display: flex;
@@ -119,7 +126,7 @@ $promo-max-width:   60em;
                 figcaption {
                     position: relative;
                     max-width: $promo-max-width;
-                    width: auto;
+                    width: 100%;
                     margin: 0 auto;
                     padding: $base-spacing * 1.5 0;
                     z-index: 1;
@@ -162,7 +169,7 @@ $promo-max-width:   60em;
                         box-shadow: 0px 3px 6.86px 0.14px rgba(0, 0, 0, 0.21);
                         margin: 3em 1.1111em;
                         text-align: left;
-                        max-width: 55%;
+                        max-width: 65%;
                         position: relative;
                         padding: 2em;
 
@@ -210,6 +217,17 @@ $promo-max-width:   60em;
                         > div {
                             max-width: 85%;
                         }
+                    }
+                }
+
+                @include media($tablet) {
+                    img {
+                        height: 100%;
+                    }
+
+                    figcaption {
+                        padding-top: 0;
+                        padding-bottom: 0;
                     }
                 }
             }
@@ -508,7 +526,8 @@ $promo-max-width:   60em;
         }
 
         section {
-            padding: 1em 1em 1em 2em ;
+            width: 100%;
+            padding: 1em 1em 1em 2em;
         }
 
         @include media( $tablet) {
@@ -520,12 +539,14 @@ $promo-max-width:   60em;
             figure {
 
                 img {
-                    position: relative;
-                    top: 35%;
+                    position: absolute;
+                    bottom: 5%;
                 }
 
                 figcaption {
-                    top: 0;
+                    // bottom: 1em;
+                    // top: unset;
+                    width: 90%;
                 }
             }   
         }
@@ -537,6 +558,19 @@ $promo-max-width:   60em;
 
                 figure {
                     width: 100%;
+
+                    img {
+                        position: relative;
+                    }
+
+                    figcaption {
+                        position: initial;
+                        width: 100%;
+
+                        h2 {
+                            margin-bottom: .7em;
+                        }
+                    }
                 }
             }
         }

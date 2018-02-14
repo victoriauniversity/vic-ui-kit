@@ -98,4 +98,26 @@
         
       }
     }
+
+    a {
+      @include hoverify() {
+        figure {
+          border-left-color: $blue-st-tropaz;
+
+          blockquote {
+            * {
+              color: $blue-st-tropaz;
+            }
+            &:before,
+            &:after {
+              color: $blue-st-tropaz;
+            }
+          }
+
+          figcaption {
+            // color: $blue-st-tropaz
+          }
+        }
+      }
+    }
   }
