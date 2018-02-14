@@ -100,19 +100,17 @@
             
           }
 
-          &.experience,
-          &.study,
-          &.about,
-          &.research {
+
           &.active {
               border-bottom: 2px solid $white;
               &:hover {
               border-bottom: 2px solid $grey-silver;
               }
             }
-            &:hover {
-              opacity: $base-hover-opacity;
-            }
+          
+
+          &:hover {
+            opacity: $base-hover-opacity;
           }
       
 /*           &:not(:first-child) {
@@ -307,7 +305,7 @@
                 display: none;
               }
               a {
-                font-size: 1.4rem;
+                font-size: 1.1rem;
                 padding: 1rem 1.5rem;
                 margin-bottom: 0;
                 border-bottom: 2px solid $grey-dove;
@@ -442,17 +440,27 @@
           &.main-nav {
             .menu-bar {
               a {
+                padding: 0 $base-spacing/2.5;
+
                 @include media( $tablet-and-bigger ) {
-                  font-size: 1.5vw; 
+                  font-size: 1.1rem; 
                 }
-                padding: 0 $base-spacing/2;
+
                 @include media( $desktop-and-smaller ) {
-                  font-size: 2vw;
+                  // font-size: 1.4vw;
                 }
 
                 @include media( $mobile-large-and-smaller ) {
-                  font-size: 1.4rem;
+                  font-size: 1.2rem;
                   padding: 1rem 1.5rem;
+                }
+
+                /* Fix for search icon breaking */
+                @media screen and (min-width: 1097px ) and (max-width: 1150px) {
+                  &.search-item {
+                    position: absolute;
+                    right: 1rem;
+                  }
                 }
                 
               }
