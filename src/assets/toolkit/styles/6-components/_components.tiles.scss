@@ -268,6 +268,15 @@ $tile-height: rem( 200px);
               border-color: transparent;
             }
           }
+
+          @include media ($desktop) {
+            width: ( 100 - 3 * 1%) / 4;
+            margin-right: 1%;
+    
+            &:nth-child( 4n) {
+              margin-right: 0;
+            }
+          }
         }
       }
     }
