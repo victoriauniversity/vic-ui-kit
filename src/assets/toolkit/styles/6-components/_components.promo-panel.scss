@@ -521,10 +521,11 @@ $promo-max-width:   60em;
             figcaption {
                 position: absolute;
                 background-color: $green-victoria;
-                width: 80%;
+                width: 100%;
+                max-width: 85%;
                 padding: 1em;
                 left: 0;
-                bottom: 2em;
+                top: 2em;
 
                 h1,
                 h2,
@@ -542,13 +543,15 @@ $promo-max-width:   60em;
             padding: 1em 1em 1em 2em;
         }
 
-        @include media( $tablet) {
+        @include media( $tablet-and-smaller) {
 
             > div {
                 align-items: stretch;
             }
 
             figure {
+                display: flex;
+                flex-direction: column;
 
                 img {
                     // position: absolute;
@@ -557,10 +560,13 @@ $promo-max-width:   60em;
                 }
 
                 figcaption {
-                    bottom: 6%;
+                    // bottom: 6%;
                     // top: unset;
-                    width: 94%;
+                    max-width: 94%;
                     position: relative;
+                    order: -1;
+                    margin-right: auto;
+                    top: 0;
                 }
             }   
         }
@@ -574,17 +580,12 @@ $promo-max-width:   60em;
                     width: 100%;
 
                     img {
-                        position: relative;
+                        padding-left: 0;
                     }
 
                     figcaption {
-                        position: relative;
                         bottom: 0;
-                        width: 100%;
-
-                        h2 {
-                            margin-bottom: .7em;
-                        }
+                        max-width: 100%;
                     }
                 }
             }
