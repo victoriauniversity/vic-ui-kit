@@ -11,9 +11,14 @@
 				text-align: left;
 				padding: 1.5em;
 
-				h1{
+				h1 {
 					font-size: 3em;
 					margin-bottom: 0;
+						
+					// IE 10+ fix bg not covering text
+					@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+						float: left;
+					}
 				}
 				p {
 					font-size: 1.45em;

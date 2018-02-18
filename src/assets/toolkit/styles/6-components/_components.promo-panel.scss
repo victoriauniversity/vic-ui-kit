@@ -182,6 +182,11 @@ $promo-max-width:   60em;
                             top: -1.8rem;
                             padding: .8rem 1rem;
                             background-color: $green-victoria;
+
+                            // IE 10+ fix bg not covering text
+                            @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+                                float: left;
+                             }
                         }
 
                         p {
