@@ -263,12 +263,12 @@ $sidemenu-delimiter-color: $green-bottle !default;
 
   // Mobile devices *only*, allows to hide/show the sidemenu
   .sidemenu-toggle {
-    padding: .8rem .9rem;
     font-size: modular-scale( 2 );
     font-weight: $weight-semibold;
 
     a {
       display: block;
+      padding: .8rem .9rem;
 
       @include extend-icon-after( list ){
         float: right;
@@ -294,6 +294,21 @@ $sidemenu-delimiter-color: $green-bottle !default;
       + ul { display: none; } // The menu
       &.expanded + ul { display: block; }
     }
+  }
+
+  @include media( $mobile-large-and-smaller ){
+    .btn-expander {
+      @include size( auto auto );
+      margin: 0 .35rem 0 0;
+      line-height: 1.5;
+
+      &::after {
+        display: inline-block;
+        margin: 0 .85em;
+      }
+    }
+
+    .expanded > ul { font-size: 100%; }
   }
 
 }
