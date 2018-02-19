@@ -133,3 +133,31 @@
       }
     }
   }
+
+  /* Research hub Sidebar featured researcher profile */
+
+  #rightHandMenu {
+    .data-sidebar {
+      &.featured-researcher {
+
+        .profile-picture {
+          margin-bottom: .7rem;
+        }
+
+        @include media($mobile-large-and-smaller) {
+          
+          .profile-picture {
+            width: 20%;
+            max-width: $portrait-width; 
+            float: left;
+            margin-right: $column-padding;
+          }
+
+          .summary {
+            overflow: hidden;
+          }
+        }
+      }
+
+    }
+  }
