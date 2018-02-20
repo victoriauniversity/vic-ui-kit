@@ -81,8 +81,11 @@
   .centraliser {
     > .block {
       .grid > * {
-        @include span-columns( 4 of 12);
-        @include omega( 3n);
+        
+        @include media( $tablet-and-bigger ) {
+          @include span-columns( 4 of 12);
+          @include omega( 3n);
+        }
       }
     }
   }
