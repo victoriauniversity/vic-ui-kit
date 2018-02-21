@@ -100,11 +100,8 @@
     }
     .related-links {
       display: flex;
-      // align-items: center;
-
 
       .related-link {
-        // width: 24%;
         flex: 24% 0 1;
         display: flex;
         flex-direction: column;
@@ -114,23 +111,20 @@
         background-color: $green-victoria;
         border-radius: 5px;
 
+        text-align: center;
+        color: $white;
         
         &:not(:last-child) {
           margin-right: 1%;
         }
         
-        a {
-          text-align: center;
-          color: $white;
-        }
 
         @include hoverify() {
           background-color: darken($green-victoria, 5%);
           transition: .8s ease-in-out;
-          
-          a {
-            text-decoration: underline;
-          }
+
+          text-decoration: underline;
+
         }
 
       }
