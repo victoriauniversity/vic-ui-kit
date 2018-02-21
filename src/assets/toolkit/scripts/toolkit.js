@@ -8,6 +8,7 @@
   Headroom      = require('headroom.js'),
   picturefill   = require('picturefill'),
   lity          = require('lity'),
+  cookie        = require('cookies-js'),
   enquire       = require('enquire.js');
 
   require('./study-areas.js'); //TODO: set up multiple entry points for webpack bundles
@@ -132,6 +133,128 @@
 
 
 
+  /** Popup launcher. */
+  function initPopupBox( popupElement, { delayInMs = 7000, suppressAfterCanceling = true } = {} ){
+
+    const COOKIE_ID       = popupElement.get( 0 ).id || 'popup';
+    const COOKIE_SETTINGS = {
+      expires: 2419200, // 28 days
+      //secure  : true    //If set to true the secure attribute of the cookie
+    };
+
+    let popupContainerElement = popupElement.parent( `.popup-positioner` );
+
+    popupContainerElement = popupContainerElement.length ? popupContainerElement : null;
+
+    const buttonOkElement       = popupElement.find( '.button-ok' );
+    const buttonCancelElement   = popupElement.find( '.button-cancel' );
+    const buttonCloseElement    = popupElement.find( '.btn-close' );
+
+    const IS_SHOWN_CLASS        = 'shown';
+
+
+    // Attach button events
+    function bindButtonEvents() {
+      buttonCloseElement.on( 'click', close );
+      buttonCancelElement.on( 'click', cancel );
+      buttonOkElement.on( 'click', submit );
+    }
+
+    function unbindButtonEvents() {
+      buttonCloseElement.off( 'click', close );
+      buttonCancelElement.off( 'click', cancel );
+      buttonOkElement.off( 'click', submit );
+    }
+
+    function close( event ){
+      // If `positionerClass` exists, hide + save 'hidden' to cookies
+      event.preventDefault();
+      event.stopPropagation();
+      closePopup();
+    }
+
+    function submit( event ){
+      // If `positionerClass` exists, hide + save 'hidden' to cookies + continue to the page
+      closePopup();
+    }
+
+    function cancel( event ){
+      // If `positionerClass` exists, hide + save 'hidden' to cookies + continue to the page
+      closePopup();
+    }
+
+    function showPopup() {
+      bindButtonEvents();
+      addShownClass();
+    }
+
+    function addShownClass() {
+    if ( popupContainerElement ) {
+        $( document.body ).append( popupContainerElement );
+        popupContainerElement.addClass( IS_SHOWN_CLASS );
+        //popupContainerElement.fadeIn( 'slow', function() {});
+      } else {
+        popupElement.addClass( IS_SHOWN_CLASS );
+      }
+    }
+
+    function removeShownClass() {
+      if ( popupContainerElement ) {
+        popupContainerElement.removeClass( IS_SHOWN_CLASS );
+        //popupContainerElement.fadeOut( 'slow', function() {});
+      } else {
+        popupElement.removeClass( IS_SHOWN_CLASS );
+      }
+    }
+
+    function isPopupShown(){
+      return popupElement.attr( 'data-shown' ) == 'true';
+    }
+
+    function closePopup() {
+      unbindButtonEvents();
+      popupElement.attr( 'data-shown', false );
+      removeShownClass();
+
+      if ( suppressAfterCanceling ) closePopupPermanently();
+    }
+
+    function closePopupPermanently() {
+      cookie.set( COOKIE_ID, true, COOKIE_SETTINGS );
+    }
+
+    // Constructor
+    (function init() {
+      const shouldShowPopup = !suppressAfterCanceling || ( cookie.get( COOKIE_ID ) === undefined || !cookie.get( COOKIE_ID ) );
+
+      if ( shouldShowPopup && !isPopupShown() ) {
+        popupElement.attr( 'data-shown', true ); // Must be added here to prevent triggering setTimeout when clicking multiple time
+
+        // If there's a positioner available, display after the timeout!
+        setTimeout( () => {
+          showPopup();
+        }, delayInMs );
+      }
+    })();
+
+  }
+
+
+  /**
+   * Function called on the jQuery Element, opens it as a popup.
+   *
+   * @param {Object} { delayInMs = 0, suppressAfterCanceling = false }
+   *
+   * @returns {DOMElement}
+   */
+  function openPopup( { delayInMs = 0, suppressAfterCanceling = false } = {} ){
+    initPopupBox( this, { delayInMs: delayInMs, suppressAfterCanceling: suppressAfterCanceling } );
+
+    return this;
+  }
+
+
+
 $(function(){
 
 	fastclick.attach(document.body);
@@ -143,6 +266,24 @@ $(function(){
   if ( $( '.' + SIDEMENU_CLASS ).length ) {
     initSidemenuExpandability();
   }
+
+  // Find all existing popups and if they contain `data-autoload` attribute,
+  // trigger autoloading automatically.
+  $( '.popup' ).each( function() {
+    var popupElement = $( this )
+    if ( popupElement.attr( 'data-autoload' ) !== undefined ){
+      // Autoload (~ show/hide) popup
+      var optionsObject = {};
+
+      if ( popupElement.attr( 'data-opts' ) !== undefined ) {
+        optionsObject = JSON.parse( popupElement.attr( 'data-opts' ) );
+      }
+
+      initPopupBox( popupElement, optionsObject );
+    }
+  });
+
+
 
 	//http://wicky.nillia.ms/enquire.js/
 	enquire.register(MOBILE_LARGE_AND_SMALLER, function() {
@@ -285,5 +426,18 @@ $(function(){
 			event.stopPropagation();
 		 });
    });
-
 });
+
+
+
+/**
+ * jQuery's plugin as a utility factory
+ * Usage as: $( jquerySelector ).vicApp().method( options )
+ */
+(function( $ ) {
+  $.fn.vicApp = function () {
+    return {
+      openPopup: openPopup.bind( this )
+    };
+  }
+})( jQuery );

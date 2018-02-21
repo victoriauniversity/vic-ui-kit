@@ -1,6 +1,6 @@
 /** General fixed popup. */
 
-$popup-width:              290px;
+$popup-width:              24rem;
 $popup-border:             #fff;
 $popup-button-close-color: $black-tundora;
 
@@ -13,13 +13,19 @@ $popup-button-close-color: $black-tundora;
   margin: 0 0 2.5em 5%;
   width: $popup-width;
 
-  &.show { display: block; }
+  &.shown { display: block; }
 }
 
 .popup {
+  display: none;
   padding: $block-padding;
   background-color: $grey-gallery;
   box-shadow: 0 2px 7px rgba( #000, .35 );
+
+  .shown &,
+  &.shown {
+    display: block;
+  }
 
   & > header {
     font-size: 90%;

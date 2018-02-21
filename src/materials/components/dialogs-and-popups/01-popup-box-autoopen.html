@@ -1,0 +1,38 @@
+---
+notes: >
+
+  Popup box that opens automatically after a page is loaded.
+  <br>
+  <br>
+  **Requirements**:
+   - `id` of the element with class 'popup' has to be unique.
+  <br>
+  <br>
+  **HTML attributes**:
+   - `data-autoload` (required): Initialises the auto-loading.
+   - `data-opts` (optional): Valid JSON Object allowing to customise auto-loading behaviour. Properties: `delayInMs` (default: 3000) - How long after the page loads should the popup box appear. `suppressAfterCanceling` (default: true) - Once the user cancels or closes the popup, the popup will (not) load again next time the same page is loaded.
+---
+
+<div class="popup-positioner">
+  <aside class="popup" id="popup-example4"
+    role="dialog"
+    data-autoload
+    data-opts='{ "delayInMs": 3500 }'
+    aria-labelledby="popup-label"
+    aria-describedby="popup-description" aria-live="polite">
+
+    <header>
+      <a href="javascript:;" class="btn-close" title="Close and don't show again">&times;</a>
+      <h2 class="caption" id="popup-label">Auto-opening popup box</h2>
+    </header>
+
+    <div class="body formatting">
+      <p id="popup-description">Pops up immediately after page load, or after a additional time delay</p>
+      <div class="btn-holder">
+          <a class="button button-cancel" href="javascript:;" title="Hide the popup">No, thanks</a>
+          <a class="button primary button-ok" href="https://qualtrics.com" title="Go to the short survey" target="_blank">Take the survey</a>
+      </div>
+    </div>
+
+  </aside>
+</div>
