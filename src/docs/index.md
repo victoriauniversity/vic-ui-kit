@@ -2,23 +2,22 @@
 
 # Victoria UI Kit
 
-[![GitHub stable release](https://img.shields.io/github/release/victoriauniversity/vic-ui-kit.svg?label=last%20stable%20release)]() 
 [ ![Codeship Status for victoriauniversity/vic-ui-kit](https://app.codeship.com/projects/6f8cf750-81fe-0134-4879-1e33cd15468d/status)](https://app.codeship.com/projects/182365)
 
-[Changelog](https://github.com/victoriauniversity/vic-ui-kit/blob/master/CHANGELOG.md) &mdash; [Project at GitHub](https://github.com/victoriauniversity/vic-ui-kit) &mdash; [Releases/Download](https://github.com/victoriauniversity/victoria-ui-releases/releases)
 
-
-**Victoria UI Kit is a style guide and UI pattern library providing base CSS, JavaScript and HTML markup required to build websites and applications affiliated with [Victoria University of Wellington](https://www.victoria.ac.nz)**.
-
-By building new web projects on top of this library, developers can quickly reuse out of the box layouts and UI components, gaining following advantages:
-
- * Saving a lot of development time by not 'reinventing the wheel'
- * Using code that has been extensively tested and conforms to the front end best practices
- * Consistent 'Victoria look' (brand colours, paddings, typography, fonts and many more)
- * New features, improvements and bug fixes with simple update (can be fully automated)
+**Victoria UI Kit is a style guide and UI pattern library providing base CSS, JavaScript and HTML markup required to build websites and applications on the main Victoria Web channel**.
 
 
 
+<div class="flash-message error">
+
+  If you wish to use this UI Kit you need to contact [Nathan Irwin](http://www.victoria.ac.nz/search?q=Nathan+Irwin&site=people_search_collection) or other members of the [Web Team].
+
+  This isn't a supported self service UI package.
+
+</div>
+
+If you require branding for your applcation please see our application [Brand guide](http://toolkit.victoria.ac.nz/digital-brand) 
 
 
 <a name="start"></a>
@@ -47,28 +46,10 @@ yarn add https://github.com/victoriauniversity/victoria-ui-releases.git#releases
 
 
 
-
-
-## Next Steps
-
-If you plan to **build new application and override or extend Victoria UI's code base**, it is highly recommended to understand and follow basic architectural principles first. In that case, start by reading through [Architecture & Layout](/architecture-layout.html).
-
-In case you are **only maintaining** already built application based on Victoria UI, explore all available [Components](/components.html) and see how they can be best used in [Examples](/examples.html).
-
-<div class="flash-message warning">
-  <p>
-  If your web application extends Victoria UI code base and adds new components or alters existing ones, you need to follow its documentation to learn about all the differences.
-  </p>
-</div>
-
-
-
-
-
 <a name="contribution"></a>
 ## How to contribute
 
-Even though the Victoria UI library is mostly maintained by the [Web Team], any form of contribution is highly appreciated.
+Even though the Victoria UI library is maintained by the [Web Team], any form of contribution is highly appreciated.
 
 To report a bug, request a feature or simply discuss your ideas, please either: 
  * submit a ticket in [project's GitHub repository](https://github.com/victoriauniversity/vic-ui-kit/issues), or
@@ -90,9 +71,4 @@ For any urgent inquiries, contact [Nathan Irwin](http://www.victoria.ac.nz/searc
 
 
 
-
-
-
-
-
-[Web Team]: http://www.victoria.ac.nz/search?q=web+developer&site=people_search_collection
+[Web Team]: http://www.victoria.ac.nz/search?q=web+team&site=people_search_collection
