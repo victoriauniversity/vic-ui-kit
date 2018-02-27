@@ -4,12 +4,15 @@
 
 
  /* DEPENDENCIES & 3RD PARTY LIBRARIES IMPORTS */
-  var fastclick = require('fastclick'),
+  var $     = require('jquery'),
+  fastclick = require('fastclick'),
   Headroom      = require('headroom.js'),
   picturefill   = require('picturefill'),
   lity          = require('lity'),
   cookie        = require('cookies-js'),
   enquire       = require('enquire.js');
+
+  var jQuery = $;
 
   require('./study-areas.js'); //TODO: set up multiple entry points for webpack bundles
 
