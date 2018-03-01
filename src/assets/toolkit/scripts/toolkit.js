@@ -12,7 +12,8 @@
   cookie        = require('cookies-js'),
   enquire       = require('enquire.js');
 
-  var jQuery = $;
+  // Export to the global namespace (~ window)
+  window.$ = window.jQuery = $;
 
   require('./study-areas.js'); //TODO: set up multiple entry points for webpack bundles
 
@@ -263,10 +264,11 @@
    * @returns {DOMElement}
    */
   function openPopup( { delayInMs = 0, suppressAfterCanceling = false } = {} ){
+    console.log( '>>> ', this );
     initPopupBox( this, { delayInMs: delayInMs, suppressAfterCanceling: suppressAfterCanceling } );
 
     return this;
-    }
+  }
 
 
   const GTM_TRACK_ATTRIBUTE = 'data-gtm-track';
@@ -510,6 +512,9 @@ $(function(){
  * Usage as: $( jquerySelector ).vicApp().method( options )
  */
 (function( $ ) {
+
+  console.log( '!!!', $ );
+
   $.fn.vicApp = function () {
     return {
       openPopup: openPopup.bind( this )
