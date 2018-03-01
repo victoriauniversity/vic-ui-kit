@@ -111,7 +111,15 @@
       $(this).parent().toggleClass( SIDEMENU_EXPANDED_CLASS );
     });
 
-    menuElement.find( '.' + SIDEMENU_EXPANDER_CLASS ).each( initExpandableSubmenu );
+    const expandableButtons = menuElement.find( '.' + SIDEMENU_EXPANDER_CLASS );
+
+    // Add tracking if enabled
+    if ( shouldTrackByGtm( menuElement ) ){
+      addGtmTrackingListeners( menuElement.find( 'li > a' ), 'click', 'sidemenu-link' );
+      addGtmTrackingListeners( expandableButtons, 'click', 'sidemenu-expander' );
+    }
+
+    expandableButtons.each( initExpandableSubmenu );
   }
 
   //TODO: Remove after this was implemented on the backend (~ in Squiz)
@@ -189,6 +197,10 @@
     function showPopup() {
       bindButtonEvents();
       addShownClass();
+
+      if ( shouldTrackByGtm( popupElement ) ){
+        pushTrackingInfoToGtm( popupElement.get( 0 ).id, 'open' );
+      }
     }
 
     function addShownClass() {
@@ -254,8 +266,59 @@
     initPopupBox( this, { delayInMs: delayInMs, suppressAfterCanceling: suppressAfterCanceling } );
 
     return this;
+    }
+
+
+const GTM_TRACK_ATTRIBUTE = 'data-gtm-track';
+const GTM_ID_ATTRIBUTE    = 'data-gtm-id';
+
+  var dataLayer = [];
+
+  function autoregisterGtmTrackingListeners() {
+    addGtmTrackingListeners( $( `[${GTM_TRACK_ATTRIBUTE}]` ) );
   }
 
+  function addGtmTrackingListeners( elementsList, eventType, trackingId ) {
+    elementsList.each( function() {
+      var elementToTrack = $( this );
+
+      eventType = eventType || elementToTrack.attr( GTM_TRACK_ATTRIBUTE ) || 'auto';
+      trackingId = trackingId || elementToTrack.attr( GTM_ID_ATTRIBUTE ) || elementToTrack[ 0 ].id
+
+      //console.log( '>>> Tracking: ', elementToTrack, eventType );
+
+      switch( eventType ) {
+        case 'click': {
+          elementToTrack.on( eventType, function( event ) {
+            dataLayer.push({
+              'custom.id': trackingId,
+              'custom.selector': event.target,
+              'custom.eventType': event.type,
+              'custom.href': event.currentTarget.href,
+              'custom.text': event.currentTarget.text
+            });
+          });
+        }; break;
+        case 'auto': break;
+        default: {
+          console.warn( `GTM: Tracking of event '${eventType}' is not supported. Please, change it.` )
+        }
+      }
+    });
+  }
+
+  function pushTrackingInfoToGtm( trackingId, eventType ){
+    dataLayer.push({
+      'custom.id':        trackingId,
+      'custom.eventType': eventType,
+    });
+    //console.log( '!!! Pushing into dataLayer!', dataLayer );
+  }
+
+
+  function shouldTrackByGtm( element ){
+    return Boolean( element.attr( GTM_TRACK_ATTRIBUTE ) !== undefined );
+  }
 
 
 $(function(){
@@ -285,6 +348,16 @@ $(function(){
       initPopupBox( popupElement, optionsObject );
     }
   });
+
+
+
+  /** GOOGLE TAG MANAGER */
+
+  /** Auto-register all on-demand elements to track for GTM. */
+  setTimeout( autoregisterGtmTrackingListeners, 0 ); // To trigger after previous DOM re-renders
+
+  /** Any element or set of elements can be dynamically tracked this way */
+  // addGtmTrackingListeners( jQueryElements, trackingId, eventType );
 
 
 

@@ -4,9 +4,13 @@ notes: >
   Left-hand side menu that can accommodate up to 4 levels of navigational depth.<br>
   <br>
   _Requirements: To enable dynamic expanding/collapsing of sub-menus, the function `initSidemenuExpandability` from `toolkit.js` has to be included and called after document has fully loaded._
+  <br>
+  <br>
+  **HTML attributes**:
+   - `data-gtm-track` (optional): If specified, send tracking information about clicks to expand/collapse buttons and menu links to Google Tag Manager.
 
 ---
-<nav class="sidemenu" role="navigation">
+<nav class="sidemenu" role="navigation" data-gtm-track>
 
   <!-- Mobile devices *only* sidemenu control -->
   <h1 class="sidemenu-toggle"><a href="#" title="Show/Hide Research menu">Research menu</a></h1>
