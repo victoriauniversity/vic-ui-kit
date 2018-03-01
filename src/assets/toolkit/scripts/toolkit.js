@@ -269,10 +269,9 @@
     }
 
 
-const GTM_TRACK_ATTRIBUTE = 'data-gtm-track';
-const GTM_ID_ATTRIBUTE    = 'data-gtm-id';
+  const GTM_TRACK_ATTRIBUTE = 'data-gtm-track';
+  const GTM_ID_ATTRIBUTE    = 'data-gtm-id';
 
-  var dataLayer = [];
 
   function autoregisterGtmTrackingListeners() {
     addGtmTrackingListeners( $( `[${GTM_TRACK_ATTRIBUTE}]` ) );
