@@ -1,0 +1,74 @@
+/** General fixed popup. */
+
+$popup-width:              24rem;
+$popup-border:             #fff;
+$popup-button-close-color: $black-tundora;
+
+/* Positions popup within a page. */
+.popup-positioner {
+  z-index: $z-index-max;
+  display: none;
+  position: fixed;
+  bottom: 0;
+  margin: 0 0 2.5em 5%;
+  width: $popup-width;
+
+  &.shown { display: block; }
+}
+
+.popup {
+  display: none;
+  padding: $block-padding;
+  background-color: $grey-gallery;
+  box-shadow: 0 2px 7px rgba( #000, .35 );
+
+  .shown &,
+  &.shown {
+    display: block;
+  }
+
+  & > header {
+    font-size: 90%;
+
+    //.caption {}
+
+    // 'x' button
+    .btn-close {
+      opacity: .4;
+      display: block;
+      float: right;
+      margin-left: .25em;
+      padding: 0 .35em;
+      color: $popup-button-close-color;
+      font-size: 170%;
+      line-height: 1;
+
+      @include hoverify { opacity: 1; }
+    }
+  }
+
+  .body {
+    margin-top: $base-spacing;
+
+    // Remove the icon
+    .button:not(.primary)::after{ display: none; }
+  }
+
+  .btn-holder {
+    .btn { margin: 0; }
+  }
+}
+
+@include breakpoint( $mobile-large-and-smaller ) {
+  .popup-positioner {
+    top: 0;
+    bottom: auto;
+    margin: 0;
+    width: 100%
+  }
+
+  .popup { margin: 0; }
+}
+
+  // Feedback popup
+  //.feedback {}

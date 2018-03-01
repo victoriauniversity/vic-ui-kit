@@ -1,36 +1,38 @@
+var $     = require('jquery');
+
 $(function(){
 
 
 	//filterTags parameter only needed for postgrad quals filter..
 	function searchFilter(targetElements, searchInput, minQueryLength, filterTags) {
-		
+
 		var $targetElements = $(targetElements);
 		var $searchInput = $(searchInput);
 		var MIN_QUERY_LENGTH = minQueryLength;
-	
+
 		// console.time('removing accents from all elements');
 		$targetElements.each(function(){
 			var $this = $(this);
-	
+
 			$this.data('search-text', accent_fold($this.text()).toLowerCase());
 			$this.data('search-keywords', accent_fold($this.data('search-keywords')).toLowerCase());
 		});
 		// console.timeEnd('removing accents from all elements');
-	
+
 		$searchInput.on('propertychange change click keyup input paste', function(_event) {
 			var _query = _event.currentTarget.value;
-	
+
 			if (_query.length < MIN_QUERY_LENGTH) {
 				$targetElements.toggleClass('is-matching', false);
 				$targetElements.toggleClass('is-not-matching', false);
 				return;
 			}
-	
+
 			_query = accent_fold(_query).toLowerCase();
-	
+
 			$targetElements.each(function(){
 				var $this = $(this);
-	
+
 				if ($this.data('search-text').indexOf(_query) !== -1 ||
 					$this.data('search-keywords').indexOf(_query) !== -1) {
 					$this.toggleClass('is-matching', true);
@@ -41,18 +43,18 @@ $(function(){
 				}
 			});
 		});
-	
+
 		var tags = $(filterTags);
 
 		if (tags !== null) {
-			
+
 			tags.each( function() {
 				//on tag click update input to filter
 				$(this).on('click', function(e){
 					$(this).siblings().removeClass('tag-active');
 					$(this).addClass('tag-active');
 
-		
+
 					if ( $(this).text() !== "All" ) {
 						$(searchInput).val('');
 						$(searchInput).val($(this).text()).change();
@@ -66,18 +68,18 @@ $(function(){
 							if( (index + 1) % 4 === 0 ) {
 								$(this).css('margin-right', '0%');
 							}
-							
+
 						});
 
 					} else {
 						$(searchInput).val('').change();
 						$(targetElements).css('margin-right', '');
 					}
-					
+
 				});
-			
+
 			});
-		} 
+		}
 
 	}
 

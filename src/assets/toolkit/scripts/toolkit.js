@@ -4,11 +4,15 @@
 
 
  /* DEPENDENCIES & 3RD PARTY LIBRARIES IMPORTS */
-  var fastclick = require('fastclick'),
+  var $     = require('jquery'),
+  fastclick = require('fastclick'),
   Headroom      = require('headroom.js'),
   picturefill   = require('picturefill'),
   lity          = require('lity'),
+  cookie        = require('cookies-js'),
   enquire       = require('enquire.js');
+
+  var jQuery = $;
 
   require('./study-areas.js'); //TODO: set up multiple entry points for webpack bundles
 
@@ -107,7 +111,15 @@
       $(this).parent().toggleClass( SIDEMENU_EXPANDED_CLASS );
     });
 
-    menuElement.find( '.' + SIDEMENU_EXPANDER_CLASS ).each( initExpandableSubmenu );
+    const expandableButtons = menuElement.find( '.' + SIDEMENU_EXPANDER_CLASS );
+
+    // Add tracking if enabled
+    if ( shouldTrackByGtm( menuElement ) ){
+      addGtmTrackingListeners( menuElement.find( 'li > a' ), 'click', 'sidemenu-link' );
+      addGtmTrackingListeners( expandableButtons, 'click', 'sidemenu-expander' );
+    }
+
+    expandableButtons.each( initExpandableSubmenu );
   }
 
   //TODO: Remove after this was implemented on the backend (~ in Squiz)
@@ -132,6 +144,183 @@
 
 
 
+  /** Popup launcher. */
+  function initPopupBox( popupElement, { delayInMs = 7000, suppressAfterCanceling = true } = {} ){
+
+    const COOKIE_ID       = popupElement.get( 0 ).id || 'popup';
+    const COOKIE_SETTINGS = {
+      expires: 2419200, // 28 days
+      //secure  : true    //If set to true the secure attribute of the cookie
+    };
+
+    let popupContainerElement = popupElement.parent( `.popup-positioner` );
+
+    popupContainerElement = popupContainerElement.length ? popupContainerElement : null;
+
+    const buttonOkElement       = popupElement.find( '.button-ok' );
+    const buttonCancelElement   = popupElement.find( '.button-cancel' );
+    const buttonCloseElement    = popupElement.find( '.btn-close' );
+
+    const IS_SHOWN_CLASS        = 'shown';
+
+
+    // Attach button events
+    function bindButtonEvents() {
+      buttonCloseElement.on( 'click', close );
+      buttonCancelElement.on( 'click', cancel );
+      buttonOkElement.on( 'click', submit );
+    }
+
+    function unbindButtonEvents() {
+      buttonCloseElement.off( 'click', close );
+      buttonCancelElement.off( 'click', cancel );
+      buttonOkElement.off( 'click', submit );
+    }
+
+    function close( event ){
+      // If `positionerClass` exists, hide + save 'hidden' to cookies
+      event.preventDefault();
+      event.stopPropagation();
+      closePopup();
+    }
+
+    function submit( event ){
+      // If `positionerClass` exists, hide + save 'hidden' to cookies + continue to the page
+      closePopup();
+    }
+
+    function cancel( event ){
+      // If `positionerClass` exists, hide + save 'hidden' to cookies + continue to the page
+      closePopup();
+    }
+
+    function showPopup() {
+      bindButtonEvents();
+      addShownClass();
+
+      if ( shouldTrackByGtm( popupElement ) ){
+        pushTrackingInfoToGtm( popupElement.get( 0 ).id, 'open' );
+      }
+    }
+
+    function addShownClass() {
+    if ( popupContainerElement ) {
+        $( document.body ).append( popupContainerElement );
+        popupContainerElement.addClass( IS_SHOWN_CLASS );
+        //popupContainerElement.fadeIn( 'slow', function() {});
+      } else {
+        popupElement.addClass( IS_SHOWN_CLASS );
+      }
+    }
+
+    function removeShownClass() {
+      if ( popupContainerElement ) {
+        popupContainerElement.removeClass( IS_SHOWN_CLASS );
+        //popupContainerElement.fadeOut( 'slow', function() {});
+      } else {
+        popupElement.removeClass( IS_SHOWN_CLASS );
+      }
+    }
+
+    function isPopupShown(){
+      return popupElement.attr( 'data-shown' ) == 'true';
+    }
+
+    function closePopup() {
+      unbindButtonEvents();
+      popupElement.attr( 'data-shown', false );
+      removeShownClass();
+
+      if ( suppressAfterCanceling ) closePopupPermanently();
+    }
+
+    function closePopupPermanently() {
+      cookie.set( COOKIE_ID, true, COOKIE_SETTINGS );
+    }
+
+    // Constructor
+    (function init() {
+      const shouldShowPopup = !suppressAfterCanceling || ( cookie.get( COOKIE_ID ) === undefined || !cookie.get( COOKIE_ID ) );
+
+      if ( shouldShowPopup && !isPopupShown() ) {
+        popupElement.attr( 'data-shown', true ); // Must be added here to prevent triggering setTimeout when clicking multiple time
+
+        // If there's a positioner available, display after the timeout!
+        setTimeout( () => {
+          showPopup();
+        }, delayInMs );
+      }
+    })();
+
+  }
+
+
+  /**
+   * Function called on the jQuery Element, opens it as a popup.
+   *
+   * @param {Object} { delayInMs = 0, suppressAfterCanceling = false }
+   *
+   * @returns {DOMElement}
+   */
+  function openPopup( { delayInMs = 0, suppressAfterCanceling = false } = {} ){
+    initPopupBox( this, { delayInMs: delayInMs, suppressAfterCanceling: suppressAfterCanceling } );
+
+    return this;
+    }
+
+
+const GTM_TRACK_ATTRIBUTE = 'data-gtm-track';
+const GTM_ID_ATTRIBUTE    = 'data-gtm-id';
+
+  var dataLayer = [];
+
+  function autoregisterGtmTrackingListeners() {
+    addGtmTrackingListeners( $( `[${GTM_TRACK_ATTRIBUTE}]` ) );
+  }
+
+  function addGtmTrackingListeners( elementsList, eventType, trackingId ) {
+    elementsList.each( function() {
+      var elementToTrack = $( this );
+
+      eventType = eventType || elementToTrack.attr( GTM_TRACK_ATTRIBUTE ) || 'auto';
+      trackingId = trackingId || elementToTrack.attr( GTM_ID_ATTRIBUTE ) || elementToTrack[ 0 ].id
+
+      //console.log( '>>> Tracking: ', elementToTrack, eventType );
+
+      switch( eventType ) {
+        case 'click': {
+          elementToTrack.on( eventType, function( event ) {
+            dataLayer.push({
+              'custom.id': trackingId,
+              'custom.selector': event.target,
+              'custom.eventType': event.type,
+              'custom.href': event.currentTarget.href,
+              'custom.text': event.currentTarget.text
+            });
+          });
+        }; break;
+        case 'auto': break;
+        default: {
+          console.warn( `GTM: Tracking of event '${eventType}' is not supported. Please, change it.` )
+        }
+      }
+    });
+  }
+
+  function pushTrackingInfoToGtm( trackingId, eventType ){
+    dataLayer.push({
+      'custom.id':        trackingId,
+      'custom.eventType': eventType,
+    });
+    //console.log( '!!! Pushing into dataLayer!', dataLayer );
+  }
+
+
+  function shouldTrackByGtm( element ){
+    return Boolean( element.attr( GTM_TRACK_ATTRIBUTE ) !== undefined );
+  }
+
+
 $(function(){
 
 	fastclick.attach(document.body);
@@ -143,6 +332,34 @@ $(function(){
   if ( $( '.' + SIDEMENU_CLASS ).length ) {
     initSidemenuExpandability();
   }
+
+  // Find all existing popups and if they contain `data-autoload` attribute,
+  // trigger autoloading automatically.
+  $( '.popup' ).each( function() {
+    var popupElement = $( this )
+    if ( popupElement.attr( 'data-autoload' ) !== undefined ){
+      // Autoload (~ show/hide) popup
+      var optionsObject = {};
+
+      if ( popupElement.attr( 'data-opts' ) !== undefined ) {
+        optionsObject = JSON.parse( popupElement.attr( 'data-opts' ) );
+      }
+
+      initPopupBox( popupElement, optionsObject );
+    }
+  });
+
+
+
+  /** GOOGLE TAG MANAGER */
+
+  /** Auto-register all on-demand elements to track for GTM. */
+  setTimeout( autoregisterGtmTrackingListeners, 0 ); // To trigger after previous DOM re-renders
+
+  /** Any element or set of elements can be dynamically tracked this way */
+  // addGtmTrackingListeners( jQueryElements, trackingId, eventType );
+
+
 
 	//http://wicky.nillia.ms/enquire.js/
 	enquire.register(MOBILE_LARGE_AND_SMALLER, function() {
@@ -285,5 +502,18 @@ $(function(){
 			event.stopPropagation();
 		 });
    });
-
 });
+
+
+
+/**
+ * jQuery's plugin as a utility factory
+ * Usage as: $( jquerySelector ).vicApp().method( options )
+ */
+(function( $ ) {
+  $.fn.vicApp = function () {
+    return {
+      openPopup: openPopup.bind( this )
+    };
+  }
+})( jQuery );
