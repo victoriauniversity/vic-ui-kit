@@ -264,7 +264,6 @@
    * @returns {DOMElement}
    */
   function openPopup( { delayInMs = 0, suppressAfterCanceling = false } = {} ){
-    console.log( '>>> ', this );
     initPopupBox( this, { delayInMs: delayInMs, suppressAfterCanceling: suppressAfterCanceling } );
 
     return this;
@@ -286,17 +285,15 @@
       eventType = eventType || elementToTrack.attr( GTM_TRACK_ATTRIBUTE ) || 'auto';
       trackingId = trackingId || elementToTrack.attr( GTM_ID_ATTRIBUTE ) || elementToTrack[ 0 ].id
 
-      //console.log( '>>> Tracking: ', elementToTrack, eventType );
-
       switch( eventType ) {
         case 'click': {
           elementToTrack.on( eventType, function( event ) {
             dataLayer.push({
-              'custom.id': trackingId,
-              'custom.selector': event.target,
+              'event':            trackingId,
+              'custom.selector':  event.target,
               'custom.eventType': event.type,
-              'custom.href': event.currentTarget.href,
-              'custom.text': event.currentTarget.text
+              'custom.href':      event.currentTarget.href,
+              'custom.text':      event.currentTarget.text,
             });
           });
         }; break;
@@ -310,10 +307,9 @@
 
   function pushTrackingInfoToGtm( trackingId, eventType ){
     dataLayer.push({
-      'custom.id':        trackingId,
+      'event':            trackingId,
       'custom.eventType': eventType,
     });
-    //console.log( '!!! Pushing into dataLayer!', dataLayer );
   }
 
 
@@ -512,9 +508,6 @@ $(function(){
  * Usage as: $( jquerySelector ).vicApp().method( options )
  */
 (function( $ ) {
-
-  console.log( '!!!', $ );
-
   $.fn.vicApp = function () {
     return {
       openPopup: openPopup.bind( this )
