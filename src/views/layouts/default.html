@@ -2,18 +2,30 @@
 <html lang="">
 <head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>{{title}}</title>
-  <link rel="icon" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}favicon.ico" type="image/x-icon" />
+  <title>{{title}}</title>
 
-	{{#if fabricator}}<link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}styleguide-assets/f.css">{{/if}}
+  <!-- Fav icons compatible with all major browsers and devices -->
+  {{#if fabricator}}
+  <link rel="icon" type="image/x-icon" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}favicon.ico">
+  {{else}}
+  <link rel="apple-touch-icon" sizes="180x180" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/favicon-16x16.png">
+  <link rel="manifest" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}site.webmanifest">
+  <link rel="mask-icon" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="theme-color" content="#ffffff">
+  {{/if}}
 
-	<!-- toolkit styles -->
-	<link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}toolkit.css">
-	<!-- /toolkit styles -->
+  {{#if fabricator}}<link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}styleguide-assets/f.css">{{/if}}
+
+  <!-- toolkit styles -->
+  <link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}toolkit.css">
+  <!-- /toolkit styles -->
 
 </head>
 <body>
