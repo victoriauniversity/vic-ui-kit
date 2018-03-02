@@ -158,14 +158,15 @@ gulp.task('rev', () => {
       //prefix: HOST,
       // hashLength: 8, // Default = 8
       //www.npmjs.com/package/gulp-rev-all#options
-      includeFilesInManifest: ['.js', '.css', '.svg', '.woff', '.woff2', '.ttf', '.ico'],
+      includeFilesInManifest: ['.js', '.css', '.svg', '.woff', '.woff2', '.ttf', '.ico', '.webmanifest' ],
       dontRenameFile: [
         'CNAME',
-        '.html'
+        'browserconfig.xml',
+        '.html',
       ],
       dontUpdateReference: [
         'CNAME',
-        '.html'
+        '.html',
       ]
     }))
     .pipe( gulp.dest( config.dist ));
@@ -210,9 +211,13 @@ gulp.task('styles:fabricator', () => {
 });
 
 
-// Style guide's icon
+// Favicon and related manifests
 gulp.task( 'favicon', () => {
-  return gulp.src( 'src/favicon.ico' )
+  return gulp.src([
+    'src/favicon.ico',
+    'src/browserconfig.xml',
+    'src/site.webmanifest',
+  ])
     .pipe( gulp.dest( config.tmp ));
 });
 
