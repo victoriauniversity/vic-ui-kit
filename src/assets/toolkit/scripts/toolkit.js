@@ -279,11 +279,17 @@
   }
 
   function addGtmTrackingListeners( elementsList, eventType, trackingId ) {
+      if ( !window.dataLayer ){
+        console.warn( "`dataLayer` variable is unavailable. Please, check that your Google Tag Manager script is loading before any other script." );
+        window.dataLayer = []; // Fallback
+        return;
+      }
+
     elementsList.each( function() {
       var elementToTrack = $( this );
 
       eventType = eventType || elementToTrack.attr( GTM_TRACK_ATTRIBUTE ) || 'auto';
-      trackingId = trackingId || elementToTrack.attr( GTM_ID_ATTRIBUTE ) || elementToTrack[ 0 ].id
+      trackingId = trackingId || elementToTrack.attr( GTM_ID_ATTRIBUTE ) || elementToTrack[ 0 ].id;
 
       switch( eventType ) {
         case 'click': {
@@ -306,6 +312,12 @@
   }
 
   function pushTrackingInfoToGtm( trackingId, eventType ){
+    if ( !window.dataLayer ){
+      console.warn( "`dataLayer` variable is unavailable. Please, check that your Google Tag Manager script is loading before any other script." );
+      window.dataLayer = []; // Fallback
+      return;
+    }
+
     dataLayer.push({
       'event':            trackingId,
       'custom.eventType': eventType,
