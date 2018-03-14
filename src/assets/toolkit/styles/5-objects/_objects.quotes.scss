@@ -99,23 +99,56 @@
       }
     }
 
-    a {
-      @include hoverify() {
-        figure {
-          border-left-color: $blue-st-tropaz;
+    // a {
+    //   @include hoverify() {
+    //     figure {
+    //       border-left-color: $blue-st-tropaz;
 
-          blockquote {
-            * {
-              color: $blue-st-tropaz;
-            }
-            &:before,
-            &:after {
-              color: $blue-st-tropaz;
-            }
-          }
+    //       blockquote {
+    //         * {
+    //           color: $blue-st-tropaz;
+    //         }
+    //         &:before,
+    //         &:after {
+    //           color: $blue-st-tropaz;
+    //         }
+    //       }
 
-          figcaption {
-            // color: $blue-st-tropaz
+    //       figcaption {
+    //         // color: $blue-st-tropaz
+    //       }
+    //     }
+    //   }
+    // }
+
+    &.quote-image {
+      .quote {
+        display: flex;
+        align-items: center;
+        border-left: none;
+        flex-wrap: wrap;
+
+        img {
+          height: 15%;
+          width: 15%;
+          // float: left;
+          // shape-outside: circle();
+          border-radius: 50%;
+          margin-right: 2em;
+        }
+
+        blockquote {
+          width: 60%;
+        }
+
+        figcaption {
+          text-align: inherit;
+          font-size: inherit;
+
+          h4,
+          h5,
+          p {
+            margin-bottom: 0.5em;
           }
         }
       }
