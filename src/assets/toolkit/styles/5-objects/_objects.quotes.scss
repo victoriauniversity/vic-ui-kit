@@ -133,8 +133,6 @@
         img {
           height: 180px;
           width: 180px;
-          // float: left;
-          // shape-outside: circle();
           border-radius: 50%;
           margin-right: 2em;
         }
@@ -212,5 +210,56 @@
           }
         }
       }
+
+
+      &.quote-white {
+        background-color: #fff;
+  
+        .quote {
+          justify-content: center;
+          position: relative;
+          padding-bottom: 2em;
+
+          &:after {
+            position: absolute;
+
+            bottom: 0;
+            content: "";
+            height: 2px;
+            width: 70%;
+            background-color: $green-victoria;
+          }
+  
+          img {
+
+          }
+
+          .quote-content {
+            width: 70%;
+
+            blockquote {
+
+            }
+  
+            figcaption {
+              text-align: inherit;
+              font-size: inherit;
+    
+              h4,
+              h5,
+              p {
+                margin-bottom: 0.5em;
+              }
+            }
+
+            @include media($mobile-large-and-smaller) {
+              width: 100%;
+            }
+          }
+
+        }
+      }
+
     }
+
   }
