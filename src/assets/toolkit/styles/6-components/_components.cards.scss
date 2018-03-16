@@ -1,6 +1,10 @@
 //_components.cards.scss
 
 $card-padding: 2.5em; //rem(20px) from settings.variables
+@mixin cardColor {
+	background-color: $grey-gallery;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, .2 );
+}
 
 .card-panel {
 	display: flex;
@@ -40,8 +44,7 @@ $card-padding: 2.5em; //rem(20px) from settings.variables
 	}
 
 	.contact-card {
-		background-color: $grey-gallery;
-		box-shadow: 0 4px 8px rgba(0, 0, 0, .2 );
+		@include cardColor;
 		padding: $card-padding;
 		width: 100%;
 
@@ -151,5 +154,85 @@ $card-padding: 2.5em; //rem(20px) from settings.variables
 			}
 		}
 	}
+}
+
+// For content pages
+.contact-card-highlight {
+
+	margin-top: 2em;
+	padding: 1.5em;
+	@include cardColor;
+
+	> h2,
+	> h3,
+	> h4 {
+		position: relative;
+		padding-bottom: .5em;
+
+		&:after {
+			content: '';
+			position: absolute;
+			width: 50px;
+			height: 5px;
+			bottom: 0;
+			left: 0;
+			background-color: #115737;
+		}
+	}
+
+	.contact-info-block {
+		> ul {
+			padding: 0;
+			margin: 0;
+			
+			> li {
+				display: flex;
+				justify-content: left;
+				align-items: flex-start;
+				
+				padding: 0;
+				margin: 0;
+				list-style: none;
+				
+				&:not(:first-child) {
+					margin-top: 1em;
+				}
+				
+				& >:first-child {
+					border-left: 3px solid $green-victoria;
+				}
+
+
+				img {
+					@include size( $portrait-width auto );
+
+					@include media( $tablet-and-smaller ) {
+						width: 20%;
+					}
+				}
+
+				.details {
+					padding-left: 1em;
+
+					h3,
+					h4,
+					h5 {
+						margin-bottom: 0.4em;
+					}
+
+					h5 {
+						color: #444;
+					}
+
+					address {
+						font-style: normal;
+					}
+				}
+			}
+		}
+
+
+	}
+
 }
 
