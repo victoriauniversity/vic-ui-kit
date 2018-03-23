@@ -13,8 +13,8 @@ const assembler = require( 'fabricator-assemble' ),
   helpers       = require( 'handlebars-helpers' )(),
   imagemin      = require( 'gulp-imagemin' ),
   prefix        = require( 'gulp-autoprefixer' ),
+  pump          = require( 'pump' ),
   rename        = require( 'gulp-rename' ),
-  runSequence   = require( 'run-sequence' ),
   sass          = require( 'gulp-sass' ),
   sourcemaps    = require( 'gulp-sourcemaps' ),
   webpack       = require( 'webpack' ),
@@ -22,7 +22,6 @@ const assembler = require( 'fabricator-assemble' ),
   header        = require( 'gulp-header' ),
   bump          = require( 'gulp-bump' ),
   semver        = require( 'semver' ),
-  bourbon       = require( 'bourbon' ),
   neat          = require( 'bourbon-neat' ),
   args          = require( 'minimist' )( process.argv.slice( 2 )),
 
@@ -145,13 +144,12 @@ gulp.task( 'scripts', ( done ) => {
 });
 
 
-gulp.task( 'styles', [ 'styles:fabricator', 'styles:toolkit' ]);
-
 
 // Files revver
-gulp.task( 'rev', () =>
-  gulp.src( `${config.tmp}/**` )
-    .pipe( revAll.revision({
+gulp.task( 'rev', ( cb ) => {
+  pump([
+    gulp.src( `${config.tmp}/**` ),
+    revAll.revision({
       // prefix: HOST,
       // hashLength: 8, // Default = 8
       // Docs: www.npmjs.com/package/gulp-rev-all#options
@@ -172,24 +170,30 @@ gulp.task( 'rev', () =>
         'CNAME',
         '.html',
       ],
-    }))
-    .pipe( gulp.dest( config.dist )));
-
-
-gulp.task( 'decorate:templates', () =>
-  gulp.src( `${config.tmp}/**/*.html` ) // HTML
-    .pipe( header( `<!-- ${BUILD_MSG} -->\n` ))
-    .pipe( gulp.dest( config.tmp )));
-
-
-gulp.task( 'decorate:assets', () =>
-  gulp.src( `${config.tmp}/*.{js,css}` ) // JS + CSS
-    .pipe( header( `/** ${BUILD_MSG} */\n` ))
-    .pipe( gulp.dest( config.tmp )));
-
-gulp.task( 'decorate', [ 'decorate:assets', 'decorate:templates' ], ( done ) => {
-  done();
+    }),
+    gulp.dest( config.dist ),
+  ], cb );
 });
+
+
+gulp.task( 'decorate:templates', ( cb ) => {
+  pump([
+    gulp.src( `${config.tmp}/**/*.html` ), // HTML
+    header( `<!-- ${BUILD_MSG} -->\n` ),
+    gulp.dest( config.tmp ),
+  ], cb );
+});
+
+
+gulp.task( 'decorate:assets', ( cb ) => {
+  pump([
+    gulp.src( `${config.tmp}/*.{js,css}` ), // JS + CSS
+    header( `/** ${BUILD_MSG} */\n` ),
+    gulp.dest( config.tmp ),
+  ], cb );
+});
+
+gulp.task( 'decorate', gulp.series( 'decorate:assets', 'decorate:templates' ));
 
 
 
@@ -198,28 +202,38 @@ gulp.task( 'decorate', [ 'decorate:assets', 'decorate:templates' ], ( done ) => 
 /** StyleGuide (Fabricator) *ONLY* routines. */
 
 // Fabricator's styles
-gulp.task( 'styles:fabricator', () =>
-  gulp.src( config.styles.fabricator.src )
-    .pipe( sourcemaps.init())
-    .pipe( sass().on( 'error', sass.logError ))
-    .pipe( prefix())
-    .pipe( gulpif( !config.dev, csso()))
-    .pipe( rename( 'f.css' ))
-    .pipe( sourcemaps.write())
-    .pipe( gulp.dest( config.styles.fabricator.dest ))
-    .pipe( gulpif( config.dev, browserSync.reload({ stream: true }))));
+gulp.task( 'styles:fabricator', ( cb ) => {
+  pump([
+    gulp.src( config.styles.fabricator.src ),
+    sourcemaps.init(),
+    sass().on( 'error', sass.logError ),
+    prefix(),
+    gulpif( !config.dev, csso()),
+    rename( 'f.css' ),
+    sourcemaps.write(),
+    gulp.dest( config.styles.fabricator.dest ),
+    gulpif( config.dev, browserSync.reload({ stream: true })),
+  ], cb );
+  cb();
+});
 
 
 // Style guide's icon
-gulp.task( 'favicon', () =>
-  gulp.src( 'src/favicon.ico' )
-    .pipe( gulp.dest( config.tmp )));
+gulp.task( 'favicon', ( cb ) => {
+  pump([
+    gulp.src( 'src/favicon.ico' ),
+    gulp.dest( config.tmp ),
+  ], cb );
+});
 
 
 // CNAME record for custom domain running on GitHubPages
-gulp.task( 'cname', () =>
-  gulp.src( 'src/CNAME' )
-    .pipe( gulp.dest( config.tmp )));
+gulp.task( 'cname', ( cb ) => {
+  pump([
+    gulp.src( 'src/CNAME' ),
+    gulp.dest( config.tmp ),
+  ], cb );
+});
 
 
 // Fabricator's compiler
@@ -240,37 +254,48 @@ gulp.task( 'assembler', ( done ) => {
 /** UI libraries *ONLY* routines. */
 
 // Victoria UI Styles
-gulp.task( 'styles:toolkit', () =>
-  gulp.src( config.styles.toolkit.src )
-    .pipe( gulpif( config.dev, sourcemaps.init()))
-    .pipe( sass({
+gulp.task( 'styles:toolkit', ( cb ) => {
+  pump([
+    gulp.src( config.styles.toolkit.src ),
+    gulpif( config.dev, sourcemaps.init()),
+    sass({
       includePaths: [
         './node_modules',
-        bourbon.includePaths,
         neat.includePaths,
         './lib',
       ],
-    }).on( 'error', sass.logError ))
-    .pipe( prefix())
-    .pipe( gulpif( config.dev, sourcemaps.write()))
-    .pipe( gulp.dest( config.styles.toolkit.dest ))
-    .pipe( csso())
-    .pipe( rename( 'toolkit.min.css' ))
-    .pipe( gulp.dest( config.tmp ))
-    .pipe( gulpif( config.dev, browserSync.reload({ stream: true }))));
+    }).on( 'error', sass.logError ),
+    prefix(),
+    gulpif( config.dev, sourcemaps.write()),
+    gulp.dest( config.styles.toolkit.dest ),
+    csso(),
+    rename( 'toolkit.min.css' ),
+    gulp.dest( config.tmp ),
+    gulpif( config.dev, browserSync.reload({ stream: true })),
+  ], cb );
+});
 
 
 // Layout-related imagery
-gulp.task( 'images', [ 'favicon', 'cname' ], () =>
-  gulp.src( config.images.toolkit.src )
-    .pipe( imagemin())
-    .pipe( gulp.dest( config.images.toolkit.dest )));
+gulp.task( 'images', gulp.parallel( 'favicon', 'cname', ( cb ) => {
+  pump([
+    gulp.src( config.images.toolkit.src ),
+    imagemin(),
+    gulp.dest( config.images.toolkit.dest ),
+  ], cb );
+}));
 
 
 // Custom fonts and icon fonts
-gulp.task( 'fonts', () =>
-  gulp.src( config.fonts.toolkit.src )
-    .pipe( gulp.dest( config.fonts.toolkit.dest )));
+gulp.task( 'fonts', ( cb ) => {
+  pump([
+    gulp.src( config.fonts.toolkit.src ),
+    gulp.dest( config.fonts.toolkit.dest ),
+  ], cb );
+});
+
+
+gulp.task( 'styles', gulp.parallel( 'styles:fabricator', 'styles:toolkit' ));
 
 
 
@@ -352,12 +377,14 @@ gulp.task( 'git:cloneReleaseRepo', ( done ) => {
 });
 
 
-gulp.task( 'git:commitAll', () => {
+gulp.task( 'git:commitAll', ( cb ) => {
   process.chdir( config.dist );
 
-  return gulp.src( './*' )
-    .pipe( git.add({ args: '-f' }))
-    .pipe( git.commit( `Release v${config.version} | [skip ci]` ));
+  pump([
+    gulp.src( './*' ),
+    git.add({ args: '-f' }),
+    git.commit( `Release v${config.version} | [skip ci]` )
+  ], cb );
 });
 
 
@@ -458,76 +485,35 @@ gulp.task( 'git:shallowClone', ( done ) => {
 
 /** Copying and moving tasks. */
 
-gulp.task( 'copyTempToDist', () =>
-  // Create latest
-  gulp.src( `${config.tmp}/**` )
-    .pipe( gulp.dest( config.dist )));
-
+gulp.task( 'copyTempToDist', ( cb ) => {
+  pump([
+    gulp.src( `${config.tmp}/**` ),
+    gulp.dest( config.dist ),
+  ], cb );
+});
 
 // Create latest version
-gulp.task( 'copyDistToRelease', () =>
-  gulp.src([ `${config.tmp}/**`, 'build/release-templates/**', 'build/release-templates/.gitignore' ])
-    .pipe( gulp.dest( `${config.dist}/${config.version}` )));
+gulp.task( 'copyDistToRelease', ( cb ) => {
+  pump([
+    gulp.src([ `${config.tmp}/**`, 'build/release-templates/**', 'build/release-templates/.gitignore' ]),
+    gulp.dest( `${config.dist}/${config.version}` ),
+  ], cb );
+});
+
 
 
 
 
 /** Development helpers and tools. */
 
-gulp.task( 'rebuild:assembler', ( done ) => {
-  runSequence(
-    'assembler',
-    'clean:dist',
-    'rev',
-    () => {
-      done();
-    }
-  );
-});
+gulp.task( 'rebuild:assembler', gulp.series( 'assembler', 'clean:dist', 'rev' ));
+gulp.task( 'rebuild:styles', gulp.series( 'styles', 'clean:dist', 'rev' ));
+gulp.task( 'rebuild:scripts', gulp.series( 'scripts', 'clean:dist', 'rev' ));
+gulp.task( 'rebuild:images', gulp.series( 'images', 'clean:dist', 'rev' ));
+gulp.task( 'rebuild:fonts', gulp.series( 'fonts', 'clean:dist', 'rev' ));
 
-gulp.task( 'rebuild:styles', ( done ) => {
-  runSequence(
-    'styles',
-    'clean:dist',
-    'rev',
-    () => {
-      done();
-    }
-  );
-});
 
-gulp.task( 'rebuild:scripts', ( done ) => {
-  runSequence(
-    'scripts',
-    'clean:dist',
-    'rev',
-    () => {
-      done();
-    }
-  );
-});
 
-gulp.task( 'rebuild:images', ( done ) => {
-  runSequence(
-    'images',
-    'clean:dist',
-    'rev',
-    () => {
-      done();
-    }
-  );
-});
-
-gulp.task( 'rebuild:fonts', ( done ) => {
-  runSequence(
-    'fonts',
-    'clean:dist',
-    'rev',
-    () => {
-      done();
-    }
-  );
-});
 
 
 // Serving & Source wathing
@@ -541,20 +527,20 @@ gulp.task( 'serveAndWatch', () => {
     logPrefix: 'FABRICATOR',
   });
 
-  gulp.task( 'assembler:watch', [ 'rebuild:assembler' ], browserSync.reload );
-  gulp.watch( config.templates.watch, [ 'assembler:watch' ]);
+  gulp.task( 'assembler:watch', gulp.series( 'rebuild:assembler', browserSync.reload ));
+  gulp.watch( config.templates.watch, gulp.series( 'assembler:watch' ));
 
-  gulp.task( 'styles:watch', [ 'rebuild:styles' ], browserSync.reload );
-  gulp.watch([ config.styles.fabricator.watch, config.styles.toolkit.watch ], [ 'styles:watch' ]);
+  gulp.task( 'styles:watch', gulp.series( 'rebuild:styles', browserSync.reload ));
+  gulp.watch([ config.styles.fabricator.watch, config.styles.toolkit.watch ], gulp.series( 'styles:watch' ));
 
-  gulp.task( 'scripts:watch', [ 'rebuild:scripts' ], browserSync.reload );
-  gulp.watch([ config.scripts.fabricator.watch, config.scripts.toolkit.watch ], [ 'scripts:watch' ]);
+  gulp.task( 'scripts:watch', gulp.series( 'rebuild:scripts', browserSync.reload ));
+  gulp.watch([ config.scripts.fabricator.watch, config.scripts.toolkit.watch ], gulp.series( 'scripts:watch' ));
 
-  gulp.task( 'images:watch', [ 'rebuild:images' ], browserSync.reload );
-  gulp.watch( config.images.toolkit.watch, [ 'images:watch' ]);
+  gulp.task( 'images:watch', gulp.series( 'rebuild:images', browserSync.reload ));
+  gulp.watch( config.images.toolkit.watch, gulp.series( 'images:watch' ));
 
-  gulp.task( 'fonts:watch', [ 'rebuild:fonts' ], browserSync.reload );
-  gulp.watch( config.fonts.toolkit.src, [ 'fonts:watch' ]);
+  gulp.task( 'fonts:watch', gulp.series( 'rebuild:fonts', browserSync.reload ));
+  gulp.watch( config.fonts.toolkit.src, gulp.series( 'fonts:watch' ));
 
 });
 
@@ -565,66 +551,13 @@ gulp.task( 'serveAndWatch', () => {
 /** Standard build & deployment tasks. */
 
 
-gulp.task( 'build', [ 'clean' ], ( done ) => {
-  runSequence(
-    'styles',
-    'scripts',
-    'images',
-    'fonts',
-    'assembler',
-    'decorate',
-    () => {
-      done();
-    }
-  );
-});
+gulp.task( 'build', gulp.series( 'clean', 'styles', 'scripts', 'images', 'fonts', 'assembler', 'decorate' ));
 
+gulp.task( 'release:dev', gulp.series( 'build', 'rev', 'git:init', 'git:commitAll', 'git:pushToGHPages' ));
 
-gulp.task( 'release:dev', ( done ) => {
+gulp.task( 'release:prod', gulp.series( 'build', 'copyTempToDist', 'copyDistToRelease', 'git:shallowClone', 'git:exec' ));
 
-  runSequence(
-    'build',
-    'rev', // Revv all the static files
-    'git:init',
-    'git:commitAll',
-    'git:pushToGHPages',
-    () => {
-      done();
-    }
-  );
+gulp.task( 'serve', gulp.series( 'build', 'rev', 'serveAndWatch' ));
 
-});
-
-
-gulp.task( 'release:prod', ( done ) => {
-
-  runSequence(
-    'build',
-    'copyTempToDist',
-    'copyDistToRelease',
-    'git:shallowClone',
-    'git:exec',
-    () => {
-      done();
-    }
-  );
-
-});
-
-
-gulp.task( 'serve', () => {
-
-  // run build
-  runSequence(
-    'build',
-    'rev',
-    'serveAndWatch',
-  );
-
-});
-
-
-// default build task (alias to 'serve')
-gulp.task( 'default', () => {
-  gulp.start( 'serve' );
-});
+// DEFAULT build task (alias to 'serve')
+gulp.task( 'default', gulp.series( 'serve' ));
