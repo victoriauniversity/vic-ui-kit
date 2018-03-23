@@ -206,7 +206,6 @@ gulp.task( 'styles:fabricator', ( cb ) => {
   pump([
     gulp.src( config.styles.fabricator.src ),
     sourcemaps.init(),
-    sass().on( 'error', sass.logError ),
     prefix(),
     gulpif( !config.dev, csso()),
     rename( 'f.css' ),
@@ -264,7 +263,7 @@ gulp.task( 'styles:toolkit', ( cb ) => {
         neat.includePaths,
         './lib',
       ],
-    }).on( 'error', sass.logError ),
+    }),
     prefix(),
     gulpif( config.dev, sourcemaps.write()),
     gulp.dest( config.styles.toolkit.dest ),
