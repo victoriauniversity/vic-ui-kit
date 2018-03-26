@@ -4,11 +4,11 @@ $overlay-hint-offset:    5px; // Can be a negative number as long as ($OH-size +
 $overlay-padding-offset: 3.8rem;
 
 
-@include media( $mobile-large-and-smaller ) {
+@include breakpoint( $mobile-large-and-smaller ) {
   .hide-on-mobile { display: none !important; }
 }
 
-@include media( $tablet-and-bigger ) {
+@include breakpoint( $tablet-and-bigger ) {
   .hide-on-desktop { display: none !important; }
 }
 
@@ -27,7 +27,7 @@ $overlay-padding-offset: 3.8rem;
 
 //TODO: Should be calculated dynamically by JS
 .site-header {
-  @include media( $mobile-large-and-smaller ) {
+  @include breakpoint( $mobile-large-and-smaller ) {
     padding-top: $overlay-padding-offset;
   }
 }
@@ -46,7 +46,7 @@ $overlay-padding-offset: 3.8rem;
     }
 
     &.home > span {
-      margin-top: rem( 1px );
+      margin-top: .05rem;
     }
   }
 
@@ -68,7 +68,7 @@ $overlay-padding-offset: 3.8rem;
       margin-right: 0;
       margin-left: 0;
 
-      @include media( $mobile-large-and-smaller ) {
+      @include breakpoint( $mobile-large-and-smaller ) {
         margin-right: .5rem;
         line-height: 1;
       }
@@ -109,7 +109,7 @@ $overlay-padding-offset: 3.8rem;
       }
     }
 
-    @include media( $mobile-large-and-smaller ) {
+    @include breakpoint( $mobile-large-and-smaller ) {
       z-index: 100;
       position: fixed;
       top:0;
@@ -119,7 +119,7 @@ $overlay-padding-offset: 3.8rem;
       height: $overlay-padding-offset;
     }
 
-    @include media( $tablet-and-bigger ) {
+    @include breakpoint( $tablet-and-bigger ) {
       background: $global-panel-color;
       box-shadow: 0 1px 8px rgba( #000, .35 );
 
@@ -155,11 +155,11 @@ $overlay-padding-offset: 3.8rem;
 
   }
 
-  @include media( $tablet-and-smaller ) {
+  @include breakpoint( $tablet-and-smaller ) {
     padding: 0;
   }
 
-  @include media( $mobile-large-and-smaller ) {
+  @include breakpoint( $mobile-large-and-smaller ) {
     .button-container {
       position: absolute;
       top: 0;
@@ -202,7 +202,7 @@ $overlay-padding-offset: 3.8rem;
     .mobile { display: block; }
   }
 
-  @include media( $tablet-and-bigger ) {
+  @include breakpoint( $tablet-and-bigger ) {
     .mobile,
     .site,
     .menu-toggle {
@@ -210,10 +210,9 @@ $overlay-padding-offset: 3.8rem;
     }
 
     nav {
-      @include outer-container;
-      @include clearfix();
+      @include grid-container;
       position: relative;
-      max-width: 88em;
+      max-width: $base-width;
 
       .search {
         z-index: $z-index-lower;

@@ -3,7 +3,7 @@ $gutter: 1em;
 
 
 // Tile(s)
-$tile-height:       rem( 200px );
+$tile-height:       12.5rem;
 $background-color:  $grey-gallery; //Used for borders to stop elements moving on hover
 $blue-hover-shade:  tint( $blue-st-tropaz, 40% );
 $tile-active-shade: #E3E3E3;
@@ -96,10 +96,10 @@ $base-study-hub-colour--study: $green-light-victoria;
 
 
 .updated-tile-grid {
-  @include outer-container( 100% );
+  @include grid-container;
 
   .tiles-wrap {
-    @include fill-parent;
+    //@include fill-parent;
     margin-top: 1rem;
 
     > ul {
@@ -152,7 +152,7 @@ $base-study-hub-colour--study: $green-light-victoria;
 
       .button { margin-top: 2em; }
 
-      @include media ( $mobile-large-and-smaller) {
+      @include breakpoint ( $mobile-large-and-smaller) {
         float: none;
 
         h4 {
@@ -164,21 +164,21 @@ $base-study-hub-colour--study: $green-light-victoria;
         p { display: inline-block; }
       }
 
-      @include media ( $desktop-large ) {
+      @include breakpoint ( $desktop-large ) {
         margin-right: $four-grid-tile-margin;
         width: ( 100 - 3 * $four-grid-tile-margin ) / 4;
 
         &:nth-child( 4n ) { margin-right: 0; }
       }
 
-      @include media ( $desktop ) {
+      @include breakpoint ( $desktop ) {
         margin-right: $three-grid-tile-margin;
         width: ( 100 - 2 * $three-grid-tile-margin ) / 3;
 
         &:nth-child( 3n ) { margin-right: 0; }
       }
 
-      @include media ( $tablet ) {
+      @include breakpoint ( $tablet ) {
         margin-right: $two-grid-tile-margin;
         width: ( 100 - 1 * $two-grid-tile-margin ) / 2;
 
@@ -205,7 +205,7 @@ $base-study-hub-colour--study: $green-light-victoria;
         }
       }
 
-      @include media( $desktop-large ) {
+      @include breakpoint( $desktop-large ) {
         li.tile {
           margin-right: $three-grid-tile-margin-hub;
           width: ( 100 - 2 * $three-grid-tile-margin-hub ) / 3;
@@ -245,17 +245,17 @@ $base-study-hub-colour--study: $green-light-victoria;
   &.media-quote {
     .tiles-wrap {
       li.tile {
-        height: rem( 500px );
+        height: 31.25rem;
 
         figure {
           position: relative;
 
           .play-button {
-            @include transform( translateX( -50% ) );
             position: absolute;
             top: 40%;
             left: 50%;
             margin-top: 0;
+            transform: translateX( -50% );
           }
 
           img {
@@ -285,10 +285,10 @@ $base-study-hub-colour--study: $green-light-victoria;
 }
 
 .tile-strip-grid {
-  @include outer-container( 100% );
+  @include grid-container;
 
   .tiles-wrap {
-    @include fill-parent;
+    //@include fill-parent;
     margin-top: 1rem;
 
     > ul {
@@ -396,7 +396,7 @@ $base-study-hub-colour--study: $green-light-victoria;
 }
 
 .fixed-height-tiles-small {
-  .tiles-wrap li.tile { height: rem( 150px ); }
+  .tiles-wrap li.tile { height: 9.375rem; }
 }
 
 .dynamic-height-tiles {
@@ -414,7 +414,7 @@ $base-study-hub-colour--study: $green-light-victoria;
 
   .tiles-wrap {
     li.tile {
-      height: rem( 275px );
+      height: 17rem;
       border-left: 4px solid $base-study-hub-colour--study;
 
       a {
@@ -448,7 +448,7 @@ $base-study-hub-colour--study: $green-light-victoria;
 
     .tiles-wrap {
       li.tile {
-        height: rem( 350px );
+        height: 21.875rem;
         background-color: $base-study-hub-colour--study;
         border-left: 0;
 
@@ -509,7 +509,7 @@ $base-study-hub-colour--study: $green-light-victoria;
 
         &:hover { border: 0; }
 
-        @include media ( $desktop-large ) {
+        @include breakpoint ( $desktop-large ) {
           margin-right: $three-grid-tile-margin-hub;
           width: ( 100 - 2 * $three-grid-tile-margin-hub ) / 3;
 

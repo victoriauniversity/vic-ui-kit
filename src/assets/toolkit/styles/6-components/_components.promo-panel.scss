@@ -31,7 +31,7 @@ $promo-max-width:   60em;
     figure {
       border: 1px solid $grey-gallery;
 
-      @include media( $mobile-large-and-smaller ) {
+      @include breakpoint( $mobile-large-and-smaller ) {
         border: 0;
       }
     }
@@ -75,7 +75,7 @@ $promo-max-width:   60em;
       // Research hub new panel, promo panel with left align grey text panel
       &.left-text-panel {
         figcaption {
-          max-width: 88em;
+          max-width: $base-width;
 
           > div {
             position: relative;
@@ -117,7 +117,7 @@ $promo-max-width:   60em;
           }
 
           // TODO: Refactor & flatten to lower the depth!
-          @include media( $mobile-large-and-smaller ) {
+          @include breakpoint( $mobile-large-and-smaller ) {
             > div {
               max-width: 100%;
 
@@ -126,7 +126,7 @@ $promo-max-width:   60em;
             }
           }
 
-          @include media( $tablet ) {
+          @include breakpoint( $tablet ) {
             > div { max-width: 85%; }
           }
 
@@ -135,13 +135,13 @@ $promo-max-width:   60em;
 
     }
 
-    @include media( $tablet-and-bigger) {
+    @include breakpoint( $tablet-and-bigger) {
       display: flex;
       align-items: center;
       box-shadow: $base-shadow;
 
       figcaption {
-        @include span-columns( 7 of 12, block-collapse );
+        //@include span-columns( 7 of 12, block-collapse );
         z-index: $z-index-lower;
         padding: $base-spacing * 1.5;
 
@@ -152,16 +152,16 @@ $promo-max-width:   60em;
       }
 
       img {
-        @include span-columns( 5 of 12, block-collapse );
+        //@include span-columns( 5 of 12, block-collapse );
       }
 
       &.two-thirds {
-        @include span-columns( 8 of 12 );
-        @include shift( 2 );
+        //@include span-columns( 8 of 12 );
+        //@include shift( 2 );
 
         figcaption {
-          @include span-columns( 4 of 8 );
-          @include shift( 4 );
+          //@include span-columns( 4 of 8 );
+          //@include shift( 4 );
           position: relative;
           padding: $base-spacing;
           background: $white;
@@ -190,7 +190,10 @@ $promo-max-width:   60em;
         }
 
         img {
-          @include position( absolute, 0 0 null 0 );
+          position: absolute;
+          top: 0;
+          right: 0;
+          right: 0;
           width: 100%;
         }
       }
@@ -212,7 +215,7 @@ $promo-max-width:   60em;
         padding: $base-spacing $base-spacing * 1.5;
 
         &:first-child {
-          @include span-columns( 7 of 12, block-collapse );
+          //@include span-columns( 7 of 12, block-collapse );
 
           h1 { color: $green-light-victoria; }
         }
@@ -220,7 +223,7 @@ $promo-max-width:   60em;
 
       // TODO: Refactor & flatten to lower the depth!
       > *:last-child {
-        @include span-columns( 5 of 12, block-collapse );
+        //@include span-columns( 5 of 12, block-collapse );
         padding: $base-spacing $base-spacing * 1.5;
         border-left: 2px solid $grey-alto;
 
@@ -283,7 +286,7 @@ $promo-max-width:   60em;
       &:first-child { margin-right: 1em; }
     }
 
-    @include media( $mobile-large-and-smaller ) {
+    @include breakpoint( $mobile-large-and-smaller ) {
       > div { flex-wrap: wrap; }
 
       figure {
@@ -311,7 +314,7 @@ $promo-max-width:   60em;
 
       figure {
         &:first-child {
-          @include span-columns( 7 of 12, block-collapse );
+          //@include span-columns( 7 of 12, block-collapse );
           padding: $base-spacing * 1.5;
           box-shadow: none;
 
@@ -320,14 +323,14 @@ $promo-max-width:   60em;
             width: 100%;
           }
 
-          @include media( $mobile-large-and-smaller ) {
-            @include span-columns( 12 of 12, block-collapse );
+          @include breakpoint( $mobile-large-and-smaller ) {
+            //@include span-columns( 12 of 12, block-collapse );
             padding: 0 0 $base-spacing 0;
           }
         }
 
         &:last-child {
-          @include span-columns( 5 of 12, block-collapse );
+          //@include span-columns( 5 of 12, block-collapse );
 
           img { width: 100%; }
 
@@ -340,8 +343,8 @@ $promo-max-width:   60em;
             }
           }
 
-          @include media( $mobile-large-and-smaller ) {
-            @include span-columns( 12 of 12, block-collapse );
+          @include breakpoint( $mobile-large-and-smaller ) {
+            //@include span-columns( 12 of 12, block-collapse );
 
             // TODO: Refactor & flatten to lower the depth!
             figcaption { margin-bottom: 0; }
@@ -366,7 +369,7 @@ $promo-max-width:   60em;
 
           > *:first-child { width: 50%; }
 
-          @include media( $tablet-and-smaller ) {
+          @include breakpoint( $tablet-and-smaller ) {
             flex-direction: column;
 
             // TODO: Refactor & flatten to lower the depth!
@@ -376,7 +379,7 @@ $promo-max-width:   60em;
 
         > *:last-child { width: 100 / 3 * 1%; }
 
-        @include media( $mobile-large-and-smaller ) {
+        @include breakpoint( $mobile-large-and-smaller ) {
           > *:first-child,
           > *:last-child {
             width: 100%;
@@ -384,7 +387,7 @@ $promo-max-width:   60em;
         }
       }
 
-      @include media( $mobile-large-and-smaller ) {
+      @include breakpoint( $mobile-large-and-smaller ) {
         flex-direction: column;
 
         >:first-child,
@@ -426,7 +429,7 @@ $promo-max-width:   60em;
     }
 
     figure {
-      @include span-columns( 5 of 12, block-collapse );
+      //@include span-columns( 5 of 12, block-collapse );
       flex: 1 0 auto;
       padding: 1em;
       box-shadow: none;
@@ -453,7 +456,7 @@ $promo-max-width:   60em;
 
     section { padding: 1em 1em 1em 2em; }
 
-    @include media( $tablet ) {
+    @include breakpoint( $tablet ) {
       > div { align-items: stretch; }
 
       figure {
@@ -466,7 +469,7 @@ $promo-max-width:   60em;
       }
     }
 
-    @include media( $mobile-large-and-smaller ) {
+    @include breakpoint( $mobile-large-and-smaller ) {
       > div {
         flex-direction: column;
 
@@ -475,13 +478,13 @@ $promo-max-width:   60em;
     }
   }
 
-  @include media( $tablet-and-bigger ) {
+  @include breakpoint( $tablet-and-bigger ) {
     overflow: hidden;
     position: relative;
     background: $banner-background;
   }
 
-  @include media( $mobile-large-and-smaller ) {
+  @include breakpoint( $mobile-large-and-smaller ) {
     border-top: 3px solid $banner-background;
     border-bottom: 3px solid $banner-background;
 
@@ -499,16 +502,16 @@ $promo-max-width:   60em;
   border-bottom: $base-border;
 
   .text-wrap {
-    @include media( $tablet-and-bigger ) {
-      @include span-columns( 6 of 8 );
+    @include breakpoint( $tablet-and-bigger ) {
+      //@include span-columns( 6 of 8 );
     }
   }
 
   .button-wrap {
     margin-top: 2.5em;
 
-    @include media( $tablet-and-bigger ) {
-      @include span-columns( 2 of 8 );
+    @include breakpoint( $tablet-and-bigger ) {
+      //@include span-columns( 2 of 8 );
     }
   }
 

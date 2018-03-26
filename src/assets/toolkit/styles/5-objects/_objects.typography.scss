@@ -6,7 +6,7 @@
 /** Use everywhere where standard formatting rules should be applied! */
 $text-block-spacing: 1.2em;
 
-$widgetbar-body-font-size:       rem( 15px );
+$widgetbar-body-font-size:       .9375rem;
 $widgetbar-heading-font-size:    scale-heading( 2 );
 $widgetbar-subheading-font-size: $h5-font-size;
 
@@ -161,19 +161,6 @@ $widgetbar-subheading-font-size: $h5-font-size;
     width: $media-inline-portrait-width;
   }
 
-  // Inline and auto-alignments
-  @include media( $tablet-and-bigger ) {
-    .inline,
-    p > img,
-    p > img ~ img {
-      clear: right;
-      float: right;
-      margin-left: $base-spacing;
-      width: $media-inline-width;
-    }
-  }
-
-
   /** Lists */
 
   ul,
@@ -205,7 +192,7 @@ $widgetbar-subheading-font-size: $h5-font-size;
       margin-left: -$column-padding;//remember to account for table
       width: calc( 100% + #{$column-padding} * 2 );
 
-      @include media( $mobile-large-and-smaller ) {
+      @include breakpoint( $mobile-large-and-smaller ) {
         margin-top: -1.5 * $column-padding;
       }
     }
@@ -221,7 +208,7 @@ $widgetbar-subheading-font-size: $h5-font-size;
 
       // Pre-heading delimiting line
       @include before( block ) {
-        @include size( 2rem rem( 3px ) );
+        @include size( 2rem .1875rem );
         margin-bottom: .35rem;
         background-color: $base-heading-color;
       }
@@ -236,6 +223,20 @@ $widgetbar-subheading-font-size: $h5-font-size;
 
     p { font-size: $widgetbar-body-font-size; }
   }
+
+
+  // Inline and auto-alignments
+  @include breakpoint( $tablet-and-bigger ) {
+    .inline,
+    p > img,
+    p > img ~ img {
+      clear: right;
+      float: right;
+      margin-left: $base-spacing;
+      width: $media-inline-width;
+    }
+  }
+
 }
 
 
@@ -250,12 +251,11 @@ $widgetbar-subheading-font-size: $h5-font-size;
 .break {
   @include clearfix;
   overflow: hidden;
-  display: block;
   visibility: hidden;
+  display: block;
   width: 100%;
 
-  @include media( $tablet-and-bigger ) {
+  @include breakpoint( $tablet-and-bigger ) {
     margin-bottom: $base-spacing;
   }
 }
-

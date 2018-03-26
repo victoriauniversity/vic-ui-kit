@@ -38,7 +38,7 @@ $sub-title-color: rgba( $white, .75 );
             border-top: 2px solid $sub-title-color;
           }
 
-          @include media ($desktop-and-bigger) {
+          @include breakpoint ($desktop-and-bigger) {
             min-height: 140px;
           }
         }
@@ -86,13 +86,13 @@ $sub-title-color: rgba( $white, .75 );
             border-top: 2px solid $grey;
           }
 
-          @include media( $desktop-and-bigger ) {
+          @include breakpoint( $desktop-and-bigger ) {
             min-height: inherit;
           }
         }
 
-        @include media( $desktop-and-bigger ) {
-          @include span-columns( 6 );
+        @include breakpoint( $desktop-and-bigger ) {
+          //@include span-columns( 6 );
           margin-right: $gutter;
           max-height: none;
         }

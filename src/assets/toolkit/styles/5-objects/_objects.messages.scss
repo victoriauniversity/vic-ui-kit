@@ -76,7 +76,7 @@ $message-strip-darken-percentage: 7;
     justify-content: space-between;
     padding: 2em 1.2em;
 
-    @include media($tablet-and-smaller) {
+    @include breakpoint($tablet-and-smaller) {
       flex-wrap: wrap;
     }
 
@@ -84,7 +84,7 @@ $message-strip-darken-percentage: 7;
       &:first-child {
         flex: 0 0 20%;
 
-        @include media($tablet-and-smaller) {
+        @include breakpoint($tablet-and-smaller) {
           flex-basis: 100%;
           margin-bottom: .5em;
         }
@@ -93,11 +93,11 @@ $message-strip-darken-percentage: 7;
       &:not(:first-child) {
         flex: 0 0 23%;
 
-        @include media($tablet-and-smaller) {
+        @include breakpoint($tablet-and-smaller) {
           flex-basis: 31%;
         }
 
-        @include media($mobile-large-and-smaller) {
+        @include breakpoint($mobile-large-and-smaller) {
           flex-basis: 100%;
           margin-bottom: .5em;
         }

@@ -29,7 +29,7 @@
       figcaption {
         margin-bottom: 1em;  // margin bottom depending on sub nav...
         padding: 0;
-        max-width: 88em;
+        max-width: $base-width;
       }
     }
 
@@ -56,11 +56,11 @@
       }
     }
 
-    @include media( $desktop-and-bigger ) {
+    @include breakpoint( $desktop-and-bigger ) {
       figure.photo figcaption { margin-top: 10%; }
     }
 
-    @include media( $mobile-large-and-smaller ) {
+    @include breakpoint( $mobile-large-and-smaller ) {
       figcaption {
         > div { flex-direction: column; }
       }

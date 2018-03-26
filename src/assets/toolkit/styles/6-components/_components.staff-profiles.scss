@@ -1,6 +1,6 @@
 /** List with people information */
 
-$portrait-width: rem( 150px );
+$portrait-width: 9.35rem;
 
 
 .staff {
@@ -20,7 +20,7 @@ $portrait-width: rem( 150px );
     display: block;
     margin-right: $column-padding;
 
-    @include media( $mobile-large-and-smaller ) {
+    @include breakpoint( $mobile-large-and-smaller ) {
       width: 20%;
       max-width: $portrait-width;
     }
@@ -78,7 +78,7 @@ ul.meta {
   > li {
     display: block;
     margin-bottom: .5em;
-    font-size: rem( 14px ); //TODO: Refactor into more dynamic solution
+    font-size: .875rem; //TODO: Refactor into more dynamic solution
     word-wrap: break-word;
     line-height: 1.35;
   }
@@ -109,7 +109,7 @@ ul.meta {
   }
 }
 
-@include media( $mobile-large-and-smaller ) {
+@include breakpoint( $mobile-large-and-smaller ) {
   aside .contact {
     .profile-picture {
       float: left;

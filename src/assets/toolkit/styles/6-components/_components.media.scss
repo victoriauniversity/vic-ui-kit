@@ -6,7 +6,7 @@
   // Floats a medium into right on devices with higher resolution
   &.inline {
 
-    @include media( $tablet-and-bigger ) {
+    @include breakpoint( $tablet-and-bigger ) {
       float: right;
       margin: 0 0 0 $base-spacing;
       width: $media-inline-width;
@@ -82,7 +82,7 @@
 
       p { margin-bottom: 1.3em; }
 
-      @include media( $tablet-and-bigger ) {
+      @include breakpoint( $tablet-and-bigger ) {
         position: absolute;
         top: $base-spacing;
         left: $base-spacing;
@@ -109,7 +109,7 @@
     left: 0;
   }
 
-  @include media( $tablet-and-bigger ) {
+  @include breakpoint( $tablet-and-bigger ) {
     &.inline { padding-bottom: 22.5%; }
   }
 }
@@ -117,10 +117,10 @@
 
 /** Simple gallery (images + breadcrumbs) */
 
-$gallery-image-height: rem( 220px );
+$gallery-image-height: 13.75rem;
 
 
-@include media( $tablet-and-bigger ) {
+@include breakpoint( $tablet-and-bigger ) {
   .gallery {
     @include clearfix;
     margin-bottom: $base-spacing;
@@ -180,7 +180,7 @@ $gallery-image-height: rem( 220px );
 
       h4 { opacity: .9; }
 
-      @include media( $tablet-and-smaller ) {
+      @include breakpoint( $tablet-and-smaller ) {
         max-width: 85%;
       }
     }
@@ -215,7 +215,7 @@ $gallery-image-height: rem( 220px );
         }
 
         //TODO: Refactor the depth and flatten!
-        @include media( $mobile-large-and-smaller ) {
+        @include breakpoint( $mobile-large-and-smaller ) {
           img {
             margin-right: 0;
             margin-bottom: 0;
@@ -243,7 +243,7 @@ $gallery-image-height: rem( 220px );
       .gallery-title {
         max-width: 45%;
 
-        @include media( $tablet-and-smaller ) {
+        @include breakpoint( $tablet-and-smaller ) {
           max-width: 85%;
         }
       }

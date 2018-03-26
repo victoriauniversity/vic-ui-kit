@@ -7,7 +7,7 @@
     the page. 1 *MUST BE* used on a single page. */
 
 $footer-logo-width:         20% !default;
-$footer-logo-max-width:     rem( 250px );
+$footer-logo-max-width:     15.5rem;
 $footer-primary-background: $black-victoria !default;
 $footer-primary-color:      $grey-silver !default;
 $footer-primary-separator:  1px solid $black-emperor !default;
@@ -51,7 +51,7 @@ $footer-primary-separator:  1px solid $black-emperor !default;
 
   // Logo & Contact info
   .logo {
-    @include span-columns( 3 of 12, table );
+    //@include span-columns( 3 of 12, table );
     vertical-align: middle;
 
     img {
@@ -63,7 +63,7 @@ $footer-primary-separator:  1px solid $black-emperor !default;
   }
 
   .contacts {
-    @include span-columns( 9 of 12, table );
+    //@include span-columns( 9 of 12, table );
     padding: .5em 0 .5em 3.5em;
     vertical-align: middle;
 
@@ -94,7 +94,7 @@ $footer-primary-separator:  1px solid $black-emperor !default;
   }
 
 
-  @include media( $mobile-large-and-smaller ) {
+  @include breakpoint( $mobile-large-and-smaller ) {
     text-align: center;
 
     .contacts,
@@ -234,7 +234,7 @@ $footer-heading-margin-bottom: .75em;
     h2 { margin-bottom: $footer-heading-margin-bottom; }
 
     .block {
-      @include span-columns( 1 of 2, table );
+      //@include span-columns( 1 of 2, table );
 
       &:first-child {
         padding-right: $base-spacing;
@@ -270,7 +270,7 @@ $footer-heading-margin-bottom: .75em;
   }
 
 
-  @include media( $mobile-large-and-smaller ) {
+  @include breakpoint( $mobile-large-and-smaller ) {
     &:not( .two-columns ) {
       h2 {
         float: none;

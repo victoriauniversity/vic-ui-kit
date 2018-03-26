@@ -32,7 +32,7 @@ $faux-spacing: 10rem;
   border-bottom: 1px solid $green-bottle;
   cursor: pointer;
 
-  @include media( $mobile-large-and-smaller ) {
+  @include breakpoint( $mobile-large-and-smaller ) {
     &.home,
     &.back {
       background: $black-victoria !important;
@@ -58,10 +58,10 @@ $faux-spacing: 10rem;
     // Strip item highlight
     &::before {
       @include objectify( block, $position: absolute );
-      top: rem( 8px );
-      bottom: rem( 8px );
-      margin-left: rem( -10px );
-      width: rem( 4px );
+      top: .5rem;
+      bottom: .5rem;
+      margin-left: -.625rem;
+      width: .25rem;
       border: 1px solid $grey-silver;
       background: $white;
     }

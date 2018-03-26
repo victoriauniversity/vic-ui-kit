@@ -33,7 +33,7 @@
     }
 
     div {
-      @include span-columns( 4 of 8 );
+      //@include span-columns( 4 of 8 );
 
       &.button-links {
         a.button {
@@ -46,8 +46,8 @@
         }
       }
 
-      @include media( $tablet-and-smaller ) {
-        @include span-columns( 8 );
+      @include breakpoint( $tablet-and-smaller ) {
+        //@include span-columns( 8 );
 
         &.social-links { margin-top: 1.5rem; }
       }
@@ -62,12 +62,12 @@
 
     .text-wrap,
     .button-wrap {
-      @include span-columns( 4 of 4 );
+      //@include span-columns( 4 of 4 );
     }
 
     .button-wrap { margin-top: 1rem; }
 
-    @include media( $tablet-and-bigger ) {
+    @include breakpoint( $tablet-and-bigger ) {
       float: left;
       width: 100 / 3 * 1%;
     }
@@ -107,20 +107,20 @@
         }
       }
 
-      @include media( $tablet-and-bigger ) {
+      @include breakpoint( $tablet-and-bigger ) {
         border-left: 2px solid $grey-alto;
       }
     }
   }
 
-  @include media( $tablet-and-bigger ) {
+  @include breakpoint( $tablet-and-bigger ) {
     width: 100 / 3 * 2%;
 
     &:last-child { margin: 0 auto; }
     &:not(:last-child) { float: left; }
   }
 
-  @include media( $mobile-large-and-smaller ) {
+  @include breakpoint( $mobile-large-and-smaller ) {
     &:not(:last-child) {
       border-bottom: $base-border;
     }
@@ -129,7 +129,7 @@
 }
 
 
-@include media ($tablet-and-bigger) {
+@include breakpoint ($tablet-and-bigger) {
   .text-promo-panel.intro-promo {
     @include before( $position: absolute ) {
       @include size( 0 100% );

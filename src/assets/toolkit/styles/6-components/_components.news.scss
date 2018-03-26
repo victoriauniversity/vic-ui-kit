@@ -10,28 +10,28 @@
     }
   }
 
-  @include media( $tablet-and-bigger ) {
+  @include breakpoint( $tablet-and-bigger ) {
     // Has got `media` or another add-on
     .summary { overflow: hidden; }
 
     //TODO: Remove grid
     .media {
-      @include omega;
-      @include span-columns( 4.5 of 12 );
+      //@include omega;
+      //@include span-columns( 4.5 of 12 );
       float: right;
       margin-left: $column-padding;
 
       // Image with portrait-like width to height ratio
       &.portrait {
-        @include omega;
-        @include span-columns( 3 of 12 );
+        //@include omega;
+        //@include span-columns( 3 of 12 );
         float: right;
         text-align: right;
       }
     }
   }
 
-  @include media( $mobile-large-and-smaller ) {
+  @include breakpoint( $mobile-large-and-smaller ) {
     .media { margin-bottom: 1em; }
   }
 }
@@ -49,7 +49,7 @@
       list-style: none;
     }
 
-    @include media( $desktop-and-bigger ) {
+    @include breakpoint( $desktop-and-bigger ) {
       display: flex;
       flex-wrap: wrap;
 

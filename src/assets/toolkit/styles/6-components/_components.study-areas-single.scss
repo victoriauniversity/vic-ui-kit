@@ -7,8 +7,7 @@ $gutter: 8px;
 
 .study-area-single {
   .study-area-wide-panel {
-    @include outer-container( 100% );
-    @include fill-parent();
+    @include grid-container;
     margin-bottom: $base-spacing;
 
     &:not(:last-child) {
@@ -17,19 +16,19 @@ $gutter: 8px;
     }
 
     .img-wrap {
-      @include span-columns( 5 );
+      //@include span-columns( 5 );
 
       img { width: 100%; }
     }
 
     .content-wrap {
-      @include span-columns( 7 );
+      //@include span-columns( 7 );
 
       &:first-child { width: 100%; } // Study area without an image
 
       .text-subjects-wrap {
         .text-wrap {
-          @include span-columns( 4 of 6 );
+          //@include span-columns( 4 of 6 );
 
           // TODO: Refactor & flatten to lower the depth!
           h2 { margin-bottom: 1rem; }
@@ -42,7 +41,7 @@ $gutter: 8px;
         }
 
         .subjects-wrap {
-          @include span-columns( 2 of 6 );
+          //@include span-columns( 2 of 6 );
           margin-right: 0;
 
           // TODO: Refactor & flatten to lower the depth!
@@ -63,8 +62,8 @@ $gutter: 8px;
             }
           }
 
-          @include media( $tablet-and-smaller ) {
-            @include span-columns( 8 );
+          @include breakpoint( $tablet-and-smaller ) {
+            //@include span-columns( 8 );
           }
         }
       }
@@ -72,7 +71,7 @@ $gutter: 8px;
       a.button { float: left; }
     }
 
-    @include media ( $tablet-and-bigger ) {
+    @include breakpoint ( $tablet-and-bigger ) {
       .content-wrap {
         .text-subjects-wrap {
           display: inline;
@@ -84,20 +83,20 @@ $gutter: 8px;
       }
     }
 
-    @include media ( $tablet-and-smaller ) {
+    @include breakpoint ( $tablet-and-smaller ) {
       .content-wrap .text-subjects-wrap {
         .text-wrap,
         .subjects-wrap {
-          @include span-columns( 8 );
+          //@include span-columns( 8 );
         }
       }
     }
 
-    @include media ( $mobile-large-and-smaller ) {
+    @include breakpoint ( $mobile-large-and-smaller ) {
       .img-wrap { display: none; }
 
       .content-wrap {
-        @include span-columns( 6 );
+        //@include span-columns( 6 );
 
         a.button { margin-bottom: .35rem; }
       }

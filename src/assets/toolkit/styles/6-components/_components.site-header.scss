@@ -1,4 +1,4 @@
-$logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
+$logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 
 .site-header,
 .main-site-header {
@@ -33,13 +33,13 @@ $logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
         margin-right: 2%;
         padding: .66em;
         width: 78%;
-        max-height: rem( 45px );
+        max-height: 2.81rem;
       }
 
       input[type=submit] {
         padding: .5em;
         width: 18%;
-        max-height: rem( 45px );
+        max-height: 2.81rem;
         cursor: pointer;
         border-style: inherit;
       }
@@ -79,12 +79,12 @@ $logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
           &:hover { opacity: $base-hover-opacity; }
         }
 
-        @include media( $tablet-and-bigger ) {
+        @include breakpoint( $tablet-and-bigger ) {
           font-size: 2vw;
           font-weight: $weight-medium;
         }
 
-        @include media( $desktop-and-smaller ) {
+        @include breakpoint( $desktop-and-smaller ) {
           font-size: 2.5vw;
         }
 
@@ -102,8 +102,8 @@ $logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
       }
     }
 
-    @include media( $desktop-large ) {
-      @include span-columns( 10 of 12, table );
+    @include breakpoint( $desktop-large ) {
+      //@include span-columns( 10 of 12, table );
       display: flex;
     }
   }
@@ -121,7 +121,7 @@ $logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
 
   /* Victoria main logotype */
   .logo {
-    @include align-self(center);
+    align-self: center;
     text-align: center;
 
     // Logo image
@@ -165,7 +165,7 @@ $logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
   }
 
 
-  @include media( $tablet-and-bigger ) {
+  @include breakpoint( $tablet-and-bigger ) {
     .block {
       display: flex;
       width: 100%;
@@ -173,7 +173,7 @@ $logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
     }
 
     .site-intro {
-      @include span-columns( 9 of 12 );
+      //@include span-columns( 9 of 12 );
       padding: .3rem $column-padding .5rem $column-padding * 1.5;
     }
 
@@ -194,7 +194,7 @@ $logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
     }
 
     .logo {
-      @include span-columns( 3 of 12 );
+      //@include span-columns( 3 of 12 );
 
       padding: .1rem $column-padding * 1.5 .1rem $column-padding;
       border-right: 1px solid $black-emperor;
@@ -202,7 +202,7 @@ $logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
 
   }
 
-  @include media( $tablet-and-smaller ) {
+  @include breakpoint( $tablet-and-smaller ) {
     .menu-bar {
       .search-item {
         position: absolute;
@@ -211,11 +211,11 @@ $logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
     }
   }
 
-  @include media( $mobile-large-and-smaller ) {
+  @include breakpoint( $mobile-large-and-smaller ) {
     .block {
       // @include flex-direction(column);
-      @include flex-wrap(wrap);
-      @include justify-content(space-between);
+      justify-content: space-between;
+      flex-wrap: wrap;
     }
 
     .main-menu-toggle {
@@ -231,7 +231,7 @@ $logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
 
     .menu-container {
       flex: 1 1 100%;
-      margin-top: rem( 5px );
+      margin-top: .3rem;
 
       .sub-nav { display: none; }
 
@@ -303,20 +303,20 @@ $logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
 
 /* menu toggle icon css only transform hamburger to cross */
 .menu-toggle-icon {
-  @include transform( rotate( 0deg ) );
-  @include transition( .5s ease-in-out );
-  @include transform( scale( .5 ));
   @include size( 60px 45px );
   position: relative;
+  transform: rotate( 0deg );
+  transition: .5s ease-in-out;
+  transform: scale( .5 );
 }
 
 .menu-toggle-icon span {
-  @include transform( rotate(0deg) );
-  @include transition( .25s ease-in-out );
   @include size( 100% 9px );
   position: absolute;
   left: 0;
   display: block;
+  transform: rotate( 0deg );
+  transition: .25s ease-in-out;
   opacity: 1;
   background: $white;
   border-radius: 9px;
@@ -338,11 +338,11 @@ $logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
 }
 
 .menu-toggle-icon.open span:nth-child( 2 ) {
-  @include transform( rotate( 45deg ) );
+  transform: rotate( 45deg );
 }
 
 .menu-toggle-icon.open span:nth-child( 3 ) {
-  @include transform( rotate( -45deg ) );
+  transform: rotate( -45deg );
 }
 
 .menu-toggle-icon.open span:nth-child( 4 ) {

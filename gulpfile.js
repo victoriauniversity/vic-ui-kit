@@ -146,7 +146,7 @@ gulp.task( 'scripts', ( done ) => {
 
 
 // Files revver
-gulp.task( 'rev', ( cb ) => {
+gulp.task( 'rev', cb =>
   pump([
     gulp.src( `${config.tmp}/**` ),
     revAll.revision({
@@ -172,26 +172,23 @@ gulp.task( 'rev', ( cb ) => {
       ],
     }),
     gulp.dest( config.dist ),
-  ], cb );
-});
+  ], cb ));
 
 
-gulp.task( 'decorate:templates', ( cb ) => {
+gulp.task( 'decorate:templates', cb =>
   pump([
     gulp.src( `${config.tmp}/**/*.html` ), // HTML
     header( `<!-- ${BUILD_MSG} -->\n` ),
     gulp.dest( config.tmp ),
-  ], cb );
-});
+  ], cb ));
 
 
-gulp.task( 'decorate:assets', ( cb ) => {
+gulp.task( 'decorate:assets', cb =>
   pump([
     gulp.src( `${config.tmp}/*.{js,css}` ), // JS + CSS
     header( `/** ${BUILD_MSG} */\n` ),
     gulp.dest( config.tmp ),
-  ], cb );
-});
+  ], cb ));
 
 gulp.task( 'decorate', gulp.series( 'decorate:assets', 'decorate:templates' ));
 
@@ -202,7 +199,7 @@ gulp.task( 'decorate', gulp.series( 'decorate:assets', 'decorate:templates' ));
 /** StyleGuide (Fabricator) *ONLY* routines. */
 
 // Fabricator's styles
-gulp.task( 'styles:fabricator', ( cb ) => {
+gulp.task( 'styles:fabricator', cb =>
   pump([
     gulp.src( config.styles.fabricator.src ),
     sourcemaps.init(),
@@ -212,27 +209,23 @@ gulp.task( 'styles:fabricator', ( cb ) => {
     sourcemaps.write(),
     gulp.dest( config.styles.fabricator.dest ),
     gulpif( config.dev, browserSync.reload({ stream: true })),
-  ], cb );
-  cb();
-});
+  ], cb ));
 
 
 // Style guide's icon
-gulp.task( 'favicon', ( cb ) => {
+gulp.task( 'favicon', cb =>
   pump([
     gulp.src( 'src/favicon.ico' ),
     gulp.dest( config.tmp ),
-  ], cb );
-});
+  ], cb ));
 
 
 // CNAME record for custom domain running on GitHubPages
-gulp.task( 'cname', ( cb ) => {
+gulp.task( 'cname', cb =>
   pump([
     gulp.src( 'src/CNAME' ),
     gulp.dest( config.tmp ),
-  ], cb );
-});
+  ], cb ));
 
 
 // Fabricator's compiler
@@ -253,7 +246,7 @@ gulp.task( 'assembler', ( done ) => {
 /** UI libraries *ONLY* routines. */
 
 // Victoria UI Styles
-gulp.task( 'styles:toolkit', ( cb ) => {
+gulp.task( 'styles:toolkit', cb =>
   pump([
     gulp.src( config.styles.toolkit.src ),
     gulpif( config.dev, sourcemaps.init()),
@@ -261,37 +254,34 @@ gulp.task( 'styles:toolkit', ( cb ) => {
       includePaths: [
         './node_modules',
         neat.includePaths,
-        './lib',
+        './lib', // TODO: Remove
       ],
     }),
     prefix(),
     gulpif( config.dev, sourcemaps.write()),
     gulp.dest( config.styles.toolkit.dest ),
-    csso(),
+    //csso(),
     rename( 'toolkit.min.css' ),
     gulp.dest( config.tmp ),
     gulpif( config.dev, browserSync.reload({ stream: true })),
-  ], cb );
-});
+  ], cb ));
 
 
 // Layout-related imagery
-gulp.task( 'images', gulp.parallel( 'favicon', 'cname', ( cb ) => {
+gulp.task( 'images', gulp.parallel( 'favicon', 'cname', cb =>
   pump([
     gulp.src( config.images.toolkit.src ),
     imagemin(),
     gulp.dest( config.images.toolkit.dest ),
-  ], cb );
-}));
+  ], cb )));
 
 
 // Custom fonts and icon fonts
-gulp.task( 'fonts', ( cb ) => {
+gulp.task( 'fonts', cb =>
   pump([
     gulp.src( config.fonts.toolkit.src ),
     gulp.dest( config.fonts.toolkit.dest ),
-  ], cb );
-});
+  ], cb ));
 
 
 gulp.task( 'styles', gulp.parallel( 'styles:fabricator', 'styles:toolkit' ));
@@ -311,6 +301,7 @@ function initVersionCommand( subtaskName ) {
     const semverType = subtaskName || 'patch',
       newVersion     = semver.inc( config.version, semverType );
 
+    // TODO: rewrite to pump + use callback to evaluate the 'end'
     return gulp.src( '{build/release-templates/,.}/package.json' )
       .pipe( bump({ version: newVersion }))
       .pipe( gulp.dest( './' ))
@@ -379,10 +370,10 @@ gulp.task( 'git:cloneReleaseRepo', ( done ) => {
 gulp.task( 'git:commitAll', ( cb ) => {
   process.chdir( config.dist );
 
-  pump([
+  return pump([
     gulp.src( './*' ),
     git.add({ args: '-f' }),
-    git.commit( `Release v${config.version} | [skip ci]` )
+    git.commit( `Release v${config.version} | [skip ci]` ),
   ], cb );
 });
 
@@ -401,7 +392,6 @@ gulp.task( 'git:pushToGHPages', ( done ) => {
 
 
 gulp.task( 'git:exec', ( done ) => {
-
   const FETCH_TAG_CMD = `git fetch origin v${config.version}`,
     PUSH_RELEASE_CMD  = `git reset origin/${GITHUB_RELEASE_BRANCH} && git checkout origin/${GITHUB_RELEASE_BRANCH} -t && git rm -r --cached . && git add . && git commit -am "Release v${config.version}" && git tag -a -m "Release of v${config.version}" v${config.version} && git push origin ${GITHUB_RELEASE_BRANCH} --tags`;
 
@@ -484,20 +474,18 @@ gulp.task( 'git:shallowClone', ( done ) => {
 
 /** Copying and moving tasks. */
 
-gulp.task( 'copyTempToDist', ( cb ) => {
+gulp.task( 'copyTempToDist', cb =>
   pump([
     gulp.src( `${config.tmp}/**` ),
     gulp.dest( config.dist ),
-  ], cb );
-});
+  ], cb ));
 
 // Create latest version
-gulp.task( 'copyDistToRelease', ( cb ) => {
+gulp.task( 'copyDistToRelease', cb =>
   pump([
     gulp.src([ `${config.tmp}/**`, 'build/release-templates/**', 'build/release-templates/.gitignore' ]),
     gulp.dest( `${config.dist}/${config.version}` ),
-  ], cb );
-});
+  ], cb ));
 
 
 

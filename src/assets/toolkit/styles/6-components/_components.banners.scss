@@ -5,8 +5,8 @@
 
 /** Banner used on homepages. */
 
-$homepage-banner-max-height:         rem( 520px );
-$homepage-banner-compact-max-height: rem( 300px );
+$homepage-banner-max-height:         32.5rem;
+$homepage-banner-compact-max-height: 18.75rem;
 
 .homepage-banner,
 .study-hub-banner {
@@ -44,7 +44,7 @@ $homepage-banner-compact-max-height: rem( 300px );
 
     h3 { line-height: 1.2; }
 
-    @include media( $tablet-and-bigger ) {
+    @include breakpoint( $tablet-and-bigger ) {
       position: absolute;
       right: 0;
       bottom: 40%;
@@ -59,16 +59,16 @@ $homepage-banner-compact-max-height: rem( 300px );
       }
     }
 
-    @include media( $tablet ) {
+    @include breakpoint( $tablet ) {
       width: 65%;
     }
 
-    @include media( $desktop-and-bigger ) {
+    @include breakpoint( $desktop-and-bigger ) {
       width: 40%;
     }
   }
 
-  @include media( $desktop-and-bigger ) {
+  @include breakpoint( $desktop-and-bigger ) {
     min-height: $homepage-banner-max-height;
 
     // Banner types
@@ -102,11 +102,11 @@ $homepage-banner-compact-max-height: rem( 300px );
 }
 
 .study-hub-banner {
-  @include media( $desktop-and-bigger ) {
+  @include breakpoint( $desktop-and-bigger ) {
     //Overwriting extend for page
     .sidebar {
       position: absolute;
-      left: rem( 100px );
+      left: 6.25rem;
       margin-bottom: $column-padding;
       width: 21%;
     }

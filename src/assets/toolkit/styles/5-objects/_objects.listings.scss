@@ -18,7 +18,7 @@ $article-item-max-width: $base-max-content-height;
   article { margin-bottom: 0; }
   // End of resets
 
-  @include media( $tablet-and-bigger ) {
+  @include breakpoint( $tablet-and-bigger ) {
     margin: 0 auto;
     max-width: $article-item-max-width;
   }
@@ -85,7 +85,7 @@ $article-item-max-width: $base-max-content-height;
   &.divider-line {
     position: relative;
 
-    @include media( $desktop-and-bigger ) {
+    @include breakpoint( $desktop-and-bigger ) {
       @include before( $position: absolute ) {
         @include size( 0 100% );
         top: 0;
@@ -98,9 +98,9 @@ $article-item-max-width: $base-max-content-height;
   // > .centraliser {}
 
   .articles-container {
-    @include media( $desktop-and-bigger ) {
-      @include span-columns( 6 of 12 );
-      @include omega( 2n );
+    @include breakpoint( $desktop-and-bigger ) {
+      //@include span-columns( 6 of 12 );
+      //@include omega( 2n );
     }
   }
 

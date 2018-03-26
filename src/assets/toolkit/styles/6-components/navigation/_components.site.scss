@@ -11,7 +11,7 @@
     margin: 0 -.6em;
   }
 
-  @include media( $mobile-large-and-smaller ) {
+  @include breakpoint( $mobile-large-and-smaller ) {
     > ul > li {
 
       @for $i from 0 through 5 {
@@ -28,7 +28,7 @@
     .layout & { display: none; }
   }
 
-  @include media( $tablet-and-bigger ) {
+  @include breakpoint( $tablet-and-bigger ) {
     > ul > li {
       display: none;
 
@@ -72,7 +72,7 @@
       padding-right: 2.2rem;
 
       &::after {
-        @include triangle( .7em, $white, right );
+        @include triangle( right, .7em, .7em, $white );
         position: absolute;
         top: 50%;
         right: 0;

@@ -1,6 +1,6 @@
 //_components.cards.scss
 
-$card-padding: 2.5em; //rem(20px) from settings.variables
+$card-padding: 2.5rem;
 $card-shadow:  0 1px 5px rgba( #000, .15 );
 
 .card-panel {
@@ -55,7 +55,7 @@ $card-shadow:  0 1px 5px rgba( #000, .15 );
         padding-right: 2.5em;
         width: 50%;
 
-        @include media( $tablet-and-smaller ) {
+        @include breakpoint( $tablet-and-smaller ) {
           padding-right: 0;
         }
       }
@@ -80,7 +80,7 @@ $card-shadow:  0 1px 5px rgba( #000, .15 );
         }
       }
 
-      @include media( $mobile-large-and-smaller ) {
+      @include breakpoint( $mobile-large-and-smaller ) {
         margin-bottom: 0;
         flex-direction: column;
 
@@ -121,7 +121,7 @@ $card-shadow:  0 1px 5px rgba( #000, .15 );
     }
   }
 
-  @include media( $mobile-large-and-smaller ) {
+  @include breakpoint( $mobile-large-and-smaller ) {
     flex-direction: column;
 
     .card {
@@ -133,7 +133,7 @@ $card-shadow:  0 1px 5px rgba( #000, .15 );
     }
   }
 
-  @include media( $tablet-and-smaller ) {
+  @include breakpoint( $tablet-and-smaller ) {
     .card {
       .button {
         &:first-of-type {

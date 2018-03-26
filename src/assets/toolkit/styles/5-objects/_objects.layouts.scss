@@ -14,15 +14,16 @@
 
 
 
+
 // Sticky footer
 html { height: 100%; }
 
 body {
   display: flex;
-  flex-direction: column;
   min-height: 100%;
+  flex-direction: column;
 
-  > footer { overflow: hidden; } // IE extra margin after flex-box fix
+  > footer { overflow: hidden; } // IE11+ extra margin after flex-box fix
 }
 
 
@@ -44,7 +45,7 @@ body {
   margin-right: auto;
   margin-left: auto;
   width: 100%;
-  max-width: 88em;
+  max-width: $base-width;
 }
 
 
@@ -119,7 +120,7 @@ body {
 }
 
 
-@include media( $tablet-and-smaller ) {
+@include breakpoint( $tablet-and-smaller ) {
   .layout {
     &.block {
       padding-right: 0;
@@ -129,49 +130,49 @@ body {
 }
 
 
-@include media( $tablet-and-bigger ) {
-  .content-panel {
+@include breakpoint( $tablet-and-bigger ) {
 
+  .content-panel {
+    @include grid-visual;
     /** 1st Content bar + 2nd widgets bar */
     $widgetbar-to-content-width-ratio: .25; // 25% of the content container's width
     $widgetbar-columns: $widgetbar-to-content-width-ratio * $grid-columns;
-
-    > main:last-child { width: 100%; }
+    $content-columns:   $grid-columns - $widgetbar-columns;
 
     /** Main content *ONLY* */
+    > main:last-child {
+      width: 100%;
+    }
+
+    /** Main content + widgetbar */
     > main:not(:last-child) {
-      @include span-columns( $grid-columns - $widgetbar-columns, table );
-      float: left;
+      @include grid-column( $content-columns );
     }
 
     // Sub-columns
     > aside {
-      @include span-columns( $widgetbar-columns, table );
-      float: left;
+      @include grid-column( $widgetbar-columns );
     }
   }
 }
 
 
-@include media( $desktop-and-bigger ) {
-
+@include breakpoint( $desktop-and-bigger ) {
   /** Left sidebar */
   $sidebar-to-document-width-ratio: .2; // 20% of the page's width
   $sidebar-columns:                 $sidebar-to-document-width-ratio * $grid-columns;
 
   .layout {
     overflow: hidden;
-    display:  table; // Fixes the issue with misbehavior of inner containers
+    //display:  table; // Fixes the issue with misbehavior of inner containers
   }
 
   .sidebar {
-    @include span-columns( $sidebar-columns, table );
-    float: left;
+    @include grid-column( $sidebar-columns );
   }
 
   // Can contain Content only column and Widget bar (optional).
   .content-panel {
-    float: left;
 
     /** Content panel *ONLY* */
 
@@ -191,8 +192,7 @@ body {
     /** 1st Sidebar + 2nd Content panel */
 
     &:not(:first-child) {
-      @include span-columns( $grid-columns - $sidebar-columns, table );
-      vertical-align: top;
+      @include grid-column( $grid-columns - $sidebar-columns );
     }
 
     > aside {
