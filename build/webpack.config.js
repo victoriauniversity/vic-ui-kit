@@ -1,44 +1,49 @@
-const path    = require( 'path' );
-const webpack = require( 'webpack' );
+const
+  path    = require( 'path' ),
+  webpack = require( 'webpack' ),
+
+  config  = require( './build.config' );
 
 
 /**
  * Define plugins based on environment
  *
  * @param {boolean} isDev If in development mode
+ *
  * @return {Array}
  */
 function getPlugins( isDev ) {
   const plugins = [];
 
-  if ( isDev ) {
+  if ( !isDev ) {
     plugins.push( new webpack.NoEmitOnErrorsPlugin());
-  } else {
     plugins.push( new webpack.optimize.DedupePlugin());
-    plugins.push( new webpack.optimize.UglifyJsPlugin({
-      minimize:  true,
-      include:   /\.min\.js$/,
-      sourceMap: true,
-      compress:  {
-        warnings: false,
-      },
-    }));
   }
 
   return plugins;
 }
 
-module.exports = ( config ) => {
+module.exports = ({
+  includeToolkit,
+  includeFabricator,
+} = { includeToolkit: true, includeFabricator: true }) => {
+  // Add properties: { 'dests_relative_path': 'source' }
+  const entries = {};
+
+  if ( includeToolkit ) {
+    entries.toolkit = `./${config.paths.toolkit.scriptsIndex}`;
+    if ( !config.devMode ) entries['toolkit.min'] = `./${config.paths.toolkit.scriptsIndex}`;
+  }
+
+  if ( includeFabricator ) {
+    entries['styleguide-assets/f'] = `./${config.paths.fabricator.scriptIndex}`;
+  }
+
   return {
-    // Add objects: { 'dest': 'source' }
-    entry: {
-      [config.scripts.fabricator.pathInDest]:      config.scripts.fabricator.src,
-      [config.scripts.toolkit.pathInDest]:         config.scripts.toolkit.src,
-      [config.scripts.toolkit.minifiedPathInDest]: config.scripts.toolkit.src,
-    },
+    entry: entries,
 
     output: {
-      path:     path.resolve( __dirname, '..', config.tmp ),
+      path:     path.resolve( __dirname, '..', config.paths.tmp ),
       filename: '[name].js',
     },
 
@@ -50,13 +55,15 @@ module.exports = ( config ) => {
       ],
     },
 
-    plugins: getPlugins( config.dev ),
+    plugins: getPlugins( config.devMode ),
+
+    mode: config.devMode ? 'development' : 'production',
 
     module:  {
       rules: [
         {
           test:    /(\.js)/,
-          exclude: /(node_modules)/,
+          exclude: /(node_modules|\.tmp|dist)/,
           loader:  'babel-loader',
         }, {
           test:   /(\.jpg|\.png)$/,
@@ -68,4 +75,5 @@ module.exports = ( config ) => {
       ],
     },
   };
+
 };
