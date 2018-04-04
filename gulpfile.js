@@ -5,9 +5,8 @@ require( 'require-dir' )( './build/tasks', { recurse: true });
 
 const
   gulp   = require( 'gulp' ),
-  gulpif = require( 'gulp-if' ),
 
-  config = './build/build.config.js';
+  config = require( './build/build.config' );
 
 
 
@@ -17,6 +16,7 @@ const
  * More granular tasks are available in: build/tasks/*.js).
  */
 
+console.log( '!!!', config.devMode );
 
 gulp.task( 'build', gulp.series(
   'clean',
@@ -27,7 +27,7 @@ gulp.task( 'build', gulp.series(
     'images',
     'fonts',
   ),
-  gulpif( !config.devMode, 'decorate' ),
+  !config.devMode ? 'decorate' : ( done ) => { done(); },
 ));
 
 

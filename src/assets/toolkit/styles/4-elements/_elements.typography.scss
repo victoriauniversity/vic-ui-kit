@@ -2,6 +2,33 @@
 =        GENERAL TYPOGRAPHY SETUP          =
 ==========================================*/
 
+/// Checks if a list contains a value(s).
+///
+/// @argument {list} $list
+///   The list to check against.
+///
+/// @argument {list} $values
+///   A single value or list of values to check for.
+///
+/// @return {boolean}
+///
+/// @access private
+
+@function _contains(
+  $list,
+  $values...
+) {
+  @each $value in $values {
+    @if type-of(index($list, $value)) != 'number' {
+      @return false;
+    }
+  }
+
+  @return true;
+}
+
+
+
 /// Builds the `src` list for an `@font-face` declaration.
 ///
 /// @link https://goo.gl/Ru1bKP
@@ -20,11 +47,13 @@
 ///
 /// @access private
 
+$font-supported-formats: woff woff2 ttf;
+
 @function font-source-declaration(
   $font-family,
   $file-path,
   $asset-pipeline,
-  $file-formats
+  $file-formats: $font-supported-formats
 ) {
   $src: ();
 
@@ -55,12 +84,15 @@
 @mixin font-face(
   $font-family,
   $file-path,
-  $asset-pipeline,
-  $file-formats
+  $font-weight,
+  $file-formats: $font-supported-formats,
+  $asset-pipeline: false,
 ) {
   @font-face {
     @content;
     font-family: $font-family;
+    font-style: normal;
+    font-weight: $font-weight;
     src: font-source-declaration( $font-family, $file-path, $asset-pipeline, $file-formats );
   }
 }
