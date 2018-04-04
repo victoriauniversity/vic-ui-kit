@@ -18,7 +18,7 @@ const
 
 function processImages( done ) {
   return pump([
-    gulp.src( config.paths.toolkit.images ),
+    gulp.src( `${config.paths.toolkit.images}/**` ),
     imagemin(),
     gulp.dest( `${config.paths.tmp}/images` ),
   ], done );

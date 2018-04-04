@@ -87,6 +87,7 @@ function copyImagesToDist( done ) {
 
 
 /** Name & register tasks. */
+
 gulp.task( 'copy:release', copyRelease );
 gulp.task( 'copy:tmp', copyTmp );
 

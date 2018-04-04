@@ -109,7 +109,7 @@ a.link-more {
   */
 
 .play-button {
-  @include size( 65px 40px );
+  @include size( 65px, 40px );
   position: relative;
   margin-top: 1em;
   background-color: #FFF;
@@ -174,7 +174,7 @@ $transition:  .3s; // increase this to see the transformations in slow-motion
     }
   }
 
-  &:active { transition: 0; }
+  &:active { transition: none; }
   &:focus { outline: 0; }
 
   .x.close .lines {
@@ -196,7 +196,7 @@ $transition:  .3s; // increase this to see the transformations in slow-motion
 }
 
 @mixin line {
-  @include size( $button-size $button-size / 7 );
+  @include size( $button-size, $button-size / 7 );
   display: inline-block;
   background: $white;
   border-radius: $button-size / 14;

@@ -52,7 +52,7 @@ function serverAndWatch() {
     done();
   }
 
-  // Enable watching. Format: gulp.watch( files to watch (globs), tasks to trigger )
+  // Enable watching. Format: gulp.watch( files to watch (globs), tasks to trigger function )
   gulp.watch( sourceGlobs.templates, gulp.series( 'rebuild:templates', browserReload ));
 
   gulp.watch( sourceGlobs.toolkit.sass, gulp.series( 'rebuild:styles:toolkit' ));

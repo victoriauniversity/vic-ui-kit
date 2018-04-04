@@ -16,7 +16,7 @@ const gulp = require( 'gulp' ),
 /** Tasks. */
 
 // Files revver
-function cacheBustFiles( done ) {
+function cachebustFiles( done ) {
   // TODO: Specify more closely
   return pump([
     gulp.src( `${config.paths.tmp}/**` ),
@@ -42,7 +42,7 @@ function cacheBustFiles( done ) {
         '.html',
       ],
     }),
-    gulp.dest( config.dist ),
+    gulp.dest( config.paths.dist ),
   ], done );
 }
 
@@ -50,4 +50,4 @@ function cacheBustFiles( done ) {
 
 /** Name & register tasks. */
 
-gulp.task( 'rev', cacheBustFiles );
+gulp.task( 'rev:dist', cachebustFiles );

@@ -36,6 +36,7 @@ const config = {
   // Build mode: {development|production} - True if *not* run with `--prod`
   devMode: Boolean( !args.prod ),
 
+  // Local development server instance
   runningServer: null,
 
   paths: {
@@ -66,6 +67,12 @@ const config = {
     releaseStatics: `${DIR.BUILD}/release-templates`,
 
     githubCname:   `${DIR.SRC}/CNAME`, // Required for deployment into GitHub pages
+  },
+
+  names: {
+    fabricator: {
+      dist: 'styleguide-assets',
+    },
   },
 
   extensions: {

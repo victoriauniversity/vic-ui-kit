@@ -22,7 +22,7 @@
   iframe,
   .table-container,
   .embed {
-    @include size( 100% auto );
+    @include size( 100%, auto );
     float: none;
     display: block;
     margin-bottom: .5em;
@@ -103,7 +103,7 @@
   height: 0;
 
   iframe {
-    @include size( 100% 100% );
+    @include size( 100%, 100% );
     position: absolute;
     top: 0;
     left: 0;
@@ -126,7 +126,7 @@ $gallery-image-height: 13.75rem;
     margin-bottom: $base-spacing;
 
     img {
-      @include size( auto $gallery-image-height );
+      @include size( auto, $gallery-image-height );
     }
 
     figcaption {
@@ -191,11 +191,11 @@ $gallery-image-height: 13.75rem;
 
         img {
           //TODO: Refactor heavily (use flex etc.)
-          @include size( 24% auto );
+          @include size( 24%, auto );
           float: left;
 
           &:first-child {
-            @include size( 50% auto );
+            @include size( 50%, auto );
             margin-right: 1%;
           }
 

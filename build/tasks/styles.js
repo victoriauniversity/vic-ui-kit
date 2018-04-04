@@ -26,13 +26,13 @@ const
 function processFabricatorStyles( done ) {
   return pump([
     gulp.src( config.paths.fabricator.sassIndex ),
-    sourcemaps.init(),
+    gulpif( config.devMode, sourcemaps.init()),
+    sass().on( 'error', sass.logError ),
     prefix(),
-    gulpif( !config.devMode, csso()),
+    csso(),
     rename( 'f.css' ),
-    sourcemaps.write(),
-    gulp.dest( `${config.paths.tmp}/styleguide-assets` ),
-    // gulpif( config.isLocal(), browserSync.reload({ stream: true })),
+    gulpif( config.devMode, sourcemaps.write()),
+    gulp.dest( `${config.paths.tmp}/${config.names.fabricator.dist}` ),
   ], done );
 }
 
@@ -42,17 +42,18 @@ function processToolkitStyles( done ) {
     gulp.src( config.paths.toolkit.sassIndex ),
     gulpif( config.devMode, sourcemaps.init()),
     sass({
+      outputStyle:  'expanded',
       includePaths: [
         `${config.paths.root}/node_modules`,
         neat.includePaths,
         `${config.paths.root}/lib`, // TODO: Remove
       ],
-    }),
+    }).on( 'error', sass.logError ),
     prefix(),
     gulpif( config.devMode, sourcemaps.write()),
-    gulp.dest( config.paths.tmp ),
-    // csso(),
-    rename( 'toolkit.min.css' ),
+    gulpif( !config.devMode, gulp.dest( config.paths.tmp )),
+    gulpif( !config.devMode, csso({ debug: true })),
+    gulpif( !config.devMode, rename( 'toolkit.min.css' )),
     gulp.dest( config.paths.tmp ),
   ], done );
 }

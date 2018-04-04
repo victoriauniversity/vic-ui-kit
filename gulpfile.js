@@ -3,21 +3,62 @@ require( 'require-dir' )( './build/tasks', { recurse: true });
 
 /** Dependencies imports. */
 
-const gulp          = require( 'gulp' );
+const
+  gulp   = require( 'gulp' ),
+  gulpif = require( 'gulp-if' ),
+
+  config = './build/build.config.js';
 
 
-/** Main configuration object. */
+
+/**
+ * Main build & deployment tasks.
+ *
+ * More granular tasks are available in: build/tasks/*.js).
+ */
 
 
+gulp.task( 'build', gulp.series(
+  'clean',
+  gulp.parallel(
+    'assemble:fabricator',
+    'styles',
+    'scripts',
+    'images',
+    'fonts',
+  ),
+  gulpif( !config.devMode, 'decorate' ),
+));
 
-/** Standard build & deployment tasks. */
-gulp.task( 'build', gulp.series( 'clean', 'styles', 'scripts', 'images', 'fonts', 'assemble:fabricator', 'decorate' ));
 
-gulp.task( 'release:stage', gulp.series( 'setEnv:stage', 'build', 'rev', 'git:init', 'git:commitAll', 'git:pushToGHPages' ));
+// Indended for active development
+gulp.task( 'serve', gulp.series(
+  'build',
+  config.devMode ? 'copy:dist' : 'rev:dist',
+  'serverAndWatch',
+));
 
-gulp.task( 'release:prod', gulp.series( 'setEnv:prod', 'build', 'copy:dist', 'copy:release', 'git:shallowClone', 'git:exec' ));
-
-gulp.task( 'serve', gulp.series( 'build', 'rev', 'serverAndWatch' ));
-
-// DEFAULT build task (alias to 'serve')
+// Makes default (triggered by `gulp`)
 gulp.task( 'default', gulp.series( 'serve' ));
+
+
+// Prepare `stage` release - cache busting
+gulp.task( 'release:stage', gulp.series(
+  'setEnv:stage',
+  'build',
+  'rev:dist',
+  'git:init',
+  'git:commitAll',
+  'git:pushToGHPages',
+));
+
+
+// Prepare `production` release - no cache busting
+gulp.task( 'release:prod', gulp.series(
+  'setEnv:prod',
+  'build',
+  'copy:dist',
+  'copy:release',
+  'git:shallowClone',
+  'git:exec',
+));

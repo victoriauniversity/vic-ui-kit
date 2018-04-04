@@ -17,7 +17,6 @@ function getPlugins( isDev ) {
 
   if ( !isDev ) {
     plugins.push( new webpack.NoEmitOnErrorsPlugin());
-    plugins.push( new webpack.optimize.DedupePlugin());
   }
 
   return plugins;
@@ -36,7 +35,7 @@ module.exports = ({
   }
 
   if ( includeFabricator ) {
-    entries['styleguide-assets/f'] = `./${config.paths.fabricator.scriptIndex}`;
+    entries[`${config.names.fabricator.dist}/f`] = `./${config.paths.fabricator.scriptIndex}`;
   }
 
   return {
@@ -47,7 +46,7 @@ module.exports = ({
       filename: '[name].js',
     },
 
-    devtool: 'source-map',
+    // (default) devtool: 'eval',
 
     resolve: {
       extensions: [

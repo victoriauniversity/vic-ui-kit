@@ -33,7 +33,7 @@ $two-grid-tile-margin:   1.3%;
 
       // Background image
       .img-helper + img {
-        @include size( auto 100% );
+        @include size( auto, 100% );
         position: absolute;
         top: 0;
         right: 0;
@@ -47,7 +47,7 @@ $two-grid-tile-margin:   1.3%;
 
       // All the text for the tile including the hidden text
       .tile-text {
-        @include size( 100% auto );
+        @include size( 100%, auto );
         z-index: $z-index-top;
         position: absolute;
         top: 0;
@@ -67,7 +67,7 @@ $two-grid-tile-margin:   1.3%;
 
         i {
           display: flex;
-          align-items: centre;
+          align-items: center;
           margin-left: .5rem;
           width: 5%;
           color: $white;
@@ -285,7 +285,7 @@ $tab-caret-size: 1.6rem;
 
 // Study areas undergrad postgrad switcher
 .switch {
-  @include size( 240px 26px );
+  @include size( 240px, 26px );
   position: relative;
   margin: 0 auto 20px;
   transform: scale( 1.4 ); //TODO: Do not scale, use font-size approach and relative units!
@@ -329,7 +329,7 @@ $tab-caret-size: 1.6rem;
   }
 
   .switch-selection {
-    @include size( 118px 22px );
+    @include size( 118px, 22px );
     z-index: $z-index-lower;
     position: absolute;
     top: 2px;

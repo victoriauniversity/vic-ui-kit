@@ -16,8 +16,8 @@ const
 
 function processFonts( done ) {
   return pump([
-    gulp.src( config.paths.toolkit.fonts ),
-    gulp.dest( config.paths.tmp ),
+    gulp.src( `${config.paths.toolkit.fonts}/**` ),
+    gulp.dest( `${config.paths.tmp}/fonts` ),
   ], done );
 }
 
