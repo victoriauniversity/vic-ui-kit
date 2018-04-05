@@ -513,6 +513,31 @@ $(function(){
    });
 });
 
+/* Research hub content page tile accordian */
+$('.tile-accordion.content-page .tile .toggle').on('click', function (evt) {
+  evt.preventDefault();
+
+
+  var $this = $(this);
+  
+  console.log($this);
+  
+  $this.toggleClass('expanded');
+  $this.siblings('p').toggle(); 
+
+});
+
+/* Add accessible title label for restricted links class  */
+function restrictedLinkTitle() {
+  var lockLinks = document.querySelectorAll('.link-restricted');
+
+  for (var i = 0; i < lockLinks.length; i++) {
+    lockLinks[i].setAttribute('title', 'Restricted intranet link');
+  }
+
+  
+}
+restrictedLinkTitle();
 
 
 /**
