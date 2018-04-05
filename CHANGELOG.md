@@ -13,6 +13,30 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
+## Pre-release: [v0.10.0] - 2017-08-29
+
+
+### Added
+
+- **ESLint and SassLint - Static code analysis for CSS and JS** - To improve consistency, styles, error checking, debugging time etc.
+
+
+### Fixed
+
+
+
+### Enhanced
+
+- **Updates all the packages and 3rd party libraries to the latest stable releases** - Especially gulp, webpack and SASS
+
+
+### Removed
+
+- **Dependency on Bourbon SASS library**
+
+
+
+
 
 ## Pre-release: [v0.10.0] - 2017-08-29
 
@@ -20,7 +44,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - New 'tiles' component - clickable area for list of important things. Has 3 variations - one for short lists and large tiles, longer list with smaller tiles and strip tiles.
 - Prototypes - New hubs for the IA project; Study, Experience, Research and About.
-- Updated patterns 
+- Updated patterns
 
 ### Enhanced
 

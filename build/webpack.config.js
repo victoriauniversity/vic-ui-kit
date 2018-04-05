@@ -1,79 +1,78 @@
-const path = require('path');
-webpack    = require('webpack');
+const
+  path    = require( 'path' ),
+  webpack = require( 'webpack' ),
+
+  config  = require( './build.config' );
 
 
 /**
  * Define plugins based on environment
+ *
  * @param {boolean} isDev If in development mode
+ *
  * @return {Array}
  */
 function getPlugins( isDev ) {
+  const plugins = [];
 
-  const plugins = [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin({}),
-  ];
-
-  if (isDev) {
-    plugins.push(new webpack.NoErrorsPlugin());
-  } else {
-    plugins.push(new webpack.optimize.DedupePlugin());
-    plugins.push(new webpack.optimize.UglifyJsPlugin({
-      minimize:  true,
-      include:   /\.min\.js$/,
-      sourceMap: false,
-      compress: {
-        warnings: false
-      },
-    }));
+  if ( !isDev ) {
+    plugins.push( new webpack.NoEmitOnErrorsPlugin());
   }
 
   return plugins;
 }
 
+module.exports = ({
+  includeToolkit,
+  includeFabricator,
+} = { includeToolkit: true, includeFabricator: true }) => {
+  // Add properties: { 'dests_relative_path': 'source' }
+  const entries = {};
 
-/**
- * Define loaders
- * @return {Array}
- */
-function getLoaders() {
+  if ( includeToolkit ) {
+    entries.toolkit = `./${config.paths.toolkit.scriptsIndex}`;
+    if ( !config.devMode ) entries['toolkit.min'] = `./${config.paths.toolkit.scriptsIndex}`;
+  }
 
-  const loaders = [{
-    test: /(\.js)/,
-    exclude: /(node_modules)/,
-    loaders: ['babel'],
-  }, {
-    test: /(\.jpg|\.png)$/,
-    loader: 'url-loader?limit=10000',
-  }, {
-    test: /\.json/,
-    loader: 'json-loader',
-  }];
+  if ( includeFabricator ) {
+    entries[`${config.names.fabricator.dist}/f`] = `./${config.paths.fabricator.scriptIndex}`;
+  }
 
-  return loaders;
-
-}
-
-
-module.exports = (config) => {
   return {
-    entry: {
-      // Add objects: { 'dest': 'source' }
-      [ config.scripts.fabricator.pathInDest ]:      config.scripts.fabricator.src,
-      [ config.scripts.toolkit.pathInDest ]:         config.scripts.toolkit.src,
-      [ config.scripts.toolkit.minifiedPathInDest ]: config.scripts.toolkit.src,
-    },
+    entry: entries,
+
     output: {
-      path: path.resolve( __dirname, '..', config.tmp ),
+      path:     path.resolve( __dirname, '..', config.paths.tmp ),
       filename: '[name].js',
     },
-    devtool: 'source-map',
+
+    // (default) devtool: 'eval',
+
     resolve: {
-      extensions: ['', '.js'],
+      extensions: [
+        '.js',
+      ],
     },
-    plugins: getPlugins(config.dev),
-    module: {
-      loaders: getLoaders(),
+
+    plugins: getPlugins( config.devMode ),
+
+    mode: config.devMode ? 'development' : 'production',
+
+    module:  {
+      rules: [
+        {
+          test:    /(\.js)/,
+          exclude: /(node_modules|\.tmp|dist)/,
+          loader:  'babel-loader',
+        }, {
+          test:   /(\.jpg|\.png)$/,
+          loader: 'url-loader?limit=10000',
+        }, {
+          test:   /\.json/,
+          loader: 'json-loader',
+        },
+      ],
     },
   };
+
 };

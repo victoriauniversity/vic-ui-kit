@@ -1,10 +1,11 @@
-
-/** Advanced list */
+/*==========================================
+=              CONTENT LISTS               =
+==========================================*/
 
 ul.complex-list {
-
-  // .formatting reset
+  // .formatting resets //TODO: Can it be refactored (or ideally removed)?
   padding-left: 0;
+  width: 100%;
 
   > li {
     margin-bottom: 0;
@@ -13,13 +14,11 @@ ul.complex-list {
   }
   // End of resets
 
-  width: 100%;
-
   > li {
     @include clearfix;
     display: table;
-    width: 100%;
     padding: .8rem .1rem;
+    width: 100%;
     line-height: 1.2;
     border-bottom: 1px solid $grey-alto; //TODO: Make it $base-border
   }
@@ -30,7 +29,7 @@ ul.complex-list {
   }
 
   .caption {
-    @include span-columns( 9, table );
+    //@include span-columns( 9, table );
     padding-right: 1.6rem;
 
     > span {
@@ -40,16 +39,16 @@ ul.complex-list {
   }
 
   .description {
-    @include span-columns( 3, table );
+    //@include span-columns( 3, table );
 
     > em {
       font-style: normal;
       color: $black-emperor;
-      font-size: rem( 14px );
+      font-size: .875rem; //TODO: Redefine
     }
   }
 
-  @include media( $mobile-large-and-smaller ){
+  @include breakpoint( $mobile-large-and-smaller ) {
     .caption,
     .description {
       display: block;
@@ -57,56 +56,46 @@ ul.complex-list {
     }
 
     .caption {
-      padding-right: 0;
       margin-bottom: .35em;
+      padding-right: 0;
     }
   }
 }
 
 // Basic list
 
- $widgetbar-heading-font-size:    scale-heading( 2 );
+$widgetbar-heading-font-size: scale-heading( 2 );
 
 .list {
   h2 {
-      font-size: $widgetbar-heading-font-size;
+    font-size: $widgetbar-heading-font-size;
 
-      // Pre-heading delimiting line
-      &:before {
-        @include objectify( block );
-        margin-bottom: .35rem;
-        @include size( 2rem rem( 3px ) );
-        background-color: $base-heading-color;
-      }
-
+    // Pre-heading delimiting line
+    @include before( block ) {
+      @include size( 2rem, .1875rem );
+      margin-bottom: .35rem;
+      background-color: $base-heading-color;
     }
 
     &.publications {
-    li {
-
-      > * {
-        margin-bottom: 0.3em;
-      }
-
-      .label {
-        margin-left: 0.5em;
-      }
-
-      a {
-        display: inline-block;
-      }
-
-      .pub-author {
-        font-size: 0.9em;
-        line-height: 1.2;
-      }
-    }
-
-    aside & {
       li {
-        padding: 0.53rem 0.1em;        
-      } 
+
+        > * { margin-bottom: .3em; }
+
+        a { display: inline-block; }
+
+        .label { margin-left: .5em; }
+
+        .pub-author {
+          font-size: .9em;
+          line-height: 1.2;
+        }
+      }
+
+      aside & {
+        li { padding: .53rem .1em; }
+      }
     }
+
   }
 }
-    

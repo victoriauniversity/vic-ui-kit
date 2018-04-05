@@ -1,91 +1,89 @@
+/** Promotional full-width boxes (~ fully clickable highlights). */
 
+.promo {
+  clear: both;
+  display: block;
 
-  /** Promotional full-width boxes (~ fully clickable highlights). */
-
-  .promo {
-    clear: both;
+  > a {
     display: block;
+    padding: $highlights-padding;
+
+    h2,
+    h3 {
+      text-decoration: none;
+    }
+
+    @include hoverify() {
+      h2,
+      h3 {
+        text-decoration: underline;
+        color: inherit;
+      }
+    }
+  }
+
+  // Promo inside right-side widgetbar
+  aside & {
+    h2,
+    h3 {
+      &::before { display: none; }
+    }
+  }
+
+  // 'Find out more' at the end of the promo
+  b,
+  strong {
+    display: block;
+  }
+
+  &.intro-promo { margin: 1.5em 0; }
+
+
+  /** Promo types */
+
+  &.primary {
+    background-color: $black-victoria;
 
     > a {
-      display: block;
-      padding: $highlights-padding;
-      
-
       h2,
-      h3 {
-        text-decoration: none;
-      }
-
-      @include hoverify() {
-        h2,
-        h3 {
-          text-decoration: underline;
-          color: inherit;
-        }
-      }
+      p { color: $white; }
     }
 
-    // Promo inside right-side widgetbar
-    aside & {
+    @include hoverify {
+      background-color: lighten( $black-victoria, $base-lighten-percentage );
+    }
+  }
+
+  &.secondary {
+    background-color: $blue-humming-bird;
+
+    h2,
+    p { color: $base-link-color; }
+
+    @include hoverify {
+      background-color: darken( $blue-humming-bird, $base-darken-percentage );
+    }
+  }
+
+  &.themed {
+    background-color: $green-victoria;
+
+    a {
+      h1,
       h2,
-      h3 {
-        &:before { display: none; }
+      h3,
+      p {
+        margin-bottom: 0;
+        color: $white;
       }
     }
 
-    // 'Find out more' at the end of the promo
-    b,
-    strong {
-      display: block;
-    }
-
-    &.intro-promo {
-      margin: 1.5em 0;
-    }
-
-
-    /** Promo types */
-
-    &.primary {
-      background-color: $black-victoria;
-      
-      > a {
-      
-          h2, p { color: $white; }
-        
-      }
-      @include hoverify {
-        background-color: lighten( $black-victoria, $base-lighten-percentage );
-      }
-    }
-
-    &.secondary {
-      background-color: $blue-humming-bird;
-
-      h2, p { color: $base-link-color; }
-
-      @include hoverify {
-        background-color: darken( $blue-humming-bird, $base-darken-percentage );
-      }
-    }
-
-    &.themed {
-      background-color: $green-victoria;
-      a {
-        h1, 
-        h2,
-        h3,
-        p {
-            color: $white;
-            margin-bottom: 0;
-        }
-      }
-    }
-
-    @include media($tablet-and-smaller) {
+    @include breakpoint($tablet-and-smaller) {
       h2,
       h3 {
         overflow-wrap: break-word;
       }
     }
   }
+
+}

@@ -1,117 +1,99 @@
+/** Standard tags (filtering, tag cloud etc.) */
 
+$tag-background-color:        #DBE6F3 !default;
+$tag-font-color:              $blue-callypso;
 
-  /** Standard tags (filtering, tag cloud etc.) */
+$tag-background-color-red:    $red-oyster-pink;
+$tag-font-color-red:          $red-tamarillo;
 
-  $tag-background-color: #dbe6f3 !default;
-  $tag-font-color: $blue-callypso;
+$tag-background-color-yellow: $yellow-pearl-lusta;
+$tag-font-color-yellow:       $yellow-cinamon;
 
-  $tag-background-color-red: $red-oyster-pink;
-  $tag-font-color-red: $red-tamarillo;
+$tag-background-color-green:  $green-tara;
+$tag-font-color-green:        $green-killarney;
 
-  $tag-background-color-yellow: $yellow-pearl-lusta;
-  $tag-font-color-yellow: $yellow-cinamon;
+$tag-background-color-grey:   $grey-gallery;
+$tag-font-color-grey:         $grey-dove;
 
-  $tag-background-color-green: $green-tara;
-  $tag-font-color-green: $green-killarney;
+.tags { margin-bottom: 1.2rem; }
 
-  $tag-background-color-grey: $grey-gallery;
-  $tag-font-color-grey: $grey-dove;
+.tag {
+  display: inline-block;
+  margin: 0 0 .3rem;
+  padding: .15rem .6rem;
+  white-space: nowrap;
+  border-radius: $base-corner-radius;
+  background-color: $tag-background-color;
+  color: $tag-font-color;
 
-  .tags {
-    margin-bottom: 1.2rem;
-  }
+  aside & { font-size: .875rem; }
 
-  .tag {
-
-    aside & {
-      font-size: rem( 14px );
-    }
-
-    white-space: nowrap;
+  // 'x' button
+  .close {
     display: inline-block;
-    padding: .15rem .6rem;
-    margin: 0 0 .3rem;
-    border-radius: $base-corner-radius;
-    background-color: $tag-background-color;
-    color: $tag-font-color;
-
-
-    // 'x' button
-    .close {
-      display: inline-block;
-      margin-left: .5rem;
-      font-weight: $weight-bold;
-    }
-
-    // Tag colors
-
-    &.tag-green {
-      background-color: $tag-background-color-green;
-      color: $tag-font-color-green;
-    }
-
-    &.tag-red {
-      background-color: $tag-background-color-red;
-      color: $tag-font-color-red;
-    }
-
-    &.tag-yellow {
-      background-color: $tag-background-color-yellow;
-      color: $tag-font-color-yellow;
-    }
-    &.tag-grey {
-      background-color: $tag-background-color-grey;
-      color: $tag-font-color-grey;
-    }
-
-    // Selected tag
-    &.active {
-      background-color: $green-victoria;
-      color: $white;
-    }
+    margin-left: .5rem;
+    font-weight: $weight-bold;
   }
 
-  a.tag,
-  a > .tag {
+  // Tag colors
+  &.tag-green {
+    background-color: $tag-background-color-green;
+    color: $tag-font-color-green;
+  }
 
+  &.tag-red {
+    background-color: $tag-background-color-red;
+    color: $tag-font-color-red;
+  }
+
+  &.tag-yellow {
+    background-color: $tag-background-color-yellow;
+    color: $tag-font-color-yellow;
+  }
+
+  &.tag-grey {
+    background-color: $tag-background-color-grey;
+    color: $tag-font-color-grey;
+  }
+
+  // Selected tag
+  &.active {
+    background-color: $green-victoria;
+    color: $white;
+  }
+}
+
+a {
+  &.tag,
+  > .tag {
     cursor: pointer;
     border: 1px solid $tag-font-color;
-    
-    &.tag-green {
-      border: 1px solid $tag-font-color-green;
-    }
-    &.tag-red {
-      border: 1px solid $tag-font-color-red;
-    }
-    &.tag-yellow {
-      border: 1px solid $tag-font-color-yellow;
-    }
-    &.tag-grey {
-      border: 1px solid $tag-font-color-grey;
-    }
+
+    &.tag-green { border-color: $tag-font-color-green; }
+    &.tag-red { border-color: $tag-font-color-red; }
+    &.tag-yellow { border-color: $tag-font-color-yellow; }
+    &.tag-grey { border-color: $tag-font-color-grey; }
 
     @include hoverify() {
       text-decoration: underline;
       background-color: lighten( $tag-background-color, 4 );
-      
+
       &.tag-green {
-        text-decoration: underline;
         background-color: lighten( $tag-background-color-green, 4 );
       }
+
       &.tag-red {
-        text-decoration: underline;
         background-color: lighten( $tag-background-color-red, 4 );
       }
+
       &.tag-yellow {
-        text-decoration: underline;
         background-color: lighten( $tag-background-color-yellow, 4 );
       }
+
       &.tag-grey {
-        text-decoration: underline;
         background-color: lighten( $tag-background-color-grey, 4 );
       }
     }
-
 
     &.active {
       @include hoverify() {
@@ -119,18 +101,18 @@
         text-decoration: none;
       }
     }
+
   }
+}
+// styling for active filter on faculty and schools postgrad quals
+.quals-filter {
+  a.tag {
+    border: 0;
 
-  // styling for active filter on faculty and schools postgrad quals
-  .quals-filter {
-
-    a.tag {
-      border: none;
-
-      &.tag-active {
-        border: 1px solid $tag-font-color;
-        background-color: lighten( $tag-background-color, 4 );
-        color: $tag-font-color;
-      }
+    &.tag-active {
+      border: 1px solid $tag-font-color;
+      background-color: lighten( $tag-background-color, 4 );
+      color: $tag-font-color;
     }
   }
+}

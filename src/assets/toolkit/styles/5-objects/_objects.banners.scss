@@ -3,56 +3,56 @@
 =========================================*/
 
 
-  /* ===== IMAGE BANNERS ==================================================== */
+/* ===== IMAGE BANNERS ==================================================== */
 
-  // SEMI-DEPRECATED | irwinna - I moved this to _components.promo-panel.scss and updated the class to .promo-panel
-  .banner {
-    @include clearfix();
-  }
+// SEMI-DEPRECATED | irwinna - I moved this to _components.promo-panel.scss and updated the class to .promo-panel
+.banner {
+  @include clearfix();
+}
 
-  //TODO: Refactor and remove what's no longer needed
-  .banner-in-page {
-    position: relative;
+//TODO: Refactor and remove what's no longer needed
+.banner-in-page {
+  position: relative;
 
-    @include media( $tablet-and-bigger ){
-      top: -1.5 * $column-padding; //.content-panel > main|aside > .block
-      // margin-top: -1.5 * $column-padding; //.content-panel > main|aside > .block
-      // margin-bottom: 1.5 * $column-padding; //.content-panel > main|aside > .block
+  @include breakpoint( $tablet-and-bigger ) {
+    top: -1.5 * $column-padding; //.content-panel > main|aside > .block
+    // margin-top: -1.5 * $column-padding; //.content-panel > main|aside > .block
+    // margin-bottom: 1.5 * $column-padding; //.content-panel > main|aside > .block
 
-      &.bleed {
-        margin-left: calc(-25% - #{$column-padding} * 1.25);//remember to account for table
-        width: calc(125% + #{$column-padding} * 1.25);
+    &.bleed {
+      margin-left: calc( -25% - #{$column-padding} * 1.25 );//remember to account for table
+      width: calc( 125% + #{$column-padding} * 1.25 );
 
-        img {
-          z-index: -1;
-          position: relative;
-        }
+      img {
+        z-index: -1;
+        position: relative;
       }
     }
-
-    figcaption { //TODO: extend .tile-text
-      background-color: $green-victoria;
-
-      @include media( $tablet-and-bigger ){
-        position: absolute;
-        top: 6rem;
-        right: 0;
-        width: 33%;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      p{
-        color: $white;
-        display: flex;
-        align-items: center;
-        padding: 1em;
-      }
-
-      p { margin-bottom: 1.3em; }
-    }
   }
+
+  figcaption { //TODO: extend .tile-text
+    background-color: $green-victoria;
+
+    @include breakpoint( $tablet-and-bigger ) {
+      position: absolute;
+      top: 6rem;
+      right: 0;
+      width: 33%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      display: flex;
+      align-items: center;
+      padding: 1em;
+      color: $white;
+    }
+
+    p { margin-bottom: 1.3em; }
+  }
+}

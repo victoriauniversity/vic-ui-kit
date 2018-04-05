@@ -1,167 +1,156 @@
 //_components.cards.scss
 
-$card-padding: 2.5em; //rem(20px) from settings.variables
-@mixin cardColor {
-	background-color: $grey-gallery;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, .2 );
-}
+$card-padding: 2.5rem;
+$card-shadow:  0 1px 5px rgba( #000, .15 );
 
 .card-panel {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+  display:         flex;
+  justify-content: space-between;
+  flex-wrap:       wrap;
 
-	.card {
-		flex: 0 1 auto;
-		width: calc( 50% - 0.75em);
-		background-color: $grey-gallery;
-		box-shadow: 0 4px 8px rgba(0, 0, 0, .2 );
-		padding: $card-padding;
-		margin-bottom: 1.5em;
+  .card {
+    flex: 0 1 auto;
+    margin-bottom: 1.5em;
+    padding: $card-padding;
+    width: calc( 50% - .75em );
+    background-color: $grey-gallery;
+    box-shadow: $card-shadow;
 
-		> h1:first-child,
-		> h2:first-child,
-		> h3:first-child,
-		> h4:first-child {
-			position: relative;
-			padding-bottom: 15px;
+    > h1,
+    > h2,
+    > h3,
+    > h4 {
+      &:first-child {
+        position: relative;
+        padding-bottom: 15px;
 
-			&:after {
-				content: '';
-				position: absolute;
-				background-color: $green-victoria;
-				width: 50px;
-				height: 5px;
-				bottom: 0;
-				left: 0;
-			}
-		}
+        @include after( $display: inline, $position: absolute ) {
+          @include size( 50px, 5px );
+          bottom: 0;
+          left: 0;
+          background-color: $green-victoria;
+        }
+      }
+    }
 
-		&:nth-last-child(2), &:last-child {
-			margin-bottom: 0;
-		}
+    &:nth-last-child( 2 ),
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 
-	}
+  .contact-card {
+    padding: $card-padding;
+    width: 100%;
+    background-color: $grey-gallery;
+    box-shadow: $card-shadow;
 
-	.contact-card {
-		@include cardColor;
-		padding: $card-padding;
-		width: 100%;
+    .contact-card-details {
+      display: flex;
+      align-items: center;
+      margin-bottom: .5em;
+      padding: 0 1em 1em;
 
-		.contact-card-details {
-			display: flex;
-			padding: 0 1em 1em;
-			align-items: center;
-			margin-bottom: 0.5em;
+      > * {
+        padding-right: 2.5em;
+        width: 50%;
 
-			> * {
-				width: 50%;
-				padding-right: 2.5em;
+        @include breakpoint( $tablet-and-smaller ) {
+          padding-right: 0;
+        }
+      }
 
-				@include media($tablet-and-smaller) {
-					padding-right: 0;
-				}
-			}
+      .contact-title {
+        h3 { color: $black-tundora; }
+      }
 
-			@include media($mobile-large-and-smaller) {
-				flex-direction: column;
-				margin-bottom: 0;
+      .contact-info {
+        // TODO: Refactor & flatten the depth!
+        ul {
+          li {
+            list-style: none;
 
-				> * {
-					width: 100%;
+            span,
+            a {
+              color: $black-tundora;
+              font-size: 1.3em;
+              font-style: normal;
+            }
+          }
+        }
+      }
 
-					&:first-child {
-						margin-bottom: 1em;
-					}
+      @include breakpoint( $mobile-large-and-smaller ) {
+        margin-bottom: 0;
+        flex-direction: column;
 
-					ul {
-						padding-left: 0;
-					}
-				}
-			}
+        > * {
+          width: 100%;
 
-			.contact-title {
-				h3 {
-					color: $black-tundora;
-				}
+          &:first-child { margin-bottom: 1em; }
 
-			}
+          ul { padding-left: 0; }
+        }
+      }
+    }
 
-			.contact-info {
-				ul {
-					li {
-						list-style: none;
+    // embed wrapper automatically applied to iframes
+    .embed {
+      margin: 0 -2.5em -2.5em;
+      padding: 0;
+      height: auto;
 
-						span, a {
-							color: $black-tundora;
-							font-size: 1.3em;
-							font-style: normal;
-						}
-					}
-				}
-			}
-		}
+      iframe {
+        position: static;
+        display: block;
+      }
+    }
+  }
 
-		// embed wrapper automatically applied to iframes
-		.embed {
-			height: auto;
-			padding: 0;
-			margin: 0 -2.5em  -2.5em;
+  &.icon-cards {
+    .card {
+      text-align: center;
 
-			iframe {
-				display: block;
-				position: static;
-			}
-		}
-	}
+      i {
+        padding-left: .5em;
+        font-size: 5rem;
+        color: $green-victoria;
+      }
 
-	&.icon-cards {
-		.card {
-			text-align: center;
+      p { text-align: left; }
+    }
+  }
 
-			i {
-				font-size: 5rem;
-				padding-left: 0.5em;
-				color: $green-victoria;
-			}
+  @include breakpoint( $mobile-large-and-smaller ) {
+    flex-direction: column;
 
-			p {
-				text-align: left;
-			}
-		}
-	}
+    .card {
+      width: 100%;
 
-	@include media ($mobile-large-and-smaller) {
+      &:nth-last-child( 2 ) {
+        margin-bottom: 1.5em;
+      }
+    }
+  }
 
-		flex-direction: column;
+  @include breakpoint( $tablet-and-smaller ) {
+    .card {
+      .button {
+        &:first-of-type {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
 
-		.card {
-			width: 100%;
-
-			&:nth-last-child(2) {
-				margin-bottom: 1.5em;
-			}
-		}
-	}
-
-	@include media ($tablet-and-smaller) {
-
-		.card {
-			.button {
-				&:first-of-type {
-					margin-bottom: 10px;
-				}
-			}
-		}
-	}
 }
 
 // For content pages
 .contact-card-highlight {
-
+  box-shadow: $card-shadow;
 	margin-top: 2em;
 	padding: 1.5em;
-	@include cardColor;
+  background-color: $grey-gallery;
 
 	> h2,
 	> h3,
@@ -184,16 +173,16 @@ $card-padding: 2.5em; //rem(20px) from settings.variables
 		> ul {
 			padding: 0;
 			margin: 0;
-			
+
 			> li {
 				display: flex;
 				justify-content: left;
 				align-items: flex-start;
-				
+
 				padding: 0;
 				margin: 0;
 				list-style: none;
-				
+
 				&:not(:first-child) {
 					margin-top: 1em;
 				}
@@ -203,7 +192,7 @@ $card-padding: 2.5em; //rem(20px) from settings.variables
 
 					@include size( $portrait-width auto );
 
-					@include media( $tablet-and-smaller ) {
+					@include breakpoint( $tablet-and-smaller ) {
 						width: 20%;
 					}
 				}

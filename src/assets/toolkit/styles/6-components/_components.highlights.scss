@@ -1,22 +1,20 @@
+/** Non-clickable highlight boxes */
 
+.highlight {
+  @include clearfix();
+  clear: both; //TODO: Is it necessary?
+  margin-bottom: $base-spacing;
+  padding: $highlights-padding;
 
-  /** Non-clickable highlight boxes */
-
-  .highlight {
-      @include clearfix();
-      clear: both;
-      padding: $highlights-padding;
-      margin-bottom: $base-spacing;
-
-      // Promo inside right-side widgetbar
-      aside & {
-        h2,
-        h3 {
-          &:before { display: none; }
-        }
-      }
-
-      // Types of highlights
-      &.primary { background-color: $yellow-spring-wood; }
-      &.secondary { background-color: $grey-gallery; }
+  // Promo inside right-side widgetbar
+  aside & {
+    h2,
+    h3 {
+      &::before { display: none; }
+    }
   }
+
+  // Types of highlights
+  &.primary { background-color: $yellow-spring-wood; }
+  &.secondary { background-color: $grey-gallery; }
+}
