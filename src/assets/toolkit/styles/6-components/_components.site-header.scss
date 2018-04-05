@@ -359,14 +359,14 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 
       .logo {
 
-        @include media($tablet-and-bigger) {
+        @include breakpoint($tablet-and-bigger) {
           width: 20%;
           margin-right: 0;
         }
       }
 
       nav.menu-container {
-        @include flex(1 0 80%);
+        flex: 1 0 80%;
 
         .horizontal-menu {
           width: 100%;
@@ -376,15 +376,15 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
               a {
                 padding: 0 $base-spacing/2.5;
 
-                @include media( $tablet-and-bigger ) {
+                @include breakpoint( $tablet-and-bigger ) {
                   font-size: 1.1rem;
                 }
 
-                @include media( $desktop-and-smaller ) {
+                @include breakpoint( $desktop-and-smaller ) {
                   // font-size: 1.4vw;
                 }
 
-                @include media( $mobile-large-and-smaller ) {
+                @include breakpoint( $mobile-large-and-smaller ) {
                   font-size: 1.2rem;
                   padding: 1rem 1.5rem;
                 }

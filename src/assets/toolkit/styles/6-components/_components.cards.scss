@@ -147,10 +147,10 @@ $card-shadow:  0 1px 5px rgba( #000, .15 );
 
 // For content pages
 .contact-card-highlight {
-
+  box-shadow: $card-shadow;
 	margin-top: 2em;
 	padding: 1.5em;
-	@include cardColor;
+  background-color: $grey-gallery;
 
 	> h2,
 	> h3,
@@ -192,7 +192,7 @@ $card-shadow:  0 1px 5px rgba( #000, .15 );
 
 					@include size( $portrait-width auto );
 
-					@include media( $tablet-and-smaller ) {
+					@include breakpoint( $tablet-and-smaller ) {
 						width: 20%;
 					}
 				}
