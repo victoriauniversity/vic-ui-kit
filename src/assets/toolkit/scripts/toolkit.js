@@ -532,10 +532,11 @@ function restrictedLinkTitle() {
   var lockLinks = document.querySelectorAll('.link-restricted');
   console.log(lockLinks);
 
-  lockLinks.forEach( function (link) {
-    link.setAttribute('title', 'Restricted intranet link');
-    console.log(link);
-  });
+  for (var i = 0; i < lockLinks.length; i++) {
+    lockLinks[i].setAttribute('title', 'Restricted intranet link');
+    console.log(lockLinks[i]);
+  }
+
   
 }
 restrictedLinkTitle();
