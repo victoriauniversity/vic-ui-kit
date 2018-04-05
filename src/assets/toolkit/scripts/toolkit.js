@@ -530,11 +530,9 @@ $('.tile-accordion.content-page .tile .toggle').on('click', function (evt) {
 /* Add accessible title label for restricted links class  */
 function restrictedLinkTitle() {
   var lockLinks = document.querySelectorAll('.link-restricted');
-  console.log(lockLinks);
 
   for (var i = 0; i < lockLinks.length; i++) {
     lockLinks[i].setAttribute('title', 'Restricted intranet link');
-    console.log(lockLinks[i]);
   }
 
   
