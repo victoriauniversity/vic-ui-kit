@@ -91,5 +91,179 @@ blockquote.quote { font-style: italic; }
 
       &::before { display: none; }
     }
+
+    // a {
+    //   @include hoverify() {
+    //     figure {
+    //       border-left-color: $blue-st-tropaz;
+
+    //       blockquote {
+    //         * {
+    //           color: $blue-st-tropaz;
+    //         }
+    //         &:before,
+    //         &:after {
+    //           color: $blue-st-tropaz;
+    //         }
+    //       }
+
+    //       figcaption {
+    //         // color: $blue-st-tropaz
+    //       }
+    //     }
+    //   }
+    // }
+
+    &.quote-image {
+      .quote {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+
+        border-left: none;
+
+        img {
+          height: 180px;
+          width: 180px;
+          border-radius: 50%;
+          margin-right: 2em;
+
+          flex: 1 0 auto;
+        }
+
+        .quote-content {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          blockquote {
+            width: 75%;
+            position: relative;
+
+            h3,
+            h4 {
+              padding: 0 1em;
+            }
+
+            &:before,
+            &:after {
+              position: absolute;
+            }
+
+            &:before {
+              top: 0;
+              left: 0;
+            }
+
+            &:after {
+              bottom: 0;
+              right: 0;
+              top: unset;
+            }
+          }
+
+          figcaption {
+            text-align: inherit;
+            font-size: inherit;
+
+            h4,
+            h5,
+            p {
+              margin-bottom: 0.5em;
+            }
+          }
+        }
+
+
+        @include media( $tablet-and-smaller ) {
+          // flex-wrap: wrap;
+
+          .quote-content {
+            flex-wrap: wrap;
+            justify-content: left;
+
+            blockquote {
+              width: 100%;
+            }
+
+            figcaption {
+              padding-left: 2em;
+              margin-top: 1.5em;
+            }
+          }
+
+        }
+
+        @include media($mobile-large-and-smaller) {
+          flex-wrap: wrap;
+
+          img {
+            flex: 0 1 auto;
+            width: 120px;
+            height: 120px;
+          }
+
+          .quote-content {
+            margin-top: 1em;
+          }
+        }
+      }
+
+
+      &.quote-white {
+        background-color: #fff;
+        margin-bottom: 1.6em;
+
+        .quote {
+          justify-content: center;
+          position: relative;
+          padding-bottom: 2em;
+
+          &:after {
+            position: absolute;
+
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+
+            content: "";
+            height: 2px;
+            width: 70%;
+            background-color: $green-victoria;
+          }
+
+          img {
+            flex: 0 1 auto;
+          }
+
+          .quote-content {
+            width: 70%;
+
+            blockquote {
+
+            }
+
+            figcaption {
+              text-align: inherit;
+              font-size: inherit;
+
+              h4,
+              h5,
+              p {
+                margin-bottom: 0.5em;
+              }
+            }
+
+            @include media($mobile-large-and-smaller) {
+              width: 100%;
+            }
+          }
+
+        }
+      }
+
+    }
+
   }
 }

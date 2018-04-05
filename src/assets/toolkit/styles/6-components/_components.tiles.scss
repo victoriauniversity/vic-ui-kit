@@ -217,7 +217,9 @@ $base-study-hub-colour--study: $green-light-victoria;
       }
     }
 
-    &.four-col {
+    &.four-col,
+    &.two-col {
+
       &.image-no-gutter {
         ul {
           display: flex;
@@ -233,11 +235,35 @@ $base-study-hub-colour--study: $green-light-victoria;
             // TODO: Refactor & flatten to lower the depth!
             &:hover { border-color: transparent; }
           }
+
+          @include media ($desktop) {
+            width: ( 100 - 3 * 1%) / 4;
+            margin-right: 1%;
+
+            &:nth-child( 4n) {
+              margin-right: 0;
+            }
+          }
         }
       }
     }
 
-    &.hidden { display: none; }
+    &.two-col {
+      &.image-no-gutter {
+        ul {
+          justify-content: center;
+        }
+      }
+    }
+
+
+
+    &.hidden {
+      display: none;
+    }
+  }
+  &.hidden {
+    display: none;
   }
 
   &.hidden { display: none; }
@@ -330,6 +356,27 @@ $base-study-hub-colour--study: $green-light-victoria;
         }
       }
 
+    }
+  }
+
+  &.content-page {
+
+    .tiles-wrap {
+
+      > ul {
+        padding-left: 0;
+        margin-bottom: 0;
+
+        li.tile {
+          position: relative;
+          padding-left: 0;
+
+          i {
+            position: absolute;
+            right: 1rem;
+          }
+        }
+      }
     }
   }
 

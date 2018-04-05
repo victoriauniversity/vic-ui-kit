@@ -16,7 +16,6 @@ const
  * More granular tasks are available in: build/tasks/*.js).
  */
 
-console.log( '!!!', config.devMode );
 
 gulp.task( 'build', gulp.series(
   'clean',

@@ -127,7 +127,8 @@ $icon-codes: (
   download:         '\e83E',
   audio:            '\e83F',
   quote-down:       '\e840',
-  quote-up:         '\e841'
+  quote-up:         '\e841',
+  list:             '\e842',
 );
 
 
@@ -165,6 +166,11 @@ $social-icon-size: 2.5rem;
 .social-icon {
   &:hover {
     opacity: $base-hover-opacity;
+  }
+
+  .small-icon:before,
+  .small-icon:after {
+    transform: scale(.65);
   }
 
   img {
@@ -223,8 +229,15 @@ $bulletline-width:        1rem;
   &::after { @content; }
 }
 
+
 .link-external {
   @include extend-icon-after( external ) {
+    top: 0;
+  }
+}
+
+.link-restricted {
+  @include extend-icon-after( lock ) {
     top: 0;
   }
 }

@@ -9,7 +9,7 @@ const gulp = require( 'gulp' ),
   pump     = require( 'pump' ),
   revAll   = require( 'gulp-rev-all' ),
 
-  config = require( '../build.config' );
+  config   = require( '../build.config' );
 
 
 
@@ -32,10 +32,12 @@ function cachebustFiles( done ) {
         '.woff2',
         '.ttf',
         '.ico',
+        '.webmanifest',
       ],
       dontRenameFile: [
         'CNAME',
         '.html',
+        'browserconfig.xml',
       ],
       dontUpdateReference: [
         'CNAME',

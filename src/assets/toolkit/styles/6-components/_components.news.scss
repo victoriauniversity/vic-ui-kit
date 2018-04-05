@@ -47,6 +47,12 @@
       padding-bottom: 1.6rem;
       border-bottom: 1px solid $grey-alto;
       list-style: none;
+
+      .summary {
+        >:nth-child(2) {
+          margin-bottom: .5em;
+        }
+      }
     }
 
     @include breakpoint( $desktop-and-bigger ) {
@@ -70,6 +76,24 @@
         }
       }
 
+    }
+  }
+}
+
+/* List of news articles on content page */
+
+.content-panel {
+  article.news-commentary {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $grey-alto;
+
+    > .summary {
+      h3,
+      h4,
+      p {
+        margin-bottom: .3rem;
+      }
     }
   }
 }

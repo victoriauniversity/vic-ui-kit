@@ -40,6 +40,8 @@ function copyRelease( done ) {
 function copyTmp( done ) {
   const staticFiles = [
     config.paths.fabricator.favicon,
+    `${config.paths.src}/browserconfig.xml`,
+    `${config.paths.src}/site.webmanifest`,
   ];
 
   if ( config.isStage()) staticFiles.push( config.paths.githubCname );

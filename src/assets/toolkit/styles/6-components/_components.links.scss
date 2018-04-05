@@ -70,4 +70,70 @@ ul.links {
     }
 
   }
-}
+
+  /* Hub related links/areas */
+
+  .related-links-block {
+    h2,
+    h3 {
+      position: relative;
+      padding-bottom: 15px;
+
+      &:after {
+        content: '';
+        position: absolute;
+        width: 50px;
+        height: 5px;
+        bottom: 0;
+        left: 0;
+
+        background-color: $green-victoria;
+      }
+    }
+    .related-links {
+      display: flex;
+
+      .related-link {
+        flex: 24% 0 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        padding: .5em;
+        background-color: $green-victoria;
+        border-radius: 5px;
+
+        text-align: center;
+        color: $white;
+
+        &:not(:last-child) {
+          margin-right: 1%;
+        }
+
+
+        @include hoverify() {
+          background-color: darken($green-victoria, 5%);
+          transition: .5s ease-in-out;
+
+          text-decoration: underline;
+
+        }
+
+      }
+
+      @include media( $mobile ) {
+        flex-wrap: wrap;
+
+        .related-link {
+
+          flex: 48% 0 1;
+
+          margin: 0 1% 2%;
+
+          &:not(:last-child) {
+            margin-right: 1%;
+          }
+        }
+      }
+    }
+  }

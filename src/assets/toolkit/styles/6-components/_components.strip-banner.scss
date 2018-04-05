@@ -15,6 +15,11 @@
         h1 {
           margin-bottom: 0;
           font-size: 3em;
+
+          // IE 10+ fix bg not covering text
+          @media screen and ( -ms-high-contrast: active ), ( -ms-high-contrast: none ) {
+            float: left;
+          }
         }
 
         p { font-size: 1.45em; }
@@ -27,7 +32,7 @@
 
     figure {
       figcaption {
-        margin-bottom: 1em;  // margin bottom depending on sub nav...
+        // margin bottom depending on sub nav...
         padding: 0;
         max-width: $base-width;
       }
@@ -56,11 +61,10 @@
       }
     }
 
-    @include breakpoint( $desktop-and-bigger ) {
-      figure.photo figcaption { margin-top: 10%; }
-    }
-
     @include breakpoint( $mobile-large-and-smaller ) {
+      border-top: 0;
+      border-bottom: 0;
+
       figcaption {
         > div { flex-direction: column; }
       }
@@ -68,13 +72,47 @@
       .block {
         &:first-child {
           padding-bottom: 0;
-          width: 100%;
+          //width: 100 / 3 * 3%;
 
           h1 { display: block; }
         }
 
-        &:last-child { width: 100%; }
+        &:last-child { width: 100 / 3 * 3%; }
       }
+    }
+
+    @include breakpoint( $tablet-and-smaller ) {
+      height: 100%;
+
+      figure figcaption {
+        h1 { margin-top: 0; }
+
+        .block:first-child {
+          padding-bottom: .5em;
+          width: 100 / 3 * 3%;
+        }
+      }
+    }
+
+    @include breakpoint( $desktop-and-bigger ) {
+      figure {
+        display: block;
+
+        figcaption {
+          margin-top: 10%;
+          margin-bottom: 1em;
+        }
+      }
+    }
+
+    @include breakpoint( $desktop ) {
+      figure {
+        figcaption { margin-top: 4%; }
+      }
+    }
+
+    @include breakpoint( $tablet ) {
+      img { height: 100%; }
     }
 
   }

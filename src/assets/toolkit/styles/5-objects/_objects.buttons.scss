@@ -218,6 +218,28 @@ $transition:  .3s; // increase this to see the transformations in slow-motion
     transform-origin: $button-size / 14 center;
   }
 
+  
+  /* .button-list   For list of in page button links - to navigate content pages */
+
+  .button-list {
+    .button {
+        margin-bottom: 0.3em;
+        margin-right: 0.3em;
+    }
+
+    span {
+        &.button {
+            background-color: inherit;
+
+            @include hoverify() {
+                background-color: inherit;
+                cursor: not-allowed;
+            }
+        }
+    }
+  }
+  
+
 
   &::before { top: $button-size / 4; }
   &::after { top: -$button-size / 4; }

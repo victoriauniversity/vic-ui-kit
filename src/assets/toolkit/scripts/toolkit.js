@@ -4,11 +4,16 @@
 
 
  /* DEPENDENCIES & 3RD PARTY LIBRARIES IMPORTS */
-  var fastclick = require('fastclick'),
+  var $     = require('jquery'),
+  fastclick = require('fastclick'),
   Headroom      = require('headroom.js'),
   picturefill   = require('picturefill'),
   lity          = require('lity'),
+  cookie        = require('cookies-js'),
   enquire       = require('enquire.js');
+
+  // Export to the global namespace (~ window)
+  window.$ = window.jQuery = $;
 
   require('./study-areas.js'); //TODO: set up multiple entry points for webpack bundles
 
@@ -58,13 +63,312 @@
   }
 
 
+  const SIDEMENU_CLASS          = 'sidemenu';
+  const SIDEMENU_TOGGLE_CLASS   = 'sidemenu-toggle';
+  const SIDEMENU_EXPANDER_CLASS = 'btn-expander';
+  const SIDEMENU_SUBMENU_CLASS  = 'has-submenu';
+
+  const SIDEMENU_SELECTED_ITEM_CLASS = 'active';
+  const SIDEMENU_EXPANDED_CLASS      = 'expanded';
+
+
+
+  function initExpandableSubmenu() {
+    const expandableButtonElement = $( this );
+    const submenuContainer = expandableButtonElement.parent( '.' + SIDEMENU_SUBMENU_CLASS );
+
+    // Init default state
+    var isExpanded = submenuContainer.hasClass( SIDEMENU_SELECTED_ITEM_CLASS );
+
+    function apply() {
+      if ( isExpanded ) {
+        submenuContainer.addClass( SIDEMENU_EXPANDED_CLASS );
+      } else {
+        submenuContainer.removeClass( SIDEMENU_EXPANDED_CLASS );
+      }
+    }
+
+    // Init
+    apply();
+
+    // Bind `click` events to all expandable buttons
+    expandableButtonElement.on( 'click', function( e ) {
+      e.preventDefault();
+      e.stopPropagation();
+      isExpanded = !isExpanded;
+      apply();
+    });
+  }
+
+  function initSidemenuExpandability() {
+    const menuElement = $( '.' + SIDEMENU_CLASS );
+
+    enhanceSidemenu( menuElement );
+
+    // Expanding/Collapsing of the entire side menu on mobile devices
+    menuElement.children( '.' + SIDEMENU_TOGGLE_CLASS ).children( 'a' ).on( 'click', function( e ) {
+      e.preventDefault();
+      e.stopPropagation();
+      $(this).parent().toggleClass( SIDEMENU_EXPANDED_CLASS );
+    });
+
+    const expandableButtons = menuElement.find( '.' + SIDEMENU_EXPANDER_CLASS );
+
+    // Add tracking if enabled
+    if ( shouldTrackByGtm( menuElement ) ){
+      addGtmTrackingListeners( menuElement.find( 'li > a' ), 'click', 'sidemenu-link' );
+      addGtmTrackingListeners( expandableButtons, 'click', 'sidemenu-expander' );
+    }
+
+    expandableButtons.each( initExpandableSubmenu );
+  }
+
+  //TODO: Remove after this was implemented on the backend (~ in Squiz)
+  /** Adds necessary classes and expanding/collapsing elements if the item has got submenu. */
+  const btnExpanderHtml = '<span class="btn-expander" title="Toggle subpages"></span>';
+
+  function enhanceSidemenu( menuElement ) {
+      menuElement.find( 'li' ).each( function() {
+        const listItem = $( this );
+
+        // a) already has got a proper class in place? Skip!
+        if ( listItem.hasClass( SIDEMENU_SUBMENU_CLASS )) return;
+
+        // b) No submenu in <li>? Skip!
+        if ( listItem.children( 'ul' ).length === 0 ) return;
+
+        // c) Has got a submenu => Enhance sidemenu's HTML
+        listItem.addClass( SIDEMENU_SUBMENU_CLASS );
+        $( btnExpanderHtml).insertAfter( listItem.children( 'a' ) );
+      });
+  }
+
+
+
+  /** Popup launcher. */
+  function initPopupBox( popupElement, { delayInMs = 7000, suppressAfterCanceling = true } = {} ){
+
+    const COOKIE_ID       = popupElement.get( 0 ).id || 'popup';
+    const COOKIE_SETTINGS = {
+      expires: 2419200, // 28 days
+      //secure  : true    //If set to true the secure attribute of the cookie
+    };
+
+    let popupContainerElement = popupElement.parent( `.popup-positioner` );
+
+    popupContainerElement = popupContainerElement.length ? popupContainerElement : null;
+
+    const buttonOkElement       = popupElement.find( '.button-ok' );
+    const buttonCancelElement   = popupElement.find( '.button-cancel' );
+    const buttonCloseElement    = popupElement.find( '.btn-close' );
+
+    const IS_SHOWN_CLASS        = 'shown';
+
+
+    // Attach button events
+    function bindButtonEvents() {
+      buttonCloseElement.on( 'click', close );
+      buttonCancelElement.on( 'click', cancel );
+      buttonOkElement.on( 'click', submit );
+    }
+
+    function unbindButtonEvents() {
+      buttonCloseElement.off( 'click', close );
+      buttonCancelElement.off( 'click', cancel );
+      buttonOkElement.off( 'click', submit );
+    }
+
+    function close( event ){
+      // If `positionerClass` exists, hide + save 'hidden' to cookies
+      event.preventDefault();
+      event.stopPropagation();
+      closePopup();
+    }
+
+    function submit( event ){
+      // If `positionerClass` exists, hide + save 'hidden' to cookies + continue to the page
+      closePopup();
+    }
+
+    function cancel( event ){
+      // If `positionerClass` exists, hide + save 'hidden' to cookies + continue to the page
+      closePopup();
+    }
+
+    function showPopup() {
+      bindButtonEvents();
+      addShownClass();
+
+      if ( shouldTrackByGtm( popupElement ) ){
+        pushTrackingInfoToGtm( popupElement.get( 0 ).id, 'open' );
+      }
+    }
+
+    function addShownClass() {
+    if ( popupContainerElement ) {
+        $( document.body ).append( popupContainerElement );
+        popupContainerElement.addClass( IS_SHOWN_CLASS );
+        //popupContainerElement.fadeIn( 'slow', function() {});
+      } else {
+        popupElement.addClass( IS_SHOWN_CLASS );
+      }
+    }
+
+    function removeShownClass() {
+      if ( popupContainerElement ) {
+        popupContainerElement.removeClass( IS_SHOWN_CLASS );
+        //popupContainerElement.fadeOut( 'slow', function() {});
+      } else {
+        popupElement.removeClass( IS_SHOWN_CLASS );
+      }
+    }
+
+    function isPopupShown(){
+      return popupElement.attr( 'data-shown' ) == 'true';
+    }
+
+    function closePopup() {
+      unbindButtonEvents();
+      popupElement.attr( 'data-shown', false );
+      removeShownClass();
+
+      if ( suppressAfterCanceling ) closePopupPermanently();
+    }
+
+    function closePopupPermanently() {
+      cookie.set( COOKIE_ID, true, COOKIE_SETTINGS );
+    }
+
+    // Constructor
+    (function init() {
+      const shouldShowPopup = !suppressAfterCanceling || ( cookie.get( COOKIE_ID ) === undefined || !cookie.get( COOKIE_ID ) );
+
+      if ( shouldShowPopup && !isPopupShown() ) {
+        popupElement.attr( 'data-shown', true ); // Must be added here to prevent triggering setTimeout when clicking multiple time
+
+        // If there's a positioner available, display after the timeout!
+        setTimeout( () => {
+          showPopup();
+        }, delayInMs );
+      }
+    })();
+
+  }
+
+
+  /**
+   * Function called on the jQuery Element, opens it as a popup.
+   *
+   * @param {Object} { delayInMs = 0, suppressAfterCanceling = false }
+   *
+   * @returns {DOMElement}
+   */
+  function openPopup( { delayInMs = 0, suppressAfterCanceling = false } = {} ){
+    initPopupBox( this, { delayInMs: delayInMs, suppressAfterCanceling: suppressAfterCanceling } );
+
+    return this;
+  }
+
+
+  const GTM_TRACK_ATTRIBUTE = 'data-gtm-track';
+  const GTM_ID_ATTRIBUTE    = 'data-gtm-id';
+
+
+  function autoregisterGtmTrackingListeners() {
+    addGtmTrackingListeners( $( `[${GTM_TRACK_ATTRIBUTE}]` ) );
+  }
+
+  function addGtmTrackingListeners( elementsList, eventType, trackingId ) {
+      if ( !window.dataLayer ){
+        console.warn( "`dataLayer` variable is unavailable. Please, check that your Google Tag Manager script is loading before any other script." );
+        window.dataLayer = []; // Fallback
+        return;
+      }
+
+    elementsList.each( function() {
+      var elementToTrack = $( this );
+
+      eventType = eventType || elementToTrack.attr( GTM_TRACK_ATTRIBUTE ) || 'auto';
+      trackingId = trackingId || elementToTrack.attr( GTM_ID_ATTRIBUTE ) || elementToTrack[ 0 ].id;
+
+      switch( eventType ) {
+        case 'click': {
+          elementToTrack.on( eventType, function( event ) {
+            dataLayer.push({
+              'event':            trackingId,
+              'custom.selector':  event.target,
+              'custom.eventType': event.type,
+              'custom.href':      event.currentTarget.href,
+              'custom.text':      event.currentTarget.text,
+            });
+          });
+        }; break;
+        case 'auto': break;
+        default: {
+          console.warn( `GTM: Tracking of event '${eventType}' is not supported. Please, change it.` )
+        }
+      }
+    });
+  }
+
+  function pushTrackingInfoToGtm( trackingId, eventType ){
+    if ( !window.dataLayer ){
+      console.warn( "`dataLayer` variable is unavailable. Please, check that your Google Tag Manager script is loading before any other script." );
+      window.dataLayer = []; // Fallback
+      return;
+    }
+
+    dataLayer.push({
+      'event':            trackingId,
+      'custom.eventType': eventType,
+    });
+  }
+
+
+  function shouldTrackByGtm( element ){
+    return Boolean( element.attr( GTM_TRACK_ATTRIBUTE ) !== undefined );
+  }
+
 
 $(function(){
 
 	fastclick.attach(document.body);
 	var $body = $('body');
 	var $globalNav = $("#global-nav");
-	var $globalSearch = $("#global-search");
+  var $globalSearch = $("#global-search");
+
+  /** Init side-menu, if it's present */
+  if ( $( '.' + SIDEMENU_CLASS ).length ) {
+    initSidemenuExpandability();
+  }
+
+  // Find all existing popups and if they contain `data-autoload` attribute,
+  // trigger autoloading automatically.
+  $( '.popup' ).each( function() {
+    var popupElement = $( this )
+    if ( popupElement.attr( 'data-autoload' ) !== undefined ){
+      // Autoload (~ show/hide) popup
+      var optionsObject = {};
+
+      if ( popupElement.attr( 'data-opts' ) !== undefined ) {
+        optionsObject = JSON.parse( popupElement.attr( 'data-opts' ) );
+      }
+
+      initPopupBox( popupElement, optionsObject );
+    }
+  });
+
+
+
+  /** GOOGLE TAG MANAGER */
+
+  /** Auto-register all on-demand elements to track for GTM. */
+  setTimeout( autoregisterGtmTrackingListeners, 0 ); // To trigger after previous DOM re-renders
+
+  /** Any element or set of elements can be dynamically tracked this way */
+  // addGtmTrackingListeners( jQueryElements, trackingId, eventType );
+
+
 
 	//http://wicky.nillia.ms/enquire.js/
 	enquire.register(MOBILE_LARGE_AND_SMALLER, function() {
@@ -207,5 +511,18 @@ $(function(){
 			event.stopPropagation();
 		 });
    });
-
 });
+
+
+
+/**
+ * jQuery's plugin as a utility factory
+ * Usage as: $( jquerySelector ).vicApp().method( options )
+ */
+(function( $ ) {
+  $.fn.vicApp = function () {
+    return {
+      openPopup: openPopup.bind( this )
+    };
+  }
+})( jQuery );

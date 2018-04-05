@@ -68,7 +68,8 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
         &.experience,
         &.study,
         &.about,
-        &.research {
+        &.research,
+        & {
           &.active {
             border-bottom: 2px solid $white;
 
@@ -348,5 +349,60 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 .menu-toggle-icon.open span:nth-child( 4 ) {
   top: 18px;
   left: 50%;
-  width: 0%;
+}
+
+
+/* Styling to fit existing site IA until hub IA is implemented */
+.main-site-header {
+  &.existing-ia {
+    > div {
+
+      .logo {
+
+        @include media($tablet-and-bigger) {
+          width: 20%;
+          margin-right: 0;
+        }
+      }
+
+      nav.menu-container {
+        @include flex(1 0 80%);
+
+        .horizontal-menu {
+          width: 100%;
+
+          &.main-nav {
+            .menu-bar {
+              a {
+                padding: 0 $base-spacing/2.5;
+
+                @include media( $tablet-and-bigger ) {
+                  font-size: 1.1rem;
+                }
+
+                @include media( $desktop-and-smaller ) {
+                  // font-size: 1.4vw;
+                }
+
+                @include media( $mobile-large-and-smaller ) {
+                  font-size: 1.2rem;
+                  padding: 1rem 1.5rem;
+                }
+
+                /* Fix for search icon breaking */
+                @media screen and (min-width: 1097px ) and (max-width: 1150px) {
+                  &.search-item {
+                    position: absolute;
+                    right: 1rem;
+                  }
+                }
+
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
 }

@@ -121,3 +121,25 @@ ul.meta {
     .meta { overflow: hidden; }
   }
 }
+
+/* Research hub Sidebar featured researcher profile */
+
+//TODO: Re-define! (Don't use IDs)
+#rightHandMenu {
+  .data-sidebar {
+    &.featured-researcher {
+      .profile-picture { margin-bottom: .7rem; }
+
+      @include breakpoint( $mobile-large-and-smaller ) {
+        .profile-picture {
+          float: left;
+          margin-right: $column-padding;
+          width: 20%;
+          max-width: $portrait-width;
+        }
+
+        .summary { overflow: hidden; }
+      }
+    }
+  }
+}

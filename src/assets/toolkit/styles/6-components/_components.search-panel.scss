@@ -1,6 +1,6 @@
 /** Search panel full page with or mods. */
 
-$search-panel-shadow: 0 1px 5px rgba( $black, .25 ) !default;
+$search-panel-shadow: 0 4px 8px rgba( $black, .2 ) !default;
 
 
 .search-panel {
@@ -20,20 +20,35 @@ $search-panel-shadow: 0 1px 5px rgba( $black, .25 ) !default;
       width: 100%;
 
       input[type=text] {
-        @include size( 75%, 42px );
+        flex: 1 1;
         padding: .2rem .6rem;
+        height: 42px;
+        // width: 70%;
         border: 2px solid $grey-silver;
       }
 
       input[type=submit] {
-        width: 25%;
+        flex: 25% 0 1;
+        // width: 30%;
         border-radius: 0 2px 2px 0;
       }
 
     }
   }
 
-  @include breakpoint( $tablet-and-smaller ) {
+  section {
+    box-shadow: 0 1px 5px rgba( $black, .25 );
+  }
+
+  @include breakpoint( $desktop ) {
+    form {
+      &.wide-search-bar {
+        padding: 2rem 4rem;
+      }
+    }
+  }
+
+  @include breakpoint($tablet-and-smaller) {
     form {
       &.wide-search-bar { padding: 2rem; }
 
@@ -53,6 +68,7 @@ $search-panel-shadow: 0 1px 5px rgba( $black, .25 ) !default;
 
         input[type=text],
         input[type=submit] {
+          flex: 100% 1 1;
           width: 100%;
         }
       }
