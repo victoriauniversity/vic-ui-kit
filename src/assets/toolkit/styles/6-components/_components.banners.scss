@@ -1,123 +1,123 @@
 
 
-  /* ===== THE REAL PAGE BANNERS ====================================================== */
+/* ===== THE REAL PAGE BANNERS ============================================== */
 
 
-  /** Banner used on homepages. */
+/** Banner used on homepages. */
 
-  $homepage-banner-max-height:         rem( 520px );
-  $homepage-banner-compact-max-height: rem( 300px );
+$homepage-banner-max-height:         32.5rem;
+$homepage-banner-compact-max-height: 18.75rem;
 
-  .homepage-banner {
-    display: block;
+.homepage-banner,
+.study-hub-banner {
+  display: block;
 
-    .banner { position: relative; }
+  .banner { position: relative; }
 
-    @include media( $desktop-and-bigger ) {
-      min-height: $homepage-banner-max-height;
+  a[href] {
+    @include hoverify() {
+      img { opacity: $base-hover-opacity; }
+    }
+  }
 
-      // Banner types
-      &.compact {
-        min-height: $homepage-banner-compact-max-height;
+  figcaption {
+    padding: 1rem;
+    background-color: $green-victoria;
 
-        .banner img { width: 100%; height: auto; }
-      }
+    h1 {
+      &:not(:last-child) { margin-bottom: .25em; }
 
-      .sidebar {
-        margin-bottom: $column-padding;
-        width: 25%;
-      }
+      @include icon-selector() {
+        margin-left: .5em;
 
-      .site a { font-size: 1.125rem;}
-
-      .banner {
-        position: absolute;
-        @include size( 100% );
-
-        img {
-          position: absolute; right: 0;
-          @include size( 100% auto );
-        }
+        &::before { display: inline; }
       }
     }
 
-    a[href] {
-      @include hoverify() {
-        img { opacity: $base-hover-opacity; }
+    h1,
+    h2,
+    h3 {
+      display: flex;
+      align-items: center;
+      color: $white;
+    }
+
+    h3 { line-height: 1.2; }
+
+    @include breakpoint( $tablet-and-bigger ) {
+      position: absolute;
+      right: 0;
+      bottom: 40%;
+      width: 50%;
+
+      &.wider { width: 50%; }
+      &.bottom { bottom: 0; }
+
+      &.top {
+        top: 0;
+        bottom: initial;
       }
     }
 
-    figcaption {
-      padding: 1rem;
-      background-color: $green-victoria;
+    @include breakpoint( $tablet ) {
+      width: 65%;
+    }
 
-      h1 {
-        &:not(:last-child) { margin-bottom: .25em; }
+    @include breakpoint( $desktop-and-bigger ) {
+      width: 40%;
+    }
+  }
 
-        @include icon-selector() {
-          margin-left: .5em;
+  @include breakpoint( $desktop-and-bigger ) {
+    min-height: $homepage-banner-max-height;
 
-          &:before { display: inline; }
-        }
+    // Banner types
+    &.compact {
+      min-height: $homepage-banner-compact-max-height;
+
+      .banner img {
+        @include size( 100%, auto );
       }
+    }
 
-      h3 { line-height: 1.2; }
+    .sidebar {
+      margin-bottom: $column-padding;
+      width: 25%;
+    }
 
-      @include media( $tablet-and-bigger) {
+    .site a { font-size: 1.125rem; }
+
+    .banner {
+      @include size( 100% );
+      position: absolute;
+
+      img {
+        @include size( 100%, auto );
         position: absolute;
-        bottom: 40%;
         right: 0;
-        width: 50%;
-
-        &.wider { width: 50%; }
-
-        &.bottom { bottom: 0; }
-
-        &.top {
-          bottom: initial;
-          top: 0;
-        }
-      }
-
-      @include media( $tablet) {
-        width: 65%;
-      }
-
-      @include media( $desktop-and-bigger) {
-        width: 40%;
-      }
-
-      h1,
-      h2,
-      h3 {
-        color: $white;
-        display: flex;
-        align-items: center;
       }
     }
   }
 
-  .study-hub-banner {
-    @extend .homepage-banner;
+}
 
-    @include media( $desktop-and-bigger ) {
-      //Overwriting extend for page
-      .sidebar {
-        margin-bottom: $column-padding;
-        width: 21%;
+.study-hub-banner {
+  @include breakpoint( $desktop-and-bigger ) {
+    //Overwriting extend for page
+    .sidebar {
+      position: absolute;
+      left: 6.25rem;
+      margin-bottom: $column-padding;
+      width: 21%;
+    }
+
+    .banner {
+      img {
+        @include size( 100%, auto );
         position: absolute;
-        left: rem(100px);
-      }
-
-      .banner {
-
-        img {
-          position: absolute; 
-          right: 0;
-          @include size( 100% auto );
-        }
+        right: 0;
       }
     }
-
-
   }
+
+}

@@ -3,62 +3,53 @@
 ==================================================*/
 
 
-  .page-sub-nav {
-    @extend .footer-secondary;
-    border-bottom: 5px solid $green-victoria;
-    background-color: $black-victoria;
+.page-sub-nav {
+  border-bottom: 5px solid $green-victoria;
+  background-color: $black-victoria;
 
-    .centraliser {
+  .centraliser {
+    nav {
+      ul {
+        justify-content: center;
+        flex-wrap: nowrap;
 
-      nav {
+        li {
+          margin-right: 0;
 
-        ul {
-          justify-content: center;
-          flex-wrap: nowrap;
+          // TODO: Refactor - inappropriate depth
+          a {
+            display: block;
+            padding: .5em 1.5em;
+            font-size: 1.4em;
+            color: $white;
+            text-decoration: none;
 
-          
-          li {
-            margin-right: 0;
-            
-            a {
-              font-size: 1.4em;
-              color: $white;
-              padding: 0.5em 1.5em;
-              display: block;
-              text-decoration: none;
-              
-              @include media($desktop-and-bigger) {
-                padding: 0.5em 1.2em;
-                font-size: 1.4em;
-              }
-              
-              &.active {
-                background-color: $green-victoria;
-              }
-              
-              @include hoverify() {
-                text-decoration: underline;
-                background-color: $green-victoria;
-                transition: all 0.5s ease;
-              }
-              
-              @include media($tablet-and-smaller) {
-                font-size: 1.2rem;
-              }
+            &.active { background-color: $green-victoria; }
+
+            @include hoverify() {
+              text-decoration: underline;
+              background-color: $green-victoria;
+              transition: all .5s ease;
             }
-            
-          }
 
-          @include media($tablet-and-smaller) {
-            justify-content: flex-start;
-            flex-wrap: wrap;
-
-            li {
-              width: 100%;
+            @include breakpoint( $desktop-and-bigger ) {
+              padding: .5em 1.2em;
             }
-            
+
+            @include breakpoint( $tablet-and-smaller ) {
+              font-size: 1.2em;
+            }
           }
         }
+
+        @include breakpoint( $tablet-and-smaller ) {
+          justify-content: flex-start;
+          flex-wrap: wrap;
+
+          li { width: 100%; }
+        }
       }
+
     }
   }
+}

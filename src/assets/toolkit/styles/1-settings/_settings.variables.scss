@@ -15,8 +15,8 @@
 
 
 // Path in the dist/ directory
-$dir-fonts:  "./fonts";
-$dir-images: "./images";
+$dir-fonts:  './fonts';
+$dir-images: './images';
 
 
 
@@ -25,18 +25,89 @@ $dir-images: "./images";
 /* ===== BASE, LAYOUT & GRID ============================================== */
 
 // Most browsers' default => Use for relative units' calculations
-$base-size:     18px;
+$base-size:     16px; //TODO: We probably should *not* be using this
 
 
 // Sets global base em size for the px-to-em and px-to-rem function. This should be the same size as your body font-size.
 $em-base:       $base-size;     // For Bourbon's mixins and functions
 
-$base-width-px: 1280px;         // Maximum width of the content
-$base-width:    rem( $base-width-px );
+$base-width:    88rem;           // Maximum width of the content
 
 
-$base-max-content-height: rem( 770px );
+$base-max-content-height: 48rem;
 
+
+
+/// Sets the `width` and `height` of the element in one statement.
+///
+/// @argument {number (with unit) | string} $width
+///
+/// @argument {number (with unit) | string} $height [$width]
+///
+/// @example scss
+///   .first-element {
+///     @include size(2em);
+///   }
+///
+///   // CSS Output
+///   .first-element {
+///     width: 2em;
+///     height: 2em;
+///   }
+///
+/// @example scss
+///   .second-element {
+///     @include size(auto, 10em);
+///   }
+///
+///   // CSS Output
+///   .second-element {
+///     width: auto;
+///     height: 10em;
+///   }
+///
+/// @require {function} _is-size
+
+@mixin size(
+  $width,
+  $height: $width
+) {
+  @if _is-size($height) {
+    height: $height;
+  } @else {
+    @error '`#{$height}` is not a valid length for the `$height` argument ' +
+      'in the `size` mixin.';
+  }
+
+  @if _is-size($width) {
+    width: $width;
+  } @else {
+    @error '`#{$width}` is not a valid length for the `$width` argument ' +
+      'in the `size` mixin.';
+  }
+}
+
+
+
+/** Ratios */
+
+$ratio-minor-second:     1.067;
+$ratio-major-second:     1.125;
+$ratio-minor-third:      1.2;
+$ratio-major-third:      1.25;
+$ratio-perfect-fourth:   1.333;
+$ratio-augmented-fourth: 1.414;
+$ratio-perfect-fifth:    1.5;
+$ratio-minor-sixth:      1.6;
+$ratio-golden:           1.618;
+$ratio-major-sixth:      1.667;
+$ratio-minor-seventh:    1.778;
+$ratio-major-seventh:    1.875;
+$ratio-octave:           2;
+$ratio-major-tenth:      2.5;
+$ratio-major-eleventh:   2.667;
+$ratio-major-twelfth:    3;
+$ratio-double-octave:    4;
 
 
 
@@ -72,13 +143,13 @@ $weight-extrabold: 800;
 
 
 /** Victoria font */
-$font-victoria:      "National";
-$font-path-victoria: "#{$dir-fonts}/NationalWebLF";
+$font-victoria:      'National';
+$font-path-victoria: '#{$dir-fonts}/NationalWebLF';
 
 
 /** Victoria icons */
-$font-icons:         "VicIcons";
-$font-path-icons:    "#{$dir-fonts}/vic-icons";
+$font-icons:         'VicIcons';
+$font-path-icons:    '#{$dir-fonts}/vic-icons';
 
 
 
@@ -92,11 +163,12 @@ $font-path-icons:    "#{$dir-fonts}/vic-icons";
 $color-body-text:     $black-tundora;
 
 
+
 /** General typography. */
 
 // Bourbon's overrides for modular scaling
-$modular-scale-ratio: $major-third;   // = 1.25x
-$modular-scale-base:  em( $em-base ); // Use ems for font sizing and anything relative to this size
+$modular-scale-ratio: $ratio-major-third;   // = 1.25x
+$modular-scale-base:  1em; // Use ems for font sizing and anything relative to this size
 
 $base-heading-to-body-ratio: 74 / 74; //TODO: Review how to do this properly
 
@@ -104,9 +176,9 @@ $base-line-height:    1.6;
 
 $base-font-size:      1em;            // Respects user's settings (~usually 16px)
 $base-font-color:     $color-body-text;
-$base-body-family:    "Helvetica Neue","Segoe WP","Helvetica","Arial";
+$base-body-family:    'Helvetica Neue','Segoe WP','Helvetica','Arial';
 
-$base-heading-family: "#{$font-victoria}",$base-body-family;
+$base-heading-family: '#{$font-victoria}',$base-body-family;
 $base-heading-color:  $green-victoria;
 
 
@@ -123,14 +195,14 @@ $base-lighten-percentage:  6;
 
 /** Margins and paddings */
 
-$column-padding:     rem( 20px );
+$column-padding:     1.25rem;
 
 $base-spacing:       $base-line-height * 1rem;
 
 $highlights-padding: $column-padding;
 
 /** verticale padding **/
-$block-padding:  rem( 30px );
+$block-padding:  1.66rem;
 
 
 /** Shadows (always in px units) */
@@ -140,18 +212,18 @@ $base-shadow: 0 1px 5px rgba( #000, .15 );
 
 /** Borders, corners (always in px units)*/
 
-$highlight-border-width: .25rem; // TODO: Borders *MUST BE* in pixels
+$highlight-border-width: .25rem;
 
 $strip-light:            $highlight-border-width solid $green-nebula;
 
 $base-border:            1px solid $grey-gallery;
-$base-corner-radius:     2px;
+$base-corner-radius:     .125rem;
 
 
 /** Imagery */
 
-$media-inline-width:          rem( 270px );
-$media-inline-portrait-width: rem( 160px );
+$media-inline-width:          17rem;
+$media-inline-portrait-width: 10rem;
 
 $base-image-hover-opacity:    $base-hover-opacity;
 

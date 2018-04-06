@@ -3,7 +3,7 @@
   overflow:   hidden;
   background: $green-victoria;
 
-  [lang="mi"] { opacity: .5; }
+  [lang='mi'] { opacity: .5; }
 
   //TODO: Remove after productin
   .icon-right-open {
@@ -11,26 +11,25 @@
     margin: 0 -.6em;
   }
 
-  @include media( $mobile-large-and-smaller ){
-    & > ul > li {
+  @include breakpoint( $mobile-large-and-smaller ) {
+    > ul > li {
 
       @for $i from 0 through 5 {
-        &:nth-child(#{$i+1}) {
-          padding-left: #{$i * $base-spacing/2 };
+        &:nth-child(#{$i + 1}) {
+          padding-left: #{$i * $base-spacing / 2 };
         }
       }
-
     }
 
-    & > ul > li:last-child > a {
+    > ul > li:last-child > a {
       display: none;
     }
 
     .layout & { display: none; }
   }
 
-  @include media( $tablet-and-bigger ){
-    & > ul > li {
+  @include breakpoint( $tablet-and-bigger ) {
+    > ul > li {
       display: none;
 
       // Previous page, current page and its children
@@ -47,10 +46,11 @@
         }
 
         // The parent + children
+        //TODO: Refactor!
         > ul > li {
           // Parent
           > a {
-            &.selected { padding-left: 11.5em; } //TODO: Refactor!
+            &.selected { padding-left: 11.5em; }
           }
 
           // Children
@@ -60,28 +60,27 @@
     }
   }
 
-    &--container { position:relative; }  //TODO: Refactor!
+  &--container { position:relative; }  //TODO: Refactor!
 
-    a { @include menu-item; }
+  a { @include menu-item; }
 
+  .has-subpages {
+    a {
+      // triangle icon on the edge of the menu button
+      @include base-icon( after );
 
-    .has-subpages {
-      a {
-        padding-right: 2.2rem;
+      padding-right: 2.2rem;
 
-        // triangle icon on the edge of the menu button
-        @extend %base-icon-after;
-
-        &:after {
-          @include triangle( .7em, $white, right );
-          position: absolute;
-          top: 50%;
-          right: 0;
-          margin-top: -.25em;
-          margin-right: 1rem;
-        }
+      &::after {
+        @include triangle( right, .7em, .7em, $white );
+        position: absolute;
+        top: 50%;
+        right: 0;
+        margin-top: -.25em;
+        margin-right: 1rem;
       }
     }
+  }
 }
 
 
@@ -177,9 +176,10 @@ $sidemenu-delimiter-color: $green-bottle !default;
 
     // Flex behaviour
     > a { flex: 1 1; }
+
     > ul {
-      flex-grow: 0;
       flex-basis: 100%;
+      flex-grow: 0;
     }
 
     &.expanded {
@@ -191,17 +191,19 @@ $sidemenu-delimiter-color: $green-bottle !default;
       > .btn-expander {
         &::after {
           @include objectify( $position: relative );
+          @include triangle( up, .5em, .2em, $sidemenu-text-color );
           top: -.15em;
-          @include triangle( .5em .2em, $sidemenu-text-color, up );
         }
 
         @include hoverify() {
-          &::after { @include triangle( .5em .2em, $sidemenu-text-hover-color, up ); }
+          &::after {
+            @include triangle( up, .5em, .2em, $sidemenu-text-hover-color );
+          }
         }
       }
     }
 
-    &:not(.expanded){
+    &:not(.expanded) {
       .btn-expander::after { content: '+'; }
     }
 
@@ -209,8 +211,8 @@ $sidemenu-delimiter-color: $green-bottle !default;
 
     // 2nd level menu & items
     > ul {
-      font-size: 95%;
       padding: .2em 0 .75em .9em;
+      font-size: 95%;
 
       > li {
         border-left: 1px solid rgba( $white, .1 );
@@ -282,11 +284,11 @@ $sidemenu-delimiter-color: $green-bottle !default;
     }
   }
 
-  @include media( $desktop-and-bigger ){
+  @include breakpoint( $desktop-and-bigger ) {
     .sidemenu-toggle { display: none; }
   }
 
-  @include media( $tablet-and-smaller ){
+  @include breakpoint( $tablet-and-smaller ) {
     margin-top: 0;
     margin-bottom: 0;
 
@@ -296,7 +298,7 @@ $sidemenu-delimiter-color: $green-bottle !default;
     }
   }
 
-  @include media( $mobile-large-and-smaller ){
+  @include breakpoint( $mobile-large-and-smaller ) {
     .btn-expander {
       @include size( auto auto );
       margin: 0 .35rem 0 0;
@@ -312,5 +314,3 @@ $sidemenu-delimiter-color: $green-bottle !default;
   }
 
 }
-
-

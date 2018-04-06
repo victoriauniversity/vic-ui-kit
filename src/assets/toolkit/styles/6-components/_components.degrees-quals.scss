@@ -3,119 +3,111 @@
 // ========================================
 
 //---- Settings ---
-$sub-title-color: rgba($white, 0.75);
+$sub-title-color: rgba( $white, .75 );
 
 
-  .degrees-quals {
-    h1 { margin: 1em 0 .7em; }
+.degrees-quals {
+  h1 { margin: 1em 0 .7em; }
 
-    &.tile-grid {
-      margin-bottom: $base-spacing;
+  &.tile-grid {
+    margin-bottom: $base-spacing;
 
-      .tiles-wrap {
-          li.tile {
-              margin-bottom: 0.5rem;
-              height: auto;
-              .tile-text {
-                  position: relative;
-                  @include media ($desktop-and-bigger) {
-                      min-height: 140px;
-                  }
-                  a {
-                      padding: 1em;
-                  }
-                  .tile-title {
-                      padding: 0;
-                      margin-bottom: 1em;
-                  }
-                  .sub-title {
-                      color: $sub-title-color;
-                      margin: 0;
-                  }
-                  .title-break {
-                      width: 30px;
-                      border-top: 2px solid $sub-title-color;
-                      margin-bottom: 0.5em;
-                  }
-              }
+    .tiles-wrap {
+      li.tile {
+        margin-bottom: .5rem;
+        height: auto;
+
+        .tile-text {
+          position: relative;
+
+          a { padding: 1em; }
+
+          .tile-title {
+            margin-bottom: 1em;
+            padding: 0;
           }
-      }
-    }
 
-
-    // -------------------------
-    // -------------------------
-    // Overrides and unquie styles on the tile-grid for degrees-qual only
-    // -------------------------
-    &.ui-update.tile-grid {
-      margin-bottom: $base-spacing;
-
-      .tiles-wrap {
-          li.tile {
-              @include media ($desktop-and-bigger) {
-                  @include span-columns(6);
-                  margin-right: $gutter;
-                  max-height: none;
-                  // margin-bottom: 0;
-              }
-              margin-bottom: 0.5rem;
-              .tile-text {
-                  position: relative;
-                  width: 100%;
-                  background-color: $grey-alto;
-                  @include media ($desktop-and-bigger) {
-                      min-height: inherit;
-                  }
-                  a {
-                      padding: 1em;
-                  }
-                  .tile-title {
-                      padding: 0;
-                      margin-bottom: 0;
-                      h2,
-                      i {
-                          color: $green-victoria;
-                          // & span {
-                          //     color: $black-emperor;
-                          //     font-size: 0.75em;
-                          //     // font-weight: bold;
-                          // }
-                      }
-                      i {
-                          color: $black-emperor;
-                      }
-                  }
-                  .sub-title {
-                      color: $black-emperor;
-                      margin: 0;
-                  }
-                  .title-break {
-                      width: 30px;
-                      border-top: 2px solid $grey;
-                      margin-bottom: 0.15em;
-                  }
-              }
+          .sub-title {
+            margin: 0;
+            color: $sub-title-color;
           }
-      }
-    }
 
-    &.tile-filter-tags {
+          .title-break {
+            margin-bottom: .5em;
+            width: 30px;
+            border-top: 2px solid $sub-title-color;
+          }
 
-        .quals-filter {
-
-            #filter-quals {
-                display: none;
-            }
-
-            label {
-                font-size: 1.2em;
-            }
+          @include breakpoint ($desktop-and-bigger) {
+            min-height: 140px;
+          }
         }
 
-
-        .tile.is-not-matching {
-            display: none;
-        }
+      }
     }
-
   }
+
+
+  // -------------------------
+  // -------------------------
+  // Overrides and unquie styles on the tile-grid for degrees-qual only
+  // -------------------------
+  &.ui-update.tile-grid {
+    margin-bottom: $base-spacing;
+
+    .tiles-wrap {
+      li.tile {
+        margin-bottom: .5rem;
+
+        .tile-text {
+          position: relative;
+          width: 100%;
+          background-color: $grey-alto;
+
+          a { padding: 1em; }
+
+          // TODO: Refactor & Lower the depth
+          .tile-title {
+            margin-bottom: 0;
+            padding: 0;
+
+            h2 { color: $green-victoria; }
+            i { color: $black-emperor; }
+          }
+
+          .sub-title {
+            margin: 0;
+            color: $black-emperor;
+          }
+
+          .title-break {
+            margin-bottom: .15em;
+            width: 30px;
+            border-top: 2px solid $grey;
+          }
+
+          @include breakpoint( $desktop-and-bigger ) {
+            min-height: inherit;
+          }
+        }
+
+        @include breakpoint( $desktop-and-bigger ) {
+          //@include span-columns( 6 );
+          margin-right: $gutter;
+          max-height: none;
+        }
+
+      }
+    }
+  }
+
+  &.tile-filter-tags {
+    .quals-filter {
+      #filter-quals { display: none; } // TODO: Refactor (ideally remove or replace with a non-ID substitute)
+
+      label { font-size: 1.2em; }
+    }
+
+    .tile.is-not-matching { display: none; }
+  }
+}

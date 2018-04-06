@@ -2,6 +2,7 @@
 =            GRID SYSTEM (NEAT)           =
 =========================================*/
 
+// TODO: Migrate to newest Neat AND Bourbon
 
 /*******************************************************************************
 
@@ -12,13 +13,23 @@
 
 /** Define settings that will be used by default */
 
-$gutter:              $base-line-height * $base-font-size;
-$max-width:           $base-width;
+$max-width:    $base-width;
+$grid-columns: 12; //TODO: Try to remove
+
+$neat-grid: (
+  columns: $grid-columns,
+  gutter: .5rem
+);
+
+// Define different layout types
 
 
-/** Development *ONLY* helper */
+$layout-grid: (
+  columns: 16,
+  gutter:  0
+);
 
-$visual-grid:         true;
-$visual-grid-color:   $green-victoria;
-$visual-grid-index:   front;
-$visual-grid-opacity: .05;
+$content-grid: (
+  columns: $grid-columns,
+  gutter: 0
+);

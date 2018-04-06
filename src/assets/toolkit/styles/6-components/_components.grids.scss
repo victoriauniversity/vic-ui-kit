@@ -15,76 +15,77 @@
   @include clearfix;
 }
 
-@include media( $tablet ){
+@include breakpoint( $tablet ) {
   // Main content *ONLY* - 3 items in a row
   .content-panel:first-child > main:last-child {
     .grid > * {
-      @include span-columns( 4 of 12 );
-      @include omega( 3n );
+      //@include span-columns( 4 of 12 );
+      //@include omega( 3n );
     }
   }
 
   // Main content with Sidebar + Widgetbar - 2 items in a row
   .content-panel:first-child > main:not(:last-child) {
     .grid > * {
-      @include span-columns( 6 of 12 );
-      @include omega( 2n );
+      //@include span-columns( 6 of 12 );
+      //@include omega( 2n );
     }
   }
 }
 
-@include media( $tablet-and-bigger ){
+@include breakpoint( $tablet-and-bigger ) {
 
   // Main content with Widgetbar/Sidebar - 3 items in a row
   .content-panel:not(:first-child) > main:last-child {
     .grid > * {
-      @include span-columns( 4 of 12 );
-      @include omega( 3n );
+      //@include span-columns( 4 of 12 );
+      //@include omega( 3n );
     }
   }
 
   // Main content with Sidebar + Widgetbar - 2 items in a row
   .content-panel:not(:first-child) > main:not(:last-child) {
     .grid > * {
-      @include span-columns( 6 of 12 );
-      @include omega( 2n );
+      //@include span-columns( 6 of 12 );
+      //@include omega( 2n );
     }
   }
 }
 
-@include media( $desktop-and-bigger ){
+@include breakpoint( $desktop-and-bigger ) {
 
   // Main content *ONLY* - 4 items in a row
   .content-panel:first-child > main:last-child {
     .grid > * {
-      
-      @include span-columns( 4 of 12 );
-      @include omega(3n);
-      
+
+      //@include span-columns( 4 of 12 );
+      //@include omega(3n);
+
     }
   }
 
   // Main content with Widgetbar - 3 items in a row
-  .content-panel:first-child > main:not(:last-child){
+  .content-panel:first-child > main:not(:last-child) {
     .grid > * {
-      @include span-columns( 4 of 12 );
-      @include omega( 3n );
+      //@include span-columns( 4 of 12 );
+      //@include omega( 3n );
     }
   }
 
 }
 
-/* Fix for row grid - grid not applying - Eg. Hub Three column Images row - 1354596 
-  To Do -- better fix 
+/* Fix for row grid - grid not applying - Eg. Hub Three column Images row - 1354596
+  //TODO: better fix
 */
 .content-panel {
   .centraliser {
     > .block {
       .grid > * {
-        
-        @include media( $tablet-and-bigger ) {
-          @include span-columns( 4 of 12);
-          @include omega( 3n);
+
+        //TODO: FIX
+        @include breakpoint( $tablet-and-bigger ) {
+          //@include span-columns( 4 of 12);
+          //@include omega( 3n);
         }
       }
     }
