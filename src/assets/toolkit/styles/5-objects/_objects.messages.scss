@@ -5,19 +5,18 @@
 
 /* ===== FLASH MESSAGES =================================================== */
 
-$message-strip-darken-percentage: 7;
 
 .flash-message {
   margin-bottom: $base-spacing;
   padding: $column-padding;
   color: $white;
+  border-left: 2px solid $background-opaque-darkest;
 
   // Message types
   &.error {
-    background-color: $red-oyster-pink;
-    border-left: 2px solid darken( $red-oyster-pink, $message-strip-darken-percentage );
+    background-color: $background-danger;
 
-    > * { color: $red-tamarillo; }
+    > * { color: $color-danger; }
 
     > h2 {
       @include extend-icon-before( attention );
@@ -25,10 +24,9 @@ $message-strip-darken-percentage: 7;
   }
 
   &.warning {
-    background-color: $yellow-pearl-lusta;
-    border-left: 2px solid darken( $yellow-pearl-lusta, $message-strip-darken-percentage );
+    background-color: $background-warning;
 
-    > * { color: $yellow-cinamon; }
+    > * { color: $color-warning; }
 
     > h2 {
       @include extend-icon-before( megaphone );
@@ -36,10 +34,9 @@ $message-strip-darken-percentage: 7;
   }
 
   &.info {
-    background-color: $blue-humming-bird;
-    border-left: 2px solid darken( $blue-humming-bird, $message-strip-darken-percentage );
+    background-color: $background-info-light;
 
-    > * { color: $blue-callypso; }
+    > * { color: $color-info; }
 
     > h2 {
       @include extend-icon-before( info );
@@ -47,10 +44,9 @@ $message-strip-darken-percentage: 7;
   }
 
   &.success {
-    background-color: $green-tara;
-    border-left: 2px solid darken( $green-tara, $message-strip-darken-percentage );
+    background-color: $background-success;
 
-    > * { color: $green-killarney; }
+    > * { color: $color-success; }
 
     > h2 {
       @include extend-icon-before( check );

@@ -25,25 +25,35 @@ const TIME = new Date(),
 
 function decorateTemplates( done ) {
   return pump([
-    gulp.src( `${config.paths.tmp}/**/*.html` ), // HTML files
+    gulp.src( `${config.paths.tmp}/**/*.html` ),
     header( `<!-- ${BANNER_BUILD} -->\n` ),
     gulp.dest( config.paths.tmp ),
   ], done );
 }
 
-function decorateScriptsAndStyles( done ) {
+function decorateScripts( done ) {
   pump([
-    gulp.src( `${config.paths.tmp}/*.{js,css}` ), // JS + CSS
+    gulp.src( `${config.paths.tmp}/*.js` ),
     header( `/** ${BANNER_BUILD} */\n` ),
     gulp.dest( config.paths.tmp ),
   ], done );
 }
+
+function decorateStyles( done ) {
+  pump([
+    gulp.src( `${config.paths.tmp}/*.css` ),
+    header( `@charset "UTF-8";\n/** ${BANNER_BUILD} */\n` ),
+    gulp.dest( config.paths.tmp ),
+  ], done );
+}
+
 
 
 
 /** Register gulp tasks. */
 
 gulp.task( 'decorate:templates', decorateTemplates );
-gulp.task( 'decorate:assets', decorateScriptsAndStyles );
+gulp.task( 'decorate:scripts', decorateScripts );
+gulp.task( 'decorate:styles', decorateStyles );
 
-gulp.task( 'decorate', gulp.parallel( 'decorate:assets', 'decorate:templates' ));
+gulp.task( 'decorate', gulp.parallel( 'decorate:scripts', 'decorate:styles', 'decorate:templates' ));

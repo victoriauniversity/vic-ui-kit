@@ -23,7 +23,7 @@ blockquote.quote { font-style: italic; }
   &:not(.full) {
     margin-left: .85rem;
     padding: 0 0 0 1rem;
-    border-left: $strip-light;
+    border-left: $border-strip-highlight;
 
     figcaption strong { font-weight: $weight-medium; }
   }
@@ -34,7 +34,7 @@ blockquote.quote { font-style: italic; }
   &.full {
     // Citation itself
     blockquote {
-      font-size: scale-font( 1 );
+      font-size: $text-size-5;
 
       // Starting quote icon
       @include extend-icon-before( quote-down ) {
@@ -61,7 +61,7 @@ blockquote.quote { font-style: italic; }
     figcaption {
       font-weight: $weight-medium;
       font-size: 1.15em; // TODO: Review size
-      color: $green-victoria;
+      color: $green-brand;
     }
   }
 }
@@ -73,21 +73,21 @@ blockquote.quote { font-style: italic; }
   .quote {
     margin-bottom: 0;
     padding: 1.875rem;
-    border-left: 5px solid $green-victoria;
+    border-left: 5px solid $green-brand;
 
     blockquote {
-      color: $green-victoria;
+      color: $green-brand;
 
       &::before,
       &::after {
-        color: $green-victoria;
+        color: $green-brand;
       }
     }
 
     figcaption {
       text-align: right;
       color: $black-tundora;
-      font-size: scale-font( 1 );
+      font-size: $text-size-5;
 
       &::before { display: none; }
     }
@@ -230,7 +230,7 @@ blockquote.quote { font-style: italic; }
             content: "";
             height: 2px;
             width: 70%;
-            background-color: $green-victoria;
+            background-color: $green-brand;
           }
 
           img {

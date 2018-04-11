@@ -1,3 +1,8 @@
+// Top menu panel
+$global-panel-color:       $grey-silver;
+$global-panel-hover-color: #BBB;
+$global-panel-text-color:  $text-color;
+
 //gradient (expected transparent -> bgcolor) on an element hinting it overlays something
 $overlay-hint-size:      50px;
 $overlay-hint-offset:    5px; // Can be a negative number as long as ($OH-size + $OH-offset) > 0
@@ -16,7 +21,7 @@ $overlay-padding-offset: 3.8rem;
   @include clearfix;
   z-index:       $z-index-lower;
   position:      relative;
-  background:    $black-victoria;
+  background:    $black-brand;
   border-bottom: 1px solid rgba( $black, .15 );
 
   .logo-mini {
@@ -36,7 +41,7 @@ $overlay-padding-offset: 3.8rem;
   font-weight: $weight-normal;
 
   .menu a {
-    font-family: $base-heading-family;
+    font-family: $heading-family;
     line-height: 1.85;
 
     //TODO: Refactor
@@ -184,7 +189,7 @@ $overlay-padding-offset: 3.8rem;
 
     .menu {
       overflow-y: scroll;
-      background: $green-victoria;
+      background: $green-brand;
       max-height: 75vh;
       will-change: transform;
       transition: transform $transition-timeout ease-in-out;

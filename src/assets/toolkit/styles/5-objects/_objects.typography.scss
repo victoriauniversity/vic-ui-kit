@@ -7,8 +7,8 @@
 $text-block-spacing: 1.2em;
 
 $widgetbar-body-font-size:       .9375rem;
-$widgetbar-heading-font-size:    scale-heading( 2 );
-$widgetbar-subheading-font-size: $h5-font-size;
+$widgetbar-heading-font-size:    $h4-size;
+$widgetbar-subheading-font-size: $h5-size;
 
 
 .formatting {
@@ -39,7 +39,7 @@ $widgetbar-subheading-font-size: $h5-font-size;
       h4,
       h5,
       h6 {
-        color: $base-link-hover-color;
+        color: $link-hover-color;
         text-decoration: none;
       }
 
@@ -52,7 +52,7 @@ $widgetbar-subheading-font-size: $h5-font-size;
     h4,
     h5,
     h6 {
-      color: $base-link-color;
+      color: $link-color;
       text-decoration: underline;
     }
   }
@@ -69,11 +69,11 @@ $widgetbar-subheading-font-size: $h5-font-size;
   table,
   figcaption {
     a {
-      color: $base-link-color;
+      color: $link-color;
       text-decoration: underline;
 
       @include hoverify() {
-        color: $base-link-hover-color;
+        color: $link-hover-color;
         text-decoration: none;
       }
 
@@ -98,8 +98,8 @@ $widgetbar-subheading-font-size: $h5-font-size;
 
   // Abstract text
   .intro {
-    font-size: scale-font( 1 );
-    color: $base-heading-color;
+    font-size: $text-size-5;
+    color: $heading-color;
   }
 
   // Subtitle
@@ -117,7 +117,7 @@ $widgetbar-subheading-font-size: $h5-font-size;
 
   h1 + .subtitle {
     margin-top: -.5em; // Workaround where it cannot be implemented in the Squiz
-    font-size: scale-font( 1 );
+    font-size: $text-size-5;
   }
 
   // Header section that restarts the vertical alignment
@@ -210,7 +210,7 @@ $widgetbar-subheading-font-size: $h5-font-size;
       @include before( block ) {
         @include size( 2rem, .1875rem );
         margin-bottom: .35rem;
-        background-color: $base-heading-color;
+        background-color: $heading-color;
       }
     }
 

@@ -1,0 +1,67 @@
+/*============================================================================*\
+| BOX APPEARANCE
+\*============================================================================*/
+
+////
+/// Properties related to the 'box' appereance (shadows, borders etc.).
+///
+/// @group box-appereance
+
+
+
+
+
+/*= BORDERS ==================================================================*/
+
+
+/// @type {color} - Allowed colour variations of the border.
+$border-color-light:     $grey-gallery !default;
+$border-color-dark:      $black-emperor !default;
+$border-color-highlight: $green-nebula !default;
+
+
+/// @type {size in rem} - Allowed border thickness (width).
+$border-width-thin:   .0625rem !default;
+$border-width-medium: .1875rem !default;
+$border-width-thick:  .25rem !default;
+
+
+/// @type {border} - All allowed border declarations.
+$border:                 $border-width-thin solid $border-color-light !default;
+$border-inverted:        $border-width-thin solid $border-color-dark !default;
+$border-strip-brand:     $border-width-thick solid $green-brand !default;
+$border-strip-highlight: $border-width-thick solid $border-color-highlight !default;
+
+
+
+
+
+/*= SHADOWS ==================================================================*/
+
+
+/// @type {box-shadow} - Shadows of various depths.
+/// @link https://codepen.io/sdthornton/pen/wBZdXq
+
+$shadow-shallowest: 0 .0625rem .1875rem rgba( $black, .12 ), 0 .0625rem .125rem rgba( $black, .24 ) !default;
+
+$shadow-shallow:    0 .1875rem .375rem rgba( $black, .16 ), 0 .1875rem .375rem rgba( $black, .23 ) !default;
+
+$shadow:            0 .625rem 1.25rem rgba( $black, .19 ), 0 .375rem .375rem rgba( $black, .23 ) !default;
+
+$shadow-deep:       0 .875rem 1.75rem rgba( $black, .25 ), 0 .625rem .625rem rgba( $black, .22 ) !default;
+
+$shadow-deepest:    0 1.1875rem 2.375rem rgba( $black, .3 ), 0 .9375rem .75rem rgba( $black, .22 ) !default;
+
+
+
+
+
+/*= CORNERS ==================================================================*/
+
+
+/// @type {radius in rem} - Various levels of corner's roundness.
+$radius-small:   .125rem !default;
+$radius:         .25rem !default;
+$radius-large:   .375rem !default;
+
+$radius-rounded: 1000rem !default; // Limit use of this semi-hack!

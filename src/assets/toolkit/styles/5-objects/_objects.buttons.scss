@@ -6,7 +6,7 @@
 /* ===== GENERIC BUTTONS ================================================== */
 
 
-$button-corner-radius:       $base-corner-radius;
+$button-corner-radius:       $radius-small;
 
 /** Button variations */
 
@@ -26,7 +26,7 @@ button,
 .button {
   display:     inline-block;
   padding:     .3em .8em;
-  font-family: $base-heading-family;
+  font-family: $heading-family;
   font-weight: $weight-semibold;
 
   .formatting & { text-decoration: none; } // Reset
@@ -35,7 +35,7 @@ button,
 
   &:not(.flat) {
     border-radius: $button-corner-radius;
-    color:         $color-body-text;
+    color:         $text-color;
     background:    $color-button-default;
 
     @include hoverify() {
@@ -121,7 +121,7 @@ a.link-more {
     margin: 0 auto;
     border-style: solid;
     border-width: 9.5px 0 9.5px 17px;
-    border-color: transparent transparent transparent $green-victoria;
+    border-color: transparent transparent transparent $green-brand;
   }
 }
 
@@ -218,7 +218,7 @@ $transition:  .3s; // increase this to see the transformations in slow-motion
     transform-origin: $button-size / 14 center;
   }
 
-  
+
   /* .button-list   For list of in page button links - to navigate content pages */
 
   .button-list {
@@ -238,7 +238,7 @@ $transition:  .3s; // increase this to see the transformations in slow-motion
         }
     }
   }
-  
+
 
 
   &::before { top: $button-size / 4; }

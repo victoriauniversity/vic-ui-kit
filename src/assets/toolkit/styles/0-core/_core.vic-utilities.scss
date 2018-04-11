@@ -1,0 +1,81 @@
+/*============================================================================*\
+| RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
+\*============================================================================*/
+
+////
+/// A collection of re-usable SCSS utility variables, mixins and functions for
+/// Victoria University web apps.
+///
+/// Comment out any unused components to speed up the compilation process.
+
+
+/*= IMPORTS ================================================================*/
+
+
+/// @link https://neat.bourbon.io/docs/2.1.0/
+@import 'neat';
+
+/// @link https://github.com/sass-mq/sass-mq#how-to-use-it
+@import 'sass-mq';
+
+
+
+
+
+/*= FUNCTIONS ================================================================*/
+
+
+@import 'functions/functions.validators';
+@import 'functions/functions.builders';
+
+
+
+
+
+/*= VARIABLES ================================================================*/
+
+
+// 1st
+@import 'variables/variables._defaults';
+
+// 2nd
+@import 'variables/variables.sizing';
+@import 'variables/variables.colors';
+
+// 3rd level dependencies
+@import 'variables/variables.backgrounds';
+@import 'variables/variables.grid';
+@import 'variables/variables.responsive';
+@import 'variables/variables.typography';
+@import 'variables/variables.layout';
+@import 'variables/variables.box-appearance';
+@import 'variables/variables.animations';
+
+
+
+
+
+/*= MIXINS ===================================================================*/
+
+
+@import 'mixins/mixins.generic';
+@import 'mixins/mixins.layout';
+@import 'mixins/mixins.typography';
+@import 'mixins/mixins.forms';
+
+
+
+
+
+/*= INITIALISATIONS ==========================================================*/
+
+
+// Import this project's settings overrides
+@import '../1-settings/settings.variables';
+
+// Auto-import fonts
+@include import-fonts;
+
+
+
+

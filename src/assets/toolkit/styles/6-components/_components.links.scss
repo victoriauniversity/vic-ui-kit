@@ -39,7 +39,7 @@ ul.links {
       }
 
       @include hoverify {
-        background-color: rgba( #000, $base-darken-percentage / 100 );
+        background-color: $background-opaque-dark;
       }
     }
   }
@@ -81,13 +81,13 @@ ul.links {
     padding-bottom: 15px;
 
     &::after {
-      @include size( 50px 5px );
+      @include size( 50px, 5px );
       position: absolute;
       bottom: 0;
       left: 0;
       content: '';
 
-      background-color: $green-victoria;
+      background-color: $green-brand;
     }
   }
 
@@ -100,7 +100,7 @@ ul.links {
       justify-content: center;
       padding: .5em;
       flex-direction: column;
-      background-color: $green-victoria;
+      background-color: $green-brand;
       border-radius: 5px;
 
       text-align: center;
@@ -112,7 +112,7 @@ ul.links {
 
 
       @include hoverify() {
-        background-color: darken( $green-victoria, 5% );
+        background-color: darken( $green-brand, 5% ); //TODO: Replace with $var
         transition: .5s ease-in-out;
 
         text-decoration: underline;

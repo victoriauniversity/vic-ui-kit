@@ -1,7 +1,7 @@
 .site {
   z-index:    $z-index-lower;
   overflow:   hidden;
-  background: $green-victoria;
+  background: $green-brand;
 
   [lang='mi'] { opacity: .5; }
 
@@ -89,7 +89,7 @@
 
 /** New dynamic menu with expandable items */
 
-$sidemenu-background:          $green-victoria !default;
+$sidemenu-background:          $green-brand !default;
 $sidemenu-background-selected: $green-bottle !default;
 
 $sidemenu-text-color:          $grey-alto !default;
@@ -109,7 +109,7 @@ $sidemenu-delimiter-color: $green-bottle !default;
 
   // All menu items
   ul {
-    font-family: $base-heading-family;
+    font-family: $heading-family;
 
     li {
       display: block;
@@ -245,9 +245,9 @@ $sidemenu-delimiter-color: $green-bottle !default;
   }
 
   .btn-expander {
+    @include size( 1.4em );
     display: block;
     margin: 0 .5rem;
-    @include size( 1.4em 1.4em );
     align-self: center;
     cursor: pointer;
     text-align: center;
@@ -265,16 +265,16 @@ $sidemenu-delimiter-color: $green-bottle !default;
 
   // Mobile devices *only*, allows to hide/show the sidemenu
   .sidemenu-toggle {
-    font-size: modular-scale( 2 );
+    font-size:   $text-size-huge;
     font-weight: $weight-semibold;
 
     a {
       display: block;
       padding: .8rem .9rem;
 
-      @include extend-icon-after( list ){
-        float: right;
+      @include extend-icon-after( list ) {
         top: -.05em;
+        float: right;
         font-size: 115%;
       }
     }
@@ -300,7 +300,7 @@ $sidemenu-delimiter-color: $green-bottle !default;
 
   @include breakpoint( $mobile-large-and-smaller ) {
     .btn-expander {
-      @include size( auto auto );
+      @include size( auto );
       margin: 0 .35rem 0 0;
       line-height: 1.5;
 

@@ -1,0 +1,92 @@
+/*============================================================================*\
+| VALIDATOR FUNCTIONS
+\*============================================================================*/
+
+////
+/// A collection of functions designed to validate the input and
+/// return `true` or `false`.
+///
+/// @group validators
+
+
+
+
+
+/*= LISTS ====================================================================*/
+
+
+/// Checks if a list contains a value(s).
+///
+/// @argument {list} $list
+///   The list to check against.
+///
+/// @argument {list} $values
+///   A single value or list of values to check for.
+///
+/// @return {boolean}
+///
+/// @author Thoughtbot
+/// @link https://github.com/thoughtbot/bourbon/blob/master/core/bourbon/validators/_contains.scss
+///
+/// @access private
+
+@function _contains(
+  $list,
+  $values...
+) {
+  @each $value in $values {
+    @if type-of( index( $list, $value )) != 'number' {
+      @return false;
+    }
+  }
+
+  @return true;
+}
+
+
+
+
+
+/*= SIZING ===================================================================*/
+
+
+/// Checks for a valid CSS length.
+///
+/// @argument {string} $value
+///
+/// @return {boolean}
+///
+/// @author Thoughtbot
+/// @link https://github.com/thoughtbot/bourbon/blob/master/core/bourbon/validators/_is-length.scss
+///
+/// @access private
+
+@function _is-length( $value ) {
+  @return type-of( $value ) != 'null' and ( str-slice( $value + '', 1, 4 ) == 'calc'
+    or index( auto inherit initial 0, $value )
+    or ( type-of( $value ) == 'number' and not( unitless( $value ))));
+}
+
+
+
+
+
+/// Checks for a valid CSS size.
+///
+/// @argument {string} $value
+///
+/// @return {boolean}
+///
+/// @require {function} _contains
+///
+/// @require {function} _is-length
+///
+/// @author Thoughtbot
+/// @link https://github.com/thoughtbot/bourbon/blob/master/core/bourbon/validators/_is-size.scss
+///
+/// @access private
+
+@function _is-size( $value ) {
+  @return _is-length( $value )
+    or _contains( 'fill' 'fit-content' 'min-content' 'max-content', $value );
+}
