@@ -61,4 +61,50 @@
         }
       }
     }
+
+    &.nav-buttons {
+      margin: 1rem 0;
+      border: none;
+      background-color: transparent;
+
+      nav {
+        > ul {
+          margin: 0 1rem;
+          > li {
+              a {
+                background-color: $green-victoria;
+                border-radius: 3px;
+                border-bottom: 5px solid $green-bottle;
+                font-size: 1.3rem;
+                text-align: center;
+                padding: .5rem 1rem calc( .5rem - 5px );
+
+                @include hoverify() {
+                  background-color: darken($green-victoria, 5%);
+                }
+              }
+
+            &:not(:last-child) {
+              margin-right: 1rem;
+            }
+          }
+
+          @include media($tablet-and-smaller) {
+            margin: 0;
+
+            > li {
+              a {
+                text-align: left;
+                border-radius: 0;
+                padding: .5rem 1.5rem calc( .5rem - 5px );
+              }
+
+              &:not(:last-child) {
+                margin-right: 0;
+              }
+            }
+          }
+        }
+      }
+    }
   }
