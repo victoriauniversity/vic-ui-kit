@@ -35,21 +35,22 @@
 /*= VARIABLES ================================================================*/
 
 
-// 1st
+// 1st - Settings: Recommended to be reviewed & overriden in every project
 @import 'variables/variables._defaults';
 
-// 2nd
+// 2nd - Pre-defined: Can be used in other variables
 @import 'variables/variables.sizing';
 @import 'variables/variables.colors';
+@import 'variables/variables.responsive';
+@import 'variables/variables.animations';
 
-// 3rd level dependencies
+// 3rd - Derived of other variables + component-related
 @import 'variables/variables.backgrounds';
 @import 'variables/variables.grid';
-@import 'variables/variables.responsive';
 @import 'variables/variables.typography';
 @import 'variables/variables.layout';
 @import 'variables/variables.box-appearance';
-@import 'variables/variables.animations';
+@import 'variables/variables.media';
 
 
 
@@ -62,19 +63,7 @@
 @import 'mixins/mixins.layout';
 @import 'mixins/mixins.typography';
 @import 'mixins/mixins.forms';
-
-
-
-
-
-/*= INITIALISATIONS ==========================================================*/
-
-
-// Import this project's settings overrides
-@import '../1-settings/settings.variables';
-
-// Auto-import fonts
-@include import-fonts;
+@import 'mixins/mixins.initialisations';
 
 
 

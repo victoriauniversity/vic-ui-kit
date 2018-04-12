@@ -28,7 +28,7 @@ $icon-class-prefix: 'icon-';
 
 
 /**
-  * Takes on of the $icon-codes listed in `_objects.icons.scss`
+  * Takes on one of the $icon-codes listed in `_objects.icons.scss`
   * and assigns it to the element's before/after's content.
   *
   * @param $icon-code ~ code in the unicode format.
@@ -39,7 +39,6 @@ $icon-class-prefix: 'icon-';
     content: $icon-code;
   }
 }
-
 
 @mixin icon-selector() {
   [class^=#{$icon-class-prefix}] {
@@ -132,6 +131,15 @@ $icon-codes: (
 );
 
 
+@mixin add-icon-after( $icon-key ) {
+  @include add-icon-character( map-get( $icon-codes, $icon-key ), after );
+}
+
+@mixin add-icon-before( $icon-key ) {
+  @include add-icon-character( map-get( $icon-codes, $icon-key ) );
+}
+
+
 
 
 
@@ -170,7 +178,7 @@ $social-icon-size: 2.5rem;
 
   .small-icon:before,
   .small-icon:after {
-    transform: scale(.65);
+    transform: scale( .65 );
   }
 
   img {
@@ -228,7 +236,6 @@ $bulletline-width:        1rem;
 
   &::after { @content; }
 }
-
 
 .link-external {
   @include extend-icon-after( external ) {

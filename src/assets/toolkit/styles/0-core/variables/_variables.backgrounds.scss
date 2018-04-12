@@ -14,22 +14,13 @@
 /*= SEMI-OPAQUE ==============================================================*/
 
 
-/// @type {Number} - ratio modifiers to darken given colours
-$dark-ratio:    .03 !default;
-$darker-ratio:  .06 !default;
-$darkest-ratio: .08 !default;
-
 /// @type {rgba} - Makes the background layer `n`% darker.
 $background-opaque-dark:    rgba( $black, $dark-ratio ) !default;
 $background-opaque-darker:  rgba( $black, $darker-ratio ) !default;
 $background-opaque-darkest: rgba( $black, $darkest-ratio ) !default;
 
 
-/// @type {Number} - ratio modifiers to lighten colours
-$light-ratio:    .03 !default;
-$lighter-ratio:  .06 !default;
-$lightest-ratio: .08 !default;
-
+/// @type {rgba} - Makes the background layer `n`% lighter.
 $background-opaque-light:    rgba( $white, $light-ratio ) !default;
 $background-opaque-lighter:  rgba( $white, $lighter-ratio ) !default;
 $background-opaque-lightest: rgba( $white, $lighter-ratio ) !default;
@@ -41,16 +32,18 @@ $background-opaque-lightest: rgba( $white, $lighter-ratio ) !default;
 /*= SOLID ====================================================================*/
 
 
-/// @type {color} - Background colors variations.
+/// @type {color} - Background colours variations.
 $background-info-light:         $blue-humming-bird !default;
-$background-info-light-darker:  darken( $background-info-light, $dark-ratio ) !default;
+$background-info-light-darker:  darken( $background-info-light, $dark-percentage ) !default;
 
 $background-brand-dark:         $black-brand !default;
-$background-brand-dark-lighter: lighten( $background-brand-dark, $light-ratio ) !default;
+$background-brand-dark-lighter: lighten( $background-brand-dark, $light-percentage ) !default;
 
-$background-brand:              $green-brand !default;
-$background-success:            $green-tara !default;
-$background-warning:            $yellow-pearl-lusta !default;
-$background-danger:             $red-oyster-pink !default;
+$background-brand:        $green-brand !default;
+$background-brand-darker: darken( $background-brand, $darker-percentage ) !default;
+
+$background-success: $green-tara !default;
+$background-warning: $yellow-pearl-lusta !default;
+$background-danger:  $red-oyster-pink !default;
 
 

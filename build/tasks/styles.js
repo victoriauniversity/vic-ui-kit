@@ -45,6 +45,7 @@ function processToolkitStyles( done ) {
       outputStyle:  'expanded',
       eyeglass:    {
         modules: [
+          /** Non eyeglass-aware (S)CSS libraries have to be defined here. */
           {
             name: 'lity',
             main: () => ({
