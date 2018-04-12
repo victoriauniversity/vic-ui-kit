@@ -61,4 +61,89 @@
         }
       }
     }
+
+    &.nav-buttons {
+      margin: 1.6rem 0;
+      border: none;
+      background-color: transparent;
+
+      nav {
+        > ul {
+          margin: 0 1.6rem;
+          > li {
+            flex: 1 1 auto;
+              a {
+                background-color: $green-victoria;
+                border-radius: 2px;
+                border-bottom: 5px solid $green-bottle;
+                text-align: center;
+                padding: .5rem 1rem calc( .5rem - 5px );
+
+
+                @include hoverify() {
+                  background-color: darken($green-victoria, 5%);
+                }
+
+                &.active {
+                  background-color: darken($green-victoria, 5%);
+                  border-bottom-color: lighten($green-bottle, 4%);
+
+                  position: relative;
+
+                  &:before {
+                    position: absolute;
+                    display: inline-block;
+                    content: "";
+                    background-color: #FFF;
+                    width: 3px;
+                    height: 50%;
+                    top: 55%;
+                    transform: translateY(-50%);
+                    left: .7rem;
+
+                    @include media($desktop) {
+                      left: 5%;
+                    }
+                  }
+                }
+              }
+
+            &:not(:last-child) {
+              margin-right: 1rem;
+            }
+          }
+
+          @include media($tablet-and-smaller) {
+            margin: 0;
+
+            > li {
+              a {
+                text-align: left;
+                border-radius: 0;
+                padding: .5rem 1.5rem calc( .5rem - 3px );
+                border-bottom-width: 3px; 
+              }
+
+              &:not(:last-child) {
+                margin-right: 0;
+              }
+            }
+          }
+
+          @include media($desktop-and-bigger) {
+            > li {
+              a {
+                // fixes border-radius rogue pixel;
+                background-clip: padding-box;
+
+              }
+            }
+          }
+        }
+      }
+
+      @include media($tablet) {
+        margin-top: 0;
+      }
+    }
   }
