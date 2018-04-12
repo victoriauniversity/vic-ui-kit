@@ -1,6 +1,7 @@
 const
-  path    = require( 'path' ),
-  webpack = require( 'webpack' ),
+  path           = require( 'path' ),
+  webpack        = require( 'webpack' ),
+  UglifyJsPlugin = require( 'uglifyjs-webpack-plugin' ),
 
   config  = require( './build.config' );
 
@@ -71,6 +72,19 @@ module.exports = ({
           test:   /\.json/,
           loader: 'json-loader',
         },
+      ],
+    },
+
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          uglifyOptions: {
+            output: {
+              comments: false,
+            },
+          },
+          exclude: 'toolkit.js', // Don't minify!
+        }),
       ],
     },
   };

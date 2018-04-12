@@ -1,18 +1,72 @@
-/*============================================
-=      RESPONSIVE SETTINGS AND VARIABLES     =
-============================================*/
+/*============================================================================*\
+| RESPONSIVE ATTRIBUTES
+\*============================================================================*/
 
-/*******************************************************************************
+////
+/// Defines properties related to general responsive behaviour.
+///
+/// **Note**: Use `em` units as a responsive breakpoints!
+///
+/// @required `sass-mq`
+///
+/// @example scss
+///   // Apply styling to mobile and upwards
+///     @include breakpoint($from: mobile) {
+///       color: red;
+///   }
+///   // Apply styling up to devices smaller than tablets (exclude tablets)
+///   @include breakpoint($until: tablet) {
+///       color: blue;
+///   }
+///   // Same thing, in landscape orientation
+///   @include breakpoint($until: tablet, $and: '(orientation: landscape)') {
+///       color: hotpink;
+///   }
+///   // Apply styling to tablets up to desktop (exclude desktop)
+///   @include breakpoint(tablet, desktop) {
+///       color: green;
+///   }
+///
+/// @group responsive
 
-  *DO USE EMs* as a responsive breakpoints!
 
-  ems in media queries are derived from html's font-size = they behave as rems,
-  but are more stable across all browsers.
-
-*******************************************************************************/
+/* = SASS-MQ SETTINGS ======================================================= */
 
 
-/* ===== BREAKPOINT DEFINITIONS ============================================= */
+/// @link https://github.com/sass-mq/sass-mq#how-to-use-it
+// To enable support for browsers that do not support @media queries,
+// (IE <= 8, Firefox <= 3, Opera <= 9) set $mq-responsive to false
+// Create a separate stylesheet served exclusively to these browsers,
+// meaning @media queries will be rasterized, relying on the cascade itself
+$mq-responsive: true;
+
+// If you want to display the currently active breakpoint in the top
+// right corner of your site during development, add the breakpoints
+// to this list, ordered by width, e.g. (mobile, tablet, desktop).
+$mq-show-breakpoints: (
+  mobile,
+  mobile-large,
+  tablet,
+  desktop
+);
+
+
+
+
+
+/* = BREAKPOINT DEFINITIONS ================================================= */
+
+
+/// @type {Map} - Min-widths of all main devices.
+$mq-breakpoints: (
+  'mobile':       .01em,
+  'mobile-large': 30em,
+  'tablet':       43em,
+  'desktop':      61em,
+  'desktop-large': 88em, // TODO: Use $base-width
+);
+
+
 
 
 // TODO: Order properly!
@@ -35,6 +89,12 @@ $desktop-max-width:         $base-width; // Update to EM
 $desktop-large-min-width:   $base-width; // Update to EM
 
 
+// Alias
+@mixin bp( $args... ) {
+  @include mq( $args... ) {
+    @content;
+  }
+}
 
 
 /* ===== BREAKPOINTS ======================================================== */

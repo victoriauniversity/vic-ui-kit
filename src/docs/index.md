@@ -17,7 +17,7 @@
 
 </div>
 
-If you require branding for your applcation please see our application [Brand guide](http://toolkit.victoria.ac.nz/digital-brand) 
+If you require branding for your applcation please see our application [Brand guide](http://toolkit.victoria.ac.nz/digital-brand)
 
 
 <a name="start"></a>
@@ -27,14 +27,13 @@ If you require branding for your applcation please see our application [Brand gu
 To include Victoria's UI styles in your project, copy-paste the following code snippet into the ```<head>``` element in your project:
 
 ```html
-<link rel="stylesheet" type="text/css" href="https://static.victoria.ac.nz/toolkit.css">
+<link rel="stylesheet" type="text/css" href="https://static.victoria.ac.nz/toolkit.min.css">
 ```
 
 
-If you wish to use complex dynamic components that **require JavaScript** to work properly (see [Components](/components.html)), include jQuery and Victoria's UI Scripts library just before the closing ```</body>``` tag:
+If you wish to use complex dynamic components that **require JavaScript** to work properly (see [Components](/components.html)), include and Victoria's UI Scripts library just before the closing ```</body>``` tag:
 
 ```html
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
 <script src="https://static.victoria.ac.nz/toolkit.min.js"></script>
 ```
 

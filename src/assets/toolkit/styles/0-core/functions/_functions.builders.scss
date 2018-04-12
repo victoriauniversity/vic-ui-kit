@@ -189,3 +189,43 @@
 
   @return $value;
 }
+
+
+
+
+
+/*= COLOURS ==================================================================*/
+
+
+/// Slightly lighten a colour.
+///
+/// @param {Color} $color - colour to tint
+/// @param {Number} $percentage - percentage of `$color` in returned color
+///
+/// @return {Color}
+///
+/// @link https://sass-guidelin.es/#syntax--formatting
+///
+/// @access public
+@function _tint( $color, $percentage ) {
+  @return mix( white, $color, $percentage );
+}
+
+/// Slightly darken a colour.
+///
+/// @param {Color} $color - colour to shade
+/// @param {Number} $percentage - percentage of `$color` in returned color
+///
+/// @return {Color}
+///
+/// @link https://sass-guidelin.es/#syntax--formatting
+///
+/// @access public
+@function _shade( $color, $percentage ) {
+  @return mix( black, $color, $percentage );
+}
+
+
+
+
+

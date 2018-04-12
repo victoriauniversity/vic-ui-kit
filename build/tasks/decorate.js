@@ -16,8 +16,16 @@ const
 
 /** Helpers. */
 
-const TIME = new Date(),
-  BANNER_BUILD = `Version: ${config.version} ${process.env.CI_COMMIT_ID ? `(build #${process.env.CI_COMMIT_ID} + ) ` : ''} | ${TIME.toDateString()} ${TIME.getHours()}:${( `0 ${TIME.getMinutes()}` ).slice( -2 )}`;
+const TIME = new Intl.DateTimeFormat( 'en-NZ', {
+    weekday: 'long',
+    year:    'numeric',
+    month:   'long',
+    day:     'numeric',
+    hour:    'numeric',
+    minute:  'numeric',
+  }).format( new Date()),
+
+  BANNER_BUILD = `Version: ${config.version}${process.env.CI_COMMIT_ID ? ` (build #${process.env.CI_COMMIT_ID} + ) ` : ''} | ${TIME}`;
 
 
 

@@ -112,8 +112,8 @@ $h6-size: $heading-to-text-ratio * $text-size-6 !default;
 /// @prop {size in em} [1.6] - Base text's line height ratio.
 $text-line-height:    1.6 !default;
 
-/// @prop {size in em} [1.25] - Headings line height ratio.
-$heading-line-height: 1.25 !default;
+/// @prop {size in em} [1.1] - Headings line height ratio.
+$heading-line-height: 1.1 !default;
 
 
 
@@ -124,13 +124,20 @@ $heading-line-height: 1.25 !default;
 
 /// @prop {string[]) ['Helvetica Neue','Segoe WP','Helvetica','Arial'] -
 ///   Base text font family with fall-backs.
-$text-family:    'Helvetica Neue','Segoe WP','Helvetica','Arial' !default;
+$text-family: (
+  'Helvetica Neue',
+  'Segoe WP',
+  'Helvetica',
+  'Arial',
+) !default;
 
 /// @prop {string[]) [$font-name-brand] -
 ///   Heading font family with `$text-family` as a fall-back.
-$heading-family: '#{$font-name-brand}', $text-family !default;
+$heading-family: append( $font-name-brand, $text-family, comma ) !default;
 
 /// @prop {string[]) [$font-name-icons] - Font family of the font icons.
 $icons-family:   '#{$font-name-icons}' !default;
+
+
 
 

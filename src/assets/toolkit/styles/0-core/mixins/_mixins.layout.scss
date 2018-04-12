@@ -74,12 +74,21 @@
   html {
     font-size: 100%;
 
-    @include breakpoint( $mobile-large-and-smaller ) {
-      font-size: 85%;
+    @include bp( tablet, desktop ) {
+      font-size: 60%;
     }
 
-    @include breakpoint( $tablet ) {
-      font-size: 92.5%;
+    @include bp( $until: tablet ) {
+      font-size: 30%;
     }
+
+
+    // @include breakpoint( $mobile-large-and-smaller ) {
+    //   font-size: 85%;
+    // }
+
+    // @include breakpoint( $tablet ) {
+    //   font-size: 92.5%;
+    // }
   }
 }
