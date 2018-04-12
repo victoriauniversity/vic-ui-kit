@@ -79,9 +79,6 @@
                 text-align: center;
                 padding: .5rem 1rem calc( .5rem - 5px );
 
-                // fixes border-radius rogue pixel;
-                background-clip: padding-box;
-
 
                 @include hoverify() {
                   background-color: darken($green-victoria, 5%);
@@ -89,7 +86,7 @@
 
                 &.active {
                   background-color: darken($green-victoria, 5%);
-                  border-bottom-color: lighten($green-bottle, 5%);
+                  border-bottom-color: lighten($green-bottle, 4%);
 
                   position: relative;
 
@@ -129,6 +126,16 @@
 
               &:not(:last-child) {
                 margin-right: 0;
+              }
+            }
+          }
+
+          @include media($desktop-and-bigger) {
+            > li {
+              a {
+                // fixes border-radius rogue pixel;
+                background-clip: padding-box;
+
               }
             }
           }
