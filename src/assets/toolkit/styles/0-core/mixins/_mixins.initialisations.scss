@@ -12,7 +12,17 @@
 
 
 @mixin init-victoria-base() {
-  @include import-fonts; // Autoimport fonts
+  /// @link ./_mixins.typography.scss
+  @include import-fonts;
+
+  /// @link ./_mixins.layout.scss
+  @include add-base-layout;
+
+  /// @link ./_mixins.typography.scss
+  @include add-base-typography;
+
+  /// @link ./_mixins.forms.scss
+  @include add-base-forms;
 }
 
 

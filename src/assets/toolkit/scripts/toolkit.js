@@ -1,6 +1,4 @@
-/**
- * Toolkit JavaScript
- */
+/** !Toolkit's core JS */
 
 
  /* DEPENDENCIES & 3RD PARTY LIBRARIES IMPORTS */
@@ -519,11 +517,11 @@ $('.tile-accordion.content-page .tile .toggle').on('click', function (evt) {
 
 
   var $this = $(this);
-  
+
   console.log($this);
-  
+
   $this.toggleClass('expanded');
-  $this.siblings('p').toggle(); 
+  $this.siblings('p').toggle();
 
 });
 
@@ -535,7 +533,7 @@ function restrictedLinkTitle() {
     lockLinks[i].setAttribute('title', 'Restricted intranet link');
   }
 
-  
+
 }
 restrictedLinkTitle();
 
