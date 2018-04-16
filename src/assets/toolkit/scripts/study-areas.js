@@ -8,8 +8,8 @@ $(function(){
 
 		var $targetElements = $(targetElements);
 		var $searchInput = $(searchInput);
-		var MIN_QUERY_LENGTH = minQueryLength;
-
+    var MIN_QUERY_LENGTH = minQueryLength;
+    
 		// console.time('removing accents from all elements');
 		$targetElements.each(function(){
 			var $this = $(this);
@@ -21,7 +21,7 @@ $(function(){
 
 		$searchInput.on('propertychange change click keyup input paste', function(_event) {
 			var _query = _event.currentTarget.value;
-
+			
 			if (_query.length < MIN_QUERY_LENGTH) {
 				$targetElements.toggleClass('is-matching', false);
 				$targetElements.toggleClass('is-not-matching', false);
@@ -41,7 +41,30 @@ $(function(){
 					$this.toggleClass('is-matching', false);
 					$this.toggleClass('is-not-matching', true);
 				}
-			});
+			});			
+
+
+      //add no quals message
+      if ($(filterTags)) {
+          $('.no-quals-message').remove();
+
+          var isVisible = 0;
+          var noQualMessage = '<p class="no-quals-message">Sorry, no matching qualifications.</p>';
+
+          $targetElements.each( function() {
+              if( $(this).is(":visible") ) {
+                  isVisible ++;
+              }
+          });
+
+          
+          if ( isVisible == 0 ) {
+            $('.study-areas-postgrad .quals-filter').after(noQualMessage);
+          }
+
+        }
+
+
 		});
 
 		var tags = $(filterTags);
@@ -73,14 +96,15 @@ $(function(){
 
 					} else {
 						$(searchInput).val('').change();
-						$(targetElements).css('margin-right', '');
+            $(targetElements).css('margin-right', '');
+            $('.no-quals-message').remove();
 					}
 
 				});
 
 			});
-		}
-
+    }
+    
 	}
 
 	searchFilter('.postgrad-quals li', '#filter-quals', 3, '.quals-filter .tag' );
