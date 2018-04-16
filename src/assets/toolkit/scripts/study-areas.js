@@ -52,16 +52,13 @@ $(function(){
           var noQualMessage = '<p class="no-quals-message">Sorry, no matching qualifications.</p>';
 
           $targetElements.each( function() {
-            // console.log($(this).is(":visible"));
               if( $(this).is(":visible") ) {
                   isVisible ++;
               }
           });
 
-          // console.log(isVisible, 'are # visi', 'ok');
           
           if ( isVisible == 0 ) {
-            // console.log('none visi');
             $('.study-areas-postgrad .quals-filter').after(noQualMessage);
           }
 
