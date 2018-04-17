@@ -30,7 +30,16 @@
 /// @group responsive
 
 
+
+/// @prop {boolean} [false] - Whether or not should be the information about breakpoints shown.
+$breakpoints-show: false !default;
+
+
+
+
+
 /* = SASS-MQ SETTINGS ======================================================= */
+
 
 
 /// @link https://github.com/sass-mq/sass-mq#how-to-use-it
@@ -38,17 +47,25 @@
 // (IE <= 8, Firefox <= 3, Opera <= 9) set $mq-responsive to false
 // Create a separate stylesheet served exclusively to these browsers,
 // meaning @media queries will be rasterized, relying on the cascade itself
-$mq-responsive: true;
+$mq-responsive: true !default;
+
 
 // If you want to display the currently active breakpoint in the top
 // right corner of your site during development, add the breakpoints
 // to this list, ordered by width, e.g. (mobile, tablet, desktop).
-$mq-show-breakpoints: (
-  mobile,
-  mobile-large,
-  tablet,
-  desktop
-);
+$breakpoints-show-types: (
+  'mobile',
+  'mobile-large',
+  'tablet',
+  'desktop',
+  'desktop-large',
+) !default;
+
+
+$mq-show-breakpoints: null;
+@if ( $breakpoints-show ) {
+  $mq-show-breakpoints: $breakpoints-show-types;
+}
 
 
 
@@ -57,47 +74,47 @@ $mq-show-breakpoints: (
 /* = BREAKPOINT DEFINITIONS ================================================= */
 
 
-/// @type {Map} - Min-widths of all main devices.
+$mobile-layout-ratio:             .85 !default;
+$mobile-layout-percentage:        $mobile-layout-ratio * 100% !default;
+
+$mobile-large-min-width:          30em !default; // ~480px
+$mobile-large-layout-ratio:       .9 !default;
+$mobile-large-layout-percentage:  $mobile-large-layout-ratio * 100% !default;
+
+$tablet-min-width:                43em !default; // ~688px
+$tablet-layout-ratio:             .925 !default;
+$tablet-layout-percentage:        $tablet-layout-ratio * 100% !default;
+
+$desktop-min-width:               61em !default; // ~976px
+$desktop-layout-ratio:            1 !default;
+$desktop-layout-percentage:       $desktop-layout-ratio * 100% !default;
+
+$desktop-large-min-width:         88em !default; // ~1408px
+$desktop-large-layout-ratio:      1 !default;
+$desktop-large-layout-percentage: $desktop-large-layout-ratio * 100% !default;
+
+
+/// @type {Map} - Min-widths of all main devices for `$sass-mq` plugin.
 $mq-breakpoints: (
-  'mobile':       .01em,
-  'mobile-large': 30em,
-  'tablet':       43em,
-  'desktop':      61em,
-  'desktop-large': 88em, // TODO: Use $base-width
-);
+  'mobile':        .001em,
+  'mobile-large':  $mobile-large-min-width,
+  'tablet':        $tablet-min-width,
+  'desktop':       $desktop-min-width,
+  'desktop-large': $desktop-large-min-width,
+) !default;
 
 
 
 
-// TODO: Order properly!
-$mobile-max-width:          30em;
-$mobile-layout-ratio:       .85;
+
+// REMOVE after refactoring
+/* ===== OLD ======================================================== */
 
 
-$mobile-large-min-width:    30em;
 $mobile-large-max-width:    43em;
-$mobile-large-layout-ratio: .9;
-
-
-$tablet-min-width:          43em;
+$mobile-max-width:          30em;
 $tablet-max-width:          61em;
-$tablet-layout-ratio:       .95;
-
-$desktop-min-width:         61em;
-$desktop-max-width:         $base-width; // Update to EM
-
-$desktop-large-min-width:   $base-width; // Update to EM
-
-
-// Alias
-@mixin bp( $args... ) {
-  @include mq( $args... ) {
-    @content;
-  }
-}
-
-
-/* ===== BREAKPOINTS ======================================================== */
+$desktop-max-width:         88em;
 
 
 // Small-screen mobile devices

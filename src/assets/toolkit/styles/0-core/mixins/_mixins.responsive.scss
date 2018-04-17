@@ -1,0 +1,50 @@
+/*============================================================================*\
+| RESPONSIVE MIXINS
+\*============================================================================*/
+
+////
+/// @group responsive
+
+
+
+
+
+/*= BREAKPOINTS ==============================================================*/
+
+
+// Alias `$mq-sass` mixin call to more readable form
+@mixin bp( $args... ) {
+  @include mq( $args... ) {
+    @content;
+  }
+}
+
+@mixin bp-mobile() {
+  @include bp( $until: mobile-large ) {
+    @content;
+  }
+}
+@mixin bp-mobile-large() {
+  @include bp( mobile-large, tablet ) {
+    @content;
+  }
+}
+@mixin bp-tablet() {
+  @include bp( tablet, desktop ) {
+    @content;
+  }
+}
+@mixin bp-desktop() {
+  @include bp( desktop, desktop-large ) {
+    @content;
+  }
+}
+@mixin bp-desktop-large() {
+  @include bp( desktop-large ) {
+    @content;
+  }
+}
+
+
+
+

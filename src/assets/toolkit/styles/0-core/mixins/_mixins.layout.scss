@@ -72,23 +72,82 @@
 
 @mixin add-base-layout() {
   html {
+    height: 100%;
+    // Keep default layout aligned with browser's settings.
     font-size: 100%;
 
-    @include bp( tablet, desktop ) {
-      font-size: 60%;
+    // Scale the ratio based on properties from `_variables.responsive.scss`
+    @if ( $mobile-layout-percentage != '100%' ) {
+      @include bp-mobile() {
+        font-size: $mobile-layout-percentage;
+      }
     }
 
-    @include bp( $until: tablet ) {
-      font-size: 30%;
+    @if ( $mobile-large-layout-percentage != '100%' ) {
+      @include bp-mobile-large {
+        font-size: $mobile-large-layout-percentage;
+      }
     }
 
+    @if ( $tablet-layout-percentage != '100%' ) {
+      @include bp-tablet {
+        font-size: $tablet-layout-percentage;
+      }
+    }
 
-    // @include breakpoint( $mobile-large-and-smaller ) {
-    //   font-size: 85%;
-    // }
+    @if ( $desktop-layout-percentage != '100%' ) {
+      @include bp-desktop {
+        font-size: $desktop-layout-percentage;
+      }
+    }
 
-    // @include breakpoint( $tablet ) {
-    //   font-size: 92.5%;
-    // }
+    @if ( $desktop-layout-percentage != '100%' ) {
+      @include bp-desktop-large {
+        font-size: $desktop-large-layout-percentage;
+      }
+    }
+
+    // Sticky footer
+    @if ( $layout-sticky-footer ) {
+      body {
+        display:        flex;
+        min-height:     100%;
+        flex-direction: column;
+
+        > footer { overflow: hidden; } // IE11+ extra margin after flex-box fix
+      }
+    }
+
   }
 }
+
+
+
+
+
+/*= SPACING ==================================================================*/
+
+
+@mixin paddings-vertical ( $vertical-size: $gap-vertical ) {
+  padding-top:    $vertical-size;
+  padding-bottom: $vertical-size;
+}
+
+@mixin paddings-horizontal ( $horizontal-size: $gap-horizontal ) {
+  padding-right: $horizontal-size;
+  padding-left:  $horizontal-size;
+}
+
+@mixin margins-vertical ( $vertical-size: $gap-vertical ) {
+  margin-top:    $vertical-size;
+  margin-bottom: $vertical-size;
+}
+
+@mixin margins-horizontal ( $horizontal-size: $gap-horizontal ) {
+  margin-right: $horizontal-size;
+  margin-left:  $horizontal-size;
+}
+
+
+
+

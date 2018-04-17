@@ -1,82 +1,52 @@
-/*=========================================
-=      LAYOUTS, CONTAINERS & BLOCKS       =
-=========================================*/
+/*============================================================================*\
+| LAYOUTS, CONTAINERS AND BLOCKS
+\*============================================================================*/
 
-
-/*******************************************************************************
-
-  Contains basic building containers, layouts, columns and grids.
-
-  It's *HIGHLY RECOMMENDED* to understand how to build structures with these
-  before development of new objects and components.
-
-*******************************************************************************/
-
-
-
-
-// Sticky footer
-html { height: 100%; }
-
-body {
-  display: flex;
-  min-height: 100%;
-  flex-direction: column;
-
-  > footer { overflow: hidden; } // IE11+ extra margin after flex-box fix
-}
+////
+/// Contains basic building such as containers, layouts, columns, grids and
+/// sub-grids.
+///
+/// **Note**: It's *highly recommended* to understand how to build structures
+/// with these atomic elements before development of new objects and components.
+///
+/// @group layout
 
 
 
 
-/* ===== BASIC BUILDING BLOCKS ============================================ */
 
+/*= BASIC BUILDING BLOCKS ====================================================*/
 
 /** BLOCK - Universal building block with standard paddings. */
+.block { padding: $gap; }
 
-.block { padding: $block-padding; }
 
-
-/** CENTRALISER - Restricts the width of the content to allowed maximum and aligns to center. */
-
+/** CENTRALISER - Restricts the width of the content to allowed centered maximum and aligns to center. */
 .centraliser {
   @include clearfix;
+  @include margins-horizontal( auto );
   position: relative;
-  margin-right: auto;
-  margin-left: auto;
   width: 100%;
-  max-width: $base-width;
+  max-width: $centered-max-width;
 }
 
 
-/** SECTOR - Single page section container with unlimited width and no paddings/margins. Can be used to group related components. */
-
+/** SECTOR - Single page section container with unlimited width and no paddings/margins. Can be used to group related components within a layout. */
 .sector,
 .separated {
   @include clearfix;
-}
-
-.separated,
-.sector {
-  border-bottom: $border;
-}
-
-
-//TODO: Use either 'section' or 'sector'
-.section {
-  display: block;
   border-bottom: $border;
 }
 
 
 /** LAYOUT - Contains all the content's columns and layout combinations */
-
 .layout {
+  @include clearfix;
   width: 100%;
 
   &.block {
-    padding-top: 0;
-    padding-bottom: 0;
+    @include paddings-vertical( 0 );
+    @include paddings-horizontal( $gap-half );
   }
 
   // Sticky footer - stretch content to maximum
@@ -84,22 +54,31 @@ body {
     display: block;
     flex: 1 1 auto; // = 1 (1 1 auto is *required* for IE-based browsers!)
   }
+
+  /* IE10+ fix for tablet and smaller where layout has white space below */
+  @include bp( $until: desktop, $and: '( -ms-high-contrast: none ), ( -ms-high-contrast: active )' ) {
+    height: 100%;
+  }
+
+  @include bp( $until: desktop ) {
+    &.block {
+      @include paddings-horizontal( 0 );
+    }
+  }
 }
 
-/* IE10+ fix for tablet and smaller where layout has white space below */
-@media screen and ( max-width: 58em ) and ( -ms-high-contrast: none ), ( -ms-high-contrast: active ) {
-  .layout { height: 100%; }
-}
 
 
 
 
+/*= 3-COLUMN LAYOUT ==========================================================*/
 
-/* ===== 3-COLUMN LAYOUT ================================================== */
 
-
+// Main content panel - can contain Content only column and Widget bar (optional).
 .content-panel {
+  @include clearfix;
   position: relative;
+  width: 100%;
 
   > img { width: 100%; }
 
@@ -108,76 +87,55 @@ body {
     vertical-align: top;
 
     > .block {
-      padding-top:    1.5 * $column-padding;
-      padding-bottom: 1.5 * $column-padding;
+      @include paddings-vertical( $gap-larger );
+    }
+  }
+
+  @include bp( tablet ) {
+    /** 1st Content bar + 2nd widgets bar */
+    $widgetbar-width: 25%; // Out of the content-panel
+    $content-width:   100% - $widgetbar-width;
+
+
+    /** Main content *ONLY* */
+    > main:last-child { width: 100%; }
+
+    /** Main content + widgetbar */
+    > main:not(:last-child) {
+      float: left;
+      width: $content-width;
+    }
+
+    > aside {
+      float: left;
+      width: $widgetbar-width;
     }
   }
 }
 
 .sidebar {
-  z-index:  $z-index-top;
+  z-index:  $z-index-lower;
   position: relative;
 }
 
-
-@include breakpoint( $tablet-and-smaller ) {
-  .layout {
-    &.block {
-      padding-right: 0;
-      padding-left:  0;
-    }
-  }
-}
+@include bp( desktop ) {
+  /** 1st Left sidebar + Main content panel 2nd*/
+  $sidebar-width:       20%;
+  $sidebar-flex-width:  17rem;
+  $content-panel-width: 100% - $sidebar-width;
 
 
-@include breakpoint( $tablet-and-bigger ) {
-
-  .content-panel {
-    /** 1st Content bar + 2nd widgets bar */
-    $widgetbar-to-content-width-ratio: .25; // 25% of the content container's width
-    $widgetbar-columns: $widgetbar-to-content-width-ratio * $grid-columns;
-    $content-columns:   $grid-columns - $widgetbar-columns;
-
-    /** Main content *ONLY* */
-    > main:last-child {
-      width: 100%;
-    }
-
-    /** Main content + widgetbar */
-    > main:not(:last-child) {
-      @include grid-column( $content-columns );
-    }
-
-    // Sub-columns
-    > aside {
-      @include grid-column( $widgetbar-columns );
-    }
-  }
-}
-
-
-@include breakpoint( $desktop-and-bigger ) {
-  /** Left sidebar */
-  $sidebar-to-document-width-ratio: .2; // 20% of the page's width
-  $sidebar-columns:                 $sidebar-to-document-width-ratio * $grid-columns;
-
-  .layout {
-    overflow: hidden;
-    //display:  table; // Fixes the issue with misbehavior of inner containers
-  }
+  body > .layout { display: flex; }
 
   .sidebar {
-    @include grid-column( $sidebar-columns );
+    float: left;
+    flex: 0 0 $sidebar-flex-width;
+    width: $sidebar-width;
   }
 
-  // Can contain Content only column and Widget bar (optional).
   .content-panel {
-
     /** Content panel *ONLY* */
-
     &:first-child {
-      width: 100%;
-
       // Main content *ONLY*
       > main:last-child {
         > .block { padding-left: 0; }
@@ -189,9 +147,10 @@ body {
     }
 
     /** 1st Sidebar + 2nd Content panel */
-
     &:not(:first-child) {
-      @include grid-column( $grid-columns - $sidebar-columns );
+      float: left;
+      flex: 1 1 auto;
+      width: $content-panel-width;
     }
 
     > aside {
