@@ -1,0 +1,45 @@
+/*============================================================================*\
+| TABLE ATOMS
+\*============================================================================*/
+
+////
+/// Atomic classes to be used along with tables.
+///
+/// @group tables
+
+
+
+
+
+.table-container,
+table { // Fall-back when the 'table' has no wrapper
+  clear:      both;
+  box-shadow: $shadow-shallowest;
+}
+
+.table-container {
+  _overflow:  auto;
+  overflow-x: auto;
+  display:    block;
+  width:      100%;
+
+  // Reseting fall-back from unwrapped table
+  table { box-shadow: none; }
+
+  @include bp( $until: tablet ) {
+    overflow-x: scroll;
+  }
+}
+
+.formatting {
+  .table-container,
+  table {
+    margin-bottom: $gap-content;
+  }
+
+  // Reseting fall-back from unwrapped table
+  .table-container table { margin-bottom: 0; }
+}
+
+
+

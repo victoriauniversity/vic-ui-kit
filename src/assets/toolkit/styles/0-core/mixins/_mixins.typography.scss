@@ -69,9 +69,39 @@
 
 
 
+/*= LINKS ====================================================================*/
+
+
+/// Decorates text as if it was a text link.
+///
+/// @access public
+///
+/// @require {mixin} hoverify
+@mixin linkify-text( $visited: true ) {
+  color:           $link-color;
+  text-decoration: $link-decoration;
+
+  @if ( $visited == true ) {
+    // Accessibility
+    &:visited { color: $link-visited-color; }
+  }
+
+  @include hoverify() {
+    color:           $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+}
+
+
+
+
+
 /*= BASE STYLES ==============================================================*/
 
 
+/// Adds typographical element-based boilerplate styles.
+///
+/// @access public
 @mixin add-base-typography() {
   body {
     font-family: $text-family;
@@ -83,6 +113,8 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering:          optimizeLegibility;
   }
+
+  h1 { margin: 0; }
 
   h1,
   h2,
@@ -108,3 +140,7 @@
   ul { list-style: none; }
   ol { list-style: decimal; }
 }
+
+
+
+

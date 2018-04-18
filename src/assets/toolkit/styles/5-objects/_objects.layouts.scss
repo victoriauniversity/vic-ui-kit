@@ -17,8 +17,9 @@
 
 /*= BASIC BUILDING BLOCKS ====================================================*/
 
+
 /** BLOCK - Universal building block with standard paddings. */
-.block { padding: $gap; }
+.block { @include padding; }
 
 
 /** CENTRALISER - Restricts the width of the content to allowed centered maximum and aligns to center. */
@@ -71,7 +72,39 @@
 
 
 
-/*= 3-COLUMN LAYOUT ==========================================================*/
+/*= 3/2/1-COLUMN MAIN LAYOUTS ================================================*/
+
+
+/// Defines various layout configurations
+///
+/// @example html
+///   <!-- 1-column -->
+///   <div class="layout">
+///     <div class="content-panel"></div>
+///   </div>
+///
+///   <!-- 2-columns -->
+///   <div class="layout">
+///     <div class="sidebar"></div>
+///     <div class="content-panel"></div>
+///   </div>
+///
+///   <!-- 2-columns -->
+///   <div class="layout">
+///     <div class="content-panel">
+///       <main></main>
+///       <aside></aside>
+///     </div>
+///   </div>
+///
+///   <!-- 3-columns -->
+///   <div class="layout">
+///     <div class="sidebar"></div>
+///     <div class="content-panel">
+///       <main></main>
+///       <aside></aside>
+///     </div>
+///   </div>
 
 
 // Main content panel - can contain Content only column and Widget bar (optional).
@@ -96,7 +129,6 @@
     $widgetbar-width: 25%; // Out of the content-panel
     $content-width:   100% - $widgetbar-width;
 
-
     /** Main content *ONLY* */
     > main:last-child { width: 100%; }
 
@@ -120,17 +152,18 @@
 
 @include bp( desktop ) {
   /** 1st Left sidebar + Main content panel 2nd*/
-  $sidebar-width:       20%;
-  $sidebar-flex-width:  17rem;
-  $content-panel-width: 100% - $sidebar-width;
-
+  $sidebar-fallback-width:       20%;
+  $sidebar-max-width:            17rem; // Stops expanding at this level
+  $sidebar-min-width:            13rem;   // Doesn't get (roughly) below this level
+  $content-panel-fallback-width: 100% - $sidebar-fallback-width;
+  $content-panel-min-width:      $desktop-min-width-rem - $sidebar-min-width - 2 * $gap-half;
 
   body > .layout { display: flex; }
 
   .sidebar {
     float: left;
-    flex: 0 0 $sidebar-flex-width;
-    width: $sidebar-width;
+    flex:  0 1 $sidebar-max-width;
+    width: $sidebar-fallback-width;
   }
 
   .content-panel {
@@ -149,8 +182,8 @@
     /** 1st Sidebar + 2nd Content panel */
     &:not(:first-child) {
       float: left;
-      flex: 1 1 auto;
-      width: $content-panel-width;
+      flex:  1 0 $content-panel-min-width;
+      width: $content-panel-fallback-width;
     }
 
     > aside {
@@ -158,3 +191,7 @@
     }
   }
 }
+
+
+
+

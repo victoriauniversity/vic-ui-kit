@@ -229,3 +229,38 @@
 
 
 
+/*= LENGTHS & SIZES MANIPULATION =============================================*/
+
+
+/// Removes the unit from a length (number + unit definition).
+///
+/// @param {Number (with units)} - A length to strip units from
+///
+/// @return {Number (unitless}
+///
+/// @access public
+@function _strip-unit( $number ) {
+  @if type-of( $number ) == 'number' and not unitless( $number ) {
+    @return $number / ( $number * 0 + 1 );
+  }
+
+  @return $number;
+}
+
+/// Changes the unit of non-rem length to 'rem'.
+///
+/// @param {Number (with non-rem units)}
+///   - A number with non-rem units to be changed to 'rem' units.
+///
+/// @require {function} _strip-unit
+///
+/// @return {Number (in rem)}
+///
+/// @access public
+@function _units_to_rem( $number ) {
+  @return  _strip-unit( $number ) * 1rem;
+}
+
+
+
+

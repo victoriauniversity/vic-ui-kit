@@ -70,6 +70,14 @@
 /*= BASE STYLES ==============================================================*/
 
 
+/// Generates a basic elements-only boilerplate for standardised layouts.
+///
+/// @require {mixin} bp-mobile
+/// @require {mixin} bp-mobile-large
+/// @require {mixin} bp-tablet
+/// @require {mixin} bp-desktop
+/// @require {mixin} bp-desktop-large
+
 @mixin add-base-layout() {
   html {
     height: 100%;
@@ -128,24 +136,61 @@
 /*= SPACING ==================================================================*/
 
 
-@mixin paddings-vertical ( $vertical-size: $gap-vertical ) {
-  padding-top:    $vertical-size;
-  padding-bottom: $vertical-size;
+/// Sets 'top' and 'bottom' paddings on the object.
+///
+/// @argument {number (with unit)} [$gap-vertical] $vertical-padding
+///
+@mixin paddings-vertical ( $vertical-padding: $gap-vertical ) {
+  padding-top:    $vertical-padding;
+  padding-bottom: $vertical-padding;
 }
 
-@mixin paddings-horizontal ( $horizontal-size: $gap-horizontal ) {
-  padding-right: $horizontal-size;
-  padding-left:  $horizontal-size;
+
+/// Sets 'left' and 'right' paddings on the object.
+///
+/// @argument {number (with unit)} [$gap-horizontal] $horizontal-padding
+///
+@mixin paddings-horizontal ( $horizontal-padding: $gap-horizontal ) {
+  padding-right: $horizontal-padding;
+  padding-left:  $horizontal-padding;
 }
 
-@mixin margins-vertical ( $vertical-size: $gap-vertical ) {
-  margin-top:    $vertical-size;
-  margin-bottom: $vertical-size;
+
+/// Sets all paddings on the object.
+///
+/// @argument {number (with unit)} [$gap] $padding
+///
+@mixin padding( $padding: $gap ) {
+  padding: $padding;
 }
 
-@mixin margins-horizontal ( $horizontal-size: $gap-horizontal ) {
-  margin-right: $horizontal-size;
-  margin-left:  $horizontal-size;
+
+/// Sets 'top' and 'bottom' margins on the object.
+///
+/// @argument {number (with unit)} [$gap-vertical] $vertical-margin
+///
+@mixin margins-vertical ( $vertical-margin: $gap-vertical ) {
+  margin-top:    $vertical-margin;
+  margin-bottom: $vertical-margin;
+}
+
+
+/// Sets 'left' and 'right' margins on the object.
+///
+/// @argument {number (with unit)} [$gap-horizontal] $horizontal-margin
+///
+@mixin margins-horizontal ( $horizontal-margin: $gap-horizontal ) {
+  margin-right: $horizontal-margin;
+  margin-left:  $horizontal-margin;
+}
+
+
+/// Sets all margins on the object.
+///
+/// @argument {number (with unit)} [$gap] $margin
+///
+@mixin margin( $margin: $gap ) {
+  margin: $margin;
 }
 
 

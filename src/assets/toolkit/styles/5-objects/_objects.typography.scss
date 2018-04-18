@@ -12,7 +12,7 @@ $widgetbar-subheading-font-size: $h5-size;
 
 
 .formatting {
-  h1 { margin-bottom: .5em;  }
+  h1 { margin-bottom: .5em; }
 
   h2,
   h3,
@@ -39,11 +39,9 @@ $widgetbar-subheading-font-size: $h5-size;
       h4,
       h5,
       h6 {
-        color: $link-hover-color;
-        text-decoration: none;
+        color:           $link-hover-color;
+        text-decoration: $link-hover-decoration;
       }
-
-      img { opacity: $base-image-hover-opacity; }
     }
 
     h1,
@@ -52,8 +50,8 @@ $widgetbar-subheading-font-size: $h5-size;
     h4,
     h5,
     h6 {
-      color: $link-color;
-      text-decoration: underline;
+      color:           $link-color;
+      text-decoration: $link-decoration;
     }
   }
 
@@ -69,28 +67,22 @@ $widgetbar-subheading-font-size: $h5-size;
   table,
   figcaption {
     a {
-      color: $link-color;
-      text-decoration: underline;
-
-      @include hoverify() {
-        color: $link-hover-color;
-        text-decoration: none;
-      }
+      @include linkify-text;
 
       > span::after { text-decoration: none; }
     }
   }
 
 
-  article { margin-bottom: $base-spacing; }
+  article { margin-bottom: $gap-content; }
 
 
   /** Items within general grid */
 
   .grid {
-    > * { margin-bottom: $base-spacing; }
+    > * { margin-bottom: $gap-content; }
 
-    figure img { margin-bottom: .75rem; }
+    figure img { margin-bottom: $gap-half; }
   }
 
 
@@ -226,17 +218,18 @@ $widgetbar-subheading-font-size: $h5-size;
 
 
   // Inline and auto-alignments
-  @include breakpoint( $tablet-and-bigger ) {
+  @include bp( tablet ) {
     .inline,
     p > img,
     p > img ~ img {
       clear: right;
       float: right;
-      margin-left: $base-spacing;
+      margin-left: $gap-horizontal;
       width: $media-inline-width;
     }
-  }
 
+    .break { margin-bottom: $gap-content; }
+  }
 }
 
 
@@ -246,16 +239,14 @@ $widgetbar-subheading-font-size: $h5-size;
 /* ===== OTHER RE-USABLE TYPOGRAPHICAL HELPERS ============================== */
 
 
-// Breaks the page and clears the floating
-
+// Breaks the page and forcefully clears the floating
 .break {
   @include clearfix;
   overflow: hidden;
   visibility: hidden;
   display: block;
   width: 100%;
-
-  @include breakpoint( $tablet-and-bigger ) {
-    margin-bottom: $base-spacing;
-  }
 }
+
+
+

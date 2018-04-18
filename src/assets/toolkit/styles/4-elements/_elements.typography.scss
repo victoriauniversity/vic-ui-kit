@@ -11,10 +11,6 @@
 
 
 
-/*= STYLE DEFINITIONS ========================================================*/
-
-
-
 h1 { font-weight: $superheading-weight; }
 
 dl {
@@ -24,43 +20,8 @@ dl {
 time { color: $grey; }
 
 a[href] {
-  color: $link-color;
+  color:           $link-color;
   text-decoration: none;
-}
-
-
-//TODO: Move out of typo
-a > img {
-  @include hoverify() {
-    opacity: $base-image-hover-opacity;
-  }
-}
-
-// Extendable standard link
-//TODO: Move out of typo
-@mixin base-link {
-  color: $link-color;
-  text-decoration: underline;
-
-  @include hoverify() {
-    color: $link-hover-color;
-    text-decoration: none;
-  }
-}
-
-
-//TODO: Move out of typo
-figure {
-  @include hoverify() {
-    img { filter: none; } //TODO: Can be safely dropped?
-  }
-
-  img {
-    display: block;
-    width: 100%;
-  }
-
-  p { color: $text-color; }
 }
 
 
