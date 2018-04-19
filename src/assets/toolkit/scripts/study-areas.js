@@ -48,17 +48,28 @@ $(function(){
       if ($(filterTags)) {
           $('.no-quals-message').remove();
 
-          var isVisible = 0;
-          var noQualMessage = '<p class="no-quals-message">Sorry, no matching qualifications.</p>';
+					var isVisible = 0;
+					var noResultsFilterName = '';
 
           $targetElements.each( function() {
               if( $(this).is(":visible") ) {
-                  isVisible ++;
-              }
-          });
+									isVisible ++;
+								} else {
+									
+								}
+							});
+							
+							
+							if ( isVisible == 0 ) {
+								var activeFilter = $('.quals-filter .tag.tag-active').text();
+								// console.log('active filter', activeFilter);
 
-          
-          if ( isVisible == 0 ) {
+								noResultsFilterName += activeFilter;
+								
+								var noQualMessage = '<section class="flash-message error no-quals-message" style="margin-top:.5rem;"><p class="">Sorry, no <strong>'+ noResultsFilterName +'</strong> qualifications available. Please try another qualification.</p></section>';
+
+								// console.log('no results filter name', noResultsFilterName);
+
             $('.study-areas-postgrad .quals-filter').after(noQualMessage);
           }
 
