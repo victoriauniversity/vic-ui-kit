@@ -1,36 +1,34 @@
-/*==========================================
-=            DEFAULT FORMATTING            =
-==========================================*/
+/*============================================================================*\
+| STANDARD FORMATTING OBJECTS
+\*============================================================================*/
+
+////
+/// Formatting of *any* user-created content.
+///
+/// **Note**: Whenever you need to display user-formatted content, simply apply
+/// 'formatting' class to the containing element.
+///
+/// @group typography
 
 
-/** Use everywhere where standard formatting rules should be applied! */
-$text-block-spacing: 1.2em;
 
-$widgetbar-body-font-size:       .9375rem;
-$widgetbar-heading-font-size:    $h4-size;
-$widgetbar-subheading-font-size: $h5-size;
+$subtitle-separator-character:  $character-middle-dot;
 
 
 .formatting {
-  h1 { margin-bottom: .5em; }
-
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin-bottom: .7em;
-    line-height: 1.2;
+  article {
+    margin-bottom: $gap-content;
   }
 
   p {
-    margin-bottom: $text-block-spacing;
-
+    margin-bottom: $gap-content;
+    color: $text-color;
     &:last-child { margin-bottom: 0; }
   }
 
 
   /** Links */
+
   a {
     @include hoverify() {
       h1,
@@ -68,107 +66,106 @@ $widgetbar-subheading-font-size: $h5-size;
   figcaption {
     a {
       @include linkify-text;
-
-      > span::after { text-decoration: none; }
     }
   }
 
 
-  article { margin-bottom: $gap-content; }
+  /** Headings */
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: $gap-content;
 
-  /** Items within general grid */
-
-  .grid {
-    > * { margin-bottom: $gap-content; }
-
-    figure img { margin-bottom: $gap-half; }
-  }
-
-
-  /** Unique content elements */
-
-  // Abstract text
-  .intro {
-    font-size: $text-size-5;
-    color: $heading-color;
+    // Notes within headings
+    > em {
+      margin-left: _em( $gap-small );
+      font-style:  normal;
+      color:       $text-weakest-color;
+    }
   }
 
   // Subtitle
   .subtitle {
-    color: $black-emperor;
-    line-height: 1.4;
+    color:       $text-weaker-color;
+    line-height: $text-stacked-line-height;
 
+    // Secondary information of lower importance
     strong + span {
-      @include before( $text: '\00B7' ) { // '·' middle dot character
-        margin-right: .5em;
-        margin-left: .25em;
+      @include before( $text: $subtitle-separator-character ) {
+        margin-right: _em( $gap-third );
+        margin-left:  _em( $gap-small );
+        font-weight:  $weight-bold;
       }
     }
   }
 
+  // Subheading under the main title
   h1 + .subtitle {
-    margin-top: -.5em; // Workaround where it cannot be implemented in the Squiz
-    font-size: $text-size-5;
+    // Bleeding for the places in Squiz where the HTML structure cannot be implemented
+    margin-top: $bleed-content - $bleed-half;
+    font-size:  $text-size-5; // Match .intro
   }
 
   // Header section that restarts the vertical alignment
   > header {
-    margin-bottom: $text-block-spacing;
+    margin-bottom: $gap-content;
 
-    h1 { margin-bottom: .25em; }
+    > h1 { margin-bottom: $gap-half; }
+    > h1 + .subtitle { margin-top: 0; } // Reset negative bleeding if the header is in place
   }
 
 
-  // 'Notes' inside headings
-  h2,
-  h3 {
-    > em {
-      margin-left: .35em;
-      font-style: normal;
-      color: $grey;
-    }
+  /** An abstract / page detail / introduction / summary */
+
+  .intro {
+    font-size:   $text-size-5;
+    font-weight: $weight-semibold;
+    color:       $heading-weaker-color;
   }
 
 
-  /** Imagery */
+  /** Formatted imagery */
 
-  // Default image - full width
   .inline { clear: right; }
 
+  // Default image - full width
   .inline,
   .portrait,
   > img,
   p > img,
   p > img ~ img {
-    margin-bottom: $base-spacing / 2;
-    width: 100%;
-    height: auto;
+    @include size( 100%, auto );
+    margin-bottom: $gap-half;
   }
 
-  // Portrait size inline image
+  // Portrait size inline media
   .portrait {
-    float: right;
-    margin-left: $base-spacing;
-    width: $media-inline-portrait-width;
+    float:       right;
+    margin-left: $gap-horizontal;
+    width:       $media-inline-portrait-width;
   }
+
 
   /** Lists */
 
   ul,
   ol {
-    margin-bottom: $base-spacing;
-    padding-left: 1.5rem;
+    margin-bottom: $gap-content + $gap-third; // Increase the gap
+    padding-left:  $gap-horizontal;
 
     li {
-      margin-bottom: .35em;
-      padding-left: .35rem;
+      margin-bottom: _em( $gap-third );
+      padding-left:  _em( $gap-small );
       list-style-position: outside;
     }
 
     ul,
     ol {
-      margin: .5rem 0 .7rem;
+      margin: $gap-third 0 $gap-half;
     }
   }
 
@@ -176,59 +173,33 @@ $widgetbar-subheading-font-size: $h5-size;
     li { list-style-type: square; }
     ul li { list-style-type: circle; }
   }
+}
 
-  /** Formatted elements that need to restart a bleed */
 
-  &.block {
-    > img:first-child {
-      margin-left: -$column-padding;//remember to account for table
-      width: calc( 100% + #{$column-padding} * 2 );
 
-      @include breakpoint( $mobile-large-and-smaller ) {
-        margin-top: -1.5 * $column-padding;
-      }
+
+
+/*= WIDGET-BAR CONTENT FORMATTING DIFFERENCES ================================*/
+
+
+$widgetbar-heading-font-size:    $h4-size;
+$widgetbar-subheading-font-size: $h5-size;
+
+aside > .formatting {
+  // Heading
+  h2 {
+    font-size: $widgetbar-heading-font-size;
+
+    // Pre-heading delimiting line
+    @include separator-strip() {
+      margin-bottom: _em( $gap-tiny );
     }
   }
 
-
-  /** Items in the right widget sidebar */
-  aside > & {
-
-    // Heading
-    h2 {
-      font-size: $widgetbar-heading-font-size;
-
-      // Pre-heading delimiting line
-      @include before( block ) {
-        @include size( 2rem, .1875rem );
-        margin-bottom: .35rem;
-        background-color: $heading-color;
-      }
-    }
-
-    // Subheading
-    h3 {
-      margin-bottom: .35em;
-      font-size:     $widgetbar-subheading-font-size;
-      color:         $black-emperor;
-    }
-
-    p { font-size: $widgetbar-body-font-size; }
-  }
-
-
-  // Inline and auto-alignments
-  @include bp( tablet ) {
-    .inline,
-    p > img,
-    p > img ~ img {
-      clear: right;
-      float: right;
-      margin-left: $gap-horizontal;
-      width: $media-inline-width;
-    }
-
-    .break { margin-bottom: $gap-content; }
+  // Subheading
+  h3 {
+    font-size: $widgetbar-subheading-font-size;
+    color:     $text-weaker-color;
   }
 }
 
@@ -236,17 +207,21 @@ $widgetbar-subheading-font-size: $h5-size;
 
 
 
-/* ===== OTHER RE-USABLE TYPOGRAPHICAL HELPERS ============================== */
+/* = TYPOGRAPHICAL UTILITIES =================================================*/
 
 
 // Breaks the page and forcefully clears the floating
 .break {
-  @include clearfix;
   overflow: hidden;
   visibility: hidden;
   display: block;
   width: 100%;
+
+  .formatting > & {
+    margin-bottom: $gap-content;
+  }
 }
+
 
 
 

@@ -1,47 +1,59 @@
-/*=========================================
-=         BREADCRUMBS NAVIGATION          =
-=========================================*/
+/*============================================================================*\
+| NAVIGATION - BREADCRUMBS
+\*============================================================================*/
+
+////
+/// Breadcrumb-like main navigational component.
+///
+/// @group navigation
 
 
-/** Default breadcrumbs navigation for desktop-only. */
+
+$breadcrumbs-size:            $navigation-primary-item-size;
+$breadcrumbs-separator-color: $icon-weakest-color;
+
 
 .breadcrumbs {
   font-family:    $heading-family;
-  font-size:      $h5-size;
+  font-size:      $breadcrumbs-size;
+  letter-spacing: $navigation-letter-spacing;
 
-  .content-panel & { padding-bottom: 0; }
+  a { @include link-underline; }
 
+  // Breadcrumb item (current page and links)
   > li {
-    display: inline-block;
+    display:     inline-block;
     white-space: nowrap;
 
+    // First item? => Home with icon
     &:first-child a {
       @include extend-icon-before( home ) {
-        top: 0;
-        margin-right: .35em;
+        top:          0;
+        margin-right: _em( $gap-small );
+        font-size:    $text-size-tiny;
       }
-
-      &::before { font-size: 90%; }
     }
 
+    // Separator
     @include extend-icon-after( triangle-right ) {
-      margin: 0 .35em;
-      font-size: 85%;
-      color: $grey-silver-chalice;
+      margin:    0 _em( $gap-small );
+      font-size: $text-size-tiny;
+      color:     $breadcrumbs-separator-color;
     };
 
+    // Active page
     &:last-child {
       font-weight: $weight-semibold;
-      color: $black-emperor;
+      color:       $text-weaker-color;
 
       &::after { display: none; }
     }
   }
 
-  a { @include linkify-text( $visited: false ); }
-
-  @include breakpoint( $mobile-large-and-smaller ) {
-    display: none;
-  }
+  // If used within content panel, drop bottom padding to avoid double margins
+  .content-panel & { padding-bottom: 0; }
 }
+
+
+
 

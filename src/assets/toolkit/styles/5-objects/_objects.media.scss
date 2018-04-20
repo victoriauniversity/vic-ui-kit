@@ -1,0 +1,64 @@
+/*============================================================================*\
+| MEDIA-RELATED OBJECTS
+\*============================================================================*/
+
+////
+/// Specification of media-related atomic objects (images, videos, figures).
+///
+/// @group media
+
+
+
+
+
+/*= IMAGERY ==================================================================*/
+
+
+// Default container - persist images sizing and positioning.
+// Use *ONLY* as a fall-back solution!
+.images {
+  margin-bottom: $base-spacing;
+
+  img {
+    @include size( auto );
+    display: inline-block;
+    margin: 0 .35rem .35rem 0;
+  }
+}
+
+img {
+  .a { fill: $white; } // Make logos white by default
+}
+
+
+
+// Make an image full width when it's placed as a 1st element in the .formatting with .block padding
+img:first-child {
+  main:first-child > .formatting.block:first-child > & {
+    margin-top: $bleed-vertical;
+  }
+
+  .formatting.block > & {
+    @include bleed-horizontal;
+    margin-bottom: $gap-content;
+  }
+}
+
+
+// Inline and floats on devices bigger than 'tablet'
+@include bp( tablet ) {
+  .formatting {
+    .inline,
+    p > img,
+    p > img ~ img {
+      clear: right;
+      float: right;
+      margin-left: $gap-horizontal;
+      width: $media-inline-width;
+    }
+  }
+}
+
+
+
+

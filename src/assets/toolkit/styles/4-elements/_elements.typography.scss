@@ -19,9 +19,20 @@ dl {
 
 time { color: $grey; }
 
-a[href] {
-  color:           $link-color;
-  text-decoration: none;
+a {
+  cursor: pointer;
+
+  &[href] {
+    color:           $link-color;
+    text-decoration: none;
+  }
+
+  > span {
+    &::before,
+    &::after {
+      text-decoration: none;
+    }
+  }
 }
 
 

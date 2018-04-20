@@ -81,8 +81,6 @@
 @mixin add-base-layout() {
   html {
     height: 100%;
-    // Keep default layout aligned with browser's settings.
-    font-size: 100%;
 
     // Scale the ratio based on properties from `_variables.responsive.scss`
     @if ( $mobile-layout-percentage != '100%' ) {
@@ -194,5 +192,9 @@
 }
 
 
+@mixin bleed-horizontal( $bleed: $bleed-horizontal ) {
+  margin-left:   $bleed-horizontal;
+  width:         calc( 100% + #{ -2 * $bleed } );
+}
 
 

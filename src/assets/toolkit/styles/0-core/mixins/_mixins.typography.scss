@@ -93,6 +93,14 @@
 }
 
 
+@mixin link-underline() {
+  text-decoration: $link-decoration;
+
+  @include hoverify() {
+    text-decoration: $link-hover-decoration;
+  }
+}
+
 
 
 
@@ -122,10 +130,11 @@
   h4,
   h5,
   h6 {
-    font-family: $heading-family;
-    font-weight: $heading-weight;
-    color:       $heading-color;
-    line-height: $heading-line-height;
+    font-family:    $heading-family;
+    font-weight:    $heading-weight;
+    color:          $heading-color;
+    line-height:    $heading-line-height;
+    letter-spacing: $heading-letter-spacing;
   }
 
   h1 { font-size: $h1-size; }

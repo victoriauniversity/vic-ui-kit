@@ -247,14 +247,15 @@
   @return $number;
 }
 
+
 /// Changes the unit of non-rem length to 'rem'.
 ///
-/// @param {Number (with non-rem units)}
+/// @param {Number (with non-rem units)} $number
 ///   - A number with non-rem units to be changed to 'rem' units.
 ///
 /// @require {function} _strip-unit
 ///
-/// @return {Number (in rem)}
+/// @return {Number (rem)}
 ///
 /// @access public
 @function _units_to_rem( $number ) {
@@ -262,5 +263,18 @@
 }
 
 
+/// Changes the unit of rem-based length to 'em'.
+///
+/// @param {Number (rem)} $number-in-rems
+///   - A number with rem units to be changed to 'em' units.
+///
+/// @require {function} _strip-unit
+///
+/// @return {Number (em)}
+///
+/// @access public
+@function _em( $number-in-rems ) {
+  @return _strip-unit( $number-in-rems ) * 1em;
+}
 
 

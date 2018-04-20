@@ -1,0 +1,20 @@
+/*============================================================================*\
+| DECORATION-PURPOSE MIXINS
+\*============================================================================*/
+
+////
+/// @group decorations
+
+
+
+/// @access public
+///
+/// Places a short heading-coloured strip
+/// @property {size (rem)} [2rem] $length - The length of the strip
+@mixin separator-strip( $length: 2rem ) {
+  @include before( block ) {
+    @include size( $length, $border-width-medium );
+    background-color: $heading-color;
+    @content;
+  }
+}

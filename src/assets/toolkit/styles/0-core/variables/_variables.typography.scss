@@ -49,20 +49,32 @@ $superheading-weight: $weight-extrabold !default;
 
 
 /// @prop {color} [$black-tundora] - Base text colour.
-$text-color:       $black-tundora !default;
+$text-color:         $black-tundora !default;
+
+/// @prop {color} [$black-emperor] - Text colour with lower importance.
+$text-weaker-color:  $black-emperor !default;
+
+/// @prop {color} [$black-emperor] -
+///   Text colour of the lowest importance.
+///   **Note**: Don't use for critical information due to worse readability and
+///   accessibility.
+$text-weakest-color: $grey !default;
 
 /// @prop {color} [$blue-endeavoura] - Standard link's text colour.
-$link-color:       $blue-endeavoura !default;
+$link-color:         $blue-endeavoura !default;
 
 /// @prop {color} []
 ///   - Link's text colour in case the target page has been visited by a user.
 $link-visited-color: $purple-daisy !default;
 
 /// @prop {color} [$blue-curious] - Standard link's text colour on hover.
-$link-hover-color: $blue-curious !default;
+$link-hover-color:   $blue-curious !default;
 
 /// @prop {color} [$green-brand] - Heading text colour.
-$heading-color:    $green-brand !default;
+$heading-color:      $green-brand !default;
+
+/// @prop {color} [$green-brand] - A weaker shade of the heading text colour.
+$heading-weaker-color: $green-brand-weaker !default;
 
 
 
@@ -116,10 +128,13 @@ $h6-size: $heading-to-text-ratio * $text-size-6 !default;
 
 
 /// @prop {size in em} [1.6] - Base text's line height ratio.
-$text-line-height:    1.6 !default;
+$text-line-height:         1.6 !default;
 
-/// @prop {size in em} [1.1] - Headings line height ratio.
-$heading-line-height: 1.1 !default;
+/// @prop {size in em} [1] - Headings line height ratio.
+$heading-line-height:      1 !default;
+
+/// @prop {size in em} [1.35] - Base text's with more stacked lines.
+$text-stacked-line-height: 1.35 !default;
 
 
 
@@ -152,10 +167,13 @@ $icons-family:   '#{$font-name-icons}' !default;
 
 
 /// @prop {text-decoration} [underline]
-$link-decoration:       underline !default;
+$link-decoration:        underline !default;
 
 /// @prop {text-decoration} [none]
-$link-hover-decoration: none !default;
+$link-hover-decoration:  none !default;
+
+/// @prop {size (em)} [-.03em] - Spacing between heading's letters
+$heading-letter-spacing: -.03em !default;
 
 
 
