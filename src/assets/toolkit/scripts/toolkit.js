@@ -496,8 +496,8 @@ $(function(){
 
   //tile accordion
 
-  $('.tile-accordion .tile').on('click', function (evt) {
-		evt.preventDefault();
+  $('.tile-accordion .tile').not('.tile-accordion.content-page').on('click', function (evt) {
+		// evt.preventDefault();
 
 		if( $(this).hasClass('accordion-closed') ) {
 			$(this).children('.accordion-content ').slideDown();
@@ -515,12 +515,9 @@ $(function(){
 
 /* Research hub content page tile accordian */
 $('.tile-accordion.content-page .tile .toggle').on('click', function (evt) {
-  evt.preventDefault();
-
 
   var $this = $(this);
   
-  console.log($this);
   
   $this.toggleClass('expanded');
   $this.siblings('p').toggle(); 
