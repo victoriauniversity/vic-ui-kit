@@ -259,11 +259,11 @@ $base-study-hub-colour--study: $green-light-brand;
 
 
     &.hidden {
-      display: none;
+      display: none !important;
     }
   }
   &.hidden {
-    display: none;
+    display: none !important;
   }
 
   &.hidden { display: none; }
@@ -547,6 +547,20 @@ $base-study-hub-colour--study: $green-light-brand;
   //apply to use js from toolkit.js to set height based on height of biggest tile
   //to be used when needed in place of .fixed-height-tiles
 }
+
+.tiles-wrap {
+  &.flex-tiles {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+
+      @include breakpoint($mobile-large-and-smaller) {
+        flex-direction: column;
+      }
+    }
+  }
+}
+
 
 //modifier for study hub tiles
 .tiles-study-hub,
