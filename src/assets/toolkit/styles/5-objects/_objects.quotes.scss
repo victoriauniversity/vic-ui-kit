@@ -2,101 +2,94 @@
 =     QUOTES, CITATION, BIBLIOGRAPHY      =
 =========================================*/
 
-  // Just a quote style
-  blockquote.quote {
+// Just a quote style
+blockquote.quote { font-style: italic; }
+
+// Quote with source
+.quote {
+  margin-bottom: $base-spacing;
+
+  /** Inline (related) block /w source */
+
+  blockquote {
+    margin-bottom: .35em;
     font-style: italic;
   }
 
-  // Quote with source
-  .quote {
-    margin-bottom: $base-spacing;
+  figcaption {
+    @include bulletline-base;
+  }
 
-    /** Inline (related) block /w source */
+  &:not(.full) {
+    margin-left: .85rem;
+    padding: 0 0 0 1rem;
+    border-left: $strip-light;
+
+    figcaption strong { font-weight: $weight-medium; }
+  }
+
+
+  /** Full block quotation /w source */
+
+  &.full {
+    // Citation itself
+    blockquote {
+      font-size: scale-font( 1 );
+
+      // Starting quote icon
+      @include extend-icon-before( quote-down ) {
+        top: -.1em;
+        margin-right: .3em;
+      };
+
+      // Ending quote icon
+      @include extend-icon-after( quote-up ) {
+        margin-left: .3em;
+      };
+
+      &::before,
+      &::after {
+        display: inline;
+        font-style: normal;
+        font-size: 130%;
+        line-height: 1;
+        color: $grey-silver;
+      }
+    }
+
+    // Source, author, URL
+    figcaption {
+      font-weight: $weight-medium;
+      font-size: 1.15em; // TODO: Review size
+      color: $green-victoria;
+    }
+  }
+}
+
+// hub page Quote panel
+.quote-panel {
+  background-color: $grey-gallery;
+
+  .quote {
+    margin-bottom: 0;
+    padding: 1.875rem;
+    border-left: 5px solid $green-victoria;
 
     blockquote {
-      margin-bottom: .35em;
-      font-style: normal;
+      color: $green-victoria;
+
+      &::before,
+      &::after {
+        color: $green-victoria;
+      }
     }
 
     figcaption {
-      @extend %bulletline-base;
-    }
+      text-align: right;
+      color: $black-tundora;
+      font-size: scale-font( 1 );
 
-    &:not(.full) {
-      margin-left: .85rem;
-      padding: 0 0 0 1rem;
-      border-left: $strip-light;
-
-      figcaption strong { font-weight: $weight-medium; }
-    }
-
-
-    /** Full block quotation /w source */
-
-    &.full {
-
-      // Citation itself
-      blockquote {
-        font-size: scale-font( 1 );
-
-        // Starting quote icon
-        @include extend-icon-before( quote-down ){
-          top: -.1em;
-          margin-right: .3em;
-        };
-
-        // Ending quote icon
-        @include extend-icon-after( quote-up ){
-          margin-left: .3em;
-        };
-
-        &:before,
-        &:after {
-          display: inline;
-          font-style: normal;
-          font-size: 130%;
-          line-height: 1;
-          color: $grey-silver;
-        }
-      }
-
-      // Source, author, URL
-      figcaption {
-        font-weight: $weight-medium;
-        font-size: rem( 18px );
-        color: $green-victoria;
-      }
-    }
-  }
-
-  // hub page Quote panel
-  .quote-panel {
-    background-color: $grey-gallery;
-    
-    .quote {
-      border-left: 5px solid $green-victoria;
-      padding: em(30px);
-      margin-bottom: 0;
-
-      blockquote {
-        color: $green-victoria;
-        
-        &:before,
-        &:after {
-          color: $green-victoria;
-        }
-      }
-
-      figcaption {
-        text-align: right;
-        color: #444;
-        font-size: scale-font( 1 );
-
-        &:before {
-          display: none;
-        }
-        
-      }
+      &::before { display: none; }
     }
 
     // a {
@@ -126,8 +119,8 @@
         display: flex;
         align-items: center;
         justify-content: space-around;
-        
-        
+
+
         border-left: none;
 
         img {
@@ -171,11 +164,11 @@
               top: unset;
             }
           }
-  
+
           figcaption {
             text-align: inherit;
             font-size: inherit;
-  
+
             h4,
             h5,
             p {
@@ -185,7 +178,7 @@
         }
 
 
-        @include media( $tablet-and-smaller ) {
+        @include breakpoint( $tablet-and-smaller ) {
           // flex-wrap: wrap;
 
           .quote-content {
@@ -204,7 +197,7 @@
 
         }
 
-        @include media($mobile-large-and-smaller) {
+        @include breakpoint($mobile-large-and-smaller) {
           flex-wrap: wrap;
 
           img {
@@ -223,7 +216,7 @@
       &.quote-white {
         background-color: #fff;
         margin-bottom: 1.6em;
-  
+
         .quote {
           justify-content: center;
           position: relative;
@@ -241,7 +234,7 @@
             width: 70%;
             background-color: $green-victoria;
           }
-  
+
           img {
             flex: 0 1 auto;
           }
@@ -252,11 +245,11 @@
             blockquote {
 
             }
-  
+
             figcaption {
               text-align: inherit;
               font-size: inherit;
-    
+
               h4,
               h5,
               p {
@@ -264,7 +257,7 @@
               }
             }
 
-            @include media($mobile-large-and-smaller) {
+            @include breakpoint($mobile-large-and-smaller) {
               width: 100%;
             }
           }
@@ -275,3 +268,4 @@
     }
 
   }
+}

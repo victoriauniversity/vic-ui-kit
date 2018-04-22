@@ -6,9 +6,13 @@
 /** Use everywhere where standard formatting rules should be applied! */
 $text-block-spacing: 1.2em;
 
+$widgetbar-body-font-size:       .9375rem;
+$widgetbar-heading-font-size:    scale-heading( 2 );
+$widgetbar-subheading-font-size: $h5-font-size;
+
 
 .formatting {
-  h1 { margin-bottom: .5em; }
+  h1 { margin-bottom: .5em;  }
 
   h2,
   h3,
@@ -27,18 +31,7 @@ $text-block-spacing: 1.2em;
 
 
   /** Links */
-
   a {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      color: $base-link-color;
-      text-decoration: underline;
-    }
-
     @include hoverify() {
       h1,
       h2,
@@ -51,6 +44,16 @@ $text-block-spacing: 1.2em;
       }
 
       img { opacity: $base-image-hover-opacity; }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: $base-link-color;
+      text-decoration: underline;
     }
   }
 
@@ -69,12 +72,12 @@ $text-block-spacing: 1.2em;
       color: $base-link-color;
       text-decoration: underline;
 
-      > span:after { text-decoration: none; }
-
       @include hoverify() {
         color: $base-link-hover-color;
         text-decoration: none;
       }
+
+      > span::after { text-decoration: none; }
     }
   }
 
@@ -84,8 +87,7 @@ $text-block-spacing: 1.2em;
 
   /** Items within general grid */
 
-  .grid{
-
+  .grid {
     > * { margin-bottom: $base-spacing; }
 
     figure img { margin-bottom: .75rem; }
@@ -106,8 +108,7 @@ $text-block-spacing: 1.2em;
     line-height: 1.4;
 
     strong + span {
-      &:before {
-        @include objectify( inline-block, '\00B7' ); // '·' middle dot character
+      @include before( $text: '\00B7' ) { // '·' middle dot character
         margin-right: .5em;
         margin-left: .25em;
       }
@@ -160,19 +161,6 @@ $text-block-spacing: 1.2em;
     width: $media-inline-portrait-width;
   }
 
-  // Inline and auto-alignments
-  @include media( $tablet-and-bigger ){
-    .inline,
-    p > img,
-    p > img ~ img {
-      clear: right;
-      float: right;
-      margin-left: $base-spacing;
-      width: $media-inline-width;
-    }
-  }
-
-
   /** Lists */
 
   ul,
@@ -181,20 +169,19 @@ $text-block-spacing: 1.2em;
     padding-left: 1.5rem;
 
     li {
-      padding-left: .35rem;
       margin-bottom: .35em;
+      padding-left: .35rem;
       list-style-position: outside;
     }
 
     ul,
-    ol{
+    ol {
       margin: .5rem 0 .7rem;
     }
   }
 
   ul {
     li { list-style-type: square; }
-
     ul li { list-style-type: circle; }
   }
 
@@ -203,9 +190,9 @@ $text-block-spacing: 1.2em;
   &.block {
     > img:first-child {
       margin-left: -$column-padding;//remember to account for table
-      width: calc(100% + #{$column-padding} * 2);
+      width: calc( 100% + #{$column-padding} * 2 );
 
-      @include media( $mobile-large-and-smaller ){
+      @include breakpoint( $mobile-large-and-smaller ) {
         margin-top: -1.5 * $column-padding;
       }
     }
@@ -213,12 +200,6 @@ $text-block-spacing: 1.2em;
 
 
   /** Items in the right widget sidebar */
-
-  $widgetbar-body-font-size:       rem( 15px );
-  $widgetbar-heading-font-size:    scale-heading( 2 );
-  $widgetbar-subheading-font-size: $h5-font-size;
-
-
   aside > & {
 
     // Heading
@@ -226,10 +207,9 @@ $text-block-spacing: 1.2em;
       font-size: $widgetbar-heading-font-size;
 
       // Pre-heading delimiting line
-      &:before {
-        @include objectify( block );
+      @include before( block ) {
+        @include size( 2rem, .1875rem );
         margin-bottom: .35rem;
-        @include size( 2rem rem( 3px ) );
         background-color: $base-heading-color;
       }
     }
@@ -243,6 +223,20 @@ $text-block-spacing: 1.2em;
 
     p { font-size: $widgetbar-body-font-size; }
   }
+
+
+  // Inline and auto-alignments
+  @include breakpoint( $tablet-and-bigger ) {
+    .inline,
+    p > img,
+    p > img ~ img {
+      clear: right;
+      float: right;
+      margin-left: $base-spacing;
+      width: $media-inline-width;
+    }
+  }
+
 }
 
 
@@ -255,14 +249,13 @@ $text-block-spacing: 1.2em;
 // Breaks the page and clears the floating
 
 .break {
+  @include clearfix;
   overflow: hidden;
   visibility: hidden;
-  @include clearfix;
   display: block;
   width: 100%;
 
-  @include media( $tablet-and-bigger ){
+  @include breakpoint( $tablet-and-bigger ) {
     margin-bottom: $base-spacing;
   }
 }
-

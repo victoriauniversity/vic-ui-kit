@@ -3,65 +3,61 @@
 =========================================*/
 
 
-  /* ===== FORMS & INPUTS ============================== */
+/* ===== FORMS & INPUTS ============================== */
 
 
-  .form {
-    clear: both;
-    padding: $base-spacing;
-    background-color: $grey-gallery;
+.form {
+  clear: both;
+  padding: $base-spacing;
+  background-color: $grey-gallery;
 
-    // Single combination of label, input and add-ons
-    .group {
-      @include clearfix;
-      margin-bottom: .5em;
-      .error-text {
-        color: $red-roof-terratcotta;
-      }
+  // Single combination of label, input and add-ons
+  .group {
+    @include clearfix;
+    margin-bottom: .5em;
+
+    .error-text { color: $red-roof-terratcotta; }
+  }
+
+  label {
+    display: inline-block;
+    padding-right: .7rem;
+    width: 25%;
+
+    vertical-align: top;
+    font-weight: $weight-bold;
+    line-height: 1.3;
+
+    em { font-weight: $weight-normal; }
+  }
+
+  input,
+  textarea {
+    padding: .2rem .6rem;
+    border: 2px solid $grey-silver;
+
+    &.error {
+      border: 2px solid $red-roof-terratcotta;
+      background-color: $red-oyster-pink;
     }
 
-    label {
-      display: inline-block;
-      padding-right: .7rem;
-      width: 25%;
-
-      vertical-align: top;
-      font-weight: $weight-bold;
-      line-height: 1.3;
-
-      em {
-        font-weight: $weight-normal;
-      }
-    }
-
-    input,
-    textarea {
-      padding: .2rem .6rem;
-      border: 2px solid $grey-silver;
-
-      
-      &.error {
-        border: 2px solid $red-roof-terratcotta;
-        background-color: $red-oyster-pink;
-      }
-      &:focus {
-        outline: none;
-        border: 2px solid $blue-azure;
-      }
-    }
-
-    textarea {  width: 50%; }
-
-    &.course-search-bar {
-      margin: 1.5rem;
-      flex: 1 0 auto;
-
-      .group {
-          display: flex;
-          margin-bottom: 0;
-      }
-      input[type=text] {
-          width: 80%;
-      }
+    &:focus {
+      outline: none;
+      border: 2px solid $blue-azure;
     }
   }
+
+  textarea { width: 50%; }
+
+  &.course-search-bar {
+    flex: 1 0 auto;
+    margin: 1.5rem;
+
+    .group {
+      display: flex;
+      margin-bottom: 0;
+    }
+
+    input[type=text] { width: 80%; }
+  }
+}
