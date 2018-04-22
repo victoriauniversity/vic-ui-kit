@@ -13,6 +13,6 @@ npm install
 
 
 # Development tasks
-echo 'Running development-specific build & deployment...'
+echo 'Running stage-specific build & deployment...'
 
-npm run release-dev
+npm run release-stage

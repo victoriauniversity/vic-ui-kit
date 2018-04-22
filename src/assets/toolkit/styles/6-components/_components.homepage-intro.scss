@@ -8,150 +8,139 @@
 // ----------------
 // -------------------------
 .homepage-intro {
-    @include clearfix;
-    @include media ($tablet-and-bigger) {
-        width: 100/3 * 2%;
-        &:last-child {
-            margin: 0 auto;
-        }
-        &:not(:last-child) {
-            float: left;
-            // Only if not last
-        }
+  @include clearfix;
+
+  .intro-text {
+    margin-bottom: 1.5rem;
+
+    p {
+      font-size: 1.125em;
+      color: $green-victoria;
     }
-    @include media ($mobile-large-and-smaller) {
-        &:not(:last-child) {
-            border-bottom: $base-border;
-        }
-    }
-    .intro-text {
-        margin-bottom: 1.5rem;
-        p {
-            font-size: 1.125em;
-            color: $green-victoria;
-        }
-    }
-    .links-wrap {
-        p {
-            display: inline-block;
-            margin-bottom: 0; // Reset
-            padding-right: 1em;
-            line-height: 2.2;
-        }
-        .social-icon {
-            display: inline-block;
-            vertical-align: middle;
-        }
-        div {
-            @include span-columns(4 of 8);
-            @include media ($tablet-and-smaller) {
-                @include span-columns(8);
-                &.social-links {
-                    margin-top: 1.5rem;
-                }
-            }
-            &.button-links {
-                a.button {
-                    margin-right: .5rem;
-                    margin-bottom: .5em;
-                    &:last-child {
-                        margin-right: 0;
-                    }
-                }
-            }
-        }
-    }
-    & + .text-promo-panel,
-    & + .intro-promo {
-        padding: 0;
-        border-bottom: none;
-        @include media ($tablet-and-bigger) {
-            float: left;
-            width: 100/3 * 1%;
-        }
-        .text-wrap,
-        .button-wrap {
-            @include span-columns(4 of 4);
-        }
-        .button-wrap {
-            margin-top: 1rem;
-        }
+  }
+
+  .links-wrap {
+    p {
+      display: inline-block;
+      margin-bottom: 0; // Reset
+      padding-right: 1em;
+      line-height: 2.2;
     }
 
-    &.study-hub {
-        $base-study-hub-colour--study: $green-light-victoria;
-
-        .intro-text,
-        & + .text-promo-panel,
-        & + .intro-promo {
-            h1,
-            h2 {
-                color: $base-study-hub-colour--study;
-            }
-
-            h3,
-            p,
-            li {
-                color: $black-tundora;
-            }
-        }
-
-        & + .text-promo-panel {
-            
-            @include media($tablet-and-bigger) {
-                border-left: 2px solid $grey-alto;
-            }
-
-            .text-wrap {
-                ul {
-                    padding-left: 0;
-
-                    li {
-                        // padding-left: 0;
-                        // list-style: none;
-                        span {
-                            color: $green-light-victoria ;
-                            font-weight: $weight-bold;
-                        }
-                        a {
-                            text-decoration: none;
-                        }
-                    }
-                }
-            }
-        }
+    .social-icon {
+      display: inline-block;
+      vertical-align: middle;
     }
-    
-    // override with trump id for study hub?
-    // 
-    // &.study-hub-about {
-    //     .intro-text {
-    //         p {
-    //             color: $black-tundora;
-    //         }
-    //     }
-    // }
-}
 
-  @include media ($tablet-and-bigger) {
+    div {
+      //@include span-columns( 4 of 8 );
 
-    .text-promo-panel.intro-promo {
-      &:before {
-        @include objectify();
-        @include size( 0 100% );
-        position: absolute;
-        left: ( 100 / 12) * 8%;
-        top: 0;
-        border-left: $base-border;
+      &.button-links {
+        a.button {
+          margin-right: .5rem;
+          margin-bottom: .5em;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+      @include breakpoint( $tablet-and-smaller ) {
+        //@include span-columns( 8 );
+
+        &.social-links { margin-top: 1.5rem; }
+      }
+
+    }
+  }
+
+  + .text-promo-panel,
+  + .intro-promo {
+    padding: 0;
+    border-bottom: 0;
+
+    .text-wrap,
+    .button-wrap {
+      //@include span-columns( 4 of 4 );
+    }
+
+    .button-wrap { margin-top: 1rem; }
+
+    @include breakpoint( $tablet-and-bigger ) {
+      float: left;
+      width: 100 / 3 * 1%;
+    }
+  }
+
+  &.study-hub {
+    $base-study-hub-colour--study: $green-light-victoria;
+
+    .intro-text,
+    + .text-promo-panel,
+    + .intro-promo {
+      h1,
+      h2 {
+        color: $base-study-hub-colour--study;
+      }
+
+      h3,
+      p,
+      li {
+        color: $black-tundora;
       }
     }
 
-    .text-promo-panel.intro-promo.no-border {
-      &:before {
-        border-left: none;
+    + .text-promo-panel {
+      .text-wrap {
+        ul {
+          padding-left: 0;
+
+          // TODO: Refactor & flatten the depth
+          li {
+            span {
+              color: $green-light-victoria;
+              font-weight: $weight-bold;
+            }
+            a { text-decoration: none; }
+          }
+        }
+      }
+
+      @include breakpoint( $tablet-and-bigger ) {
+        border-left: 2px solid $grey-alto;
       }
     }
   }
 
+  @include breakpoint( $tablet-and-bigger ) {
+    width: 100 / 3 * 2%;
 
-// ==========================================
+    &:last-child { margin: 0 auto; }
+    &:not(:last-child) { float: left; }
+  }
+
+  @include breakpoint( $mobile-large-and-smaller ) {
+    &:not(:last-child) {
+      border-bottom: $base-border;
+    }
+  }
+
+}
+
+
+@include breakpoint ($tablet-and-bigger) {
+  .text-promo-panel.intro-promo {
+    @include before( $position: absolute ) {
+      @include size( 0, 100% );
+      top: 0;
+      left: ( 100 / 12) * 8%;
+      border-left: $base-border;
+    }
+  }
+
+  .text-promo-panel.intro-promo.no-border {
+    &::before { border-left: 0; }
+  }
+
+}

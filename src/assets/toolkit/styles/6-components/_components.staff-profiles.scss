@@ -1,163 +1,145 @@
+/** List with people information */
+
+$portrait-width: 9.35rem;
 
 
-  /** List with people information */
+.staff {
+  margin: $base-spacing 0 $base-spacing * 1.5;
+  width: 100%;
 
-  $portrait-width: rem( 150px );
-
-
-  .staff {
-    margin: $base-spacing 0 $base-spacing * 1.5 ;
-    width: 100%;
-
-    .articles-container & {
-      > li {
-        padding-bottom: 1rem;
-        margin-bottom: 1rem;
-      }
-    }
-
-    .profile-picture {
-      float: left;
-      display: block;
-      margin-right: $column-padding;
-      @include size( $portrait-width auto );
-
-
-
-      @include media( $mobile-large-and-smaller ){
-        width: 20%;
-        max-width: $portrait-width;
-      }
-    }
-
-    .summary {
-      overflow: hidden;
-      // Incl. staff portrait
-      &:not(:first-child) {
-        display: block;
-        > header { margin-bottom: 1rem; }
-      }
-
-      // No staff portrait
-      &:first-child {
-        h3,
-        .subtitle {
-          display: inline-block;
-        }
-
-        h3 { margin-right: 1rem; }
-
-        > header { margin-bottom: .25rem; }
-
-        .meta > li { display: inline-block; }
-      }
+  .articles-container & {
+    > li {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
     }
   }
 
-  .profile-picture { width: 100%; }
+  .profile-picture {
+    @include size( $portrait-width, auto );
+    float: left;
+    display: block;
+    margin-right: $column-padding;
 
-  // Contact information
-  address.contact {
-    > img {
-      display: block;
-      margin-bottom: .7rem;
+    @include breakpoint( $mobile-large-and-smaller ) {
+      width: 20%;
+      max-width: $portrait-width;
     }
-
-    > ul { font-style: normal; }
   }
 
-  // List of quick (meta) information
-  ul.meta {
+  .summary {
+    overflow: hidden;
+
+    // Incl. staff portrait
+    &:not(:first-child) {
+      display: block;
+      > header { margin-bottom: 1rem; }
+    }
+
+    // No staff portrait
+    &:first-child {
+      h3,
+      .subtitle {
+        display: inline-block;
+      }
+
+      h3 { margin-right: 1rem; }
+      > header { margin-bottom: .25rem; }
+      .meta > li { display: inline-block; }
+    }
+  }
+}
+
+.profile-picture { width: 100%; }
+
+// Contact information
+address.contact {
+  > img {
+    display: block;
+    margin-bottom: .7rem;
+  }
+
+  > ul { font-style: normal; }
+}
+
+// List of quick (meta) information
+ul.meta {
+  @include icon-selector() {
+    color: $grey;
+    font-size: 115%;
+
+    &::before { display: inline; } // Prevent icon wrapping
+  };
+
+  &,
+  > li {
+    padding-left: 0; // Reset
+  }
+
+  > li {
+    display: block;
+    margin-bottom: .5em;
+    font-size: .875rem; //TODO: Refactor into more dynamic solution
+    word-wrap: break-word;
+    line-height: 1.35;
+  }
+
+  .highlight {
+    display: inline-block;
+    margin-right: .1rem;
+    padding: 0; // Reset
 
     @include icon-selector() {
-      color: $grey;
-      font-size: 115%;
+      color: inherit;
 
-      &:before { display: inline; } // Prevent icon wrapping
+      &::before {
+        display: inline-block;
+        margin-right: .35em;
+      }
     };
 
-    &,
-    > li {
-      padding-left: 0; // Reset
-    }
-
-    > li {
+    > a {
       display: block;
-      margin-bottom: .5em;
-      font-size: rem( 14px ); //TODO: Refactor into more dynamic solution
-      word-wrap: break-word;
-      line-height: 1.35;
-    }
+      padding: .2rem .5rem;
+      background-color: lighten( $green-nebula, $base-lighten-percentage );
+      color: $base-heading-color;
+      text-decoration: none;
 
-    .highlight {
-      display: inline-block;
-      margin-right: .1rem;
-      padding: 0; // Reset
-
-      @include icon-selector() {
-        color: inherit;
-
-        &:before {
-          display: inline-block;
-          margin-right: .35em;
-        }
-      };
-
-      > a {
-        display: block;
-        padding: .2rem .5rem;
-        background-color: lighten( $green-nebula, $base-lighten-percentage );
-        color: $base-heading-color;
-        text-decoration: none;
-
-        @include hoverify() {
-          text-decoration: underline;
-        }
-      }
+      @include hoverify() { text-decoration: underline; }
     }
   }
+}
 
-  @include media( $mobile-large-and-smaller ){
-    aside {
-      .contact{
-        .profile-picture { 
-          width: 20%;
-          max-width: $portrait-width; 
+@include breakpoint( $mobile-large-and-smaller ) {
+  aside .contact {
+    .profile-picture {
+      float: left;
+      margin-right: $column-padding;
+      width: 20%;
+      max-width: $portrait-width;
+    }
+
+    .meta { overflow: hidden; }
+  }
+}
+
+/* Research hub Sidebar featured researcher profile */
+
+//TODO: Re-define! (Don't use IDs)
+#rightHandMenu {
+  .data-sidebar {
+    &.featured-researcher {
+      .profile-picture { margin-bottom: .7rem; }
+
+      @include breakpoint( $mobile-large-and-smaller ) {
+        .profile-picture {
           float: left;
           margin-right: $column-padding;
+          width: 20%;
+          max-width: $portrait-width;
         }
 
-        .meta {
-          overflow: hidden;
-        }
+        .summary { overflow: hidden; }
       }
     }
   }
-
-  /* Research hub Sidebar featured researcher profile */
-
-  #rightHandMenu {
-    .data-sidebar {
-      &.featured-researcher {
-
-        .profile-picture {
-          margin-bottom: .7rem;
-        }
-
-        @include media($mobile-large-and-smaller) {
-          
-          .profile-picture {
-            width: 20%;
-            max-width: $portrait-width; 
-            float: left;
-            margin-right: $column-padding;
-          }
-
-          .summary {
-            overflow: hidden;
-          }
-        }
-      }
-
-    }
-  }
+}

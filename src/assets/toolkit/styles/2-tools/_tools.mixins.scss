@@ -27,10 +27,40 @@
  * @content         - Optional text content (useful for icons).
  * @position        - Specifies type of positioning method used for an element.
  */
-@mixin objectify( $display: inline-block, $content: "", $position: relative ) {
-    position:   $position;
-    display:    $display;
-    content:    $content,
+@mixin objectify( $display: inline-block, $content: '', $position: relative ) {
+  position:   $position;
+  display:    $display;
+  content:    $content;
+}
+
+
+/*******************************************************************************
+ * Basic most commonly used skeleton for :after pseudo-class that turns it into
+ * stylable element.
+ *
+ * @content - :after's additional properties.
+ */
+@mixin after( $display: inline-block, $text: '', $position: static ) {
+  &::after {
+    @include objectify( $display, $text, $position );
+
+    @content;
+  }
+}
+
+
+/*******************************************************************************
+ * Basic most commonly used skeleton for :before pseudo-class that turns it into
+ * stylable element.
+ *
+ * @content - :before's additional properties.
+ */
+@mixin before( $display: inline-block, $text: '', $position: static ) {
+  &::before {
+    @include objectify( $display, $text, $position );
+
+    @content;
+  }
 }
 
 
@@ -46,11 +76,20 @@
  * { @content }     - Definition of the active states' styles.
  */
 @mixin hoverify() {
-    &:hover,
-    &:active,
-    &:focus {
-        @content;
-    }
+  &:hover,
+  &:active,
+  &:focus {
+    @content;
+  }
+}
+
+
+/***************************************************************************
+* Non-underlined decoration to underlined on hover.
+*/
+@mixin hoverify-underline() {
+  text-decoration: none;
+  @include hoverify() { text-decoration: underline; }
 }
 
 
@@ -62,13 +101,12 @@
  * @colour          - Colour of the bullet.
  */
 @mixin make-list-square-bullet( $size, $colour: $text-fade-colour ) {
-    &:before {
-        @include objectify( inline-block, $position: static );
-        @include size( $size );
-        background-color: $colour;
-
-        @content;
-    }
+  &::before {
+    @include objectify( inline-block, $position: static );
+    @include size( $size );
+    @content;
+    background-color: $colour;
+  }
 }
 
 
@@ -84,7 +122,65 @@
  * @ico-code        - Unicode code of the icon from the $font-family.
  * @font-family     - Name or type of the font icon.
  */
-@mixin iconify( $display: inline-block, $ico-code: "", $font-icon-family: $font-icons ) {
-    @include objectify( $display, $ico-code, relative );
-    font-family: $font-icon-family;
+@mixin iconify( $display: inline-block, $ico-code: '', $font-icon-family: $font-icons ) {
+  @include objectify( $display, $ico-code, relative );
+  font-family: $font-icon-family;
+}
+
+@mixin clearfix {
+  &::after {
+    clear: both;
+    display: block;
+    content: '';
+  }
+}
+
+
+
+@mixin triangle(
+  $direction,
+  $width,
+  $height,
+  $color
+) {
+  @if not index(
+    'up' 'up-right' 'right' 'down-right' 'down' 'down-left' 'left' 'up-left',
+    $direction
+  ) {
+    @error 'Direction must be `up`, `up-right`, `right`, `down-right`, ' +
+           '`down`, `down-left`, `left` or `up-left`.';
+  } @else if not _is-color($color) {
+    @error '`#{$color}` is not a valid color for the `$color` argument in ' +
+           'the `triangle` mixin.';
+  } @else {
+    width: 0;
+    height: 0;
+    border-style: solid;
+
+    @if $direction == 'up' {
+      border-color: transparent transparent $color;
+      border-width: 0 ($width / 2) $height;
+    } @else if $direction == 'up-right' {
+      border-color: transparent $color transparent transparent;
+      border-width: 0 $width $width 0;
+    } @else if $direction == 'right' {
+      border-color: transparent transparent transparent $color;
+      border-width: ($height / 2) 0 ($height / 2) $width;
+    } @else if $direction == 'down-right' {
+      border-color: transparent transparent $color;
+      border-width: 0 0 $width $width;
+    } @else if $direction == 'down' {
+      border-color: $color transparent transparent;
+      border-width: $height ($width / 2) 0;
+    } @else if $direction == 'down-left' {
+      border-color: transparent transparent transparent $color;
+      border-width: $width 0 0 $width;
+    } @else if $direction == 'left' {
+      border-color: transparent $color transparent transparent;
+      border-width: ($height / 2) $width ($height / 2) 0;
+    } @else if $direction == 'up-left' {
+      border-color: $color transparent transparent;
+      border-width: $width $width 0 0;
+    }
+  }
 }

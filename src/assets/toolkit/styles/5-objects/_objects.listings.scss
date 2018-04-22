@@ -1,114 +1,107 @@
 
 
-  /* ===== GENERAL LISTINGS =================================================== */
+/* ===== GENERAL LISTINGS =================================================== */
 
-  $article-item-max-width: $base-max-content-height;
+$article-item-max-width: $base-max-content-height;
 
 
-  /** Generic holder for list of all article-like overviews. */
-  .articles-container {
+/** Generic holder for list of all article-like overviews. */
+.articles-container {
 
-    // .formatting resets
-    > ul,
-    > ul > li {
-      padding-left: 0;
-      list-style-type: none;
-    }
+  // .formatting resets
+  > ul,
+  > ul > li {
+    padding-left: 0;
+    list-style-type: none;
+  }
 
-    article { margin-bottom: 0; }
-    // End of resets
+  article { margin-bottom: 0; }
+  // End of resets
 
-    @include media( $tablet-and-bigger ){
-      margin: 0 auto;
-      max-width: $article-item-max-width;
-    }
+  @include breakpoint( $tablet-and-bigger ) {
+    margin: 0 auto;
+    max-width: $article-item-max-width;
+  }
 
-    > header { margin: $base-spacing 0; }
+  > header { margin: $base-spacing 0; }
 
-    > ul {
-      @include clearfix;
+  > ul {
+    @include clearfix;
 
-      > li {
-        @include clearfix();
-        padding-bottom: $base-spacing;
-        margin-bottom: $base-spacing;
-        border-bottom: 1px solid $grey-alto;
-        list-style: none;
+    > li {
+      @include clearfix();
+      margin-bottom: $base-spacing;
+      padding-bottom: $base-spacing;
+      border-bottom: 1px solid $grey-alto;
+      list-style: none;
 
-        &:last-child {
-          margin-bottom: 0;
-          border-bottom: none;
-        }
-      }
-    }
-
-    .summary {
-      h1,
-      h2,
-      h3,
-      h4,
-      h5 {
-        margin-bottom: .25em;
-      }
-
-      time,
-      p {
-        margin-bottom: .7em;
-      }
-
-      p:last-child { margin-bottom: 0; }
-    }
-
-    .media {
-      img,
-      iframe {
+      &:last-child {
         margin-bottom: 0;
+        border-bottom: 0;
       }
     }
   }
 
-  // Display .articles-container side by side on desktop and bigger - for use with news and events
-  .articles-two-up {
-
-    // grey bg panels
-    &.panel {
-      background-color: $grey-gallery;
-      padding: $block-padding;
-
-      .articles-container {
-        background-color: $white;
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
-      }
+  .summary {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin-bottom: .25em;
     }
 
-    // panels split by dividing line
-    &.divider-line {
-      position: relative;
-
-      @include media( $desktop-and-bigger ) {
-        &:before {
-          @include objectify();
-          @include size( 0 100% );
-          position: absolute;
-          left: calc(50% - 5px);
-          top: 0;
-          border-left: 5px solid $grey-gallery;
-        }
-      }
+    time,
+    p {
+      margin-bottom: .7em;
     }
 
-    > .centraliser {
+    p:last-child { margin-bottom: 0; }
+  }
 
+  .media {
+    img,
+    iframe {
+      margin-bottom: 0;
     }
-    
+  }
+}
+
+// Display .articles-container side by side on desktop and bigger - for use with news and events
+.articles-two-up {
+
+  // grey bg panels
+  &.panel {
+    padding: $block-padding;
+    background-color: $grey-gallery;
+
     .articles-container {
-
-      @include media( $desktop-and-bigger ) {
-
-
-        @include span-columns( 6 of 12 );
-        @include omega( 2n ); 
-      }
-
+      background-color: $white;
+      box-shadow: 0 1px 5px rgba( 0, 0, 0, .15 );
     }
   }
+
+  // panels split by dividing line
+  &.divider-line {
+    position: relative;
+
+    @include breakpoint( $desktop-and-bigger ) {
+      @include before( $position: absolute ) {
+        @include size( 0, 100% );
+        top: 0;
+        left: calc( 50% - 5px );
+        border-left: 5px solid $grey-gallery;
+      }
+    }
+  }
+
+  // > .centraliser {}
+
+  .articles-container {
+    @include breakpoint( $desktop-and-bigger ) {
+      //@include span-columns( 6 of 12 );
+      //@include omega( 2n );
+    }
+  }
+
+}

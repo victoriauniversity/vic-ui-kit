@@ -1,250 +1,218 @@
-// ========================================
-// ======== Tile elements
-// ========================================
-//---- Settings ---
-$gutter: 1em; //px?! why not em? - irwinna 3/8/17
-// ----------------
-// -------------------------
-// ------------------------
-// - The gerneic tile grid
-// - Used for the new Study-areas and Degrees & Qualifactions block - irwinna 3/8/17
-// ------------------------
-
-/** Custom dolors */
-$background-color: $grey-gallery; //Used for borders to stop elements moving on hover
-$blue-hover-shade: tint($blue-st-tropaz, 40%);
-$tile-active-shade: #e3e3e3;
+// TODO: Disestablish the gutter!
+$gutter: 1em;
 
 
-$tile-height: rem( 200px);
+// Tile(s)
+$tile-height:       12.5rem;
+$background-color:  $grey-gallery; //Used for borders to stop elements moving on hover
+$blue-hover-shade:  #7E97B8;
+$tile-active-shade: #E3E3E3;
 
-//MIXIN - for shared text element across grid-tile and strip-tiles
+// Grid styles
+$four-grid-tile-margin:  1%;
+$three-grid-tile-margin: 1%;
+$two-grid-tile-margin:   1.3%;
 
-%extend-tile-text {
-  a {
-        padding: 16px;
-        height: 100%;
-        
-        display: block;
-        border: 4px solid $white;
-        border-left: none;
-       
-        &:hover {
-          opacity: 1;
-          // padding-top: 12px;
-          border: 4px solid $blue-st-tropaz;
-          border-left: none;
+$three-grid-tile-margin-hub: 3%;
 
+// colour for study hub - study page
+$base-study-hub-colour--study: $green-light-victoria;
 
-          h2, h3, p, i, span, q {
-            color: $blue-st-tropaz;
-          }
-
-          h4, {
-            color: $blue-hover-shade;
-          }
-
-          .sub-text {
-            border-left: 2px solid $blue-hover-shade;
-          }
-          &:active {
-            background-color: $tile-active-shade;
-          } 
-
-        }
-        .sub-text {
-          border-left: 2px solid $grey-silver;
-          padding-left: 0.5em;
-        }
-
-        h2,
-        h4,
-        p, 
-        i {
-          padding: 0;
-          margin: 0;
-          line-height: 1.2;
-        }
-        
-        h2 {
-          font-size: 1.3em;
-          color: $black-tundora;
-          margin-bottom: 0.25em;
-        }
-
-        h3 {
-          color: $black-tundora;
-          margin-bottom: 0.25em;
-        }
-
-        h4 {
-          color: $grey-silver-chalice;
-        }
-       
-        p {
-          line-height: 1.5;
-          font-size: 1em;
-          color: $grey-dove;
-        }
-        
-      }
-}
 
 .tiles-panel {
   background-color: $background-color;
 
-  &.hidden {
-    display: none;
+  &.hidden { display: none; }
+}
+
+
+// Shared text element across grid-tile and strip-tiles.
+.updated-tile-grid,
+.tile-strip-grid {
+  li.tile {
+    a {
+      display: block;
+      padding: 16px;
+      height: 100%;
+      border: 4px solid $white;
+      border-left: 0;
+
+      &:hover {
+        opacity: 1;
+        border-color: $blue-st-tropaz;
+
+        h2,
+        h3,
+        p,
+        i,
+        span,
+        q {
+          color: $blue-st-tropaz;
+        }
+
+        h4 { color: $blue-hover-shade; }
+
+        .sub-text { border-left: 2px solid $blue-hover-shade; }
+      }
+
+      &:active { background-color: $tile-active-shade; } // TODO: Keep or remove?
+
+      h2,
+      h4,
+      p,
+      i {
+        margin: 0;
+        padding: 0;
+        line-height: 1.2;
+      }
+
+      h2 {
+        margin-bottom: .25em;
+        font-size: 1.3em;
+        color: $black-tundora;
+      }
+
+      h3 {
+        margin-bottom: .25em;
+        color: $black-tundora;
+      }
+
+      h4 { color: $grey-silver-chalice; }
+
+      p {
+        line-height: 1.5;
+        font-size: 1em;
+        color: $grey-dove;
+      }
+
+      .sub-text {
+        padding-left: .5em;
+        border-left: 2px solid $grey-silver;
+      }
+
+    }
   }
 }
 
+
 .updated-tile-grid {
-  @include outer-container(100%);
+  @include grid-container;
 
   .tiles-wrap {
-    @include fill-parent();
+    //@include fill-parent;
     margin-top: 1rem;
 
-    >ul {
+    > ul {
       @include clearfix;
       display: block;
     }
 
-    
-    
     li.tile {
-      
+      overflow: hidden;
+      position: relative;
+      float: left;
+      margin-bottom: $gutter;
       height: auto;
       background-color: $white;
       box-shadow: $base-shadow;
       border-left: 4px solid $green-victoria;
-      float: left;
-      overflow: hidden;
-      position: relative;
-      margin-bottom: $gutter;
 
-      &:hover {
+      &:hover { //TODO: Add other hover-like states (&:focus, &:active) through mixin
         box-shadow: none;
         border-left: 4px solid $blue-st-tropaz;
       }
+
       // Search filtering
-      &.is-matching {
-        filter: saturate(200%);
-      }
-      &.is-not-matching {
-        filter: saturate(0%);
-      }
-      // -----
-      $four-grid-tile-margin: 1%;
-      $three-grid-tile-margin: 1%;
-      $two-grid-tile-margin: 1.3%;
-
-      @include media ($desktop-large) {
-        width: ( 100 - 3 * $four-grid-tile-margin) / 4;
-        margin-right: $four-grid-tile-margin;
-
-        &:nth-child( 4n) {
-          margin-right: 0;
-        }
-      }
-
-      @include media ($desktop) {
-        width: ( 100 - 2 * $three-grid-tile-margin) / 3;
-        margin-right: $three-grid-tile-margin;
-
-        &:nth-child( 3n) {
-          margin-right: 0;
-        }
-      }
-
-      @include media ($tablet) {
-        width: ( 100 - 1 * $two-grid-tile-margin) / 2;
-        margin-right: $two-grid-tile-margin;
-
-        &:nth-child( 2n) {
-          margin-right: 0;
-        }
-      } // All the text for the tile
-      @extend %extend-tile-text;
+      &.is-matching { filter: saturate( 200% ); }
+      &.is-not-matching { filter: saturate( 0% ); }
 
       a {
-         h4 {
+        h4 {
           color: $grey-silver-chalice;
           font-size: .95em;
 
-          &:before {
-            font-size: 85%;
-          }
+          &::before { font-size: 85%; }
         }
 
-        h2,h3,h4 {
-          margin-bottom: 0.45em;
+        h2,
+        h3,
+        h4 {
+          margin-bottom: .45em;
         }
       }
 
+      // The hidden subjects span which is displayed on hover
       i {
+        position: absolute;
+        right: .5em;
+        bottom: .5em;
         font-size: 1.5em;
         color: $grey;
-        position: absolute;
-        bottom: .5em;
-        right: .5em;
-      } // The hidden subjects span which is displayed on hover
-      @include media ( $mobile-large-and-smaller) {
+      }
+
+      .button { margin-top: 2em; }
+
+      @include breakpoint ( $mobile-large-and-smaller) {
         float: none;
 
         h4 {
           display: inline-block;
-          font-size: 1.1em;
           margin-right: .5em;
+          font-size: 1.1em;
         }
 
-        p {
-          display: inline-block;
-        }
+        p { display: inline-block; }
       }
 
-      .button {
-        margin-top: 2em;
+      @include breakpoint ( $desktop-large ) {
+        margin-right: $four-grid-tile-margin;
+        width: ( 100 - 3 * $four-grid-tile-margin ) / 4;
+
+        &:nth-child( 4n ) { margin-right: 0; }
+      }
+
+      @include breakpoint ( $desktop ) {
+        margin-right: $three-grid-tile-margin;
+        width: ( 100 - 2 * $three-grid-tile-margin ) / 3;
+
+        &:nth-child( 3n ) { margin-right: 0; }
+      }
+
+      @include breakpoint ( $tablet ) {
+        margin-right: $two-grid-tile-margin;
+        width: ( 100 - 1 * $two-grid-tile-margin ) / 2;
+
+        &:nth-child( 2n ) { margin-right: 0; }
       }
     }
 
     &.three-col {
-      li.tile {
-        $three-grid-tile-margin-hub: 3%;
-        @include media ($desktop-large) {
-          width: ( 100 - 2 * $three-grid-tile-margin-hub) / 3; 
-          margin-right: $three-grid-tile-margin-hub;
-
-          &:nth-child(-n+3) {
-            margin-bottom: 1rem;
-          }
-
-          &:nth-child( 3n) {
-            margin-right: 0;
-          }
-          &:nth-child( 4n) {
-            margin-right: $three-grid-tile-margin-hub;
-          }
-        }
-      }
-
       &.image-no-gutter {
         ul {
-          @include display(flex);
+          display: flex;
           flex-wrap: wrap;
         }
+
         li.tile {
-          img {
-            max-width: 100%;
-          }
+          img { max-width: 100%; }
 
           a {
             height: auto;
 
-            &:hover {
-              border-color: transparent;
-            }
+            // TODO: Refactor & flatten to lower the depth!
+            &:hover { border-color: transparent; }
           }
+        }
+      }
+
+      @include breakpoint( $desktop-large ) {
+        li.tile {
+          margin-right: $three-grid-tile-margin-hub;
+          width: ( 100 - 2 * $three-grid-tile-margin-hub ) / 3;
+
+          &:nth-child( -n+3 ) { margin-bottom: 1rem; }
+          &:nth-child( 3n ) { margin-right: 0; }
+          &:nth-child( 4n ) { margin-right: $three-grid-tile-margin-hub; }
         }
       }
     }
@@ -254,27 +222,25 @@ $tile-height: rem( 200px);
 
       &.image-no-gutter {
         ul {
-          @include display(flex);
+          display: flex;
           flex-wrap: wrap;
         }
+
         li.tile {
-          img {
-            max-width: 100%;
-          }
+          img { max-width: 100%; }
 
           a {
             height: auto;
 
-            &:hover {
-              border-color: transparent;
-            }
+            // TODO: Refactor & flatten to lower the depth!
+            &:hover { border-color: transparent; }
           }
 
-          @include media ($desktop) {
-            width: ( 100 - 3 * 1%) / 4;
+          @include breakpoint ($desktop) {
             margin-right: 1%;
-    
-            &:nth-child( 4n) {
+            width: ( 100 - 3 * 1%) / 4;
+
+            &:nth-child( 4n ) {
               margin-right: 0;
             }
           }
@@ -299,52 +265,45 @@ $tile-height: rem( 200px);
   &.hidden {
     display: none !important;
   }
+
+  &.hidden { display: none; }
+
   &.media-quote {
     .tiles-wrap {
       li.tile {
-        height: rem(500px);
+        height: 31.25rem;
 
         figure {
           position: relative;
 
           .play-button {
             position: absolute;
-            margin-top: 0;
-            left: 50%;
-            @include transform(translateX(-50%));
             top: 40%;
+            left: 50%;
+            margin-top: 0;
+            transform: translateX( -50% );
           }
+
           img {
-            width: 100%;
             display: block;
             margin-bottom: 2%;
+            width: 100%;
           }
         }
 
-        h2 {
-          color: $black-tundora;
-        }
-
-        p {
-          margin-bottom: 0.25em;
-        }
+        h2 { color: $black-tundora; }
+        p { margin-bottom: .25em; }
 
         q {
           color: $green-light-victoria;
           font-size: 1rem;
           font-weight: bold;
 
-          &:before {
-            content: open-quote;
-          }
-          &:after {
-            content: close-quote;
-          }
+          &::before { content: open-quote; }
+          &::after { content: close-quote; }
         }
 
-        .sub-text {
-          margin-bottom: 1rem;
-        }
+        .sub-text { margin-bottom: 1rem; }
       }
     }
   }
@@ -352,59 +311,51 @@ $tile-height: rem( 200px);
 }
 
 .tile-strip-grid {
-  @include outer-container(100%);
+  @include grid-container;
 
   .tiles-wrap {
-    @include fill-parent();
+    //@include fill-parent;
     margin-top: 1rem;
 
-    >ul {
+    > ul {
       @include clearfix;
       display: block;
     }
 
-
     li.tile {
-      width: 100%;
-      height: auto;
+      @include size( 100%, auto );
+      overflow: hidden;
+      margin-bottom: $gutter;
       background-color: $white;
       box-shadow: $base-shadow;
       border-left: 4px solid $green-victoria;
-      overflow: hidden;
-      margin-bottom: $gutter;
 
       &:hover {
         box-shadow: none;
         border-left: 4px solid $blue-st-tropaz;
       }
 
-      @extend %extend-tile-text;
-
       i {
+        float: right;
         font-size: 1.5em;
         color: $grey;
-        float: right;
       }
 
       a {
-
         h2,
         h4,
         i {
           display: inline;
         }
 
-        h2 {
-          padding-right: 0.5em;
-        }
+        h2 { padding-right: .5em; }
 
-        h4{
-
-          padding: 0 0.75rem;
+        h4 {
+          padding: 0 .75rem;
           border-left: 2px solid $grey-gallery;
-         
-        }  
+        }
       }
+
     }
   }
 
@@ -527,88 +478,69 @@ $tile-height: rem( 200px);
   }
 
   &.tile-accordion {
-
     li.tile {
       position: relative;
-      
-      > a {
-        padding-right: 2em;
-      }
-      h4 {
-        font-size: 1em;
-      }
+
+      > a { padding-right: 2em; }
+      h4 { font-size: 1em; }
+
       i {
         position: absolute;
-        right: 0.4em;
         top: 16px;
-        transition: 0.3s ease-in-out;
+        right: .4em;
+        transition: .3s ease-in-out;
       }
 
-      &.accordion-closed {
-
-      }
-
+      //&.accordion-closed {}
       &.accordion-open {
         > a {
-         &:hover {
-            border-color: transparent;
-          }
+          &:hover { border-color: transparent; }
         }
+
         i {
-          transform: rotate(90deg);
-          right: 0.6em; 
           top: 20px;
+          right: .6em;
+          transform: rotate( 90deg );
         }
       }
     }
+
     .accordion-content {
+      display: none; // Default: Content is OFF
       padding: 1em;
       padding-top: 0;
-      display: none;
-      
 
-      &.closed {
-        display: none;
-      }
-
-      &.open {
-        display: block;
-      }
+      &.closed { display: none; }
+      &.open { display: block; }
 
       ul {
         margin-bottom: 0;
+
         li {
           a {
-            padding: 0;
             display: inline;
-            border: none;
+            padding: 0;
+            border: 0;
 
-            &:hover {
-              border: none;
-            }
+            // TODO: Refactor & flatten to lower the depth!
+            &:hover { border: 0; }
           }
         }
       }
     }
+
   }
 }
 
 .fixed-height-tiles {
   .tiles-wrap li.tile {
     height: $tile-height;
-    a {
-      .sub-text {
-        h4 {
-          
-        }
-      }
-    }
+    // a .sub-text h4 { }
   }
 }
+
 .fixed-height-tiles-small {
-  .tiles-wrap li.tile {
-    height: rem(150px);
-  }
+  .tiles-wrap li.tile { height: 9.375rem; }
 }
 
 .dynamic-height-tiles {
@@ -631,48 +563,40 @@ $tile-height: rem( 200px);
 
 
 //modifier for study hub tiles
-//colour for study hub - study page
-$base-study-hub-colour--study: $green-light-victoria;
-
-.tiles-study-hub {
+.tiles-study-hub,
+.tiles-study-hub-about {
   h2,
   h3 {
     color: $base-study-hub-colour--study;
   }
-  .tiles-wrap {
-    li.tile {  
-      height: rem( 275px );
-      border-left: 4px solid $base-study-hub-colour--study;
-      a {
-        .sub-text {
-          // border-left: none;
-          // padding-left: 0;
-        }
-        h2 {
-          color: $base-study-hub-colour--study;
-        }
 
+  .tiles-wrap {
+    li.tile {
+      height: 17rem;
+      border-left: 4px solid $base-study-hub-colour--study;
+
+      a {
+        // .sub-text { }
+        h2 { color: $base-study-hub-colour--study; }
       }
+
       .tile-icon {
+        position: absolute;
+        right: .5em;
+        bottom: .5em;
         font-size: inherit;
         color: $grey;
-        position: absolute;
-        bottom: .5em;
-        right: .5em;
-    
+
         i {
-          font-size: 1.5rem;
-          position: relative; 
-          bottom: 0;
+          position: relative;
           right: 0;
+          bottom: 0;
+          font-size: 1.5rem;
         }
       }
+
     }
   }
-}
-
-.tiles-study-hub-about {
-  @extend .tiles-study-hub;
 }
 
 //step tiles for study hub mod
@@ -682,21 +606,22 @@ $base-study-hub-colour--study: $green-light-victoria;
 
     .tiles-wrap {
       li.tile {
-        height: rem( 350px );
+        height: 21.875rem;
         background-color: $base-study-hub-colour--study;
-        border-left: none;
+        border-left: 0;
 
         a {
           border: 4px solid $base-study-hub-colour--study;
-          
+
           p,
           h3,
           i {
             color: $white;
           }
+
           h3 {
+            padding-bottom: .25em;
             font-size: 1.5em;
-            padding-bottom: 0.25em;
           }
 
           .tile-number {
@@ -706,22 +631,25 @@ $base-study-hub-colour--study: $green-light-victoria;
           }
 
           .tile-icon {
+            position: absolute;
+            right: .5em;
+            bottom: .5em;
             font-size: inherit;
             color: $white;
-            position: absolute;
-            bottom: .5em;
-            right: .5em;
-        
+
+            // TODO: Refactor & flatten to lower the depth!
             i {
-              font-size: 1.5rem;
-              position: relative; 
-              bottom: 0;
+              position: relative;
               right: 0;
+              bottom: 0;
+              font-size: 1.5rem;
             }
           }
 
           &:hover {
             border: 4px solid $base-study-hub-colour--study;
+
+            // TODO: Refactor & flatten to lower the depth!
             p,
             i {
               color: $white;
@@ -730,160 +658,25 @@ $base-study-hub-colour--study: $green-light-victoria;
         }
 
         .title-first-step {
-          @include display(flex);
-          @include align-items(center);
+          display: flex;
+          align-items: center;
           font-size: 1.6em;
 
-          &:hover {
-            // border: none;
-            // border-left: none;
-          }
-          
-          h3 {
-            line-height: 1.2;
-          }
+          h3 { line-height: 1.2; }
         }
-        
-        &:hover {
-          border: none;
-          border-left: none;
-        }
-        $three-grid-tile-margin-hub: 3%;
 
-        @include media ($desktop-large) {
-          width: ( 100 - 2 * $three-grid-tile-margin-hub) / 3; 
+        &:hover { border: 0; }
+
+        @include breakpoint ( $desktop-large ) {
           margin-right: $three-grid-tile-margin-hub;
-          
-          &:nth-child(-n+3) {
-            margin-bottom: $three-grid-tile-margin-hub;
-          }
+          width: ( 100 - 2 * $three-grid-tile-margin-hub ) / 3;
 
-          &:nth-child( 3n) {
-            margin-right: 0;
-          }
-          &:nth-child( 4n) {
-            margin-right: $three-grid-tile-margin-hub;
-          }
+          &:nth-child( -n+3 ) { margin-bottom: $three-grid-tile-margin-hub; }
+          &:nth-child( 3n ) { margin-right: 0; }
+          &:nth-child( 4n ) { margin-right: $three-grid-tile-margin-hub; }
         }
+
       }
     }
   }
 }
-
-
-
-
-
-
-// -------------------------
-// -------------------------
-// -------------------------
-// ----------------------------
-// Styles specific to the Study-areas block
-// --------------------------
-// .study-areas,
-// .study-area-single {
-//   h1 {
-//     margin-bottom: .7em;
-//   }
-// }
-// .study-areas {
-//   .pg-filter {
-//     padding: 1em 1em 1em .5em;
-//     font-size: 1.2em;
-//   } //This operate the PG only check box the markup needs to have the tiles as general siblings of teh check box
-//   // ie dont wrap the checkbox in a div container
-//   input[type=checkbox]:checked~.tiles-wrap .tile[data-pg="only"] {
-//     display: block;
-//   }
-//   input[type=checkbox]:checked~.tiles-wrap li.tile {
-//     display: none;
-//   }
-//   .tiles-wrap {
-//     li.tile {
-//       height: rem( 250px);
-//       img {
-//         width: 100%;
-//         @include media ($tablet) {
-//           vertical-align: middle;
-//         }
-//       }
-//       span {
-//         display: block;
-//         padding: 0 1em 1em;
-//         @include media ($desktop-and-bigger) {
-//           display: none;
-//         }
-//       }
-//       &:hover {
-//         @include media ($desktop-and-bigger) {
-//           span {
-//             height: rem( 180px); //TODO: Do cleanly
-//             display: block;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-// -------------------------
-// -------------------------
-// Tabbed nav controls
-// -------------------------
-// $tab-caret-size: 1.6rem;
-// .study-area-tabs {
-//   margin-bottom: $base-spacing * 1.5;
-//   ul {
-//     @include clearfix;
-//     max-width: $base-max-content-height;
-//     margin: 0 auto;
-//     li {
-//       @include span-columns( 6, block-collapse);
-//       a {
-//         padding: 1em;
-//         @include display(block);
-//         background-color: $grey-alto;
-//         display: flex;
-//         align-items: center;
-//         text-align: center;
-//         @include media ( $mobile-large-and-smaller) {
-//           height: rem( 60px);
-//         }
-//         &:hover {
-//           background-color: $grey-silver;
-//         }
-//         @include icon-selector() {
-//           font-weight: $weight-normal;
-//           line-height: 0;
-//         } // Icon size modificators
-//         .icon-book-open {
-//           font-size: 90%;
-//         }
-//         h4 {
-//           color: $black-mine-shaft; // helps center the text on mobile
-//           margin: 0 auto;
-//         }
-//       }
-//       &.active {
-//         position: relative;
-//         a {
-//           background-color: $green-victoria;
-//           &:hover {
-//             opacity: 1;
-//             cursor: default;
-//           }
-//           h4 {
-//             color: $white;
-//           }
-//         }
-//         &:after {
-//           @include objectify( block, $position: absolute);
-//           left: 50%;
-//           margin-left: -1 * $tab-caret-size/2;
-//           @include size( 0);
-//           @include triangle( $tab-caret-size $tab-caret-size/3, $green-victoria, down);
-//         }
-//       }
-//     }
-//   }
-// }
