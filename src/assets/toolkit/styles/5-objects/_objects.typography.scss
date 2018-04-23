@@ -26,7 +26,6 @@ $subtitle-separator-character:  $character-middle-dot;
     &:last-child { margin-bottom: 0; }
   }
 
-
   /** Links */
 
   a {
@@ -51,6 +50,17 @@ $subtitle-separator-character:  $character-middle-dot;
       color:           $link-color;
       text-decoration: $link-decoration;
     }
+
+    &:visited{
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: $link-visited-color;
+      }
+    }
   }
 
   p,
@@ -65,6 +75,7 @@ $subtitle-separator-character:  $character-middle-dot;
   table,
   figcaption {
     a {
+      &:not(.button):visited { color: $link-visited-color; }
       @include linkify-text;
     }
   }
@@ -207,7 +218,20 @@ aside > .formatting {
 
 
 
-/* = TYPOGRAPHICAL UTILITIES =================================================*/
+/*= SPECIAL LINKS ============================================================*/
+
+
+// 'See more' link
+a.link-more {
+  @include linkify-text();
+  float: right;
+}
+
+
+
+
+
+/*= TYPOGRAPHICAL UTILITIES ==================================================*/
 
 
 // Breaks the page and forcefully clears the floating

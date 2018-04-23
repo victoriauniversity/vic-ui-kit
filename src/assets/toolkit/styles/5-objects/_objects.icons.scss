@@ -1,216 +1,83 @@
-/*=========================================
-=                  ICONS                  =
-=========================================*/
+/*============================================================================*\
+| ICONS
+\*============================================================================*/
 
-
-/* ===== MIXINS & FUNCTIONS =============================================== */
-
-
-$icon-margin:       .5em !default;
-$icon-class-prefix: 'icon-';
-
-/**
-  * Takes on of the $icon-codes listed in `_objects.icons.scss`
-  * and assigns it to the element's before/after's content.
-  *
-  * @param $pseudoelement ~ before | after (default: before)
-  */
-@mixin base-icon( $pseudoelement: before ) {
-  &::#{$pseudoelement} {
-    @include iconify;
-    top: .05em;
-    @if $pseudoelement == 'before' { margin: 0 $icon-margin 0 0; }
-    @if $pseudoelement == 'after' { margin: 0 0 0 $icon-margin; }
-    width: 1em;
-    text-align: center;
-  }
-}
-
-
-/**
-  * Takes on one of the $icon-codes listed in `_objects.icons.scss`
-  * and assigns it to the element's before/after's content.
-  *
-  * @param $icon-code ~ code in the unicode format.
-  * @param $pseudoelement ~ before | after (default: before)
-  */
-@mixin add-icon-character( $icon-code, $pseudoelement: before ) {
-  &::#{$pseudoelement} {
-    content: $icon-code;
-  }
-}
-
-@mixin icon-selector() {
-  [class^=#{$icon-class-prefix}] {
-    @content;
-  }
-}
+////
+/// Defines all icons and their generic properties.
+///
+/// @group icons
 
 
 
-
-/* ===== FONT ICON'S CODES ================================================ */
-
-// TODO: Add icon of down + up quotes, music note
-
-/** List of unicode character codes assigned to given icons.
-  *
-  *  The name of the code is then used as an class identifier
-  *  prefixed with 'icon-'. Eg. code with key 'search' will
-  *  get automatically turned into '.icon-search'.
-  */
-
-$icon-codes: (
-  search:           '\e800',
-  mail:             '\e801',
-  heart:            '\e802',
-  check:            '\e803',
-  star:             '\e804',
-  help:             '\e805',
-  people:           '\e806',
-  user:             '\e807',
-  info:             '\e808',
-  home:             '\e809',
-  back:             '\e80A',
-  pictures:         '\e80B',
-  popup:            '\e80C',
-  clock:            '\e80D',
-  tag:              '\e80E',
-  book:             '\e80F',
-  book-open:        '\e810',
-  pin:              '\e811',
-  vcard:            '\e812',
-  chat:             '\e813',
-  flag:             '\e814',
-  external:         '\e815',
-  printer:          '\e816',
-  camera:           '\e817',
-  lock:             '\e818',
-  lock-open:        '\e819',
-  phone:            '\e81A',
-  attention:        '\e81B',
-  resize-up:        '\e81C',
-  resize-down:      '\e81D',
-  mic:              '\e81E',
-  cog:              '\e81F',
-  share:            '\e820',
-  basket:           '\e821',
-  comment:          '\e822',
-  caret-down-thin:  '\e823',
-  caret-left-thin:  '\e824',
-  caret-right-thin: '\e825',
-  caret-up-thin:    '\e826',
-  caret-down:       '\e827',
-  caret-left:       '\e828',
-  caret-right:      '\e829',
-  caret-up:         '\e82A',
-  triangle-down:    '\e82B',
-  triangle-left:    '\e82C',
-  triangle-right:   '\e82D',
-  triangle-up:      '\e82E',
-  refresh:          '\e82F',
-  graduation-cap:   '\e830',
-  ticket:           '\e831',
-  megaphone:        '\e832',
-  calendar:         '\e833',
-  globe:            '\e834',
-  dots:             '\e835',
-  arrow-down:       '\e836',
-  arrow-left:       '\e837',
-  layout:           '\e838',
-  attach:           '\e839',
-  menu:             '\e83A',
-  arrow-right:      '\e83B',
-  arrow-up:         '\e83C',
-  edit:             '\e83D',
-  download:         '\e83E',
-  audio:            '\e83F',
-  quote-down:       '\e840',
-  quote-up:         '\e841',
-  list:             '\e842',
-);
+/*= INITIALISATIONS ==========================================================*/
 
 
-@mixin add-icon-after( $icon-key ) {
-  @include add-icon-character( map-get( $icon-codes, $icon-key ), after );
-}
-
-@mixin add-icon-before( $icon-key ) {
-  @include add-icon-character( map-get( $icon-codes, $icon-key ) );
-}
-
-
-
-
-
-/* ===== STANDARD ICONS =================================================== */
-
-
-@include icon-selector() {
+@include icon-selector {
   @include base-icon;
   font-size: 100%;
   font-style: normal;
 }
 
-/** Generate all the icon identifiers. Prefix them with 'icon-' */
-@each $icon-code-class, $code in $icon-codes {
-  &.#{$icon-class-prefix}#{$icon-code-class} {
-    @include add-icon-character( $code );
-  }
+// list of .icon-[name]
+@include generate-icon-classes;
+
+
+
+
+
+/*= ICONS WITH UNUSUAL STYLING ============================================== */
+
+
+.icon-arrow-right::before {
+  margin-right: 0;
+  margin-left:  $icon-margin;
 }
 
 
-.hanging-icon { float: left; }
 
-.icon-2x::before,
-.icon-2x::after {
-  transform: scale( 2 );
-}
 
-/** Special icons */
+/*= CUSTOM-BUILT ICONS ====================================================== */
+
+
+.hanging-icon { float: left; } //TODO: Use utility class instead ('.float-left')
+
+
+// Social media icons
 
 $social-icon-size: 2.5rem;
 
 .social-icon {
-  &:hover {
-    opacity: $base-hover-opacity;
-  }
-
-  .small-icon:before,
-  .small-icon:after {
-    transform: scale( .65 );
-  }
-
   img {
     @include size( $social-icon-size );
-    margin-right: .3rem;
+    margin-right: $gap-small;
   }
 }
 
 
+// Scaleable play icon
+
+$icon-play-triangle-size:    1em;
+$icon-play-triangle-ratio:   .6; // Ratio between width and height of the triangle
+$icon-play-rectangle-width:  4em;
+$icon-play-rectangle-height: 2.5em;
 
 
-
-/* ===== CUSTOM-BUILT ICONS =============================================== */
-
-
-// Line strip prefixing a block element (eg. citation, source, list item)
-
-$bulletline-color:        #4F8368;
-$bulletline-margin-left:  .25rem;
-$bulletline-margin-right: .7rem;
-$bulletline-width:        1rem;
-
-
-@mixin bulletline-base {
+.play-button, // TODO: .play-button! @deprecated - remove!
+.icon-square-play {
+  // Outer rectangle
   position: relative;
-  padding-left: $bulletline-margin-left + $bulletline-width + $bulletline-margin-right;
+  @include size( $icon-play-rectangle-width, $icon-play-rectangle-height );
+  margin-top: $gap-half;
+  background-color: $white;
+  border-radius: .75rem;
+  text-align: center;
 
-  @include before( $position: absolute ) {
-    @include size( 1rem, 2px );
-    top: .75em;
-    margin: 0 $bulletline-margin-right 0 -1 * ($bulletline-width + $bulletline-margin-right);
-    background-color: $bulletline-color;
+  // Inner triangle
+  @include after( $display: inline-block, $position: relative ) {
+    margin: .65em auto 0;
+    border-style: solid;
+    border-width: $icon-play-triangle-size * $icon-play-triangle-ratio 0 $icon-play-triangle-size * $icon-play-triangle-ratio $icon-play-triangle-size;
+    border-color: transparent transparent transparent $green-brand;
   }
 }
 
@@ -218,24 +85,10 @@ $bulletline-width:        1rem;
 
 
 
-/* ===== ALIASES AND EXTENSIONS =========================================== */
+/*===== ALIASES ============================================================= */
 
 
-/** Can be used to create alias or extend default icon under unique class. */
-@mixin extend-icon-before( $icon-code ) {
-  @include base-icon;
-  @include add-icon-character( map-get( $icon-codes, $icon-code ) );
-
-  &::before { @content; }
-}
-
-/** Can be used to alias or extend default icon under unique specifier. */
-@mixin extend-icon-after( $icon-code ) {
-  @include base-icon( after );
-  @include add-icon-character( map-get( $icon-codes, $icon-code ), after );
-
-  &::after { @content; }
-}
+// Can be appended into outer element without need to use inner element with .icon-[name]. Useful for generic items that should always have a specific icon.
 
 .link-external {
   @include extend-icon-after( external ) {
@@ -251,15 +104,15 @@ $bulletline-width:        1rem;
 
 .link-download {
   @include extend-icon-before( download ) {
-    font-size: 90%;
+    font-size: $text-size-smaller;
   }
 }
 
 .link-more {
   @include extend-icon-after( caret-right ) {
     margin-right: 0;
-    margin-left: .3em;
-    font-size: 110%;
+    margin-left:  _em( $gap-small );
+    font-size:    $text-size-larger
   }
 }
 
@@ -267,19 +120,32 @@ $bulletline-width:        1rem;
   @include extend-icon-before( audio );
 }
 
-@mixin icon-arrow-right() {
-  @include extend-icon-after( arrow-right ) {
-    top: 0;
+
+
+
+
+
+
+
+
+
+// Line strip prefixing a block element (eg. citation, source, list item)
+
+$bulletline-color:        $green-brand-weaker;
+$bulletline-margin-left:  $gap-small;
+$bulletline-margin-right: $gap-half;
+$bulletline-width:        1rem;
+
+
+@mixin bulletline-base {
+  position: relative;
+  padding-left: $bulletline-margin-left + $bulletline-width + $bulletline-margin-right;
+
+  @include before( $position: absolute ) {
+    @include size( 1rem, 2px );
+    top: .75em;
+    margin: 0 $bulletline-margin-right 0 -1 * ($bulletline-width + $bulletline-margin-right);
+    background-color: $bulletline-color;
   }
 }
 
-// TODO: Rename & Refactor the name (cannot be used outside of 'button')
-.button-arrow {
-  @include icon-arrow-right();
-}
-
-/** Add icons with unusual positioning (end of the item instead of the start) */
-.icon-arrow-right::before {
-  margin-right: 0;
-  margin-left: $icon-margin;
-}

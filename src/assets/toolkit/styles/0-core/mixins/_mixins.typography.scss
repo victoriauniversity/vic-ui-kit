@@ -74,15 +74,17 @@
 
 /// Decorates text as if it was a text link.
 ///
+/// @prop {boolean} $visited [false] - Apply styles for a visited link too.
+///
 /// @access public
 ///
 /// @require {mixin} hoverify
-@mixin linkify-text( $visited: true ) {
+@mixin linkify-text( $visited: false ) {
   color:           $link-color;
   text-decoration: $link-decoration;
 
   @if ( $visited == true ) {
-    // Accessibility
+    // Improves accessibility
     &:visited { color: $link-visited-color; }
   }
 
