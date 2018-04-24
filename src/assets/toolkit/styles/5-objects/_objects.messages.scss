@@ -1,16 +1,41 @@
-/*=========================================
-=      SYSTEM MESSAGES, NOTIFICATIONS     =
-=========================================*/
+/*============================================================================*\
+| MESSAGES
+\*============================================================================*/
+
+////
+/// Atomic properties for messages (notifications, popups etc.)
+///
+/// @group messages
 
 
-/* ===== FLASH MESSAGES =================================================== */
 
 
+
+/*= FLASH MESSAGES ===========================================================*/
+
+
+// Inside a con
 .flash-message {
-  margin-bottom: $base-spacing;
+  margin-bottom: $gap-content;
   padding: $column-padding;
   color: $white;
-  border-left: 2px solid $background-opaque-darkest;
+  border-left: $border-width-medium solid $background-opaque-darkest;
+
+  > * {
+    &:last-child { margin-bottom: 0; }
+  }
+  // Keep links the same colour as the text
+  a[href] {
+    color: inherit;
+
+    @include hoverify() {
+      color: inherit;
+    }
+  }
+
+  .formatting & a[href]:visited {
+    color: inherit !important;
+  }
 
   // Message types
   &.error {
@@ -53,70 +78,70 @@
     }
   }
 
+}
 
-  h2 { margin-bottom: .5em; }
+
+
+
+
+/*= FACTS BOX ================================================================*/
+
+
+// for info message fact row research hub
+//TODO: Move into a components/, remove a dependency on .flash-message and .info
+.flash-message.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2em 1.2em;
+
+  > h2 {
+    margin-bottom: 0;
+
+    &::before { display: none; }
+  }
 
   > * {
-    &:last-child { margin-bottom: 0; }
-  }
-
-  a[href] {
-    color: inherit;
-    @include hoverify() { color: inherit; }
-  }
-
-  // for info message fact row research hub
-  &.info-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2em 1.2em;
-
-    @include breakpoint($tablet-and-smaller) {
-      flex-wrap: wrap;
+    &:first-child {
+      flex: 0 0 20%;
     }
+
+    &:not(:first-child) {
+      flex: 0 0 23%;
+    }
+  }
+
+  @include bp( $until: desktop ) {
+    flex-wrap: wrap;
 
     > * {
       &:first-child {
-        flex: 0 0 20%;
-
-        @include breakpoint($tablet-and-smaller) {
-          flex-basis: 100%;
-          margin-bottom: .5em;
-        }
+        flex-basis:    100%;
+        margin-bottom: .5em;
       }
 
       &:not(:first-child) {
-        flex: 0 0 23%;
-
-        @include breakpoint($tablet-and-smaller) {
-          flex-basis: 31%;
-        }
-
-        @include breakpoint($mobile-large-and-smaller) {
-          flex-basis: 100%;
-          margin-bottom: .5em;
-        }
+        flex-basis: 31%;
       }
-    }
-
-    > h2 {
-      margin-bottom: 0;
-
-      &::before { display: none; }
-    }
-
-    .info-col {
-      padding-bottom: .5em;
-      border-bottom: 1px solid $blue-callypso;
-      border-bottom-color: inherit;
-
-      h4,
-      h5 {
-        margin-bottom: .35em;
-        color: inherit;
-      }
-
     }
   }
+
+  @include bp( $until: tablet ) {
+    > *:not(:first-child) {
+      flex-basis: 100%;
+      margin-bottom: .5em;
+    }
+  }
+
+  .info-col {
+    padding-bottom: $gap-third;
+    border-bottom: $border-width-thin solid $border-color-dark;
+
+    h4,
+    h5 {
+      margin-bottom: $gap-small;
+      color: inherit;
+    }
+  }
+
 }

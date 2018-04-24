@@ -83,7 +83,7 @@ $heading-weaker-color: $green-brand-weaker !default;
 /* ===== TEXT SIZING AND SCALING =============================================*/
 
 
-/// @prop {size in rem} [1ren] -
+/// @prop {size (rem)} [1ren] -
 ///   Base size of a text. Usually respects browser's default settings (16px)
 $text-size:         1rem !default;
 
@@ -100,7 +100,7 @@ $text-scale-ratio: $ratio-major-third !default;
 
 @function _generate-scaled-size( $coeficient: 0 ) { @return _modular-scale( $coeficient, $text-size, $text-scale-ratio ); }
 
-/// @type {size in rem} - Various text sizes.
+/// @prop {size (rem)} - Various text sizes.
 $text-size-1: _generate-scaled-size( 5 ) !default;
 $text-size-2: _generate-scaled-size( 4 ) !default;
 $text-size-3: _generate-scaled-size( 3 ) !default;
@@ -113,13 +113,18 @@ $text-size-7: _generate-scaled-size( -1 ) !default; // Smaller
 // 2. Derive heading sizes from the generic ones
 $heading-to-text-ratio: 1 !default;
 
-/// @type {size in rem} - Various heading sizes, scaled b.
+/// @prop {size (rem)} - Various heading sizes, scaled b.
 $h1-size: $heading-to-text-ratio * $text-size-1 !default;
 $h2-size: $heading-to-text-ratio * $text-size-2 !default;
 $h3-size: $heading-to-text-ratio * $text-size-3 !default;
 $h4-size: $heading-to-text-ratio * $text-size-4 !default;
 $h5-size: $heading-to-text-ratio * $text-size-5 !default;
 $h6-size: $heading-to-text-ratio * $text-size-6 !default;
+
+
+/// @prop {size (rem)} [42rem] -
+///   A maximum width until which standard text content is still comfortably readable.
+$text-readability-max-width: 44rem !default;
 
 
 
@@ -132,7 +137,7 @@ $h6-size: $heading-to-text-ratio * $text-size-6 !default;
 $text-line-height:         1.6 !default;
 
 /// @prop {size in em} [1] - Headings line height ratio.
-$heading-line-height:      1 !default;
+$heading-line-height:      1.08 !default;
 
 /// @prop {size in em} [1.35] - Base text's with more stacked lines.
 $text-stacked-line-height: 1.35 !default;

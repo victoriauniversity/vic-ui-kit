@@ -16,6 +16,7 @@
   @include base-icon;
   font-size: 100%;
   font-style: normal;
+  vertical-align: 20%;
 }
 
 // list of .icon-[name]
@@ -32,6 +33,7 @@
   margin-right: 0;
   margin-left:  $icon-margin;
 }
+
 
 
 
@@ -54,30 +56,28 @@ $social-icon-size: 2.5rem;
 }
 
 
-// Scaleable play icon
+// Scaleable 'play' icon
 
-$icon-play-triangle-size:    1em;
-$icon-play-triangle-ratio:   .6; // Ratio between width and height of the triangle
-$icon-play-rectangle-width:  4em;
-$icon-play-rectangle-height: 2.5em;
+$icon-play-width:          4em;
+$icon-play-height:         2.5em;
+$icon-play-rectangle-size: 1.2em;
+$icon-play-triangle-ratio: 1.1; // Ratio between width and height of the triangle
 
 
 .play-button, // TODO: .play-button! @deprecated - remove!
 .icon-square-play {
   // Outer rectangle
+  @include size( $icon-play-width, $icon-play-height );
   position: relative;
-  @include size( $icon-play-rectangle-width, $icon-play-rectangle-height );
   margin-top: $gap-half;
   background-color: $white;
-  border-radius: .75rem;
+  border-radius: _em( $radius-huge );
   text-align: center;
 
   // Inner triangle
   @include after( $display: inline-block, $position: relative ) {
+    @include triangle( 'right', $icon-play-rectangle-size * $icon-play-triangle-ratio, $icon-play-rectangle-size, $green-brand );
     margin: .65em auto 0;
-    border-style: solid;
-    border-width: $icon-play-triangle-size * $icon-play-triangle-ratio 0 $icon-play-triangle-size * $icon-play-triangle-ratio $icon-play-triangle-size;
-    border-color: transparent transparent transparent $green-brand;
   }
 }
 
@@ -112,7 +112,7 @@ $icon-play-rectangle-height: 2.5em;
   @include extend-icon-after( caret-right ) {
     margin-right: 0;
     margin-left:  _em( $gap-small );
-    font-size:    $text-size-larger
+    font-size:    $text-size-larger;
   }
 }
 
@@ -122,30 +122,4 @@ $icon-play-rectangle-height: 2.5em;
 
 
 
-
-
-
-
-
-
-
-// Line strip prefixing a block element (eg. citation, source, list item)
-
-$bulletline-color:        $green-brand-weaker;
-$bulletline-margin-left:  $gap-small;
-$bulletline-margin-right: $gap-half;
-$bulletline-width:        1rem;
-
-
-@mixin bulletline-base {
-  position: relative;
-  padding-left: $bulletline-margin-left + $bulletline-width + $bulletline-margin-right;
-
-  @include before( $position: absolute ) {
-    @include size( 1rem, 2px );
-    top: .75em;
-    margin: 0 $bulletline-margin-right 0 -1 * ($bulletline-width + $bulletline-margin-right);
-    background-color: $bulletline-color;
-  }
-}
 

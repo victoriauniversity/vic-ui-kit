@@ -15,13 +15,14 @@
 
 
 /// @type {color} - Allowed colour variations of the border.
-$border-color-light:     $grey-gallery !default;
+$border-color-light:     $grey-alto !default;
 $border-color-dark:      $black-emperor !default;
 $border-color-highlight: $green-nebula !default;
 
 
 /// @type {size in rem} - Allowed border thickness (width).
 $border-width-thin:   .0625rem !default;
+$border-width-small:  .125rem !default;
 $border-width-medium: .1875rem !default;
 $border-width-thick:  .25rem !default;
 
@@ -41,6 +42,7 @@ $border-strip-highlight: $border-width-thick solid $border-color-highlight !defa
 
 /// @type {box-shadow} - Shadows of various depths.
 /// @link https://codepen.io/sdthornton/pen/wBZdXq
+/// @group shadows
 
 $shadow-shallowest: 0 .0625rem .1875rem rgba( $black, .12 ), 0 .0625rem .125rem rgba( $black, .24 ) !default;
 
@@ -60,8 +62,10 @@ $shadow-deepest:    0 1.1875rem 2.375rem rgba( $black, .3 ), 0 .9375rem .75rem r
 
 
 /// @type {radius in rem} - Various levels of corner's roundness.
+/// @group corners
 $radius-small:   .125rem !default;
 $radius:         .25rem !default;
 $radius-large:   .375rem !default;
+$radius-huge:    .75rem !default;
 
 $radius-rounded: 1000rem !default; // Limit use of this semi-hack!

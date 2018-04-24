@@ -68,14 +68,8 @@ $widgetbar-heading-font-size: $h4-size;
 
 .list {
   h2 {
+    @include separator-strip;
     font-size: $widgetbar-heading-font-size;
-
-    // Pre-heading delimiting line
-    @include before( block ) {
-      @include size( 2rem, .1875rem );
-      margin-bottom: .35rem;
-      background-color: $heading-color;
-    }
 
     &.publications {
       li {
