@@ -20,7 +20,7 @@ $article-item-max-width: $text-readability-max-width; // This is a maximum tresh
 .articles-container {
 
   // Set resets if used within .formatting
-  .formatting {
+  .formatting & {
     > ul,
     > ul > li {
       padding-left: 0;
@@ -30,12 +30,26 @@ $article-item-max-width: $text-readability-max-width; // This is a maximum tresh
     article { margin-bottom: 0; }
   }
 
-  @include bp( tablet ) {
+
+  // Add shadows & background when inside highlighted panel
+  .panel & {
+    background-color: $white;
+    box-shadow: $shadow-shallowest;
+  }
+
+
+  @include breakpoint( tablet ) {
     margin: 0 auto;
     max-width: $article-item-max-width;
   }
 
-  > header { margin: $gap-vertical 0; }
+  > header {
+    display: flex;
+    align-items: center;
+    margin: $gap-vertical 0;
+
+    h2 { flex-grow: 1; }
+  }
 
   > ul {
     @include clearfix;
@@ -79,42 +93,6 @@ $article-item-max-width: $text-readability-max-width; // This is a maximum tresh
   }
 }
 
-
-
-// Display .articles-container side by side on desktop and bigger - for use with news and events
-
-// TODO: Move to components/molecules
-.articles-two-up {
-
-  // A panel holding articles
-  &.panel {
-    padding: $gap;
-    background-color: $background-light;
-
-    .articles-container {
-      background-color: $white;
-      box-shadow: $shadow-shallowest;
-    }
-  }
-
-  @include bp( desktop ) {
-    // A panel split by a divider line
-    &.divider-line {
-      position: relative;
-
-      @include before( $position: absolute ) {
-        @include size( 0, 100% );
-        top: 0;
-        left: calc( 50% - #{ $border-width-thick / 2 } );
-        border-left: $border-width-thick solid $border-color-light;
-      }
-    }
-
-    .articles-container {
-      @include column( 2, $gap-larger );
-    }
-  }
-}
 
 
 

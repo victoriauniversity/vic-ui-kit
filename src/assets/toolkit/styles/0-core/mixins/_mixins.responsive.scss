@@ -13,34 +13,34 @@
 
 
 // Alias `$mq-sass` mixin call to more readable form
-@mixin bp( $args... ) {
+@mixin breakpoint( $args... ) {
   @include mq( $args... ) {
     @content;
   }
 }
 
 @mixin bp-mobile() {
-  @include bp( $until: mobile-large ) {
+  @include breakpoint( $until: mobile-large ) {
     @content;
   }
 }
 @mixin bp-mobile-large() {
-  @include bp( mobile-large, tablet ) {
+  @include breakpoint( mobile-large, tablet ) {
     @content;
   }
 }
 @mixin bp-tablet() {
-  @include bp( tablet, desktop ) {
+  @include breakpoint( tablet, desktop ) {
     @content;
   }
 }
 @mixin bp-desktop() {
-  @include bp( desktop, desktop-large ) {
+  @include breakpoint( desktop, desktop-large ) {
     @content;
   }
 }
 @mixin bp-desktop-large() {
-  @include bp( desktop-large ) {
+  @include breakpoint( desktop-large ) {
     @content;
   }
 }

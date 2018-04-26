@@ -14,7 +14,7 @@ $homepage-banner-compact-max-height: 18.75rem;
 .banner-in-page {
   position: relative;
 
-  @include breakpoint( $tablet-and-bigger ) {
+  @include breakpoint( tablet ) {
     top: -1.5 * $column-padding; //.content-panel > main|aside > .block
     // margin-top: -1.5 * $column-padding; //.content-panel > main|aside > .block
     // margin-bottom: 1.5 * $column-padding; //.content-panel > main|aside > .block
@@ -33,7 +33,7 @@ $homepage-banner-compact-max-height: 18.75rem;
   figcaption { //TODO: extend .tile-text
     background-color: $green-brand;
 
-    @include bp( tablet ) {
+    @include breakpoint( tablet ) {
       position: absolute;
       top: 6rem;
       right: 0;
@@ -94,7 +94,7 @@ $homepage-banner-compact-max-height: 18.75rem;
 
     h3 { line-height: 1.2; }
 
-    @include breakpoint( $tablet-and-bigger ) {
+    @include breakpoint( tablet ) {
       position: absolute;
       right: 0;
       bottom: 40%;
@@ -109,16 +109,16 @@ $homepage-banner-compact-max-height: 18.75rem;
       }
     }
 
-    @include breakpoint( $tablet ) {
+    @include bp-tablet {
       width: 65%;
     }
 
-    @include breakpoint( $desktop-and-bigger ) {
+    @include breakpoint( desktop ) {
       width: 40%;
     }
   }
 
-  @include breakpoint( $desktop-and-bigger ) {
+  @include breakpoint( desktop ) {
     min-height: $homepage-banner-max-height;
 
     // Banner types
@@ -153,7 +153,7 @@ $homepage-banner-compact-max-height: 18.75rem;
 }
 
 .study-hub-banner {
-  @include breakpoint( $desktop-and-bigger ) {
+  @include breakpoint( desktop ) {
     //Overwriting extend for page
     .sidebar {
       position: absolute;

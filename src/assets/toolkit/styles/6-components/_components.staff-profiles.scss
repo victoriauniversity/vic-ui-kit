@@ -20,7 +20,7 @@ $portrait-width: 9.35rem;
     display: block;
     margin-right: $column-padding;
 
-    @include breakpoint( $mobile-large-and-smaller ) {
+    @include breakpoint( $until: tablet ) {
       width: 20%;
       max-width: $portrait-width;
     }
@@ -109,7 +109,7 @@ ul.meta {
   }
 }
 
-@include breakpoint( $mobile-large-and-smaller ) {
+@include breakpoint( $until: tablet ) {
   aside .contact {
     .profile-picture {
       float: left;
@@ -130,7 +130,7 @@ ul.meta {
     &.featured-researcher {
       .profile-picture { margin-bottom: .7rem; }
 
-      @include breakpoint( $mobile-large-and-smaller ) {
+      @include breakpoint( $until: tablet ) {
         .profile-picture {
           float: left;
           margin-right: $column-padding;

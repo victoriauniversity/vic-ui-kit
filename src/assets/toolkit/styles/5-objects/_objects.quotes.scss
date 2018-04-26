@@ -17,6 +17,7 @@ blockquote.quote { font-style: italic; }
   }
 
   figcaption {
+    position: relative;
     @include bullet-line;
   }
 
@@ -178,9 +179,7 @@ blockquote.quote { font-style: italic; }
         }
 
 
-        @include breakpoint( $tablet-and-smaller ) {
-          // flex-wrap: wrap;
-
+        @include breakpoint( $until: desktop ) {
           .quote-content {
             justify-content: flex-start;
             flex-wrap: wrap;
@@ -197,7 +196,7 @@ blockquote.quote { font-style: italic; }
 
         }
 
-        @include breakpoint($mobile-large-and-smaller) {
+        @include breakpoint( $until: tablet ) {
           flex-wrap: wrap;
 
           img {
@@ -257,7 +256,7 @@ blockquote.quote { font-style: italic; }
               }
             }
 
-            @include breakpoint($mobile-large-and-smaller) {
+            @include breakpoint( $until: tablet ) {
               width: 100%;
             }
           }

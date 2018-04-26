@@ -46,7 +46,7 @@ ul.links {
 
   // in the grid
   .grid & {
-    @include breakpoint( $mobile-large-and-smaller ) {
+    @include breakpoint( $until: tablet ) {
 
       // All the lists in single column => Remove the margins except from the last one.
       &:not(:last-child) { margin-bottom: 0; }
@@ -121,7 +121,7 @@ ul.links {
 
     }
 
-    @include breakpoint( $mobile ) {
+    @include bp-mobile {
       flex-wrap: wrap;
 
       .related-link {

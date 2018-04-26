@@ -152,7 +152,7 @@ $base-study-hub-colour--study: $green-light-brand;
 
       .button { margin-top: 2em; }
 
-      @include breakpoint ( $mobile-large-and-smaller) {
+      @include breakpoint( $until: tablet ) {
         float: none;
 
         h4 {
@@ -164,21 +164,21 @@ $base-study-hub-colour--study: $green-light-brand;
         p { display: inline-block; }
       }
 
-      @include breakpoint ( $desktop-large ) {
+      @include bp-desktop-large {
         margin-right: $four-grid-tile-margin;
         width: ( 100 - 3 * $four-grid-tile-margin ) / 4;
 
         &:nth-child( 4n ) { margin-right: 0; }
       }
 
-      @include breakpoint ( $desktop ) {
+      @include bp-desktop {
         margin-right: $three-grid-tile-margin;
         width: ( 100 - 2 * $three-grid-tile-margin ) / 3;
 
         &:nth-child( 3n ) { margin-right: 0; }
       }
 
-      @include breakpoint ( $tablet ) {
+      @include bp-tablet {
         margin-right: $two-grid-tile-margin;
         width: ( 100 - 1 * $two-grid-tile-margin ) / 2;
 
@@ -205,7 +205,7 @@ $base-study-hub-colour--study: $green-light-brand;
         }
       }
 
-      @include breakpoint( $desktop-large ) {
+      @include bp-desktop-large {
         li.tile {
           margin-right: $three-grid-tile-margin-hub;
           width: ( 100 - 2 * $three-grid-tile-margin-hub ) / 3;
@@ -236,7 +236,7 @@ $base-study-hub-colour--study: $green-light-brand;
             &:hover { border-color: transparent; }
           }
 
-          @include breakpoint ($desktop) {
+          @include bp-desktop {
             margin-right: 1%;
             width: ( 100 - 3 * 1%) / 4;
 
@@ -554,7 +554,7 @@ $base-study-hub-colour--study: $green-light-brand;
       display: flex;
       flex-wrap: wrap;
 
-      @include breakpoint($mobile-large-and-smaller) {
+      @include breakpoint( $until: tablet ) {
         flex-direction: column;
       }
     }
@@ -667,7 +667,7 @@ $base-study-hub-colour--study: $green-light-brand;
 
         &:hover { border: 0; }
 
-        @include breakpoint ( $desktop-large ) {
+        @include bp-desktop-large {
           margin-right: $three-grid-tile-margin-hub;
           width: ( 100 - 2 * $three-grid-tile-margin-hub ) / 3;
 

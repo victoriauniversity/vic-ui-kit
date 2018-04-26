@@ -46,7 +46,7 @@
         }
       }
 
-      @include breakpoint( $tablet-and-smaller ) {
+      @include breakpoint( $until: tablet ) {
         //@include span-columns( 8 );
 
         &.social-links { margin-top: 1.5rem; }
@@ -67,7 +67,7 @@
 
     .button-wrap { margin-top: 1rem; }
 
-    @include breakpoint( $tablet-and-bigger ) {
+    @include breakpoint( tablet ) {
       float: left;
       width: 100 / 3 * 1%;
     }
@@ -107,20 +107,20 @@
         }
       }
 
-      @include breakpoint( $tablet-and-bigger ) {
+      @include breakpoint( tablet ) {
         border-left: 2px solid $grey-alto;
       }
     }
   }
 
-  @include breakpoint( $tablet-and-bigger ) {
+  @include breakpoint( tablet ) {
     width: 100 / 3 * 2%;
 
     &:last-child { margin: 0 auto; }
     &:not(:last-child) { float: left; }
   }
 
-  @include breakpoint( $mobile-large-and-smaller ) {
+  @include breakpoint( $until: tablet ) {
     &:not(:last-child) {
       border-bottom: $border;
     }
@@ -129,7 +129,7 @@
 }
 
 
-@include breakpoint ($tablet-and-bigger) {
+@include breakpoint( tablet ) {
   .text-promo-panel.intro-promo {
     @include before( $position: absolute ) {
       @include size( 0, 100% );

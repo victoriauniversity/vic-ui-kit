@@ -1,5 +1,8 @@
 /** News overview (list of articles) */
 
+$media-landscape-dynamic-width: 35%;
+$media-portrait-dynamic-width:  25%;
+
 .news {
   time { display: block; }
 
@@ -10,28 +13,25 @@
     }
   }
 
-  @include breakpoint( $tablet-and-bigger ) {
+  @include breakpoint( tablet ) {
     // Has got `media` or another add-on
     .summary { overflow: hidden; }
 
-    //TODO: Remove grid
     .media {
-      //@include omega;
-      //@include span-columns( 4.5 of 12 );
       float: right;
       margin-left: $column-padding;
+      width: $media-landscape-dynamic-width;
 
       // Image with portrait-like width to height ratio
       &.portrait {
-        //@include omega;
-        //@include span-columns( 3 of 12 );
         float: right;
+        width: $media-portrait-dynamic-width;
         text-align: right;
       }
     }
   }
 
-  @include breakpoint( $mobile-large-and-smaller ) {
+  @include breakpoint( $until: tablet ) {
     .media { margin-bottom: 1em; }
   }
 }
@@ -55,7 +55,7 @@
       }
     }
 
-    @include breakpoint( $desktop-and-bigger ) {
+    @include breakpoint( desktop ) {
       display: flex;
       flex-wrap: wrap;
 

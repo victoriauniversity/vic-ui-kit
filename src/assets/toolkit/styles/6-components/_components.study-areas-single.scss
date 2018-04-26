@@ -62,7 +62,7 @@ $gutter: 8px;
             }
           }
 
-          @include breakpoint( $tablet-and-smaller ) {
+          @include breakpoint( $until: desktop ) {
             //@include span-columns( 8 );
           }
         }
@@ -71,7 +71,7 @@ $gutter: 8px;
       a.button { float: left; }
     }
 
-    @include breakpoint ( $tablet-and-bigger ) {
+    @include breakpoint( tablet ) {
       .content-wrap {
         .text-subjects-wrap {
           display: inline;
@@ -83,7 +83,7 @@ $gutter: 8px;
       }
     }
 
-    @include breakpoint ( $tablet-and-smaller ) {
+    @include breakpoint( $until: desktop ) {
       .content-wrap .text-subjects-wrap {
         .text-wrap,
         .subjects-wrap {
@@ -92,7 +92,7 @@ $gutter: 8px;
       }
     }
 
-    @include breakpoint ( $mobile-large-and-smaller ) {
+    @include breakpoint( $until: tablet  ) {
       .img-wrap { display: none; }
 
       .content-wrap {

@@ -17,12 +17,12 @@ $promo-max-width:   60em;
 .promo-panel {
   @include clearfix();
 
-  @include breakpoint($tablet-and-bigger) {
+  @include breakpoint( tablet ) {
       background: $banner-background;
       position:relative;
       overflow:hidden;
   } //media desktop
-  @include breakpoint($mobile-large-and-smaller ) {
+  @include breakpoint( $until: tablet ) {
       border-top: 3px solid $banner-background;
       border-bottom: 3px solid $banner-background;
       &+.promo-panel {
@@ -51,7 +51,7 @@ $promo-max-width:   60em;
       figure {
           border: 1px solid $grey-gallery;
 
-          @include breakpoint($mobile-large-and-smaller ) {
+          @include breakpoint( $until: tablet ) {
               border: none;
           }
 
@@ -76,14 +76,14 @@ $promo-max-width:   60em;
       figcaption {
           padding-bottom: $base-spacing;
       }
-      @include breakpoint($mobile-large-and-smaller ) {
+      @include breakpoint( $until: tablet ) {
           figcaption {
               h1 {
                   margin-top: 0.5em;
               }
           }
       }
-      @include breakpoint( $tablet-and-bigger) {
+      @include breakpoint( tablet ) {
           box-shadow: $shadow-shallow;
           display: flex;
           align-items: center;
@@ -199,7 +199,7 @@ $promo-max-width:   60em;
                       }
                   }
 
-                  @include breakpoint($mobile-large-and-smaller ) {
+                  @include breakpoint( $until: tablet ) {
 
                       > div {
                           max-width: 100%;
@@ -227,7 +227,7 @@ $promo-max-width:   60em;
 
               }
 
-              @include breakpoint($desktop-and-smaller) {
+              @include breakpoint( $until: desktop-large ) {
 
                   figcaption {
                       > div {
@@ -338,7 +338,7 @@ $promo-max-width:   60em;
 
       }
 
-      @include breakpoint($mobile-large-and-smaller ) {
+      @include breakpoint( $until: tablet ) {
           > div {
               flex-wrap: wrap;
           }
@@ -376,7 +376,7 @@ $promo-max-width:   60em;
                   padding: $base-spacing * 1.5;
                   box-shadow: none;
 
-                  @include breakpoint($mobile-large-and-smaller ) {
+                  @include breakpoint( $until: tablet ) {
                       //@include span-columns( 12 of 12,                           block-collapse);
                       padding: 0 0 $base-spacing 0;
                   }
@@ -403,7 +403,7 @@ $promo-max-width:   60em;
                           bottom: 1rem;
                       }
                   }
-                   @include breakpoint($mobile-large-and-smaller ) {
+                   @include breakpoint( $until: tablet ) {
                       //@include span-columns( 12 of 12,                           block-collapse);
 
                       figcaption {
@@ -423,7 +423,7 @@ $promo-max-width:   60em;
           display: flex;
 
 
-          @include breakpoint($mobile-large-and-smaller) {
+          @include breakpoint( $until: tablet ) {
               flex-direction: column;
 
               >:first-child,
@@ -441,7 +441,7 @@ $promo-max-width:   60em;
                   align-items: center;
                   justify-content: space-around;
 
-                  @include breakpoint($tablet-and-smaller) {
+                  @include breakpoint( $until: desktop ) {
                       flex-direction: column;
 
                       figcaption:first-child {
@@ -460,7 +460,7 @@ $promo-max-width:   60em;
                   width: 100 / 3 * 1%;
               }
 
-              @include breakpoint($mobile-large-and-smaller) {
+              @include breakpoint( $until: tablet ) {
 
                   >:first-child,
                   >:last-child {
@@ -543,7 +543,7 @@ $promo-max-width:   60em;
           }
       }
 
-      @include breakpoint( $tablet-and-smaller) {
+      @include breakpoint( $until: desktop ) {
 
           > div {
               align-items: stretch;
@@ -572,7 +572,7 @@ $promo-max-width:   60em;
           }
       }
 
-      @include breakpoint( $mobile-large-and-smaller) {
+      @include breakpoint( $until: tablet ) {
 
           > div {
               flex-direction: column;
@@ -606,14 +606,14 @@ border-bottom: $border;
 
 .text-wrap {
   // font-size: 1.125em;
-  @include breakpoint( $tablet-and-bigger) {
+  @include breakpoint( tablet ) {
       //@include span-columns(6 of 8);
   }
 }
 
 .button-wrap {
   margin-top: 2.5em;
-  @include breakpoint( $tablet-and-bigger) {
+  @include breakpoint( tablet ) {
     //@include span-columns(2 of 8);
   }
 }

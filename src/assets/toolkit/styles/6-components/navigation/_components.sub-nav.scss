@@ -32,17 +32,17 @@
               transition: all .5s ease;
             }
 
-            @include breakpoint( $desktop-and-bigger ) {
+            @include breakpoint( desktop ) {
               padding: .5em 1.2em;
             }
 
-            @include breakpoint( $tablet-and-smaller ) {
+            @include breakpoint( $until: desktop ) {
               font-size: 1.2em;
             }
           }
         }
 
-        @include breakpoint( $tablet-and-smaller ) {
+        @include breakpoint( $until: desktop ) {
           justify-content: flex-start;
           flex-wrap: wrap;
 
@@ -91,7 +91,7 @@
                     transform: translateY(-50%);
                     left: .7rem;
 
-                    @include breakpoint($desktop) {
+                    @include bp-desktop {
                       left: 5%;
                     }
                   }
@@ -103,7 +103,7 @@
             }
           }
 
-          @include breakpoint($tablet-and-smaller) {
+          @include breakpoint( $until: desktop ) {
             margin: 0;
 
             > li {
@@ -120,19 +120,18 @@
             }
           }
 
-          @include breakpoint($desktop-and-bigger) {
+          @include breakpoint( desktop ) {
             > li {
               a {
                 // fixes border-radius rogue pixel;
                 background-clip: padding-box;
-
               }
             }
           }
         }
       }
 
-      @include breakpoint($tablet) {
+      @include bp-tablet {
         margin-top: 0;
       }
     }

@@ -15,7 +15,7 @@
   @include clearfix;
 }
 
-@include breakpoint( $tablet ) {
+@include bp-tablet {
   // Main content *ONLY* - 3 items in a row
   .content-panel:first-child > main:last-child {
     .grid > * {
@@ -33,7 +33,7 @@
   }
 }
 
-@include breakpoint( $tablet-and-bigger ) {
+@include breakpoint( tablet ) {
 
   // Main content with Widgetbar/Sidebar - 3 items in a row
   .content-panel:not(:first-child) > main:last-child {
@@ -52,7 +52,7 @@
   }
 }
 
-@include breakpoint( $desktop-and-bigger ) {
+@include breakpoint( desktop ) {
 
   // Main content *ONLY* - 4 items in a row
   .content-panel:first-child > main:last-child {
@@ -83,7 +83,7 @@
       .grid > * {
 
         //TODO: FIX
-        @include breakpoint( $tablet-and-bigger ) {
+        @include breakpoint( tablet ) {
           //@include span-columns( 4 of 12);
           //@include omega( 3n);
         }

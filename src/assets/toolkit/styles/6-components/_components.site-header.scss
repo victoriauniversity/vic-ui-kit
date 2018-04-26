@@ -80,12 +80,12 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
           &:hover { opacity: $base-hover-opacity; }
         }
 
-        @include breakpoint( $tablet-and-bigger ) {
+        @include breakpoint( desktop-large ) {
           font-size: 2vw;
           font-weight: $weight-medium;
         }
 
-        @include breakpoint( $desktop-and-smaller ) {
+        @include breakpoint( $until: desktop-large ) {
           font-size: 2.5vw;
         }
 
@@ -103,8 +103,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
       }
     }
 
-    @include breakpoint( $desktop-large ) {
-      //@include span-columns( 10 of 12, table );
+    @include breakpoint( desktop-large ) {
       display: flex;
     }
   }
@@ -166,7 +165,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
   }
 
 
-  @include breakpoint( $tablet-and-bigger ) {
+  @include breakpoint( tablet ) {
     .block {
       display: flex;
       width: 100%;
@@ -174,7 +173,8 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
     }
 
     .site-intro {
-      //@include span-columns( 9 of 12 );
+      float: left;
+      width: 75%;
       padding: .3rem $column-padding .5rem $column-padding * 1.5;
     }
 
@@ -195,7 +195,8 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
     }
 
     .logo {
-      //@include span-columns( 3 of 12 );
+      float: left;
+      width: 25%;
 
       padding: .1rem $column-padding * 1.5 .1rem $column-padding;
       border-right: 1px solid $black-emperor;
@@ -203,7 +204,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 
   }
 
-  @include breakpoint( $tablet-and-smaller ) {
+  @include breakpoint( $until: desktop ) {
     .menu-bar {
       .search-item {
         position: absolute;
@@ -212,7 +213,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
     }
   }
 
-  @include breakpoint( $mobile-large-and-smaller ) {
+  @include breakpoint( $until: tablet ) {
     .block {
       // @include flex-direction(column);
       justify-content: space-between;
@@ -269,11 +270,11 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
       }
     }
 
-      .logo { 
-        display: none; 
+      .logo {
+        display: none;
         width: 12rem;
       }
-    
+
     .site-intro {
       padding-right: 0;
       padding-left: 0;
@@ -362,7 +363,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 
       .logo {
 
-        @include breakpoint($tablet-and-bigger) {
+        @include breakpoint( tablet ) {
           width: 20%;
           margin-right: 0;
         }
@@ -379,15 +380,11 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
               a {
                 padding: 0 $base-spacing/2.5;
 
-                @include breakpoint( $tablet-and-bigger ) {
+                @include breakpoint( tablet ) {
                   font-size: 1.1rem;
                 }
 
-                @include breakpoint( $desktop-and-smaller ) {
-                  // font-size: 1.4vw;
-                }
-
-                @include breakpoint( $mobile-large-and-smaller ) {
+                @include breakpoint( $until: tablet ) {
                   font-size: 1.2rem;
                   padding: 1rem 1.5rem;
                 }

@@ -6,7 +6,7 @@
   // Floats a medium into right on devices with higher resolution
   &.inline {
 
-    @include breakpoint( $tablet-and-bigger ) {
+    @include breakpoint( tablet ) {
       float: right;
       margin: 0 0 0 $base-spacing;
       width: $media-inline-width;
@@ -82,7 +82,7 @@
 
       p { margin-bottom: 1.3em; }
 
-      @include breakpoint( $tablet-and-bigger ) {
+      @include breakpoint( tablet ) {
         position: absolute;
         top: $base-spacing;
         left: $base-spacing;
@@ -109,7 +109,7 @@
     left: 0;
   }
 
-  @include breakpoint( $tablet-and-bigger ) {
+  @include breakpoint( tablet ) {
     &.inline { padding-bottom: 22.5%; }
   }
 }
@@ -120,7 +120,7 @@
 $gallery-image-height: 13.75rem;
 
 
-@include breakpoint( $tablet-and-bigger ) {
+@include breakpoint( tablet ) {
   .gallery {
     @include clearfix;
     margin-bottom: $base-spacing;
@@ -180,7 +180,7 @@ $gallery-image-height: 13.75rem;
 
       h4 { opacity: .9; }
 
-      @include breakpoint( $tablet-and-smaller ) {
+      @include breakpoint( $until: desktop ) {
         max-width: 85%;
       }
     }
@@ -215,7 +215,7 @@ $gallery-image-height: 13.75rem;
         }
 
         //TODO: Refactor the depth and flatten!
-        @include breakpoint( $mobile-large-and-smaller ) {
+        @include breakpoint( $until: tablet ) {
           img {
             margin-right: 0;
             margin-bottom: 0;
@@ -243,7 +243,7 @@ $gallery-image-height: 13.75rem;
       .gallery-title {
         max-width: 45%;
 
-        @include breakpoint( $tablet-and-smaller ) {
+        @include breakpoint( $until: desktop ) {
           max-width: 85%;
         }
       }

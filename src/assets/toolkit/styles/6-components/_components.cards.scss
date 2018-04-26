@@ -55,7 +55,7 @@ $card-shadow:  0 1px 5px rgba( #000, .15 );
         padding-right: 2.5em;
         width: 50%;
 
-        @include breakpoint( $tablet-and-smaller ) {
+        @include breakpoint( $until: desktop ) {
           padding-right: 0;
         }
       }
@@ -80,7 +80,7 @@ $card-shadow:  0 1px 5px rgba( #000, .15 );
         }
       }
 
-      @include breakpoint( $mobile-large-and-smaller ) {
+      @include breakpoint( $until: tablet ) {
         margin-bottom: 0;
         flex-direction: column;
 
@@ -121,7 +121,7 @@ $card-shadow:  0 1px 5px rgba( #000, .15 );
     }
   }
 
-  @include breakpoint( $mobile-large-and-smaller ) {
+  @include breakpoint( $until: tablet ) {
     flex-direction: column;
 
     .card {
@@ -133,7 +133,7 @@ $card-shadow:  0 1px 5px rgba( #000, .15 );
     }
   }
 
-  @include breakpoint( $tablet-and-smaller ) {
+  @include breakpoint( $until: desktop ) {
     .card {
       .button {
         &:first-of-type {
@@ -192,7 +192,7 @@ $card-shadow:  0 1px 5px rgba( #000, .15 );
 
 					@include size( $portrait-width, auto );
 
-					@include breakpoint( $tablet-and-smaller ) {
+					@include breakpoint( $until: desktop ) {
 						width: 20%;
 					}
 				}
@@ -229,11 +229,6 @@ $card-shadow:  0 1px 5px rgba( #000, .15 );
 			address {
 				font-size: .8rem;
 			}
-
-			.tag {
-				// border: none;
-			}
-
 		}
 
 	}

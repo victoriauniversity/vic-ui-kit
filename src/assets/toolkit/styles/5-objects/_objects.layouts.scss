@@ -56,11 +56,11 @@
   }
 
   /* IE10+ fix for tablet and smaller where layout has white space below */
-  @include bp( $until: desktop, $and: '( -ms-high-contrast: none ), ( -ms-high-contrast: active )' ) {
+  @include breakpoint( $until: desktop, $and: '( -ms-high-contrast: none ), ( -ms-high-contrast: active )' ) {
     height: 100%;
   }
 
-  @include bp( $until: desktop ) {
+  @include breakpoint( $until: desktop ) {
     &.block {
       @include paddings-horizontal( 0 );
     }
@@ -121,7 +121,7 @@
 
 
 
-  @include bp( tablet ) {
+  @include breakpoint( tablet ) {
     /** 1st Content bar + 2nd widgets bar */
     $widgetbar-width: 25%; // Out of the content-panel
     $content-width:   100% - $widgetbar-width;
@@ -147,7 +147,7 @@
   position: relative;
 }
 
-@include bp( desktop ) {
+@include breakpoint( desktop ) {
   /** 1st Left sidebar + Main content panel 2nd*/
   $sidebar-fallback-width:       20%;
   $sidebar-max-width:            17rem; // Stops expanding at this level
@@ -187,6 +187,46 @@
       > .block { padding-right: 0; }
     }
   }
+}
+
+
+
+
+
+/*= COLUMN-BASED LAYOUTS =====================================================*/
+
+
+@include breakpoint( desktop ) {
+  .two-columns {
+    // Columns split by a divider line
+    &.divider-line {
+      position: relative;
+
+      @include before( $position: absolute ) {
+        @include size( 0, 100% );
+        top: 0;
+        left: calc( 50% - #{ $border-width-thick / 2 } );
+        border-left: $border-width-thick solid $border-color-light;
+      }
+    }
+
+    .column {
+      @include column( 2, $gap-larger );
+    }
+  }
+}
+
+
+
+
+
+/*= SUB-LAYOUT CONTAINERS ====================================================*/
+
+
+// A panel should hold boxes with white background and shadows.
+.panel {
+  padding:          $gap-larger $gap;
+  background-color: $background-light;
 }
 
 

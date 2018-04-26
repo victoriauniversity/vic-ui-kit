@@ -4,16 +4,16 @@ $global-panel-hover-color: #BBB;
 $global-panel-text-color:  $text-color;
 
 //gradient (expected transparent -> bgcolor) on an element hinting it overlays something
-$overlay-hint-size:      50px;
-$overlay-hint-offset:    5px; // Can be a negative number as long as ($OH-size + $OH-offset) > 0
+$overlay-hint-size:      3rem;
+$overlay-hint-offset:    .4rem; // Can be a negative number as long as ($OH-size + $OH-offset) > 0
 $overlay-padding-offset: 3.8rem;
 
 
-@include breakpoint( $mobile-large-and-smaller ) {
+@include breakpoint( $until: tablet ) {
   .hide-on-mobile { display: none !important; }
 }
 
-@include breakpoint( $tablet-and-bigger ) {
+@include breakpoint( tablet ) {
   .hide-on-desktop { display: none !important; }
 }
 
@@ -23,28 +23,19 @@ $overlay-padding-offset: 3.8rem;
   position:      relative;
   background:    $black-brand;
   border-bottom: 1px solid rgba( $black, .15 );
-
-  .logo-mini {
-    @include clearfix();
-    height: 1.6rem;
-  }
-}
-
-//TODO: Should be calculated dynamically by JS
-.site-header {
-  @include breakpoint( $mobile-large-and-smaller ) {
-    padding-top: $overlay-padding-offset;
-  }
 }
 
 .global {
   font-weight: $weight-normal;
 
+  @include breakpoint( tablet ) {
+    background-color: $global-panel-color;
+  }
+
   .menu a {
     font-family: $heading-family;
     line-height: 1.85;
 
-    //TODO: Refactor
     &.home,
     &.back {
       line-height: 1.7;
@@ -55,17 +46,29 @@ $overlay-padding-offset: 3.8rem;
     }
   }
 
-  //TODO: Is this deprecated?
+  // Top panel for mobile devices *only*!
   .horisontal-links {
-    @include clearfix();
+    @include clearfix;
+    display: flex;
+    align-items: stretch;
+
+    &.menu-toggle > a {
+      padding-top: $gap-third * 2;
+      padding-bottom: $gap-third * 2;
+    }
 
     > a {
-      float: left;
+      @include column( 2 );
+      display: flex;
+      align-items: center;
       margin: 0;
-      padding: $base-spacing / 2 $base-spacing;
-      width: 50%;
+      padding: $gap-half;
       border-bottom: 0;
+
+      &:not(:first-child) { justify-content: flex-end; }
     }
+
+    &.align-center > a { justify-content: center; }
   }
 
   @include icon-selector() {
@@ -73,7 +76,7 @@ $overlay-padding-offset: 3.8rem;
       margin-right: 0;
       margin-left: 0;
 
-      @include breakpoint( $mobile-large-and-smaller ) {
+      @include breakpoint( $until: tablet ) {
         margin-right: .5rem;
         line-height: 1;
       }
@@ -114,20 +117,24 @@ $overlay-padding-offset: 3.8rem;
       }
     }
 
-    @include breakpoint( $mobile-large-and-smaller ) {
-      z-index: 100;
-      position: fixed;
-      top:0;
-      right: 0;
-      left: 0;
-      padding: $base-spacing / 2 $base-spacing;
-      height: $overlay-padding-offset;
+    @include breakpoint( $until: tablet ) {
+      z-index: $z-index-top;
+      padding: $gap-half;
+      border-bottom: 1px solid rgba( $black, .15 );
+
+      .input-wrapper input {
+        padding-top: $gap-content / 2;
+        padding-bottom: $gap-content / 2;
+
+        &[type=text] {
+          &::placeholder {
+            color: $grey-chalice;
+          }
+        }
+      }
     }
 
-    @include breakpoint( $tablet-and-bigger ) {
-      background: $global-panel-color;
-      box-shadow: 0 1px 8px rgba( #000, .35 );
-
+    @include breakpoint( tablet ) {
       .input-wrapper {
         padding-right: 2.5rem;
         padding-left: $overlay-hint-size + $overlay-hint-offset;
@@ -140,8 +147,9 @@ $overlay-padding-offset: 3.8rem;
         transform: translateX( 100% );
 
         input {
-          background: $global-panel-hover-color;
-          color: $global-panel-text-color;
+          line-height: 1.5;
+          background:  $global-panel-hover-color;
+          color:       $global-panel-text-color;
         }
 
         &.is-open {
@@ -159,11 +167,11 @@ $overlay-padding-offset: 3.8rem;
 
   }
 
-  @include breakpoint( $tablet-and-smaller ) {
+  @include breakpoint( $until: desktop ) {
     padding: 0;
   }
 
-  @include breakpoint( $mobile-large-and-smaller ) {
+  @include breakpoint( $until: tablet ) {
     .button-container {
       position: absolute;
       top: 0;
@@ -188,15 +196,31 @@ $overlay-padding-offset: 3.8rem;
     }
 
     .menu {
-      overflow-y: scroll;
-      background: $green-brand;
-      max-height: 75vh;
+      overflow: hidden;
+      height: 0;
       will-change: transform;
       transition: transform $transition-timeout ease-in-out;
       transform: translateY( -100vh );
+      background: $green-brand;
+
+      .horisontal-links > a + a {
+        border-left: 1px solid rgba( #000, .15 );
+      }
     }
 
-    &.is-open .menu { transform: translateY( 0 ); }
+    &.is-open {
+      background: $black-brand;
+
+      .menu {
+        transform: translateY( 0 );
+        height: auto;
+        max-height: 75vh;
+      }
+
+      .search {
+        font-size: $text-size-huge;
+      }
+    }
 
     a {
       @include menu-item();
@@ -206,7 +230,7 @@ $overlay-padding-offset: 3.8rem;
     .mobile { display: block; }
   }
 
-  @include breakpoint( $tablet-and-bigger ) {
+  @include breakpoint( tablet ) {
     .mobile,
     .site,
     .menu-toggle {
@@ -214,9 +238,10 @@ $overlay-padding-offset: 3.8rem;
     }
 
     nav {
-      @include grid-container;
+      @include clearfix;
       position: relative;
-      max-width: 100%;
+      max-width: $centered-max-width;
+      margin: 0 auto;
 
       .search {
         z-index: $z-index-lower;
@@ -226,6 +251,7 @@ $overlay-padding-offset: 3.8rem;
         right: 0;
         bottom: 0;
 
+        // Search icon
         a {
           z-index: $z-index-lower;
           position: absolute;
@@ -233,12 +259,14 @@ $overlay-padding-offset: 3.8rem;
           padding-right: 0;
           padding-left: 0;
           width: 2.5rem;
-          font-size: 85%;
           text-align: center;
         }
 
-        // Transformation icon
-        .tcon { margin-top: .3rem; }
+        // Transformation search icon
+        .tcon {
+          font-size: 80%;
+          margin-top: .3rem;
+        }
       }
 
       a {

@@ -39,7 +39,7 @@
 		}
 
 
-		@include breakpoint( $mobile-large-and-smaller ) {
+		@include breakpoint( $until: tablet ) {
 
 			border-top: none;
 			border-bottom: none;
@@ -62,7 +62,7 @@
 			}
 		}
 
-		@include breakpoint($tablet-and-smaller ) {
+		@include breakpoint( $until: desktop ) {
 			height: 100%;
 			figure {
 
@@ -83,15 +83,7 @@
 			}
 		}
 
-		@include breakpoint($tablet-and-bigger) {
-			figure.photo {
-				figcaption {
-					// margin-top: 10%;
-				}
-			}
-		}
-
-		@include breakpoint( $desktop-and-bigger ) {
+		@include breakpoint( desktop ) {
 			border-bottom: 5px solid $green-brand;
 
 			figure {
@@ -103,7 +95,7 @@
 				}
 			}
 		}
-		@include breakpoint( $desktop ) {
+		@include bp-desktop {
 			figure {
 
 				figcaption {
@@ -111,7 +103,7 @@
 				}
 			}
 		}
-		@include breakpoint( $tablet ) {
+		@include bp-tablet {
 			figure {
 				padding-bottom: 1rem;
 			}
