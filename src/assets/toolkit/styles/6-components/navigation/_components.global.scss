@@ -26,6 +26,7 @@ $overlay-padding-offset: 3.8rem;
 }
 
 .global {
+  width: 100%;
   font-weight: $weight-normal;
 
   @include breakpoint( tablet ) {
@@ -212,9 +213,10 @@ $overlay-padding-offset: 3.8rem;
       background: $black-brand;
 
       .menu {
-        transform: translateY( 0 );
+        overflow-y: auto;
         height: auto;
         max-height: 75vh;
+        transform: translateY( 0 );
       }
 
       .search {
@@ -240,8 +242,8 @@ $overlay-padding-offset: 3.8rem;
     nav {
       @include clearfix;
       position: relative;
-      max-width: $centered-max-width;
       margin: 0 auto;
+      max-width: $centered-max-width;
 
       .search {
         z-index: $z-index-lower;
@@ -264,8 +266,8 @@ $overlay-padding-offset: 3.8rem;
 
         // Transformation search icon
         .tcon {
-          font-size: 80%;
           margin-top: .3rem;
+          font-size: 80%;
         }
       }
 
@@ -297,3 +299,62 @@ $overlay-padding-offset: 3.8rem;
 
   }
 }
+
+
+
+
+
+/*= STICKY TOP HEADER ========================================================*/
+
+
+@include keyframe-slide-up;
+@include keyframe-slide-down;
+
+
+@include breakpoint( $until: tablet ) {
+  .global {
+    &.sticky {
+      z-index: $z-index-top;
+      position: fixed;
+      background: $black-brand;
+      will-change: transform;
+      animation-fill-mode: both;
+      animation-duration: .25s;
+
+      &.no-top,
+      &.is-open {
+        box-shadow: $shadow-shallow;
+      }
+
+      + .site-header {
+        padding-top: 3.65rem; // Approximate height of the header + menu
+      }
+
+      &.is-open {
+        + .site-header {
+          @include after() {
+            @include size( 100% );
+            z-index: $z-index-top - 1;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: $backgroud-overlay-dark;
+          };
+        }
+      }
+
+      &.slide-down {
+        animation-name: slideDown;
+      }
+
+      &.slide-up {
+        animation-name: slideUp;
+      }
+    }
+  }
+}
+
+
+

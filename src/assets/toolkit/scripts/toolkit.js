@@ -20,7 +20,7 @@
   /* CONSTANT ATTRIBUTES */
 
   var TRANSITION_TIMEOUT       = 200; //update in _settings.variables.scss(135)
-  var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 43.6875em)', //update in _settings.responsive.scss(57)
+  var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 42.99em)', //update in _settings.responsive.scss(57)
 
   // Iframe selectors
   YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
@@ -331,9 +331,9 @@
 $(function(){
 
 	fastclick.attach(document.body);
-	var $body = $('body');
-	var $globalNav = $("#global-nav");
-  var $globalSearch = $("#global-search");
+	var $body          = $( 'body' );
+	var $globalNav     = $( '#global-nav' );
+  var $globalSearch = $('#global-search' );
 
   /** Init side-menu, if it's present */
   if ( $( '.' + SIDEMENU_CLASS ).length ) {
@@ -367,51 +367,96 @@ $(function(){
   // addGtmTrackingListeners( jQueryElements, trackingId, eventType );
 
 
+  //http://wicky.nillia.ms/enquire.js/
+  //TODO: Refactor and extract to its own library
+	enquire.register( MOBILE_LARGE_AND_SMALLER, function() {
 
-	//http://wicky.nillia.ms/enquire.js/
-	enquire.register(MOBILE_LARGE_AND_SMALLER, function() {
+		if ( $globalNav.length ) {
+      const eGlobalNav      = $globalNav[0],
+      bannerHeaderElement = $( '.site-header' ),
+      sidemenu            = $( '.sidemenu' );
 
-		if ($globalNav.length) {
-			var eGlobalNav = $globalNav[0];
-			var headroom  = new Headroom(eGlobalNav, {
-			  "offset": eGlobalNav.clientHeight,
-			  "tolerance": {
-			  	up: 20,
-			  	down: 5
-			  },
-			  onPin: function (){
-			  	//reset in-menu scrolling
-			  	$globalNav.find('.menu').scrollTop(0);
-			  },
-			  onUnpin: function (){
-			  	$globalNav.toggleClass('is-open', false);
-			  	$globalNav.find('.tcon').toggleClass('tcon-transform', false);
-			  }
+			const headroom  = new Headroom( eGlobalNav, {
 
-			});
-			headroom.init();
+			  'offset':    $globalNav.outerHeight(),
+        // or scroll tolerance per direction
+        tolerance : {
+          down: 5,
+          up:   20,
+        },
+        'classes': {
+          'initial':  'sticky',
+          'pinned':   'slide-down',
+          'unpinned': 'slide-up',
+          'notTop':   'no-top'
+        },
+      });
 
-			$body.on('click ', '.js-toggle-global-nav', function(_event){
-				var $this = $(this);
-				$this.find('.tcon').toggleClass('tcon-transform');
-				$globalNav.toggleClass('is-open');
+      headroom.init();
+
+      const disableHeadroom = () => {
+        if(headroom){
+          headroom.scroller.removeEventListener('scroll', headroom.debouncer, false);
+        }
+      };
+
+      const enableHeadroom = () => {
+        if(headroom){
+          headroom.scroller.addEventListener('scroll', headroom.debouncer, false);
+        }
+      };
+
+      const removeMenuOutClickListener = () => {
+        document.removeEventListener( 'click', menuOutsideClickListener );
+      };
+
+      const registerMenuOutClickListener = () => {
+        document.addEventListener( 'click', menuOutsideClickListener );
+      };
+
+      const toggleMobileMenu = () => {
+				$globalNav.find('.tcon').toggleClass('tcon-transform');
+        $globalNav.toggleClass( 'is-open' );
+
+        if ( !headroom ) return;
+
+        if ( $globalNav.hasClass( 'is-open' ) ){
+          disableHeadroom();
+          $body.addClass( 'unscrollable' );
+          registerMenuOutClickListener();
+        } else {
+          enableHeadroom();
+          $body.removeClass( 'unscrollable' );
+          removeMenuOutClickListener();
+        }
+      };
+
+      function menuOutsideClickListener( event ) {
+        if (!$(event.target).closest( '#global-nav' ).length) {
+          toggleMobileMenu();
+        }
+      };
+
+			$body.on( 'click ', '.js-toggle-global-nav', function( _event ){
+        toggleMobileMenu();
 			});
 		}
 
 	});
 
 
+  // Opens/closes global search bar & gains auto-focus
 	$body.on('click ', '.js-toggle-global-search', function(_event){
 		var $this = $(this);
 
 		if ($this.data('js-has-active-transition')) {
 			return false;
-		}
+    }
 
 		$this.data('js-has-active-transition', true);
 		$this.find('.tcon').toggleClass('tcon-transform');
 
-		if ($globalSearch.hasClass('is-open')) {
+		if ( $globalSearch.hasClass('is-open') ) {
 			$globalSearch.toggleClass('is-open', false);
 			setTimeout(function(){
 				$this.data('js-has-active-transition', false);
@@ -422,8 +467,8 @@ $(function(){
 				$globalSearch.find('input:text').focus();
 				$this.data('js-has-active-transition', false);
 			}, TRANSITION_TIMEOUT);
-		}
-		// $globalSearch.velocity({'left': '85%'}, { duration: 1500 });
+    }
+
 		_event.preventDefault();
 	});
 
