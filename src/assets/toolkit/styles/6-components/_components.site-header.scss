@@ -58,27 +58,29 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 
       a {
         display: block;
-        margin: 0 0 .35em;
+        margin: 0;
         padding: 0 $base-spacing / 1.5;
         color: $white;
         border-bottom: 0;
         line-height: 1.2;
         text-transform: capitalize;
 
-        &.experience,
-        &.study,
-        &.about,
-        &.research,
-        & {
-          &.active {
-            border-bottom: 2px solid $white;
+        &.active {
+          position: relative;
 
-            // TODO: Refactor & flatten to lower the depth!
-            &:hover { border-bottom: 2px solid $grey-silver; }
+          // TODO: Refactor & flatten to lower the depth!
+          @include after() {
+            @include scalable-rectangle-horizontal( 100%, $border-width-medium, $white );
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            margin: 0 0 $bleed-half $bleed-horizontal / 2;
           }
 
-          &:hover { opacity: $base-hover-opacity; }
+          &:hover::after { border-color: $grey-silver; }
         }
+
+        &:hover { opacity: $base-hover-opacity; }
 
         @include breakpoint( desktop-large ) {
           font-size: 2vw;
@@ -94,11 +96,13 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
     }
 
     &.sub-nav {
+      margin-bottom: $gap-small;
+
       a {
         margin-bottom: 0;
-        padding: 0 $base-spacing / 1.5;
-        font-size: .8rem;
-        color: $grey-silver;
+        padding: 0 $gap-horizontal 0 0;
+        font-size: $text-size-tiny;
+        color: $text-light-weaker-color;
         text-transform: uppercase;
       }
     }
@@ -371,6 +375,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 
       nav.menu-container {
         flex: 1 0 80%;
+        padding-left: $gap-half;
 
         .horizontal-menu {
           width: 100%;
@@ -378,7 +383,8 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
           &.main-nav {
             .menu-bar {
               a {
-                padding: 0 $base-spacing/2.5;
+                padding: $gap-tiny $gap-horizontal $gap-tiny 0;
+                margin-bottom: $gap-small;
 
                 @include breakpoint( tablet ) {
                   font-size: 1.1rem;

@@ -1,19 +1,37 @@
-/*=========================================
-=            GRID SYSTEM CONFIGURATIONS           =
-=========================================*/
+/*============================================================================*\
+| GRID SYSTEMS' PROPERTIES
+\*============================================================================*/
 
-// TODO: Migrate to newest Neat AND Bourbon
-
-/*******************************************************************************
-
-  Neat's documentation: http://thoughtbot.github.io/neat-docs/latest/
-
-*******************************************************************************/
+////
+/// Settings for various grid systems.
+///
+/// @group Name
 
 
-/** Define settings that will be used by default */
 
-$grid: (
+
+
+/*= BOURBON-NEAT GRID ========================================================*/
+
+
+/// @link http://thoughtbot.github.io/neat-docs/latest/
+
+$neat-grid: (
   'columns': 12,
-  'gutter':  0,
-);
+  'gutter':  $gap-horizontal,
+) !default;
+
+@mixin grid-doubles() {
+  @include grid-column( 6, $neat-grid );
+}
+
+@mixin grid-triples() {
+  @include grid-column( 4, $neat-grid );
+}
+
+@mixin grid-quadruples() {
+  @include grid-column( 3, $neat-grid );
+}
+
+
+

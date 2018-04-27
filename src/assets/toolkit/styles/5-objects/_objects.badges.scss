@@ -1,29 +1,43 @@
+/*============================================================================*\
+| BADGES & LABELS
+\*============================================================================*/
+
+////
+/// Small atomic tags that can be added to any element.
+///
+/// @group atoms
+
 
 // File extensions colour variations
-$color-bg-pdf:   $red-oyster-pink;
-$color-bg-excel: $green-tara;
-$color-bg-word:  #DBE6F3;
-$color-bg-mp3:   $yellow-pearl-lusta;
-$color-bg-ppt:   #FFD5B7;
-$color-bg-file:  $grey-gallery;
+$color-bg-pdf:   lighten( $red-roof-terratcotta, 55% );
+$color-bg-word:  lighten( $blue-callypso, 58% );
+$color-bg-excel: lighten( $green-killarney, 60% );
+$color-bg-mp3:   lighten( $yellow-cinamon, 65% );
+$color-bg-ppt:   lighten( $orange-charcoal, 50% );
+$color-bg-file:  $grey-alto;
 
-$color-text-pdf:   $red-oyster-pink;
-$color-text-excel: $green-killarney;
+$color-text-pdf:   $red-tamarillo;
 $color-text-word:  $blue-callypso;
+$color-text-excel: $green-killarney;
 $color-text-mp3:   $yellow-cinamon;
-$color-text-ppt:   #A35D2B;
-$color-text-file:  $grey-dove;
+$color-text-file:  $text-weaker-color;
+$color-text-ppt:   $orange-charcoal;
 
 
 .label {
+  overflow: hidden;
+  position: relative;
+  top: -.1em;
   display: inline-block;
-  margin-right: .5em;
-  line-height: 1;
+  margin-right: $gap-third;
   vertical-align: middle;
-  font-size: 75%;
+  line-height: 1;
+  border-radius: $radius-small;
+  font-size: 80%;
   text-transform: uppercase;
-  background: $grey-alto;
+  background: $background-light;
   color: $text-color;
+  white-space: nowrap;
 
   > i,
   > span {
@@ -38,7 +52,7 @@ $color-text-file:  $grey-dove;
   }
 
   /** File types/extensions */
-  &.file { // default file
+  &.file { // generic file (default)
     > i {
       background: $color-bg-file;
       color:      $color-text-file;
@@ -48,7 +62,7 @@ $color-text-file:  $grey-dove;
   &.file-pdf {
     > i {
       background: $color-bg-pdf;
-      color:      $color-text-ppt;
+      color:      $color-text-pdf;
     }
   }
 

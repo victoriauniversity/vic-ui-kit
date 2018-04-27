@@ -1,94 +1,76 @@
-/*==========================================
-=         IN-PAGE GRID CONTAINERS          =
-==========================================*/
+/*============================================================================*\
+| CELL-BASED GRIDS
+\*============================================================================*/
 
-/*******************************************************************************
+////
+/// Specifies universal grids with regular width and inner paddings.
+///
+/// Best to be used to position sets of items of similar heights (tiles, cards,
+/// images, blocks), optionally laid in several rows.
+///
+/// @group grids
 
-  Generic grid layouts that can be used to position any custom items with
-  ideally similar heights (eg. articles, images with descriptions etc.)
 
-*******************************************************************************/
 
-// Use omega 'resets' with great care - http://www.joshfry.me/blog/2013/05/13/omega-reset-for-bourbon-neat
-//
+
+
 .grid {
-  @include clearfix;
+  @include grid-container;
 }
 
 @include bp-tablet {
   // Main content *ONLY* - 3 items in a row
   .content-panel:first-child > main:last-child {
     .grid > * {
-      //@include span-columns( 4 of 12 );
-      //@include omega( 3n );
+      @include grid-triples;
     }
   }
 
   // Main content with Sidebar + Widgetbar - 2 items in a row
   .content-panel:first-child > main:not(:last-child) {
     .grid > * {
-      //@include span-columns( 6 of 12 );
-      //@include omega( 2n );
+      @include grid-doubles;
     }
   }
 }
 
 @include breakpoint( tablet ) {
+  .grid {
+    @include grid-collapse( $neat-grid );
+  }
 
-  // Main content with Widgetbar/Sidebar - 3 items in a row
+  // Main content + Widgetbar/Sidebar - 3 items in a row
   .content-panel:not(:first-child) > main:last-child {
     .grid > * {
-      //@include span-columns( 4 of 12 );
-      //@include omega( 3n );
+      @include grid-triples;
     }
   }
 
-  // Main content with Sidebar + Widgetbar - 2 items in a row
+  // Sidebar + Main content + Widget bar - 2 items in a row
   .content-panel:not(:first-child) > main:not(:last-child) {
     .grid > * {
-      //@include span-columns( 6 of 12 );
-      //@include omega( 2n );
+      @include grid-doubles;
     }
   }
 }
 
 @include breakpoint( desktop ) {
 
-  // Main content *ONLY* - 4 items in a row
+  // Main content *ONLY* - 3/4 items in a row
   .content-panel:first-child > main:last-child {
     .grid > * {
-
-      //@include span-columns( 4 of 12 );
-      //@include omega(3n);
-
+      @include grid-triples;
     }
   }
 
-  // Main content with Widgetbar - 3 items in a row
+  // Main content + Widget bar - 3 items in a row
   .content-panel:first-child > main:not(:last-child) {
     .grid > * {
-      //@include span-columns( 4 of 12 );
-      //@include omega( 3n );
-    }
-  }
-
-}
-
-/* Fix for row grid - grid not applying - Eg. Hub Three column Images row - 1354596
-  //TODO: better fix
-*/
-.content-panel {
-  .centraliser {
-    > .block {
-      .grid > * {
-
-        //TODO: FIX
-        @include breakpoint( tablet ) {
-          //@include span-columns( 4 of 12);
-          //@include omega( 3n);
-        }
-      }
+      @include grid-triples;
     }
   }
 }
+
+
+
 

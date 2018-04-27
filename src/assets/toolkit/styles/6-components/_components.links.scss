@@ -22,14 +22,18 @@ ul.links {
     li {
       margin: 0;
       padding-left: 0;
-      border-top: 1px solid $grey-alto;
+      border-top: $border;
+
+      > span,
+      > a {
+        display: block;
+        padding: $gap-third 0;
+      }
 
       &::before { display: none; } // Turn the bullets off
     }
 
     a {
-      display: block;
-      padding: $base-spacing / 3 .1em;
       text-decoration: none;
 
       // Prevent icon wrapping
@@ -71,6 +75,7 @@ ul.links {
 
   }
 }
+
 
 /* Hub related links/areas */
 
