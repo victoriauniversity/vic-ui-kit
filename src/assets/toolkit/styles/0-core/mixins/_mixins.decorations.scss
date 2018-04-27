@@ -14,8 +14,8 @@
 
 /// @access public
 ///
-/// Creates a coloured rectangle that can be safely scaled and zoomed without
-/// getting rendering deformations.
+/// Creates a coloured horizontal rectangle that can be safely scaled and
+/// zoomed without getting rendering deformations.
 ///
 /// @attribute {size} $width - rectangle's width.
 /// @attribute {size} $height - rectangle's height.
@@ -23,12 +23,40 @@
 ///   rectangle's background colour.
 ///
 /// @require {mixin} size
-@mixin scalable-rectangle( $width, $height, $fill-color: transparent ) {
+@mixin scalable-rectangle-horizontal(
+  $width,
+  $height,
+  $fill-color: transparent,
+) {
   @include size( $width, 0 );
   padding-top:    $height; // Chrome61+: Mitigates the sub-pixel rendering issue
   padding-bottom: $height; // Chrome61+: Mitigates the sub-pixel rendering issue
   border-top:     $height solid $fill-color; // Use borders instead of height/width to avoid sub-pixel rendering in browsers
 }
+
+
+/// @access public
+///
+/// Creates a coloured vertical rectangle that can be safely scaled and
+/// zoomed without getting rendering deformations.
+///
+/// @attribute {size} $width - rectangle's width.
+/// @attribute {size} $height - rectangle's height.
+/// @attribute {color} $fill-color [transparent] -
+///   rectangle's background colour.
+///
+/// @require {mixin} size
+@mixin scalable-rectangle-vertical (
+  $width,
+  $height,
+  $fill-color: transparent,
+) {
+  @include size( 0, $height );
+  padding-right: $width; // Chrome61+: Mitigates the sub-pixel rendering issue
+  padding-left:  $width; // Chrome61+: Mitigates the sub-pixel rendering issue
+  border-left:   $width solid $fill-color; // Use borders instead of height/width to avoid sub-pixel rendering in browsers
+}
+
 
 
 /// @access public
@@ -40,10 +68,10 @@
 /// @content To extend or override strip's properties.
 ///
 /// @require {mixin} before
-/// @require {mixin} scalable-rectangle
+/// @require {mixin} scalable-rectangle-horizontal
 @mixin separator-strip( $length: 2rem ) {
   @include before( block ) {
-    @include scalable-rectangle( $length, $border-width-medium, $heading-color );
+    @include scalable-rectangle-horizontal( $length, $border-width-medium, $heading-color );
     @content;
   }
 }
@@ -58,13 +86,13 @@
 ///   Color of the list item's bullet.
 ///
 /// @require {mixin} before
-/// @require {mixin} scalable-rectangle
+/// @require {mixin} scalable-rectangle-horizontal
 @mixin bullet-line( $color: $bulletline-color ) {
   padding-left: ( $bulletline-margin-left + $bulletline-width + $bulletline-margin-right );
 
   // Short horizontal strip
   @include before( $position: absolute ) {
-    @include scalable-rectangle( $bulletline-width, $bulletline-thickness, $color );
+    @include scalable-rectangle-horizontal( $bulletline-width, $bulletline-thickness, $color );
     top:    _em( $gap-half );
     margin: 0 $bulletline-margin-right 0 ( -1 * ( $bulletline-width + $bulletline-margin-right ));
   }

@@ -1,31 +1,245 @@
-/*==================================================
-=                Side menu                         =
-==================================================*/
+/*============================================================================*\
+| SIDE MENU
+\*============================================================================*/
+
+////
+/// In-site navigation placed next to the content.
+///
+/// @group navigation
 
 
-.sidebar {
-  nav {
-    ul.sidemenu {
 
-      > li {
-        > a {
-          text-decoration: underline;
+
+
+/** New dynamic menu with expandable items */
+
+$sidemenu-background:          $green-brand !default;
+$sidemenu-background-selected: $green-bottle !default;
+
+$sidemenu-text-color:          $grey-alto !default;
+$sidemenu-text-hover-color:    $white !default;
+
+$sidemenu-lineheight:          1.25 !default;
+$sidemenu-size:                $navigation-primary-item-size !default;
+
+$sidemenu-delimiter-color:     $green-bottle !default;
+
+
+.sidemenu {
+  z-index:    $z-index-lower;
+  overflow:   hidden;
+  margin:     0 0 $gap-vertical;
+  background: $sidemenu-background;
+
+  // All menu items
+  ul {
+    font-family: $heading-family;
+
+    li {
+      display: block;
+
+      &.active > a {
+        color: $sidemenu-text-hover-color;
+        font-weight: $weight-semibold;
+
+        &::before {
+          @include objectify();
+          @include scalable-rectangle-vertical( $border-width-medium, auto );
         }
       }
-      li {
-        ul {
-          padding-left: 20px;
-        }
+    }
+
+    ul {
+      display: none;
+      font-weight: $weight-normal;
+    }
+  }
+
+  a {
+    position: relative;
+    display: flex;
+    align-content: stretch;
+    color: $sidemenu-text-color;
+    line-height: $sidemenu-lineheight;
+
+    @include hoverify() {
+      color: $sidemenu-text-hover-color;
+      .btn-expander { color: $sidemenu-text-color; }
+    }
+  }
+
+  // Root (1st) level menu & items
+  > ul {
+    font-size: $sidemenu-size;
+    font-weight: $weight-semibold;
+
+    > li {
+      border-bottom: $border-width-thin solid $sidemenu-delimiter-color;
+
+      > a { padding: .8rem .9rem; }
+
+      &:last-child > a,
+      &.active {
+        border-bottom: 0;
       }
 
-      .active {
-        background-color: rgba(255, 192, 203, 0.603);
+      &.active > a {
+        padding-left: .35em;
+        background-color: $sidemenu-background-selected;
 
-        .active {
-          background-color: rgba(255, 0, 0, 0.521);
-
+        &::before {
+          margin: -.2em .35em -.2em 0;
+          border-color: $sidemenu-text-hover-color;
         }
       }
     }
   }
+
+  .has-submenu {
+    display: flex;
+
+    // Flex behaviour
+    > a { flex: 1 1; }
+
+    > ul {
+      flex-basis: 100%;
+      flex-grow: 0;
+    }
+
+    &.expanded {
+      overflow: hidden;
+      flex-wrap: wrap;
+
+      > ul { display: block; }
+
+      > .btn-expander {
+        &::after {
+          @include objectify( $position: relative );
+          @include triangle( up, .5em, .2em, $sidemenu-text-color );
+          top: -.15em;
+        }
+
+        @include hoverify() {
+          &::after {
+            @include triangle( up, .5em, .2em, $sidemenu-text-hover-color );
+          }
+        }
+      }
+    }
+
+    &:not(.expanded) {
+      .btn-expander::after { content: '+'; }
+    }
+
+    &.active { background-color: $sidemenu-background-selected; }
+
+    // 2nd level menu & items
+    > ul {
+      padding: .2em 0 .75em .9em;
+      font-size: 95%;
+
+      > li {
+        border-left: 1px solid rgba( $white, .1 );
+
+        > a { padding: .3em .85em .3em .7em; }
+
+        &.active > a {
+          padding-left: 0;
+
+          &::before {
+            margin:       -.2em .5em -.2em 0;
+            border-width: $border-width-small;
+            border-color: $sidemenu-text-hover-color;
+          }
+        }
+      }
+    }
+
+    // 3rd level menu & items
+    .has-submenu > ul {
+      > li {
+        border-left: 0;
+
+        > a {
+          padding-left: .3em;
+
+          &::before { display: none; }
+        }
+      }
+    }
+  }
+
+  .btn-expander {
+    @include size( 1.4em );
+    display: block;
+    margin: 0 .5rem;
+    align-self: center;
+    cursor: pointer;
+    text-align: center;
+    font-weight: $weight-bold;
+    color: $sidemenu-text-color;
+    line-height: 1.4;
+    font-size: 1.2em;
+    border-radius: .7em;
+
+    @include hoverify() {
+      color: $sidemenu-text-hover-color;
+      background-color: rgba( $black, .2 );
+    }
+  }
+
+  // Mobile devices *only*, allows to hide/show the sidemenu
+  .sidemenu-toggle {
+    margin-top:  -5px; // Offset the green line under the header!
+    font-size:   $text-size-4;
+    font-weight: $weight-semibold;
+
+    a {
+      display: block;
+      padding: .8rem .9rem;
+
+      @include extend-icon-after( list ) {
+        float: right;
+        line-height: 1.1;
+        font-size: $text-size-huge;
+      }
+    }
+
+    &.expanded a {
+      @include add-icon-after( caret-up-thin );
+    }
+  }
+
+  @include breakpoint( desktop ) {
+    .sidemenu-toggle { display: none; }
+  }
+
+  @include breakpoint( $until: desktop ) {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    .sidemenu-toggle {
+      + ul { display: none; } // The menu
+      &.expanded + ul { display: block; }
+    }
+  }
+
+  @include breakpoint( $until: tablet ) {
+    .btn-expander {
+      @include size( auto );
+      margin: 0 .35rem 0 0;
+      line-height: 1.5;
+
+      &::after {
+        display: inline-block;
+        margin: 0 .85em;
+      }
+    }
+
+    .expanded > ul { font-size: 100%; }
+  }
 }
+
+
+
+
