@@ -1,13 +1,3 @@
-
-%vuw-highlight-caption {
-  display: inline-block;
-  padding: .5rem 1rem;
-  margin-bottom: .5em;
-  color: $white;
-  background-color: rgba(99, 166, 89, .90);
-}
-
-
 /** In-page block with promotion */
 
 $banner-background: $grey-gallery;
@@ -15,131 +5,142 @@ $promo-max-width:   60em;
 
 
 .promo-panel {
-  @include clearfix();
+  @include clearfix;
 
   @include breakpoint( tablet ) {
-      background: $banner-background;
-      position:relative;
-      overflow:hidden;
+    overflow: hidden;
+    position: relative;
+    background: $banner-background;
   } //media desktop
+
   @include breakpoint( $until: tablet ) {
-      border-top: 3px solid $banner-background;
-      border-bottom: 3px solid $banner-background;
-      &+.promo-panel {
-          border-top: none;
-      }
+    border-top:    3px solid $banner-background;
+    border-bottom: 3px solid $banner-background;
+
+    + .promo-panel { border-top: 0; }
   } //media desktop
+
   &.pattern {
-      background: url("http://www.victoria.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png"); //TODO: Autolink from CDN!
-      figure {
-          background: transparent;
-          box-shadow: none;
-      }
+    background: url( 'http://www.victoria.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png' ); //TODO: Autolink from CDN!
+
+    figure {
+      background: transparent;
+      box-shadow: none;
+    }
   }
 
   &.no-pattern {
-      background: $banner-background;
-      figure {
-          background: transparent;
-          box-shadow: none;
-      }
+    background: $banner-background;
+
+    figure {
+      background: transparent;
+      box-shadow: none;
+    }
   }
 
   &.white-bg {
-      background-color: $white;
+    background-color: $white;
 
-      figure {
-          border: 1px solid $grey-gallery;
+    figure {
+      border: $border;
 
-          @include breakpoint( $until: tablet ) {
-              border: none;
-          }
-
+      @include breakpoint( $until: tablet ) {
+        border: 0;
       }
+    }
 
-      &.dual-content {
-          .dual-content-block {
-              border: 1px solid $grey-gallery;
-              > * {
-                  border: none;
-              }
-          }
+    &.dual-content {
+      .dual-content-block {
+        border: $border;
+
+        > * {
+          border: 0;
+        }
       }
+    }
   }
 
   figure {
-      overflow: hidden; //TODO: Change to something safer
-      position: relative;
-      padding: 0;
-      background: $white;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    background: $white;
+
+
+    @include breakpoint( $until: tablet ) {
+      figcaption {
+        padding-bottom: $gap-vertical;
+
+        h1 { margin-top: $gap-vertical; }
+      }
+    }
+
+    @include breakpoint( tablet ) {
+      display: flex;
+      align-items: center;
+      box-shadow: $shadow-shallow;
+
+      // 60% text + 40% image
 
       figcaption {
-          padding-bottom: $base-spacing;
-      }
-      @include breakpoint( $until: tablet ) {
-          figcaption {
-              h1 {
-                  margin-top: 0.5em;
-              }
-          }
-      }
-      @include breakpoint( tablet ) {
-          box-shadow: $shadow-shallow;
-          display: flex;
-          align-items: center;
+        z-index: $z-index-lower;
+        float: left;
+        padding: $gap-larger;
+        width: 60%;
 
+        p {
+          margin-bottom: 1.3em;
+          font-size: $h5-size;
+        }
+      }
+
+      img {
+        float: left;
+        width: 40%;
+      }
+
+      &.two-thirds {
+          //@include span-columns(8 of 12);
+          //@include shift(2);
           figcaption {
-              padding: $base-spacing * 1.5;
-              //@include span-columns( 7 of 12, block-collapse);
-              z-index: 1;
-               p {
-                  margin-bottom: 1.3em;
-                  font-size: 1.2em;
-              }
+              padding: $base-spacing;
+              //@include span-columns(4 of 8);
+              //@include shift(4);
+              background: $white;
+              position: relative;
           }
           img {
-              //@include span-columns( 5 of 12,block-collapse);
+              position: absolute;
+              width: auto;
+              top: 0;
+              left: 0;
+              height: 100%;
           }
-          &.two-thirds {
-              //@include span-columns(8 of 12);
-              //@include shift(2);
-              figcaption {
-                  padding: $base-spacing;
-                  //@include span-columns(4 of 8);
-                  //@include shift(4);
-                  background: $white;
-                  position: relative;
-              }
-              img {
-                  position: absolute;
-                  width: auto;
-                  top: 0;
-                  left: 0;
-                  height: 100%;
-              }
+      }
+
+      &.photo,
+      &.pattern,
+      &.no-pattern {
+          figcaption {
+              position: relative;
+              max-width: $promo-max-width;
+              width: 100%;
+              margin: 0 auto;
+              padding: $base-spacing * 1.5 0;
+              z-index: 1;
+              text-align: center;
+              float: none;
           }
-          &.photo,
-          &.pattern,
-          &.no-pattern {
-              figcaption {
-                  position: relative;
-                  max-width: $promo-max-width;
-                  width: 100%;
-                  margin: 0 auto;
-                  padding: $base-spacing * 1.5 0;
-                  z-index: 1;
-                  text-align: center;
-                  float: none;
-              }
-              img {
-                  position: absolute;
-                  top: 0;
-                  left: 0;
-                  right: 0;
-                  width: 100%;
-              }
+          img {
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              width: 100%;
           }
-      } //media desktop
+      }
+    }
+
       &.photo {
           figcaption {
               h1,
@@ -149,104 +150,95 @@ $promo-max-width:   60em;
               h5,
               h6,
               p {
-                  @extend %vuw-highlight-caption;
+                display: inline-block;
+                margin-bottom: .5em;
+                padding: .5rem 1rem;
+                color: $white;
+                background-color: rgba( 99, 166, 89, .9 );
               }
 
           }
       }
-      //Research hub new panel, promo panel with left align grey text panel
-      &.photo {
-          &.left-text-panel {
 
-              figcaption {
+    //Research hub new panel, promo panel with left align grey text panel
+    &.photo {
+      &.left-text-panel {
+        figcaption {
+          max-width: $centered-max-width;
 
-                  max-width: 88em;
+          > div {
+            position: relative;
+            margin: $gap-triple $gap-horizontal $gap-double;
+            padding: $gap-triple $gap-larger $gap-larger $gap-larger;
+            max-width: 65%;
+            background-color: $background-overlay-lightest;
+            box-shadow: $shadow-shallow;
+            text-align: left;
 
-                  > div {
-                      background-color: rgba(#fff, 0.9);
-                      box-shadow: 0px 3px 6.86px 0.14px rgba(0, 0, 0, 0.21);
-                      margin: 3em 1.1111em;
-                      text-align: left;
-                      max-width: 65%;
-                      position: relative;
-                      padding: 2em;
+            h1,
+            h2,
+            h3 {
+              position: absolute;
+              top: $bleed-vertical;
+              margin-left: $bleed-half;
+              padding: $gap-half $gap-horizontal;
+              background-color: $green-brand;
 
-                      h1,h2,h3,p {
-                          text-align: left;
-                      }
-
-                      h1,h2,h3 {
-                          position: absolute;
-                          top: -1.8rem;
-                          padding: .8rem 1rem;
-                          background-color: $green-brand;
-
-                          // IE 10+ fix bg not covering text
-                          @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-                              float: left;
-                           }
-                      }
-
-                      p {
-                          background-color: transparent;
-                          color: inherit;
-                          padding-left: 0;
-                          padding-top: 2em;
-                      }
-
-                      p, .button {
-                          margin-left: 1rem;
-                      }
-                  }
-
-                  @include breakpoint( $until: tablet ) {
-
-                      > div {
-                          max-width: 100%;
-
-                          h1,
-                          h2,
-                          h3 {
-                              position: relative;
-                              font-size: 1.95em;
-                              margin-top: -1rem;
-                              margin-bottom: 0;
-                          }
-
-                          p {
-                              padding-top: 0;
-                          }
-
-                          .button {
-                              &:not(:first-child) {
-                                  margin-top: 0.5rem;
-                              }
-                          }
-                      }
-                  }
-
+              // IE 10+ fix bg not covering text
+              @media screen and ( -ms-high-contrast: active ), ( -ms-high-contrast: none ) {
+                float: left;
               }
+            }
 
-              @include breakpoint( $until: desktop-large ) {
-
-                  figcaption {
-                      > div {
-                          max-width: 85%;
-                      }
-                  }
-
-                  img {
-                      height: 100%;
-                  }
-
-                  figcaption {
-                      padding-top: 0;
-                      padding-bottom: 0;
-                  }
-              }
+            p {
+              margin-bottom: $gap-content;
+              padding: 0;
+              background-color: transparent;
+              color: inherit;
+            }
           }
+
+          @include breakpoint( $until: tablet ) {
+            > div {
+              max-width: 100%;
+
+              h1,
+              h2,
+              h3 {
+                  margin-bottom: 0;
+              }
+
+              .button {
+                  &:not(:first-child) {
+                      margin-top: .5rem;
+                  }
+              }
+            }
+          }
+
+        }
+
+        @include breakpoint( $until: desktop-large ) {
+
+            figcaption {
+                > div {
+                    max-width: 85%;
+                }
+            }
+
+            img {
+                height: 100%;
+            }
+
+            figcaption {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+        }
+
       }
     }
+  }
 
   &.study-hub {
       background-color: $white;
@@ -563,11 +555,11 @@ $promo-max-width:   60em;
               figcaption {
                   // bottom: 6%;
                   // top: unset;
-                  max-width: 94%;
                   position: relative;
+                  top: 0;
                   order: -1;
                   margin-right: auto;
-                  top: 0;
+                  max-width: 94%;
               }
           }
       }

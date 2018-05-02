@@ -64,15 +64,32 @@
 /// Places a short heading-coloured strip before an element.
 ///
 /// @attribute {size (rem)} $length [2rem] - The length of the strip.
+/// @attribute {size (rem)} $thickness [$border-width-medium] -
+///   Thickness of the separator.
+/// @attribute {before|after} $pseudoelement [before] -
+///   What pseudoelement to place the separator into.
 ///
 /// @content To extend or override strip's properties.
 ///
 /// @require {mixin} before
 /// @require {mixin} scalable-rectangle-horizontal
-@mixin separator-strip( $length: 2rem ) {
-  @include before( block ) {
-    @include scalable-rectangle-horizontal( $length, $border-width-medium, $heading-color );
-    @content;
+@mixin separator-strip (
+  $length:        2rem,
+  $thickness:     $border-width-medium,
+  $pseudoelement: before,
+) {
+  @if $pseudoelement == before {
+    @include before( block ) {
+      @include scalable-rectangle-horizontal( $length, $thickness, $heading-color );
+      @content;
+    }
+  }
+
+  @if $pseudoelement == after {
+    @include after( block ) {
+      @include scalable-rectangle-horizontal( $length, $thickness, $heading-color );
+      @content;
+    }
   }
 }
 

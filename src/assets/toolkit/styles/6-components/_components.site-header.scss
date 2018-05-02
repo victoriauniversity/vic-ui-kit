@@ -56,6 +56,11 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
       @include clearfix();
       padding: .25em 1em;
 
+      .search-item {
+        position: absolute;
+        right: 0;
+      }
+
       a {
         display: block;
         margin: 0;
@@ -67,17 +72,6 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 
         &.active {
           position: relative;
-
-          // TODO: Refactor & flatten to lower the depth!
-          @include after() {
-            @include scalable-rectangle-horizontal( 100%, $border-width-medium, $white );
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            margin: 0 0 $bleed-half $bleed-horizontal / 2;
-          }
-
-          &:hover::after { border-color: $grey-silver; }
         }
 
         &:hover { opacity: $base-hover-opacity; }
@@ -178,8 +172,8 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 
     .site-intro {
       float: left;
-      width: 75%;
       padding: .3rem $column-padding .5rem $column-padding * 1.5;
+      width: 75%;
     }
 
     .horizontal-menu {
@@ -195,27 +189,30 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
         margin: 0;
         padding: $base-spacing / 2 $base-spacing / 1.5;
         border-bottom: 0;
+
+        &.active {
+          @include after() {
+            @include scalable-rectangle-horizontal( 100%, $border-width-medium, $white );
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            margin: 0 0 $bleed-half $bleed-horizontal / 2;
+          }
+
+          &:hover::after { border-color: $grey-silver; }
+        }
       }
     }
 
     .logo {
       float: left;
-      width: 25%;
-
       padding: .1rem $column-padding * 1.5 .1rem $column-padding;
+      width: 25%;
       border-right: 1px solid $black-emperor;
     }
 
   }
 
-  @include breakpoint( $until: desktop ) {
-    .menu-bar {
-      .search-item {
-        position: absolute;
-        right: 1em;
-      }
-    }
-  }
 
   @include breakpoint( $until: tablet ) {
     .block {
@@ -357,6 +354,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 .menu-toggle-icon.open span:nth-child( 4 ) {
   top: 18px;
   left: 50%;
+  width: 0;
 }
 
 
@@ -393,14 +391,6 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
                 @include breakpoint( $until: tablet ) {
                   font-size: 1.2rem;
                   padding: 1rem 1.5rem;
-                }
-
-                /* Fix for search icon breaking */
-                @media screen and (min-width: 1097px ) and (max-width: 1150px) {
-                  &.search-item {
-                    position: absolute;
-                    right: 1rem;
-                  }
                 }
 
               }

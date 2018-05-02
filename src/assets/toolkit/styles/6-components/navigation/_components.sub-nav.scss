@@ -10,19 +10,22 @@
   .centraliser {
     nav {
       ul {
+        display: flex;
         justify-content: center;
         flex-wrap: nowrap;
 
         li {
           margin-right: 0;
+          margin-left: 0;
 
           // TODO: Refactor - inappropriate depth
           a {
             display: block;
-            padding: .5em 1.5em;
-            font-size: 1.4em;
+            padding: $gap-half $gap-horizontal;
+            font-size: $navigation-primary-item-size;
             color: $white;
             text-decoration: none;
+            letter-spacing: $navigation-letter-spacing;
 
             &.active { background-color: $green-brand; }
 
@@ -31,20 +34,24 @@
               background-color: $green-brand;
               transition: all .5s ease;
             }
+          }
+        }
 
-            @include breakpoint( desktop ) {
-              padding: .5em 1.2em;
-            }
+        @include bp-desktop-large {
+          padding: 0 $gap-horizontal;
+        }
 
-            @include breakpoint( $until: desktop ) {
-              font-size: 1.2em;
-            }
+        @include breakpoint( desktop ) {
+          li a {
+            padding: .5em 1.2em;
+            text-align: center;
           }
         }
 
         @include breakpoint( $until: desktop ) {
           justify-content: flex-start;
           flex-wrap: wrap;
+          text-align: left;
 
           li { width: 100%; }
         }
@@ -54,12 +61,13 @@
 
     &.nav-buttons {
       margin: 1.6rem 0;
-      border: none;
       background-color: transparent;
+      border: 0;
 
       nav {
         > ul {
           margin: 0 1.6rem;
+
           > li {
             flex: 1 1 auto;
               a {

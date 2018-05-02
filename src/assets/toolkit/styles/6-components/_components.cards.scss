@@ -1,18 +1,20 @@
-//_components.cards.scss
+$card-padding: $gap-larger;
+$card-shadow:  $shadow-shallow;
 
-$card-padding: 2.5rem;
-$card-shadow:  0 1px 5px rgba( #000, .15 );
+$card-background-color: $background-light;
+
 
 .card-panel {
   display:         flex;
   justify-content: space-between;
+  padding:         $gap-vertical 0;
   flex-wrap:       wrap;
 
   .card {
     flex: 0 1 auto;
-    margin-bottom: 1.5em;
+    margin-bottom: $gap-vertical;
     padding: $card-padding;
-    width: calc( 50% - .75em );
+    width: calc( 50% - #{ $gap-vertical / 2 } );
     background-color: $grey-gallery;
     box-shadow: $card-shadow;
 
@@ -22,13 +24,9 @@ $card-shadow:  0 1px 5px rgba( #000, .15 );
     > h4 {
       &:first-child {
         position: relative;
-        padding-bottom: 15px;
 
-        @include after( $display: inline, $position: absolute ) {
-          @include size( 50px, 5px );
-          bottom: 0;
-          left: 0;
-          background-color: $green-brand;
+        @include separator-strip( 3.125rem, $border-width-thick, after ) {
+          margin-top: $gap-half;
         }
       }
     }

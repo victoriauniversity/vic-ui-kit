@@ -38,33 +38,48 @@ $media-portrait-dynamic-width:  25%;
 
 // news section for horizontal grid
 .news-row {
-  header { margin: 1.6rem 0; }
+  header {
+    align-items: center;
+    margin: $gap-vertical 0;
 
-  .news {
-    li {
-      @include clearfix();
-      margin-bottom: 1.6rem;
-      padding-bottom: 1.6rem;
-      border-bottom: 1px solid $grey-alto;
-      list-style: none;
+    h2 { flex-grow: 1; }
 
-      .summary {
-        >:nth-child(2) {
-          margin-bottom: .5em;
-        }
-      }
+    .link-more {
+      margin-top: $gap-third;
+      margin-left: $gap-horizontal;
+      white-space: nowrap;
     }
 
     @include breakpoint( desktop ) {
+      display: flex;
+    }
+  }
+
+  .news {
+    li {
+      @include clearfix;
+      padding-bottom: $gap-vertical;
+      border-bottom: $border;
+      list-style: none;
+    }
+
+    @include breakpoint( $until: desktop ) {
+      li { margin-bottom: $gap-vertical; }
+    }
+
+    @include breakpoint( desktop ) {
+      @include bleed-horizontal;
       display: flex;
       flex-wrap: wrap;
 
       li {
         position: relative;
-        padding: 1.5rem;
-        width: 33%;
+        padding: $gap-box;
+        width: ( 100% / 3 );
         border-bottom: 0;
 
+        // Vertical separator
+        //FIXME: Overkill, simplify using available mixins
         &:not(:nth-child( 3n )) {
           @include after( $display: block, $position: absolute ) {
             @include size( 1px, 75% );
@@ -86,13 +101,13 @@ $media-portrait-dynamic-width:  25%;
   article.news-commentary {
     margin-bottom: 1rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid $grey-alto;
+    border-bottom: $border;
 
     > .summary {
       h3,
       h4,
       p {
-        margin-bottom: .3rem;
+        margin-bottom: $gap-small;
       }
     }
   }
