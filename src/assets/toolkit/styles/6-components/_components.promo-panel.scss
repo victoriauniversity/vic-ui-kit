@@ -109,6 +109,7 @@ $promo-max-width:   60em;
               background: $white;
               position: relative;
           }
+
           img {
               position: absolute;
               width: auto;
@@ -121,65 +122,63 @@ $promo-max-width:   60em;
       &.photo,
       &.pattern,
       &.no-pattern {
-          figcaption {
-              position: relative;
-              max-width: $promo-max-width;
-              width: 100%;
-              margin: 0 auto;
-              padding: $base-spacing * 1.5 0;
-              z-index: 1;
-              text-align: center;
-              float: none;
-          }
-          img {
-              position: absolute;
-              top: 0;
-              left: 0;
-              right: 0;
-              width: 100%;
-          }
+        figcaption {
+          z-index: $z-index-lower;
+          position: relative;
+          float: none;
+          margin: 0 auto;
+          padding: $gap-larger 0;
+          width: 100%;
+          max-width: $promo-max-width;
+          text-align: center;
+        }
+
+        img {
+          @include background-image-cover;
+        }
       }
     }
 
-      &.photo {
-          figcaption {
-              h1,
-              h2,
-              h3,
-              h4,
-              h5,
-              h6,
-              p {
-                display: inline-block;
-                margin-bottom: .5em;
-                padding: .5rem 1rem;
-                color: $white;
-                background-color: rgba( 99, 166, 89, .9 );
-              }
-
-          }
+    &.photo figcaption {
+      h1,
+      h2,
+      h3,
+      h4,
+      p {
+        display: inline-block;
+        margin-bottom: .5em;
+        padding: .5rem 1rem;
+        color: $white;
+        background-color: rgba( 99, 166, 89, .9 );
       }
+    }
 
     //Research hub new panel, promo panel with left align grey text panel
     &.photo {
       &.left-text-panel {
+
         figcaption {
           max-width: $centered-max-width;
 
           > div {
             position: relative;
             margin: $gap-triple $gap-horizontal $gap-double;
-            padding: $gap-triple $gap-larger $gap-larger $gap-larger;
-            max-width: 65%;
+            padding: 0 $gap-larger $gap-larger;
+            max-width: $text-readability-max-width;
             background-color: $background-overlay-lightest;
             box-shadow: $shadow-shallow;
             text-align: left;
 
+            @include breakpoint( $until: tablet ) {
+              margin-bottom: $gap-content;
+            }
+
             h1,
             h2,
             h3 {
-              position: absolute;
-              top: $bleed-vertical;
+              position: relative;
+              top: $bleed-larger;
+              margin-bottom: 0;
               margin-left: $bleed-half;
               padding: $gap-half $gap-horizontal;
               background-color: $green-brand;
@@ -197,48 +196,13 @@ $promo-max-width:   60em;
               color: inherit;
             }
           }
-
-          @include breakpoint( $until: tablet ) {
-            > div {
-              max-width: 100%;
-
-              h1,
-              h2,
-              h3 {
-                  margin-bottom: 0;
-              }
-
-              .button {
-                  &:not(:first-child) {
-                      margin-top: .5rem;
-                  }
-              }
-            }
-          }
-
-        }
-
-        @include breakpoint( $until: desktop-large ) {
-
-            figcaption {
-                > div {
-                    max-width: 85%;
-                }
-            }
-
-            img {
-                height: 100%;
-            }
-
-            figcaption {
-                padding-top: 0;
-                padding-bottom: 0;
-            }
         }
 
       }
     }
   }
+
+
 
   &.study-hub {
       background-color: $white;
@@ -589,47 +553,55 @@ $promo-max-width:   60em;
 }
 
 .promo {
-@include clearfix();
+  @include clearfix();
 }
 
 .text-promo-panel {
-padding: 1.5em 0;
 border-bottom: $border;
 
-.text-wrap {
-  // font-size: 1.125em;
   @include breakpoint( tablet ) {
-      //@include span-columns(6 of 8);
-  }
-}
+    padding: $gap-vertical 0;
 
-.button-wrap {
-  margin-top: 2.5em;
-  @include breakpoint( tablet ) {
-    //@include span-columns(2 of 8);
-  }
-}
+    .text-wrap {
+      float: left;
+      width: 70%;
+    }
 
-// TODO: Move into its standalone .promo-video class
-&.video {
-
-  // Figure
-  .media .outside {
-    position: relative; top: auto; left: auto;
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 0;
-  }
-
-  .outside {
-
-    h4 {
-      margin-bottom: 0;
-      padding: .65em .5em;
-
-      i { margin-left: .5em; }
+    .button-wrap {
+      float: left;
+      margin-top: 2.5rem;
+      padding-left: $gap-horizontal;
+      width: 30%;
     }
   }
 
-}
+
+  @include breakpoint( $until: tablet ) {
+    .text-wrap { margin-bottom: $gap-content; }
+  }
+
+  // TODO: Move into its standalone .promo-video class
+  &.video {
+
+    // Figure
+    .media .outside {
+      position: relative;
+      top: auto;
+      left: auto;
+      margin-bottom: 0;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .outside {
+
+      h4 {
+        margin-bottom: 0;
+        padding: .65em .5em;
+
+        i { margin-left: .5em; }
+      }
+    }
+
+  }
 }

@@ -192,6 +192,11 @@
 }
 
 
+/// Sets a negative offset to the horizontal margins to compensate parent
+/// object's paddings.
+///
+/// @argument {number (with unit)} [$bleed-horizontal] $bleed
+///
 @mixin bleed-horizontal( $bleed: $bleed-horizontal ) {
   margin-left:   $bleed-horizontal;
   width:         calc( 100% + #{ -2 * $bleed } );

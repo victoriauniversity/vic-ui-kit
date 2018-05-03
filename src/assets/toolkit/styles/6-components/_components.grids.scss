@@ -16,6 +16,10 @@
 
 .grid {
   @include grid-container;
+
+  .formatting &:not(:last-child) {
+    margin-bottom: $gap-content;
+  }
 }
 
 @include bp-tablet {

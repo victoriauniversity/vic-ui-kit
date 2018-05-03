@@ -46,10 +46,23 @@
 ) {
   float: left;
   @if $space == 0 { width: 100% / $columns-count; }
-  @if $space != 0 { width: calc( #{ 100% / $columns-count } - #{ $space / $columns-count } ); }
+  @if $space != 0 {
+    width: calc( #{ 100% / $columns-count } - #{ ( ( $columns-count - 1 ) * $space ) / $columns-count } );
+  }
 
-  @if $space != 0 { &:not(:first-child) { margin-left: $space / $columns-count; } }
-  @if $space != 0 { &:not(:last-child) { margin-right: $space / $columns-count; } }
+  @if $space != 0 {
+    // Every column except the left-edge one
+    &:not(:nth-child(#{$columns-count}n+1)) {
+      margin-left: $space / 2;
+    }
+  }
+
+  @if $space != 0 {
+    // Every column except the right-edge one
+    &:not(:nth-child(#{$columns-count}n+0)) {
+      margin-right: $space / 2;
+    }
+  }
 }
 
 

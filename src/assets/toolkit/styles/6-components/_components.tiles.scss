@@ -1,17 +1,15 @@
-// TODO: Disestablish the gutter!
-$gutter: 1em;
-
-
 // Tile(s)
-$tile-height:       12.5rem;
-$background-color:  $grey-gallery; //Used for borders to stop elements moving on hover
-$blue-hover-shade:  #7E97B8;
-$tile-active-shade: #E3E3E3;
+$tile-height:                12.5rem;
+$background-color:           $grey-gallery; //Used for borders to stop elements moving on hover
+$blue-hover-shade:           #7E97B8;
+$tile-active-shade:          #E3E3E3;
 
 // Grid styles
-$four-grid-tile-margin:  1%;
-$three-grid-tile-margin: 1%;
-$two-grid-tile-margin:   1.3%;
+$grid-tile-spacing:          $gap-half;
+
+$four-grid-tile-margin:      1%;
+$three-grid-tile-margin:     1%;
+$two-grid-tile-margin:       1.3%;
 
 $three-grid-tile-margin-hub: 3%;
 
@@ -32,12 +30,12 @@ $base-study-hub-colour--study: $green-light-brand;
   li.tile {
     a {
       display: block;
-      padding: 16px;
+      padding: $gap-half;
       height: 100%;
-      border: 4px solid $white;
+      border: $border-width-thick solid $white;
       border-left: 0;
 
-      &:hover {
+      @include hoverify {
         opacity: 1;
         border-color: $blue-st-tropaz;
 
@@ -52,10 +50,8 @@ $base-study-hub-colour--study: $green-light-brand;
 
         h4 { color: $blue-hover-shade; }
 
-        .sub-text { border-left: 2px solid $blue-hover-shade; }
+        .sub-text { border-left: $border-width-small solid $blue-hover-shade; }
       }
-
-      &:active { background-color: $tile-active-shade; } // TODO: Keep or remove?
 
       h2,
       h4,
@@ -68,7 +64,7 @@ $base-study-hub-colour--study: $green-light-brand;
 
       h2 {
         margin-bottom: .25em;
-        font-size: 1.3em;
+        font-size: $h4-size;
         color: $black-tundora;
       }
 
@@ -77,7 +73,7 @@ $base-study-hub-colour--study: $green-light-brand;
         color: $black-tundora;
       }
 
-      h4 { color: $grey-chalice; }
+      h4 { color: $text-weaker-color;; }
 
       p {
         line-height: 1.5;
@@ -86,22 +82,19 @@ $base-study-hub-colour--study: $green-light-brand;
       }
 
       .sub-text {
-        padding-left: .5em;
-        border-left: 2px solid $grey-silver;
+        margin-bottom: $gap-content;
+        padding-left: $gap-half;
+        border-left: $border-width-small solid $border-color-light;
       }
-
     }
   }
 }
 
 
 .updated-tile-grid {
-  @include grid-container;
+  h2 { margin-bottom: $gap-content; }
 
   .tiles-wrap {
-    //@include fill-parent;
-    margin-top: 1rem;
-
     > ul {
       @include clearfix;
       display: block;
@@ -111,15 +104,16 @@ $base-study-hub-colour--study: $green-light-brand;
       overflow: hidden;
       position: relative;
       float: left;
-      margin-bottom: $gutter;
-      height: auto;
+      display: flex;
+      margin-bottom: $grid-tile-spacing + .25rem; // Spacing + shadow
+      flex-direction: column;
       background-color: $white;
-      box-shadow: $shadow-shallow;
-      border-left: 4px solid $green-brand;
+      box-shadow: $shadow-shallowest;
+      border-left: $border-width-thick solid $green-brand;
 
-      &:hover { //TODO: Add other hover-like states (&:focus, &:active) through mixin
-        box-shadow: none;
-        border-left: 4px solid $blue-st-tropaz;
+      @include hoverify {
+        box-shadow:   none;
+        border-color: $blue-st-tropaz;
       }
 
       // Search filtering
@@ -127,18 +121,20 @@ $base-study-hub-colour--study: $green-light-brand;
       &.is-not-matching { filter: saturate( 0% ); }
 
       a {
-        h4 {
-          color: $grey-chalice;
-          font-size: .95em;
+        flex-grow: 1;
 
-          &::before { font-size: 85%; }
+        h4 {
+          font-size: 100%;
+
+          &::before { font-size: $text-size-tiny; }
         }
 
         h2,
-        h3,
-        h4 {
-          margin-bottom: .45em;
+        h3 {
+          margin-bottom: $gap-content;
         }
+
+        h4 { margin-bottom: $gap-small; }
       }
 
       // The hidden subjects span which is displayed on hover
@@ -146,11 +142,9 @@ $base-study-hub-colour--study: $green-light-brand;
         position: absolute;
         right: .5em;
         bottom: .5em;
-        font-size: 1.5em;
-        color: $grey;
+        font-size: $text-size-4;
+        color: $text-weakest-color;
       }
-
-      .button { margin-top: 2em; }
 
       @include breakpoint( $until: tablet ) {
         float: none;
@@ -164,25 +158,28 @@ $base-study-hub-colour--study: $green-light-brand;
         p { display: inline-block; }
       }
 
+      // 4 in a row
       @include bp-desktop-large {
-        margin-right: $four-grid-tile-margin;
-        width: ( 100 - 3 * $four-grid-tile-margin ) / 4;
-
-        &:nth-child( 4n ) { margin-right: 0; }
+        @include column( 4, $grid-tile-spacing );
       }
 
+      // 3 in a row
       @include bp-desktop {
-        margin-right: $three-grid-tile-margin;
-        width: ( 100 - 2 * $three-grid-tile-margin ) / 3;
-
-        &:nth-child( 3n ) { margin-right: 0; }
+        @include column( 3, $grid-tile-spacing );
       }
 
+      // 2 in a row
       @include bp-tablet {
-        margin-right: $two-grid-tile-margin;
-        width: ( 100 - 1 * $two-grid-tile-margin ) / 2;
+        @include column( 2, $grid-tile-spacing );
+      }
+    }
 
-        &:nth-child( 2n ) { margin-right: 0; }
+    /** FIXME: Redesign! */
+    &.image-no-gutter {
+      li.tile a {
+        @include hoverify {
+          border-color: transparent;
+        }
       }
     }
 
@@ -217,9 +214,8 @@ $base-study-hub-colour--study: $green-light-brand;
       }
     }
 
-    &.four-col,
+    &.four-col, // Ambiguous?
     &.two-col {
-
       &.image-no-gutter {
         ul {
           display: flex;
@@ -228,22 +224,6 @@ $base-study-hub-colour--study: $green-light-brand;
 
         li.tile {
           img { max-width: 100%; }
-
-          a {
-            height: auto;
-
-            // TODO: Refactor & flatten to lower the depth!
-            &:hover { border-color: transparent; }
-          }
-
-          @include bp-desktop {
-            margin-right: 1%;
-            width: ( 100 - 3 * 1%) / 4;
-
-            &:nth-child( 4n ) {
-              margin-right: 0;
-            }
-          }
         }
       }
     }
@@ -262,6 +242,7 @@ $base-study-hub-colour--study: $green-light-brand;
       display: none !important;
     }
   }
+
   &.hidden {
     display: none !important;
   }
@@ -324,24 +305,29 @@ $base-study-hub-colour--study: $green-light-brand;
 
     li.tile {
       @include size( 100%, auto );
-      overflow: hidden;
-      margin-bottom: $gutter;
+      overflow:         hidden;
       background-color: $white;
-      box-shadow: $shadow-shallow;
-      border-left: 4px solid $green-brand;
+      box-shadow:       $shadow-shallowest;
+
+      .updated-tile-grid & {
+        margin-right: 0;
+        margin-left: 0;
+      }
 
       &:hover {
-        box-shadow: none;
-        border-left: 4px solid $blue-st-tropaz;
+        box-shadow:   none;
+        border-color: $blue-st-tropaz;
       }
 
       i {
-        float: right;
-        font-size: 1.5em;
-        color: $grey;
+        top: 50%;
+        bottom: initial;
+        margin-top: -.5em - _em( $border-width-thick / 2 ); // minus border width
       }
 
       a {
+        padding-right: $gap-double;
+
         h2,
         h4,
         i {
@@ -352,7 +338,8 @@ $base-study-hub-colour--study: $green-light-brand;
 
         h4 {
           padding: 0 .75rem;
-          border-left: 2px solid $grey-gallery;
+          border-left: $border-width-small solid $border-color-light;
+          white-space: nowrap;
         }
       }
 

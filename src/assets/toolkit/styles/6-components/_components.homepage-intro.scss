@@ -11,7 +11,7 @@
   @include clearfix;
 
   .intro-text {
-    margin-bottom: 1.5rem;
+    margin-bottom: $gap-vertical;
 
     p {
       font-size: 1.125em;
@@ -23,8 +23,8 @@
     p {
       display: inline-block;
       margin-bottom: 0; // Reset
-      padding-right: 1em;
-      line-height: 2.2;
+      padding-right: $gap-half;
+      line-height: 2;
     }
 
     .social-icon {
@@ -33,23 +33,23 @@
     }
 
     div {
-      //@include span-columns( 4 of 8 );
-
       &.button-links {
         a.button {
-          margin-right: .5rem;
+          margin-right: $gap-third;
           margin-bottom: .5em;
 
-          &:last-child {
-            margin-right: 0;
-          }
+          &:last-child { margin-right: 0; }
         }
       }
 
-      @include breakpoint( $until: tablet ) {
-        //@include span-columns( 8 );
+      @include breakpoint( $until: desktop ) {
+        &.button-links {
+          margin-bottom: $gap-content;
+        }
+      }
 
-        &.social-links { margin-top: 1.5rem; }
+      @include breakpoint( desktop ) {
+        @include column( 2, $gap-horizontal );
       }
 
     }
@@ -62,10 +62,13 @@
 
     .text-wrap,
     .button-wrap {
-      //@include span-columns( 4 of 4 );
+      width: 100%;
     }
 
-    .button-wrap { margin-top: 1rem; }
+    .button-wrap {
+      margin-top: $gap-content;
+      padding-left: 0;
+    }
 
     @include breakpoint( tablet ) {
       float: left;
@@ -102,6 +105,7 @@
               color: $green-light-brand;
               font-weight: $weight-bold;
             }
+
             a { text-decoration: none; }
           }
         }

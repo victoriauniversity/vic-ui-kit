@@ -53,7 +53,7 @@ $homepage-banner-compact-max-height: 18.75rem;
       color: $white;
     }
 
-    p { margin-bottom: 1.3em; }
+    p { margin-bottom: $gap-content; }
   }
 }
 
@@ -71,7 +71,7 @@ $homepage-banner-compact-max-height: 18.75rem;
   }
 
   figcaption {
-    padding: 1rem;
+    padding: $gap-box;
     background-color: $green-brand;
 
     h1 {
@@ -110,11 +110,11 @@ $homepage-banner-compact-max-height: 18.75rem;
     }
 
     @include bp-tablet {
-      width: 65%;
+      width: 85%;
     }
 
     @include breakpoint( desktop ) {
-      width: 40%;
+      width: 44%;
     }
   }
 
@@ -131,8 +131,8 @@ $homepage-banner-compact-max-height: 18.75rem;
     }
 
     .sidebar {
-      margin-bottom: $column-padding;
       flex-basis: 25%;
+      margin-bottom: $column-padding;
       width: 25%;
     }
 
@@ -143,9 +143,7 @@ $homepage-banner-compact-max-height: 18.75rem;
       position: absolute;
 
       img {
-        @include size( 100%, auto );
-        position: absolute;
-        right: 0;
+        @include background-image-cover;
       }
     }
   }
@@ -158,8 +156,8 @@ $homepage-banner-compact-max-height: 18.75rem;
     .sidebar {
       position: absolute;
       left: 6.25rem;
-      margin-bottom: $column-padding;
       flex-basis: 21%;
+      margin-bottom: $column-padding;
       width: 21%;
     }
 

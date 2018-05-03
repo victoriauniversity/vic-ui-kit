@@ -1,0 +1,55 @@
+/*============================================================================*\
+| MEDIA-RELATED MIXINS
+\*============================================================================*/
+
+////
+/// Mixins for work with various media - images, videos, figures, galleries.
+///
+/// @group media
+
+
+
+
+
+/*= IMAGES ===================================================================*/
+
+
+/// @access public
+///
+/// Turns element (ideally an image) into a flexible background cover that
+/// maintains its aspect ratio. The element is position to the top, which means
+/// the bottom gets cropped first.
+///
+/// @example html
+///
+/// <!-- Wrapper -->
+/// <section class="container">
+///   <!-- Will fill the `.container` while keeping the correct aspect ratio -->
+///   <img class="background-cover">
+///   <!-- Dynamic content - can have a dynamic height -->
+///   <div class="content>
+///     <h1>Heading</h1>
+///     <p>Standard content</p>
+///   </div>
+/// </section>
+///
+/// @example css
+///
+/// .container { position: relative; }
+/// .background-cover { @include background-image-cover; }
+///
+/// @require {mixin} size
+@mixin background-image-cover() {
+  @include size( 100% );
+  position:        absolute;
+  top:             0;
+  right:           0;
+  left:            0;
+  object-fit:      cover;
+  object-position: top;
+}
+
+
+
+
+
