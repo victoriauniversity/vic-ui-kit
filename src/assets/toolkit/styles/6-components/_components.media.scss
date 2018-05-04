@@ -48,18 +48,23 @@
 
     img { margin-bottom: 0; }
 
-    @include before( $display: block, $position: absolute ) {
-      z-index: $z-index-lower;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: rgba( $black, .4 );
-      transition: background-color 200ms ease-in-out;
-      pointer-events: none;
-    }
+    a {
+      @include before( $display: block, $position: absolute ) {
+        z-index: $z-index-lower;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: $background-overlay-darken;
+        transition: background-color 200ms ease-in-out;
+      }
 
-    &:hover::before { background-color: rgba( $black, .2 ); }
+      @include hoverify {
+        &::before {
+          background-color: rgba( $black, .2 );
+        }
+      }
+    }
 
     //TODO: extend .tile-text
     figcaption {

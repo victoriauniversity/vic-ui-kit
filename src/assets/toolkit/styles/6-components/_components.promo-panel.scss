@@ -11,6 +11,11 @@ $promo-max-width:   60em;
     overflow: hidden;
     position: relative;
     background: $banner-background;
+
+    .separated + & {
+      position: relative;
+      top: -1 * $border-width-thin; // Cover over the border-line
+    }
   } //media desktop
 
   @include breakpoint( $until: tablet ) {
@@ -318,58 +323,84 @@ $promo-max-width:   60em;
   }
 
   &.dual-content {
-      > div {
+    .dual-content-block {
+      @include clearfix;
+      background-color: $white;
 
-          // box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15); can now be removed
+      > figure {
+        box-shadow: none;
+
+        // Left block
+        &:first-child {
+
+          figcaption {
+            @include size( 100% );
+            padding: 0;
+          }
+        }
       }
-      .dual-content-block {
-          @include clearfix();
-          // box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);can now be removed
-          background-color: $white;
-          figure {
-              &:first-child {
-                  //@include span-columns( 7 of 12, block-collapse);
-                  padding: $base-spacing * 1.5;
-                  box-shadow: none;
 
-                  @include breakpoint( $until: tablet ) {
-                      //@include span-columns( 12 of 12,                           block-collapse);
-                      padding: 0 0 $base-spacing 0;
-                  }
+      .media {
+        img {
+          float: none;
+          width: 100%;
+        }
 
-                  figcaption {
-                      padding: 0;
-                      width: 100%;
-                  }
+        figcaption {
+          padding: $gap-box;
+          min-width: 14.5rem;
 
-              }
+          h4 {
+            margin-bottom: 0;
+            padding: 0 $gap-triple 0 0;
+          }
+        }
 
-              &:last-child {
-                   //@include span-columns( 5 of 12, block-collapse);
+        .play-button {
+          position: absolute;
+          top: 50%;
+          right: $gap-horizontal;
+          margin-top: -1.25em; // Half of the play buttons size
+        }
+      }
 
-                   img {
-                      width: 100%;
-                   }
+      @include breakpoint( $until: tablet ) {
+        > figure {
+          &:first-child { // Left block
+            margin-bottom: $gap-vertical;
+          }
+        }
+
+        .media {
+          > a:before { display: none; } // Disable the video overlay
+
+          figcaption {
+            position: relative;
+            margin: 0;
+          }
+        }
+      }
 
 
-                  figcaption {
-                      .play-button {
-                          position: absolute;
-                          right: 1rem;
-                          bottom: 1rem;
-                      }
-                  }
-                   @include breakpoint( $until: tablet ) {
-                      //@include span-columns( 12 of 12,                           block-collapse);
+      @include breakpoint( tablet ) {
+        display: flex;
+        align-items: stretch;
+        box-shadow: $shadow-shallow;
 
-                      figcaption {
-                          margin-bottom: 0;
-                      }
-                  }
-              }
+        > figure {
+          float: left;
+
+          &:first-child { // Left block
+            padding: $gap-larger;
+            width: 60%;
           }
 
+          &:last-child { width: 40%; } // Right block
+        }
+
+        .media { align-self: center; }
       }
+    }
   }
 
   &.two-one-third {
