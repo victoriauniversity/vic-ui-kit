@@ -157,21 +157,6 @@ $base-study-hub-colour--study: $green-light-brand;
 
         p { display: inline-block; }
       }
-
-      // 4 in a row
-      @include bp-desktop-large {
-        @include column( 4, $grid-tile-spacing );
-      }
-
-      // 3 in a row
-      @include bp-desktop {
-        @include column( 3, $grid-tile-spacing );
-      }
-
-      // 2 in a row
-      @include bp-tablet {
-        @include column( 2, $grid-tile-spacing );
-      }
     }
 
     /** FIXME: Redesign! */
@@ -197,24 +182,27 @@ $base-study-hub-colour--study: $green-light-brand;
             height: auto;
 
             // TODO: Refactor & flatten to lower the depth!
-            &:hover { border-color: transparent; }
+            @include hoverify {
+              border-color: transparent;
+            }
           }
         }
       }
 
-      @include bp-desktop-large {
-        li.tile {
-          margin-right: $three-grid-tile-margin-hub;
-          width: ( 100 - 2 * $three-grid-tile-margin-hub ) / 3;
+      li.tile {
+        // 3 in a row
+        @include breakpoint( desktop ) {
+          @include column( 3, $grid-tile-spacing * 2 );
+        }
 
-          &:nth-child( -n+3 ) { margin-bottom: 1rem; }
-          &:nth-child( 3n ) { margin-right: 0; }
-          &:nth-child( 4n ) { margin-right: $three-grid-tile-margin-hub; }
+        // 2 in a row
+        @include bp-tablet {
+          @include column( 2, $grid-tile-spacing * 2 );
         }
       }
     }
 
-    &.four-col, // Ambiguous?
+    &.four-col, // Ambiguous? It's for columns by default
     &.two-col {
       &.image-no-gutter {
         ul {
@@ -226,6 +214,23 @@ $base-study-hub-colour--study: $green-light-brand;
           img { max-width: 100%; }
         }
       }
+
+      li.tile {
+        // 4 in a row
+        @include bp-desktop-large {
+          @include column( 4, $grid-tile-spacing );
+        }
+
+        // 3 in a row
+        @include bp-desktop {
+          @include column( 3, $grid-tile-spacing );
+        }
+
+        // 2 in a row
+        @include bp-tablet {
+          @include column( 2, $grid-tile-spacing );
+        }
+      }
     }
 
     &.two-col {
@@ -235,8 +240,6 @@ $base-study-hub-colour--study: $green-light-brand;
         }
       }
     }
-
-
 
     &.hidden {
       display: none !important;

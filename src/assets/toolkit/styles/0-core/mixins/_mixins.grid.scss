@@ -45,10 +45,13 @@
   $space: 0,
 ) {
   float: left;
+
   @if $space == 0 { width: 100% / $columns-count; }
   @if $space != 0 {
     width: calc( #{ 100% / $columns-count } - #{ ( ( $columns-count - 1 ) * $space ) / $columns-count } );
   }
+
+  &:nth-child(#{$columns-count}n+1) { clear: left; }
 
   @if $space != 0 {
     // Every column except the left-edge one
@@ -56,6 +59,7 @@
       margin-left: $space / 2;
     }
   }
+
 
   @if $space != 0 {
     // Every column except the right-edge one

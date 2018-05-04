@@ -47,7 +47,7 @@ $card-background-color: $background-light;
       display: flex;
       align-items: center;
       margin-bottom: .5em;
-      padding: 0 1em 1em;
+      padding: 0 0 1em;
 
       > * {
         padding-right: 2.5em;
@@ -94,7 +94,7 @@ $card-background-color: $background-light;
 
     // embed wrapper automatically applied to iframes
     .embed {
-      margin: 0 -2.5em -2.5em;
+      margin: 0 $bleed-larger $bleed-larger;
       padding: 0;
       height: auto;
 
@@ -124,6 +124,8 @@ $card-background-color: $background-light;
 
     .card {
       width: 100%;
+
+      .button + .button { margin-top: $gap-half; }
 
       &:nth-last-child( 2 ) {
         margin-bottom: 1.5em;
