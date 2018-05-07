@@ -4,11 +4,9 @@
 //_components.homepage-intro.scss
 
 
-//---- Settings ---
-// ----------------
-// -------------------------
 .homepage-intro {
   @include clearfix;
+
 
   .intro-text {
     margin-bottom: $gap-vertical;
@@ -112,7 +110,7 @@
       }
 
       @include breakpoint( tablet ) {
-        border-left: 2px solid $grey-alto;
+        border-left: $border-width-small solid $grey-alto;
       }
     }
   }
@@ -124,10 +122,22 @@
     &:not(:last-child) { float: left; }
   }
 
+  @include bp-tablet {
+    &.block { padding-left: 0; }
+    + .text-promo-panel .block { padding-right: 0; }
+  }
+
   @include breakpoint( $until: tablet ) {
-    &:not(:last-child) {
-      border-bottom: $border;
+    &:not(:last-child) { border-bottom: $border; }
+
+    &.block,
+    + .text-promo-panel .block {
+      padding-left: 0;
+      padding-right: 0;
     }
+
+    &.block { padding-top: 0; }
+    + .text-promo-panel .block { padding-bottom: 0; }
   }
 
 }
