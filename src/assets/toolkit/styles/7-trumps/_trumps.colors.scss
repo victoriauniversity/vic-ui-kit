@@ -32,15 +32,14 @@
   }
 
   .tiles-wrap {
-    li.tile {
+    li.tile  a {
       border-left: $border-width-thick solid $color;
+      h2 { color: $color; }
 
-      &:hover { border-left-color: $blue-st-tropaz; }
+      @include hoverify {
+        border-left-color: inherit;
 
-      a {
-        h2 { color: $color; }
-
-        &:hover { border-left-color: transparent; }
+        h2 { color: inherit; }
       }
     }
   }

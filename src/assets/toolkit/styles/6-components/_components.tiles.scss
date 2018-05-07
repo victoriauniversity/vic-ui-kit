@@ -1,7 +1,7 @@
 // Tile(s)
 $tile-height:                12.5rem;
 $background-color:           $grey-gallery; //Used for borders to stop elements moving on hover
-$blue-hover-shade:           #7E97B8;
+$blue-hover-shade:           rgb(64, 94, 133);
 $tile-active-shade:          #E3E3E3;
 
 // Grid styles
@@ -30,7 +30,6 @@ $base-study-hub-colour--study: $green-light-brand;
       padding: $gap-half;
       height: 100%;
       border: $border-width-thick solid $white;
-      border-left: 0;
 
       @include hoverify {
         opacity: 1;
@@ -106,7 +105,6 @@ $base-study-hub-colour--study: $green-light-brand;
       flex-direction: column;
       background-color: $white;
       box-shadow: $shadow-shallowest;
-      border-left: $border-width-thick solid $green-brand;
 
       @include hoverify {
         box-shadow:   none;
@@ -199,7 +197,7 @@ $base-study-hub-colour--study: $green-light-brand;
       }
     }
 
-    &.four-col, // Ambiguous? It's for columns by default
+    &.four-col, // Ambiguous? It's either 4-cols or 2-cols
     &.two-col {
       &.image-no-gutter {
         ul {
@@ -560,7 +558,6 @@ $base-study-hub-colour--study: $green-light-brand;
   .tiles-wrap {
     li.tile {
       height: 17rem;
-      border-left: $border-width-thick solid $base-study-hub-colour--study;
 
       a {
         // .sub-text { }
@@ -601,7 +598,6 @@ $base-study-hub-colour--study: $green-light-brand;
       width: 100%;
       height: auto;
       background-color: $base-study-hub-colour--study;
-      border-left: 0;
 
       a {
         padding: $gap-box;
