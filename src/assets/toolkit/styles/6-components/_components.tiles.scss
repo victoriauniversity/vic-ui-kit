@@ -6,15 +6,12 @@ $tile-active-shade:          #E3E3E3;
 
 // Grid styles
 $grid-tile-spacing:          $gap-half;
-
-$four-grid-tile-margin:      1%;
-$three-grid-tile-margin:     1%;
-$two-grid-tile-margin:       1.3%;
-
-$three-grid-tile-margin-hub: 3%;
+$grid-tile-spacing-large:    $gap;
 
 // colour for study hub - study page
 $base-study-hub-colour--study: $green-light-brand;
+
+//FIXME: Simplify and refactor tiles into simpler and more manageable structure
 
 
 .tiles-panel {
@@ -76,8 +73,8 @@ $base-study-hub-colour--study: $green-light-brand;
       h4 { color: $text-weaker-color;; }
 
       p {
-        line-height: 1.5;
-        font-size: 1em;
+        line-height: $text-line-height;
+        font-size: 100%;
         color: $grey-dove;
       }
 
@@ -563,7 +560,7 @@ $base-study-hub-colour--study: $green-light-brand;
   .tiles-wrap {
     li.tile {
       height: 17rem;
-      border-left: 4px solid $base-study-hub-colour--study;
+      border-left: $border-width-thick solid $base-study-hub-colour--study;
 
       a {
         // .sub-text { }
@@ -581,7 +578,8 @@ $base-study-hub-colour--study: $green-light-brand;
           position: relative;
           right: 0;
           bottom: 0;
-          font-size: 1.5rem;
+          vertical-align: top;
+          font-size: $h4-size;
         }
       }
 
@@ -589,84 +587,96 @@ $base-study-hub-colour--study: $green-light-brand;
   }
 }
 
-//step tiles for study hub mod
-.tiles-panel {
-  &.tile-steps {
-    background-color: $white;
+// Tiles representing steps (1, 2, 3...)
+.tiles-panel.tile-steps {
+  background-color: $white;
 
-    .tiles-wrap {
-      li.tile {
-        height: 21.875rem;
-        background-color: $base-study-hub-colour--study;
-        border-left: 0;
+  .tiles-wrap {
+    > ul {
+      display: flex;
+      flex-wrap: wrap;
+    }
 
-        a {
-          border: 4px solid $base-study-hub-colour--study;
+    li.tile {
+      width: 100%;
+      height: auto;
+      background-color: $base-study-hub-colour--study;
+      border-left: 0;
 
-          p,
-          h3,
+      a {
+        padding: $gap-box;
+        color: $white;
+        border: 0;
+
+        p,
+        h3,
+        i,
+        .tile-number,
+        .tile-icon {
+          color: inherit;
+        }
+
+        > h3 { font-size: $h4-size; }
+
+        .tile-number {
+          margin-bottom: $gap-small;
+          font-size: 500%;
+          line-height: 1;
+        }
+
+        // FIXME: Can overlay with the tile's content unnecessarily. Don't use absolute positioning
+        .tile-icon {
+          position: relative;
+          float: right;
+          bottom: $bleed-vertical;
+          margin-bottom: $gap-half;
+
+          // TODO: Refactor & flatten to lower the depth!
           i {
-            color: $white;
-          }
-
-          h3 {
-            padding-bottom: .25em;
-            font-size: 1.5em;
-          }
-
-          .tile-number {
-            font-size: 5em;
-            color: $white;
-            line-height: 1;
-          }
-
-          .tile-icon {
-            position: absolute;
-            right: .5em;
-            bottom: .5em;
-            font-size: inherit;
-            color: $white;
-
-            // TODO: Refactor & flatten to lower the depth!
-            i {
-              position: relative;
-              right: 0;
-              bottom: 0;
-              font-size: 1.5rem;
-            }
-          }
-
-          &:hover {
-            border: 4px solid $base-study-hub-colour--study;
-
-            // TODO: Refactor & flatten to lower the depth!
-            p,
-            i {
-              color: $white;
-            }
+            position: relative;
+            right: 0;
+            bottom: 0;
+            vertical-align: top;
           }
         }
+      }
 
-        .title-first-step {
-          display: flex;
-          align-items: center;
-          font-size: 1.6em;
+      .title-first-step {
+        display: flex;
+        align-items: center;
 
-          h3 { line-height: 1.2; }
+        h3 {
+          font-size: $h2-size;
+
+          &:last-child { margin-bottom: 0; }
+        }
+      }
+
+      @include breakpoint( tablet ) {
+        min-height: 19rem;
+
+        a .tile-icon {
+          position: absolute;
+          bottom: 0;
+          right: $gap-horizontal;
         }
 
-        &:hover { border: 0; }
+        a > h3 + p { margin-bottom: $gap-larger; }
+      }
 
-        @include bp-desktop-large {
-          margin-right: $three-grid-tile-margin-hub;
-          width: ( 100 - 2 * $three-grid-tile-margin-hub ) / 3;
-
-          &:nth-child( -n+3 ) { margin-bottom: $three-grid-tile-margin-hub; }
-          &:nth-child( 3n ) { margin-right: 0; }
-          &:nth-child( 4n ) { margin-right: $three-grid-tile-margin-hub; }
-        }
+      @include breakpoint( desktop ) {
+        @include column( 3, $grid-tile-spacing-large );
+        margin-top: $grid-tile-spacing-large / 2;
+        margin-bottom: $grid-tile-spacing-large / 2;
 
       }
+
+      @include bp-tablet {
+        @include column( 2, $grid-tile-spacing-large );
+        margin-top: $grid-tile-spacing-large / 2;
+        margin-bottom: $grid-tile-spacing / 2;
+      }
+
     }
   }
 }
