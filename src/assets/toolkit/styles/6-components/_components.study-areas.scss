@@ -3,7 +3,8 @@
 // - Used for both Study-areas and Degrees & Qualifactions block
 
 $tile-height:            15.5rem;
-$tile-image-max-width:   3.2258 * $tile-height; // width-to-height ratio * height
+
+$simple-grid-spacing:    $gap-half;
 
 $four-grid-tile-margin:  1%;
 $three-grid-tile-margin: 1%;
@@ -14,7 +15,6 @@ $two-grid-tile-margin:   1.3%;
   @include grid-container;
 
   .tiles-wrap {
-    //@include fill-parent();
     margin-top: 1rem;
 
     > ul {
@@ -25,18 +25,14 @@ $two-grid-tile-margin:   1.3%;
     li.tile {
       overflow: hidden;
       position: relative;
-      float: left;
-      margin-bottom: 8px;
+      margin-bottom: $gap-half;
+      height: $tile-height;
+
+      .tiles-panel & { box-shadow: $shadow-shallowest }
 
       // Background image
       .img-helper + img {
-        @include size( auto, 100% );
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 50%;
-        margin-left: -1 * $tile-image-max-width / 2;
+        @include background-image-cover;
       }
 
       &.is-matching { filter: saturate( 200% ); }
@@ -45,7 +41,7 @@ $two-grid-tile-margin:   1.3%;
       // All the text for the tile including the hidden text
       .tile-text {
         @include size( 100%, auto );
-        z-index: $z-index-top;
+        z-index: $z-index-middle;
         position: absolute;
         top: 0;
         display: block;
@@ -55,7 +51,7 @@ $two-grid-tile-margin:   1.3%;
       .tile-title {
         display: flex;
         align-items: center;
-        padding: 1em;
+        padding: 1rem;
 
         h2 {
           float: left;
@@ -65,10 +61,10 @@ $two-grid-tile-margin:   1.3%;
         i {
           display: flex;
           align-items: center;
-          margin-left: .5rem;
+          margin-left: $gap-third;
           width: 5%;
           color: $white;
-          font-size: 2.2em;
+          font-size: 220%;
 
           &::before { margin: 0; }
         }
@@ -80,60 +76,49 @@ $two-grid-tile-margin:   1.3%;
         margin: 0;
         padding: 0;
         color: $white;
-        line-height: 1.2;
       }
-
-      p { line-height: 1.6; }
 
       a {
         display: block;
-        // This will get rerfactored in a typography update
+
+        // This will get refactored in a typography update
         // TODO: Remove later!
         &:hover {
           opacity: 1;
           border: 0;
         }
 
-        h2 { font-size: 1.5em; }
+        h2 { font-size: $h4-size; }
       }
 
       // The hidden subjects span which is displayed on hover
       h4 {
-        margin-bottom: .5em;
+        margin-bottom: $gap-third;
         color: $grey-alto;
-        font-size: 1.2em;
+        font-size: $h5-size;
 
-        &::before { font-size: 85%; }
+        &::before {
+          vertical-align: none;
+          font-size: $text-size-tiny;
+        }
       }
 
-      //TODO: Reminds other tabs in other components = MERGE!
+      //TODO: Behaves like other .tile = MERGE!
       @include bp-desktop-large {
-        margin-right: $four-grid-tile-margin;
-        width: ( 100 - 3 * $four-grid-tile-margin ) / 4;
-
-        &:nth-child( 4n ) { margin-right: 0; }
+        @include column( 4, $simple-grid-spacing );
       }
 
       @include bp-desktop {
-        margin-right: $three-grid-tile-margin;
-        width: ( 100 - 2 * $three-grid-tile-margin ) / 3;
-
-        &:nth-child( 3n ) { margin-right: 0; }
+        @include column( 3, $simple-grid-spacing );
       }
 
       @include bp-tablet {
-        margin-right: $two-grid-tile-margin;
-        width: ( 100 - 1 * $two-grid-tile-margin ) / 2;
-
-        &:nth-child( 2n ) { margin-right: 0; }
+        @include column( 2, $simple-grid-spacing );
       }
 
       @include breakpoint( $until: tablet ) {
-        float: none;
-
         .tile-title {
-          padding-top: .5em;
-          padding-bottom: 0;
+          padding-bottom: 1rem;
         }
 
         .img-helper + img { max-height: none; }
@@ -179,8 +164,6 @@ $two-grid-tile-margin:   1.3%;
 
   .tiles-wrap {
     li.tile {
-      height: auto;
-
       img {
         width: 100%;
 
@@ -197,11 +180,16 @@ $two-grid-tile-margin:   1.3%;
         }
       }
 
-      &:hover {
+      @include hoverify {
         @include breakpoint( desktop ) {
+          .tile-text {
+            height: 100%;
+
+            > a { height: 100%; }
+          }
+
           span {
             display: block;
-            height: 11.25rem; //TODO: Do cleanly
           }
         }
       }
