@@ -17,6 +17,11 @@ $base-study-hub-colour--study: $green-light-brand;
 .tiles-panel {
   background-color: $background-color;
 
+  .sector + &,
+  .separated + & {
+    margin-top: -.0625rem;
+  }
+
   &.hidden { display: none; }
 }
 
@@ -387,7 +392,7 @@ $base-study-hub-colour--study: $green-light-brand;
           .toggle {
             position: absolute;
             right: 1.5rem;
-            top: 1rem;
+            top: .8rem;
 
             cursor: pointer;
             font-size: 1.5rem;
@@ -467,7 +472,11 @@ $base-study-hub-colour--study: $green-light-brand;
     li.tile {
       position: relative;
 
-      > a { padding-right: 2em; }
+      a {
+        padding-right: 2em;
+        border-color: $white;
+      }
+
       h4 { font-size: 1em; }
 
       i {

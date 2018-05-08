@@ -9,14 +9,14 @@
 
 
 // File extensions colour variations
-$color-bg-pdf:   lighten( $red-roof-terratcotta, 55% );
+$color-bg-pdf:   $red-punch;
 $color-bg-word:  lighten( $blue-callypso, 58% );
 $color-bg-excel: lighten( $green-killarney, 60% );
 $color-bg-mp3:   lighten( $yellow-cinamon, 65% );
 $color-bg-ppt:   lighten( $orange-charcoal, 50% );
 $color-bg-file:  $grey-alto;
 
-$color-text-pdf:   $red-tamarillo;
+$color-text-pdf:   $white;
 $color-text-word:  $blue-callypso;
 $color-text-excel: $green-killarney;
 $color-text-mp3:   $yellow-cinamon;
@@ -100,8 +100,8 @@ $color-text-ppt:   $orange-charcoal;
   // Inside standard paragraphs, labels should be placed on the *end* of
   // the bearing element.
   .formatting p & {
-    margin-right: .1em;
-    margin-left:  .35em;
+    margin-right:  _em( $gap-small );
+    margin-left:   _em( $gap-small );
   }
 
 }
