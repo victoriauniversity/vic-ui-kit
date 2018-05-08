@@ -47,6 +47,8 @@ $portrait-width: 9.35rem;
       .meta > li { display: inline-block; }
     }
   }
+
+  .meta { margin-bottom: 0; }
 }
 
 .profile-picture { width: 100%; }
@@ -77,8 +79,8 @@ ul.meta {
 
   > li {
     display: block;
-    margin-bottom: .5em;
-    font-size: .875rem; //TODO: Refactor into more dynamic solution
+    margin-bottom: $gap-small;
+    font-size: $text-size-smaller; //TODO: Refactor into more dynamic solution
     word-wrap: break-word;
     line-height: 1.35;
   }
@@ -91,7 +93,6 @@ ul.meta {
     @include icon-selector() {
       color: inherit;
       vertical-align: inherit;
-      text-:
 
       &::before {
         display: inline-block;
@@ -102,7 +103,7 @@ ul.meta {
     > a {
       display: block;
       padding: .2rem .5rem;
-      background-color: _tint( $green-nebula, $lighter-percentage ); //TODO: Can it be replaced by some of the pre-defined colours?
+      background-color: _tint( $green-nebula, $lighter-percentage ); //TODO: Can it be replaced by some of the pre-defined colour?
       color: $heading-color;
       text-decoration: none;
 
