@@ -42,6 +42,7 @@ function serverAndWatch() {
     https:     config.getEnvConfig().server.protocol === 'https',
     ui:        false, // Disable server's UI
     notify:    false, // Disable popups
+    cors:      true, // Allows including localhost files in external webpages
     logPrefix: 'VIC-UI-KIT',
   });
 
