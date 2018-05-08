@@ -64,7 +64,6 @@ function processToolkitStyles( done ) {
     gulpif( !config.devMode, csso({ debug: true })),
     gulpif( !config.devMode, rename( 'toolkit.min.css' )),
     gulp.dest( config.paths.tmp ),
-    gulp.dest( `${config.paths.tmp}/static.victoria.ac.nz` ), //TODO: !!!!Remove after testing!!!!
   ], done );
 }
 

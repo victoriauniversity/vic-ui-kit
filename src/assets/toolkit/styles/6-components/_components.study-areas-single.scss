@@ -13,33 +13,36 @@
     }
 
     .img-wrap {
-      //@include span-columns( 5 );
+      float: left;
+      padding-right: $gap-horizontal;
+      width: 40%;
 
       img { width: 100%; }
     }
 
     .content-wrap {
-      //@include span-columns( 7 );
 
-      &:first-child { width: 100%; } // Study area without an image
+      &:first-child { // Study area without an image
+        width: 100%;
+      }
 
       .text-subjects-wrap {
         .text-wrap {
-          //@include span-columns( 4 of 6 );
+          width: 100%;
 
           // TODO: Refactor & flatten to lower the depth!
           h2 { margin-bottom: 1rem; }
 
           p {
-            margin-bottom: $base-spacing;
+            margin-bottom: $gap-content;
             font-size: 1.125em;
             line-height: 1.8rem;
           }
         }
 
         .subjects-wrap {
-          //@include span-columns( 2 of 6 );
           margin-right: 0;
+          width: 100%;
 
           // TODO: Refactor & flatten to lower the depth!
           h4 {
@@ -59,9 +62,6 @@
             }
           }
 
-          @include breakpoint( $until: desktop ) {
-            //@include span-columns( 8 );
-          }
         }
       }
 
@@ -69,6 +69,16 @@
     }
 
     @include breakpoint( tablet ) {
+      .img-wrap {
+        float: left;
+        width: 40%;
+      }
+
+      .content-wrap {
+        float: left;
+        width: 60%;
+      }
+
       .content-wrap {
         .text-subjects-wrap {
           display: inline;
@@ -80,24 +90,37 @@
       }
     }
 
-    @include breakpoint( $until: desktop ) {
-      .content-wrap .text-subjects-wrap {
-        .text-wrap,
-        .subjects-wrap {
-          //@include span-columns( 8 );
+    @include breakpoint( desktop ) {
+      .content-wrap {
+        .text-subjects-wrap {
+          .text-wrap {
+            float: left;
+            width: 66.6%;
+          }
+
+          .subjects-wrap {
+            float: left;
+            padding-left: $gap-horizontal;
+            width: 33.4%;
+          }
         }
       }
     }
 
-    @include breakpoint( $until: tablet  ) {
-      .img-wrap { display: none; }
-
+    @include breakpoint( $until: desktop ) {
       .content-wrap {
-        //@include span-columns( 6 );
+        a.button { margin-bottom: $gap-content; }
 
-        a.button { margin-bottom: .35rem; }
+        .text-subjects-wrap .subjects-wrap {
+          clear: left;
+        }
       }
     }
+
+    @include breakpoint( $until: tablet ) {
+      .img-wrap { display: none; }
+    }
+
 
   }
 }

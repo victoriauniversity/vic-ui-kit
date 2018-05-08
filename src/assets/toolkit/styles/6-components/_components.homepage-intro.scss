@@ -7,7 +7,6 @@
 .homepage-intro {
   @include clearfix;
 
-
   .intro-text {
     margin-bottom: $gap-vertical;
 
@@ -122,24 +121,9 @@
     &:not(:last-child) { float: left; }
   }
 
-  @include bp-tablet {
-    &.block { padding-left: 0; }
-    + .text-promo-panel .block { padding-right: 0; }
-  }
-
   @include breakpoint( $until: tablet ) {
     &:not(:last-child) { border-bottom: $border; }
-
-    &.block,
-    + .text-promo-panel .block {
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    &.block { padding-top: 0; }
-    + .text-promo-panel .block { padding-bottom: 0; }
   }
-
 }
 
 
@@ -156,5 +140,4 @@
   .text-promo-panel.intro-promo.no-border {
     &::before { border-left: 0; }
   }
-
 }
