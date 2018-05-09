@@ -27,7 +27,7 @@ $tag-font-color-grey:         $grey-dove;
   background-color: $tag-background-color;
   color: $tag-font-color;
 
-  aside & { font-size: .875rem; }
+  aside & { font-size: $text-size-tiny; }
 
   // 'x' button
   .close {
@@ -77,22 +77,22 @@ a {
 
     @include hoverify() {
       text-decoration: underline;
-      background-color: _tint( $tag-background-color, 4 );
+      background-color: _tint( $tag-background-color, 40% );
 
       &.tag-green {
-        background-color: _tint( $tag-background-color-green, 4 );
+        background-color: _tint( $tag-background-color-green, 40% );
       }
 
       &.tag-red {
-        background-color: _tint( $tag-background-color-red, 4 );
+        background-color: _tint( $tag-background-color-red, 40% );
       }
 
       &.tag-yellow {
-        background-color: _tint( $tag-background-color-yellow, 4 );
+        background-color: _tint( $tag-background-color-yellow, 40% );
       }
 
       &.tag-grey {
-        background-color: _tint( $tag-background-color-grey, 4 );
+        background-color: _tint( $tag-background-color-grey, 40% );
       }
     }
 
@@ -112,7 +112,7 @@ a {
 
     &.tag-active {
       border: 1px solid $tag-font-color;
-      background-color: _tint( $tag-background-color, 4 );
+      background-color: _tint( $tag-background-color, 40% );
       color: $tag-font-color;
     }
   }

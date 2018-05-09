@@ -40,14 +40,13 @@ img:first-child {
 
   .formatting.block > & {
     @include bleed-horizontal;
-    margin-bottom: $gap-content;
   }
 }
 
 
-// Inline and floats on devices bigger than 'tablet'
 @include breakpoint( tablet ) {
   .formatting {
+    // Inline and floats on devices bigger than 'tablet'
     .inline,
     p > img,
     p > img ~ img {
@@ -56,9 +55,19 @@ img:first-child {
       margin-left: $gap-horizontal;
       width: $media-inline-width;
     }
+
+    // Add bottom padding to visually separate content from footer
+    main > &,
+    aside > & {
+      padding-bottom: $gap-double;
+    }
+  }
+
+  main,
+  aside {
+    > .formatting {}
   }
 }
-
 
 
 

@@ -76,26 +76,25 @@ $widgetbar-heading-font-size: $h4-size;
   h2 {
     @include separator-strip;
     font-size: $widgetbar-heading-font-size;
+  }
 
-    &.publications {
-      li {
+  &.publications {
+    li {
 
-        > * { margin-bottom: .3em; }
+      > * { margin-bottom: .3em; }
 
-        a { display: inline-block; }
+      a { display: inline-block; }
 
-        .label { margin-left: .5em; }
+      .label { margin-left: .5em; }
 
-        .pub-author {
-          font-size: .9em;
-          line-height: 1.2;
-        }
-      }
-
-      aside & {
-        li { padding: .53rem .1em; }
+      .pub-author {
+        font-size: $text-size-smaller;
+        line-height: 1.2;
       }
     }
 
+    aside & {
+      li { padding: .53rem .1em; }
+    }
   }
 }

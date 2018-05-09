@@ -41,6 +41,18 @@
 /*= CUSTOM-BUILT ICONS ====================================================== */
 
 
+// Social media icons
+
+.small-icon {
+  &::before,
+  &::after {
+    font-size: 65%;
+  }
+}
+
+
+// Icon placement
+
 .hanging-icon { float: left; } //TODO: Use utility class instead ('.float-left')
 
 
@@ -99,6 +111,7 @@ $icon-play-triangle-ratio: 1.1; // Ratio between width and height of the triangl
 .link-restricted {
   @include extend-icon-after( lock ) {
     vertical-align: 0;
+    text-decoration: none !important;
   }
 }
 

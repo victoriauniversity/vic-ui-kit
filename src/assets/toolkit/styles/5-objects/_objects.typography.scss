@@ -76,7 +76,7 @@ $subtitle-separator-character:  $character-middle-dot;
   figcaption {
     a {
       &:not(.button):visited { color: $link-visited-color; }
-      @include linkify-text;
+      @include linkify-text; // *MUST* come after :visited
     }
   }
 
@@ -98,6 +98,11 @@ $subtitle-separator-character:  $character-middle-dot;
       color:       $text-weakest-color;
     }
   }
+
+  // Top margins for formatted headings to improve block separation and readability
+  h2:not(:first-child) { margin-top: $gap-content * 1.55; }
+  h3:not(:first-child) { margin-top: $gap-content * 1.4; }
+  h4:not(:first-child) { margin-top: $gap-content * 1.25; }
 
   // Subtitle
   .subtitle {
@@ -213,6 +218,8 @@ aside > .formatting {
     margin-bottom: $gap-third;
     font-size: $widgetbar-subheading-font-size;
     color:     $text-weaker-color;
+
+    &:not(:first-child) { margin-top: $gap-content; }
   }
 }
 

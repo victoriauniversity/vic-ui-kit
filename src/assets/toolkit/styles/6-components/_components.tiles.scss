@@ -95,7 +95,10 @@ $base-study-hub-colour--study: $green-light-brand;
 
 
 .updated-tile-grid {
-  h2 { margin-bottom: $gap-content; }
+  > h2,
+  > p {
+    margin-bottom: $gap-content;
+  }
 
   .tiles-wrap {
     > ul {
@@ -187,7 +190,9 @@ $base-study-hub-colour--study: $green-light-brand;
 
             // TODO: Refactor & flatten to lower the depth!
             @include hoverify {
-              border-color: transparent;
+              border-top-color: transparent;
+              border-right-color: transparent;
+              border-bottom-color: transparent;
             }
           }
         }

@@ -13,7 +13,7 @@ blockquote.quote { font-style: italic; }
 
   blockquote {
     margin-bottom: .35em;
-    font-style: italic;
+    font-style: normal;
   }
 
   figcaption {
@@ -40,12 +40,12 @@ blockquote.quote { font-style: italic; }
       // Starting quote icon
       @include extend-icon-before( quote-down ) {
         top: -.1em;
-        margin-right: .3em;
+        margin-left: _em( $bleed-third );
       };
 
       // Ending quote icon
       @include extend-icon-after( quote-up ) {
-        margin-left: .3em;
+        margin-right: _em( $bleed-third );
       };
 
       &::before,
@@ -120,7 +120,7 @@ blockquote.quote { font-style: italic; }
         padding: 1.6rem 0;
 
         blockquote {
-          width: 75%;
+          width: 60%;
           position: relative;
 
           h3,

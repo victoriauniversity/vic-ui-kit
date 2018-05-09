@@ -46,7 +46,9 @@
 
     > a {
       h2,
-      p { color: $white; }
+      p {
+        color: $white;
+      }
     }
 
     @include hoverify {
@@ -57,8 +59,12 @@
   &.secondary {
     background-color: $background-info-light;
 
-    h2,
-    p { color: $link-color; }
+    > a {
+      h2,
+      p {
+        color: $link-color;
+      }
+    }
 
     @include hoverify {
       background-color: $background-info-light-darker;
