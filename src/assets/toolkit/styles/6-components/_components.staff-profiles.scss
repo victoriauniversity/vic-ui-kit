@@ -66,12 +66,9 @@ address.contact {
 // List of quick (meta) information
 ul.meta {
   @include icon-selector() {
-    width: 1.5rem;
     color: $text-weakest-color;
     font-size: $text-size-huge;
     vertical-align: inherit;
-    text-align: center;
-    display: inline-block;
 
     &::before { display: inline; } // Prevent icon wrapping
   };
@@ -110,7 +107,9 @@ ul.meta {
       color: $heading-color;
       text-decoration: none;
 
-      @include hoverify() { text-decoration: underline; }
+      @include hoverify {
+        text-decoration: underline;
+      }
     }
   }
 }
