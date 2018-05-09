@@ -66,8 +66,12 @@ address.contact {
 // List of quick (meta) information
 ul.meta {
   @include icon-selector() {
-    color: $grey;
-    font-size: 115%;
+    width: 1.5rem;
+    color: $text-weakest-color;
+    font-size: $text-size-huge;
+    vertical-align: inherit;
+    text-align: center;
+    display: inline-block;
 
     &::before { display: inline; } // Prevent icon wrapping
   };
@@ -92,7 +96,6 @@ ul.meta {
 
     @include icon-selector() {
       color: inherit;
-      vertical-align: inherit;
 
       &::before {
         display: inline-block;
