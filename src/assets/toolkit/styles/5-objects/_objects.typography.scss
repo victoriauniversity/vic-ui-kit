@@ -190,6 +190,14 @@ $subtitle-separator-character:  $character-middle-dot;
     li { list-style-type: square; }
     ul li { list-style-type: circle; }
   }
+
+  @include breakpoint( tablet ) {
+    // Add bottom padding to visually separate content from footer
+    .layout main > &,
+    .layout aside > & {
+      &:last-child { padding-bottom: $gap-double; }
+    }
+  }
 }
 
 

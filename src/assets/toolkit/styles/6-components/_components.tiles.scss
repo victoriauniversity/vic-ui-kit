@@ -7,6 +7,9 @@ $blue-hover-shade:           #405E85;
 $grid-tile-spacing:          $gap-half;
 $grid-tile-spacing-large:    $gap;
 
+$grid-tile-padding-vertical: 1rem;
+$grid-tile-hover-border-width: $border-width-thick;
+
 // colour for study hub - study page
 $base-study-hub-colour--study: $green-light-brand;
 
@@ -21,7 +24,7 @@ $base-study-hub-colour--study: $green-light-brand;
     margin-top: -.0625rem;
   }
 
-  + .promo-panel .centraliser { border-top: $border; }
+  + .promo-panel:not(.white-bg) .centraliser { border-top: $border; }
 
   &.hidden { display: none; }
 }
@@ -33,14 +36,16 @@ $base-study-hub-colour--study: $green-light-brand;
   li.tile {
     a {
       display: block;
-      padding: 1rem $gap-half;
+      padding: $grid-tile-padding-vertical $gap-half;
       height: 100%;
-      border: $border-width-thick solid $white;
-      border-left-color: $green-brand;
+      border-left: $grid-tile-hover-border-width solid $green-brand;
 
       @include hoverify {
+        padding-top: ( $grid-tile-padding-vertical - $grid-tile-hover-border-width );
+        padding-right: ( $gap-half - $grid-tile-hover-border-width );
+        padding-bottom: ( $grid-tile-padding-vertical - $grid-tile-hover-border-width );
         opacity: 1;
-        border-color: $blue-st-tropaz;
+        border: $grid-tile-hover-border-width solid $blue-st-tropaz;
 
         h2,
         h3,
@@ -165,16 +170,6 @@ $base-study-hub-colour--study: $green-light-brand;
     }
 
     /** FIXME: Redesign! */
-    &.image-no-gutter {
-      li.tile a {
-        @include hoverify {
-          border-top-color: transparent;
-          border-right-color: transparent;
-          border-bottom-color: transparent;
-        }
-      }
-    }
-
     &.three-col {
       &.image-no-gutter {
         ul {
@@ -184,17 +179,7 @@ $base-study-hub-colour--study: $green-light-brand;
 
         li.tile {
           img { max-width: 100%; }
-
-          a {
-            height: auto;
-
-            // TODO: Refactor & flatten to lower the depth!
-            @include hoverify {
-              border-top-color: transparent;
-              border-right-color: transparent;
-              border-bottom-color: transparent;
-            }
-          }
+          a { height: auto; }
         }
       }
 
@@ -255,11 +240,7 @@ $base-study-hub-colour--study: $green-light-brand;
     }
   }
 
-  &.hidden {
-    display: none !important;
-  }
-
-  &.hidden { display: none; }
+  &.hidden { display: none !important; }
 
   &.media-quote {
     .tiles-wrap {
@@ -289,11 +270,17 @@ $base-study-hub-colour--study: $green-light-brand;
 
         q {
           color: $green-light-brand;
-          font-size: 1rem;
-          font-weight: bold;
+          font-size: 100%;
+          font-weight: $weight-bold;
 
           &::before { content: open-quote; }
           &::after { content: close-quote; }
+        }
+
+        a {
+          @include hoverify {
+            q { color: $blue-st-tropaz; }
+          }
         }
 
         .sub-text { margin-bottom: 1rem; }
@@ -349,7 +336,7 @@ $base-study-hub-colour--study: $green-light-brand;
         h2 { padding-right: .5em; }
 
         h4 {
-          padding: 0 .75rem;
+          padding: 0 $gap-half;
           border-left: $border-width-small solid $border-color-light;
           white-space: nowrap;
         }
@@ -359,20 +346,17 @@ $base-study-hub-colour--study: $green-light-brand;
   }
 
   &.content-page {
-
     .tiles-wrap {
-
       > ul {
-        padding-left: 0;
         margin-bottom: 0;
+        padding-left: 0;
 
         li.tile {
           position: relative;
           padding-left: 0;
 
           a {
-            text-decoration: none;
-
+            &,
             h2,
             h3,
             h4,
@@ -390,7 +374,6 @@ $base-study-hub-colour--study: $green-light-brand;
     }
 
     &.tile-accordion {
-
       .tiles-wrap {
         padding-left: 0;
 
@@ -398,18 +381,17 @@ $base-study-hub-colour--study: $green-light-brand;
           position: relative;
 
           .toggle {
+            @include size( 1.5em );
             position: absolute;
+            top: ( 1.5em / 2 );
             right: 1.5rem;
-            top: .8rem;
+            display: block;
+            margin: 0;
 
             cursor: pointer;
             font-size: 1.5rem;
             color: $green-brand;
 
-            display: block;
-            margin: 0 .5rem;
-            height: 1.5em;
-            width: 1.5em;
             -ms-grid-row-align: center;
             align-self: center;
             cursor: pointer;
@@ -455,8 +437,9 @@ $base-study-hub-colour--study: $green-light-brand;
           }
 
           h3 {
-            font-size: 1.2rem;
+            margin-top: 0;
             margin-bottom: 0;
+            font-size: 1.2rem;
           }
 
           p {
@@ -538,7 +521,6 @@ $base-study-hub-colour--study: $green-light-brand;
 .fixed-height-tiles {
   .tiles-wrap li.tile {
     height: $tile-height;
-    // a .sub-text h4 { }
   }
 }
 
