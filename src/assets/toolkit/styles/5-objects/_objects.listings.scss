@@ -1,59 +1,85 @@
+/*============================================================================*\
+| GENERIC LISTINGS
+\*============================================================================*/
+
+////
+/// Definitions of listings of things (e.g. list of articles, images etc.).
+///
+/// @group lists
 
 
-/* ===== GENERAL LISTINGS =================================================== */
 
-$article-item-max-width: $base-max-content-height;
+
+
+/*= ARTICLES LISTING =========================================================*/
 
 
 /** Generic holder for list of all article-like overviews. */
+$article-item-max-width: 49.5rem; // This is a maximum treshold for a good readability
+
 .articles-container {
 
-  // .formatting resets
-  > ul,
-  > ul > li {
-    padding-left: 0;
-    list-style-type: none;
+  // Set resets if used within .formatting
+  .formatting & {
+    > ul,
+    > ul > li {
+      padding-left: 0;
+      list-style-type: none;
+    }
+
+    article { margin-bottom: 0; }
   }
 
-  article { margin-bottom: 0; }
-  // End of resets
 
-  @include breakpoint( $tablet-and-bigger ) {
+  // Add shadows & background when inside highlighted panel
+  .panel & {
+    background-color: $white;
+    box-shadow: $shadow-shallowest;
+  }
+
+
+  @include breakpoint( tablet ) {
     margin: 0 auto;
     max-width: $article-item-max-width;
   }
 
-  > header { margin: $base-spacing 0; }
+  > header {
+    display: flex;
+    align-items: center;
+    margin: $gap-vertical 0;
+
+    h2 { flex-grow: 1; }
+  }
 
   > ul {
     @include clearfix;
 
+    // Items
     > li {
       @include clearfix();
-      margin-bottom: $base-spacing;
-      padding-bottom: $base-spacing;
-      border-bottom: 1px solid $grey-alto;
-      list-style: none;
 
-      &:last-child {
-        margin-bottom: 0;
-        border-bottom: 0;
+      &:not(:last-child) {
+        margin-bottom:  $gap-vertical;
+        padding-bottom: $gap-vertical;
+        border-bottom:  $border; // Items separator
       }
     }
   }
 
+  // Item's overview
+  // TODO: Move to components/molecules
   .summary {
     h1,
     h2,
     h3,
     h4,
     h5 {
-      margin-bottom: .25em;
+      margin-bottom: $gap-small;
     }
 
     time,
     p {
-      margin-bottom: .7em;
+      margin-bottom: $gap-half;
     }
 
     p:last-child { margin-bottom: 0; }
@@ -67,41 +93,6 @@ $article-item-max-width: $base-max-content-height;
   }
 }
 
-// Display .articles-container side by side on desktop and bigger - for use with news and events
-.articles-two-up {
 
-  // grey bg panels
-  &.panel {
-    padding: $block-padding;
-    background-color: $grey-gallery;
 
-    .articles-container {
-      background-color: $white;
-      box-shadow: 0 1px 5px rgba( 0, 0, 0, .15 );
-    }
-  }
 
-  // panels split by dividing line
-  &.divider-line {
-    position: relative;
-
-    @include breakpoint( $desktop-and-bigger ) {
-      @include before( $position: absolute ) {
-        @include size( 0, 100% );
-        top: 0;
-        left: calc( 50% - 5px );
-        border-left: 5px solid $grey-gallery;
-      }
-    }
-  }
-
-  // > .centraliser {}
-
-  .articles-container {
-    @include breakpoint( $desktop-and-bigger ) {
-      //@include span-columns( 6 of 12 );
-      //@include omega( 2n );
-    }
-  }
-
-}

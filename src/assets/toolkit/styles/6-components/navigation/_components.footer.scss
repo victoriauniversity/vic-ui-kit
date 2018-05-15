@@ -8,9 +8,19 @@
 
 $footer-logo-width:         20% !default;
 $footer-logo-max-width:     15.5rem;
-$footer-primary-background: $black-victoria !default;
+$footer-primary-background: $black-brand !default;
 $footer-primary-color:      $grey-silver !default;
 $footer-primary-separator:  1px solid $black-emperor !default;
+
+
+.footer-primary .block {
+  @include clearfix;
+
+  @include breakpoint( tablet ) {
+    display: flex;
+  }
+}
+
 
 
 .footer-primary,
@@ -46,12 +56,14 @@ $footer-primary-separator:  1px solid $black-emperor !default;
       border-top: $footer-primary-separator;
     }
 
-    &.small { padding-top: .5em; }
+    &.small { padding-top: 1em; }
   }
 
   // Logo & Contact info
   .logo {
-    //@include span-columns( 3 of 12, table );
+    float: left;
+    width: 25%;
+    align-self: center;
     vertical-align: middle;
 
     img {
@@ -63,8 +75,9 @@ $footer-primary-separator:  1px solid $black-emperor !default;
   }
 
   .contacts {
-    //@include span-columns( 9 of 12, table );
+    float: left;
     padding: .5em 0 .5em 3.5em;
+    width: 75%;
     vertical-align: middle;
 
     > li:last-child { margin-right: 0; }
@@ -83,6 +96,8 @@ $footer-primary-separator:  1px solid $black-emperor !default;
   .copyright {
     float: right;
     display: block;
+    flex-grow: 1;
+    text-align: right;
   }
 
   .minilinks {
@@ -91,10 +106,11 @@ $footer-primary-separator:  1px solid $black-emperor !default;
     > li {
       &:first-child { margin-left: 0; }
     }
+
+    a { text-decoration: underline; }
   }
 
-
-  @include breakpoint( $mobile-large-and-smaller ) {
+  @include breakpoint( $until: tablet ) {
     text-align: center;
 
     .contacts,
@@ -112,7 +128,11 @@ $footer-primary-separator:  1px solid $black-emperor !default;
       float: none;
     }
 
-    .copyright { margin-top: 1em; }
+    .copyright {
+      margin-top: .75em;
+      text-align: inherit;
+    }
+
     .logo { margin-bottom: .5em; }
   }
 }
@@ -122,7 +142,7 @@ $footer-primary-separator:  1px solid $black-emperor !default;
 
 $footer-secondary-background: $grey-alto !default;
 $footer-secondary-separator:  1px solid $grey-silver !default;
-$footer-secondary-color:      $base-font-color !default;
+$footer-secondary-color:      $text-color !default;
 $footer-heading-margin-bottom: .75em;
 
 .footer-secondary {
@@ -130,12 +150,12 @@ $footer-heading-margin-bottom: .75em;
 
   h2 {
     line-height: 1.3;
-    font-size: modular-scale( 1 ); // ~ stadard <h4>'s size
+    font-size: $h5-size; // ~ stadard <h4>'s size
   }
 
   nav ul {
     a {
-      font-family: $base-heading-family;
+      font-family: $heading-family;
       font-size: 1.125em;
       border-color: $footer-secondary-color;
       text-decoration: underline;
@@ -234,11 +254,11 @@ $footer-heading-margin-bottom: .75em;
     h2 { margin-bottom: $footer-heading-margin-bottom; }
 
     .block {
-      //@include span-columns( 1 of 2, table );
+      @include column( 2 );
 
       &:first-child {
         padding-right: $base-spacing;
-        width: 10000px; // Correct widths hack
+        //width: 10000px; // Correct widths hack
       }
 
       &:last-child {
@@ -270,7 +290,7 @@ $footer-heading-margin-bottom: .75em;
   }
 
 
-  @include breakpoint( $mobile-large-and-smaller ) {
+  @include breakpoint( $until: tablet ) {
     &:not( .two-columns ) {
       h2 {
         float: none;

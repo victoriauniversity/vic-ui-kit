@@ -1,0 +1,189 @@
+/*============================================================================*\
+| FONTS & TYPOGRAPHY UTILITY VARIABLES
+\*============================================================================*/
+
+////
+/// Defines variables that can be used to set major font-based properties.
+///
+/// @group typography
+
+
+
+
+
+/* ===== FONT DEFINITIONS ====================================================*/
+
+
+/// @prop {String} - Various font family identifiers.
+$font-name-icons: 'VicIcons' !default;
+$font-name-brand: 'National' !default;
+
+
+
+
+
+/* ===== FONT WEIGHTS ========================================================*/
+
+
+/// @prop {Number}
+$weight-thin:      200; // *DO NOT* use for headings
+$weight-semithin:  300;
+$weight-normal:    400;
+$weight-medium:    500; // *DO NOT* use for headings
+$weight-semibold:  600;
+$weight-bold:      700; // *DO NOT* use for headings
+$weight-extrabold: 800;
+
+
+/// @prop {Number} [$weight-semibold]
+$heading-weight:      $weight-semibold !default;
+
+/// @prop {Number} [$weight-extrabold]
+$superheading-weight: $weight-extrabold !default;
+
+
+
+
+
+/* ===== TEXT COLOURS ========================================================*/
+
+
+/// @prop {color} [$black-tundora] - Base text colour.
+$text-color:         $black-tundora !default;
+
+/// @prop {color} [$black-emperor] - Text colour with lower importance.
+$text-weaker-color:  $black-emperor !default;
+
+/// @prop {color} [$grey-silver] - Light text colour with lower importance.
+$text-light-weaker-color: $grey-silver !default;
+
+/// @prop {color} [$black-emperor] -
+///   Text colour of the lowest importance.
+///   **Note**: Don't use for critical information due to worse readability and
+///   accessibility.
+$text-weakest-color: $grey !default;
+
+/// @prop {color} [$blue-endeavoura] - Standard link's text colour.
+$link-color:         $blue-endeavoura !default;
+
+/// @prop {color} []
+///   - Link's text colour in case the target page has been visited by a user.
+$link-visited-color: $purple-daisy !default;
+
+/// @prop {color} [$blue-curious] - Standard link's text colour on hover.
+$link-hover-color:   $blue-curious !default;
+
+/// @prop {color} [$green-brand] - Heading text colour.
+$heading-color:      $green-brand !default;
+
+/// @prop {color} [$green-brand] - A weaker shade of the heading text colour.
+$heading-weaker-color: $green-brand-weaker !default;
+
+
+
+
+
+/* ===== TEXT SIZING AND SCALING =============================================*/
+
+
+/// @prop {size (rem)} [1ren] -
+///   Base size of a text. Usually respects browser's default settings (16px)
+$text-size:         1rem !default;
+
+/// @prop {size in %}Sizes relative to the parent's container settings (should be used for end elements only to avoid composition issues).
+$text-size-massive: 150% !default;
+$text-size-huge:    115% !default;
+$text-size-larger:  107.5% !default;
+$text-size-smaller: 92.5% !default;
+$text-size-tiny:    85% !default;
+
+
+// 1. Auto-generate heading sizes based on the given scale
+$text-scale-ratio: 1.22 !default;
+
+@function _generate-scaled-size( $coeficient: 0 ) { @return _modular-scale( $coeficient, $text-size, $text-scale-ratio ); }
+
+/// @prop {size (rem)} - Various text sizes.
+$text-size-1: _generate-scaled-size( 5 ) !default;
+$text-size-2: _generate-scaled-size( 4 ) !default;
+$text-size-3: _generate-scaled-size( 3 ) !default;
+$text-size-4: _generate-scaled-size( 2 ) !default;
+$text-size-5: _generate-scaled-size( 1 ) !default;
+$text-size-6: $text-size !default;
+$text-size-7: _generate-scaled-size( -1 ) !default; // Smaller
+
+
+// 2. Derive heading sizes from the generic ones
+$heading-to-text-ratio: 1 !default;
+
+/// @prop {size (rem)} - Various heading sizes, scaled b.
+$h1-size: $heading-to-text-ratio * $text-size-1 !default;
+$h2-size: $heading-to-text-ratio * $text-size-2 !default;
+$h3-size: $heading-to-text-ratio * $text-size-3 !default;
+$h4-size: $heading-to-text-ratio * $text-size-4 !default;
+$h5-size: $heading-to-text-ratio * $text-size-5 !default;
+$h6-size: $heading-to-text-ratio * $text-size-6 !default;
+
+
+/// @prop {size (rem)} [42rem] -
+///   A maximum width until which standard text content is still comfortably readable.
+$text-readability-max-width: 44rem !default;
+
+
+
+
+
+/* ===== TEXT POSITIONING ====================================================*/
+
+
+/// @prop {size in em} [1.6] - Base text's line height ratio.
+$text-line-height:         1.6 !default;
+
+/// @prop {size in em} [1] - Headings line height ratio.
+$heading-line-height:      1.08 !default;
+
+/// @prop {size in em} [1.35] - Base text's with more stacked lines.
+$text-stacked-line-height: 1.35 !default;
+
+
+
+
+
+/* ===== FAMILY DEFINITION ===================================================*/
+
+
+/// @prop {string[]) ['Helvetica Neue','Segoe WP','Helvetica','Arial'] -
+///   Base text font family with fall-backs.
+$text-family: (
+  'Helvetica Neue',
+  'Segoe WP',
+  'Helvetica',
+  'Arial',
+) !default;
+
+/// @prop {string[]) [$font-name-brand] -
+///   Heading font family with `$text-family` as a fall-back.
+$heading-family: append( $font-name-brand, $text-family, comma ) !default;
+
+/// @prop {string[]) [$font-name-icons] - Font family of the font icons.
+$icons-family:   '#{$font-name-icons}' !default;
+
+
+
+
+
+/* ===== DECORATION ==========================================================*/
+
+
+/// @prop {text-decoration} [underline]
+$link-decoration:        underline !default;
+
+/// @prop {text-decoration} [none]
+$link-hover-decoration:  none !default;
+
+/// @prop {size (em)} [-.03em] - Spacing between heading's letters
+$heading-letter-spacing: -.03em !default;
+
+
+
+

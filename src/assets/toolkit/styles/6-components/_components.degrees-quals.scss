@@ -38,7 +38,7 @@ $sub-title-color: rgba( $white, .75 );
             border-top: 2px solid $sub-title-color;
           }
 
-          @include breakpoint ($desktop-and-bigger) {
+          @include breakpoint( desktop ) {
             min-height: 140px;
           }
         }
@@ -71,7 +71,7 @@ $sub-title-color: rgba( $white, .75 );
             margin-bottom: 0;
             padding: 0;
 
-            h2 { color: $green-victoria; }
+            h2 { color: $green-brand; }
             i { color: $black-emperor; }
           }
 
@@ -86,14 +86,14 @@ $sub-title-color: rgba( $white, .75 );
             border-top: 2px solid $grey;
           }
 
-          @include breakpoint( $desktop-and-bigger ) {
+          @include breakpoint( desktop ) {
             min-height: inherit;
           }
         }
 
-        @include breakpoint( $desktop-and-bigger ) {
+        @include breakpoint( desktop ) {
           //@include span-columns( 6 );
-          margin-right: $gutter;
+          margin-right: 8px;
           max-height: none;
         }
 
@@ -103,6 +103,8 @@ $sub-title-color: rgba( $white, .75 );
 
   &.tile-filter-tags {
     .quals-filter {
+      margin-bottom: $gap-content;
+
       #filter-quals { display: none; } // TODO: Refactor (ideally remove or replace with a non-ID substitute)
 
       label { font-size: 1.2em; }

@@ -1,5 +1,8 @@
 /** News overview (list of articles) */
 
+$media-landscape-dynamic-width: 35%;
+$media-portrait-dynamic-width:  25%;
+
 .news {
   time { display: block; }
 
@@ -10,61 +13,75 @@
     }
   }
 
-  @include breakpoint( $tablet-and-bigger ) {
+  @include breakpoint( tablet ) {
     // Has got `media` or another add-on
     .summary { overflow: hidden; }
 
-    //TODO: Remove grid
     .media {
-      //@include omega;
-      //@include span-columns( 4.5 of 12 );
       float: right;
       margin-left: $column-padding;
+      width: $media-landscape-dynamic-width;
 
       // Image with portrait-like width to height ratio
       &.portrait {
-        //@include omega;
-        //@include span-columns( 3 of 12 );
         float: right;
+        width: $media-portrait-dynamic-width;
         text-align: right;
       }
     }
   }
 
-  @include breakpoint( $mobile-large-and-smaller ) {
+  @include breakpoint( $until: tablet ) {
     .media { margin-bottom: 1em; }
   }
 }
 
 // news section for horizontal grid
 .news-row {
-  header { margin: 1.6rem 0; }
+  header {
+    margin: $gap-vertical 0;
 
-  .news {
-    li {
-      @include clearfix();
-      margin-bottom: 1.6rem;
-      padding-bottom: 1.6rem;
-      border-bottom: 1px solid $grey-alto;
-      list-style: none;
+    h2 { flex-grow: 1; }
 
-      .summary {
-        >:nth-child(2) {
-          margin-bottom: .5em;
-        }
-      }
+    .link-more {
+      margin-left: $gap-horizontal;
+      white-space: nowrap;
     }
 
-    @include breakpoint( $desktop-and-bigger ) {
+    @include breakpoint( tablet ) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .news {
+    padding-left: 0;
+
+    li {
+      @include clearfix;
+      padding-bottom: $gap-vertical;
+      margin-bottom: 0;
+      border-bottom: $border;
+      list-style: none;
+    }
+
+    @include breakpoint( $until: desktop ) {
+      li { margin-bottom: $gap-vertical; }
+    }
+
+    @include breakpoint( desktop ) {
+      @include bleed-horizontal;
       display: flex;
       flex-wrap: wrap;
 
       li {
         position: relative;
-        padding: 1.5rem;
-        width: 33%;
+        padding: $gap-box;
+        width: ( 100% / 3 );
         border-bottom: 0;
 
+        // Vertical separator
+        //FIXME: Overkill, simplify using available mixins
         &:not(:nth-child( 3n )) {
           @include after( $display: block, $position: absolute ) {
             @include size( 1px, 75% );
@@ -86,13 +103,13 @@
   article.news-commentary {
     margin-bottom: 1rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid $grey-alto;
+    border-bottom: $border;
 
     > .summary {
       h3,
       h4,
       p {
-        margin-bottom: .3rem;
+        margin-bottom: $gap-small;
       }
     }
   }

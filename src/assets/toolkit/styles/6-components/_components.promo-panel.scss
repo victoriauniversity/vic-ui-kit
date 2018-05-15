@@ -1,13 +1,3 @@
-
-%vuw-highlight-caption {
-  display: inline-block;
-  padding: .5rem 1rem;
-  margin-bottom: .5em;
-  color: $white;
-  background-color: rgba(99, 166, 89, .90);
-}
-
-
 /** In-page block with promotion */
 
 $banner-background: $grey-gallery;
@@ -15,238 +5,211 @@ $promo-max-width:   60em;
 
 
 .promo-panel {
-  @include clearfix();
+  @include clearfix;
 
-  @include breakpoint($tablet-and-bigger) {
-      background: $banner-background;
-      position:relative;
-      overflow:hidden;
+  @include breakpoint( tablet ) {
+    overflow: hidden;
+    position: relative;
+    background: $banner-background;
+
+    .separated + & {
+      position: relative;
+      top: -1 * $border-width-thin; // Cover over the border-line
+    }
   } //media desktop
-  @include breakpoint($mobile-large-and-smaller ) {
-      border-top: 3px solid $banner-background;
-      border-bottom: 3px solid $banner-background;
-      &+.promo-panel {
-          border-top: none;
-      }
+
+  @include breakpoint( $until: tablet ) {
+    border-top:    3px solid $banner-background;
+    border-bottom: 3px solid $banner-background;
+
+    + .promo-panel { border-top: 0; }
   } //media desktop
+
   &.pattern {
-      background: url("http://www.victoria.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png"); //TODO: Autolink from CDN!
-      figure {
-          background: transparent;
-          box-shadow: none;
-      }
+    background: url( 'http://www.victoria.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png' ); //TODO: Autolink from CDN!
+
+    figure {
+      background: transparent;
+      box-shadow: none;
+    }
   }
 
   &.no-pattern {
-      background: $banner-background;
-      figure {
-          background: transparent;
-          box-shadow: none;
-      }
+    background: $banner-background;
+
+    figure {
+      background: transparent;
+      box-shadow: none;
+    }
   }
 
   &.white-bg {
-      background-color: $white;
+    background-color: $white;
 
-      figure {
-          border: 1px solid $grey-gallery;
+    figure {
+      border: $border;
 
-          @include breakpoint($mobile-large-and-smaller ) {
-              border: none;
-          }
-
+      @include breakpoint( $until: tablet ) {
+        border: 0;
       }
+    }
 
-      &.dual-content {
-          .dual-content-block {
-              border: 1px solid $grey-gallery;
-              > * {
-                  border: none;
-              }
-          }
+    &.dual-content {
+      .dual-content-block {
+        border: $border;
+
+        > * {
+          border: 0;
+        }
       }
+    }
   }
 
   figure {
-      overflow: hidden; //TODO: Change to something safer
-      position: relative;
-      padding: 0;
-      background: $white;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    background: $white;
 
+
+    @include breakpoint( $until: tablet ) {
       figcaption {
-          padding-bottom: $base-spacing;
-      }
-      @include breakpoint($mobile-large-and-smaller ) {
-          figcaption {
-              h1 {
-                  margin-top: 0.5em;
-              }
-          }
-      }
-      @include breakpoint( $tablet-and-bigger) {
-          box-shadow: $base-shadow;
-          display: flex;
-          align-items: center;
+        padding-bottom: $gap-vertical;
 
-          figcaption {
-              padding: $base-spacing * 1.5;
-              //@include span-columns( 7 of 12, block-collapse);
-              z-index: 1;
-               p {
-                  margin-bottom: 1.3em;
-                  font-size: 1.2em;
-              }
-          }
-          img {
-              //@include span-columns( 5 of 12,block-collapse);
-          }
-          &.two-thirds {
-              //@include span-columns(8 of 12);
-              //@include shift(2);
-              figcaption {
-                  padding: $base-spacing;
-                  //@include span-columns(4 of 8);
-                  //@include shift(4);
-                  background: $white;
-                  position: relative;
-              }
-              img {
-                  position: absolute;
-                  width: auto;
-                  top: 0;
-                  left: 0;
-                  height: 100%;
-              }
-          }
-          &.photo,
-          &.pattern,
-          &.no-pattern {
-              figcaption {
-                  position: relative;
-                  max-width: $promo-max-width;
-                  width: 100%;
-                  margin: 0 auto;
-                  padding: $base-spacing * 1.5 0;
-                  z-index: 1;
-                  text-align: center;
-                  float: none;
-              }
-              img {
-                  position: absolute;
-                  top: 0;
-                  left: 0;
-                  right: 0;
-                  width: 100%;
-              }
-          }
-      } //media desktop
-      &.photo {
-          figcaption {
-              h1,
-              h2,
-              h3,
-              h4,
-              h5,
-              h6,
-              p {
-                  @extend %vuw-highlight-caption;
-              }
-
-          }
-      }
-      //Research hub new panel, promo panel with left align grey text panel
-      &.photo {
-          &.left-text-panel {
-
-              figcaption {
-
-                  max-width: 88em;
-
-                  > div {
-                      background-color: rgba(#fff, 0.9);
-                      box-shadow: 0px 3px 6.86px 0.14px rgba(0, 0, 0, 0.21);
-                      margin: 3em 1.1111em;
-                      text-align: left;
-                      max-width: 65%;
-                      position: relative;
-                      padding: 2em;
-
-                      h1,h2,h3,p {
-                          text-align: left;
-                      }
-
-                      h1,h2,h3 {
-                          position: absolute;
-                          top: -1.8rem;
-                          padding: .8rem 1rem;
-                          background-color: $green-victoria;
-
-                          // IE 10+ fix bg not covering text
-                          @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-                              float: left;
-                           }
-                      }
-
-                      p {
-                          background-color: transparent;
-                          color: inherit;
-                          padding-left: 0;
-                          padding-top: 2em;
-                      }
-
-                      p, .button {
-                          margin-left: 1rem;
-                      }
-                  }
-
-                  @include breakpoint($mobile-large-and-smaller ) {
-
-                      > div {
-                          max-width: 100%;
-
-                          h1,
-                          h2,
-                          h3 {
-                              position: relative;
-                              font-size: 1.95em;
-                              margin-top: -1rem;
-                              margin-bottom: 0;
-                          }
-
-                          p {
-                              padding-top: 0;
-                          }
-
-                          .button {
-                              &:not(:first-child) {
-                                  margin-top: 0.5rem;
-                              }
-                          }
-                      }
-                  }
-
-              }
-
-              @include breakpoint($desktop-and-smaller) {
-
-                  figcaption {
-                      > div {
-                          max-width: 85%;
-                      }
-                  }
-
-                  img {
-                      height: 100%;
-                  }
-
-                  figcaption {
-                      padding-top: 0;
-                      padding-bottom: 0;
-                  }
-              }
-          }
+        h1 { margin-top: $gap-vertical; }
       }
     }
+
+    @include breakpoint( tablet ) {
+      display: flex;
+      align-items: center;
+      box-shadow: $shadow-shallow;
+
+      // 60% text + 40% image
+
+      figcaption {
+        z-index: $z-index-lower;
+        float: left;
+        padding: $gap-larger;
+        width: 60%;
+
+        p {
+          margin-bottom: 1.3em;
+          font-size: $h5-size;
+        }
+      }
+
+      img {
+        float: left;
+        width: 40%;
+
+        + figcaption { margin-top: 0; }
+      }
+
+      &.two-thirds {
+          //@include span-columns(8 of 12);
+          //@include shift(2);
+          figcaption {
+              padding: $base-spacing;
+              //@include span-columns(4 of 8);
+              //@include shift(4);
+              background: $white;
+              position: relative;
+          }
+
+          img {
+              position: absolute;
+              width: auto;
+              top: 0;
+              left: 0;
+              height: 100%;
+          }
+      }
+
+      &.photo,
+      &.pattern,
+      &.no-pattern {
+        figcaption {
+          z-index: $z-index-lower;
+          position: relative;
+          float: none;
+          margin: 0 auto;
+          padding: $gap-larger 0;
+          width: 100%;
+          max-width: $promo-max-width;
+          text-align: center;
+        }
+
+        img {
+          @include background-image-cover;
+        }
+      }
+    }
+
+    &.photo figcaption {
+      h1,
+      h2,
+      h3,
+      h4,
+      p {
+        display: inline-block;
+        margin-bottom: .5em;
+        padding: .5rem 1rem;
+        color: $white;
+        background-color: rgba( 99, 166, 89, .9 );
+      }
+    }
+
+    //Research hub new panel, promo panel with left align grey text panel
+    &.photo {
+      &.left-text-panel {
+
+        figcaption {
+          max-width: $centered-max-width;
+
+          > div {
+            position: relative;
+            margin: $gap-triple $gap-horizontal $gap-double;
+            padding: 0 $gap-larger $gap-larger;
+            max-width: $text-readability-max-width;
+            background-color: $background-overlay-lightest;
+            box-shadow: $shadow-shallow;
+            text-align: left;
+
+            @include breakpoint( $until: tablet ) {
+              margin-bottom: $gap-content;
+            }
+
+            h1,
+            h2,
+            h3 {
+              position: relative;
+              top: $bleed-larger;
+              margin-bottom: 0;
+              margin-left: $bleed-half;
+              padding: $gap-half $gap-horizontal;
+              background-color: $green-brand;
+
+              // IE 10+ fix bg not covering text
+              @media screen and ( -ms-high-contrast: active ), ( -ms-high-contrast: none ) {
+                float: left;
+              }
+            }
+
+            p {
+              margin-bottom: $gap-content;
+              padding: 0;
+              background-color: transparent;
+              color: inherit;
+            }
+          }
+        }
+
+      }
+    }
+  }
+
+
 
   &.study-hub {
       background-color: $white;
@@ -267,7 +230,7 @@ $promo-max-width:   60em;
                   //@include span-columns( 7 of 12,block-collapse);
 
                   h1 {
-                      color: $green-light-victoria;
+                      color: $green-light-brand;
                   }
               }
           }
@@ -287,7 +250,7 @@ $promo-max-width:   60em;
                       padding-left: 0;
                       list-style: none;
                       span {
-                          color: $green-light-victoria ;
+                          color: $green-light-brand ;
                           font-weight: $weight-bold;
                       }
                   }
@@ -325,7 +288,7 @@ $promo-max-width:   60em;
 
               h1, h2 {
                   color: $white;
-                  background-color: $green-victoria;
+                  background-color: $green-brand;
                   padding: 0.4em 0.5em;
                   display: inline-block;
                   margin-left: -0.5em;
@@ -338,7 +301,7 @@ $promo-max-width:   60em;
 
       }
 
-      @include breakpoint($mobile-large-and-smaller ) {
+      @include breakpoint( $until: tablet ) {
           > div {
               flex-wrap: wrap;
           }
@@ -362,58 +325,84 @@ $promo-max-width:   60em;
   }
 
   &.dual-content {
-      > div {
+    .dual-content-block {
+      @include clearfix;
+      background-color: $white;
 
-          // box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15); can now be removed
+      > figure {
+        box-shadow: none;
+
+        // Left block
+        &:first-child {
+
+          figcaption {
+            @include size( 100% );
+            padding: 0;
+          }
+        }
       }
-      .dual-content-block {
-          @include clearfix();
-          // box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);can now be removed
-          background-color: $white;
-          figure {
-              &:first-child {
-                  //@include span-columns( 7 of 12, block-collapse);
-                  padding: $base-spacing * 1.5;
-                  box-shadow: none;
 
-                  @include breakpoint($mobile-large-and-smaller ) {
-                      //@include span-columns( 12 of 12,                           block-collapse);
-                      padding: 0 0 $base-spacing 0;
-                  }
+      .media {
+        img {
+          float: none;
+          width: 100%;
+        }
 
-                  figcaption {
-                      padding: 0;
-                      width: 100%;
-                  }
+        figcaption {
+          padding: $gap-box;
+          min-width: 14.5rem;
 
-              }
+          h4 {
+            margin-bottom: 0;
+            padding: 0 $gap-triple 0 0;
+          }
+        }
 
-              &:last-child {
-                   //@include span-columns( 5 of 12, block-collapse);
+        .play-button {
+          position: absolute;
+          top: 50%;
+          right: $gap-horizontal;
+          margin-top: -1.25em; // Half of the play buttons size
+        }
+      }
 
-                   img {
-                      width: 100%;
-                   }
+      @include breakpoint( $until: tablet ) {
+        > figure {
+          &:first-child { // Left block
+            margin-bottom: $gap-vertical;
+          }
+        }
+
+        .media {
+          > a:before { display: none; } // Disable the video overlay
+
+          figcaption {
+            position: relative;
+            margin: 0;
+          }
+        }
+      }
 
 
-                  figcaption {
-                      .play-button {
-                          position: absolute;
-                          right: 1rem;
-                          bottom: 1rem;
-                      }
-                  }
-                   @include breakpoint($mobile-large-and-smaller ) {
-                      //@include span-columns( 12 of 12,                           block-collapse);
+      @include breakpoint( tablet ) {
+        display: flex;
+        align-items: stretch;
+        box-shadow: $shadow-shallow;
 
-                      figcaption {
-                          margin-bottom: 0;
-                      }
-                  }
-              }
+        > figure {
+          float: left;
+
+          &:first-child { // Left block
+            padding: $gap-larger;
+            width: 60%;
           }
 
+          &:last-child { width: 40%; } // Right block
+        }
+
+        .media { align-self: center; }
       }
+    }
   }
 
   &.two-one-third {
@@ -423,7 +412,7 @@ $promo-max-width:   60em;
           display: flex;
 
 
-          @include breakpoint($mobile-large-and-smaller) {
+          @include breakpoint( $until: tablet ) {
               flex-direction: column;
 
               >:first-child,
@@ -441,7 +430,7 @@ $promo-max-width:   60em;
                   align-items: center;
                   justify-content: space-around;
 
-                  @include breakpoint($tablet-and-smaller) {
+                  @include breakpoint( $until: desktop ) {
                       flex-direction: column;
 
                       figcaption:first-child {
@@ -457,10 +446,10 @@ $promo-max-width:   60em;
 
               }
               >:last-child {
-                  width: 100/3 * 1%;
+                  width: 100 / 3 * 1%;
               }
 
-              @include breakpoint($mobile-large-and-smaller) {
+              @include breakpoint( $until: tablet ) {
 
                   >:first-child,
                   >:last-child {
@@ -477,14 +466,14 @@ $promo-max-width:   60em;
           }
 
           &:first-child {
-              width: 100/3 * 2%;
-              margin-right: $block-padding;
+            margin-right: $gap-horizontal;
+            width: 100 / 3 * 2%;
 
-              img {
-                  height: 100%;
-                  -o-object-fit: cover;
-                  object-fit: cover;
-              }
+            img {
+                height: 100%;
+                -o-object-fit: cover;
+                object-fit: cover;
+            }
           }
 
           &:last-child {
@@ -500,144 +489,128 @@ $promo-max-width:   60em;
 
   // image with offset title and text on right
   &.title-image {
-      background-color: $white;
+    background-color: $white;
+
+    // 1st column
+    figure {
+      overflow: unset;
+      box-shadow: none;
+
+      img { width: 100%; }
+
+      figcaption {
+        margin: 0;
+        padding: 1em;
+        width: 100%;
+        background-color: $green-brand;
+
+        h1,
+        h2,
+        h3 {
+          margin-bottom: 0;
+          color: $white;
+        }
+      }
+    }
+
+    // 2nd column
+    section {
+      width: 100%;
+
+      p { font-size: 1.2rem; }
+    }
+
+    @include breakpoint( desktop ) {
+      figure figcaption {
+        position: absolute;
+        top: 10%;
+        left: 0;
+        margin-left: $bleed-horizontal / 2;
+        max-width: 90%;
+      }
+    }
+
+    @include breakpoint( tablet ) {
       > div {
-          display: flex;
-          align-items: center;
+        display: flex;
+        align-items: center;
       }
-      figure {
-          box-shadow: none;
-          padding: 1em;
-          //@include span-columns( 5 of 12, block-collapse);
-          flex: 1 0 auto;
 
-          img {
-              width: 100%;
-          }
-          figcaption {
-              position: absolute;
-              background-color: $green-victoria;
-              width: 100%;
-              max-width: 85%;
-              padding: 1em;
-              left: 0;
-              top: 2em;
-
-              h1,
-              h2,
-              h3 {
-                  color: $white;
-                  margin-bottom: 0;
-              }
-
-          }
-
-      }
+      figure { width: 40%; }
 
       section {
-          width: 100%;
-          padding: 1em 1em 1em 2em;
-
-          p {
-              font-size: 1.2rem;
-          }
+        padding-left: $gap-vertical;
+        width: 60%;
       }
+    }
 
-      @include breakpoint( $tablet-and-smaller) {
-
-          > div {
-              align-items: stretch;
-          }
-
-          figure {
-              display: flex;
-              flex-direction: column;
-
-              img {
-                  // position: absolute;
-                  // bottom: 5%;
-                  flex-shrink: 0;
-                  padding-left: 1em;
-              }
-
-              figcaption {
-                  // bottom: 6%;
-                  // top: unset;
-                  max-width: 94%;
-                  position: relative;
-                  order: -1;
-                  margin-right: auto;
-                  top: 0;
-              }
-          }
+    @include breakpoint( $until: desktop ) {
+      figure {
+        display: flex;
+        flex-direction: column-reverse;
       }
+    }
 
-      @include breakpoint( $mobile-large-and-smaller) {
-
-          > div {
-              flex-direction: column;
-
-              figure {
-                  width: 100%;
-
-                  img {
-                      padding-left: 0;
-                  }
-
-                  figcaption {
-                      bottom: 0;
-                      max-width: 100%;
-                  }
-              }
-          }
+    @include breakpoint( $until: tablet ) {
+      figure {
+        margin-bottom: $gap-content;
       }
-
+    }
 
   }
 }
 
 .promo {
-@include clearfix();
+  @include clearfix();
 }
 
 .text-promo-panel {
-padding: 1.5em 0;
-border-bottom: $base-border;
+border-bottom: $border;
 
-.text-wrap {
-  // font-size: 1.125em;
-  @include breakpoint( $tablet-and-bigger) {
-      //@include span-columns(6 of 8);
-  }
-}
+  @include breakpoint( tablet ) {
+    padding: $gap-vertical 0;
 
-.button-wrap {
-  margin-top: 2.5em;
-  @include breakpoint( $tablet-and-bigger) {
-    //@include span-columns(2 of 8);
-  }
-}
+    .text-wrap {
+      float: left;
+      width: 70%;
+    }
 
-// TODO: Move into its standalone .promo-video class
-&.video {
-
-  // Figure
-  .media .outside {
-    position: relative; top: auto; left: auto;
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 0;
-  }
-
-  .outside {
-
-    h4 {
-      margin-bottom: 0;
-      padding: .65em .5em;
-
-      i { margin-left: .5em; }
+    .button-wrap {
+      float: left;
+      margin-top: 2.5rem;
+      padding-left: $gap-horizontal;
+      width: 30%;
     }
   }
 
-}
+
+  @include breakpoint( $until: tablet ) {
+    .text-wrap { margin-bottom: $gap-content; }
+  }
+
+  // TODO: Move into its standalone .promo-video class
+  &.video {
+
+    // Figure
+    .media .outside {
+      position: relative;
+      top: auto;
+      left: auto;
+      margin-top: 0;
+      margin-bottom: 0;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .outside {
+
+      h4 {
+        margin-bottom: 0;
+        padding: .65em .5em;
+
+        i { margin-left: .5em; }
+      }
+    }
+
+  }
 }

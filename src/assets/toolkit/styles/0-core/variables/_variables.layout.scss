@@ -1,0 +1,98 @@
+/*============================================================================*\
+| LAYOUT-RELATED VARIABLES
+\*============================================================================*/
+
+////
+/// Variables and properties considered part of the layout and box-model.
+///
+/// @group layout
+
+
+/// @prop {Boolean} [true] - Whether or not should be the footer sticky
+$layout-sticky-footer: true !default;
+
+
+
+
+
+/*= POSITIONING ==============================================================*/
+
+
+/// @prop {Number (0-9999)} - Z-axis position indexes
+$z-index-max:       9999 !default;
+$z-index-top:       10 !default;
+$z-index-middle:    5 !default;
+$z-index-lower:     1 !default;
+$z-index-default:   0 !default;
+
+
+/// @prop {Number (0-99)} - Order in the flex layout
+$order-last:        99 !default;
+$order-middle:      50 !default;
+$order-first:       1 !default;
+
+
+
+
+
+/*= SPACING ==================================================================*/
+
+
+/// @prop {Size (rem)} [1.5rem] - Default spacing options for margins and paddings.
+$gap:            1.5rem !default;
+
+$gap-tiny:       .125rem !default;
+$gap-small:      .3125rem !default;
+$gap-third:      $gap / 3 !default;
+$gap-half:       $gap / 2 !default;
+$gap-larger:     $gap * 1.5 !default;
+$gap-double:     2 * $gap !default;
+$gap-triple:     3 * $gap !default;
+
+
+/// @prop {Size (rem)} [$gap]
+///   - Left and right spacing (padding/margin) between elements.
+$gap-horizontal: $gap !default;
+
+/// @prop {Size (rem)} [$gap]
+///   - Top and bottom spacing (padding/margin) between elements.
+$gap-vertical:   $gap !default;
+
+/// @prop {Box size (rem)} [$gap-vertical $gap-horizontal]
+///   - Vertical and horizontal spacing within a single element.
+$gap-box:        $gap-vertical $gap-horizontal !default;
+
+/// @prop {Size (rem)} [$gap] - Default spacing of the vertical content flow.
+$gap-content:    1.3rem !default;
+
+
+/// @prop {Size (rem)} [-$gap] - A negative spacing to offset outer element's padding/margin.
+$bleed:            -1 * $gap !default;
+
+$bleed-tiny:       .125rem !default;
+$bleed-small:      .3125rem !default;
+$bleed-third:      $bleed / 3 !default;
+$bleed-half:       $bleed / 2 !default;
+$bleed-larger:     1.5 * $bleed !default;
+$bleed-double:     2 * $bleed !default;
+$bleed-triple:     3 * $bleed !default;
+
+/// @prop {Size (rem)} [-$gap-horizontal]
+///   - Left and right negative spacing to offset outer element's padding/margin.
+$bleed-horizontal: -1 * $gap-horizontal !default;
+
+/// @prop {Size (rem)} [-$gap-vertical]
+///   - Top and bottom negative spacing to offset outer element's padding/margin.
+$bleed-vertical:   -1 * $gap-vertical !default;
+
+/// @prop {Box size (rem)} [$bleed-vertical $bleed-horizontal]
+///   - Vertical and horizontal negative spacing to offset outer element's padding/margin.
+$bleed-box:        $bleed-vertical $bleed-horizontal !default;
+
+/// @prop {Box size (rem)} [-$gap-content]
+///   - Negative spacing of the vertical content flow to offset previous element's padding/margin.
+$bleed-content:    -1 * $gap-content !default;
+
+
+
+

@@ -1,124 +1,112 @@
 .promo-panel {
-	&.strip-banner {
-		figcaption {
-			padding: 0;
-			>div {
-				display: flex;
-				align-items: center;
-			}
-			.block {
-				text-align: left;
-				padding: 1.5em;
+  &.strip-banner {
+    figure figcaption {
+      padding: 0;
+      max-width: $centered-max-width;
+    }
 
-				h1 {
-					font-size: 3em;
-					margin-bottom: 0;
-						
-					// IE 10+ fix bg not covering text
-					@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-						float: left;
-					}
-				}
-				p {
-					font-size: 1.45em;
-				}
-				> * {
-					background-color: rgba($green-victoria, 0.9);
-				}
-			}
-		}
-		.block:last-child {
-			float: right;
-			width: 100/3 * 1%;
-		}
-		.block:first-child {
-			width: 100/3 * 2%;
-			float: left;
-			padding-bottom: 0;
-			// background-color: rgba(100,166,89, .9 );
-		}
+    figcaption {
+      > div {
+        display: flex;
+        align-items: center;
+      }
 
-		
-		@include media( $mobile-large-and-smaller ) {
+      .block {
+        padding: $gap;
+        text-align: left;
 
-			border-top: none;
-			border-bottom: none;
-			
-			figcaption {
-				>div {
-					flex-direction: column;
-				}
-			}
-			.block:first-child {
-				width: 100/3 * 3%;
-				padding-bottom: 0;
-				
-				h1 {
-					display: block;
-				}
-			}
-			.block:last-child {
-				width: 100/3 * 3%;
-			}
-		}
-		
-		@include media($tablet-and-smaller ) {
-			height: 100%;
-			figure {
+        h1 {
+          margin-bottom: 0;
+          font-size: 3em;
 
-				figcaption {
-					
-					h1 {
-						margin-top: 0;
-					}
+          // IE 10+ fix bg not covering text
+          @media screen and ( -ms-high-contrast: active ), ( -ms-high-contrast: none ) {
+            float: left;
+          }
+        }
 
-					.block:first-child {
-						width: 100/3 * 3%;
-						padding-bottom: 0.5em;
-					}
+        p { font-size: 1.45em; }
 
-				}
+        > * {
+          background-color: rgba( $green-brand, .9 );
+        }
+      }
+    }
 
-				// background-color: red;
-			}
-		}
 
-		@include media($tablet-and-bigger) {
-			figure.photo {
-				figcaption {
-					// margin-top: 10%;
-				}
-			}
-		}
+    .block {
+      &:last-child {
+        float: right;
+        width: 100 / 3 * 1%;
+      }
 
-		@include media( $desktop-and-bigger ) {
-			border-bottom: 5px solid $green-victoria;
-			
-			figure {
-				display: block;
+      &:first-child {
+        float: left;
+        padding-bottom: 0;
+        width: 100 / 3 * 2%;
+      }
+    }
 
-				figcaption {
-					margin-bottom: 1em;
-					margin-top: 10%;
-				} 
-			}
-		}
-		@include media( $desktop ) {
-			figure {
 
-				figcaption {
-					margin-top: 4%;
-				} 
-			}
-		}
-		@include media( $tablet ) {
-			figure {
-				padding-bottom: 1rem;
-			}
-			img {
-				height: 100%;
-			}
-		}
+    @include breakpoint( $until: tablet ) {
+      border-top: 0;
 
-	}
+      figcaption {
+        > div {
+          flex-direction: column;
+        }
+      }
+
+      .block {
+        &:first-child {
+          padding-bottom: 0;
+          width: 100 / 3 * 3%;
+
+          h1 { display: block; }
+        }
+
+        &:last-child { width: 100 / 3 * 3%; }
+      }
+    }
+
+    @include breakpoint( $until: desktop ) {
+      height: 100%;
+
+      figure {
+        figcaption {
+          h1 { margin-top: 0; }
+
+          .block:first-child {
+            padding-bottom: .5em;
+            width: 100 / 3 * 3%;
+          }
+        }
+      }
+    }
+
+    @include breakpoint( desktop ) {
+      border-bottom: $border-width-thick solid $green-brand;
+
+      figure {
+        display: block;
+
+        figcaption {
+          margin-top:    10%;
+          margin-bottom: 1em;
+        }
+      }
+    }
+
+    @include bp-desktop {
+      figure {
+        figcaption { margin-top: 4%; }
+      }
+    }
+
+    @include bp-tablet {
+      figure { padding-bottom: 1rem; }
+      img { height: 100%; }
+    }
+
+  }
 }

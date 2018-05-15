@@ -4,137 +4,147 @@
 
 
 .page-sub-nav {
-  border-bottom: 5px solid $green-victoria;
-  background-color: $black-victoria;
+  border-bottom: 5px solid $green-brand;
+  background-color: $black-brand;
 
   .centraliser {
     nav {
       ul {
+        display: flex;
         justify-content: center;
         flex-wrap: nowrap;
 
         li {
           margin-right: 0;
+          margin-left: 0;
 
           // TODO: Refactor - inappropriate depth
           a {
             display: block;
-            padding: .5em 1.5em;
-            font-size: 1.4em;
+            padding: $gap-half $gap-horizontal;
+            font-size: $navigation-primary-item-size;
             color: $white;
             text-decoration: none;
+            letter-spacing: $navigation-letter-spacing;
 
-            &.active { background-color: $green-victoria; }
+            &.active { background-color: $green-brand; }
 
             @include hoverify() {
               text-decoration: underline;
-              background-color: $green-victoria;
+              background-color: $green-brand;
               transition: all .5s ease;
-            }
-
-            @include breakpoint( $desktop-and-bigger ) {
-              padding: .5em 1.2em;
-            }
-
-            @include breakpoint( $tablet-and-smaller ) {
-              font-size: 1.2em;
             }
           }
         }
 
-        @include breakpoint( $tablet-and-smaller ) {
+        @include bp-desktop-large {
+          padding: 0 $gap-horizontal;
+        }
+
+        @include breakpoint( desktop ) {
+          li a {
+            padding: .5em 1.2em;
+            text-align: center;
+          }
+        }
+
+        @include breakpoint( $until: desktop ) {
           justify-content: flex-start;
           flex-wrap: wrap;
+          text-align: left;
 
           li { width: 100%; }
         }
       }
 
     }
+  }
 
-    &.nav-buttons {
+  &.nav-buttons {
+    background-color: transparent;
+    border: 0;
+
+    @include breakpoint( desktop ) {
       margin: 1.6rem 0;
-      border: none;
-      background-color: transparent;
+    }
 
-      nav {
-        > ul {
-          margin: 0 1.6rem;
-          > li {
-            flex: 1 1 auto;
-              a {
-                background-color: $green-victoria;
-                border-radius: 2px;
-                border-bottom: 5px solid $green-bottle;
-                text-align: center;
-                padding: .5rem 1rem calc( .5rem - 5px );
+    nav {
+      > ul {
+        margin: 0 1.6rem;
+
+        > li {
+          flex: 1 1 auto;
+            a {
+              background-color: $green-brand;
+              border-radius: 2px;
+              border-bottom: 5px solid $green-bottle;
+              text-align: center;
+              padding: .5rem 1rem calc( .5rem - 5px );
 
 
-                @include hoverify() {
-                  background-color: darken($green-victoria, 5%);
-                }
+              @include hoverify() {
+                background-color: darken($green-brand, 5%);
+              }
 
-                &.active {
-                  background-color: darken($green-victoria, 5%);
-                  border-bottom-color: lighten($green-bottle, 4%);
+              &.active {
+                background-color: darken($green-brand, 5%);
+                border-bottom-color: lighten($green-bottle, 4%);
 
-                  position: relative;
+                position: relative;
 
-                  &:before {
-                    position: absolute;
-                    display: inline-block;
-                    content: "";
-                    background-color: #FFF;
-                    width: 3px;
-                    height: 50%;
-                    top: 55%;
-                    transform: translateY(-50%);
-                    left: .7rem;
+                &:before {
+                  position: absolute;
+                  display: inline-block;
+                  content: "";
+                  background-color: #FFF;
+                  width: 3px;
+                  height: 50%;
+                  top: 55%;
+                  transform: translateY(-50%);
+                  left: .7rem;
 
-                    @include media($desktop) {
-                      left: 5%;
-                    }
+                  @include bp-desktop {
+                    left: 5%;
                   }
                 }
               }
+            }
+
+          &:not(:last-child) {
+            margin-right: 1rem;
+          }
+        }
+
+        @include breakpoint( $until: desktop ) {
+          margin: 0;
+
+          > li {
+            a {
+              text-align: left;
+              border-radius: 0;
+              padding: .5rem 1.5rem calc( .5rem - 3px );
+              border-bottom-width: 3px;
+            }
 
             &:not(:last-child) {
-              margin-right: 1rem;
+              margin-right: 0;
             }
           }
+        }
 
-          @include media($tablet-and-smaller) {
-            margin: 0;
-
-            > li {
-              a {
-                text-align: left;
-                border-radius: 0;
-                padding: .5rem 1.5rem calc( .5rem - 3px );
-                border-bottom-width: 3px; 
-              }
-
-              &:not(:last-child) {
-                margin-right: 0;
-              }
-            }
-          }
-
-          @include media($desktop-and-bigger) {
-            > li {
-              a {
-                // fixes border-radius rogue pixel;
-                background-clip: padding-box;
-
-              }
+        @include breakpoint( desktop ) {
+          > li {
+            a {
+              // fixes border-radius rogue pixel;
+              background-clip: padding-box;
             }
           }
         }
       }
+    }
 
-      @include media($tablet) {
-        margin-top: 0;
-      }
+    @include bp-tablet {
+      margin-top: 0;
     }
   }
 }

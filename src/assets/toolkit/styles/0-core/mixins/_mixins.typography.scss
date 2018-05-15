@@ -1,0 +1,157 @@
+/*============================================================================*\
+| TYPOGRAPHY AND FONTS MIXINS
+\*============================================================================*/
+
+////
+/// @group typography
+
+
+
+
+
+/*= FONT IMPORTS =============================================================*/
+
+
+/// @access public
+///
+/// @prop {String} $font-family - Name of the font family.
+/// @prop {String} $file-path -
+///   Relative path to the font source files (without extensions).
+/// @prop {Number} $font-weight [$weight-normal]
+/// @prop {String} $font-style [normal]
+/// @prop {Map} $file-formats [$font-supported-formats] -
+///   List of allowed extensions/version of the font to import.
+///
+/// @content Extending properties of the newly defined font family.
+///
+/// @output New font family imported into the stylesheet.
+///
+/// @require {function} _font-source-declaration
+
+@mixin font-face(
+  $font-family,
+  $file-path,
+  $font-weight:  $weight-normal,
+  $font-style:   normal,
+  $file-formats: $font-supported-formats
+) {
+  @font-face {
+    @content;
+    font-family: $font-family;
+    font-style: $font-style;
+    font-weight: $font-weight;
+    src: _font-source-declaration( $font-family, $file-path, false, $file-formats );
+  }
+}
+
+
+/// @access public
+///
+/// @prop {Map} $fonts-map [$fonts] -
+///   List of all fonts to be imported.
+///   Item's format: `$filename: ( $font-family-name, $font-weight )`.
+///
+/// @output New font families imported based on the given list.
+///
+/// @require {mixin} font-face
+
+@mixin import-fonts( $fonts-map: $fonts ) {
+  @each $filename, $font-properties in $fonts-map {
+    $font-family: nth( $font-properties, 1 );
+    $file-path:   '#{$path-fonts}/#{$filename}';
+    $font-weight: nth( $font-properties, 2 );
+
+    @include font-face( $font-family, $file-path, $font-weight );
+  }
+}
+
+
+
+
+
+/*= LINKS ====================================================================*/
+
+
+/// Decorates text as if it was a text link.
+///
+/// @prop {boolean} $visited [false] - Apply styles for a visited link too.
+///
+/// @access public
+///
+/// @require {mixin} hoverify
+@mixin linkify-text( $visited: false ) {
+  color:           $link-color;
+  text-decoration: $link-decoration;
+
+  @if ( $visited == true ) {
+    // Improves accessibility
+    &:visited { color: $link-visited-color; }
+  }
+
+  @include hoverify() {
+    color:           $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+}
+
+
+@mixin link-underline() {
+  text-decoration: $link-decoration;
+
+  @include hoverify() {
+    text-decoration: $link-hover-decoration;
+  }
+}
+
+
+
+
+/*= BASE STYLES ==============================================================*/
+
+
+/// Adds typographical element-based boilerplate styles.
+///
+/// @access public
+@mixin add-base-typography() {
+  body {
+    font-family: $text-family;
+    line-height: $text-line-height;
+    color:       $text-color;
+
+    // Make fonts consistent and nice across browsers
+    -webkit-font-smoothing:  antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering:          optimizeLegibility;
+  }
+
+  h1 { margin: 0; }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family:    $heading-family;
+    font-weight:    $heading-weight;
+    color:          $heading-color;
+    line-height:    $heading-line-height;
+    letter-spacing: $heading-letter-spacing;
+  }
+
+  h1 { font-size: $h1-size; }
+  h2 { font-size: $h2-size; }
+  h3 { font-size: $h3-size; }
+  h4 { font-size: $h4-size; }
+  h5 { font-size: $h5-size; }
+  h6 { font-size: $h6-size; }
+
+  p { line-height: $text-line-height; }
+
+  ul { list-style: none; }
+  ol { list-style: decimal; }
+}
+
+
+
+

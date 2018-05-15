@@ -1,23 +1,47 @@
-/*=========================================
-=      SYSTEM MESSAGES, NOTIFICATIONS     =
-=========================================*/
+/*============================================================================*\
+| MESSAGES
+\*============================================================================*/
+
+////
+/// Atomic properties for messages (notifications, popups etc.)
+///
+/// @group messages
 
 
-/* ===== FLASH MESSAGES =================================================== */
 
-$message-strip-darken-percentage: 7;
 
+
+/*= FLASH MESSAGES ===========================================================*/
+
+
+// Inside a con
 .flash-message {
-  margin-bottom: $base-spacing;
+  margin-bottom: $gap-content;
   padding: $column-padding;
   color: $white;
+  border-left: $border-width-medium solid $background-opaque-darkest;
+
+  > * {
+    &:last-child { margin-bottom: 0; }
+  }
+  // Keep links the same colour as the text
+  a[href] {
+    color: inherit;
+
+    @include hoverify() {
+      color: inherit;
+    }
+  }
+
+  .formatting & a[href]:visited {
+    color: inherit !important;
+  }
 
   // Message types
   &.error {
-    background-color: $red-oyster-pink;
-    border-left: 2px solid darken( $red-oyster-pink, $message-strip-darken-percentage );
+    background-color: $background-danger;
 
-    > * { color: $red-tamarillo; }
+    > * { color: $color-danger; }
 
     > h2 {
       @include extend-icon-before( attention );
@@ -25,10 +49,9 @@ $message-strip-darken-percentage: 7;
   }
 
   &.warning {
-    background-color: $yellow-pearl-lusta;
-    border-left: 2px solid darken( $yellow-pearl-lusta, $message-strip-darken-percentage );
+    background-color: $background-warning;
 
-    > * { color: $yellow-cinamon; }
+    > * { color: $color-warning; }
 
     > h2 {
       @include extend-icon-before( megaphone );
@@ -36,10 +59,9 @@ $message-strip-darken-percentage: 7;
   }
 
   &.info {
-    background-color: $blue-humming-bird;
-    border-left: 2px solid darken( $blue-humming-bird, $message-strip-darken-percentage );
+    background-color: $background-info-light;
 
-    > * { color: $blue-callypso; }
+    > * { color: $color-info; }
 
     > h2 {
       @include extend-icon-before( info );
@@ -47,80 +69,17 @@ $message-strip-darken-percentage: 7;
   }
 
   &.success {
-    background-color: $green-tara;
-    border-left: 2px solid darken( $green-tara, $message-strip-darken-percentage );
+    background-color: $background-success;
 
-    > * { color: $green-killarney; }
+    > * { color: $color-success; }
 
     > h2 {
       @include extend-icon-before( check );
     }
   }
 
-
-  h2 { margin-bottom: .5em; }
-
-  > * {
-    &:last-child { margin-bottom: 0; }
-  }
-
-  a[href] {
-    color: inherit;
-    @include hoverify() { color: inherit; }
-  }
-
-  // for info message fact row research hub
-  &.info-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2em 1.2em;
-
-    @include breakpoint($tablet-and-smaller) {
-      flex-wrap: wrap;
-    }
-
-    > * {
-      &:first-child {
-        flex: 0 0 20%;
-
-        @include breakpoint($tablet-and-smaller) {
-          flex-basis: 100%;
-          margin-bottom: .5em;
-        }
-      }
-
-      &:not(:first-child) {
-        flex: 0 0 23%;
-
-        @include breakpoint($tablet-and-smaller) {
-          flex-basis: 31%;
-        }
-
-        @include breakpoint($mobile-large-and-smaller) {
-          flex-basis: 100%;
-          margin-bottom: .5em;
-        }
-      }
-    }
-
-    > h2 {
-      margin-bottom: 0;
-
-      &::before { display: none; }
-    }
-
-    .info-col {
-      padding-bottom: .5em;
-      border-bottom: 1px solid $blue-callypso;
-      border-bottom-color: inherit;
-
-      h4,
-      h5 {
-        margin-bottom: .35em;
-        color: inherit;
-      }
-
-    }
-  }
 }
+
+
+
+

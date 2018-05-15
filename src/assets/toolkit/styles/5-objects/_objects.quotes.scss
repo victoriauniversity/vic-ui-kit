@@ -13,17 +13,19 @@ blockquote.quote { font-style: italic; }
 
   blockquote {
     margin-bottom: .35em;
-    font-style: italic;
+    font-size: $text-size-5;
+    font-style: normal;
   }
 
   figcaption {
-    @include bulletline-base;
+    @include bullet-line;
+    position: relative;
   }
 
   &:not(.full) {
     margin-left: .85rem;
     padding: 0 0 0 1rem;
-    border-left: $strip-light;
+    border-left: $border-strip-highlight;
 
     figcaption strong { font-weight: $weight-medium; }
   }
@@ -34,17 +36,17 @@ blockquote.quote { font-style: italic; }
   &.full {
     // Citation itself
     blockquote {
-      font-size: scale-font( 1 );
+      font-size: $text-size-5;
 
       // Starting quote icon
       @include extend-icon-before( quote-down ) {
         top: -.1em;
-        margin-right: .3em;
+        margin-left: _em( $bleed-third );
       };
 
       // Ending quote icon
       @include extend-icon-after( quote-up ) {
-        margin-left: .3em;
+        margin-right: _em( $bleed-third );
       };
 
       &::before,
@@ -61,7 +63,7 @@ blockquote.quote { font-style: italic; }
     figcaption {
       font-weight: $weight-medium;
       font-size: 1.15em; // TODO: Review size
-      color: $green-victoria;
+      color: $green-brand;
     }
   }
 }
@@ -73,96 +75,154 @@ blockquote.quote { font-style: italic; }
   .quote {
     margin-bottom: 0;
     padding: 1.875rem;
-    border-left: 5px solid $green-victoria;
+    border-left: 5px solid $green-brand;
 
     blockquote {
-      color: $green-victoria;
+      color: $green-brand;
 
       &::before,
       &::after {
-        color: $green-victoria;
+        color: $green-brand;
       }
     }
 
     figcaption {
       text-align: right;
       color: $black-tundora;
-      font-size: scale-font( 1 );
+      font-size: $text-size-5;
 
       &::before { display: none; }
     }
+  }
 
-    // a {
-    //   @include hoverify() {
-    //     figure {
-    //       border-left-color: $blue-st-tropaz;
+  &.quote-image {
+    .quote {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
 
-    //       blockquote {
-    //         * {
-    //           color: $blue-st-tropaz;
-    //         }
-    //         &:before,
-    //         &:after {
-    //           color: $blue-st-tropaz;
-    //         }
-    //       }
 
-    //       figcaption {
-    //         // color: $blue-st-tropaz
-    //       }
-    //     }
-    //   }
-    // }
+      border-left: none;
 
-    &.quote-image {
-      .quote {
+      img {
+        height: 180px;
+        width: 180px;
+        border-radius: 50%;
+        margin-right: 2em;
+
+        flex: 1 0 auto;
+      }
+
+      .quote-content {
         display: flex;
         align-items: center;
-        justify-content: space-around;
+        justify-content: center;
+
+        padding: 1.6rem 0;
+
+        blockquote {
+          width: 60%;
+          position: relative;
+
+          h3,
+          h4 {
+            padding: 0 1em;
+          }
+
+          &:before,
+          &:after {
+            position: absolute;
+          }
+
+          &:before {
+            top: 0;
+            left: 0;
+          }
+
+          &:after {
+            bottom: 0;
+            right: 0;
+            top: unset;
+          }
+        }
+
+        figcaption {
+          text-align: inherit;
+          font-size: inherit;
+
+          h4,
+          h5,
+          p {
+            margin-bottom: 0.5em;
+          }
+        }
+      }
 
 
-        border-left: none;
+      @include breakpoint( $until: desktop ) {
+        .quote-content {
+          justify-content: flex-start;
+          flex-wrap: wrap;
+
+          blockquote {
+            width: 100%;
+          }
+
+          figcaption {
+            padding-left: 2em;
+            margin-top: 1.5em;
+          }
+        }
+
+      }
+
+      @include breakpoint( $until: tablet ) {
+        flex-wrap: wrap;
 
         img {
-          height: 180px;
-          width: 180px;
-          border-radius: 50%;
-          margin-right: 2em;
-
-          flex: 1 0 auto;
+          flex: 0 1 auto;
+          width: 120px;
+          height: 120px;
         }
 
         .quote-content {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          margin-top: 1em;
+        }
+      }
+    }
 
-          padding: 1.6rem 0;
+
+    &.quote-white {
+      background-color: #fff;
+      margin-bottom: 1.6em;
+
+      .quote {
+        justify-content: center;
+        position: relative;
+        padding-bottom: 2em;
+
+        &:after {
+          position: absolute;
+
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+
+          content: "";
+          height: 2px;
+          width: 70%;
+          background-color: $green-brand;
+        }
+
+        img {
+          flex: 0 1 auto;
+        }
+
+        .quote-content {
+          width: 70%;
 
           blockquote {
-            width: 75%;
-            position: relative;
 
-            h3,
-            h4 {
-              padding: 0 1em;
-            }
-
-            &:before,
-            &:after {
-              position: absolute;
-            }
-
-            &:before {
-              top: 0;
-              left: 0;
-            }
-
-            &:after {
-              bottom: 0;
-              right: 0;
-              top: unset;
-            }
           }
 
           figcaption {
@@ -175,96 +235,13 @@ blockquote.quote { font-style: italic; }
               margin-bottom: 0.5em;
             }
           }
-        }
 
-
-        @include breakpoint( $tablet-and-smaller ) {
-          // flex-wrap: wrap;
-
-          .quote-content {
-            flex-wrap: wrap;
-            justify-content: left;
-
-            blockquote {
-              width: 100%;
-            }
-
-            figcaption {
-              padding-left: 2em;
-              margin-top: 1.5em;
-            }
-          }
-
-        }
-
-        @include breakpoint($mobile-large-and-smaller) {
-          flex-wrap: wrap;
-
-          img {
-            flex: 0 1 auto;
-            width: 120px;
-            height: 120px;
-          }
-
-          .quote-content {
-            margin-top: 1em;
+          @include breakpoint( $until: tablet ) {
+            width: 100%;
           }
         }
+
       }
-
-
-      &.quote-white {
-        background-color: #fff;
-        margin-bottom: 1.6em;
-
-        .quote {
-          justify-content: center;
-          position: relative;
-          padding-bottom: 2em;
-
-          &:after {
-            position: absolute;
-
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-
-            content: "";
-            height: 2px;
-            width: 70%;
-            background-color: $green-victoria;
-          }
-
-          img {
-            flex: 0 1 auto;
-          }
-
-          .quote-content {
-            width: 70%;
-
-            blockquote {
-
-            }
-
-            figcaption {
-              text-align: inherit;
-              font-size: inherit;
-
-              h4,
-              h5,
-              p {
-                margin-bottom: 0.5em;
-              }
-            }
-
-            @include breakpoint($mobile-large-and-smaller) {
-              width: 100%;
-            }
-          }
-
-        }
-      }
-
     }
 
   }

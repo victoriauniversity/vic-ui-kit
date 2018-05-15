@@ -4,18 +4,15 @@
 //_components.homepage-intro.scss
 
 
-//---- Settings ---
-// ----------------
-// -------------------------
 .homepage-intro {
   @include clearfix;
 
   .intro-text {
-    margin-bottom: 1.5rem;
+    margin-bottom: $gap-vertical;
 
     p {
       font-size: 1.125em;
-      color: $green-victoria;
+      color: $green-brand;
     }
   }
 
@@ -23,8 +20,8 @@
     p {
       display: inline-block;
       margin-bottom: 0; // Reset
-      padding-right: 1em;
-      line-height: 2.2;
+      padding-right: $gap-half;
+      line-height: 2;
     }
 
     .social-icon {
@@ -33,23 +30,23 @@
     }
 
     div {
-      //@include span-columns( 4 of 8 );
-
       &.button-links {
         a.button {
-          margin-right: .5rem;
+          margin-right: $gap-third;
           margin-bottom: .5em;
 
-          &:last-child {
-            margin-right: 0;
-          }
+          &:last-child { margin-right: 0; }
         }
       }
 
-      @include breakpoint( $tablet-and-smaller ) {
-        //@include span-columns( 8 );
+      @include breakpoint( $until: desktop ) {
+        &.button-links {
+          margin-bottom: $gap-content;
+        }
+      }
 
-        &.social-links { margin-top: 1.5rem; }
+      @include breakpoint( desktop ) {
+        @include column( 2, $gap-horizontal );
       }
 
     }
@@ -62,19 +59,22 @@
 
     .text-wrap,
     .button-wrap {
-      //@include span-columns( 4 of 4 );
+      width: 100%;
     }
 
-    .button-wrap { margin-top: 1rem; }
+    .button-wrap {
+      margin-top: $gap-content;
+      padding-left: 0;
+    }
 
-    @include breakpoint( $tablet-and-bigger ) {
+    @include breakpoint( tablet ) {
       float: left;
       width: 100 / 3 * 1%;
     }
   }
 
   &.study-hub {
-    $base-study-hub-colour--study: $green-light-victoria;
+    $base-study-hub-colour--study: $green-light-brand;
 
     .intro-text,
     + .text-promo-panel,
@@ -99,48 +99,45 @@
           // TODO: Refactor & flatten the depth
           li {
             span {
-              color: $green-light-victoria;
+              color: $green-light-brand;
               font-weight: $weight-bold;
             }
+
             a { text-decoration: none; }
           }
         }
       }
 
-      @include breakpoint( $tablet-and-bigger ) {
-        border-left: 2px solid $grey-alto;
+      @include breakpoint( tablet ) {
+        border-left: $border-width-small solid $grey-alto;
       }
     }
   }
 
-  @include breakpoint( $tablet-and-bigger ) {
+  @include breakpoint( tablet ) {
     width: 100 / 3 * 2%;
 
     &:last-child { margin: 0 auto; }
     &:not(:last-child) { float: left; }
   }
 
-  @include breakpoint( $mobile-large-and-smaller ) {
-    &:not(:last-child) {
-      border-bottom: $base-border;
-    }
+  @include breakpoint( $until: tablet ) {
+    &:not(:last-child) { border-bottom: $border; }
   }
-
 }
 
 
-@include breakpoint ($tablet-and-bigger) {
+@include breakpoint( tablet ) {
   .text-promo-panel.intro-promo {
     @include before( $position: absolute ) {
       @include size( 0, 100% );
       top: 0;
       left: ( 100 / 12) * 8%;
-      border-left: $base-border;
+      border-left: $border;
     }
   }
 
   .text-promo-panel.intro-promo.no-border {
     &::before { border-left: 0; }
   }
-
 }

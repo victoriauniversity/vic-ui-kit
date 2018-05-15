@@ -1,92 +1,109 @@
-/*
+/*============================================================================*\
+| VICTORIA UI TOOLKIT STYLES
+\*============================================================================*/
 
-  (Lowest to highest specificity)
-
-  1 | SETTINGS - Configs, brand colors, spacing units, variables.
-
-  ↓
-
-  2 | TOOLS - Library's custom mixins, 3rd party mixins.
-
-  ↓
-
-  3 | GENERIC - Generic definitions, eg. resets, normalisations, imports of external styles and fonts.
-
-  ↓
-
-  4 | ELEMENTS - Non-specific elements (= without classes or IDs), eg. body, h1, p ...
-
-  ↓
-
-  5 | OBJECTS - Simple atomic design patterns (= using classes only), eg. buttons, icons,...
-
-  ↓
-
-  6 | COMPONENTS - More complex designs (using classes only), eg. header, footer, searchbar...
-
-  ↓
-
-  7 | TRUMPS - Most specific, mostly overrides (usage of !important and IDs).
-
-*/
-
-/** BASIC DEPENDENCIES */
+////
+/// Imports all the dependencies in correct order.
+///
+/// Architecture (lowest to highest specificity) and structure:
+///
+/// 0) CORE     - Fully re-usable SCSS utilitiy variables, mixins and functions.
+/// 1) SETTINGS - Variable overrides of utility SCSS suitable for this project.
+/// 2) PROJECT  - Project-specific SCSS utility variables, mixins and functions.
+/// 3) GENERIC  - Generic definitions applying to everything, such as resets,
+///               normalisations, font sets definitions and others.
+/// 4) ELEMENTS - HTML element definitions (no classes or IDs specified).
+/// 5) OBJECTS  - Simple atomic elements - buttons, inputs, basic typography.
+/// 6) COMPONENTS - More complex structures built from `OBJECTS` and `ELEMENTS`.
+/// 7) TRUMPS   - Overrides properties of any previously used element or
+//                external CSS-only libraries.
 
 
-@import 'neat';
-
-/** SETTINGS (order sensitive!) */
-
-@import '1-settings/settings.colors';
-@import '1-settings/settings.variables';
-@import '1-settings/settings.grid';
-@import '1-settings/settings.responsive';
 
 
-/** TOOLS */
 
-@import '2-tools/tools.mixins';
-@import '2-tools/tools.app-mixins';
+/*= CORE VICTORIA UTILITIES ==================================================*/
 
 
-/** 3RD PARTY LIBS */
+@import '1-settings/settings.__core-overrides';
 
-@import 'lity/dist/lity.min';
-@import 'transformicons/styles';
+@import '0-core/core.vic-utilities';
 
 
-/** GENERIC */
 
-@import '3-generic/generic.reset';
-@import '3-generic/generic.development';
+
+
+
+/*= IMPORTS AND CONFIG =======================================================*/
+
+
+@import '1-settings/settings._defaults';
+
+
+
+
+
+/*= PROJECT-ONLY UTILITIES ===================================================*/
+
+
+@import '2-project/project.mixins';
+@import '2-project/project.variables';
+
+@import '2-project/project.imports';
+
+
+
+
+
+/*= GENERIC ==================================================================*/
+
+
+/*! Toolkit's generated styles */
+@import '3-generic/generic._initialisations';
+
 @import '3-generic/generic.normalisations';
 
 
-/** ELEMENTS ( > Atoms defined by an element) */
 
+
+
+/*= ELEMENTS (ATOMS SPECIFIED BY HTML ELEMENT) ===============================*/
+
+
+@import '4-elements/elements.forms';
+@import '4-elements/elements.layouts';
 @import '4-elements/elements.typography';
 @import '4-elements/elements.tables';
-@import '4-elements/elements.inputs';
+@import '4-elements/elements.media';
 
 
-/** OBJECTS ( > Atoms defined by a single class) */
+
+
+
+/*= OBJECTS (ATOMS SPECIFIED BY CLASS) =======================================*/
+
 
 @import '5-objects/objects.typography'; // *MUST* be first
 @import '5-objects/objects.icons';      // *MUST* be second
 
-@import '5-objects/objects.banners';
 @import '5-objects/objects.buttons';
-@import '5-objects/objects.images';
+@import '5-objects/objects.media';
 @import '5-objects/objects.layouts';
 @import '5-objects/objects.listings';
-@import '5-objects/objects.pagination';
 @import '5-objects/objects.quotes';
 @import '5-objects/objects.messages';
+@import '5-objects/objects.tables';
+@import '5-objects/objects.badges';
 
 
-/** COMPONENTS */
 
-// > Molecules
+
+
+/*= COMPONENTS - MOLECULES ===================================================*/
+
+
+@import '6-components/components.boxes';
+@import '6-components/components.pagination';
 @import '6-components/components.grids';
 @import '6-components/components.links';
 @import '6-components/components.lists';
@@ -94,10 +111,15 @@
 @import '6-components/components.forms';
 @import '6-components/components.highlights';
 @import '6-components/components.media';
-@import '6-components/components.badges';
 @import '6-components/components.tags';
 
-// > Organisms
+
+
+
+
+/*= COMPONENTS - ORGANISMS ===================================================*/
+
+
 @import '6-components/components.promo';
 @import '6-components/components.news';
 @import '6-components/components.events';
@@ -115,6 +137,7 @@
 @import '6-components/navigation/components.breadcrumbs';
 @import '6-components/navigation/components.sub-nav';
 @import '6-components/navigation/components.sidemenu';
+@import '6-components/navigation/component.menu-icons';
 @import '6-components/components.tiles';
 @import '6-components/components.strip-banner';
 @import '6-components/components.search-panel';
@@ -122,12 +145,18 @@
 @import '6-components/components.dialogs';
 
 
-/** TRUMPS */
 
-// Helpers
+
+
+/*= TRUMP OVERRIDES ==========================================================*/
+
+
 @import '7-trumps/trumps.helpers';
 @import '7-trumps/trumps.print';
 @import '7-trumps/trumps.colors';
+@import '7-trumps/trumps.transformicons';
+@import '7-trumps/trumps.lity';
 
-// Libraries' overrides
-@import '7-trumps/trumps.headroom';
+
+
+

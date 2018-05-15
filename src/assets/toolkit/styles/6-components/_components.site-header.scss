@@ -3,8 +3,8 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 .site-header,
 .main-site-header {
   padding-top: .5rem;
-  background: $black-victoria;
-  border-bottom: 6px solid $green-victoria;
+  background: $black-brand;
+  border-bottom: 6px solid $green-brand;
 
   .block {
     display: flex;
@@ -56,36 +56,32 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
       @include clearfix();
       padding: .25em 1em;
 
+      .search-item {
+        position: absolute;
+        right: 0;
+      }
+
       a {
         display: block;
-        margin: 0 0 .35em;
+        margin: 0;
         padding: 0 $base-spacing / 1.5;
         color: $white;
         border-bottom: 0;
         line-height: 1.2;
         text-transform: capitalize;
 
-        &.experience,
-        &.study,
-        &.about,
-        &.research,
-        & {
-          &.active {
-            border-bottom: 2px solid $white;
-
-            // TODO: Refactor & flatten to lower the depth!
-            &:hover { border-bottom: 2px solid $grey-silver; }
-          }
-
-          &:hover { opacity: $base-hover-opacity; }
+        &.active {
+          position: relative;
         }
 
-        @include breakpoint( $tablet-and-bigger ) {
+        &:hover { opacity: $base-hover-opacity; }
+
+        @include breakpoint( desktop-large ) {
           font-size: 2vw;
           font-weight: $weight-medium;
         }
 
-        @include breakpoint( $desktop-and-smaller ) {
+        @include breakpoint( $until: desktop-large ) {
           font-size: 2.5vw;
         }
 
@@ -94,17 +90,18 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
     }
 
     &.sub-nav {
+      margin-bottom: $gap-small;
+
       a {
         margin-bottom: 0;
-        padding: 0 $base-spacing / 1.5;
-        font-size: .8rem;
-        color: $grey-silver;
+        padding: 0 $gap-horizontal 0 0;
+        font-size: $text-size-tiny;
+        color: $text-light-weaker-color;
         text-transform: uppercase;
       }
     }
 
-    @include breakpoint( $desktop-large ) {
-      //@include span-columns( 10 of 12, table );
+    @include breakpoint( desktop-large ) {
       display: flex;
     }
   }
@@ -135,7 +132,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
   /* Site's introduction - eg. sitename, motto, short abstract */
   // Sitename
   h1 {
-    font-size:   scale-heading( 4 ) * .85; // 85% smaller than standard <h1>
+    font-size:   $h2-size;
     font-weight: $weight-normal;
     color:       $white;
 
@@ -166,7 +163,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
   }
 
 
-  @include breakpoint( $tablet-and-bigger ) {
+  @include breakpoint( tablet ) {
     .block {
       display: flex;
       width: 100%;
@@ -174,8 +171,9 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
     }
 
     .site-intro {
-      //@include span-columns( 9 of 12 );
+      float: left;
       padding: .3rem $column-padding .5rem $column-padding * 1.5;
+      width: 75%;
     }
 
     .horizontal-menu {
@@ -191,28 +189,32 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
         margin: 0;
         padding: $base-spacing / 2 $base-spacing / 1.5;
         border-bottom: 0;
+
+        &.active {
+          @include after() {
+            @include scalable-rectangle-horizontal( 100%, $border-width-medium, $white );
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            margin: 0 0 $bleed-half $bleed-horizontal / 2;
+          }
+
+          &:hover::after { border-color: $grey-silver; }
+        }
       }
     }
 
     .logo {
-      //@include span-columns( 3 of 12 );
-
+      float: left;
       padding: .1rem $column-padding * 1.5 .1rem $column-padding;
+      width: 25%;
       border-right: 1px solid $black-emperor;
     }
 
   }
 
-  @include breakpoint( $tablet-and-smaller ) {
-    .menu-bar {
-      .search-item {
-        position: absolute;
-        right: 1em;
-      }
-    }
-  }
 
-  @include breakpoint( $mobile-large-and-smaller ) {
+  @include breakpoint( $until: tablet ) {
     .block {
       // @include flex-direction(column);
       justify-content: space-between;
@@ -269,11 +271,11 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
       }
     }
 
-      .logo { 
-        display: none; 
+      .logo {
+        display: none;
         width: 12rem;
       }
-    
+
     .site-intro {
       padding-right: 0;
       padding-left: 0;
@@ -281,7 +283,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
     }
 
     h1 {
-      line-height: #{$base-line-height * 1.2}rem;
+      line-height: #{$text-line-height * 1.2}rem;
       text-align: center;
 
       .large { font-size: 120%; }
@@ -352,6 +354,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 .menu-toggle-icon.open span:nth-child( 4 ) {
   top: 18px;
   left: 50%;
+  width: 0;
 }
 
 
@@ -362,7 +365,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 
       .logo {
 
-        @include breakpoint($tablet-and-bigger) {
+        @include breakpoint( tablet ) {
           width: 20%;
           margin-right: 0;
         }
@@ -370,6 +373,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 
       nav.menu-container {
         flex: 1 0 80%;
+        padding-left: $gap-half;
 
         .horizontal-menu {
           width: 100%;
@@ -377,27 +381,16 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
           &.main-nav {
             .menu-bar {
               a {
-                padding: 0 $base-spacing/2.5;
+                padding: $gap-tiny $gap-horizontal $gap-tiny 0;
+                margin-bottom: $gap-small;
 
-                @include breakpoint( $tablet-and-bigger ) {
+                @include breakpoint( tablet ) {
                   font-size: 1.1rem;
                 }
 
-                @include breakpoint( $desktop-and-smaller ) {
-                  // font-size: 1.4vw;
-                }
-
-                @include breakpoint( $mobile-large-and-smaller ) {
+                @include breakpoint( $until: tablet ) {
                   font-size: 1.2rem;
                   padding: 1rem 1.5rem;
-                }
-
-                /* Fix for search icon breaking */
-                @media screen and (min-width: 1097px ) and (max-width: 1150px) {
-                  &.search-item {
-                    position: absolute;
-                    right: 1rem;
-                  }
                 }
 
               }

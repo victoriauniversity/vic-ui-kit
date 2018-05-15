@@ -7,9 +7,9 @@ $popup-button-close-color: $black-tundora;
 /* Positions popup within a page. */
 .popup-positioner {
   z-index: $z-index-max;
-  display: none;
   position: fixed;
   bottom: 0;
+  display: none;
   margin: 0 0 2.5em 5%;
   width: $popup-width;
 
@@ -18,7 +18,7 @@ $popup-button-close-color: $black-tundora;
 
 .popup {
   display: none;
-  padding: $block-padding;
+  padding: $gap;
   background-color: $grey-gallery;
   box-shadow: 0 2px 7px rgba( #000, .35 );
 
@@ -27,19 +27,19 @@ $popup-button-close-color: $black-tundora;
     display: block;
   }
 
-  & > header {
+  > header {
     font-size: 90%;
 
     //.caption {}
 
     // 'x' button
     .btn-close {
-      opacity: .4;
-      display: block;
       float: right;
+      display: block;
       margin-left: .25em;
       padding: 0 .35em;
       color: $popup-button-close-color;
+      opacity: .4;
       font-size: 170%;
       line-height: 1;
 
@@ -51,7 +51,7 @@ $popup-button-close-color: $black-tundora;
     margin-top: $base-spacing;
 
     // Remove the icon
-    .button:not(.primary)::after{ display: none; }
+    .button:not(.primary)::after { display: none; }
   }
 
   .btn-holder {
@@ -59,16 +59,13 @@ $popup-button-close-color: $black-tundora;
   }
 }
 
-@include breakpoint( $mobile-large-and-smaller ) {
+@include breakpoint( $until: tablet ) {
   .popup-positioner {
     top: 0;
     bottom: auto;
     margin: 0;
-    width: 100%
+    width: 100%;
   }
 
   .popup { margin: 0; }
 }
-
-  // Feedback popup
-  //.feedback {}

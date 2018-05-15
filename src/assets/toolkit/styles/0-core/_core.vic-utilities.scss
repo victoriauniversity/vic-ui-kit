@@ -1,0 +1,98 @@
+/*============================================================================*\
+| RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
+\*============================================================================*/
+
+////
+/// A collection of re-usable SCSS utility variables, mixins and functions for
+/// Victoria University web apps.
+///
+/// Comment out any unused components to speed up the compilation process.
+///
+/// **NOTE**: SASS rules adhere to https://sass-guidelin.es/
+
+
+
+
+
+/*= FUNCTIONS ================================================================*/
+
+
+@import 'functions/functions.validators';
+@import 'functions/functions.builders';
+
+
+
+
+
+/*= VARIABLES ================================================================*/
+
+
+// 1st - Settings: Recommended to be reviewed & overriden in every project
+@import 'variables/variables._defaults';
+
+// 2nd - Pre-defined: Can be used in other variables
+@import 'variables/variables.sizing';
+@import 'variables/variables.colors';
+@import 'variables/variables.animations';
+@import 'variables/variables.responsive';
+@import 'variables/variables.characters';
+@import 'variables/variables.icons';
+
+// 3rd - Derived of other variables
+@import 'variables/variables.backgrounds';
+@import 'variables/variables.typography';
+@import 'variables/variables.box-appearance';
+@import 'variables/variables.layout';
+
+// 4th - Component-related: Derived from 2nd or 3rd level variables
+@import 'variables/variables.grid';
+@import 'variables/variables.media';
+@import 'variables/variables.tables';
+@import 'variables/variables.buttons';
+@import 'variables/variables.lists';
+
+
+
+
+
+/*= MIXINS ===================================================================*/
+
+
+@import 'mixins/mixins.generic';
+
+@import 'mixins/mixins.layout';
+@import 'mixins/mixins.typography';
+@import 'mixins/mixins.forms';
+@import 'mixins/mixins.responsive';
+@import 'mixins/mixins.icons';
+@import 'mixins/mixins.grid';
+@import 'mixins/mixins.animations';
+
+@import 'mixins/mixins.media';
+@import 'mixins/mixins.decorations';
+
+
+
+
+
+/*= IMPORTS ================================================================*/
+
+
+/// @link https://neat.bourbon.io/docs/2.1.0/
+@import 'neat';
+
+/// @link https://github.com/sass-mq/sass-mq#how-to-use-it
+@import 'sass-mq';
+
+
+
+
+
+/*= BASE STYLES INITIALISATIONS ==============================================*/
+
+
+@import 'mixins/mixins.initialisations';
+
+
+
+

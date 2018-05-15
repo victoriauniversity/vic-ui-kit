@@ -1,0 +1,35 @@
+/*============================================================================*\
+| ANIMATION & TRANSITION MIXINS
+\*============================================================================*/
+
+////
+/// @group animations
+
+
+
+@mixin keyframe-slide-down( $animation-name: 'slideDown' ) {
+  @keyframes #{$animation-name} {
+    0% {
+      transform: translateY( -100% );
+    }
+
+    100% {
+      transform: translateY( 0 );
+    }
+  }
+}
+
+@mixin keyframe-slide-up( $animation-name: 'slideUp' ) {
+  @keyframes #{$animation-name} {
+    0% {
+      transform: translateY( 0 );
+    }
+
+    100% {
+      transform: translateY( -100% );
+    }
+  }
+}
+
+
+

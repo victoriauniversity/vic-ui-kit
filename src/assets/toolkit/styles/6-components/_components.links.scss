@@ -9,7 +9,7 @@ ul.links {
   line-height: 1.5;
 
   li {
-    @include bulletline-base;
+    @include bullet-line;
     position: relative;
     margin-bottom: .65rem;
     list-style: none;
@@ -22,14 +22,18 @@ ul.links {
     li {
       margin: 0;
       padding-left: 0;
-      border-top: 1px solid $grey-alto;
+      border-top: $border;
+
+      > span,
+      > a {
+        display: block;
+        padding: $gap-third 0;
+      }
 
       &::before { display: none; } // Turn the bullets off
     }
 
     a {
-      display: block;
-      padding: $base-spacing / 3 .1em;
       text-decoration: none;
 
       // Prevent icon wrapping
@@ -39,14 +43,14 @@ ul.links {
       }
 
       @include hoverify {
-        background-color: rgba( #000, $base-darken-percentage / 100 );
+        background-color: $background-opaque-dark;
       }
     }
   }
 
   // in the grid
   .grid & {
-    @include breakpoint( $mobile-large-and-smaller ) {
+    @include breakpoint( $until: tablet ) {
 
       // All the lists in single column => Remove the margins except from the last one.
       &:not(:last-child) { margin-bottom: 0; }
@@ -72,6 +76,7 @@ ul.links {
   }
 }
 
+
 /* Hub related links/areas */
 
 .related-links-block {
@@ -81,13 +86,13 @@ ul.links {
     padding-bottom: 15px;
 
     &::after {
-      @include size( 50px 5px );
+      @include size( 50px, 5px );
       position: absolute;
       bottom: 0;
       left: 0;
       content: '';
 
-      background-color: $green-victoria;
+      background-color: $green-brand;
     }
   }
 
@@ -100,7 +105,7 @@ ul.links {
       justify-content: center;
       padding: .5em;
       flex-direction: column;
-      background-color: $green-victoria;
+      background-color: $green-brand;
       border-radius: 5px;
 
       text-align: center;
@@ -112,7 +117,7 @@ ul.links {
 
 
       @include hoverify() {
-        background-color: darken( $green-victoria, 5% );
+        background-color: $background-brand-darker;
         transition: .5s ease-in-out;
 
         text-decoration: underline;
@@ -121,7 +126,7 @@ ul.links {
 
     }
 
-    @include breakpoint( $mobile ) {
+    @include bp-mobile {
       flex-wrap: wrap;
 
       .related-link {

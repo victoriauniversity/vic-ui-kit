@@ -1,0 +1,82 @@
+
+
+/* ===== PAGINATION =================================================== */
+
+
+.pagination {
+  @include clearfix;
+
+  display:    flex;
+  text-align: right;
+
+  // Placed on the very BEGINNING of the section
+  &:last-child {
+    padding-top: $base-spacing;
+    border-top: 1px solid $grey-alto;
+  }
+
+  .button {
+    margin-bottom: .4rem;
+    background-color: $grey-alto;
+    color: $black;
+
+    &:hover { background-color: $grey; }
+
+    // Currently visited page
+    &.active {
+      background-color: $grey;
+      color: $white;
+    }
+
+    > .icon { display: none; }
+  }
+
+  // 'Previous page' button/link
+  .previous {
+    margin-right: .3rem;
+    @include extend-icon-before( arrow-left ) {
+      vertical-align: -5%;
+    }
+  }
+
+  // 'Next page' button/link
+  .next {
+    order: 3;
+    margin-left: .3rem;
+    @include extend-icon-after( arrow-right ) {
+      vertical-align: -5%;
+    }
+  }
+
+  .previous,
+  .next {
+    display: inline-block;
+    white-space: nowrap;
+    align-self: flex-start;
+  }
+
+  .pages {
+    flex-grow: 1;
+    order: 2;
+    padding: 0 .75em;
+    text-align: center;
+
+    // '...'
+    > .icon { margin: 0 .5rem; }
+  }
+
+  @include bp-mobile {
+    display: block;
+    text-align: center;
+
+    .previous,
+    .next {
+      float: none;
+    }
+
+    .pages {
+      padding: initial;
+      text-align: inherit;
+    }
+  }
+}

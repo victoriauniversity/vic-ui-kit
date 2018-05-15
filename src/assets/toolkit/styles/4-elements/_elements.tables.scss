@@ -1,25 +1,28 @@
-/*==========================================
-=                  TABLES                  =
-==========================================*/
+/*============================================================================*\
+| TABLE-RELATED ELEMENTS
+\*============================================================================*/
+
+////
+/// High-level definitions of table HTML elements.
+///
+/// @group tables
 
 
-/** Standard table */
 
-$table-border-color:    $grey-alto;
-$table-head-background: $green-nebula;
+
 
 table {
   width: 100%;
 
   th,
   td {
-    padding:    $base-spacing / 2;
+    padding:    $table-cell-padding;
     text-align: left;
   }
 
   th {
+    background-color: $table-heading-background;
     font-weight:      $weight-bold;
-    background-color: $table-head-background;
 
     strong,
     b {
@@ -27,7 +30,7 @@ table {
     }
   }
 
-  td { border-bottom: 1px solid $table-border-color; }
+  td { border-bottom: $table-border; }
 
   img {
     display: inline-block;
@@ -35,27 +38,6 @@ table {
   }
 }
 
-// Fall-back completely unwrapped table
-.table-container,
-table {
-  clear: both;
-  margin-bottom: $base-spacing;
-  box-shadow:    $base-shadow;
-}
 
-.table-container {
-  _overflow:  auto;
-  overflow-x: auto;
-  display:    block;
-  width:      100%;
 
-  // Reseting fall-back from unwrapped table
-  table {
-    margin-bottom: 0;
-    box-shadow: none;
-  }
 
-  @include breakpoint( $mobile-large-and-smaller ) {
-    overflow-x: scroll;
-  }
-}

@@ -1,0 +1,201 @@
+//www.transformicons.com/builder.html
+
+$tcon-size: 40px !default;
+$tcon-transition: .3s !default;
+$tcon-jstransform: 'tcon-transform' !default;
+
+$tcon-menu-radius: ($tcon-size / 14) !default;
+$tcon-menu-color: black !default;
+$tcon-menu-arrowleft-transformation: (
+  transform: scale3d(.8, .8, .8) rotate3d(0, 0, 1, 90deg)
+) !default;
+$tcon-menu-arrow360left-transformation: (
+  transform: scale3d(.8, .8, .8) rotate3d(0, 0, 1, 360deg)
+) !default;
+
+$tcon-size: 2em;
+$tcon-menu-color: #fff;
+
+.tcon {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  height: $tcon-size;
+  transition: $tcon-transition;
+  user-select: none;
+  width: $tcon-size;
+  background: transparent;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+
+  > * {
+    display: block;
+  }
+
+  &:hover,
+  &:focus {
+    outline: none; // see issue #36 https://github.com/grayghostvisuals/transformicons/issues/36
+  }
+  &::-moz-focus-inner {
+    border: 0;
+  }
+}
+
+@mixin tcon-menu-lines {
+  display: inline-block;
+  height: ($tcon-size / 9);
+  width: $tcon-size;
+  border-radius: $tcon-menu-radius;
+  transition: $tcon-transition;
+  background: $tcon-menu-color;
+}
+
+.tcon-menu__lines {
+  @include tcon-menu-lines;
+  position: relative;
+
+  &::before,
+  &::after {
+    @include tcon-menu-lines;
+    content: '';
+    position: absolute;
+    left: 0;
+    transform-origin: ($tcon-size / 14) center;
+    width: 100%;
+  }
+
+  &::before {
+    top: ($tcon-size / 4);
+  }
+
+  &::after {
+    top: -($tcon-size / 4);
+  }
+
+  .#{$tcon-jstransform} & {
+    transform: scale3d(.8, .8, .8);
+  }
+}
+.tcon-menu--xcross {
+  width: auto;
+
+  &.#{$tcon-jstransform} {
+    .tcon-menu__lines {
+      background: transparent;
+
+      &::before,
+      &::after {
+        transform-origin: 50% 50%;
+        top: 0;
+        width: $tcon-size;
+      }
+
+      &::before {
+        transform: rotate3d(0, 0, 1, 45deg);
+      }
+
+      &::after {
+        transform: rotate3d(0, 0, 1, -45deg);
+      }
+    }
+  }
+}
+// see issue #7 https://github.com/grayghostvisuals/transformicons/issues/7#issuecomment-59813596
+.tcon-visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+
+  &:active,
+  &:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+  }
+}
+$tcon-search-size: ($tcon-size * 0.75) !default;
+$tcon-search-radius: ($tcon-size / 14) !default;
+$tcon-search-color: black !default;
+$tcon-search-glass-color: $black-tundora !default;
+$tcon-search-handle-width: ($tcon-size / 10) !default;
+$tcon-search-glass-radius: ($tcon-size / 3.3333) !default;
+$tcon-search-glass-border-width: ($tcon-size / 20) !default;
+
+$tcon-search-color: $black-tundora;
+$tcon-search-glass-color: $grey-silver;
+$tcon-search-glass-radius: ($tcon-size /2.5);
+@mixin search-item {
+  display: inline-block;
+  height: $tcon-search-size;
+  width: $tcon-search-size;
+  border-radius: 0;
+  transition: $tcon-transition;
+  background: transparent;
+}
+
+.tcon-search__item {
+  @include search-item;
+  position: relative;
+  transform: rotate(-45deg);
+
+  &::before,
+  &::after {
+    @include search-item;
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  &::before {
+    height: $tcon-search-handle-width;
+    left: 0;
+    background: $tcon-search-color;
+    border-radius: $tcon-search-radius;
+  }
+
+  &::after {
+    right: 0;
+    background: $tcon-search-glass-color;
+    border-radius: 50%;
+    width: $tcon-search-glass-radius;
+    height: $tcon-search-glass-radius;
+    border: $tcon-search-glass-border-width solid $black-tundora;
+    transform-origin: 50% 50%;
+  }
+}
+.tcon-search--xcross {
+  &.#{$tcon-jstransform} {
+    transform: scale3d(.8, .8, .8);
+
+    .tcon-search__item {
+      &::before, &::after {
+        border-radius: $tcon-search-radius;
+        background: $tcon-search-color;
+      }
+
+      &::after {
+        height: $tcon-search-handle-width;
+        width: 100%;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: rotate3d(0, 0, 1, 90deg);
+      }
+    }
+  }
+}

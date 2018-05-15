@@ -6,17 +6,17 @@
 /** Imports. */
 
 const
-  gulp        = require( 'gulp' ),
-  rename      = require( 'gulp-rename' ),
-  csso        = require( 'gulp-csso' ),
-  sass        = require( 'gulp-sass' ),
-  sourcemaps  = require( 'gulp-sourcemaps' ),
-  neat        = require( 'bourbon-neat' ),
-  prefix      = require( 'gulp-autoprefixer' ),
-  gulpif      = require( 'gulp-if' ),
-  pump        = require( 'pump' ),
+  gulp       = require( 'gulp' ),
+  rename     = require( 'gulp-rename' ),
+  csso       = require( 'gulp-csso' ),
+  sass       = require( 'gulp-sass' ),
+  sourcemaps = require( 'gulp-sourcemaps' ),
+  eyeglass   = require( 'eyeglass' ),
+  prefix     = require( 'gulp-autoprefixer' ),
+  gulpif     = require( 'gulp-if' ),
+  pump       = require( 'pump' ),
 
-  config      = require( '../build.config' );
+  config     = require( '../build.config' );
 
 
 
@@ -41,14 +41,23 @@ function processToolkitStyles( done ) {
   return pump([
     gulp.src( config.paths.toolkit.sassIndex ),
     gulpif( config.devMode, sourcemaps.init()),
-    sass({
+    sass( eyeglass({
       outputStyle:  'expanded',
-      includePaths: [
-        `${config.paths.root}/node_modules`,
-        neat.includePaths,
-        `${config.paths.root}/lib`, // TODO: Remove
-      ],
-    }).on( 'error', sass.logError ),
+      eyeglass:    {
+        modules: [
+          /** Non eyeglass-aware (S)CSS libraries have to be defined here. */
+          {
+            name: 'lity',
+            main: () => ({
+              sassDir: 'node_modules/lity/dist/',
+            }),
+            eyeglass: {
+              needs: '^1.5.0',
+            },
+          },
+        ],
+      },
+    })).on( 'error', sass.logError ),
     prefix(),
     gulpif( config.devMode, sourcemaps.write()),
     gulpif( !config.devMode, gulp.dest( config.paths.tmp )),

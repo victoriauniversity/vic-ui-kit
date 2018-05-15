@@ -1,5 +1,6 @@
 /** Standard tags (filtering, tag cloud etc.) */
 
+//TODO: Review
 $tag-background-color:        #DBE6F3 !default;
 $tag-font-color:              $blue-callypso;
 
@@ -22,11 +23,11 @@ $tag-font-color-grey:         $grey-dove;
   margin: 0 0 .3rem;
   padding: .15rem .6rem;
   white-space: nowrap;
-  border-radius: $base-corner-radius;
+  border-radius: $radius-small;
   background-color: $tag-background-color;
   color: $tag-font-color;
 
-  aside & { font-size: .875rem; }
+  aside & { font-size: $text-size-tiny; }
 
   // 'x' button
   .close {
@@ -58,7 +59,7 @@ $tag-font-color-grey:         $grey-dove;
 
   // Selected tag
   &.active {
-    background-color: $green-victoria;
+    background-color: $green-brand;
     color: $white;
   }
 }
@@ -76,22 +77,22 @@ a {
 
     @include hoverify() {
       text-decoration: underline;
-      background-color: lighten( $tag-background-color, 4 );
+      background-color: _tint( $tag-background-color, 40% );
 
       &.tag-green {
-        background-color: lighten( $tag-background-color-green, 4 );
+        background-color: _tint( $tag-background-color-green, 40% );
       }
 
       &.tag-red {
-        background-color: lighten( $tag-background-color-red, 4 );
+        background-color: _tint( $tag-background-color-red, 40% );
       }
 
       &.tag-yellow {
-        background-color: lighten( $tag-background-color-yellow, 4 );
+        background-color: _tint( $tag-background-color-yellow, 40% );
       }
 
       &.tag-grey {
-        background-color: lighten( $tag-background-color-grey, 4 );
+        background-color: _tint( $tag-background-color-grey, 40% );
       }
     }
 
@@ -111,7 +112,7 @@ a {
 
     &.tag-active {
       border: 1px solid $tag-font-color;
-      background-color: lighten( $tag-background-color, 4 );
+      background-color: _tint( $tag-background-color, 40% );
       color: $tag-font-color;
     }
   }

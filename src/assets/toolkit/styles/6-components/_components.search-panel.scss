@@ -1,6 +1,6 @@
 /** Search panel full page with or mods. */
 
-$search-panel-shadow: 0 4px 8px rgba( $black, .2 ) !default;
+$search-panel-shadow: $shadow-shallow !default;
 
 
 .search-panel {
@@ -40,7 +40,7 @@ $search-panel-shadow: 0 4px 8px rgba( $black, .2 ) !default;
     box-shadow: 0 1px 5px rgba( $black, .25 );
   }
 
-  @include breakpoint( $desktop ) {
+  @include bp-desktop {
     form {
       &.wide-search-bar {
         padding: 2rem 4rem;
@@ -48,7 +48,7 @@ $search-panel-shadow: 0 4px 8px rgba( $black, .2 ) !default;
     }
   }
 
-  @include breakpoint($tablet-and-smaller) {
+  @include breakpoint( $until: desktop ) {
     form {
       &.wide-search-bar { padding: 2rem; }
 
@@ -59,7 +59,7 @@ $search-panel-shadow: 0 4px 8px rgba( $black, .2 ) !default;
     }
   }
 
-  @include breakpoint( $mobile-large-and-smaller ) {
+  @include breakpoint( $until: tablet ) {
     form {
       &.wide-search-bar { padding: 2rem 1rem; }
 
