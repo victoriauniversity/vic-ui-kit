@@ -272,7 +272,6 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
     }
 
       .logo {
-        display: none;
         width: 12rem;
       }
 
@@ -399,6 +398,16 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
         }
       }
 
+    }
+  }
+}
+
+@include breakpoint( $until: tablet )  {
+  .global {
+   + .site-header {
+      .logo {
+        display: none;
+      }
     }
   }
 }
