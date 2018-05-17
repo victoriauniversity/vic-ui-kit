@@ -63,7 +63,7 @@ function gitCommitAll( done ) {
 }
 
 function gitPushToGitHubPages( done ) {
-  git.push( GITHUB_SOURCE_REPO, `master:${GITHUB_SOURCE_BRANCH}`, {
+  git.push( GITHUB_SOURCE_REPO, GITHUB_SOURCE_BRANCH, {
     args: '--force --quiet ',
   }, ( error ) => {
     if ( error ) {
