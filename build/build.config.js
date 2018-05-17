@@ -60,8 +60,10 @@ const config = {
       images:  `${DIR.TOOLKIT}/images`,
       fonts:   `${DIR.TOOLKIT}/fonts`,
 
-      scriptsIndex: `${DIR.TOOLKIT}/scripts/toolkit.js`,
-      sassIndex:    `${DIR.TOOLKIT}/styles/toolkit.scss`,
+      scriptModules: `${DIR.TOOLKIT}/scripts/modules`,
+
+      scriptsIndex:  `${DIR.TOOLKIT}/scripts/toolkit.js`,
+      sassIndex:     `${DIR.TOOLKIT}/styles/toolkit.scss`,
     },
 
     releaseStatics: `${DIR.BUILD}/release-templates`,
@@ -87,12 +89,12 @@ const config = {
 
   // Build environments: {local|stage|production}
   env: {
-    development: { // Local
-      name:   'development',
+    development: {
+      name:   'development', // Local
       server: {
         protocol: 'https',
-        host:     'localhost',
-        port:     3000,
+        host:     'local.victoria.ac.nz',
+        port:     8080,
       },
     },
     stage: {

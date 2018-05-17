@@ -2,6 +2,8 @@
 <html lang="">
 <head>
 
+  {{{ header-start }}}
+
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,9 +29,11 @@
   <link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}toolkit.css">
   <!-- /toolkit styles -->
 
+  {{{ header-end }}}
+
 </head>
 <body>
-
+  {{{ body-start }}}
 
   <!-- If 'fabricator=true' is present in page's annotation. -->
 
@@ -88,13 +92,19 @@
       tag: 'f-tag'
     })
   </script>
+  {{/if}}
 
-
-	{{/if}}
+  <!-- jQuery -->
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 
 	<!-- toolkit scripts -->
 	<script src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}toolkit.js"></script>
 	<!-- /toolkit scripts -->
+
+  {{{ body-end }}}
 
 </body>
 </html>

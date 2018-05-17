@@ -32,6 +32,9 @@ module.exports = ({
 
   if ( includeToolkit ) {
     entries.toolkit = `./${config.paths.toolkit.scriptsIndex}`;
+
+    entries[`toolkit.tracking${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/tracking.js`;
+
     if ( !config.devMode ) entries['toolkit.min'] = `./${config.paths.toolkit.scriptsIndex}`;
   }
 
@@ -73,6 +76,10 @@ module.exports = ({
           loader: 'json-loader',
         },
       ],
+    },
+
+    externals: {
+      jquery: 'jQuery',
     },
 
     optimization: {

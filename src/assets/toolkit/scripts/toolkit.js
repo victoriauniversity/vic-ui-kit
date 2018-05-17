@@ -1,20 +1,30 @@
 /** !Toolkit's core JS */
 
 
- /* DEPENDENCIES & 3RD PARTY LIBRARIES IMPORTS */
-  var $     = require('jquery'),
-  fastclick = require('fastclick'),
-  Headroom      = require('headroom.js'),
-  picturefill   = require('picturefill'),
-  lity          = require('lity'),
-  cookie        = require('cookies-js'),
-  enquire       = require('enquire.js');
+/* DEPENDENCIES & 3RD PARTY LIBRARIES IMPORTS */
+import $ from 'jquery';
+import fastclick from 'fastclick';
+import Headroom from 'headroom.js';
+import cookie from 'cookies-js';
+import enquire from 'enquire.js';
+import lity from 'lity';
+import picturefill from 'picturefill';
 
-  // Export to the global namespace (~ window)
-  window.$ = window.jQuery = $;
+// Include all standalone modules
+import { tracker, trackerConfig } from './modules/tracking';
+
+trackerConfig({ autoRegister: true });
+
+
+// Export to the global namespace (~ window)
+window.$      = $;
+window.jQuery = $;
+
+
+
+
 
   require('./study-areas.js'); //TODO: set up multiple entry points for webpack bundles
-
 
 
   /* CONSTANT ATTRIBUTES */
@@ -113,9 +123,9 @@
     const expandableButtons = menuElement.find( '.' + SIDEMENU_EXPANDER_CLASS );
 
     // Add tracking if enabled
-    if ( shouldTrackByGtm( menuElement ) ){
-      addGtmTrackingListeners( menuElement.find( 'li > a' ), 'click', 'sidemenu-link' );
-      addGtmTrackingListeners( expandableButtons, 'click', 'sidemenu-expander' );
+    if ( tracker.shouldTrackElement( menuElement ) ){
+      tracker.registerForTracking( menuElement.find( 'li > a' ), 'click', 'sidemenu-link' );
+      tracker.registerForTracking( expandableButtons, 'click', 'sidemenu-expander' );
     }
 
     expandableButtons.each( initExpandableSubmenu );
@@ -197,8 +207,8 @@
       bindButtonEvents();
       addShownClass();
 
-      if ( shouldTrackByGtm( popupElement ) ){
-        pushTrackingInfoToGtm( popupElement.get( 0 ).id, 'open' );
+      if ( tracker.shouldTrackElement( popupElement ) ){
+        tracker.trackEvent( popupElement.get( 0 ).id, 'open' );
       }
     }
 
@@ -268,72 +278,13 @@
   }
 
 
-  const GTM_TRACK_ATTRIBUTE = 'data-gtm-track';
-  const GTM_ID_ATTRIBUTE    = 'data-gtm-id';
-
-
-  function autoregisterGtmTrackingListeners() {
-    addGtmTrackingListeners( $( `[${GTM_TRACK_ATTRIBUTE}]` ) );
-  }
-
-  function addGtmTrackingListeners( elementsList, eventType, trackingId ) {
-      if ( !window.dataLayer ){
-        console.warn( "`dataLayer` variable is unavailable. Please, check that your Google Tag Manager script is loading before any other script." );
-        window.dataLayer = []; // Fallback
-        return;
-      }
-
-    elementsList.each( function() {
-      var elementToTrack = $( this );
-
-      eventType = eventType || elementToTrack.attr( GTM_TRACK_ATTRIBUTE ) || 'auto';
-      trackingId = trackingId || elementToTrack.attr( GTM_ID_ATTRIBUTE ) || elementToTrack[ 0 ].id;
-
-      switch( eventType ) {
-        case 'click': {
-          elementToTrack.on( eventType, function( event ) {
-            dataLayer.push({
-              'event':            trackingId,
-              'custom.selector':  event.target,
-              'custom.eventType': event.type,
-              'custom.href':      event.currentTarget.href,
-              'custom.text':      event.currentTarget.text,
-            });
-          });
-        }; break;
-        case 'auto': break;
-        default: {
-          console.warn( `GTM: Tracking of event '${eventType}' is not supported. Please, change it.` )
-        }
-      }
-    });
-  }
-
-  function pushTrackingInfoToGtm( trackingId, eventType ){
-    if ( !window.dataLayer ){
-      console.warn( "`dataLayer` variable is unavailable. Please, check that your Google Tag Manager script is loading before any other script." );
-      window.dataLayer = []; // Fallback
-      return;
-    }
-
-    dataLayer.push({
-      'event':            trackingId,
-      'custom.eventType': eventType,
-    });
-  }
-
-
-  function shouldTrackByGtm( element ){
-    return Boolean( element.attr( GTM_TRACK_ATTRIBUTE ) !== undefined );
-  }
-
-
+// Run after the DOM has loaded...
 $(function(){
 
 	fastclick.attach(document.body);
 	var $body          = $( 'body' );
 	var $globalNav     = $( '#global-nav' );
-  var $globalSearch = $('#global-search' );
+  var $globalSearch  = $( '#global-search' );
 
   /** Init side-menu, if it's present */
   if ( $( '.' + SIDEMENU_CLASS ).length ) {
@@ -355,16 +306,6 @@ $(function(){
       initPopupBox( popupElement, optionsObject );
     }
   });
-
-
-
-  /** GOOGLE TAG MANAGER */
-
-  /** Auto-register all on-demand elements to track for GTM. */
-  setTimeout( autoregisterGtmTrackingListeners, 0 ); // To trigger after previous DOM re-renders
-
-  /** Any element or set of elements can be dynamically tracked this way */
-  // addGtmTrackingListeners( jQueryElements, trackingId, eventType );
 
 
   //http://wicky.nillia.ms/enquire.js/

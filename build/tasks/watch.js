@@ -38,12 +38,14 @@ function serverAndWatch() {
       baseDir: config.paths.dist,
     },
 
-    port:      config.getEnvConfig().server.port,
-    https:     config.getEnvConfig().server.protocol === 'https',
-    ui:        false, // Disable server's UI
-    notify:    false, // Disable popups
-    cors:      true, // Allows including localhost files in external webpages
-    logPrefix: 'VIC-UI-KIT',
+    port:       config.getEnvConfig().server.port,
+    https:      config.getEnvConfig().server.protocol === 'https',
+    host:       config.getEnvConfig().server.host,
+    ui:         false, // Disable server's UI
+    notify:     false, // Disable popups
+    cors:       true, // Allows including localhost files in external webpages
+    logPrefix:  'VIC-UI-KIT',
+    open:       'external',
   });
 
   config.runningServer = server;
