@@ -323,8 +323,10 @@
         }
       }
 
+
+
+
       .logo { 
-        display: none; 
         width: 12rem;
       }
 
@@ -469,6 +471,16 @@
         }
       }
 
+    }
+  }
+}
+
+@include media( $mobile-large-and-smaller ) {
+  .global {
+    + .site-header {
+      .logo {
+        display: none;
+      }
     }
   }
 }
