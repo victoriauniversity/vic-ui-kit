@@ -3,7 +3,7 @@ title: "Example | Tracking through Google Tag Manager"
 
 header:
   subtitle:   "Analytics"
-  title:      "GTM tracking overview"
+  title:      "GTM tracking"
 
 header-start:
   <!-- Google Tag Manager -->
@@ -33,7 +33,7 @@ body-start:
     <main>
       <div class="block formatting">
 
-        <h1 data-gtm-track>GTM Tracking overview</h1>
+        <h1>GTM Tracking examples</h1>
 
         <div class="flash-message info">
           <p>
@@ -69,10 +69,10 @@ body-start:
         </p>
         <p>
           <strong>Event:</strong> <em>Page Load Time</em> - URL - Time (in seconds)<br>
-          <strong>Trigger example:</strong> Reload this page
+          <strong>Example:</strong> Reload this page
         </p>
 
-        <h2>General interactions</h2>
+        <h2>Automatic interactions</h2>
         <p>Logs various user-based interactions anywhere on the entire site.</p>
 
         <h3>Contact link click</h3>
@@ -83,7 +83,7 @@ body-start:
           <strong>Events:</strong><br>
           <em>Phone Number Click</em> - Phone number - Page URL<br>
           <em>Email Click</em> - Email address - Page URL<br>
-          <strong>Trigger example:</strong><br>
+          <strong>Example:</strong><br>
           <a href="tel:08888888">Call us</a> or <a href="mailto:mail.example.com">Mail us</a> now!
         </p>
 
@@ -94,7 +94,7 @@ body-start:
         <p>
           <strong>Events:</strong><br>
           <em>[File type/extension]</em> - Filename - Page URL<br>
-          <strong>Trigger example:</strong><br>
+          <strong>Example:</strong><br>
           <a class="button primary" href="https://victoria.ac.nz/fca/teaching/publications/ClickersmanualV01.pdf">Download a brochure</a>
         </p>
 
@@ -105,7 +105,7 @@ body-start:
         <p>
           <strong>Events:</strong><br>
           <em>[Outbound domain name]</em> - Outbound link URL - Page URL<br>
-          <strong>Trigger example:</strong><br>
+          <strong>Example:</strong><br>
           Try searching in the <a href="//google.com" class="link-external">Google search</a>
         </p>
 
@@ -117,7 +117,7 @@ body-start:
           <strong>Events:</strong><br>
           <em>Abandonment</em> - Page URL<br>
           <em>Submission</em> - Page URL<br>
-          <strong>Trigger example:</strong><br>
+          <strong>Example:</strong><br>
           Type in something into the search bar in the header and either abandon it (and refresh/leave the page) or submit the search term.
         </p>
 
@@ -132,15 +132,15 @@ body-start:
           <em>Seeking in video</em> - Video's title and URL - Play time (in seconds)<br>
           <em>Finished video</em> - Video's title and URL - Play time (in seconds)<br>
           <em>[25%|50%|75%] of video seen</em> - Video's title and URL - Play time (in seconds)<br>
-          <strong>Trigger example:</strong><br>
+          <strong>Example:</strong><br>
           <figure class="media">
-            <div class="embed "><iframe width="1280" height="720" src="https://www.youtube.com/embed/6nD-kAsV-rk?rel=0" frameborder="0" allowfullscreen=""></iframe></div>
+            <div class="embed"><iframe width="1280" height="720" src="https://www.youtube.com/embed/6nD-kAsV-rk?rel=0" frameborder="0" allowfullscreen=""></iframe></div>
 
             <figcaption>Play to trigger video events tracking</figcaption>
           </figure>
         </p>
 
-        <h2>Custom components interactions</h2>
+        <h2>Manually added interactions</h2>
         <p>
           Interactions that are component-specific and have been built by us.
         </p>
@@ -153,25 +153,94 @@ body-start:
           <strong>Events:</strong><br>
           <em>Link Click</em> - Target URL - Page URL<br>
           <em>Expandable Button Click</em> - Page URL<br>
-          <strong>Trigger example:</strong><br>
+          <strong>Example:</strong><br>
           Interact with the side menu on the left.
         </p>
 
-        <h3>Custom element click</h3>
+        <h3>Custom element interaction</h3>
         <p>
-          Allows to easily track clicks on any given element (promo box, special button, banner, CTAs etc.) by simply adding HTML attribute <em>`data-gtm-track`</em> into the element's source code.
+          Allows to easily track custom interaction on any given element (promo box, special button, banner, CTAs etc.) by simply adding HTML attribute <em>`data-gtm-track="[action-type]"`</em> (~ click) into the element's source code.
         </p>
         <p>
           <em>
-          Note: In case you want to track and group specific class of click events, a unique HTML attribute `id` (or `data-gtm-id` in case `id` is already used) should be added to the element and further configuration within Google Tag Manager is required to specify event's attributes.
+          Note: In case you want to track and group specific class of interactions, a unique HTML attribute `id` (or `data-gtm-id` in case `id` is already used) should be added to the element. Additionally, further configuration within Google Tag Manager is required to specify event's trigger(s) and tag(s).
         </em>
         </p>
         <p>
           <strong>Events:</strong><br>
           <em>[Unique event name]</em> - Target URL - Page URL<br>
-          <strong>Trigger example:</strong><br>
-          Any.
+          <strong>Example:</strong><br>
         </p>
+        </div>
+
+        <div>
+          <div class="centraliser block">
+            <div class="updated-tile-grid">
+              <div class="tiles-wrap four-col image-no-gutter">
+                <ul>
+                  <li class="tile">
+                    <img alt="" src="https://www.victoria.ac.nz/__data/assets/image/0004/1357429/abstract.png">
+                    <a href="#" data-gtm-track="click" data-gtm-id="promo-box">
+                      <h3 class="">Media contacts</h3>
+                      <div class="sub-text">
+                        <p>If you’re looking for an expert opinion, our Communications team can help you get in touch with the right
+                          person.</p>
+                      </div>
+
+                      <span class="button">Make contact</span>
+
+                    </a>
+                  </li>
+
+                  <li class="tile">
+                    <img alt="" src="https://www.victoria.ac.nz/__data/assets/image/0004/1357429/abstract.png">
+                    <a href="#" data-gtm-track="click" data-gtm-id="promo-box">
+                      <h3 class="">Faculty of Graduate Research</h3>
+                      <div class="sub-text">
+                        <p>Victoria’s Faculty of Graduate Research is your dedicated point of contact for all enquiries about higher
+                          degrees by research.</p>
+                      </div>
+
+                      <span class="button">Learn more</span>
+
+                    </a>
+                  </li>
+
+                  <li class="tile">
+                    <img alt="" src="https://www.victoria.ac.nz/__data/assets/image/0004/1357429/abstract.png">
+                    <a href="#" data-gtm-track="click" data-gtm-id="promo-box">
+                      <h3 class="">Research Office</h3>
+                      <div class="sub-text">
+                        <p>Our Research Office teams connect collaborators with researchers and advise on funding and resources to support
+                          effective research output.</p>
+                      </div>
+
+                      <span class="button">Get in touch</span>
+
+                    </a>
+                  </li>
+
+                  <li class="tile">
+                    <img alt="" src="https://www.victoria.ac.nz/__data/assets/image/0004/1357429/abstract.png">
+                    <a href="#" data-gtm-track="click" data-gtm-id="test-promo-box">
+                      <h3 class="">Viclink</h3>
+                      <div class="sub-text">
+                        <p>Viclink works to benefit businesses, industry and the community by identifying and commercialising new technologies
+                          developed by our researchers.</p>
+                      </div>
+
+                      <span class="button">Learn more</span>
+
+                    </a>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="formatting"></div>
 
       </div>
     </main>

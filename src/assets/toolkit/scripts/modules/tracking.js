@@ -33,17 +33,19 @@ function addGtmTrackingListeners( elementsList, eventType, trackingId ) {
       return;
     }
 
+
+
   elementsList.each( function() {
     const elementToTrack = $( this );
 
-    eventType = eventType || elementToTrack.attr( GTM_TRACK_ATTRIBUTE ) || 'auto';
-    trackingId = trackingId || elementToTrack.attr( GTM_ID_ATTRIBUTE ) || elementToTrack[ 0 ].id;
+    let trackingEventType = eventType || elementToTrack.attr( GTM_TRACK_ATTRIBUTE ) || 'auto';
+    let id = trackingId || elementToTrack.attr( GTM_ID_ATTRIBUTE ) || elementToTrack[ 0 ].id;
 
-    switch( eventType ) {
+    switch( trackingEventType ) {
       case 'click': {
-        elementToTrack.on( eventType, function( event ) {
+        elementToTrack.on( trackingEventType, function( event ) {
           dataLayer.push({
-            'event':            trackingId,
+            'event':            id,
             'custom.selector':  event.target,
             'custom.eventType': event.type,
             'custom.href':      event.currentTarget.href,
@@ -53,7 +55,7 @@ function addGtmTrackingListeners( elementsList, eventType, trackingId ) {
       }; break;
       case 'auto': break;
       default: {
-        console.warn( `GTM: Tracking of event '${eventType}' is not supported. Please, change it.` );
+        console.warn( `GTM: Tracking of event '${trackingEventType}' is not supported. Please, change it.` );
       }
     }
   });

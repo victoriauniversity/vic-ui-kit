@@ -1,0 +1,24 @@
+---
+notes: >
+
+  To start using Toolkit's Tracking API for Google Tag Manager, you need to make sure that following scripts are imported to the page, in following order:
+   - A. `Google Tag Manager script` snippets in the `<head>` element
+   - B. `jQuery v1.10` and newer
+   - C. `toolkit.js` (Toolkit's javascript bundle) or `toolkit.tracking.js` (standalone tracking library).
+   - D. Your API calls
+  <br><br>
+  An example with the standalone tracking library loaded from our CDN:
+---
+<head>
+  <!-- Google Tag Manager scripts *MUST BE* as high as possible in the <head>! -->
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+  <script src="https://static.victoria.ac.nz/toolkit.tracking.min.js" type="text/javascript"></script>
+
+  <script>
+    /** Dynamic code to work with Tracking API */
+  </script>
+</head>
