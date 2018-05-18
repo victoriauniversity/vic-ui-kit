@@ -1,0 +1,17 @@
+---
+notes: >
+
+  When the document is 'ready' (~the DOM has been fully intialised), the tracking script automatically subscribes any HTML element on a page with attribute `data-gtm-track` to be tracked and (optionally) send valuable information to Google Tag Manager.
+  <br><br>
+  The `data-gtm-track` attribute can get a type of interaction as a value. Currently, the following events are supported out of the box:
+  <br>
+  - **`auto (default)`** - Does not send any information to the GTM so that developer can manually define the event and what data should be sent.  <br>
+  - **`click`** - Gets triggered when user clicks on the element. Following data are sent to GTM: `event` - ID of the event to identify it in the GTM's backend (see `id` or `data-gtm-id` below) | `custom.selector` - Element selector | `custom.eventType` - 'click' | `custom.href` - URL of the element (if exists) | `custom.text` - Element's text content.
+  <br><br>
+  There's also a secondary attribute that allows to define unique identifier for a group of related interaction - you can use native `id` attribute or (if it cannot be used for other reasons) `data-gtm-id`.
+  <br><br>
+  An example of a button that sends information in a custom event "main-logo" when clicked:
+
+---
+
+<a id="logo" href="example.com" title="Link to the example page" data-gtm-track="click" data-gtm-id="main-logo">Example site link</a>
