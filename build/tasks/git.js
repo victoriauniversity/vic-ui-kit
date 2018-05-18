@@ -21,10 +21,13 @@ const
 
 const GITHUB_SECRET_TOKEN = process.env.GITHUB_TOKEN || '', // Environmental variable `GITHUB_TOKEN` has to be set up on the CI or within the user's environment to make the builds successful!
 
-  GITHUB_RELEASE_REPO     = `https://${GITHUB_SECRET_TOKEN}@github.com/victoriauniversity/victoria-ui-releases.git`,
+
+  GITHUB_RELEASE_REPO     = `https://${GITHUB_SECRET_TOKEN}${( GITHUB_SECRET_TOKEN !== '' ? '@' : '' )}github.com/victoriauniversity/victoria-ui-releases.git`,
   GITHUB_RELEASE_BRANCH   = 'releases',
-  GITHUB_SOURCE_REPO      = `https://${GITHUB_SECRET_TOKEN}@github.com/victoriauniversity/vic-ui-kit.git`,
+  GITHUB_SOURCE_REPO      = `https://${GITHUB_SECRET_TOKEN}${( GITHUB_SECRET_TOKEN !== '' ? '@' : '' )}github.com/victoriauniversity/vic-ui-kit.git`,
   GITHUB_SOURCE_BRANCH    = 'gh-pages';
+
+
 
 /** Tasks. */
 
@@ -40,7 +43,19 @@ function gitInit( done ) {
   });
 }
 
-function gitCloseReleaseRepo( done ) {
+function gitAddSourceRepo( done ) {
+  git.addRemote( 'origin', GITHUB_SOURCE_REPO, {
+    cwd: config.paths.dist,
+  }, ( error ) => {
+    if ( error ) {
+      log.error( colours.red( error ));
+    }
+
+    done();
+  });
+}
+
+function gitCloneReleaseRepo( done ) {
   git.init({
     cwd: `${config.paths.dist}/${config.version}`,
   }, ( error ) => {
@@ -63,7 +78,7 @@ function gitCommitAll( done ) {
 }
 
 function gitPushToGitHubPages( done ) {
-  git.push( GITHUB_SOURCE_REPO, GITHUB_SOURCE_BRANCH, {
+  git.push( 'origin', `master:${GITHUB_SOURCE_BRANCH}`, {
     args: '--force --quiet ',
   }, ( error ) => {
     if ( error ) {
@@ -152,10 +167,13 @@ function gitShallowClone( done ) {
 
 
 
+
+
 /** Name & register tasks. */
 
 gulp.task( 'git:init', gitInit );
-gulp.task( 'git:cloneReleaseRepo', gitCloseReleaseRepo );
+gulp.task( 'git:addSourceRepo', gitAddSourceRepo );
+gulp.task( 'git:cloneReleaseRepo', gitCloneReleaseRepo );
 gulp.task( 'git:commitAll', gitCommitAll );
 gulp.task( 'git:pushToGHPages', gitPushToGitHubPages );
 gulp.task( 'git:exec', gitExecute );

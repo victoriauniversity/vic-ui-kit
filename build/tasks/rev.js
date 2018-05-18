@@ -38,6 +38,7 @@ function cachebustFiles( done ) {
         'CNAME',
         '.html',
         'browserconfig.xml',
+        '.webmanifest',
       ],
       dontUpdateReference: [
         'CNAME',

@@ -45,8 +45,10 @@ gulp.task( 'default', gulp.series( 'serve' ));
 gulp.task( 'release:stage', gulp.series(
   'setEnv:stage',
   'build',
+  'copy:tmp',
   'rev:dist',
   'git:init',
+  'git:addSourceRepo',
   'git:commitAll',
   'git:pushToGHPages',
 ));
@@ -56,6 +58,7 @@ gulp.task( 'release:stage', gulp.series(
 gulp.task( 'release:prod', gulp.series(
   'setEnv:prod',
   'build',
+  'copy:tmp',
   'copy:dist',
   'copy:release',
   'git:shallowClone',
