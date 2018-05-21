@@ -55,7 +55,7 @@ function addGtmTrackingListeners( elementsList, eventType, trackingId ) {
       }; break;
       case 'auto': break;
       default: {
-        console.warn( `GTM: Tracking of event '${trackingEventType}' is not supported. Please, change it.` );
+        console.warn( `GTM: Tracking of event '${trackingEventType}' is not supported.` );
       }
     }
   });
