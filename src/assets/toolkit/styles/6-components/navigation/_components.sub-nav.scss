@@ -150,14 +150,85 @@
 
     &.mega-menu {
       nav {
+
         > ul {
+          font-family: $heading-family;
+          
+          &:not(.expanded) {
+            .btn-expander::after { content: '+'; }
+          }
+          
+          > li {
+            position: relative;
+
+            &:last-child {
+              .btn-expander {
+                right: 0;
+              }
+            }
+
+            .btn-expander {
+              position: absolute;
+              top: .5rem;
+              right: 0rem;
+              @include size( 1.4em );
+              display: inline-block;
+              margin: 0 .5rem;
+              align-self: center;
+              cursor: pointer;
+              text-align: center;
+              font-weight: $weight-bold;
+              color: $grey-alto;
+              line-height: 1.4;
+              font-size: 1.2em;
+              border-radius: .7em;
+          
+              @include hoverify() {
+                color: $white;
+                background-color: rgba( $black, .2 );
+              }
+            }
+
+            > a {
+              text-align: left;
+              color: $grey-alto;
+
+            }
+            
+            &.active {
+              a {
+                color: $white;
+                background-color: $green-brand;
+
+                &:before {
+                  content: none;
+                }
+              }  
+            }
+            
+            > ul {
+              display: none;
+
+
+              li {
+                
+              }
+            }
+          }
 
           &.expanded {
             padding: 0;
+            border-radius: 0 0 $radius-small $radius-small;
             background-color: $green-bottle;
 
+
             > li {
+              display: flex;
+              flex-direction: column;
+
               margin-right: 0;
+              background-color: $green-brand;
+              border-bottom: 5px solid $green-bottle;
               
               &:not(:last-child) {
                 > ul {
@@ -176,30 +247,67 @@
               }
               
               > ul {
-        
-              }
-            }
-          }
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                padding-top: .5rem;
 
-          > li {
+  
+                background-color: $green-brand;
 
-            > a {
-
-            }
-            
-            > ul {
-              display: flex;
-              flex-direction: column;
-
-              background-color: $green-brand;
-              
-
-              li {
+                // height: 100%;
+                // overflow: hidden;
                 
+                > li {
+                  // flex: 1;
+                  position: relative;
+                  border-left: 1px solid rgba( $white, .1 );
+                  margin: 0 1rem;
+                  padding: .5rem;
+
+                  > a {
+                    padding: 0;
+                  }
+                  
+                  &:not(:last-child) {
+                    &:after {
+                      position: absolute;
+                      bottom: 0;
+                      content: "";
+                      width: 100%;
+                      display: block;
+                      border-bottom: 1px solid $green-bottle;
+                    }
+                  }
+
+  
+                }
+              }
+              
+              &:last-child {
+                .btn-expander {
+                  right: 0;
+                }
+              }
+              > .btn-expander {
+                right: 1rem;
+
+
+                &::after {
+                  @include objectify( $position: relative );
+                  @include triangle( up, .5em, .2em, $white );
+                  top: -.15em;
+                }
+        
+                @include hoverify() {
+                  &::after {
+                    @include triangle( up, .5em, .2em, $grey-alto);
+                  }
+                }
               }
             }
-          }
 
+          }
         }
       }
     }
