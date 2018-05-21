@@ -19,6 +19,8 @@ const
 
 /** Repository information. */
 
+process.env.GITHUB_TOKEN = 'cfa952f763c457adc9a34834b05891b269443475';
+
 const GITHUB_SECRET_TOKEN = process.env.GITHUB_TOKEN || '', // Environmental variable `GITHUB_TOKEN` has to be set up on the CI or within the user's environment to make the builds successful!
 
 
@@ -33,8 +35,7 @@ const GITHUB_SECRET_TOKEN = process.env.GITHUB_TOKEN || '', // Environmental var
 
 function gitInit( done ) {
   git.init({
-    cwd:  config.paths.dist,
-    args: '--verbose',
+    cwd: config.paths.dist,
   }, ( error ) => {
     if ( error ) {
       log.error( colours.red( error ));
@@ -46,8 +47,7 @@ function gitInit( done ) {
 
 function gitAddSourceRepo( done ) {
   git.addRemote( 'origin', GITHUB_SOURCE_REPO, {
-    cwd:  config.paths.dist,
-    args: '--verbose',
+    cwd: config.paths.dist,
   }, ( error ) => {
     if ( error ) {
       log.error( colours.red( error ));
@@ -81,7 +81,7 @@ function gitCommitAll( done ) {
 
 function gitPushToGitHubPages( done ) {
   git.push( 'origin', `master:${GITHUB_SOURCE_BRANCH}`, {
-    args: '--force --quiet ',
+    args: '--force -u',
   }, ( error ) => {
     if ( error ) {
       log.error( colours.red( error ));
