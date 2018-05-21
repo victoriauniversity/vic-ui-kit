@@ -73,7 +73,6 @@ function gitCloneReleaseRepo( done ) {
 function gitCommitAll( done ) {
   process.chdir( config.paths.dist );
 
-  console.log( '>>>', exec );
   exec( `git add . -f && git commit -am "Release v${config.version} | [skip ci]"`, ( error, okOut, errOut ) => {
     if ( error ) {
       log.error( 'Cannot add or commit files due to error.' );
