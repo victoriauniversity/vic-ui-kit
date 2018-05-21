@@ -150,13 +150,49 @@
 
     &.mega-menu {
       nav {
-        ul {
+        > ul {
 
-          li {
+          &.expanded {
+            padding: 0;
+            background-color: $green-bottle;
+
+            > li {
+              margin-right: 0;
+              
+              &:not(:last-child) {
+                > ul {
+                  border-right: $green-bottle solid 1rem;
+                }
+
+                > a {
+                  border-right: #fff solid 1rem;
+                }
+              }
+              
+              > a {
+                padding: 0.5rem 1rem;
+                border-bottom: none;
+                border-radius: 0;
+              }
+              
+              > ul {
+        
+              }
+            }
+          }
+
+          > li {
+
+            > a {
+
+            }
             
             > ul {
               display: flex;
               flex-direction: column;
+
+              background-color: $green-brand;
+              
 
               li {
                 
