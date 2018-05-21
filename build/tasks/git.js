@@ -37,9 +37,10 @@ function gitInit( done ) {
   }, ( error ) => {
     if ( error ) {
       log.error( colours.red( error ));
+      return done( error );
     }
 
-    done();
+    return done();
   });
 }
 
@@ -49,9 +50,10 @@ function gitAddSourceRepo( done ) {
   }, ( error ) => {
     if ( error ) {
       log.error( colours.red( error ));
+      return done( error );
     }
 
-    done();
+    return done();
   });
 }
 
@@ -61,20 +63,22 @@ function gitCloneReleaseRepo( done ) {
   }, ( error ) => {
     if ( error ) {
       log.error( colours.red( error ));
+      return done( error );
     }
 
-    done();
+    return done();
   });
 }
 
 function gitCommitAll( done ) {
-  process.chdir( config.paths.dist );
-
   return pump([
-    gulp.src( './*' ),
+    gulp.src( `${config.paths.dist}/*` ),
     git.add({ args: '-f', quiet: false }),
-    git.commit( `Release v${config.version} | [skip ci]`, { quiet: false }),
-  ], done );
+    git.commit( `Release v${config.version} | [skip ci]`, { emitData: true }),
+  ], function() {
+    console.log( '!!! TRIGGERED!' );
+    return done();
+  });
 }
 
 function gitPushToGitHubPages( done ) {
@@ -83,9 +87,10 @@ function gitPushToGitHubPages( done ) {
   }, ( error ) => {
     if ( error ) {
       log.error( colours.red( error ));
+      return done( error );
     }
 
-    done();
+    return done();
   });
 }
 
