@@ -7,11 +7,10 @@
 
 const
   gulp     = require( 'gulp' ),
-  pump     = require( 'pump' ),
   git      = require( 'gulp-git' ),
   colours  = require( 'ansi-colors' ),
   log      = require( 'fancy-log' ),
-  { exec } = require( 'child_process' ).exec,
+  exec     = require( 'child_process' ).exec,
 
   config = require( '../build.config' );
 
@@ -70,14 +69,19 @@ function gitCloneReleaseRepo( done ) {
   });
 }
 
+
 function gitCommitAll( done ) {
-  return pump([
-    gulp.src( `${config.paths.dist}/*` ),
-    git.add({ args: '-f', quiet: false }),
-    git.commit( `Release v${config.version} | [skip ci]`, { emitData: true }),
-  ], function() {
-    console.log( '!!! TRIGGERED!' );
-    return done();
+  process.chdir( config.paths.dist );
+
+  console.log( '>>>', exec );
+  exec( `git add . -f && git commit -am "Release v${config.version} | [skip ci]"`, ( error, okOut, errOut ) => {
+    if ( error ) {
+      log.error( 'Cannot add or commit files due to error.' );
+      done( errOut );
+    }
+
+    log.info( okOut );
+    done();
   });
 }
 
