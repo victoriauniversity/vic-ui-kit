@@ -9,17 +9,17 @@
 
   .centraliser {
     nav {
-      ul {
+      > ul {
         display: flex;
         justify-content: center;
         flex-wrap: nowrap;
 
-        li {
+       > li {
           margin-right: 0;
           margin-left: 0;
 
           // TODO: Refactor - inappropriate depth
-          a {
+         > a {
             display: block;
             padding: $gap-half $gap-horizontal;
             font-size: $navigation-primary-item-size;
@@ -69,12 +69,13 @@
     }
 
     nav {
+      //top level
       > ul {
         margin: 0 1.6rem;
 
         > li {
           flex: 1 1 auto;
-            a {
+           > a {
               background-color: $green-brand;
               border-radius: 2px;
               border-bottom: 5px solid $green-bottle;
@@ -145,6 +146,26 @@
 
     @include bp-tablet {
       margin-top: 0;
+    }
+
+    &.mega-menu {
+      nav {
+        ul {
+
+          li {
+            
+            > ul {
+              display: flex;
+              flex-direction: column;
+
+              li {
+                
+              }
+            }
+          }
+
+        }
+      }
     }
   }
 }
