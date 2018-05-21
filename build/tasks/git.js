@@ -33,7 +33,8 @@ const GITHUB_SECRET_TOKEN = process.env.GITHUB_TOKEN || '', // Environmental var
 
 function gitInit( done ) {
   git.init({
-    cwd: config.paths.dist,
+    cwd:  config.paths.dist,
+    args: '--verbose',
   }, ( error ) => {
     if ( error ) {
       log.error( colours.red( error ));
@@ -45,7 +46,8 @@ function gitInit( done ) {
 
 function gitAddSourceRepo( done ) {
   git.addRemote( 'origin', GITHUB_SOURCE_REPO, {
-    cwd: config.paths.dist,
+    cwd:  config.paths.dist,
+    args: '--verbose',
   }, ( error ) => {
     if ( error ) {
       log.error( colours.red( error ));
