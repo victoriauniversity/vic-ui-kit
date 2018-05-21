@@ -19,8 +19,6 @@ const
 
 /** Repository information. */
 
-process.env.GITHUB_TOKEN = 'cfa952f763c457adc9a34834b05891b269443475';
-
 const GITHUB_SECRET_TOKEN = process.env.GITHUB_TOKEN || '', // Environmental variable `GITHUB_TOKEN` has to be set up on the CI or within the user's environment to make the builds successful!
 
 
@@ -74,8 +72,8 @@ function gitCommitAll( done ) {
 
   return pump([
     gulp.src( './*' ),
-    git.add({ args: '-f' }),
-    git.commit( `Release v${config.version} | [skip ci]` ),
+    git.add({ args: '-f', quiet: false }),
+    git.commit( `Release v${config.version} | [skip ci]`, { quiet: false }),
   ], done );
 }
 
