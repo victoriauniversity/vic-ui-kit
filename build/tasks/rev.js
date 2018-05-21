@@ -32,7 +32,6 @@ function cachebustFiles( done ) {
         '.woff2',
         '.ttf',
         '.ico',
-        '.webmanifest',
       ],
       dontRenameFile: [
         'CNAME',
@@ -43,6 +42,7 @@ function cachebustFiles( done ) {
       dontUpdateReference: [
         'CNAME',
         '.html',
+        '.webmanifest',
       ],
     }),
     gulp.dest( config.paths.dist ),
