@@ -521,7 +521,7 @@ restrictedLinkTitle();
 
 /* Research hub mega menu */
 function hubMegaMenu() {
-  
+  console.log('menu test');
   
 }
 
