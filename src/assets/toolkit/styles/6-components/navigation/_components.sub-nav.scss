@@ -9,17 +9,17 @@
 
   .centraliser {
     nav {
-      ul {
+      > ul {
         display: flex;
         justify-content: center;
         flex-wrap: nowrap;
 
-        li {
+       > li {
           margin-right: 0;
           margin-left: 0;
 
           // TODO: Refactor - inappropriate depth
-          a {
+         > a {
             display: block;
             padding: $gap-half $gap-horizontal;
             font-size: $navigation-primary-item-size;
@@ -69,12 +69,13 @@
     }
 
     nav {
+      //top level
       > ul {
         margin: 0 1.6rem;
 
         > li {
           flex: 1 1 auto;
-            a {
+           > a {
               background-color: $green-brand;
               border-radius: 2px;
               border-bottom: 5px solid $green-bottle;
@@ -145,6 +146,205 @@
 
     @include bp-tablet {
       margin-top: 0;
+    }
+
+    &.mega-menu {
+      nav {
+
+        > ul {
+          font-family: $heading-family;
+          
+          &:not(.expanded) {
+            .btn-expander::after { content: '+'; }
+          }
+          
+          > li {
+            position: relative;
+
+            &:last-child {
+              .btn-expander {
+                right: 0;
+              }
+            }
+
+            .btn-expander {
+              position: absolute;
+              top: .5rem;
+              right: 0rem;
+              @include size( 1.4em );
+              display: inline-block;
+              margin: 0 .5rem;
+              align-self: center;
+              cursor: pointer;
+              text-align: center;
+              font-weight: $weight-bold;
+              color: $grey-alto;
+              line-height: 1.4;
+              font-size: 1.2em;
+              border-radius: .7em;
+          
+              @include hoverify() {
+                color: $white;
+                background-color: rgba( $black, .2 );
+              }
+            }
+
+            > a {
+              text-align: left;
+              color: $grey-alto;
+
+            }
+            
+            &.active {
+              a {
+                color: $white;
+                background-color: $green-brand;
+                border-bottom-color: $green-bottle;
+
+                &:before {
+                  top: 50%;
+                  left: .5rem;
+                  width: 2px;
+                }
+              }  
+            }
+            
+            > ul {
+              display: none;
+
+
+              li {
+                
+              }
+            }
+          }
+
+          &.expanded {
+            padding: 0;
+            border-radius: 0 0 $radius-small $radius-small;
+            background-color: $green-bottle;
+
+        
+            > li {
+              display: flex;
+              flex-direction: column;
+              flex: 1;
+              
+              background-color: $green-brand;
+              border-bottom: 5px solid $green-bottle;
+              
+              &:not(:last-child) {
+                margin-right: 1rem;
+
+                > ul {
+                  // border-right: $green-bottle solid 1rem;
+                }
+
+                > a {
+                  // border-right: #fff solid 1rem;
+                }
+              }
+              
+              > a {
+                position: relative;
+                padding: 0.5rem 1rem;
+                border-bottom: none;
+                border-radius: 0;
+
+                &:after {
+                  position: absolute;
+                  right: -1rem;
+                  top: 0;
+                  content: "";
+                  background-color: $white;
+                  height: 50px;
+                  width: 1rem;
+                }
+              }
+              
+              > ul {
+
+                // &:after {
+                //   position: absolute;
+                //   right: -1rem;
+                //   top: 0;
+                //   content: "";
+                //   background-color: $white;
+                //   height: 50px;
+                //   width: 1rem;
+                // }
+
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                padding-top: .5rem;
+  
+                // background-color: $green-brand;
+
+                // height: 100%;
+                // overflow: hidden;
+                
+                > li {
+                  // flex: 1;
+                  position: relative;
+                  border-left: 1px solid rgba( $white, .1 );
+                  margin: 0 1rem;
+                  padding: .5rem;
+
+                  > a {
+                    padding: 0;
+                  }
+                  
+                  &:not(:last-child) {
+                    &:after {
+                      position: absolute;
+                      bottom: 0;
+                      content: "";
+                      width: 100%;
+                      display: block;
+                      border-bottom: 1px solid $green-bottle;
+                    }
+                  }
+
+  
+                }
+              }
+              
+              &:last-child {
+                .btn-expander {
+                  right: 0;
+                }
+              }
+              > .btn-expander {
+                right: 0;
+
+
+                &::after {
+                  @include objectify( $position: relative );
+                  @include triangle( up, .5em, .2em, $white );
+                  top: -.15em;
+                }
+        
+                @include hoverify() {
+                  &::after {
+                    @include triangle( up, .5em, .2em, $grey-alto);
+                  }
+                }
+              }
+
+              &:hover {
+                transition: .2s ease-in-out;
+                transform: scale(1.01);
+                box-shadow: $shadow;
+                a {
+                  color: $white;
+                }
+              }
+            }
+
+          }
+        }
+      }
     }
   }
 }
