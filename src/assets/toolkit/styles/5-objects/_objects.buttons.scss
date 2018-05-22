@@ -17,6 +17,7 @@ button,
   padding:       _em( $gap-small ) _em( $gap-half );
   font-family:   $button-text-family;
   font-weight:   $button-text-weight;
+  line-height:   $text-line-height;
   border-radius: $button-corner-radius;
 
   // Default button
@@ -96,8 +97,14 @@ button,
   &:not(.flat):not(.no-icon) {
     @include icon-arrow-right;
   }
+
+
 }
 
+// Resets for special button variations
+input.button {
+  cursor: pointer;
+}
 
 
 
