@@ -152,7 +152,7 @@ function gitExecute( done ) {
 }
 
 function gitShallowClone( done ) {
-  process.chdir( `${config.dist}/${config.version}` );
+  process.chdir( `${config.paths.dist}/${config.version}` );
 
   const SHALLOW_CLONE_CMD = `git init && git remote add origin ${GITHUB_RELEASE_REPO} && git fetch origin ${GITHUB_RELEASE_BRANCH} --tags`;
 

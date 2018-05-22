@@ -29,10 +29,10 @@ function copyRelease( done ) {
   return pump([
     gulp.src([
       `${config.paths.tmp}/**`,
-      `${config.paths.release}/**`,
-      `${config.paths.release}/.gitignore`,
+      `${config.paths.releaseStatics}/**`,
+      `${config.paths.releaseStatics}/.gitignore`,
     ]),
-    gulp.dest( `${config.dist}/${config.version}` ),
+    gulp.dest( `${config.paths.dist}/${config.version}` ),
   ], done );
 }
 

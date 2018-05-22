@@ -21,7 +21,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || config.env.development.name;
 /** Tasks. */
 
 function setProductionEnvironment( done ) {
-  process.env.NODE_ENV = config.env.prod.name;
+  process.env.NODE_ENV = config.env.production.name;
   done();
 }
 
