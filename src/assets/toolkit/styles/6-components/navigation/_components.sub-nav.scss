@@ -199,9 +199,13 @@
               a {
                 color: $white;
                 background-color: $green-brand;
+                border-bottom-color: $green-bottle;
 
                 &:before {
-                  content: none;
+                  // content: none;
+                  top: 50%;
+                  left: .5rem;
+                  width: 2px;
                 }
               }  
             }
@@ -221,29 +225,42 @@
             border-radius: 0 0 $radius-small $radius-small;
             background-color: $green-bottle;
 
-
+        
             > li {
               display: flex;
               flex-direction: column;
-
-              margin-right: 0;
+              flex: 1;
+              
               background-color: $green-brand;
               border-bottom: 5px solid $green-bottle;
               
               &:not(:last-child) {
+                margin-right: 1rem;
+
                 > ul {
-                  border-right: $green-bottle solid 1rem;
+                  // border-right: $green-bottle solid 1rem;
                 }
 
                 > a {
-                  border-right: #fff solid 1rem;
+                  // border-right: #fff solid 1rem;
                 }
               }
               
               > a {
+                position: relative;
                 padding: 0.5rem 1rem;
                 border-bottom: none;
                 border-radius: 0;
+
+                &:after {
+                  position: absolute;
+                  right: -1rem;
+                  top: 0;
+                  content: "";
+                  background-color: $white;
+                  height: 100%;
+                  width: 1rem;
+                }
               }
               
               > ul {
@@ -251,9 +268,8 @@
                 flex-direction: column;
                 flex: 1;
                 padding-top: .5rem;
-
   
-                background-color: $green-brand;
+                // background-color: $green-brand;
 
                 // height: 100%;
                 // overflow: hidden;
@@ -290,7 +306,7 @@
                 }
               }
               > .btn-expander {
-                right: 1rem;
+                right: 0;
 
 
                 &::after {
@@ -303,6 +319,15 @@
                   &::after {
                     @include triangle( up, .5em, .2em, $grey-alto);
                   }
+                }
+              }
+
+              &:hover {
+                transition: .2s ease-in-out;
+                transform: scale(1.01);
+                box-shadow: $shadow;
+                a {
+                  color: $white;
                 }
               }
             }
