@@ -521,7 +521,23 @@ restrictedLinkTitle();
 
 /* Research hub mega menu */
 function hubMegaMenu() {
-  console.log('menu test');
+  const menu = $('.hub-mega-menu .mega-menu-inner');
+  
+  const menuExpandButton = $('.hub-mega-menu .btn-expander');
+
+  console.log('menu test', menu, menuExpandButton);
+
+  menuExpandButton.on('click', (c) => {
+    
+    if ( menu.hasClass('expanded') ) {
+      console.log('expandedddd');
+      menu.removeClass('expanded');
+    } else {
+      menu.addClass('expanded');
+    }
+
+    console.log('clicked tf up', c);
+  });
   
 }
 

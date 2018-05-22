@@ -148,7 +148,7 @@
       margin-top: 0;
     }
 
-    &.mega-menu {
+    &.hub-mega-menu {
       nav {
 
         > ul {
@@ -160,6 +160,7 @@
           
           > li {
             position: relative;
+            flex: 1;
 
             &:last-child {
               .btn-expander {
@@ -343,7 +344,13 @@
             }
 
           }
+
+          @include breakpoint( $until: desktop ) {
+            flex-direction: column;
+          }
         }
+
+
       }
     }
   }
