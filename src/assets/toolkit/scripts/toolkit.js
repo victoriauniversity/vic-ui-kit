@@ -519,6 +519,17 @@ function restrictedLinkTitle() {
 }
 restrictedLinkTitle();
 
+/* Research hub mega menu */
+function hubMegaMenu() {
+  
+  
+}
+
+hubMegaMenu();
+
+
+
+
 
 /**
  * jQuery's plugin as a utility factory
