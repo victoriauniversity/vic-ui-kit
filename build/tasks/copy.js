@@ -92,14 +92,14 @@ function copyImagesToDist( done ) {
 }
 
 
-function copyRevvedStylesInDist( done ) {
+function copyRevvedAssetsInDist( done ) {
   return pump([
     gulp.src([
       `${config.paths.dist}/*${config.extensions.styles}`,
       `${config.paths.dist}/*${config.extensions.scripts}`,
       `${config.paths.dist}/*${config.extensions.maps}`,
     ]),
-    rename( ( path ) => {
+    rename(( path ) => {
       path.basename = path.basename.replace( /(\.[a-z0-9]*)$/g, '' );
       return path;
     }),
@@ -119,7 +119,7 @@ gulp.task( 'copy:dist:styles', copyStylesToDist );
 gulp.task( 'copy:dist:scripts', copyScriptsToDist );
 gulp.task( 'copy:dist:fonts', copyFontsToDist );
 gulp.task( 'copy:dist:images', copyImagesToDist );
-gulp.task( 'copy:dist:revvedStyles', copyRevvedStylesInDist );
+gulp.task( 'copy:dist:unrevAssets', copyRevvedAssetsInDist );
 
 
 
