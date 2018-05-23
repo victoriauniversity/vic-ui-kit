@@ -56,14 +56,17 @@ function copyTmp( done ) {
 
 function copyStylesToDist( done ) {
   function streamStyles() {
-    config.runningServer.stream();
+    if ( config.runningServer ) return config.runningServer.stream();
+
+    return null;
   }
+
 
   return pump([
     gulp.src( `${config.paths.tmp}/*${config.extensions.styles}` ),
     gulp.dest( config.paths.dist ),
     // Stream the new files into the local dev server, if it exists
-    gulpif( Boolean( config.runningServer ), streamStyles ),
+    gulpif( Boolean( config.runningServer ), streamStyles()),
   ], done );
 }
 
