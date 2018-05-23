@@ -14,18 +14,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - **ESLint and SassLint - Static code analysis for CSS and JS** - To improve consistency, styles, to add error checking, reduce debugging time etc.
+- **Expandable sidebar menu** - New version of the menu for desktop and mobile that allows to 'expand' submenus by clicking on the expanding button. Implements GTM tracking to compare normal link clicks with expandable button clicks.
 - New 'tiles' component - clickable area for list of important things. Has 3 variations - one for short lists and large tiles, longer list with smaller tiles and strip tiles.
 - Prototypes - New hubs for the IA project; Study, Experience, Research and About.
 
 
 
+
 ### Fixed
+
+- **Correct stage and production code deployment** - Code is now properly processed and exported.
+- **Behaviour of the auto-collapsing header strip now more consistent** - Fully reviewed and refactored styles and scripts. The behaviour logic was vastly simplified to avoid unexpected issues.
 
 
 
 ### Enhanced
 
-- **Updates all the packages and 3rd party libraries to the latest stable releases** - Gulp, webpack and SASS.
+- **Updates all the packages and 3rd party libraries to the latest stable releases** - For gulp, webpack and SASS.
+- **Styles were completely re-factored and divided into core + project-based parts** - 'Core' introduces utility-first SCSS variables, mixins and functions that can be re-used for all University's digital projects without being too restrictive with regards to used classes or total amount of imported code.
+- **Completely rewritten building and deployment process** - Single Gulp file broken down into multiple isolated task files, deprecated code replaced with modern one, better environment configuration and separation, building times singificantly reduced.
+- **Documentation** - Updating example components, adding API description for GTM tracking library, cleaning up prototypes, examples and unused components.
+- **Toolkit's script bundle broken down to independent JS plugins** - Standalone plugins can be now used on any website without the main toolkit.js included. Example: `toolkit.tracking.js` which provides API extending Google Tag Manager event tracking.
 - Updated the UI Kit documentation to be less Faculty and Site site specific.
 - News/Events pagination - improved floating of the pagination on all devices. Also Improved colour of pagination buttons.
 - Improve base button styles - now includes an icon by default
@@ -38,7 +47,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Removed
 
 - **Dependency on Bourbon SASS library**
-- **Unused 3rd party libraries* - 
+- **Unused 3rd party libraries** - Review done and obsolete or unused libraries were cleaned up (e.g. Velocity.js).
+- **Removes jQuery from the toolkit's scripts** - Allows us to use toolkit.js (and any other standalone toolkit plugins) on most of the old templates with old jQuery included.
 
 
 

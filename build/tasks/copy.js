@@ -100,6 +100,7 @@ function copyRevvedAssetsInDist( done ) {
       `${config.paths.dist}/*${config.extensions.maps}`,
     ]),
     rename(( path ) => {
+      // Strip the hash from the file-name to 'de-rev' it.
       path.basename = path.basename.replace( /(\.[a-z0-9]*)$/g, '' );
       return path;
     }),
