@@ -11,14 +11,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-
-
-## Pre-release: [v0.10.0] - 2017-08-29
-
-
 ### Added
 
-- **ESLint and SassLint - Static code analysis for CSS and JS** - To improve consistency, styles, error checking, debugging time etc.
+- **ESLint and SassLint - Static code analysis for CSS and JS** - To improve consistency, styles, to add error checking, reduce debugging time etc.
+- New 'tiles' component - clickable area for list of important things. Has 3 variations - one for short lists and large tiles, longer list with smaller tiles and strip tiles.
+- Prototypes - New hubs for the IA project; Study, Experience, Research and About.
+
 
 
 ### Fixed
@@ -27,33 +25,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Enhanced
 
-- **Updates all the packages and 3rd party libraries to the latest stable releases** - Especially gulp, webpack and SASS
-
-
-### Removed
-
-- **Dependency on Bourbon SASS library**
-
-
-
-
-
-## Pre-release: [v0.10.0] - 2017-08-29
-
-### Added
-
-- New 'tiles' component - clickable area for list of important things. Has 3 variations - one for short lists and large tiles, longer list with smaller tiles and strip tiles.
-- Prototypes - New hubs for the IA project; Study, Experience, Research and About.
-- Updated patterns
-
-### Enhanced
-
+- **Updates all the packages and 3rd party libraries to the latest stable releases** - Gulp, webpack and SASS.
 - Updated the UI Kit documentation to be less Faculty and Site site specific.
 - News/Events pagination - improved floating of the pagination on all devices. Also Improved colour of pagination buttons.
 - Improve base button styles - now includes an icon by default
 - Improved form styling
 - Imporved the lists presentation in the Components section.
 - Group the components better in the UI Kit Components section.
+
+
+
+### Removed
+
+- **Dependency on Bourbon SASS library**
+- **Unused 3rd party libraries* - 
+
+
+
+
 
 ## Production release: [v0.9.4] - 2017-01-30
 
@@ -202,4 +191,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [v0.9.3]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.2...v0.9.3
 [v0.9.2]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.1...v0.9.2
 [v0.9.1]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.0...v0.9.1
+
+
+
 
