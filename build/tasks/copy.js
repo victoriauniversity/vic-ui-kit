@@ -9,6 +9,7 @@ const
   gulp   = require( 'gulp' ),
   gulpif = require( 'gulp-if' ),
   pump   = require( 'pump' ),
+  rename = require( 'gulp-rename' ),
 
   config = require( '../build.config' );
 
@@ -91,6 +92,22 @@ function copyImagesToDist( done ) {
 }
 
 
+function copyRevvedStylesInDist( done ) {
+  return pump([
+    gulp.src([
+      `${config.paths.dist}/*${config.extensions.styles}`,
+      `${config.paths.dist}/*${config.extensions.scripts}`,
+      `${config.paths.dist}/*${config.extensions.maps}`,
+    ]),
+    rename( ( path ) => {
+      path.basename = path.basename.replace( /(\.[a-z0-9]*)$/g, '' );
+      return path;
+    }),
+    gulp.dest( `${config.paths.dist}` ),
+  ], done );
+}
+
+
 
 /** Name & register tasks. */
 
@@ -102,6 +119,7 @@ gulp.task( 'copy:dist:styles', copyStylesToDist );
 gulp.task( 'copy:dist:scripts', copyScriptsToDist );
 gulp.task( 'copy:dist:fonts', copyFontsToDist );
 gulp.task( 'copy:dist:images', copyImagesToDist );
+gulp.task( 'copy:dist:revvedStyles', copyRevvedStylesInDist );
 
 
 

@@ -54,3 +54,4 @@ function cachebustFiles( done ) {
 /** Name & register tasks. */
 
 gulp.task( 'rev:dist', cachebustFiles );
+
