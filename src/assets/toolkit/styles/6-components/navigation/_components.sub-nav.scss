@@ -159,6 +159,7 @@
           }
           
           > li {
+            display: flex;
             position: relative;
             flex: 1;
 
@@ -171,6 +172,8 @@
             .btn-expander {
               position: absolute;
               top: .5rem;
+              top: 50%;
+              transform: translateY(-50%);
               right: 0rem;
               @include size( 1.4em );
               display: inline-block;
@@ -191,9 +194,17 @@
             }
 
             > a {
+              display: flex;
+              align-items: center;
+
               text-align: left;
               color: $grey-alto;
+              flex: 1;
 
+
+              @include hoverify() {
+                background-color: $green-brand;
+              }
             }
             
             &.active {
@@ -247,7 +258,9 @@
               }
               
               > a {
+                display: block;
                 position: relative;
+                flex: 0;
                 padding: 0.5rem 1rem;
                 border-bottom: none;
                 border-radius: 0;
@@ -261,6 +274,7 @@
                   height: 50px;
                   width: 1rem;
                 }
+
               }
               
               > ul {
@@ -309,6 +323,7 @@
 
   
                 }
+
               }
               
               &:last-child {
@@ -318,6 +333,8 @@
               }
               > .btn-expander {
                 right: 0;
+                top: .5rem;
+                transform: none;
 
 
                 &::after {
@@ -333,20 +350,46 @@
                 }
               }
 
-              &:hover {
-                transition: .2s ease-in-out;
-                transform: scale(1.01);
-                box-shadow: $shadow;
-                a {
-                  color: $white;
-                }
-              }
+
             }
 
           }
 
+          @include breakpoint (desktop) {
+            &.expanded {
+              > li {
+
+                &:hover {
+                  transition: .2s ease-in-out;
+                  transform: scale(1.01);
+                  box-shadow: $shadow;
+                  a {
+                    color: $white;
+                  }
+                }
+
+              }
+            }
+          }
+
           @include breakpoint( $until: desktop ) {
             flex-direction: column;
+
+            &.expanded {
+              
+              > li {
+                > ul {
+                  display: none;
+
+                }
+                &.js-dropdown-show {
+                  > ul {
+                    display: flex;
+                  }
+                }
+                
+              }
+            }
           }
         }
 

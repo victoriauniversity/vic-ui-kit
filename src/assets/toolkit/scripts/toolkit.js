@@ -522,22 +522,42 @@ restrictedLinkTitle();
 /* Research hub mega menu */
 function hubMegaMenu() {
   const menu = $('.hub-mega-menu .mega-menu-inner');
-  
   const menuExpandButton = $('.hub-mega-menu .btn-expander');
+  let width = $(window).innerWidth();
 
   console.log('menu test', menu, menuExpandButton);
 
-  menuExpandButton.on('click', (c) => {
-    
-    if ( menu.hasClass('expanded') ) {
-      console.log('expandedddd');
-      menu.removeClass('expanded');
-    } else {
-      menu.addClass('expanded');
-    }
+  menuExpandButton.each( function() {
+    $(this).on('click', (c) => {
+        width = $(window).innerWidth();
+        let $this = $(this);
+        console.log('this ' +  $(this));
 
-    console.log('clicked tf up', c);
+        /* remember if item clicked then resized */
+        // if( !menu.hasClass('expanded') && $this.next().hasClass('expandClicked') ) {
+        //   $this.next().toggleClass('expandClicked');
+        // } else {
+        //   $this.next().addClass('expandClicked');
+        // }
+
+        /* Behaviour for dekstop and larger */
+        if ( width > 975 ) {
+          console.log('expandedddd', 'width' + width);
+          menu.toggleClass('expanded');
+        } 
+        
+        /* Behaviour tablet and smaller */
+        if ( width < 975) {
+          menu.addClass('expanded');
+          $this.parent().toggleClass('js-dropdown-show');
+        }
+    
+        // console.log('clicked tf up', c);
+        // console.log('width: ' + width);
+        
+      });
   });
+  
   
 }
 
