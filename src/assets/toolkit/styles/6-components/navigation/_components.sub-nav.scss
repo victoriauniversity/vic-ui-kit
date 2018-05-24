@@ -9,17 +9,17 @@
 
   .centraliser {
     nav {
-      ul {
+      > ul {
         display: flex;
         justify-content: center;
         flex-wrap: nowrap;
 
-        li {
+       > li {
           margin-right: 0;
           margin-left: 0;
 
           // TODO: Refactor - inappropriate depth
-          a {
+         > a {
             display: block;
             padding: $gap-half $gap-horizontal;
             font-size: $navigation-primary-item-size;
@@ -69,12 +69,13 @@
     }
 
     nav {
+      //top level
       > ul {
         margin: 0 1.6rem;
 
         > li {
           flex: 1 1 auto;
-            a {
+           > a {
               background-color: $green-brand;
               border-radius: 2px;
               border-bottom: 5px solid $green-bottle;
@@ -145,6 +146,273 @@
 
     @include bp-tablet {
       margin-top: 0;
+    }
+
+    &.hub-mega-menu {
+      nav {
+
+        > ul {
+          font-family: $heading-family;
+          
+          &:not(.expanded) {
+            .btn-expander::after { content: '+'; }
+          }
+          
+          > li {
+            display: flex;
+            position: relative;
+            flex: 1;
+            align-content: flex-start;
+            background-color: #115737;
+            border-bottom: 5px solid #0D4B2F;
+
+            &:last-child {
+              .btn-expander {
+                right: 0;
+              }
+            }
+
+            .btn-expander {
+              @include size( 1.4em );
+              display: inline-block;
+              margin: 0 .5rem;
+              align-self: center;
+              cursor: pointer;
+              text-align: center;
+              font-weight: $weight-bold;
+              color: $grey-alto;
+              line-height: 1.4;
+              font-size: 1.2em;
+              border-radius: .7em;
+          
+              @include hoverify() {
+                color: $white;
+                background-color: rgba( $black, .2 );
+              }
+            }
+
+            > a {
+              display: flex;
+              align-items: center;
+              flex: 1 1;
+              text-align: left;
+              color: $grey-alto;
+              background-clip: inherit;
+              border-bottom: none;
+
+              @include hoverify() {
+                background-color: $green-brand;
+              }
+            }
+            
+            &.active {
+              
+              > a {
+                color: $white;
+                background-color: $green-brand;
+                border-bottom-color: $green-bottle;
+
+                &:before {
+                  content: none;
+                  transform: none;
+                }
+
+                &:after {
+                  position: absolute;
+                  left: .5rem;
+                  height: 50%;
+                  top: 50%;
+                  display: inline-block;
+                  content: "";
+                  background-color: #FFF;
+                  width: 2px;
+                  transform: translateY(-50%);
+                }
+              }  
+            }
+            
+            > ul {
+              display: none;
+            }
+          }
+
+          &.expanded {
+            padding: 0;
+            background-color: $green-bottle;
+
+        
+            > li {
+              display: flex;
+              flex-wrap: wrap;
+              flex: 1;
+              
+              background-color: $green-brand;
+              border-bottom: 5px solid $green-bottle;
+              
+              > a {
+                display: block;
+                position: relative;
+                padding: 0.5rem 1rem;
+                border-bottom: none;
+                border-radius: 0;
+
+                &:before {
+                  position: absolute;
+                  left: -1rem;
+                  top: 0;
+                  content: "";
+                  background-color: $white;
+                  height: 50px;
+                  width: 1rem;
+                }
+
+              }
+
+              > .btn-expander {
+                align-self: flex-start;
+                margin-top: .5rem;
+              }
+              
+              > ul {
+                display: flex;
+                flex-direction: column;
+                padding-top: .5rem;
+                flex-grow: 0;
+                flex-basis: 100%;
+                
+                > li {
+                  position: relative;
+                  border-left: 1px solid rgba( $white, .1 );
+                  margin: 0 1rem;
+                  padding: .5rem;
+
+                  > a {
+                    padding: 0;
+                  }
+                  
+                  &:not(:last-child) {
+                    &:after {
+                      position: absolute;
+                      bottom: 0;
+                      content: "";
+                      width: 100%;
+                      display: block;
+                      border-bottom: 1px solid $green-bottle;
+                    }
+                  }
+                }
+              }
+              
+              &:last-child {
+                .btn-expander {
+                  right: 0;
+                }
+              }
+            }
+          }
+
+          @include breakpoint (desktop) {
+            &.expanded {
+              
+              > li {
+
+                &:not(:last-child) {
+                  margin-right: 1rem;
+                }
+                > .btn-expander {
+                  right: 0;
+                  top: .5rem;
+                  transform: none;
+
+                  &::after {
+                    @include objectify( $position: relative );
+                    @include triangle( up, .5em, .2em, $white );
+                    top: -.15em;
+                  }
+          
+                  @include hoverify() {
+                    &::after {
+                      @include triangle( up, .5em, .2em, $grey-alto);
+                    }
+                  }
+                }
+
+                &:hover {
+                  z-index: $z-index-middle;
+                  transition: .2s ease-in-out;
+                  transform: scale(1.01);
+                  box-shadow: $shadow;
+                  a {
+                    color: $white;
+
+                    &:before {
+                      transform: scale(1);
+                      z-index: -100;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          @include breakpoint( $until: desktop ) {
+            flex-direction: column;
+
+            > li {
+              border-bottom: 5px solid #0D4B2F;
+              > a {
+                padding: 0.5rem 1rem;
+                border-bottom: none;
+                border-radius: 0;
+              }
+            }
+
+            li {
+              width: auto;
+            }
+
+            &.expanded {
+              > li {
+                .btn-expander::after { content: '+'; }
+                
+                a {
+                  @include hoverify() {
+                    color: $white;
+                  }
+                }
+
+                > ul {
+                  display: none;
+                }
+
+                &.js-dropdown-show {
+                  padding-bottom: 1rem;
+                
+                  > .btn-expander {
+                    right: 0;
+                    top: .5rem;
+                    transform: none;
+                    &::after {
+                      @include objectify( $position: relative);
+                      @include triangle( up, .5em, .2em, $white);
+                      top: -.15em;
+                    }
+                    @include hoverify() {
+                      &::after {
+                        @include triangle( up, .5em, .2em, $grey-alto);
+                      }
+                    }
+                  }
+
+                  > ul {
+                    display: flex;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
