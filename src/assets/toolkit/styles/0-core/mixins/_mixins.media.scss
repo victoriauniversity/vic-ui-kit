@@ -40,7 +40,8 @@
 ///
 /// @require {mixin} size
 @mixin background-image-cover() {
-  @include size( 100% );
+
+  @include size( 100%, auto );
   position:        absolute;
   top:             0;
   right:           0;
@@ -48,8 +49,8 @@
   object-fit:      cover;
   object-position: top;
 
-  @supports not ( object-fit: cover ) {
-    height: auto;
+  @supports ( object-fit: cover ) {
+    height: 100%;
   }
 }
 
