@@ -272,7 +272,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
     }
 
     .logo {
-      width: 12rem;
+      img { width: 12rem; }
     }
 
     .site-intro {
@@ -360,18 +360,19 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 /* Styling to fit existing site IA until hub IA is implemented */
 .main-site-header {
   &.existing-ia {
+    overflow: hidden; // IE11 FIX to remove heading height explosion
+
     > div {
 
-      .logo {
-
-        @include breakpoint( tablet ) {
-          width: 20%;
+      @include breakpoint( tablet ) {
+        .logo {
           margin-right: 0;
+          width: 25%;
         }
       }
 
       nav.menu-container {
-        flex: 1 0 80%;
+        flex: 1 0 75%;
 
         .horizontal-menu {
           width: 100%;
@@ -379,16 +380,16 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
           &.main-nav {
             .menu-bar {
               a {
-                padding: $gap-tiny $gap-horizontal $gap-tiny 0;
                 margin-bottom: $gap-small;
+                padding: $gap-tiny $gap-horizontal $gap-tiny 0;
 
                 @include breakpoint( tablet ) {
                   font-size: 1.1rem;
                 }
 
                 @include breakpoint( $until: tablet ) {
-                  font-size: 1.2rem;
                   padding: 1rem 1.5rem;
+                  font-size: 1.2rem;
                 }
 
               }
@@ -405,12 +406,10 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
   }
 }
 
-@include breakpoint( $until: tablet )  {
+@include breakpoint( $until: tablet ) {
   .global {
-   + .site-header {
-      .logo {
-        display: none;
-      }
+    + .site-header {
+      .logo { display: none; }
     }
   }
 }
