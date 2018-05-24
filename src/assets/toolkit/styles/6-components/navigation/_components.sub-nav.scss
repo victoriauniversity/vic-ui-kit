@@ -163,7 +163,6 @@
             position: relative;
             flex: 1;
             align-content: flex-start;
-
             background-color: #115737;
             border-bottom: 5px solid #0D4B2F;
 
@@ -174,11 +173,6 @@
             }
 
             .btn-expander {
-              // position: absolute;
-              // top: .5rem;
-              // top: 50%;
-              // transform: translateY(-50%);
-              // right: 0rem;
               @include size( 1.4em );
               display: inline-block;
               margin: 0 .5rem;
@@ -200,13 +194,11 @@
             > a {
               display: flex;
               align-items: center;
-
+              flex: 1 1;
               text-align: left;
               color: $grey-alto;
-              flex: 1 1;
               background-clip: inherit;
               border-bottom: none;
-
 
               @include hoverify() {
                 background-color: $green-brand;
@@ -221,9 +213,6 @@
                 border-bottom-color: $green-bottle;
 
                 &:before {
-                  // top: 50%;
-                  // left: .5rem;
-                  // width: 2px;
                   content: none;
                   transform: none;
                 }
@@ -244,25 +233,17 @@
             
             > ul {
               display: none;
-              
-
-
-              li {
-                
-              }
             }
           }
 
           &.expanded {
             padding: 0;
-            // border-radius: 0 0 $radius-small $radius-small;
             background-color: $green-bottle;
 
         
             > li {
               display: flex;
               flex-wrap: wrap;
-              // flex-direction: column;
               flex: 1;
               
               background-color: $green-brand;
@@ -271,7 +252,6 @@
               > a {
                 display: block;
                 position: relative;
-                // flex: 0;
                 padding: 0.5rem 1rem;
                 border-bottom: none;
                 border-radius: 0;
@@ -289,46 +269,18 @@
               }
 
               > .btn-expander {
-                // &:after {
-                //   position: absolute;
-                //   right: -1rem;
-                //   top: 0;
-                //   content: "";
-                //   background-color: $white;
-                //   height: 50px;
-                //   width: 1rem;
-                // }
                 align-self: flex-start;
                 margin-top: .5rem;
               }
               
               > ul {
-
-                // &:after {
-                //   position: absolute;
-                //   right: -1rem;
-                //   top: 0;
-                //   content: "";
-                //   background-color: $white;
-                //   height: 50px;
-                //   width: 1rem;
-                // }
-
                 display: flex;
                 flex-direction: column;
-                // flex: 1;
                 padding-top: .5rem;
-
                 flex-grow: 0;
                 flex-basis: 100%;
-  
-                // background-color: $green-brand;
-
-                // height: 100%;
-                // overflow: hidden;
                 
                 > li {
-                  // flex: 1;
                   position: relative;
                   border-left: 1px solid rgba( $white, .1 );
                   margin: 0 1rem;
@@ -348,10 +300,7 @@
                       border-bottom: 1px solid $green-bottle;
                     }
                   }
-
-  
                 }
-
               }
               
               &:last-child {
@@ -359,11 +308,7 @@
                   right: 0;
                 }
               }
-
-
-
             }
-
           }
 
           @include breakpoint (desktop) {
@@ -373,21 +318,12 @@
 
                 &:not(:last-child) {
                   margin-right: 1rem;
-  
-                  > ul {
-                    // border-right: $green-bottle solid 1rem;
-                  }
-  
-                  > a {
-                    // border-right: #fff solid 1rem;
-                  }
                 }
                 > .btn-expander {
                   right: 0;
                   top: .5rem;
                   transform: none;
-  
-  
+
                   &::after {
                     @include objectify( $position: relative );
                     @include triangle( up, .5em, .2em, $white );
@@ -401,7 +337,6 @@
                   }
                 }
 
-                
                 &:hover {
                   z-index: $z-index-middle;
                   transition: .2s ease-in-out;
@@ -416,7 +351,6 @@
                     }
                   }
                 }
-
               }
             }
           }
@@ -431,7 +365,6 @@
                 border-bottom: none;
                 border-radius: 0;
               }
-
             }
 
             li {
@@ -450,7 +383,6 @@
 
                 > ul {
                   display: none;
-
                 }
 
                 &.js-dropdown-show {
@@ -480,8 +412,6 @@
             }
           }
         }
-
-
       }
     }
   }

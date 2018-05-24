@@ -531,14 +531,6 @@ function hubMegaMenu() {
     $(this).on('click', (c) => {
         width = $(window).innerWidth();
         let $this = $(this);
-        console.log('this ' +  $(this));
-
-        /* remember if item clicked then resized */
-        // if( !menu.hasClass('expanded') && $this.next().hasClass('expandClicked') ) {
-        //   $this.next().toggleClass('expandClicked');
-        // } else {
-        //   $this.next().addClass('expandClicked');
-        // }
 
         /* Behaviour for dekstop and larger */
         if ( width > 976 ) {
@@ -551,14 +543,9 @@ function hubMegaMenu() {
           menu.addClass('expanded');
           $this.parent().toggleClass('js-dropdown-show');
         }
-    
-        // console.log('clicked tf up', c);
-        // console.log('width: ' + width);
-        
+
       });
   });
-  
-  
 }
 
 hubMegaMenu();
