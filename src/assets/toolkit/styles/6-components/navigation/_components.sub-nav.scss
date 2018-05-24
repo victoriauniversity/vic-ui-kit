@@ -200,6 +200,7 @@
               text-align: left;
               color: $grey-alto;
               flex: 1;
+              background-clip: inherit;
 
 
               @include hoverify() {
@@ -244,18 +245,6 @@
               
               background-color: $green-brand;
               border-bottom: 5px solid $green-bottle;
-              
-              &:not(:last-child) {
-                margin-right: 1rem;
-
-                > ul {
-                  // border-right: $green-bottle solid 1rem;
-                }
-
-                > a {
-                  // border-right: #fff solid 1rem;
-                }
-              }
               
               > a {
                 display: block;
@@ -331,24 +320,7 @@
                   right: 0;
                 }
               }
-              > .btn-expander {
-                right: 0;
-                top: .5rem;
-                transform: none;
 
-
-                &::after {
-                  @include objectify( $position: relative );
-                  @include triangle( up, .5em, .2em, $white );
-                  top: -.15em;
-                }
-        
-                @include hoverify() {
-                  &::after {
-                    @include triangle( up, .5em, .2em, $grey-alto);
-                  }
-                }
-              }
 
 
             }
@@ -357,7 +329,38 @@
 
           @include breakpoint (desktop) {
             &.expanded {
+              
               > li {
+
+                &:not(:last-child) {
+                  margin-right: 1rem;
+  
+                  > ul {
+                    // border-right: $green-bottle solid 1rem;
+                  }
+  
+                  > a {
+                    // border-right: #fff solid 1rem;
+                  }
+                }
+                > .btn-expander {
+                  right: 0;
+                  top: .5rem;
+                  transform: none;
+  
+  
+                  &::after {
+                    @include objectify( $position: relative );
+                    @include triangle( up, .5em, .2em, $white );
+                    top: -.15em;
+                  }
+          
+                  @include hoverify() {
+                    &::after {
+                      @include triangle( up, .5em, .2em, $grey-alto);
+                    }
+                  }
+                }
 
                 &:hover {
                   transition: .2s ease-in-out;
@@ -375,19 +378,53 @@
           @include breakpoint( $until: desktop ) {
             flex-direction: column;
 
+            > li {
+              border-bottom: 5px solid #0D4B2F;
+              > a {
+                padding: 0.5rem 1rem;
+                border-bottom: none;
+                border-radius: 0;
+              }
+            }
+
             &.expanded {
-              
               > li {
+                .btn-expander::after { content: '+'; }
+                
+                a {
+                  @include hoverify() {
+                    color: $white;
+                  }
+                }
+
                 > ul {
                   display: none;
 
                 }
+
                 &.js-dropdown-show {
+                  padding-bottom: 1rem;
+                
+                  > .btn-expander {
+                    right: 0;
+                    top: .5rem;
+                    transform: none;
+                    &::after {
+                      @include objectify( $position: relative);
+                      @include triangle( up, .5em, .2em, $white);
+                      top: -.15em;
+                    }
+                    @include hoverify() {
+                      &::after {
+                        @include triangle( up, .5em, .2em, $grey-alto);
+                      }
+                    }
+                  }
+
                   > ul {
                     display: flex;
                   }
                 }
-                
               }
             }
           }

@@ -541,13 +541,13 @@ function hubMegaMenu() {
         // }
 
         /* Behaviour for dekstop and larger */
-        if ( width > 975 ) {
+        if ( width > 976 ) {
           console.log('expandedddd', 'width' + width);
           menu.toggleClass('expanded');
         } 
         
         /* Behaviour tablet and smaller */
-        if ( width < 975) {
+        if ( width < 976) {
           menu.addClass('expanded');
           $this.parent().toggleClass('js-dropdown-show');
         }
