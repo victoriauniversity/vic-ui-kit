@@ -519,6 +519,40 @@ function restrictedLinkTitle() {
 }
 restrictedLinkTitle();
 
+/* Research hub mega menu */
+function hubMegaMenu() {
+  const menu = $('.hub-mega-menu .mega-menu-inner');
+  const menuExpandButton = $('.hub-mega-menu .btn-expander');
+  let width = $(window).innerWidth();
+
+  console.log('menu test', menu, menuExpandButton);
+
+  menuExpandButton.each( function() {
+    $(this).on('click', (c) => {
+        width = $(window).innerWidth();
+        let $this = $(this);
+
+        /* Behaviour for dekstop and larger */
+        if ( width > 976 ) {
+          console.log('expandedddd', 'width' + width);
+          menu.toggleClass('expanded');
+        } 
+        
+        /* Behaviour tablet and smaller */
+        if ( width < 976) {
+          menu.addClass('expanded');
+          $this.parent().toggleClass('js-dropdown-show');
+        }
+
+      });
+  });
+}
+
+hubMegaMenu();
+
+
+
+
 
 /**
  * jQuery's plugin as a utility factory
