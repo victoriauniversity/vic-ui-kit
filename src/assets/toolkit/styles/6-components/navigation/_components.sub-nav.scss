@@ -162,6 +162,10 @@
             display: flex;
             position: relative;
             flex: 1;
+            align-content: flex-start;
+
+            background-color: #115737;
+            border-bottom: 5px solid #0D4B2F;
 
             &:last-child {
               .btn-expander {
@@ -170,11 +174,11 @@
             }
 
             .btn-expander {
-              position: absolute;
-              top: .5rem;
-              top: 50%;
-              transform: translateY(-50%);
-              right: 0rem;
+              // position: absolute;
+              // top: .5rem;
+              // top: 50%;
+              // transform: translateY(-50%);
+              // right: 0rem;
               @include size( 1.4em );
               display: inline-block;
               margin: 0 .5rem;
@@ -199,8 +203,9 @@
 
               text-align: left;
               color: $grey-alto;
-              flex: 1;
+              flex: 1 1;
               background-clip: inherit;
+              border-bottom: none;
 
 
               @include hoverify() {
@@ -209,21 +214,37 @@
             }
             
             &.active {
-              a {
+              
+              > a {
                 color: $white;
                 background-color: $green-brand;
                 border-bottom-color: $green-bottle;
 
                 &:before {
-                  top: 50%;
+                  // top: 50%;
+                  // left: .5rem;
+                  // width: 2px;
+                  content: none;
+                  transform: none;
+                }
+
+                &:after {
+                  position: absolute;
                   left: .5rem;
+                  height: 50%;
+                  top: 50%;
+                  display: inline-block;
+                  content: "";
+                  background-color: #FFF;
                   width: 2px;
+                  transform: translateY(-50%);
                 }
               }  
             }
             
             > ul {
               display: none;
+              
 
 
               li {
@@ -234,13 +255,14 @@
 
           &.expanded {
             padding: 0;
-            border-radius: 0 0 $radius-small $radius-small;
+            // border-radius: 0 0 $radius-small $radius-small;
             background-color: $green-bottle;
 
         
             > li {
               display: flex;
-              flex-direction: column;
+              flex-wrap: wrap;
+              // flex-direction: column;
               flex: 1;
               
               background-color: $green-brand;
@@ -249,14 +271,14 @@
               > a {
                 display: block;
                 position: relative;
-                flex: 0;
+                // flex: 0;
                 padding: 0.5rem 1rem;
                 border-bottom: none;
                 border-radius: 0;
 
-                &:after {
+                &:before {
                   position: absolute;
-                  right: -1rem;
+                  left: -1rem;
                   top: 0;
                   content: "";
                   background-color: $white;
@@ -264,6 +286,20 @@
                   width: 1rem;
                 }
 
+              }
+
+              > .btn-expander {
+                // &:after {
+                //   position: absolute;
+                //   right: -1rem;
+                //   top: 0;
+                //   content: "";
+                //   background-color: $white;
+                //   height: 50px;
+                //   width: 1rem;
+                // }
+                align-self: flex-start;
+                margin-top: .5rem;
               }
               
               > ul {
@@ -280,8 +316,11 @@
 
                 display: flex;
                 flex-direction: column;
-                flex: 1;
+                // flex: 1;
                 padding-top: .5rem;
+
+                flex-grow: 0;
+                flex-basis: 100%;
   
                 // background-color: $green-brand;
 
@@ -362,12 +401,19 @@
                   }
                 }
 
+                
                 &:hover {
+                  z-index: $z-index-middle;
                   transition: .2s ease-in-out;
                   transform: scale(1.01);
                   box-shadow: $shadow;
                   a {
                     color: $white;
+
+                    &:before {
+                      transform: scale(1);
+                      z-index: -100;
+                    }
                   }
                 }
 
@@ -385,6 +431,11 @@
                 border-bottom: none;
                 border-radius: 0;
               }
+
+            }
+
+            li {
+              width: auto;
             }
 
             &.expanded {
