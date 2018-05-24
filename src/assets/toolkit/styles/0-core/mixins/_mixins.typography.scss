@@ -121,7 +121,10 @@
     // Make fonts consistent and nice across browsers
     -webkit-font-smoothing:  antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-rendering:          optimizeLegibility;
+
+    @include breakpoint( desktop ) {
+      text-rendering: optimizeLegibility; // Make text nice on desktop devices *only*! See https://css-tricks.com/almanac/properties/t/text-rendering/
+    }
   }
 
   h1 { margin: 0; }
