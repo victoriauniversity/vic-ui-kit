@@ -154,7 +154,10 @@
   $content-panel-fallback-width: 100% - $sidebar-fallback-width;
   $content-panel-min-width:      $desktop-min-width-rem - $sidebar-min-width - 2 * $gap-half;
 
-  body > .layout { display: flex; }
+  body > .layout {
+    height: 100%; // IE11 - Overbloated height fix
+    display: flex;
+  }
 
   .sidebar {
     float: left;
