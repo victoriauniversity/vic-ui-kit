@@ -31,6 +31,8 @@ window.jQuery = $;
 
   var TRANSITION_TIMEOUT       = 200; //update in _settings.variables.scss(135)
   var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 42.99em)', //update in _settings.responsive.scss(57)
+      DESKTOP_AND_LARGER = 'screen and (min-width: 61em)',
+      TABLET_AND_SMALLER = 'screen and (max-width: 61em)',
 
   // Iframe selectors
   YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
@@ -534,7 +536,7 @@ function hubMegaMenu() {
 
         /* Behaviour for dekstop and larger */
         if ( width > 976 ) {
-          console.log('expandedddd', 'width' + width);
+          // console.log('expandedddd', 'width' + width);
           menu.toggleClass('expanded');
         } 
         
@@ -548,7 +550,9 @@ function hubMegaMenu() {
   });
 }
 
-hubMegaMenu();
+if( document.getElementsByClassName('hub-mega-menu').length > 0 ){
+  hubMegaMenu();
+}
 
 
 
