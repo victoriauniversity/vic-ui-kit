@@ -50,32 +50,7 @@
       </form>
 
     </div>
-    <!--  {{#if header.subtitle}}`
-            <span class="preline">{{{header.subtitle}}}</span>
-          {{/if}}
 
-          {{#if header.titleClass}} <span class="{{{header.titleClass}}}"> {{/if}}
-            {{#if header.title}} {{{header.title}}} {{/if}}
-          {{#if header.titleClass}} </span> {{/if}}
-          {{#if header.titleMaori}} <small lang="mi"> {{{header.titleMaori}}} </small> {{/if}} -->
   </div>
 
-  <script>
-  //Underline page names for hubs in nav bar
-  var pageTitles = ['about', 'research', 'experience', 'study'];
-
-  pageTitles.forEach( function(page) {
-    // console.log(page);
-    //check if url contains page title
-    if (window.location.href.indexOf(page) > -1 ) {
-      // console.log('contains ' + page);
-      //if so add active class for page underline in nav bar
-      var navItem = document.querySelector(`.menu-bar .${CSS.escape(page)}`);
-      // console.log(navItem);
-      navItem.classList.add('active');
-    }
-
-  });
-
-  </script>
 </header>

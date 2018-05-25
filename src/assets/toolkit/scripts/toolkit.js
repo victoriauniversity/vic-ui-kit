@@ -264,22 +264,212 @@ window.jQuery = $;
   }
 
 
-  /**
-   * Function called on the jQuery Element, opens it as a popup.
-   *
-   * @param {Object} { delayInMs = 0, suppressAfterCanceling = false }
-   *
-   * @returns {DOMElement}
-   */
-  function openPopup( { delayInMs = 0, suppressAfterCanceling = false } = {} ){
-    initPopupBox( this, { delayInMs: delayInMs, suppressAfterCanceling: suppressAfterCanceling } );
 
-    return this;
+
+
+/** HELPERS */
+
+//FIXME: Should be automatically pre-populated from the build/build.config.js
+const ENV_HOSTNAME = {
+  STAGE: 'cms.victoria.ac.nz',
+  PROD:  'www.victoria.ac.nz',
+  LOCAL: 'local.victoria.ac.nz',
+}
+
+
+function isAdminEnvironment() {
+  return ( window.location.hostname === ENV_HOSTNAME.STAGE ) || ( window.location.hostname === ENV_HOSTNAME.LOCAL );
+}
+
+
+
+
+
+/** MESSAGE/NOTIFICATIONS HANDLING */
+
+const ERROR_TYPES = {
+  SIDEBAR_WIDGETS_COUNT_EXCEEDED: 'sidebar-widgets-count-exceeded',
+}
+
+
+/**
+ * Renders the error message notification and adds it to the top of the
+ * content window. Will show only to administrators within non-production
+ * environments.
+ *
+ * @param {{type: string, message: string, invalidItems: Array[string]}} errorObject
+ *
+ * @returns {void}
+ */
+function showAdminErrorMessage( errorObject ) {
+  if ( !errorObject || !isAdminEnvironment() ) return;
+
+  let invalidItemsListHtml;
+
+  if ( errorObject.invalidItems.length > 0 ) {
+    invalidItemsListHtml = `
+      <ul>
+        <li>${ errorObject.invalidItems.join( '</li><li>' ) }</li>
+      </ul>
+    `;
   }
+
+  // Template
+  let errorNotificationHtml = `
+    <section class="flash-message error">
+      ${ errorObject.message }
+      ${ invalidItemsListHtml }
+    </section>
+  `;
+
+  $( '.content-panel > main > .formatting' ).prepend( errorNotificationHtml );
+  console.error( 'Content-related error has occured', errorObject );
+}
+
+
+/** NAVIGATION */
+
+
+
+/**
+ * Adds the 'active' class to a main menu item
+ * that corresponds with the current top-level URL path
+ * segment.
+ *
+ * Note: This is *only* done due to Squiz 5.4 limitations. Once we can render
+ * this class on the backend, this function can be deprecated.
+ */
+function addActiveClassToMainMenu() {
+  // [url-path-segment]: [nav-item-classname]
+  const rootPages = {
+    future:                'future',
+    international:         'international',
+    current:               'current',
+    research:              'research',
+    ['learning-teaching']: 'learning-teaching'
+  }
+
+  const urlPathSegments = window.location.pathname.split( '/' );
+
+  if ( urlPathSegments.length > 1 && urlPathSegments[ 1 ] !== '' && rootPages.hasOwnProperty( urlPathSegments[ 1 ] )) {
+    const activeNavItemClass = rootPages[ urlPathSegments[ 1 ]];
+    const activeNavItem = document.querySelector( `.menu-bar .${activeNavItemClass}`);
+
+    if ( activeNavItem ) activeNavItem.classList.add( 'active' );
+  }
+}
+
+
+
+/** CONTENT SIDE-BAR */
+
+// Constants
+
+const SIDEBAR_WIDGET_CLASSNAME = 'data-sidebar',
+SIDEBAR_ID                     = 'rightHandMenu',
+SIDEBAR_WIDGETS_MAX            = 3,
+
+WIDGET_LINKS_CLASSNAME         = 'data-relatedLinks';
+
+
+/**
+ * Finds all widget blocks within the main content and moves them into the
+ * right-hand sidebar.
+ *
+ * Note: This is *only* done due to Squiz 5.4 limitations. Once we can render
+ * widgets into the sidebar on our backend, this client-side solution can be
+ * deprecated.
+ *
+ * @returns {void}
+ */
+function moveWidgetsToSidebar() {
+  // No widgets OR sidebar available -> Skip!
+  if ( !document.querySelector( `.${SIDEBAR_WIDGET_CLASSNAME}` ) || !document.getElementById( SIDEBAR_ID ) ) return;
+
+
+  // Members
+
+  // Original, unordered widgets
+  const widgetsToMove          = $( `.${SIDEBAR_WIDGET_CLASSNAME}` ),
+  sidebarElement               = $( `#${SIDEBAR_ID}` );
+
+  // Correctly ordered and prepared to be rendered
+  let widgetsMoved             = [];
+
+  let error;
+
+
+  widgetsToMove.each( function( index ) {
+    const widgetElement = $( this );
+
+    if ( widgetsMoved.length >= SIDEBAR_WIDGETS_MAX ) {
+      if ( !error ) {
+        error = {
+          type:         ERROR_TYPES.SIDEBAR_WIDGETS_COUNT_EXCEEDED,
+          message:      `
+              <h2>Too many elements in the sidebar</h2>
+              <p>Currently added: ${widgetsToMove.length}, Maximum: ${SIDEBAR_WIDGETS_MAX}.</p>
+              <p>
+                <strong>Please remove the class '${SIDEBAR_WIDGET_CLASSNAME}' from all blocks you do not want to appear in the sidebar.</strong>
+              </p>
+              <p>
+                The blocks with following content will not be shown in the sidebar:
+              </p>
+            `,
+          invalidItems: [],
+        };
+      }
+
+      error.invalidItems.push( this.id || `${widgetElement.text().trim().substring( 0, 80 )}...` );
+
+      return;
+    }
+
+    // A) Staff profile - add to the top!
+    if( widgetElement.hasClass( WIDGET_LINKS_CLASSNAME ) ){
+      widgetsMoved.unshift( widgetElement );
+    }
+    // B) Others (downloads, publications etc.) - Add to the last positions
+    else {
+      widgetsMoved.push( widgetElement );
+    }
+
+    // Remove from its original location
+    widgetElement.detach();
+
+    // Remove `display:none` if it exists
+    widgetElement.css( 'display', '' );
+  });
+
+  // Render widgets in the sidebar
+  sidebarElement.append.apply( sidebarElement, widgetsMoved );
+
+  // Render errors, if any
+  if ( error ) showAdminErrorMessage( error );
+}
+
+
+
+
+
+/**
+ * Function called on the jQuery Element, opens it as a popup.
+ *
+ * @param {Object} { delayInMs = 0, suppressAfterCanceling = false }
+ *
+ * @returns {DOMElement}
+ */
+function openPopup( { delayInMs = 0, suppressAfterCanceling = false } = {} ){
+  initPopupBox( this, { delayInMs: delayInMs, suppressAfterCanceling: suppressAfterCanceling } );
+
+  return this;
+}
 
 
 // Run after the DOM has loaded...
 $(function(){
+  moveWidgetsToSidebar();
+  addActiveClassToMainMenu();
 
 	fastclick.attach(document.body);
 	var $body          = $( 'body' );
@@ -536,8 +726,8 @@ function hubMegaMenu() {
         if ( width > 976 ) {
           console.log('expandedddd', 'width' + width);
           menu.toggleClass('expanded');
-        } 
-        
+        }
+
         /* Behaviour tablet and smaller */
         if ( width < 976) {
           menu.addClass('expanded');
