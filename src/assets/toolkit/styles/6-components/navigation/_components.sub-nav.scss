@@ -153,7 +153,8 @@
 
         > ul {
           font-family: $heading-family;
-          
+          padding: 0;
+
           &:not(.expanded) {
             .btn-expander::after { content: '+'; }
           }
@@ -206,9 +207,13 @@
             }
             
             &.active {
-              
-              > a {
+
+              a {
                 color: $white;
+                font-weight: 600;
+              }
+
+              > a {
                 background-color: $green-brand;
                 border-bottom-color: $green-bottle;
 
@@ -220,13 +225,13 @@
                 &:after {
                   position: absolute;
                   left: .5rem;
-                  height: 50%;
-                  top: 50%;
+                  height: 55%;
+                  top: 55%;
                   display: inline-block;
                   content: "";
                   background-color: #FFF;
                   width: 2px;
-                  transform: translateY(-50%);
+                  transform: translateY(-55%);
                 }
               }  
             }
@@ -245,7 +250,6 @@
               display: flex;
               flex-wrap: wrap;
               flex: 1;
-              
               background-color: $green-brand;
               border-bottom: 5px solid $green-bottle;
               
@@ -255,17 +259,20 @@
                 padding: 0.5rem 1rem;
                 border-bottom: none;
                 border-radius: 0;
+              }
 
-                &:before {
-                  position: absolute;
-                  left: -1rem;
-                  top: 0;
-                  content: "";
-                  background-color: $white;
-                  height: 50px;
-                  width: 1rem;
+              &:not(:first-child) {
+                > a {
+                  &:before {
+                    position: absolute;
+                    left: -1rem;
+                    top: 0;
+                    content: "";
+                    background-color: $white;
+                    height: 50px;
+                    width: 1rem;
+                  }
                 }
-
               }
 
               > .btn-expander {
@@ -308,6 +315,16 @@
                   right: 0;
                 }
               }
+
+              &.active {
+
+                > ul {
+
+                  li {
+                    border-left: 2px solid rgba(255, 255, 255, 0.8);
+                  }
+                }
+              }
             }
           }
 
@@ -335,6 +352,11 @@
                       @include triangle( up, .5em, .2em, $grey-alto);
                     }
                   }
+                }
+
+                &.active {
+                  transform: scale(1.01);
+                  box-shadow: $shadow;
                 }
 
                 &:hover {
