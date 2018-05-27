@@ -24,12 +24,15 @@ $breadcrumbs-separator-color: $icon-weakest-color;
   > li {
     display:     inline;
 
+    a::before { text-decoration: underline; } // IE8-11 hack to remove the underline for icons, see: https://stackoverflow.com/a/21902566
+
     // First item? => Home with icon
     &:first-child a {
       @include extend-icon-before( home ) {
         margin-right:   _em( $gap-small );
         vertical-align: 0;
         font-size:      $text-size-tiny;
+        text-decoration: none;
       }
     }
 
