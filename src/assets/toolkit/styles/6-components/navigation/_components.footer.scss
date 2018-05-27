@@ -107,7 +107,11 @@ $footer-primary-separator:  1px solid $black-emperor !default;
       &:first-child { margin-left: 0; }
     }
 
-    a { text-decoration: underline; }
+    a {
+      text-decoration: underline;
+
+      @include hoverify { text-decoration: none; }
+    }
   }
 
   @include breakpoint( $until: tablet ) {

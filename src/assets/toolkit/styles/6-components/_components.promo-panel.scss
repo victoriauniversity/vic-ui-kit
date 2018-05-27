@@ -495,7 +495,10 @@ $promo-max-width:   60em;
       overflow: unset;
       box-shadow: none;
 
-      img { width: 100%; }
+      img {
+        width: 100%;
+        flex-shrink: 0; // IE11 FIX to prevent the image to stretch vertically
+      }
 
       figcaption {
         margin: 0;
