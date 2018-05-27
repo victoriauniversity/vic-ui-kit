@@ -158,3 +158,22 @@
 
 
 
+
+/*= COMPATIBILITY HACKS ======================================================*/
+
+
+/// @access public
+///
+/// Way to force `text-decoration: none;` on the inline-block element
+/// within parental element that applies `text-decoration: underline;`.
+/// Fully compatible with IE8-11.
+///
+/// @link https://stackoverflow.com/a/21902566
+@mixin ie-remove-underlines {
+  &::before { text-decoration: underline; }
+  &::before { text-decoration: none; }
+}
+
+
+
+
