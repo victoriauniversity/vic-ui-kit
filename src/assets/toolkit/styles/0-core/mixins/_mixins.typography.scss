@@ -168,10 +168,12 @@
 /// within parental element that applies `text-decoration: underline;`.
 /// Fully compatible with IE8-11.
 ///
+/// @prop {after|before} $pseudo [before] - Pseudoelement which should have the ///   `text-decoration` removed.
+///
 /// @link https://stackoverflow.com/a/21902566
-@mixin ie-remove-underlines {
-  &::before { text-decoration: underline; }
-  &::before { text-decoration: none; }
+@mixin ie-remove-underline( $pseudo: before ) {
+  &::#{$pseudo} { text-decoration: underline; }
+  &::#{$pseudo} { text-decoration: none; }
 }
 
 
