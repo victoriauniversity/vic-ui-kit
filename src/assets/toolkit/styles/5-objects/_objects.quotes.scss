@@ -100,15 +100,12 @@ blockquote.quote { font-style: italic; }
       display: flex;
       align-items: center;
       justify-content: space-around;
-
-
       border-left: none;
 
       img {
         height: 180px;
         width: 180px;
         border-radius: 50%;
-        margin-right: 2em;
 
         flex: 1 0 auto;
       }
@@ -117,8 +114,6 @@ blockquote.quote { font-style: italic; }
         display: flex;
         align-items: center;
         justify-content: center;
-
-        padding: 1.6rem 0;
 
         blockquote {
           width: 60%;
@@ -180,10 +175,14 @@ blockquote.quote { font-style: italic; }
         flex-wrap: wrap;
 
         img {
+          @include size( 120px );
           flex: 0 1 auto;
-          width: 120px;
-          height: 120px;
+          margin-bottom: $gap-vertical;
         }
+      }
+
+      @include breakpoint( desktop ) {
+        img { margin-right: $gap-horizontal; }
       }
     }
 
