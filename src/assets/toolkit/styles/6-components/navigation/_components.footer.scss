@@ -264,12 +264,6 @@ $footer-heading-margin-bottom: .75em;
         padding-right: $base-spacing;
         //width: 10000px; // Correct widths hack
       }
-
-      &:last-child {
-        padding-left: $base-spacing;
-        border-top: 0;
-        border-left: $footer-secondary-separator;
-      }
     }
 
     // Turn links list into 2-columns to conserve space
@@ -293,6 +287,25 @@ $footer-heading-margin-bottom: .75em;
     }
   }
 
+  @include breakpoint( tablet ) {
+
+    &.two-columns {
+      .block {
+
+        &:last-child {
+          padding-left: $base-spacing;
+          border-top: 0;
+
+          @include before( $position: absolute ) {
+            @include size( 0, 100% );
+            top: 0;
+            left: calc( 50% - #{ 1px / 2 } );
+            border-left: $footer-secondary-separator;
+          }
+        }
+      }
+    }
+  }
 
   @include breakpoint( $until: tablet ) {
     &:not( .two-columns ) {
@@ -313,7 +326,6 @@ $footer-heading-margin-bottom: .75em;
 
         &:last-child {
           padding-top: $base-spacing;
-          border-left: 0;
           border-top: $footer-secondary-separator;
         }
       }
