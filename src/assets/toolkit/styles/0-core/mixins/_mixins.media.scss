@@ -20,6 +20,8 @@
 /// maintains its aspect ratio. The element is position to the top, which means
 /// the bottom gets cropped first.
 ///
+/// @param {vertical|horizontal} $stretch-direction [vertical] - In which direction should the image stretch in browsers that require fallback.
+///
 /// @example html
 ///
 /// <!-- Wrapper -->
@@ -39,9 +41,16 @@
 /// .background-cover { @include background-image-cover; }
 ///
 /// @require {mixin} size
-@mixin background-image-cover() {
+@mixin background-image-cover( $stretch-direction: horizontal ) {
 
-  @include size( 100%, auto );
+  @if $stretch-direction == vertical {
+    @include size( 100%, auto );
+  }
+
+  @if $stretch-direction == horizontal {
+    @include size( auto, 100% );
+  }
+
   position:        absolute;
   top:             0;
   right:           0;
@@ -50,7 +59,7 @@
   object-position: top;
 
   @supports ( object-fit: cover ) {
-    height: 100%;
+    @include size( 100% );
   }
 }
 

@@ -58,6 +58,7 @@ $sub-title-color: rgba( $white, .75 );
     .tiles-wrap {
       li.tile {
         margin-bottom: .5rem;
+        min-height: 7.5rem;
 
         .tile-text {
           position: relative;
@@ -92,8 +93,9 @@ $sub-title-color: rgba( $white, .75 );
         }
 
         @include breakpoint( desktop ) {
-          //@include span-columns( 6 );
-          margin-right: 8px;
+          margin: 0; // Reset to prevent inheritance issues
+          @include column( 2, $gap-half );
+          margin-bottom: $gap-half;
           max-height: none;
         }
 
