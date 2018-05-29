@@ -44,11 +44,11 @@
 @mixin background-image-cover( $stretch-direction: horizontal ) {
 
   @if $stretch-direction == vertical {
-    @include size( 100%, auto );
+    @include size( auto, 100% );
   }
 
   @if $stretch-direction == horizontal {
-    @include size( auto, 100% );
+    @include size( 100%, auto );
   }
 
   position:        absolute;
