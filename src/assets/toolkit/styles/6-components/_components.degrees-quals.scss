@@ -58,11 +58,11 @@ $sub-title-color: rgba( $white, .75 );
     .tiles-wrap {
       li.tile {
         margin-bottom: .5rem;
-        min-height: 7.5rem;
 
         .tile-text {
           position: relative;
           width: 100%;
+          min-height: 7.5rem;
           background-color: $grey-alto;
 
           a { padding: 1em; }
@@ -93,12 +93,12 @@ $sub-title-color: rgba( $white, .75 );
         }
 
         @include breakpoint( desktop ) {
+          clear: none; // Reset to prevent inheritance issues
           margin: 0; // Reset to prevent inheritance issues
           @include column( 2, $gap-half );
           margin-bottom: $gap-half;
           max-height: none;
         }
-
       }
     }
   }
