@@ -19,8 +19,8 @@ $article-item-max-width: 49.5rem; // This is a maximum treshold for a good reada
 
 .articles-container {
 
-  // Set resets if used within .formatting
   .formatting & {
+    // Set resets if used within .formatting
     > ul,
     > ul > li {
       padding-left: 0;
@@ -28,6 +28,10 @@ $article-item-max-width: 49.5rem; // This is a maximum treshold for a good reada
     }
 
     article { margin-bottom: 0; }
+
+    &:not(:last-child) {
+      margin-bottom: $gap-double;
+    }
   }
 
 

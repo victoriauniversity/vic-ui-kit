@@ -4,14 +4,21 @@ $portrait-width: 9.35rem;
 
 
 .staff {
-  margin: $base-spacing 0 $base-spacing * 1.5;
   width: 100%;
 
+  &:not(:last-child) {
+    margin-bottom: $gap-double;
+  }
+
+  &:last-child { margin-bottom: 0; } // reset
+
   .articles-container & {
-    > li {
-      margin-bottom: 1rem;
-      padding-bottom: 1rem;
+    > li:not(:last-child) {
+      margin-bottom: $gap-content;
+      padding-bottom: $gap-content;
     }
+
+    > li:last-child { margin-bottom: 0; } // Reset
   }
 
   .profile-picture {
@@ -83,7 +90,7 @@ ul.meta {
   > li {
     display: block;
     margin-bottom: $gap-small;
-    font-size: $text-size-smaller; //TODO: Refactor into more dynamic solution
+    font-size: $text-size-smaller;
     word-wrap: break-word;
     line-height: 1.35;
   }
