@@ -62,7 +62,7 @@ $sub-title-color: rgba( $white, .75 );
         .tile-text {
           position: relative;
           width: 100%;
-          min-height: 7.5rem;
+          min-height: auto;
           background-color: $grey-alto;
 
           a { padding: 1em; }
@@ -87,8 +87,8 @@ $sub-title-color: rgba( $white, .75 );
             border-top: 2px solid $grey;
           }
 
-          @include breakpoint( desktop ) {
-            min-height: inherit;
+          @include breakpoint( tablet ) {
+            min-height: 7.5rem;
           }
         }
 
@@ -97,7 +97,7 @@ $sub-title-color: rgba( $white, .75 );
           margin: 0; // Reset to prevent inheritance issues
           @include column( 2, $gap-half );
           margin-bottom: $gap-half;
-          max-height: none;
+          max-height: auto;
         }
       }
     }
