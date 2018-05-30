@@ -121,7 +121,10 @@
     // Make fonts consistent and nice across browsers
     -webkit-font-smoothing:  antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-rendering:          optimizeLegibility;
+
+    @include breakpoint( desktop ) {
+      text-rendering: optimizeLegibility; // Make text nice on desktop devices *only*! See https://css-tricks.com/almanac/properties/t/text-rendering/
+    }
   }
 
   h1 { margin: 0; }
@@ -150,6 +153,27 @@
 
   ul { list-style: none; }
   ol { list-style: decimal; }
+}
+
+
+
+
+
+/*= COMPATIBILITY HACKS ======================================================*/
+
+
+/// @access public
+///
+/// Way to force `text-decoration: none;` on the inline-block element
+/// within parental element that applies `text-decoration: underline;`.
+/// Fully compatible with IE8-11.
+///
+/// @prop {after|before} $pseudo [before] - Pseudoelement which should have the ///   `text-decoration` removed.
+///
+/// @link https://stackoverflow.com/a/21902566
+@mixin ie-remove-underline( $pseudo: before ) {
+  &::#{$pseudo} { text-decoration: underline; }
+  &::#{$pseudo} { text-decoration: none; }
 }
 
 

@@ -207,13 +207,18 @@ $subtitle-separator-character:  $character-middle-dot;
 /*= WIDGET-BAR CONTENT FORMATTING DIFFERENCES ================================*/
 
 
-$widgetbar-heading-font-size:    $h4-size;
-$widgetbar-subheading-font-size: $h5-size;
+$widgetbar-h2-font-size: $h4-size;
+$widgetbar-h3-font-size: $h5-size;
+$widgetbar-h4-font-size: $h6-size;
 
 aside > .formatting {
+  > article:not(:last-child) {
+    margin-bottom: $gap-larger;
+  }
+
   // Heading
   h2 {
-    font-size: $widgetbar-heading-font-size;
+    font-size: $widgetbar-h2-font-size;
 
     // Pre-heading delimiting line
     @include separator-strip() {
@@ -221,14 +226,18 @@ aside > .formatting {
     }
   }
 
-  // Subheading
-  h3 {
+  // Subheadings
+  h3,
+  h4 {
+    color: $text-weaker-color;
+    margin-top: $gap-half;
     margin-bottom: $gap-third;
-    font-size: $widgetbar-subheading-font-size;
-    color:     $text-weaker-color;
 
-    &:not(:first-child) { margin-top: $gap-content; }
+    &:not(:first-child) { margin-top: $gap-half; }
   }
+
+  h3 { font-size: $widgetbar-h3-font-size; }
+  h4 { font-size: $widgetbar-h4-font-size; }
 }
 
 

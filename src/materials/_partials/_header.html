@@ -5,7 +5,8 @@
     <div class="logo">
       <a href="/" title="Victoria University of Wellington homepage">
         <picture>
-          <source media="(max-width: 68em)" srcset="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-portrait.svg">
+            <!-- *MUST* be in pixels to avoid inconsistencies between CSS mediaqueries and HTML mediaqueries on Safari (*facepalm*)  -->
+          <source media="(max-width: 1087px)" srcset="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-portrait.svg">
           <img src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-full.svg" alt="Victoria University of Wellington - Te Whare Wānanga o te Ūpoko o te Ika a Māui">
         </picture>
       </a>

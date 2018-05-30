@@ -471,7 +471,6 @@ $promo-max-width:   60em;
 
             img {
                 height: 100%;
-                -o-object-fit: cover;
                 object-fit: cover;
             }
           }
@@ -493,10 +492,13 @@ $promo-max-width:   60em;
 
     // 1st column
     figure {
-      overflow: unset;
+      overflow: visible;
       box-shadow: none;
 
-      img { width: 100%; }
+      img {
+        width: 100%;
+        flex-shrink: 0; // IE11 FIX to prevent the image to stretch vertically
+      }
 
       figcaption {
         margin: 0;

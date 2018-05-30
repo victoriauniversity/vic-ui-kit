@@ -47,6 +47,7 @@ gulp.task( 'release:stage', gulp.series(
   'build',
   'copy:tmp',
   'rev:dist',
+  'copy:dist:unrevAssets',
   'git:init',
   'git:addSourceRepo',
   'git:commitAll',

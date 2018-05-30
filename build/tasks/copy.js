@@ -9,6 +9,7 @@ const
   gulp   = require( 'gulp' ),
   gulpif = require( 'gulp-if' ),
   pump   = require( 'pump' ),
+  rename = require( 'gulp-rename' ),
 
   config = require( '../build.config' );
 
@@ -54,11 +55,18 @@ function copyTmp( done ) {
 
 
 function copyStylesToDist( done ) {
+  function streamStyles() {
+    if ( config.runningServer ) return config.runningServer.stream();
+
+    return null;
+  }
+
+
   return pump([
     gulp.src( `${config.paths.tmp}/*${config.extensions.styles}` ),
     gulp.dest( config.paths.dist ),
     // Stream the new files into the local dev server, if it exists
-    gulpif( config.runningServer, config.runningServer.stream()),
+    gulpif( Boolean( config.runningServer ), streamStyles()),
   ], done );
 }
 
@@ -87,6 +95,23 @@ function copyImagesToDist( done ) {
 }
 
 
+function copyRevvedAssetsInDist( done ) {
+  return pump([
+    gulp.src([
+      `${config.paths.dist}/*${config.extensions.styles}`,
+      `${config.paths.dist}/*${config.extensions.scripts}`,
+      `${config.paths.dist}/*${config.extensions.maps}`,
+    ]),
+    rename(( path ) => {
+      // Strip the hash from the file-name to 'de-rev' it.
+      path.basename = path.basename.replace( /(\.[a-z0-9]*)$/g, '' );
+      return path;
+    }),
+    gulp.dest( `${config.paths.dist}` ),
+  ], done );
+}
+
+
 
 /** Name & register tasks. */
 
@@ -98,3 +123,7 @@ gulp.task( 'copy:dist:styles', copyStylesToDist );
 gulp.task( 'copy:dist:scripts', copyScriptsToDist );
 gulp.task( 'copy:dist:fonts', copyFontsToDist );
 gulp.task( 'copy:dist:images', copyImagesToDist );
+gulp.task( 'copy:dist:unrevAssets', copyRevvedAssetsInDist );
+
+
+
