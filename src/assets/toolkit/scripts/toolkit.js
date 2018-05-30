@@ -525,22 +525,16 @@ restrictedLinkTitle();
 function hubMegaMenu() {
   const menu = $('.hub-mega-menu .mega-menu-inner');
   const menuExpandButton = $('.hub-mega-menu .btn-expander');
-  let width = $(window).innerWidth();
   let mobile = false;
   let desktop = false;
-
-  // console.log('menu test', menu, menuExpandButton);
 
   enquire.register( DESKTOP_AND_LARGER, function() {
     desktop = true;
     mobile = false;
-    console.log(`desktop = ${desktop}`);
-    
   });
   enquire.register( TABLET_AND_SMALLER, function() {
     desktop = false;
     mobile = true;
-    console.log(`mobile = ${mobile}`);
   });
 
 

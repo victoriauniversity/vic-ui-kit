@@ -243,7 +243,18 @@
 
           &.expanded {
             padding: 0;
-            background-color: $green-bottle;
+            // background-color: $green-bottle;
+            position: relative;
+            // overflow: hidden;
+            
+            .bg {
+              position: absolute;
+              top: 13%;
+              background-color: $green-bottle;
+              width: 100%;
+              height: calc(100% - 13%);
+              content: "";
+            }
 
         
             > li {
@@ -264,13 +275,13 @@
               &:not(:first-child) {
                 > a {
                   &:before {
-                    position: absolute;
-                    left: -1rem;
-                    top: 0;
-                    content: "";
-                    background-color: $white;
-                    height: 50px;
-                    width: 1rem;
+                    // position: absolute;
+                    // left: -1rem;
+                    // top: 0;
+                    // content: "";
+                    // background-color: $white;
+                    // height: 50px;
+                    // width: 1rem;
                   }
                 }
               }
@@ -321,7 +332,7 @@
                 > ul {
 
                   li {
-                    border-left: 2px solid rgba(255, 255, 255, 0.8);
+                    border-left: 1px solid rgba(255, 255, 255, 0.8);
                   }
                 }
               }
@@ -361,7 +372,7 @@
 
                 &:hover {
                   z-index: $z-index-middle;
-                  transition: .2s ease-in-out;
+                  transition: all .2s ease;
                   transform: scale(1.01);
                   box-shadow: $shadow;
                   a {
@@ -378,7 +389,8 @@
           }
 
           @include breakpoint( $until: desktop ) {
-            flex-direction: column;
+            // flex-direction: column;
+            display: block;
 
             > li {
               border-bottom: 5px solid #0D4B2F;
