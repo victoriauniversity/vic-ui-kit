@@ -32,7 +32,7 @@ window.jQuery = $;
   var TRANSITION_TIMEOUT       = 200; //update in _settings.variables.scss(135)
   var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 42.99em)', //update in _settings.responsive.scss(57)
       DESKTOP_AND_LARGER = 'screen and (min-width: 61em)',
-      TABLET_AND_SMALLER = 'screen and (max-width: 61em)',
+      TABLET_AND_SMALLER = 'screen and (max-width: 975px)',
 
   // Iframe selectors
   YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
@@ -721,27 +721,29 @@ restrictedLinkTitle();
 function hubMegaMenu() {
   const menu = $('.hub-mega-menu .mega-menu-inner');
   const menuExpandButton = $('.hub-mega-menu .btn-expander');
-  let width = $(window).innerWidth();
+  let mobile = false;
+  let desktop = false;
 
-  console.log('menu test', menu, menuExpandButton);
+  enquire.register( DESKTOP_AND_LARGER, function() {
+    desktop = true;
+    mobile = false;
+  });
+  enquire.register( TABLET_AND_SMALLER, function() {
+    desktop = false;
+    mobile = true;
+  });
+
 
   menuExpandButton.each( function() {
     $(this).on('click', (c) => {
-        width = $(window).innerWidth();
         let $this = $(this);
-
-        /* Behaviour for dekstop and larger */
-        if ( width > 976 ) {
-          // console.log('expandedddd', 'width' + width);
+        if ( desktop ) {
           menu.toggleClass('expanded');
-        }
-
-        /* Behaviour tablet and smaller */
-        if ( width < 976) {
+        } 
+        if ( mobile) {
           menu.addClass('expanded');
           $this.parent().toggleClass('js-dropdown-show');
         }
-
       });
   });
 }
