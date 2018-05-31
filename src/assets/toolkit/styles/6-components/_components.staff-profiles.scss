@@ -1,8 +1,11 @@
-/** List with people information */
+/** List with people and their contact information */
 
-$portrait-width: 9.35rem;
+$portrait-width:        9.35rem;
+$portrait-width-larger: 13rem;
+$potrait-width-mobile:  25%;
 
-
+/// FIXME: Remove when possible
+/// @deprecated - Use .staff-list instead
 .staff {
   width: 100%;
 
@@ -21,6 +24,7 @@ $portrait-width: 9.35rem;
     > li:last-child { margin-bottom: 0; } // Reset
   }
 
+  /// @deprecated - use .contact instead
   .profile-picture {
     @include size( $portrait-width, auto );
     float: left;
@@ -31,6 +35,95 @@ $portrait-width: 9.35rem;
       width: 20%;
       max-width: $portrait-width;
     }
+  }
+
+  /// @deprecated - use .contact instead
+  .summary {
+    overflow: hidden;
+
+    // Incl. staff portrait
+    &:not(:first-child) {
+      display: block;
+      > header { margin-bottom: 1rem; }
+    }
+
+    // No staff portrait
+    &:first-child {
+      h3,
+      .subtitle {
+        display: inline-block;
+      }
+
+      h3 { margin-right: 1rem; }
+      > header { margin-bottom: .25rem; }
+      .meta > li { display: inline-block; }
+    }
+  }
+
+  /// @deprecated - use .contact instead
+  .meta { margin-bottom: 0; }
+}
+
+/// Staff list with their contact details. Relies on `.contact`.
+.staff-list {
+  width: 100%;
+
+  &:not(:last-child) {
+    margin-bottom: $gap-double;
+  }
+
+  &:last-child { margin-bottom: 0; } // reset
+
+  .articles-container & {
+    > li:not(:last-child) {
+      margin-bottom: $gap-content;
+      padding-bottom: $gap-content;
+    }
+
+    > li:last-child { margin-bottom: 0; } // Reset
+  }
+
+  .contact .profile-picture {
+    @include breakpoint( $until: tablet ) {
+      float: left;
+      width: $potrait-width-mobile;
+      margin-right: 1rem;
+      margin-bottom: 0;
+      max-width: $portrait-width;
+    }
+  }
+
+  .meta {
+    font-size: $text-size-smaller;
+  }
+}
+
+/// New - preferred - way of displaying staff information, contacts and other related information
+.contact {
+  @include clearfix;
+
+  &:last-child { margin-bottom: 0; }
+
+  .profile-picture {
+    display: block;
+
+    @include breakpoint( tablet ) {
+      @include size( $portrait-width, auto );
+      float: left;
+      margin-right: $column-padding;
+    }
+
+    @include breakpoint( $until: tablet ) {
+      margin-bottom: $gap-content;
+    }
+
+    // Larger version of the image
+    &.larger { width: $portrait-width-larger; }
+  }
+
+  h2,
+  h3 {
+    margin-bottom: $gap-small;
   }
 
   .summary {
@@ -56,31 +149,42 @@ $portrait-width: 9.35rem;
   }
 
   .meta { margin-bottom: 0; }
+
+  // Contact box in the sidebar
+  aside & {
+    .profile-picture {
+      float: none;
+      width: 100%;
+    }
+
+    .meta { font-size: $text-size-smaller; }
+  }
 }
+
+  address.contact {
+    font-style: normal;
+
+    > img { display: block; }
+  }
+
 
 .profile-picture { width: 100%; }
 
-// Contact information
-address.contact {
-  font-style: normal;
 
-  > img {
-    display: block;
-    margin-bottom: .7rem;
-  }
 
-  > ul { font-style: normal; }
-}
 
 // List of quick (meta) information
 ul.meta {
   @include icon-selector() {
     color: $text-weakest-color;
-    font-size: $text-size-huge;
-    vertical-align: inherit;
 
     &::before { display: inline; } // Prevent icon wrapping
   };
+
+  .icon-pin {
+    font-size: 115%;
+    margin-left: 0.0625rem;
+  }
 
   &,
   > li {
@@ -90,7 +194,6 @@ ul.meta {
   > li {
     display: block;
     margin-bottom: $gap-small;
-    font-size: $text-size-smaller;
     word-wrap: break-word;
     line-height: 1.35;
   }
@@ -139,6 +242,7 @@ ul.meta {
 /* Research hub Sidebar featured researcher profile */
 
 //TODO: Re-define! (Don't use IDs)
+//FIXME: Remove after updating templates in Squiz, @deprecated
 #rightHandMenu {
   .data-sidebar {
     &.featured-researcher {
