@@ -69,33 +69,15 @@ $potrait-width-mobile:  25%;
 .staff-list {
   width: 100%;
 
-  &:not(:last-child) {
-    margin-bottom: $gap-double;
-  }
-
   &:last-child { margin-bottom: 0; } // reset
+  &:not(:last-child) { margin-bottom: $gap-double; }
 
   .articles-container & {
+    > li:last-child { margin-bottom: 0; } // Reset
     > li:not(:last-child) {
       margin-bottom: $gap-content;
       padding-bottom: $gap-content;
     }
-
-    > li:last-child { margin-bottom: 0; } // Reset
-  }
-
-  .contact .profile-picture {
-    @include breakpoint( $until: tablet ) {
-      float: left;
-      width: $potrait-width-mobile;
-      margin-right: 1rem;
-      margin-bottom: 0;
-      max-width: $portrait-width;
-    }
-  }
-
-  .meta {
-    font-size: $text-size-smaller;
   }
 }
 
@@ -115,12 +97,43 @@ $potrait-width-mobile:  25%;
     }
 
     @include breakpoint( $until: tablet ) {
-      margin-bottom: $gap-content;
+      float: left;
+      width: $potrait-width-mobile;
+      margin-right: 1rem;
+      max-width: $portrait-width;
+    }
+  }
+
+  // Larger version of the contact box
+  &.larger {
+    .profile-picture {
+      @include breakpoint( tablet ) {
+        width: $portrait-width-larger;
+      }
+
+      @include breakpoint( $until: tablet ) {
+        float: none;
+        width: 100%;
+        max-width: initial;
+        margin-bottom: $gap-half;
+      }
     }
 
-    // Larger version of the image
-    &.larger { width: $portrait-width-larger; }
+    .meta { font-size: 100%; }
   }
+
+  // Separate two contact boxes under each other (~ list of contacts)
+  // Should *ONLY* be used in places where .articles-container with <ul> cannot be used!
+  //FIXME: Remove after the structure is fixed in the backend!
+  & + & {
+    border-top: $border;
+    padding-top: $gap-content;
+  }
+
+  //FIXME: ^Remove after the structure is fixed in the backend!
+  &:last-of-type { margin-bottom: $gap-double; }
+  &:last-child { margin-bottom: 0; }
+
 
   h2,
   h3 {
@@ -149,7 +162,10 @@ $potrait-width-mobile:  25%;
     }
   }
 
-  .meta { margin-bottom: 0; }
+  .meta {
+    margin-bottom: 0;
+    font-size: $text-size-smaller;
+  }
 
   // Contact box in the sidebar
   aside & {
@@ -158,8 +174,6 @@ $potrait-width-mobile:  25%;
       width: 100%;
       margin-bottom: $gap-half;
     }
-
-    .meta { font-size: $text-size-smaller; }
   }
 }
 
