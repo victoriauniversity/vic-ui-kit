@@ -44,7 +44,8 @@ $potrait-width-mobile:  25%;
     // Incl. staff portrait
     &:not(:first-child) {
       display: block;
-      > header { margin-bottom: 1rem; }
+
+      > header { margin-bottom: $gap-content; }
     }
 
     // No staff portrait
@@ -155,6 +156,7 @@ $potrait-width-mobile:  25%;
     .profile-picture {
       float: none;
       width: 100%;
+      margin-bottom: $gap-half;
     }
 
     .meta { font-size: $text-size-smaller; }
@@ -182,7 +184,7 @@ ul.meta {
   };
 
   .icon-pin {
-    font-size: 115%;
+    font-size: $text-size-huge;
     margin-left: 0.0625rem;
   }
 
@@ -196,6 +198,8 @@ ul.meta {
     margin-bottom: $gap-small;
     word-wrap: break-word;
     line-height: 1.35;
+
+    h4:first-child { margin-top: $gap-half; }
   }
 
   .highlight {
