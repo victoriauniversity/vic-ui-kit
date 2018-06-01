@@ -116,27 +116,26 @@ input.button {
 /*= SPECIALISED BUTTONS ======================================================*/
 
 
-/** Button 'go to top' */
+/** Fixed rounded buttons floating on the edges of the screen */
 
-$btn-up-size: 3.8rem;
+$btn-floating-size: 3.8rem;
 
-.btn-up {
-  @include size( $btn-up-size );
-  z-index: $z-index-top;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  display: block;
-  margin:  $gap-larger 2%;
-  padding: $gap-half;
-  transition: all .3s ease-in;
-  opacity: 0;
-  text-align: center;
-  color: $grey;
-  box-shadow: $shadow;
+
+.btn-floating {
+  @include size( $btn-floating-size );
+  z-index:          $z-index-top;
+  position:         fixed;
+  right:            0;
+  display:          block;
+  margin:           $gap-larger 2%;
+  padding:          $gap-half;
+
+  text-align:       center;
+  color:            $grey;
+  box-shadow:       $shadow;
   background-color: $grey-gallery;
-  border-radius: $btn-up-size;
-  font-size: $text-size-smaller;
+  border-radius:    $btn-floating-size;
+  font-size:        $text-size-smaller;
 
   @include hoverify() {
     background-color: $grey-alto;
@@ -149,11 +148,18 @@ $btn-up-size: 3.8rem;
     &::before { margin-right: 0; }
   }
 
-  .global.no-top ~ & { opacity: 1; }
+  // Placement location
+  &.top { top: 0; }
+  &.bottom { bottom: 0; }
+
+  // Only shows up when the main heading strip is sticking to the top (e.g. 'go to top' button)
+  &.sticky {
+    transition: all .3s ease-in;
+    opacity: 0;
+  }
+
+  .global.no-top ~ &.sticky { opacity: 1; }
 }
-
-
-/** Button 'edit in admin' */
 
 
 

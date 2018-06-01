@@ -470,11 +470,13 @@ function openPopup( { delayInMs = 0, suppressAfterCanceling = false } = {} ){
 
 /** 'GO UP' BUTTON */
 
-const BTN_UP_ID                       = 'btn-up';
+const BTN_UP_ID         = 'btn-up',
+      BTN_ADMIN_EDIT_ID = 'btn-admin';
+
 const SCROLL_ANIMATION_DURATION_IN_MS = 700;
 
 
-function initGoUpButton() {
+function initFloatingButtons() {
   const buttonUpElement = document.getElementById( BTN_UP_ID );
 
   if ( buttonUpElement ){
@@ -487,6 +489,10 @@ function initGoUpButton() {
     });
   }
 
+  if ( isAdminEnvironment() && document.getElementById( BTN_ADMIN_EDIT_ID ) ){
+    $( `#${BTN_ADMIN_EDIT_ID}` ).css( 'display', '' ); // Remove inline 'display'
+  }
+
 }
 
 
@@ -495,7 +501,7 @@ function initGoUpButton() {
 $(function(){
   moveWidgetsToSidebar();
   addActiveClassToMainMenu();
-  initGoUpButton();
+  initFloatingButtons();
 
 	fastclick.attach(document.body);
 	var $body          = $( 'body' );
