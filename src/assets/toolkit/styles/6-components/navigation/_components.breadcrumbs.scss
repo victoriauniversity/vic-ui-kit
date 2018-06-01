@@ -8,9 +8,10 @@
 /// @group navigation
 
 
+$breadcrumbs-size:               $navigation-primary-item-size;
+$breadcrumbs-separator-color:    $icon-weakest-color;
 
-$breadcrumbs-size:            $navigation-primary-item-size;
-$breadcrumbs-separator-color: $icon-weakest-color;
+$breadcrumbs-ellipsis-max-width: 18rem;
 
 
 .breadcrumbs {
@@ -47,6 +48,24 @@ $breadcrumbs-separator-color: $icon-weakest-color;
       color:       $text-weaker-color;
 
       &::after { display: none; }
+    }
+  }
+
+  @include breakpoint( $until: desktop ) {
+    > li { white-space: nowrap; }
+
+    > li,
+    a {
+      display: inline-block;
+    }
+
+    a,
+    li:last-child {
+      overflow:       hidden;
+      vertical-align: middle;
+      text-overflow:  ellipsis;
+      max-width:      $breadcrumbs-ellipsis-max-width;
+      white-space:    nowrap;
     }
   }
 
