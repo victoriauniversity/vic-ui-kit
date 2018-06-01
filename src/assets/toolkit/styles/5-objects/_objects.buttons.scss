@@ -97,7 +97,7 @@ button,
   &:not(.flat):not(.no-icon) {
     @include icon-arrow-right;
 
-    &:after { display: inline; }
+    &::after { display: inline; }
   }
 
 
@@ -108,6 +108,52 @@ input.button {
   border: 0;
   cursor: pointer;
 }
+
+
+
+
+
+/*= SPECIALISED BUTTONS ======================================================*/
+
+
+/** Button 'go to top' */
+
+$btn-up-size: 3.8rem;
+
+.btn-up {
+  @include size( $btn-up-size );
+  z-index: $z-index-top;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  display: block;
+  margin:  $gap-larger 2%;
+  padding: $gap-half;
+  transition: all .3s ease-in;
+  opacity: 0;
+  text-align: center;
+  color: $grey;
+  box-shadow: $shadow;
+  background-color: $grey-gallery;
+  border-radius: $btn-up-size;
+  font-size: $text-size-smaller;
+
+  @include hoverify() {
+    background-color: $grey-alto;
+    color: $link-hover-color;
+  }
+
+  @include icon-selector {
+    font-size: $text-size-massive;
+
+    &::before { margin-right: 0; }
+  }
+
+  .global.no-top ~ & { opacity: 1; }
+}
+
+
+/** Button 'edit in admin' */
 
 
 

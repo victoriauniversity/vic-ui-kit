@@ -468,10 +468,34 @@ function openPopup( { delayInMs = 0, suppressAfterCanceling = false } = {} ){
 }
 
 
+/** 'GO UP' BUTTON */
+
+const BTN_UP_ID                       = 'btn-up';
+const SCROLL_ANIMATION_DURATION_IN_MS = 700;
+
+
+function initGoUpButton() {
+  const buttonUpElement = document.getElementById( BTN_UP_ID );
+
+  if ( buttonUpElement ){
+    $( buttonUpElement ).click( ( e ) => {
+      e.preventDefault();
+      console.log( 'TRIGGERED!' );
+      $( 'html,body' ).animate({
+          scrollTop: 0
+      }, SCROLL_ANIMATION_DURATION_IN_MS );
+    });
+  }
+
+}
+
+
+
 // Run after the DOM has loaded...
 $(function(){
   moveWidgetsToSidebar();
   addActiveClassToMainMenu();
+  initGoUpButton();
 
 	fastclick.attach(document.body);
 	var $body          = $( 'body' );
@@ -505,7 +529,7 @@ $(function(){
 	enquire.register( MOBILE_LARGE_AND_SMALLER, function() {
 
 		if ( $globalNav.length ) {
-      const eGlobalNav      = $globalNav[0],
+      const eGlobalNav    = $globalNav[0],
       bannerHeaderElement = $( '.site-header' ),
       sidemenu            = $( '.sidemenu' );
 
@@ -739,7 +763,7 @@ function hubMegaMenu() {
         let $this = $(this);
         if ( desktop ) {
           menu.toggleClass('expanded');
-        } 
+        }
         if ( mobile) {
           menu.addClass('expanded');
           $this.parent().toggleClass('js-dropdown-show');
