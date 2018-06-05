@@ -810,7 +810,6 @@ function hubMegaMenu() {
     mobile = true;
   });
 
-
   menuExpandButton.each( function() {
     $(this).on('click', (c) => {
         let $this = $(this);

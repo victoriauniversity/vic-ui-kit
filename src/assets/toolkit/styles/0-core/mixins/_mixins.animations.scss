@@ -32,4 +32,32 @@
 }
 
 
+@mixin slideOutUp {
+  animation-name: slideOutUp;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  @keyframes slideOutUp {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    
+    15% {
+      transform: translate3d(0, 0, 0) scale(1.02) perspective(1px) ;
+      -webkit-font-smoothing: antialiased;  
+      backface-visibility: hidden;   
+      transform-style: preserve-3d;
+      
+    }
 
+    50% {
+      transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px) ;
+    }
+    
+    100% {
+      transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px) ;
+      -webkit-font-smoothing: antialiased;
+      backface-visibility: hidden;   
+      transform-style: preserve-3d;
+    }
+  }
+}
