@@ -1,27 +1,10 @@
 
 /** Event overview (list of articles). */
 .events {
-
-  @include media( $tablet-and-bigger ){
-
-    .margin-notes {
-      @include span-columns( 3.5 of 12 );
-    }
-
-    .summary {
-      @include span-columns( 8.5 of 12 );
-    }
-  }
-
-  @include media( $mobile-large-and-smaller ){
-    .media img { margin-bottom: .8rem; }
-  }
-
-  // Highlight strip
   .highlight-strip {
     display: block;
     padding-left: 1rem;
-    border-left: $highlight-border-width solid $green-victoria;
+    border-left: $border-strip-brand;
 
     p { margin-bottom: 0; }
   }
@@ -39,21 +22,21 @@
   .date,
   .time {
     display: block;
-    font-family: $base-heading-family;
-    color: $base-heading-color;
+    font-family: $heading-family;
+    color: $heading-color;
     line-height: 1.1;
   }
 
   .date {
     margin-bottom: .2em;
     font-weight: $weight-semibold;
-    font-size: scale-heading( 2 );
+    font-size: $text-size-4;
   }
 
   .time {
-    font-size: scale-heading( 1 );
+    font-size: $text-size-5;
 
-    @include extend-icon-before( clock ){
+    @include extend-icon-before( clock ) {
       top: -.1rem;
       margin-left: 0;
       font-size: 75%;
@@ -66,10 +49,26 @@
     @include icon-selector() {
       display: inline-block;
 
-      &:before {
+      &::before {
         top: 0;
         margin-left: 0;
       }
     };
+  }
+
+  @include breakpoint( tablet ) {
+    .margin-notes {
+      float: left;
+      width: 30%;
+    }
+
+    .summary {
+      float: left;
+      width: 70%;
+    }
+  }
+
+  @include breakpoint( $until: tablet ) {
+    .media img { margin-bottom: .8rem; }
   }
 }

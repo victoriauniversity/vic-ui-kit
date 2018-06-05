@@ -1,117 +1,106 @@
-//gradient (expected transparent -> bgcolor) on an element hinting it overlays something
-$overlay-hint-size: 50px;
-$overlay-hint-offset: 5px; //can be a negative number as long as ($OH-size + $OH-offset) > 0
+// Top menu panel
+$global-panel-color:       $grey-silver;
+$global-panel-hover-color: #BBB;
+$global-panel-text-color:  $text-color;
 
+//gradient (expected transparent -> bgcolor) on an element hinting it overlays something
+$overlay-hint-size:      3rem;
+$overlay-hint-offset:    .4rem; // Can be a negative number as long as ($OH-size + $OH-offset) > 0
 $overlay-padding-offset: 3.8rem;
 
-@include media( $mobile-large-and-smaller ){
+
+@include breakpoint( $until: tablet ) {
   .hide-on-mobile { display: none !important; }
 }
 
-@include media( $tablet-and-bigger ){
+@include breakpoint( tablet ) {
   .hide-on-desktop { display: none !important; }
 }
 
-
 .menu-toggle {
-  position:      relative;
-  z-index:       1;
-  background:    $black-victoria;
-  border-bottom: 1px solid rgba( #000,.15 );
-
   @include clearfix;
-
-  .logo-mini {
-    @include clearfix();
-    height: 1.6rem;
-  }
-}
-
-//TODO: Should be calculated dynamically by JS
-.site-header {
-  @include media( $mobile-large-and-smaller ){
-    padding-top: $overlay-padding-offset;
-  }
+  z-index:       $z-index-lower;
+  position:      relative;
+  background:    $black-brand;
+  border-bottom: 1px solid rgba( $black, .15 );
 }
 
 .global {
+  width: 100%;
   font-weight: $weight-normal;
 
-    @include media( $tablet-and-bigger ){
-      background: $global-panel-color;
-    }
-
-  @include media( $mobile-large-and-smaller ){
-    position: fixed;
-    top:0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    height: $overlay-padding-offset;
+  @include breakpoint( tablet ) {
+    background-color: $global-panel-color;
   }
 
   .menu a {
-    font-family: $base-heading-family;
+    font-family: $heading-family;
     line-height: 1.85;
 
-    //TODO: Refactor
     &.home,
     &.back {
       line-height: 1.7;
     }
 
     &.home > span {
-      margin-top: rem( 1px );
+      margin-top: .05rem;
     }
   }
 
-  //TODO: Is this deprecated?
+  // Top panel for mobile devices *only*!
   .horisontal-links {
-      @include clearfix();
+    @include clearfix;
+    display: flex;
+    align-items: stretch;
 
-      > a {
-        float: left;
-        width: 50%;
-        margin: 0;
-        padding: $base-spacing/2 $base-spacing;
-        border-bottom: none;
-      }
+    &.menu-toggle > a {
+      padding-top: $gap-third * 2;
+      padding-bottom: $gap-third * 2;
+    }
+
+    > a {
+      @include column( 2 );
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: $gap-half;
+      border-bottom: 0;
+
+      &:not(:first-child) { justify-content: flex-end; }
+    }
+
+    &.align-center > a { justify-content: center; }
   }
 
   @include icon-selector() {
-    &:before {
-      margin-left: 0;
+    &::before {
       margin-right: 0;
+      margin-left: 0;
 
-      @include media( $mobile-large-and-smaller ){
+      @include breakpoint( $until: tablet ) {
         margin-right: .5rem;
         line-height: 1;
       }
     }
   }
 
-  [role=search]{
+  [role=search] {
     @include clearfix();
-    display: block;
     position: relative;
+    display: block;
     width: 100%;
 
-    @include media( $mobile-large-and-smaller ){
-      padding: $base-spacing/2 $base-spacing;
-    }
-
     .input-wrapper {
-      display: block;
-      position: relative;
       @include clearfix();
+      position: relative;
+      display: block;
 
       input {
-        background: rgba( #000, .15);
-        border: none;
-        color: $white;
         float: left;
-        padding: .45rem $base-spacing/2;
-
+        padding: .45rem $base-spacing / 2;
+        background: rgba( #000, .15 );
+        border: 0;
+        color: $white;
 
         &[type=text],
         &[type=submit] {
@@ -119,55 +108,71 @@ $overlay-padding-offset: 3.8rem;
         }
 
         &[type=text] {
-          width: calc(100% - 4rem);
+          width: calc( 100% - 4rem );
         }
 
         &[type=submit] {
           width: 4rem;
-          border-left: 1px solid rgba(#000, .15);
+          border-left: 1px solid rgba( #000, .15 );
         }
       }
     }
 
-    @include media( $tablet-and-bigger ){
-      box-shadow: 0 1px 8px rgba( #000, .35 );
+    @include breakpoint( $until: tablet ) {
+      z-index: $z-index-top;
+      padding: $gap-half;
+      border-bottom: 1px solid rgba( $black, .15 );
 
+      .input-wrapper input {
+        padding-top: $gap-content / 2;
+        padding-bottom: $gap-content / 2;
+
+        &[type=text] {
+          &::placeholder {
+            color: $grey-chalice;
+          }
+        }
+      }
+    }
+
+    @include breakpoint( tablet ) {
       .input-wrapper {
-        background: linear-gradient(
-          to right,
-          rgba($global-panel-color, 0) 0,
-          rgba($global-panel-color, 1) $overlay-hint-size);
-        padding-left: $overlay-hint-size + $overlay-hint-offset;
         padding-right: 2.5rem;
+        padding-left: $overlay-hint-size + $overlay-hint-offset;
+        background: linear-gradient( to right,
+        rgba( $global-panel-color, 0 ) 0,
+        rgba( $global-panel-color, 1 ) $overlay-hint-size );
 
         will-change: transform;
         transition: transform $transition-timeout ease-in-out;
-        transform: translateX(100%);
+        transform: translateX( 100% );
 
         input {
-          background: $global-panel-hover-color;
-          color: $global-panel-text-color;
+          height: 2.4rem;
+          background:  $global-panel-hover-color;
+          color:       $global-panel-text-color;
         }
 
         &.is-open {
+          transform: translateX( 0 );
+
           input {
-            &[type=text],
+            &[type=text], //TODO: Nesting too deep, REFACTOR!
             &[type=submit] {
               display: inline-block;
             }
           }
-
-          transform: translateX( 0 );
         }
       }
     }
+
   }
 
-  @include media( $tablet-and-smaller ){
+  @include breakpoint( $until: desktop ) {
     padding: 0;
   }
 
-  @include media( $mobile-large-and-smaller ){
+  @include breakpoint( $until: tablet ) {
     .button-container {
       position: absolute;
       top: 0;
@@ -178,8 +183,8 @@ $overlay-padding-offset: 3.8rem;
         display: block;
         margin: 2px 0;
         padding: 0 .8rem;
-        border: none;
-        border-left: 1px solid rgba( $white, .15);
+        border: 0;
+        border-left: 1px solid rgba( $white, .15 );
         text-align: right;
       }
     }
@@ -192,92 +197,164 @@ $overlay-padding-offset: 3.8rem;
     }
 
     .menu {
-      background: $green-victoria;
-      max-height: 75vh;
-      overflow-y: scroll;
+      overflow: hidden;
+      height: 0;
       will-change: transform;
       transition: transform $transition-timeout ease-in-out;
-      transform: translateY(-100vh);
+      transform: translateY( -100vh );
+      background: $green-brand;
+
+      .horisontal-links > a + a {
+        border-left: 1px solid rgba( #000, .15 );
+      }
     }
 
-    &.is-open .menu { transform: translateY(0); }
+    &.is-open {
+      background: $black-brand;
+
+      .menu {
+        overflow-y: auto;
+        height: auto;
+        max-height: 75vh;
+        transform: translateY( 0 );
+      }
+
+      .search {
+        font-size: $text-size-huge;
+      }
+    }
 
     a {
-      display: block;
       @include menu-item();
+      display: block;
     }
 
     .mobile { display: block; }
   }
 
-@include media( $tablet-and-bigger ){
-
-  .mobile,
-  .site,
-  .menu-toggle { display: none; }
+  @include breakpoint( tablet ) {
+    .mobile,
+    .site,
+    .menu-toggle {
+      display: none;
+    }
 
     nav {
-        @include outer-container;
+      @include clearfix;
+      position: relative;
+      margin: 0 auto;
+      max-width: $centered-max-width;
 
-        @include clearfix();
+      .search {
+        z-index: $z-index-lower;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
 
-        max-width: 88em;
-        
-        position: relative;
-
-        .search {
-            overflow: hidden;
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            z-index: 1;
-
-            a {
-                position: absolute;
-                right: 0;
-                z-index: 1;
-                padding-left: 0;
-                padding-right: 0;
-                font-size: 85%;
-                width: 2.5rem;
-                text-align: center;
-            }
-
-            // Transformation icon
-            .tcon {
-              margin-top: .3rem;
-
-            }
+        // Search icon
+        a {
+          z-index: $z-index-lower;
+          position: absolute;
+          right: 0;
+          padding-right: 0;
+          padding-left: 0;
+          width: 2.5rem;
+          text-align: center;
         }
 
-        a {
-          color: $global-panel-text-color;
-          padding: $base-spacing/5 $base-spacing/2;
-          display: block;
-          float: left;
-          opacity: .8;
-          font-size: 0.9375rem;
-          border-bottom: none;
+        // Transformation search icon
+        .tcon {
+          margin-top: .3rem;
+          font-size: 80%;
+        }
+      }
 
-          &.selected,
-          &:hover,
-          &:focus {
+      a {
+        float: left;
+        display: block;
+        padding: $base-spacing / 5 $base-spacing / 2;
+        border-bottom: 0;
+        color: $global-panel-text-color;
+        opacity: .8;
+        font-size: .9375rem;
+
+        &.selected,
+        &:hover,
+        &:focus {
+          background: $global-panel-hover-color;
+
+          span:not(.tcon-transform) .tcon-search__item::after {
+            transition: none;
             background: $global-panel-hover-color;
-
-            span:not(.tcon-transform) .tcon-search__item::after {
-              transition: none;
-              background: $global-panel-hover-color;
-            }
           }
         }
 
-        a + a {
-          border-left: 1px solid rgba( #000,.15 );
-        }
+        + a { border-left: 1px solid rgba( #000, .15 ); }
+      }
 
-        label { float: right; }
+      label { float: right; }
     }
 
-  }//media destkop
+  }
 }
+
+
+
+
+
+/*= STICKY TOP HEADER ========================================================*/
+
+
+@include keyframe-slide-up;
+@include keyframe-slide-down;
+
+
+@include breakpoint( $until: tablet ) {
+  .global {
+    &.sticky {
+      z-index: $z-index-top;
+      position: fixed;
+      background: $black-brand;
+      will-change: transform;
+      animation-fill-mode: both;
+      animation-duration: .25s;
+
+      &.no-top,
+      &.is-open {
+        box-shadow: $shadow-shallow;
+      }
+
+      + .site-header {
+        padding-top: 3.65rem; // Approximate height of the header + menu
+      }
+
+      &.is-open {
+        + .site-header {
+          @include after() {
+            @include size( 100% );
+            z-index: $z-index-top - 1;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: $background-overlay-dark;
+          };
+        }
+      }
+
+      &.slide-down {
+        animation-name: slideDown;
+      }
+
+      &.slide-up {
+        animation-name: slideUp;
+      }
+    }
+  }
+}
+
+
+

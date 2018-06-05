@@ -1,48 +1,78 @@
-/*=========================================
-=         BREADCRUMBS NAVIGATION          =
-=========================================*/
+/*============================================================================*\
+| NAVIGATION - BREADCRUMBS
+\*============================================================================*/
+
+////
+/// Breadcrumb-like main navigational component.
+///
+/// @group navigation
 
 
-  /** Default breadcrumbs navigation for desktop-only. */
+$breadcrumbs-size:               $navigation-primary-item-size;
+$breadcrumbs-separator-color:    $icon-weakest-color;
 
-  .breadcrumbs {
-    padding-bottom: 0;
-    font-family:    $base-heading-family;
-    font-size:      $h5-font-size;
+$breadcrumbs-ellipsis-max-width: 18rem;
 
-    > li {
-      display: inline-block;
-      white-space: nowrap;
 
-      &:first-child a {
-        @include extend-icon-before( home ){
-          top: 0;
-          margin-right: .35em;
-        }
+.breadcrumbs {
+  font-family:    $heading-family;
+  font-size:      $breadcrumbs-size;
+  letter-spacing: $navigation-letter-spacing;
 
-        &:before {
-          font-size: 90%
-        }
-      }
+  a { @include link-underline; }
 
-      @include extend-icon-after( triangle-right ) {
-        margin: 0 .35em;
-        font-size: 85%;
-        color: $grey-silver-chalice;
-      };
+  // Breadcrumb item (current page and links)
+  > li {
+    display:     inline;
 
-      &:last-child {
-        font-weight: $weight-semibold;
-        color: $black-emperor;
-
-        &:after { display: none; }
+    // First item? => Home with icon
+    &:first-child a {
+      @include extend-icon-before( home ) {
+        margin-right:   _em( $gap-small );
+        vertical-align: 0;
+        font-size:      $text-size-tiny;
+        text-decoration: none;
       }
     }
 
-    a { @extend %base-link; }
+    // Separator
+    @include extend-icon-after( triangle-right ) {
+      margin:    0 _em( $gap-small );
+      font-size: $text-size-tiny;
+      color:     $breadcrumbs-separator-color;
+    };
 
-    @include media( $mobile-large-and-smaller ){
-      display: none;
+    // Active page
+    &:last-child {
+      font-weight: $weight-semibold;
+      color:       $text-weaker-color;
+
+      &::after { display: none; }
     }
   }
+
+  @include breakpoint( $until: desktop ) {
+    > li { white-space: nowrap; }
+
+    > li,
+    a {
+      display: inline-block;
+    }
+
+    a,
+    li:last-child {
+      overflow:       hidden;
+      vertical-align: middle;
+      text-overflow:  ellipsis;
+      max-width:      $breadcrumbs-ellipsis-max-width;
+      white-space:    nowrap;
+    }
+  }
+
+  // If used within content panel, drop bottom padding to avoid double margins
+  .content-panel & { padding-bottom: 0; }
+}
+
+
+
 

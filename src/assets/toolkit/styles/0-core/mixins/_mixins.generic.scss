@@ -1,0 +1,111 @@
+/*==================================================
+=            VICTORIA'S MIXINS COLLECTION          =
+==================================================*/
+
+
+/*******************************************************************************
+
+  Mixins collection that can be used to simplify SCSS development.
+
+  *HIGHLY RECOMMENDED* to read through comments of all available mixins before
+  you start an active development!
+
+  Also, all use or be combined with Bourbon's mixins.
+
+
+/*******************************************************************************
+
+
+/* ===== BOX MODEL ========================================================== */
+
+
+/*******************************************************************************
+ * Transforms non-object element (eg. pseudo-elements) into object one.
+ *
+ * @display         - Type of box of the object element.
+ * @content         - Optional text content (useful for icons).
+ * @position        - Specifies type of positioning method used for an element.
+ */
+@mixin objectify( $display: inline-block, $content: '', $position: relative ) {
+  position:   $position;
+  display:    $display;
+  content:    $content;
+}
+
+
+/*******************************************************************************
+ * Basic most commonly used skeleton for :after pseudo-class that turns it into
+ * stylable element.
+ *
+ * @content - :after's additional properties.
+ */
+@mixin after( $display: inline-block, $text: '', $position: static ) {
+  &::after {
+    @include objectify( $display, $text, $position );
+
+    @content;
+  }
+}
+
+
+/*******************************************************************************
+ * Basic most commonly used skeleton for :before pseudo-class that turns it into
+ * stylable element.
+ *
+ * @content - :before's additional properties.
+ */
+@mixin before( $display: inline-block, $text: '', $position: static ) {
+  &::before {
+    @include objectify( $display, $text, $position );
+
+    @content;
+  }
+}
+
+
+
+
+
+/* ===== TYPOGRAPHY ========================================================= */
+
+
+/*******************************************************************************
+ * Shorter definition of all active states of an element.
+ *
+ * { @content }     - Definition of the active states' styles.
+ */
+@mixin hoverify() {
+  &:hover,
+  &:active,
+  &:focus {
+    @content;
+  }
+}
+
+
+/***************************************************************************
+* Non-underlined decoration to underlined on hover.
+*/
+@mixin hoverify-underline() {
+  text-decoration: none;
+  @include hoverify() { text-decoration: underline; }
+}
+
+
+
+/*******************************************************************************
+ * Turns potentially non-object element into a font icon container.
+ *
+ * @display         - Type of box of the object element.
+ * @ico-code        - Unicode code of the icon from the $font-family.
+ * @font-family     - Name or type of the font icon.
+ */
+
+
+@mixin clearfix {
+  &::after {
+    clear: both;
+    display: table;
+    content: '';
+  }
+}

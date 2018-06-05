@@ -1,0 +1,254 @@
+---
+title: "Example | Tracking through Google Tag Manager"
+
+header:
+  subtitle:   "Analytics"
+  title:      "GTM tracking"
+
+header-start:
+  <!-- Google Tag Manager -->
+  <script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+ '&gtm_auth=KRMIRv_4UUHJZOdVJ8C8JQ&gtm_preview=env-32&gtm_debug=x';f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NL8WSRD');
+  </script>
+  <!-- End Google Tag Manager -->
+
+body-start:
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NL8WSRD&gtm_auth=KRMIRv_4UUHJZOdVJ8C8JQ&gtm_preview=env-32&gtm_debug=x" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+---
+
+
+<!-- Variation 2) -->
+
+<section class="layout centraliser block">
+
+  <!-- Left 'submenu' column -->
+  <div class="sidebar"> {{> navigation.sidemenu-expandable }} </div>
+
+  <!-- Center 'content' and right 'widget' columns -->
+  <div class="content-panel">
+
+    <!-- Center 'content' column -->
+    <main>
+      <div class="block formatting">
+
+        <h1>GTM Tracking examples</h1>
+
+        <p><em>This page describes the scope and overview of all interactions we can track through Google Tag Manager. If you are interested in the UI Kit's tracking plugin and its API, see the <a href="/components.html#tracking-api-for-gtm">Tracking API for GTM</a> for more.</em></p>
+
+        <div class="flash-message info">
+          <p>
+            If the GTM tracking works correctly, you should be able to see GTM's <a class="link-external" href="//www.analyticsmania.com/post/google-tag-manager-debug-mode/">preview/debug panel</a> with tags firing off.
+          </p>
+        </div>
+
+        <p>
+          <a href="//analytics.google.com/analytics/web/#/report-home/a2769050w145723262p150433667" class="link-external">
+            <strong>Google Analytics (Development only)</strong>
+          </a><br>
+          <small>(to see testing events and views propagating)</small>
+        </p>
+
+        <p>
+          <a href="//tagmanager.google.com/#/container/accounts/1409976535/containers/8504399/workspaces/1" class="link-external">
+            <strong>Google Tag Manager workspace</strong>
+          </a><br>
+          <small>(to configure tags, variables, events and their behaviour)</small>
+        </p>
+
+        <h2>On Page Load</h2>
+        <p>Logs interactions that happen when the page is loaded.</p>
+
+        <h3>Page View (Google Analytics)</h3>
+        <p>
+          Standard page view tracking for Google Analytics.
+        </p>
+
+        <h3>Page Load Time</h3>
+        <p>
+          Measures how long it takes to fully load and render the page. It's more accurate than GA's similar feature, because it does not sample the final results.
+        </p>
+        <p>
+          <strong>Event:</strong> <em>Page Load Time</em> - URL - Time (in seconds)<br>
+          <strong>Example:</strong> Reload this page
+        </p>
+
+        <h2>Automatic interactions</h2>
+        <p>Logs various user-based interactions anywhere on the entire site.</p>
+
+        <h3>Contact link click</h3>
+        <p>
+          Logs event if a link with email or phone is clicked (<em>mailto:</em> or <em>tel:</em> in the URL).
+        </p>
+        <p>
+          <strong>Events:</strong><br>
+          <em>Phone Number Click</em> - Phone number - Page URL<br>
+          <em>Email Click</em> - Email address - Page URL<br>
+          <strong>Example:</strong><br>
+          <a href="tel:08888888">Call us</a> or <a href="mailto:mail.example.com">Mail us</a> now!
+        </p>
+
+        <h3>File download link click</h3>
+        <p>
+          Logs event if a link with downloadable file is clicked. Tracked file extensions include: PDF, XLS, DOC, TXT.
+        </p>
+        <p>
+          <strong>Events:</strong><br>
+          <em>[File type/extension]</em> - Filename - Page URL<br>
+          <strong>Example:</strong><br>
+          <a class="button primary" href="https://victoria.ac.nz/fca/teaching/publications/ClickersmanualV01.pdf">Download a brochure</a>
+        </p>
+
+        <h3>Outbound link click</h3>
+        <p>
+          Logs event if user clicks on a link with URL outside of the current domain.
+        </p>
+        <p>
+          <strong>Events:</strong><br>
+          <em>[Outbound domain name]</em> - Outbound link URL - Page URL<br>
+          <strong>Example:</strong><br>
+          Try searching in the <a href="//google.com" class="link-external">Google search</a>
+        </p>
+
+        <h3>Form interaction</h3>
+        <p>
+          Tracks if user abandons (e.g. fills in a field, but does not send the form) or submits a form.
+        </p>
+        <p>
+          <strong>Events:</strong><br>
+          <em>Abandonment</em> - Page URL<br>
+          <em>Submission</em> - Page URL<br>
+          <strong>Example:</strong><br>
+          Type in something into the search bar in the header and either abandon it (and refresh/leave the page) or submit the search term.
+        </p>
+
+        <h3>YouTube video interactions</h3>
+        <p>
+          Logs various interactions with an embedded YouTube video.
+        </p>
+        <p>
+          <strong>Events:</strong><br>
+          <em>Started video</em> - Video's title and URL - Play time (in seconds)<br>
+          <em>Paused video</em> - Video's title and URL - Play time (in seconds)<br>
+          <em>Seeking in video</em> - Video's title and URL - Play time (in seconds)<br>
+          <em>Finished video</em> - Video's title and URL - Play time (in seconds)<br>
+          <em>[25%|50%|75%] of video seen</em> - Video's title and URL - Play time (in seconds)<br>
+          <strong>Example:</strong><br>
+          <figure class="media">
+            <div class="embed"><iframe width="1280" height="720" src="https://www.youtube.com/embed/6nD-kAsV-rk?rel=0" frameborder="0" allowfullscreen=""></iframe></div>
+
+            <figcaption>Play to trigger video events tracking</figcaption>
+          </figure>
+        </p>
+
+        <h2>Manually added interactions</h2>
+        <p>
+          Interactions that are component-specific and have been built by us.
+        </p>
+
+        <h3>Expandable side menu clicks</h3>
+        <p>
+          Tracks clicks on the expandable/collapsible link, and standard page links in the left-side menu.
+        </p>
+        <p>
+          <strong>Events:</strong><br>
+          <em>Link Click</em> - Target URL - Page URL<br>
+          <em>Expandable Button Click</em> - Page URL<br>
+          <strong>Example:</strong><br>
+          Interact with the side menu on the left.
+        </p>
+
+        <h3>Custom element interaction</h3>
+        <p>
+          Allows to easily track custom interaction on any given element (promo box, special button, banner, CTAs etc.) by simply adding HTML attribute <em>`data-gtm-track="[action-type]"`</em> (~ click) into the element's source code.
+        </p>
+        <p>
+          <em>
+          Note: In case you want to track and group specific class of interactions, a unique HTML attribute `id` (or `data-gtm-id` in case `id` is already used) should be added to the element. Additionally, further configuration within Google Tag Manager is required to specify event's trigger(s) and tag(s).
+        </em>
+        </p>
+        <p>
+          <strong>Events:</strong><br>
+          <em>[Unique event name]</em> - Target URL - Page URL<br>
+          <strong>Example:</strong><br>
+        </p>
+        </div>
+
+        <div>
+          <div class="centraliser block">
+            <div class="updated-tile-grid">
+              <div class="tiles-wrap four-col image-no-gutter">
+                <ul>
+                  <li class="tile">
+                    <img alt="" src="https://www.victoria.ac.nz/__data/assets/image/0004/1357429/abstract.png">
+                    <a href="#" data-gtm-track="click" data-gtm-id="promo-box">
+                      <h3 class="">Media contacts</h3>
+                      <div class="sub-text">
+                        <p>If you’re looking for an expert opinion, our Communications team can help you get in touch with the right
+                          person.</p>
+                      </div>
+
+                      <span class="button">Make contact</span>
+
+                    </a>
+                  </li>
+
+                  <li class="tile">
+                    <img alt="" src="https://www.victoria.ac.nz/__data/assets/image/0004/1357429/abstract.png">
+                    <a href="#" data-gtm-track="click" data-gtm-id="promo-box">
+                      <h3 class="">Faculty of Graduate Research</h3>
+                      <div class="sub-text">
+                        <p>Victoria’s Faculty of Graduate Research is your dedicated point of contact for all enquiries about higher
+                          degrees by research.</p>
+                      </div>
+
+                      <span class="button">Learn more</span>
+
+                    </a>
+                  </li>
+
+                  <li class="tile">
+                    <img alt="" src="https://www.victoria.ac.nz/__data/assets/image/0004/1357429/abstract.png">
+                    <a href="#" data-gtm-track="click" data-gtm-id="promo-box">
+                      <h3 class="">Research Office</h3>
+                      <div class="sub-text">
+                        <p>Our Research Office teams connect collaborators with researchers and advise on funding and resources to support
+                          effective research output.</p>
+                      </div>
+
+                      <span class="button">Get in touch</span>
+
+                    </a>
+                  </li>
+
+                  <li class="tile">
+                    <img alt="" src="https://www.victoria.ac.nz/__data/assets/image/0004/1357429/abstract.png">
+                    <a href="#" data-gtm-track="click" data-gtm-id="test-promo-box">
+                      <h3 class="">Viclink</h3>
+                      <div class="sub-text">
+                        <p>Viclink works to benefit businesses, industry and the community by identifying and commercialising new technologies
+                          developed by our researchers.</p>
+                      </div>
+
+                      <span class="button">Learn more</span>
+
+                    </a>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="formatting"></div>
+
+      </div>
+    </main>
+
+  </div>
+</section>
+
+
+

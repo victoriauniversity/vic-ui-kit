@@ -1,114 +1,131 @@
-// ========================================
-// ======== Study-areas block on homepages
-// ========================================
-//---- Settings ---
-$gutter: 8px;
-// ----------------
-// -------------------------
-// ------------------------
-// - The gerneic tile grid
+// - The generic tile grid
 // - Used for both Study-areas and Degrees & Qualifactions block
-// ------------------------
-  .study-area-single {
 
 
+.study-area-single {
+  .study-area-wide-panel {
+    @include grid-container;
+    margin-bottom: $base-spacing;
 
-    .study-area-wide-panel {
-        @include outer-container(100%);
-        @include fill-parent();
-        margin-bottom: $base-spacing;
+    &:not(:last-child) {
+      padding-bottom: $base-spacing;
+      border-bottom: $border;
+    }
 
-        &:not(:last-child) {
-          padding-bottom: $base-spacing;
-          border-bottom: $base-border;
+    .img-wrap {
+      float: left;
+      padding-right: $gap-horizontal;
+      width: 40%;
+
+      img { width: 100%; }
+    }
+
+    .content-wrap {
+
+      &:first-child { // Study area without an image
+        width: 100%;
+      }
+
+      .text-subjects-wrap {
+        .text-wrap {
+          width: 100%;
+
+          // TODO: Refactor & flatten to lower the depth!
+          h2 { margin-bottom: 1rem; }
+
+          p {
+            margin-bottom: $gap-content;
+            font-size: 1.125em;
+            line-height: 1.8rem;
+          }
         }
 
-        .img-wrap {
-          @include media ($mobile-large-and-smaller) {
-            display: none;
+        .subjects-wrap {
+          margin-right: 0;
+          width: 100%;
+
+          // TODO: Refactor & flatten to lower the depth!
+          h4 {
+            margin-top: .35em;
+            color: $grey;
           }
 
-          @include span-columns(5);
+          ul {
+            padding-top: .5rem;
 
-          img { width: 100%; }
+            li {
+              padding: .5em .15em;
+              font-size: 1.1em;
+              border-bottom: $border;
+
+              &:last-child { border-bottom: 0; }
+            }
+          }
+
+        }
+      }
+
+      a.button { float: left; }
+    }
+
+    @include breakpoint( tablet ) {
+      .img-wrap {
+        float: left;
+        width: 40%;
+      }
+
+      .content-wrap {
+        float: left;
+        width: 60%;
+      }
+
+      .content-wrap {
+        .text-subjects-wrap {
+          display: inline;
+
+          .subjects-wrap { float: right; }
         }
 
-        .content-wrap {
-
-          &:first-child { width: 100%;} // Study area without an image
-
-          @include span-columns(7);
-          @include media ( $mobile-large-and-smaller ) {
-            @include span-columns(6);
-          }
-
-          .text-subjects-wrap {
-            @include media ($tablet-and-bigger) {
-              display: inline;
-            }
-
-            .text-wrap {
-              @include span-columns(4 of 6);
-              @include media ($tablet-and-smaller) {
-                  @include span-columns(8);
-              }
-              h2 {
-                  margin-bottom: 1rem;
-              }
-              p {
-                font-size: 1.125em;
-                line-height: 1.8rem;
-                margin-bottom: $base-spacing;
-              }
-            }
-            .subjects-wrap {
-              @include media ($tablet-and-smaller) {
-                  @include span-columns(8);
-              }
-
-              @include media ($tablet-and-bigger) {
-                float: right;
-              }
-
-              @include span-columns(2 of 6);
-              margin-right: 0;
-
-              h4 {
-                margin-top: .35em;
-                color: $grey;
-              }
-
-              ul {
-                  padding-top: 0.5rem;
-
-                  li {
-                      font-size: 1.1em;
-                      border-bottom: $base-border;
-                      padding: .5em .15em;
-
-                      &:last-child { border-bottom: none; }
-                  }
-              }
-            }
-          }
-          a.button {
-              float: left;
-
-              @include media ($tablet-and-bigger) {
-                clear: left;
-              }
-
-              @include media ( $mobile-large-and-smaller ) {
-                margin-bottom: .35rem;
-              }
-          }
+        a.button { clear: left; }
       }
     }
 
-    &.hidden { display: none; }
-  }
+    @include breakpoint( desktop ) {
+      .content-wrap {
+        .text-subjects-wrap {
+          .text-wrap {
+            float: left;
+            width: 66.6%;
+          }
 
-  /* Changes for new F&S subject listings */
+          .subjects-wrap {
+            float: right;
+            padding-left: $gap-horizontal;
+            width: 33.4%;
+          }
+        }
+      }
+    }
+
+    @include breakpoint( $until: desktop ) {
+      .content-wrap {
+        a.button { margin-bottom: $gap-content; }
+
+        .text-subjects-wrap .subjects-wrap {
+          clear: left;
+        }
+      }
+    }
+
+    @include breakpoint( $until: tablet ) {
+      .img-wrap { display: none; }
+    }
+
+
+  }
+}
+
+/* Changes for new F&S subject listings */
 .study-areas-undergrad {
   .study-area-single {
     .study-area-wide-panel {

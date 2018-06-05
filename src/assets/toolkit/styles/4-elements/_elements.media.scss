@@ -1,0 +1,48 @@
+/*============================================================================*\
+| MEDIA ELEMENTS
+\*============================================================================*/
+
+////
+/// Styles and properties applied globally to all media (videos, images...).
+///
+/// @group media
+
+
+
+
+
+/*= IMAGERY ==================================================================*/
+
+
+img {
+  vertical-align: middle;
+}
+
+a > img {
+  @include hoverify() {
+    opacity: $image-hover-opacity;
+  }
+}
+
+figure {
+  @include hoverify() {
+    img { filter: none; }
+  }
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.formatting {
+  figure {
+    img + figcaption {
+      margin-top: $gap-half;
+    }
+  }
+}
+
+
+
+

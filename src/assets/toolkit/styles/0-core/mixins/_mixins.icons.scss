@@ -1,0 +1,184 @@
+/*============================================================================*\
+| ICONS MIXINS
+\*============================================================================*/
+
+////
+/// @group icons
+
+
+
+
+
+/// @access public
+///
+/// Turns a generic element into an icon-ready one.
+///
+/// **Note**: Useful on items that need to be 'blockified' first.
+///
+/// @argument {display} $display [inline-block]
+/// @argument {string} $ico-code [''] -
+///   Unicode of the font icon's character from the $icon-codes {Map}.
+/// @argument {font-family} $font-icon-family [$icons-family] -
+///   Font icon to be used.
+///
+/// @require {mixin} objectify
+@mixin iconify(
+  $display: inline-block,
+  $ico-code: '',
+  $font-icon-family: $icons-family,
+) {
+  @include objectify( $display, $ico-code, relative );
+  font-family: $font-icon-family;
+}
+
+
+/// @access public
+///
+/// Generates base properties for an icon.
+///
+/// @argument {after|before} $pseudoelement [before] -
+///   The placement of the icon. 'after' - behind the element, 'before' - in front of the element.
+///
+/// @output &::after { ... } or &::before { ... }
+///
+/// @require {mixin} iconify
+@mixin base-icon( $pseudoelement: before ) {
+  &::#{$pseudoelement} {
+    @include iconify;
+    @if $pseudoelement == 'before' { margin: 0 $icon-margin 0 0; }
+    @if $pseudoelement == 'after' { margin: 0 0 0 $icon-margin; }
+    width: 1em; // Maximum width of a character
+    vertical-align: -7.5%; // A compensation to place icon to the inline content's level
+    text-align: center;
+    line-height: 1;
+  }
+}
+
+
+
+
+
+/*= ICON MANAGEMENT TOOLS ====================================================*/
+
+
+/// @access private
+///
+/// Adds icon's unicode code into the :after or :before pseudoelement.
+///
+/// @argument {string} $icon-code [''] -
+///   Unicode of the font icon's character from the $icon-codes {Map}.
+///
+/// @argument {after|before} $pseudoelement [before] -
+///   The placement of the icon. 'after' - behind the element, 'before' - in front of the element.
+///
+/// @output &::after { content: '...'; } or &::before { content: '...'; }
+@mixin add-icon-character(
+  $icon-code,
+  $pseudoelement: before
+) {
+  &::#{$pseudoelement} { content: $icon-code; }
+}
+
+
+/// @access public
+///
+/// Add icon's unicode character into :after pseudoelement.
+///
+/// @argument {string} $icon-key - ID of the icon from the $icon-codes map.
+///
+/// @require {mixin} add-icon-character
+@mixin add-icon-after( $icon-key ) {
+  @include add-icon-character( map-get( $icon-codes, $icon-key ), after );
+}
+
+
+/// @access public
+///
+/// Add icon's unicode character into :before pseudoelement.
+///
+/// @argument {string} $icon-key - ID of the icon from the $icon-codes map.
+///
+/// @require {mixin} add-icon-character
+@mixin add-icon-before( $icon-key ) {
+  @include add-icon-character( map-get( $icon-codes, $icon-key ) );
+}
+
+
+/// @access public
+///
+/// A shortcut for selecting 'any icon' within specific (S)CSS scope.
+///
+/// @content Styles that should be applied to any icons.
+///
+/// @output [class^={$icon-prefix}] { ... }
+@mixin icon-selector() {
+  [class^=#{$icon-class-prefix}] {
+    @content;
+  }
+}
+
+
+/// @access public
+///
+/// Turn an element's :before into an icon and allow to be styled through
+/// @content.
+///
+/// @argument {string} $icon-key - ID of the icon from the $icon-codes map.
+///
+/// @content Additional properties to style the icon.
+///
+/// @require {mixin} base-icon
+/// @require {mixin} add-icon-character
+@mixin extend-icon-before( $icon-key ) {
+  @include base-icon;
+  @include add-icon-character( map-get( $icon-codes, $icon-key ) );
+
+  &::before { @content; }
+
+  @include ie-remove-underline( before );
+}
+
+
+/// @access public
+///
+/// Turn an element's :after into an icon and allow to be styled through
+/// @content.
+///
+/// @argument {string} $icon-key - ID of the icon from the $icon-codes map.
+///
+/// @content Additional properties to style the icon.
+///
+/// @require {mixin} base-icon
+/// @require {mixin} add-icon-character
+@mixin extend-icon-after( $icon-key ) {
+  @include base-icon( after );
+  @include add-icon-character( map-get( $icon-codes, $icon-key ), after );
+
+  &::after { @content; }
+
+  @include ie-remove-underline( after );
+}
+
+
+
+
+
+/*= ICON GENERATORS ==========================================================*/
+
+
+/// @access public
+///
+/// Generates list of classes with prefixes from $icon-codes map. After calling
+/// this mixin, classes in format `{icon-prefix}{icon-key}` will be available.
+///
+/// @require {mixin} add-icon-character
+@mixin generate-icon-classes() {
+  @each $icon-code-class, $code in $icon-codes {
+    &.#{$icon-class-prefix}#{$icon-code-class} {
+      @include add-icon-character( $code );
+    }
+  }
+}
+
+
+

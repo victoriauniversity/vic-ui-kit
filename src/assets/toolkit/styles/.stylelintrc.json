@@ -1,0 +1,89 @@
+{
+  "extends": [
+    "stylelint-config-sass-guidelines"
+  ],
+  "rules": {
+    "scss/dollar-variable-colon-space-after": null,
+    "scss/operator-no-unspaced":              true,
+    "scss/at-rule-no-unknown":                true,
+    "scss/at-function-pattern":               "^_.+",
+
+    "order/properties-alphabetical-order":   null,
+    "order/properties-order": [
+      [
+        "z-index",
+        "clear",
+        "overflow",
+        "overflow-x",
+        "overflow-y",
+        "position",
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "float",
+        "visibility",
+        "display",
+        "flex",
+        "align-items",
+        "justify-content",
+        "flex-basis",
+        "flex-grow",
+        "flex-shrink",
+        "order",
+        "content",
+        "margin",
+        "margin-top",
+        "margin-right",
+        "margin-bottom",
+        "margin-left",
+        "padding",
+        "padding-top",
+        "padding-right",
+        "padding-bottom",
+        "padding-left",
+        "width",
+        "max-width",
+        "min-width",
+        "height",
+        "max-height",
+        "min-height"
+      ],
+      { "unspecified": "bottom" }
+    ],
+    "order/order": [
+      "custom-properties",
+      "dollar-variables",
+      {
+        "type":     "at-rule",
+        "hasBlock": false
+      },
+      "declarations",
+      "rules",
+      {
+        "type":      "at-rule",
+        "name":      "include",
+        "parameter": "media",
+        "hasBlock":  true
+      }
+    ],
+
+    "declaration-colon-space-after":          null,
+    "selector-no-qualifying-type":            null,
+
+    "number-leading-zero":                    "never",
+    "function-parentheses-space-inside":      "always",
+    "media-feature-parentheses-space-inside": "always",
+
+    "max-nesting-depth":                      5,
+    "selector-max-compound-selectors":        5,
+    "color-hex-case":                         "upper",
+
+    "declaration-block-single-line-max-declarations": 1,
+
+    "selector-pseudo-class-no-unknown": [ true,
+      {
+        "ignorePseudoClasses": [ "/#.*/" ]
+      }]
+  }
+}

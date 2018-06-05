@@ -1,0 +1,36 @@
+---
+notes: >
+
+   **Constructors and configurators (non-ES6 / ES6):**<br>
+   - **`global toolkitTracker( options: Object)`** - A constructor, overrides the settings and returns the object with all other public methods. A recommended way to override default settings and/or access API in non-ES6 and legacy JS environments.<br>
+   - **`module trackerConfig( options: Object)`** - Importing and invoking this module is a recommended way to override the tracking's settings in ES6 JS environments.<br>
+   - **`module tracker: Object`** - Importing this module is a recommended way to gain access to the tracking's public API methods in ES6 JS environments<br><br>
+
+   **Public API methods**<br>
+   - **`shouldTrackElement( element: DOMElement )`** - True if an element has got `data-gtm-track` attribute, false otherwise.<br>
+   - **`trackEvent( eventId: String, eventType: String )`** - Sends a simple event to the GTM (ID and type of interaction).<br>
+   - **`registerForTracking( elements: DOMElement[], eventType: String = [data-gtm-track] | 'auto', eventId: String = [data-gtm-id] | [id])`** - Subscribes a list of DOM elements to a user interaction (e.g. 'click') that pushes a message in a pre-defined format into Google Tag Manager. If the `eventId` is not specified, the element's `data-gtm-id` or `id` attribute is used to identify the event. Method currently supports following types of user interactions: `click`, `auto` (default) etc (see 'supported types of interaction' section for more).<br><br>
+
+   **Configuration object (`options`)**:<br>
+   - **`autoRegister: boolean (true)`** - Whether or not should script automatically subscribe all elements with a `data-gtm-track` attribute after the DOM is initialised. Note that this must be set before the `document.onLoad()` event is triggered.<br><br>
+
+   **Supported types of interaction (`eventType`)**:<br>
+   - **`auto (default)`** - Does not send any information to the GTM so that developer can manually define the event and what data should be sent.<br>
+   - **`click`** - Gets triggered when user clicks on the element. Following data are sent to GTM: `event` - ID of the event to identify it in the GTM's backend (see `id` or `data-gtm-id` below) | `custom.selector` - Element selector | `custom.eventType` - 'click' | `custom.href` - URL of the element (if exists) | `custom.text` - Element's text content.<br><br>
+
+   Example: Do not automatically register elements with 'data-gtm-track' and define your own behaviour on pre-ES6 or legacy JS system.
+---
+
+<!-- Imported GTM scripts + jQuery + tracking plugin -->
+
+<script>
+  var tracker = toolkitTracker({ autoRegister: false });
+
+  // Now, you can check if the main logo should be tracked (= contains `data-gtm-track` attribute)
+  var logoElement = $( '#logo' );
+  if ( tracker.shouldTrackElement( logoElement )) {
+    // Manually perform your own GTM tracking or use any pre-defined method
+
+    tracker.registerForTracking( logoElement, 'click' ); // Send information with event id 'logo' if user performs click on the element
+  }
+</script>

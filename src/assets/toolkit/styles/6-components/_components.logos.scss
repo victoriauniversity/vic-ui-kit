@@ -1,7 +1,11 @@
-
 //TODO: Remove and manage logos through standard HTML images
+
+$logo-mini-max-height: 1.65rem;
+
+
 .logo-mini {
-    background-image: url("#{$dir-images}/logo-mini.svg");
-    background-position: left;
-    background-repeat: no-repeat;
+  @include size( 100%, $logo-mini-max-height );
+  background-image:    url( '#{$dir-images}/logo-mini.svg' );
+  background-position: left;
+  background-repeat:   no-repeat;
 }

@@ -1,147 +1,140 @@
-/*=========================================
-=     _COMPONENT.LINKS       =
+/*==========================================
+=         LINKS AND LINK LISTS             =
+==========================================*/
 
-==== List with links or files 
 
+ul.links {
+  margin-bottom: $base-spacing;
+  padding-left: 0;
+  line-height: 1.5;
 
-=========================================*/
+  li {
+    @include bullet-line;
+    position: relative;
+    margin-bottom: .65rem;
+    list-style: none;
+  }
 
- 
+  a { display: inline; }
 
-  ul.links {
-    margin-bottom: $base-spacing;
-    padding-left: 0;
-    line-height: 1.5;
-
+  // in the widget bar
+  aside & {
     li {
-      @extend %bulletline-base;
-      position: relative;
-      margin-bottom: .65rem;
-      list-style: none;
-    }
+      margin: 0;
+      padding-left: 0;
+      border-top: $border;
 
-    a { display: inline; }
-
-    // in the widget bar
-    aside & {
-
-      li {
-        margin: 0;
-        padding-left: 0;
-        border-top: 1px solid $grey-alto;
-
-        &:before { display: none; }
-      }
-
-      a {
+      > span,
+      > a {
         display: block;
-        padding: $base-spacing/3 .1em;
-        text-decoration: none;
-
-        // Against icons wrapping
-        &:after,
-        span:after {
-          display: inline;
-        }
-
-        @include hoverify {
-          background-color: rgba( #000, $base-darken-percentage / 100 );
-        }
+        padding: $gap-third 0;
       }
+
+      &::before { display: none; } // Turn the bullets off
     }
 
-    // in the grid
-    .grid & {
-      @include media( $mobile-large-and-smaller ){
+    a {
+      text-decoration: none;
 
-        // All the lists in single column => Remove the margins except from the last one.
-        &:not(:last-child) { margin-bottom: 0; }
-      }
-    }
-
-    &.list-divider {
-      li {
-        border-top: 1px solid $grey-alto;
-        padding-top: 0.45rem;
-        margin-bottom: 0.45rem;
-
-        &:before {
-          top: 1.2em;
-        }
+      // Prevent icon wrapping
+      &,
+      span {
+        &::after { display: inline; }
       }
 
-      &.hub {
-        a {
-          text-decoration: none;
-          font-size: 0.9rem;
-        }
+      @include hoverify {
+        background-color: $background-opaque-dark;
       }
     }
   }
 
-  /* Hub related links/areas */
+  // in the grid
+  .grid & {
+    @include breakpoint( $until: tablet ) {
 
-  .related-links-block {
-    h2,
-    h3 {
-      position: relative;
-      padding-bottom: 15px;
+      // All the lists in single column => Remove the margins except from the last one.
+      &:not(:last-child) { margin-bottom: 0; }
+    }
+  }
 
-      &:after {
-        content: '';
-        position: absolute;
-        width: 50px;
-        height: 5px;
-        bottom: 0;
-        left: 0;
+  &.list-divider {
+    li {
+      margin-bottom: .45rem;
+      padding-top: .45rem;
+      border-top: 1px solid $grey-alto;
 
-        background-color: $green-victoria;
+      &::before { top: 1.2em; }
+    }
+
+    &.hub {
+      a {
+        text-decoration: none;
+        font-size: .9rem;
       }
     }
-    .related-links {
+
+  }
+}
+
+
+/* Hub related links/areas */
+
+.related-links-block {
+  h2,
+  h3 {
+    position: relative;
+    padding-bottom: 15px;
+
+    &::after {
+      @include size( 50px, 5px );
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      content: '';
+
+      background-color: $green-brand;
+    }
+  }
+
+  .related-links {
+    display: flex;
+
+    .related-link {
       display: flex;
+      flex: 24% 0 1;
+      justify-content: center;
+      padding: .5em;
+      flex-direction: column;
+      background-color: $green-brand;
+      border-radius: 5px;
+
+      text-align: center;
+      color: $white;
+
+      &:not(:last-child) {
+        margin-right: 1%;
+      }
+
+
+      @include hoverify() {
+        background-color: $background-brand-darker;
+        transition: .5s ease-in-out;
+
+        text-decoration: underline;
+
+      }
+
+    }
+
+    @include bp-mobile {
+      flex-wrap: wrap;
 
       .related-link {
-        flex: 24% 0 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        flex: 48% 0 1;
+        margin: 0 1% 2%;
 
-        padding: .5em;
-        background-color: $green-victoria;
-        border-radius: 5px;
-
-        text-align: center;
-        color: $white;
-        
-        &:not(:last-child) {
-          margin-right: 1%;
-        }
-        
-
-        @include hoverify() {
-          background-color: darken($green-victoria, 5%);
-          transition: .5s ease-in-out;
-
-          text-decoration: underline;
-
-        }
-
-      }
-
-      @include media( $mobile ) {
-        flex-wrap: wrap;
-
-        .related-link {
-          
-          flex: 48% 0 1;
-
-          margin: 0 1% 2%;
-
-          &:not(:last-child) {
-            margin-right: 1%;
-          }
-        }
+        &:not(:last-child) { margin-right: 1%; }
       }
     }
   }
+}

@@ -1,13 +1,3 @@
-
-%vuw-highlight-caption {
-    display: inline-block;
-    padding: .5rem 1rem;
-    margin-bottom: .5em;
-    color: $white;
-    background-color: rgba(99, 166, 89, 0.90);
-}
-
-
 /** In-page block with promotion */
 
 $banner-background: $grey-gallery;
@@ -15,593 +5,560 @@ $promo-max-width:   60em;
 
 
 .promo-panel {
-    @include clearfix();
+  @include clearfix;
 
-    @include media($tablet-and-bigger) {
-        background: $banner-background;
-        position:relative;
-        overflow:hidden;
-    } //media desktop
-    @include media($mobile-large-and-smaller ) {
-        border-top: 3px solid $banner-background;
-        border-bottom: 3px solid $banner-background;
-        &+.promo-panel {
-            border-top: none;
-        }
-    } //media desktop
-    &.pattern {
-        background: url("http://www.victoria.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png"); //TODO: Autolink from CDN!
-        figure {
-            background: transparent;
-            box-shadow: none;
-        }
+  @include breakpoint( tablet ) {
+    overflow: hidden;
+    position: relative;
+    background: $banner-background;
+
+    .separated + & {
+      margin-top: -1 * $border-width-thin; // Cover over the border-line
     }
+  } //media desktop
 
-    &.no-pattern {
-        background: $banner-background;
-        figure {
-            background: transparent;
-            box-shadow: none;
-        }
-    }
+  @include breakpoint( $until: tablet ) {
+    border-top:    3px solid $banner-background;
+    border-bottom: 3px solid $banner-background;
 
-    &.white-bg {
-        background-color: $white;
+    + .promo-panel { border-top: 0; }
+  } //media desktop
 
-        figure {
-            border: 1px solid $grey-gallery;
-            
-            @include media($mobile-large-and-smaller ) { 
-                border: none;
-            }
-            
-        }
-
-        &.dual-content {
-            .dual-content-block {
-                border: 1px solid $grey-gallery;
-                > * {
-                    border: none;
-                }
-            }
-        }
-    }
+  &.pattern {
+    background: url( 'http://www.victoria.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png' ); //TODO: Autolink from CDN!
 
     figure {
-        overflow: hidden; //TODO: Change to something safer
-        position: relative;
-        padding: 0;
-        background: $white;
-
-        figcaption {
-            padding-bottom: $base-spacing;
-        }
-        @include media($mobile-large-and-smaller ) { 
-            figcaption {
-                h1 {
-                    margin-top: 0.5em;
-                }
-            }
-        }
-        @include media( $tablet-and-bigger) {
-            box-shadow: $base-shadow;
-            display: flex;
-            align-items: center;
-            
-            figcaption {
-                padding: $base-spacing * 1.5;
-                @include span-columns( 7 of 12,
-                block-collapse);
-                z-index: 1;
-                 p {
-                    margin-bottom: 1.3em;
-                    font-size: 1.2em;
-                }
-            }
-            img {
-                @include span-columns( 5 of 12,
-                block-collapse);
-            }
-            &.two-thirds {
-                @include span-columns(8 of 12);
-                @include shift(2);
-                figcaption {
-                    padding: $base-spacing;
-                    @include span-columns(4 of 8);
-                    @include shift(4);
-                    background: $white;
-                    position: relative;
-                }
-                img {
-                    position: absolute;
-                    width: auto;
-                    top: 0;
-                    left: 0;
-                    height: 100%;
-                }
-            }
-            &.photo,
-            &.pattern,
-            &.no-pattern {
-                figcaption {
-                    position: relative;
-                    max-width: $promo-max-width;
-                    width: 100%;
-                    margin: 0 auto;
-                    padding: $base-spacing * 1.5 0;
-                    z-index: 1;
-                    text-align: center;
-                    float: none;
-                }
-                img {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    width: 100%;
-                }
-            }
-        } //media desktop
-        &.photo {
-            figcaption {
-                h1,
-                h2,
-                h3,
-                h4,
-                h5,
-                h6,
-                p {
-                    @extend %vuw-highlight-caption;
-                }
-
-            }
-        }
-        //Research hub new panel, promo panel with left align grey text panel
-        &.photo {
-            &.left-text-panel {
-                
-                figcaption {
-                    
-                    max-width: 88em;
-
-                    > div {
-                        background-color: rgba(#fff, 0.9);
-                        box-shadow: 0px 3px 6.86px 0.14px rgba(0, 0, 0, 0.21);
-                        margin: 3em 1.1111em;
-                        text-align: left;
-                        max-width: 65%;
-                        position: relative;
-                        padding: 2em;
-
-                        h1,h2,h3,p {
-                            text-align: left;
-                        }
-
-                        h1,h2,h3 {
-                            position: absolute;
-                            top: -1.8rem;
-                            padding: .8rem 1rem;
-                            background-color: $green-victoria;
-
-                            // IE 10+ fix bg not covering text
-                            @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-                                float: left;
-                             }
-                        }
-
-                        p {
-                            background-color: transparent;
-                            color: inherit;
-                            padding-left: 0;
-                            padding-top: 2em;
-                        }
-
-                        p, .button {
-                            margin-left: 1rem;
-                        }
-                    }
-
-                    @include media($mobile-large-and-smaller ) {
-
-                        > div {
-                            max-width: 100%;
-
-                            h1,
-                            h2,
-                            h3 {
-                                position: relative;
-                                font-size: 1.95em;
-                                margin-top: -1rem;
-                                margin-bottom: 0;
-                            }
-
-                            p {
-                                padding-top: 0;
-                            }
-
-                            .button {
-                                &:not(:first-child) {
-                                    margin-top: 0.5rem;
-                                }
-                            }
-                        }
-                    }
-
-                }
-
-                @include media($desktop-and-smaller) {
-
-                    figcaption {
-                        > div {
-                            max-width: 85%;
-                        }
-                    }
-
-                    img {
-                        height: 100%;
-                    }
-
-                    figcaption {
-                        padding-top: 0;
-                        padding-bottom: 0;
-                    }
-                }
-            }
-        }
-      }
-
-    &.study-hub {
-        background-color: $white;
-
-        figure {
-            padding: $base-spacing 0;
-            color: $grey;
-            box-shadow: none;
-
-            p {
-                color: $grey;
-            }
-            
-            figcaption {
-                padding: $base-spacing $base-spacing * 1.5;
-
-                &:first-child {
-                    @include span-columns( 7 of 12,
-                    block-collapse);
-
-                    h1 {
-                        color: $green-light-victoria;
-                    }
-                }
-            }
-
-            &>:last-child {
-                border-left: 2px solid $grey-alto;
-                padding: $base-spacing $base-spacing * 1.5;
-                @include span-columns( 5 of 12,
-                block-collapse);
-
-                >h3 {
-                    color: $grey;
-                }
-                >ul {
-                    padding-left: 0;
-
-                    li {
-                        padding-left: 0;
-                        list-style: none;
-                        span {
-                            color: $green-light-victoria ;
-                            font-weight: $weight-bold;
-                        }
-                    }
-                }
-            }
-        }
+      background: transparent;
+      box-shadow: none;
     }
+  }
 
-    // half panels with green title and image above content
-    &.two-panels {
-        > div {
-            @include display(flex);
-        }
+  &.no-pattern {
+    background: $banner-background;
 
-        figure {
-            flex: 0 1 50%;
-            display: block;
+    figure {
+      background: transparent;
+      box-shadow: none;
+    }
+  }
 
-            img {
-                width: 100%;
+  &.white-bg {
+    background-color: $white;
 
-                &+figcaption {
-                    margin-top: -25%;
-                    background-color: #fff; 
-                    padding-top: 0;
-                    
-                    h1, h2 {
-                        margin-top: -1em;
-                    }
-                }
-            }
+    figure {
+      border: $border;
 
-            figcaption {
-                width: 100%;
-
-                h1, h2 {
-                    color: $white;
-                    background-color: $green-victoria;
-                    padding: 0.4em 0.5em;
-                    display: inline-block;
-                    margin-left: -0.5em;
-                }
-            }
-
-            &:first-child {
-                margin-right: 1em;
-            }
-
-        }
-
-        @include media($mobile-large-and-smaller ) {
-            > div {
-                flex-wrap: wrap;
-            }
-            figure {
-                flex: 0 1 100%;
-
-                img {
-                    width: 100%;
-    
-                    &+figcaption {
-                        margin-top: 0;
-                        padding-left: 1em;
-                    }
-                }
-
-                &:first-child {
-                    margin-right: 0;
-                }
-            }
-        }
+      @include breakpoint( $until: tablet ) {
+        border: 0;
+      }
     }
 
     &.dual-content {
-        > div {
-            
-            // box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15); can now be removed
+      .dual-content-block {
+        border: $border;
+
+        > * {
+          border: 0;
         }
-        .dual-content-block {
-            @include clearfix();
-            // box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);can now be removed
-            background-color: $white;
-            figure {
-                &:first-child {
-                    @include span-columns( 7 of 12,
-                            block-collapse);
-                    padding: $base-spacing * 1.5;
-                    box-shadow: none;
+      }
+    }
+  }
 
-                    @include media($mobile-large-and-smaller ) {
-                        @include span-columns( 12 of 12,
-                            block-collapse);
-                        padding: 0 0 $base-spacing 0;
-                    }
-
-                    figcaption {
-                        padding: 0;
-                        width: 100%;
-                    }
-                    
-                }
-
-                &:last-child {
-                     @include span-columns( 5 of 12, block-collapse);
-
-                     img {
-                        width: 100%;
-                     }
+  figure {
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    background: $white;
 
 
-                    figcaption {
-                        .play-button {
-                            position: absolute;
-                            right: 1rem;
-                            bottom: 1rem;
-                        }
-                    }
-                     @include media($mobile-large-and-smaller ) {
-                        @include span-columns( 12 of 12,
-                            block-collapse);
+    @include breakpoint( $until: tablet ) {
+      figcaption {
+        padding-bottom: $gap-vertical;
 
-                        figcaption {
-                            margin-bottom: 0;
-                        }
-                    }
-                }
-            }
-            
-        }
+        h1 { margin-top: $gap-vertical; }
+      }
     }
 
-    &.two-one-third {
-        > div {
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
+    @include breakpoint( tablet ) {
+      display: flex;
+      align-items: center;
+      box-shadow: $shadow-shallow;
 
+      // 60% text + 40% image
 
-            @include media($mobile-large-and-smaller) {
-                flex-direction: column;
+      figcaption {
+        z-index: $z-index-lower;
+        float: left;
+        padding: $gap-larger;
+        width: 60%;
 
-                >:first-child,
-                >:last-child {
-                    width: 100%;
-                }
-            }
+        p {
+          margin-bottom: 1.3em;
+          font-size: $h5-size;
+        }
+      }
 
-            &.half-panel {
-                
-                >:first-child {
-                    width: 100/3 * 2%;
-                    margin-right: 0;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-around;
+      img {
+        float: left;
+        width: 40%;
 
-                    @include media($tablet-and-smaller) {
-                        flex-direction: column;
-                        
-                        figcaption:first-child {
-                            width: 100%;
-                        }
-                    }
-                    
-                    >:first-child {
-                        width: 50%;
-                    }
+        + figcaption { margin-top: 0; }
+      }
 
-                   
+      &.two-thirds {
+          //@include span-columns(8 of 12);
+          //@include shift(2);
+          figcaption {
+              padding: $base-spacing;
+              //@include span-columns(4 of 8);
+              //@include shift(4);
+              background: $white;
+              position: relative;
+          }
 
-                }
-                >:last-child {
-                    width: 100/3 * 1%;
-                }
+          img {
+              position: absolute;
+              width: auto;
+              top: 0;
+              left: 0;
+              height: 100%;
+          }
+      }
 
-                @include media($mobile-large-and-smaller) {
-    
-                    >:first-child,
-                    >:last-child {
-                        width: 100%;
-                    }
-                }
-            }
-
+      &.photo,
+      &.pattern,
+      &.no-pattern {
+        figcaption {
+          z-index: $z-index-lower;
+          position: relative;
+          float: none;
+          margin: 0 auto;
+          padding: $gap-larger 0;
+          width: 100%;
+          max-width: $promo-max-width;
+          text-align: center;
         }
 
-        figure {
-            figcaption {
-                padding: 1.4em;
-            }
-
-            &:first-child {
-                width: 100/3 * 2%;
-                margin-right: $block-padding;
-
-                img {
-                    height: 100%;
-                    -o-object-fit: cover;
-                    object-fit: cover;
-                }
-            }
-
-            &:last-child {
-                width: 100/3 * 1%;
-
-                figcaption {
-                    width: 100%;
-                    text-align: right;
-                }
-            }
+        img {
+          @include background-image-cover;
         }
+      }
     }
 
-    // image with offset title and text on right
-    &.title-image {
-        background-color: $white;
-        > div {
-            display: flex;
-            align-items: center;
-        }
-        figure {
-            box-shadow: none;
-            padding: 1em;
-            @include span-columns( 5 of 12,
-            block-collapse);
-            flex: 1 0 auto;
+    &.photo figcaption {
+      h1,
+      h2,
+      h3,
+      h4,
+      p {
+        display: inline-block;
+        margin-bottom: .5em;
+        padding: .5rem 1rem;
+        color: $white;
+        background-color: rgba( 99, 166, 89, .9 );
+      }
+    }
 
-            img {
-                width: 100%;
+    //Research hub new panel, promo panel with left align grey text panel
+    &.photo {
+      &.left-text-panel {
+
+        figcaption {
+          max-width: $centered-max-width;
+
+          > div {
+            position: relative;
+            margin: $gap-triple $gap-horizontal $gap-double;
+            padding: 0 $gap-larger $gap-larger;
+            max-width: $text-readability-max-width;
+            background-color: $background-overlay-lightest;
+            box-shadow: $shadow-shallow;
+            text-align: left;
+
+            @include breakpoint( $until: tablet ) {
+              margin-bottom: $gap-content;
             }
-            figcaption {
-                position: absolute;
-                background-color: $green-victoria;
-                width: 100%;
-                max-width: 85%;
-                padding: 1em;
-                left: 0;
-                top: 2em;
 
-                h1,
-                h2,
-                h3 {
-                    color: $white;
-                    margin-bottom: 0;
-                }
+            h1,
+            h2,
+            h3 {
+              position: relative;
+              top: $bleed-larger;
+              margin-bottom: 0;
+              margin-left: $bleed-half;
+              padding: $gap-half $gap-horizontal;
+              background-color: $green-brand;
 
+              // IE 10+ fix bg not covering text
+              @media screen and ( -ms-high-contrast: active ), ( -ms-high-contrast: none ) {
+                float: left;
+              }
             }
-
-        }
-
-        section {
-            width: 100%;
-            padding: 1em 1em 1em 2em;
 
             p {
-                font-size: 1.2rem;
+              margin-bottom: $gap-content;
+              padding: 0;
+              background-color: transparent;
+              color: inherit;
             }
+          }
         }
 
-        @include media( $tablet-and-smaller) {
-
-            > div {
-                align-items: stretch;
-            }
-
-            figure {
-                display: flex;
-                flex-direction: column;
-
-                img {
-                    // position: absolute;
-                    // bottom: 5%;
-                    flex-shrink: 0;
-                    padding-left: 1em;
-                }
-
-                figcaption {
-                    // bottom: 6%;
-                    // top: unset;
-                    max-width: 94%;
-                    position: relative;
-                    order: -1;
-                    margin-right: auto;
-                    top: 0;
-                }
-            }   
-        }
-
-        @include media( $mobile-large-and-smaller) {
-
-            > div {
-                flex-direction: column;
-
-                figure {
-                    width: 100%;
-
-                    img {
-                        padding-left: 0;
-                    }
-
-                    figcaption {
-                        bottom: 0;
-                        max-width: 100%;
-                    }
-                }
-            }
-        }
-
-
+      }
     }
+  }
+
+
+
+  &.study-hub {
+      background-color: $white;
+
+      figure {
+          padding: $base-spacing 0;
+          color: $grey;
+          box-shadow: none;
+
+          p {
+              color: $grey;
+          }
+
+          figcaption {
+              padding: $base-spacing $base-spacing * 1.5;
+
+              &:first-child {
+                  //@include span-columns( 7 of 12,block-collapse);
+
+                  h1 {
+                      color: $green-light-brand;
+                  }
+              }
+          }
+
+          &>:last-child {
+              border-left: 2px solid $grey-alto;
+              padding: $base-spacing $base-spacing * 1.5;
+              //@include span-columns( 5 of 12,block-collapse);
+
+              >h3 {
+                  color: $grey;
+              }
+              >ul {
+                  padding-left: 0;
+
+                  li {
+                      padding-left: 0;
+                      list-style: none;
+                      span {
+                          color: $green-light-brand ;
+                          font-weight: $weight-bold;
+                      }
+                  }
+              }
+          }
+      }
+  }
+
+  // half panels with green title and image above content
+  &.two-panels {
+      > div {
+          display: flex;
+      }
+
+      figure {
+          flex: 0 1 50%;
+          display: block;
+
+          img {
+              width: 100%;
+
+              &+figcaption {
+                  margin-top: -25%;
+                  background-color: #fff;
+                  padding-top: 0;
+
+                  h1, h2 {
+                      margin-top: -1em;
+                  }
+              }
+          }
+
+          figcaption {
+              width: 100%;
+
+              h1, h2 {
+                  color: $white;
+                  background-color: $green-brand;
+                  padding: 0.4em 0.5em;
+                  display: inline-block;
+                  margin-left: -0.5em;
+              }
+          }
+
+          &:first-child {
+              margin-right: 1em;
+          }
+
+      }
+
+      @include breakpoint( $until: tablet ) {
+          > div {
+              flex-wrap: wrap;
+          }
+          figure {
+              flex: 0 1 100%;
+
+              img {
+                  width: 100%;
+
+                  &+figcaption {
+                      margin-top: 0;
+                      padding-left: 1em;
+                  }
+              }
+
+              &:first-child {
+                  margin-right: 0;
+              }
+          }
+      }
+  }
+
+  &.dual-content {
+    .dual-content-block {
+      @include clearfix;
+      background-color: $white;
+
+      > figure {
+        box-shadow: none;
+
+        // Left block
+        &:first-child {
+
+          figcaption {
+            @include size( 100% );
+            padding: 0;
+          }
+        }
+      }
+
+      .media {
+        img {
+          float: none;
+          width: 100%;
+        }
+
+        figcaption {
+          padding: $gap-box;
+          min-width: 14.5rem;
+
+          h4 {
+            margin-bottom: 0;
+            padding: 0 $gap-triple 0 0;
+          }
+        }
+
+        .play-button {
+          position: absolute;
+          top: 50%;
+          right: $gap-horizontal;
+          margin-top: -1.25em; // Half of the play buttons size
+        }
+      }
+
+      @include breakpoint( $until: tablet ) {
+        > figure {
+          &:first-child { // Left block
+            margin-bottom: $gap-vertical;
+          }
+        }
+
+        .media {
+          > a:before { display: none; } // Disable the video overlay
+
+          figcaption {
+            position: relative;
+            margin: 0;
+          }
+        }
+      }
+
+
+      @include breakpoint( tablet ) {
+        display: flex;
+        align-items: stretch;
+        box-shadow: $shadow-shallow;
+
+        > figure {
+          float: left;
+
+          &:first-child { // Left block
+            padding: $gap-larger;
+            width: 60%;
+          }
+
+          &:last-child { width: 40%; } // Right block
+        }
+
+        .media { align-self: center; }
+      }
+    }
+  }
+
+  &.two-one-third {
+      > div {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+
+
+          @include breakpoint( $until: tablet ) {
+              flex-direction: column;
+
+              >:first-child,
+              >:last-child {
+                  width: 100%;
+              }
+          }
+
+          &.half-panel {
+
+              >:first-child {
+                  width: 100/3 * 2%;
+                  margin-right: 0;
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-around;
+
+                  @include breakpoint( $until: desktop ) {
+                      flex-direction: column;
+
+                      figcaption:first-child {
+                          width: 100%;
+                      }
+                  }
+
+                  >:first-child {
+                      width: 50%;
+                  }
+
+
+
+              }
+              >:last-child {
+                  width: 100 / 3 * 1%;
+              }
+
+              @include breakpoint( $until: tablet ) {
+
+                  >:first-child,
+                  >:last-child {
+                      width: 100%;
+                  }
+              }
+          }
+
+      }
+
+      figure {
+          figcaption {
+              padding: 1.4em;
+          }
+
+          &:first-child {
+            margin-right: $gap-horizontal;
+            width: 100 / 3 * 2%;
+
+            img {
+                height: 100%;
+                object-fit: cover;
+            }
+          }
+
+          &:last-child {
+              width: 100/3 * 1%;
+
+              figcaption {
+                  width: 100%;
+                  text-align: right;
+              }
+          }
+      }
+  }
+
+  // image with offset title and text on right
+  &.title-image {
+    background-color: $white;
+
+    // 1st column
+    figure {
+      overflow: visible;
+      box-shadow: none;
+
+      img {
+        width: 100%;
+        flex-shrink: 0; // IE11 FIX to prevent the image to stretch vertically
+      }
+
+      figcaption {
+        margin: 0;
+        padding: 1em;
+        width: 100%;
+        background-color: $green-brand;
+
+        h1,
+        h2,
+        h3 {
+          margin-bottom: 0;
+          color: $white;
+        }
+      }
+    }
+
+    // 2nd column
+    section {
+      width: 100%;
+
+      p { font-size: 1.2rem; }
+    }
+
+    @include breakpoint( desktop ) {
+      figure figcaption {
+        position: absolute;
+        top: 10%;
+        left: 0;
+        margin-left: $bleed-horizontal / 2;
+        max-width: 90%;
+      }
+    }
+
+    @include breakpoint( tablet ) {
+      > div {
+        display: flex;
+        align-items: center;
+      }
+
+      figure { width: 40%; }
+
+      section {
+        padding-left: $gap-vertical;
+        width: 60%;
+      }
+    }
+
+    @include breakpoint( $until: desktop ) {
+      figure {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+    }
+
+    @include breakpoint( $until: tablet ) {
+      figure {
+        margin-bottom: $gap-content;
+      }
+    }
+
+  }
 }
 
 .promo {
@@ -609,21 +566,27 @@ $promo-max-width:   60em;
 }
 
 .text-promo-panel {
-  padding: 1.5em 0;
-  border-bottom: $base-border;
+border-bottom: $border;
 
-  .text-wrap {
-    // font-size: 1.125em;
-    @include media( $tablet-and-bigger) {
-        @include span-columns(6 of 8);
+  @include breakpoint( tablet ) {
+    padding: $gap-vertical 0;
+
+    .text-wrap {
+      float: left;
+      width: 70%;
+    }
+
+    .button-wrap {
+      float: left;
+      margin-top: 2.5rem;
+      padding-left: $gap-horizontal;
+      width: 30%;
     }
   }
 
-  .button-wrap {
-    margin-top: 2.5em;
-    @include media( $tablet-and-bigger) {
-      @include span-columns(2 of 8);
-    }
+
+  @include breakpoint( $until: tablet ) {
+    .text-wrap { margin-bottom: $gap-content; }
   }
 
   // TODO: Move into its standalone .promo-video class
@@ -631,10 +594,13 @@ $promo-max-width:   60em;
 
     // Figure
     .media .outside {
-      position: relative; top: auto; left: auto;
+      position: relative;
+      top: auto;
+      left: auto;
+      margin-top: 0;
+      margin-bottom: 0;
       width: 100%;
       max-width: 100%;
-      margin-bottom: 0;
     }
 
     .outside {
@@ -649,4 +615,3 @@ $promo-max-width:   60em;
 
   }
 }
-

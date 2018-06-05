@@ -1,20 +1,19 @@
 
 
 /** Embedded media (images, videos, galleries etc.) */
-
 .media {
 
   // Floats a medium into right on devices with higher resolution
   &.inline {
 
-    @include media( $tablet-and-bigger ){
+    @include breakpoint( tablet ) {
       float: right;
-      width: $media-inline-width;
       margin: 0 0 0 $base-spacing;
+      width: $media-inline-width;
 
       figcaption {
         font-size: 90%;
-        border-left-width: $highlight-border-width * .75;
+        border-left-width: $border-width-medium;
       }
     }
   }
@@ -23,20 +22,20 @@
   iframe,
   .table-container,
   .embed {
+    @include size( 100%, auto );
     float: none;
     display: block;
     margin-bottom: .5em;
-    @include size( 100% auto );
 
     &:last-child { margin-bottom: $base-spacing; }
   }
 
   figcaption {
     display: block;
-    padding: .2em 0 .2em .8em;
-    border-left: $strip-light;
-    color: $black-emperor;
     margin-bottom: $base-spacing;
+    padding: .2em 0 .2em .8em;
+    border-left: $border-strip-highlight;
+    color: $black-emperor;
   }
 
   .formatting .grid &.featured img {
@@ -49,251 +48,232 @@
 
     img { margin-bottom: 0; }
 
-    &:before {
-      content: "";
-      display: block;
-      position: absolute;
-      background-color: rgba($black, 0.4);
-      transition: background-color 200ms ease-in-out;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 1;
-      pointer-events: none;
-    }
+    a {
+      @include before( $display: block, $position: absolute ) {
+        z-index: $z-index-lower;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: $background-overlay-darken;
+        transition: background-color 200ms ease-in-out;
+      }
 
-    &:hover:before {
-      background-color: rgba($black, .2);
+      @include hoverify {
+        &::before {
+          background-color: rgba( $black, .2 );
+        }
+      }
     }
 
     //TODO: extend .tile-text
     figcaption {
-      z-index: 1;
-      background-color: $green-victoria;
-      // color: $white;
-      border-left: none;
+      z-index: $z-index-lower;
+      background-color: $green-brand;
+      border-left: 0;
 
-      @include media( $tablet-and-bigger ){
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p {
+        display: flex;
+        align-items: center;
+        padding: .5em;
+        color: $white;
+      }
+
+      p { margin-bottom: 1.3em; }
+
+      @include breakpoint( tablet ) {
         position: absolute;
         top: $base-spacing;
         left: $base-spacing;
         width: 66%;
         max-width: 20rem;
       }
-
-      h1, h2, h3, h4, h5, h6, p{
-        color: $white;
-        display: flex;
-        align-items: center;
-        padding: .5em;
-      }
-
-      p { margin-bottom: 1.3em; }
-
     }
   }
 }
 
 
-  // To wrap iframed media dynamically
-  .embed {
-      height: 0;
-      padding: 0 0 56.25%; //16:9 ratio magic; use different wrapper for other ratio embeds?
-      position: relative;
-      margin-bottom: $base-spacing;
+// To wrap iframed media dynamically
+.embed {
+  @include clearfix;
+  position: relative;
+  margin-bottom: $base-spacing;
+  padding: 0 0 56.25%; //16:9 ratio magic; use different wrapper for other ratio embeds?
+  height: 0;
 
-      iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-
-      @include clearfix;
-
-
-      @include media( $tablet-and-bigger ){
-        &.inline {
-          padding-bottom: 22.5%;
-        }
-      }
+  iframe {
+    @include size( 100%, 100% );
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 
+  @include breakpoint( tablet ) {
+    &.inline { padding-bottom: 22.5%; }
+  }
+}
 
-  /** Simple gallery (images + breadcrumbs) */
 
-  $gallery-image-height: rem( 220px );
+/** Simple gallery (images + breadcrumbs) */
+
+$gallery-image-height: 13.75rem;
 
 
-  @include media( $tablet-and-bigger ){
+@include breakpoint( tablet ) {
+  .gallery {
+    @include clearfix;
+    margin-bottom: $base-spacing;
 
-    .gallery {
-      margin-bottom: $base-spacing;
-      @include clearfix;
+    img {
+      @include size( auto, $gallery-image-height );
+    }
 
-      img {
-        @include size( auto $gallery-image-height );
+    figcaption {
+      margin-bottom: 0;
+      font-size: 85%;
+      border-left-width: 3px;
+    }
+
+    .media {
+      display: inline-block;
+      margin-right: 1.2rem;
+      margin-bottom: 1.2rem;
+      width: min-content; // Not supported in IE and older browsers!
+      vertical-align: top;
+    }
+  }
+}
+
+// Using only image list with floats
+.gallery-container {
+  margin: 1em 0;
+
+  @include hoverify() {
+    h2,
+    h3,
+    h4 {
+      text-decoration: underline !important; //TODO: Remove !important
+    }
+  }
+
+  img { max-width: 100%; }
+
+  .gallery {
+    position: relative;
+
+    .gallery-title {
+      z-index: $z-index-top;
+      position: absolute;
+      top: 1.5em;
+      padding-right: 3em;
+      max-width: 55%;
+      background-color: rgba( $green-brand, .9 );
+
+      h2,
+      h3,
+      h4 {
+        margin-bottom: .5em;
+        color: $white;
+        text-decoration: none;
       }
 
-      figcaption {
-        margin-bottom: 0;
-        font-size: 85%;
-        border-left-width: 3px;
+      h4 { opacity: .9; }
+
+      @include breakpoint( $until: desktop ) {
+        max-width: 85%;
+      }
+    }
+
+    &.thumbnails {
+      .gallery-images {
+        @include clearfix();
+
+        img {
+          //TODO: Refactor heavily (use flex etc.)
+          @include size( 24%, auto );
+          float: left;
+
+          &:first-child {
+            @include size( 50%, auto );
+            margin-right: 1%;
+          }
+
+          &:nth-child( n+6 ) {
+            display: none;
+          }
+
+          &:nth-child( 2 ),
+          &:nth-child( 3 ) {
+            margin-bottom: 1%;
+          }
+
+          &:nth-child( 2 ),
+          &:nth-child( 4 ) {
+            margin-right: 1%;
+          }
+        }
+
+        //TODO: Refactor the depth and flatten!
+        @include breakpoint( $until: tablet ) {
+          img {
+            margin-right: 0;
+            margin-bottom: 0;
+
+            &:first-child {
+              margin-bottom: 1%;
+              width: 100%;
+            }
+
+            &:nth-child( n+2 ):nth-child( -n+4 ) {
+              margin-right: 1.33%;
+            }
+
+            &:nth-child( 2 ),
+            &:nth-child( 3 ) {
+              margin-bottom: 0;
+            }
+          }
+        }
+
+      }
+    }
+
+    &.single-feature {
+      .gallery-title {
+        max-width: 45%;
+
+        @include breakpoint( $until: desktop ) {
+          max-width: 85%;
+        }
       }
 
-      .media {
-        vertical-align: top;
-        display: inline-block;
-        width: min-content; // Not supported in IE and older browsers!
-        margin-right: 1.2rem;
-        margin-bottom: 1.2rem;
+      .gallery-images {
+        img {
+          height: auto;
+
+          &:not(:first-child) { display: none; }
+        }
       }
     }
 
   }
+}
 
-    // Using only image list with floats
+//TODO: Refactor! Static files has to be part of the UI library!
+// Image gallery mobile and tablet nav icons fix -- move to gallery assest
+@media (-webkit-min-device-pixel-ratio: 1.1), (-webkit-min-device-pixel-ratio: 1.09375), (min-resolution: 105dpi), (min-resolution: 1.1dppx) {
 
-    .gallery-container {
-      margin: 1em 0;
+  .pswp--svg .pswp__button, .pswp--svg .pswp__button--arrow--left:before, .pswp--svg .pswp__button--arrow--right:before {
+    background-image: url(http://www.victoria.ac.nz/__data/assets/image/0014/302351/default-skin.png) !important;
+  }
 
-      @include hoverify() {
-        h2,h3,h4 {
-          text-decoration: underline !important;
-        }
-      }
-
-      img {
-        max-width: 100%;
-      }
-      .gallery {
-        position: relative;
-
-        .gallery-title {
-          position: absolute;
-          top: 1.5em;
-          background-color: rgba($green-victoria, 0.9);
-          max-width: 55%;
-          padding-right: 3em;
-          z-index: $z-index-top;
-
-          h2,h3,h4 {
-            color: $white;
-            margin-bottom: 0.5em;
-            text-decoration: none;
-          }
-          h4 {
-            opacity: 0.9;
-          }
-
-          @include media( $tablet-and-smaller ) {
-            max-width: 85%;
-          }
-        }
-        &.thumbnails {
-
-          & .gallery-images {
-            @include clearfix();
-            // height: auto;
-            img {
-              // ************ Try widths with neat.. 
-              width: 24%; 
-              // @include span-columns( 3 of 12, block-collapse );
-              height: auto;
-              float: left;
-
-              &:first-child {
-                width: 50%;
-                margin-right: 1%;
-
-                // @include span-columns( 6 of 12, block-collapse );
-                height: auto;
-              }
-
-              &:nth-child(n+6) {
-                display: none;
-              }
-
-              &:nth-child(2),
-              &:nth-child(3) {
-                margin-bottom: 1%;
-              }
-              &:nth-child(2),
-              &:nth-child(4) {
-                margin-right: 1%;
-              }
-            }
-            @include media($tablet-and-smaller) {
-
-              img {
-                // &:first-child {
-                //   width: 100%;
-                //   margin-bottom: 1%;
-                // }
-              }
-
-            }
-
-            @include media( $mobile-large-and-smaller ) {
-              // background-color: red;
-
-              img {
-                
-                margin-right: 0;
-                margin-bottom: 0;
-
-                &:first-child {
-                  width: 100%;
-                  margin-bottom: 1%;
-                }
-
-                &:nth-child(n+2):nth-child(-n+4) {
-                  margin-right: 1.33%;
-                }
-
-                &:nth-child(2),
-                &:nth-child(3) {
-                  margin-bottom: 0;
-                }
-              }
-            }
-            
-          }
-
-        }
-
-        &.single-feature {
-          .gallery-title {
-            max-width: 45%;
-            
-            @include media( $tablet-and-smaller ) {
-              max-width: 85%;
-            }
-          }
-          .gallery-images {
-            img {
-              height: auto;
-
-              &:not(:first-child) {
-                display: none;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    // Image gallery mobile and tablet nav icons fix -- move to gallery assest 
-    @media (-webkit-min-device-pixel-ratio: 1.1), (-webkit-min-device-pixel-ratio: 1.09375), (min-resolution: 105dpi), (min-resolution: 1.1dppx) {
-    .pswp--svg .pswp__button, .pswp--svg .pswp__button--arrow--left:before, .pswp--svg .pswp__button--arrow--right:before {
-        background-image: url(http://www.victoria.ac.nz/__data/assets/image/0014/302351/default-skin.png) !important;
-    }
-
-      .pswp__button.pswp__button--fs {
-        display: none !important;
-      }
-    
-    }
-  
+  .pswp__button.pswp__button--fs {
+    display: none !important;
+  }
+}

@@ -1,14 +1,26 @@
+/*============================================================================*\
+| GENERIC LISTINGS
+\*============================================================================*/
+
+////
+/// Definitions of listings of things (e.g. list of articles, images etc.).
+///
+/// @group lists
 
 
-  /* ===== GENERAL LISTINGS =================================================== */
-
-  $article-item-max-width: $base-max-content-height;
 
 
-  /** Generic holder for list of all article-like overviews. */
-  .articles-container {
 
-    // .formatting resets
+/*= ARTICLES LISTING =========================================================*/
+
+
+/** Generic holder for list of all article-like overviews. */
+$article-item-max-width: 49.5rem; // This is a maximum treshold for a good readability
+
+.articles-container {
+
+  .formatting & {
+    // Set resets if used within .formatting
     > ul,
     > ul > li {
       padding-left: 0;
@@ -16,99 +28,88 @@
     }
 
     article { margin-bottom: 0; }
-    // End of resets
 
-    @include media( $tablet-and-bigger ){
-      margin: 0 auto;
-      max-width: $article-item-max-width;
+    &:not(:last-child) {
+      margin-bottom: $gap-double;
     }
+  }
 
-    > header { margin: $base-spacing 0; }
 
-    > ul {
-      @include clearfix;
+  // Add shadows & background when inside highlighted panel
+  .panel & {
+    background-color: $white;
+    box-shadow: $shadow-shallowest;
+  }
 
-      > li {
-        @include clearfix();
-        padding-bottom: $base-spacing;
-        margin-bottom: $base-spacing;
-        border-bottom: 1px solid $grey-alto;
-        list-style: none;
 
-        &:last-child {
-          margin-bottom: 0;
-          border-bottom: none;
-        }
-      }
-    }
+  @include breakpoint( tablet ) {
+    margin: 0 auto;
+    max-width: $article-item-max-width;
+  }
 
-    .summary {
-      h1,
-      h2,
-      h3,
-      h4,
-      h5 {
-        margin-bottom: .25em;
-      }
+  > header {
+    display: flex;
+    align-items: center;
+    margin: 0 0 $gap-vertical;
 
-      time,
-      p {
-        margin-bottom: .7em;
-      }
+    h2 { flex-grow: 1; }
+  }
 
-      p:last-child { margin-bottom: 0; }
-    }
+  > ul {
+    @include clearfix;
 
-    .media {
-      img,
-      iframe {
-        margin-bottom: 0;
+    // Items
+    > li {
+      @include clearfix();
+
+      &:not(:last-child) {
+        margin-bottom:  $gap-vertical;
+        padding-bottom: $gap-vertical;
+        border-bottom:  $border; // Items separator
       }
     }
   }
 
-  // Display .articles-container side by side on desktop and bigger - for use with news and events
-  .articles-two-up {
-
-    // grey bg panels
-    &.panel {
-      background-color: $grey-gallery;
-      padding: $block-padding;
-
-      .articles-container {
-        background-color: $white;
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
-      }
+  // Item's overview
+  // TODO: Move to components/molecules
+  .summary {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin-bottom: $gap-small;
     }
 
-    // panels split by dividing line
-    &.divider-line {
-      position: relative;
-
-      @include media( $desktop-and-bigger ) {
-        &:before {
-          @include objectify();
-          @include size( 0 100% );
-          position: absolute;
-          left: calc(50% - 5px);
-          top: 0;
-          border-left: 5px solid $grey-gallery;
-        }
-      }
+    time,
+    p {
+      margin-bottom: $gap-half;
     }
 
-    > .centraliser {
+    p:last-child { margin-bottom: 0; }
+  }
 
-    }
-    
-    .articles-container {
-
-      @include media( $desktop-and-bigger ) {
-
-
-        @include span-columns( 6 of 12 );
-        @include omega( 2n ); 
-      }
-
+  .media {
+    img,
+    iframe {
+      margin-bottom: 0;
     }
   }
+}
+
+
+
+
+
+/*= TEXTS LISTING ============================================================*/
+
+
+.grid {
+  // Remove the gap to conserve the continuity of the list (especially on mobile devices).
+  > ul { margin-bottom: 0; }
+}
+
+
+
+
+

@@ -1,10 +1,11 @@
-
-/** Advanced list */
+/*==========================================
+=              CONTENT LISTS               =
+==========================================*/
 
 ul.complex-list {
-
-  // .formatting reset
+  // .formatting resets //TODO: Can it be refactored (or ideally removed)?
   padding-left: 0;
+  width: 100%;
 
   > li {
     margin-bottom: 0;
@@ -13,43 +14,47 @@ ul.complex-list {
   }
   // End of resets
 
-  width: 100%;
-
   > li {
     @include clearfix;
-    display: table;
-    width: 100%;
+    display: table; // Fallback for non-flex browsers
+    display: flex;
+    align-items: center;
     padding: .8rem .1rem;
+    width: 100%;
     line-height: 1.2;
-    border-bottom: 1px solid $grey-alto; //TODO: Make it $base-border
+    border-bottom: $border;
   }
 
   .caption,
   .description {
-    vertical-align: middle;
+    vertical-align: middle; // Fallback for non-flex browsers
   }
 
   .caption {
-    @include span-columns( 9, table );
-    padding-right: 1.6rem;
+    float: left;
+    padding-right: $gap-horizontal;
+    width: 75%;
 
     > span {
-      margin-right: .35em;
-      color: $grey;
+      margin-right: $gap-small;
+      color: $text-weakest-color;
     }
   }
 
   .description {
-    @include span-columns( 3, table );
+    float: left;
+    width: 25%;
 
     > em {
       font-style: normal;
-      color: $black-emperor;
-      font-size: rem( 14px );
+      color: $text-weaker-color;
+      font-size: $text-size-smaller;
     }
   }
 
-  @include media( $mobile-large-and-smaller ){
+  @include breakpoint( $until: tablet ) {
+    > li { display: block; }
+
     .caption,
     .description {
       display: block;
@@ -57,56 +62,39 @@ ul.complex-list {
     }
 
     .caption {
+      margin-bottom: $gap-half;
       padding-right: 0;
-      margin-bottom: .35em;
     }
   }
 }
 
 // Basic list
 
- $widgetbar-heading-font-size:    scale-heading( 2 );
+$widgetbar-heading-font-size: $h4-size;
 
 .list {
   h2 {
-      font-size: $widgetbar-heading-font-size;
+    @include separator-strip;
+    font-size: $widgetbar-heading-font-size;
+  }
 
-      // Pre-heading delimiting line
-      &:before {
-        @include objectify( block );
-        margin-bottom: .35rem;
-        @include size( 2rem rem( 3px ) );
-        background-color: $base-heading-color;
-      }
-
-    }
-
-    &.publications {
+  &.publications {
     li {
 
-      > * {
-        margin-bottom: 0.3em;
-      }
+      > * { margin-bottom: .3em; }
 
-      .label {
-        margin-left: 0.5em;
-      }
+      a { display: inline-block; }
 
-      a {
-        display: inline-block;
-      }
+      .label { margin-left: .5em; }
 
       .pub-author {
-        font-size: 0.9em;
+        font-size: $text-size-smaller;
         line-height: 1.2;
       }
     }
 
     aside & {
-      li {
-        padding: 0.53rem 0.1em;        
-      } 
+      li { padding: .53rem .1em; }
     }
   }
 }
-    

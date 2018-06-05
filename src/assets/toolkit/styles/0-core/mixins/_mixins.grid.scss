@@ -1,0 +1,74 @@
+/*============================================================================*\
+| GRID-RELATED MIXINS
+\*============================================================================*/
+
+////
+/// @group grid
+
+
+
+/// **Important**: If you need a gutter in your *regular* grid, use @bourbon-neat's mixins, see: https://neat.bourbon.io/docs/latest/
+
+
+
+/*= REGULAR GRID WITHOUT GUTTER ==============================================*/
+
+
+/// @access public
+///
+/// @argument {number} $columns-count - Number of maximum columns within a row.
+/// @argument {size (with units)} $space [0] -
+///   Any margin (space) in between two neighbouring columns.
+///
+/// @example scss
+/// .two-column-grid {
+///   .column {
+///     @include column( 2 );
+///   }
+/// }
+///
+/// // ^ Renders a two column grid, where every .column will have **exactly**
+/// // 50% width.
+///
+/// @example scss
+/// .five-column-grid {
+///   .column {
+///     @include column( 5, 1rem );
+///   }
+/// }
+///
+/// // ^ Renders a regular grid with 5 columns, where all columns will have
+/// // 1rem space in between each other (with no space on the edges of the grid
+/// // and a width of `20% - .5rem`.
+@mixin column(
+  $columns-count,
+  $space: 0,
+) {
+  float: left;
+
+  @if $space == 0 { width: 100% / $columns-count; }
+  @if $space != 0 {
+    width: calc( #{ 100% / $columns-count } - #{ ( ( $columns-count - 1 ) * $space ) / $columns-count } );
+  }
+
+  &:nth-child(#{$columns-count}n+1) { clear: left; }
+
+  @if $space != 0 {
+    // Every column except the left-edge one
+    &:not(:nth-child(#{$columns-count}n+1)) {
+      margin-left: $space / 2;
+    }
+  }
+
+
+  @if $space != 0 {
+    // Every column except the right-edge one
+    &:not(:nth-child(#{$columns-count}n+0)) {
+      margin-right: $space / 2;
+    }
+  }
+}
+
+
+
+

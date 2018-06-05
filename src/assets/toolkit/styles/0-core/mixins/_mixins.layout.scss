@@ -1,0 +1,205 @@
+/*============================================================================*\
+| LAYOUT-RELATED MIXINS
+\*============================================================================*/
+
+////
+/// @group layout
+
+
+
+
+
+
+
+/*= SIZING ===================================================================*/
+
+
+/// Sets the `width` and `height` of the element in one statement.
+///
+/// @argument {number (with unit) | string} $width
+///
+/// @argument {number (with unit) | string} $height [$width]
+///
+/// @example scss
+///   .first-element {
+///     @include size(2em);
+///   }
+///
+///   // CSS Output
+///   .first-element {
+///     width: 2em;
+///     height: 2em;
+///   }
+///
+/// @example scss
+///   .second-element {
+///     @include size(auto, 10em);
+///   }
+///
+///   // CSS Output
+///   .second-element {
+///     width: auto;
+///     height: 10em;
+///   }
+///
+/// @require {function} _is-size
+
+@mixin size(
+  $width,
+  $height: $width
+) {
+  @if _is-size($height) {
+    height: $height;
+  } @else {
+    @error '`#{$height}` is not a valid length for the `$height` argument ' +
+      'in the `size` mixin.';
+  }
+
+  @if _is-size($width) {
+    width: $width;
+  } @else {
+    @error '`#{$width}` is not a valid length for the `$width` argument ' +
+      'in the `size` mixin.';
+  }
+}
+
+
+
+
+
+/*= BASE STYLES ==============================================================*/
+
+
+/// Generates a basic elements-only boilerplate for standardised layouts.
+///
+/// @require {mixin} bp-mobile
+/// @require {mixin} bp-mobile-large
+/// @require {mixin} bp-tablet
+/// @require {mixin} bp-desktop
+/// @require {mixin} bp-desktop-large
+
+@mixin add-base-layout() {
+  html {
+    height: 100%;
+
+    // Scale the ratio based on properties from `_variables.responsive.scss`
+    @if ( $mobile-layout-percentage != '100%' ) {
+      @include bp-mobile() {
+        font-size: $mobile-layout-percentage;
+      }
+    }
+
+    @if ( $mobile-large-layout-percentage != '100%' ) {
+      @include bp-mobile-large {
+        font-size: $mobile-large-layout-percentage;
+      }
+    }
+
+    @if ( $tablet-layout-percentage != '100%' ) {
+      @include bp-tablet {
+        font-size: $tablet-layout-percentage;
+      }
+    }
+
+    @if ( $desktop-layout-percentage != '100%' ) {
+      @include bp-desktop {
+        font-size: $desktop-layout-percentage;
+      }
+    }
+
+    @if ( $desktop-layout-percentage != '100%' ) {
+      @include bp-desktop-large {
+        font-size: $desktop-large-layout-percentage;
+      }
+    }
+
+    // Sticky footer
+    @if ( $layout-sticky-footer ) {
+      body {
+        display:        flex;
+        min-height:     100%;
+        flex-direction: column;
+
+        > footer { overflow: hidden; } // IE11+ extra margin after flex-box fix
+      }
+    }
+
+  }
+}
+
+
+
+
+
+/*= SPACING ==================================================================*/
+
+
+/// Sets 'top' and 'bottom' paddings on the object.
+///
+/// @argument {number (with unit)} [$gap-vertical] $vertical-padding
+///
+@mixin paddings-vertical ( $vertical-padding: $gap-vertical ) {
+  padding-top:    $vertical-padding;
+  padding-bottom: $vertical-padding;
+}
+
+
+/// Sets 'left' and 'right' paddings on the object.
+///
+/// @argument {number (with unit)} [$gap-horizontal] $horizontal-padding
+///
+@mixin paddings-horizontal ( $horizontal-padding: $gap-horizontal ) {
+  padding-right: $horizontal-padding;
+  padding-left:  $horizontal-padding;
+}
+
+
+/// Sets all paddings on the object.
+///
+/// @argument {number (with unit)} [$gap] $padding
+///
+@mixin padding( $padding: $gap ) {
+  padding: $padding;
+}
+
+
+/// Sets 'top' and 'bottom' margins on the object.
+///
+/// @argument {number (with unit)} [$gap-vertical] $vertical-margin
+///
+@mixin margins-vertical ( $vertical-margin: $gap-vertical ) {
+  margin-top:    $vertical-margin;
+  margin-bottom: $vertical-margin;
+}
+
+
+/// Sets 'left' and 'right' margins on the object.
+///
+/// @argument {number (with unit)} [$gap-horizontal] $horizontal-margin
+///
+@mixin margins-horizontal ( $horizontal-margin: $gap-horizontal ) {
+  margin-right: $horizontal-margin;
+  margin-left:  $horizontal-margin;
+}
+
+
+/// Sets all margins on the object.
+///
+/// @argument {number (with unit)} [$gap] $margin
+///
+@mixin margin( $margin: $gap ) {
+  margin: $margin;
+}
+
+
+/// Sets a negative offset to the horizontal margins to compensate parent
+/// object's paddings.
+///
+/// @argument {number (with unit)} [$bleed-horizontal] $bleed
+///
+@mixin bleed-horizontal( $bleed: $bleed-horizontal ) {
+  margin-left:   $bleed-horizontal;
+  width:         calc( 100% + #{ -2 * $bleed } );
+}
+
+

@@ -1,0 +1,76 @@
+/*==================================================
+=                APP-SPECIFIC MIXINS               =
+==================================================*/
+
+
+/*******************************************************************************
+
+  Application-specific mixins collection.
+
+  As a rule of thumb, only mixins that are re-used by multiple objects,
+  components or trumps should be placed here.
+
+/*******************************************************************************/
+
+
+/** Single menu/submenu item */
+
+//faux padding for border-bottom to go across all nav even for indented elements
+//(think child pages in the nav)
+$faux-spacing: 10rem;
+
+@mixin menu-item {
+  position: relative;
+  display: block;
+  margin-left: -$faux-spacing;
+  padding: .6em 1rem .6em $faux-spacing + 1rem;
+
+  font-family: $heading-family;
+  line-height: 1.35;
+  color: $white;
+
+  border-bottom: 1px solid $green-bottle;
+  cursor: pointer;
+
+  @include breakpoint( $until: tablet ) {
+    &.home,
+    &.back {
+      background: $black-brand !important;
+      color: #B4B3B3;
+    }
+  }
+
+  &.hide {
+    display: none;
+    text-align: center;
+  }
+
+  &.selected,
+  &:hover,
+  &:focus {
+    background-color: rgba( #000, .15 );
+  }
+
+  &.selected {
+    border-bottom: 0;
+    font-weight: $weight-semibold;
+
+    // Strip item highlight
+    &::before {
+      @include objectify( block, $position: absolute );
+      top: .5rem;
+      bottom: .5rem;
+      margin-left: -.625rem;
+      width: .25rem;
+      background: $white;
+    }
+  }
+}
+
+
+/// Shortcut mixin to add -> icon into the element.
+@mixin icon-arrow-right() {
+  @include extend-icon-after( arrow-right ) {
+    top: 0;
+  }
+}

@@ -1,283 +1,235 @@
-// ========================================
-// ======== Tile elements
-// ========================================
-//---- Settings ---
-$gutter: 1em; //px?! why not em? - irwinna 3/8/17
-// ----------------
-// -------------------------
-// ------------------------
-// - The gerneic tile grid
-// - Used for the new Study-areas and Degrees & Qualifactions block - irwinna 3/8/17
-// ------------------------
+// Tile(s)
+$tile-height:                12.5rem;
+$background-color:           $grey-gallery; //Used for borders to stop elements moving on hover
+$blue-hover-shade:           #405E85;
 
-/** Custom dolors */
-$background-color: $grey-gallery; //Used for borders to stop elements moving on hover
-$blue-hover-shade: tint($blue-st-tropaz, 40%);
-$tile-active-shade: #e3e3e3;
+// Grid styles
+$grid-tile-spacing:          $gap-half;
+$grid-tile-spacing-large:    $gap;
 
+$grid-tile-padding-vertical: 1rem;
+$grid-tile-hover-border-width: $border-width-thick;
 
-$tile-height: rem( 200px);
+// colour for study hub - study page
+$base-study-hub-colour--study: $green-light-brand;
 
-//MIXIN - for shared text element across grid-tile and strip-tiles
+//FIXME: Simplify and refactor tiles into simpler and more manageable structure
 
-%extend-tile-text {
-  a {
-        padding: 16px;
-        height: 100%;
-        
-        display: block;
-        border: 4px solid $white;
-        border-left: none;
-       
-        &:hover {
-          opacity: 1;
-          // padding-top: 12px;
-          border: 4px solid $blue-st-tropaz;
-          border-left: none;
-
-
-          h2, h3, p, i, span, q {
-            color: $blue-st-tropaz;
-          }
-
-          h4, {
-            color: $blue-hover-shade;
-          }
-
-          .sub-text {
-            border-left: 2px solid $blue-hover-shade;
-          }
-          &:active {
-            background-color: $tile-active-shade;
-          } 
-
-        }
-        .sub-text {
-          border-left: 2px solid $grey-silver;
-          padding-left: 0.5em;
-        }
-
-        h2,
-        h4,
-        p, 
-        i {
-          padding: 0;
-          margin: 0;
-          line-height: 1.2;
-        }
-        
-        h2 {
-          font-size: 1.3em;
-          color: $black-tundora;
-          margin-bottom: 0.25em;
-        }
-
-        h3 {
-          color: $black-tundora;
-          margin-bottom: 0.25em;
-        }
-
-        h4 {
-          color: $grey-silver-chalice;
-        }
-       
-        p {
-          line-height: 1.5;
-          font-size: 1em;
-          color: $grey-dove;
-        }
-        
-      }
-}
 
 .tiles-panel {
   background-color: $background-color;
 
-  &.hidden {
-    display: none;
+  .sector + &,
+  .separated + & {
+    margin-top: -.0625rem;
+  }
+
+  + .promo-panel:not(.white-bg) .centraliser { border-top: $border; }
+
+  &.hidden { display: none; }
+}
+
+
+// Shared text element across grid-tile and strip-tiles.
+.updated-tile-grid,
+.tile-strip-grid {
+  li.tile {
+    a {
+      display: block;
+      padding: $grid-tile-padding-vertical $gap-half;
+      height: 100%;
+      border-left: $grid-tile-hover-border-width solid $green-brand;
+
+      @include hoverify {
+        padding-top: ( $grid-tile-padding-vertical - $grid-tile-hover-border-width );
+        padding-right: ( $gap-half - $grid-tile-hover-border-width );
+        padding-bottom: ( $grid-tile-padding-vertical - $grid-tile-hover-border-width );
+        opacity: 1;
+        border: $grid-tile-hover-border-width solid $blue-st-tropaz;
+
+        h2,
+        h3,
+        p,
+        i,
+        span,
+        q {
+          color: $blue-st-tropaz;
+        }
+
+        h4 { color: $blue-hover-shade; }
+
+        .sub-text { border-left: $border-width-small solid $blue-hover-shade; }
+      }
+
+      h2,
+      h4,
+      p,
+      i {
+        margin: 0;
+        padding: 0;
+        line-height: 1.2;
+      }
+
+      h2 {
+        margin-bottom: .25em;
+        font-size: $h4-size;
+        color: $black-tundora;
+      }
+
+      h3 {
+        margin-bottom: .25em;
+        color: $black-tundora;
+      }
+
+      h4 { color: $text-weaker-color;; }
+
+      p {
+        line-height: $text-line-height;
+        font-size: 100%;
+        color: $grey-dove;
+      }
+
+      .sub-text {
+        margin-bottom: $gap-content;
+        padding-left: $gap-half;
+        border-left: $border-width-small solid $border-color-light;
+      }
+    }
   }
 }
 
+
 .updated-tile-grid {
-  @include outer-container(100%);
+  > h2,
+  > p {
+    margin-bottom: $gap-content;
+  }
 
   .tiles-wrap {
-    @include fill-parent();
-    margin-top: 1rem;
-
-    >ul {
+    > ul {
       @include clearfix;
       display: block;
     }
 
-    
-    
     li.tile {
-      
-      height: auto;
-      background-color: $white;
-      box-shadow: $base-shadow;
-      border-left: 4px solid $green-victoria;
-      float: left;
       overflow: hidden;
       position: relative;
-      margin-bottom: $gutter;
+      float: left;
+      display: flex;
+      margin-bottom: $grid-tile-spacing + .25rem; // Spacing + shadow
+      flex-direction: column;
+      background-color: $white;
+      box-shadow: $shadow-shallowest;
 
-      &:hover {
-        box-shadow: none;
-        border-left: 4px solid $blue-st-tropaz;
+      @include hoverify {
+        box-shadow:   none;
+        border-color: $blue-st-tropaz;
       }
+
       // Search filtering
-      &.is-matching {
-        filter: saturate(200%);
-      }
-      &.is-not-matching {
-        filter: saturate(0%);
-      }
-      // -----
-      $four-grid-tile-margin: 1%;
-      $three-grid-tile-margin: 1%;
-      $two-grid-tile-margin: 1.3%;
-
-      @include media ($desktop-large) {
-        width: ( 100 - 3 * $four-grid-tile-margin) / 4;
-        margin-right: $four-grid-tile-margin;
-
-        &:nth-child( 4n) {
-          margin-right: 0;
-        }
-      }
-
-      @include media ($desktop) {
-        width: ( 100 - 2 * $three-grid-tile-margin) / 3;
-        margin-right: $three-grid-tile-margin;
-
-        &:nth-child( 3n) {
-          margin-right: 0;
-        }
-      }
-
-      @include media ($tablet) {
-        width: ( 100 - 1 * $two-grid-tile-margin) / 2;
-        margin-right: $two-grid-tile-margin;
-
-        &:nth-child( 2n) {
-          margin-right: 0;
-        }
-      } // All the text for the tile
-      @extend %extend-tile-text;
+      &.is-matching { filter: saturate( 200% ); }
+      &.is-not-matching { filter: saturate( 0% ); }
 
       a {
-         h4 {
-          color: $grey-silver-chalice;
-          font-size: .95em;
+        flex-grow: 1;
 
-          &:before {
-            font-size: 85%;
-          }
+        h4 {
+          font-size: 100%;
+
+          &::before { font-size: $text-size-tiny; }
         }
 
-        h2,h3,h4 {
-          margin-bottom: 0.45em;
+        h2,
+        h3 {
+          margin-bottom: $gap-content;
         }
+
+        h4 { margin-bottom: $gap-small; }
       }
 
+      // The hidden subjects span which is displayed on hover
       i {
-        font-size: 1.5em;
-        color: $grey;
         position: absolute;
-        bottom: .5em;
         right: .5em;
-      } // The hidden subjects span which is displayed on hover
-      @include media ( $mobile-large-and-smaller) {
+        bottom: .5em;
+        font-size: $text-size-4;
+        color: $text-weakest-color;
+      }
+
+      @include breakpoint( $until: tablet ) {
         float: none;
 
         h4 {
           display: inline-block;
-          font-size: 1.1em;
           margin-right: .5em;
+          font-size: 1.1em;
         }
 
-        p {
-          display: inline-block;
-        }
-      }
-
-      .button {
-        margin-top: 2em;
+        p { display: inline-block; }
       }
     }
 
+    /** FIXME: Redesign! */
     &.three-col {
-      li.tile {
-        $three-grid-tile-margin-hub: 3%;
-        @include media ($desktop-large) {
-          width: ( 100 - 2 * $three-grid-tile-margin-hub) / 3; 
-          margin-right: $three-grid-tile-margin-hub;
+      &.image-no-gutter {
+        ul {
+          display: flex;
+          flex-wrap: wrap;
+        }
 
-          &:nth-child(-n+3) {
-            margin-bottom: 1rem;
+        li.tile {
+          img {
+            flex: 0 0 auto;
+            width: 100%;
           }
 
-          &:nth-child( 3n) {
-            margin-right: 0;
-          }
-          &:nth-child( 4n) {
-            margin-right: $three-grid-tile-margin-hub;
-          }
+          a { height: auto; }
         }
       }
 
-      &.image-no-gutter {
-        ul {
-          @include display(flex);
-          flex-wrap: wrap;
+      li.tile {
+        // 3 in a row
+        @include breakpoint( desktop ) {
+          @include column( 3, $grid-tile-spacing * 2 );
         }
-        li.tile {
-          img {
-            max-width: 100%;
-          }
 
-          a {
-            height: auto;
-
-            &:hover {
-              border-color: transparent;
-            }
-          }
+        // 2 in a row
+        @include bp-tablet {
+          @include column( 2, $grid-tile-spacing * 2 );
         }
       }
     }
 
-    &.four-col,
+    &.four-col, // Ambiguous? It's either 4-cols or 2-cols
     &.two-col {
-
       &.image-no-gutter {
         ul {
-          @include display(flex);
+          display: flex;
           flex-wrap: wrap;
         }
+
         li.tile {
           img {
-            max-width: 100%;
+            flex: 0 0 auto;
+            width: 100%;
           }
+        }
+      }
 
-          a {
-            height: auto;
+      li.tile {
+        // 4 in a row
+        @include bp-desktop-large {
+          @include column( 4, $grid-tile-spacing );
+        }
 
-            &:hover {
-              border-color: transparent;
-            }
-          }
+        // 3 in a row
+        @include bp-desktop {
+          @include column( 3, $grid-tile-spacing );
+        }
 
-          @include media ($desktop) {
-            width: ( 100 - 3 * 1%) / 4;
-            margin-right: 1%;
-    
-            &:nth-child( 4n) {
-              margin-right: 0;
-            }
-          }
+        // 2 in a row
+        @include bp-tablet {
+          @include column( 2, $grid-tile-spacing );
         }
       }
     }
@@ -290,61 +242,55 @@ $tile-height: rem( 200px);
       }
     }
 
-
-
     &.hidden {
       display: none !important;
     }
   }
-  &.hidden {
-    display: none !important;
-  }
+
+  &.hidden { display: none !important; }
+
   &.media-quote {
     .tiles-wrap {
       li.tile {
-        height: rem(500px);
+        height: 31.25rem;
 
         figure {
           position: relative;
 
           .play-button {
             position: absolute;
-            margin-top: 0;
-            left: 50%;
-            @include transform(translateX(-50%));
             top: 40%;
+            left: 50%;
+            margin-top: 0;
+            transform: translateX( -50% );
           }
+
           img {
-            width: 100%;
             display: block;
             margin-bottom: 2%;
+            width: 100%;
           }
         }
 
-        h2 {
-          color: $black-tundora;
-        }
-
-        p {
-          margin-bottom: 0.25em;
-        }
+        h2 { color: $black-tundora; }
+        p { margin-bottom: .25em; }
 
         q {
-          color: $green-light-victoria;
-          font-size: 1rem;
-          font-weight: bold;
+          color: $green-light-brand;
+          font-size: 100%;
+          font-weight: $weight-bold;
 
-          &:before {
-            content: open-quote;
-          }
-          &:after {
-            content: close-quote;
+          &::before { content: open-quote; }
+          &::after { content: close-quote; }
+        }
+
+        a {
+          @include hoverify {
+            q { color: $blue-st-tropaz; }
           }
         }
 
-        .sub-text {
-          margin-bottom: 1rem;
-        }
+        .sub-text { margin-bottom: 1rem; }
       }
     }
   }
@@ -352,41 +298,41 @@ $tile-height: rem( 200px);
 }
 
 .tile-strip-grid {
-  @include outer-container(100%);
+  @include grid-container;
 
   .tiles-wrap {
-    @include fill-parent();
+    //@include fill-parent;
     margin-top: 1rem;
 
-    >ul {
+    > ul {
       @include clearfix;
       display: block;
     }
 
-
     li.tile {
-      width: 100%;
-      height: auto;
+      @include size( 100%, auto );
+      overflow:         hidden;
       background-color: $white;
-      box-shadow: $base-shadow;
-      border-left: 4px solid $green-victoria;
-      overflow: hidden;
-      margin-bottom: $gutter;
+      box-shadow:       $shadow-shallowest;
 
-      &:hover {
-        box-shadow: none;
-        border-left: 4px solid $blue-st-tropaz;
+      .updated-tile-grid & {
+        margin-right: 0;
+        margin-left: 0;
       }
 
-      @extend %extend-tile-text;
+      &:hover {
+        box-shadow:   none;
+        border-color: $blue-st-tropaz;
+      }
 
       i {
-        font-size: 1.5em;
-        color: $grey;
-        float: right;
+        top: 50%;
+        bottom: initial;
+        margin-top: -.5em - _em( $border-width-thick / 2 ); // minus border width
       }
 
       a {
+        padding-right: $gap-double;
 
         h2,
         h4,
@@ -394,35 +340,34 @@ $tile-height: rem( 200px);
           display: inline;
         }
 
-        h2 {
-          padding-right: 0.5em;
+        h2 { padding-right: .5em; }
+
+        h4 {
+          padding: 0 $gap-half;
+          border-left: $border-width-small solid $border-color-light;
+          //white-space: nowrap;
         }
 
-        h4{
-
-          padding: 0 0.75rem;
-          border-left: 2px solid $grey-gallery;
-         
-        }  
+        @include hoverify() {
+          padding-right: $gap-double - $grid-tile-hover-border-width;
+        }
       }
+
     }
   }
 
   &.content-page {
-
     .tiles-wrap {
-
       > ul {
-        padding-left: 0;
         margin-bottom: 0;
+        padding-left: 0;
 
         li.tile {
           position: relative;
           padding-left: 0;
 
           a {
-            text-decoration: none;
-
+            &,
             h2,
             h3,
             h4,
@@ -440,7 +385,6 @@ $tile-height: rem( 200px);
     }
 
     &.tile-accordion {
-      
       .tiles-wrap {
         padding-left: 0;
 
@@ -448,24 +392,23 @@ $tile-height: rem( 200px);
           position: relative;
 
           .toggle {
+            @include size( 1.5em );
             position: absolute;
+            top: ( 1.5em / 2 );
             right: 1.5rem;
-            top: 1rem;
+            display: block;
+            margin: 0;
 
             cursor: pointer;
             font-size: 1.5rem;
-            color: $green-victoria;
+            color: $green-brand;
 
-            display: block;
-            margin: 0 .5rem;
-            height: 1.5em;
-            width: 1.5em;
             -ms-grid-row-align: center;
             align-self: center;
             cursor: pointer;
             text-align: center;
             font-weight: 700;
-            color: $green-victoria;
+            color: $green-brand;
             line-height: 1.4;
             font-size: 1.2em;
             border-radius: .7em;
@@ -485,7 +428,7 @@ $tile-height: rem( 200px);
                 top: -.15em;
                 height: 0;
                 width: 0;
-                border-bottom: 0.2em solid $green-victoria;
+                border-bottom: 0.2em solid $green-brand;
                 border-left: 0.25em solid transparent;
                 border-right: 0.25em solid transparent;
               }
@@ -499,14 +442,15 @@ $tile-height: rem( 200px);
 
             @include hoverify() {
               color: #FFF;
-              background-color: $green-victoria;
+              background-color: $green-brand;
             }
 
           }
 
           h3 {
-            font-size: 1.2rem;
+            margin-top: 0;
             margin-bottom: 0;
+            font-size: 1.2rem;
           }
 
           p {
@@ -527,88 +471,72 @@ $tile-height: rem( 200px);
   }
 
   &.tile-accordion {
-
     li.tile {
       position: relative;
-      
-      > a {
+
+      a {
         padding-right: 2em;
+        border-color: $white;
       }
-      h4 {
-        font-size: 1em;
-      }
+
+      h4 { font-size: 1em; }
+
       i {
         position: absolute;
-        right: 0.4em;
         top: 16px;
-        transition: 0.3s ease-in-out;
+        right: .4em;
+        transition: .3s ease-in-out;
       }
 
-      &.accordion-closed {
-
-      }
-
+      //&.accordion-closed {}
       &.accordion-open {
         > a {
-         &:hover {
-            border-color: transparent;
-          }
+          &:hover { border-color: transparent; }
         }
+
         i {
-          transform: rotate(90deg);
-          right: 0.6em; 
           top: 20px;
+          right: .6em;
+          transform: rotate( 90deg );
         }
       }
     }
+
     .accordion-content {
+      display: none; // Default: Content is OFF
       padding: 1em;
       padding-top: 0;
-      display: none;
-      
 
-      &.closed {
-        display: none;
-      }
-
-      &.open {
-        display: block;
-      }
+      &.closed { display: none; }
+      &.open { display: block; }
 
       ul {
         margin-bottom: 0;
+
         li {
           a {
-            padding: 0;
             display: inline;
-            border: none;
+            padding: 0;
+            border: 0;
 
-            &:hover {
-              border: none;
-            }
+            // TODO: Refactor & flatten to lower the depth!
+            &:hover { border: 0; }
           }
         }
       }
     }
+
   }
 }
 
 .fixed-height-tiles {
   .tiles-wrap li.tile {
     height: $tile-height;
-    a {
-      .sub-text {
-        h4 {
-          
-        }
-      }
-    }
   }
 }
+
 .fixed-height-tiles-small {
-  .tiles-wrap li.tile {
-    height: rem(150px);
-  }
+  .tiles-wrap li.tile { height: 9.375rem; }
 }
 
 .dynamic-height-tiles {
@@ -622,7 +550,7 @@ $tile-height: rem( 200px);
       display: flex;
       flex-wrap: wrap;
 
-      @include media($mobile-large-and-smaller) {
+      @include breakpoint( $until: tablet ) {
         flex-direction: column;
       }
     }
@@ -631,259 +559,131 @@ $tile-height: rem( 200px);
 
 
 //modifier for study hub tiles
-//colour for study hub - study page
-$base-study-hub-colour--study: $green-light-victoria;
-
-.tiles-study-hub {
+.tiles-study-hub,
+.tiles-study-hub-about {
   h2,
   h3 {
     color: $base-study-hub-colour--study;
   }
-  .tiles-wrap {
-    li.tile {  
-      height: rem( 275px );
-      border-left: 4px solid $base-study-hub-colour--study;
-      a {
-        .sub-text {
-          // border-left: none;
-          // padding-left: 0;
-        }
-        h2 {
-          color: $base-study-hub-colour--study;
-        }
 
+  .tiles-wrap {
+    li.tile {
+      height: 17rem;
+
+      a {
+        // .sub-text { }
+        h2 { color: $base-study-hub-colour--study; }
       }
+
       .tile-icon {
+        position: absolute;
+        right: .5em;
+        bottom: .5em;
         font-size: inherit;
         color: $grey;
-        position: absolute;
-        bottom: .5em;
-        right: .5em;
-    
+
         i {
-          font-size: 1.5rem;
-          position: relative; 
-          bottom: 0;
+          position: relative;
           right: 0;
+          bottom: 0;
+          vertical-align: top;
+          font-size: $h4-size;
         }
       }
+
     }
   }
 }
 
-.tiles-study-hub-about {
-  @extend .tiles-study-hub;
-}
+// Tiles representing steps (1, 2, 3...)
+.tiles-panel.tile-steps {
+  background-color: $white;
 
-//step tiles for study hub mod
-.tiles-panel {
-  &.tile-steps {
-    background-color: $white;
+  .tiles-wrap {
+    > ul {
+      display: flex;
+      flex-wrap: wrap;
+    }
 
-    .tiles-wrap {
-      li.tile {
-        height: rem( 350px );
-        background-color: $base-study-hub-colour--study;
-        border-left: none;
+    li.tile {
+      width: 100%;
+      height: auto;
+      background-color: $base-study-hub-colour--study;
 
-        a {
-          border: 4px solid $base-study-hub-colour--study;
-          
-          p,
-          h3,
+      a {
+        padding: $gap-box;
+        color: $white;
+        border: 0;
+
+        p,
+        h3,
+        i,
+        .tile-number,
+        .tile-icon {
+          color: inherit;
+        }
+
+        > h3 { font-size: $h4-size; }
+
+        .tile-number {
+          margin-bottom: $gap-small;
+          font-size: 500%;
+          line-height: 1;
+        }
+
+        // FIXME: Can overlay with the tile's content unnecessarily. Don't use absolute positioning
+        .tile-icon {
+          position: relative;
+          bottom: $bleed-vertical;
+          float: right;
+          margin-bottom: $gap-half;
+
+          // TODO: Refactor & flatten to lower the depth!
           i {
-            color: $white;
-          }
-          h3 {
-            font-size: 1.5em;
-            padding-bottom: 0.25em;
-          }
-
-          .tile-number {
-            font-size: 5em;
-            color: $white;
-            line-height: 1;
-          }
-
-          .tile-icon {
-            font-size: inherit;
-            color: $white;
-            position: absolute;
-            bottom: .5em;
-            right: .5em;
-        
-            i {
-              font-size: 1.5rem;
-              position: relative; 
-              bottom: 0;
-              right: 0;
-            }
-          }
-
-          &:hover {
-            border: 4px solid $base-study-hub-colour--study;
-            p,
-            i {
-              color: $white;
-            }
-          }
-        }
-
-        .title-first-step {
-          @include display(flex);
-          @include align-items(center);
-          font-size: 1.6em;
-
-          &:hover {
-            // border: none;
-            // border-left: none;
-          }
-          
-          h3 {
-            line-height: 1.2;
-          }
-        }
-        
-        &:hover {
-          border: none;
-          border-left: none;
-        }
-        $three-grid-tile-margin-hub: 3%;
-
-        @include media ($desktop-large) {
-          width: ( 100 - 2 * $three-grid-tile-margin-hub) / 3; 
-          margin-right: $three-grid-tile-margin-hub;
-          
-          &:nth-child(-n+3) {
-            margin-bottom: $three-grid-tile-margin-hub;
-          }
-
-          &:nth-child( 3n) {
-            margin-right: 0;
-          }
-          &:nth-child( 4n) {
-            margin-right: $three-grid-tile-margin-hub;
+            position: relative;
+            right: 0;
+            bottom: 0;
+            vertical-align: top;
           }
         }
       }
+
+      .title-first-step {
+        display: flex;
+        align-items: center;
+
+        h3 {
+          font-size: $h2-size;
+
+          &:last-child { margin-bottom: 0; }
+        }
+      }
+
+      @include breakpoint( tablet ) {
+        min-height: 19rem;
+
+        a .tile-icon {
+          position: absolute;
+          right: $gap-horizontal;
+          bottom: 0;
+        }
+
+        a > h3 + p { margin-bottom: $gap-larger; }
+      }
+
+      @include breakpoint( desktop ) {
+        @include column( 3, $grid-tile-spacing-large );
+        margin-top: $grid-tile-spacing-large / 2;
+        margin-bottom: $grid-tile-spacing-large / 2;
+
+      }
+
+      @include bp-tablet {
+        @include column( 2, $grid-tile-spacing-large );
+        margin-top: $grid-tile-spacing-large / 2;
+        margin-bottom: $grid-tile-spacing / 2;
+      }
+
     }
   }
 }
-
-
-
-
-
-
-// -------------------------
-// -------------------------
-// -------------------------
-// ----------------------------
-// Styles specific to the Study-areas block
-// --------------------------
-// .study-areas,
-// .study-area-single {
-//   h1 {
-//     margin-bottom: .7em;
-//   }
-// }
-// .study-areas {
-//   .pg-filter {
-//     padding: 1em 1em 1em .5em;
-//     font-size: 1.2em;
-//   } //This operate the PG only check box the markup needs to have the tiles as general siblings of teh check box
-//   // ie dont wrap the checkbox in a div container
-//   input[type=checkbox]:checked~.tiles-wrap .tile[data-pg="only"] {
-//     display: block;
-//   }
-//   input[type=checkbox]:checked~.tiles-wrap li.tile {
-//     display: none;
-//   }
-//   .tiles-wrap {
-//     li.tile {
-//       height: rem( 250px);
-//       img {
-//         width: 100%;
-//         @include media ($tablet) {
-//           vertical-align: middle;
-//         }
-//       }
-//       span {
-//         display: block;
-//         padding: 0 1em 1em;
-//         @include media ($desktop-and-bigger) {
-//           display: none;
-//         }
-//       }
-//       &:hover {
-//         @include media ($desktop-and-bigger) {
-//           span {
-//             height: rem( 180px); //TODO: Do cleanly
-//             display: block;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-// -------------------------
-// -------------------------
-// Tabbed nav controls
-// -------------------------
-// $tab-caret-size: 1.6rem;
-// .study-area-tabs {
-//   margin-bottom: $base-spacing * 1.5;
-//   ul {
-//     @include clearfix;
-//     max-width: $base-max-content-height;
-//     margin: 0 auto;
-//     li {
-//       @include span-columns( 6, block-collapse);
-//       a {
-//         padding: 1em;
-//         @include display(block);
-//         background-color: $grey-alto;
-//         display: flex;
-//         align-items: center;
-//         text-align: center;
-//         @include media ( $mobile-large-and-smaller) {
-//           height: rem( 60px);
-//         }
-//         &:hover {
-//           background-color: $grey-silver;
-//         }
-//         @include icon-selector() {
-//           font-weight: $weight-normal;
-//           line-height: 0;
-//         } // Icon size modificators
-//         .icon-book-open {
-//           font-size: 90%;
-//         }
-//         h4 {
-//           color: $black-mine-shaft; // helps center the text on mobile
-//           margin: 0 auto;
-//         }
-//       }
-//       &.active {
-//         position: relative;
-//         a {
-//           background-color: $green-victoria;
-//           &:hover {
-//             opacity: 1;
-//             cursor: default;
-//           }
-//           h4 {
-//             color: $white;
-//           }
-//         }
-//         &:after {
-//           @include objectify( block, $position: absolute);
-//           left: 50%;
-//           margin-left: -1 * $tab-caret-size/2;
-//           @include size( 0);
-//           @include triangle( $tab-caret-size $tab-caret-size/3, $green-victoria, down);
-//         }
-//       }
-//     }
-//   }
-// }

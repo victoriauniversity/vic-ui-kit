@@ -1,132 +1,85 @@
-/*=========================================
-=      SYSTEM MESSAGES, NOTIFICATIONS     =
-=========================================*/
+/*============================================================================*\
+| MESSAGES
+\*============================================================================*/
+
+////
+/// Atomic properties for messages (notifications, popups etc.)
+///
+/// @group messages
 
 
-  /* ===== FLASH MESSAGES =================================================== */
-
-  $message-strip-darken-percentage: 7;
-
-  .flash-message {
-    color: $white;
-    padding: $column-padding;
-    margin-bottom: $base-spacing;
-
-    // Message types
-
-    &.error {
-      background-color: $red-oyster-pink;
-      border-left: 2px solid darken( $red-oyster-pink, $message-strip-darken-percentage );
-
-      > * { color: $red-tamarillo; }
-
-      > h2  {
-        @include extend-icon-before( attention );
-      }
-    }
-
-    &.warning {
-      background-color: $yellow-pearl-lusta;
-      border-left: 2px solid darken( $yellow-pearl-lusta, $message-strip-darken-percentage );
-
-      > * {  color: $yellow-cinamon; }
-
-      > h2  {
-        @include extend-icon-before( megaphone );
-      }
-    }
-
-    &.info {
-      background-color: $blue-humming-bird;
-      border-left: 2px solid darken( $blue-humming-bird, $message-strip-darken-percentage );
-
-      > * { color: $blue-callypso; }
-
-      > h2  {
-        @include extend-icon-before( info );
-      }
 
 
-    }
 
-    &.success {
-      background-color: $green-tara;
-      border-left: 2px solid darken( $green-tara, $message-strip-darken-percentage );
-
-      > * { color: #2c6b2c; }
-
-      > h2  {
-        @include extend-icon-before( check );
-      }
-    }
+/*= FLASH MESSAGES ===========================================================*/
 
 
-    h2 { margin-bottom: .5em; }
+// Inside a con
+.flash-message {
+  margin-bottom: $gap-content;
+  padding: $column-padding;
+  color: $white;
+  border-left: $border-width-medium solid $background-opaque-darkest;
 
-    > * {
-      &:last-child { margin-bottom: 0; }
-    }
+  > * {
+    &:last-child { margin-bottom: 0; }
+  }
+  // Keep links the same colour as the text
+  a[href] {
+    color: inherit;
 
-    a[href] {
+    @include hoverify() {
       color: inherit;
-      @include hoverify() { color: inherit; }
-    }
-
-    // for info message fact row research hub
-    &.info-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      padding: 2em 1.2em;
-
-      @include media($tablet-and-smaller) {
-        flex-wrap: wrap;
-      }
-
-      > * {
-        &:first-child {
-          flex: 0 0 20%;
-
-          @include media($tablet-and-smaller) {
-            flex-basis: 100%; 
-            margin-bottom: 0.5em;
-          }
-        }
-
-        &:not(:first-child) {
-          flex: 0 0 23%;
-          
-          @include media($tablet-and-smaller) {
-            flex-basis: 31%; 
-          }
-          @include media($mobile-large-and-smaller) {
-            flex-basis: 100%; 
-            margin-bottom: 0.5em;
-          }
-        }
-
-      }
-
-      > h2 {
-        margin-bottom: 0;
-
-        &:before {
-          display: none;
-        }
-      }
-
-      .info-col {
-        border-bottom: 1px solid $blue-callypso;
-        border-bottom-color: inherit;
-        padding-bottom: 0.5em;
-
-        h4, h5 {
-          color: inherit;
-          margin-bottom: 0.35em;
-        }
-
-      }
-
     }
   }
+
+  .formatting & a[href]:visited {
+    color: inherit !important;
+  }
+
+  // Message types
+  &.error {
+    background-color: $background-danger;
+
+    > * { color: $color-danger; }
+
+    > h2 {
+      @include extend-icon-before( attention );
+    }
+  }
+
+  &.warning {
+    background-color: $background-warning;
+
+    > * { color: $color-warning; }
+
+    > h2 {
+      @include extend-icon-before( megaphone );
+    }
+  }
+
+  &.info {
+    background-color: $background-info-light;
+
+    > * { color: $color-info; }
+
+    > h2 {
+      @include extend-icon-before( info );
+    }
+  }
+
+  &.success {
+    background-color: $background-success;
+
+    > * { color: $color-success; }
+
+    > h2 {
+      @include extend-icon-before( check );
+    }
+  }
+
+}
+
+
+
+

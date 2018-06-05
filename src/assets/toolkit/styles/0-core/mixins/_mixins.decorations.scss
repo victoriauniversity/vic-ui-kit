@@ -1,0 +1,210 @@
+/*============================================================================*\
+| DECORATION-PURPOSE MIXINS
+\*============================================================================*/
+
+////
+/// @group decorations
+
+
+
+
+
+/*= STRIPS & LINES ===========================================================*/
+
+
+/// @access public
+///
+/// Creates a coloured horizontal rectangle that can be safely scaled and
+/// zoomed without getting rendering deformations.
+///
+/// @attribute {size} $width - rectangle's width.
+/// @attribute {size} $height - rectangle's height.
+/// @attribute {color} $fill-color [transparent] -
+///   rectangle's background colour.
+///
+/// @require {mixin} size
+@mixin scalable-rectangle-horizontal(
+  $width,
+  $height,
+  $fill-color: transparent,
+) {
+  @include size( $width, 0 );
+  padding-top:    $height; // Chrome61+: Mitigates the sub-pixel rendering issue
+  padding-bottom: $height; // Chrome61+: Mitigates the sub-pixel rendering issue
+  border-top:     $height solid $fill-color; // Use borders instead of height/width to avoid sub-pixel rendering in browsers
+}
+
+
+/// @access public
+///
+/// Creates a coloured vertical rectangle that can be safely scaled and
+/// zoomed without getting rendering deformations.
+///
+/// @attribute {size} $width - rectangle's width.
+/// @attribute {size} $height - rectangle's height.
+/// @attribute {color} $fill-color [transparent] -
+///   rectangle's background colour.
+///
+/// @require {mixin} size
+@mixin scalable-rectangle-vertical (
+  $width,
+  $height,
+  $fill-color: transparent,
+) {
+  @include size( 0, $height );
+  padding-right: $width; // Chrome61+: Mitigates the sub-pixel rendering issue
+  padding-left:  $width; // Chrome61+: Mitigates the sub-pixel rendering issue
+  border-left:   $width solid $fill-color; // Use borders instead of height/width to avoid sub-pixel rendering in browsers
+}
+
+
+
+/// @access public
+///
+/// Places a short heading-coloured strip before an element.
+///
+/// @attribute {size (rem)} $length [2rem] - The length of the strip.
+/// @attribute {size (rem)} $thickness [$border-width-medium] -
+///   Thickness of the separator.
+/// @attribute {before|after} $pseudoelement [before] -
+///   What pseudoelement to place the separator into.
+///
+/// @content To extend or override strip's properties.
+///
+/// @require {mixin} before
+/// @require {mixin} scalable-rectangle-horizontal
+@mixin separator-strip (
+  $length:        2rem,
+  $thickness:     $border-width-medium,
+  $pseudoelement: before,
+) {
+  @if $pseudoelement == before {
+    @include before( block ) {
+      @include scalable-rectangle-horizontal( $length, $thickness, $heading-color );
+      @content;
+    }
+  }
+
+  @if $pseudoelement == after {
+    @include after( block ) {
+      @include scalable-rectangle-horizontal( $length, $thickness, $heading-color );
+      @content;
+    }
+  }
+}
+
+
+/// @access public
+///
+/// Adds a bullet line in front of the element's content. Best to be used on
+/// list item elements with text content.
+///
+/// @attribute {color} $bulletline-color [$bulletline-color] -
+///   Color of the list item's bullet.
+///
+/// @require {mixin} before
+/// @require {mixin} scalable-rectangle-horizontal
+@mixin bullet-line( $color: $bulletline-color ) {
+  padding-left: ( $bulletline-margin-left + $bulletline-width + $bulletline-margin-right );
+
+  // Short horizontal strip
+  @include before( $position: absolute ) {
+    @include scalable-rectangle-horizontal( $bulletline-width, $bulletline-thickness, $color );
+    top:    _em( $gap-half );
+    margin: 0 $bulletline-margin-right 0 ( -1 * ( $bulletline-width + $bulletline-margin-right ));
+  }
+}
+
+
+
+
+
+/*= OTHER SHAPES =============================================================*/
+
+
+/// @access public
+///
+/// Generates a triangle pointing in a specified direction.
+///
+/// @argument {string} $direction
+///   The direction the triangle should point. Accepts `up`, `up-right`,
+///   `right`, `down-right`, `down`, `down-left`, `left` or `up-left`.
+///
+/// @argument {number (with unit)} $width
+///   Width of the triangle.
+///
+/// @argument {number (with unit)} $height
+///   Height of the triangle.
+///
+/// @argument {color} $color
+///   Color of the triangle.
+///
+/// @link https://github.com/thoughtbot/bourbon/blob/v5.0.0/core/bourbon/library/_triangle.scss
+///
+/// @example scss
+///   .element {
+///     &::before {
+///       @include triangle("up", 2rem, 1rem, #b25c9c);
+///       content: "";
+///     }
+///   }
+///
+///   // CSS Output
+///   .element::before {
+///     border-style: solid;
+///     height: 0;
+///     width: 0;
+///     border-color: transparent transparent #b25c9c;
+///     border-width: 0 1rem 1rem;
+///     content: "";
+///   }
+@mixin triangle(
+  $direction,
+  $width,
+  $height,
+  $color
+) {
+  @if not index(
+    'up' 'up-right' 'right' 'down-right' 'down' 'down-left' 'left' 'up-left',
+    $direction
+  ) {
+    @error 'Direction must be `up`, `up-right`, `right`, `down-right`, ' +
+      '`down`, `down-left`, `left` or `up-left`.';
+  } @else if not _is-color($color) {
+    @error '`#{$color}` is not a valid color for the `$color` argument in ' +
+      'the `triangle` mixin.';
+  } @else {
+    width: 0;
+    height: 0;
+    border-style: solid;
+
+    @if $direction == 'up' {
+      border-color: transparent transparent $color;
+      border-width: 0 ($width / 2) $height;
+    } @else if $direction == 'up-right' {
+      border-color: transparent $color transparent transparent;
+      border-width: 0 $width $width 0;
+    } @else if $direction == 'right' {
+      border-color: transparent transparent transparent $color;
+      border-width: ($height / 2) 0 ($height / 2) $width;
+    } @else if $direction == 'down-right' {
+      border-color: transparent transparent $color;
+      border-width: 0 0 $width $width;
+    } @else if $direction == 'down' {
+      border-color: $color transparent transparent;
+      border-width: $height ($width / 2) 0;
+    } @else if $direction == 'down-left' {
+      border-color: transparent transparent transparent $color;
+      border-width: $width 0 0 $width;
+    } @else if $direction == 'left' {
+      border-color: transparent $color transparent transparent;
+      border-width: ($height / 2) $width ($height / 2) 0;
+    } @else if $direction == 'up-left' {
+      border-color: $color transparent transparent;
+      border-width: $width $width 0 0;
+    }
+  }
+}
+
+
+

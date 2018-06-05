@@ -1,0 +1,187 @@
+/*============================================================================*\
+| COLOUR PALETTE
+\*============================================================================*/
+
+////
+/// Lists all colour variables that can be re-used within this library.
+///
+/// **IMPORTANT** - Follow proper colour-naming convention:
+///   1) Read why https://davidwalsh.name/sass-color-variables-dont-suck
+///   2) Get unique name for the color using
+///       http://chir.ag/projects/name-that-color/#831212 or make one.
+///   3) Assign colour to the variable as following:
+///       `${base_color}-{unique_name}`
+///
+/// @group colours
+
+
+
+
+
+/*= BASIC =================================================================== */
+
+
+$white: #FFF;
+$black: #000;
+
+
+
+
+
+/*= BRANDED ==================================================================*/
+
+
+$green-brand:        #115737;
+$green-brand-weaker: #3D6353;
+$green-light-brand:  #64A659;
+$black-brand:        #1D2624;
+
+
+
+
+
+/*= GREYS ====================================================================*/
+
+
+/// Used for subtle background and delimiters on $white background **ONLY**.
+$grey-gallery:        #EEE;
+
+$grey-alto:           #DDD;
+
+/// Used for background, delimiters on `$grey-alto` or `$grey-gallery` backgrounds or as a secondary text on very dark background.
+$grey-silver:         #CCC;
+
+$grey-silver-chalice: #BFBFBF;
+$grey-chalice:        #AAA;
+$grey-dusty:          #999;
+
+/// Use on elements of lower importance
+$grey:                #8B8B8B;
+
+$grey-dove:           #707070;
+$black-emperor:       #555;
+$black-tundora:       #424242;
+
+/// Darkest allowed colour
+$black-mine-shaft:    #333;
+
+
+
+
+
+/*= GREENS ===================================================================*/
+
+
+/// Used as a hover of $green-brand (eg. menus, boxes etc.)
+$green-bottle:    #0D4B2F;
+
+/// Should be used to gently emphasize content on light background (eg. by outlining it)
+$green-nebula:    #D1E0DA;
+
+/// Light positive highlight (alert, success message etc.)
+$green-tara:      #E2F7E2;
+
+/// Dark positive highlight  (alert, success message etc.)
+$green-killarney: #2C6B2C;
+
+
+
+
+
+/*= BLUES ====================================================================*/
+
+
+$blue-azure:        #3363B3;
+$blue-st-tropaz:    #285189;
+
+$blue-endeavoura:   #005EA5;
+$blue-curious:      #2E8ACA;
+
+/// Light informative highlight (notification, info message etc.)
+$blue-humming-bird: #E4F3FB;
+
+/// Dark informative highlight (notification, info message etc.)
+$blue-callypso:     #255C79;
+
+/// Useful for visited elements
+$purple-daisy:      #513391;
+
+
+
+
+/*= REDS =====================================================================*/
+
+
+/// Light negative highlight (errors, unsuccessful messages)
+$red-oyster-pink:      #ECCDCD;
+
+/// Dark negative highlight (errors, unsuccessful messaging)
+$red-tamarillo:        #831212;
+
+$red-roof-terratcotta: #AF1B1B;
+
+$red-punch:            #DD3727;
+
+
+
+
+
+/*= YELLOWS AND ORANGES ======================================================*/
+
+
+/// Light important highlight (warnings)
+$yellow-pearl-lusta:   #FCF8E3;
+
+/// Dark important highlight (warnings)
+$yellow-cinamon:       #705602;
+
+$yellow-spring-wood:   #F4F4E9;
+
+$orange-charcoal:      #A35D2B;
+
+
+
+
+/*= COLOUR MODIFIERS =========================================================*/
+
+
+/// @type {Number} -
+///   ratio (a number between 0-1) modifiers to darken colours. Usually used
+///   in alpha channels.
+$dark-ratio:    .03 !default;
+$darker-ratio:  .06 !default;
+$darkest-ratio: .08 !default;
+
+// % representation of a dark ratio. Usually used in SASS functions.
+$dark-percentage:    $dark-ratio * 100%;
+$darker-percentage:  $darker-ratio * 100%;
+$darkest-percentage: $darkest-ratio * 100%;
+
+
+/// @type {Number} -
+///   ratio (a number between 0-1) modifiers to lighten colours. Usually used
+///   in alpha channels.
+$light-ratio:    .03 !default;
+$lighter-ratio:  .06 !default;
+$lightest-ratio: .08 !default;
+
+// % representation of a light ratio. Usually used in SASS functions.
+$light-percentage:    $light-ratio * 100%;
+$lighter-percentage:  $lighter-ratio * 100%;
+$lightest-percentage: $lightest-ratio * 100%;
+
+
+
+
+
+/*= SPECIFIC COLOUR VARIATIONS ===============================================*/
+
+
+$color-danger:  $red-tamarillo !default;
+$color-warning: $yellow-cinamon !default;
+$color-info:    $blue-callypso !default;
+$color-success: $green-killarney !default;
+
+
+
+

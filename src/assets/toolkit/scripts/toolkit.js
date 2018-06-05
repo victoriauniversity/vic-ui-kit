@@ -1,28 +1,38 @@
-/**
- * Toolkit JavaScript
- */
+/** !Toolkit's core JS */
 
 
- /* DEPENDENCIES & 3RD PARTY LIBRARIES IMPORTS */
-  var $     = require('jquery'),
-  fastclick = require('fastclick'),
-  Headroom      = require('headroom.js'),
-  picturefill   = require('picturefill'),
-  lity          = require('lity'),
-  cookie        = require('cookies-js'),
-  enquire       = require('enquire.js');
+/* DEPENDENCIES & 3RD PARTY LIBRARIES IMPORTS */
+import $ from 'jquery';
+import fastclick from 'fastclick';
+import Headroom from 'headroom.js';
+import cookie from 'cookies-js';
+import enquire from 'enquire.js';
+import lity from 'lity';
+import picturefill from 'picturefill';
 
-  // Export to the global namespace (~ window)
-  window.$ = window.jQuery = $;
+// Include all standalone modules
+import { tracker, trackerConfig } from './modules/tracking';
+
+trackerConfig({ autoRegister: true });
+
+
+// Export to the global namespace (~ window)
+window.$      = $;
+window.jQuery = $;
+
+
+
+
 
   require('./study-areas.js'); //TODO: set up multiple entry points for webpack bundles
-
 
 
   /* CONSTANT ATTRIBUTES */
 
   var TRANSITION_TIMEOUT       = 200; //update in _settings.variables.scss(135)
-  var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 43.6875em)', //update in _settings.responsive.scss(57)
+  var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 42.99em)', //update in _settings.responsive.scss(57)
+      DESKTOP_AND_LARGER = 'screen and (min-width: 61em)',
+      TABLET_AND_SMALLER = 'screen and (max-width: 975px)',
 
   // Iframe selectors
   YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
@@ -115,9 +125,9 @@
     const expandableButtons = menuElement.find( '.' + SIDEMENU_EXPANDER_CLASS );
 
     // Add tracking if enabled
-    if ( shouldTrackByGtm( menuElement ) ){
-      addGtmTrackingListeners( menuElement.find( 'li > a' ), 'click', 'sidemenu-link' );
-      addGtmTrackingListeners( expandableButtons, 'click', 'sidemenu-expander' );
+    if ( tracker.shouldTrackElement( menuElement ) ){
+      tracker.registerForTracking( menuElement.find( 'li > a' ), 'click', 'sidemenu-link' );
+      tracker.registerForTracking( expandableButtons, 'click', 'sidemenu-expander' );
     }
 
     expandableButtons.each( initExpandableSubmenu );
@@ -199,8 +209,8 @@
       bindButtonEvents();
       addShownClass();
 
-      if ( shouldTrackByGtm( popupElement ) ){
-        pushTrackingInfoToGtm( popupElement.get( 0 ).id, 'open' );
+      if ( tracker.shouldTrackElement( popupElement ) ){
+        tracker.trackEvent( popupElement.get( 0 ).id, 'open' );
       }
     }
 
@@ -256,91 +266,299 @@
   }
 
 
-  /**
-   * Function called on the jQuery Element, opens it as a popup.
-   *
-   * @param {Object} { delayInMs = 0, suppressAfterCanceling = false }
-   *
-   * @returns {DOMElement}
-   */
-  function openPopup( { delayInMs = 0, suppressAfterCanceling = false } = {} ){
-    initPopupBox( this, { delayInMs: delayInMs, suppressAfterCanceling: suppressAfterCanceling } );
 
-    return this;
+
+
+/** HELPERS */
+
+//FIXME: Should be automatically pre-populated from the build/build.config.js
+const ENV_HOSTNAME = {
+  STAGE: 'cms.victoria.ac.nz',
+  PROD:  'www.victoria.ac.nz',
+  LOCAL: 'local.victoria.ac.nz',
+}
+
+
+function isAdminEnvironment() {
+  return ( window.location.hostname === ENV_HOSTNAME.STAGE ) || ( window.location.hostname === ENV_HOSTNAME.LOCAL );
+}
+
+
+/**
+ * Decodes email address into re-usable form.
+ *
+ * @deprecated Very old approach that won't work today - do not use.
+ */
+function decodeMailAddresses(){
+  var a = 'dre:ams0of@g1niht.lp2c9u3v8k4w7y5j6zbx-_qfntigue6los5zar7b:y4dp8v3m9h2.x1w@k0jcq-_';
+  var i, h, j, k, l, m, n, s;
+  for (i = 0; i < document.links.length; i += 1) {
+    h = document.links[i].hash;
+    if (h.substring(0, 3) == '#sd') {
+      k = '';
+      l = h.substring(3, 5);
+      m = h.lastIndexOf('?subject=');
+      if (m == -1) { s = document.links[i].href; }
+      else {
+        s = h.substring(m);
+        h = h.substring(0, m);
+      };
+      for (j = 5; j < h.length; j += 2) {
+
+        k = k + a.charAt((h.substring(j, j + 2) - l - 1));
+      }
+      ; m = s.lastIndexOf('?subject=');
+      if (m == -1) {
+        document.links[i].href = k;
+      }
+      else { document.links[i].href = k + s.substring(m); };
+      n = document.links[i].innerHTML;
+      if (n == 'address') {
+        document.links[i].innerHTML = k.substring(7);
+      }
+      else { document.links[i].title = k.substring(7); };
+    };
+  };
+}
+
+
+
+/** MESSAGE/NOTIFICATIONS HANDLING */
+
+const ERROR_TYPES = {
+  SIDEBAR_WIDGETS_COUNT_EXCEEDED: 'sidebar-widgets-count-exceeded',
+}
+
+
+/**
+ * Renders the error message notification and adds it to the top of the
+ * content window. Will show only to administrators within non-production
+ * environments.
+ *
+ * @param {{type: string, message: string, invalidItems: Array[string]}} errorObject
+ *
+ * @returns {void}
+ */
+function showAdminErrorMessage( errorObject ) {
+  if ( !errorObject || !isAdminEnvironment() ) return;
+
+  let invalidItemsListHtml;
+
+  if ( errorObject.invalidItems.length > 0 ) {
+    invalidItemsListHtml = `
+      <ul>
+        <li>${ errorObject.invalidItems.join( '</li><li>' ) }</li>
+      </ul>
+    `;
   }
 
+  // Template
+  let errorNotificationHtml = `
+    <section class="flash-message error">
+      ${ errorObject.message }
+      ${ invalidItemsListHtml }
+    </section>
+  `;
 
-  const GTM_TRACK_ATTRIBUTE = 'data-gtm-track';
-  const GTM_ID_ATTRIBUTE    = 'data-gtm-id';
+  $( '.content-panel > main > .formatting' ).prepend( errorNotificationHtml );
+  console.error( 'Content-related error has occured', errorObject );
+}
 
 
-  function autoregisterGtmTrackingListeners() {
-    addGtmTrackingListeners( $( `[${GTM_TRACK_ATTRIBUTE}]` ) );
+/** NAVIGATION */
+
+
+
+/**
+ * Adds the 'active' class to a main menu item
+ * that corresponds with the current top-level URL path
+ * segment.
+ *
+ * Note: This is *only* done due to Squiz 5.4 limitations. Once we can render
+ * this class on the backend, this function can be deprecated.
+ */
+function addActiveClassToMainMenu() {
+  // [url-path-segment]: [nav-item-classname]
+  const rootPages = {
+    future:                'future',
+    international:         'international',
+    current:               'current',
+    research:              'research',
+    ['learning-teaching']: 'learning-teaching'
   }
 
-  function addGtmTrackingListeners( elementsList, eventType, trackingId ) {
-      if ( !window.dataLayer ){
-        console.warn( "`dataLayer` variable is unavailable. Please, check that your Google Tag Manager script is loading before any other script." );
-        window.dataLayer = []; // Fallback
-        return;
+  const urlPathSegments = window.location.pathname.split( '/' );
+
+  if ( urlPathSegments.length > 1 && urlPathSegments[ 1 ] !== '' && rootPages.hasOwnProperty( urlPathSegments[ 1 ] )) {
+    const activeNavItemClass = rootPages[ urlPathSegments[ 1 ]];
+    const activeNavItem = document.querySelector( `.menu-bar .${activeNavItemClass}`);
+
+    if ( activeNavItem ) activeNavItem.classList.add( 'active' );
+  }
+}
+
+
+
+/** CONTENT SIDE-BAR */
+
+// Constants
+
+const SIDEBAR_WIDGET_CLASSNAME = 'data-sidebar',
+SIDEBAR_ID                     = 'rightHandMenu',
+SIDEBAR_WIDGETS_MAX            = 3,
+
+WIDGET_LINKS_CLASSNAME         = 'data-relatedLinks';
+
+
+/**
+ * Finds all widget blocks within the main content and moves them into the
+ * right-hand sidebar.
+ *
+ * Note: This is *only* done due to Squiz 5.4 limitations. Once we can render
+ * widgets into the sidebar on our backend, this client-side solution can be
+ * deprecated.
+ *
+ * @returns {void}
+ */
+function moveWidgetsToSidebar() {
+  // No widgets OR sidebar available -> Skip!
+  if ( !document.querySelector( `.${SIDEBAR_WIDGET_CLASSNAME}` ) || !document.getElementById( SIDEBAR_ID ) ) return;
+
+
+  // Members
+
+  // Original, unordered widgets
+  const widgetsToMove          = $( `.${SIDEBAR_WIDGET_CLASSNAME}` ),
+  sidebarElement               = $( `#${SIDEBAR_ID}` );
+
+  // Correctly ordered and prepared to be rendered
+  let widgetsMoved             = [];
+
+  let error;
+
+
+  widgetsToMove.each( function( index ) {
+    const widgetElement = $( this );
+
+    if ( widgetsMoved.length >= SIDEBAR_WIDGETS_MAX ) {
+      if ( !error ) {
+        error = {
+          type:         ERROR_TYPES.SIDEBAR_WIDGETS_COUNT_EXCEEDED,
+          message:      `
+              <h2>Too many elements in the sidebar</h2>
+              <p>Currently added: ${widgetsToMove.length}, Maximum: ${SIDEBAR_WIDGETS_MAX}.</p>
+              <p>
+                <strong>Please remove the class '${SIDEBAR_WIDGET_CLASSNAME}' from all blocks you do not want to appear in the sidebar.</strong>
+              </p>
+              <p>
+                The blocks with following content will not be shown in the sidebar:
+              </p>
+            `,
+          invalidItems: [],
+        };
       }
 
-    elementsList.each( function() {
-      var elementToTrack = $( this );
+      error.invalidItems.push( this.id || `${widgetElement.text().trim().substring( 0, 80 )}...` );
 
-      eventType = eventType || elementToTrack.attr( GTM_TRACK_ATTRIBUTE ) || 'auto';
-      trackingId = trackingId || elementToTrack.attr( GTM_ID_ATTRIBUTE ) || elementToTrack[ 0 ].id;
-
-      switch( eventType ) {
-        case 'click': {
-          elementToTrack.on( eventType, function( event ) {
-            dataLayer.push({
-              'event':            trackingId,
-              'custom.selector':  event.target,
-              'custom.eventType': event.type,
-              'custom.href':      event.currentTarget.href,
-              'custom.text':      event.currentTarget.text,
-            });
-          });
-        }; break;
-        case 'auto': break;
-        default: {
-          console.warn( `GTM: Tracking of event '${eventType}' is not supported. Please, change it.` )
-        }
-      }
-    });
-  }
-
-  function pushTrackingInfoToGtm( trackingId, eventType ){
-    if ( !window.dataLayer ){
-      console.warn( "`dataLayer` variable is unavailable. Please, check that your Google Tag Manager script is loading before any other script." );
-      window.dataLayer = []; // Fallback
       return;
     }
 
-    dataLayer.push({
-      'event':            trackingId,
-      'custom.eventType': eventType,
+    // A) Staff profile - add to the top!
+    if( widgetElement.hasClass( WIDGET_LINKS_CLASSNAME ) ){
+      widgetsMoved.unshift( widgetElement );
+    }
+    // B) Others (downloads, publications etc.) - Add to the last positions
+    else {
+      widgetsMoved.push( widgetElement );
+    }
+
+    // Remove from its original location
+    widgetElement.detach();
+
+    // Remove `display:none` if it exists
+    widgetElement.css( 'display', '' );
+  });
+
+  // Render widgets in the sidebar
+  sidebarElement.append.apply( sidebarElement, widgetsMoved );
+
+  // Render errors, if any
+  if ( error ) showAdminErrorMessage( error );
+}
+
+
+
+
+
+/**
+ * Function called on the jQuery Element, opens it as a popup.
+ *
+ * @param {Object} { delayInMs = 0, suppressAfterCanceling = false }
+ *
+ * @returns {DOMElement}
+ */
+function openPopup( { delayInMs = 0, suppressAfterCanceling = false } = {} ){
+  initPopupBox( this, { delayInMs: delayInMs, suppressAfterCanceling: suppressAfterCanceling } );
+
+  return this;
+}
+
+
+/** 'GO UP' BUTTON */
+
+const BTN_UP_ID           = 'btn-up',
+      BTN_ADMIN_EDIT_ID   = 'btn-admin';
+
+const ADMIN_URL_EXTENSION = '_edit';
+
+const SCROLL_ANIMATION_DURATION_IN_MS = 700;
+
+
+function initFloatingButtons() {
+  const buttonUpElement = document.getElementById( BTN_UP_ID );
+  const buttonAdminElement = isAdminEnvironment() ? document.getElementById( BTN_ADMIN_EDIT_ID ) : null;
+
+  if ( buttonUpElement ){
+    $( buttonUpElement ).click( ( e ) => {
+      e.preventDefault();
+      console.log( 'TRIGGERED!' );
+      $( 'html,body' ).animate({
+          scrollTop: 0
+      }, SCROLL_ANIMATION_DURATION_IN_MS );
     });
   }
 
+  if ( buttonAdminElement ){
+    $( buttonAdminElement ).css( 'display', '' ); // Remove inline 'display'
 
-  function shouldTrackByGtm( element ){
-    return Boolean( element.attr( GTM_TRACK_ATTRIBUTE ) !== undefined );
+    // Uncomment if the button and URL cannot be rendered by Squiz!
+    //$( buttonAdminElement ).click( ( e ) => {
+    //  e.preventDefault();
+    //    window.location.href += `/${ADMIN_URL_EXTENSION}`;
+    //})
   }
 
+}
 
+
+
+// Run after the DOM has loaded...
 $(function(){
+  moveWidgetsToSidebar();
+  addActiveClassToMainMenu();
 
 	fastclick.attach(document.body);
-	var $body = $('body');
-	var $globalNav = $("#global-nav");
-  var $globalSearch = $("#global-search");
+	var $body          = $( 'body' );
+	var $globalNav     = $( '#global-nav' );
+  var $globalSearch  = $( '#global-search' );
 
   /** Init side-menu, if it's present */
   if ( $( '.' + SIDEMENU_CLASS ).length ) {
     initSidemenuExpandability();
   }
+
+  initFloatingButtons();
+  decodeMailAddresses();
 
   // Find all existing popups and if they contain `data-autoload` attribute,
   // trigger autoloading automatically.
@@ -359,61 +577,96 @@ $(function(){
   });
 
 
+  //http://wicky.nillia.ms/enquire.js/
+  //TODO: Refactor and extract to its own library
+	enquire.register( MOBILE_LARGE_AND_SMALLER, function() {
 
-  /** GOOGLE TAG MANAGER */
+		if ( $globalNav.length ) {
+      const eGlobalNav    = $globalNav[0],
+      bannerHeaderElement = $( '.site-header' ),
+      sidemenu            = $( '.sidemenu' );
 
-  /** Auto-register all on-demand elements to track for GTM. */
-  setTimeout( autoregisterGtmTrackingListeners, 0 ); // To trigger after previous DOM re-renders
+			const headroom  = new Headroom( eGlobalNav, {
 
-  /** Any element or set of elements can be dynamically tracked this way */
-  // addGtmTrackingListeners( jQueryElements, trackingId, eventType );
+			  'offset':    $globalNav.outerHeight(),
+        // or scroll tolerance per direction
+        tolerance : {
+          down: 5,
+          up:   20,
+        },
+        'classes': {
+          'initial':  'sticky',
+          'pinned':   'slide-down',
+          'unpinned': 'slide-up',
+          'notTop':   'no-top'
+        },
+      });
 
+      headroom.init();
 
+      const disableHeadroom = () => {
+        if(headroom){
+          headroom.scroller.removeEventListener('scroll', headroom.debouncer, false);
+        }
+      };
 
-	//http://wicky.nillia.ms/enquire.js/
-	enquire.register(MOBILE_LARGE_AND_SMALLER, function() {
+      const enableHeadroom = () => {
+        if(headroom){
+          headroom.scroller.addEventListener('scroll', headroom.debouncer, false);
+        }
+      };
 
-		if ($globalNav.length) {
-			var eGlobalNav = $globalNav[0];
-			var headroom  = new Headroom(eGlobalNav, {
-			  "offset": eGlobalNav.clientHeight,
-			  "tolerance": {
-			  	up: 20,
-			  	down: 5
-			  },
-			  onPin: function (){
-			  	//reset in-menu scrolling
-			  	$globalNav.find('.menu').scrollTop(0);
-			  },
-			  onUnpin: function (){
-			  	$globalNav.toggleClass('is-open', false);
-			  	$globalNav.find('.tcon').toggleClass('tcon-transform', false);
-			  }
+      const removeMenuOutClickListener = () => {
+        document.removeEventListener( 'click', menuOutsideClickListener );
+      };
 
-			});
-			headroom.init();
+      const registerMenuOutClickListener = () => {
+        document.addEventListener( 'click', menuOutsideClickListener );
+      };
 
-			$body.on('click ', '.js-toggle-global-nav', function(_event){
-				var $this = $(this);
-				$this.find('.tcon').toggleClass('tcon-transform');
-				$globalNav.toggleClass('is-open');
+      const toggleMobileMenu = () => {
+				$globalNav.find('.tcon').toggleClass('tcon-transform');
+        $globalNav.toggleClass( 'is-open' );
+
+        if ( !headroom ) return;
+
+        if ( $globalNav.hasClass( 'is-open' ) ){
+          disableHeadroom();
+          $body.addClass( 'unscrollable' );
+          registerMenuOutClickListener();
+        } else {
+          enableHeadroom();
+          $body.removeClass( 'unscrollable' );
+          removeMenuOutClickListener();
+        }
+      };
+
+      function menuOutsideClickListener( event ) {
+        if (!$(event.target).closest( '#global-nav' ).length) {
+          toggleMobileMenu();
+        }
+      };
+
+			$body.on( 'click ', '.js-toggle-global-nav', function( _event ){
+        toggleMobileMenu();
 			});
 		}
 
 	});
 
 
+  // Opens/closes global search bar & gains auto-focus
 	$body.on('click ', '.js-toggle-global-search', function(_event){
 		var $this = $(this);
 
 		if ($this.data('js-has-active-transition')) {
 			return false;
-		}
+    }
 
 		$this.data('js-has-active-transition', true);
 		$this.find('.tcon').toggleClass('tcon-transform');
 
-		if ($globalSearch.hasClass('is-open')) {
+		if ( $globalSearch.hasClass('is-open') ) {
 			$globalSearch.toggleClass('is-open', false);
 			setTimeout(function(){
 				$this.data('js-has-active-transition', false);
@@ -424,8 +677,8 @@ $(function(){
 				$globalSearch.find('input:text').focus();
 				$this.data('js-has-active-transition', false);
 			}, TRANSITION_TIMEOUT);
-		}
-		// $globalSearch.velocity({'left': '85%'}, { duration: 1500 });
+    }
+
 		_event.preventDefault();
 	});
 
@@ -483,10 +736,16 @@ $(function(){
 		$('.menu-toggle-icon').toggleClass('open');
 	 });
 
-	 /* Show search bar on desktop */
-	 $('.search-item').on('click', function () {
-		$('.search-bar').slideToggle();
-	  });
+  /* Show search bar on desktop */
+  $('.search-item').on('click', function () {
+    $('.search-bar').slideToggle();
+
+    const searchInputElement = $( '#search-query' );
+
+    if ( searchInputElement.is( ':visible' ) ) {
+      searchInputElement.focus();
+    }
+  });
 
   /** DOM manipulation */
 
@@ -517,10 +776,9 @@ $(function(){
 $('.tile-accordion.content-page .tile .toggle').on('click', function (evt) {
 
   var $this = $(this);
-  
-  
+
   $this.toggleClass('expanded');
-  $this.siblings('p').toggle(); 
+  $this.siblings('p').toggle();
 
 });
 
@@ -532,9 +790,46 @@ function restrictedLinkTitle() {
     lockLinks[i].setAttribute('title', 'Restricted intranet link');
   }
 
-  
+
 }
 restrictedLinkTitle();
+
+/* Research hub mega menu */
+function hubMegaMenu() {
+  const menu = $('.hub-mega-menu .mega-menu-inner');
+  const menuExpandButton = $('.hub-mega-menu .btn-expander');
+  let mobile = false;
+  let desktop = false;
+
+  enquire.register( DESKTOP_AND_LARGER, function() {
+    desktop = true;
+    mobile = false;
+  });
+  enquire.register( TABLET_AND_SMALLER, function() {
+    desktop = false;
+    mobile = true;
+  });
+
+  menuExpandButton.each( function() {
+    $(this).on('click', (c) => {
+        let $this = $(this);
+        if ( desktop ) {
+          menu.toggleClass('expanded');
+        }
+        if ( mobile) {
+          menu.addClass('expanded');
+          $this.parent().toggleClass('js-dropdown-show');
+        }
+      });
+  });
+}
+
+if( document.getElementsByClassName('hub-mega-menu').length > 0 ){
+  hubMegaMenu();
+}
+
+
+
 
 
 /**

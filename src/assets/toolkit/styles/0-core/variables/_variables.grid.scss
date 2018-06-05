@@ -1,0 +1,40 @@
+/*============================================================================*\
+| GRID SYSTEMS' PROPERTIES
+\*============================================================================*/
+
+////
+/// Settings for various grid systems.
+///
+/// @group Name
+
+
+
+
+
+/*= BOURBON-NEAT GRID ========================================================*/
+
+
+/// @link http://thoughtbot.github.io/neat-docs/latest/
+
+$neat-grid: (
+  'columns': 12,
+  'gutter':  $gap-horizontal,
+) !default;
+
+@mixin grid-doubles() {
+  @include grid-column( 6, $neat-grid );
+  &:nth-child( 2n+1 ) { clear: left; }
+}
+
+@mixin grid-triples() {
+  @include grid-column( 4, $neat-grid );
+  &:nth-child( 3n+1 ) { clear: left; }
+}
+
+@mixin grid-quadruples() {
+  @include grid-column( 3, $neat-grid );
+  &:nth-child( 4n+1 ) { clear: left; }
+}
+
+
+

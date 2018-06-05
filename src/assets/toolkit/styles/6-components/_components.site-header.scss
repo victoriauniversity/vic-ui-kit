@@ -1,440 +1,378 @@
-// _components.site-header.scss
+$logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 
+.site-header,
+.main-site-header {
+  padding-top: .5rem;
+  background: $black-brand;
+  border-bottom: 6px solid $green-brand;
 
+  .block {
+    display: flex;
+    padding-top:    1rem;
+    padding-bottom: 1rem;
+  }
 
+  .menu-container {
+    flex: 1 0 70%;
+    align-self: center;
+  }
 
-  $logo-max-height: rem( 105px ); //TODO: Transfer to rems using function
+  .search-bar {
+    display: none;
+    flex: 1 1 100%;
+    margin-top: 1rem;
 
-  .site-header, .main-site-header {
-    background: $black-victoria;
-    border-bottom: 6px solid $green-victoria;
-    padding-top: 0.5rem;
+    form {
+      margin: 0 auto;
+      padding: 1em;
+      width: 70%;
+      background-color: $grey-alto;
+      border-radius: 3px;
 
-    .block {
-      padding-top:    1rem;
-      padding-bottom: 1rem;
-      @include display(flex);
-    }
+      input[type=search] {
+        margin-right: 2%;
+        padding: .66em;
+        width: 78%;
+        max-height: 2.81rem;
+      }
 
-    .menu-container {
-      @include flex(1 0 70%);
-      @include align-self(center);
-    }
-
-    .search-bar {
-      @include flex(1 1 100%);
-      display: none;
-      margin-top: 1rem;
-
-      form {
-        width: 70%;
-        margin: 0 auto; 
-        padding: 1em;
-        background-color: $grey-alto;
-        border-radius: 3px;
-
-        input[type=search] {
-          width: 78%;
-          margin-right: 2%;
-          padding: 0.66em;
-          max-height: rem(45px);
-        }
-
-        input[type=submit] {
-            width: 18%;
-            cursor: pointer;
-            max-height: rem(45px);
-            border-style: inherit;
-        }
+      input[type=submit] {
+        padding: .5em;
+        width: 18%;
+        max-height: 2.81rem;
+        cursor: pointer;
+        border-style: inherit;
       }
     }
-    
-    .main-menu-toggle {
-      display: none;
-    }
+  }
 
-    .horizontal-menu {
+  .main-menu-toggle { display: none; }
+
+  .horizontal-menu {
+    @include clearfix();
+    align-items: center;
+
+    .menu-bar {
       @include clearfix();
+      padding: .25em $gap-horizontal;
 
-      @include media( $desktop-large ) {
-        @include span-columns( 10 of 12, table);
-        display: flex;
+      .search-item {
+        position: absolute;
+        right: 0;
       }
-
-      
-      align-items: center;
-      
-
-      .menu-bar {
-        padding: 0.25em 1em;
-        @include clearfix();
-        
-        a {
-          
-          color: $white; // float: left;
-          margin: 0;
-          margin-bottom: .35em;
-          
-          border-bottom: none;
-          line-height: 1.2;
-          display: block;
-          text-transform: capitalize;
-          
-          @include media( $tablet-and-bigger ) {
-            font-size: 2vw; 
-
-
-            font-weight: $weight-medium;
-          }
-          padding: 0 $base-spacing/1.5;
-          @include media( $desktop-and-smaller ) {
-            font-size: 2.5vw;
-          }
-
-
-          
-            
-          @media screen and ( min-width: 1400px ) {
-            
-              font-size: 28px;
-            
-          }
-
-
-          &.active {
-              border-bottom: 2px solid $white;
-              &:hover {
-              border-bottom: 2px solid $grey-silver;
-              }
-            }
-          
-
-          &:hover {
-            opacity: $base-hover-opacity;
-          }
-      
-/*           &:not(:first-child) {
-            &:before {
-              padding-right: .3em;
-              content: "|";
-              color: #555;
-              font-size: 18px;
-              font-weight: 400;
-            }
-          } */
-        }
-
-      }
-
-      // .search-item {
-      //   float: right;
-      //   padding: 0; 
-      //   margin-bottom: 1em;
-      //   >.icon-search {
-      //     color: $white;
-      //     font-size: 2rem;
-      //     padding: 0 $base-spacing/1.5; // float: right;
-      //   }
-      // }
-
-      &.sub-nav {
-
-        a {
-          padding: 0 $base-spacing/1.5;
-          font-size: 0.8rem;
-          margin-bottom: 0;
-          color: $grey-silver;
-          text-transform: uppercase;
-        }
-      }
-
-     
-    }
-
-
-
-    .logo,
-    .site-intro {
-      vertical-align: middle;
-    
 
       a {
         display: block;
-        @include hoverify() {
-          opacity: $base-hover-opacity;
+        margin: 0;
+        padding: 0 $base-spacing / 1.5;
+        color: $white;
+        border-bottom: 0;
+        line-height: 1.2;
+        text-transform: capitalize;
+
+        &.active {
+          position: relative;
         }
+
+        &:hover { opacity: $base-hover-opacity; }
+
+        @include breakpoint( desktop-large ) {
+          font-size: 2vw;
+          font-weight: $weight-medium;
+        }
+
+        @include breakpoint( $until: desktop-large ) {
+          font-size: 2.5vw;
+        }
+
+        @media screen and ( min-width: 1400px ) { font-size: 28px; }
       }
     }
 
-    /* Victoria main logotype */
-    .logo {
-      @include align-self(center);
-      text-align: center;
-      // Logo image
-      img {
-        vertical-align: middle;
-        max-height: $logo-max-height;
+    &.sub-nav {
+      margin-bottom: $gap-small;
+
+      a {
+        margin-bottom: 0;
+        padding: 0 $gap-horizontal 0 0;
+        font-size: $text-size-tiny;
+        color: $text-light-weaker-color;
+        text-transform: uppercase;
       }
     }
 
-    /* Site's introduction - eg. sitename, motto, short abstract */
+    @include breakpoint( desktop-large ) {
+      display: flex;
+    }
+  }
 
-      // Sitename
-      h1 {
-        font-size:     scale-heading( 4 ) * .85; // 85% smaller than standard <h1>
-        font-weight:   $weight-normal;
-        color:         $white;
+  .logo,
+  .site-intro {
+    vertical-align: middle;
+    align-self: center;
 
-        .large {
-          font-size: 140%;
+    a {
+      display: block;
 
-          &:not(:first-child) {
-            line-height: .8; // Decrease the margins
+      @include hoverify() { opacity: $base-hover-opacity; }
+    }
+  }
+
+  /* Victoria main logotype */
+  .logo {
+    text-align: center;
+
+    // Logo image
+    img {
+      max-height: $logo-max-height;
+      vertical-align: middle;
+    }
+  }
+
+  /* Site's introduction - eg. sitename, motto, short abstract */
+  // Sitename
+  h1 {
+    font-size:   $h2-size;
+    font-weight: $weight-normal;
+    color:       $white;
+
+    .large {
+      font-size: 140%;
+
+      &:not(:first-child) {
+        line-height: .8; // Decrease the margins
+      }
+    }
+
+    .preline,
+    small {
+      display: block;
+    }
+
+    // Puts given part of the heading to a separate line
+    .preline { font-size: 75%; }
+
+    // Alternative translation
+    small {
+      margin-top:  .25rem;
+      font-size:   50%;
+      font-weight: normal;
+      color:       $grey-silver;
+      line-height: 1.2;
+    }
+  }
+
+
+  @include breakpoint( tablet ) {
+    .block {
+      display: flex;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .site-intro {
+      float: left;
+      padding: .3rem $column-padding .5rem $column-padding * 1.5;
+      width: 75%;
+    }
+
+    .horizontal-menu {
+      @include clearfix;
+
+      &.main-nav {
+        display: block !important; //important used to protect mobile slidetoggle resizing
+        a { padding-bottom: .3em; }
+      }
+
+      a {
+        float: left;
+        margin: 0;
+        padding: $base-spacing / 2 $base-spacing / 1.5;
+        border-bottom: 0;
+
+        &.active {
+          @include after() {
+            @include scalable-rectangle-horizontal( 100%, $border-width-medium, $white );
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            margin: 0 0 $bleed-half $bleed-horizontal / 2;
           }
-        }
 
-        .preline,
-        small {
-          display: block;
-        }
-
-        // Puts given part of the heading to a separate line
-        .preline { font-size: 75%; }
-
-        // Alternative translation
-        small {
-          margin-top:  .25rem;
-          font-size:   50%;
-          font-weight: normal;
-          color:       $grey-silver;
-          line-height: 1.2;
+          &:hover::after { border-color: $grey-silver; }
         }
       }
+    }
+
+    .logo {
+      float: left;
+      padding: .1rem $column-padding * 1.5 .1rem;
+      width: 25%;
+      border-right: 1px solid $black-emperor;
+    }
+
+  }
 
 
-    @include media( $tablet-and-bigger ) {
+  @include breakpoint( $until: tablet ) {
+    .block {
+      // @include flex-direction(column);
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
 
-      .block {
-        // display: table;
-        // table-layout: fixed;
-        width: 100%;
-        @include display(flex);
-        @include flex-wrap(wrap);
+    .main-menu-toggle {
+      display: block;
+      font-size: 2.5em;
+      color: $white;
+      cursor: pointer;
+
+      .icon-menu {
+        &::before { margin-right: 0; }
       }
+    }
 
-      .site-intro {
-        @include span-columns( 9 of 12 );
-        padding: .3rem $column-padding .5rem $column-padding * 1.5;
-        
-      }
+    .menu-container {
+      flex: 1 1 100%;
+      margin-top: .3rem;
+
+      .sub-nav { display: none; }
 
       .horizontal-menu {
-        @include clearfix();
-
         &.main-nav {
-          display: block !important; //important used to protect mobile slidetoggle resizing
-          a {
-            padding-bottom: 0.3em;  
-          }
-        }
-
-        a {
-          float: left;
-          // width: 25%;
-          margin: 0;
-          padding: $base-spacing/2 $base-spacing/1.5;
-          border-bottom: none;
-        }
-      }
-
-      .logo {
-        @include span-columns( 3 of 12 );
-
-        padding: .1rem $column-padding * 1.5 .1rem $column-padding;
-        border-right: 1px solid $black-emperor;
-      }
-
-    }
-
-    @include media( $tablet-and-smaller ) {
-      .menu-bar {
-        .search-item {
-          position: absolute;
-          right: 1em;
-        }
-      }
-    }
-
-    @include media( $mobile-large-and-smaller ) {
-
-      .block {
-        // @include flex-direction(column);
-        @include flex-wrap(wrap);
-        @include justify-content(space-between);
-      }
-
-      .main-menu-toggle {
-        display: block;
-        font-size: 2.5em;
-        color: $white;
-        cursor: pointer;
-
-        .icon-menu {
-          &:before {
-            margin-right: 0;
-          }
-        }
-      }
-
-      .menu-container {
-        @include flex(1 1 100%);
-        margin-top: rem(5px);
-        .sub-nav {
           display: none;
-        }
 
-        .horizontal-menu {
-          &.main-nav {
-            display: none;
-            
-            .menu-bar {
-              background-color: $black-tundora;
-              padding: 0;
+          .menu-bar {
+            padding: 0;
+            background-color: $black-tundora;
 
-              .search-item {
-                display: none;
+            // TODO: Refactor & flatten to lower the depth!
+            .search-item { display: none; }
+
+            // TODO: Refactor & flatten to lower the depth!
+            a {
+              margin-bottom: 0;
+              padding: 1rem 1.5rem;
+              font-size: 1.4rem;
+              border-bottom: 2px solid $grey-dove;
+
+              @include hoverify() {
+                background-color: $grey;
+                transition: all .5s ease;
               }
-              a {
-                font-size: 1.1rem;
-                padding: 1rem 1.5rem;
-                margin-bottom: 0;
-                border-bottom: 2px solid $grey-dove;
-                @include hoverify() {
-                  background-color: $grey;
-                  transition: all 0.5s ease;
-                }
 
-                &:nth-last-child(2) {
-                  border-bottom-color: transparent; 
-                }
+              &:nth-last-child( 2 ) {
+                border-bottom-color: transparent;
               }
             }
-          }
-        }
-      }
 
-
-
-
-      .logo { 
-        width: 12rem;
-      }
-
-      .site-intro {
-        width: 100%;
-        padding-left: 0;
-        padding-right: 0;
-      }
-
-      h1 {
-        line-height: #{$base-line-height * 1.2}rem;
-        text-align: center;
-
-        .large { font-size: 120%; }
-      }
-
-      .search-bar {
-        margin-top: 1em;
-
-        form {
-          width: 100%;
-
-          input[type=search] {
-            width: 100%;
-          }
-  
-          input[type=submit] {
-            width: 100%;
-            margin-top: 0.5rem;
           }
         }
       }
     }
+
+    .logo {
+      img { width: 12rem; }
+    }
+
+    .site-intro {
+      padding-right: 0;
+      padding-left: 0;
+      width: 100%;
+    }
+
+    h1 {
+      line-height: #{$text-line-height * 1.2}rem;
+      text-align: center;
+
+      .large { font-size: 120%; }
+    }
+
+    .search-bar {
+      margin-top: 1em;
+
+      form {
+        width: 100%;
+
+        input[type=search] { width: 100%; }
+
+        input[type=submit] {
+          margin-top: .5rem;
+          width: 100%;
+        }
+      }
+    }
+
   }
-
-
-  /* menu toggle icon css only transform hamburger to cross */
-  .menu-toggle-icon {
-    width: 60px;
-    height: 45px;
-    position: relative;
-    @include transform( rotate(0deg) );
-    @include transition(0.5s ease-in-out);
-
-    @include transform(scale(0.5));
-  }
-  
- .menu-toggle-icon span {
-    display: block;
-    position: absolute; 
-    height: 9px;
-    width: 100%;
-    background: $white;
-    border-radius: 9px;
-    opacity: 1;
-    left: 0;
-    @include transform( rotate(0deg) );
-    @include transition(0.25s ease-in-out);
-  }
-
-.menu-toggle-icon span:nth-child(1) {
-  top: 0px;
 }
 
-.menu-toggle-icon span:nth-child(2),.menu-toggle-icon span:nth-child(3) {
+/* menu toggle icon css only transform hamburger to cross */
+.menu-toggle-icon {
+  @include size( 60px, 45px );
+  position: relative;
+  transform: rotate( 0deg );
+  transition: .5s ease-in-out;
+  transform: scale( .5 );
+}
+
+.menu-toggle-icon span {
+  @include size( 100%, 9px );
+  position: absolute;
+  left: 0;
+  display: block;
+  transform: rotate( 0deg );
+  transition: .25s ease-in-out;
+  opacity: 1;
+  background: $white;
+  border-radius: 9px;
+}
+
+.menu-toggle-icon span:nth-child( 1 ) { top: 0; }
+
+.menu-toggle-icon span:nth-child( 2 ),
+.menu-toggle-icon span:nth-child( 3 ) {
   top: 18px;
 }
 
-.menu-toggle-icon span:nth-child(4) {
-  top: 36px;
-}
+.menu-toggle-icon span:nth-child( 4 ) { top: 36px; }
 
-.menu-toggle-icon.open span:nth-child(1) {
+.menu-toggle-icon.open span:nth-child( 1 ) {
   top: 18px;
-  width: 0%;
   left: 50%;
-}
-
-.menu-toggle-icon.open span:nth-child(2) {
-  @include transform( rotate(45deg) );
-}
-
-.menu-toggle-icon.open span:nth-child(3) {
-  @include transform( rotate(-45deg) );
-}
-
-.menu-toggle-icon.open span:nth-child(4) {
-  top: 18px;
   width: 0%;
+}
+
+.menu-toggle-icon.open span:nth-child( 2 ) {
+  transform: rotate( 45deg );
+}
+
+.menu-toggle-icon.open span:nth-child( 3 ) {
+  transform: rotate( -45deg );
+}
+
+.menu-toggle-icon.open span:nth-child( 4 ) {
+  top: 18px;
   left: 50%;
+  width: 0;
 }
 
 
 /* Styling to fit existing site IA until hub IA is implemented */
 .main-site-header {
   &.existing-ia {
+    overflow: hidden; // IE11 FIX to remove heading height explosion
+
     > div {
 
-      .logo {
-
-        @include media($tablet-and-bigger) {
-          width: 20%;
+      @include breakpoint( tablet ) {
+        .logo {
           margin-right: 0;
+          width: 25%;
         }
       }
 
       nav.menu-container {
-        @include flex(1 0 80%);
+        flex: 1 0 75%;
 
         .horizontal-menu {
           width: 100%;
@@ -442,32 +380,25 @@
           &.main-nav {
             .menu-bar {
               a {
-                padding: 0 $base-spacing/2.5;
+                margin-bottom: $gap-small;
+                padding: $gap-tiny $gap-horizontal $gap-tiny 0;
 
-                @include media( $tablet-and-bigger ) {
-                  font-size: 1.1rem; 
+                @include breakpoint( tablet ) {
+                  font-size: 1.1rem;
                 }
 
-                @include media( $desktop-and-smaller ) {
-                  // font-size: 1.4vw;
-                }
-
-                @include media( $mobile-large-and-smaller ) {
-                  font-size: 1.2rem;
+                @include breakpoint( $until: tablet ) {
                   padding: 1rem 1.5rem;
+                  font-size: 1.2rem;
                 }
 
-                /* Fix for search icon breaking */
-                @media screen and (min-width: 1097px ) and (max-width: 1150px) {
-                  &.search-item {
-                    position: absolute;
-                    right: 1rem;
-                  }
-                }
-                
               }
             }
           }
+        }
+
+        @include breakpoint( $until: tablet ) {
+          padding-left: 0;
         }
       }
 
@@ -475,12 +406,10 @@
   }
 }
 
-@include media( $mobile-large-and-smaller ) {
+@include breakpoint( $until: tablet ) {
   .global {
     + .site-header {
-      .logo {
-        display: none;
-      }
+      .logo { display: none; }
     }
   }
 }

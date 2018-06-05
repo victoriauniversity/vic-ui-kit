@@ -1,0 +1,280 @@
+/*============================================================================*\
+| BUILDING/ASSEMBLY FUNCTIONS
+\*============================================================================*/
+
+////
+/// Family of helper functions that provide dynamic way to build outputs.
+///
+/// @group builders
+
+
+
+
+
+/*= PATHS ====================================================================*/
+
+
+/// Builds the `src` list for an `@font-face` declaration.
+///
+/// @argument {string} $font-family
+///
+/// @argument {string} $file-path
+///
+/// @argument {boolean} $asset-pipeline
+///
+/// @argument {list} $file-formats
+///
+/// @return {list}
+///
+/// @require {function} _contains
+///
+/// @author Thoughtbot
+/// @link https://github.com/smpallen99/ex_admin/blob/master/web/static/css/bourbon/helpers/_font-source-declaration.scss
+///
+/// @access private
+
+@function _font-source-declaration(
+  $font-family,
+  $file-path,
+  $asset-pipeline,
+  $file-formats: $font-supported-formats
+) {
+  $src: ();
+
+  $formats-map: (
+    eot:   '#{$file-path}.eot?#iefix' format( 'embedded-opentype' ),
+    woff2: '#{$file-path}.woff2' format( 'woff2' ),
+    woff:  '#{$file-path}.woff' format( 'woff' ),
+    ttf:   '#{$file-path}.ttf' format( 'truetype' ),
+    svg:   '#{$file-path}.svg##{$font-family}' format( 'svg' ),
+  );
+
+  @each $key, $values in $formats-map {
+    @if _contains($file-formats, $key) {
+      $file-path:   nth( $values, 1 );
+      $font-format: nth( $values, 2 );
+
+      @if $asset-pipeline == true {
+        $src: append( $src, font-url( $file-path ) $font-format, comma );
+      } @else {
+        $src: append( $src, url( $file-path ) $font-format, comma );
+      }
+    }
+  }
+
+  @return $src;
+}
+
+
+
+
+/// Increments up or down a defined scale and returns an adjusted value. This
+/// helps establish consistent measurements and spacial relationships throughout
+/// your project. We provide a list of commonly used scales as
+/// [pre-defined variables][scales].
+///
+/// [scales]: https://github.com/thoughtbot/bourbon/blob/master/core/bourbon/helpers/_scales.scss
+///
+/// @argument {number (unitless)} $increment
+///   How many steps to increment up or down the scale.
+///
+/// @argument {number (with unit) | list} $value [1em]
+///   The base value the scale starts at. Can also be set globally using the
+///   `modular-scale-base` key in the Bourbon settings.
+///
+/// @argument {number (unitless)} $ratio [1.25]
+///   The ratio the scale is built on. Can also be set globally using the
+///   `modular-scale-ratio` key in the Bourbon settings.
+///
+/// @return {number (with unit)}
+///
+/// @example scss
+///   .element {
+///     font-size: modular-scale(2);
+///   }
+///
+///   // CSS Output
+///   .element {
+///     font-size: 1.5625em;
+///   }
+///
+/// @example scss
+///   .element {
+///     margin-right: modular-scale(3, 2em);
+///   }
+///
+///   // CSS Output
+///   .element {
+///     margin-right: 3.90625em;
+///   }
+///
+/// @example scss
+///   .element {
+///     font-size: modular-scale(3, 1em 1.6em, $major-seventh);
+///   }
+///
+///   // CSS Output
+///   .element {
+///     font-size: 3em;
+///   }
+///
+/// @example scss
+///   // Globally change the base ratio
+///   $bourbon: (
+///     "modular-scale-ratio": 1.2,
+///   );
+///
+///   .element {
+///     font-size: modular-scale(3);
+///   }
+///
+///   // CSS Output
+///   .element {
+///     font-size: 1.728em;
+///   }
+///
+/// @author Thoughtbot
+/// @link https://github.com/thoughtbot/bourbon/blob/master/core/bourbon/library/_modular-scale.scss
+///
+/// @access private
+
+@function _modular-scale(
+  $increment,
+  $value,
+  $ratio
+) {
+  $first: nth( $value, 1 );
+  $second: nth( $value, length( $value ) );
+  $value: $first;
+
+  // scale $second to just above $first
+  @while $second > $first {
+    $second: ($second / $ratio); // will be off-by-1
+  }
+  @while $second < $first {
+    $second: ($second * $ratio); // will fix off-by-1
+  }
+
+  // check AFTER scaling $second to prevent double-counting corner-case
+  $double-stranded: $second > $first;
+
+  @if $increment > 0 {
+    @for $i from 1 through $increment {
+      @if $double-stranded and ( $first * $ratio ) > $second {
+        $value:  $second;
+        $second: ( $second * $ratio );
+      } @else {
+        $first: ( $first * $ratio );
+        $value: $first;
+      }
+    }
+  }
+
+  @if $increment < 0 {
+    // adjust $second to just below $first
+    @if $double-stranded {
+      $second: ( $second / $ratio );
+    }
+
+    @for $i from $increment through -1 {
+      @if $double-stranded and ( $first / $ratio ) < $second {
+        $value: $second;
+        $second: ( $second / $ratio );
+      } @else {
+        $first: ( $first / $ratio );
+        $value: $first;
+      }
+    }
+  }
+
+  @return $value;
+}
+
+
+
+
+
+/*= COLOURS ==================================================================*/
+
+
+/// Slightly lighten a colour.
+///
+/// @param {Color} $color - colour to tint
+/// @param {Number} $percentage - percentage of `$color` in returned color
+///
+/// @return {Color}
+///
+/// @link https://sass-guidelin.es/#syntax--formatting
+///
+/// @access public
+@function _tint( $color, $percentage ) {
+  @return mix( white, $color, $percentage );
+}
+
+/// Slightly darken a colour.
+///
+/// @param {Color} $color - colour to shade
+/// @param {Number} $percentage - percentage of `$color` in returned color
+///
+/// @return {Color}
+///
+/// @link https://sass-guidelin.es/#syntax--formatting
+///
+/// @access public
+@function _shade( $color, $percentage ) {
+  @return mix( black, $color, $percentage );
+}
+
+
+
+
+
+/*= LENGTHS & SIZES MANIPULATION =============================================*/
+
+
+/// Removes the unit from a length (number + unit definition).
+///
+/// @param {Number (with units)} - A length to strip units from
+///
+/// @return {Number (unitless}
+///
+/// @access public
+@function _strip-unit( $number ) {
+  @if type-of( $number ) == 'number' and not unitless( $number ) {
+    @return $number / ( $number * 0 + 1 );
+  }
+
+  @return $number;
+}
+
+
+/// Changes the unit of non-rem length to 'rem'.
+///
+/// @param {Number (with non-rem units)} $number
+///   - A number with non-rem units to be changed to 'rem' units.
+///
+/// @require {function} _strip-unit
+///
+/// @return {Number (rem)}
+///
+/// @access public
+@function _units_to_rem( $number ) {
+  @return  _strip-unit( $number ) * 1rem;
+}
+
+
+/// Changes the unit of rem-based length to 'em'.
+///
+/// @param {Number (rem)} $number-in-rems
+///   - A number with rem units to be changed to 'em' units.
+///
+/// @require {function} _strip-unit
+///
+/// @return {Number (em)}
+///
+/// @access public
+@function _em( $number-in-rems ) {
+  @return _strip-unit( $number-in-rems ) * 1em;
+}
+
+

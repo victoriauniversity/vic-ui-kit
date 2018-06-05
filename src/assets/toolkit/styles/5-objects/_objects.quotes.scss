@@ -2,276 +2,242 @@
 =     QUOTES, CITATION, BIBLIOGRAPHY      =
 =========================================*/
 
-  // Just a quote style
-  blockquote.quote {
-    font-style: italic;
+// Just a quote style
+blockquote.quote { font-style: italic; }
+
+// Quote with source
+.quote {
+  margin-bottom: $base-spacing;
+
+  /** Inline (related) block /w source */
+
+  blockquote {
+    margin-bottom: .35em;
+    font-size: $text-size-5;
+    font-style: normal;
   }
 
-  // Quote with source
-  .quote {
-    margin-bottom: $base-spacing;
+  figcaption {
+    @include bullet-line;
+    position: relative;
+  }
 
-    /** Inline (related) block /w source */
+  &:not(.full) {
+    margin-left: .85rem;
+    padding: 0 0 0 1rem;
+    border-left: $border-strip-highlight;
+
+    figcaption strong { font-weight: $weight-medium; }
+  }
+
+
+  /** Full block quotation /w source */
+
+  &.full {
+    // Citation itself
+    blockquote {
+      font-size: $text-size-5;
+
+      // Starting quote icon
+      @include extend-icon-before( quote-down ) {
+        top: -.1em;
+        margin-left: _em( $bleed-third );
+      };
+
+      // Ending quote icon
+      @include extend-icon-after( quote-up ) {
+        margin-right: _em( $bleed-third );
+      };
+
+      &::before,
+      &::after {
+        display: inline;
+        font-style: normal;
+        font-size: 130%;
+        line-height: 1;
+        color: $grey-silver;
+      }
+    }
+
+    // Source, author, URL
+    figcaption {
+      font-weight: $weight-medium;
+      font-size: 1.15em; // TODO: Review size
+      color: $green-brand;
+    }
+  }
+}
+
+// hub page Quote panel
+.quote-panel {
+  background-color: $grey-gallery;
+
+  .quote {
+    margin-bottom: 0;
+    padding: 1.875rem;
+    border-left: 5px solid $green-brand;
 
     blockquote {
-      margin-bottom: .35em;
-      font-style: normal;
+      color: $green-brand;
+
+      &::before,
+      &::after {
+        color: $green-brand;
+      }
     }
 
     figcaption {
-      @extend %bulletline-base;
-    }
+      text-align: right;
+      color: $black-tundora;
+      font-size: $text-size-5;
 
-    &:not(.full) {
-      margin-left: .85rem;
-      padding: 0 0 0 1rem;
-      border-left: $strip-light;
-
-      figcaption strong { font-weight: $weight-medium; }
-    }
-
-
-    /** Full block quotation /w source */
-
-    &.full {
-
-      // Citation itself
-      blockquote {
-        font-size: scale-font( 1 );
-
-        // Starting quote icon
-        @include extend-icon-before( quote-down ){
-          top: -.1em;
-          margin-right: .3em;
-        };
-
-        // Ending quote icon
-        @include extend-icon-after( quote-up ){
-          margin-left: .3em;
-        };
-
-        &:before,
-        &:after {
-          display: inline;
-          font-style: normal;
-          font-size: 130%;
-          line-height: 1;
-          color: $grey-silver;
-        }
-      }
-
-      // Source, author, URL
-      figcaption {
-        font-weight: $weight-medium;
-        font-size: rem( 18px );
-        color: $green-victoria;
-      }
+      &::before { display: none; }
     }
   }
 
-  // hub page Quote panel
-  .quote-panel {
-    background-color: $grey-gallery;
-    
+  &.quote-image {
     .quote {
-      border-left: 5px solid $green-victoria;
-      padding: em(30px);
-      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      border-left: none;
 
-      blockquote {
-        color: $green-victoria;
-        
-        &:before,
-        &:after {
-          color: $green-victoria;
+      img {
+        height: 180px;
+        width: 180px;
+        border-radius: 50%;
+
+        flex: 1 0 auto;
+      }
+
+      .quote-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        blockquote {
+          width: 60%;
+          position: relative;
+
+          h3,
+          h4 {
+            padding: 0 1em;
+          }
+
+          &:before,
+          &:after {
+            position: absolute;
+          }
+
+          &:before {
+            top: 0;
+            left: 0;
+          }
+
+          &:after {
+            bottom: 0;
+            right: 0;
+            top: unset;
+          }
+        }
+
+        figcaption {
+          text-align: inherit;
+          font-size: inherit;
+
+          h4,
+          h5,
+          p {
+            margin-bottom: 0.5em;
+          }
         }
       }
 
-      figcaption {
-        text-align: right;
-        color: #444;
-        font-size: scale-font( 1 );
 
-        &:before {
-          display: none;
+      @include breakpoint( $until: desktop ) {
+        .quote-content {
+          justify-content: flex-start;
+          flex-wrap: wrap;
+
+          blockquote {
+            width: 100%;
+          }
+
+          figcaption {
+            padding-left: 2em;
+            margin-top: 1.5em;
+          }
         }
-        
+
+      }
+
+      @include breakpoint( $until: tablet ) {
+        flex-wrap: wrap;
+
+        img {
+          @include size( 120px );
+          flex: 0 1 auto;
+          margin-bottom: $gap-vertical;
+        }
+      }
+
+      @include breakpoint( desktop ) {
+        img { margin-right: $gap-horizontal; }
       }
     }
 
-    // a {
-    //   @include hoverify() {
-    //     figure {
-    //       border-left-color: $blue-st-tropaz;
 
-    //       blockquote {
-    //         * {
-    //           color: $blue-st-tropaz;
-    //         }
-    //         &:before,
-    //         &:after {
-    //           color: $blue-st-tropaz;
-    //         }
-    //       }
+    &.quote-white {
+      background-color: #fff;
+      margin-bottom: 1.6em;
 
-    //       figcaption {
-    //         // color: $blue-st-tropaz
-    //       }
-    //     }
-    //   }
-    // }
-
-    &.quote-image {
       .quote {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        
-        
-        border-left: none;
+        justify-content: center;
+        position: relative;
+        padding-bottom: 2em;
+
+        &:after {
+          position: absolute;
+
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+
+          content: "";
+          height: 2px;
+          width: 70%;
+          background-color: $green-brand;
+        }
 
         img {
-          height: 180px;
-          width: 180px;
-          border-radius: 50%;
-          margin-right: 2em;
-
-          flex: 1 0 auto;
+          flex: 0 1 auto;
         }
 
         .quote-content {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          padding: 1.6rem 0;
+          width: 70%;
 
           blockquote {
-            width: 75%;
-            position: relative;
 
-            h3,
-            h4 {
-              padding: 0 1em;
-            }
-
-            &:before,
-            &:after {
-              position: absolute;
-            }
-
-            &:before {
-              top: 0;
-              left: 0;
-            }
-
-            &:after {
-              bottom: 0;
-              right: 0;
-              top: unset;
-            }
           }
-  
+
           figcaption {
             text-align: inherit;
             font-size: inherit;
-  
+
             h4,
             h5,
             p {
               margin-bottom: 0.5em;
             }
           }
-        }
 
-
-        @include media( $tablet-and-smaller ) {
-          // flex-wrap: wrap;
-
-          .quote-content {
-            flex-wrap: wrap;
-            justify-content: left;
-
-            blockquote {
-              width: 100%;
-            }
-
-            figcaption {
-              padding-left: 2em;
-              margin-top: 1.5em;
-            }
-          }
-
-        }
-
-        @include media($mobile-large-and-smaller) {
-          flex-wrap: wrap;
-
-          img {
-            flex: 0 1 auto;
-            width: 120px;
-            height: 120px;
-          }
-
-          .quote-content {
-            margin-top: 1em;
+          @include breakpoint( $until: tablet ) {
+            width: 100%;
           }
         }
+
       }
-
-
-      &.quote-white {
-        background-color: #fff;
-        margin-bottom: 1.6em;
-  
-        .quote {
-          justify-content: center;
-          position: relative;
-          padding-bottom: 2em;
-
-          &:after {
-            position: absolute;
-
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-
-            content: "";
-            height: 2px;
-            width: 70%;
-            background-color: $green-victoria;
-          }
-  
-          img {
-            flex: 0 1 auto;
-          }
-
-          .quote-content {
-            width: 70%;
-
-            blockquote {
-
-            }
-  
-            figcaption {
-              text-align: inherit;
-              font-size: inherit;
-    
-              h4,
-              h5,
-              p {
-                margin-bottom: 0.5em;
-              }
-            }
-
-            @include media($mobile-large-and-smaller) {
-              width: 100%;
-            }
-          }
-
-        }
-      }
-
     }
 
   }
+}

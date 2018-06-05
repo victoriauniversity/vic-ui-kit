@@ -1,101 +1,119 @@
+/** News overview (list of articles) */
 
+$media-landscape-dynamic-width: 35%;
+$media-portrait-dynamic-width:  25%;
 
-  /** News overview (list of articles) */
+.news {
+  time { display: block; }
 
-  .news {
-    time { display: block; }
-
-    .media {
-      .embed, img { margin-bottom: 0; } // Reset
-    }
-
-    @include media( $tablet-and-bigger ){
-
-      // Has got `media` or another add-on
-      .summary { overflow: hidden; }
-
-      //TODO: Remove grid
-      .media {
-        @include span-columns( 4.5 of 12 );
-        float: right;
-        @include omega;
-        margin-left: $column-padding;
-
-        // Image with portrait-like width to height ratio
-        &.portrait {
-          text-align: right;
-          @include span-columns( 3 of 12 );
-          float: right;
-          @include omega;
-
-        }
-      }
-    }
-
-    @include media( $mobile-large-and-smaller ){
-      .media { margin-bottom: 1em; }
+  .media {
+    .embed,
+    img {
+      margin-bottom: 0; // Reset
     }
   }
 
-  // news section for horizontal grid
-  .news-row {
-    header {
-      margin: 1.6rem 0;
+  @include breakpoint( tablet ) {
+    // Has got `media` or another add-on
+    .summary { overflow: hidden; }
+
+    .media {
+      float: right;
+      margin-left: $column-padding;
+      width: $media-landscape-dynamic-width;
+
+      // Image with portrait-like width to height ratio
+      &.portrait {
+        float: right;
+        width: $media-portrait-dynamic-width;
+        text-align: right;
+      }
     }
-    .news {
+  }
+
+  @include breakpoint( $until: tablet ) {
+    .media { margin-bottom: 1em; }
+  }
+}
+
+// news section for horizontal grid
+.news-row {
+  header {
+    margin: $gap-vertical 0;
+
+    h2 { flex-grow: 1; }
+
+    .link-more {
+      margin-left: $gap-horizontal;
+      white-space: nowrap;
+    }
+
+    @include breakpoint( tablet ) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .news {
+    padding-left: 0;
+
+    article { margin-bottom: $gap-content; }
+
+    li {
+      @include clearfix;
+      margin-bottom: 0;
+      border-bottom: $border;
+      list-style: none;
+    }
+
+    @include breakpoint( $until: desktop ) {
       li {
-        @include clearfix();
-        padding-bottom: 1.6rem;
-        margin-bottom: 1.6rem;
-        border-bottom: 1px solid #DDD;
-        list-style: none;
-
-        .summary {
-          >:nth-child(2) {
-            margin-bottom: 0.5em;
-          }
-        }
-      }
-
-      @include media($desktop-and-bigger) {
-      
-          display: flex; 
-          flex-wrap: wrap;
-
-          li {
-            width: 33%;
-            border-bottom: none;
-            padding: 1.5rem;
-            position: relative;
-
-            &:not(:nth-child(3n)):after {
-              content: "";
-              height: 75%;
-              width: 1px;
-              background-color: #DDD;
-              position: absolute;
-              right: 0;
-              top: 50%;
-              transform: translateY(-50%);
-            }
-          }
-        }
+        padding: 0;
+        margin-bottom: $gap-vertical;
       }
     }
-  
+
+    @include breakpoint( desktop ) {
+      @include bleed-horizontal;
+      display: flex;
+      flex-wrap: wrap;
+
+      li {
+        position: relative;
+        padding: $gap-half $gap-vertical;
+        width: ( 100% / 3 );
+        border-bottom: 0;
+
+        // Vertical separator
+        //FIXME: Overkill, simplify using available mixins
+        &:not(:nth-child( 3n )) {
+          @include after( $display: block, $position: absolute ) {
+            @include size( 1px, 75% );
+            top: 50%;
+            right: 0;
+            background-color: $grey-alto;
+            transform: translateY( -50% );
+          }
+        }
+      }
+
+    }
+  }
+}
+
 /* List of news articles on content page */
 
 .content-panel {
   article.news-commentary {
-    padding-bottom: 1rem;
     margin-bottom: 1rem;
-    border-bottom: 1px solid $grey-alto;
+    padding-bottom: 1rem;
+    border-bottom: $border;
 
     > .summary {
       h3,
       h4,
       p {
-        margin-bottom: 0.3rem;
+        margin-bottom: $gap-small;
       }
     }
   }
