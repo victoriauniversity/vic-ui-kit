@@ -470,14 +470,17 @@ function openPopup( { delayInMs = 0, suppressAfterCanceling = false } = {} ){
 
 /** 'GO UP' BUTTON */
 
-const BTN_UP_ID         = 'btn-up',
-      BTN_ADMIN_EDIT_ID = 'btn-admin';
+const BTN_UP_ID           = 'btn-up',
+      BTN_ADMIN_EDIT_ID   = 'btn-admin';
+
+const ADMIN_URL_EXTENSION = '_edit';
 
 const SCROLL_ANIMATION_DURATION_IN_MS = 700;
 
 
 function initFloatingButtons() {
   const buttonUpElement = document.getElementById( BTN_UP_ID );
+  const buttonAdminElement = isAdminEnvironment() ? document.getElementById( BTN_ADMIN_EDIT_ID ) : null;
 
   if ( buttonUpElement ){
     $( buttonUpElement ).click( ( e ) => {
@@ -489,8 +492,14 @@ function initFloatingButtons() {
     });
   }
 
-  if ( isAdminEnvironment() && document.getElementById( BTN_ADMIN_EDIT_ID ) ){
-    $( `#${BTN_ADMIN_EDIT_ID}` ).css( 'display', '' ); // Remove inline 'display'
+  if ( buttonAdminElement ){
+    $( buttonAdminElement ).css( 'display', '' ); // Remove inline 'display'
+
+    // Uncomment if the button and URL cannot be rendered by Squiz!
+    //$( buttonAdminElement ).click( ( e ) => {
+    //  e.preventDefault();
+    //    window.location.href += `/${ADMIN_URL_EXTENSION}`;
+    //})
   }
 
 }
