@@ -284,6 +284,42 @@ function isAdminEnvironment() {
 }
 
 
+/**
+ * Decodes email address into re-usable form.
+ *
+ * @deprecated Very old approach that won't work today - do not use.
+ */
+function decodeMailAddresses(){
+  var a = 'dre:ams0of@g1niht.lp2c9u3v8k4w7y5j6zbx-_qfntigue6los5zar7b:y4dp8v3m9h2.x1w@k0jcq-_';
+  var i, h, j, k, l, m, n, s;
+  for (i = 0; i < document.links.length; i += 1) {
+    h = document.links[i].hash;
+    if (h.substring(0, 3) == '#sd') {
+      k = '';
+      l = h.substring(3, 5);
+      m = h.lastIndexOf('?subject=');
+      if (m == -1) { s = document.links[i].href; }
+      else {
+        s = h.substring(m);
+        h = h.substring(0, m);
+      };
+      for (j = 5; j < h.length; j += 2) {
+
+        k = k + a.charAt((h.substring(j, j + 2) - l - 1));
+      }
+      ; m = s.lastIndexOf('?subject=');
+      if (m == -1) {
+        document.links[i].href = k;
+      }
+      else { document.links[i].href = k + s.substring(m); };
+      n = document.links[i].innerHTML;
+      if (n == 'address') {
+        document.links[i].innerHTML = k.substring(7);
+      }
+      else { document.links[i].title = k.substring(7); };
+    };
+  };
+}
 
 
 
@@ -510,7 +546,6 @@ function initFloatingButtons() {
 $(function(){
   moveWidgetsToSidebar();
   addActiveClassToMainMenu();
-  initFloatingButtons();
 
 	fastclick.attach(document.body);
 	var $body          = $( 'body' );
@@ -521,6 +556,9 @@ $(function(){
   if ( $( '.' + SIDEMENU_CLASS ).length ) {
     initSidemenuExpandability();
   }
+
+  initFloatingButtons();
+  decodeMailAddresses();
 
   // Find all existing popups and if they contain `data-autoload` attribute,
   // trigger autoloading automatically.
