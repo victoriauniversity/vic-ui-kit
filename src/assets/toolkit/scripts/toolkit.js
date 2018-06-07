@@ -521,7 +521,6 @@ function initFloatingButtons() {
   if ( buttonUpElement ){
     $( buttonUpElement ).click( ( e ) => {
       e.preventDefault();
-      console.log( 'TRIGGERED!' );
       $( 'html,body' ).animate({
           scrollTop: 0
       }, SCROLL_ANIMATION_DURATION_IN_MS );

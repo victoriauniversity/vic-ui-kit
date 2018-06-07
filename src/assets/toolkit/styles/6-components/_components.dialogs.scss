@@ -1,7 +1,6 @@
 /** General fixed popup. */
 
 $popup-width:              24rem;
-$popup-border:             #fff;
 $popup-button-close-color: $black-tundora;
 
 /* Positions popup within a page. */
@@ -20,7 +19,7 @@ $popup-button-close-color: $black-tundora;
   display: none;
   padding: $gap;
   background-color: $grey-gallery;
-  box-shadow: 0 2px 7px rgba( #000, .35 );
+  box-shadow: $shadow;
 
   .shown &,
   &.shown {
@@ -44,9 +43,7 @@ $popup-button-close-color: $black-tundora;
       @include hoverify { opacity: 1; }
     }
 
-    &:not(:last-child) {
-      margin-bottom: $gap-content;
-    }
+    &:not(:last-child) { margin-bottom: $gap-content; }
   }
 
   .body {
