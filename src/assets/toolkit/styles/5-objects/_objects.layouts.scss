@@ -126,7 +126,10 @@
     $content-width:   100% - $widgetbar-width;
 
     /** Main content *ONLY* */
-    > main:last-child { width: 100%; }
+    > main:last-child {
+      overflow-x: hidden; // Don't allow the content to stretch behind the limits and create a vertical scrollbar
+      width: 100%;
+    }
 
     /** Main content + widgetbar */
     > main:not(:last-child) {
