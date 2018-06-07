@@ -462,6 +462,27 @@ function moveOrphanedStaffCardIntoList() {
 }
 
 
+/**
+ * Because two sets of taught courses are rendered (one located at the top
+ * of the page, one at the bottom), it hides the other, non-used counterpart.
+ *
+ * @deprecated
+ *
+ * Note: This is legacy code and can be removed when the backend renders
+ * only one set of taught courses.
+ */
+function hideCoursesOnStaffProfile() {
+  if ( !window.courseLocation ) return;
+
+  if( window.courseLocation == 'top' ) {
+      $( "#courses-bottom" ).css({ 'display': "none" });
+  }
+
+  if( window.courseLocation == 'bottom' ) {
+    $("#courses-top").css({ 'display': "none" });
+  }
+}
+
 
 
 
@@ -612,6 +633,7 @@ $(function(){
   moveWidgetsToSidebar();
   addActiveClassToMainMenu();
   moveOrphanedStaffCardIntoList();
+  hideCoursesOnStaffProfile();
 
 	fastclick.attach(document.body);
 	var $body          = $( 'body' );
