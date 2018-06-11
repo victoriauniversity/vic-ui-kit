@@ -79,6 +79,21 @@ $(function(){
 		});
 
 		var tags = $(filterTags);
+		
+
+		function alignGrid(cols, index, tile) {
+			//resets margins for grid
+			tile.css({'margin-right': '0.375rem'});
+			tile.css({'margin-left': '0.375rem'});
+
+			if( (index + 1) % cols === 0 ) {
+				tile.css('margin-right', '0%');
+				//Need set time out to make sure style is applied
+				setTimeout(() => {
+					tile.next().css({'margin-left': '0rem'});
+				}, 75);
+			}
+		};
 
 		if (tags !== null) {
 
@@ -88,7 +103,6 @@ $(function(){
 					$(this).siblings().removeClass('tag-active');
 					$(this).addClass('tag-active');
 
-
 					if ( $(this).text() !== "All" ) {
 						$(searchInput).val('');
 						$(searchInput).val($(this).text()).change();
@@ -97,17 +111,27 @@ $(function(){
 
 						//update margins to prevent grid breaking
 						$('.is-matching').each( function (index) {
-							$(this).css('margin-right', '1%');
-
-							if( (index + 1) % 4 === 0 ) {
-								$(this).css('margin-right', '0%');
+							//for each breakpoint
+							if (window.matchMedia("(min-width: 88em)").matches ) {
+								alignGrid( 4, index, $(this) );
 							}
 
+							if (window.matchMedia("(max-width: 87.99em) and (min-width: 61em)").matches ) {
+								alignGrid( 3, index, $(this) );
+							}
+
+							if (window.matchMedia("(max-width: 60.99em) and (min-width: 43em)").matches ) {
+								alignGrid( 2, index, $(this) );
+							}
+
+							if (index === 0) {
+								$(this).css('margin-left', '0');
+							}
 						});
 
 					} else {
 						$(searchInput).val('').change();
-            $(targetElements).css('margin-right', '');
+            $(targetElements).css({'margin-right': '', 'margin-left': ''});
             $('.no-quals-message').remove();
 					}
 
