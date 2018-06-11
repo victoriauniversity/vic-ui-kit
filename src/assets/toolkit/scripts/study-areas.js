@@ -90,7 +90,7 @@ $(function(){
 				tile.css('margin-right', '0%');
 				//Need set time out to make sure style is applied
 				setTimeout(() => {
-					tile.next().css({'margin-left': '0rem'});
+					tile.nextAll('.is-matching').first().css({'margin-left': '0rem'});
 				}, 75);
 			}
 		};
