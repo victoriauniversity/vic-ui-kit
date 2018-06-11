@@ -181,7 +181,7 @@
               cursor: pointer;
               text-align: center;
               font-weight: $weight-bold;
-              color: $grey-alto;
+              color: $white;
               line-height: 1.4;
               font-size: 1.2em;
               border-radius: .7em;
@@ -202,6 +202,7 @@
               background-clip: inherit;
               border-bottom: none;
               line-height: 1.3;
+              color: $white;
 
               @include hoverify() {
                 background-color: $green-brand;
@@ -267,13 +268,12 @@
               > a {
                 display: block;
                 position: relative;
-                padding: 0.5rem 1rem;
+                padding: .8rem 1rem .5rem;
                 border-bottom: none;
               }
 
               > .btn-expander {
                 align-self: flex-start;
-                
               }
               
               > ul {
@@ -377,11 +377,8 @@
                   box-shadow: $shadow;
                   transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px) translateZ(0);
                   backface-visibility: hidden;
-                  -webkit-font-smoothing: antialiased;
-
                   background-color: #0D4B2F;
                   border-bottom: 5px solid $green-brand;
-
                   will-change: auto;
 
 
@@ -393,15 +390,12 @@
 
                 &:hover {
                   &:not(.active) {
-
-                    @include slideOutUp;  
-
-                    z-index: $z-index-middle;
+                    @include slideOutUp;
+                    z-index: $z-index-default;
                     box-shadow: $shadow;
 
                     a {
                       color: $white;
-                      transform: scale(1);   
                     }
                   }
                 }
