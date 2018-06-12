@@ -30,7 +30,7 @@ function addVersionTask( subtaskName ) {
 
     console.log( '!!!', semverType, newVersion );
 
-    function gitCommitWithVersionTag( doneCallback ) {
+    function gitCommitWithVersionTag() {
       exec( `git add . && git commit -am "Release of v${newVersion}." && git tag -a v${newVersion} -m "Release of v${newVersion}."`, ( error, okOut, errOut ) => {
         if ( error ) {
           log.error( colours.red( `Sorry - cannot create automatic git tag v${newVersion} and commit the changes. Pleasy, try to do it manually.` ));
@@ -40,8 +40,6 @@ function addVersionTask( subtaskName ) {
           log.info( okOut );
           log.info( colours.green( `Version updated to v${newVersion}. Commit ready and tag added - run 'git push && git push --tags' to finish the release by pushing it into 'dev' or 'master' branch.` ));
         }
-
-        doneCallback();
       });
     }
 
@@ -50,7 +48,7 @@ function addVersionTask( subtaskName ) {
       gulp.src( `{${config.paths.releaseStatics},${config.paths.root}}/package.json` ),
       bump({ version: newVersion }),
       gulp.dest( `${config.paths.root}/` ),
-      gitCommitWithVersionTag( done ),
+      gitCommitWithVersionTag(),
     ], done );
   });
 }
