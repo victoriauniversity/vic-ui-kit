@@ -28,6 +28,7 @@ function addVersionTask( subtaskName ) {
     const semverType = subtaskName || 'patch',
       newVersion     = semver.inc( config.version, semverType );
 
+    console.log( '!!!', semverType, newVersion );
 
     function gitCommitWithVersionTag( doneCallback ) {
       exec( `git add . && git commit -am "Release of v${newVersion}." && git tag -a v${newVersion} -m "Release of v${newVersion}."`, ( error, okOut, errOut ) => {
