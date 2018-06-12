@@ -11,6 +11,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
+
+
+## Production release: [v0.10.0] - 2018-06-06
+
+
 ### Added
 
 - **ESLint and SassLint - Static code analysis for CSS and JS** - To improve consistency, styles, add error checking, reduce debugging times etc.
@@ -223,8 +228,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.4...dev
+[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.0...dev
 
+[v0.10.0]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.4...v0.10.0
 [v0.9.4]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.3...v0.9.4
 [v0.9.3]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.2...v0.9.3
 [v0.9.2]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.1...v0.9.2

@@ -12,7 +12,7 @@ const
   log      = require( 'fancy-log' ),
   bump     = require( 'gulp-bump' ),
   semver   = require( 'semver' ),
-  { exec } = require( 'child_process' ).exec,
+  exec     = require( 'child_process' ).exec,
 
   config = require( '../build.config' );
 
@@ -28,26 +28,29 @@ function addVersionTask( subtaskName ) {
     const semverType = subtaskName || 'patch',
       newVersion     = semver.inc( config.version, semverType );
 
+
+    function gitCommitWithVersionTag( doneCallback ) {
+      exec( `git add . && git commit -am "Release of v${newVersion}." && git tag -a v${newVersion} -m "Release of v${newVersion}."`, ( error, okOut, errOut ) => {
+        if ( error ) {
+          log.error( colours.red( `Sorry - cannot create automatic git tag v${newVersion} and commit the changes. Pleasy, try to do it manually.` ));
+          log.error( colours.red( error ));
+          log.error( colours.red( errOut ));
+        } else {
+          log.info( okOut );
+          log.info( colours.green( `Version updated to v${newVersion}. Commit ready and tag added - run 'git push && git push --tags' to finish the release by pushing it into 'dev' or 'master' branch.` ));
+        }
+
+        doneCallback();
+      });
+    }
+
+
     return pump([
       gulp.src( `{${config.paths.releaseStatics},${config.paths.root}}/package.json` ),
       bump({ version: newVersion }),
       gulp.dest( `${config.paths.root}/` ),
-      () => {
-        exec( `git add . && git commit -am "Release of v${newVersion}." && git tag -a v${newVersion} -m "Release of v${newVersion}."`, ( error, okOut, errOut ) => {
-          if ( error ) {
-            log.error( colours.red( `Sorry - cannot create automatic git tag v${newVersion} and commit the changes. Pleasy, try to do it manually.` ));
-            log.error( colours.red( error ));
-            log.error( colours.red( errOut ));
-          } else {
-            log.info( okOut );
-            log.info( colours.green( `Version updated to v${newVersion}. Commit ready and tag added - run 'git push && git push --tags' to finish the release by pushing it into 'dev' or 'master' branch.` ));
-          }
-
-          done();
-        });
-      },
+      gitCommitWithVersionTag( done ),
     ], done );
-
   });
 }
 
