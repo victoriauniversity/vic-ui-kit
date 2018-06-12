@@ -28,8 +28,6 @@ function addVersionTask( subtaskName ) {
     const semverType = subtaskName || 'patch',
       newVersion     = semver.inc( config.version, semverType );
 
-    console.log( '!!!', semverType, newVersion );
-
     function gitCommitWithVersionTag() {
       exec( `git add . && git commit -am "Release of v${newVersion}." && git tag -a v${newVersion} -m "Release of v${newVersion}."`, ( error, okOut, errOut ) => {
         if ( error ) {
@@ -40,16 +38,18 @@ function addVersionTask( subtaskName ) {
           log.info( okOut );
           log.info( colours.green( `Version updated to v${newVersion}. Commit ready and tag added - run 'git push && git push --tags' to finish the release by pushing it into 'dev' or 'master' branch.` ));
         }
+
+        done();
       });
     }
 
-
-    return pump([
+    pump([
       gulp.src( `{${config.paths.releaseStatics},${config.paths.root}}/package.json` ),
       bump({ version: newVersion }),
       gulp.dest( `${config.paths.root}/` ),
-      gitCommitWithVersionTag(),
-    ], done );
+    ]);
+
+    gitCommitWithVersionTag();
   });
 }
 
