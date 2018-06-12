@@ -913,7 +913,16 @@ function hubMegaMenu() {
 }
 
 if( document.getElementsByClassName('hub-mega-menu').length > 0 ){
+  const hubMegaMenuElement = $('.hub-mega-menu');
+  const megaMenuExpandButton = $('.hub-mega-menu .btn-expander');
+  
   hubMegaMenu();
+  
+  if ( tracker.shouldTrackElement( hubMegaMenuElement ) ){
+    tracker.registerForTracking( hubMegaMenuElement.find( 'li > a' ), 'click', 'megamenu-link' );
+    tracker.registerForTracking( megaMenuExpandButton, 'click', 'megamenu-expander' );
+  }
+
 }
 
 
