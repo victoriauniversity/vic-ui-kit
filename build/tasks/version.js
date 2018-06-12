@@ -47,9 +47,7 @@ function addVersionTask( subtaskName ) {
       gulp.src( `{${config.paths.releaseStatics},${config.paths.root}}/package.json` ),
       bump({ version: newVersion }),
       gulp.dest( `${config.paths.root}/` ),
-    ]);
-
-    gitCommitWithVersionTag();
+    ], gitCommitWithVersionTag );
   });
 }
 
