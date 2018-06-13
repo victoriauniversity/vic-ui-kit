@@ -17,6 +17,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Production release: [v0.10.0] - 2018-06-06
 
 
+
+
+## Production release: [v0.10.0] - 2018-06-06
+
+
 ### Added
 
 - **ESLint and SassLint - Static code analysis for CSS and JS** - To improve consistency, styles, add error checking, reduce debugging times etc.
