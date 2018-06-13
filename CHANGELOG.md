@@ -11,7 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Production release: [v0.10.1] - 2018-06-14
 
-###Enhanced
+### Enhanced
 
 - **Google tag manager tracking added for Research hub Megamenu** - Code and tracking events added for menu expand and links clicked.
 
