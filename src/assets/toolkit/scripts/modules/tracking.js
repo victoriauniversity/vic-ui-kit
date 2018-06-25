@@ -65,7 +65,7 @@ function pushTrackingInfoToGtm( trackingId, trackingSource, customDataExtension 
 
   // Extend (and override) with the custom data object (if supplied)
   if ( customDataExtension ) {
-    for ( var property in customDataExtension.keys ) {
+    for ( var property in customDataExtension ) {
       if ( customDataExtension.hasOwnProperty( property ) ) {
         customDataObject[ property ] = customDataExtension[ property ];
       }
@@ -174,7 +174,7 @@ export default trackingApi;
 
 
 // For a global imports
-window.toolkitTracker = function ( opts ) {
+window.toolkitTracker = ( opts ) => {
   overrideOptions( opts );
   return trackingApi;
 };
