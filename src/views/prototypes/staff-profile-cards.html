@@ -3,7 +3,7 @@
 <section class="layout centraliser block">
 
   <!-- Left 'submenu' column -->
-  <div class="sidebar"> {{> navigation.sidemenu-expandable}} </div>
+
 
   <!-- Center 'content' and right 'widget' columns -->
   <div class="content-panel">
@@ -12,16 +12,34 @@
     <main>
       <section class="block formatting">
         <!-- FIXME: Remove after all templates are converted to new ones. -->
-        <h1>Staff profile cards</h1>
+        
+        <!-- <h1>Staff profile cards</h1> -->
 
-        <h2>
+        <!-- <h2>
           Contact Cards <em class="note">4</em>
-        </h2>
+        </h2> -->
+        
+        <!-- Search bar -->
+        <div class="centraliser">
+            <div class="block">
+              <div class="search-panel">
+                <form class="form wide-search-bar" method="GET" action="https://www.victoria.ac.nz/research/researchers">
+                  <h1 style="margin-bottom: 0.5rem">Search for staff</h1>
+                  <div class="group required">
+                    <input type="text" name="search" id="search" class="panel-search-input" placeholder="Search">
+                    <input type="submit" class="button large primary" value="Search">
+                  </div>
+          
+                </form>
+          
+              </div>
+            </div>
+          </div>
 
         <!-- Staff profiles cards -->
         <div class="articles-container">
           <ul class="staff-list card-panel">
-            <li class="card">
+            <li class="card toggle-card">
               <article class="contact">
 
                 <a href="#" title="Go to the Nigel's profile page">
@@ -39,6 +57,10 @@
 
                   <!-- Quick contact info -->
                   <ul class="meta">
+                    <li class="office-365">
+                      <a href="#" title="Office 365"><img src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/social-365.svg" width="90px"></a>
+                    </li>
+
                     <li class="highlight">
                       <a href="mailto:nigel.riley@vuw.ac.nz" title="Send an email to Nigel Riley"><span class="icon-mail"></span>nigel.riley@vuw.ac.nz</a>
                     </li>
@@ -50,16 +72,23 @@
                     <li class="highlight highlight-grey"><a><span class="icon-pin"></span>Room 320, Hunter Bldg Gate 1 Kelburn Pde</a></li>
                   </ul>
 
+                  
+                </div>
+
+                <div class="info-areas">
+                  <div class="info-area">
+                    <h4>Affiliations:</h4> <p>Marketing and Communications</p>
+                  </div>
                 </div>
 
               </article>
-              <div class="show-more-toggle">
+              <div class="show-more-toggle" aria-label="Toggle more information">
                 Show more
                 <span class="icon-caret-down"></span>
               </div>
             </li>
 
-            <li class="card">
+            <li class="card  toggle-card expanded">
               <article class="contact">
 
                 <a href="#" title="Go to the david's profile page">
@@ -71,7 +100,7 @@
                     <h3><a href="#" title="Go to the David's profile page">David Stretter</a></h3>
 
                     <p class="subtitle">
-                      <strong>Lecturer</strong>
+                      <strong>Director</strong>
                       <span>School of education</span>
                     </p>
                     <p class="subtitle">
@@ -93,20 +122,23 @@
                     <li class="highlight highlight-grey"><a><span class="icon-pin"></span>Room 320, Hunter Bldg Gate 1 Kelburn Pde</a></li>
                   </ul>
 
-                  <div class="info-area">
-                    <h4>Research areas:</h4> <p>area, area, area, area</p>
-                  </div>
-                  <div class="info-area">
-                    <h4>Affiliations:</h4> <p>area, area, area, area</p>
-                  </div>
-                  <div class="info-area">
-                    <h4>Qualifications:</h4> <p>area, area, area, area</p>
-                  </div>
+                  
+                </div>
 
+                <div class="info-areas">
+                  <div class="info-area">
+                    <h4>Research areas:</h4> <p>Teaching English a as a second language, foreign language teaching</p>
+                  </div>
+                  <div class="info-area">
+                    <h4>Affiliations:</h4> <p>Melbourne University</p>
+                  </div>
+                  <div class="info-area">
+                    <h4>Qualifications:</h4> <p>MEd PhD Well,  AdvDipTchg NZDoE, NZFKUDip WTC</p>
+                  </div>
                 </div>
 
               </article>
-              <div class="show-more-toggle">
+              <div class="show-more-toggle" aria-label="Toggle more information">
                 Show less
                 <span class="icon-caret-up"></span>
               </div>
@@ -138,12 +170,16 @@
                     </li>
 
                     <li class="highlight highlight-grey"><a><span class="icon-pin"></span>Room 320, Hunter Bldg Gate 1 Kelburn Pde</a></li>
-                    <li class="highlight highlight-grey"><a><span class="icon-pin"></span>Room 320, Hunter Bldg Gate 1 Kelburn Pde</a></li>
+                    <li class="highlight highlight-grey"><a><span class="icon-pin"></span>Room HU325, Hunter Bldg Gate 1 Kelburn Pde</a></li>
                   </ul>
 
                 </div>
 
               </article>
+              <div class="show-more-toggle" aria-label="Toggle more information">
+                  Show less
+                  <span class="icon-caret-up"></span>
+                </div>
             </li>
 
             <li class="card">
@@ -163,6 +199,9 @@
 
                   <!-- Quick contact info -->
                   <ul class="meta">
+                    <li class="office-365">
+                      <a href="#" title="Office 365"><img src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/social-365.svg" width="90px"></a>
+                    </li>
                     <li class="highlight">
                       <a href="mailto:jane.young@vuw.ac.nz" title="Send an email to Jane Young"><span class="icon-mail"></span>jane.young@vuw.ac.nz</a>
                     </li>
@@ -171,16 +210,55 @@
                       <a href="tel:044636951" title="Call to David's work phone"><span class="icon-phone"></span>04 463 6951</a>
                     </li>
 
-                    <li><span class="icon-pin"></span>Room HU325, Hunter Bldg Gate 1 Kelburn Pde</li>
+                    <li class="highlight highlight-grey"><a><span class="icon-pin"></span>Room HU325, Hunter Bldg Gate 1 Kelburn Pde</a></li>
                   </ul>
 
                 </div>
 
               </article>
+              <div class="show-more-toggle" aria-label="Toggle more information">
+                  Show less
+                  <span class="icon-caret-up"></span>
+              </div>
             </li>
 
           </ul>
         </div>
+
+        <script>
+
+          setTimeout(() => {
+          var card = $('.staff-list.card-panel .toggle-card');
+          var showLess = 'Show less <span class="icon-caret-up"></span>';
+          var showMore = 'Show more <span class="icon-caret-down"></span>';
+
+          console.log(card, 'panel');
+
+          card.each(function(c) {
+            var $this = $(this);
+            console.log($this);
+
+            var toggle = $this.find('.show-more-toggle ');
+            console.log(toggle, 'toggle button');
+
+            toggle.on('click', function () { 
+              $this.find('.info-areas').slideToggle();
+              $this.toggleClass('expanded');
+
+              if ($this.hasClass('expanded')) {
+                console.log($(this).html(), $(this));
+                $(this).html(showLess);
+              } else {
+                $(this).html(showMore);
+              }
+             });
+
+          })
+            
+          }, 500);
+
+        
+        </script>
         
         <hr>
         
