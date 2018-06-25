@@ -7,16 +7,18 @@ notes: >
    - **`module tracker: Object`** - Importing this module is a recommended way to gain access to the tracking's public API methods in ES6 JS environments<br><br>
 
    **Public API methods**<br>
-   - **`shouldTrackElement( element: DOMElement )`** - True if an element has got `data-gtm-track` attribute, false otherwise.<br>
-   - **`trackEvent( eventId: String, eventType: String )`** - Sends a simple event to the GTM (ID and type of interaction).<br>
-   - **`registerForTracking( elements: DOMElement[], eventType: String = [data-gtm-track] | 'auto', eventId: String = [data-gtm-id] | [id])`** - Subscribes a list of DOM elements to a user interaction (e.g. 'click') that pushes a message in a pre-defined format into Google Tag Manager. If the `eventId` is not specified, the element's `data-gtm-id` or `id` attribute is used to identify the event. Method currently supports following types of user interactions: `click`, `auto` (default) etc (see 'supported types of interaction' section for more).<br><br>
+   - **`shouldTrackElement( element: DOMElement )`** - True if an element has got `data-gtm-track` attribute, false otherwise. Useful to do custom tracking while enabling/disabling it through the HTML attribute (e.g. via CMS)<br>
+   - **`trackEvent( eventId: String, trackingSource: Object|Event, customData: Object )`** - Sends a tracking data to the GTM. If an 'Event' is passed as a 'trackingSource' parameter, it might automatically extract some pre-defined attributes based on the event type (see `Types of interaction presets` for more details about all available presets). If a 'non-Event' object is passed, its attributes will be pushed into GTM unchanged. Passing object as a 'customData' allows you to further extend the information pushed to the GTM and should be only used in tandem with an 'Event' object.<br>
+   - **`registerForTracking( elements: DOMElement[], eventType: String = [data-gtm-track] | 'auto', eventId: String = [data-gtm-id] | [id])`** - Subscribes a list of DOM elements to a specified user interaction (~ interaction type, e.g. 'click'). When the interaction occurs, a message in a pre-defined format is pushed into Google Tag Manager. If the `eventId` is not specified, the element's `data-gtm-id` or `id` attribute is used to uniquely identify the event. All user interactions defined in https://developer.mozilla.org/en-US/docs/Web/API/Event/type are supported (check 'Types of interaction presets' section to find out what information are pushed for various interactions).<br><br>
 
    **Configuration object (`options`)**:<br>
    - **`autoRegister: boolean (true)`** - Whether or not should script automatically subscribe all elements with a `data-gtm-track` attribute after the DOM is initialised. Note that this must be set before the `document.onLoad()` event is triggered.<br><br>
 
-   **Supported types of interaction (`eventType`)**:<br>
-   - **`auto (default)`** - Does not send any information to the GTM so that developer can manually define the event and what data should be sent.<br>
-   - **`click`** - Gets triggered when user clicks on the element. Following data are sent to GTM: `event` - ID of the event to identify it in the GTM's backend (see `id` or `data-gtm-id` below) | `custom.selector` - Element selector | `custom.eventType` - 'click' | `custom.href` - URL of the element (if exists) | `custom.text` - Element's text content.<br><br>
+   **Types of interaction presets**:<br>
+   - **`auto (default)`** - Does not push anything to the GTM.<br>
+   - **`click`** - If specified in the HTML, it gets triggered whenever a user clicks on the element. Following data are sent to GTM: `event` - ID of the event to identify it in the GTM's backend (see `id` or `data-gtm-id` below) | `custom.selector` - Element's DOM object | `custom.eventType` - 'click' | `custom.href` - URL of the element (if exists) | `custom.text` - Element's text content.<br>
+   - **`any other event type` specified in https://developer.mozilla.org/en-US/docs/Web/API/Event/type** - Following data are sent to GTM: `event` - ID of the event to identify it in the GTM's backend (see `id` or `data-gtm-id` below) | `custom.eventType` - '{event's type}'.
+   <br><br>
 
    Example: Do not automatically register elements with 'data-gtm-track' and define your own behaviour on pre-ES6 or legacy JS system.
 ---

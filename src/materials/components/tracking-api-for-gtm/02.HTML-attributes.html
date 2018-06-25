@@ -3,14 +3,14 @@ notes: >
 
   When the DOM has been fully intialised, the improted script automatically subscribes any HTML element on a page with attribute `data-gtm-track` to be tracked and (optionally) send custom information to Google Tag Manager.
   <br><br>
-  The `data-gtm-track` attribute can receive a _type of interaction_ as a value. See the 'API' section for list of supported types of interactions.
-  <br>
-
+  The `data-gtm-track` attribute can receive a _type of interaction_ as a value. All event types specified in https://developer.mozilla.org/en-US/docs/Web/API/Event/type are supported. Check `Types of interaction presets` section to see what basic information are pushed into GTM for different interactions.
   <br><br>
-  A secondary attribute `id` (or `data-gtm-id` if `id` cannot be used for this purpose) allows to define unique identifier for a group of related interaction.
+  A secondary optional attribute `id` (or `data-gtm-id` if `id` cannot be used for this purpose) allows to define unique identifier for a group of related interaction.
+  <br><br>
+  Last optional attribute `data-gtm-vars` allows you to pass a valid Object in a String format. All the injected data will be added to (or override) the presets and will be pushed into GTM. _Note that this HTML attribute requires single quotes to accommodate JSONs requirements._
   <br><br>
   An example of a button that sends information as a custom event 'main-logo' when clicked. Note, that Google Tag Manager has to be configured to trigger a tag when the 'main-logo' event is received:
 
 ---
 
-<a id="logo" href="example.com" title="Link to the example page" data-gtm-track="click" data-gtm-id="main-logo">Link that triggers custom event</a>
+<a id="logo" href="example.com" title="Link to the example page" data-gtm-track="click" data-gtm-id="main-logo" data-gtm-vars='{ width: "153px", height: "1003px", "loadingTime": 13.342 }'>Link that triggers custom event</a>
