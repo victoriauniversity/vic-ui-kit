@@ -177,6 +177,81 @@ $potrait-width-mobile:  25%;
   }
 }
 
+//staff profile contact cards
+.staff-list {
+  &.card-panel {
+
+   > .card {
+      width: 100%;
+      position: relative;
+      padding: 1.25rem 1.25rem 2rem !important;
+      border-bottom: 5px solid $green-brand;
+      border-radius: $radius;
+      background-color: #fff;
+
+      img {
+        float: right;
+        margin: 0 0 0 1.25rem;
+      }
+
+      > .contact {
+        .summary {
+          .subtitle {
+            margin-bottom: 0;
+          }
+          .meta {
+            .highlight {
+              &.highlight-grey {
+                > a {
+                  color: $black-emperor;
+                  background-color: $grey-gallery;
+                }
+              }
+            }
+          }
+        }
+
+        .info-area {
+          margin-top: 1rem;
+
+          h4 {
+            margin-top: 0;
+            display: inline-block;
+          }
+          p {
+            display: inline;
+          }
+        }
+      }
+
+      .show-more-toggle {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $green-brand;
+        padding: .25rem .5rem 0;
+        border-radius: 4px 4px 0 0;
+        color: #fff;
+        font-size: .8rem;
+        text-align: center;
+        line-height: 1.4;
+
+        .icon-caret-down,
+        .icon-caret-up {
+          line-height: .5;
+          display: block;
+        }
+
+        
+        @include hoverify {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
   address.contact {
     font-style: normal;
 
