@@ -9,6 +9,26 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+
+
+
+
+## Production release: [v0.10.2] - 2018-06-26
+
+
+### Added
+
+- **Staff contact card prototypes**
+
+
+### Enhanced
+
+- **Tracking API extended by allowing for extra custom data** - Extra custom data can be pushed into Google Tag Manager using API or data attribute `data-gtm-vars` (JSON string format).
+
+
+
+
+
 ## Production release: [v0.10.1] - 2018-06-14
 
 ### Enhanced
