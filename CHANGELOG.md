@@ -9,6 +9,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+- **Post grad degrees and quals search filter** - New method in studyareas.js to filter by search on school homepage switcher
+
 ## Production release: [v0.10.1] - 2018-06-14
 
 ### Enhanced
