@@ -184,12 +184,13 @@ $potrait-width-mobile:  25%;
    > .card {
       width: 100%;
       position: relative;
-      padding: 1.25rem 1.25rem 2rem !important;
+      padding: 1.25rem 1.25rem !important;
       border-bottom: 5px solid $green-brand;
       border-radius: $radius;
       background-color: #fff;
+      box-shadow: $shadow;
 
-      img {
+      img.profile-picture {
         float: right;
         margin: 0 0 0 1.25rem;
       }
@@ -197,7 +198,8 @@ $potrait-width-mobile:  25%;
       > .contact {
         .summary {
           .subtitle {
-            margin-bottom: 0;
+            display: block;
+            margin-bottom: .5rem;
           }
           .meta {
             .highlight {
@@ -211,20 +213,24 @@ $potrait-width-mobile:  25%;
           }
         }
 
-        .info-area {
-          margin-top: 1rem;
+        .info-areas {
+          display: none;
+          .info-area {
+            margin-top: 1rem;
 
-          h4 {
-            margin-top: 0;
-            display: inline-block;
-          }
-          p {
-            display: inline;
+            h4 {
+              margin: 0;
+              display: inline-block;
+            }
+            p {
+              display: inline;
+            }
           }
         }
       }
 
       .show-more-toggle {
+        display: none;
         position: absolute;
         bottom: 0;
         left: 50%;
@@ -246,6 +252,31 @@ $potrait-width-mobile:  25%;
         
         @include hoverify {
           cursor: pointer;
+
+          .icon-caret-down,
+          .icon-caret-up {
+            transition:  .3s ease-in;
+          }
+          .icon-caret-down {
+            transform: translateY(2px);
+          }
+          .icon-caret-up {
+            transform: translateY(-2px);
+          }
+        }
+      }
+
+      &.toggle-card {
+        padding-bottom: 2.5rem !important;
+        
+        .show-more-toggle  {
+          display: block;
+        }
+
+        &.expanded {
+          .info-areas {
+            display: block;
+          }
         }
       }
     }
