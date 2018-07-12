@@ -145,6 +145,9 @@ $(function(){
 	searchFilter('.postgrad-quals li', '#filter-quals', 3, '.quals-filter .tag' );
 	searchFilter('#areas-of-study li', '#search-aos', 3 );
 
+	//new search filter for grad quals switcher
+	searchFilter('.postgrad-quals li', '#search-quals', 3 );
+
 });
 
 //alistapart.com/article/accent-folding-for-auto-complete
