@@ -10,7 +10,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
-- **Post grad degrees and quals search filter** - New method in studyareas.js to filter by search on school homepage switcher
+## Production release: [v0.10.3] - 2018-07-19
+
+### Enhanced
+
+- **Post grad degrees and quals search filter** - New method in studyareas.js to filter by search on school homepage switcher.
 
 
 ## Production release: [v0.10.2] - 2018-06-26
@@ -250,6 +254,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.2...dev
 
+[v0.10.3]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.1...v0.10.3
 [v0.10.2]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.1...v0.10.2
 [v0.10.1]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.0...v0.10.1
 [v0.10.0]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.4...v0.10.0
