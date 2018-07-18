@@ -13,7 +13,7 @@ $(function(){
 		var MIN_QUERY_LENGTH = minQueryLength;
 		
 		function noQualsMessage() {
-      //add no quals message
+			//add no quals message
 				if ($(filterTags)) {
 						$('.no-quals-message').remove();
 
@@ -33,6 +33,10 @@ $(function(){
 									// console.log('active filter', activeFilter);
 
 									noResultsFilterName += activeFilter;
+
+									if (activeFilter == 'All') {
+										noResultsFilterName = '';
+									}
 									
 									var noQualMessage = '<section class="flash-message error no-quals-message" style="margin-top:.5rem;"><p class="">Sorry, no <strong>'+ noResultsFilterName +'</strong> qualifications available. Please try another qualification.</p></section>';
 
@@ -52,12 +56,15 @@ $(function(){
 		});
 		// console.timeEnd('removing accents from all elements');
 
+		// $('.no-quals-message').remove();
+
 		$searchInput.on('propertychange change click keyup input paste', function(_event) {
 			var _query = _event.currentTarget.value;
 			
 			if (_query.length < MIN_QUERY_LENGTH) {
 				$targetElements.toggleClass('is-matching', false);
 				$targetElements.toggleClass('is-not-matching', false);
+				noQualsMessage();
 				return;
 			}
 
@@ -76,7 +83,6 @@ $(function(){
 				}
 			});			
 
-			$('.no-quals-message').remove();
 			noQualsMessage();
 
 			$('.is-matching').each( function (index) {
