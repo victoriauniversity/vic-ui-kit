@@ -50,9 +50,9 @@ $(function(){
 		// console.time('removing accents from all elements');
 		$targetElements.each(function(){
 			var $this = $(this);
-
-			$this.data('search-text', accent_fold($this.text()).toLowerCase());
-			$this.data('search-keywords', accent_fold($this.data('search-keywords')).toLowerCase());
+			
+			$this.data('search-text', accent_fold($this.find('h2').text()).toLowerCase());
+			$this.data('search-keywords', accent_fold($this.data('search-keywords')).toLowerCase());	
 		});
 		// console.timeEnd('removing accents from all elements');
 
