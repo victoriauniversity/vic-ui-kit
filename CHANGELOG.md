@@ -10,6 +10,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+## Production release: [v0.10.4] - 2018-07-19
+
+### Fixed
+
+- **HOTFIX IE and Safari bug where body content and footer was collapsing**
+
+- **HOTFIX If the parameter is not supplied to the tracking's custom track method, ignore it**
+
+
 ## Production release: [v0.10.3] - 2018-07-19
 
 ### Enhanced
@@ -254,6 +263,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.2...dev
 
+[v0.10.4]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.1...v0.10.4
 [v0.10.3]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.1...v0.10.3
 [v0.10.2]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.1...v0.10.2
 [v0.10.1]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.0...v0.10.1
