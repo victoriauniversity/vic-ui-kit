@@ -1,0 +1,49 @@
+---
+title: "Example | 404 Page Not Found tracking"
+
+header:
+  subtitle:   "Analytics"
+  title:      "GTM tracking of #404"
+
+header-start:
+  <!-- Google Tag Manager -->
+  <script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+ '&gtm_auth=KRMIRv_4UUHJZOdVJ8C8JQ&gtm_preview=env-32&gtm_debug=x';f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NL8WSRD');
+  </script>
+  <!-- End Google Tag Manager -->
+
+body-start:
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NL8WSRD&gtm_auth=KRMIRv_4UUHJZOdVJ8C8JQ&gtm_preview=env-32&gtm_debug=x" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+---
+
+
+<script>
+  document.onreadystatechange = function () {
+    if ( document.readyState === 'complete' ) {
+      toolkitTracker().trackEvent( '404' );
+    }
+  }
+</script>
+
+
+<!-- Content-only variation -->
+
+<section class="layout centraliser block">
+
+  <!-- Center 'content' and right 'widget' columns -->
+  <div class="content-panel">
+
+    <!-- Center 'content' column -->
+    <main>
+      <div class="block formatting">
+        <h1>Page not found</h1>
+
+        <p class="intro">Sorry, that page doesn't seem to be here. We've logged this error and will investigate.</p>
+        <p>If you came here from a link on a Victoria University site, please <a href="https://www.victoria.ac.nz/site-info/feedback?type=error&amp;from_url=404%3A+www.victoria.ac.nz%2Fnot-found-test">send us an error report</a> so we can fix the link.</p>
+      </div>
+    </main>
+
+  </div>
+</section>
