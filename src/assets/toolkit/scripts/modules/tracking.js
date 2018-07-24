@@ -36,11 +36,11 @@ function pushTrackingInfoToGtm( trackingId, trackingSource, customDataExtension 
   let event,
     customDataObject = {};
 
-  if ( !( typeof trackingSource.altKey === 'undefined' )) {
+  if ( trackingSource && !( typeof trackingSource.altKey === 'undefined' )) {
     // is Event (see https://developer.mozilla.org/en-US/docs/Web/API/Event)
     event = trackingSource;
   } else {
-    // is Object with custom properties
+    // is Object with custom properties OR null/undefined
     customDataObject = trackingSource;
   }
 
@@ -72,11 +72,14 @@ function pushTrackingInfoToGtm( trackingId, trackingSource, customDataExtension 
     }
   }
 
+  const dataLayerObject = {
+    event: trackingId,
+  };
+
+  if ( customDataObject ) dataLayerObject.custom = customDataObject;
+
   // Push to the GTM
-  window.dataLayer.push({
-    event:  trackingId,
-    custom: customDataObject,
-  });
+  window.dataLayer.push( dataLayerObject );
 }
 
 
