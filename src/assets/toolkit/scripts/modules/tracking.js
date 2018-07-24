@@ -41,7 +41,7 @@ function pushTrackingInfoToGtm( trackingId, trackingSource, customDataExtension 
     event = trackingSource;
   } else {
     // is Object with custom properties OR null/undefined
-    customDataObject = trackingSource;
+    customDataObject = trackingSource || {};
   }
 
   // Event supplied -> Extract data automatically based on the type of event
