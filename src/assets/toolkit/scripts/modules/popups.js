@@ -80,15 +80,15 @@ function initPopupBox( popupElement, {
 
   // Attach button events
   function bindButtonEvents() {
-    buttonOkElement.addEventListener( 'click', submit );
-    buttonCloseElement.addEventListener( 'click', close );
-    buttonCancelElement.addEventListener( 'click', cancel );
+    if ( buttonOkElement ) buttonOkElement.addEventListener( 'click', submit );
+    if ( buttonCloseElement ) buttonCloseElement.addEventListener( 'click', close );
+    if ( buttonCancelElement ) buttonCancelElement.addEventListener( 'click', cancel );
   }
 
   function unbindButtonEvents() {
-    buttonOkElement.removeEventListener( 'click', submit );
-    buttonCloseElement.removeEventListener( 'click', close );
-    buttonCancelElement.removeEventListener( 'click', cancel );
+    if ( buttonOkElement ) buttonOkElement.removeEventListener( 'click', submit );
+    if ( buttonCloseElement ) buttonCloseElement.removeEventListener( 'click', close );
+    if ( buttonCancelElement ) buttonCancelElement.removeEventListener( 'click', cancel );
   }
 
   function addShownClass() {
