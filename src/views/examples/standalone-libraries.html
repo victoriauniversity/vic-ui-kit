@@ -1,0 +1,88 @@
+---
+title: "Example | Standalone libraries and their usage"
+
+header:
+  subtitle:       "Standalone libraries"
+  title:          "Examples of how they can be used"
+
+excludeToolkitScript: true
+
+body-end:
+  <!-- Popup scripts -->
+  <script src="/toolkit.popups.js" async></script>
+
+---
+
+
+<!-- Variation 2) -->
+
+<section class="layout centraliser block">
+
+  <!-- Left 'submenu' column -->
+  <div class="sidebar"> {{> navigation.sidemenu-expandable }} </div>
+
+  <!-- Center 'content' and right 'widget' columns -->
+  <div class="content-panel">
+
+    <!-- Center 'content' column -->
+    <main>
+      <div class="block formatting">
+
+        <h1>GTM Tracking examples</h1>
+
+        <div class="formatting">
+          <h2>Popup automatic and manual loading</h2>
+        </div>
+
+          <!-- Popup -->
+  <div class="popup-positioner">
+  	<aside class="popup" id="popup-example4" role="dialog" data-autoload data-gtm-track data-opts='{ "delayInMs": 3500 }' aria-labelledby="popup-label" aria-describedby="popup-description" aria-live="polite">
+
+  		<header>
+  			<a href="javascript:;" class="btn-close" title="Close and don't show again" data-gtm-id="popup-example4-close" data-gtm-track="click">&times;</a>
+  			<h2 class="caption" id="popup-label">Auto-opening popup box</h2>
+  		</header>
+
+  		<div class="body formatting">
+  			<p id="popup-description">Pops up immediately after page loads, or after a additional time delay (includes Google Tag Manager tracking)</p>
+  			<div class="btn-holder">
+  				<a class="button button-cancel" href="javascript:;" title="Hide the popup" data-gtm-track="click" data-gtm-id="popup-example4-no">No, thanks</a>
+  				<a class="button primary button-ok" href="https://qualtrics.com" title="Go to the short survey" target="_blank" data-gtm-id="popup-example4-yes" data-gtm-track="click">Take the survey</a>
+  			</div>
+  		</div>
+
+  	</aside>
+  </div>
+
+
+  <!-- Example link triggering the popup opening dynamically -->
+  <a href="javascript:;" onclick="toolkitPopups.initAndOpen(document.getElementById('popup-example3'));">Open embedded popup block on a click</a>
+  <br>
+  <br>
+  <!-- Popup -->
+  <aside class="popup" id="popup-example3"
+    role="dialog"
+    aria-labelledby="popup-label"
+    aria-describedby="popup-description" aria-live="polite">
+
+    <header>
+      <a href="javascript:;" class="btn-close" title="Close and don't show again">&times;</a>
+      <h2 class="caption" id="popup-label">Embedded popup block opening on demand</h2>
+    </header>
+
+    <div class="body formatting">
+      <p id="popup-description">This popup block opens dynamically on demand (e.g. when the element is clicked) or dynamically.</p>
+      <div class="btn-holder">
+          <a class="button button-cancel" href="javascript:;" title="Hide the popup">No, thanks</a>
+          <a class="button primary button-ok" href="https://qualtrics.com" title="Go to the short survey" target="_blank">Take the survey</a>
+      </div>
+    </div>
+
+  </aside>
+
+
+      </div>
+    </main>
+
+  </div>
+</section>

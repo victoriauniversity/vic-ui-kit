@@ -122,6 +122,7 @@ function addGtmTrackingListeners( elementsList, eventType, trackingId ) {
 
 
 function shouldTrackByGtm( element ) {
+  element = $( element );
   return Boolean( element.attr( GTM_TRACK_ATTRIBUTE ) !== undefined );
 }
 
