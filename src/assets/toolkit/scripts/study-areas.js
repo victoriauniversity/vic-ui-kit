@@ -2,22 +2,61 @@ var $     = require('jquery');
 
 $(function(){
 
+	
+
 
 	//filterTags parameter only needed for postgrad quals filter..
 	function searchFilter(targetElements, searchInput, minQueryLength, filterTags) {
 
 		var $targetElements = $(targetElements);
 		var $searchInput = $(searchInput);
-    var MIN_QUERY_LENGTH = minQueryLength;
+		var MIN_QUERY_LENGTH = minQueryLength;
+		
+		function noQualsMessage() {
+			//add no quals message
+				if ($(filterTags)) {
+						$('.no-quals-message').remove();
+
+						var isVisible = 0;
+						var noResultsFilterName = '';
+
+						$targetElements.each( function() {
+								if( $(this).is(":visible") ) {
+										isVisible ++;
+									} else {
+									}
+								});
+								
+								
+								if ( isVisible == 0 ) {
+									var activeFilter = $('.quals-filter .tag.tag-active').text();
+									// console.log('active filter', activeFilter);
+
+									noResultsFilterName += activeFilter;
+
+									if (activeFilter == 'All') {
+										noResultsFilterName = '';
+									}
+									
+									var noQualMessage = '<section class="flash-message error no-quals-message" style="margin-top:.5rem;"><p class="">Sorry, no <strong>'+ noResultsFilterName +'</strong> qualifications available. Please try another qualification.</p></section>';
+
+									// console.log('no results filter name', noResultsFilterName);
+
+							$('.study-areas-postgrad .quals-filter').after(noQualMessage);
+						}
+					}
+			}
     
 		// console.time('removing accents from all elements');
 		$targetElements.each(function(){
 			var $this = $(this);
-
-			$this.data('search-text', accent_fold($this.text()).toLowerCase());
-			$this.data('search-keywords', accent_fold($this.data('search-keywords')).toLowerCase());
+			
+			$this.data('search-text', accent_fold($this.find('h2').text()).toLowerCase());
+			$this.data('search-keywords', accent_fold($this.data('search-keywords')).toLowerCase());	
 		});
 		// console.timeEnd('removing accents from all elements');
+
+		// $('.no-quals-message').remove();
 
 		$searchInput.on('propertychange change click keyup input paste', function(_event) {
 			var _query = _event.currentTarget.value;
@@ -25,6 +64,7 @@ $(function(){
 			if (_query.length < MIN_QUERY_LENGTH) {
 				$targetElements.toggleClass('is-matching', false);
 				$targetElements.toggleClass('is-not-matching', false);
+				noQualsMessage();
 				return;
 			}
 
@@ -43,42 +83,45 @@ $(function(){
 				}
 			});			
 
+			noQualsMessage();
 
-      //add no quals message
-      if ($(filterTags)) {
-          $('.no-quals-message').remove();
+			$('.is-matching').each( function (index) {
+				//for each breakpoint
+				if (window.matchMedia("(min-width: 88em)").matches ) {
+					alignGrid( 4, index, $(this), '.is-matching' );
+				}
 
-					var isVisible = 0;
-					var noResultsFilterName = '';
+				if (window.matchMedia("(max-width: 87.99em) and (min-width: 61em)").matches ) {
+					alignGrid( 3, index, $(this), '.is-matching' );
+				}
 
-          $targetElements.each( function() {
-              if( $(this).is(":visible") ) {
-									isVisible ++;
-								} else {
-									
-								}
-							});
-							
-							
-							if ( isVisible == 0 ) {
-								var activeFilter = $('.quals-filter .tag.tag-active').text();
-								// console.log('active filter', activeFilter);
+				if (window.matchMedia("(max-width: 60.99em) and (min-width: 43em)").matches ) {
+					alignGrid( 2, index, $(this), '.is-matching' );
+				}
 
-								noResultsFilterName += activeFilter;
-								
-								var noQualMessage = '<section class="flash-message error no-quals-message" style="margin-top:.5rem;"><p class="">Sorry, no <strong>'+ noResultsFilterName +'</strong> qualifications available. Please try another qualification.</p></section>';
-
-								// console.log('no results filter name', noResultsFilterName);
-
-            $('.study-areas-postgrad .quals-filter').after(noQualMessage);
-          }
-
-        }
-
+				if (index === 0) {
+					$(this).css('margin-left', '0');
+				}
+			});
 
 		});
 
 		var tags = $(filterTags);
+		
+
+		function alignGrid(cols, index, tile, filter) {
+			//resets margins for grid
+			tile.css({'margin-right': '0.375rem'});
+			tile.css({'margin-left': '0.375rem'});
+
+			if( (index + 1) % cols === 0 ) {
+				tile.css('margin-right', '0%');
+				//Need set time out to make sure style is applied
+				setTimeout(() => {
+					tile.nextAll(filter).first().css({'margin-left': '0rem'});
+				}, 75);
+			}
+		};
 
 		if (tags !== null) {
 
@@ -88,27 +131,60 @@ $(function(){
 					$(this).siblings().removeClass('tag-active');
 					$(this).addClass('tag-active');
 
-
 					if ( $(this).text() !== "All" ) {
-						$(searchInput).val('');
-						$(searchInput).val($(this).text()).change();
+						// $(searchInput).val('');
+						// $(searchInput).val($(this).text()).change();
+
+						var tag = $(this).text().toLowerCase();
+						
+						// console.log(tag);
+
+						$targetElements.each(function(){
+							var $this = $(this);
+							// console.log('tile', $this.data());
+			
+							if ($this.data('search-text').indexOf(tag) !== -1 ||
+								$this.data('search-keywords').indexOf(tag) !== -1) {
+								$this.toggleClass('show-filter', true);
+								$this.toggleClass('hide-filter', false);
+							} else {
+								$this.toggleClass('show-filter', false);
+								$this.toggleClass('hide-filter', true);
+							}
+						});
+
+						noQualsMessage();
+
 
 						$(this).css('margin-right', '');
 
 						//update margins to prevent grid breaking
-						$('.is-matching').each( function (index) {
-							$(this).css('margin-right', '1%');
-
-							if( (index + 1) % 4 === 0 ) {
-								$(this).css('margin-right', '0%');
+						$('.show-filter').each( function (index) {
+							//for each breakpoint
+							if (window.matchMedia("(min-width: 88em)").matches ) {
+								alignGrid( 4, index, $(this), '.show-filter' );
 							}
 
+							if (window.matchMedia("(max-width: 87.99em) and (min-width: 61em)").matches ) {
+								alignGrid( 3, index, $(this), '.show-filter' );
+							}
+
+							if (window.matchMedia("(max-width: 60.99em) and (min-width: 43em)").matches ) {
+								alignGrid( 2, index, $(this), '.show-filter' );
+							}
+
+							if (index === 0) {
+								$(this).css('margin-left', '0');
+							}
 						});
 
 					} else {
-						$(searchInput).val('').change();
-            $(targetElements).css('margin-right', '');
-            $('.no-quals-message').remove();
+						// $(searchInput).val('').change();
+            $(targetElements).css({'margin-right': '', 'margin-left': ''});
+						$('.no-quals-message').remove();
+						
+						$targetElements.toggleClass('show-filter', true);
+						$targetElements.toggleClass('hide-filter', false);
 					}
 
 				});
@@ -118,8 +194,9 @@ $(function(){
     
 	}
 
-	searchFilter('.postgrad-quals li', '#filter-quals', 3, '.quals-filter .tag' );
+	searchFilter('.postgrad-quals li', '#search-quals', 3, '.quals-filter .tag' );
 	searchFilter('#areas-of-study li', '#search-aos', 3 );
+
 
 });
 

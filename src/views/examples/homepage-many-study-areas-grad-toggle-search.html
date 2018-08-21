@@ -1,0 +1,70 @@
+<!-- Center 'content' and right 'widget' columns -->
+<div class="layout centraliser homepage-banner">
+  <div class="sidebar "> {{> navigation.sidemenu-expandable}} </div>
+  <figure class="banner">
+    <a href="#">
+      <img src="//cms.victoria.ac.nz/?a=394045">
+      <!-- Use class="wider, bottom or top" to position the text box -->
+      <figcaption class="bottom">
+        <h1>The art of discovery
+          <span class="icon-caret-right"></span>
+        </h1>
+        <h3>Alex Barrow is studying a Bachelor of Arts in Cultural Anthropology and Media Studies.</h3>
+      </figcaption>
+    </a>
+  </figure>
+</div>
+<div class="homepage-base layout">
+  <!-- Center 'content' column -->
+  <div class="content-panel">
+    <main>
+      <!-- Banner -->
+      <section>
+        {{> homepage-intro}}
+        <!-- {{> promo-panels-two-and-one-third}} -->
+
+        <section class="tiles-panel">
+          <div class="centraliser block">
+            <div class="study-area-tabs" id="study-area-tabs">
+
+              <style>
+
+
+              </style>
+
+              <div class="switch">
+
+                <input type="radio" class="switch-input" name="view" value="undergraduate" id="undergraduate" checked>
+                <label for="undergraduate" class="switch-label switch-label-off">Undergraduate</label>
+
+                <input type="radio" class="switch-input" name="view" value="postgraduate" id="postgraduate">
+                <label for="postgraduate" class="switch-label switch-label-on">Postgraduate</label>
+                <span class="switch-selection"></span>
+
+              </div>
+
+              <ul>
+                <li class="active">
+                  <a href="javascript:void(0)">
+                    <h4>
+                      <span class="icon-book-open"></span>Subject areas</h4>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">
+                    <h4>
+                      <span class="icon-graduation-cap"></span>Degrees and qualifications</h4>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <section class="study-areas-undergrad">{{> study-areas-undergrad}} {{> degrees-quals-undergrad}}</section>
+            <section class="study-areas-postgrad"> {{> study-areas-postgrad}} {{> degrees-quals-postgrad-search}}</section>
+          </div>
+        </section>
+
+        {{> promo-with-1x-image}} {{> promo-panels.text-promo-panel}} {{> three-cols-images}}
+      </section>
+    </main>
+  </div>
+</div>

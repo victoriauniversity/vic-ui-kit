@@ -59,14 +59,15 @@
 
   {{/unless}}
 
+  <!-- 'Go up' button -->
+  <a href="javascript:;" id="btn-up" title="Go to the top of the page" class="btn-floating sticky bottom" tabindex="-1"><span class="icon-arrow-up"></span></a>
 
+  <!-- 'Edit page' button -->
+  <a href="/_edit" id="btn-admin" style="display: none;" title="Edit the page in Squiz administration" class="btn-floating top" tabindex="-1"><span class="icon-edit"></span></a>
 
 
 
 	{% body %}
-
-
-
 
 
   <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
@@ -79,11 +80,12 @@
       {{> _footer footer=footer-default }}
     {{/if}}
 
-
   {{/unless}}
 
 	{{#if fabricator}}
-		</div>
+  </div>
+
+
 	<script src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}styleguide-assets/f.js"></script>
 
   <script type="text/javascript">
@@ -100,9 +102,11 @@
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 
+  {{#unless excludeToolkitScript}}
 	<!-- toolkit scripts -->
 	<script src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}toolkit.js"></script>
 	<!-- /toolkit scripts -->
+  {{/unless}}
 
   {{{ body-end }}}
 

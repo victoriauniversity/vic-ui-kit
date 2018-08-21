@@ -33,19 +33,16 @@
 
   // 'Previous page' button/link
   .previous {
-    margin-right: .3rem;
-    @include extend-icon-before( arrow-left ) {
-      vertical-align: -5%;
-    }
+    margin-right: $gap-small;
+    @include extend-icon-before( arrow-left );
   }
 
   // 'Next page' button/link
   .next {
     order: 3;
-    margin-left: .3rem;
-    @include extend-icon-after( arrow-right ) {
-      vertical-align: -5%;
-    }
+    margin-left: $gap-small;
+
+    @include extend-icon-after( arrow-right );
   }
 
   .previous,
@@ -58,11 +55,11 @@
   .pages {
     flex-grow: 1;
     order: 2;
-    padding: 0 .75em;
+    padding: 0 $gap-half;
     text-align: center;
 
     // '...'
-    > .icon { margin: 0 .5rem; }
+    > .icon { margin: 0 $gap-third; }
   }
 
   @include bp-mobile {

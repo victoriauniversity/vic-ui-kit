@@ -10,45 +10,111 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+## Production release: [v0.10.4] - 2018-07-19
+
+### Fixed
+
+- **HOTFIX IE and Safari bug where body content and footer was collapsing**
+
+- **HOTFIX If the parameter is not supplied to the tracking's custom track method, ignore it**
+
+
+## Production release: [v0.10.3] - 2018-07-19
+
+### Enhanced
+
+- **Post grad degrees and quals search filter** - New method in studyareas.js to filter by search on school homepage switcher.
+
+
+## Production release: [v0.10.2] - 2018-06-26
+
 
 ### Added
 
-- **ESLint and SassLint - Static code analysis for CSS and JS** - To improve consistency, styles, to add error checking, reduce debugging time etc.
-- **Expandable sidebar menu** - New version of the menu for desktop and mobile that allows to 'expand' submenus by clicking on the expanding button. Implements GTM tracking to compare normal link clicks with expandable button clicks.
-- New 'tiles' component - clickable area for list of important things. Has 3 variations - one for short lists and large tiles, longer list with smaller tiles and strip tiles.
-- Prototypes - New hubs for the IA project; Study, Experience, Research and About.
+- **Staff contact card prototypes**
 
+
+### Enhanced
+
+- **Tracking API extended by allowing for extra custom data** - Extra custom data can be pushed into Google Tag Manager using API or data attribute `data-gtm-vars` (JSON string format).
+
+
+## Production release: [v0.10.1] - 2018-06-14
+
+### Enhanced
+
+- **Google tag manager tracking added for Research hub Megamenu** - Code and tracking events added for menu expand and links clicked.
+
+
+## Production release: [v0.10.0] - 2018-06-06
+
+
+### Added
+
+- **ESLint and SassLint - Static code analysis for CSS and JS** - To improve consistency, styles, add error checking, reduce debugging times etc.
+- **New component: Expandable sidebar menu** - New version of the menu for desktop and mobile that allows to 'expand' submenus by clicking on the expanding button. Implements GTM tracking to compare normal link clicks with expandable button clicks.
+- **New component: Tiles** - clickable area for list of important things. Has 3 variations - one for short lists and large tiles, longer list with smaller tiles and strip tiles.
+- **New header** - Lighter version of the original header (e.g. for top level section, such as Research).
+- **`Go to top` button** - Shows on mobile devices, when the 'snappy' version of header is available.
+- **New component: Mega menu** - Two-dimensional submenu used in main content.
+- **Various testing prototypes** - New hubs for the IA project: Study, Experience, Research and About.
+- **Favicons and desktop icons for all modern devices** - Including Windows Metro, high resolution smartphones, Android and iOS.
+- **Mobile logo for the new header on mobile devices**
 
 
 
 ### Fixed
 
-- **Correct stage and production code deployment** - Code is now properly processed and exported.
+- **Stage and production code deployment** - Code is now properly processed (especially minification and compression) and exported to the stage and production environments.
 - **Behaviour of the auto-collapsing header strip now more consistent** - Fully reviewed and refactored styles and scripts. The behaviour logic was vastly simplified to avoid unexpected issues.
+- **Header's snappy behaviour on mobile redesigned** - Snaps to the top when scrolling up, hides when scrolling down more consistently.
+- **Mobile menu does not disappear when scrolling** - Dark overlay added, user now needs to either click on the darkened background outside of the mobile menu or cross icon to close the menu.
+- **Responsive breakpoints now scale linearly** - Gaps in between breakpoints resolved by using decimal points for em units and pixel precision for image breakpoints.
+- **Full-size content banner no longer bleeds out over the content's inner boundaries**
+- **Margins and paddings in small UI elements** - Missing spacing, double spacing, random values and other similar issues fixed in various UI elements.
+- **Pagination - the 'Next' button is now placed above the page numbers** - instead of below.
+- **(IE only) Removes underlines from under the icons that are used inside hyperlinks**
+- **Background images scale, crop and centre properly on newer browsers**
 
 
 
 ### Enhanced
 
-- **Updates all the packages and 3rd party libraries to the latest stable releases** - For gulp, webpack and SASS.
-- **Styles were completely re-factored and divided into core + project-based parts** - 'Core' introduces utility-first SCSS variables, mixins and functions that can be re-used for all University's digital projects without being too restrictive with regards to used classes or total amount of imported code.
-- **Completely rewritten building and deployment process** - Single Gulp file broken down into multiple isolated task files, deprecated code replaced with modern one, better environment configuration and separation, building times singificantly reduced.
+- **Updated all the packages and 3rd party libraries to the latest stable releases** - Most important ones were Gulp, webpack and SASS (required rewriting building and deployment process due to resulting incompabilities).
+- **Series of typographical improvements** - The vertical flow improved by increased spacing between headings and other content. Victoria font kerning decreased to improve readability, line heights and vertical spacing between content elements made more consistent.
+- **Featured researcher widget, staff listing and staff detail structure and styles redesigned and merged** - Made the structure more reusable, e.g. a single staff card template can now be used in the staff list, in the ride hand sidebar, on the staff profile or completely on it's own within any content page. Also allows us to display non-staff profiles without any inline styles.
+- **`Bourbon-neat` SASS library repurposed for grid layouts only**
+- **Top-level layout improvements** - Layout positioning changed from tables to flex with left floating fall-backs. All the main layout building blocks updated to the latest standards. Columns in the three-column layout now resize based on the perceived importance.
+- **Shadows made more consistent and stronger**
+- **New header - Alignment of menu items improved** - Search icon moved to the right side on the desktop devices.
+- **`Admin edit` button redesigned and moved into the toolkit** - Look more consistent with some other global buttons (e.g. 'go to top' button). Using external styles instead of inline styles (improved reusability).
+- **Long breadcrumb items are enabled and ellipsised on mobile** - Breadcrumbs are no longer hidden on the mobile devices. Long items are shortened by adding ellipsis (...).
+- **Page abstract made bold** - Consistent with bold heading, increases importance.
+- **Date of publishing (news, events) changed to `subtitle`** - As a result, it is now grey and bold.
+- **Reviewed and refactored old inline javascripts found on Faculty and School Squiz templates** - Scripts were removed from the Squiz and their refactored versions were added to the `toolkit.js` bundle. Improves re-usability, maintainability and performance. Includes: Staff's taught courses listing displayer, new top menu highlighter, email decoding utility, 'edit' button, admin-only warning notification messages.
+- **Increases vertical spacing around `<hr>` content separator, adds border**
+- **Visited links are now purple** - Accessibility improvement, helps with navigation.
+- **Footer links - Underline decoration added** - to make them consistent with other website links.
+- **Styles were completely re-structured and divided into core + project-based parts** - 'Core' introduces utility-first SCSS variables, mixins and functions that can be re-used for all University's digital projects without being too restrictive with regards to used classes or total amount of imported code. Core part heavily documented, a lot of generic styles made more consistent, including typography, sizing, animations, borders, .
+- **Completely rewritten building and deployment process** - Single Gulp file broken down into multiple isolated task files, deprecated code replaced with modern one, better environment configuration and separation, building times in development environment singificantly reduced.
 - **Documentation** - Updating example components, adding API description for GTM tracking library, cleaning up prototypes, examples and unused components.
-- **Toolkit's script bundle broken down to independent JS plugins** - Standalone plugins can be now used on any website without the main toolkit.js included. Example: `toolkit.tracking.js` which provides API extending Google Tag Manager event tracking.
+- **Toolkit's script bundle broken down to independent JS plugins** - Standalone plugins can be now used on any website without the main toolkit.js included. Added `toolkit.tracking.js` which provides API extending Google Tag Manager event tracking.
+- **Font size in the ride hand column and pop ups increased to the standard size** - Improves readability and consistency.
+- **Colours of the file badges adjusted and softened**
 - Updated the UI Kit documentation to be less Faculty and Site site specific.
 - News/Events pagination - improved floating of the pagination on all devices. Also Improved colour of pagination buttons.
-- Improve base button styles - now includes an icon by default
-- Improved form styling
-- Imporved the lists presentation in the Components section.
-- Group the components better in the UI Kit Components section.
+- Improved base button styles - now includes an arrow icon by default.
+- Improved form styling.
+- Improved the lists presentation in the Components section.
+- Grouped the components better in the UI Kit Components section.
 
 
 
 ### Removed
 
-- **Dependency on Bourbon SASS library**
+- **Dependency on `Bourbon` SASS library** - Some of the dependencies moved into our own core library.
 - **Unused 3rd party libraries** - Review done and obsolete or unused libraries were cleaned up (e.g. Velocity.js).
-- **Removes jQuery from the toolkit's scripts** - Allows us to use toolkit.js (and any other standalone toolkit plugins) on most of the old templates with old jQuery included.
+- **Removes jQuery from the toolkit's scripts** - Allows us to use `toolkit.js` bundle (and any other standalone toolkit plugins) on most of the old templates with old jQuery included without running into initialisation or version conflicts.
 
 
 
@@ -195,8 +261,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.4...dev
+[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.2...dev
 
+[v0.10.4]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.1...v0.10.4
+[v0.10.3]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.1...v0.10.3
+[v0.10.2]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.1...v0.10.2
+[v0.10.1]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.0...v0.10.1
+[v0.10.0]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.4...v0.10.0
 [v0.9.4]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.3...v0.9.4
 [v0.9.3]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.2...v0.9.3
 [v0.9.2]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.1...v0.9.2

@@ -97,7 +97,7 @@ button,
   &:not(.flat):not(.no-icon) {
     @include icon-arrow-right;
 
-    &:after { display: inline; }
+    &::after { display: inline; }
   }
 
 
@@ -107,6 +107,58 @@ button,
 input.button {
   border: 0;
   cursor: pointer;
+}
+
+
+
+
+
+/*= SPECIALISED BUTTONS ======================================================*/
+
+
+/** Fixed rounded buttons floating on the edges of the screen */
+
+$btn-floating-size: 3.8rem;
+
+
+.btn-floating {
+  @include size( $btn-floating-size );
+  z-index:          $z-index-top;
+  position:         fixed;
+  right:            0;
+  display:          block;
+  margin:           $gap-larger 2%;
+  padding:          $gap-half;
+
+  text-align:       center;
+  color:            $grey;
+  box-shadow:       $shadow;
+  background-color: $grey-gallery;
+  border-radius:    $btn-floating-size;
+  font-size:        $text-size-smaller;
+
+  @include hoverify() {
+    background-color: $grey-alto;
+    color: $link-hover-color;
+  }
+
+  @include icon-selector {
+    font-size: $text-size-massive;
+
+    &::before { margin-right: 0; }
+  }
+
+  // Placement location
+  &.top { top: 0; }
+  &.bottom { bottom: 0; }
+
+  // Only shows up when the main heading strip is sticking to the top (e.g. 'go to top' button)
+  &.sticky {
+    transition: all .3s ease-in;
+    opacity: 0;
+  }
+
+  .global.no-top ~ &.sticky { opacity: 1; }
 }
 
 

@@ -126,7 +126,10 @@
     $content-width:   100% - $widgetbar-width;
 
     /** Main content *ONLY* */
-    > main:last-child { width: 100%; }
+    > main:last-child {
+      overflow-x: hidden; // Don't allow the content to stretch behind the limits and create a vertical scrollbar
+      width: 100%;
+    }
 
     /** Main content + widgetbar */
     > main:not(:last-child) {
@@ -156,7 +159,11 @@
 
   body > .layout {
     display: flex;
-    height: 100%; // IE11 - Overbloated height fix
+    
+    //Content collapse fix for IE
+    @media all and ( -ms-high-contrast: none ), ( -ms-high-contrast: active ) {
+      height: 100%;
+    }
   }
 
   .sidebar {

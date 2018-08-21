@@ -107,11 +107,16 @@ $sub-title-color: rgba( $white, .75 );
     .quals-filter {
       margin-bottom: $gap-content;
 
-      #filter-quals { display: none; } // TODO: Refactor (ideally remove or replace with a non-ID substitute)
-
       label { font-size: 1.2em; }
     }
 
-    .tile.is-not-matching { display: none; }
+    .tile {
+      &.is-not-matching { 
+        display: none;
+      }
+      &.hide-filter {
+        display: none;
+      }
+    }
   }
 }
