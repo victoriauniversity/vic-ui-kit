@@ -28,72 +28,132 @@ module.exports = ({
   includeFabricator,
 } = { includeToolkit: true, includeFabricator: true }) => {
   // Add properties: { 'dests_relative_path': 'source' }
-  const entries = {};
+  const entries    = {},
+    libraryEntries = {};
 
   if ( includeToolkit ) {
     entries.toolkit = `./${config.paths.toolkit.scriptsIndex}`;
 
-    entries[`toolkit.tracking${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/tracking.js`;
-
     if ( !config.devMode ) entries['toolkit.min'] = `./${config.paths.toolkit.scriptsIndex}`;
+
+    // Standalone libs
+    libraryEntries[`toolkit.tracking${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/tracking.js`;
+    libraryEntries[`toolkit.popups${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/popups.js`;
   }
 
   if ( includeFabricator ) {
     entries[`${config.names.fabricator.dist}/f`] = `./${config.paths.fabricator.scriptIndex}`;
   }
 
-  return {
-    entry: entries,
+  return [
+    {
+      entry: entries,
 
-    output: {
-      path:     path.resolve( __dirname, '..', config.paths.tmp ),
-      filename: '[name].js',
-    },
+      output: {
+        path:     path.resolve( __dirname, '..', config.paths.tmp ),
+        filename: '[name].js',
+      },
 
-    // (default) devtool: 'eval',
+      // (default) devtool: 'eval',
 
-    resolve: {
-      extensions: [
-        '.js',
-      ],
-    },
+      resolve: {
+        extensions: [
+          '.js',
+        ],
+      },
 
-    plugins: getPlugins( config.devMode ),
+      plugins: getPlugins( config.devMode ),
 
-    mode: config.devMode ? 'development' : 'production',
+      mode: config.devMode ? 'development' : 'production',
 
-    module:  {
-      rules: [
-        {
-          test:    /(\.js)/,
-          exclude: /(node_modules|\.tmp|dist)/,
-          loader:  'babel-loader',
-        }, {
-          test:   /(\.jpg|\.png)$/,
-          loader: 'url-loader?limit=10000',
-        }, {
-          test:   /\.json/,
-          loader: 'json-loader',
-        },
-      ],
-    },
-
-    externals: {
-      jquery: 'jQuery',
-    },
-
-    optimization: {
-      minimizer: [
-        new UglifyJsPlugin({
-          uglifyOptions: {
-            output: {
-              comments: false,
-            },
+      module:  {
+        rules: [
+          {
+            test:    /(\.js)/,
+            exclude: /(node_modules|\.tmp|dist)/,
+            loader:  'babel-loader',
+          }, {
+            test:   /(\.jpg|\.png)$/,
+            loader: 'url-loader?limit=10000',
+          }, {
+            test:   /\.json/,
+            loader: 'json-loader',
           },
-          exclude: 'toolkit.js', // Don't minify!
-        }),
-      ],
+        ],
+      },
+
+      externals: {
+        jquery: 'jQuery',
+      },
+
+      optimization: {
+        minimizer: [
+          new UglifyJsPlugin({
+            uglifyOptions: {
+              output: {
+                comments: false,
+              },
+            },
+            exclude: 'toolkit.js', // Don't minify!
+          }),
+        ],
+      },
     },
-  };
+
+    // Config for standalone libraries compilation
+    {
+      entry: libraryEntries,
+
+      output: {
+        path:     path.resolve( __dirname, '..', config.paths.tmp ),
+        filename: '[name].js',
+      },
+
+      // (default) devtool: 'eval',
+
+      resolve: {
+        extensions: [
+          '.js',
+        ],
+      },
+
+      plugins: getPlugins( config.devMode ),
+
+      mode: config.devMode ? 'development' : 'production',
+
+      module:  {
+        rules: [
+          {
+            test:    /(\.js)/,
+            exclude: /(node_modules|\.tmp|dist)/,
+            loader:  'babel-loader',
+          }, {
+            test:   /(\.jpg|\.png)$/,
+            loader: 'url-loader?limit=10000',
+          }, {
+            test:   /\.json/,
+            loader: 'json-loader',
+          },
+        ],
+      },
+
+      externals: {
+        'jquery':     'jQuery',
+        'cookies-js': 'Cookies',
+      },
+
+      optimization: {
+        minimizer: [
+          new UglifyJsPlugin({
+            uglifyOptions: {
+              output: {
+                comments: false,
+              },
+            },
+          }),
+        ],
+      },
+    },
+  ];
 
 };

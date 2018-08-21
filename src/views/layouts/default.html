@@ -102,9 +102,11 @@
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 
+  {{#unless excludeToolkitScript}}
 	<!-- toolkit scripts -->
 	<script src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}toolkit.js"></script>
 	<!-- /toolkit scripts -->
+  {{/unless}}
 
   {{{ body-end }}}
 
