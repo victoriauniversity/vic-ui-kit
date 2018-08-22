@@ -188,12 +188,16 @@ function init() {
   }
 
   // Run when the DOM is ready!
-  document.onreadystatechange = () => {
-    if ( document.readyState === 'complete' ) {
-      // Find all existing popups and if they contain `data-autoload` attribute,
-      autoInitialisePopups();
-    }
-  };
+  if ( document.readyState === 'complete' ) {
+    autoInitialisePopups();
+  } else {
+    document.onreadystatechange = () => {
+      if ( document.readyState === 'complete' ) {
+        // Find all existing popups and if they contain `data-autoload` attribute,
+        autoInitialisePopups();
+      }
+    };
+  }
 }
 
 
