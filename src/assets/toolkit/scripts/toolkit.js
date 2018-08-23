@@ -3,31 +3,41 @@
 
 /* DEPENDENCIES & 3RD PARTY LIBRARIES IMPORTS */
 import $ from 'jquery';
+
 import fastclick from 'fastclick';
 import Headroom from 'headroom.js';
-import cookie from 'cookies-js';
 import enquire from 'enquire.js';
-import lity from 'lity';
-import picturefill from 'picturefill';
+
+import 'lity';
+import 'picturefill';
 
 // Include all standalone modules
 import { tracker, trackerConfig } from './modules/tracking';
+import popups from './modules/popups';
 
+
+
+
+
+// Initialise dependencies
 trackerConfig({ autoRegister: true });
 
 
-// Export to the global namespace (~ window)
-window.$      = $;
-window.jQuery = $;
+
+
+
+// Export useful dependencies to the global namespace (~ window) so that
+//  they can be used outside of this toolkit.
+export default {};
 
 
 
 
 
-  require('./study-areas.js'); //TODO: set up multiple entry points for webpack bundles
+require( './study-areas.js' ); // TODO: set up multiple entry points for webpack bundles
 
 
-  /* CONSTANT ATTRIBUTES */
+/* CONSTANT ATTRIBUTES */
 
   var TRANSITION_TIMEOUT       = 200; //update in _settings.variables.scss(135)
   var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 42.99em)', //update in _settings.responsive.scss(57)
@@ -59,6 +69,12 @@ window.jQuery = $;
         if ( iframeClasses ) singleIframe.removeClass();
       }
     });
+  }
+
+
+  /** Safe implementation of the 'hasOwnProperty` */
+  function hasProp( obj, propName ) {
+    return Object.prototype.hasOwnProperty.call( obj, propName );
   }
 
 
@@ -155,119 +171,6 @@ window.jQuery = $;
 
 
 
-  /** Popup launcher. */
-  function initPopupBox( popupElement, { delayInMs = 7000, suppressAfterCanceling = true } = {} ){
-
-    const COOKIE_ID       = popupElement.get( 0 ).id || 'popup';
-    const COOKIE_SETTINGS = {
-      expires: 2419200, // 28 days
-      //secure  : true    //If set to true the secure attribute of the cookie
-    };
-
-    let popupContainerElement = popupElement.parent( `.popup-positioner` );
-
-    popupContainerElement = popupContainerElement.length ? popupContainerElement : null;
-
-    const buttonOkElement       = popupElement.find( '.button-ok' );
-    const buttonCancelElement   = popupElement.find( '.button-cancel' );
-    const buttonCloseElement    = popupElement.find( '.btn-close' );
-
-    const IS_SHOWN_CLASS        = 'shown';
-
-
-    // Attach button events
-    function bindButtonEvents() {
-      buttonCloseElement.on( 'click', close );
-      buttonCancelElement.on( 'click', cancel );
-      buttonOkElement.on( 'click', submit );
-    }
-
-    function unbindButtonEvents() {
-      buttonCloseElement.off( 'click', close );
-      buttonCancelElement.off( 'click', cancel );
-      buttonOkElement.off( 'click', submit );
-    }
-
-    function close( event ){
-      // If `positionerClass` exists, hide + save 'hidden' to cookies
-      event.preventDefault();
-      event.stopPropagation();
-      closePopup();
-    }
-
-    function submit( event ){
-      // If `positionerClass` exists, hide + save 'hidden' to cookies + continue to the page
-      closePopup();
-    }
-
-    function cancel( event ){
-      // If `positionerClass` exists, hide + save 'hidden' to cookies + continue to the page
-      closePopup();
-    }
-
-    function showPopup() {
-      bindButtonEvents();
-      addShownClass();
-
-      if ( tracker.shouldTrackElement( popupElement ) ){
-        tracker.trackEvent( popupElement.get( 0 ).id, {
-          eventType: 'open'
-        });
-      }
-    }
-
-    function addShownClass() {
-    if ( popupContainerElement ) {
-        $( document.body ).append( popupContainerElement );
-        popupContainerElement.addClass( IS_SHOWN_CLASS );
-        //popupContainerElement.fadeIn( 'slow', function() {});
-      } else {
-        popupElement.addClass( IS_SHOWN_CLASS );
-      }
-    }
-
-    function removeShownClass() {
-      if ( popupContainerElement ) {
-        popupContainerElement.removeClass( IS_SHOWN_CLASS );
-        //popupContainerElement.fadeOut( 'slow', function() {});
-      } else {
-        popupElement.removeClass( IS_SHOWN_CLASS );
-      }
-    }
-
-    function isPopupShown(){
-      return popupElement.attr( 'data-shown' ) == 'true';
-    }
-
-    function closePopup() {
-      unbindButtonEvents();
-      popupElement.attr( 'data-shown', false );
-      removeShownClass();
-
-      if ( suppressAfterCanceling ) closePopupPermanently();
-    }
-
-    function closePopupPermanently() {
-      cookie.set( COOKIE_ID, true, COOKIE_SETTINGS );
-    }
-
-    // Constructor
-    (function init() {
-      const shouldShowPopup = !suppressAfterCanceling || ( cookie.get( COOKIE_ID ) === undefined || !cookie.get( COOKIE_ID ) );
-
-      if ( shouldShowPopup && !isPopupShown() ) {
-        popupElement.attr( 'data-shown', true ); // Must be added here to prevent triggering setTimeout when clicking multiple time
-
-        // If there's a positioner available, display after the timeout!
-        setTimeout( () => {
-          showPopup();
-        }, delayInMs );
-      }
-    })();
-
-  }
-
-
 
 
 
@@ -282,7 +185,8 @@ const ENV_HOSTNAME = {
 
 
 function isAdminEnvironment() {
-  return ( window.location.hostname === ENV_HOSTNAME.STAGE ) || ( window.location.hostname === ENV_HOSTNAME.LOCAL );
+  return ( window.location.hostname === ENV_HOSTNAME.STAGE )
+      || ( window.location.hostname === ENV_HOSTNAME.LOCAL );
 }
 
 
@@ -291,10 +195,11 @@ function isAdminEnvironment() {
  *
  * @deprecated Very old approach that won't work today - do not use.
  */
-function decodeMailAddresses(){
-  var a = 'dre:ams0of@g1niht.lp2c9u3v8k4w7y5j6zbx-_qfntigue6los5zar7b:y4dp8v3m9h2.x1w@k0jcq-_';
-  var i, h, j, k, l, m, n, s;
-  for (i = 0; i < document.links.length; i += 1) {
+function decodeMailAddresses() {
+  const a = 'dre:ams0of@g1niht.lp2c9u3v8k4w7y5j6zbx-_qfntigue6los5zar7b:y4dp8v3m9h2.x1w@k0jcq-_';
+
+  let i, h, j, k, l, m, n, s;
+  for ( i = 0; i < document.links.length; i += 1 ) {
     h = document.links[i].hash;
     if (h.substring(0, 3) == '#sd') {
       k = '';
@@ -329,7 +234,7 @@ function decodeMailAddresses(){
 
 const ERROR_TYPES = {
   SIDEBAR_WIDGETS_COUNT_EXCEEDED: 'sidebar-widgets-count-exceeded',
-}
+};
 
 
 /**
@@ -342,23 +247,23 @@ const ERROR_TYPES = {
  * @returns {void}
  */
 function showAdminErrorMessage( errorObject ) {
-  if ( !errorObject || !isAdminEnvironment() ) return;
+  if ( !errorObject || !isAdminEnvironment()) return;
 
   let invalidItemsListHtml;
 
   if ( errorObject.invalidItems.length > 0 ) {
     invalidItemsListHtml = `
       <ul>
-        <li>${ errorObject.invalidItems.join( '</li><li>' ) }</li>
+        <li>${errorObject.invalidItems.join( '</li><li>' )}</li>
       </ul>
     `;
   }
 
   // Template
-  let errorNotificationHtml = `
+  const errorNotificationHtml = `
     <section class="flash-message error">
-      ${ errorObject.message }
-      ${ invalidItemsListHtml }
+      ${errorObject.message}
+      ${invalidItemsListHtml}
     </section>
   `;
 
@@ -382,18 +287,18 @@ function showAdminErrorMessage( errorObject ) {
 function addActiveClassToMainMenu() {
   // [url-path-segment]: [nav-item-classname]
   const rootPages = {
-    future:                'future',
-    international:         'international',
-    current:               'current',
-    research:              'research',
-    ['learning-teaching']: 'learning-teaching'
-  }
+      'future':                'future',
+      'international':         'international',
+      'current':               'current',
+      'research':              'research',
+      'learning-teaching':     'learning-teaching',
+    },
 
-  const urlPathSegments = window.location.pathname.split( '/' );
+    urlPathSegments = window.location.pathname.split( '/' );
 
-  if ( urlPathSegments.length > 1 && urlPathSegments[ 1 ] !== '' && rootPages.hasOwnProperty( urlPathSegments[ 1 ] )) {
-    const activeNavItemClass = rootPages[ urlPathSegments[ 1 ]];
-    const activeNavItem = document.querySelector( `.menu-bar .${activeNavItemClass}`);
+  if ( urlPathSegments.length > 1 && urlPathSegments[1] !== '' && hasProp( rootPages, urlPathSegments[1])) {
+    const activeNavItemClass = rootPages[urlPathSegments[1]];
+    const activeNavItem = document.querySelector( `.menu-bar .${activeNavItemClass}` );
 
     if ( activeNavItem ) activeNavItem.classList.add( 'active' );
   }
@@ -418,8 +323,8 @@ function addActiveClassToMainMenu() {
  */
 
 const STAFF_LIST_CONTAINER_CLASSNAME = 'articles-container',
-      STAFF_LIST_CLASSNAME           = 'staff-list',
-      STAFF_CONTACT_CLASSNAME        = 'contact';
+  STAFF_LIST_CLASSNAME           = 'staff-list',
+  STAFF_CONTACT_CLASSNAME        = 'contact';
 
 function moveOrphanedStaffCardIntoList() {
   let orphanBeforeStaffList = document.querySelector( `.${STAFF_CONTACT_CLASSNAME} + .${STAFF_LIST_CONTAINER_CLASSNAME}` );
@@ -428,16 +333,16 @@ function moveOrphanedStaffCardIntoList() {
   if ( !orphanBeforeStaffList && !orphanAfterStaffList ) return;
 
   while ( orphanAfterStaffList ) {
-    let orphanedStaffCardElement = $( orphanAfterStaffList );
-    let staffListElement = orphanedStaffCardElement.prev().children( `.${STAFF_LIST_CLASSNAME}` );
+    const orphanedStaffCardElement = $( orphanAfterStaffList );
+    const staffListElement = orphanedStaffCardElement.prev().children( `.${STAFF_LIST_CLASSNAME}` );
 
-    if ( staffListElement.length == 0 ) {
+    if ( staffListElement.length === 0 ) {
       // Staff list is not within its container - abort
       console.warn( `The 'non-staff' profile could not be placed within the list of other 'staff' profiles, beceause the *previous* block does not contain '${STAFF_LIST_CLASSNAME}' class. You might experience visual inconsistencies.`, orphanAfterStaffList, staffListElement );
       return;
     }
 
-    let listItem = $( '<li></li>' ).append( orphanedStaffCardElement );
+    const listItem = $( '<li></li>' ).append( orphanedStaffCardElement );
     staffListElement.append( listItem );
 
     orphanAfterStaffList = document.querySelector( `.${STAFF_LIST_CONTAINER_CLASSNAME} + .${STAFF_CONTACT_CLASSNAME}` );
@@ -447,16 +352,16 @@ function moveOrphanedStaffCardIntoList() {
   orphanBeforeStaffList = document.querySelector( `.${STAFF_CONTACT_CLASSNAME} + .${STAFF_LIST_CONTAINER_CLASSNAME}` );
 
   while ( orphanBeforeStaffList ) {
-    let orphanedStaffCardElement = $( orphanBeforeStaffList ).prev( `.${STAFF_CONTACT_CLASSNAME}` ); // Current selector is pointing to the <ul> - point to the previous sibling instead!
-    let staffListElement = orphanedStaffCardElement.next().children( `.${STAFF_LIST_CLASSNAME}` );
+    const orphanedStaffCardElement = $( orphanBeforeStaffList ).prev( `.${STAFF_CONTACT_CLASSNAME}` ); // Current selector is pointing to the <ul> - point to the previous sibling instead!
+    const staffListElement = orphanedStaffCardElement.next().children( `.${STAFF_LIST_CLASSNAME}` );
 
-    if ( staffListElement.length == 0 ) {
+    if ( staffListElement.length === 0 ) {
       // Staff list is not within its container - abort
       console.warn( `The 'non-staff' profile could not be placed within the list of other 'staff' profiles, beceause the *following* block does not contain '${STAFF_LIST_CLASSNAME}' class. You might experience visual inconsistencies.`, orphanedStaffCardElement, staffListElement );
       break;
     }
 
-    let listItem = $( '<li></li>' ).append( orphanedStaffCardElement );
+    const listItem = $( '<li></li>' ).append( orphanedStaffCardElement );
     staffListElement.prepend( listItem );
 
     orphanBeforeStaffList = document.querySelector( `.${STAFF_CONTACT_CLASSNAME} + .${STAFF_LIST_CONTAINER_CLASSNAME}` );
@@ -476,12 +381,12 @@ function moveOrphanedStaffCardIntoList() {
 function hideCoursesOnStaffProfile() {
   if ( !window.courseLocation ) return;
 
-  if( window.courseLocation == 'top' ) {
-      $( "#courses-bottom" ).css({ 'display': "none" });
+  if ( window.courseLocation === 'top' ) {
+    $( '#courses-bottom' ).css({ display: 'none' });
   }
 
-  if( window.courseLocation == 'bottom' ) {
-    $("#courses-top").css({ 'display': "none" });
+  if ( window.courseLocation === 'bottom' ) {
+    $( '#courses-top' ).css({ display: 'none' });
   }
 }
 
@@ -493,10 +398,10 @@ function hideCoursesOnStaffProfile() {
 // Constants
 
 const SIDEBAR_WIDGET_CLASSNAME = 'data-sidebar',
-SIDEBAR_ID                     = 'rightHandMenu',
-SIDEBAR_WIDGETS_MAX            = 3,
+  SIDEBAR_ID                   = 'rightHandMenu',
+  SIDEBAR_WIDGETS_MAX          = 3,
 
-WIDGET_LINKS_CLASSNAME         = 'data-relatedLinks';
+  WIDGET_LINKS_CLASSNAME       = 'data-relatedLinks';
 
 
 /**
@@ -511,22 +416,22 @@ WIDGET_LINKS_CLASSNAME         = 'data-relatedLinks';
  */
 function moveWidgetsToSidebar() {
   // No widgets OR sidebar available -> Skip!
-  if ( !document.querySelector( `.${SIDEBAR_WIDGET_CLASSNAME}` ) || !document.getElementById( SIDEBAR_ID ) ) return;
+  if ( !document.querySelector( `.${SIDEBAR_WIDGET_CLASSNAME}` ) || !document.getElementById( SIDEBAR_ID )) return;
 
 
   // Members
 
   // Original, unordered widgets
   const widgetsToMove          = $( `.${SIDEBAR_WIDGET_CLASSNAME}` ),
-  sidebarElement               = $( `#${SIDEBAR_ID}` );
+    sidebarElement             = $( `#${SIDEBAR_ID}` );
 
   // Correctly ordered and prepared to be rendered
-  let widgetsMoved             = [];
+  const widgetsMoved             = [];
 
   let error;
 
 
-  widgetsToMove.each( function( index ) {
+  widgetsToMove.each(() => {
     const widgetElement = $( this );
 
     if ( widgetsMoved.length >= SIDEBAR_WIDGETS_MAX ) {
@@ -552,12 +457,11 @@ function moveWidgetsToSidebar() {
       return;
     }
 
-    // A) Staff profile - add to the top!
-    if( widgetElement.hasClass( WIDGET_LINKS_CLASSNAME ) ){
+    if ( widgetElement.hasClass( WIDGET_LINKS_CLASSNAME )) {
+      // A) Staff profile - add to the top!
       widgetsMoved.unshift( widgetElement );
-    }
-    // B) Others (downloads, publications etc.) - Add to the last positions
-    else {
+    } else {
+      // B) Others (downloads, publications etc.) - Add to the last positions
       widgetsMoved.push( widgetElement );
     }
 
@@ -579,51 +483,37 @@ function moveWidgetsToSidebar() {
 
 
 
-/**
- * Function called on the jQuery Element, opens it as a popup.
- *
- * @param {Object} { delayInMs = 0, suppressAfterCanceling = false }
- *
- * @returns {DOMElement}
- */
-function openPopup( { delayInMs = 0, suppressAfterCanceling = false } = {} ){
-  initPopupBox( this, { delayInMs: delayInMs, suppressAfterCanceling: suppressAfterCanceling } );
-
-  return this;
-}
-
-
 /** 'GO UP' BUTTON */
 
-const BTN_UP_ID           = 'btn-up',
-      BTN_ADMIN_EDIT_ID   = 'btn-admin';
+const BTN_UP_ID       = 'btn-up',
+  BTN_ADMIN_EDIT_ID   = 'btn-admin',
 
-const ADMIN_URL_EXTENSION = '_edit';
+  // ADMIN_URL_EXTENSION = '_edit', // Uncomment if the button and URL cannot be rendered by Squiz!
 
-const SCROLL_ANIMATION_DURATION_IN_MS = 700;
+  SCROLL_ANIMATION_DURATION_IN_MS = 700;
 
 
 function initFloatingButtons() {
-  const buttonUpElement = document.getElementById( BTN_UP_ID );
-  const buttonAdminElement = isAdminEnvironment() ? document.getElementById( BTN_ADMIN_EDIT_ID ) : null;
+  const buttonUpElement = document.getElementById( BTN_UP_ID ),
+    buttonAdminElement = isAdminEnvironment() ? document.getElementById( BTN_ADMIN_EDIT_ID ) : null;
 
-  if ( buttonUpElement ){
-    $( buttonUpElement ).click( ( e ) => {
+  if ( buttonUpElement ) {
+    $( buttonUpElement ).click(( e ) => {
       e.preventDefault();
       $( 'html,body' ).animate({
-          scrollTop: 0
+        scrollTop: 0,
       }, SCROLL_ANIMATION_DURATION_IN_MS );
     });
   }
 
-  if ( buttonAdminElement ){
+  if ( buttonAdminElement ) {
     $( buttonAdminElement ).css( 'display', '' ); // Remove inline 'display'
 
     // Uncomment if the button and URL cannot be rendered by Squiz!
-    //$( buttonAdminElement ).click( ( e ) => {
+    // $( buttonAdminElement ).click( ( e ) => {
     //  e.preventDefault();
     //    window.location.href += `/${ADMIN_URL_EXTENSION}`;
-    //})
+    // })
   }
 
 }
@@ -631,45 +521,29 @@ function initFloatingButtons() {
 
 
 // Run after the DOM has loaded...
-$(function(){
+$(() => {
   moveWidgetsToSidebar();
   addActiveClassToMainMenu();
   moveOrphanedStaffCardIntoList();
+
+  // FIXME: Extract out to a standalone plugin and run on staff profiles *only*
   hideCoursesOnStaffProfile();
 
-	fastclick.attach(document.body);
-	var $body          = $( 'body' );
-	var $globalNav     = $( '#global-nav' );
-  var $globalSearch  = $( '#global-search' );
+  fastclick.attach( document.body );
+
+  const $body     = $( 'body' ),
+    $globalNav    = $( '#global-nav' ),
+    $globalSearch = $( '#global-search' );
 
   /** Init side-menu, if it's present */
-  if ( $( '.' + SIDEMENU_CLASS ).length ) {
+  if ( $( `.${SIDEMENU_CLASS}` ).length ) {
     initSidemenuExpandability();
   }
 
   initFloatingButtons();
   decodeMailAddresses();
 
-
-
-  // Find all existing popups and if they contain `data-autoload` attribute,
-  // trigger autoloading automatically.
-  $( '.popup' ).each( function() {
-    var popupElement = $( this )
-    if ( popupElement.attr( 'data-autoload' ) !== undefined ){
-      // Autoload (~ show/hide) popup
-      var optionsObject = {};
-
-      if ( popupElement.attr( 'data-opts' ) !== undefined ) {
-        optionsObject = JSON.parse( popupElement.attr( 'data-opts' ) );
-      }
-
-      initPopupBox( popupElement, optionsObject );
-    }
-  });
-
-
-  //http://wicky.nillia.ms/enquire.js/
+  //http://wicky.nilia.ms/enquire.js/
   //TODO: Refactor and extract to its own library
 	enquire.register( MOBILE_LARGE_AND_SMALLER, function() {
 
@@ -927,6 +801,11 @@ if( document.getElementsByClassName('hub-mega-menu').length > 0 ){
 
 }
 
+
+function openPopup() {
+  popups.initAndOpen( this[0] );
+  return this;
+}
 
 
 
