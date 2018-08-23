@@ -431,9 +431,8 @@ function moveWidgetsToSidebar() {
   let error;
 
 
-  widgetsToMove.each( function () {
+  widgetsToMove.each( function moveWidgetToSidebar() {
     const widgetElement = $( this );
-    console.log( '>>>', this );
 
     if ( widgetsMoved.length >= SIDEBAR_WIDGETS_MAX ) {
       if ( !error ) {
