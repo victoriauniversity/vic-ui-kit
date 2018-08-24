@@ -10,6 +10,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 
+
+
+
+## Production release: [v0.10.5] - 2018-08-25
+
+### Enhanced
+
+- **Interaction and business logic for popups has been turned into standalone library**
+- **Build & Deployment 3rd party libraries updated to their latest versions**
+- **The JS partially refactored to the latest coding standard (~ 30%)**
+
+
+
+
+
 ## Production release: [v0.10.4] - 2018-07-19
 
 ### Fixed
@@ -261,10 +276,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.2...dev
+[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.5...dev
 
-[v0.10.4]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.1...v0.10.4
-[v0.10.3]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.1...v0.10.3
+[v0.10.5]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.4...v0.10.5
+[v0.10.4]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.3...v0.10.4
+[v0.10.3]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.2...v0.10.3
 [v0.10.2]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.1...v0.10.2
 [v0.10.1]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.0...v0.10.1
 [v0.10.0]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.9.4...v0.10.0
