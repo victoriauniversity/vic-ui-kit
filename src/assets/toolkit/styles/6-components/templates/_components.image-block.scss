@@ -11,13 +11,28 @@
     float: right;
     width: 25%;
     margin-left: 1rem;
-
+    
+    &.right {
+      
+    }
+    
+    &.left {
+      float: left;
+      margin-right: 1rem;
+      margin-left: 0;
+    }
+    
     @include bp-mobile() {
       margin-left: 0;
+      margin-right: 0;
       margin-bottom: 1rem;
       float: none;
       width: 100%;
+
+      &.left {
+        margin-right: 0;
+      }
     }
   }
- 
+   
 }
