@@ -1,0 +1,90 @@
+/* Container Templates
+
+*** Content page
+**  Multiple videos template
+*/
+
+.video-section {
+  .videos {
+    display: flex;
+    flex-wrap: wrap;
+
+    > figure {
+      flex: 1 1 auto;
+      margin-bottom: 1rem;
+      max-width: calc(33% - .8rem);
+
+      &:not(:last-child) {
+        margin-right: 0.8rem;
+      }
+
+      a {
+        @include hoverify() {
+
+          .image-wrap {
+
+            &:before {
+              background: none;
+            }
+          }
+        }
+      }
+
+      .image-wrap {
+        position: relative;
+        margin-bottom: 0.8rem;
+        overflow: hidden;
+
+        // @include before(inline-block, '' , absolute) {
+        //   background-color: rgba(0,0,0,.3);
+        //   top: 0;
+        //   bottom: 0;
+        //   left: 0;
+        //   right: 0;
+        //   transition: all 200ms ease-in-out;
+        // }
+        .embed {
+          margin: 0;
+        }
+
+        .play-now {
+          background-color: $green-brand;
+          padding: .5rem;
+          color: $white;
+          
+          h4, h5 {
+            color: $white;
+            margin-bottom: 0;
+          }
+
+          i {
+            margin-left: 0.5rem;
+          }
+        }
+      }
+
+      @include breakpoint( $until: tablet ) {
+        max-width: calc(50% - .8rem);
+      }
+    }
+
+    &.three-across {
+
+      > figure {
+        // @include breakpoint( $until: tablet ) {
+        //  &:first-child {
+        //     margin-right: 0;
+        //     margin-bottom: 1.2rem;
+        //     flex-basis: 100%;
+        //   }
+        // }
+      }
+    }
+
+    &.two-across {
+      > figure {
+        max-width: calc(50% - .8rem);
+      }
+    }
+  }
+}
