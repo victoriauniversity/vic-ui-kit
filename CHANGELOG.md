@@ -9,6 +9,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added 
+
+- **Template block with image** - Container template to display an image with text and title. 
+- **Template Pattern to display multiple videos** - Container template to display a grid of youtube videos with image title and description. 
+
 
 ## Production release: [v0.10.4] - 2018-07-19
 
