@@ -15,6 +15,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - **Template Pattern to display multiple videos** - Container template to display a grid of youtube videos with image title and description. 
 
 
+### Enhanced
+
+- **PDF tag's colour aligned with colour of the red generic tag**
+
+
 ## Production release: [v0.10.4] - 2018-07-19
 
 ### Fixed
