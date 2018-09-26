@@ -9,11 +9,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-### Added 
+### Added
 
-- **Template block with image** - Container template to display an image with text and title. 
+- **Template block with image** - Container template to display an image with text and title.
 - **Template Pattern to display multiple videos** - Container template to display a grid of youtube videos with image title and description. 
 
+
+### Enhanced
+
+- **PG/UG switcher - Automatically loads the content of the tab that is selected when the page is rendered**
 
 
 
