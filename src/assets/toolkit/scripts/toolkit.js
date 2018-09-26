@@ -665,9 +665,9 @@ $(() => {
 
   /* Show the tab content that is selected */
 
-  if ( document.getElementById( 'undergraduate' ).checked ) {
+  if ( document.getElementById( 'undergraduate' ) && document.getElementById( 'undergraduate' ).checked ) {
     switchTabToUndergrad();
-  } else if ( document.getElementById( 'postgraduate' ).checked ) {
+  } else if ( document.getElementById( 'postgraduate' ) && document.getElementById( 'postgraduate' ).checked ) {
     switchTabToPostgrad();
   }
 
