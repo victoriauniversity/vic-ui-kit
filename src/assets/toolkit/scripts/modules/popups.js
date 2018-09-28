@@ -35,7 +35,7 @@ function initPopupBox( popupElement, {
   };
   const popupContainerElement = findAncestor( popupElement, 'popup-positioner' );
 
-  const buttonOkElement = popupElement.getElementsByClassName( CLASSNAME.BUTTON_OK )[0],
+  const buttonOkElements = popupElement.getElementsByClassName( CLASSNAME.BUTTON_OK ),
     buttonCancelElement = popupElement.getElementsByClassName( CLASSNAME.BUTTON_CANCEL )[0],
     buttonCloseElement  = popupElement.getElementsByClassName( CLASSNAME.BUTTON_CLOSE )[0],
 
@@ -80,13 +80,19 @@ function initPopupBox( popupElement, {
 
   // Attach button events
   function bindButtonEvents() {
-    if ( buttonOkElement ) buttonOkElement.addEventListener( 'click', submit );
+    for ( let i = 0; i < buttonOkElements.length; i++ ) {
+      buttonOkElements[i].addEventListener( 'click', submit );
+    }
+
     if ( buttonCloseElement ) buttonCloseElement.addEventListener( 'click', close );
     if ( buttonCancelElement ) buttonCancelElement.addEventListener( 'click', cancel );
   }
 
   function unbindButtonEvents() {
-    if ( buttonOkElement ) buttonOkElement.removeEventListener( 'click', submit );
+    for ( let i = 0; i < buttonOkElements.length; i++ ) {
+      buttonOkElements[i].removeEventListener( 'click', submit );
+    }
+
     if ( buttonCloseElement ) buttonCloseElement.removeEventListener( 'click', close );
     if ( buttonCancelElement ) buttonCancelElement.removeEventListener( 'click', cancel );
   }
