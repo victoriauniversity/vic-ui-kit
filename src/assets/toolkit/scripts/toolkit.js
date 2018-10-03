@@ -662,22 +662,36 @@ $(() => {
 
 	});
 
-	/* study areas toggle programme level initially hide postgrad */
-	$('.study-areas-postgrad').hide();
-	$('.switch .switch-input').on( 'change', function () {
 
+  /* Show the tab content that is selected */
+
+  if ( document.getElementById( 'undergraduate' ) && document.getElementById( 'undergraduate' ).checked ) {
+    switchTabToUndergrad();
+  } else if ( document.getElementById( 'postgraduate' ) && document.getElementById( 'postgraduate' ).checked ) {
+    switchTabToPostgrad();
+  }
+
+	$('.switch .switch-input').on( 'change', function () {
 		if( $(this).attr('value') == 'undergraduate' ) {
-			$('#study-area-tabs > ul > li:nth-child(1) h4').html('<span class="icon-book-open"></span>Subject areas');
-			$('.study-areas-undergrad').show(500);
-			$('.study-areas-postgrad').hide(500);
-		}
+			switchTabToUndergrad();
+    }
+
 		if( $(this).attr('value') == 'postgraduate' ) {
+      switchTabToPostgrad();
+		}
+   });
+
+   function switchTabToUndergrad() {
+      $('#study-area-tabs > ul > li:nth-child(1) h4').html('<span class="icon-book-open"></span>Subject areas');
+      $('.study-areas-undergrad').show(500);
+      $('.study-areas-postgrad').hide(500);
+   }
+
+   function switchTabToPostgrad() {
 			$('#study-area-tabs > ul > li:nth-child(1) h4').html('<span class="icon-book-open"></span> Postgraduate subjects');
 			$('.study-areas-postgrad').show(500);
 			$('.study-areas-undergrad').hide(500);
-		}
-
-	 });
+   }
 
 	/* dynamic height for tiles. setting height of all tiles from largest tile height */
 	$('.dynamic-height-tiles ').each(function(n){
