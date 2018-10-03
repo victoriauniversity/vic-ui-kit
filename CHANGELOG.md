@@ -17,9 +17,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Enhanced
 
+- **PDF tag's colour aligned with colour of the red generic tag**
 - **PG/UG switcher - Automatically loads the content of the tab that is selected when the page is rendered**
-
-
 
 
 ## Production release: [v0.10.5] - 2018-08-25
@@ -29,10 +28,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - **Interaction and business logic for popups has been turned into standalone library**
 - **Build & Deployment 3rd party libraries updated to their latest versions**
 - **The JS partially refactored to the latest coding standard (~ 30%)**
-
-
-
-
 
 ## Production release: [v0.10.4] - 2018-07-19
 
