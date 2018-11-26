@@ -13,7 +13,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - **Template block with image** - Container template to display an image with text and title.
 - **Template Pattern to display multiple videos** - Container template to display a grid of youtube videos with image title and description. 
-
+- **Class for tall banner** - Added for engagement hub. Class tall for people banners. 
+- **Intranet Search** - Styles for intranet search landing page and results.
 
 ### Enhanced
 

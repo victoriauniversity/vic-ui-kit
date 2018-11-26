@@ -108,5 +108,28 @@
       img { height: 100%; }
     }
 
+    &.tall {
+      > figure {
+        min-height: 380px;
+
+        figcaption {
+          position: absolute;
+          bottom: 0;
+          margin-bottom: 9px;
+          max-width: 100%;
+
+          > div {
+            max-width: 88rem;
+            margin: 0 auto;
+          }
+        }
+
+        @include bp-desktop-large {
+          min-height: 440px;
+        }
+      }
+      
+    }
+
   }
 }
