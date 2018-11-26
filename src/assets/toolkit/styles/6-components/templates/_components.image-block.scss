@@ -34,5 +34,34 @@
       }
     }
   }
-   
+
+  &.long-block {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+
+    .border-bottom {
+      border-bottom: 4px solid #115737;
+    }
+
+    > div {
+      width: 61%;
+      float: left;
+    }
+
+    .image-block--img {
+      width: 35%;
+    }
+
+    .image-block--img.left + div {
+      float: right;
+    }
+
+    @include bp-mobile() {
+      > div,
+      .image-block--img {
+        width: 100%;
+      }
+     }
+
+  }
 }
