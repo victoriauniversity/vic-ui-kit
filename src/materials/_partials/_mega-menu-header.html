@@ -1,0 +1,58 @@
+<header role="banner" class="main-site-header existing-ia">
+  <div class="block centraliser">
+    <!-- Logotype -->
+    <div class="logo">
+      <a href="https://static.victoria.ac.nz/prototypes/home.html" title="Victoria University of Wellington homepage">
+        <picture>
+          <!-- *MUST* be in pixels to avoid inconsistencies between CSS mediaqueries and HTML mediaqueries on Safari (*facepalm*)  -->
+          <source media="(max-width: 687px)" srcset="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-mini.svg">
+          <source media="(min-width: 688px) and (max-width: 1087px)" srcset="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-portrait.svg">
+          <img src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/logo-white-full.svg" alt="Victoria University of Wellington - Te Whare Wānanga o te Ūpoko o te Ika a Māui">
+        </picture>
+      </a>
+    </div>
+    <!-- Mobile Menu toggle -->
+    <a class="main-menu-toggle" role="toggle-mobile-menu">
+      <div class="menu-toggle-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </a>
+    <!-- Introductory block -->
+    <nav class="menu-container">
+      <div role="sub-menu" class="sub-nav horizontal-menu">
+        <div class="menu-bar">
+          <a href="">About Victoria</a>
+          <a href="">Staff</a>
+          <a href="">Library</a>
+          <a href="">Blackboard</a>
+          <a href="">Maps</a>
+        </div>
+
+      </div>
+      <div role="menu" class="main-nav horizontal-menu">
+        <div role="menu-bar" class="menu-bar">
+
+            {{#if main-header.main-ia}} {{#each main-header.main-ia}}
+            <a role="menu-item" href="https://static.victoria.ac.nz/prototypes/{{ this }}.html" title="{{{this}}} page" class="{{this}}">{{ this}}</a>
+            {{/each}} {{/if}}
+
+            <a  role="search" class="menu-item search-item" href="javascript:void(0)"><span class="icon-search"></span></a>
+          </div>
+      </div>
+    </nav>
+    <div class="centraliser search-bar">
+
+      <form class="search-form" action="//www.victoria.ac.nz/search" role="search">
+        <input id="search-query" class="search-input" aria-label="Search term:" autocomplete="off" autocorrect="off" type="search" name="q" placeholder="Search Victoria for..">
+        <input id="search-submit" class="primary button" type="submit" value="Go">
+      </form>
+
+    </div>
+
+  </div>
+
+</header>
+<div>test</div>
