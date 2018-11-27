@@ -2,3 +2,104 @@
 =                     Mega menu          =
 ==================================================*/
 
+.site-mega-menu {
+
+
+  .logo {
+    align-self: flex-start;
+  }
+
+  .search-item {
+    position: relative !important;
+  }
+
+
+    .mega-container {
+
+      .menu-bar {
+        padding-right: 0;
+        padding-left: 1rem;
+        display: flex;
+        position: relative;
+
+
+        .mega-group {
+          flex: 1 0 auto;
+
+          > a.nav-title {
+            padding: .5rem .7rem !important;
+
+
+            @include hoverify() {
+              background-color: $black-tundora ;
+              border-radius: $radius;
+            }
+
+            span {
+              margin-left: 0.5rem;
+            }
+          }
+  
+          .dropdown {
+            display: none; 
+          }
+
+          &:hover {
+            margin-bottom: 330px;
+
+            > a.nav-title {
+                background-color: $black-tundora ;
+                border-radius: $radius;
+            }
+
+            a > {
+              span:before {
+                content: "";
+              }
+            }
+
+            .dropdown {
+              display: flex;
+              flex-wrap: wrap;
+              position: absolute;
+              width: 100%;
+              top: 40px;
+              left: 0;
+
+              .drop-group {
+                padding: .5rem .7rem;
+                display: flex;
+                flex-direction: column;
+                flex: 0 1 25%;
+
+                a {
+                  @include hoverify {
+                    text-decoration: underline;
+                    color: $white;
+                  }
+                }
+
+                h4 {
+                  color: $white;
+                  margin-bottom: 0.5rem;
+                  a {
+                    font-size: 1.2rem;
+                  }
+                }
+
+                li {
+                  a {
+                    color: $grey-alto;
+                    font-size: .9rem;
+                  }
+                }
+              }
+
+            }
+          }
+        }
+      }
+      
+    }
+  
+}
