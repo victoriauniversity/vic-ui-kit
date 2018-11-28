@@ -128,6 +128,11 @@ $search-panel-shadow: $shadow-shallow !default;
       margin-right: 0.5rem;
     }
 
+    form {
+      width: 100%;
+      padding: 0;
+    }
+
     .feature_search {
       background-color: #fff;
       margin: 0;
@@ -157,17 +162,29 @@ $search-panel-shadow: $shadow-shallow !default;
       select {
         height: 36px;
       //   font-family: $font_body;
+        width: 100%;
       }
 
     .widget-search-fields {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
+      max-width: 400px;
+
+      input[type="submit"] {
+        width: 20%;
+        width: auto;
+      }
+      input[type="text"] {
+        width: 80%;
+        width: auto;
+      }
+
       }
     }
   }
 
-  @include bp-mobile {
+  @include breakpoint( $until: tablet ) {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
