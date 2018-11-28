@@ -76,3 +76,130 @@ $search-panel-shadow: $shadow-shallow !default;
   }
 
 }
+
+/* Search widget International */
+
+.search-widget {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 2rem -3% 2rem;
+  background-color: #eee;
+  padding: 1rem;
+
+  .search-pg {
+  }
+  
+  .search-ug {
+    margin-right: 1rem;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 62%;
+            flex: 1 0 62%;
+  }
+
+  .search-pg,
+  .search-ug {
+    padding: 1rem;
+    background-color: #fff;
+
+    h1 + p {
+        font-size: 1rem;
+    }
+  }
+
+  .widget-search-group {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: left;
+        -ms-flex-pack: left;
+            justify-content: left;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-top: 1.5rem;
+
+    .search-label {
+      // display: block !important;
+      -webkit-box-flex: 0;
+          -ms-flex: 0 0 34%;
+              flex: 0 0 34%;
+      margin-bottom: 0;
+      margin-right: 0.5rem;
+    }
+
+    .feature_search {
+      background-color: #fff;
+      margin: 0;
+      height: auto;
+
+      fieldset {
+        padding: 0;
+
+        .field_container {
+          margin-bottom: 0;
+        }
+      }
+
+      .feature_search_query {
+        font-size: 14px;
+        -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+                flex: 1 1 auto;
+        border-right-color: transparent;
+
+      }
+      input[type="submit"] {
+        left: 0;
+        text-transform: initial;
+      }
+
+      select {
+        height: 36px;
+      //   font-family: $font_body;
+      }
+
+    .widget-search-fields {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      }
+    }
+  }
+
+  @include bp-mobile {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+
+    .search-ug {
+      margin-right: 0;
+      margin-bottom: 1rem;
+      -webkit-box-flex: 1;-ms-flex: 1 0 auto;
+      flex: 1 0 auto;
+    }
+
+    .feature_search {
+        display: block;
+        position: relative;
+        top: 0;
+
+        input[type="submit"] {
+          position: relative;
+          right: auto;
+          left: auto;
+          top: auto;
+        }
+
+        .feature_search_query {
+          height: 36px !important;
+        }
+    }
+
+    .feature_search label {
+      display: none;
+    }
+  }
+}
+
