@@ -341,3 +341,70 @@ $footer-heading-margin-bottom: .75em;
 
   }
 }
+
+/* Homesite footer copied for International */
+
+footer {
+  background-color: #ddd;
+  border-bottom: 1px solid #CCC;
+
+  .site_links {
+    column-count: 5;
+
+    .cols {
+      width: 100%;
+      page-break-inside: avoid;
+
+      a:not(.button) {
+        color: $black-tundora;
+        font-size: 90%;
+        
+        @include hoverify {
+          text-decoration: underline;
+        }
+      }
+
+      .button {
+        margin: .5rem 0;
+
+        &.emergency {
+          margin-bottom: 1.5rem;
+        }
+      }
+
+      .link_list {
+        // margin-top: 0.3rem;
+        margin-bottom: 1rem;
+      }
+
+      img.social_logo {
+        width: 25px;
+        display: inline-block;
+      }
+    }
+
+    @include breakpoint( $until: tablet ) {
+      column-count: unset;
+
+      .cols {
+        .button.emergency {
+          margin-bottom: 0;
+        }
+      }
+
+      .cols {
+        display: inline;
+      }
+      
+      h4 {
+        display: inline-block;
+        padding: .5rem;
+      }
+
+      .link_list {
+        display: none;
+
+      }
+    }
+  }
+}
