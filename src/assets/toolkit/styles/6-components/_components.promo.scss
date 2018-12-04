@@ -93,3 +93,29 @@
   }
 
 }
+
+.promo {
+  &.content-page-intro {
+    width: 30%;
+    float: right;
+    clear: none;
+    margin-bottom: 2rem;
+
+    & + * {
+      clear: both;
+    }
+
+    @include breakpoint( $until: tablet ) {
+      width: 100%
+    }
+  }
+}
+
+.intro.intro-promo-content {
+  float: left;
+  width: 67%;
+
+  @include breakpoint( $until: tablet )  {
+    width: 100%
+  }
+}
