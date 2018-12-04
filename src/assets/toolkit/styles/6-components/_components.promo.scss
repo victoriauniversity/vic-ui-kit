@@ -94,6 +94,8 @@
 
 }
 
+/* Additions for template bridge SASS --> UI KIT */
+
 .promo {
   &.content-page-intro {
     width: 30%;
@@ -107,6 +109,17 @@
 
     @include breakpoint( $until: tablet ) {
       width: 100%
+    }
+  }
+
+  &.promo-template-sidebar {
+    > * {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+
+      &:last-child {
+        margin-bottom: 1.25rem;
+      }
     }
   }
 }
