@@ -26,8 +26,9 @@
         .mega-group {
           flex: 1 0 auto;
 
+
           > a.nav-title {
-            padding: .5rem .7rem !important;
+            padding: .5rem .4rem !important;
 
 
             @include hoverify() {
@@ -36,7 +37,10 @@
             }
 
             span {
-              margin-left: 0.5rem;
+              // margin-left: 0.5rem;
+              &:before {
+                margin-right: 0;
+              }
             }
           }
   
@@ -44,12 +48,19 @@
             display: none; 
           }
 
-          &:hover {
-            margin-bottom: 375px;
+          @include hoverify() {
+            > a.nav-title {
+              background-color: $black-tundora ;
+              border-radius: $radius;
+            }
+          }
+
+          &.active {
+            // margin-bottom: 375px;
 
             > a.nav-title {
-                background-color: $black-tundora ;
-                border-radius: $radius;
+              background-color: $black-tundora ;
+              border-radius: $radius;
             }
 
             a > {

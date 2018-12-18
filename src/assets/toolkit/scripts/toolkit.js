@@ -835,3 +835,38 @@ function openPopup() {
     };
   }
 })( jQuery );
+
+
+
+
+/* Megamenu */
+
+    
+var $megaMenuSelector = $('.mega-group');
+    
+$megaMenuSelector.on('click', function() {
+  console.log( $(this), 'clicked nav title' );
+
+  if ($(this).hasClass('active')) {
+    
+    //remove active state
+    $megaMenuSelector.not($(this)).removeClass('active');
+    $(this).toggleClass('active');
+
+    $(this).css('margin-bottom', '0');
+  } else {
+    //toggle active state
+    $megaMenuSelector.not($(this)).removeClass('active');
+    $(this).toggleClass('active');
+    
+    //set correct height for dropdown
+    var $height = $(this).find('.dropdown').height();
+    console.log('height', $height);
+    
+    $megaMenuSelector.css('margin-bottom', '0');
+    $(this).css('margin-bottom', $height);
+    
+  }
+
+  
+});
