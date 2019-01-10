@@ -835,3 +835,27 @@ function openPopup() {
     };
   }
 })( jQuery );
+
+
+
+$(document).ready(function(){
+  $("#search-filter").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+
+    console.log( $(this).val().length );
+    
+    // if input 3 or more filter
+    if($(this).val().length >= 3) {
+      $(".calendar-cards .card").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+
+        console.log($(this).text());
+        
+      });
+    } else {
+      // show all if search input less then 3
+      $(".calendar-cards .card").show();
+    }
+
+  });
+});
