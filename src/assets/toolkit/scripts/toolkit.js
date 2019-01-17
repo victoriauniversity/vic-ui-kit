@@ -837,8 +837,8 @@ function openPopup() {
 })( jQuery );
 
 
+if( document.getElementsByClassName('calendar-cards').length > 0 ){ 
 
-$(document).ready(function(){
   $("#search-filter").on("keyup", function() {
     var value = $(this).val().toLowerCase();
 
@@ -858,4 +858,5 @@ $(document).ready(function(){
     }
 
   });
-});
+
+};
