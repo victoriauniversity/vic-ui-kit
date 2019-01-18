@@ -186,6 +186,11 @@ $card-background-color: $background-light;
         padding: 1rem;
         display: flex;
 
+        .sub-head {
+          font-size: .95rem;
+          margin-bottom: 0.5rem;
+        }
+
         > div {
           margin-right: 1rem;
           padding-left: .8rem;
@@ -202,8 +207,33 @@ $card-background-color: $background-light;
         color: $grey-dove;
       }
 
+      @include breakpoint( $until: tablet ) {
+
+        .title, .date {
+          display: flex;
+          flex-wrap: wrap;
+  
+          >div {
+            &:first-child {
+              width: auto;
+              margin-right: 1rem;
+            }
+          }
+        }
+
+        .update {
+          flex-direction: column;
+
+          > div {
+            &:first-child {
+              margin-bottom: 1.5rem;
+            }
+          }
+        }
+      }
     }
   }
+
 }
 
 // For content pages
