@@ -839,7 +839,7 @@ function openPopup() {
 
 if( document.getElementsByClassName('calendar-cards').length > 0 ){ 
 
-  $("#search-filter").on("keyup", function() {
+  $("#search-filter").on("keyup search", function() {
     var value = $(this).val().toLowerCase();
 
     console.log( $(this).val().length );
