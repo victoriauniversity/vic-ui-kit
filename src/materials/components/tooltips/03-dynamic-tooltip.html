@@ -1,0 +1,40 @@
+---
+notes: >
+
+    Tooltip can be dynamically initialised for any element using the Toolkit Tooltips API.
+
+---
+
+
+<!-- Dynamic tooltip #1 -->
+
+<script>
+  function initFirstDynamicTooltip() {
+    window.toolkitTooltips.initTooltip( document.getElementById( 'tooltip-dynamic-1' ));
+  }
+</script>
+
+<span class="icon-info" id="tooltip-dynamic-1" title="Dynamically initialised tooltip triggered 'on hover' or 'on tap' (mobile)"></span>
+
+
+<!-- Dynamic tooltip #2 -->
+
+<script>
+  function initSecondDynamicTooltip() {
+    window.toolkitTooltips.initTooltip( document.getElementById( 'tooltip-dynamic-2' ), {
+      trigger: 'click',
+      content: "Dynamically initialised tooltip triggered 'on click' and staying open (dynamic content)"
+    });
+  }
+</script>
+
+<button class="button" id="tooltip-dynamic-2">Dynamically initialised 'on hover' tooltip</button>
+
+
+<!-- Utilities (not necessary to use) -->
+
+<script>
+  /* Only to make sure the initialisations happen AFTER all dependencies are ready. This might be achieved with $.ready( fn ) too. */
+  runFunctionOnDocumentReady( initFirstDynamicTooltip );
+  runFunctionOnDocumentReady( initSecondDynamicTooltip );
+</script>

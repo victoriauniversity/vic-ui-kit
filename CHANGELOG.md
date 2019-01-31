@@ -11,6 +11,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+
+- **Tooltip UI** - Can be automatically or dynamically initialised, used as a part of `toolkit` library or standalone. Can be triggered 'on hover' or 'on click'.
+- **Basic configuration for unit testing and snapshotting** - Can be run through `npm run test`.
 - **Template block with image** - Container template to display an image with text and title.
 - **Template Pattern to display multiple videos** - Container template to display a grid of youtube videos with image title and description. 
 - **Class for tall banner** - Added for engagement hub. Class tall for people banners. 
