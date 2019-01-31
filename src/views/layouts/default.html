@@ -29,6 +29,12 @@
   <link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}toolkit.css">
   <!-- /toolkit styles -->
 
+  <script>
+      /** Allows to add custom scripts that will be executed inside the jQuery's $(document).ready().  */
+      var onDocumentReadyFunctions = [];
+      function runFunctionOnDocumentReady( fn ) { onDocumentReadyFunctions.push( fn ); }
+  </script>
+
   {{{ header-end }}}
 
 </head>

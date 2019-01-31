@@ -39,6 +39,7 @@ module.exports = ({
     // Standalone libs
     libraryEntries[`toolkit.tracking${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/tracking.js`;
     libraryEntries[`toolkit.popups${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/popups.js`;
+    libraryEntries[`toolkit.tooltips${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/tooltips.js`;
   }
 
   if ( includeFabricator ) {

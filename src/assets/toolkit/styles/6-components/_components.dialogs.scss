@@ -66,3 +66,70 @@ $popup-button-close-color: $black-tundora;
 
   .popup { margin: 0; }
 }
+
+
+
+/** TOOLTIPS */
+
+$tooltip-bg:            $black-brand;
+$tooltip-caret-size:    20px;
+
+
+.tooltip {
+  z-index: $z-index-max;
+  position: absolute;
+  padding: $gap-half;
+  max-width: 400px;
+  font-size: 90%;
+  text-align: center;
+  color: $white;
+  background: $tooltip-bg;
+  transition: opacity .2s ease-in-out;
+
+  &[hidden] { opacity: 0; }
+
+  /* Tooltip's `tip` */
+
+  // Bottom position (default)
+  @include after( $position: absolute ) {
+    @include size ( 0 );
+    left: 50%;
+    margin-left: -1 * $tooltip-caret-size;
+  }
+
+  // Positions
+  &.bottom {
+    &::after {
+      @include triangle( 'down', $tooltip-caret-size, $tooltip-caret-size / 2, $tooltip-bg );
+      top: auto;
+      bottom: -1 / 2 * $tooltip-caret-size + 1;
+    }
+  }
+
+  &.top {
+    &::after {
+      @include triangle( 'up', $tooltip-caret-size, $tooltip-caret-size / 2, $tooltip-bg );
+      top: -1 / 2 * $tooltip-caret-size + 1;
+      bottom: auto;
+    }
+  }
+
+  &.left {
+    &::after {
+      left: 10px;
+      margin: 0;
+    }
+  }
+
+  &.right {
+    &::after {
+      right: 10px;
+      left: auto;
+      margin: 0;
+    }
+  }
+}
+
+// Tooltip, that can be popped up by clicking on the trigger element
+.tooltip-popup { cursor: pointer; }
+

@@ -52,7 +52,7 @@ function processToolkitStyles( done ) {
               sassDir: 'node_modules/lity/dist/',
             }),
             eyeglass: {
-              needs: '^1.5.0',
+              needs: '~2.0.0',
             },
           },
         ],
