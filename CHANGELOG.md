@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+
 - **Updated logos** - New logo format.
 - **Tooltip UI** - Can be automatically or dynamically initialised, used as a part of `toolkit` library or standalone. Can be triggered 'on hover' or 'on click'.
 - **Basic configuration for unit testing and snapshotting** - Can be run through `npm run test`.
