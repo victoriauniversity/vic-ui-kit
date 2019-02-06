@@ -156,7 +156,17 @@
           padding: 0;
 
           &:not(.expanded) {
-            .btn-expander::after { content: '+'; }
+            .btn-expander::after { 
+              content: "";
+              border-left: .25em solid transparent;
+              border-right: .25em solid transparent;
+              border-top: .25em solid #fff;
+              top: -.15em;
+              position: relative;
+              display: inline-block;
+              width: 0;
+              height: 0;
+            }
           }
           
           > li {
