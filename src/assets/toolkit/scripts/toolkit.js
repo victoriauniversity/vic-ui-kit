@@ -14,9 +14,7 @@ import 'picturefill';
 // Include all standalone modules
 import { tracker, trackerConfig } from './modules/tracking';
 import popups from './modules/popups';
-
-
-
+import tooltips from './modules/tooltips';
 
 
 // Initialise dependencies
@@ -181,7 +179,7 @@ const ENV_HOSTNAME = {
   STAGE: 'cms.victoria.ac.nz',
   PROD:  'www.victoria.ac.nz',
   LOCAL: 'local.victoria.ac.nz',
-}
+};
 
 
 function isAdminEnvironment() {
@@ -318,8 +316,10 @@ function addActiveClassToMainMenu() {
  * @deprecated This approach should not be used in new updates! Please, follow
  * clear syntax, so you don't have to move elements around.
  *
- * Notice: This is required to deal with structural and visual inconsistencies * that stem from legacy code that powers rendering of non-staff contact cards. Once
- * this is removed, this slow function can be removed too.
+ * Notice: This is required to deal with structural and visual
+ * inconsistencies that stem from legacy code that powers rendering
+ * of non-staff contact cards. Once this is removed, this slow
+ * function can be removed too.
  */
 
 const STAFF_LIST_CONTAINER_CLASSNAME = 'articles-container',
@@ -525,6 +525,8 @@ $(() => {
   moveWidgetsToSidebar();
   addActiveClassToMainMenu();
   moveOrphanedStaffCardIntoList();
+
+  tooltips.initTooltips();
 
   // FIXME: Extract out to a standalone plugin and run on staff profiles *only*
   hideCoursesOnStaffProfile();
@@ -748,6 +750,15 @@ $(() => {
 			event.stopPropagation();
 		 });
    });
+
+
+  /** Runs any custom scripts that could be added in the content. */
+  if ( onDocumentReadyFunctions && onDocumentReadyFunctions.length ) {
+    onDocumentReadyFunctions.forEach( function( singleFunction ) {
+        singleFunction();
+    });
+  }
+
 });
 
 /* Research hub content page tile accordian */
@@ -835,3 +846,28 @@ function openPopup() {
     };
   }
 })( jQuery );
+
+
+if( document.getElementsByClassName('calendar-cards').length > 0 ){ 
+
+  $("#search-filter").on("keyup search", function() {
+    var value = $(this).val().toLowerCase();
+
+    console.log( $(this).val().length );
+    
+    // if input 3 or more filter
+    if($(this).val().length >= 3) {
+      $(".calendar-cards .card").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+
+        console.log($(this).text());
+        
+      });
+    } else {
+      // show all if search input less then 3
+      $(".calendar-cards .card").show();
+    }
+
+  });
+
+};
