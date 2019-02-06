@@ -30,6 +30,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - **PDF tag's colour aligned with colour of the red generic tag**
 - **PG/UG switcher - Automatically loads the content of the tab that is selected when the page is rendered**
 - **Updates all 3rd party build & deployment libraries to their latest versions**
+- **Hub mega menu expand Icon** - Expand icon changed to down caret.
 
 
 
