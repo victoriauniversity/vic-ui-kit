@@ -175,7 +175,7 @@
             flex: 1;
             align-content: flex-start;
             background-color: #115737;
-            border-bottom: 5px solid #0D4B2F;
+            // border-bottom: 5px solid #0D4B2F;
 
             &:last-child {
               .btn-expander {
@@ -273,7 +273,7 @@
               flex-wrap: wrap;
               flex: 1;
               background-color: $green-brand;
-              border-bottom: 5px solid $green-bottle;
+              // border-bottom: 5px solid $green-bottle;
               
               > a {
                 display: block;
@@ -350,7 +350,7 @@
 
               &.active {
                 background-color: #0D4B2F;
-                border-bottom: 5px solid $green-brand;
+                // border-bottom: 5px solid $green-brand;
 
                 > a {
                   background-color: $green-bottle;
@@ -385,10 +385,10 @@
 
                 &.active {
                   box-shadow: $shadow;
-                  transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px) translateZ(0);
+                  // transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px) translateZ(0);
                   backface-visibility: hidden;
                   background-color: #0D4B2F;
-                  border-bottom: 5px solid $green-brand;
+                  // border-bottom: 5px solid $green-brand;
                   will-change: auto;
 
 
@@ -400,7 +400,7 @@
 
                 &:hover {
                   &:not(.active) {
-                    @include slideOutUp;
+                    // @include slideOutUp;
                     z-index: $z-index-default;
                     box-shadow: $shadow;
 
@@ -487,6 +487,86 @@
             }
           }
         }
+      }
+
+    }
+    &.mega-menu-bar {
+      margin-top: 0;
+      background-color: $green-brand;
+      border-bottom: 5px solid #0D4B2F;
+
+      nav {
+        > ul {
+
+          > li {
+            &:first-child {
+              font-weight: $weight-bold;
+              font-size: 1.1rem;
+            }
+
+            > a {
+
+              @include breakpoint(desktop-large) {
+                white-space: nowrap;
+              }
+
+              .btn-expander {
+                margin-left: 1rem;
+                margin-right: 0;
+              }
+
+              @include hoverify() {
+                text-decoration: none;
+              }
+              
+            }
+
+            @include hoverify() {
+              .btn-expander {
+                color: $white;
+                background-color: rgba( $black, .2 );
+              }
+            }
+
+          }
+
+
+          &.expanded {
+            
+
+            .bg {
+              display: none;
+            }
+            > li {
+
+              @include hoverify() {
+                background-color: $green-bottle;
+                > a {
+                  background-color: $green-bottle;
+                }
+              }
+              > a {
+
+                .btn-expander {
+                  &::after {
+                    @include objectify( $position: relative );
+                    @include triangle( up, .5em, .2em, $white );
+                    top: -.15em;
+                  }
+          
+                  @include hoverify() {
+                    &::after {
+                      @include triangle( up, .5em, .2em, $grey-alto);
+                    }
+                  }
+                  
+                }
+              }
+
+            }
+          }
+        }
+
       }
     }
   }
