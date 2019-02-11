@@ -12,13 +12,16 @@ $stack-heading-border-color: $base-study-hub-colour--study !default;
   position: relative;
   padding: $gap;
   background: $white;
-  //transition: box-shadow .2s ease;
-
-  &:hover {
-    //box-shadow: $shadow-shallow;
-  }
+  box-shadow: $shadow-shallow;
 }
 
+.c-stack--profile {
+  @include breakpoint( $from: tablet ) {
+    padding-bottom: $gap;
+    padding-left: 200px; //adding a margin for the profile image..
+    min-height: 200px;
+  }
+}
 
 .c-stack__title {
   small {
@@ -36,8 +39,22 @@ $stack-heading-border-color: $base-study-hub-colour--study !default;
   }
 }
 
+.c-stack__fig {
+  
+  @include breakpoint( $from: tablet ) {
+    z-index: $z-index-lower;
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 175px;
+  }
+}
+.c-stack__body {
+  margin-top:$gap;
+}
+
 .c-stack__intro {
-  margin:$gap-half 0;
+  margin:$gap-half 0 0;
   font-weight: bold;
 
   @include separator-strip( 3.125rem, $border-width-thick, after ) {

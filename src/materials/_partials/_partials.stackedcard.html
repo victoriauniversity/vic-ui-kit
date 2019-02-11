@@ -4,26 +4,58 @@ notes: >
 ---
 <div class="c-stack {{classModifier}}">
 	<div class="c-stack__linkwrap">
-	    <header class="c-stack__header">
+        {{#if image}}
+            <figure class="c-stack__fig">
+                <img class="c-stack__figureImage" src="{{image}}" alt="{{title}}">
+            </figure>
+        {{/if}}
+
+        <header class="c-stack__header">
 	        {{#if title}}
         	    <h4 class="c-stack__title">
                     <a class="c-stack__link" href="#mainLink">{{{title}}}</a>
-                    <small>https://www.victoria.ac.nz/explore/study-areas/software-and-computer-science/</small>
+
+                    {{#if url}}
+                        <small>{{url}}</small>
+                    {{/if}}
                 </h4>
             {{/if}}
         </header>
 
-        <p class="c-stack__intro">Study Software Engineering and Computer Science and be at the forefront of the information revolution.</p>
+        {{#if intro}}
+            <p class="c-stack__intro">{{intro}}</p>
+        {{/if}}
         
         <div class="c-stack__body">
             {{> @partial-block}}
         </div>
 	</div>
-
+    
     <div class="c-stack__foot">
+            {{#if meta}}
+            <ul class="meta">
+                <li class="highlight">
+                    <a href="mailto:ina.reichenberger@vuw.ac.nz" title="Send an email to Dr Ina Reichenberger">
+                        <i class="icon-mail"></i> {{email}}@vuw.ac.nz
+                    </a>
+                </li>
+                <li class="highlight">
+                    <a href="tel:04 4635375" title="Call to Dr Ina Reichenberger work phone"> 
+                        <i class="icon-phone"></i> 04 4635375
+                    </a>
+                </li>
+                <li>
+                    <i class="icon-pin"></i> Room 917, Rutherford House 23 Lambton Quay
+                </li>
+            </ul>
+        {{/if}}
+
+        {{#if links}}
         <ul class="links">
-            <li><a href="#footLink">Study options | Software and Computer Science</a></li>
-            <li><a href="#footLink">People | Software and Computer Science</a></li>
+            {{#each (split links ", ")}}
+                <li><a href="#footLink">{{this}}</a></li>
+            {{/each}}
         </ul>
+        {{/if}}
     </div>
 </div>
