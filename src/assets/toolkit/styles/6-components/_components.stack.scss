@@ -1,0 +1,69 @@
+/*============================================================================*\
+| STACK
+\*============================================================================*/
+
+////
+/// 
+///
+
+$stack-heading-border-color: $base-study-hub-colour--study !default;
+
+.c-stack {
+  position: relative;
+  padding: $gap;
+  background: $white;
+  //transition: box-shadow .2s ease;
+
+  &:hover {
+    //box-shadow: $shadow-shallow;
+  }
+}
+
+
+.c-stack__title {
+  small {
+    overflow: hidden;
+    display: block;
+    margin-top: $gap-small;
+
+    font-size: $text-size-7;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: $black;
+    font-family: $text-family;
+    font-weight: 400;
+    text-decoration: none !important;
+  }
+}
+
+.c-stack__intro {
+  margin:$gap-half 0;
+  font-weight: bold;
+
+  @include separator-strip( 3.125rem, $border-width-thick, after ) {
+    margin-top: $gap-half;
+    border-color: $stack-heading-border-color;
+  }
+}
+
+.c-stack__link {
+  @include linkify-text();
+  
+  @include after() {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: $z-index-middle;
+  }
+}
+
+.c-stack__foot {
+  margin-top: $gap;
+
+  a {
+    position: relative;
+    z-index: $z-index-top;
+  }
+}
