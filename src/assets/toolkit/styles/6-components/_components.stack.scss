@@ -6,24 +6,30 @@
 /// 
 ///
 
-$stack-heading-border-color: $base-study-hub-colour--study !default;
+$stack-heading-border-color: $green-light-brand !default;
 
 .c-stack {
   position: relative;
+  margin-bottom: $gap;
   padding: $gap;
+  
   background: $white;
   box-shadow: $shadow-shallow;
 }
 
 .c-stack--profile {
   @include breakpoint( $from: tablet ) {
-    padding-bottom: $gap;
-    padding-left: 200px; //adding a margin for the profile image..
-    min-height: 200px;
+    display: flex;
+    //padding-bottom: 0;
   }
 }
 
 .c-stack__title {
+  .highlight & {
+    font-size: $h3-size;
+  }
+  
+  
   small {
     overflow: hidden;
     display: block;
@@ -40,17 +46,29 @@ $stack-heading-border-color: $base-study-hub-colour--study !default;
 }
 
 .c-stack__fig {
-  
+  margin:-#{$gap} -#{$gap} $gap -#{$gap};
+
   @include breakpoint( $from: tablet ) {
-    z-index: $z-index-lower;
-    position: absolute;
-    top:0;
-    left: 0;
-    width: 175px;
+    margin:-#{$gap} $gap -#{$gap} -#{$gap};
+    width: 175px;   
   }
 }
+
+.c-stack__figureImage {
+  @include breakpoint( $from: tablet ) {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
 .c-stack__body {
-  margin-top:$gap;
+  margin-top:$gap-half;
+
+  @include breakpoint( $from: tablet ) {
+    margin-top:$gap;
+  }
 }
 
 .c-stack__intro {
@@ -77,7 +95,10 @@ $stack-heading-border-color: $base-study-hub-colour--study !default;
 }
 
 .c-stack__foot {
-  margin-top: $gap;
+  > *:first-child {
+    margin-top: $gap;
+    margin-bottom: 0;
+  }
 
   a {
     position: relative;

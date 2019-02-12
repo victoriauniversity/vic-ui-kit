@@ -3,24 +3,23 @@ notes: >
 
 ---
 <div class="c-stack {{classModifier}}">
-	<div class="c-stack__linkwrap">
-        {{#if image}}
-            <figure class="c-stack__fig">
-                <img class="c-stack__figureImage" src="{{image}}" alt="{{title}}">
-            </figure>
+	{{#if image}}
+        <figure class="c-stack__fig">
+            <img class="c-stack__figureImage" src="{{image}}" alt="{{title}}">
+        </figure>
+    {{/if}}
+    
+    <div class="c-stack__info">
+        {{#if title}}
+            <h4 class="c-stack__title">
+                <a class="c-stack__link" href="#mainLink">{{{title}}}</a>
+
+                {{#if url}}
+                    <small>{{url}}</small>
+                {{/if}}
+            </h4>
         {{/if}}
-
-        <header class="c-stack__header">
-	        {{#if title}}
-        	    <h4 class="c-stack__title">
-                    <a class="c-stack__link" href="#mainLink">{{{title}}}</a>
-
-                    {{#if url}}
-                        <small>{{url}}</small>
-                    {{/if}}
-                </h4>
-            {{/if}}
-        </header>
+        
 
         {{#if intro}}
             <p class="c-stack__intro">{{intro}}</p>
@@ -29,9 +28,8 @@ notes: >
         <div class="c-stack__body">
             {{> @partial-block}}
         </div>
-	</div>
-    
-    <div class="c-stack__foot">
+        
+        <div class="c-stack__foot">
             {{#if meta}}
             <ul class="meta">
                 <li class="highlight">
@@ -48,14 +46,16 @@ notes: >
                     <i class="icon-pin"></i> Room 917, Rutherford House 23 Lambton Quay
                 </li>
             </ul>
-        {{/if}}
+            {{/if}}
 
-        {{#if links}}
-        <ul class="links">
-            {{#each (split links ", ")}}
-                <li><a href="#footLink">{{this}}</a></li>
-            {{/each}}
-        </ul>
-        {{/if}}
+            {{#if links}}
+            <ul class="links">
+                {{#each (split links ", ")}}
+                    <li><a href="#footLink">{{this}}</a></li>
+                {{/each}}
+            </ul>
+            {{/if}}
+        </div>
+        
     </div>
 </div>
