@@ -175,7 +175,7 @@
             flex: 1;
             align-content: flex-start;
             background-color: #115737;
-            // border-bottom: 5px solid #0D4B2F;
+            border-bottom: 5px solid #0D4B2F;
 
             &:last-child {
               .btn-expander {
@@ -273,7 +273,7 @@
               flex-wrap: wrap;
               flex: 1;
               background-color: $green-brand;
-              // border-bottom: 5px solid $green-bottle;
+              border-bottom: 5px solid $green-bottle;
               
               > a {
                 display: block;
@@ -350,7 +350,7 @@
 
               &.active {
                 background-color: #0D4B2F;
-                // border-bottom: 5px solid $green-brand;
+                border-bottom: 5px solid $green-brand;
 
                 > a {
                   background-color: $green-bottle;
@@ -385,10 +385,10 @@
 
                 &.active {
                   box-shadow: $shadow;
-                  // transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px) translateZ(0);
+                  transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px) translateZ(0);
                   backface-visibility: hidden;
                   background-color: #0D4B2F;
-                  // border-bottom: 5px solid $green-brand;
+                  border-bottom: 5px solid $green-brand;
                   will-change: auto;
 
 
@@ -400,7 +400,7 @@
 
                 &:hover {
                   &:not(.active) {
-                    // @include slideOutUp;
+                    @include slideOutUp;
                     z-index: $z-index-default;
                     box-shadow: $shadow;
 
@@ -448,7 +448,11 @@
 
             &.expanded {
               > li {
-                .btn-expander::after { content: '+'; }
+                .btn-expander::after { 
+                  @include objectify( $position: relative );
+                  @include triangle( down, .5em, .2em, $white );
+                  top: -.15em;
+                }
                 
                 a {
                   @include hoverify() {
@@ -499,13 +503,13 @@
         > ul {
 
           > li {
+            border-bottom: none;
             &:first-child {
               font-weight: $weight-bold;
               font-size: 1.1rem;
             }
 
             > a {
-
               @include breakpoint(desktop-large) {
                 white-space: nowrap;
               }
@@ -517,6 +521,7 @@
 
               @include hoverify() {
                 text-decoration: none;
+                transition: none;
               }
               
             }
@@ -525,6 +530,22 @@
               .btn-expander {
                 color: $white;
                 background-color: rgba( $black, .2 );
+              }
+
+              > a {
+                background-color: $green-bottle;
+              }
+            }
+
+            @include breakpoint (desktop) {
+
+              > a {
+                display: flex;
+                justify-content: space-between;
+              }
+
+              &.active {
+                border-bottom: none;
               }
             }
 
@@ -538,6 +559,12 @@
               display: none;
             }
             > li {
+              border-bottom: none;
+
+
+              > a {
+
+              }
 
               @include hoverify() {
                 background-color: $green-bottle;
@@ -545,7 +572,16 @@
                   background-color: $green-bottle;
                 }
               }
-              > a {
+
+            }
+
+            @include breakpoint (desktop) {
+
+              > li {
+
+                > a {
+                  display: flex;
+                  justify-content: space-between;
 
                 .btn-expander {
                   &::after {
@@ -553,20 +589,97 @@
                     @include triangle( up, .5em, .2em, $white );
                     top: -.15em;
                   }
-          
-                  @include hoverify() {
+                  
+                }
+                }
+
+                &.active {
+                  border-bottom: none;
+                  transform: none;
+                }
+
+                &:hover {
+                  &:not(.active) {
+                    animation-name: none;
+                    li {
+                      &:not(:last-child) {
+                        &:after {
+                          border-bottom: 1px solid #115737;
+                        }
+                      }
+                    }
+                  }
+                }
+
+              }
+            }
+          }
+
+          @include breakpoint( $until: desktop ) {
+            > li {
+              border-bottom: 5px solid $green-bottle !important;
+              > a {
+                display: flex;
+                justify-content: space-between;
+
+                .btn-expander {
+                  &::after {
+                    @include objectify( $position: relative);
+                    @include triangle( down, .5em, .2em, $white);
+                    top: -.15em;
+                  }
+                }
+
+              }
+
+            }
+            &.expanded {
+              > li {
+
+                > a {
+                  display: flex;
+                  justify-content: space-between;
+  
+                }
+
+                &.js-dropdown-show {
+                  padding-bottom: 1rem;
+                
+                  .btn-expander {
+                    // right: 0;
+                    // top: .5rem;
+                    // transform: none;
                     &::after {
-                      @include triangle( up, .5em, .2em, $grey-alto);
+                      @include objectify( $position: relative);
+                      @include triangle( up, .5em, .2em, $white);
+                      top: -.15em;
                     }
                   }
                   
                 }
+
+                &.active {
+                  border-bottom: 5px solid #115737 !important;
+                }
+                // .btn-expander {
+
+                //   &::after {
+                //     @include objectify( $position: relative);
+                //     @include triangle( up, .5em, .2em, $white);
+                //     top: -.15em;
+                //   }
+                // }
+
               }
 
             }
           }
         }
 
+      }
+
+      @include breakpoint( $until: desktop ) {
+        border-bottom: none;
       }
     }
   }
