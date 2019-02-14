@@ -8,6 +8,35 @@ notes: >
             <img class="c-stack__figureImage" src="{{image}}" alt="{{title}}">
         </figure>
     {{/if}}
+
+    {{#if code}}
+        <div class="c-stack__fig c-stack__fig--panel">
+            <h4 class="c-stack__code">{{code}} {{#if year}} <br/> ({{year}}) {{/if}} </h4>
+            
+            <div class="c-stack__figCaption">
+                {{#if startDate}}
+                    <p><i class="icon-calendar"></i> <em>{{startDate}}</em></p>
+                {{else}}
+                    {{#unless trimesters}}
+                        {{#if year}}
+                        <p><i class="icon-attention"></i> <em>Course not offered in {{year}}</em></p>
+                        {{/if}}
+                    {{/unless}}
+                {{/if}}
+
+                {{#if trimesters}}
+                <h5>Trimester</h5>
+                <ul class="c-stack__figList">
+                    {{#each (split trimesters ",")}}
+                        <li>
+                            <a class="c-stack__figLink" href="#trimLink">{{this}}</a>
+                        </li>
+                    {{/each}}
+                </ul>
+                {{/if}}
+            </div>
+        </div>
+    {{/if}}
     
     <div class="c-stack__info">
         {{#if title}}

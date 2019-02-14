@@ -7,6 +7,7 @@
 ///
 
 $stack-heading-border-color: $green-light-brand !default;
+$stack-divider-color: $grey-gallery !default;
 
 .c-stack {
   position: relative;
@@ -15,12 +16,15 @@ $stack-heading-border-color: $green-light-brand !default;
   
   background: $white;
   box-shadow: $shadow-shallow;
+
+  &:not(.c-stack--flexin) {
+    @include clearfix;
+  }
 }
 
-.c-stack--profile {
+.c-stack--flexin {
   @include breakpoint( $from: tablet ) {
     display: flex;
-    //padding-bottom: 0;
   }
 }
 
@@ -28,7 +32,6 @@ $stack-heading-border-color: $green-light-brand !default;
   .highlight & {
     font-size: $h3-size;
   }
-  
   
   small {
     overflow: hidden;
@@ -46,28 +49,83 @@ $stack-heading-border-color: $green-light-brand !default;
 }
 
 .c-stack__fig {
-  margin:-#{$gap} -#{$gap} $gap -#{$gap};
+  float:left;
+  margin-right: $gap;
+  
+  .c-stack--flexin & {
+    margin:-#{$gap} -#{$gap} $gap -#{$gap};
+    float:none;
 
+    @include breakpoint( $from: tablet ) {
+      margin:-#{$gap} $gap -#{$gap} -#{$gap};
+    }
+  }
+}
+
+.c-stack__fig--panel {
+  padding: $gap;
+  border-right:1px solid $stack-divider-color;
+  
   @include breakpoint( $from: tablet ) {
-    margin:-#{$gap} $gap -#{$gap} -#{$gap};
-    width: 175px;   
+    max-width: 145px;
+  }
+}
+
+.c-stack__code {
+  color: $black;
+  font-family: $text-family;
+}
+
+.c-stack__figCaption {
+  margin-top: $gap;
+  font-size: $text-size-tiny;
+
+  p {
+    line-height: 1.3;
+  }
+
+  i {
+    vertical-align: 1px;
+
+    &:before {
+      margin-right: 3px;
+    }
+  }
+}
+
+.c-stack__figList {
+  z-index: $z-index-top;
+  position: relative;
+
+  li {
+    display: inline-block;
+
+    &:not(:last-child) {
+      @include after( $text: $subtitle-separator-character ) {
+        margin-right:  _em( $gap-tiny );
+        margin-left: _em( $gap-tiny );
+        font-weight:  $weight-bold;
+      }
+    }
   }
 }
 
 .c-stack__figureImage {
   @include breakpoint( $from: tablet ) {
     margin: 0;
-    width: 100%;
+    width: 175px;
     height: 100%;
     object-fit: cover;
   }
 }
 
 .c-stack__body {
-  margin-top:$gap-half;
-
-  @include breakpoint( $from: tablet ) {
-    margin-top:$gap;
+  > * {
+    margin-top:$gap-half;
+    
+    @include breakpoint( $from: tablet ) {
+      margin-top:$gap;
+    }
   }
 }
 
@@ -92,6 +150,10 @@ $stack-heading-border-color: $green-light-brand !default;
     height: 100%;
     z-index: $z-index-middle;
   }
+}
+.c-stack__figLink {
+  @include linkify-text();
+  color: $black;
 }
 
 .c-stack__foot {
