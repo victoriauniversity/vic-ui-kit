@@ -813,7 +813,48 @@ function hubMegaMenu() {
   });
 }
 
-if( document.getElementsByClassName('hub-mega-menu').length > 0 ){
+function hubMegaMenu2() {
+  const menu = $('.hub-mega-menu .mega-menu-inner');
+  const menuExpandButton = $('.hub-mega-menu .btn-expander').parent().parent();
+  let mobile = false;
+  let desktop = false;
+
+  enquire.register( DESKTOP_AND_LARGER, function() {
+    desktop = true;
+    mobile = false;
+  });
+  enquire.register( TABLET_AND_SMALLER, function() {
+    desktop = false;
+    mobile = true;
+  });
+
+  menuExpandButton.each( function() {
+
+    let $this = $(this);
+
+    //Create and append Title to list of expanded links 
+    let title = $this.children('a').text();
+    let titleLink = $this.children('a').attr('href');
+    let newLink = `<li class="js-inject-title"><a href="${titleLink}"> ${title} </a></li>`;
+
+    $this.children('ul').prepend(newLink);
+    
+    // subnav expand function
+    $(this).on('click', (c) => {
+        c.preventDefault();
+        
+        if ( desktop ) {
+          menu.toggleClass('expanded');
+        }
+        if ( mobile) {
+          menu.addClass('expanded');
+          $this.toggleClass('js-dropdown-show');
+        }
+      });
+  });
+}
+
+if( document.getElementsByClassName('hub-mega-menu').length > 0 && !document.getElementsByClassName('mega-menu-bar').length > 0){
   const hubMegaMenuElement = $('.hub-mega-menu');
   const megaMenuExpandButton = $('.hub-mega-menu .btn-expander');
 
@@ -824,6 +865,14 @@ if( document.getElementsByClassName('hub-mega-menu').length > 0 ){
     tracker.registerForTracking( megaMenuExpandButton, 'click', 'megamenu-expander' );
   }
 
+}
+
+/* New hub mega menu */
+if( document.getElementsByClassName('hub-mega-menu').length > 0 && document.getElementsByClassName('mega-menu-bar').length > 0){
+
+  hubMegaMenu2();
+  console.log('new menu bar strip thing cool ');
+  
 }
 
 
