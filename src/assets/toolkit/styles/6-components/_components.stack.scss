@@ -3,7 +3,7 @@
 \*============================================================================*/
 
 ////
-/// 
+///   
 ///
 
 $stack-heading-border-color: $green-light-brand !default;
@@ -54,17 +54,17 @@ $stack-divider-color: $grey-gallery !default;
   
   .c-stack--flexin & {
     float:none;
-    margin:-#{$gap} -#{$gap} $gap -#{$gap};
+    margin:$bleed $bleed $gap $bleed; //could use $bleed here..
 
     @include breakpoint( $from: tablet ) {
-      margin:-#{$gap} $gap -#{$gap} -#{$gap};
+      margin:$bleed $gap $bleed $bleed;
     }
   }
 
   .c-stack--profile & {
     @include breakpoint( $until: tablet ) {
       float: left;
-      margin:-#{$gap} #{$gap} $gap -#{$gap};
+      margin:$bleed $gap $gap $bleed;
       width: 33%;
     }
   }
