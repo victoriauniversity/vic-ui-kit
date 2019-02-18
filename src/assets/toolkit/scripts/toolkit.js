@@ -902,14 +902,12 @@ if( document.getElementsByClassName('calendar-cards').length > 0 ){
   $("#search-filter").on("keyup search", function() {
     var value = $(this).val().toLowerCase();
 
-    console.log( $(this).val().length );
     
     // if input 3 or more filter
     if($(this).val().length >= 2) {
       $(".calendar-cards .card").filter(function() {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
 
-        console.log($(this).text());
         
       });
     } else {
@@ -921,7 +919,7 @@ if( document.getElementsByClassName('calendar-cards').length > 0 ){
 
   // Filter on type tags
   $('.tags .tag').on('click', function () {
-    console.log('filter tag', $(this).text());
+
 
     if ( $(this).hasClass("selected") ) {
       $(this).removeClass("selected");
