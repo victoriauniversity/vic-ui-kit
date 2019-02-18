@@ -136,12 +136,48 @@ $card-background-color: $background-light;
   &.calendar-cards {
 
     .card-filter {
+      display: flex;
+      align-items: baseline;
       margin-bottom: 1rem;
+
+      > div {
+        &:first-child {
+          margin-right: 1rem;
+        }
+      }
 
       input {
         padding: .5rem;
         margin-left: 1rem;
       }
+
+      .tags {
+        display: inline-block;
+        margin-bottom: 0;
+        margin-left: 1rem;
+
+        .tag {
+          cursor: pointer;
+          &:not(.selected) {
+            span {
+
+              display: none;
+            }
+          }
+        }
+      }
+
+      @include breakpoint( $until: tablet ) {
+        flex-wrap: wrap;
+
+        > div {
+          &:first-child {
+            margin-bottom: 1rem;
+          }
+        }
+      }
+
+
     }
 
     .card {
@@ -165,8 +201,12 @@ $card-background-color: $background-light;
 
         >div {
           &:first-child {
-            width: 25%;
-            margin-right: 1rem;
+            // width: 15%;
+            margin-right: 2.5rem;
+          }
+
+          &:not(:first-child) {
+            margin-right: 2.5rem;
           }
 
           // display: flex;
@@ -201,6 +241,12 @@ $card-background-color: $background-light;
             margin-right: 0;
           }
         }
+
+        .content {
+          hr {
+            margin: 1.25rem 0;
+          }
+        }
       }
 
       strong {
@@ -216,7 +262,7 @@ $card-background-color: $background-light;
           >div {
             &:first-child {
               width: auto;
-              margin-right: 1rem;
+              margin-right: 2rem;
             }
           }
         }
