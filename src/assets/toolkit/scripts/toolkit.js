@@ -712,6 +712,7 @@ $(() => {
 	/* Navigation toggle on mobile */
 	$('.main-menu-toggle').on('click', function () {
 		$('.main-nav').slideToggle();
+		$('.sub-nav').slideToggle();
 		$('.search-bar').slideToggle();
 		$('.menu-toggle-icon').toggleClass('open');
 	 });

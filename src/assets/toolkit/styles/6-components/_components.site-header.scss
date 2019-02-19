@@ -96,7 +96,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
         padding: 0 $gap-horizontal 0 0;
         font-size: $text-size-tiny;
         color: $text-light-weaker-color;
-        text-transform: uppercase;
+
       }
     }
 
@@ -225,6 +225,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
       font-size: 2.5em;
       color: $white;
       cursor: pointer;
+      margin-left: auto;
 
       .icon-menu {
         &::before { margin-right: 0; }
@@ -234,12 +235,38 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
     .menu-container {
       flex: 1 1 100%;
       margin-top: .3rem;
+      display: flex;
+      flex-direction: column;
+      order: 5;
 
-      .sub-nav { display: none; }
+
+
+      .sub-nav { 
+        display: none;
+        order: 2;
+        
+        .menu-bar {
+          display: flex;
+          flex-wrap: wrap;
+          margin-top: 1rem;
+          justify-content: center;
+
+           a {
+            padding: .5rem 1.5rem .5rem 0;
+            font-size: 95%;
+            color: #fff;
+            text-transform: inherit;
+            text-decoration: underline;
+            font-weight: 500;
+           }
+        }
+      }
 
       .horizontal-menu {
         &.main-nav {
           display: none;
+          order: 1;
+          margin-top: 1rem;
 
           .menu-bar {
             padding: 0;
@@ -250,7 +277,7 @@ $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 
             // TODO: Refactor & flatten to lower the depth!
             a {
-              margin-bottom: 0;
+              margin-bottom: 0 !important;
               padding: 1rem 1.5rem;
               font-size: 1.4rem;
               border-bottom: 2px solid $grey-dove;
