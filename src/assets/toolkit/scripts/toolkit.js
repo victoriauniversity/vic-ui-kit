@@ -712,6 +712,7 @@ $(() => {
 	/* Navigation toggle on mobile */
 	$('.main-menu-toggle').on('click', function () {
 		$('.main-nav').slideToggle();
+		$('.sub-nav').slideToggle();
 		$('.search-bar').slideToggle();
 		$('.menu-toggle-icon').toggleClass('open');
 	 });
@@ -902,20 +903,47 @@ if( document.getElementsByClassName('calendar-cards').length > 0 ){
   $("#search-filter").on("keyup search", function() {
     var value = $(this).val().toLowerCase();
 
-    console.log( $(this).val().length );
     
     // if input 3 or more filter
-    if($(this).val().length >= 3) {
+    if($(this).val().length >= 2) {
       $(".calendar-cards .card").filter(function() {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
 
-        console.log($(this).text());
         
       });
     } else {
-      // show all if search input less then 3
+      // show all if search input less then 2
       $(".calendar-cards .card").show();
     }
+
+  });
+
+  // Filter on type tags
+  $('.tags .tag').on('click', function () {
+
+
+    if ( $(this).hasClass("selected") ) {
+      $(this).removeClass("selected");
+      $('.calendar-cards .card').show();
+      
+    } else {
+      $('.tags .tag').removeClass("selected");
+      $('.calendar-cards .card').show();
+      
+      if( $(this).text() === "Amendment") {
+        $(this).addClass('selected');
+        $('.calendar-cards .card').filter(':not([data-type="Amendment"])').hide();
+      }
+      if( $(this).text() === "New") {
+        $(this).addClass('selected');
+        $('.calendar-cards .card').filter(':not([data-type="New"])').hide();
+      }
+      if( $(this).text() === "Errata") {
+        $(this).addClass('selected');
+        $('.calendar-cards .card').filter(':not([data-type="Errata"])').hide();
+      }
+    }
+    
 
   });
 
