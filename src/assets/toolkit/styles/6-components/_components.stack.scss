@@ -1,0 +1,199 @@
+/*============================================================================*\
+| STACK
+\*============================================================================*/
+
+////
+///   
+///
+
+$stack-heading-border-color: $green-light-brand !default;
+$stack-divider-color: $grey-gallery !default;
+
+.c-stack {
+  position: relative;
+  margin-bottom: $gap;
+  padding: $gap;
+  
+  background: $white;
+  box-shadow: $shadow-shallow;
+
+  &:not(.c-stack--flexin) {
+    @include clearfix;
+  }
+}
+
+.c-stack--flexin {
+  @include breakpoint( $from: tablet ) {
+    display: flex;
+  }
+}
+
+.c-stack__title {
+  .highlight & {
+    font-size: $h3-size;
+  }
+  
+  small {
+    overflow: hidden;
+    display: block;
+    margin-top: $gap-small;
+
+    font-size: $text-size-7;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: $black;
+    font-family: $text-family;
+    font-weight: 400;
+    text-decoration: none !important;
+  }
+}
+
+.c-stack__fig {
+  float:left;
+  margin-right: $gap;
+  
+  .c-stack--flexin & {
+    float:none;
+    margin:$bleed $bleed $gap $bleed; //could use $bleed here..
+
+    @include breakpoint( $from: tablet ) {
+      margin:$bleed $gap $bleed $bleed;
+    }
+  }
+
+  .c-stack--profile & {
+    @include breakpoint( $until: tablet ) {
+      float: left;
+      margin:$bleed $gap $gap $bleed;
+      width: 33%;
+    }
+  }
+}
+
+.c-stack__fig--panel {
+  padding: $gap;
+  
+  @include breakpoint( $until: tablet ) {
+    text-align: center;
+    border-bottom: 1px solid $stack-divider-color;
+  }
+  
+  @include breakpoint( $from: tablet ) {
+    max-width: 145px;
+    border-right: 1px solid $stack-divider-color;
+  }
+}
+
+.c-stack__code {
+  color: $black;
+  font-family: $text-family;
+
+  span {
+    @include breakpoint( $from: tablet ) {
+      display: block;
+    }
+  }
+}
+
+.c-stack__figCaption {
+  margin-top: $gap-half;
+  font-size: $text-size-tiny;
+
+  @include breakpoint( $from: tablet ) {
+    margin-top: $gap;
+  }
+
+  p {
+    line-height: 1.3;
+  }
+
+  i {
+    vertical-align: 1px;
+
+    &:before {
+      margin-right: 3px;
+    }
+  }
+}
+
+.c-stack__figList {
+  z-index: $z-index-top;
+  position: relative;
+
+  li {
+    display: inline-block;
+
+    &:not(:last-child) {
+      @include after( $text: $subtitle-separator-character ) {
+        margin-right:  _em( $gap-tiny );
+        margin-left: _em( $gap-tiny );
+        font-weight:  $weight-bold;
+      }
+    }
+  }
+}
+
+.c-stack__figureImage {
+  margin: 0;
+
+  @include breakpoint( $from: tablet ) {
+    width: 175px;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.c-stack__body {
+  > * {
+    margin-top:$gap-half;
+    
+    @include breakpoint( $from: tablet ) {
+      margin-top:$gap;
+    }
+  }
+
+  .c-stack--profile & {
+    @include breakpoint( $until: tablet ) {
+      margin-left: calc( 26% + 22px );
+    }
+  }
+}
+
+.c-stack__intro {
+  margin:$gap-half 0 0;
+  font-weight: bold;
+
+  @include separator-strip( 3.125rem, $border-width-thick, after ) {
+    margin-top: $gap-half;
+    border-color: $stack-heading-border-color;
+  }
+}
+
+.c-stack__link {
+  @include linkify-text();
+  
+  @include after() {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: $z-index-middle;
+  }
+}
+.c-stack__figLink {
+  @include linkify-text();
+  color: $black;
+}
+
+.c-stack__foot {
+  > *:first-child {
+    margin-top: $gap;
+    margin-bottom: 0;
+  }
+
+  a {
+    position: relative;
+    z-index: $z-index-top;
+  }
+}

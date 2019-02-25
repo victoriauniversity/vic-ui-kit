@@ -1,0 +1,90 @@
+---
+notes: >
+
+---
+<div class="c-stack {{classModifier}}">
+	{{#if image}}
+        <figure class="c-stack__fig">
+            <img class="c-stack__figureImage" src="{{image}}" alt="{{title}}">
+        </figure>
+    {{/if}}
+
+    {{#if code}}
+        <div class="c-stack__fig c-stack__fig--panel">
+            <h4 class="c-stack__code">{{code}} {{#if year}} <span>({{year}})</span> {{/if}} </h4>
+            
+            <div class="c-stack__figCaption">
+                {{#if startDate}}
+                    <p><i class="icon-calendar"></i> <em>{{startDate}}</em></p>
+                {{else}}
+                    {{#unless trimesters}}
+                        {{#if year}}
+                        <p><i class="icon-attention"></i> <em>Course not offered in {{year}}</em></p>
+                        {{/if}}
+                    {{/unless}}
+                {{/if}}
+
+                {{#if trimesters}}
+                <h5>Trimester</h5>
+                <ul class="c-stack__figList">
+                    {{#each (split trimesters ",")}}
+                        <li>
+                            <a class="c-stack__figLink" href="#trimLink">{{this}}</a>
+                        </li>
+                    {{/each}}
+                </ul>
+                {{/if}}
+            </div>
+        </div>
+    {{/if}}
+    
+    <div class="c-stack__info">
+        {{#if title}}
+            <h4 class="c-stack__title">
+                <a class="c-stack__link" href="#mainLink">{{{title}}}</a>
+
+                {{#if url}}
+                    <small>{{url}}</small>
+                {{/if}}
+            </h4>
+        {{/if}}
+        
+
+        {{#if intro}}
+            <p class="c-stack__intro">{{intro}}</p>
+        {{/if}}
+        
+        <div class="c-stack__body">
+            {{> @partial-block}}
+        </div>
+        
+        <div class="c-stack__foot">
+            {{#if meta}}
+            <ul class="meta">
+                <li class="highlight">
+                    <a href="mailto:ina.reichenberger@vuw.ac.nz" title="Send an email to Dr Ina Reichenberger">
+                        <i class="icon-mail"></i> {{email}}@vuw.ac.nz
+                    </a>
+                </li>
+                <li class="highlight">
+                    <a href="tel:04 4635375" title="Call to Dr Ina Reichenberger work phone"> 
+                        <i class="icon-phone"></i> 04 4635375
+                    </a>
+                </li>
+                <li>
+                    <i class="icon-pin"></i> Room 917, Rutherford House 23 Lambton Quay
+                </li>
+            </ul>
+            {{/if}}
+
+            {{#if links}}
+            <ul class="links">
+                {{#each (split links ", ")}}
+                    <li><a href="#footLink">{{this}}</a></li>
+                {{/each}}
+            </ul>
+            {{/if}}
+        </div>
+        
+    </div>
+</div>

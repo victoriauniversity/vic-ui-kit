@@ -1,0 +1,13 @@
+.c-stack__figList {
+  li {
+    display: inline-block;
+
+    &:not(:last-child) {
+      @include after( $text: $subtitle-separator-character ) {
+        margin-right:  _em( $gap-tiny );
+        margin-left: _em( $gap-small );
+        font-weight:  $weight-bold;
+      }
+    }
+  }
+}

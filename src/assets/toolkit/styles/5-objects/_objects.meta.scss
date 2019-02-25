@@ -1,0 +1,95 @@
+$meta-label-color: $green-light-brand !default;
+
+// List of quick (meta) information
+ul.meta {
+  @include icon-selector() {
+    color: $text-weakest-color;
+
+    &::before { display: inline; } // Prevent icon wrapping
+  };
+
+  .icon-pin {
+    margin-left: .0625rem;
+    font-size: $text-size-huge;
+  }
+
+  &,
+  > li {
+    padding-left: 0; // Reset
+  }
+
+  > li {
+    display: block;
+    margin-bottom: $gap-small;
+    word-wrap: break-word;
+    line-height: 1.35;
+
+    h4:first-child { margin-top: $gap-half; }
+  }
+
+  .highlight {
+    display: inline-block;
+    margin-right: .1rem;
+    padding: 0; // Reset
+
+    @include icon-selector() {
+      color: inherit;
+
+      &::before {
+        display: inline-block;
+        margin-right: .35em;
+      }
+    };
+
+    > a {
+      display: block;
+      padding: .2rem .5rem;
+      background-color: _tint( $green-nebula, $lighter-percentage ); //TODO: Can it be replaced by some of the pre-defined colour?
+      color: $heading-color;
+      text-decoration: none;
+
+      @include hoverify {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.meta__item {
+  display: inline-block;
+  
+  ul.meta--labelled & {
+    margin-right: $gap-double;
+    margin-bottom: 0;
+    padding: 0;
+    
+
+    @include breakpoint($until: tablet) {
+      display: block;
+    }
+  }
+}
+
+.meta__label {
+  color: $meta-label-color;
+
+  @include breakpoint($until: tablet) {
+    position: relative;
+    top: 5px;
+    float:left;
+  }
+}
+
+.meta__labelText {
+  @include breakpoint($until: tablet) {
+    display: none;
+  }
+}
+
+.meta__data {
+  font-size: $h5-size;
+
+  .meta--labelled & {
+    margin-top: $gap-half;
+  }
+}
