@@ -816,7 +816,7 @@ function hubMegaMenu() {
 
 function hubMegaMenu2() {
   const menu = $('.hub-mega-menu .mega-menu-inner');
-  const menuExpandButton = $('.hub-mega-menu .btn-expander').parent().parent();
+  const menuExpandButton = $('.hub-mega-menu .btn-expander').parent();
   let mobile = false;
   let desktop = false;
 
