@@ -496,7 +496,8 @@
 
     }
 
-    &.mega-menu-bar {
+    &.mega-menu-bar,
+    &.mega-menu-bar--alt {
       margin-top: 0;
       background-color: $green-brand;
       border-bottom: 5px solid $green-bottle;
@@ -509,7 +510,8 @@
             
             @include breakpoint( desktop ) {
               display: block;
-              margin: $gap-half 0;
+              margin-top: $gap-half;
+              margin-bottom: $gap-half;
               border-left: 1px solid $white;
             }
 
@@ -582,8 +584,11 @@
               display: none;
             }
             > li {
-              display: block;
               border-bottom: none;
+
+              @include breakpoint(desktop) {
+                display: block;
+              }
 
               @include hoverify() {
                 background-color: $green-bottle;
@@ -684,5 +689,43 @@
         border-bottom: none;
       }
     }
+
+    &.mega-menu-bar--alt {
+      .mega-menu-inner > li {
+        &:first-child {
+          border-left: none;
+        }
+
+        > a {
+          @include breakpoint(desktop) {
+            justify-content:center;
+          }
+        }
+
+        .btn-expander {
+          @include breakpoint(desktop) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.mega-menu-nav {
+  @include breakpoint(desktop) {
+    float:left;
+    width: 95%;
+  }
+}
+
+.btn-expander--external {
+  position: relative;
+  top: -3px;
+  font-size: 30px;
+  color: $white;
+
+  @include breakpoint($until: desktop) {
+    display: none;
   }
 }
