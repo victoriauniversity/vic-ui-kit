@@ -79,8 +79,7 @@
 }
 
 .pagination--alpha {
-  margin: $gap-half 0;
-  padding: $gap;
+  padding: $gap $gap-half;
   background: $grey-alto;
 
   .button {
@@ -90,8 +89,16 @@
     }
   }
 }
+
 .pagination__list {
+  margin: 0 !important; //TODO - fix specificity across the board..
+  
   li {
     display: inline-block;
+    list-style: none;
+
+    @include breakpoint(desktop) {
+      margin-bottom: 0 !important; //TODO - fix specificity across the board..;
+    }
   }
 }

@@ -17,6 +17,11 @@
     margin-bottom: .5em;
 
     .error-text { color: $red-roof-terratcotta; }
+
+    &.group--solo {
+      margin-bottom: 0;
+      text-align: center;
+    }
   }
 
   label {
@@ -44,6 +49,12 @@
     &:focus {
       outline: none;
       border: 2px solid $blue-azure;
+    }
+
+    &.field__input--wide {
+      @include breakpoint(desktop) {
+        width: 300px;
+      }
     }
   }
 
