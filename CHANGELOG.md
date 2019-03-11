@@ -34,6 +34,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
+## Production release: [v0.10.6] - 2019-03-12
+
+### Added
+
+- **Alphabet pagination** - added pagination modifier to function as alphabet navigation.
 
 
 ## Production release: [v0.10.5] - 2018-08-25
