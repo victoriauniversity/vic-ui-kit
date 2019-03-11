@@ -300,9 +300,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.6...dev
+[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.5...dev
 
-[v0.10.5]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.5...v0.10.6
 [v0.10.5]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.4...v0.10.5
 [v0.10.4]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.3...v0.10.4
 [v0.10.3]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.2...v0.10.3
