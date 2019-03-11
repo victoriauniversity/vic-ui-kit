@@ -495,29 +495,41 @@
       }
 
     }
+
     &.mega-menu-bar {
       margin-top: 0;
       background-color: $green-brand;
-      border-bottom: 5px solid #0D4B2F;
+      border-bottom: 5px solid $green-bottle;
 
       nav {
         > ul {
 
           > li {
             border-bottom: none;
+            
+            @include breakpoint( desktop ) {
+              display: block;
+              margin: $gap-half 0;
+              border-left: 1px solid $white;
+            }
+
             &:first-child {
               font-weight: $weight-bold;
               font-size: 1.1rem;
             }
 
             > a {
-              @include breakpoint(desktop-large) {
-                white-space: nowrap;
+              @include breakpoint( desktop ) {
+                padding-top: 0px;
+                padding-bottom: 0;
+
+                &::after {
+                  display: none !important;
+                }
               }
 
-              .btn-expander {
-                margin-left: 1rem;
-                margin-right: 0;
+              @include breakpoint(desktop-large) {
+                white-space: nowrap;
               }
 
               @include hoverify() {
@@ -527,14 +539,21 @@
               
             }
 
+            &:not(.expanded) {
+              .btn-expander {
+                &::after {
+                  content: '+';
+                  border:none;
+                  width: auto;
+                  height: auto;
+                }
+              }
+            }
+
             @include hoverify() {
               .btn-expander {
                 color: $white;
                 background-color: rgba( $black, .2 );
-              }
-
-              > a {
-                background-color: $green-bottle;
               }
             }
 
@@ -547,6 +566,11 @@
 
               &.active {
                 border-bottom: none;
+                background-color: transparent;
+
+                > a {
+                  background-color: inherit;
+                }
               }
             }
 
@@ -554,21 +578,16 @@
 
 
           &.expanded {
-            
-
             .bg {
               display: none;
             }
             > li {
+              display: block;
               border-bottom: none;
-
-
-              > a {
-
-              }
 
               @include hoverify() {
                 background-color: $green-bottle;
+
                 > a {
                   background-color: $green-bottle;
                 }
@@ -579,19 +598,24 @@
             @include breakpoint (desktop) {
 
               > li {
-
+                border-left: none;
+                
                 > a {
                   display: flex;
                   justify-content: space-between;
+                }
 
                 .btn-expander {
                   &::after {
-                    @include objectify( $position: relative );
-                    @include triangle( up, .5em, .2em, $white );
-                    top: -.15em;
+                    content: '-';
                   }
-                  
-                }
+                  &:hover {
+                    &:after {
+                      width: auto;
+                      height: auto;
+                      border:0px;
+                    }
+                  }
                 }
 
                 &.active {
@@ -611,7 +635,6 @@
                     }
                   }
                 }
-
               }
             }
           }
@@ -645,34 +668,12 @@
 
                 &.js-dropdown-show {
                   padding-bottom: 1rem;
-                
-                  .btn-expander {
-                    // right: 0;
-                    // top: .5rem;
-                    // transform: none;
-                    &::after {
-                      @include objectify( $position: relative);
-                      @include triangle( up, .5em, .2em, $white);
-                      top: -.15em;
-                    }
-                  }
-                  
                 }
 
                 &.active {
                   border-bottom: 5px solid #115737 !important;
                 }
-                // .btn-expander {
-
-                //   &::after {
-                //     @include objectify( $position: relative);
-                //     @include triangle( up, .5em, .2em, $white);
-                //     top: -.15em;
-                //   }
-                // }
-
               }
-
             }
           }
         }
