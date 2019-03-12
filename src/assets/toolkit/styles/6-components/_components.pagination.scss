@@ -77,3 +77,28 @@
     }
   }
 }
+
+.pagination--alpha {
+  padding: $gap $gap-half;
+  background: $grey-alto;
+
+  .button {
+    background: $white;
+    @include breakpoint(desktop) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.pagination__list {
+  margin: 0 !important; //TODO - fix specificity across the board..
+  
+  li {
+    display: inline-block;
+    list-style: none;
+    
+    @include breakpoint(desktop) {
+      margin: $gap-small 0 !important; //TODO - fix specificity across the board..
+    }
+  }
+}
