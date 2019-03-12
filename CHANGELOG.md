@@ -31,7 +31,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - **PG/UG switcher - Automatically loads the content of the tab that is selected when the page is rendered**
 - **Updates all 3rd party build & deployment libraries to their latest versions**
 - **Hub mega menu expand Icon** - Expand icon changed to down caret.
-
+- **Alternative version of mega menu bar** - Restyled megamenu bar and added an alternative version (needs user testing)
 
 
 ## Production release: [v0.10.6] - 2019-03-12
