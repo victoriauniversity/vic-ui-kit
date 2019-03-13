@@ -62,6 +62,20 @@ $sidemenu-delimiter-color:     $green-bottle !default;
     color: $sidemenu-text-color;
     line-height: $sidemenu-lineheight;
 
+    &.sidemenu__link--withIcon {
+      justify-content: space-between;
+
+      i {
+        &::before {
+          margin:0 5px;
+
+          @include breakpoint( desktop ) {
+            margin: 0;
+          }
+        }
+      }
+    }
+
     @include hoverify() {
       color: $sidemenu-text-hover-color;
       .btn-expander { color: $sidemenu-text-color; }
