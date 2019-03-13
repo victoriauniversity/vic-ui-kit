@@ -33,6 +33,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - **Hub mega menu expand Icon** - Expand icon changed to down caret.
 
 
+## Production release: [v0.10.7] - 2019-03-14
+
+### Enhanced
+
+- **Heirachy icon to sidemenu** - Added a class to sidemenu items which allows a non-clickable icon;
+
 
 ## Production release: [v0.10.6] - 2019-03-12
 
@@ -300,8 +306,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.6...dev
+[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.7...dev
 
+[v0.10.7]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.6...v0.10.7
 [v0.10.6]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.5...v0.10.6
 [v0.10.5]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.4...v0.10.5
 [v0.10.4]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.3...v0.10.4
