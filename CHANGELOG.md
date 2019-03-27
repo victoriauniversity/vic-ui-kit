@@ -32,6 +32,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - **Updates all 3rd party build & deployment libraries to their latest versions**
 - **Hub mega menu expand Icon** - Expand icon changed to down caret.
 
+## Production release: [v0.10.8] - 2019-03-27
+
+### Added
+
+- **Green Logos** - added green versions of logos.
+
 
 ## Production release: [v0.10.7] - 2019-03-14
 
@@ -306,8 +312,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.7...dev
+[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.8...dev
 
+[v0.10.8]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.7...v0.10.8
 [v0.10.7]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.6...v0.10.7
 [v0.10.6]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.5...v0.10.6
 [v0.10.5]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.4...v0.10.5
