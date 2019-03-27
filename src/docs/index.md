@@ -1,4 +1,4 @@
-<img style="max-width: 20rem; float: right;" src="https://upload.wikimedia.org/wikipedia/en/8/86/Vuw-logo.png">
+<img style="max-width: 20rem; float: right;" src="https://upload.wikimedia.org/wikipedia/en/thumb/4/45/Victoria_University_of_Wellington_logo.svg/2560px-Victoria_University_of_Wellington_logo.svg.png">
 
 # Victoria UI Kit
 
