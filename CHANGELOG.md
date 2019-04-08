@@ -22,6 +22,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - **Class for tall banner** - Added for engagement hub. Class tall for people banners.
 - **Intranet Search** - Styles for intranet search landing page and results.
 - **Hooks (JS) to execute any code dependent on scripts or libraries that load later** - Enables us to componentise and couple scripts with the related UI (HTML and CSS).
+- **Updated Icon Font Lib** - Added new font kit and mappings
 
 
 
