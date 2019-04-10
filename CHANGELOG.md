@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## Production release: [v0.10.10] - 2019-04-11
+
+### Hotfix
+
+- **Icon vertical align** - new icon lib had diff vertical offset, so this has been fixed.
+
 
 ## Production release: [v0.10.9] - 2019-04-11
 
@@ -308,8 +314,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.9...dev
+[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.10...dev
 
+[v0.10.10]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.9...v0.10.10
 [v0.10.9]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.8...v0.10.9
 [v0.10.8]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.7...v0.10.8
 [v0.10.7]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.6...v0.10.7
