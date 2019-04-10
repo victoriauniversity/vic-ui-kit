@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+-- **Alternative version of mega menu bar** - Restyled megamenu bar and added an alternative version (needs user testing)
+
 
 ## Production release: [v0.10.9] - 2019-04-11
 
