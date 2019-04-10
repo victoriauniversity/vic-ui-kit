@@ -4,16 +4,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
-
-
-
 ## [Unreleased]
 
 
+## Production release: [v0.10.9] - 2019-04-11
 
 ### Added
-
-
 - **Updated logos** - New logo format.
 - **Tooltip UI** - Can be automatically or dynamically initialised, used as a part of `toolkit` library or standalone. Can be triggered 'on hover' or 'on click'.
 - **Basic configuration for unit testing and snapshotting** - Can be run through `npm run test`.
@@ -24,14 +20,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - **Hooks (JS) to execute any code dependent on scripts or libraries that load later** - Enables us to componentise and couple scripts with the related UI (HTML and CSS).
 - **Updated Icon Font Lib** - Added new font kit and mappings
 
-
-
 ### Enhanced
 
 - **PDF tag's colour aligned with colour of the red generic tag**
 - **PG/UG switcher - Automatically loads the content of the tab that is selected when the page is rendered**
 - **Updates all 3rd party build & deployment libraries to their latest versions**
 - **Hub mega menu expand Icon** - Expand icon changed to down caret.
+
 
 ## Production release: [v0.10.8] - 2019-03-27
 
@@ -313,8 +308,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.8...dev
+[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.9...dev
 
+[v0.10.8]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.8...v0.10.9
 [v0.10.8]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.7...v0.10.8
 [v0.10.7]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.6...v0.10.7
 [v0.10.6]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.5...v0.10.6
