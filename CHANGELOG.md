@@ -8,6 +8,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 -- **Alternative version of mega menu bar** - Restyled megamenu bar and added an alternative version (needs user testing)
 
+## Production release: [v0.10.11] - 2019-04-11
+
+### Added
+- **new ui for side menu hub item** - added a new style for top level element in side-menu
 
 ## Production release: [v0.10.10] - 2019-04-11
 
@@ -316,8 +320,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.10...dev
+[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.11...dev
 
+[v0.10.11]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.10...v0.10.11
 [v0.10.10]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.9...v0.10.10
 [v0.10.9]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.8...v0.10.9
 [v0.10.8]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.7...v0.10.8

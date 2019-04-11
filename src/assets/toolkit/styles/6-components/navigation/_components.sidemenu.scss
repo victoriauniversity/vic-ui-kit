@@ -31,6 +31,22 @@ $sidemenu-delimiter-color:     $green-bottle !default;
   margin:     0 0 $gap-vertical;
   background: $sidemenu-background;
 
+  .sidemenu__label {
+    @include breakpoint($until: tablet) {
+      border-top: 1px solid white;
+    }
+    
+    text-transform: uppercase;
+    border-bottom: 1px solid white;
+    font-family: $heading-family;
+    font-weight: $weight-semibold;
+
+    a {
+      padding: 6px 14px;
+      font-size: 17px !important;
+    }
+  }
+
   // All menu items
   ul {
     font-family: $heading-family;
@@ -91,6 +107,8 @@ $sidemenu-delimiter-color:     $green-bottle !default;
       border-bottom: $border-width-thin solid $sidemenu-delimiter-color;
 
       > a { padding: .8rem .9rem; }
+
+      
 
       &:last-child > a,
       &.active {
