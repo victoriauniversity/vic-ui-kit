@@ -1,0 +1,41 @@
+.p-search {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+
+  @include breakpoint(desktop) {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}
+
+.p-search__main {
+  max-width: 100%;
+
+  @include breakpoint(desktop) {
+    max-width: 42rem;
+  }
+
+  @include breakpoint(1200px) {
+    max-width: 52rem;
+  }
+
+  @include breakpoint(desktop-large) {
+    max-width: 60rem;
+  }
+}
+
+.p-search__aside {
+  padding-bottom: $gap;
+
+  @include breakpoint(desktop) {
+    flex-grow: 1;
+    padding-left: 30px;
+    width: 10%;
+  }
+
+  @include breakpoint(desktop-large) {
+    padding-left: 0;
+    max-width: 350px;
+  }
+}

@@ -60,12 +60,24 @@ ul.meta {
   
   ul.meta--labelled & {
     margin-right: $gap-double;
-    margin-bottom: 0;
+    margin-bottom: 25px;
     padding: 0;
     
+    &:last-child {
+      margin-bottom: 0;
+    }
 
-    @include breakpoint($until: tablet) {
+    @include breakpoint($until: desktop) {
       display: block;
+    }
+  }
+
+  ul.meta--grid & {
+    @include breakpoint(desktop) {
+      margin-right: 0;
+      padding-right: 15px;
+      width: 24%;
+      vertical-align: top;
     }
   }
 }
@@ -77,6 +89,10 @@ ul.meta {
     position: relative;
     top: 5px;
     float:left;
+  }
+
+  .meta--labelled & {
+    margin-bottom: 0;
   }
 }
 
@@ -90,6 +106,6 @@ ul.meta {
   font-size: $h5-size;
 
   .meta--labelled & {
-    margin-top: $gap-half;
+    //margin-top: $gap-half;
   }
 }

@@ -1,0 +1,112 @@
+---
+title: "Prototype | Search page on child"
+
+header:
+  subtitle:   "Intranet"
+  title:      "Search results"
+
+footer:
+  links:
+    - Deadlines and dates for 2016
+    - Organising events
+    - PhD guidelines
+
+  phones:
+    - phone1:
+      number: +64 4 472 1000
+      label:  general enquiries
+
+  mails:
+    - info@fhss.victoria.ac.nz
+    - advisory@fhss.victoria.ac.nz
+
+---
+
+<section class="layout centraliser block">
+    <!-- Center 'content' and right 'widget' columns -->
+    <div class="content-panel">
+        <!-- Center 'content' column -->
+        <main>
+            <style>
+                .search-panel form.wide-search-bar {
+                    width: 100% !important;
+                }
+            </style>
+
+            {{> search-bar}}
+
+            <style>
+                .filter .form {
+                    background-color: #f4f4e9;
+                }
+                .content-panel:first-child > main:last-child > .block {
+                    padding-left: 1.5rem !important; 
+                }
+
+                .content-panel > main:last-child > .block {
+                    padding-right: 1.5rem !important;  
+                }
+
+                #dateSearch, #dateSearch .field_container, #dateSearch .field_container .field {
+                    display: flex;
+                    align-items: center;
+                }
+                #dateSearch .field_container label {
+                    margin-right: 1rem;
+                }
+                #dateSearch {
+                    flex-wrap: wrap;
+                }
+
+                #dateSearch .field_container .field input:first-child {
+                    margin-right: .5rem;
+                }
+                #dateSearch .field_container .field input:last-child {
+                    margin-left: .5rem;
+                    margin-right: 1rem;
+                }
+
+                .events .margin-notes .highlight-strip a {
+                    padding-left: 0;
+                }
+
+                #search_facets ul {
+                    padding-left: 0;
+                }
+
+                .search-panel form.wide-search-bar {
+                    padding: 2rem 1rem !important; 
+                    /* width: 900px !important; */
+                }
+
+                #search_facets ul .tag a {
+                    text-decoration: none;
+                }
+
+                #search_facets ul .tag {
+                    padding: .2rem .4rem;
+                        white-space: inherit;
+                }
+
+                .form .error-text {
+                    margin-top: 1rem;
+                }
+
+                @media (max-width:750px) {
+                    #dateSearch .field_container .field {
+                        flex-wrap: wrap;
+                    }
+                    #dateSearch .field_container .field input:last-child {
+                        margin-left: .0;
+                        margin-right: 0;
+                        margin-top: 1rem;
+                    }
+                }
+            </style>
+
+            <div class="block">
+                {{> search-content}}
+            </div>
+        </main>
+    </div>  
+</section>
