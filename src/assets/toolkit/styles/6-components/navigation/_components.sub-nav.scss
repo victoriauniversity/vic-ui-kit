@@ -2,10 +2,15 @@
 =                     Page Sub navigation          =
 ==================================================*/
 
+$page-sub-nav-border: $green-brand !default;
+$page-sub-nav-bg: $black-brand !default;
+$page-sub-nav-active-item-bg: $green-brand !default;
+$page-sub-nav-hover-bg: $green-brand !default;
+
 
 .page-sub-nav {
-  border-bottom: 5px solid $green-brand;
-  background-color: $black-brand;
+  border-bottom: 5px solid $page-sub-nav-border;
+  background-color: $page-sub-nav-bg;
 
   .centraliser {
     nav {
@@ -27,11 +32,11 @@
             text-decoration: none;
             letter-spacing: $navigation-letter-spacing;
 
-            &.active { background-color: $green-brand; }
+            &.active { background-color: $page-sub-nav-active-item-bg; }
 
             @include hoverify() {
               text-decoration: underline;
-              background-color: $green-brand;
+              background-color: $page-sub-nav-hover-bg;
               transition: all .5s ease;
             }
           }
