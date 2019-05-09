@@ -1,68 +1,28 @@
-/// Light negative highlight (errors, unsuccessful messages)
-$red-oyster-pink:      #ECCDCD !default;
+$red-oyster-pink:      #ECCDCD;
+$alt-red:              #AE2327;
+$red-roof-terratcotta: #AF1B1B;
+$red-tamarillo:        #831212;
 
-/// Dark negative highlight (errors, unsuccessful messaging)
-$red-tamarillo:        #831212 !default;
-
-$red-roof-terratcotta: #AF1B1B !default;
-$red-punch:            #DD3727 !default;
-
-// Alt-red
-$alt-red: #AE2327 !default;
+$brand-opaque: $red-oyster-pink;
+$brand-light: $alt-red;
+$brand-lighter: $alt-red;
+$brand: $red-roof-terratcotta;
+$brand-darker: $red-tamarillo;
+$brand-dark: black;
 
 
-// Header
-$site-header-border-color: $red-tamarillo;
-
-// Media
-$media-featured-bg: $red-tamarillo;
-
-// Side Menu 
-$sidemenu-background: $red-roof-terratcotta;
-$sidemenu-background-selected: $red-tamarillo;
-$sidemenu-delimiter-color: darken( $red-roof-terratcotta, 5% );
-
-// General Typography
+// General Typography - set in core before default brand is set so needs to be set here
 $heading-color: $red-roof-terratcotta;
-$heading-weaker-color: rgba($red-roof-terratcotta, 0.8);
+$heading-weaker-color: rgba( $red-roof-terratcotta, .8 );
 
-// Strip Banner/Banner
-$strip-banner-text-bg: $alt-red;
-$strip-banner-border-color: $alt-red;
-$banner-figure-bg: $red-roof-terratcotta;
+// Buttons - set here because they don't follow the same pattern
+$button-primary-color: $brand-dark;
+$button-primary-hover-color: lighten( $brand-dark, 20% );
 
-// Sub Nav / Mega Menu
-$page-sub-nav-border: $alt-red;
-$page-sub-nav-active-item-bg: $alt-red;
-$page-sub-nav-hover-bg: $red-tamarillo;
+// Events - set in core before default brand is set so needs to be set here
+$border-strip-color--brand: $brand-darker;
 
-
-// Promo Panel
-$promo-figcaption-left-bg: $red-tamarillo;
-$promo-fig-bg--title-image: $red-tamarillo;
-
-// Events
-$border-strip-color--brand: $red-tamarillo;
-
-
-// Buttons
-$button-primary-color: black;
-$button-primary-hover-color: lighten( black, 20% );
-
-
-// Tiles 
-$tile-border-color: $red-tamarillo;
-
-
-// Meta
-$meta-bg: $red-oyster-pink;
-$meta-label-color: $alt-red;
-
-
-// Stack
-$stack-heading-border-color: $alt-red;
-
-// Quote
+// Quote - set because it differs from pattern
 $quote-color: $alt-red;
 $quote-border-color: $alt-red;
 $quote-text-color: black;
