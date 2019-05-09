@@ -39,6 +39,8 @@ module.exports = ({
     // Standalone libs
     libraryEntries[`toolkit.tracking${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/tracking.js`;
     libraryEntries[`toolkit.popups${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/popups.js`;
+    libraryEntries[`toolkit.lazyloader${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/lazyloader.js`;
+    libraryEntries[`toolkit.toolbar${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/toolbar.js`;
     libraryEntries[`toolkit.tooltips${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/tooltips.js`;
   }
 

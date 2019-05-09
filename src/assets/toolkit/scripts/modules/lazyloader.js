@@ -88,7 +88,6 @@ const lazyLoaderService = ( function GetLazyLoader() {
     const deferred = q.defer();
     const { url, namespace, onSuccess } = resourceSpecification;
 
-
     function resolveRequest( requestResult ) {
       // Add to cache
       if ( !hasProp( resourcesCache, url )) resourcesCache[url] = requestResult;
@@ -96,7 +95,7 @@ const lazyLoaderService = ( function GetLazyLoader() {
       deferred.resolve( requestResult );
       if ( onSuccess ) onSuccess( requestResult );
 
-      return deferred.Promise;
+      return deferred.promise;
     }
 
     // 1. Check locally if `namespace` doesn't already exist in the global scope.
@@ -129,6 +128,7 @@ const lazyLoaderService = ( function GetLazyLoader() {
       // C) XHR with JSON response
       window.fetch( url, {
         credentials: 'same-origin',
+        mode:        'cors',
         // credentials: 'include', //TODO: Evaluate if this is 100% safe
       })
         .then( checkHttpStatus )
@@ -141,7 +141,7 @@ const lazyLoaderService = ( function GetLazyLoader() {
         });
     }
 
-    return deferred.Promise;
+    return deferred.promise;
   }
 
 
@@ -164,11 +164,20 @@ const lazyLoaderService = ( function GetLazyLoader() {
     );
 
     // 2) When all resolve (or fail), execute the callback and pass errors if any
-    q.all( requestPromises ).then(( /* resolvedObjects */ ) => {
-      onProcessedCallback();
-    }).catch(( rejectedObjects ) => {
-      onProcessedCallback( rejectedObjects );
-    });
+    q.allSettled( requestPromises ).then(( settledObjects ) => {
+      let rejectionsList;
+
+      settledObjects.forEach(( settledObject ) => {
+        if ( settledObject.state === 'rejected' ) {
+          if ( !rejectionsList ) rejectionsList = [];
+          rejectionsList.push( settledObject.reason );
+        }
+      });
+
+      onProcessedCallback( rejectionsList );
+    }).catch(( rejectionReason ) => {
+      onProcessedCallback( `Error when processing or retrieving the requested resources. ${rejectionReason}` );
+    }).done();
   }
 
 

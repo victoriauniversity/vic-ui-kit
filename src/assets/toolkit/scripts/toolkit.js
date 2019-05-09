@@ -51,7 +51,8 @@ GMAPS_IFRAME_SELECTOR   = 'iframe[src*="/maps/"]',
 VIMEO_IFRAME_SELECTOR   = 'iframe[src*="vimeo"]';
 
 
-const WINDOW_NAMESPACE_TOOLBAR = 'toolkitToolbar';
+const WINDOW_NAMESPACE_TOOLBAR = 'toolkitToolbar',
+  WINDOW_NAMESPACE_TOOLBAR_LOADER = 'toolkitToolbarLoader';
 
 
 /* SUPPORTING FUNCTIONS */
@@ -528,14 +529,14 @@ function initFloatingButtons() {
 }
 
 function initToolbarLoader() {
-  if ( !hasProp( window, WINDOW_NAMESPACE_TOOLBAR )) window[WINDOW_NAMESPACE_TOOLBAR] = {};
+  if ( !hasProp( window, WINDOW_NAMESPACE_TOOLBAR_LOADER )) window[WINDOW_NAMESPACE_TOOLBAR_LOADER] = {};
 
   const URL_SCRIPT_TOOLBAR = `//${URL_BASE.TOOLKIT}/toolkit.toolbar.js`,
     URL_STYLE_TOOLBAR = `//${URL_BASE.TOOLKIT}/toolkit.toolbar.css'`;
 
 
   // Public API endpoint
-  window[WINDOW_NAMESPACE_TOOLBAR].loadAndOpen = ( configObjectOrUrl ) => {
+  window[WINDOW_NAMESPACE_TOOLBAR_LOADER].loadAndOpen = ( configObjectOrUrl ) => {
     // 1) Assemble dependencies
     const configEndpointUrl = ( typeof configObjectOrUrl === 'string' ) ? configObjectOrUrl : null;
     let configObject = ( typeof configObjectOrUrl === 'object' ) ? configObjectOrUrl : undefined;
@@ -563,6 +564,7 @@ function initToolbarLoader() {
     // 3) Load all dependencies asynchronously (skip if already available yet)
     lazyLoader( toolbarDependenciesList, ( errors ) => {
 
+      console.log( '!!! RUN' );
       // 4) Turn off full screen loading service
       // TODO:
 
@@ -570,7 +572,7 @@ function initToolbarLoader() {
       if ( !errors ) {
 
         // 5A) Init and open
-        console.log( '!!! OPENING TOOLBAR', window[WINDOW_NAMESPACE_TOOLBAR], configObject );
+        console.log( '!!! OPENING TOOLBAR', errors, window[WINDOW_NAMESPACE_TOOLBAR], configObject );
       } else {
 
         // 5B) Report errors
