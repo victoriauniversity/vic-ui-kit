@@ -1,4 +1,12 @@
+// Import 3rd party dependencies
 import scriptLoader from 'little-loader';
+import q from 'q';
+import 'whatwg-fetch';
+
+// Import helpers
+import { checkHttpStatus, hasProp } from '../utils/helpers';
+
+
 
 
 
@@ -31,13 +39,17 @@ const lazyLoaderService = ( function GetLazyLoader() {
 
   /** @constant */
 
+
+
+
+
   /** PRIVATE MEMBERS */
 
   /**
-   * Caches DOMElements or JSON Object resources that have been already
-   * requested before.
+   * Caches DOMElements or JSON Object of the resources that have been already
+   * requested once before.
    */
-  const resourcesCache = [];
+  const resourcesCache = {};
 
 
 
@@ -47,10 +59,90 @@ const lazyLoaderService = ( function GetLazyLoader() {
 
 
 
-  function processResourceRequest( resourceSpecification ) {
+  /**
+   *
+   *
+   *
+   * @param {string} url
+   * @returns {Element} `<link>` DOM element that was added.
+   */
+  function addCssToDom( url ) {
+    const link  = document.createElement( 'link' );
 
+    link.href = url;
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+    return link;
   }
 
+
+
+  /**
+   *
+   *
+   * @param {ResourceSpec} resourceSpecification
+   */
+  function processResourceRequest( resourceSpecification ) {
+    const deferred = q.defer();
+    const { url, namespace, onSuccess } = resourceSpecification;
+
+
+    function resolveRequest( requestResult ) {
+      // Add to cache
+      if ( !hasProp( resourcesCache, url )) resourcesCache[url] = requestResult;
+
+      deferred.resolve( requestResult );
+      if ( onSuccess ) onSuccess( requestResult );
+
+      return deferred.Promise;
+    }
+
+    // 1. Check locally if `namespace` doesn't already exist in the global scope.
+    if ( namespace && hasProp( window, namespace )) return resolveRequest( window[namespace]);
+
+    // 2. Check locally if the resource at `url` hasn't been already cached
+    if ( hasProp( resourcesCache, url )) return resolveRequest( resourcesCache[url]);
+
+    // 3. Not available locally - Retrieve based on given type
+    if ( url.match( /.*\.js$/ )) {
+      // A) Javascript
+      scriptLoader( url, ( err ) => {
+        if ( !err ) {
+          if ( namespace && hasProp( window, namespace )) {
+            resolveRequest( window[namespace]);
+          } else {
+            if ( namespace ) console.warn( 'Javascript might be loaded, but the library is not available on the given global scope/namespace `window.%s`!', namespace );
+
+            resolveRequest( null );
+          }
+        } else {
+          deferred.reject( err );
+        }
+      });
+    } else if ( url.match( /.*\.css$/ )) {
+      // B) CSS file
+      const linkElement = addCssToDom( url );
+      resolveRequest( linkElement );
+    } else {
+      // C) XHR with JSON response
+      window.fetch( url, {
+        credentials: 'same-origin',
+        // credentials: 'include', //TODO: Evaluate if this is 100% safe
+      })
+        .then( checkHttpStatus )
+        .then( response => response.json())
+        .then(( responseJson ) => {
+          resolveRequest( responseJson );
+        })
+        .catch(( err ) => {
+          deferred.reject( err );
+        });
+    }
+
+    return deferred.Promise;
+  }
 
 
 
@@ -72,9 +164,11 @@ const lazyLoaderService = ( function GetLazyLoader() {
     );
 
     // 2) When all resolve (or fail), execute the callback and pass errors if any
-    // TODO:
-    onProcessedCallback( errObject );
-
+    q.all( requestPromises ).then(( /* resolvedObjects */ ) => {
+      onProcessedCallback();
+    }).catch(( rejectedObjects ) => {
+      onProcessedCallback( rejectedObjects );
+    });
   }
 
 

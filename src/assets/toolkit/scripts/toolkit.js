@@ -17,6 +17,8 @@ import popups from './modules/popups';
 import tooltips from './modules/tooltips';
 import lazyLoader from './modules/lazyloader';
 
+// Import helpers
+import { hasProp } from './utils/helpers';
 
 // Initialise dependencies
 trackerConfig({ autoRegister: true });
@@ -71,12 +73,6 @@ function wrapEmbeddedIframes() {
       if ( iframeClasses ) singleIframe.removeClass();
     }
   });
-}
-
-
-/** Safe implementation of the 'hasOwnProperty` */
-function hasProp( obj, propName ) {
-  return Object.prototype.hasOwnProperty.call( obj, propName );
 }
 
 
@@ -538,10 +534,11 @@ function initToolbarLoader() {
     URL_STYLE_TOOLBAR = `//${URL_BASE.TOOLKIT}/toolkit.toolbar.css'`;
 
 
+  // Public API endpoint
   window[WINDOW_NAMESPACE_TOOLBAR].loadAndOpen = ( configObjectOrUrl ) => {
     // 1) Assemble dependencies
-    const configEndpointUrl = ( configObjectOrUrl instanceof String ) ? configObjectOrUrl : null;
-    let configObject = ( configObjectOrUrl instanceof Object ) ? configObjectOrUrl : undefined;
+    const configEndpointUrl = ( typeof configObjectOrUrl === 'string' ) ? configObjectOrUrl : null;
+    let configObject = ( typeof configObjectOrUrl === 'object' ) ? configObjectOrUrl : undefined;
 
     const toolbarDependenciesList = [
       { url: URL_SCRIPT_TOOLBAR, namespace: WINDOW_NAMESPACE_TOOLBAR },
@@ -554,33 +551,31 @@ function initToolbarLoader() {
         url:        configEndpointUrl,
         onSuccess: ( responseObject ) => { configObject = responseObject; },
       });
-    } else {
+    } else if ( !configObject ) {
       // Nor config & data model object -or- RESTful API is available
-      console.error( 'A toolbar requires a valid configuration and model object or URL (%s) to the RESTful API endpoint that would return this object. Toolbar dialog will not be opened.', configEndpointUrl, configObject );
+      console.error( 'A toolbar requires valid configuration and model object or URL (%s) to the RESTful API endpoint that would return this object. Toolbar dialog will not be opened.', configEndpointUrl, configObject );
       return;
     }
 
     // 2) Turn on full screen loading service
     // TODO:
 
-
     // 3) Load all dependencies asynchronously (skip if already available yet)
-    console.log( '>>>', configObjectOrUrl );
     lazyLoader( toolbarDependenciesList, ( errors ) => {
 
-      // All dependencies *MUST BE* loaded, otherwise skip the initialisation
-      if ( errors ) {
-        console.error( 'Unable to lazy load all the dependencies required to initialise and open the Toolbar dialog.', errors );
-        // 5A) Turn off full screen loading service
-        // TODO:
-        return;
-      }
-
-      // 4) Init and open
-      console.log( '!!! OPENING TOOLBAR', window[WINDOW_NAMESPACE_TOOLBAR], configObject );
-
-      // 5B) Turn off full screen loading service
+      // 4) Turn off full screen loading service
       // TODO:
+
+      // All dependencies *MUST BE* loaded, otherwise skip the initialisation
+      if ( !errors ) {
+
+        // 5A) Init and open
+        console.log( '!!! OPENING TOOLBAR', window[WINDOW_NAMESPACE_TOOLBAR], configObject );
+      } else {
+
+        // 5B) Report errors
+        console.error( 'Unable to lazy load all the dependencies required to initialise and open the Toolbar dialog.', errors );
+      }
     });
   };
 }
@@ -595,8 +590,6 @@ function initToolbarLoader() {
 
 ( function init() {
   initToolbarLoader();
-
-
 }());
 
 
