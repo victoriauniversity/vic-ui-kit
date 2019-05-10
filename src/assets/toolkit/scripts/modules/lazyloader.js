@@ -60,10 +60,8 @@ const lazyLoaderService = ( function GetLazyLoader() {
 
 
   /**
-   *
-   *
-   *
    * @param {string} url
+   *
    * @returns {Element} `<link>` DOM element that was added.
    */
   function addCssToDom( url ) {
@@ -80,9 +78,21 @@ const lazyLoaderService = ( function GetLazyLoader() {
 
 
   /**
+   * Process and retrieve a resource from given resource specification.
    *
+   * *Optimisations*:
+   * A) If `*.js` file is requested and the `namespace` value is defined in the
+   * resource specification, resource won't be lazy loaded (assuming the
+   * library is already available).
+   * B) All resources requested since the `lazyLoader` initialised are cached.
+   * All subsequent requests on the same `url` in resource specification will
+   * be loaded from the local cache.
+   * C) A `*.css` file will not be loaded if an element `<link>` containing
+   * `url` from resource specification is found in the DOM.
    *
    * @param {ResourceSpec} resourceSpecification
+   *
+   * @return {q.Promise}
    */
   function processResourceRequest( resourceSpecification ) {
     const deferred = q.defer();
@@ -98,15 +108,16 @@ const lazyLoaderService = ( function GetLazyLoader() {
       return deferred.promise;
     }
 
-    // 1. Check locally if `namespace` doesn't already exist in the global scope.
-    if ( namespace && hasProp( window, namespace )) return resolveRequest( window[namespace]);
-
-    // 2. Check locally if the resource at `url` hasn't been already cached
+    // 1. Check locally if the resource at `url` hasn't been already cached
     if ( hasProp( resourcesCache, url )) return resolveRequest( resourcesCache[url]);
 
-    // 3. Not available locally - Retrieve based on given type
+    // 2. Not available locally - Retrieve based on given type
     if ( url.match( /.*\.js$/ )) {
       // A) Javascript
+
+      // Check locally if `namespace` doesn't already exist in the global scope.
+      if ( namespace && hasProp( window, namespace )) return resolveRequest( window[namespace]);
+
       scriptLoader( url, ( err ) => {
         if ( !err ) {
           if ( namespace && hasProp( window, namespace )) {
@@ -122,14 +133,18 @@ const lazyLoaderService = ( function GetLazyLoader() {
       });
     } else if ( url.match( /.*\.css$/ )) {
       // B) CSS file
-      const linkElement = addCssToDom( url );
-      resolveRequest( linkElement );
+      const existingStylesheet = document.querySelector( `link[href*="${url}"]` );
+
+      if ( existingStylesheet ) {
+        resolveRequest( existingStylesheet );
+      } else {
+        resolveRequest( addCssToDom( url ));
+      }
     } else {
       // C) XHR with JSON response
       window.fetch( url, {
         credentials: 'same-origin',
         mode:        'cors',
-        // credentials: 'include', //TODO: Evaluate if this is 100% safe
       })
         .then( checkHttpStatus )
         .then( response => response.json())
@@ -151,6 +166,9 @@ const lazyLoaderService = ( function GetLazyLoader() {
 
 
   /**
+   * Factory method that receives list of all resources (and configuration
+   * details) that should be asynchronously loaded.
+   *
    * @typedef {function} LazyLoadResources
    *
    * @param {Array<ResourceSpec>} resourcesSpecList

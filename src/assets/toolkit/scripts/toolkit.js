@@ -51,7 +51,7 @@ GMAPS_IFRAME_SELECTOR   = 'iframe[src*="/maps/"]',
 VIMEO_IFRAME_SELECTOR   = 'iframe[src*="vimeo"]';
 
 
-const WINDOW_NAMESPACE_TOOLBAR = 'toolkitToolbar',
+const WINDOW_NAMESPACE_TOOLBAR    = 'toolkitToolbar',
   WINDOW_NAMESPACE_TOOLBAR_LOADER = 'toolkitToolbarLoader';
 
 
@@ -529,14 +529,11 @@ function initFloatingButtons() {
 }
 
 function initToolbarLoader() {
-  if ( !hasProp( window, WINDOW_NAMESPACE_TOOLBAR_LOADER )) window[WINDOW_NAMESPACE_TOOLBAR_LOADER] = {};
-
   const URL_SCRIPT_TOOLBAR = `//${URL_BASE.TOOLKIT}/toolkit.toolbar.js`,
-    URL_STYLE_TOOLBAR = `//${URL_BASE.TOOLKIT}/toolkit.toolbar.css'`;
-
+    URL_STYLE_TOOLBAR = 'toolkit.css';
 
   // Public API endpoint
-  window[WINDOW_NAMESPACE_TOOLBAR_LOADER].loadAndOpen = ( configObjectOrUrl ) => {
+  window[WINDOW_NAMESPACE_TOOLBAR_LOADER] = ( configObjectOrUrl ) => {
     // 1) Assemble dependencies
     const configEndpointUrl = ( typeof configObjectOrUrl === 'string' ) ? configObjectOrUrl : null;
     let configObject = ( typeof configObjectOrUrl === 'object' ) ? configObjectOrUrl : undefined;
@@ -558,21 +555,24 @@ function initToolbarLoader() {
       return;
     }
 
-    // 2) Turn on full screen loading service
-    // TODO:
+    //TODO: 2) Turn on full screen loading service
 
     // 3) Load all dependencies asynchronously (skip if already available yet)
     lazyLoader( toolbarDependenciesList, ( errors ) => {
-
-      console.log( '!!! RUN' );
-      // 4) Turn off full screen loading service
-      // TODO:
+      // TODO: 4) Turn off full screen loading service
 
       // All dependencies *MUST BE* loaded, otherwise skip the initialisation
       if ( !errors ) {
 
         // 5A) Init and open
-        console.log( '!!! OPENING TOOLBAR', errors, window[WINDOW_NAMESPACE_TOOLBAR], configObject );
+        const toolbar = window[WINDOW_NAMESPACE_TOOLBAR];
+
+        if ( toolbar ) {
+          console.log( '!!! OPENING TOOLBAR', errors, window[WINDOW_NAMESPACE_TOOLBAR], configObject );
+          toolbar.open( configObject );
+        } else {
+          console.error( `Toolbar library is not available on the global scope (window.${WINDOW_NAMESPACE_TOOLBAR}) - the toolbar dialog will not be rendered.` );
+        }
       } else {
 
         // 5B) Report errors
