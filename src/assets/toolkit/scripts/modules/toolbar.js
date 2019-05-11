@@ -13,9 +13,9 @@ const toolbarApi = window.toolkitToolbar || {};
 
 
 /**
- * A module providing dialogs with tools.
+ * A module providing popup dialogs with tools.
  *
- * @requires jQuery - Requires jQuery 1.8+ as external dependency
+ * @requires jQuery - external jQuery 1.8+
  */
 ( function ToolbarManager() {
 
@@ -30,23 +30,39 @@ const toolbarApi = window.toolkitToolbar || {};
 
   // Default copy
   const TEXTS = {
-      TITLE:                    'Toolbar',
-      BUTTON_CLOSE_TITLE:       'Close the toolbar',
-      SEARCH_OK_LABEL:          'Ok',
-      SEARCH_INPUT_PLACEHOLDER: 'Search for a tool...',
-      SEARCH_INPUT_ARIA_LABEL:  'Type to filter out tools:',
+      TITLE:                         'Toolbar',
+      BUTTON_CLOSE_TITLE:            'Close the toolbar',
+      SEARCH_OK_LABEL:               'Ok',
+      SEARCH_INPUT_PLACEHOLDER:      'Search for a tool...',
+      SEARCH_INPUT_ARIA_LABEL:       'Type to filter out tools:',
+      TITLE_FAVOURITES:              'My favourite',
+      TITLE_DEFAULTS:                'Tools and applications',
+      BUTTON_FAVOURITE_REMOVE_TITLE: 'Remove from favourites',
+      BUTTON_FAVOURITE_ADD_TITLE:    'Add to favourites',
     },
 
     MODAL_CONFIG = {
-      onShow:        addModalsUrlQuery,
-      onClose:       removeModalsUrlQuery,
+      //TODO:onShow:        addModalsUrlQuery,
+      //TODO:onClose:       removeModalsUrlQuery,
       disableFocus:  true,
       disableScroll: true,
       //debugMode:   true,
     },
 
-    LOCAL_STORAGE_POSTFIX = 'favourites';
+    LOCAL_STORAGE_POSTFIX = 'favourites',
 
+    CLASS_BLOCK_FAVOURITES = 'group-favourite',
+    CLASS_BLOCK_DEFAULTS = 'group-others',
+
+    ICON_DEFAULT = {
+      colour:    null,
+      className: 'layout',
+    },
+
+    TEMPLATE_ICON_SSO = '<span class="microtag" title="Supports Single-Sign-on functionality"><svg class="logo-icon key"><use xlink:href="#icon-key"></use></svg></span>',
+    TEMPLATE_TOOLBARS_CONTAINER = '<div id="tb" class="toolbars-container"></div>',
+
+    SELECTOR_TOOLBAR_CONTENT = '.dialog-content .centraliser';
 
 
 
@@ -90,15 +106,124 @@ const toolbarApi = window.toolkitToolbar || {};
 
 
 
+
+  // HTML TEMPLATE BUILDERS
+
+
+
+  /**
+   * Compiles HTML for a button to make an item (not) favourite.
+   *
+   * @param {boolean} isActive
+   *
+   * @return {string} HTML template string.
+   */
+  function buildFavouriteButton( isActive ) {
+    return `<a href="javascript:;" title="${isActive ? TEXTS.BUTTON_FAVOURITE_REMOVE_TITLE : TEXTS.BUTTON_FAVOURITE_ADD_TITLE}" class="btn-options toggle-favourite"><span class="icon-star"></span></a>`;
+  }
+
+
+
+  /**
+   * Compiles HTML for a button to make an item (not) favourite.
+   *
+   * @param {Object} iconData
+   * @param {boolean} hasSso - Show 'Single Sign On' (SSO) icon?
+   *
+   * @return {string} HTML template string.
+   */
+  function buildToolIcon( iconData, hasSso ) {
+    const icon = iconData || ICON_DEFAULT;
+
+    if ( icon.customHtml ) {
+      // SVG-based icon
+      return `
+        ${hasSso ? '<span class="logo-wrapper">' : ''}
+          ${icon.customHtml}${hasSso ? TEMPLATE_ICON_SSO : ''}
+        ${hasSso ? '</span>' : ''}`;
+    }
+
+    // Font-icon based
+    return `
+      <span class="icon-${icon.className}${icon.colour ? ` colour-${icon.colour}` : ''}">
+        ${hasSso ? TEMPLATE_ICON_SSO : ''}
+      </span>`;
+  }
+
+
+
+  /**
+   * Compiles HTML template for a list of tool items (<li>).
+   *
+   * @param {Array<Tool>} toolsList
+   * @param {boolean} hasFavouriteButton
+   *
+   * @return {string} HTML template string.
+   */
+  function buildToolsListItems( toolsList, hasFavouriteButton ) {
+    return toolsList.map( tool => `
+      <li class="tile" id="${tool.id}">
+        ${hasFavouriteButton ? buildFavouriteButton( tool.isFavourited ) : ''}
+        <h3>
+          <a target="_blank" rel="noopener" href="${tool.url}" tabindex="0" title="${tool.description || tool.name}">
+            ${buildToolIcon( tool.icon, tool.hasSso )}
+            <span class="title"><span></span>${tool.name}</span>
+          </a>
+        </h3>
+      </li>` ).join( '' );
+  }
+
+
+
+  /**
+   * Compiles HTML template for a group of tools.
+   *
+   * @param {string} groupClassName
+   * @param {Array<Tools>} toolsList
+   * @param {boolean} hasFavouriteButton
+   * @param {string|null} headerContentHtml - Ommited content results in
+   *    excluded header
+   *
+   * @return {string} HTML template string.
+   */
+  function buildToolGroupTemplate(
+    groupClassName,
+    toolsList,
+    hasFavouriteButton,
+    headerContentHtml
+  ) {
+    if ( toolsList.length < 1 ) return '';
+
+    return `
+      <section class="block ${groupClassName}">
+        ${headerContentHtml ? `<header><h2>${headerContentHtml}</h2></header>` : ''}
+        <ul class="flex-grid">
+          ${buildToolsListItems( toolsList, hasFavouriteButton )}
+        </ul>
+      </section>`;
+  }
+
+
+
+  /**
+   * Compiles HTML template for a notification panel with info/warning/error
+   * message.
+   *
+   * @param {Object} notificationObject
+   *
+   * @return {string} HTML template string.
+   */
   function buildNotificationTemplate( notificationObject ) {
     return `
     <div class="formatting block">
       <section class="flash-message ${notificationObject.type}">
         <h2>${notificationObject.title}</h2>
-        ${( hasProp( notificationObject.content )) ? `<p>${notificationObject.content}</p>` : ''}
+        ${( notificationObject.content ) ? `<p>${notificationObject.content}</p>` : ''}
       </section>
     </div>`;
   }
+
+
 
   /**
    * @param {string} id - Toolbar instance identifier.
@@ -123,7 +248,7 @@ const toolbarApi = window.toolkitToolbar || {};
    *
    * @return {string} - HTML template.
    */
-  function buildDialogTemplate({ id, config, content }) {
+  function buildDialogTemplate( id, config, content ) {
     return `
       <div id="${id}" class="toolbar dialog-container" aria-hidden="true">
         <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="${id}-title">
@@ -150,6 +275,8 @@ const toolbarApi = window.toolkitToolbar || {};
         </section>
       </div>`;
   }
+
+
 
 
 
@@ -183,7 +310,7 @@ const toolbarApi = window.toolkitToolbar || {};
       this.data = data;
 
       this.init();
-      this.bindEvents();
+      //this.bindEvents();
     }
 
 
@@ -207,6 +334,7 @@ const toolbarApi = window.toolkitToolbar || {};
       this.toolbarElement.remove();
     }
 
+
     getId() {
       return this.id;
     }
@@ -214,11 +342,13 @@ const toolbarApi = window.toolkitToolbar || {};
 
     show() {
       MicroModal.show( this.id, MODAL_CONFIG );
-      this.showNotificationIfExists();
-
+      this.render();
     }
 
-    close() {}
+
+    close() {
+      MicroModal.close();
+    }
 
 
 
@@ -227,7 +357,7 @@ const toolbarApi = window.toolkitToolbar || {};
     /** PRIVATE FUNCTIONS */
 
 
-    /** Builds tooltip, attaches events and adds generic DOM. */
+
     init() {
       toolbarsList.push( this );
 
@@ -236,38 +366,109 @@ const toolbarApi = window.toolkitToolbar || {};
       // Add the element into the Toolbar container
       containerElement.append( this.toolbarElement );
 
-      const favouritesIdsList = getFavouritesListFromStorage( `${this.id}.${LOCAL_STORAGE_POSTFIX}` );
-      this.setFavouritesFromIds( favouritesIdsList );
+      this.toolbarContentElement = this.toolbarElement.find( SELECTOR_TOOLBAR_CONTENT );
+
+      this.makeIdsUnique();
+
+      // Rebuild list of favourites from local storage, if available and
+      // enabled in config
+      if ( this.config.showFavourites ) {
+        const favouritesIdsList = getFavouritesListFromStorage( `${this.id}.${LOCAL_STORAGE_POSTFIX}` );
+        this.setFavouritesFromIds( favouritesIdsList );
+      }
+
+      this.showNotificationIfExists();
+
+      // Create filtering service, if searching is enabled in config
+      //if ( this.config.showSearch ) this.filterator = new Filterator();
     }
 
-    bindEvents() {}
+
+
+    //bindEvents() {}
+
+
+    makeIdsUnique() {
+      const makeIdUnique = ( tool ) => {
+        tool.id = `${this.id}.${tool.id}`;
+      };
+
+      this.data.favourites.forEach( makeIdUnique );
+      this.data.defaults.forEach( makeIdUnique );
+    }
+
+
+
+    render() {
+      // Remove all the originally added groups
+      this.toolbarElement.find( `
+        .${CLASS_BLOCK_FAVOURITES},
+        .${CLASS_BLOCK_DEFAULTS}` )
+        .remove();
+
+      // (Re-)render and restablish all functions
+      this.renderTools();
+      if ( this.filterator ) this.filterator.refresh();
+    }
+
+
+
+    renderTools() {
+      const contentBlockTemplates = [
+        buildToolGroupTemplate(
+          CLASS_BLOCK_FAVOURITES,
+          this.data.favourites,
+          this.config.showFavourites,
+          `<span class="icon-star"></span>${TEXTS.TITLE_FAVOURITES}`
+        ),
+        buildToolGroupTemplate(
+          CLASS_BLOCK_DEFAULTS,
+          this.data.defaults,
+          this.config.showFavourites,
+          ( this.config.showFavourites ) ? `<span class="icon-layout"></span>${TEXTS.TITLE_DEFAULTS}` : null
+        ),
+      ];
+      const newContentBlocks = $( contentBlockTemplates.join( '' ));
+      this.toolbarContentElement.append( newContentBlocks );
+    }
+
+
+
+
 
     showNotificationIfExists() {
-      if ( hasProp( this.content, 'notification' )) {
-        $( '.dialog-content .centraliser' ).prepend( buildNotificationTemplate( this.content.notification ));
+      if ( this.content.notification ) {
+        this.toolbarContentElement.prepend( buildNotificationTemplate( this.content.notification ));
       }
     }
 
 
+
     moveDefaultsToFavourites( toolIndexInDefaults ) {
+      this.data.defaults[toolIndexInDefaults].isFavourited = true;
       this.data.favourites.push( this.data.defaults.splice( toolIndexInDefaults, 1 )[0]);
     }
 
+
+
     moveFavouritesToDefaults( toolIndexInFavourites ) {
+      this.data.defaults[toolIndexInFavourites].isFavourited = false;
       this.data.defaults.push( this.data.favourites.splice( toolIndexInFavourites, 1 )[0]);
     }
+
+
 
     setFavouritesFromIds( favouritesIdsList ) {
       const { favourites, defaults } = this.data;
 
       // A) Update favourites
-      for ( let i = 0; i < favourites; i += 1 ) {
+      for ( let i = 0; i < favourites.length; i += 1 ) {
         const currentFavourite = favourites[i];
 
-        if ( favouritesIdsList.indexOf( `${this.id}.${currentFavourite.id}` ) === -1 ) {
+        if ( favouritesIdsList.indexOf( currentFavourite.id ) === -1 ) {
           // Move to non-favourites
           this.moveFavouritesToDefaults( i );
-          i += -1;
+          i -= 1;
         }
       }
 
@@ -281,8 +482,6 @@ const toolbarApi = window.toolkitToolbar || {};
         }
       }
     }
-
-
 
   }
 
@@ -357,7 +556,7 @@ const toolbarApi = window.toolkitToolbar || {};
 
   /** @constructor */
   function constructor() {
-    containerElement = $( '<div id="tb" class="toolbars-container></div>' );
+    containerElement = $( TEMPLATE_TOOLBARS_CONTAINER );
     $( 'body' ).prepend( containerElement );
   }
 

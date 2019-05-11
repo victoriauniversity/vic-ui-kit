@@ -540,7 +540,7 @@ function initToolbarLoader() {
 
     const toolbarDependenciesList = [
       { url: URL_SCRIPT_TOOLBAR, namespace: WINDOW_NAMESPACE_TOOLBAR },
-      { url: URL_STYLE_TOOLBAR },
+      //{ url: URL_STYLE_TOOLBAR },
     ];
 
     if ( !configObject && configEndpointUrl ) {
@@ -560,24 +560,34 @@ function initToolbarLoader() {
     // 3) Load all dependencies asynchronously (skip if already available yet)
     lazyLoader( toolbarDependenciesList, ( errors ) => {
       // TODO: 4) Turn off full screen loading service
+      console.log( '### RUN' );
 
       // All dependencies *MUST BE* loaded, otherwise skip the initialisation
       if ( !errors ) {
 
         // 5A) Init and open
-        const toolbar = window[WINDOW_NAMESPACE_TOOLBAR];
+        const toolbarManager = window[WINDOW_NAMESPACE_TOOLBAR];
 
-        if ( toolbar ) {
-          console.log( '!!! OPENING TOOLBAR', errors, window[WINDOW_NAMESPACE_TOOLBAR], configObject );
-          toolbar.open( configObject );
+        if ( toolbarManager ) {
+          console.log( '!!! OPENING TOOLBAR', toolbarManager, configObject );
+          try {
+            const toolbarInstance = toolbarManager.initToolbar( configObject );
+            console.log( '!!! Toolbar instance', toolbarInstance );
+            toolbarInstance.show();
+          } catch ( err ) {
+            console.error( err );
+          }
         } else {
-          console.error( `Toolbar library is not available on the global scope (window.${WINDOW_NAMESPACE_TOOLBAR}) - the toolbar dialog will not be rendered.` );
+          console.error( `Toolbar library is not available on the global scope (window.${WINDOW_NAMESPACE_TOOLBAR}) - the toolbar dialog will not be initialised and opened.` );
         }
       } else {
 
+        console.log( '### ERRORED', errors );
         // 5B) Report errors
         console.error( 'Unable to lazy load all the dependencies required to initialise and open the Toolbar dialog.', errors );
       }
+
+      console.log( '### FINISHED' );
     });
   };
 }
