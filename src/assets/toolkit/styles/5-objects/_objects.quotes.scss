@@ -2,6 +2,11 @@
 =     QUOTES, CITATION, BIBLIOGRAPHY      =
 =========================================*/
 
+$quote-color: $brand !default;
+$quote-border-color: $brand !default;
+$quote-text-color: $heading-color !default;
+
+
 // Just a quote style
 blockquote.quote { font-style: italic; }
 
@@ -75,14 +80,18 @@ blockquote.quote { font-style: italic; }
   .quote {
     margin-bottom: 0;
     padding: 1.875rem;
-    border-left: 5px solid $green-brand;
+    border-left: 5px solid $quote-border-color;
 
     blockquote {
       color: $green-brand;
 
+      h3 {
+        color: $quote-text-color !important;
+      }
+
       &::before,
       &::after {
-        color: $green-brand;
+        color: $quote-color;
       }
     }
 

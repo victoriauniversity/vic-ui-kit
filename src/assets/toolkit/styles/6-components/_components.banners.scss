@@ -7,6 +7,7 @@
 
 $homepage-banner-max-height:         32.5rem;
 $homepage-banner-compact-max-height: 18.75rem;
+$banner-figure-bg: $brand !default;
 
 .banner { overflow: hidden; }
 
@@ -31,7 +32,7 @@ $homepage-banner-compact-max-height: 18.75rem;
   }
 
   figcaption { //TODO: extend .tile-text
-    background-color: $green-brand;
+    background-color: $banner-figure-bg;
 
     @include breakpoint( tablet ) {
       position: absolute;
@@ -54,6 +55,10 @@ $homepage-banner-compact-max-height: 18.75rem;
     }
 
     p { margin-bottom: $gap-content; }
+
+    a {
+      text-decoration: none;
+    }
   }
 }
 

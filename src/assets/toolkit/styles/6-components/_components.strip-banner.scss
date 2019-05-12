@@ -1,3 +1,6 @@
+$strip-banner-text-bg: $brand !default;
+$strip-banner-border-color: $brand !default;
+
 .promo-panel {
   &.strip-banner {
     figure figcaption {
@@ -28,7 +31,7 @@
         p { font-size: 1.45em; }
 
         > * {
-          background-color: rgba( $green-brand, .9 );
+          background-color: rgba( $strip-banner-text-bg, .9 );
         }
       }
     }
@@ -85,7 +88,7 @@
     }
 
     @include breakpoint( desktop ) {
-      border-bottom: $border-width-thick solid $green-brand;
+      border-bottom: $border-width-thick solid $strip-banner-border-color;
 
       figure {
         display: block;
