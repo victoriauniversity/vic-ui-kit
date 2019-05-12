@@ -1,0 +1,459 @@
+//TODO: MUST BE refactored to SCSS form
+.dialog-container {
+	height: 100%;
+	width: 100%;
+	z-index: 10;
+	overflow-y: auto;
+	position: fixed;
+	display: none;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.dialog-container.is-open {
+	display: block;
+}
+
+@media (min-width: 43em) {
+	.dialog {
+		padding: 0 1.5rem;
+		border-radius: 0.25rem;
+	}
+	.dialog-container {
+		padding: 3rem;
+	}
+}
+
+.dialog {
+	overflow: hidden;
+	display: -webkit-box;
+	display: flex;
+	margin: 0 auto;
+	max-width: 70rem;
+	background-color: #F5F5F5;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	flex-direction: column;
+}
+
+.dialog .header {
+	padding-bottom: 1.5rem;
+	border-bottom: 1px solid #DDD;
+}
+
+.dialog>footer {
+	margin-top: 1.5rem;
+	text-align: center;
+}
+
+.dialog>footer .links {
+	color: #AAA;
+}
+
+.dialog>footer .links>a {
+	margin: 0 0.5rem;
+}
+
+.dialog>footer .links>a:hover,
+.dialog>footer .links>a:active,
+.dialog>footer .links>a:focus {
+	text-decoration: underline;
+}
+
+.dialog .header {
+	-webkit-box-align: baseline;
+	align-items: baseline;
+	margin-top: 0.5rem;
+}
+
+@media (min-width: 43em) {
+	.dialog .header {
+		display: -webkit-box;
+		display: flex;
+	}
+}
+
+.dialog .header>h1 {
+	-webkit-box-flex: 1;
+	flex: 1 1 auto;
+	margin-bottom: 10px;
+}
+
+.dialog .filter {
+	border-radius: 0.25rem;
+	vertical-align: middle;
+	color: #8B8B8B;
+	border-bottom: 1px solid transparent;
+}
+
+.dialog .filter:hover,
+.dialog .filter:active,
+.dialog .filter:focus {
+	background-color: #FFF;
+}
+
+.dialog .filter:hover>label,
+.dialog .filter:active>label,
+.dialog .filter:focus>label {
+	color: #005EA5;
+}
+
+.dialog .filter .btn {
+	display: none;
+}
+
+.dialog .filter.group-focused {
+	background-color: #FFF;
+}
+
+.dialog .filter.group-focused>label {
+	color: #005EA5;
+}
+
+.dialog .filter.group-focused input[type=search] {
+	outline: none !important;
+}
+
+.dialog .filter>label,
+.dialog .filter input[type=search] {
+	padding: .6em .75em;
+	font-size: 1.22rem;
+}
+
+.dialog .filter>label::-webkit-input-placeholder,
+.dialog .filter input[type=search]::-webkit-input-placeholder {
+	color: #8B8B8B;
+}
+
+.dialog .filter>label:-ms-input-placeholder,
+.dialog .filter input[type=search]:-ms-input-placeholder {
+	color: #8B8B8B;
+}
+
+.dialog .filter>label::-ms-input-placeholder,
+.dialog .filter input[type=search]::-ms-input-placeholder {
+	color: #8B8B8B;
+}
+
+.dialog .filter>label::placeholder,
+.dialog .filter input[type=search]::placeholder {
+	color: #8B8B8B;
+}
+
+.dialog .filter>label {
+	padding-right: 0;
+}
+
+.dialog .filter>label .icon-search::before {
+	margin-right: 0;
+	font-size: 115%;
+}
+
+.dialog .filter input[type=search] {
+	color: #424242;
+	background: transparent;
+	border: 0;
+}
+
+.dialog .btn-close {
+	height: 3rem;
+	width: 3rem;
+	display: block;
+	-webkit-box-ordinal-group: 11;
+	order: 10;
+	margin-left: .25em;
+	text-align: center;
+	color: #8B8B8B;
+	line-height: 3rem;
+	font-size: 2.21533rem;
+	align-self: center;
+}
+
+.dialog .btn-close::before {
+	position: static;
+	display: inline;
+	content: "×";
+}
+
+.dialog .btn-close:hover,
+.dialog .btn-close:active,
+.dialog .btn-close:focus {
+	color: #555;
+	border-radius: 50%;
+	background-color: rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 29.99em) {
+	.dialog .btn-close {
+		right: 20px;
+		top: 20px;
+		position: absolute;
+	}
+}
+
+.colour-ms-blue {
+	color: #0078d7;
+	fill: #0078d7;
+}
+
+.colour-green {
+	color: #3599a4;
+	fill: #3599a4;
+}
+
+.colour-dark-blue {
+	color: #076799;
+}
+
+.colour-orange {
+	color: #ef7d00;
+}
+
+.colour-black {
+	color: #242424;
+}
+
+.colour-razzamatazz {
+	color: #CE0058;
+}
+
+.dialog-content {
+	-webkit-box-flex: 1;
+	flex: 1 1 auto;
+}
+
+.dialog-content>.block {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+.dialog-content h2 {
+	margin-bottom: 1.5rem;
+	font-size: 1.4884rem;
+}
+
+.dialog-content .flex-grid {
+	display: -webkit-box;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.dialog-content .shuffle {
+	overflow: initial !important;
+	height: auto !important;
+}
+
+.dialog-content .shuffle-item {
+	top: auto !important;
+	left: auto !important;
+}
+
+.dialog-content .tile .toggle-favourite>span {
+	pointer-events: none;
+}
+
+.dialog-content .flash-message {
+	margin-bottom: 0;
+}
+
+.dialog-content .tools-favourite .tile .toggle-favourite {
+	color: gold;
+}
+
+.dialog-content .tools-favourite .tile .toggle-favourite:hover,
+.dialog-content .tools-favourite .tile .toggle-favourite:active,
+.dialog-content .tools-favourite .tile .toggle-favourite:focus {
+	color: #CCC;
+}
+
+.dialog-content .tile {
+	float: left;
+	width: 12.5%;
+	position: relative;
+	text-align: center;
+}
+
+.dialog-content .tile:nth-child(8n+1) {
+	clear: left;
+}
+
+@media (min-width: 43em) and (max-width: 60.99em) {
+	.dialog-content .tile {
+		float: left;
+		width: 20%;
+	}
+	.dialog-content .tile:nth-child(5n+1) {
+		clear: left;
+	}
+}
+
+@media (min-width: 30em) and (max-width: 42.99em) {
+	.dialog-content .tile {
+		float: left;
+		width: 25%;
+	}
+	.dialog-content .tile:nth-child(4n+1) {
+		clear: left;
+	}
+}
+
+@media (max-width: 29.99em) {
+	.dialog-content .tile {
+		float: none;
+		width: 100%;
+		margin-bottom: 5px;
+	}
+	.dialog-content .tile:nth-child(3n+1) {
+		clear: left;
+	}
+}
+
+.dialog-content .tile:hover,
+.dialog-content .tile:active,
+.dialog-content .tile:focus {
+	background-color: #FFF;
+}
+
+.dialog-content .tile:hover .btn-options,
+.dialog-content .tile:active .btn-options,
+.dialog-content .tile:focus .btn-options {
+	display: block;
+}
+
+.dialog-content .tile .btn-options {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: none;
+	margin: .1rem .2rem;
+	padding: .2rem .3rem;
+	color: #CCC;
+	font-size: 80%;
+}
+
+@media (max-width: 29.99em) {
+	.dialog-content .tile .btn-options {
+		display: block;
+		font-size: 20px;
+		padding: .3rem .6rem;
+	}
+}
+
+.dialog-content .tile .btn-options:hover,
+.dialog-content .tile .btn-options:active,
+.dialog-content .tile .btn-options:focus {
+	color: gold;
+}
+
+.dialog-content .tile .btn-options .icon-dots::before {
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+.dialog-content .tile>h3 {
+	height: 100%;
+	font-size: 1.4884rem;
+}
+
+.dialog-content .tile>h3>a {
+	display: -webkit-box;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	padding: 1rem;
+	height: 100%;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	flex-direction: column;
+	color: #555;
+}
+
+@media (max-width: 29.99em) {
+	.dialog-content .tile>h3>a {
+		flex-direction: row;
+		background: white;
+	}
+}
+
+.dialog-content .tile>h3 .logo-icon {
+	height: 2.5rem;
+	width: 3.9rem;
+}
+
+.dialog-content .tile>h3 .logo-wrapper {
+	position: relative;
+}
+
+@media (max-width: 29.99em) {
+	.dialog-content .tile>h3 .logo-icon {
+		width: 25px;
+		height: 25px;
+	}
+}
+
+.dialog-content .tile>h3 .logo-wrapper .microtag {
+	right: 0;
+	bottom: 0;
+}
+
+.dialog-content .tile [class^=icon-] {
+	position: relative;
+	font-size: 170%;
+}
+
+@media (max-width: 29.99em) {
+	.dialog-content .tile [class^=icon-] {
+		font-size: 25px;
+	}
+}
+
+.dialog-content .tile [class^=icon-]::before {
+	margin-right: 0;
+}
+
+.dialog-content .tile .title {
+	width: 120%;
+	display: -webkit-box;
+	display: flex;
+	-webkit-box-flex: 1;
+	flex: 1 1 auto;
+	-webkit-box-pack: center;
+	justify-content: center;
+	margin-top: 0.5rem;
+	line-height: 1.1;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	flex-direction: column;
+	font-size: 75%;
+	overflow-wrap: break-word;
+	font-weight: 400;
+	vertical-align: middle;
+}
+
+@media (max-width: 29.99em) {
+	.dialog-content .tile .title {
+		text-align: left;
+		padding-left: 20px;
+	}
+}
+
+.dialog-content .tile .microtag {
+	position: absolute;
+	right: -.5rem;
+	bottom: -.5rem;
+	display: block;
+	padding: .2rem;
+	border: 2px solid #F5F5F5;
+	border-radius: 50%;
+	background-color: #64a659;
+}
+
+.dialog-content .tile .microtag .key {
+	height: 0.65rem;
+	width: 0.65rem;
+	display: inherit;
+	fill: #FFF;
+}
+
+.dialog-content .icon-layout:before {
+	font-size: 120%;
+}
