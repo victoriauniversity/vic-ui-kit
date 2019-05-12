@@ -10,7 +10,9 @@ const
   colours       = require( 'ansi-colors' ),
   log           = require( 'fancy-log' ),
   webpack       = require( 'webpack' ),
+  jsonfile      = require( 'jsonfile' ),
 
+  config               = require( '../build.config' ),
   webpackConfigFactory = require( '../webpack.config' );
 
 
@@ -42,11 +44,18 @@ function getScriptProcessor({
   };
 }
 
+function exportEnvironmentConfig( done ) {
+  jsonfile.writeFile( `${config.paths.toolkit.scripts}/env.conf.json`, config.getEnvConfig(), ( err ) => {
+    if ( err ) log.error( colours.red( err ));
+    done();
+  });
+}
+
 
 
 /** Name & register tasks. */
 
-// TODO: Break down to scripts:toolkit and scripts:fabricator (if necessary)
+gulp.task( 'scripts:exportEnvironmentConfig', exportEnvironmentConfig );
 gulp.task( 'scripts', getScriptProcessor());
 gulp.task( 'scripts:toolkit', getScriptProcessor({ includeToolkit: true, includeFabricator: false }));
 gulp.task( 'scripts:fabricator', getScriptProcessor({ includeToolkit: false, includeFabricator: true }));

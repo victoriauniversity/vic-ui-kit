@@ -47,6 +47,8 @@ module.exports = ({
       'lazyloader',
       'toolbar',
       'filtering',
+      'urls',
+      'core',
     ].forEach(( moduleName ) => {
       libraryEntries[`toolkit.${moduleName}${minificationExtension}`] = `./${config.paths.toolkit.scriptModules}/${moduleName}.js`;
     });
@@ -80,15 +82,12 @@ module.exports = ({
       module:  {
         rules: [
           {
-            test:    /(\.js)/,
+            test:    /\.js$/,
             exclude: /(node_modules|\.tmp|dist)/,
             loader:  'babel-loader',
           }, {
             test:   /(\.jpg|\.png)$/,
             loader: 'url-loader?limit=10000',
-          }, {
-            test:   /\.json/,
-            loader: 'json-loader',
           },
         ],
       },
@@ -135,15 +134,12 @@ module.exports = ({
       module:  {
         rules: [
           {
-            test:    /(\.js)/,
+            test:    /\.js$/,
             exclude: /(node_modules|\.tmp|dist)/,
             loader:  'babel-loader',
           }, {
             test:   /(\.jpg|\.png)$/,
             loader: 'url-loader?limit=10000',
-          }, {
-            test:   /\.json/,
-            loader: 'json-loader',
           },
         ],
       },

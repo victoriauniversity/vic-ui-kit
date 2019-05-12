@@ -19,6 +19,7 @@ const
 
 gulp.task( 'build', gulp.series(
   'clean',
+  'scripts:exportEnvironmentConfig',
   gulp.parallel(
     'assemble:fabricator',
     'styles',

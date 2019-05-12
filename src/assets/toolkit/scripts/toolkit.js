@@ -15,7 +15,9 @@ import 'picturefill';
 import { tracker, trackerConfig } from './modules/tracking';
 import popups from './modules/popups';
 import tooltips from './modules/tooltips';
-import lazyLoader from './modules/lazyloader';
+
+// Core libs
+import { initToolbarLoader, initToolbarUrlListeners } from './modules/core';
 
 // Import helpers
 import { hasProp } from './utils/helpers';
@@ -49,10 +51,6 @@ var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 42.99em)', //update in _s
 YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
 GMAPS_IFRAME_SELECTOR   = 'iframe[src*="/maps/"]',
 VIMEO_IFRAME_SELECTOR   = 'iframe[src*="vimeo"]';
-
-
-const WINDOW_NAMESPACE_TOOLBAR    = 'toolkitToolbar',
-  WINDOW_NAMESPACE_TOOLBAR_LOADER = 'toolkitToolbarLoader';
 
 
 /* SUPPORTING FUNCTIONS */
@@ -493,6 +491,7 @@ function moveWidgetsToSidebar() {
 
 
 
+
 /** 'GO UP' BUTTON */
 
 const BTN_UP_ID       = 'btn-up',
@@ -528,63 +527,7 @@ function initFloatingButtons() {
 
 }
 
-function initToolbarLoader() {
-  const URL_SCRIPT_TOOLBAR = `//${URL_BASE.TOOLKIT}/toolkit.toolbar.js`,
-    URL_STYLE_TOOLBAR = 'toolkit.css';
 
-  // Public API endpoint
-  window[WINDOW_NAMESPACE_TOOLBAR_LOADER] = ( configObjectOrUrl ) => {
-    // 1) Assemble dependencies
-    const configEndpointUrl = ( typeof configObjectOrUrl === 'string' ) ? configObjectOrUrl : null;
-    let configObject = ( typeof configObjectOrUrl === 'object' ) ? configObjectOrUrl : undefined;
-
-    const toolbarDependenciesList = [
-      { url: URL_SCRIPT_TOOLBAR, namespace: WINDOW_NAMESPACE_TOOLBAR },
-      //{ url: URL_STYLE_TOOLBAR },
-    ];
-
-    if ( !configObject && configEndpointUrl ) {
-      // Config & data model's URL is available - add it to the dependencies
-      toolbarDependenciesList.push({
-        url:        configEndpointUrl,
-        onSuccess: ( responseObject ) => { configObject = responseObject; },
-      });
-    } else if ( !configObject ) {
-      // Nor config & data model object -or- RESTful API is available
-      console.error( 'A toolbar requires valid configuration and model object or URL (%s) to the RESTful API endpoint that would return this object. Toolbar dialog will not be opened.', configEndpointUrl, configObject );
-      return;
-    }
-
-    //TODO: 2) Turn on full screen loading service
-
-    // 3) Load all dependencies asynchronously (skip if already available yet)
-    lazyLoader( toolbarDependenciesList, ( errors ) => {
-      // TODO: 4) Turn off full screen loading service
-
-      // All dependencies *MUST BE* loaded, otherwise skip the initialisation
-      if ( !errors ) {
-
-        // 5A) Init and open
-        const toolbarManager = window[WINDOW_NAMESPACE_TOOLBAR];
-
-        if ( toolbarManager ) {
-          console.log( '!!! OPENING TOOLBAR', toolbarManager, configObject );
-          try {
-            const toolbarInstance = toolbarManager.initToolbar( configObject );
-            toolbarInstance.show();
-          } catch ( err ) {
-            console.error( err );
-          }
-        } else {
-          console.error( `Toolbar library is not available on the global scope (window.${WINDOW_NAMESPACE_TOOLBAR}) - the toolbar dialog will not be initialised and opened.` );
-        }
-      } else {
-        // 5B) Report errors
-        console.error( 'Unable to lazy load all the dependencies required to initialise and open the Toolbar dialog.', errors );
-      }
-    });
-  };
-}
 
 
 
@@ -596,6 +539,7 @@ function initToolbarLoader() {
 
 ( function init() {
   initToolbarLoader();
+  initToolbarUrlListeners();
 }());
 
 
