@@ -70,8 +70,8 @@
 </svg>
 
 
+<!-- toolkit.ie.min.js-->
 <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
-<script src="https://unpkg.com/shufflejs@5.2.0/dist/shuffle.min.js"></script>
 
 
 <script>
@@ -98,189 +98,9 @@
   };
 </script>
 
-<script>
-    /** Wrapper around 'Shuffle' plugin exposing only essentials */
-    var Filterator = function( wrapperSelector, itemSelector, model, CONFIG ) {
-
-        // Checks & pre-init
-        if ( !areParamsValid() ) return {};
-
-
-
-        // Dependencies
-        var Shuffle    = window.Shuffle,
-
-
-
-        // Members
-        wrapperElement         = document.querySelector( wrapperSelector ),
-
-        changeModel            = model,
-
-        filteringRuleFunctions = [],
-
-
-
-        // Initialise and configure
-        shuffle = createShuffleInstance();
-
-
-
-        // Expose Service API
-        return {
-            filter:              filter,
-
-            addFilteringRule:    addFilteringRule,
-            clearFilteringRules: clearFilteringRules,
-            removeFilteringRule: removeFilteringRule,
-        };
-
-
-
-        /** Private functions. */
-
-        function areParamsValid(){
-            // Required attributes
-            if ( !wrapperSelector || !itemSelector ){
-                console.error( 'Filterator: First two parameters `wrapperSelector` and `itemSelector` are required to initialise the Filterator instance.' )
-                return false;
-            }
-
-            if ( !window.Shuffle ) {
-                console.error( 'Filterator: The library `Shuffle.js` (https://vestride.github.io/Shuffle) is required to use filtering.')
-                return false;
-            }
-
-            return true;
-        }
-
-        function createShuffleInstance() {
-            // Reset CSS
-            Shuffle.ShuffleItem.Css.INITIAL = {
-                display: 'block',
-                'will-change': 'transform',
-            };
-
-            Shuffle.ShuffleItem.Css.VISIBLE = {
-                before: {
-                  opacity: 1,
-                  visibility: 'visible',
-                  display: 'block',
-                },
-                after: {
-                  transitionDelay: '',
-                },
-            };
-
-            Shuffle.ShuffleItem.Css.HIDDEN = {
-                before: {
-                  opacity: 0,
-                  display: 'none',
-                },
-                after: {
-                  visibility: 'hidden',
-                  transitionDelay: '',
-                },
-            };
-
-            var newShuffle = new Shuffle( wrapperElement, {
-                itemSelector:  itemSelector,
-                useTransforms: false,
-            });
-
-            return newShuffle;
-        }
-
-
-
-        /** Public methods. */
-
-        function filter() {
-            shuffle.filter( function( element, shuffle ){
-                // ADITIVE strategy => All must pass to be shown
-                return filteringRuleFunctions.every( function( ruleFn ) {
-                    // Run the rules one by one
-                    return ruleFn( element, shuffle, changeModel );
-                })
-            });
-        }
-
-        // Filtering rules management
-        function addFilteringRule( filteringRuleFn ) {
-            filteringRuleFunctions.push( filteringRuleFn );
-        }
-
-        function removeFilteringRule( filteringRuleFn ) {
-            var index = filteringRuleFunctions.indexOf( filteringRuleFn );
-
-            if ( index !== -1 ) filteringRuleFunctions.splice( index, 1 );
-        }
-
-        function clearFilteringRules() {
-            filteringRuleFunctions = [];
-        }
-    }
-</script>
-
 
 <script>
     // Constants
-    var CLASS_TAG_SELECTED      = 'selected',
-        CLASS_SHALLOW_FILTER    = 'shallow-filter',
-
-        filterator;
-
-
-    function initFiltering() {
-        // Members
-        var searchText,
-
-          favouriteFilter = null,
-          othersFilter    = null;
-
-
-        if ( $( '.tools-favourite' ).length ) {
-          var favouriteFilter = new Filterator( '.tools-favourite .flex-grid', '.tile' );
-          favouriteFilter.addFilteringRule( titleBasedFiltering );
-        }
-
-        if ( $( '.tools-others' ).length ) {
-          var othersFilter = new Filterator( '.tools-others .flex-grid', '.tile' );
-          othersFilter.addFilteringRule( titleBasedFiltering );
-        }
-
-
-        // Specify filtering rules
-        function titleBasedFiltering( element, shuffle ) {
-          if ( !searchText ) return true;
-
-          var itemTitle = element.querySelector( '.title' ).textContent.toLowerCase().trim();
-
-          return ( itemTitle.indexOf( searchText ) !== -1 );
-        }
-
-
-        // Add event listeners to the UI
-
-        // 1) Search
-        if(toolbarApps.config.showSearch != false) {
-            document.getElementById( 'filter-query' ).addEventListener( 'input', handleSearching );
-        }
-
-        function performSearch( keyword ) {
-          searchText = keyword.toLowerCase();
-          if ( favouriteFilter ) favouriteFilter.filter();
-          if ( othersFilter ) othersFilter.filter();
-        }
-
-        function handleSearching( event ) {
-          performSearch( event.target.value )
-        }
-
-        return {
-          performSearch: performSearch,
-        };
-    }
 
 
     /** Run when document is fully ready! */
@@ -419,5 +239,4 @@
 
 
 
-<script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/urljs/2.3.1/url.min.js"></script>

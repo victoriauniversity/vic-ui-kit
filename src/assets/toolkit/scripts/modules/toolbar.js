@@ -1,4 +1,5 @@
 import MicroModal from 'micromodal';
+import FilteringFactory from './filtering';
 
 import { hasProp } from '../utils/helpers';
 
@@ -309,7 +310,7 @@ const toolbarApi = window.toolkitToolbar || {};
       this.content = content;
       this.data = data;
 
-      this.init();
+      this._init();
       //this.bindEvents();
     }
 
@@ -358,7 +359,7 @@ const toolbarApi = window.toolkitToolbar || {};
 
 
 
-    init() {
+    _init() {
       toolbarsList.push( this );
 
       this.toolbarElement = $( buildDialogTemplate( this.id, this.config, this.content ));
@@ -379,8 +380,31 @@ const toolbarApi = window.toolkitToolbar || {};
 
       this.showNotificationIfExists();
 
-      // Create filtering service, if searching is enabled in config
-      //if ( this.config.showSearch ) this.filterator = new Filterator();
+      // Create filtering services, if searching is enabled in config
+      if ( this.config.showSearch ) {
+        this.filterators = [
+          FilteringFactory( `#${this.id} .group-favourite .flex-grid`, '.tile', [ this._titleBasedFilteringRule.bind( this ) ]),
+          FilteringFactory( `#${this.id} .group-others .flex-grid`, '.tile', [ this._titleBasedFilteringRule.bind( this ) ]),
+        ];
+        document.querySelector( `#${this.id}-filter-query` ).addEventListener( 'input', this._searchingHandler.bind( this ));
+      }
+    }
+
+
+    /** Perform filtering based on the input value. */
+    _searchingHandler( event ) {
+      this._searchValue = event.target.value.toLowerCase();
+      this.filterators.forEach( filterator => filterator.filter());
+    }
+
+
+
+    _titleBasedFilteringRule( element ) {
+      if ( !this._searchValue ) return true;
+
+      const itemTitle = element.querySelector( '.title' ).textContent.toLowerCase().trim();
+
+      return ( itemTitle.indexOf( this._searchValue ) !== -1 );
     }
 
 
@@ -408,7 +432,7 @@ const toolbarApi = window.toolkitToolbar || {};
 
       // (Re-)render and restablish all functions
       this.renderTools();
-      if ( this.filterator ) this.filterator.refresh();
+      if ( this.filterators ) this.filterators.forEach( filterator => filterator.refresh());
     }
 
 

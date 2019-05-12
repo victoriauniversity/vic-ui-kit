@@ -22,7 +22,7 @@ import { checkHttpStatus, hasProp } from '../utils/helpers';
  */
 
 /**
- * A factory module providing asynchronous retrieval of the
+ * A service module providing asynchronous retrieval of the
  * javascript files, CSS or JSON structures (from RESTful APIs).
  *
  * Can be accessed globally through `window.lazyLoader`
@@ -38,10 +38,6 @@ const lazyLoaderService = ( function GetLazyLoader() {
 
 
   /** @constant */
-
-
-
-
 
   /** PRIVATE MEMBERS */
 
@@ -202,7 +198,7 @@ const lazyLoaderService = ( function GetLazyLoader() {
 
 
 
-  /** SERVICE FACTORY */
+  /** SERVICE */
   const serviceFactory = loadResources;
 
   // A) Make available for vanilla JS
@@ -214,5 +210,5 @@ const lazyLoaderService = ( function GetLazyLoader() {
 }());
 
 
-// Make the Factory available for Modular JS codebases
+// Make the Service available for Modular JS codebases
 export default lazyLoaderService;

@@ -36,12 +36,20 @@ module.exports = ({
 
     if ( !config.devMode ) entries['toolkit.min'] = `./${config.paths.toolkit.scriptsIndex}`;
 
-    // Standalone libs
-    libraryEntries[`toolkit.tracking${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/tracking.js`;
-    libraryEntries[`toolkit.popups${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/popups.js`;
-    libraryEntries[`toolkit.lazyloader${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/lazyloader.js`;
-    libraryEntries[`toolkit.toolbar${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/toolbar.js`;
-    libraryEntries[`toolkit.tooltips${( !config.devMode ) ? '.min' : ''}`] = `./${config.paths.toolkit.scriptModules}/tooltips.js`;
+    const minificationExtension = ( !config.devMode ) ? '.min' : '';
+
+    // Add listed standalone modules and libraries to the build
+    //TODO: Automate this!
+    [
+      'tracking',
+      'popups',
+      'tooltips',
+      'lazyloader',
+      'toolbar',
+      'filtering',
+    ].forEach(( moduleName ) => {
+      libraryEntries[`toolkit.${moduleName}${minificationExtension}`] = `./${config.paths.toolkit.scriptModules}/${moduleName}.js`;
+    });
   }
 
   if ( includeFabricator ) {
