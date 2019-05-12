@@ -1,8 +1,10 @@
+/* global localStorage */
+/* global $ */
+
 import MicroModal from 'micromodal';
 import FilteringFactory from './filtering';
 
 import { hasProp } from '../utils/helpers';
-
 
 
 /** Library-specific polyfills */
@@ -17,6 +19,7 @@ const toolbarApi = window.toolkitToolbar || {};
  * A module providing popup dialogs with tools.
  *
  * @requires jQuery - external jQuery 1.8+
+ * @requires localStorage - global localStorage
  */
 ( function ToolbarManager() {
 
@@ -44,7 +47,7 @@ const toolbarApi = window.toolkitToolbar || {};
 
     MODAL_CONFIG = {
       //TODO:onShow:        addModalsUrlQuery,
-      //TODO:onClose:       removeModalsUrlQuery,
+      onClose:       onModalClose,
       disableFocus:  true,
       disableScroll: true,
       //debugMode:   true,
@@ -104,6 +107,25 @@ const toolbarApi = window.toolkitToolbar || {};
     return [];
   }
 
+
+
+
+  function saveFavouritesListToStorage( storageKey, favouriteToolsList ) {
+    // Serialise the favourited tools and save to the local storage
+    localStorage.setItem( storageKey, JSON.stringify( favouriteToolsList.map( tool => tool.id )));
+  }
+
+
+
+  function onModalClose() {
+    // IE11 scrolling reversal hack
+    const bodyElement = document.querySelector( 'body' );
+
+    bodyElement.style.overflow = 'auto';
+    bodyElement.style.overflow = 'initial';
+    bodyElement.style.height = 'auto';
+    bodyElement.style.height = 'initial';
+  }
 
 
 
@@ -310,8 +332,10 @@ const toolbarApi = window.toolkitToolbar || {};
       this.content = content;
       this.data = data;
 
+      this._STORAGE_KEY = `${this.id}.${LOCAL_STORAGE_POSTFIX}`;
+
       this._init();
-      //this.bindEvents();
+      this._bindEvents();
     }
 
 
@@ -374,7 +398,7 @@ const toolbarApi = window.toolkitToolbar || {};
       // Rebuild list of favourites from local storage, if available and
       // enabled in config
       if ( this.config.showFavourites ) {
-        const favouritesIdsList = getFavouritesListFromStorage( `${this.id}.${LOCAL_STORAGE_POSTFIX}` );
+        const favouritesIdsList = getFavouritesListFromStorage( this._STORAGE_KEY );
         this.setFavouritesFromIds( favouritesIdsList );
       }
 
@@ -409,7 +433,60 @@ const toolbarApi = window.toolkitToolbar || {};
 
 
 
-    //bindEvents() {}
+    _bindEvents() {
+      // Correct search box highlighting
+      const filterQueryElement = $( `#${this.id}-filter-query` ),
+        filterContainer = this.toolbarElement.find( '.filter' );
+
+      filterQueryElement.bind( 'focus', () => filterContainer.addClass( 'group-focused' ));
+      filterQueryElement.bind( 'focusout', () => filterContainer.removeClass( 'group-focused' ));
+
+      if ( this.config.showFavourites ) {
+        this.toolbarElement.find( '.dialog-content' ).bind( 'click', ( event ) => {
+          if ( event.target && event.target.classList.length ) {
+            if ( event.target.classList.contains( 'toggle-favourite' )) {
+              this._toggleFavouriteTool( event );
+            }
+          }
+        });
+      }
+    }
+
+
+
+    _toggleFavouriteTool( event ) {
+      const toolId = $( event.target ).parents( '.tile' )[0].id,
+        tool = this._getToolById( toolId );
+
+
+      if ( !tool ) return;
+
+      if ( tool.isFavourited ) {
+        // Unfavourite
+        this.moveFavouritesToDefaults( this.data.favourites.indexOf( tool ));
+      } else {
+        // Favourite
+        this.moveDefaultsToFavourites( this.data.defaults.indexOf( tool ));
+      }
+
+      // Save changes & render
+      saveFavouritesListToStorage( this._STORAGE_KEY, this.data.favourites );
+      this.render();
+    }
+
+
+
+    _getToolById( toolId ) {
+      for ( let i = 0; i < this.data.favourites.length; i += 1 ) {
+        if ( this.data.favourites[i].id === toolId ) return this.data.favourites[i];
+      }
+      for ( let i = 0; i < this.data.defaults.length; i += 1 ) {
+        if ( this.data.defaults[i].id === toolId ) return this.data.defaults[i];
+      }
+
+      return null;
+    }
+
 
 
     makeIdsUnique() {
@@ -476,7 +553,7 @@ const toolbarApi = window.toolkitToolbar || {};
 
 
     moveFavouritesToDefaults( toolIndexInFavourites ) {
-      this.data.defaults[toolIndexInFavourites].isFavourited = false;
+      this.data.favourites[toolIndexInFavourites].isFavourited = false;
       this.data.defaults.push( this.data.favourites.splice( toolIndexInFavourites, 1 )[0]);
     }
 
@@ -500,7 +577,7 @@ const toolbarApi = window.toolkitToolbar || {};
       for ( let i = 0; i < defaults.length; i += 1 ) {
         const currentDefault = defaults[i];
 
-        if ( favouritesIdsList.indexOf( `${this.id}.${currentDefault.id}` ) > -1 ) {
+        if ( favouritesIdsList.indexOf( currentDefault.id ) > -1 ) {
           this.moveDefaultsToFavourites( i );
           i -= 1;
         }

@@ -1,10 +1,3 @@
-<style>
-    @charset "UTF-8";
-
-
-</style>
-
-
 
 
 <!-- SVG icons -->
@@ -103,12 +96,9 @@
     // Constants
 
 
-    /** Run when document is fully ready! */
-    $(function() {
 
 
       (function init() {
-        render();
         bindGlobalEvents();
       })();
 
@@ -124,14 +114,6 @@
             }
             // Add other actions here!
           }
-        });
-
-        $( '#filter-query' ).bind( 'focus', function( event ) {
-          $( '.filter' ).addClass( 'group-focused' );
-        });
-
-        $( '#filter-query' ).bind( 'focusout', function( event ) {
-          $( '.filter' ).removeClass( 'group-focused' );
         });
       }
 
@@ -165,73 +147,14 @@
         // Remove the query from the URL
         Url.updateSearchParam( URL_QUERY_MODAL );
 
+        // Reset filter
         var filteringInput = document.getElementById( 'filter-query' );
         if ( filteringInput != null && filteringInput.value && filteringInput.value !== '' ) {
           filteringInput.value = null;
           filterator.performSearch( '' );
         }
 
-        // IE11 scrolling reversal hack
-        ( document.querySelector( 'body' ) ).style.overflow = 'auto';
-        ( document.querySelector( 'body' ) ).style.overflow = 'initial';
-
-        ( document.querySelector( 'body' ) ).style.height   = 'auto';
-        ( document.querySelector( 'body' ) ).style.height   = 'initial';
       }
-
-
-
-
-
-
-      function isToolFavourited( id ) {
-        return toolbarApps.favourites.some( function( favouriteTool ) {
-          return id === favouriteTool.id;
-        })
-      }
-
-      function toggleFavouriteTool( event ) {
-        var toolToToggleId = $( event.target ).parents( '.tile' )[ 0 ].id.replace( TOOL_PREFIX, '' ),
-          isFavourited = isToolFavourited( toolToToggleId );
-
-        if ( isFavourited ) {
-          // Unfavourite
-          toolbarApps.favourites.some( function( favouriteApp, appIndexInFavourites ) {
-            if ( favouriteApp.id == toolToToggleId ) {
-              moveFavouritesToDefaults( appIndexInFavourites );
-              return true;
-            } else {
-              return false;
-            }
-          });
-        } else {
-          // Make favourite
-          toolbarApps.defaults.some( function( defaultApp, appIndexInDefaults ) {
-            if ( defaultApp.id == toolToToggleId ) {
-              moveDefaultsToFavourites( appIndexInDefaults );
-              return true;
-            } else {
-              return false;
-            }
-          });
-        }
-
-        // Re-render!
-        savePreferencesToStorage();
-        render();
-      }
-
-
-
-      function savePreferencesToStorage( storageKey ) {
-        // Serialise the favourited tools and save to the local storage
-        localStorage.setItem( STORAGE_ID, JSON.stringify( toolbarApps.favourites.map( function( favouriteTool ){ return TOOL_PREFIX + favouriteTool.id; }) ));
-      }
-
-
-
-
-
 
     });
 

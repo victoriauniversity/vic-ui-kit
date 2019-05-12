@@ -560,7 +560,6 @@ function initToolbarLoader() {
     // 3) Load all dependencies asynchronously (skip if already available yet)
     lazyLoader( toolbarDependenciesList, ( errors ) => {
       // TODO: 4) Turn off full screen loading service
-      console.log( '### RUN' );
 
       // All dependencies *MUST BE* loaded, otherwise skip the initialisation
       if ( !errors ) {
@@ -572,7 +571,6 @@ function initToolbarLoader() {
           console.log( '!!! OPENING TOOLBAR', toolbarManager, configObject );
           try {
             const toolbarInstance = toolbarManager.initToolbar( configObject );
-            console.log( '!!! Toolbar instance', toolbarInstance );
             toolbarInstance.show();
           } catch ( err ) {
             console.error( err );
@@ -581,13 +579,9 @@ function initToolbarLoader() {
           console.error( `Toolbar library is not available on the global scope (window.${WINDOW_NAMESPACE_TOOLBAR}) - the toolbar dialog will not be initialised and opened.` );
         }
       } else {
-
-        console.log( '### ERRORED', errors );
         // 5B) Report errors
         console.error( 'Unable to lazy load all the dependencies required to initialise and open the Toolbar dialog.', errors );
       }
-
-      console.log( '### FINISHED' );
     });
   };
 }
