@@ -1,5 +1,5 @@
 // Import 3rd party dependencies
-import Url from 'urljs';
+const Url = require( '../vendors/url' );
 
 
 
@@ -34,9 +34,9 @@ const extendedUrlManager = ( function ExtendUrlManager() {
 
 
 
-
   // A) Extend the API of the Url.js
   Url.onLoadWhenQueryExists = onLoadWhenQueryExists;
+
 
   // B) Add the extended class to global scope
   window.toolkitUrlManager = Url;
