@@ -26,8 +26,10 @@
   {{#if fabricator}}<link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}styleguide-assets/f.css">{{/if}}
 
   <!-- toolkit styles -->
-  <link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}toolkit.css">
+  <link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}toolkit.{{#if theme}}{{theme}}.{{/if}}css">
   <!-- /toolkit styles -->
+
+  <script src="https://polyfill.io/v3/polyfill.min.js"></script>
 
   <script>
       /** Allows to add custom scripts that will be executed inside the jQuery's $(document).ready().  */
@@ -104,8 +106,8 @@
 
   <!-- jQuery -->
   <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
 
   {{#unless excludeToolkitScript}}

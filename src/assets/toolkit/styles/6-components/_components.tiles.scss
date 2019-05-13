@@ -10,8 +10,11 @@ $grid-tile-spacing-large:    $gap;
 $grid-tile-padding-vertical: 1rem;
 $grid-tile-hover-border-width: $border-width-thick;
 
+// defaults colors
+$tile-border-color: $brand !default;
+
 // colour for study hub - study page
-$base-study-hub-colour--study: $green-light-brand;
+$base-study-hub-colour--study: $brand-light;
 
 //FIXME: Simplify and refactor tiles into simpler and more manageable structure
 
@@ -38,7 +41,7 @@ $base-study-hub-colour--study: $green-light-brand;
       display: block;
       padding: $grid-tile-padding-vertical $gap-half;
       height: 100%;
-      border-left: $grid-tile-hover-border-width solid $green-brand;
+      border-left: $grid-tile-hover-border-width solid $tile-border-color;
 
       @include hoverify {
         padding-top: ( $grid-tile-padding-vertical - $grid-tile-hover-border-width );

@@ -63,7 +63,7 @@ const config = {
       scriptModules: `${DIR.TOOLKIT}/scripts/modules`,
 
       scriptsIndex:  `${DIR.TOOLKIT}/scripts/toolkit.js`,
-      sassIndex:     `${DIR.TOOLKIT}/styles/toolkit.scss`,
+      sassIndex:     [`${DIR.TOOLKIT}/styles/toolkit.scss`, `${DIR.TOOLKIT}/styles/toolkit.*.scss`],
     },
 
     releaseStatics: `${DIR.BUILD}/release-templates`,

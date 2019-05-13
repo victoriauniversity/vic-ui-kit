@@ -6,7 +6,7 @@
 ///   
 ///
 
-$stack-heading-border-color: $green-light-brand !default;
+$stack-heading-border-color: $brand-light !default;
 $stack-divider-color: $grey-gallery !default;
 
 .c-stack {
@@ -80,6 +80,7 @@ $stack-divider-color: $grey-gallery !default;
   
   @include breakpoint( $from: tablet ) {
     max-width: 145px;
+    min-width: 141px;
     border-right: 1px solid $stack-divider-color;
   }
 }
@@ -119,6 +120,8 @@ $stack-divider-color: $grey-gallery !default;
 .c-stack__figList {
   z-index: $z-index-top;
   position: relative;
+  margin-bottom: 0 !important;
+  padding-left: 0 !important;
 
   li {
     display: inline-block;

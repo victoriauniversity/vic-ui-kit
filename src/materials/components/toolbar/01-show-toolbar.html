@@ -1,0 +1,23 @@
+---
+notes: >
+
+  The dialog with all available tools will open automatically if the (optionally configurable) `toolbar` URL query is present in the URL path.
+  <br><br>
+
+  Because of the size of this component, all core files are downloaded on demand right after user opens the dialog for the first time ('lazy loading').
+  <br><br>
+
+  There are three usual methods to load, initailise and open the toolbar dialog - **programatically**, **click through `href`** attribute or **click via `onclick` attribute** (for elements without href attribute).
+  <br><br>
+
+   **Public API methods**<br>
+   - **`loadAndOpen( configurationUrl: string | configurationObject: Object )`** - Provide either `configurationUrl` of the RESTful endpoint that will be resolved to retrieve the configuration object or `configurationObject` itself.<br>
+---
+
+<a href="javascript:window.toolkitToolbarLoader && window.toolkitToolbarLoader( 'https://www.victoria.ac.nz/api/toolbar/staff' );void 0;" title="Lazy loads and opens the toolbar dialog">Load and open using `href`</a>
+
+<br><br>
+
+<button class="button" title="Lazy loads and opens the toolbar dialog" onclick="window.toolkitToolbarLoader && window.toolkitToolbarLoader( 'https://www.victoria.ac.nz/api/toolbar/students' )">Load and open using click event</button>
+
+

@@ -1,17 +1,55 @@
 /**
  * Utility library with helper functions.
  *
- * It SHOULD NOT be used as a standalone library, but only
+ * It **SHOULD NOT** be used as a standalone library, but only
  * imported as a dependency.
  *
- * Add ONLY function that are generic enough to be reused
+ * Add **ONLY** function that are generic enough to be reused
  * by almost any module.
  */
 
 
-/** Checks whether an element is `display: none;` or not. */
+/**
+ * Checks HTTP response status and if permitted (200-299), passes the response.
+ * Otherwise, an exception is thrown.
+ *
+ * @param {Response} response
+ * @throws {Error}
+ */
+export function checkHttpStatus( response ) {
+  if ( response.status >= 300 || response.status < 200 ) {
+    const error = new Error( `Incorrect response HTTP status #${response.status} (${response.statusText}) received.` );
+    error.response = response;
+
+    throw error;
+  }
+
+  return response;
+}
+
+
+/**
+ * Checks whether an element is `display: none;` or not.
+ *
+ * @param {Element} element - DOM Element.
+ *
+ * @return {boolean}
+ */
 export function isElementHidden( element ) {
   return ( element.offsetParent === null ); // *ONLY* happens when the element is not fixed
+}
+
+
+
+/**
+ * Tests whether a property/attribute exists on a given {Object}. This is a
+ * safe implementation of `Object.hasOwnProperty()`
+ *
+ * @param {Object} obj - Object to test the existence of the attribute on.
+ * @param {String} propName - Name of the attribute to test.
+ */
+export function hasProp( obj, propName ) {
+  return Object.prototype.hasOwnProperty.call( obj, propName );
 }
 
 

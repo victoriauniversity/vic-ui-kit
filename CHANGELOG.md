@@ -6,6 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+-- **Search Pattern** - Added a pattern for search results to work with hub and child pages.
+-- **Themes** - Added ability to configure themes.
+
+### Added 
+ - **Lazy-loaded toolbar component, compatible across templates**
+
+
+
+
 ## Production release: [v0.10.11] - 2019-04-11
 
 ### Added
@@ -16,7 +25,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Hotfix
 
 - **Icon vertical align** - new icon lib had diff vertical offset, so this has been fixed.
-
 
 ## Production release: [v0.10.9] - 2019-04-11
 

@@ -1,6 +1,6 @@
 import { isElementHidden, removeAttribute, isAppleMobileDevice } from '../utils/helpers';
 
-/** Library-specific polyfills */
+/** Library-specific polyfills (not shared anywhere else) */
 
 if ( 'NodeList' in window && !NodeList.prototype.forEach ) {
   console.info( 'polyfill for IE11' );

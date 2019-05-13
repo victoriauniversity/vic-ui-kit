@@ -16,6 +16,11 @@ import { tracker, trackerConfig } from './modules/tracking';
 import popups from './modules/popups';
 import tooltips from './modules/tooltips';
 
+// Core libs
+import { initToolbarLoader, initToolbarUrlListeners } from './modules/core';
+
+// Import helpers
+import { hasProp } from './utils/helpers';
 
 // Initialise dependencies
 trackerConfig({ autoRegister: true });
@@ -37,65 +42,63 @@ require( './study-areas.js' ); // TODO: set up multiple entry points for webpack
 
 /* CONSTANT ATTRIBUTES */
 
-  var TRANSITION_TIMEOUT       = 200; //update in _settings.variables.scss(135)
-  var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 42.99em)', //update in _settings.responsive.scss(57)
-      DESKTOP_AND_LARGER = 'screen and (min-width: 61em)',
-      TABLET_AND_SMALLER = 'screen and (max-width: 975px)',
+var TRANSITION_TIMEOUT       = 200; //update in _settings.variables.scss(135)
+var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 42.99em)', //update in _settings.responsive.scss(57)
+    DESKTOP_AND_LARGER = 'screen and (min-width: 61em)',
+    TABLET_AND_SMALLER = 'screen and (max-width: 975px)',
 
-  // Iframe selectors
-  YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
-  GMAPS_IFRAME_SELECTOR   = 'iframe[src*="/maps/"]',
-  VIMEO_IFRAME_SELECTOR   = 'iframe[src*="vimeo"]';
-
-
-  /* SUPPORTING FUNCTIONS */
-
-  /** Wrap YT videos in .embed wrapper that helps with responsiveness. */
-  function wrapEmbeddedIframes() {
-    var iframes = $( YOUTUBE_IFRAME_SELECTOR + ', ' + GMAPS_IFRAME_SELECTOR + ', ' + VIMEO_IFRAME_SELECTOR ),
-    singleIframe = null, iframeClasses;
-
-    iframes.each( function( index ) {
-      singleIframe = $( this );
-
-      // If it doesn't already have wrapper, wrap it!
-      if ( !singleIframe.parent().hasClass( 'embed' ) ){
-        iframeClasses = singleIframe.attr("class") || '';
-
-        singleIframe.wrap( '<div class="embed ' + iframeClasses + '"></div>' );
-
-        if ( iframeClasses ) singleIframe.removeClass();
-      }
-    });
-  }
+// Iframe selectors
+YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
+GMAPS_IFRAME_SELECTOR   = 'iframe[src*="/maps/"]',
+VIMEO_IFRAME_SELECTOR   = 'iframe[src*="vimeo"]';
 
 
-  /** Safe implementation of the 'hasOwnProperty` */
-  function hasProp( obj, propName ) {
-    return Object.prototype.hasOwnProperty.call( obj, propName );
-  }
+/* SUPPORTING FUNCTIONS */
+
+/** Wrap YT videos in .embed wrapper that helps with responsiveness. */
+function wrapEmbeddedIframes() {
+  var iframes = $( YOUTUBE_IFRAME_SELECTOR + ', ' + GMAPS_IFRAME_SELECTOR + ', ' + VIMEO_IFRAME_SELECTOR ),
+  singleIframe = null, iframeClasses;
+
+  iframes.each( function( index ) {
+    singleIframe = $( this );
+
+    // If it doesn't already have wrapper, wrap it!
+    if ( !singleIframe.parent().hasClass( 'embed' ) ){
+      iframeClasses = singleIframe.attr("class") || '';
+
+      singleIframe.wrap( '<div class="embed ' + iframeClasses + '"></div>' );
+
+      if ( iframeClasses ) singleIframe.removeClass();
+    }
+  });
+}
 
 
-  /** Deletes all study areas tiles that are display: none from DOM to
-  keep the markup clean (and easily handled by the CSS) */
-  function removedUnusedTiles() {
-    $( '.tiles-wrap .tile').each( function() {
-      if ($(this).css("display") == "none") {
-        $(this).remove();
-      }
-    });
-  }
+/** Deletes all study areas tiles that are display: none from DOM to
+keep the markup clean (and easily handled by the CSS) */
+function removedUnusedTiles() {
+  $( '.tiles-wrap .tile').each( function() {
+    if ($(this).css("display") == "none") {
+      $(this).remove();
+    }
+  });
+}
 
 
-  const SIDEMENU_CLASS          = 'sidemenu';
-  const SIDEMENU_TOGGLE_CLASS   = 'sidemenu-toggle';
-  const SIDEMENU_EXPANDER_CLASS = 'btn-expander';
-  const SIDEMENU_SUBMENU_CLASS  = 'has-submenu';
+const SIDEMENU_CLASS          = 'sidemenu';
+const SIDEMENU_TOGGLE_CLASS   = 'sidemenu-toggle';
+const SIDEMENU_EXPANDER_CLASS = 'btn-expander';
+const SIDEMENU_SUBMENU_CLASS  = 'has-submenu';
 
-  const SIDEMENU_SELECTED_ITEM_CLASS = 'active';
-  const SIDEMENU_EXPANDED_CLASS      = 'expanded';
+const SIDEMENU_SELECTED_ITEM_CLASS = 'active';
+const SIDEMENU_EXPANDED_CLASS      = 'expanded';
 
 
+
+
+
+/** PRIVATE FUNCTIONS. */
 
   function initExpandableSubmenu() {
     const expandableButtonElement = $( this );
@@ -179,6 +182,11 @@ const ENV_HOSTNAME = {
   STAGE: 'cms.victoria.ac.nz',
   PROD:  'www.victoria.ac.nz',
   LOCAL: 'local.victoria.ac.nz',
+};
+
+//FIXME: Should be automatically pre-populated from the build/build.config.js
+const URL_BASE = {
+  TOOLKIT: 'local.victoria.ac.nz:8080',
 };
 
 
@@ -483,6 +491,7 @@ function moveWidgetsToSidebar() {
 
 
 
+
 /** 'GO UP' BUTTON */
 
 const BTN_UP_ID       = 'btn-up',
@@ -520,7 +529,24 @@ function initFloatingButtons() {
 
 
 
-// Run after the DOM has loaded...
+
+
+
+
+/** INITIALISE ON SCRIPT LOAD. */
+
+
+
+( function init() {
+  initToolbarLoader();
+  initToolbarUrlListeners();
+}());
+
+
+
+
+
+/** INITIALISE ON DOM LOAD. */
 $(() => {
   moveWidgetsToSidebar();
   addActiveClassToMainMenu();
@@ -833,17 +859,17 @@ function hubMegaMenu2() {
 
     let $this = $(this);
 
-    //Create and append Title to list of expanded links 
+    //Create and append Title to list of expanded links
     let title = $this.children('a').text();
     let titleLink = $this.children('a').attr('href');
     let newLink = `<li class="js-inject-title"><a href="${titleLink}"> ${title} </a></li>`;
 
     $this.children('ul').prepend(newLink);
-    
+
     // subnav expand function
     $(this).on('click', (c) => {
         c.preventDefault();
-        
+
         if ( desktop ) {
           menu.toggleClass('expanded');
         }
@@ -873,7 +899,7 @@ if( document.getElementsByClassName('hub-mega-menu').length > 0 && document.getE
 
   hubMegaMenu2();
   console.log('new menu bar strip thing cool ');
-  
+
 }
 
 
@@ -898,18 +924,18 @@ function openPopup() {
 })( jQuery );
 
 
-if( document.getElementsByClassName('calendar-cards').length > 0 ){ 
+if( document.getElementsByClassName('calendar-cards').length > 0 ){
 
   $("#search-filter").on("keyup search", function() {
     var value = $(this).val().toLowerCase();
 
-    
+
     // if input 3 or more filter
     if($(this).val().length >= 2) {
       $(".calendar-cards .card").filter(function() {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
 
-        
+
       });
     } else {
       // show all if search input less then 2
@@ -925,11 +951,11 @@ if( document.getElementsByClassName('calendar-cards').length > 0 ){
     if ( $(this).hasClass("selected") ) {
       $(this).removeClass("selected");
       $('.calendar-cards .card').show();
-      
+
     } else {
       $('.tags .tag').removeClass("selected");
       $('.calendar-cards .card').show();
-      
+
       if( $(this).text() === "Amendment") {
         $(this).addClass('selected');
         $('.calendar-cards .card').filter(':not([data-type="Amendment"])').hide();
@@ -943,7 +969,7 @@ if( document.getElementsByClassName('calendar-cards').length > 0 ){
         $('.calendar-cards .card').filter(':not([data-type="Errata"])').hide();
       }
     }
-    
+
 
   });
 
