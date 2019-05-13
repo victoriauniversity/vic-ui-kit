@@ -30,7 +30,8 @@ export function initToolbarUrlListeners() {
 export function initToolbarLoader( extraDependenciesList ) {
   const WINDOW_NAMESPACE_TOOLBAR_LOADER = 'toolkitToolbarLoader',
     WINDOW_NAMESPACE_TOOLBAR = 'toolkitToolbar',
-    URL_SCRIPT_TOOLBAR = `//${envConfig.server.host}${envConfig.name === 'development' ? `:${envConfig.server.port}` : ''}/toolkit.toolbar.js`;
+    minifiedString = ( envConfig.name === 'production' ) ? '.min' : '',
+    URL_SCRIPT_TOOLBAR = `//${envConfig.server.host}${envConfig.name === 'development' ? `:${envConfig.server.port}` : ''}/toolkit.toolbar${minifiedString}.js`;
 
   // Public API endpoint
   window[WINDOW_NAMESPACE_TOOLBAR_LOADER] = ( configObjectOrUrl ) => {
