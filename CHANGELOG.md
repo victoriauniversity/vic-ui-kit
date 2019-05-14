@@ -6,14 +6,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
--- **Search Pattern** - Added a pattern for search results to work with hub and child pages.
--- **Themes** - Added ability to configure themes.
-
 ### Added 
  - **Lazy-loaded toolbar component, compatible across templates**
+ - **Search Pattern** - Added a pattern for search results to work with hub and child pages.
+ - **Themes** - Added ability to configure themes.
 
-
-
+### Enhanced
+ - ** RWD Card Overflow ** - added horizontal scroll overflow when content is too wide on mobile (usually a table).
 
 ## Production release: [v0.10.11] - 2019-04-11
 
