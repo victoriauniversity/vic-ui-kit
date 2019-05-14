@@ -44,7 +44,11 @@ notes: >
                 <a class="c-stack__link" href="#mainLink">{{{title}}}</a>
 
                 {{#if url}}
-                    <small>{{url}}</small>
+                    <small>{{url}} 
+                        {{#if filetype}}
+                        <span class="label label-- file-pdf"><i>{{filetype}}</i><span> 1286460KB</span></span>
+                        {{/if}}
+                    </small>
                 {{/if}}
             </h4>
         {{/if}}

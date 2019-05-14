@@ -1,4 +1,5 @@
-$meta-label-color: $green-light-brand !default;
+$meta-label-color: $brand-light !default;
+$meta-bg: $brand-opaque !default;
 
 // List of quick (meta) information
 ul.meta {
@@ -44,7 +45,7 @@ ul.meta {
     > a {
       display: block;
       padding: .2rem .5rem;
-      background-color: _tint( $green-nebula, $lighter-percentage ); //TODO: Can it be replaced by some of the pre-defined colour?
+      background-color: _tint( $meta-bg, $lighter-percentage ); //TODO: Can it be replaced by some of the pre-defined colour?
       color: $heading-color;
       text-decoration: none;
 
@@ -60,12 +61,24 @@ ul.meta {
   
   ul.meta--labelled & {
     margin-right: $gap-double;
-    margin-bottom: 0;
+    margin-bottom: 25px;
     padding: 0;
     
+    &:last-child {
+      margin-bottom: 0;
+    }
 
-    @include breakpoint($until: tablet) {
+    @include breakpoint($until: desktop) {
       display: block;
+    }
+  }
+
+  ul.meta--grid & {
+    @include breakpoint(desktop) {
+      margin-right: 0;
+      padding-right: 15px;
+      width: 24%;
+      vertical-align: top;
     }
   }
 }
@@ -77,6 +90,10 @@ ul.meta {
     position: relative;
     top: 5px;
     float:left;
+  }
+
+  .meta--labelled & {
+    margin-bottom: 0;
   }
 }
 
@@ -90,6 +107,6 @@ ul.meta {
   font-size: $h5-size;
 
   .meta--labelled & {
-    margin-top: $gap-half;
+    //margin-top: $gap-half;
   }
 }
