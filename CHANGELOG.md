@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+
+### Added
+
+- **Form UI** - added new element and modifier form better radio button layout in squiz forms.
+
 
 ## Production release: [v0.10.12] - 2019-05-14
 
