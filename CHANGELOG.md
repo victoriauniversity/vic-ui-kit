@@ -4,21 +4,39 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
-## [Unreleased]
+## Production release: [v0.10.12] - 2019-05-14
 
--- **Search Pattern** - Added a pattern for search results to work with hub and child pages.
--- **Themes** - Added ability to configure themes.
 
-### Added 
- - **Lazy-loaded toolbar component, compatible across templates**
+
+### Added
+
+- **Lazy-loaded toolbar component, compatible across templates**
+- **New search results UI pattern** - Added a pattern for search results to work with hub and child pages.
+- **Theming capability and red (Maori) theme** - Ability to configure and add themes.
+- **New standalone libraries - filtering, URL management, lazy loading, lightweight toolkit (core)**
+
+
+
+### Enhanced
+
+- **Updates 3rd party build and deployment libraries to their latest versions**
+
 
 
 
 
 ## Production release: [v0.10.11] - 2019-04-11
 
+
+
 ### Added
+
 - **new ui for side menu hub item** - added a new style for top level element in side-menu
+
+
+
+
+
 
 ## Production release: [v0.10.10] - 2019-04-11
 
@@ -327,8 +345,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.11...dev
+[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.12...dev
 
+[v0.10.12]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.11...v0.10.12
 [v0.10.11]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.10...v0.10.11
 [v0.10.10]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.9...v0.10.10
 [v0.10.9]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.8...v0.10.9
