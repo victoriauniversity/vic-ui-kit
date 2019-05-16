@@ -1,0 +1,52 @@
+---
+title: "Example | Tracking through Google Tag Manager"
+
+header:
+  subheader:  "selector extension"
+  title:      "Custom plugin - Select2"
+
+---
+
+
+<!-- Variation 2) -->
+
+<section class="layout centraliser block">
+
+  <!-- Left 'submenu' column -->
+  <div class="sidebar"> {{> navigation.sidemenu-expandable }}</div>
+
+  <!-- Center 'content' and right 'widget' columns -->
+  <div class="content-panel">
+
+    <!-- Center 'content' column -->
+    <main>
+      <div class="block formatting">
+
+        <h1>Select2 custom selector</h1>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+        <form>
+            <select class="select">
+                <option value="">-- Choose --</option>
+                <option value="1">Option one</option>
+                <option value="2">Option two</option>
+                <option value="3">Option three</option>
+            </select>
+        </form>
+
+        <script>
+            $('.select').select2();
+        </script>
+
+      </div>
+    </main>
+
+  </div>
+</section>
+
+
+
