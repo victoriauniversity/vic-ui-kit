@@ -4,7 +4,6 @@
 /* DEPENDENCIES & 3RD PARTY LIBRARIES IMPORTS */
 import $ from 'jquery';
 
-import fastclick from 'fastclick';
 import Headroom from 'headroom.js';
 import enquire from 'enquire.js';
 
@@ -556,8 +555,6 @@ $(() => {
 
   // FIXME: Extract out to a standalone plugin and run on staff profiles *only*
   hideCoursesOnStaffProfile();
-
-  fastclick.attach( document.body );
 
   const $body     = $( 'body' ),
     $globalNav    = $( '#global-nav' ),
