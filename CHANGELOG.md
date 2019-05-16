@@ -26,10 +26,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Enhanced
 
 - **Updates 3rd party build and deployment libraries to their latest versions**
-
-
-
-
+- ** RWD Card Overflow ** - added horizontal scroll overflow when content is too wide on mobile (usually a table).
 
 ## Production release: [v0.10.11] - 2019-04-11
 
