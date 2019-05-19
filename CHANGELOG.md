@@ -13,7 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Enhanced
 
-- ** RWD Card Overflow ** - added horizontal scroll overflow when content is too wide on mobile (usually a table).
+- **RWD Card Overflow** - added horizontal scroll overflow when content is too wide on mobile (usually a table).
 
 
 ## Production release: [v0.10.12] - 2019-05-14
