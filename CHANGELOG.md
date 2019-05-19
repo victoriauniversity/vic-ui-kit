@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## Production release: [v0.10.13] - 2019-05-20
+
 ### Added
 
 - **Form UI** - added new element and modifier form better radio button layout in squiz forms.
@@ -352,8 +354,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.12...dev
+[Unreleased]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.13...dev
 
+[v0.10.13]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.12...v0.10.13
 [v0.10.12]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.11...v0.10.12
 [v0.10.11]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.10...v0.10.11
 [v0.10.10]: https://github.com/victoriauniversity/vic-ui-kit/compare/v0.10.9...v0.10.10
