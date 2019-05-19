@@ -490,7 +490,6 @@ function moveWidgetsToSidebar() {
 
 
 
-
 /** 'GO UP' BUTTON */
 
 const BTN_UP_ID       = 'btn-up',
@@ -525,8 +524,6 @@ function initFloatingButtons() {
   }
 
 }
-
-
 
 
 
