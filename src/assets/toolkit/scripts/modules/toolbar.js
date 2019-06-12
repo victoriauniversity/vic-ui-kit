@@ -48,7 +48,7 @@ const toolbarApi = window.toolkitToolbar || {};
       BUTTON_FAVOURITE_REMOVE_TITLE: 'Remove from favourites',
       BUTTON_FAVOURITE_ADD_TITLE:    'Add to favourites',
     },
-
+    OLD_STORAGE_KEY = 'favouriteTools',
     LOCAL_STORAGE_POSTFIX = 'favourites',
 
     CLASS_BLOCK_FAVOURITES = 'group-favourite',
@@ -150,6 +150,20 @@ const toolbarApi = window.toolkitToolbar || {};
     return null;
   }
 
+  function migrateFavourites(id, storageKey) {
+    const oldList = JSON.parse(localStorage.getItem( OLD_STORAGE_KEY ));
+    
+    if(oldList != null) {
+      let newList = oldList.map(x => {
+        //old format eg. tool-password
+        //new format tooldbarInstanceId.password
+        return x.split("-").reduce((acc, str, idx)=> `${id}.${str}`);
+      });
+
+      localStorage.setItem( storageKey, JSON.stringify(newList) );
+      localStorage.removeItem( OLD_STORAGE_KEY );
+    }
+  }
 
   function getFavouritesListFromStorage( storageKey ) {
     const localStorageJsonString = localStorage.getItem( storageKey );
@@ -383,17 +397,14 @@ const toolbarApi = window.toolkitToolbar || {};
       this.data = data;
 
       this._STORAGE_KEY = `${this.id}.${LOCAL_STORAGE_POSTFIX}`;
-
+      
       this._init();
       this._bindEvents();
     }
 
 
 
-
-
     /** PUBLIC METHODS */
-
 
 
     /** Removes the toolbar and cleans up. */
@@ -449,6 +460,11 @@ const toolbarApi = window.toolkitToolbar || {};
       // Rebuild list of favourites from local storage, if available and
       // enabled in config
       if ( this.config.showFavourites ) {
+        // Staff Toolbar is defined in Squiz as id=toolbar, only migrate these?
+        if(this.id == "toolbar") {
+          migrateFavourites(this.id, this._STORAGE_KEY);
+        }
+        
         const favouritesIdsList = getFavouritesListFromStorage( this._STORAGE_KEY );
         this.setFavouritesFromIds( favouritesIdsList );
       }
