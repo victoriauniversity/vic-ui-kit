@@ -1,12 +1,22 @@
 .p-search {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column-reverse;
+  flex-direction: column;
 
   @include breakpoint(desktop) {
     justify-content: space-between;
     flex-direction: row;
   }
+
+  &.p-search__grey {
+    background-color: #eee;
+  }
+}
+
+.p-search__tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .p-search__main {
