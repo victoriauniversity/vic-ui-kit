@@ -17,6 +17,54 @@
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
+
+  .p-search__tab {
+    position: relative;
+    margin-right: 1rem;
+    padding-right: 1rem;
+    font-size: 1.25rem;
+
+    @include hoverify() {
+      opacity: .8;
+    }
+
+    a {
+      color: $black-tundora;
+    }
+
+    &.active {
+      a {
+        position: relative;
+        color: $green-brand;
+        font-weight: 600;
+
+        &:after {
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          content: '';
+          width: 80%;
+          height: 4px;
+          background-color: $green-brand;
+
+        }
+      }
+
+    }
+
+
+    &:not(:last-child) {
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        content: '|';
+        color: $green-brand;
+      }
+    }
+  }
 }
 
 .p-search__main {
