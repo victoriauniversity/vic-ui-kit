@@ -10,6 +10,26 @@
     min-height: 100vh;
     align-items: center;
 
+    // margin-bottom: 100px;
+
+    > div {
+      padding: 1rem;
+
+      img {
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+
+
+    @include breakpoint(tablet) {
+      > .animate-scroll--image {
+        width: 40%;
+      }
+      > .animate-scroll--text {
+        width: 60%;
+      }
+    }
 
     @include breakpoint(desktop) {
       flex-direction: row;
