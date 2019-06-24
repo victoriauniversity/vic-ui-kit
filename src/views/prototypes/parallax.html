@@ -35,20 +35,22 @@ footer:
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
+
+
 <!-- Study hub  About -->
 <section class="layout">
   <div class="content-panel">
     <!-- Center 'content' column -->
     <main class="study-hub-dark-green">
 
-        <div class="centraliser">
+        <div class="centraliser no-scroll">
           <div class="block formatting">
             <h1>Parallax brand refresh story</h1>
             <p>The following new, amended or corrected regulations supersede the published 2019 print Calendar. For queries about the 2019 Calendar and updates, please contact the Academic Office.</p>
           </div>
         </div>
 
-        <div class="centraliser hero--video">
+        <div class="centraliser hero--video no-scroll">
           <div class="block formatting">
             <h1>Video container full width</h1>
             <figure>
@@ -67,7 +69,7 @@ footer:
         <div class="centraliser ">
             <div class="block formatting">
 
-              <div style="height: 600px; background-color: red"></div>
+              <div class="no-scroll" style="height: 600px; background-color: red"></div>
 
               <!-- class="rellax" data-rellax-speed="-4" -->
 
@@ -75,7 +77,7 @@ footer:
                 <h2>Elements of the shield</h2>
 
                 <section id="section-teeth"
-
+                data-section-name="Teeth"
 
 
                 >
@@ -122,7 +124,7 @@ footer:
 
 
                 <section id="section-harbour"
-
+                data-section-name="Harbour"
 
 
                 >
@@ -170,7 +172,7 @@ footer:
 
 
                 <section id="section-crest"
-
+                data-section-name="Crest"
 
                 >
 
@@ -215,7 +217,7 @@ footer:
                 </section>
 
                 <section id="section-shield"
-
+                data-section-name="Shield"
 
                 >
 
@@ -264,7 +266,7 @@ footer:
                 </section>
 
                 <section id="section-logo"
-
+                  data-section-name="Logo"
 
                 >
 
@@ -272,7 +274,7 @@ footer:
                   <div class="animate-scroll--image"
 
                     data-aos="fade-right"
-                    data-aos-anchor-placement="top-center"
+                    data-aos-anchor-placement="top-top"
 
                     data-aos-delay="200"
                     data-aos-duration="1000"
@@ -281,6 +283,8 @@ footer:
 
                     data-aos-mirror="true"
                     data-aos-anchor="#section-logo"
+
+                    data-aos-offset="-200"
 
 
                   >
@@ -292,11 +296,13 @@ footer:
 
 
                     data-aos="fade-left"
-                    data-aos-anchor-placement="top-center"
+                    data-aos-anchor-placement="top-top"
                     data-aos-delay="200"
                     data-aos-duration="1000"
                     data-aos-easing="ease-in-out"
                     data-aos-once="false"
+
+                    data-aos-offset="-200"
 
 
                     data-aos-mirror="true"
@@ -321,17 +327,95 @@ footer:
   </div>
 </section>
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.10.0/rellax.min.js"></script>
+
+
 <script>
     // Accepts any class name
     var rellax = new Rellax('.rellax');
   </script>
 
 
-
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
   AOS.init();
+
+  //load scrollify
+  var script = document.createElement( 'script' );
+  script.type = 'text/javascript';
+  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.js';
+  document.querySelector('body').appendChild(script);
+
+  window.addEventListener('load', function() {
+
+    $(function() {
+      $.scrollify({
+        section : ".animate-scroll section",
+        standardScrollElements: " header, footer, layout",
+        before:function(i,panels) {
+
+          var ref = panels[i].attr("data-section-name");
+
+          $(".pagination-scroll .active").removeClass("active");
+
+          $(".pagination-scroll").find("a[href=\"#" + ref + "\"]").addClass("active");
+        },
+        afterRender: function () {
+         var pagination = "<ul class=\"pagination-scroll\">";
+         var activeClass = "";
+         $(".animate-scroll section").each(function (i) {
+           activeClass = "";
+           if (i === 0) {
+             activeClass = "active";
+           }
+           pagination += "<li><a class=\"" + activeClass + "\" href=\"#" + $(this).attr("data-section-name") + "\"><span class = \"hover-text\">" + $(this).attr("data-section-name").charAt(0).toUpperCase() + $(this).attr("data-section-name").slice(1) + "</span></a></li>";
+         });
+
+         pagination += "</ul>";
+
+         $(".animate-scroll").append(pagination);
+         /*
+
+         Tip: The two click events below are the same:
+
+         $(".pagination-scroll a").on("click",function() {
+         $.scrollify.move($(this).attr("href"));
+         });
+
+         */
+         $(".pagination-scroll a").on("click", $.scrollify.move);
+       }
+      });
+    });
+
+    // standardScrollElements: ".no-scroll, header, footer, layout",
+
+  });
+
+  var scrollWindow = document.querySelector('.animate-scroll');
+
+
+  console.log(scrollWindow.getBoundingClientRect().height);
+
+
+  document.addEventListener('scroll', function(scroll) {
+
+    var scrollPag = document.querySelector('.pagination-scroll');
+
+    console.log(window.scrollY);
+
+
+    if(scrollWindow.getBoundingClientRect().top < 100 &&  -scrollWindow.getBoundingClientRect().height + 500 < scrollWindow.getBoundingClientRect().top ) {
+      console.log('in view?');
+      scrollPag.classList.add('show-pag');
+
+    } else {
+      console.log('not in view');
+      scrollPag.classList.remove('show-pag');
+    }
+  })
+
 
 
 </script>
