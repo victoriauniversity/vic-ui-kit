@@ -6,12 +6,54 @@
 
 .hero--video {
 
+  a {
+    &:hover {
+      h2, h3, h4 {
+        color: $white;
+      }
+    }
+  }
+
   figure {
+    position: relative;
     overflow: hidden;
     max-height: 500px;
 
     img {
       object-fit: contain;
+    }
+
+    figcaption {
+      position: absolute;
+      padding: 1.5rem;
+      background-color: $green-brand;
+
+      h2, h3, h4 {
+        margin-bottom: 0;
+        color: $white;
+        text-decoration: none;
+      }
+      //default position
+      &.bottom-right {
+        right: 0;
+        bottom: 0;
+      }
+
+      &.bottom-left {
+        bottom: 0;
+        left: 0;
+      }
+      &.top-right {
+        top: 0;
+        right: 0;
+        margin-top: 0;
+      }
+      &.top-left {
+        top: 0;
+        left: 0;
+        margin-top: 0;
+      }
+
     }
   }
 
