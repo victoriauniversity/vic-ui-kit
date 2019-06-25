@@ -20,6 +20,7 @@
     max-height: 500px;
 
     img {
+      margin-bottom: 0;
       object-fit: contain;
     }
 
@@ -54,6 +55,16 @@
         margin-top: 0;
       }
 
+    }
+
+    @include breakpoint($until: tablet) {
+
+
+      figcaption {
+        position: relative;
+        margin-top: 0 !important;
+        padding: 1rem;
+      }
     }
   }
 
