@@ -73,7 +73,7 @@ footer:
 
               <!-- class="rellax" data-rellax-speed="-4" -->
 
-              <div class="animate-scroll" >
+              <div class="animate-scroll-2" >
                 <h2>Elements of the shield</h2>
 
                 <section id="section-teeth"
@@ -93,24 +93,11 @@ footer:
 
                     data-aos-mirror="true"
 
-                    data-aos-anchor="#section-teeth"
+                    data-aos-anchor=".teeth-text"
                   >
                     <img  src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/new/refresh/teeth.png" alt="">
                   </div>
-                  <div class="animate-scroll--text"
-
-
-                    data-aos="fade-left"
-
-                    data-aos-delay="200"
-                    data-aos-duration="1000"
-                    data-aos-easing="ease-in-out"
-                    data-aos-once="false"
-
-
-                    data-aos-mirror="true"
-
-                    data-aos-anchor="#section-teeth"
+                  <div class="animate-scroll--text teeth-text"
 
                   >
                     <h3>Niho taniwha—the teeth of a taniwha </h3>
@@ -143,25 +130,13 @@ footer:
 
                   data-aos-mirror="true"
 
-                  data-aos-anchor="#section-harbour"
+                  data-aos-anchor=".harbour-text"
 
 
                   >
                   <img  src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/new/refresh/harbour.png" alt="">
                   </div>
-                  <div class="animate-scroll--text"
-                  data-aos="fade-left"
-
-                  data-aos-delay="200"
-                  data-aos-duration="1000"
-                  data-aos-easing="ease-in-out"
-                  data-aos-once="false"
-
-
-
-                  data-aos-mirror="true"
-
-                  data-aos-anchor="#section-harbour"
+                  <div class="animate-scroll--text harbour-text"
 
 
                   >
@@ -188,7 +163,7 @@ footer:
                     data-aos-once="false"
 
                     data-aos-mirror="true"
-                    data-aos-anchor="#section-crest"
+                    data-aos-anchor=".crest-text"
 
 
                   >
@@ -196,18 +171,9 @@ footer:
                   </div>
 
 
-                  <div class="animate-scroll--text"
-
-                    data-aos="fade-left"
-                    data-aos-anchor-placement="top-center"
-                    data-aos-delay="200"
-                    data-aos-duration="1000"
-                    data-aos-easing="ease-in-out"
-                    data-aos-once="false"
+                  <div class="animate-scroll--text crest-text"
 
 
-                    data-aos-mirror="true"
-                    data-aos-anchor="#section-crest"
 
 
                   >
@@ -233,7 +199,7 @@ footer:
                     data-aos-once="false"
 
                     data-aos-mirror="true"
-                    data-aos-anchor="#section-shield"
+                    data-aos-anchor=".shield-text"
 
 
                   >
@@ -241,19 +207,9 @@ footer:
                   </div>
 
 
-                  <div class="animate-scroll--text"
+                  <div class="animate-scroll--text shield-text"
 
 
-                    data-aos="fade-left"
-                    data-aos-anchor-placement="top-center"
-                    data-aos-delay="200"
-                    data-aos-duration="1000"
-                    data-aos-easing="ease-in-out"
-                    data-aos-once="false"
-
-
-                    data-aos-mirror="true"
-                    data-aos-anchor="#section-shield"
 
 
                   >
@@ -274,7 +230,7 @@ footer:
                   <div class="animate-scroll--image"
 
                     data-aos="fade-right"
-                    data-aos-anchor-placement="top-top"
+                    data-aos-anchor-placement="center-center"
 
                     data-aos-delay="200"
                     data-aos-duration="1000"
@@ -282,9 +238,9 @@ footer:
                     data-aos-once="false"
 
                     data-aos-mirror="true"
-                    data-aos-anchor="#section-logo"
+                    data-aos-anchor=".shield-text"
 
-                    data-aos-offset="-200"
+
 
 
                   >
@@ -292,21 +248,9 @@ footer:
                   </div>
 
 
-                  <div class="animate-scroll--text"
+                  <div class="animate-scroll--text logo-text"
 
 
-                    data-aos="fade-left"
-                    data-aos-anchor-placement="top-top"
-                    data-aos-delay="200"
-                    data-aos-duration="1000"
-                    data-aos-easing="ease-in-out"
-                    data-aos-once="false"
-
-                    data-aos-offset="-200"
-
-
-                    data-aos-mirror="true"
-                    data-aos-anchor="#section-logo"
 
 
                   >
@@ -330,7 +274,7 @@ footer:
 </section>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.10.0/rellax.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
 
 
 <script>
@@ -341,95 +285,9 @@ footer:
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
-  AOS.init();
-
-  //load scrollify
-  var script = document.createElement( 'script' );
-  script.type = 'text/javascript';
-  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.js';
-  document.querySelector('body').appendChild(script);
-
-  window.addEventListener('load', function() {
-
-    $(function() {
-      $.scrollify({
-        section : ".animate-scroll section",
-        standardScrollElements: " header, footer, .no-scroll",
-        updateHash: false,
-        before:function(i,panels) {
-
-          console.log('test, fire');
+  // AOS.init();
 
 
-          var ref = panels[i].attr("data-section-name");
-
-          $(".pagination-scroll .active").removeClass("active");
-
-          $(".pagination-scroll").find("a[href=\"#" + ref + "\"]").addClass("active");
-        },
-        afterRender: function () {
-         var pagination = "<ul class=\"pagination-scroll\">";
-         var activeClass = "";
-         $(".animate-scroll section").each(function (i) {
-           activeClass = "";
-           if (i === 0) {
-             activeClass = "active";
-           }
-           pagination += "<li><a class=\"" + activeClass + "\" href=\"#" + $(this).attr("data-section-name") + "\"><span class = \"hover-text\">" + $(this).attr("data-section-name").charAt(0).toUpperCase() + $(this).attr("data-section-name").slice(1) + "</span></a></li>";
-         });
-
-         pagination += "</ul>";
-
-         $(".animate-scroll").append(pagination);
-         /*
-
-         Tip: The two click events below are the same:
-
-         $(".pagination-scroll a").on("click",function() {
-         $.scrollify.move($(this).attr("href"));
-         });
-
-         */
-         $(".pagination-scroll a").on("click", $.scrollify.move);
-         console.log('after render?');
-
-         //make sure page loads from top if no section hash
-         if(!window.location.hash) {
-          setTimeout(() => {
-            window.scrollTo(0,0);
-          }, 100);
-         }
-
-       }
-      });
-    });
-
-    // standardScrollElements: ".no-scroll, header, footer, layout",
-
-  });
-
-  var scrollWindow = document.querySelector('.animate-scroll');
-
-
-  // console.log(scrollWindow.getBoundingClientRect().height);
-
-
-  document.addEventListener('scroll', function(scroll) {
-
-    var scrollPag = document.querySelector('.pagination-scroll');
-
-    // console.log(window.scrollY);
-
-
-    if(scrollWindow.getBoundingClientRect().top < 100 &&  -scrollWindow.getBoundingClientRect().height + 500 < scrollWindow.getBoundingClientRect().top ) {
-      // console.log('in view?');
-      scrollPag.classList.add('show-pag');
-
-    } else {
-      // console.log('not in view');
-      scrollPag.classList.remove('show-pag');
-    }
-  })
 
 
 
