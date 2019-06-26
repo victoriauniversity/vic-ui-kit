@@ -94,6 +94,14 @@ $icon-play-triangle-ratio: 1.1; // Ratio between width and height of the triangl
     @include triangle( 'right', $icon-play-rectangle-size * $icon-play-triangle-ratio, $icon-play-rectangle-size, $green-brand );
     margin: .65em auto 0;
   }
+
+  &.play-button--green {
+    background-color: $green-brand;
+
+    &:after {
+      @include triangle( 'right', $icon-play-rectangle-size * $icon-play-triangle-ratio, $icon-play-rectangle-size, $white );
+    }
+  }
 }
 
 
