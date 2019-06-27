@@ -354,8 +354,12 @@ footer:
     $(function() {
       $.scrollify({
         section : ".animate-scroll section",
-        standardScrollElements: " header, footer, layout",
+        standardScrollElements: " header, footer, .no-scroll",
+        updateHash: false,
         before:function(i,panels) {
+
+          console.log('test, fire');
+
 
           var ref = panels[i].attr("data-section-name");
 
@@ -387,6 +391,15 @@ footer:
 
          */
          $(".pagination-scroll a").on("click", $.scrollify.move);
+         console.log('after render?');
+
+         //make sure page loads from top if no section hash
+         if(!window.location.hash) {
+          setTimeout(() => {
+            window.scrollTo(0,0);
+          }, 100);
+         }
+
        }
       });
     });
@@ -398,22 +411,22 @@ footer:
   var scrollWindow = document.querySelector('.animate-scroll');
 
 
-  console.log(scrollWindow.getBoundingClientRect().height);
+  // console.log(scrollWindow.getBoundingClientRect().height);
 
 
   document.addEventListener('scroll', function(scroll) {
 
     var scrollPag = document.querySelector('.pagination-scroll');
 
-    console.log(window.scrollY);
+    // console.log(window.scrollY);
 
 
     if(scrollWindow.getBoundingClientRect().top < 100 &&  -scrollWindow.getBoundingClientRect().height + 500 < scrollWindow.getBoundingClientRect().top ) {
-      console.log('in view?');
+      // console.log('in view?');
       scrollPag.classList.add('show-pag');
 
     } else {
-      console.log('not in view');
+      // console.log('not in view');
       scrollPag.classList.remove('show-pag');
     }
   })
