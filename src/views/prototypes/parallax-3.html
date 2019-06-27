@@ -33,7 +33,7 @@ footer:
 ---
 
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> -->
 
 
 
@@ -73,8 +73,38 @@ footer:
 
               <!-- class="rellax" data-rellax-speed="-4" -->
 
-              <div class="animate-scroll-2" >
-                <h2>Elements of the shield</h2>
+              <div class="animate-scroll-2 v3" >
+                <!-- <h2>Elements of the shield</h2> -->
+
+                <section id="section-shield"
+                data-section-name="Shield"
+
+                >
+
+
+                  <div class="animate-scroll--image"
+
+
+
+
+                  >
+                    <img  src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/new/refresh/shield.png" alt="shield">
+                  </div>
+
+
+                  <div class="animate-scroll--text shield-text"
+
+
+
+
+                  >
+                    <h3>The shield</h3>
+                    <p>The shield outline is retained in the new design to link its historical use in the imagery of the University, and our British history, with a progressive new identity. The shield has previously been used to display a coat of arms.
+
+                    </p>
+
+                  </div>
+                </section>
 
                 <section id="section-teeth"
                 data-section-name="Teeth"
@@ -82,18 +112,7 @@ footer:
 
                 >
                   <div class="animate-scroll--image"
-                    data-aos="fade-right"
 
-
-
-                    data-aos-delay="200"
-                    data-aos-duration="1000"
-                    data-aos-easing="ease-in-out"
-                    data-aos-once="false"
-
-                    data-aos-mirror="true"
-
-                    data-aos-anchor=".teeth-text"
                   >
                     <img  src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/new/refresh/teeth.png" alt="">
                   </div>
@@ -119,18 +138,6 @@ footer:
                 <!-- data-aos-anchor-placement="top-center" -->
                   <div class="animate-scroll--image"
 
-                  data-aos="fade-right"
-
-
-
-                  data-aos-delay="200"
-                  data-aos-duration="1000"
-                  data-aos-easing="ease-in-out"
-                  data-aos-once="false"
-
-                  data-aos-mirror="true"
-
-                  data-aos-anchor=".harbour-text"
 
 
                   >
@@ -154,16 +161,7 @@ footer:
 
                   <div class="animate-scroll--image"
 
-                    data-aos="fade-right"
-                    data-aos-anchor-placement="top-center"
 
-                    data-aos-delay="200"
-                    data-aos-duration="1000"
-                    data-aos-easing="ease-in-out"
-                    data-aos-once="false"
-
-                    data-aos-mirror="true"
-                    data-aos-anchor=".crest-text"
 
 
                   >
@@ -182,44 +180,7 @@ footer:
                   </div>
                 </section>
 
-                <section id="section-shield"
-                data-section-name="Shield"
 
-                >
-
-
-                  <div class="animate-scroll--image"
-
-                    data-aos="fade-right"
-                    data-aos-anchor-placement="top-center"
-
-                    data-aos-delay="200"
-                    data-aos-duration="1000"
-                    data-aos-easing="ease-in-out"
-                    data-aos-once="false"
-
-                    data-aos-mirror="true"
-                    data-aos-anchor=".shield-text"
-
-
-                  >
-                    <img  src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/new/refresh/shield.png" alt="shield">
-                  </div>
-
-
-                  <div class="animate-scroll--text shield-text"
-
-
-
-
-                  >
-                    <h3>Since 1897</h3>
-                    <p>The inclusion of the University’s establishment date of 1897 in the shield highlights our heritage and legacy. The University was founded as Victoria University College of the University of New Zealand; then becoming Victoria University of Wellington and merging with the Wellington College of Education.
-
-                    </p>
-                    <p>Dark green shield with '1897' inset at top, and niho taniwha and the curved line symbolising water at bottom. </p>
-                  </div>
-                </section>
 
                 <section id="section-logo"
                   data-section-name="Logo"
@@ -229,16 +190,7 @@ footer:
 
                   <div class="animate-scroll--image"
 
-                    data-aos="fade-right"
-                    data-aos-anchor-placement="center-center"
 
-                    data-aos-delay="200"
-                    data-aos-duration="1000"
-                    data-aos-easing="ease-in-out"
-                    data-aos-once="false"
-
-                    data-aos-mirror="true"
-                    data-aos-anchor=".shield-text"
 
 
 
@@ -263,6 +215,7 @@ footer:
                   </div>
                 </section>
 
+
               </div>
 
 
@@ -274,20 +227,73 @@ footer:
 </section>
 
 
-<script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+
 
 
 <script>
     // Accepts any class name
-    var rellax = new Rellax('.rellax');
+    // var rellax = new Rellax('.rellax');
   </script>
 
 
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
   // AOS.init();
+  document.addEventListener('DOMContentLoaded', function() {
 
+					// init controller
+					var controller = new ScrollMagic.Controller({container: ".animate-scroll-2"});
 
+					// build scene for Shield
+					var scene = new ScrollMagic.Scene({
+            triggerElement: "#section-shield",
+            duration: "70%",
+            triggerHook: 0.1,
+            offset: -50
+             })
+						.setClassToggle("#section-shield .animate-scroll--image", "visible") // add class to reveal
+						.addTo(controller);
+
+					// build scene for Teeth
+					var scene = new ScrollMagic.Scene({
+            triggerElement: "#section-teeth",
+            duration: "70%",
+            triggerHook: 0.1,
+            offset: -20
+             })
+						.setClassToggle("#section-teeth .animate-scroll--image", "visible") // add class to reveal
+						.addTo(controller);
+
+					// build scene for Harbour
+					var scene = new ScrollMagic.Scene({
+            triggerElement: "#section-harbour",
+            duration: "70%",
+            triggerHook: 0.1,
+            offset: -30
+             })
+						.setClassToggle("#section-harbour .animate-scroll--image", "visible") // add class to reveal
+						.addTo(controller);
+
+					// build scene for Crest
+					var scene = new ScrollMagic.Scene({
+            triggerElement: "#section-crest",
+            duration: "70%",
+            triggerHook: 0.1,
+            offset: -30
+             })
+						.setClassToggle("#section-crest .animate-scroll--image", "visible") // add class to reveal
+						.addTo(controller);
+
+					// build scene for Logo
+					var scene = new ScrollMagic.Scene({
+            triggerElement: "#section-logo",
+            duration: "70%",
+
+            offset: -80
+             })
+						.setClassToggle("#section-logo .animate-scroll--image", "visible") // add class to reveal
+						.addTo(controller);
+}, false);
 
 
 

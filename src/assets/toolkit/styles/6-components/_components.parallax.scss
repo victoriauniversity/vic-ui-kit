@@ -128,15 +128,14 @@
   overflow: hidden;
   // background-image: url(images/new/v2/bg.png);
 
-  // scroll-snap-type: y mandatory;
-  // overflow-y: scroll;
-  // height: 80vh;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 50vh;
 
   > section {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding-left: 80px;
 
     // scroll-snap-align: start;
 
@@ -154,7 +153,10 @@
       img {
         width: 100%;
         object-fit: contain;
+
       }
+
+
     }
 
 
@@ -173,10 +175,39 @@
     }
   }
 
+  &.v3 {
+    position: relative;
+    scroll-snap-type: y mandatory;
+    > section {
+      height: 100%;
+      scroll-snap-align: start;
+      > div {
+        padding: 1rem;
+
+        img {
+          width: 100%;
+          object-fit: contain;
+
+          opacity: 0;
+          transition: all 1s ease-in-out;
+          transform: scale(0.9);
+
+        }
+
+        &.animate-scroll--image.visible {
+          img {
+            opacity: 1;
+            transform: none;
+          }
+        }
+      }
+    }
+  }
+
   .pagination-scroll {
     // display: none;
 
-    position: fixed;
+    position: sticky;
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
@@ -246,6 +277,7 @@
     }
 
   }
+
 }
 
 
