@@ -131,24 +131,36 @@
     section {
       width: 100%;
       padding-left: 0;
-      min-height: 500px;
+      min-height: 550px;
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
       align-items: center;
       justify-content: center;
-      padding: 0 2rem;
+      padding: 1rem 2rem;
 
       .animate-scroll--image {
+        padding-left: 1.5rem;
         width: 40%;
       }
       .animate-scroll--text {
         width: 60%;
         padding-left: 1rem;
+        padding-right: 1.5rem;
       }
 
-      @include breakpoint(desktop) {
-
+      @include breakpoint($until:tablet) {
+        flex-direction: column;
+        .animate-scroll--image {
+          padding-left: 1rem;
+          padding-right: 1rem;
+          width: 100%;
+        }
+        .animate-scroll--text {
+          width: 100%;
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+        }
       }
     }
 
@@ -171,7 +183,7 @@
         }
 
         &:after {
-          content: "";
+          content: none;
         }
 
         span {
@@ -187,93 +199,30 @@
         }
       }
     }
-  }
-}
 
-.animate-scroll-2 {
-  overflow: hidden;
-  // background-image: url(images/new/v2/bg.png);
+    .owl-dots {
+      display: flex;
+      justify-content: center;
 
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-  height: 50vh;
+      .owl-dot {
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        border: 1px solid $green-brand;
+        margin: 0 5px;
 
-  > section {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-
-    // scroll-snap-align: start;
-
-    // min-height: 100vh;
-    align-items: center;
-
-    // padding-top: calc(100vh - 50%);
-    // padding-bottom: calc(100vh - 50%);
-
-    // margin-bottom: 100px;
-
-    > div {
-      padding: 1rem;
-
-      img {
-        width: 100%;
-        object-fit: contain;
-
-      }
-
-
-    }
-
-
-    @include breakpoint(tablet) {
-      > .animate-scroll--image {
-        width: 40%;
-      }
-      > .animate-scroll--text {
-        width: 60%;
-      }
-    }
-
-    @include breakpoint(desktop) {
-      justify-content: space-evenly;
-      flex-direction: row;
-    }
-  }
-
-  &.v3 {
-    position: relative;
-    scroll-snap-type: y mandatory;
-    > section {
-      // height: 100%;
-      margin-bottom: 2rem;
-      // scroll-snap-align: start;
-      > div {
-        padding: 1rem;
-
-        img {
-          width: 100%;
-          object-fit: contain;
-
-          opacity: 0;
-          transition: all 1s ease-in-out;
-          transform: scale(0.9);
-
+        &.active {
+          background-color: $green-brand;
         }
 
-        &.animate-scroll--image.visible {
-          img {
-            opacity: 1;
-            transform: none;
-          }
+        span {
+        }
+
+        &:after {
+          content: none;
         }
       }
     }
   }
-
-
-
 }
-
-
 
