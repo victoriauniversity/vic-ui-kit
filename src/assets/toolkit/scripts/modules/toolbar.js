@@ -152,7 +152,7 @@ const toolbarApi = window.toolkitToolbar || {};
 
   function migrateFavourites(id, storageKey) {
     const oldList = JSON.parse(localStorage.getItem( OLD_STORAGE_KEY ));
-    
+
     if(oldList != null) {
       let newList = oldList.map(x => {
         //old format eg. tool-password
@@ -397,7 +397,7 @@ const toolbarApi = window.toolkitToolbar || {};
       this.data = data;
 
       this._STORAGE_KEY = `${this.id}.${LOCAL_STORAGE_POSTFIX}`;
-      
+
       this._init();
       this._bindEvents();
     }
@@ -464,7 +464,7 @@ const toolbarApi = window.toolkitToolbar || {};
         if(this.id == "toolbar") {
           migrateFavourites(this.id, this._STORAGE_KEY);
         }
-        
+
         const favouritesIdsList = getFavouritesListFromStorage( this._STORAGE_KEY );
         this.setFavouritesFromIds( favouritesIdsList );
       }
