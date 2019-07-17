@@ -5,22 +5,22 @@ $(() => {
     const defaultActive = $('.p-search__tabs .active a').data('tab');
     const tabs = $('.p-search__tab a');
 
-    console.log( defaultActive );
+    // console.log( defaultActive );
 
     const $resultSections = $( '.search-results' );
 
-    console.log( $resultSections );
+    // console.log( $resultSections );
 
     /* Sets default vault based on default active tab */
     $resultSections.each(( index, section ) => {
       // element == this
       const $section = $( section );
       const sectionData = $section.data('content' );
-      console.log( $section.data('content' ));
+      // console.log( $section.data('content' ));
 
       // eslint-disable-next-line eqeqeq
       if ( sectionData == defaultActive ) {
-        console.log( 'match ' + sectionData, defaultActive );
+        // console.log( 'match ' + sectionData, defaultActive );
         $section.addClass( 'search-active' );
       } else {
         $section.addClass( 'search-inactive' );
@@ -34,7 +34,7 @@ $(() => {
     //  not active change status set results set to show
 
 
-    console.log( 'tabs == ', tabs );
+    // console.log( 'tabs == ', tabs );
 
     tabs.each(( _index, tab ) => {
       // element == this
@@ -49,13 +49,13 @@ $(() => {
           $tab.parent().addClass( 'active' );
 
           // set matching content to show
-          console.log( $tab.data( 'tab' ));
+          // console.log( $tab.data( 'tab' ));
 
           // Match tab with content
           const tabContent = $tab.data( 'tab' );
           const $resultsContainer = $( `.search-results[data-content="${tabContent}"]` );
 
-          console.log( $resultsContainer );
+          // console.log( $resultsContainer );
           // Toggle active state
           $resultSections.removeClass( 'search-active' ).addClass( 'search-inactive' );
           $resultsContainer.toggleClass( 'search-active' ).toggleClass( 'search-inactive' );
