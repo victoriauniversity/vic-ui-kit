@@ -6,10 +6,23 @@
   @include breakpoint(desktop) {
     justify-content: space-between;
     flex-direction: row;
+    align-items: start;
   }
 
   &.p-search__grey {
     background-color: #eee;
+  }
+
+  &.search-results {
+    width: 100%;
+
+    &.search-active {
+      display: flex;
+    }
+
+    &.search-inactive {
+      display: none;
+    }
   }
 }
 
@@ -68,7 +81,8 @@
 }
 
 .p-search__main {
-  max-width: 100%;
+  flex: 1 0 100%;
+
 
   @include breakpoint(desktop) {
     max-width: 42rem;
@@ -84,11 +98,47 @@
 }
 
 .p-search__aside {
+  padding: 1rem;
   padding-bottom: $gap;
+  background-color: $grey-gallery;
+  border-top: 5px solid $grey-chalice;
+
+  .p-search-term {
+
+  }
+
+  .p-search-filter {
+    > h3 {
+      display: inline-block;
+      margin-right: 1.5rem;
+    }
+
+
+    > a {
+
+
+    }
+    .search-filter-remove {
+      margin-left: .5rem;
+      position: relative;
+      svg {
+        position: absolute;
+        top: -7px;
+        fill: #005EA5;
+        width: 15px;
+      }
+    }
+
+    .p-search-filter-group {
+      ul {
+        padding-left: 0;
+      }
+    }
+  }
 
   @include breakpoint(desktop) {
     flex-grow: 1;
-    padding-left: 30px;
+    margin-left: 2rem;
     width: 10%;
   }
 
