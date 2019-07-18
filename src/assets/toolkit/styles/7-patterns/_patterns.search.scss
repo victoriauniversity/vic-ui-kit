@@ -1,10 +1,11 @@
 .p-search {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
+  flex-direction: column-reverse;
 
   @include breakpoint(desktop) {
     justify-content: space-between;
+    flex-direction: column;
     flex-direction: row;
     align-items: start;
   }
@@ -131,6 +132,7 @@
 }
 
 .p-search__aside {
+  margin-bottom: 1.5rem;
   padding: 1rem;
   padding-bottom: $gap;
   background-color: $grey-gallery;
@@ -144,25 +146,27 @@
     > h3 {
       display: inline-block;
       margin-right: 1.5rem;
+      margin-bottom: 0;
+
+      span {
+        display: none;
+      }
     }
 
-
-    > a {
-
-
-    }
     .search-filter-remove {
-      margin-left: .5rem;
       position: relative;
+      margin-left: .5rem;
+
       svg {
         position: absolute;
         top: -7px;
-        fill: #005EA5;
         width: 15px;
+        fill: #005EA5;
       }
     }
 
     .p-search-filter-group {
+      margin-top: 1.5rem;
       ul {
         padding-left: 0;
       }
@@ -178,6 +182,25 @@
   @include breakpoint(desktop-large) {
     padding-left: 0;
     max-width: 350px;
+  }
+
+  @include breakpoint($until: desktop) {
+    .p-search-filter {
+
+      > h3 {
+        span {
+          display: inline;
+        }
+      }
+
+      > a {
+        margin-left: 2rem;
+      }
+    }
+
+    .p-search-filter-group {
+      display: none;
+    }
   }
 }
 
