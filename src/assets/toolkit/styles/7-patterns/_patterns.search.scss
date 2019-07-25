@@ -135,8 +135,9 @@
   margin-bottom: 1.5rem;
   padding: 1rem;
   padding-bottom: $gap;
-  background-color: $grey-gallery;
+  // background-color: $grey-gallery;
   border-top: 5px solid $grey-chalice;
+  box-shadow: $card-shadow;
 
   .p-search-term {
 
@@ -173,6 +174,12 @@
     }
   }
 
+  .facet_links {
+    > li {
+      white-space: normal;
+    }
+  }
+
   @include breakpoint(desktop) {
     flex-grow: 1;
     margin-left: 2rem;
@@ -180,7 +187,6 @@
   }
 
   @include breakpoint(desktop-large) {
-    padding-left: 0;
     max-width: 350px;
   }
 
