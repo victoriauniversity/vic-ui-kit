@@ -9,6 +9,19 @@ $( () => {
   // Only execute if tabs exist
   if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
 
+    /* Get secondary tab data values hide if not relevant results -- fixes pgination issue in squiz */
+    $('.tab-secondary').each((_indexInArray, sectab ) => {
+      const $sectab = $( sectab );
+      const  fullyMatching = $sectab.data('matching');
+      const  currStart = $sectab.data('currstart');
+
+      if ( fullyMatching === 0 ) {
+        $sectab.find( 'a' ).click( 'false' );
+      }
+
+    });
+
+
     const defaultActive = $( '.p-search__tabs .active a' ).data( 'tab' );
     const tabs = $( '.p-search__tab a' );
 
