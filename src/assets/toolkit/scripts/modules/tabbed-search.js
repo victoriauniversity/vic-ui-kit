@@ -1,6 +1,11 @@
 import enquire from 'enquire.js'
 
 $( () => {
+
+  /* Tab state */
+  let tabState = window.sessionStorage.tabState;
+  console.log( 'tabstate== ', tabState );
+
   // Only execute if tabs exist
   if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
 
@@ -30,14 +35,7 @@ $( () => {
 
     } );
 
-
-    //  tab click
-
-    //  not active change status set results set to show
-
-
-    // console.log( 'tabs == ', tabs );
-
+    /* Tab click */
     tabs.each( ( _index, tab ) => {
       // element == this
       const $tab = $( tab );
@@ -62,6 +60,13 @@ $( () => {
           $resultSections.removeClass( 'search-active' ).addClass( 'search-inactive' );
           $resultsContainer.toggleClass( 'search-active' ).toggleClass( 'search-inactive' );
 
+          /* Set active tab state */
+          tabState = $tab.data( 'tab' );
+          window.sessionStorage.setItem( 'tabState', tabState );
+
+          // console.log( tabState );
+          // console.log( 'sessionStorage state == ', window.sessionStorage.tabState );
+
         } else {
           // is active tab
 
@@ -71,6 +76,30 @@ $( () => {
 
 
     } );
+
+
+    // change state based on session storage tab state
+    if ( window.sessionStorage.tabState ) {
+      console.log('tabstate exists in local storage');
+      const tabStorage = window.sessionStorage.tabState;
+
+      // get tabs
+      tabs.each(( index, tab ) => {
+
+        const $tab = $( tab );
+        const tabData = $(tab ).data( 'tab' );
+
+        // match against sessionStorage
+        if ( tabData === tabState ) {
+          console.log( 'tab should be set to --- ', tabState );
+          // set content state
+
+          $( `.p-search__tab a[data-tab="${tabState}"]` ).trigger( 'click' );
+
+        }
+
+      });
+    }
 
     /* Filter toggle on mobile */
     const TABLET_AND_SMALLER = 'screen and (max-width: 975px)';
@@ -96,4 +125,4 @@ $( () => {
     }
 
   }
-} );
+});
