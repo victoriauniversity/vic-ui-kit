@@ -4,7 +4,7 @@ $( () => {
 
   /* Tab state */
   let tabState = window.sessionStorage.tabState;
-  console.log( 'tabstate== ', tabState );
+  // console.log( 'tabstate== ', tabState );
 
   // Only execute if tabs exist
   if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
@@ -80,7 +80,7 @@ $( () => {
 
     // change state based on session storage tab state
     if ( window.sessionStorage.tabState ) {
-      console.log('tabstate exists in local storage');
+      // console.log('tabstate exists in local storage');
       const tabStorage = window.sessionStorage.tabState;
 
       // get tabs
@@ -91,7 +91,7 @@ $( () => {
 
         // match against sessionStorage
         if ( tabData === tabState ) {
-          console.log( 'tab should be set to --- ', tabState );
+          // console.log( 'tab should be set to --- ', tabState );
           // set content state
 
           $( `.p-search__tab a[data-tab="${tabState}"]` ).trigger( 'click' );
