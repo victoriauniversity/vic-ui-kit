@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+### Added
+
+- **Cross icon** - Added cross icon was previously in fonts but not included as an icon class.
+
 ## Production release: [v0.10.13] - 2019-05-20
 
 ### Added
