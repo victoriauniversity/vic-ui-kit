@@ -71,19 +71,25 @@
     padding-right: 1rem;
     font-size: 1.25rem;
 
-    @include hoverify() {
-      opacity: .8;
+    a {
+      font-weight: 600;
+      color: #005EA5;
+      text-decoration: underline;
     }
 
-    a {
-      color: $black-tundora;
+    @include hoverify() {
+      opacity: .8;
+
+      a {
+        text-decoration: none;
+      }
     }
 
     &.active {
       a {
         position: relative;
-        color: $green-brand;
-        font-weight: 600;
+        color: $black-tundora;
+        text-decoration: none;
 
         &:after {
           position: absolute;
@@ -93,11 +99,21 @@
           content: '';
           width: 80%;
           height: 4px;
-          background-color: $green-brand;
-
+          background-color: $black-tundora;
         }
       }
 
+      @include hoverify() {
+        opacity: 1;
+      }
+    }
+
+    &.disabled-tab {
+      a {
+        color: $grey;
+        text-decoration: none;
+        cursor: not-allowed;
+      }
     }
 
 
@@ -108,7 +124,7 @@
         top: 0;
         right: 0;
         content: '|';
-        color: $green-brand;
+        color: $grey;
       }
     }
   }
@@ -116,7 +132,6 @@
 
 .p-search__main {
   flex: 1 0 100%;
-
 
   @include breakpoint(desktop) {
     max-width: 42rem;
@@ -170,6 +185,16 @@
       margin-top: 1.5rem;
       ul {
         padding-left: 0;
+      }
+    }
+
+    .tag {
+      @include hoverify() {
+        span.icon-check {
+          &::before {
+            content: "";
+          }
+        }
       }
     }
   }
