@@ -77,6 +77,14 @@ button,
     }
   }
 
+  &.danger-hover {
+    @include hoverify() {
+      transition: .5s ease-in;
+      background: $button-danger-color;
+      color: $white;
+    }
+  }
+
   // Disabled/Cannot be used button
   &[disabled],
   &.disabled {
