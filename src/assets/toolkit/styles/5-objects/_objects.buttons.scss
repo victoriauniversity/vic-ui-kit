@@ -20,6 +20,14 @@ button,
   line-height:   $text-line-height;
   border-radius: $button-corner-radius;
 
+  // Add pointer cursor to all buttons
+  cursor: pointer;
+
+  // Remove border attribute added by browsers
+  border: 0;
+
+  transition: color .15s ease-in-out, background-color .15s ease-in-out;
+
   // Default button
   color:            $text-color;
   background-color: $button-color;
@@ -79,7 +87,6 @@ button,
 
   &.danger-hover {
     @include hoverify() {
-      transition: .5s ease-in;
       background: $button-danger-color;
       color: $white;
     }
@@ -108,7 +115,9 @@ button,
     &::after { display: inline; }
   }
 
-
+  &.muted {
+    color: $text-weakest-color;
+  }
 }
 
 // Resets for special button variations
@@ -196,7 +205,3 @@ $btn-floating-size: 3.8rem;
     }
   }
 }
-
-
-
-
