@@ -37,13 +37,14 @@ ul.meta {
       }
     };
 
-    > a {
+    > a, > span {
       display: block;
       padding: .2rem .5rem;
       background-color: _tint( $meta-bg, $lighter-percentage ); //TODO: Can it be replaced by some of the pre-defined colour?
       color: $heading-color;
       text-decoration: none;
-
+    }
+    > a {
       @include hoverify {
         text-decoration: underline;
       }
