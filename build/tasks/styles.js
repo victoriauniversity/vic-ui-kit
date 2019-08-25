@@ -62,7 +62,10 @@ function processToolkitStyles( done ) {
     gulpif( config.devMode, sourcemaps.write()),
     gulpif( !config.devMode, gulp.dest( config.paths.tmp )),
     gulpif( !config.devMode, csso({ debug: true })),
-    gulpif( !config.devMode, rename( 'toolkit.min.css' )),
+    gulpif( !config.devMode, rename( function (path) {
+      path.basename += ".min";
+      path.extname = ".css";
+    } )),
     gulp.dest( config.paths.tmp ),
   ], done );
 }
