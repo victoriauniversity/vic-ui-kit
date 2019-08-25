@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+### Hotfix
+
+- **Fixed minification bundling on production** - red theme was being bundled with main static.css output file in production
+
 ### Added
 
 - **Cross icon** - Added cross icon was previously in fonts but not included as an icon class.
