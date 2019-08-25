@@ -36,7 +36,7 @@ function initPopupBox( popupElement, {
   const popupContainerElement = findAncestor( popupElement, 'popup-positioner' );
 
   const buttonOkElements = popupElement.getElementsByClassName( CLASSNAME.BUTTON_OK ),
-    buttonCancelElement = popupElement.getElementsByClassName( CLASSNAME.BUTTON_CANCEL )[0],
+    buttonCancelElement = popupElement.getElementsByClassName( CLASSNAME.BUTTON_CANCEL ),
     buttonCloseElement  = popupElement.getElementsByClassName( CLASSNAME.BUTTON_CLOSE )[0],
 
     IS_SHOWN_CLASS      = 'shown';
@@ -85,7 +85,11 @@ function initPopupBox( popupElement, {
     }
 
     if ( buttonCloseElement ) buttonCloseElement.addEventListener( 'click', close );
-    if ( buttonCancelElement ) buttonCancelElement.addEventListener( 'click', cancel );
+    if ( buttonCancelElement ) {
+      for ( let i = 0; i < buttonCancelElement.length; i++ ) {
+        buttonCancelElement[i].addEventListener( 'click', cancel );
+      }
+    }
   }
 
   function unbindButtonEvents() {
@@ -94,7 +98,11 @@ function initPopupBox( popupElement, {
     }
 
     if ( buttonCloseElement ) buttonCloseElement.removeEventListener( 'click', close );
-    if ( buttonCancelElement ) buttonCancelElement.removeEventListener( 'click', cancel );
+    if ( buttonCancelElement ) {
+      for ( let i = 0; i < buttonCancelElement.length; i++ ) {
+        buttonCancelElement[i].removeEventListener( 'click', cancel );
+      }
+    }
   }
 
   function addShownClass() {

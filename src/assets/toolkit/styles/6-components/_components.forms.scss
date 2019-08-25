@@ -73,6 +73,46 @@
   }
 }
 
+.form-flex {
+  padding: $gap-box;
+  background-color: $grey-gallery;
+
+  .group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: .5em;
+    width: 100%;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .field,
+  input:not([type=submit]),
+  textarea {
+    padding: .4rem .6rem;
+    border: 2px solid $grey-silver;
+
+    &.error {
+      border: 2px solid $red-roof-terratcotta;
+      background-color: $red-oyster-pink;
+    }
+
+    &:focus {
+      outline: none;
+      border: 2px solid $blue-azure;
+    }
+
+    &.field__input--wide {
+      @include breakpoint(desktop) {
+        width: 300px;
+      }
+    }
+  }
+}
+
 .group--vspace {
   margin:$gap 0;
 }

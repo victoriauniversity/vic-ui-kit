@@ -37,6 +37,7 @@ export default {};
 
 
 require( './study-areas.js' ); // TODO: set up multiple entry points for webpack bundles
+require( './modules/tabbed-search.js' );
 
 
 /* CONSTANT ATTRIBUTES */
