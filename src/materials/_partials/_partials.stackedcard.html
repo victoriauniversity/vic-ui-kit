@@ -4,16 +4,16 @@ notes: >
 ---
 <div class="c-stack {{classModifier}}">
 	{{#if image}}
-        <figure class="c-stack__fig">
-            <img class="c-stack__figureImage" src="{{image}}" alt="{{title}}">
+        <figure class="c-stack-fig">
+            <img class="c-stack-fig--image" src="{{image}}" alt="{{title}}">
         </figure>
     {{/if}}
 
     {{#if code}}
-        <div class="c-stack__fig c-stack__fig--panel">
-            <h4 class="c-stack__code">{{code}} {{#if year}} <span>({{year}})</span> {{/if}} </h4>
-            
-            <div class="c-stack__figCaption">
+        <div class="c-stack-fig c-stack-fig--panel">
+            <h4 class="c-stack-code">{{code}} {{#if year}} <span>({{year}})</span> {{/if}} </h4>
+
+            <div class="c-stack-figcaption">
                 {{#if startDate}}
                     <p><i class="icon-calendar"></i> <em>{{startDate}}</em></p>
                 {{else}}
@@ -26,10 +26,10 @@ notes: >
 
                 {{#if trimesters}}
                 <h5>Trimester</h5>
-                <ul class="c-stack__figList">
+                <ul class="c-stack-figlist">
                     {{#each (split trimesters ",")}}
                         <li>
-                            <a class="c-stack__figLink" href="#trimLink">{{this}}</a>
+                            <a class="c-stack-figLink" href="#trimLink">{{this}}</a>
                         </li>
                     {{/each}}
                 </ul>
@@ -37,14 +37,14 @@ notes: >
             </div>
         </div>
     {{/if}}
-    
-    <div class="c-stack__info">
+
+    <div class="c-stack-info">
         {{#if title}}
-            <h4 class="c-stack__title">
-                <a class="c-stack__link" href="#mainLink">{{{title}}}</a>
+            <h4 class="c-stack-title">
+                <a class="c-stack-link" href="#mainLink">{{{title}}}</a>
 
                 {{#if url}}
-                    <small>{{url}} 
+                    <small>{{url}}
                         {{#if filetype}}
                         <span class="label label-- file-pdf"><i>{{filetype}}</i><span> 1286460KB</span></span>
                         {{/if}}
@@ -52,17 +52,17 @@ notes: >
                 {{/if}}
             </h4>
         {{/if}}
-        
+
 
         {{#if intro}}
-            <p class="c-stack__intro">{{intro}}</p>
+            <p class="c-stack-intro">{{intro}}</p>
         {{/if}}
-        
-        <div class="c-stack__body">
+
+        <div class="c-stack-body">
             {{> @partial-block}}
         </div>
-        
-        <div class="c-stack__foot">
+
+        <div class="c-stack-foot">
             {{#if meta}}
             <ul class="meta">
                 <li class="highlight">
@@ -71,7 +71,7 @@ notes: >
                     </a>
                 </li>
                 <li class="highlight">
-                    <a href="tel:04 4635375" title="Call to Dr Ina Reichenberger work phone"> 
+                    <a href="tel:04 4635375" title="Call to Dr Ina Reichenberger work phone">
                         <i class="icon-phone"></i> 04 4635375
                     </a>
                 </li>
@@ -89,6 +89,6 @@ notes: >
             </ul>
             {{/if}}
         </div>
-        
+
     </div>
 </div>

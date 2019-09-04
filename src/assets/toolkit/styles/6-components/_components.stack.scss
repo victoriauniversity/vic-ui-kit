@@ -3,7 +3,7 @@
 \*============================================================================*/
 
 ////
-///   
+///
 ///
 
 $stack-heading-border-color: $brand-light !default;
@@ -13,26 +13,27 @@ $stack-divider-color: $grey-gallery !default;
   position: relative;
   margin-bottom: $gap;
   padding: $gap;
-  
+  border-radius: $radius;
+
   background: $white;
   box-shadow: $shadow-shallow;
 
-  &:not(.c-stack--flexin) {
+  &:not(.c-stack-flexin) {
     @include clearfix;
   }
 }
 
-.c-stack--flexin {
+.c-stack-flexin {
   @include breakpoint( $from: tablet ) {
     display: flex;
   }
 }
 
-.c-stack__title {
+.c-stack-title {
   .highlight & {
     font-size: $h3-size;
   }
-  
+
   small {
     overflow: hidden;
     display: block;
@@ -48,11 +49,11 @@ $stack-divider-color: $grey-gallery !default;
   }
 }
 
-.c-stack__fig {
+.c-stack-fig {
   float:left;
   margin-right: $gap;
-  
-  .c-stack--flexin & {
+
+  .c-stack-flexin & {
     float:none;
     margin:$bleed $bleed $gap $bleed; //could use $bleed here..
 
@@ -61,7 +62,7 @@ $stack-divider-color: $grey-gallery !default;
     }
   }
 
-  .c-stack--profile & {
+  .c-stack-profile & {
     @include breakpoint( $until: tablet ) {
       float: left;
       margin:$bleed $gap $gap $bleed;
@@ -70,14 +71,14 @@ $stack-divider-color: $grey-gallery !default;
   }
 }
 
-.c-stack__fig--panel {
+.c-stack-fig--panel {
   padding: $gap;
-  
+
   @include breakpoint( $until: tablet ) {
     text-align: center;
     border-bottom: 1px solid $stack-divider-color;
   }
-  
+
   @include breakpoint( $from: tablet ) {
     max-width: 145px;
     min-width: 141px;
@@ -85,7 +86,7 @@ $stack-divider-color: $grey-gallery !default;
   }
 }
 
-.c-stack__code {
+.c-stack-code {
   color: $black;
   font-family: $text-family;
 
@@ -96,7 +97,7 @@ $stack-divider-color: $grey-gallery !default;
   }
 }
 
-.c-stack__figCaption {
+.c-stack-figcaption {
   margin-top: $gap-half;
   font-size: $text-size-tiny;
 
@@ -117,7 +118,7 @@ $stack-divider-color: $grey-gallery !default;
   }
 }
 
-.c-stack__figList {
+.c-stack-figlist {
   z-index: $z-index-top;
   position: relative;
   margin-bottom: 0 !important;
@@ -136,31 +137,32 @@ $stack-divider-color: $grey-gallery !default;
   }
 }
 
-.c-stack__figureImage {
+.c-stack-fig--image {
   margin: 0;
+  border-radius: $radius 0 0 0;
 
   @include breakpoint( $from: tablet ) {
     width: 175px;
   }
 }
 
-.c-stack__body {
+.c-stack-body {
   > * {
     margin-top:$gap-half;
-    
+
     @include breakpoint( $from: tablet ) {
       margin-top:$gap;
     }
   }
 
-  .c-stack--profile & {
+  .c-stack-profile & {
     @include breakpoint( $until: tablet ) {
       margin-left: calc( 26% + 22px );
     }
   }
 }
 
-.c-stack__intro {
+.c-stack-intro {
   margin:$gap-half 0 0;
   font-weight: bold;
 
@@ -170,9 +172,9 @@ $stack-divider-color: $grey-gallery !default;
   }
 }
 
-.c-stack__link {
+.c-stack-link {
   @include linkify-text();
-  
+
   @include after() {
     position: absolute;
     top: 0;
@@ -182,12 +184,12 @@ $stack-divider-color: $grey-gallery !default;
     z-index: $z-index-middle;
   }
 }
-.c-stack__figLink {
+.c-stack-figLink {
   @include linkify-text();
   color: $black;
 }
 
-.c-stack__foot {
+.c-stack-foot {
   > *:first-child {
     margin-top: $gap;
     margin-bottom: 0;
