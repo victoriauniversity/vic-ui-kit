@@ -1,4 +1,4 @@
-$meta-label-color: $brand-light !default;
+$meta-label-color: $grey !default;
 $meta-bg: $brand-opaque !default;
 
 // List of quick (meta) information
@@ -52,7 +52,7 @@ ul.meta {
   }
 }
 
-.meta__item {
+.meta-item {
   display: inline-block;
 
   ul.meta--labelled & {
@@ -79,7 +79,7 @@ ul.meta {
   }
 }
 
-.meta__label {
+.meta-label {
   color: $meta-label-color;
 
   @include breakpoint($until: tablet) {
@@ -93,13 +93,13 @@ ul.meta {
   }
 }
 
-.meta__labelText {
+.meta-labelText {
   @include breakpoint($until: tablet) {
     display: none;
   }
 }
 
-.meta__data {
+.meta-data {
   font-size: $h5-size;
 
   .meta--labelled & {
