@@ -65,7 +65,14 @@ $banner-figure-bg: $brand !default;
 
 .homepage-banner,
 .study-hub-banner {
-  &.layout { display: block; } // IE11 fix to turn off flexbox which is causing issues
+
+  &.layout {
+    // IE11 fix to turn off flexbox which is causing issues
+    @media all and ( -ms-high-contrast: none ), ( -ms-high-contrast: active ) {
+      display: block;
+    }
+  }
+
 
   .banner { position: relative; }
 
