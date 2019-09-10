@@ -68,7 +68,7 @@ $banner-figure-bg: $brand !default;
 
   &.layout {
     // IE11 fix to turn off flexbox which is causing issues
-    @media all and ( -ms-high-contrast: none ), ( -ms-high-contrast: active ) {
+    @include target-ie {
       display: block;
     }
   }
