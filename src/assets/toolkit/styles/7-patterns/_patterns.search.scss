@@ -18,8 +18,15 @@
     width: 100%;
 
     &.search-active {
-      display: flex;
+      display: block;
     }
+
+    @include breakpoint( $from: tablet ) {
+      &.search-active {
+        display: flex;
+      }
+    }
+
 
     &.search-inactive {
       display: none;
