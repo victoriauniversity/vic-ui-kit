@@ -16,7 +16,9 @@
     @include clearfix;
     margin-bottom: .5em;
 
-    .error-text { color: $red-roof-terratcotta; }
+    .error-text {
+      color: $red-roof-terratcotta;
+    }
 
     &.group--solo {
       margin-bottom: 0;
@@ -33,7 +35,9 @@
     font-weight: $weight-bold;
     line-height: 1.3;
 
-    em { font-weight: $weight-normal; }
+    em {
+      font-weight: $weight-normal;
+    }
   }
 
   input:not([type=submit]),
@@ -58,7 +62,9 @@
     }
   }
 
-  textarea { width: 50%; }
+  textarea {
+    width: 50%;
+  }
 
   &.course-search-bar {
     flex: 1 0 auto;
@@ -69,7 +75,9 @@
       margin-bottom: 0;
     }
 
-    input[type=text] { width: 80%; }
+    input[type=text] {
+      width: 80%;
+    }
   }
 }
 
@@ -77,16 +85,29 @@
   padding: $gap-box;
   background-color: $grey-gallery;
 
+  fieldset {
+    margin: 2rem 0;
+    padding: 2rem 1rem;
+    border: 1px solid $grey-silver;
+  }
+
+  legend {
+    padding: .2rem .5rem;
+    color: $black-tundora;
+    border: 1px solid $grey-silver;
+  }
+
   .group {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     margin-bottom: .5em;
     width: 100%;
-  }
+    flex-wrap: wrap;
 
-  .full-width {
-    width: 100%;
+    .error-text {
+      color: $red-roof-terratcotta;
+    }
   }
 
   .field,
@@ -105,11 +126,40 @@
       border: 2px solid $blue-azure;
     }
 
-    &.field__input--wide {
-      @include breakpoint(desktop) {
-        width: 300px;
-      }
+    &:disabled {
+      color: $grey-chalice;
+      background-color: $grey-alto;
     }
+  }
+
+  .field + .icon-button,
+  input:not([type=submit]) + .icon-button,
+  input:not([type=submit]) + label + .icon-button,
+  textarea + .icon-button {
+    margin-left: 1rem;
+  }
+
+  .field,
+  input:not([type=submit]):not([type="checkbox"]),
+  textarea {
+    flex-grow: 1;
+  }
+
+  // input[type="checkbox"] {
+  //   margin-right: 1rem;
+  // }
+  input[type="checkbox"] + label {
+    margin-left: 1rem;
+    flex-grow: 1;
+  }
+
+  input:disabled {
+    color: rgba(0, 0, 0, .247);
+    background-color: rgb(218, 218, 218);
+  }
+
+  .error-text {
+    width: 100%;
   }
 }
 
