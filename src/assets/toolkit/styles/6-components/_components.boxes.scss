@@ -39,7 +39,7 @@
     }
   }
 
-  @include breakpoint( $until: desktop-large ) {
+  @include breakpoint( $until: desktop ) {
     flex-wrap: wrap;
 
     > * {
@@ -72,4 +72,26 @@
     }
   }
 
+}
+
+.content-panel > main .flash-message.info-row {
+  flex-wrap: wrap;
+
+  > * {
+    &:first-child {
+      flex-basis:    100%;
+      margin-bottom: .5em;
+    }
+
+    &:not(:first-child) {
+      flex-basis: 31%;
+    }
+  }
+
+  @include breakpoint( $until: tablet ) {
+    > *:not(:first-child) {
+      flex-basis: 100%;
+      margin-bottom: .5em;
+    }
+  }
 }
