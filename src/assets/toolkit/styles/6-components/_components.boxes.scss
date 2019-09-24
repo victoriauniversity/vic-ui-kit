@@ -62,9 +62,11 @@
   }
 
   .info-col {
-    padding-bottom: $gap-third;
-    border-bottom: $border-width-thin solid $border-color-dark;
-
+    @include breakpoint( $until: tablet ) {
+      padding-bottom: $gap-third;
+      border-bottom: $border-width-thin solid $blue-callypso;
+    }
+      
     h4,
     h5 {
       margin-bottom: $gap-small;
