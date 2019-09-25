@@ -286,6 +286,75 @@ $footer-heading-margin-bottom: .75em;
 
       &:last-child { margin-bottom: 0; }
     }
+
+    &.footer-connect {
+      h4 {
+        margin-bottom: .5rem;
+        color: $black-tundora;
+      }
+
+      .centraliser {
+        display: flex;
+        align-items: center;
+      }
+
+      .social {
+        text-align: center;
+
+        .social-icon {
+          img,
+          svg {
+            margin-right: .5rem;
+            height: 3rem;
+            width: 3rem;
+            fill: #424242;
+            padding: .5rem;
+
+            @include hoverify {
+              background-color: #eee;
+              border-radius: 12px;
+            }
+
+          }
+        }
+      }
+
+      nav {
+        a {
+          color: $blue-endeavoura;
+        }
+
+        ul {
+          display: flex;
+          flex-wrap: wrap;
+          li {
+            margin-right: 1.5rem;
+            width: auto;
+          }
+        }
+      }
+
+      @include breakpoint( $until: tablet ) {
+        .centraliser {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+
+  &.footer-apply {
+    background-color: $grey-gallery;
+    border-top: solid 1px #ddd;
+    .flex-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      h3 {
+        margin-right: 2rem;
+        color: $black-tundora;
+      }
+    }
   }
 
   @include breakpoint( tablet ) {
@@ -339,6 +408,5 @@ $footer-heading-margin-bottom: .75em;
         }
       }
     }
-
   }
 }
