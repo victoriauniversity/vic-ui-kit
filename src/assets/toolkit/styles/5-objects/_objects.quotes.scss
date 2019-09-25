@@ -250,3 +250,62 @@ blockquote.quote { font-style: italic; }
 
   }
 }
+
+.quote-flex {
+  display: flex;
+  flex-wrap: wrap;
+
+  .quote-text {
+    flex-basis: 75%;
+    flex-grow: 1;
+    align-self: center;
+
+    h3 {
+      color: $black-mine-shaft;
+    }
+  }
+
+  .quote-author {
+    flex-basis: 25%;
+    flex-grow: 1;
+    padding: .75rem;
+    min-width: 200px;
+    text-align: center;
+
+    .quote-image {
+      margin-bottom: 1.25rem;
+      width: 100px;
+      height: auto;
+      border-radius: 50%;
+    }
+
+    h4 {
+      margin-bottom: .25rem;
+    }
+
+    h4,
+    p {
+      color: $black-emperor;
+    }
+
+    .button {
+      margin-top: 1rem;
+    }
+  }
+
+  &.text-right {
+    flex-direction: row-reverse;
+  }
+
+  &.full {
+    .quote-author,
+    .quote-text {
+      flex-basis: 100%;
+    }
+  }
+
+  &.full.inline {
+    padding-left: 1rem;
+    border-left: 4px solid $green-brand;
+  }
+}
