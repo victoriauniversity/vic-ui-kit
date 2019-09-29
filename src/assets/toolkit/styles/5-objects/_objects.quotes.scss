@@ -250,3 +250,69 @@ blockquote.quote { font-style: italic; }
 
   }
 }
+
+.quote-flex {
+  display: flex;
+  flex-wrap: wrap;
+
+  .quote-text {
+    flex-basis: 75%;
+    flex-grow: 1;
+    padding: $column-padding;
+    align-self: center;
+
+    h3 {
+      color: $black-mine-shaft;
+    }
+  }
+
+  .quote-author {
+    flex-basis: 25%;
+    flex-grow: 1;
+    padding: $column-padding;
+    min-width: 200px;
+    text-align: center;
+    color: $black-emperor;
+
+    .quote-author-image {
+      margin-bottom: 1.25rem;
+      width: 100px;
+      height: auto;
+      border-radius: 50%;
+    }
+
+    .quote-author-title {
+      margin-bottom: .25rem;
+    }
+
+    .button {
+      margin-top: 1rem;
+    }
+  }
+
+  &.text-right {
+    flex-direction: row-reverse;
+  }
+
+  &.full,
+  &.inline {
+    .quote-author,
+    .quote-text {
+      flex-basis: 100%;
+    }
+  }
+
+  &.inline {
+    border-left: 4px solid $green-nebula;
+
+    .quote-author {
+      text-align: left;
+
+      .quote-author-title::before {
+        display: inline-block;
+        content: '—';
+        margin-right: .5rem;
+      }
+    }
+  }
+}
