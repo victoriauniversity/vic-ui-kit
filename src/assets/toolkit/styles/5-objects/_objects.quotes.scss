@@ -273,7 +273,7 @@ blockquote.quote { font-style: italic; }
   .quote-author {
     flex-basis: 25%;
     flex-grow: 1;
-    min-width: 160px;
+    min-width: 200px;
     text-align: center;
     color: $black-emperor;
 
@@ -326,6 +326,46 @@ blockquote.quote { font-style: italic; }
   }
 
   &.inlinequote {
-    border-left: 4px solid $green-nebula;
+    border-left: $border-strip-highlight;
+  }
+}
+
+.centraliser + .block > .quote-flex:not(.text-right) {
+  @include breakpoint( tablet ) {
+    .quote-author {
+      text-align: left;
+    }
+    .quote-text {
+      text-align: right;
+    }
+  }
+  @include breakpoint( $from: tablet ) {
+    .quote-author {
+      padding-left: 2rem;
+    }
+    .quote-text {
+      padding-right: 2rem;
+      border-right: 4px solid #D1E0DA;
+    }
+  }
+}
+
+.centraliser + .block > .quote-flex.text-right {
+  @include breakpoint( tablet ) {
+    .quote-author {
+      text-align: right;
+    }
+    .quote-text {
+      text-align: left;
+    }
+  }
+  @include breakpoint( $from: tablet ) {
+    .quote-author {
+      padding-right: 2rem;
+    }
+    .quote-text {
+      padding-left: 2rem;
+      border-left: $border-strip-highlight;
+    }
   }
 }
