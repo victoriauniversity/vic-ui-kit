@@ -250,3 +250,82 @@ blockquote.quote { font-style: italic; }
 
   }
 }
+
+// Reset .formatting styles
+.formatting .quote-flex {
+  h1, h2, h3, h4, h5, h6,
+  p,
+  .button {
+    margin: 0;
+  }
+}
+
+.quote-flex {
+  display: flex;
+  margin-bottom: 1.6rem;
+  flex-wrap: wrap;
+
+  .quote-author,
+  .quote-text {
+    padding: 1rem;
+  }
+
+  .quote-author {
+    flex-basis: 25%;
+    flex-grow: 1;
+    min-width: 160px;
+    text-align: center;
+    color: $black-emperor;
+
+    .quote-author-image {
+      margin-bottom: 1.25rem;
+      width: 100px;
+      height: auto;
+      border-radius: 50%;
+    }
+
+    .quote-author-title {
+      margin-bottom: .25rem;
+    }
+
+    .button {
+      margin-top: 1rem;
+    }
+  }
+
+  .quote-text {
+    flex-basis: 75%;
+    flex-grow: 1;
+    align-self: center;
+  }
+
+  &.text-right {
+    flex-direction: row-reverse;
+  }
+
+  &.full,
+  &.inlinequote {
+    .quote-author,
+    .quote-text {
+      flex-basis: 100%;
+    }
+
+    .quote-author {
+      text-align: left;
+
+      .quote-author-title::before {
+        display: inline-block;
+        content: '—';
+        margin-right: .5rem;
+      }
+    }
+
+    .quote-text {
+      font-size: $text-size-5;
+    }
+  }
+
+  &.inlinequote {
+    border-left: 4px solid $green-nebula;
+  }
+}
