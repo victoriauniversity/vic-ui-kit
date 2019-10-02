@@ -1,0 +1,269 @@
+/*============================================================================*\
+| Toggles
+\*============================================================================*/
+
+////
+///
+///
+///
+
+.international-toggle {
+  h4 {
+    color: #424242;
+  }
+
+  .can-toggle {
+    position: relative;
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content: flex-end;
+
+    * {
+      box-sizing: border-box;
+
+      &:before, &:after {
+        box-sizing: border-box;
+      }
+    }
+
+    input[type="checkbox"] {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      &[disabled] ~ label {
+        pointer-events: none;
+
+        .can-toggle__switch {
+          opacity: 0.4;
+        }
+      }
+
+      &:checked ~ label .can-toggle__switch {
+        &:before {
+          content: attr(data-unchecked);
+          left: 0;
+        }
+
+        &:after {
+          content: attr(data-checked);
+        }
+      }
+    }
+
+    label {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 250px;
+
+      .can-toggle__label-text {
+        /* padding-left: 32px;
+        padding-right: 32px; */
+        padding: 0 2rem;
+      }
+
+      .can-toggle__switch {
+        position: relative;
+
+        &:before {
+          content: attr(data-checked);
+          position: absolute;
+          top: 0;
+          text-transform: uppercase;
+          text-align: center;
+        }
+
+        &:after {
+          content: attr(data-unchecked);
+          position: absolute;
+          z-index: 5;
+          text-transform: uppercase;
+          text-align: center;
+          background: #005EA5;
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+      }
+    }
+
+    input[type="checkbox"] {
+      &[disabled] ~ label {
+        color: rgba(119, 119, 119, 0.5);
+      }
+
+      &:focus ~ label .can-toggle__switch, &:hover ~ label .can-toggle__switch {
+        /* background-color: #777; */
+        cursor: pointer;
+        outline: 1px dotted #212121;
+        outline: 5px auto -webkit-focus-ring-color;
+      }
+
+      &:focus ~ label .can-toggle__switch:after {
+        /* color: #5e5e5e; */
+      }
+
+      &:hover ~ label {
+        .can-toggle__switch:after {
+          /* color: #5e5e5e; */
+        }
+
+        color: #6a6a6a;
+      }
+
+      &:checked {
+        ~ label {
+          &:hover {
+            /* color: rgba(0, 93, 165, 0.7); */
+          }
+
+          .can-toggle__switch {
+            /* background-color: rgba(0, 93, 165, 0.7); */
+
+            &:after {
+              /* color: rgba(0, 93, 165, 0.7); */
+              left: 0;
+            }
+          }
+        }
+
+        &:focus ~ label .can-toggle__switch, &:hover ~ label .can-toggle__switch {
+          /* background-color: rgba(0, 93, 165, 0.7); */
+        }
+
+        &:focus ~ label .can-toggle__switch:after, &:hover ~ label .can-toggle__switch:after {
+          /* color: rgba(0, 93, 165, 0.7); */
+          cursor: pointer;
+        }
+      }
+    }
+
+    label .can-toggle__switch {
+      transition: background-color 0.3s cubic-bezier(0, 1, 0.5, 1);
+      background: #ddd;
+
+      &:before {
+        color: #424242;
+      }
+
+      &:after {
+        transition: -webkit-transform 0.3s cubic-bezier(0, 1, 0.5, 1);
+        transition: transform 0.3s cubic-bezier(0, 1, 0.5, 1);
+        transition: transform 0.3s cubic-bezier(0, 1, 0.5, 1), -webkit-transform 0.3s cubic-bezier(0, 1, 0.5, 1);
+        color: #fff;
+      }
+    }
+
+    input[type="checkbox"] {
+      &:focus ~ label .can-toggle__switch:after, &:hover ~ label .can-toggle__switch:after {
+        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+      }
+
+      &:checked {
+        ~ label .can-toggle__switch:after {
+          -webkit-transform: translate3d(65px, 0, 0);
+          transform: translate3d(65px, 0, 0);
+        }
+
+        &:focus ~ label .can-toggle__switch:after, &:hover ~ label .can-toggle__switch:after {
+          box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
+          cursor: pointer;
+        }
+      }
+    }
+
+    label {
+      font-size: 14px;
+
+      .can-toggle__switch {
+        height: 36px;
+        flex: 0 0 134px;
+        border-radius: 4px;
+
+        &:before {
+          left: 67px;
+          font-size: 12px;
+          line-height: 36px;
+          width: 67px;
+          padding: 0 12px;
+        }
+
+        &:after {
+          top: 2px;
+          left: 2px;
+          border-radius: 2px;
+          width: 65px;
+          line-height: 32px;
+          font-size: 12px;
+        }
+
+        &:hover:after {
+          box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
+          cursor: pointer;
+        }
+      }
+    }
+
+    &.can-toggle--size-small {
+      input[type="checkbox"] {
+        &:focus ~ label .can-toggle__switch:after, &:hover ~ label .can-toggle__switch:after {
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+          cursor: pointer;
+        }
+
+        &:checked {
+          ~ label .can-toggle__switch:after {
+            -webkit-transform: translate3d(44px, 0, 0);
+            transform: translate3d(44px, 0, 0);
+          }
+
+          &:focus ~ label .can-toggle__switch:after, &:hover ~ label .can-toggle__switch:after {
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+          }
+        }
+      }
+
+      label {
+        font-size: 13px;
+
+        .can-toggle__switch {
+          height: 30px;
+          flex: 0 0 90px;
+          border-radius: 2px;
+          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+
+          &:before {
+            left: 45px;
+            font-size: 12px;
+            line-height: 28px;
+            width: 45px;
+            padding: 0 12px;
+            top: 2px;
+          }
+
+          &:after {
+            top: 2px;
+            left: 2px;
+            border-radius: 1px;
+            width: 44px;
+            line-height: 26px;
+            font-size: 12px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+          }
+
+          &:hover:after {
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+          }
+        }
+      }
+    }
+  }
+}
