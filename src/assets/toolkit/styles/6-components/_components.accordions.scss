@@ -1,0 +1,49 @@
+// ========================================
+// ======== Accordion
+// ========================================
+//_components.accordion.scss
+
+.accordion {
+  display: grid;
+  padding: 1px;
+  grid-row-gap: 1px;
+  background-color: $grey-alto;
+
+  details {
+    /* Fallback for IE11 */
+    list-style-type: none !important;
+  }
+
+  .accordion details[open] .block * {
+    animation: fade .5s ease-in;
+  }
+
+  @keyframes fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  .accordion-title {
+    padding: .5rem 1rem;
+    background-color: $grey-gallery;
+    color: #424242;
+    color: $black-tundora;
+    cursor: pointer;
+    font-size: 1.15rem;
+    @include target-ie {
+      cursor: auto;
+    }
+  }
+
+  .accordion-title:hover,
+  .accordion-title:focus {
+    background-color: $grey-alto;
+    @include target-ie {
+      background-color: $grey-gallery;
+    }
+  }
+
+  .block {
+    background-color: $white;
+  }
+}
