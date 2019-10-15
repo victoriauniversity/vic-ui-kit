@@ -1,4 +1,7 @@
 [![GitHub stable release](https://img.shields.io/github/release/victoriauniversity/vic-ui-kit.svg?label=last%20stable%20release)]() 
+
+[![Build Status](https://dev.azure.com/Digital-Engagement/UI%20Kit/_apis/build/status/UI%20Kit-CI?branchName=cicd%2Fni-build-pipeline)](https://dev.azure.com/Digital-Engagement/UI%20Kit/_build/latest?definitionId=3&branchName=cicd%2Fni-build-pipeline)
+
 [ ![Codeship Status for victoriauniversity/vic-ui-kit](https://app.codeship.com/projects/6f8cf750-81fe-0134-4879-1e33cd15468d/status)](https://app.codeship.com/projects/182365)
 
 ([Changelog](https://github.com/victoriauniversity/vic-ui-kit/blob/master/CHANGELOG.md)) &mdash; [Full Documentation](https://static.victoria.ac.nz/)
