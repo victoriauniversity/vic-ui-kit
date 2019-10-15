@@ -4,18 +4,20 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
+- cicd/ni-build-pipeline
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'Ubuntu-16.04'
+  demands:
+    - npm
 
 steps:
-- task: NodeTool@0
+- task: Npm@1
+  displayName: 'Run npm install'
   inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+    verbose: false
 
 - script: |
-    npm install
-    npm run release-stage
+    npm build
+
   displayName: 'npm install and build'
