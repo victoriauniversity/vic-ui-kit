@@ -15,22 +15,20 @@ stages:
     jobs: 
     - job: 'Build'
       displayName: 'Build job'
+      pool:
+        vmImage: 'Ubuntu-16.04'
+        demands:
+          - npm
 
-    pool:
-      vmImage: 'Ubuntu-16.04'
-      demands:
-        - npm
-    
+      steps:
+      - task: Npm@1
+        displayName: 'Install npm'
+        inputs:
+          command: 'install'
+          verbose: true
 
-    steps:
-    - task: Npm@1
-      displayName: 'Install npm'
-      inputs:
-        command: 'install'
-        verbose: true
-
-    - script: npm build
-      displayName: 'npm build'
+      - script: npm build
+        displayName: 'npm build'
 
   - stage: 'Deploy'
     displayName: 'Deploy the UI Kit dist folder'
