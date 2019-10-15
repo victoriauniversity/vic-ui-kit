@@ -6,18 +6,44 @@
 trigger:
 - cicd/ni-build-pipeline
 
-pool:
-  vmImage: 'Ubuntu-16.04'
-  demands:
-    - npm
+variables:
+  buildConfiguration: 'Release'
 
-steps:
-- task: Npm@1
-  displayName: 'Run npm install'
-  inputs:
-    verbose: false
+stages:
+- stage: 'Build'
+  displayName: 'Build the UI Kit files'
+  jobs: 
+  - job: 'Build'
+    displayName: 'Build job'
 
-- script: |
-    npm build
+  pool:
+    vmImage: 'Ubuntu-16.04'
+    demands:
+      - npm
 
-  displayName: 'npm install and build'
+  steps:
+  - task: Npm@1
+    displayName: 'Run npm build'
+    inputs:
+      verbose: false
+
+  - script: |
+      npm build
+
+    displayName: 'npm build'
+
+
+  - stage: 'Deploy'
+  displayName: 'Deploy the UI Kit dist folder'
+  dependsOn: Build
+  jobs:
+  - deployment: Deploy
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    environment: dev
+    variables:
+    - group: Release
+    strategy:
+      runOnce:
+        deploy:
+          steps:
