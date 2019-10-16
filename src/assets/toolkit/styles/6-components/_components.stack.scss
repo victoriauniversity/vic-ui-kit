@@ -79,6 +79,7 @@ $stack-divider-color: $grey-gallery !default;
 
 .c-stack-fig--panel {
   padding: $gap;
+  padding-right: .5rem;
 
   @include breakpoint( $until: tablet ) {
     text-align: center;
@@ -86,8 +87,8 @@ $stack-divider-color: $grey-gallery !default;
   }
 
   @include breakpoint( $from: tablet ) {
-    max-width: 160px;
-    min-width: 160px;
+    max-width: 170px;
+    min-width: 170px;
     border-right: 1px solid $stack-divider-color;
   }
 }
@@ -96,7 +97,7 @@ $stack-divider-color: $grey-gallery !default;
   color: $black;
   font-family: $text-family;
   word-break: break-all;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 
   span {
     @include breakpoint( $from: tablet ) {
@@ -172,10 +173,16 @@ $stack-divider-color: $grey-gallery !default;
   @include breakpoint( $from: tablet ) {
     .meta {
       display: flex;
+      margin-bottom: 0;
 
       .meta-item {
         flex: 1;
         margin-right: 1.5rem;
+
+        .meta-data {
+          font-size: 1.15rem;
+          line-height: 1.4;
+        }
       }
     }
   }

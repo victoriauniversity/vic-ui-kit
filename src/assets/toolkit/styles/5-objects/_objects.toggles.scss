@@ -98,11 +98,14 @@
         color: rgba(119, 119, 119, 0.5);
       }
 
-      &:focus ~ label .can-toggle__switch, &:hover ~ label .can-toggle__switch {
-        /* background-color: #777; */
+      &:focus ~ label .can-toggle__switch {
         cursor: pointer;
         outline: 1px dotted #212121;
         outline: 5px auto -webkit-focus-ring-color;
+      }
+
+      &:hover ~ label .can-toggle__switch {
+        cursor: pointer;
       }
 
       &:focus ~ label .can-toggle__switch:after {
@@ -112,6 +115,7 @@
       &:hover ~ label {
         .can-toggle__switch:after {
           /* color: #5e5e5e; */
+          opacity: .8;
         }
 
         color: #6a6a6a;
