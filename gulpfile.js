@@ -66,3 +66,13 @@ gulp.task( 'release:prod', gulp.series(
   'git:shallowClone',
   'git:exec',
 ));
+
+// Build bridge assets for squiz
+gulp.task( 'build-bridge', gulp.series(
+  'setEnv:prod',
+  'build',
+  'copy:tmp',
+  'copy:dist',
+  'copy:release',
+));
+
