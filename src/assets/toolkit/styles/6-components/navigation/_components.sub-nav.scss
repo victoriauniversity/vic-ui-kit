@@ -161,7 +161,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
           padding: 0;
 
           &:not(.expanded) {
-            .btn-expander::after { 
+            .btn-expander::after {
               content: "";
               border-left: .25em solid transparent;
               border-right: .25em solid transparent;
@@ -173,7 +173,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
               height: 0;
             }
           }
-          
+
           > li {
             display: flex;
             position: relative;
@@ -200,7 +200,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
               line-height: 1.4;
               font-size: 1.2em;
               border-radius: .7em;
-          
+
               @include hoverify() {
                 color: $white;
                 background-color: rgba( $black, .2 );
@@ -218,18 +218,18 @@ $page-sub-nav-hover-bg: $brand-darker !default;
               border-bottom: none;
               line-height: 1.3;
               color: $white;
-              font-weight: 600; 
+              font-weight: 600;
 
               @include hoverify() {
                 background-color: $green-brand;
               }
             }
-            
+
             &.active {
 
               a {
                 color: $white;
-                font-weight: 600;
+                // font-weight: 600;
               }
 
               > a {
@@ -252,9 +252,9 @@ $page-sub-nav-hover-bg: $brand-darker !default;
                   width: 2px;
                   transform: translateY(-55%);
                 }
-              }  
+              }
             }
-            
+
             > ul {
               display: none;
             }
@@ -263,7 +263,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
           &.expanded {
             padding: 0;
             position: relative;
-            
+
             .bg {
               position: absolute;
               top: 13%;
@@ -273,14 +273,14 @@ $page-sub-nav-hover-bg: $brand-darker !default;
               content: "";
             }
 
-        
+
             > li {
               display: flex;
               flex-wrap: wrap;
               flex: 1;
               background-color: $green-brand;
               border-bottom: 5px solid $green-bottle;
-              
+
               > a {
                 display: block;
                 position: relative;
@@ -291,14 +291,14 @@ $page-sub-nav-hover-bg: $brand-darker !default;
               > .btn-expander {
                 align-self: flex-start;
               }
-              
+
               > ul {
                 display: flex;
                 flex-direction: column;
                 padding-top: .5rem;
                 flex-grow: 0;
                 flex-basis: 100%;
-                
+
                 > li {
                   position: relative;
                   border-left: 1px solid rgba( $white, .1 );
@@ -307,8 +307,9 @@ $page-sub-nav-hover-bg: $brand-darker !default;
 
                   > a {
                     padding: 0;
+                    color: $white;
                   }
-                  
+
                   &:not(:last-child) {
                     &:after {
                       position: absolute;
@@ -321,7 +322,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
                   }
                 }
               }
-              
+
               &:last-child {
                 .btn-expander {
                   right: 0;
@@ -333,7 +334,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
                 > ul {
 
                   li {
-                    border-left: 1px solid rgba(255, 255, 255, 0.8);
+                    border-left: 2px solid rgba(255, 255, 255, 0.8);
 
                     &:not(:last-child) {
                       &:after {
@@ -364,7 +365,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
               }
             }
             &.expanded {
-              
+
               > li {
 
                 &:not(:last-child) {
@@ -381,7 +382,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
                     @include triangle( up, .5em, .2em, $white );
                     top: -.15em;
                   }
-          
+
                   @include hoverify() {
                     &::after {
                       @include triangle( up, .5em, .2em, $grey-alto);
@@ -391,7 +392,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
 
                 &.active {
                   box-shadow: $shadow;
-                  transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px) translateZ(0);
+                  // transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px) translateZ(0);
                   backface-visibility: hidden;
                   background-color: #0D4B2F;
                   border-bottom: 5px solid $green-brand;
@@ -406,7 +407,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
 
                 &:hover {
                   &:not(.active) {
-                    @include slideOutUp;
+                    // @include slideOutUp;
                     z-index: $z-index-default;
                     box-shadow: $shadow;
 
@@ -454,12 +455,12 @@ $page-sub-nav-hover-bg: $brand-darker !default;
 
             &.expanded {
               > li {
-                .btn-expander::after { 
+                .btn-expander::after {
                   @include objectify( $position: relative );
                   @include triangle( down, .5em, .2em, $white );
                   top: -.15em;
                 }
-                
+
                 a {
                   @include hoverify() {
                     color: $white;
@@ -472,7 +473,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
 
                 &.js-dropdown-show {
                   padding-bottom: 1rem;
-                
+
                   > .btn-expander {
                     right: 0;
                     top: .5rem;
@@ -529,7 +530,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
                 text-decoration: none;
                 transition: none;
               }
-              
+
             }
 
             @include hoverify() {
@@ -559,7 +560,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
 
 
           &.expanded {
-            
+
 
             .bg {
               display: none;
@@ -595,7 +596,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
                     @include triangle( up, .5em, .2em, $white );
                     top: -.15em;
                   }
-                  
+
                 }
                 }
 
@@ -645,12 +646,12 @@ $page-sub-nav-hover-bg: $brand-darker !default;
                 > a {
                   display: flex;
                   justify-content: space-between;
-  
+
                 }
 
                 &.js-dropdown-show {
                   padding-bottom: 1rem;
-                
+
                   .btn-expander {
                     // right: 0;
                     // top: .5rem;
@@ -661,7 +662,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
                       top: -.15em;
                     }
                   }
-                  
+
                 }
 
                 &.active {

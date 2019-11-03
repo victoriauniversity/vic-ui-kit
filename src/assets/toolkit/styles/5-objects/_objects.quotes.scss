@@ -70,6 +70,42 @@ blockquote.quote { font-style: italic; }
       font-size: 1.15em; // TODO: Review size
       color: $green-brand;
     }
+
+    &.quote-template {
+      display: flex;
+      flex-wrap: wrap;
+
+      blockquote {
+        flex: 1 1;
+        padding-right: .5rem;
+      }
+
+      .quote-author-image {
+        width: 100px;
+        border-radius: 50%;
+        margin-bottom: .5rem;
+      }
+
+      figcaption {
+        flex: 1 0 100%;
+        margin-top: .5rem;
+        font-weight: 400;
+        p {
+          display: inline;
+        }
+      }
+
+      .button {
+        margin-left: 2.0625rem;
+        margin-top: .5rem;
+      }
+
+      @include bp-mobile() {
+        .quote-author-image {
+          display: none;
+        }
+      }
+    }
   }
 }
 

@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, November 1, 2019, 1:01 PM */
+/** Version: 0.10.13 | Monday, November 4, 2019, 9:37 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -1277,7 +1277,7 @@ figure img {
   margin-top: 1.5rem;
   font-size: 1.22rem;
   font-weight: 600;
-  color: rgba(175, 27, 27, 0.8);
+  color: #424242;
 }
 
 .formatting .inline {
@@ -2629,6 +2629,46 @@ blockquote.quote {
   font-weight: 500;
   font-size: 1.15em;
   color: #115737;
+}
+
+.quote.full.quote-template {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.quote.full.quote-template blockquote {
+  -webkit-box-flex: 1;
+          flex: 1 1;
+  padding-right: .5rem;
+}
+
+.quote.full.quote-template .quote-author-image {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: .5rem;
+}
+
+.quote.full.quote-template figcaption {
+  -webkit-box-flex: 1;
+          flex: 1 0 100%;
+  margin-top: .5rem;
+  font-weight: 400;
+}
+
+.quote.full.quote-template figcaption p {
+  display: inline;
+}
+
+.quote.full.quote-template .button {
+  margin-left: 2.0625rem;
+  margin-top: .5rem;
+}
+
+@media (max-width: 29.99em) {
+  .quote.full.quote-template .quote-author-image {
+    display: none;
+  }
 }
 
 .quote-panel {
@@ -4405,11 +4445,11 @@ aside .highlight h3::before {
 }
 
 .highlight.primary {
-  background-color: #F4F4E9;
+  background-color: #EEE;
 }
 
 .highlight.secondary {
-  background-color: #EEE;
+  background-color: #e9ecef;
 }
 
 /** Embedded media (images, videos, galleries etc.) */
@@ -5983,7 +6023,7 @@ aside .promo h3::before {
 
 .homepage-intro .intro-text p {
   font-size: 1.125em;
-  color: #115737;
+  color: #424242;
 }
 
 .homepage-intro .links-wrap p {
@@ -9270,7 +9310,6 @@ address.contact > img {
 
 .page-sub-nav.nav-buttons.hub-mega-menu nav > ul > li.active a {
   color: #FFF;
-  font-weight: 600;
 }
 
 .page-sub-nav.nav-buttons.hub-mega-menu nav > ul > li.active > a {
@@ -9357,6 +9396,7 @@ address.contact > img {
 
 .page-sub-nav.nav-buttons.hub-mega-menu nav > ul.expanded > li > ul > li > a {
   padding: 0;
+  color: #FFF;
 }
 
 .page-sub-nav.nav-buttons.hub-mega-menu nav > ul.expanded > li > ul > li:not(:last-child):after {
@@ -9373,7 +9413,7 @@ address.contact > img {
 }
 
 .page-sub-nav.nav-buttons.hub-mega-menu nav > ul.expanded > li.active > ul li {
-  border-left: 1px solid rgba(255, 255, 255, 0.8);
+  border-left: 2px solid rgba(255, 255, 255, 0.8);
 }
 
 .page-sub-nav.nav-buttons.hub-mega-menu nav > ul.expanded > li.active > ul li:not(:last-child):after {
@@ -9425,8 +9465,6 @@ address.contact > img {
   .page-sub-nav.nav-buttons.hub-mega-menu nav > ul.expanded > li.active {
     -webkit-box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.19), 0 0.375rem 0.375rem rgba(0, 0, 0, 0.23);
             box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.19), 0 0.375rem 0.375rem rgba(0, 0, 0, 0.23);
-    -webkit-transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px) translateZ(0);
-            transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px) translateZ(0);
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
     background-color: #0D4B2F;
@@ -9437,71 +9475,9 @@ address.contact > img {
     background-color: #0D4B2F;
   }
   .page-sub-nav.nav-buttons.hub-mega-menu nav > ul.expanded > li:hover:not(.active) {
-    -webkit-animation-name: slideOutUp;
-            animation-name: slideOutUp;
-    -webkit-animation-duration: 1s;
-            animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
     z-index: 0;
     -webkit-box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.19), 0 0.375rem 0.375rem rgba(0, 0, 0, 0.23);
             box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.19), 0 0.375rem 0.375rem rgba(0, 0, 0, 0.23);
-  }
-  @-webkit-keyframes slideOutUp {
-    0% {
-      -webkit-transform: translate3d(0, 0, 0);
-              transform: translate3d(0, 0, 0);
-    }
-    15% {
-      -webkit-transform: translate3d(0, 0, 0) scale(1.02) perspective(1px);
-              transform: translate3d(0, 0, 0) scale(1.02) perspective(1px);
-      -webkit-font-smoothing: antialiased;
-      -webkit-backface-visibility: hidden;
-              backface-visibility: hidden;
-      -webkit-transform-style: preserve-3d;
-              transform-style: preserve-3d;
-    }
-    50% {
-      -webkit-transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px);
-              transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px);
-    }
-    100% {
-      -webkit-transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px);
-              transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px);
-      -webkit-font-smoothing: antialiased;
-      -webkit-backface-visibility: hidden;
-              backface-visibility: hidden;
-      -webkit-transform-style: preserve-3d;
-              transform-style: preserve-3d;
-    }
-  }
-  @keyframes slideOutUp {
-    0% {
-      -webkit-transform: translate3d(0, 0, 0);
-              transform: translate3d(0, 0, 0);
-    }
-    15% {
-      -webkit-transform: translate3d(0, 0, 0) scale(1.02) perspective(1px);
-              transform: translate3d(0, 0, 0) scale(1.02) perspective(1px);
-      -webkit-font-smoothing: antialiased;
-      -webkit-backface-visibility: hidden;
-              backface-visibility: hidden;
-      -webkit-transform-style: preserve-3d;
-              transform-style: preserve-3d;
-    }
-    50% {
-      -webkit-transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px);
-              transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px);
-    }
-    100% {
-      -webkit-transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px);
-              transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px);
-      -webkit-font-smoothing: antialiased;
-      -webkit-backface-visibility: hidden;
-              backface-visibility: hidden;
-      -webkit-transform-style: preserve-3d;
-              transform-style: preserve-3d;
-    }
   }
   .page-sub-nav.nav-buttons.hub-mega-menu nav > ul.expanded > li:hover:not(.active) a {
     color: #FFF;
@@ -11965,6 +11941,10 @@ address.contact > img {
 .c-stack-intro {
   margin: 0.75rem 0 0;
   font-weight: bold;
+}
+
+.c-stack-intro.not-bold {
+  font-weight: 400;
 }
 
 .c-stack-intro::after {
