@@ -19,8 +19,10 @@
     &.search-active {
       display: flex;
 
-      @include target-ie {
-        display: block !important;
+      @include breakpoint( $until: tablet) {
+        @include target-ie {
+          display: block !important;
+        }
       }
 
     }
