@@ -213,6 +213,10 @@
 
   @include breakpoint(desktop-large) {
     max-width: 350px;
+
+    @include target-ie {
+      max-width: none;
+    }
   }
 
   @include breakpoint($until: desktop) {
