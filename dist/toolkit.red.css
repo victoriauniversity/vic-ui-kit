@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, November 12, 2019, 2:49 PM */
+/** Version: 0.10.13 | Tuesday, November 12, 2019, 3:37 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -12484,6 +12484,12 @@ address.contact > img {
 .p-search.search-results.search-active {
   display: -webkit-box;
   display: flex;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .p-search.search-results.search-active {
+    display: block !important;
+  }
 }
 
 .p-search.search-results.search-inactive {
