@@ -179,8 +179,8 @@ const SIDEMENU_EXPANDED_CLASS      = 'expanded';
 
 //FIXME: Should be automatically pre-populated from the build/build.config.js
 const ENV_HOSTNAME = {
-  STAGE: 'cms.wgtn.ac.nz',
-  PROD:  'www.wgtn.ac.nz',
+  STAGE: 'cms.victoria.ac.nz',
+  PROD:  'www.victoria.ac.nz',
   LOCAL: 'local.wgtn.ac.nz',
 };
 

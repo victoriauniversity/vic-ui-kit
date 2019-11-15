@@ -101,7 +101,7 @@ const config = {
       name:   'stage',
       server: {
         protocol: 'http',
-        host:     'dev-static.wgtn.ac.nz',
+        host:     'dev-static.victoria.ac.nz',
         port:     80,
       },
     },
@@ -109,7 +109,7 @@ const config = {
       name:   'production',
       server: {
         protocol: 'https',
-        host:     'static.wgtn.ac.nz',
+        host:     'static.victoria.ac.nz',
         port:     443,
       },
     },
