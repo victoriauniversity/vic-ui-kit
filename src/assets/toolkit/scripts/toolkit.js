@@ -181,12 +181,12 @@ const SIDEMENU_EXPANDED_CLASS      = 'expanded';
 const ENV_HOSTNAME = {
   STAGE: 'cms.victoria.ac.nz',
   PROD:  'www.victoria.ac.nz',
-  LOCAL: 'local.victoria.ac.nz',
+  LOCAL: 'local.wgtn.ac.nz',
 };
 
 //FIXME: Should be automatically pre-populated from the build/build.config.js
 const URL_BASE = {
-  TOOLKIT: 'local.victoria.ac.nz:8080',
+  TOOLKIT: 'local.wgtn.ac.nz:8080',
 };
 
 

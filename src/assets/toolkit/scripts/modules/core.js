@@ -16,11 +16,11 @@ const envConfig = require( '../env.conf.json' );
 
 export function initToolbarUrlListeners() {
   UrlManager.onLoadWhenQueryExists( 'toolbar', () => {
-    if ( window.toolkitToolbarLoader ) window.toolkitToolbarLoader( 'https://www.victoria.ac.nz/api/toolbar/staff' );
+    if ( window.toolkitToolbarLoader ) window.toolkitToolbarLoader( 'https://www.wgtn.ac.nz/api/toolbar/staff' );
   });
 
   UrlManager.onLoadWhenQueryExists( 'mytools', () => {
-    if ( window.toolkitToolbarLoader ) window.toolkitToolbarLoader( 'https://www.victoria.ac.nz/api/toolbar/students' );
+    if ( window.toolkitToolbarLoader ) window.toolkitToolbarLoader( 'https://www.wgtn.ac.nz/api/toolbar/students' );
   });
 }
 
