@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, November 22, 2019, 10:29 AM */
+/** Version: 0.10.13 | Monday, November 25, 2019, 10:50 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -8603,10 +8603,10 @@ var envConfig = __webpack_require__(17);
 
 function initToolbarUrlListeners() {
   urls.onLoadWhenQueryExists('toolbar', function () {
-    if (window.toolkitToolbarLoader) window.toolkitToolbarLoader('https://www.victoria.ac.nz/api/toolbar/staff');
+    if (window.toolkitToolbarLoader) window.toolkitToolbarLoader('https://www.wgtn.ac.nz/api/toolbar/staff');
   });
   urls.onLoadWhenQueryExists('mytools', function () {
-    if (window.toolkitToolbarLoader) window.toolkitToolbarLoader('https://www.victoria.ac.nz/api/toolbar/students');
+    if (window.toolkitToolbarLoader) window.toolkitToolbarLoader('https://www.wgtn.ac.nz/api/toolbar/students');
   });
 } // eslint-disable-next-line import/prefer-default-export
 
@@ -8824,11 +8824,11 @@ function enhanceSidemenu(menuElement) {
 var ENV_HOSTNAME = {
   STAGE: 'cms.victoria.ac.nz',
   PROD: 'www.victoria.ac.nz',
-  LOCAL: 'local.victoria.ac.nz'
+  LOCAL: 'local.wgtn.ac.nz'
 }; //FIXME: Should be automatically pre-populated from the build/build.config.js
 
 var URL_BASE = {
-  TOOLKIT: 'local.victoria.ac.nz:8080'
+  TOOLKIT: 'local.wgtn.ac.nz:8080'
 };
 
 function isAdminEnvironment() {
