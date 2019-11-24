@@ -27,14 +27,14 @@ If you require branding for your applcation please see our application [Brand gu
 To include Victoria's UI styles in your project, copy-paste the following code snippet into the ```<head>``` element in your project:
 
 ```html
-<link rel="stylesheet" type="text/css" href="https://static.wgtn.ac.nz/toolkit.min.css">
+<link rel="stylesheet" type="text/css" href="https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/toolkit.min.js">
 ```
 
 
 If you wish to use complex dynamic components that **require JavaScript** to work properly (see [Components](/components.html)), include and Victoria's UI Scripts library just before the closing ```</body>``` tag:
 
 ```html
-<script src="https://static.wgtn.ac.nz/toolkit.min.js"></script>
+<script src="https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/toolkit.min.js"></script>
 ```
 
 It is recommend to hotlink the libraries from CDN as shown above. However, if you wish to bundle them with your project, you can [Download any given release](https://github.com/victoriauniversity/victoria-ui-releases/releases) or even use a package manager, such as NPM or Yarn:
