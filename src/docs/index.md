@@ -11,7 +11,7 @@
 
 <div class="flash-message error">
 
-  If you wish to use this UI Kit you need to contact [Nathan Irwin](http://www.wgtn.ac.nz/search?q=Nathan+Irwin&site=people_search_collection) or other members of the [Web Team].
+  If you wish to use this UI Kit you need to contact [Nathan Irwin](https://www.wgtn.ac.nz/search?q=Nathan+Irwin&site=people_search_collection) or other members of the [Web Team].
 
   This isn't a supported self service UI package.
 
@@ -61,7 +61,7 @@ To report a bug, request a feature or simply discuss your ideas, please either:
 <a name="support"></a>
 ## Support and contact
 
-For any urgent inquiries, contact [Nathan Irwin](http://www.wgtn.ac.nz/search?q=Nathan+Irwin&site=people_search_collection) or other members of the [Web Team].
+For any urgent inquiries, contact [Nathan Irwin](https://www.wgtn.ac.nz/search?q=Nathan+Irwin&site=people_search_collection) or other members of the [Web Team].
 
 
 
@@ -70,4 +70,4 @@ For any urgent inquiries, contact [Nathan Irwin](http://www.wgtn.ac.nz/search?q=
 
 
 
-[Web Team]: http://www.wgtn.ac.nz/search?q=web+team&site=people_search_collection
+[Web Team]: https://www.wgtn.ac.nz/search?q=web+team&site=people_search_collection
