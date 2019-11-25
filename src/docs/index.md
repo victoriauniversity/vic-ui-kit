@@ -11,13 +11,13 @@
 
 <div class="flash-message error">
 
-  If you wish to use this UI Kit you need to contact [Nathan Irwin](http://www.victoria.ac.nz/search?q=Nathan+Irwin&site=people_search_collection) or other members of the [Web Team].
+  If you wish to use this UI Kit you need to contact [Nathan Irwin](https://www.wgtn.ac.nz/search?q=Nathan+Irwin&site=people_search_collection) or other members of the [Web Team].
 
   This isn't a supported self service UI package.
 
 </div>
 
-If you require branding for your applcation please see our application [Brand guide](http://toolkit.victoria.ac.nz/digital-brand)
+If you require branding for your applcation please see our application [Brand guide](http://toolkit.wgtn.ac.nz/digital-brand)
 
 
 <a name="start"></a>
@@ -27,14 +27,14 @@ If you require branding for your applcation please see our application [Brand gu
 To include Victoria's UI styles in your project, copy-paste the following code snippet into the ```<head>``` element in your project:
 
 ```html
-<link rel="stylesheet" type="text/css" href="https://static.victoria.ac.nz/toolkit.min.css">
+<link rel="stylesheet" type="text/css" href="https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/toolkit.min.js">
 ```
 
 
 If you wish to use complex dynamic components that **require JavaScript** to work properly (see [Components](/components.html)), include and Victoria's UI Scripts library just before the closing ```</body>``` tag:
 
 ```html
-<script src="https://static.victoria.ac.nz/toolkit.min.js"></script>
+<script src="https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/toolkit.min.js"></script>
 ```
 
 It is recommend to hotlink the libraries from CDN as shown above. However, if you wish to bundle them with your project, you can [Download any given release](https://github.com/victoriauniversity/victoria-ui-releases/releases) or even use a package manager, such as NPM or Yarn:
@@ -61,7 +61,7 @@ To report a bug, request a feature or simply discuss your ideas, please either:
 <a name="support"></a>
 ## Support and contact
 
-For any urgent inquiries, contact [Nathan Irwin](http://www.victoria.ac.nz/search?q=Nathan+Irwin&site=people_search_collection) or other members of the [Web Team].
+For any urgent inquiries, contact [Nathan Irwin](https://www.wgtn.ac.nz/search?q=Nathan+Irwin&site=people_search_collection) or other members of the [Web Team].
 
 
 
@@ -70,4 +70,4 @@ For any urgent inquiries, contact [Nathan Irwin](http://www.victoria.ac.nz/searc
 
 
 
-[Web Team]: http://www.victoria.ac.nz/search?q=web+team&site=people_search_collection
+[Web Team]: https://www.wgtn.ac.nz/search?q=web+team&site=people_search_collection
