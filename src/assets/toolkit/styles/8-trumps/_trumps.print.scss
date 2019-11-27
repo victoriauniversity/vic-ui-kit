@@ -2,3 +2,81 @@
 =           PRINTING STYLES                =
 ==========================================*/
 
+@media print {
+
+  // * {
+  //   -webkit-print-color-adjust: exact !important;   /* Chrome, Safari */
+  //   color-adjust: exact !important;                 /*Firefox*/
+  // }
+
+  body {
+    display: block !important;
+  }
+
+  /*************
+      Header fixes for faculty pages
+  ***********/
+  .site-header {
+    background: transparent;
+    .logo {
+      -webkit-print-color-adjust: exact !important;   /* Chrome, Safari */
+      color-adjust: exact !important;                 /*Firefox*/
+      background-image: url(https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/images/new/v2/print-logo.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-color: white;
+      height: 150px;
+      display: block !important;
+      width: 300px;
+      margin: 0 auto;
+      border-right: none;
+
+      picture {
+        display: none;
+      }
+    }
+    h1 {
+      color: black;
+    }
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  #global-nav {
+    display: none;
+  }
+
+  .main-site-header {
+    .logo {
+      border-right: none;
+      background-image: url(https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/images/new/v2/print-logo.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-color: white;
+      height: 150px;
+      display: block !important;
+      width: 300px;
+      -webkit-print-color-adjust: exact !important;   /* Chrome, Safari */
+      color-adjust: exact !important;
+
+      picture {
+        display: none;
+      }
+    }
+    background: transparent;
+    .menu-container {
+      display: none;
+    }
+  }
+
+  .hub-mega-menu {
+    display: none;
+  }
+
+  footer {
+    display: none;
+  }
+
+}
