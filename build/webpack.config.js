@@ -36,7 +36,7 @@ module.exports = ({
 
     if ( !config.devMode ) entries['toolkit.min'] = `./${config.paths.toolkit.scriptsIndex}`;
 
-    const minificationExtension = ( !config.devMode ) ? '.min' : '';
+    // const minificationExtension = ( !config.devMode ) ? '.min' : '';
 
     // Add listed standalone modules and libraries to the build
     //TODO: Automate this!
@@ -50,7 +50,8 @@ module.exports = ({
       'urls',
       'core',
     ].forEach(( moduleName ) => {
-      libraryEntries[`toolkit.${moduleName}${minificationExtension}`] = `./${config.paths.toolkit.scriptModules}/${moduleName}.js`;
+      libraryEntries[`toolkit.${moduleName}`] = `./${config.paths.toolkit.scriptModules}/${moduleName}.js`;
+      libraryEntries[`toolkit.${moduleName}.min`] = `./${config.paths.toolkit.scriptModules}/${moduleName}.js`;
     });
   }
 
