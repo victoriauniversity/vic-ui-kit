@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, November 26, 2019, 11:44 AM */
+/** Version: 0.10.13 | Thursday, November 28, 2019, 10:10 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -12731,6 +12731,73 @@ address.contact > img {
 /*==========================================
 =           PRINTING STYLES                =
 ==========================================*/
+@media print {
+  body {
+    display: block !important;
+  }
+  /*************
+      Header fixes for faculty pages
+  ***********/
+  .site-header {
+    background: transparent;
+  }
+  .site-header .logo {
+    -webkit-print-color-adjust: exact !important;
+    /* Chrome, Safari */
+    color-adjust: exact !important;
+    /*Firefox*/
+    background-image: url(https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/images/new/v2/print-logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: white;
+    height: 150px;
+    display: block !important;
+    width: 300px;
+    margin: 0 auto;
+    border-right: none;
+  }
+  .site-header .logo picture {
+    display: none;
+  }
+  .site-header h1 {
+    color: black;
+  }
+  .sidebar {
+    display: none;
+  }
+  #global-nav {
+    display: none;
+  }
+  .main-site-header {
+    background: transparent;
+  }
+  .main-site-header .logo {
+    border-right: none;
+    background-image: url(https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/images/new/v2/print-logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: white;
+    height: 150px;
+    display: block !important;
+    width: 300px;
+    -webkit-print-color-adjust: exact !important;
+    /* Chrome, Safari */
+    color-adjust: exact !important;
+  }
+  .main-site-header .logo picture {
+    display: none;
+  }
+  .main-site-header .menu-container {
+    display: none;
+  }
+  .hub-mega-menu {
+    display: none;
+  }
+  footer {
+    display: none;
+  }
+}
+
 /** Colour themes. */
 .study-hub-dark-green .intro-text h1 {
   color: #115737;
