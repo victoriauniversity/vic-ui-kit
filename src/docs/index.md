@@ -27,7 +27,7 @@ If you require branding for your applcation please see our application [Brand gu
 To include Victoria's UI styles in your project, copy-paste the following code snippet into the ```<head>``` element in your project:
 
 ```html
-<link rel="stylesheet" type="text/css" href="https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/toolkit.min.js">
+<link rel="stylesheet" type="text/css" href="https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/toolkit.min.css">
 ```
 
 
