@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, December 12, 2019, 1:11 PM */
+/** Version: 0.10.13 | Friday, December 13, 2019, 4:11 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -9327,7 +9327,24 @@ external_jQuery_default()(function () {
       searchInputElement.focus();
     }
   });
+
+  if (external_jQuery_default()('#study-area-tabs')) {
+    var getUrlParameter = function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+    ;
+    var grad = window.URLSearchParams ? new URLSearchParams(window.location.search).get('grad') : getUrlParameter('grad');
+
+    if (grad === 'postgraduate' || grad === 'undergraduate') {
+      external_jQuery_default()('#' + grad).click();
+    }
+  }
   /** DOM manipulation */
+
 
   wrapEmbeddedIframes();
   removedUnusedTiles(); //TODO: Review - Can be removed after all the study areas are migrated
