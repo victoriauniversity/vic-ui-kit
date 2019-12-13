@@ -749,6 +749,23 @@ $(() => {
     }
   });
 
+  if ($('#study-area-tabs')) {
+    function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+  
+    var grad = window.URLSearchParams
+      ? new URLSearchParams(window.location.search).get('grad')
+      : getUrlParameter('grad');
+  
+    if (grad === 'postgraduate' || grad === 'undergraduate') {
+      $('#' + grad).click();
+    }
+  }
+
   /** DOM manipulation */
 
   wrapEmbeddedIframes();
