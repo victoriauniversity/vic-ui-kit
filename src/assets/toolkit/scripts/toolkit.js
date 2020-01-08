@@ -752,18 +752,28 @@ $(() => {
   if ($('#study-area-tabs')) {
     function getUrlParameter(name) {
       name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-      var results = regex.exec(location.search);
+      const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      const results = regex.exec(location.search);
       return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-    };
+    }
   
-    var grad = window.URLSearchParams
+    const grad = 'URLSearchParams' in window
       ? new URLSearchParams(window.location.search).get('grad')
       : getUrlParameter('grad');
   
     if (grad === 'postgraduate' || grad === 'undergraduate') {
       $('#' + grad).click();
     }
+
+    const tabs = $('#study-area-tabs .switch-input');
+
+    function handleSwitchInputClick (event) {
+      window.history.replaceState({}, '', window.location.pathname + '?grad=' + event.target.id);
+    }
+
+    tabs.each(function () {
+      this.addEventListener('click', handleSwitchInputClick);
+    });
   }
 
   /** DOM manipulation */
