@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, December 13, 2019, 4:11 PM */
+/** Version: 0.10.13 | Wednesday, January 8, 2020, 3:38 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -9336,12 +9336,20 @@ external_jQuery_default()(function () {
       return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
 
-    ;
-    var grad = window.URLSearchParams ? new URLSearchParams(window.location.search).get('grad') : getUrlParameter('grad');
+    var handleSwitchInputClick = function handleSwitchInputClick(event) {
+      window.history.replaceState({}, '', window.location.pathname + '?grad=' + event.target.id);
+    };
+
+    var grad = 'URLSearchParams' in window ? new URLSearchParams(window.location.search).get('grad') : getUrlParameter('grad');
 
     if (grad === 'postgraduate' || grad === 'undergraduate') {
       external_jQuery_default()('#' + grad).click();
     }
+
+    var tabs = external_jQuery_default()('#study-area-tabs .switch-input');
+    tabs.each(function () {
+      this.addEventListener('click', handleSwitchInputClick);
+    });
   }
   /** DOM manipulation */
 
