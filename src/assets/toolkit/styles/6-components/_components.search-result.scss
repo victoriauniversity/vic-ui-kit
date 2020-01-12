@@ -1,0 +1,40 @@
+.search-result {
+  &:first-child {
+    margin-top: 1.5rem;
+  }
+
+  &:not(:last-child)::after {
+    content: "";
+    display: block;
+    border-top: $border-width-thin solid $border-color-light;
+    width: 100%;
+    margin: $gap-content 0;
+  }
+
+  .search-result-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .search-result-title {
+      margin-right: 1rem;
+    }
+
+    .search-result-title,
+    .search-result-subtitle {
+      margin-bottom: .25rem;
+    }
+  }
+
+  .search-result-footer {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -1rem;
+  
+    .search-result-footer-item {
+      margin: 1rem;
+    }
+  }  
+}
+
+
