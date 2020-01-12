@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, January 13, 2020, 10:46 AM */
+/** Version: 0.10.13 | Monday, January 13, 2020, 12:19 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -12266,6 +12266,46 @@ address.contact > img {
   background-color: #FFF;
 }
 
+.search-result:first-child {
+  margin-top: 1.5rem;
+}
+
+.search-result:not(:last-child)::after {
+  content: "";
+  display: block;
+  border-top: 0.0625rem solid #DDD;
+  width: 100%;
+  margin: 1.3rem 0;
+}
+
+.search-result .search-result-header {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+.search-result .search-result-header .search-result-title {
+  margin-right: 1rem;
+}
+
+.search-result .search-result-header .search-result-title,
+.search-result .search-result-header .search-result-subtitle {
+  margin-bottom: .25rem;
+}
+
+.search-result .search-result-footer {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin: -1rem;
+}
+
+.search-result .search-result-footer .search-result-footer-item {
+  margin: 1rem;
+}
+
 /* Container Templates
 
 *** Content page
@@ -13528,6 +13568,38 @@ address.contact > img {
 
 .dialog-content .icon-layout:before {
   font-size: 120%;
+}
+
+.search-result {
+  /* Override styles from .formatting class and default green header colours */
+}
+
+.search-result h1,
+.search-result h2,
+.search-result h3,
+.search-result h4,
+.search-result h5,
+.search-result h6 {
+  color: #424242;
+}
+
+.search-result h1,
+.search-result h2,
+.search-result h3,
+.search-result h4,
+.search-result h5,
+.search-result h6,
+.search-result p {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.search-result h4 {
+  margin-bottom: .25rem !important;
+}
+
+.search-result .search-result-body {
+  margin: .75rem 0 1rem 0 !important;
 }
 
 /*= TRUMP OVERRIDES ===============================*/
