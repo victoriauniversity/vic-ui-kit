@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, January 13, 2020, 12:19 PM */
+/** Version: 0.10.13 | Wednesday, February 19, 2020, 4:18 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -1080,18 +1080,14 @@ figure img {
   margin-top: 0.75rem;
 }
 
+.reset-formatting figure img + figcaption {
+  margin-top: initial;
+}
+
 /*= ELEMENTS (ATOMS SPECIFIED BY HTML ELEMENT) ====*/
 /*============================================================================*\
 | STANDARD FORMATTING OBJECTS
 \*============================================================================*/
-.formatting {
-  /** Links */
-  /** Headings */
-  /** An abstract / page detail / introduction / summary */
-  /** Formatted imagery */
-  /** Lists */
-}
-
 .formatting article {
   margin-bottom: 1.3rem;
 }
@@ -1337,6 +1333,253 @@ figure img {
 
 .formatting hr {
   margin: 2.25rem 0;
+}
+
+.reset-formatting article {
+  margin-bottom: initial;
+}
+
+.reset-formatting p {
+  margin-bottom: initial;
+  color: inherit;
+}
+
+.reset-formatting p:last-child {
+  margin-bottom: initial;
+}
+
+.reset-formatting a:hover h1,
+.reset-formatting a:hover h2,
+.reset-formatting a:hover h3,
+.reset-formatting a:hover h4,
+.reset-formatting a:hover h5,
+.reset-formatting a:hover h6, .reset-formatting a:active h1,
+.reset-formatting a:active h2,
+.reset-formatting a:active h3,
+.reset-formatting a:active h4,
+.reset-formatting a:active h5,
+.reset-formatting a:active h6, .reset-formatting a:focus h1,
+.reset-formatting a:focus h2,
+.reset-formatting a:focus h3,
+.reset-formatting a:focus h4,
+.reset-formatting a:focus h5,
+.reset-formatting a:focus h6 {
+  color: inherit;
+  text-decoration: initial;
+}
+
+.reset-formatting a h1,
+.reset-formatting a h2,
+.reset-formatting a h3,
+.reset-formatting a h4,
+.reset-formatting a h5,
+.reset-formatting a h6 {
+  color: inherit;
+  text-decoration: initial;
+}
+
+.reset-formatting a:visited h1,
+.reset-formatting a:visited h2,
+.reset-formatting a:visited h3,
+.reset-formatting a:visited h4,
+.reset-formatting a:visited h5,
+.reset-formatting a:visited h6 {
+  color: inherit;
+}
+
+.reset-formatting p a,
+.reset-formatting h1 a,
+.reset-formatting h2 a,
+.reset-formatting h3 a,
+.reset-formatting h4 a,
+.reset-formatting h5 a,
+.reset-formatting h6 a,
+.reset-formatting ul a,
+.reset-formatting ol a,
+.reset-formatting table a,
+.reset-formatting figcaption a {
+  color: #005EA5;
+  text-decoration: underline;
+}
+
+.reset-formatting p a:not(.button):visited,
+.reset-formatting h1 a:not(.button):visited,
+.reset-formatting h2 a:not(.button):visited,
+.reset-formatting h3 a:not(.button):visited,
+.reset-formatting h4 a:not(.button):visited,
+.reset-formatting h5 a:not(.button):visited,
+.reset-formatting h6 a:not(.button):visited,
+.reset-formatting ul a:not(.button):visited,
+.reset-formatting ol a:not(.button):visited,
+.reset-formatting table a:not(.button):visited,
+.reset-formatting figcaption a:not(.button):visited {
+  color: inherit;
+}
+
+.reset-formatting p a:hover, .reset-formatting p a:active, .reset-formatting p a:focus,
+.reset-formatting h1 a:hover,
+.reset-formatting h1 a:active,
+.reset-formatting h1 a:focus,
+.reset-formatting h2 a:hover,
+.reset-formatting h2 a:active,
+.reset-formatting h2 a:focus,
+.reset-formatting h3 a:hover,
+.reset-formatting h3 a:active,
+.reset-formatting h3 a:focus,
+.reset-formatting h4 a:hover,
+.reset-formatting h4 a:active,
+.reset-formatting h4 a:focus,
+.reset-formatting h5 a:hover,
+.reset-formatting h5 a:active,
+.reset-formatting h5 a:focus,
+.reset-formatting h6 a:hover,
+.reset-formatting h6 a:active,
+.reset-formatting h6 a:focus,
+.reset-formatting ul a:hover,
+.reset-formatting ul a:active,
+.reset-formatting ul a:focus,
+.reset-formatting ol a:hover,
+.reset-formatting ol a:active,
+.reset-formatting ol a:focus,
+.reset-formatting table a:hover,
+.reset-formatting table a:active,
+.reset-formatting table a:focus,
+.reset-formatting figcaption a:hover,
+.reset-formatting figcaption a:active,
+.reset-formatting figcaption a:focus {
+  color: #2E8ACA;
+  text-decoration: none;
+}
+
+.reset-formatting h1,
+.reset-formatting h2,
+.reset-formatting h3,
+.reset-formatting h4,
+.reset-formatting h5,
+.reset-formatting h6 {
+  margin-bottom: initial;
+}
+
+.reset-formatting h1 > em,
+.reset-formatting h2 > em,
+.reset-formatting h3 > em,
+.reset-formatting h4 > em,
+.reset-formatting h5 > em,
+.reset-formatting h6 > em {
+  margin-left: initial;
+  font-style: inherit;
+  color: inherit;
+}
+
+.reset-formatting h2:not(:first-child) {
+  margin-top: initial;
+}
+
+.reset-formatting h3:not(:first-child) {
+  margin-top: initial;
+}
+
+.reset-formatting h4:not(:first-child) {
+  margin-top: initial;
+}
+
+.reset-formatting .subtitle {
+  display: initial;
+  margin-bottom: initial;
+  color: inherit;
+  line-height: inherit;
+}
+
+.reset-formatting .subtitle strong + span::before {
+  position: initial;
+  display: initial;
+  content: initial;
+  margin-right: initial;
+  margin-left: initial;
+  font-weight: inherit;
+}
+
+.reset-formatting h1 + .subtitle {
+  margin-top: initial;
+  font-size: inherit;
+}
+
+.reset-formatting > header {
+  margin-bottom: initial;
+}
+
+.reset-formatting > header > h1 {
+  margin-bottom: initial;
+}
+
+.reset-formatting > header > h1 + .subtitle {
+  margin-top: initial;
+}
+
+.reset-formatting .intro {
+  margin-top: initial;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+.reset-formatting .inline {
+  clear: initial;
+}
+
+.reset-formatting .inline,
+.reset-formatting .portrait,
+.reset-formatting > img,
+.reset-formatting p > img,
+.reset-formatting p > img ~ img {
+  height: initial;
+  width: initial;
+  margin-bottom: initial;
+}
+
+.reset-formatting .portrait {
+  float: initial;
+  margin-left: initial;
+  width: initial;
+}
+
+.reset-formatting ul,
+.reset-formatting ol {
+  margin-bottom: initial;
+  padding-left: initial;
+}
+
+.reset-formatting ul li,
+.reset-formatting ol li {
+  margin-bottom: initial;
+  padding-left: initial;
+  list-style-position: inherit;
+}
+
+.reset-formatting ul ul,
+.reset-formatting ul ol,
+.reset-formatting ol ul,
+.reset-formatting ol ol {
+  margin: initial;
+}
+
+.reset-formatting ul li {
+  list-style-type: inherit;
+}
+
+.reset-formatting ul ul li {
+  list-style-type: inherit;
+}
+
+@media (min-width: 43em) {
+  .layout main > .reset-formatting:last-child,
+  .layout aside > .reset-formatting:last-child {
+    padding-bottom: initial;
+  }
+}
+
+.reset-formatting hr {
+  margin: initial;
 }
 
 /*= WIDGET-BAR CONTENT FORMATTING DIFFERENCES ================================*/
@@ -1950,6 +2193,19 @@ button,
   color: inherit;
 }
 
+.reset-formatting button, .reset-formatting
+.button {
+  color: #424242;
+  text-decoration: initial;
+}
+
+.reset-formatting button:hover, .reset-formatting button:active, .reset-formatting button:focus, .reset-formatting
+.button:hover, .reset-formatting
+.button:active, .reset-formatting
+.button:focus {
+  color: #424242;
+}
+
 button:hover, button:active, button:focus,
 .button:hover,
 .button:active,
@@ -2212,9 +2468,24 @@ main:first-child > .formatting.block:first-child > img:first-child {
   }
 }
 
+@media (min-width: 43em) {
+  .reset-formatting .inline,
+  .reset-formatting p > img,
+  .reset-formatting p > img ~ img {
+    clear: initial;
+    float: initial;
+    margin-left: initial;
+    width: initial;
+  }
+}
+
 /*= ANY MEDIA ================================================================*/
 .formatting .grid figure {
   margin-bottom: 1.5rem;
+}
+
+.reset-formatting .grid figure {
+  margin-bottom: initial;
 }
 
 /*============================================================================*\
@@ -3227,6 +3498,11 @@ table {
 .formatting p .label {
   margin-right: 0.3125em;
   margin-left: 0.3125em;
+}
+
+.reset-formatting p .label {
+  margin-right: 0.5rem;
+  margin-left: initial;
 }
 
 ul.meta [class^=icon-] {
