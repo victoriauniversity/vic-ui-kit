@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, February 25, 2020, 3:12 PM */
+/** Version: 0.10.13 | Tuesday, February 25, 2020, 3:57 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -15165,6 +15165,13 @@ Manually added CSS to fix conflicting CSS rules between vic-ui-kit and sass-brid
 .old-sass-widget h2 {
   /* Add some spacing above the widget headers */
   margin-top: 1rem !important;
+}
+
+@media all and (max-width: 759px) {
+  .old-sass-widget .toggle_block {
+    /* Prevent content from being hidden on mobile */
+    display: block;
+  }
 }
 
 aside > .formatting .old-sass-widget h2::before {
