@@ -152,7 +152,7 @@ const SIDEMENU_EXPANDED_CLASS      = 'expanded';
 
   //TODO: Remove after this was implemented on the backend (~ in Squiz)
   /** Adds necessary classes and expanding/collapsing elements if the item has got submenu. */
-  const btnExpanderHtml = '<span class="btn-expander" title="Toggle subpages"></span>';
+  const btnExpanderHtml = '<span class="btn-expander mf-heatmap-click" title="Toggle subpages"></span>';
 
   function enhanceSidemenu( menuElement ) {
       menuElement.find( 'li' ).each( function() {
@@ -756,11 +756,11 @@ $(() => {
       const results = regex.exec(location.search);
       return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     }
-  
+
     const grad = 'URLSearchParams' in window
       ? new URLSearchParams(window.location.search).get('grad')
       : getUrlParameter('grad');
-  
+
     if (grad === 'postgraduate' || grad === 'undergraduate') {
       $('#' + grad).click();
     }
