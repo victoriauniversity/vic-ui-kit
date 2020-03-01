@@ -1,0 +1,60 @@
+
+// flex-grid
+
+.grid-flex {
+  display: flex;
+  flex-wrap: wrap;
+
+  // ?******* 3 COL
+  // replace with mixins
+  // Desktop
+  justify-content: space-between;
+
+  @include breakpoint ( $from: desktop ) {
+    &.col-4 > * {
+      width: 24%;
+    }
+    &.col-3 > * {
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+      flex: 0 1 ;
+      flex-basis: calc( 33.3% - 1rem );
+    }
+    &.col-3 > *:nth-child(3n+3) {
+       margin-right: 0;
+    }
+
+    &.col-2 > * {
+      flex: 0 1 ;
+      //ie fix
+      flex-basis: calc( 50% - 1rem );
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    &.col-2 > *:nth-child(2n+2) {
+      margin-right: 0;
+    }
+
+  }
+  // Tablet
+  @include bp-tablet {
+    &.col-4 > * {
+      width: 49%;
+    }
+    &.col-3 > *,
+    .col-2 > * {
+      flex: 0 1 ;
+      //ie fix
+      flex-basis: calc( 50% - 1rem );
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    &.col-3 > *:nth-child(2n+2),
+    .col-2 > *:nth-child(2n+2) {
+      margin-right: 0;
+    }
+  }
+
+}
