@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, March 2, 2020, 1:46 PM */
+/** Version: 0.10.13 | Tuesday, March 3, 2020, 11:21 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -991,7 +991,8 @@ ol {
 /*============================================================================*\
 | PROJECT-SPECIFIC NORMALISATIONS
 \*============================================================================*/
-.grid-flex {
+.grid-flex,
+.columns {
   display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
@@ -999,42 +1000,55 @@ ol {
           justify-content: space-between;
 }
 
-.grid-flex > * {
+.grid-flex > *,
+.columns > * {
   margin-bottom: 1rem;
 }
 
 @media (min-width: 61em) {
-  .grid-flex.col-4 > * {
+  .grid-flex.col-4 > *,
+  .columns.col-4 > * {
     width: 24%;
   }
-  .grid-flex.col-3 > * {
+  .grid-flex.col-3 > *,
+  .columns.col-3 > * {
     margin-right: 1rem;
     margin-bottom: 1rem;
     -webkit-box-flex: 0;
             flex: 0 1;
     flex-basis: calc( 33.3% - 1rem);
   }
-  .grid-flex.col-3 > *:nth-child(3n+3) {
+  .grid-flex.col-3 > *:nth-child(3n+3),
+  .columns.col-3 > *:nth-child(3n+3) {
     margin-right: 0;
   }
-  .grid-flex.col-2 > * {
+  .grid-flex.col-2 > *,
+  .grid-flex.columns2 > *,
+  .columns.col-2 > *,
+  .columns.columns2 > * {
     -webkit-box-flex: 0;
             flex: 0 1;
     flex-basis: calc( 50% - 1rem);
     margin-right: 1rem;
     margin-bottom: 1rem;
   }
-  .grid-flex.col-2 > *:nth-child(2n+2) {
+  .grid-flex.col-2 > *:nth-child(2n+2),
+  .columns.col-2 > *:nth-child(2n+2) {
     margin-right: 0;
   }
 }
 
 @media (min-width: 43em) and (max-width: 60.99em) {
-  .grid-flex.col-4 > * {
+  .grid-flex.col-4 > *,
+  .columns.col-4 > * {
     width: 49%;
   }
   .grid-flex.col-3 > *,
-  .grid-flex .col-2 > * {
+  .grid-flex.col-2 > *,
+  .grid-flex.columns2 > *,
+  .columns.col-3 > *,
+  .columns.col-2 > *,
+  .columns.columns2 > * {
     -webkit-box-flex: 0;
             flex: 0 1;
     flex-basis: calc( 50% - 1rem);
@@ -1042,7 +1056,11 @@ ol {
     margin-bottom: 1rem;
   }
   .grid-flex.col-3 > *:nth-child(2n+2),
-  .grid-flex .col-2 > *:nth-child(2n+2) {
+  .grid-flex.col-2 > *:nth-child(2n+2),
+  .grid-flex.columns2 > *:nth-child(2n+2),
+  .columns.col-3 > *:nth-child(2n+2),
+  .columns.col-2 > *:nth-child(2n+2),
+  .columns.columns2 > *:nth-child(2n+2) {
     margin-right: 0;
   }
 }
