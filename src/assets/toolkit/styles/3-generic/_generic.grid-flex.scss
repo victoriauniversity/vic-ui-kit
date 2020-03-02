@@ -5,11 +5,15 @@
   display: flex;
   flex-wrap: wrap;
 
-  // ?******* 3 COL
-  // replace with mixins
-  // Desktop
+
+
   justify-content: space-between;
 
+  > * {
+    margin-bottom: 1rem;
+  }
+
+  // Desktop
   @include breakpoint ( $from: desktop ) {
     &.col-4 > * {
       width: 24%;
