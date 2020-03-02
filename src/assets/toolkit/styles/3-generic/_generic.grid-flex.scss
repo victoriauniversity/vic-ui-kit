@@ -1,10 +1,10 @@
 
 // flex-grid
 
-.grid-flex {
+.grid-flex,
+.columns {
   display: flex;
   flex-wrap: wrap;
-
 
 
   justify-content: space-between;
@@ -28,7 +28,8 @@
        margin-right: 0;
     }
 
-    &.col-2 > * {
+    &.col-2 > *,
+    &.columns2 {
       flex: 0 1 ;
       //ie fix
       flex-basis: calc( 50% - 1rem );
@@ -47,7 +48,8 @@
       width: 49%;
     }
     &.col-3 > *,
-    .col-2 > * {
+    &.col-2 > *,
+    &.columns2 {
       flex: 0 1 ;
       //ie fix
       flex-basis: calc( 50% - 1rem );
@@ -56,7 +58,8 @@
     }
 
     &.col-3 > *:nth-child(2n+2),
-    .col-2 > *:nth-child(2n+2) {
+    &.col-2 > *:nth-child(2n+2),
+    &.columns2 > *:nth-child(2n+2) {
       margin-right: 0;
     }
   }
