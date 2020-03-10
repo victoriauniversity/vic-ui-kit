@@ -1,0 +1,235 @@
+/*
+Migrated from https://github.com/victoriauniversity/sass-bridge using the following script:
+
+$ purgecss --css src/style.css --content widgets.html --output tmp && prettier --write src/style.css
+$ gawk 'BEGIN { print ".old-sass-widget {" } { print "  " $0 } END { print "}" }' tmp/style.css | grep -Ev "@font-face|sourceMappingURL" > dist/style.scss
+
+widgets.html contains all the markup for each widget.
+src/style.css contains the build CSS from the sass-bridge repository.
+
+The packages required to run the above commands can be installed with:
+
+$ brew install gawk
+$ npm install purgecss -g
+*/
+
+
+.old-sass-widget {
+
+  .result_flag {
+    background: #eee;
+    padding: 0.4em 0.5em 0.3em;
+    font-style: normal;
+    font-weight: normal;
+    float: left;
+    font-size: 0.92857em;
+
+    overflow: hidden;
+    position: relative;
+    top: -.1em;
+    display: inline-block;
+    margin-right: .5rem;
+    vertical-align: middle;
+    line-height: 1;
+    border-radius: .125rem;
+    font-size: 80%;
+    text-transform: uppercase;
+    background: #eee;
+    color: #424242;
+    white-space: nowrap;
+  }
+  .secondary .result_flag {
+    padding: 0em 0.4em 0em 0.4em;
+    top: 0;
+    min-width: 2em;
+    text-align: center;
+  }
+  .result_flag.flag_pdf {
+    background: #ECCDCD;
+    color: #831212;
+  }
+  .result_flag.flag_doc {
+    background: #d4e8f2;
+    color: #255C79;
+  }
+
+
+}
+
+/*
+Manually added CSS to fix conflicting CSS rules between vic-ui-kit and sass-bridge.
+*/
+
+.old-sass-widget {
+
+  .result_flag {
+    display: inline-block;
+    /* float: left; */
+    float: initial;
+    /* top: 0.75em; */
+    // top: initial;
+  }
+  .toggle,
+  h2 {
+    /* Add some spacing above the widget headers */
+    margin-top: 1rem !important;
+  }
+  @media all and (max-width: 759px) {
+    .toggle_block {
+      /* Prevent content from being hidden on mobile */
+      display: block;
+    }
+  }
+}
+
+aside > .formatting .old-sass-widget h2::before {
+  display: none;
+}
+
+aside .old-sass-widget {
+  .media {
+    img {
+      margin-bottom: 0;
+    }
+    h3 {
+      margin-top: 0;
+      padding: 0 1rem 1rem;
+    }
+  }
+
+  .quote.full {
+    margin-top: .5rem;
+
+    q:before {
+      margin-left: 0;
+    }
+  }
+
+  .primary.promo {
+    a,
+    h3 {
+      color: #ffffff;
+    }
+  }
+
+
+}
+
+
+// In Page content trumps
+.highlight_tertiary {
+  background-color: #eee;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+ul.no-list {
+  padding-left: 0 !important;
+  li {
+    list-style-type: none !important;
+  }
+}
+
+// Social media Directory
+.directory {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  h3 {
+    font-size: 1.1rem;
+    margin: 1rem 0 .5rem .5rem !important;
+  }
+  .block--channel {
+    a {
+      display: flex;
+    }
+  }
+  .icon {
+    display: block;
+    width: 50px;
+    height: 55px;
+    background: url(images/social-facebook.svg) no-repeat 0 0;
+
+    &.twitter {
+      background-image: url(images/social-twitter.svg);
+    }
+    &.youtube {
+      background-image: url(images/social-youtube.svg);
+    }
+    &.linkedin {
+      background-image: url(images/social-linkedin.svg);
+    }
+    &.instagram {
+      background-image: url(images/social-instagram.svg);
+    }
+  }
+
+  @media (max-width:800px) {
+    flex-wrap: wrap;
+  }
+
+}
+
+// A to Z list
+.a-z_paging {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: $grey-gallery;
+
+  ul.static_pagination {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding: 0;
+
+
+    li {
+      list-style-type: none;
+      padding: 0.3125em 0.75em;
+      background-color: $grey-silver;
+      margin-right: 0.3rem;
+
+      &:not(.current) {
+        background-color: $blue-azure;
+
+        span {
+          color: #fff;
+        }
+
+        &:hover {
+          opacity: .8;
+          cursor: pointer;
+        }
+      }
+    }
+
+  }
+}
+
+.block {
+
+  &.az-block {
+    margin: 1rem 0;
+    padding: 0;
+  }
+
+  .az-listing-title {
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    color: $black-tundora;
+  }
+
+  .block_primary {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+  }
+
+
+
+  .bullet_link {
+    display: block;
+    margin-top: 0.5rem;
+  }
+}

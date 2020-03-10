@@ -58,6 +58,19 @@ img:first-child {
   }
 }
 
+@include breakpoint( tablet ) {
+  .reset-formatting {
+    // Inline and floats on devices bigger than 'tablet'
+    .inline,
+    p > img,
+    p > img ~ img {
+      clear: initial;
+      float: initial;
+      margin-left: initial;
+      width: initial;
+    }
+  }
+}
 
 
 
@@ -70,6 +83,8 @@ figure {
   }
 }
 
-
-
-
+figure {
+  .reset-formatting .grid & {
+    margin-bottom: initial;
+  }
+}

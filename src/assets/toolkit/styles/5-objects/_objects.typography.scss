@@ -26,7 +26,7 @@ $subtitle-separator-character:  $character-middle-dot;
     &:last-child { margin-bottom: 0; }
   }
 
-  /** Links */
+  // Links
 
   a {
     @include hoverify() {
@@ -81,7 +81,7 @@ $subtitle-separator-character:  $character-middle-dot;
   }
 
 
-  /** Headings */
+  // Headings
 
   h1,
   h2,
@@ -137,7 +137,7 @@ $subtitle-separator-character:  $character-middle-dot;
   }
 
 
-  /** An abstract / page detail / introduction / summary */
+  // An abstract / page detail / introduction / summary
 
   .intro {
     margin-top:  $gap-vertical;
@@ -147,7 +147,7 @@ $subtitle-separator-character:  $character-middle-dot;
   }
 
 
-  /** Formatted imagery */
+  // Formatted imagery
 
   .inline { clear: right; }
 
@@ -169,7 +169,7 @@ $subtitle-separator-character:  $character-middle-dot;
   }
 
 
-  /** Lists */
+  // Lists
 
   ul,
   ol {
@@ -205,9 +205,204 @@ $subtitle-separator-character:  $character-middle-dot;
   hr { margin: $gap-larger 0; }
 }
 
+.reset-formatting {
+  article {
+    margin-bottom: initial;
+  }
+
+  p {
+    margin-bottom: initial;
+    color: inherit;
+    &:last-child { margin-bottom: initial; }
+  }
+
+  // Links
+
+  a {
+    @include hoverify() {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color:           inherit;
+        text-decoration: initial;
+      }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color:           inherit;
+      text-decoration: initial;
+    }
+
+    &:visited {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: inherit;
+      }
+    }
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  ul,
+  ol,
+  table,
+  figcaption {
+    a {
+      &:not(.button):visited { color: inherit; }
+      @include linkify-text; // *MUST* come after :visited
+    }
+  }
 
 
+  // Headings
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: initial;
+
+    // Notes within headings
+    > em {
+      margin-left: initial;
+      font-style:  inherit;
+      color:       inherit;
+    }
+  }
+
+  // Top margins for formatted headings to improve block separation and readability
+  h2:not(:first-child) { margin-top: initial; }
+  h3:not(:first-child) { margin-top: initial; }
+  h4:not(:first-child) { margin-top: initial; }
+
+  // Subtitle
+  .subtitle {
+    display:       initial;
+    margin-bottom: initial;
+    color:         inherit;
+    line-height:   inherit;
+
+    // Secondary information of lower importance
+    // strong + span {
+    strong + span::before {
+      // @include before( $text: $subtitle-separator-character ) {
+      //   margin-right: _em( $gap-third );
+      //   margin-left:  _em( $gap-small );
+      //   font-weight:  $weight-bold;
+      // }
+      position: initial;
+      display: inline;
+      content: initial;
+      margin-right: initial;
+      margin-left: initial;
+      font-weight: inherit;
+    }
+  }
+
+  // Subheading under the main title
+  h1 + .subtitle {
+    // Bleeding for the places in Squiz where the HTML structure cannot be implemented
+    margin-top: initial;
+    font-size:  inherit; // Match .intro
+  }
+
+  // Header section that restarts the vertical alignment
+  > header {
+    margin-bottom: initial;
+
+    > h1 { margin-bottom: initial; }
+    > h1 + .subtitle { margin-top: initial; } // Reset negative bleeding if the header is in place
+  }
+
+
+  // An abstract / page detail / introduction / summary
+
+  .intro {
+    margin-top:  initial;
+    font-size:   inherit;
+    font-weight: inherit;
+    color:       inherit;
+  }
+
+
+  // Formatted imagery
+
+  .inline { clear: initial; }
+
+  // Default image - full width
+  .inline,
+  .portrait,
+  > img,
+  p > img,
+  p > img ~ img {
+    // @include size( 100%, auto );
+    height: initial;
+    width: initial;
+    margin-bottom: initial;
+  }
+
+  // Portrait size inline media
+  .portrait {
+    float:       initial;
+    margin-left: initial;
+    width:       initial;
+  }
+
+
+  // Lists
+
+  ul,
+  ol {
+    margin-bottom: initial; // Increase the gap
+    padding-left:  initial;
+
+    li {
+      margin-bottom: initial;
+      padding-left:  initial;
+      list-style-position: inherit;
+    }
+
+    ul,
+    ol {
+      margin: initial;
+    }
+  }
+
+  ul {
+    li { list-style-type: inherit; }
+    ul li { list-style-type: inherit; }
+  }
+
+  @include breakpoint( tablet ) {
+    // Add bottom padding to visually separate content from footer
+    .layout main > &,
+    .layout aside > & {
+      &:last-child { padding-bottom: initial; }
+    }
+  }
+
+  // Separators positioning
+  hr { margin: initial; }
+}
 
 /*= WIDGET-BAR CONTENT FORMATTING DIFFERENCES ================================*/
 

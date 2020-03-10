@@ -3,6 +3,9 @@ $meta-bg: $brand-opaque !default;
 
 // List of quick (meta) information
 ul.meta {
+  display: flex;
+  flex-wrap: wrap;
+
   @include icon-selector() {
     color: $text-weakest-color;
 
@@ -24,8 +27,7 @@ ul.meta {
   }
 
   .highlight {
-    display: inline-block;
-    margin-right: .1rem;
+    margin-right: $gap-small;
     padding: 0; // Reset
 
     @include icon-selector() {
