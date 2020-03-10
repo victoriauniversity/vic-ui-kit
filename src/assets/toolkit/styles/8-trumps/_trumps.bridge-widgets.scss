@@ -48,6 +48,10 @@ $ npm install purgecss -g
     background: #ECCDCD;
     color: #831212;
   }
+  .result_flag.flag_doc {
+    background: #d4e8f2;
+    color: #255C79;
+  }
 
 
 }
@@ -108,5 +112,61 @@ aside .old-sass-widget {
     }
   }
 
+
+}
+
+
+// In Page content trumps
+.highlight_tertiary {
+  background-color: #eee;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+ul.no-list {
+  padding-left: 0 !important;
+  li {
+    list-style-type: none !important;
+  }
+}
+
+// Social media Directory
+.directory {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  h3 {
+    font-size: 1.1rem;
+    margin: 1rem 0 .5rem .5rem !important;
+  }
+  .block--channel {
+    a {
+      display: flex;
+    }
+  }
+  .icon {
+    display: block;
+    width: 50px;
+    height: 55px;
+    background: url(images/social-facebook.svg) no-repeat 0 0;
+
+    &.twitter {
+      background-image: url(images/social-twitter.svg);
+    }
+    &.youtube {
+      background-image: url(images/social-youtube.svg);
+    }
+    &.linkedin {
+      background-image: url(images/social-linkedin.svg);
+    }
+    &.instagram {
+      background-image: url(images/social-instagram.svg);
+    }
+  }
+
+  @media (max-width:800px) {
+    flex-wrap: wrap;
+  }
 
 }
