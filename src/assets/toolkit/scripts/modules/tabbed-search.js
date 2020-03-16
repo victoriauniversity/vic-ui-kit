@@ -140,5 +140,29 @@ if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
     });
   }
 
+  //hide long tabs
+  // $(".toggle").next().toggle();
+  $(".facet_links").each( (i, el) => {
+    console.log( $(el) );
+
+  });
+
+  //add span
+  $(".toggle").append('<span class="icon-caret-right"></span>');
+
+  $(".toggle").each( (i, el) => {
+
+    $(el).on('click' , () => {
+
+      $(el).next().toggle();
+
+      //toggle caret
+      $(el).find('span').toggleClass(() => $(el).find('span').is('.icon-caret-right') ? 'icon-caret-down icon-caret-right': 'icon-caret-right icon-caret-down' );
+
+    })
+
+  })
+
+
 }
 
