@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, March 10, 2020, 1:57 PM */
+/** Version: 0.10.13 | Tuesday, March 17, 2020, 12:53 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -12659,8 +12659,10 @@ address.contact > img {
   display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 .search-result .search-result-header .search-result-title {
@@ -12681,6 +12683,14 @@ address.contact > img {
 
 .search-result .search-result-footer .search-result-footer-item {
   margin: 1rem;
+}
+
+.results-simple .search-result-header {
+  display: block;
+}
+
+.results-simple .search-result-header small {
+  font-size: .95rem;
 }
 
 /* Container Templates
@@ -13040,6 +13050,10 @@ address.contact > img {
   border-top: 5px solid #AAA;
 }
 
+.p-search__aside .p-search-filter h3, .p-search__aside .p-search-filter h4, .p-search__aside .p-search-filter h5 {
+  color: #424242;
+}
+
 .p-search__aside .p-search-filter > h3 {
   display: inline-block;
   margin-right: 1.5rem;
@@ -13072,6 +13086,21 @@ address.contact > img {
 
 .p-search__aside .p-search-filter .tag:hover span.icon-check::before, .p-search__aside .p-search-filter .tag:active span.icon-check::before, .p-search__aside .p-search-filter .tag:focus span.icon-check::before {
   content: "";
+}
+
+.p-search__aside .search-facets h5 {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+.p-search__aside .search-facets h5 span {
+  margin-right: 1rem;
+}
+
+.p-search__aside .search-facets h5:hover {
+  cursor: pointer;
 }
 
 .p-search__aside .facet_links {

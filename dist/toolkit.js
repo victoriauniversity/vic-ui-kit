@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, March 10, 2020, 1:57 PM */
+/** Version: 0.10.13 | Tuesday, March 17, 2020, 12:53 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -6819,12 +6819,62 @@ if (document.querySelectorAll('#search-tab-js').length > 0) {
       $sectab.find('a').off('click');
       $sectab.addClass('disabled-tab');
     }
-  }); // change state based on session storage tab state
+  }); //ie11 urlsearchparam polyfill
+
+  (function (w) {
+    w.URLSearchParams = w.URLSearchParams || function (searchString) {
+      var self = this;
+      self.searchString = searchString;
+
+      self.get = function (name) {
+        var results = new RegExp('[?&]' + name + '=([^&#]*)').exec(self.searchString);
+
+        if (results == null) {
+          return null;
+        } else {
+          return decodeURI(results[1]) || 0;
+        }
+      };
+    };
+  })(window); // Set tab from query param
+
+
+  var queryParam = new URLSearchParams(document.location.search).get("tab"); // console.log("query param", queryParam);
+
+  switch (queryParam) {
+    case 'web':
+      window.sessionStorage.setItem('tabState', 'vuw-web');
+      tabState = window.sessionStorage.tabState;
+      break;
+
+    case 'courses':
+      window.sessionStorage.setItem('tabState', 'wgtn_courses');
+      tabState = window.sessionStorage.tabState;
+      break;
+
+    case 'study':
+      window.sessionStorage.setItem('tabState', 'wgtn-meta-study-areas');
+      tabState = window.sessionStorage.tabState;
+      break;
+
+    case 'people':
+      window.sessionStorage.setItem('tabState', 'vic-push-staff-prod');
+      tabState = window.sessionStorage.tabState;
+      break;
+
+    case 'intranet':
+      window.sessionStorage.setItem('tabState', 'intranet');
+      tabState = window.sessionStorage.tabState;
+      break;
+
+    default:
+      break;
+  } // change state based on session storage tab state
+
 
   if (window.sessionStorage.tabState) {
     // console.log('tabstate exists in local storage');
-    var tabStorage = window.sessionStorage.tabState; // get tabs
-
+    // get tabs
     tabs.each(function (index, tab) {
       var $tab = $(tab);
       var tabData = $(tab).data('tab'); // match against sessionStorage
@@ -6833,6 +6883,7 @@ if (document.querySelectorAll('#search-tab-js').length > 0) {
         // console.log( 'tab should be set to --- ', tabState );
         // set content state
         $(".p-search__tab a[data-tab=\"".concat(tabState, "\"]")).trigger('click');
+      } else {// console.warn('No tab found');
       }
     });
   }
@@ -6854,7 +6905,31 @@ if (document.querySelectorAll('#search-tab-js').length > 0) {
 
       $('.p-search-filter-group').toggle('medium', function () {});
     });
-  }
+  } //hide long tabs
+
+
+  $(".toggle").each(function (i, el) {
+    var $el = $(el);
+    var $totalTags = $(el).next().children().length; // console.log( ` ${$el.text()} ${ $totalTags }` );
+    //sets filter state from filter totals
+
+    if ($totalTags === 0) {
+      $el.hide();
+    } else if ($totalTags >= 6) {
+      $el.append('<span class="icon-caret-right"></span>');
+      $el.next().toggle();
+    } else if ($totalTags < 6) {
+      $el.append('<span class="icon-caret-down"></span>');
+    }
+
+    $(el).on('click', function () {
+      $(el).next().toggle(); //toggle caret
+
+      $(el).find('span').toggleClass(function () {
+        return $(el).find('span').is('.icon-caret-right') ? 'icon-caret-down icon-caret-right' : 'icon-caret-right icon-caret-down';
+      });
+    });
+  });
 }
 
 /***/ }),

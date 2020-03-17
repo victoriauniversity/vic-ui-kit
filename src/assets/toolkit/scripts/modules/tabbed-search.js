@@ -10,8 +10,6 @@ let tabState = window.sessionStorage.tabState;
 if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
 
 
-
-
   const defaultActive = $( '.p-search__tabs .active a' ).data( 'tab' );
   const tabs = $( '.p-search__tab a' );
 
@@ -93,11 +91,61 @@ if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
     }
   });
 
+  //ie11 urlsearchparam polyfill
+  (function (w) {
+    w.URLSearchParams =
+      w.URLSearchParams ||
+      function (searchString) {
+        var self = this
+        self.searchString = searchString
+        self.get = function (name) {
+          var results = new RegExp('[?&]' + name + '=([^&#]*)').exec(
+            self.searchString
+          )
+          if (results == null) {
+            return null
+          } else {
+            return decodeURI(results[1]) || 0
+          }
+        }
+      }
+  })(window)
 
-  // change state based on session storage tab state
-  if ( window.sessionStorage.tabState ) {
-    // console.log('tabstate exists in local storage');
-    const tabStorage = window.sessionStorage.tabState;
+
+  // Set tab from query param
+  let queryParam = new URLSearchParams(document.location.search).get("tab")
+
+  // console.log("query param", queryParam);
+
+  switch (queryParam) {
+    case 'web':
+      window.sessionStorage.setItem( 'tabState', 'vuw-web' );
+      tabState = window.sessionStorage.tabState;
+      break;
+    case 'courses':
+      window.sessionStorage.setItem( 'tabState', 'wgtn_courses' );
+      tabState = window.sessionStorage.tabState;
+      break;
+    case 'study':
+      window.sessionStorage.setItem( 'tabState', 'wgtn-meta-study-areas' );
+      tabState = window.sessionStorage.tabState;
+      break;
+    case 'people':
+      window.sessionStorage.setItem( 'tabState', 'vic-push-staff-prod' );
+      tabState = window.sessionStorage.tabState;
+      break;
+    case 'intranet':
+      window.sessionStorage.setItem( 'tabState', 'intranet' );
+      tabState = window.sessionStorage.tabState;
+      break;
+
+    default:
+      break;
+  }
+
+    // change state based on session storage tab state
+    if ( window.sessionStorage.tabState ) {
+      // console.log('tabstate exists in local storage');
 
     // get tabs
     tabs.each(( index, tab ) => {
@@ -112,6 +160,8 @@ if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
 
         $( `.p-search__tab a[data-tab="${tabState}"]` ).trigger( 'click' );
 
+      } else {
+        // console.warn('No tab found');
       }
 
     });
@@ -139,6 +189,37 @@ if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
       });
     });
   }
+
+  //hide long tabs
+
+  $(".toggle").each( (i, el) => {
+
+    let $el = $(el);
+    let $totalTags = $(el).next().children().length;
+
+    // console.log( ` ${$el.text()} ${ $totalTags }` );
+    //sets filter state from filter totals
+    if ( $totalTags === 0 ) {
+      $el.hide();
+    } else if ( $totalTags >= 6 ) {
+      $el.append('<span class="icon-caret-right"></span>');
+      $el.next().toggle();
+    } else if ( $totalTags < 6 ) {
+      $el.append('<span class="icon-caret-down"></span>');
+    }
+
+
+    $(el).on('click' , () => {
+
+      $(el).next().toggle();
+
+      //toggle caret
+      $(el).find('span').toggleClass(() => $(el).find('span').is('.icon-caret-right') ? 'icon-caret-down icon-caret-right': 'icon-caret-right icon-caret-down' );
+
+    })
+
+  })
+
 
 }
 
