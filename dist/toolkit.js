@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, March 17, 2020, 12:53 PM */
+/** Version: 0.10.13 | Thursday, March 26, 2020, 2:03 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -6908,7 +6908,7 @@ if (document.querySelectorAll('#search-tab-js').length > 0) {
   } //hide long tabs
 
 
-  $(".toggle").each(function (i, el) {
+  $(".search-facets .toggle").each(function (i, el) {
     var $el = $(el);
     var $totalTags = $(el).next().children().length; // console.log( ` ${$el.text()} ${ $totalTags }` );
     //sets filter state from filter totals
