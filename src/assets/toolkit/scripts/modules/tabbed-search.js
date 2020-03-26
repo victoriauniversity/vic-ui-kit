@@ -192,7 +192,7 @@ if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
 
   //hide long tabs
 
-  $(".toggle").each( (i, el) => {
+  $(".search-facets .toggle").each( (i, el) => {
 
     let $el = $(el);
     let $totalTags = $(el).next().children().length;
