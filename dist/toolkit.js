@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, March 26, 2020, 2:03 PM */
+/** Version: 0.10.13 | Wednesday, April 15, 2020, 10:09 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -6852,7 +6852,7 @@ if (document.querySelectorAll('#search-tab-js').length > 0) {
       tabState = window.sessionStorage.tabState;
       break;
 
-    case 'study':
+    case 'subjects':
       window.sessionStorage.setItem('tabState', 'wgtn-meta-study-areas');
       tabState = window.sessionStorage.tabState;
       break;
@@ -6864,6 +6864,11 @@ if (document.querySelectorAll('#search-tab-js').length > 0) {
 
     case 'intranet':
       window.sessionStorage.setItem('tabState', 'intranet');
+      tabState = window.sessionStorage.tabState;
+      break;
+
+    case 'qualifications':
+      window.sessionStorage.setItem('tabState', 'wgtn-meta-qualifications');
       tabState = window.sessionStorage.tabState;
       break;
 
