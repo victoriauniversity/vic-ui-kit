@@ -126,7 +126,7 @@ if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
       window.sessionStorage.setItem( 'tabState', 'wgtn_courses' );
       tabState = window.sessionStorage.tabState;
       break;
-    case 'study':
+    case 'subjects':
       window.sessionStorage.setItem( 'tabState', 'wgtn-meta-study-areas' );
       tabState = window.sessionStorage.tabState;
       break;
@@ -136,6 +136,10 @@ if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
       break;
     case 'intranet':
       window.sessionStorage.setItem( 'tabState', 'intranet' );
+      tabState = window.sessionStorage.tabState;
+      break;
+    case 'qualifications':
+      window.sessionStorage.setItem( 'tabState', 'wgtn-meta-qualifications' );
       tabState = window.sessionStorage.tabState;
       break;
 
