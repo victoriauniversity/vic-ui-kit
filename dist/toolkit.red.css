@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, April 15, 2020, 1:24 PM */
+/** Version: 0.10.13 | Friday, April 17, 2020, 9:55 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -3696,12 +3696,6 @@ ul.meta--labelled .meta-item:last-child {
 
 .meta--labelled .meta-label {
   margin-bottom: 0;
-}
-
-@media (max-width: 42.99em) {
-  .meta-labelText {
-    display: none;
-  }
 }
 
 .meta-data {
@@ -12675,7 +12669,27 @@ address.contact > img {
 }
 
 .search-result .search-result-footer .search-result-footer-item {
+  -webkit-box-flex: 1;
+          flex: 1 0 auto;
   margin: 1rem;
+}
+
+@media (max-width: 42.99em) {
+  .search-result .search-result-footer .search-result-footer-item {
+    -webkit-box-flex: 1;
+            flex: 1 0 40%;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+  .search-result .search-result-footer .search-result-footer-item:nth-child(-n + 2) {
+    margin-bottom: 0;
+  }
+  .search-result .search-result-footer .search-result-footer-item .meta-label {
+    margin-bottom: .3rem !important;
+  }
 }
 
 .results-simple .search-result-header {
