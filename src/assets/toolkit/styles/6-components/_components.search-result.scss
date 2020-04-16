@@ -34,7 +34,25 @@
     border-radius: 2px;
 
     .search-result-footer-item {
+      flex: 1 0 auto;
       margin: 1rem;
+    }
+
+    @include breakpoint( $until: tablet) {
+      .search-result-footer-item {
+        flex: 1 0 40%;
+        display: flex;
+        flex-direction: column;
+
+        &:nth-child(-n + 2) {
+          margin-bottom: 0;
+        }
+
+        .meta-label {
+          margin-bottom: .3rem !important;
+        }
+      }
+
     }
   }
 }
