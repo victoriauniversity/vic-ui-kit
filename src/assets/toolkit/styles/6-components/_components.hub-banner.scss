@@ -7,7 +7,7 @@
     position: relative;
 
     img {
-      max-height: 500px;
+      max-height: 450px;
       object-fit: cover;
       margin-bottom: 0;
     }
@@ -32,10 +32,16 @@
 
   }
 
+  .banner-body {
+    p {
+      max-width: 950px;
+      font-size: 1.2rem;
+    }
+  }
+
   a {
     .banner-body {
       p {
-        text-decoration: underline;
 
         &:after {
           content: "";
@@ -47,8 +53,12 @@
         }
       }
 
-      @include hoverify() {
-        text-decoration: none;
+    }
+    @include hoverify() {
+      .banner-body {
+        p {
+          text-decoration: underline;
+        }
       }
     }
   }
