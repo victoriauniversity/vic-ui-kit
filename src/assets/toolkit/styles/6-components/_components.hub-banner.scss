@@ -5,6 +5,18 @@
   .banner-image {
     background-color: $grey-alto;
     position: relative;
+    background-image: none !important;
+
+    @include target-ie {
+      max-height: 450px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: top;
+
+      img {
+        visibility: hidden;
+      }
+    }
 
     img {
       margin-bottom: 0;
@@ -30,7 +42,6 @@
     h1 {
       color: $white !important;
     }
-
   }
 
   .banner-body {
