@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, April 17, 2020, 9:55 AM */
+/** Version: 0.10.13 | Tuesday, April 21, 2020, 1:51 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -11512,6 +11512,84 @@ address.contact > img {
 @media (min-width: 88em) {
   .promo-panel.strip-banner.tall > figure {
     min-height: 440px;
+  }
+}
+
+.hub-banner {
+  border-bottom: 0.25rem solid #0D4B2F;
+}
+
+.hub-banner .banner-image {
+  background-color: #DDD;
+  position: relative;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .hub-banner .banner-image {
+    max-height: 450px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+  }
+  .hub-banner .banner-image img {
+    visibility: hidden;
+  }
+}
+
+.hub-banner .banner-image img {
+  margin-bottom: 0;
+  max-height: 450px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
+}
+
+.hub-banner .banner-image .banner-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 0rem;
+}
+
+.hub-banner .banner-body,
+.hub-banner .banner-title {
+  background-color: #115737;
+  color: #FFF;
+  padding: 1rem 1.5rem;
+}
+
+.hub-banner .banner-body h1,
+.hub-banner .banner-title h1 {
+  color: #FFF !important;
+}
+
+.hub-banner .banner-body p {
+  max-width: 950px;
+  font-size: 1.2rem;
+}
+
+.hub-banner a .banner-body p:after {
+  content: "";
+  display: inline-block;
+  font-family: "VicIcons";
+  vertical-align: -0.222em;
+  line-height: 1;
+  font-size: 1.5rem;
+}
+
+.hub-banner a:hover .banner-body p, .hub-banner a:active .banner-body p, .hub-banner a:focus .banner-body p {
+  text-decoration: underline;
+}
+
+@media (max-width: 60.99em) {
+  .hub-banner .banner-image img {
+    max-height: 400px;
+  }
+  .hub-banner .banner-image .banner-title {
+    position: relative;
+    bottom: 0;
+    left: 0;
   }
 }
 

@@ -1,0 +1,90 @@
+
+.hub-banner {
+  border-bottom: .25rem solid $green-bottle;
+
+  .banner-image {
+    background-color: $grey-alto;
+    position: relative;
+
+    @include target-ie {
+      max-height: 450px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: top;
+
+      img {
+        visibility: hidden;
+      }
+    }
+
+    img {
+      margin-bottom: 0;
+      max-height: 450px;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .banner-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding-bottom: 0rem;
+    }
+  }
+
+  .banner-body,
+  .banner-title {
+    background-color: $green-brand;
+    color: $white;
+    padding: 1rem 1.5rem;
+
+    h1 {
+      color: $white !important;
+    }
+  }
+
+  .banner-body {
+    p {
+      max-width: 950px;
+      font-size: 1.2rem;
+    }
+  }
+
+  a {
+    .banner-body {
+      p {
+
+        &:after {
+          content: "";
+          display: inline-block;
+          font-family: "VicIcons";
+          vertical-align: -0.222em;
+          line-height: 1;
+          font-size: 1.5rem;
+        }
+      }
+
+    }
+    @include hoverify() {
+      .banner-body {
+        p {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  @include breakpoint( $until: desktop ) {
+    .banner-image {
+      img {
+        max-height: 400px;
+      }
+      .banner-title {
+        position: relative;
+        bottom: 0;
+        left: 0;
+      }
+    }
+  }
+}
+
