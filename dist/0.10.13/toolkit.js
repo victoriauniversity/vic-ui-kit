@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, May 8, 2020, 2:24 PM */
+/** Version: 0.10.13 | Friday, May 8, 2020, 2:30 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -9016,7 +9016,7 @@ function showAdminErrorMessage(errorObject) {
 function addActiveClassToMainMenu() {
   // [url-path-segment]: [nav-item-classname]
   var rootPages = {
-    'study': 'study',
+    'study': 'future',
     'international': 'international',
     'students': 'current',
     'research': 'research',

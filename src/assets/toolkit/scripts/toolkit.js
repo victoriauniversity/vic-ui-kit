@@ -293,7 +293,7 @@ function showAdminErrorMessage( errorObject ) {
 function addActiveClassToMainMenu() {
   // [url-path-segment]: [nav-item-classname]
   const rootPages = {
-      'study':                'study',
+      'study':                'future',
       'international':         'international',
       'students':               'current',
       'research':              'research',
