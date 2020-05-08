@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, April 30, 2020, 11:28 AM */
+/** Version: 0.10.13 | Friday, May 8, 2020, 2:30 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -9016,11 +9016,11 @@ function showAdminErrorMessage(errorObject) {
 function addActiveClassToMainMenu() {
   // [url-path-segment]: [nav-item-classname]
   var rootPages = {
-    'future': 'future',
+    'study': 'future',
     'international': 'international',
-    'current': 'current',
+    'students': 'current',
     'research': 'research',
-    'learning-teaching': 'learning-teaching'
+    'engage': 'engage'
   },
       urlPathSegments = window.location.pathname.split('/');
 

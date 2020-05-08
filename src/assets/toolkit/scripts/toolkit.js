@@ -293,11 +293,11 @@ function showAdminErrorMessage( errorObject ) {
 function addActiveClassToMainMenu() {
   // [url-path-segment]: [nav-item-classname]
   const rootPages = {
-      'future':                'future',
+      'study':                'future',
       'international':         'international',
-      'current':               'current',
+      'students':               'current',
       'research':              'research',
-      'learning-teaching':     'learning-teaching',
+      'engage':                'engage',
     },
 
     urlPathSegments = window.location.pathname.split( '/' );
