@@ -6,6 +6,7 @@ import $ from 'jquery';
 
 import Headroom from 'headroom.js';
 import enquire from 'enquire.js';
+import select2 from 'select2';
 
 import 'lity';
 import 'picturefill';
@@ -39,6 +40,7 @@ export default {};
 require( './study-areas.js' ); // TODO: set up multiple entry points for webpack bundles
 require( './modules/tabbed-search.js' );
 
+$('.select').select2();
 
 /* CONSTANT ATTRIBUTES */
 
