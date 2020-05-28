@@ -6,6 +6,7 @@ import $ from 'jquery';
 
 import Headroom from 'headroom.js';
 import enquire from 'enquire.js';
+import select2 from 'select2';
 
 import 'lity';
 import 'picturefill';
@@ -14,6 +15,7 @@ import 'picturefill';
 import { tracker, trackerConfig } from './modules/tracking';
 import popups from './modules/popups';
 import tooltips from './modules/tooltips';
+import {initTray} from './modules/tray';
 
 // Core libs
 import { initToolbarLoader, initToolbarUrlListeners } from './modules/core';
@@ -39,6 +41,7 @@ export default {};
 require( './study-areas.js' ); // TODO: set up multiple entry points for webpack bundles
 require( './modules/tabbed-search.js' );
 
+$('.select').select2();
 
 /* CONSTANT ATTRIBUTES */
 
@@ -548,6 +551,7 @@ $(() => {
   moveWidgetsToSidebar();
   addActiveClassToMainMenu();
   moveOrphanedStaffCardIntoList();
+  initTray();
 
   tooltips.initTooltips();
 
