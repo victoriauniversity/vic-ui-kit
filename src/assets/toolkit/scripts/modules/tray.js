@@ -35,7 +35,7 @@ export function initTray() {
 
   $( 'body' ).on( 'click', ( e ) => {
 
-    console.log( e.target.className, 'clicked' );
+    // console.log( e.target.className, 'clicked' );
     if ( e.target.className.includes( 'tray-open' )) {
       e.preventDefault();
       toggleTray();
