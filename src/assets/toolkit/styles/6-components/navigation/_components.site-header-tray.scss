@@ -19,11 +19,11 @@ $tray-width-desktop: 400px;
 @keyframes delay-visibility-out {
   0% {
       visibility: visible;
-      opacity: 1
+      opacity: 1;
   }
 
   99% {
-      visibility: visible
+      visibility: visible;
   }
 
   100% {
@@ -50,33 +50,33 @@ $tray-width-desktop: 400px;
 
 @keyframes menu-slide-in {
   0% {
-      transform: translate3d(100%,0,0);
+      transform: translateX( 100% );
       visibility: hidden;
   }
 
   1% {
-      visibility: visible;
+    visibility: visible;
   }
 
   100% {
-      transform: translate3d(0,0,0);
+      transform: translateX(0);
+      visibility: visible;
   }
 }
 
 @keyframes menu-slide-out {
   0% {
-      -webkit-transform: translate3d(0,0,0);
-      transform: translate3d(0,0,0);
-      visibility: visible
+      transform: translateX(0);
+      visibility: visible;
   }
 
   99% {
-      visibility: hidden
-  }
+      visibility: hidden;
+    }
 
-  100% {
-      -webkit-transform: translate3d(100%,0,0);
-      transform: translate3d(100%,0,0)
+    100% {
+      visibility: hidden;
+      transform: translateX(100%);
   }
 }
 
@@ -176,8 +176,7 @@ $tray-width-desktop: 400px;
         animation: delay-visibility-in .3s cubic-bezier(.77,0,.175,1) forwards;
 
         .tray-content {
-
-          transform: translate3d(0,0,100%);
+          // transform: translate3d(0,0,100%);
           animation: menu-slide-in .6s cubic-bezier(.77,0,.175,1) forwards;
         }
       }
@@ -186,7 +185,7 @@ $tray-width-desktop: 400px;
         animation: delay-visibility-out .3s cubic-bezier(.77,0,.175,1) forwards;
 
         .tray-content {
-          transform: translate3d(100%,0,0);
+          // transform: translate3d(100%,0,0);
           visibility: hidden;
           animation: menu-slide-out .6s cubic-bezier(.77,0,.175,1);
         }

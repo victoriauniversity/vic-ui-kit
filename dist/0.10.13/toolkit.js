@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, May 29, 2020, 9:16 AM */
+/** Version: 0.10.13 | Friday, May 29, 2020, 11:15 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14049,8 +14049,7 @@ function initTray() {
     }, 500);
   });
   $('body').on('click', function (e) {
-    console.log(e.target.className, 'clicked');
-
+    // console.log( e.target.className, 'clicked' );
     if (e.target.className.includes('tray-open')) {
       e.preventDefault();
       toggleTray();
