@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, May 29, 2020, 9:16 AM */
+/** Version: 0.10.13 | Friday, May 29, 2020, 11:15 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -11290,61 +11290,65 @@ address.contact > img {
 
 @-webkit-keyframes menu-slide-in {
   0% {
-    -webkit-transform: translate3d(100%, 0, 0);
-            transform: translate3d(100%, 0, 0);
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
     visibility: hidden;
   }
   1% {
     visibility: visible;
   }
   100% {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    visibility: visible;
   }
 }
 
 @keyframes menu-slide-in {
   0% {
-    -webkit-transform: translate3d(100%, 0, 0);
-            transform: translate3d(100%, 0, 0);
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
     visibility: hidden;
   }
   1% {
     visibility: visible;
   }
   100% {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    visibility: visible;
   }
 }
 
 @-webkit-keyframes menu-slide-out {
   0% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
     visibility: visible;
   }
   99% {
     visibility: hidden;
   }
   100% {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
+    visibility: hidden;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
   }
 }
 
 @keyframes menu-slide-out {
   0% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
     visibility: visible;
   }
   99% {
     visibility: hidden;
   }
   100% {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
+    visibility: hidden;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
   }
 }
 
@@ -11444,8 +11448,6 @@ address.contact > img {
 }
 
 .main-site-header.header-tray .header-inner .tray.tray-open .tray-content {
-  -webkit-transform: translate3d(0, 0, 100%);
-          transform: translate3d(0, 0, 100%);
   -webkit-animation: menu-slide-in 0.6s cubic-bezier(0.77, 0, 0.175, 1) forwards;
           animation: menu-slide-in 0.6s cubic-bezier(0.77, 0, 0.175, 1) forwards;
 }
@@ -11456,8 +11458,6 @@ address.contact > img {
 }
 
 .main-site-header.header-tray .header-inner .tray.tray-closed .tray-content {
-  -webkit-transform: translate3d(100%, 0, 0);
-          transform: translate3d(100%, 0, 0);
   visibility: hidden;
   -webkit-animation: menu-slide-out 0.6s cubic-bezier(0.77, 0, 0.175, 1);
           animation: menu-slide-out 0.6s cubic-bezier(0.77, 0, 0.175, 1);
