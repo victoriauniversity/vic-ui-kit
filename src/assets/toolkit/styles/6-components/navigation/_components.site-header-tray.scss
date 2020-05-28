@@ -1,0 +1,360 @@
+/*==================================================
+=            Site header with hamburger tray         =
+==================================================*/
+
+$page-sub-nav-border: $brand !default;
+$page-sub-nav-bg: $brand-dark !default;
+$page-sub-nav-active-item-bg: $brand !default;
+$page-sub-nav-hover-bg: $brand-darker !default;
+
+$header-bg: $black-brand;
+$tray-width-desktop: 400px;
+
+:root {
+  --tray-width-desktop: 400px;
+}
+
+
+
+@keyframes delay-visibility-out {
+  0% {
+      visibility: visible;
+      opacity: 1
+  }
+
+  99% {
+      visibility: visible
+  }
+
+  100% {
+      visibility: hidden;
+      opacity: 0;
+  }
+}
+
+@keyframes delay-visibility-in {
+  0% {
+      visibility: hidden;
+      opacity: 0;
+  }
+
+  1% {
+      visibility: hidden;
+  }
+
+  100% {
+      visibility: visible;
+      opacity: 1;
+  }
+}
+
+@keyframes menu-slide-in {
+  0% {
+      transform: translate3d(100%,0,0);
+      visibility: hidden;
+  }
+
+  1% {
+      visibility: visible;
+  }
+
+  100% {
+      transform: translate3d(0,0,0);
+  }
+}
+
+@keyframes menu-slide-out {
+  0% {
+      -webkit-transform: translate3d(0,0,0);
+      transform: translate3d(0,0,0);
+      visibility: visible
+  }
+
+  99% {
+      visibility: hidden
+  }
+
+  100% {
+      -webkit-transform: translate3d(100%,0,0);
+      transform: translate3d(100%,0,0)
+  }
+}
+
+.noscroll {
+  overflow: hidden;
+}
+
+.main-site-header {
+  .header-toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 1rem;
+    flex: 0 1 5%;
+
+
+    button {
+      position: relative;
+      padding: 0;
+      width: 50px;
+      text-decoration: none;
+      border-radius: 50%;
+
+      @include hoverify() {
+        background-color: $black-tundora;
+      }
+
+      span {
+        margin: 0 .5rem;
+        color: $white;
+        font-size: 1.8rem;
+
+        &:before {
+          margin: 0;
+          display: inline;
+        }
+      }
+
+      .text-menu-button {
+        font-size: .7rem;
+        position: absolute;
+        bottom: -5px;
+        left: 35%;
+        transform: translateX(-50%);
+
+      }
+    }
+
+    .search-toggle {
+      display: none;
+    }
+
+    @include breakpoint($until:desktop) {
+
+      .search-toggle {
+        display: block;
+      }
+    }
+  }
+
+}
+
+.main-site-header.header-tray {
+  .header-inner {
+    z-index: 3;
+    display: flex;
+    align-items: center;
+
+    .header-logo {
+      width: 25%;
+    }
+
+    .header-content {
+      padding-left: 1rem;
+      width: 45%;
+    }
+
+    .header-search {
+      width: 20%;
+      flex: 1;
+    }
+
+
+    .tray {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      background: rgba(0,0,0,.6);
+      color: #fff;
+      // pointer-events: none;
+
+
+      &.tray-open {
+
+        animation: delay-visibility-in .3s cubic-bezier(.77,0,.175,1) forwards;
+
+        .tray-content {
+
+          transform: translate3d(0,0,100%);
+          animation: menu-slide-in .6s cubic-bezier(.77,0,.175,1) forwards;
+        }
+      }
+
+      &.tray-closed {
+        animation: delay-visibility-out .3s cubic-bezier(.77,0,.175,1) forwards;
+
+        .tray-content {
+          transform: translate3d(100%,0,0);
+          visibility: hidden;
+          animation: menu-slide-out .6s cubic-bezier(.77,0,.175,1);
+        }
+      }
+
+    }
+    .tray-content {
+      // transition: all .4s ease-in;
+      padding: 1rem;
+      z-index: 150;
+      height: 100vh;
+      background-color: $header-bg;
+      margin-left: calc(100vw - 400px);
+      width: $tray-width-desktop;
+      overflow-y: scroll;
+
+      > * {
+        margin-left: .5rem;
+      }
+
+      .tray-main-nav {
+        margin-top: 1rem;
+
+        .main-nav-item {
+          padding: 1rem 0;
+
+          &:not(:last-child) {
+            border-bottom: 1px solid $white;
+          }
+
+          a {
+            color: $white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: .5s ease-in;
+
+            @include hoverify() {
+              text-decoration: underline;
+            }
+
+
+            &.active {
+              font-weight: 600;
+              position: relative;
+
+              &:before {
+                content: '';
+                width: 2px;
+                background-color: $white;
+                height: 100%;
+                position: absolute;
+                left: -7px;
+                top: 50%;
+                transform: translateY(-50%);
+              }
+            }
+          }
+        }
+      }
+
+      .tray-search-bar {
+
+      }
+
+      .tray-sub-menu {
+        margin-top: 2rem;
+        .sub-menu-list {
+          display: flex;
+          flex-wrap: wrap;
+
+          .sub-menu-item {
+            width: 50%;
+            padding: .1rem 0;
+
+            a {
+              color: $white;
+              text-decoration: none;
+              @include hoverify() {
+                text-decoration: underline;
+              }
+            }
+          }
+
+        }
+      }
+
+      .tray-close {
+        margin: -1rem -1rem 1rem -1rem;
+        padding: .6rem 1.5rem;
+        background-color: $black-tundora;
+
+        .close-tray {
+          transition: .3s ease-in;
+          color: $white;
+          padding:0;
+          text-decoration: none;
+
+          @include hoverify() {
+            opacity: .8;
+          }
+
+          span {
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+  }
+
+  @include breakpoint($until:desktop) {
+
+    .header-search {
+      display: none;
+    }
+
+    .header-toggle {
+      margin-left: auto;
+    }
+  }
+
+  @include breakpoint($until:tablet) {
+    .header-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+
+      > * {
+        width: auto !important;
+      }
+
+      .header-logo {
+        margin-right: auto;
+        grid-column-start: 1;
+        grid-row: 1 / 3;
+
+      }
+
+      .header-toggle {
+        grid-column-start: 2;
+        grid-row-start: 1;
+
+        .text-menu-button {
+          display: none;
+        }
+      }
+
+      .header-content {
+        grid-column-start: 2;
+        grid-row-start: 2;
+        margin-left: auto;
+      }
+
+      .tray {
+        .tray-content {
+          margin-left: calc(100vw - 80%);
+          width: 80%;
+        }
+      }
+    }
+
+  }
+
+}
+
+
+
+// Mouseflow tracking fix for sub menus and sidebar expandable menus
+
+.mf-heatmap-clicked + ul {
+  display: block !important;
+}

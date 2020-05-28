@@ -15,6 +15,7 @@ import 'picturefill';
 import { tracker, trackerConfig } from './modules/tracking';
 import popups from './modules/popups';
 import tooltips from './modules/tooltips';
+import {initTray} from './modules/tray';
 
 // Core libs
 import { initToolbarLoader, initToolbarUrlListeners } from './modules/core';
@@ -550,6 +551,7 @@ $(() => {
   moveWidgetsToSidebar();
   addActiveClassToMainMenu();
   moveOrphanedStaffCardIntoList();
+  initTray();
 
   tooltips.initTooltips();
 
