@@ -266,3 +266,122 @@
   }
 }
 
+/* Pattern for search input with button inner
+        <div class="search-button-inside form-dark-grey">
+          <form class="" action="https://www.wgtn.ac.nz/search" role="search">
+            <label class="search-label visually-hidden" for="search">
+                <span>Search</span>
+            </label>
+            <input class="search-input" id="search" type="text" placeholder="Search" name="q" autocorrect="off">
+            <button class="submit-button" type="submit"><span class="icon-search"></span></button>
+          </form>
+        </div>
+*/
+.search-button-inside {
+
+  form {
+    display: flex;
+    position: relative;
+    justify-content: stretch;
+    align-items: center;
+    border-radius: 2px;
+
+    .search-input {
+      flex: 1;
+      width: 100%;
+      padding: .5rem 70px .5rem .5rem;
+      border-radius: 2px;
+      border-style: initial;
+    }
+
+    .submit-button {
+      background-color: transparent;
+      position: absolute;
+      right: 0;
+      width: 50px;
+      &::after {
+        content: none;
+      }
+    }
+  }
+
+  .search-label span,
+  .search-label {
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+  }
+
+  &.form-dark-grey {
+    form {
+
+      ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: darken($white, 20%);
+        opacity: 1; /* Firefox */
+      }
+
+      .search-input {
+        background-color: $black-tundora;
+        border: 1px solid $white;
+        color: $white;
+
+      }
+
+      .submit-button {
+        span {
+          color: $white;
+        }
+      }
+    }
+  }
+
+  &.form-black-white-outline {
+    form {
+      transition: .3s ease-in;
+
+      ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: darken($white, 5%);
+        opacity: 1; /* Firefox */
+      }
+
+      .search-input {
+        background-color: $black-brand;
+        border: 1px solid $white;
+        color: $white;
+
+      }
+
+      .submit-button {
+        span {
+          color: $white;
+        }
+      }
+
+      .search-input {
+        &:focus,
+        &:active {
+          background-color: $white;
+          border: 1px solid $white;
+          outline: 1px solid $white;
+          color: $black-tundora;
+
+          &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: darken($black-tundora, 20%);
+            opacity: 1; /* Firefox */
+          }
+
+          + .submit-button {
+            span {
+              color: $black-tundora;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
