@@ -21,6 +21,8 @@ $sidemenu-size:                $navigation-primary-item-size !default;
 
 $sidemenu-delimiter-color:     $brand-darker !default;
 
+$sidemenu-bg-light: $white;
+
 
 .sidemenu {
   z-index:    $z-index-lower;
@@ -265,6 +267,128 @@ $sidemenu-delimiter-color:     $brand-darker !default;
     }
 
     .expanded > ul { font-size: 100%; }
+  }
+
+  &.sidemenu-light {
+    background: $sidemenu-bg-light;
+
+    a {
+      color: $black-tundora;
+    }
+
+    > ul {
+      font-weight: 500;
+      > li {
+        border-bottom-color: $grey;
+
+        &.active {
+          border-bottom: 1px solid $grey;
+          > a {
+            background-color: $sidemenu-bg-light;
+            color: $black-tundora;
+
+            &:before {
+              border-color: $black-tundora;
+            }
+          }
+        }
+      }
+    }
+
+    ul {
+      li {
+        &.active {
+          > a {
+            color: $black-tundora;
+
+            &:before {
+              border-color: $black-tundora;
+            }
+          }
+        }
+      }
+    }
+
+    .has-submenu {
+
+      > ul {
+        > li {
+          border-left-color: $grey;
+        }
+      }
+      &.expanded {
+        .btn-expander {
+          &:after {
+            border-color: transparent transparent $black-tundora;
+          }
+        }
+      }
+    }
+
+    .btn-expander {
+      color: $black-tundora;
+
+    }
+
+    .has-submenu.active {
+      background-color: $sidemenu-bg-light;
+    }
+
+    @include breakpoint ( $from: desktop ) {
+
+    }
+  }
+  &.sidemenu-homepage {
+    background: $sidemenu-bg-light;
+
+
+    @include breakpoint ( $from: desktop ) {
+
+    }
+  }
+}
+
+.sidemenu-banner-wrap {
+  .sidemenu-homepage {
+    @extend .sidemenu;
+
+  }
+
+  @include breakpoint ( $from: desktop ) {
+    display: flex;
+    align-items: flex-start;
+
+    .sidemenu-homepage {
+      flex: 1 1 35%;
+
+      .sidemenu-drawer {
+          display: none;
+        &.active {
+          display: block;
+          width: 100%;
+          background-color: red;
+          height: 100%;
+          position: absolute;
+          left: 26%;
+          top: 0;
+        }
+
+        .draw-nav {
+          > ul {
+            display: none;
+
+            &.active-nav-group {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+
+    .hub-banner {
+
+    }
+
   }
 }
 
