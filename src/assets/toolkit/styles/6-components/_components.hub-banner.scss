@@ -88,3 +88,66 @@
   }
 }
 
+.hub-banner-sidemenu {
+  width: 100%;
+  position: relative;
+
+  > figure {
+    position: relative;
+  }
+
+  .banner-body {
+    padding: 1rem;
+    background-color: $green-brand;
+    color: $white;
+
+    .banner-title {
+      h1 {
+        margin-bottom: 1rem;
+        font-size: 2.5rem;
+        position: relative;
+
+        &:after {
+          position: absolute;
+          bottom: -.5rem;
+          left: 0;
+          content: "";
+          width: 50px;
+          height: 5px;
+          background-color: $white;
+        }
+      }
+    }
+  }
+
+  @include breakpoint ( $from: desktop ) {
+    width: 75%;
+    .banner-body {
+      position: absolute;
+      margin: 1rem;
+      max-width: 400px;
+
+      &.top-left {
+        top: 0;
+        left: 0;
+      }
+
+      &.top-right {
+        top: 0;
+        right: 0;
+      }
+
+      &.bottom-right {
+        bottom: 1rem;
+        right: 0;
+      }
+
+      &.bottom-left {
+        bottom: 1rem;
+        left: 0;
+      }
+    }
+
+  }
+}
+
