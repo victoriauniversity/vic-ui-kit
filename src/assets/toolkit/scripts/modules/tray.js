@@ -5,7 +5,7 @@ const TABLET_AND_SMALLER = 'screen and (max-width: 975px)',
 // eslint-disable-next-line import/prefer-default-export
 export function initTray() {
 
-  console.log( 'tray...', $( '.tray-toggle' ));
+  // console.log( 'tray...', $( '.tray-toggle' ));
 
   function toggleTray() {
     $( '.tray' ).toggleClass( 'tray-closed', 'normal' );
@@ -18,10 +18,14 @@ export function initTray() {
     toggleTray();
     // return false;
     e.preventDefault();
-    console.log( 'clicked try toggle' );
+
   });
 
-  $( '.close-tray' ).click(( e ) => {
+  $( '.expanded-draw' ).click(( e ) => {
+    e.preventDefault();
+    toggleTray();
+  });
+  $( '.tray-close' ).click(( e ) => {
     e.preventDefault();
     toggleTray();
   });
@@ -60,18 +64,23 @@ export function initTray() {
   const SIDEMENU_EXPANDED_CLASS      = 'expanded';
 
   function buildTray(index, item) {
-    console.log(index);
+    // console.log(index);
 
-    console.log( 'nav item', $(this).parent().children('a').text() );
+    // console.log( 'nav item', $(this).parent().children('a').text() );
     const nav = $(this);
 
     let navClassString = $(this).parent().children('a').text();
+    let titleLink = $(this).parent().children('a').attr('href');
+    // console.log(titleLink);
 
+    //push into traw div
     nav.clone().appendTo('.draw-nav').addClass( navClassString ).attr("data-index",index);
-
+    //add title
+    $( `.draw-nav ul[data-index='${index}']` ).prepend(`<h4 class="sub-draw-title"><a href="${titleLink}">${navClassString}</a></h4>`);
   }
 
   let sidemeneuExpanded = false;
+  const $draw = $('.sidemenu-drawer');
 
   function expandTray(index, button) {
 
@@ -79,14 +88,12 @@ export function initTray() {
 
       //toggle sidemenu draw and content
 
-      //draw
+      if( $(button).parent().hasClass('expanded-draw') ) {
 
-      let $draw = $('.sidemenu-drawer');
-
-      if( $(button).parent().hasClass('close-tray') ) {
-        console.log('has class button close tray');
+        // console.log('has class button close tray');
         sidemeneuExpanded = !sidemeneuExpanded;
         $draw.toggleClass('active');
+        $(button).parent().removeClass('expanded-draw');
 
       } else {
 
@@ -96,12 +103,12 @@ export function initTray() {
           sidemeneuExpanded = !sidemeneuExpanded;
         }
 
-        $( '.sidemenu-homepage > ul > li').removeClass('close-tray');
+        $( '.sidemenu-homepage > ul > li').removeClass('expanded-draw');
 
-        $(button).parent().addClass('close-tray');
+        $(button).parent().addClass('expanded-draw');
       }
 
-      console.log(index, button);
+      // console.log(index, button);
       let matchingNavGroup = $(`.draw-nav ul[data-index='${index}']`);
       $('.draw-nav > ul').removeClass('active-nav-group');
       matchingNavGroup.toggleClass('active-nav-group');
@@ -110,25 +117,56 @@ export function initTray() {
 
   }
 
+  function expandDrawSubContent() {
+    // console.log('expand expandDrawSubContent');
+    let subDrawExpander = $('.sidemenu-drawer .draw-nav ul ').find('.btn-expander');
+    // console.log(subDrawExpander);
+
+    subDrawExpander.each( (i, button) => {
+
+      let $button = $(button);
+
+      $button.on('click', () => {
+        console.log($button);
+        $button.parent('li').toggleClass('expanded');
+
+      });
+    });
+
+  }
+
+  function closeSideMenuTray() {
+    $('.close-draw').on( 'click', ()=> {
+      if(sidemeneuExpanded) {
+        sidemeneuExpanded = !sidemeneuExpanded;
+        $draw.toggleClass('active');
+      }
+    });
+  }
+
   function sidemenuTray() {
     const menu = $('.sidemenu-homepage');
-    console.log(menu);
+    // console.log(menu);
 
     //build tray nav content
     const trayNavItems = $( '.sidemenu-homepage > ul > li > ul' );
 
     const buttonExpander = $('.sidemenu-homepage > ul > li > .btn-expander');
 
-    console.log(trayNavItems);
+    // console.log(trayNavItems);
 
     buttonExpander.each( expandTray );
 
     trayNavItems.each( buildTray );
 
+    expandDrawSubContent();
+
+    closeSideMenuTray()
+
   }
 
   if ($('.sidemenu-homepage').length  ) {
-    console.log('sidemeny homepage init');
+    // console.log('sidemeny homepage init');
 
     // enquire.register( TABLET_AND_SMALLER, () => {
     //   console.log('tray is small size for mob');
@@ -136,7 +174,7 @@ export function initTray() {
     // });
 
     enquire.register( DESKTOP_AND_LARGER, () => {
-      console.log('Tray is large size cool ');
+      // console.log('Tray is large size cool ');
       sidemenuTray();
 
     });
