@@ -85,9 +85,17 @@
   display: flex;
 
   border-left: 5px solid $green-brand;
+  margin-bottom: 1.5rem;
+
+  &.red {
+    border-left-color: $red-tamarillo;
+    h3 {
+      color: $red-tamarillo;
+    }
+  }
 
   .highlight-image {
-    width: 20%;
+    width: 30%;
     img {
       object-fit: cover;
       width: 100%;
@@ -96,11 +104,36 @@
   }
 
   .highlight-content {
+    flex: 1 1 70%;
+    padding: 1rem;
     background-color: $grey-gallery;
-    padding: .5rem;
+    > * {
+      margin: .5rem 0;
+    }
+
+    a {
+      display: inline;
+      color: $blue-endeavoura;
+    }
   }
 
   .draw-promo & {
+
+
+    .highlight-content {
+      flex: 1 1 70%;
+      padding: 1rem;
+      background-color: $grey-gallery;
+      > * {
+        margin: .5rem 0;
+      }
+
+      a {
+        display: inline;
+        color: $blue-endeavoura !important;
+      }
+    }
+
 
     .button {
       margin: .5rem 0;
