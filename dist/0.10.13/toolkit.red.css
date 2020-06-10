@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, June 8, 2020, 3:47 PM */
+/** Version: 0.10.13 | Wednesday, June 10, 2020, 3:27 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -4130,10 +4130,19 @@ blockquote.quote {
   display: -webkit-box;
   display: flex;
   border-left: 5px solid #115737;
+  margin-bottom: 1.5rem;
+}
+
+.highlight-message.red {
+  border-left-color: #831212;
+}
+
+.highlight-message.red h3 {
+  color: #831212;
 }
 
 .highlight-message .highlight-image {
-  width: 20%;
+  width: 30%;
 }
 
 .highlight-message .highlight-image img {
@@ -4144,8 +4153,35 @@ blockquote.quote {
 }
 
 .highlight-message .highlight-content {
+  -webkit-box-flex: 1;
+          flex: 1 1 70%;
+  padding: 1rem;
   background-color: #EEE;
-  padding: .5rem;
+}
+
+.highlight-message .highlight-content > * {
+  margin: .5rem 0;
+}
+
+.highlight-message .highlight-content a {
+  display: inline;
+  color: #005EA5;
+}
+
+.draw-promo .highlight-message .highlight-content {
+  -webkit-box-flex: 1;
+          flex: 1 1 70%;
+  padding: 1rem;
+  background-color: #EEE;
+}
+
+.draw-promo .highlight-message .highlight-content > * {
+  margin: .5rem 0;
+}
+
+.draw-promo .highlight-message .highlight-content a {
+  display: inline;
+  color: #005EA5 !important;
 }
 
 .draw-promo .highlight-message .button {
@@ -11222,8 +11258,14 @@ address.contact > img {
   transform: translateY(-50%);
 }
 
+.sidemenu-banner-wrap .sidemenu-homepage > ul > li.expanded-draw .btn-expander {
+  font-family: "vicicons";
+  font-size: 1.5rem;
+  color: #115737;
+}
+
 .sidemenu-banner-wrap .sidemenu-homepage > ul > li.expanded-draw .btn-expander:after {
-  content: "-" !important;
+  content: "" !important;
 }
 
 @media (min-width: 61em) {
@@ -11241,6 +11283,7 @@ address.contact > img {
     display: -webkit-box;
     display: flex;
     padding: 1rem;
+    padding-right: 2rem;
     border: 1px solid #424242;
     display: flex;
     width: 75%;
@@ -11269,12 +11312,16 @@ address.contact > img {
   }
   .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav {
     width: 30%;
+    padding-right: 1rem;
     margin: 0 1rem;
     border-right: 1px solid #EEE;
     z-index: -10;
   }
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav .btn-expander {
+    font-size: 1.3rem;
+  }
   .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav .sub-draw-title {
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
     color: #424242;
     font-size: 1.2rem;
     display: -webkit-box;
@@ -11282,20 +11329,17 @@ address.contact > img {
     -webkit-box-align: center;
             align-items: center;
   }
-  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav .sub-draw-title:before {
-    content: "";
-    position: relative;
-    display: inline-block;
-    font-family: "VicIcons";
-    margin: 0 0.5em 0 0;
-    width: 1em;
-    vertical-align: -0.222em;
-    text-align: center;
-    line-height: 1;
-    font-size: 1rem;
-  }
   .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul {
     display: none;
+  }
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul > li {
+    border-bottom: 1px solid #DDD;
+    padding: .5rem 0;
+  }
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul > li > ul > li:not(:last-child) > a {
+    border-bottom: 1px solid #DDD;
+    padding-left: 0;
+    margin-left: .7em;
   }
   .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul.active-nav-group {
     display: block;
@@ -11308,9 +11352,9 @@ address.contact > img {
     display: flex;
     -webkit-box-align: center;
             align-items: center;
-    margin: .5rem 0;
   }
   .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-promo {
+    padding-right: 2rem;
     width: 70%;
   }
 }
