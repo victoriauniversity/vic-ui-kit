@@ -135,13 +135,35 @@ export function initTray() {
 
   }
 
-  function closeSideMenuTray() {
+  function closeSideMenuDraw() {
     $('.close-draw').on( 'click', ()=> {
       if(sidemeneuExpanded) {
         sidemeneuExpanded = !sidemeneuExpanded;
+        $( '.sidemenu-homepage .expanded-draw' ).removeClass( 'expanded-draw' );
         $draw.toggleClass('active');
       }
     });
+
+    //close if body is clicked on?? tbd
+    // $( 'body' ).on( 'click', ( e ) => {
+
+    //   console.log( e.target.className, 'clicked' );
+    //   // if ( e.target.className.includes( 'tray-open' )) {
+    //   //   e.preventDefault();
+    //   //   toggleTray();
+    //   // }
+    //   if(sidemeneuExpanded) {
+    //     console.log('sidemenu is expanded');
+    //     // sidemeneuExpanded = !sidemeneuExpanded;
+    //     // $( '.sidemenu-homepage .expanded-draw' ).removeClass( 'expanded-draw' );
+    //     // $draw.toggleClass('active');
+    //   } else {
+    //     console.log('draw not expanded');
+    //   }
+
+    // });
+
+
   }
 
   function sidemenuTray() {
@@ -161,7 +183,7 @@ export function initTray() {
 
     expandDrawSubContent();
 
-    closeSideMenuTray()
+    closeSideMenuDraw();
 
   }
 

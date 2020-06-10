@@ -423,8 +423,11 @@ $sidemenu-bg-light: $white;
           }
 
           .btn-expander {
+            font-family: "vicicons";
+            font-size: 1.5rem;
+            color: $green-brand;
             &:after {
-              content: "-" !important;
+              content: "" !important;
             }
           }
         }
@@ -442,6 +445,7 @@ $sidemenu-bg-light: $white;
       .sidemenu-drawer {
         display: flex;
         padding: 1rem;
+        padding-right: 2rem;
         border: 1px solid $black-tundora;
         display: flex;
         width: 75%;
@@ -478,36 +482,58 @@ $sidemenu-bg-light: $white;
 
         .draw-nav {
           width: 30%;
+          padding-right: 1rem;
           margin: 0 1rem;
           border-right: 1px solid $grey-gallery;
           z-index: -10;
 
+          .btn-expander {
+            font-size: 1.3rem;
+          }
+
           .sub-draw-title {
-            margin-bottom: 1rem;
+            margin-bottom: .5rem;
             color: $black-tundora;
             font-size: 1.2rem;
             display: flex;
             align-items: center;
 
-            &:before {
-              content: "";
-              position: relative;
-              display: inline-block;
-              font-family: "VicIcons";
-              margin: 0 0.5em 0 0;
-              width: 1em;
-              vertical-align: -0.222em;
-              text-align: center;
-              line-height: 1;
-              font-size: 1rem;
-            }
+            // &:before {
+            //   content: "";
+            //   position: relative;
+            //   display: inline-block;
+            //   font-family: "VicIcons";
+            //   margin: 0 0.5em 0 0;
+            //   width: 1em;
+            //   vertical-align: -0.222em;
+            //   text-align: center;
+            //   line-height: 1;
+            //   font-size: 1rem;
+            // }
           }
 
           > ul {
             display: none;
             // max-width: 320px;
 
-            li {
+            > li {
+              border-bottom: 1px solid $grey-alto;
+              padding: .5rem 0;
+
+              > ul {
+
+                > li {
+                  &:not(:last-child) {
+
+                    > a {
+                      border-bottom: 1px solid $grey-alto;
+                      padding-left: 0;
+                      margin-left: .7em;
+
+                    }
+                  }
+                }
+              }
             }
 
             &.active-nav-group {
@@ -521,13 +547,14 @@ $sidemenu-bg-light: $white;
               > li {
                 display: flex;
                 align-items: center;
-                margin: .5rem 0;
+
               }
             }
           }
         }
 
         .draw-promo {
+          padding-right: 2rem;
           width: 70%;
         }
       }
