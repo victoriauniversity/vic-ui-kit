@@ -160,6 +160,7 @@ function initSidemenuExpandability(menuClass) {
 /** Adds necessary classes and expanding/collapsing elements if the item has got submenu. */
 const btnExpanderHtml = '<span class="btn-expander mf-heatmap-click" title="Toggle subpages"></span>';
 
+
 function enhanceSidemenu( menuElement ) {
   menuElement.find( 'li' ).each( function () {
     const listItem = $( this );
@@ -579,9 +580,9 @@ $(() => {
       initSidemenuExpandability( 'sidemenu-homepage' );
       console.log('tray is small size for mob');
     });
-    // enhanceSidemenu('sidemenu-homepage');
+    const $sidemenuHomepage = $('.sidemenu-homepage');
+    enhanceSidemenu($sidemenuHomepage);
   };
-
 
   initTray();
 
