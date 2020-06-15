@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, June 10, 2020, 3:27 PM */
+/** Version: 0.10.13 | Monday, June 15, 2020, 2:33 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15490,7 +15490,9 @@ external_jQuery_default()(function () {
       console.log("sidemenu-homepage");
       initSidemenuExpandability('sidemenu-homepage');
       console.log('tray is small size for mob');
-    }); // enhanceSidemenu('sidemenu-homepage');
+    });
+    var $sidemenuHomepage = external_jQuery_default()('.sidemenu-homepage');
+    enhanceSidemenu($sidemenuHomepage);
   }
 
   ;
