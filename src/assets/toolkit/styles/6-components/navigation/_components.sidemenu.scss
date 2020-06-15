@@ -569,6 +569,24 @@ $sidemenu-bg-light: $white;
     }
 
   }
+
+  @include breakpoint ( $until: desktop ) {
+    .sidemenu-homepage {
+
+      > ul {
+        > li {
+          &:nth-child(2) {
+            border-top: 1px solid $grey;
+          }
+        }
+
+      }
+
+      .sidemenu__label {
+        display: none;
+      }
+    }
+  }
 }
 
 
