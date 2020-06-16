@@ -15,7 +15,7 @@ import 'picturefill';
 import { tracker, trackerConfig } from './modules/tracking';
 import popups from './modules/popups';
 import tooltips from './modules/tooltips';
-import {initTray} from './modules/tray';
+import { initTray } from './modules/tray';
 
 // Core libs
 import { initToolbarLoader, initToolbarUrlListeners } from './modules/core';
@@ -41,36 +41,37 @@ export default {};
 require( './study-areas.js' ); // TODO: set up multiple entry points for webpack bundles
 require( './modules/tabbed-search.js' );
 
-$('.select').select2();
+$( '.select' ).select2();
 
 /* CONSTANT ATTRIBUTES */
 
-var TRANSITION_TIMEOUT       = 200; //update in _settings.variables.scss(135)
-var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 42.99em)', //update in _settings.responsive.scss(57)
-    DESKTOP_AND_LARGER = 'screen and (min-width: 61em)',
-    TABLET_AND_SMALLER = 'screen and (max-width: 975px)',
+const TRANSITION_TIMEOUT       = 200; // update in _settings.variables.scss(135)
+const MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 42.99em)', // update in _settings.responsive.scss(57)
+  DESKTOP_AND_LARGER = 'screen and (min-width: 61em)',
+  TABLET_AND_SMALLER = 'screen and (max-width: 975px)',
 
-// Iframe selectors
-YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
-GMAPS_IFRAME_SELECTOR   = 'iframe[src*="/maps/"]',
-VIMEO_IFRAME_SELECTOR   = 'iframe[src*="vimeo"]';
+  // Iframe selectors
+  YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
+  GMAPS_IFRAME_SELECTOR   = 'iframe[src*="/maps/"]',
+  VIMEO_IFRAME_SELECTOR   = 'iframe[src*="vimeo"]';
 
 
 /* SUPPORTING FUNCTIONS */
 
 /** Wrap YT videos in .embed wrapper that helps with responsiveness. */
 function wrapEmbeddedIframes() {
-  var iframes = $( YOUTUBE_IFRAME_SELECTOR + ', ' + GMAPS_IFRAME_SELECTOR + ', ' + VIMEO_IFRAME_SELECTOR ),
-  singleIframe = null, iframeClasses;
+  let iframes = $( `${YOUTUBE_IFRAME_SELECTOR}, ${GMAPS_IFRAME_SELECTOR}, ${VIMEO_IFRAME_SELECTOR}` ),
+    singleIframe = null,
+    iframeClasses;
 
-  iframes.each( function( index ) {
+  iframes.each( function ( index ) {
     singleIframe = $( this );
 
     // If it doesn't already have wrapper, wrap it!
-    if ( !singleIframe.parent().hasClass( 'embed' ) ){
-      iframeClasses = singleIframe.attr("class") || '';
+    if ( !singleIframe.parent().hasClass( 'embed' )) {
+      iframeClasses = singleIframe.attr( 'class' ) || '';
 
-      singleIframe.wrap( '<div class="embed ' + iframeClasses + '"></div>' );
+      singleIframe.wrap( `<div class="embed ${iframeClasses}"></div>` );
 
       if ( iframeClasses ) singleIframe.removeClass();
     }
@@ -81,9 +82,9 @@ function wrapEmbeddedIframes() {
 /** Deletes all study areas tiles that are display: none from DOM to
 keep the markup clean (and easily handled by the CSS) */
 function removedUnusedTiles() {
-  $( '.tiles-wrap .tile').each( function() {
-    if ($(this).css("display") == "none") {
-      $(this).remove();
+  $( '.tiles-wrap .tile' ).each( function () {
+    if ( $( this ).css( 'display' ) == 'none' ) {
+      $( this ).remove();
     }
   });
 }
@@ -103,76 +104,78 @@ const SIDEMENU_EXPANDED_CLASS      = 'expanded';
 
 /** PRIVATE FUNCTIONS. */
 
-  function initExpandableSubmenu() {
-    const expandableButtonElement = $( this );
-    const submenuContainer = expandableButtonElement.parent( '.' + SIDEMENU_SUBMENU_CLASS );
+function initExpandableSubmenu() {
+  const expandableButtonElement = $( this );
+  const submenuContainer = expandableButtonElement.parent( `.${SIDEMENU_SUBMENU_CLASS}` );
 
-    // Init default state
-    var isExpanded = submenuContainer.hasClass( SIDEMENU_SELECTED_ITEM_CLASS );
+  // Init default state
+  let isExpanded = submenuContainer.hasClass( SIDEMENU_SELECTED_ITEM_CLASS );
 
-    function apply() {
-      if ( isExpanded ) {
-        submenuContainer.addClass( SIDEMENU_EXPANDED_CLASS );
-      } else {
-        submenuContainer.removeClass( SIDEMENU_EXPANDED_CLASS );
-      }
+  function apply() {
+    if ( isExpanded ) {
+      submenuContainer.addClass( SIDEMENU_EXPANDED_CLASS );
+    } else {
+      submenuContainer.removeClass( SIDEMENU_EXPANDED_CLASS );
     }
+  }
 
-    // Init
+  // Init
+  apply();
+
+  // Bind `click` events to all expandable buttons
+  expandableButtonElement.on( 'click', ( e ) => {
+    e.preventDefault();
+    e.stopPropagation();
+    isExpanded = !isExpanded;
     apply();
+  });
+}
 
-    // Bind `click` events to all expandable buttons
-    expandableButtonElement.on( 'click', function( e ) {
-      e.preventDefault();
-      e.stopPropagation();
-      isExpanded = !isExpanded;
-      apply();
-    });
+function initSidemenuExpandability(menuClass) {
+  const menuElement = $( `.${menuClass}` );
+
+
+
+  enhanceSidemenu( menuElement );
+
+  // Expanding/Collapsing of the entire side menu on mobile devices
+  menuElement.children( `.${SIDEMENU_TOGGLE_CLASS}` ).children( 'a' ).on( 'click', function ( e ) {
+    e.preventDefault();
+    e.stopPropagation();
+    $( this ).parent().toggleClass( SIDEMENU_EXPANDED_CLASS );
+  });
+
+  const expandableButtons = menuElement.find( `.${SIDEMENU_EXPANDER_CLASS}` );
+
+  // Add tracking if enabled
+  if ( tracker.shouldTrackElement( menuElement )) {
+    tracker.registerForTracking( menuElement.find( 'li > a' ), 'click', 'sidemenu-link' );
+    tracker.registerForTracking( expandableButtons, 'click', 'sidemenu-expander' );
   }
 
-  function initSidemenuExpandability() {
-    const menuElement = $( '.' + SIDEMENU_CLASS );
+  expandableButtons.each( initExpandableSubmenu );
+}
 
-    enhanceSidemenu( menuElement );
+// TODO: Remove after this was implemented on the backend (~ in Squiz)
+/** Adds necessary classes and expanding/collapsing elements if the item has got submenu. */
+const btnExpanderHtml = '<span class="btn-expander mf-heatmap-click" title="Toggle subpages"></span>';
 
-    // Expanding/Collapsing of the entire side menu on mobile devices
-    menuElement.children( '.' + SIDEMENU_TOGGLE_CLASS ).children( 'a' ).on( 'click', function( e ) {
-      e.preventDefault();
-      e.stopPropagation();
-      $(this).parent().toggleClass( SIDEMENU_EXPANDED_CLASS );
-    });
 
-    const expandableButtons = menuElement.find( '.' + SIDEMENU_EXPANDER_CLASS );
+function enhanceSidemenu( menuElement ) {
+  menuElement.find( 'li' ).each( function () {
+    const listItem = $( this );
 
-    // Add tracking if enabled
-    if ( tracker.shouldTrackElement( menuElement ) ){
-      tracker.registerForTracking( menuElement.find( 'li > a' ), 'click', 'sidemenu-link' );
-      tracker.registerForTracking( expandableButtons, 'click', 'sidemenu-expander' );
-    }
+    // a) already has got a proper class in place? Skip!
+    if ( listItem.hasClass( SIDEMENU_SUBMENU_CLASS )) return;
 
-    expandableButtons.each( initExpandableSubmenu );
-  }
+    // b) No submenu in <li>? Skip!
+    if ( listItem.children( 'ul' ).length === 0 ) return;
 
-  //TODO: Remove after this was implemented on the backend (~ in Squiz)
-  /** Adds necessary classes and expanding/collapsing elements if the item has got submenu. */
-  const btnExpanderHtml = '<span class="btn-expander mf-heatmap-click" title="Toggle subpages"></span>';
-
-  function enhanceSidemenu( menuElement ) {
-      menuElement.find( 'li' ).each( function() {
-        const listItem = $( this );
-
-        // a) already has got a proper class in place? Skip!
-        if ( listItem.hasClass( SIDEMENU_SUBMENU_CLASS )) return;
-
-        // b) No submenu in <li>? Skip!
-        if ( listItem.children( 'ul' ).length === 0 ) return;
-
-        // c) Has got a submenu => Enhance sidemenu's HTML
-        listItem.addClass( SIDEMENU_SUBMENU_CLASS );
-        $( btnExpanderHtml).insertAfter( listItem.children( 'a' ) );
-      });
-  }
-
+    // c) Has got a submenu => Enhance sidemenu's HTML
+    listItem.addClass( SIDEMENU_SUBMENU_CLASS );
+    $( btnExpanderHtml ).insertAfter( listItem.children( 'a' ));
+  });
+}
 
 
 
@@ -180,14 +183,14 @@ const SIDEMENU_EXPANDED_CLASS      = 'expanded';
 
 /** HELPERS */
 
-//FIXME: Should be automatically pre-populated from the build/build.config.js
+// FIXME: Should be automatically pre-populated from the build/build.config.js
 const ENV_HOSTNAME = {
   STAGE: 'cms.wgtn.ac.nz',
   PROD:  'www.wgtn.ac.nz',
   LOCAL: 'local.wgtn.ac.nz',
 };
 
-//FIXME: Should be automatically pre-populated from the build/build.config.js
+// FIXME: Should be automatically pre-populated from the build/build.config.js
 const URL_BASE = {
   TOOLKIT: 'local.wgtn.ac.nz:8080',
 };
@@ -207,34 +210,38 @@ function isAdminEnvironment() {
 function decodeMailAddresses() {
   const a = 'dre:ams0of@g1niht.lp2c9u3v8k4w7y5j6zbx-_qfntigue6los5zar7b:y4dp8v3m9h2.x1w@k0jcq-_';
 
-  let i, h, j, k, l, m, n, s;
+  let i,
+    h,
+    j,
+    k,
+    l,
+    m,
+    n,
+    s;
   for ( i = 0; i < document.links.length; i += 1 ) {
     h = document.links[i].hash;
-    if (h.substring(0, 3) == '#sd') {
+    if ( h.substring( 0, 3 ) == '#sd' ) {
       k = '';
-      l = h.substring(3, 5);
-      m = h.lastIndexOf('?subject=');
-      if (m == -1) { s = document.links[i].href; }
-      else {
-        s = h.substring(m);
-        h = h.substring(0, m);
-      };
-      for (j = 5; j < h.length; j += 2) {
+      l = h.substring( 3, 5 );
+      m = h.lastIndexOf( '?subject=' );
+      if ( m == -1 ) { s = document.links[i].href; } else {
+        s = h.substring( m );
+        h = h.substring( 0, m );
+      }
+      for ( j = 5; j < h.length; j += 2 ) {
 
-        k = k + a.charAt((h.substring(j, j + 2) - l - 1));
+        k += a.charAt(( h.substring( j, j + 2 ) - l - 1 ));
       }
-      ; m = s.lastIndexOf('?subject=');
-      if (m == -1) {
+      m = s.lastIndexOf( '?subject=' );
+      if ( m == -1 ) {
         document.links[i].href = k;
-      }
-      else { document.links[i].href = k + s.substring(m); };
+      } else { document.links[i].href = k + s.substring( m ); }
       n = document.links[i].innerHTML;
-      if (n == 'address') {
-        document.links[i].innerHTML = k.substring(7);
-      }
-      else { document.links[i].title = k.substring(7); };
-    };
-  };
+      if ( n == 'address' ) {
+        document.links[i].innerHTML = k.substring( 7 );
+      } else { document.links[i].title = k.substring( 7 ); }
+    }
+  }
 }
 
 
@@ -296,11 +303,11 @@ function showAdminErrorMessage( errorObject ) {
 function addActiveClassToMainMenu() {
   // [url-path-segment]: [nav-item-classname]
   const rootPages = {
-      'study':                'future',
-      'international':         'international',
-      'students':               'current',
-      'research':              'research',
-      'engage':                'engage',
+      study:                'future',
+      international:         'international',
+      students:               'current',
+      research:              'research',
+      engage:                'engage',
     },
 
     urlPathSegments = window.location.pathname.split( '/' );
@@ -551,7 +558,6 @@ $(() => {
   moveWidgetsToSidebar();
   addActiveClassToMainMenu();
   moveOrphanedStaffCardIntoList();
-  initTray();
 
   tooltips.initTooltips();
 
@@ -559,53 +565,68 @@ $(() => {
   hideCoursesOnStaffProfile();
 
   const $body     = $( 'body' ),
-    $globalNav    = $( '#global-nav' ),
-    $globalSearch = $( '#global-search' );
+  $globalNav    = $( '#global-nav' ),
+  $globalSearch = $( '#global-search' );
 
   /** Init side-menu, if it's present */
   if ( $( `.${SIDEMENU_CLASS}` ).length ) {
-    initSidemenuExpandability();
+    initSidemenuExpandability( SIDEMENU_CLASS );
   }
+
+  if ( $( `.sidemenu-homepage` ).length ) {
+    enquire.register( TABLET_AND_SMALLER, () => {
+      console.log(`sidemenu-homepage`);
+
+      initSidemenuExpandability( 'sidemenu-homepage' );
+      console.log('tray is small size for mob');
+    });
+    const $sidemenuHomepage = $('.sidemenu-homepage');
+    enhanceSidemenu($sidemenuHomepage);
+  };
+
+  initTray();
+
+
 
   initFloatingButtons();
   decodeMailAddresses();
 
-  //http://wicky.nilia.ms/enquire.js/
-  //TODO: Refactor and extract to its own library
-	enquire.register( MOBILE_LARGE_AND_SMALLER, function() {
+  // http://wicky.nilia.ms/enquire.js/
+  // TODO: Refactor and extract to its own library
+  enquire.register( MOBILE_LARGE_AND_SMALLER, () => {
 
-		if ( $globalNav.length ) {
+    if ( $globalNav.length ) {
       const eGlobalNav    = $globalNav[0],
-      bannerHeaderElement = $( '.site-header' ),
-      sidemenu            = $( '.sidemenu' );
+        bannerHeaderElement = $( '.site-header' ),
+        sidemenu            = $( '.sidemenu' );
 
-			const headroom  = new Headroom( eGlobalNav, {
+      const headroom  = new Headroom( eGlobalNav, {
 
-			  'offset':    $globalNav.outerHeight(),
+			  offset:    $globalNav.outerHeight(),
         // or scroll tolerance per direction
-        tolerance : {
+        tolerance: {
           down: 5,
           up:   20,
         },
-        'classes': {
-          'initial':  'sticky',
-          'pinned':   'slide-down',
-          'unpinned': 'slide-up',
-          'notTop':   'no-top'
+        classes: {
+          initial:  'sticky',
+          pinned:   'slide-down',
+          unpinned: 'slide-up',
+          notTop:   'no-top',
         },
       });
 
       headroom.init();
 
       const disableHeadroom = () => {
-        if(headroom){
-          headroom.scroller.removeEventListener('scroll', headroom.debouncer, false);
+        if ( headroom ) {
+          headroom.scroller.removeEventListener( 'scroll', headroom.debouncer, false );
         }
       };
 
       const enableHeadroom = () => {
-        if(headroom){
-          headroom.scroller.addEventListener('scroll', headroom.debouncer, false);
+        if ( headroom ) {
+          headroom.scroller.addEventListener( 'scroll', headroom.debouncer, false );
         }
       };
 
@@ -618,12 +639,12 @@ $(() => {
       };
 
       const toggleMobileMenu = () => {
-				$globalNav.find('.tcon').toggleClass('tcon-transform');
+        $globalNav.find( '.tcon' ).toggleClass( 'tcon-transform' );
         $globalNav.toggleClass( 'is-open' );
 
         if ( !headroom ) return;
 
-        if ( $globalNav.hasClass( 'is-open' ) ){
+        if ( $globalNav.hasClass( 'is-open' )) {
           disableHeadroom();
           $body.addClass( 'unscrollable' );
           registerMenuOutClickListener();
@@ -635,59 +656,59 @@ $(() => {
       };
 
       function menuOutsideClickListener( event ) {
-        if (!$(event.target).closest( '#global-nav' ).length) {
+        if ( !$( event.target ).closest( '#global-nav' ).length ) {
           toggleMobileMenu();
         }
-      };
+      }
 
-			$body.on( 'click ', '.js-toggle-global-nav', function( _event ){
+      $body.on( 'click ', '.js-toggle-global-nav', ( _event ) => {
         toggleMobileMenu();
-			});
-		}
+      });
+    }
 
-	});
+  });
 
 
   // Opens/closes global search bar & gains auto-focus
-	$body.on('click ', '.js-toggle-global-search', function(_event){
-		var $this = $(this);
+  $body.on( 'click ', '.js-toggle-global-search', function ( _event ) {
+    const $this = $( this );
 
-		if ($this.data('js-has-active-transition')) {
-			return false;
+    if ( $this.data( 'js-has-active-transition' )) {
+      return false;
     }
 
-		$this.data('js-has-active-transition', true);
-		$this.find('.tcon').toggleClass('tcon-transform');
+    $this.data( 'js-has-active-transition', true );
+    $this.find( '.tcon' ).toggleClass( 'tcon-transform' );
 
-		if ( $globalSearch.hasClass('is-open') ) {
-			$globalSearch.toggleClass('is-open', false);
-			setTimeout(function(){
-				$this.data('js-has-active-transition', false);
-			}, TRANSITION_TIMEOUT);
-		} else {
-			$globalSearch.toggleClass('is-open', true);
-			setTimeout(function(){
-				$globalSearch.find('input:text').focus();
-				$this.data('js-has-active-transition', false);
-			}, TRANSITION_TIMEOUT);
+    if ( $globalSearch.hasClass( 'is-open' )) {
+      $globalSearch.toggleClass( 'is-open', false );
+      setTimeout(() => {
+        $this.data( 'js-has-active-transition', false );
+      }, TRANSITION_TIMEOUT );
+    } else {
+      $globalSearch.toggleClass( 'is-open', true );
+      setTimeout(() => {
+        $globalSearch.find( 'input:text' ).focus();
+        $this.data( 'js-has-active-transition', false );
+      }, TRANSITION_TIMEOUT );
     }
 
-		_event.preventDefault();
-	});
+    _event.preventDefault();
+  });
 
 
-	//Study areas tabs toggle
+  // Study areas tabs toggle
 
-	$('#study-area-tabs li a').click(function(){
-		if ($(this).parent().hasClass('active')) {
-			return;
-		}
-		$('.active').removeClass('active');
-		$(this).parent().addClass('active');
-		$('.study-areas').toggleClass('hidden');
-		$('.degrees-quals').toggleClass('hidden');
+  $( '#study-area-tabs li a' ).click( function () {
+    if ( $( this ).parent().hasClass( 'active' )) {
+      return;
+    }
+    $( '.active' ).removeClass( 'active' );
+    $( this ).parent().addClass( 'active' );
+    $( '.study-areas' ).toggleClass( 'hidden' );
+    $( '.degrees-quals' ).toggleClass( 'hidden' );
 
-	});
+  });
 
 
   /* Show the tab content that is selected */
@@ -698,138 +719,138 @@ $(() => {
     switchTabToPostgrad();
   }
 
-	$('.switch .switch-input').on( 'change', function () {
-		if( $(this).attr('value') == 'undergraduate' ) {
-			switchTabToUndergrad();
+  $( '.switch .switch-input' ).on( 'change', function () {
+    if ( $( this ).attr( 'value' ) == 'undergraduate' ) {
+      switchTabToUndergrad();
     }
 
-		if( $(this).attr('value') == 'postgraduate' ) {
+    if ( $( this ).attr( 'value' ) == 'postgraduate' ) {
       switchTabToPostgrad();
-		}
-   });
+    }
+  });
 
-   function switchTabToUndergrad() {
-      $('#study-area-tabs > ul > li:nth-child(1) h4').html('<span class="icon-book-open"></span>Subject areas');
-      $('.study-areas-undergrad').show(500);
-      $('.study-areas-postgrad').hide(500);
-   }
+  function switchTabToUndergrad() {
+    $( '#study-area-tabs > ul > li:nth-child(1) h4' ).html( '<span class="icon-book-open"></span>Subject areas' );
+    $( '.study-areas-undergrad' ).show( 500 );
+    $( '.study-areas-postgrad' ).hide( 500 );
+  }
 
-   function switchTabToPostgrad() {
-			$('#study-area-tabs > ul > li:nth-child(1) h4').html('<span class="icon-book-open"></span> Postgraduate subjects');
-			$('.study-areas-postgrad').show(500);
-			$('.study-areas-undergrad').hide(500);
-   }
+  function switchTabToPostgrad() {
+    $( '#study-area-tabs > ul > li:nth-child(1) h4' ).html( '<span class="icon-book-open"></span> Postgraduate subjects' );
+    $( '.study-areas-postgrad' ).show( 500 );
+    $( '.study-areas-undergrad' ).hide( 500 );
+  }
 
-	/* dynamic height for tiles. setting height of all tiles from largest tile height */
-	$('.dynamic-height-tiles ').each(function(n){
-		//get array of heights for each group of class
-		var tileHeights = $(this).find('li.tile').map(function(){
-			return $(this).height();
-		}).get();
+  /* dynamic height for tiles. setting height of all tiles from largest tile height */
+  $( '.dynamic-height-tiles ' ).each( function ( n ) {
+    // get array of heights for each group of class
+    const tileHeights = $( this ).find( 'li.tile' ).map( function () {
+      return $( this ).height();
+    }).get();
 
-		//check heights for largest
-		var maxHeight = Math.max.apply(null, tileHeights);
+    // check heights for largest
+    const maxHeight = Math.max.apply( null, tileHeights );
 
-		//apply maxheight to tiles
-		$(this).find('li.tile').height(maxHeight + 16);
-	});
+    // apply maxheight to tiles
+    $( this ).find( 'li.tile' ).height( maxHeight + 16 );
+  });
 
-	/* Navigation toggle on mobile */
-	$('.main-menu-toggle').on('click', function () {
-		$('.main-nav').slideToggle();
-		$('.sub-nav').slideToggle();
-		$('.search-bar').slideToggle();
-		$('.menu-toggle-icon').toggleClass('open');
+  /* Navigation toggle on mobile */
+  $( '.main-menu-toggle' ).on( 'click', () => {
+    $( '.main-nav' ).slideToggle();
+    $( '.sub-nav' ).slideToggle();
+    $( '.search-bar' ).slideToggle();
+    $( '.menu-toggle-icon' ).toggleClass( 'open' );
 	 });
 
   /* Show search bar on desktop */
-  $('.search-item').on('click', function () {
-    $('.search-bar').slideToggle();
+  $( '.search-item' ).on( 'click', () => {
+    $( '.search-bar' ).slideToggle();
 
     const searchInputElement = $( '#search-query' );
 
-    if ( searchInputElement.is( ':visible' ) ) {
+    if ( searchInputElement.is( ':visible' )) {
       searchInputElement.focus();
     }
   });
 
-  if ($('#study-area-tabs')) {
-    function getUrlParameter(name) {
-      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-      const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-      const results = regex.exec(location.search);
-      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  if ( $( '#study-area-tabs' )) {
+    function getUrlParameter( name ) {
+      name = name.replace( /[\[]/, '\\[' ).replace( /[\]]/, '\\]' );
+      const regex = new RegExp( `[\\?&]${name}=([^&#]*)` );
+      const results = regex.exec( location.search );
+      return results === null ? '' : decodeURIComponent( results[1].replace( /\+/g, ' ' ));
     }
 
     const grad = 'URLSearchParams' in window
-      ? new URLSearchParams(window.location.search).get('grad')
-      : getUrlParameter('grad');
+      ? new URLSearchParams( window.location.search ).get( 'grad' )
+      : getUrlParameter( 'grad' );
 
-    if (grad === 'postgraduate' || grad === 'undergraduate') {
-      $('#' + grad).click();
+    if ( grad === 'postgraduate' || grad === 'undergraduate' ) {
+      $( `#${grad}` ).click();
     }
 
-    const tabs = $('#study-area-tabs .switch-input');
+    const tabs = $( '#study-area-tabs .switch-input' );
 
-    function handleSwitchInputClick (event) {
-      window.history.replaceState({}, '', window.location.pathname + '?grad=' + event.target.id);
+    function handleSwitchInputClick( event ) {
+      window.history.replaceState({}, '', `${window.location.pathname}?grad=${event.target.id}` );
     }
 
-    tabs.each(function () {
-      this.addEventListener('click', handleSwitchInputClick);
+    tabs.each( function () {
+      this.addEventListener( 'click', handleSwitchInputClick );
     });
   }
 
   /** DOM manipulation */
 
   wrapEmbeddedIframes();
-  removedUnusedTiles(); //TODO: Review - Can be removed after all the study areas are migrated
+  removedUnusedTiles(); // TODO: Review - Can be removed after all the study areas are migrated
 
 
-  //tile accordion
+  // tile accordion
 
-  $('.tile-accordion .tile').not('.tile-accordion.content-page').on('click', function (evt) {
-		// evt.preventDefault();
+  $( '.tile-accordion .tile' ).not( '.tile-accordion.content-page' ).on( 'click', function ( evt ) {
+    // evt.preventDefault();
 
-		if( $(this).hasClass('accordion-closed') ) {
-			$(this).children('.accordion-content ').slideDown();
-			$(this).removeClass('accordion-closed').addClass('accordion-open');
-		} else if ( $(this).hasClass('accordion-open') ) {
-			$(this).children('.accordion-content ').slideUp();
-			$(this).removeClass('accordion-open').addClass('accordion-closed');
-		}
+    if ( $( this ).hasClass( 'accordion-closed' )) {
+      $( this ).children( '.accordion-content ' ).slideDown();
+      $( this ).removeClass( 'accordion-closed' ).addClass( 'accordion-open' );
+    } else if ( $( this ).hasClass( 'accordion-open' )) {
+      $( this ).children( '.accordion-content ' ).slideUp();
+      $( this ).removeClass( 'accordion-open' ).addClass( 'accordion-closed' );
+    }
 
-		$(this).find('.links a').on('click', function (event) {
-			event.stopPropagation();
+    $( this ).find( '.links a' ).on( 'click', ( event ) => {
+      event.stopPropagation();
 		 });
-   });
+  });
 
 
   /** Runs any custom scripts that could be added in the content. */
   if ( onDocumentReadyFunctions && onDocumentReadyFunctions.length ) {
-    onDocumentReadyFunctions.forEach( function( singleFunction ) {
-        singleFunction();
+    onDocumentReadyFunctions.forEach(( singleFunction ) => {
+      singleFunction();
     });
   }
 
 });
 
 /* Research hub content page tile accordian */
-$('.tile-accordion.content-page .tile .toggle').on('click', function (evt) {
+$( '.tile-accordion.content-page .tile .toggle' ).on( 'click', function ( evt ) {
 
-  var $this = $(this);
+  const $this = $( this );
 
-  $this.toggleClass('expanded');
-  $this.siblings('p').toggle();
+  $this.toggleClass( 'expanded' );
+  $this.siblings( 'p' ).toggle();
 
 });
 
 /* Add accessible title label for restricted links class  */
 function restrictedLinkTitle() {
-  var lockLinks = document.querySelectorAll('.link-restricted');
+  const lockLinks = document.querySelectorAll( '.link-restricted' );
 
-  for (var i = 0; i < lockLinks.length; i++) {
-    lockLinks[i].setAttribute('title', 'Restricted intranet link');
+  for ( let i = 0; i < lockLinks.length; i++ ) {
+    lockLinks[i].setAttribute( 'title', 'Restricted intranet link' );
   }
 
 
@@ -838,82 +859,82 @@ restrictedLinkTitle();
 
 /* Research hub mega menu */
 function hubMegaMenu() {
-  const menu = $('.hub-mega-menu .mega-menu-inner');
-  const menuExpandButton = $('.hub-mega-menu .btn-expander');
+  const menu = $( '.hub-mega-menu .mega-menu-inner' );
+  const menuExpandButton = $( '.hub-mega-menu .btn-expander' );
   let mobile = false;
   let desktop = false;
 
-  enquire.register( DESKTOP_AND_LARGER, function() {
+  enquire.register( DESKTOP_AND_LARGER, () => {
     desktop = true;
     mobile = false;
   });
-  enquire.register( TABLET_AND_SMALLER, function() {
+  enquire.register( TABLET_AND_SMALLER, () => {
     desktop = false;
     mobile = true;
   });
 
-  menuExpandButton.each( function() {
-    $(this).on('click', (c) => {
-        let $this = $(this);
-        if ( desktop ) {
-          menu.toggleClass('expanded');
-        }
-        if ( mobile) {
-          menu.addClass('expanded');
-          $this.parent().toggleClass('js-dropdown-show');
-        }
-      });
+  menuExpandButton.each( function () {
+    $( this ).on( 'click', ( c ) => {
+      const $this = $( this );
+      if ( desktop ) {
+        menu.toggleClass( 'expanded' );
+      }
+      if ( mobile ) {
+        menu.addClass( 'expanded' );
+        $this.parent().toggleClass( 'js-dropdown-show' );
+      }
+    });
   });
 }
 
 function hubMegaMenu2() {
-  const menu = $('.hub-mega-menu .mega-menu-inner');
-  const menuExpandButton = $('.hub-mega-menu .btn-expander').parent();
+  const menu = $( '.hub-mega-menu .mega-menu-inner' );
+  const menuExpandButton = $( '.hub-mega-menu .btn-expander' ).parent();
   let mobile = false;
   let desktop = false;
 
-  enquire.register( DESKTOP_AND_LARGER, function() {
+  enquire.register( DESKTOP_AND_LARGER, () => {
     desktop = true;
     mobile = false;
   });
-  enquire.register( TABLET_AND_SMALLER, function() {
+  enquire.register( TABLET_AND_SMALLER, () => {
     desktop = false;
     mobile = true;
   });
 
-  menuExpandButton.each( function() {
+  menuExpandButton.each( function () {
 
-    let $this = $(this);
+    const $this = $( this );
 
-    //Create and append Title to list of expanded links
-    let title = $this.children('a').text();
-    let titleLink = $this.children('a').attr('href');
-    let newLink = `<li class="js-inject-title"><a href="${titleLink}"> ${title} </a></li>`;
+    // Create and append Title to list of expanded links
+    const title = $this.children( 'a' ).text();
+    const titleLink = $this.children( 'a' ).attr( 'href' );
+    const newLink = `<li class="js-inject-title"><a href="${titleLink}"> ${title} </a></li>`;
 
-    $this.children('ul').prepend(newLink);
+    $this.children( 'ul' ).prepend( newLink );
 
     // subnav expand function
-    $(this).on('click', (c) => {
-        c.preventDefault();
+    $( this ).on( 'click', ( c ) => {
+      c.preventDefault();
 
-        if ( desktop ) {
-          menu.toggleClass('expanded');
-        }
-        if ( mobile) {
-          menu.addClass('expanded');
-          $this.toggleClass('js-dropdown-show');
-        }
-      });
+      if ( desktop ) {
+        menu.toggleClass( 'expanded' );
+      }
+      if ( mobile ) {
+        menu.addClass( 'expanded' );
+        $this.toggleClass( 'js-dropdown-show' );
+      }
+    });
   });
 }
 
-if( document.getElementsByClassName('hub-mega-menu').length > 0 && !document.getElementsByClassName('mega-menu-bar').length > 0){
-  const hubMegaMenuElement = $('.hub-mega-menu');
-  const megaMenuExpandButton = $('.hub-mega-menu .btn-expander');
+if ( document.getElementsByClassName( 'hub-mega-menu' ).length > 0 && !document.getElementsByClassName( 'mega-menu-bar' ).length > 0 ) {
+  const hubMegaMenuElement = $( '.hub-mega-menu' );
+  const megaMenuExpandButton = $( '.hub-mega-menu .btn-expander' );
 
   hubMegaMenu();
 
-  if ( tracker.shouldTrackElement( hubMegaMenuElement ) ){
+  if ( tracker.shouldTrackElement( hubMegaMenuElement )) {
     tracker.registerForTracking( hubMegaMenuElement.find( 'li > a' ), 'click', 'megamenu-link' );
     tracker.registerForTracking( megaMenuExpandButton, 'click', 'megamenu-expander' );
   }
@@ -921,16 +942,16 @@ if( document.getElementsByClassName('hub-mega-menu').length > 0 && !document.get
 }
 
 /* New hub mega menu */
-if( document.getElementsByClassName('hub-mega-menu').length > 0 && document.getElementsByClassName('mega-menu-bar').length > 0){
+if ( document.getElementsByClassName( 'hub-mega-menu' ).length > 0 && document.getElementsByClassName( 'mega-menu-bar' ).length > 0 ) {
 
   hubMegaMenu2();
-  console.log('new menu bar strip thing cool ');
+  console.log( 'new menu bar strip thing cool ' );
 
 }
 
 
 function openPopup() {
-  popups.initAndOpen( this[0] );
+  popups.initAndOpen( this[0]);
   return this;
 }
 
@@ -941,62 +962,62 @@ function openPopup() {
  * jQuery's plugin as a utility factory
  * Usage as: $( jquerySelector ).vicApp().method( options )
  */
-(function( $ ) {
+( function ( $ ) {
   $.fn.vicApp = function () {
     return {
-      openPopup: openPopup.bind( this )
+      openPopup: openPopup.bind( this ),
     };
-  }
-})( jQuery );
+  };
+}( jQuery ));
 
 
-if( document.getElementsByClassName('calendar-cards').length > 0 ){
+if ( document.getElementsByClassName( 'calendar-cards' ).length > 0 ) {
 
-  $("#search-filter").on("keyup search", function() {
-    var value = $(this).val().toLowerCase();
+  $( '#search-filter' ).on( 'keyup search', function () {
+    const value = $( this ).val().toLowerCase();
 
 
     // if input 3 or more filter
-    if($(this).val().length >= 2) {
-      $(".calendar-cards .card").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    if ( $( this ).val().length >= 2 ) {
+      $( '.calendar-cards .card' ).filter( function () {
+        $( this ).toggle( $( this ).text().toLowerCase().indexOf( value ) > -1 );
 
 
       });
     } else {
       // show all if search input less then 2
-      $(".calendar-cards .card").show();
+      $( '.calendar-cards .card' ).show();
     }
 
   });
 
   // Filter on type tags
-  $('.tags .tag').on('click', function () {
+  $( '.tags .tag' ).on( 'click', function () {
 
 
-    if ( $(this).hasClass("selected") ) {
-      $(this).removeClass("selected");
-      $('.calendar-cards .card').show();
+    if ( $( this ).hasClass( 'selected' )) {
+      $( this ).removeClass( 'selected' );
+      $( '.calendar-cards .card' ).show();
 
     } else {
-      $('.tags .tag').removeClass("selected");
-      $('.calendar-cards .card').show();
+      $( '.tags .tag' ).removeClass( 'selected' );
+      $( '.calendar-cards .card' ).show();
 
-      if( $(this).text() === "Amendment") {
-        $(this).addClass('selected');
-        $('.calendar-cards .card').filter(':not([data-type="Amendment"])').hide();
+      if ( $( this ).text() === 'Amendment' ) {
+        $( this ).addClass( 'selected' );
+        $( '.calendar-cards .card' ).filter( ':not([data-type="Amendment"])' ).hide();
       }
-      if( $(this).text() === "New") {
-        $(this).addClass('selected');
-        $('.calendar-cards .card').filter(':not([data-type="New"])').hide();
+      if ( $( this ).text() === 'New' ) {
+        $( this ).addClass( 'selected' );
+        $( '.calendar-cards .card' ).filter( ':not([data-type="New"])' ).hide();
       }
-      if( $(this).text() === "Errata") {
-        $(this).addClass('selected');
-        $('.calendar-cards .card').filter(':not([data-type="Errata"])').hide();
+      if ( $( this ).text() === 'Errata' ) {
+        $( this ).addClass( 'selected' );
+        $( '.calendar-cards .card' ).filter( ':not([data-type="Errata"])' ).hide();
       }
     }
 
 
   });
 
-};
+}

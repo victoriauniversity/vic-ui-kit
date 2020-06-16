@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, May 29, 2020, 11:15 AM */
+/** Version: 0.10.13 | Tuesday, June 16, 2020, 11:39 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14021,10 +14021,12 @@ var tooltipsApi = window.toolkitTooltips || {};
 
 /* harmony default export */ var tooltips = (tooltipsApi);
 // CONCATENATED MODULE: ./src/assets/toolkit/scripts/modules/tray.js
-// eslint-disable-next-line import/prefer-default-export
-function initTray() {
-  console.log('tray...', $('.tray-toggle'));
 
+var TABLET_AND_SMALLER = 'screen and (max-width: 975px)',
+    DESKTOP_AND_LARGER = 'screen and (min-width: 61em)'; // eslint-disable-next-line import/prefer-default-export
+
+function initTray() {
+  // console.log( 'tray...', $( '.tray-toggle' ));
   function toggleTray() {
     $('.tray').toggleClass('tray-closed', 'normal');
     $('.tray').toggleClass('tray-open', 'normal');
@@ -14035,9 +14037,12 @@ function initTray() {
     toggleTray(); // return false;
 
     e.preventDefault();
-    console.log('clicked try toggle');
   });
-  $('.close-tray').click(function (e) {
+  $('.expanded-draw').click(function (e) {
+    e.preventDefault();
+    toggleTray();
+  });
+  $('.tray-close').click(function (e) {
     e.preventDefault();
     toggleTray();
   });
@@ -14058,6 +14063,118 @@ function initTray() {
   //   $( this ).toggleClass('focus')
   //   console.log( $(this) );
   // })
+  // sidemenu tray
+
+  var SIDEMENU_TOGGLE_CLASS = 'sidemenu-toggle';
+  var SIDEMENU_EXPANDER_CLASS = 'btn-expander';
+  var SIDEMENU_SUBMENU_CLASS = 'has-submenu';
+  var SIDEMENU_SELECTED_ITEM_CLASS = 'active';
+  var SIDEMENU_EXPANDED_CLASS = 'expanded';
+
+  function buildTray(index, item) {
+    // console.log(index);
+    // console.log( 'nav item', $(this).parent().children('a').text() );
+    var nav = $(this);
+    var navClassString = $(this).parent().children('a').text();
+    var titleLink = $(this).parent().children('a').attr('href'); // console.log(titleLink);
+    //push into traw div
+
+    nav.clone().appendTo('.draw-nav').addClass(navClassString).attr("data-index", index); //add title
+
+    $(".draw-nav ul[data-index='".concat(index, "']")).prepend("<h4 class=\"sub-draw-title\"><a href=\"".concat(titleLink, "\">").concat(navClassString, "</a></h4>"));
+  }
+
+  var sidemeneuExpanded = false;
+  var $draw = $('.sidemenu-drawer');
+
+  function expandTray(index, button) {
+    $(button).on('click', function () {
+      //toggle sidemenu draw and content
+      if ($(button).parent().hasClass('expanded-draw')) {
+        // console.log('has class button close tray');
+        sidemeneuExpanded = !sidemeneuExpanded;
+        $draw.toggleClass('active');
+        $(button).parent().removeClass('expanded-draw');
+      } else {
+        //show tray
+        if (sidemeneuExpanded === false) {
+          $draw.addClass('active');
+          sidemeneuExpanded = !sidemeneuExpanded;
+        }
+
+        $('.sidemenu-homepage > ul > li').removeClass('expanded-draw');
+        $(button).parent().addClass('expanded-draw');
+      } // console.log(index, button);
+
+
+      var matchingNavGroup = $(".draw-nav ul[data-index='".concat(index, "']"));
+      $('.draw-nav > ul').removeClass('active-nav-group');
+      matchingNavGroup.toggleClass('active-nav-group');
+    });
+  }
+
+  function expandDrawSubContent() {
+    // console.log('expand expandDrawSubContent');
+    var subDrawExpander = $('.sidemenu-drawer .draw-nav ul ').find('.btn-expander'); // console.log(subDrawExpander);
+
+    subDrawExpander.each(function (i, button) {
+      var $button = $(button);
+      $button.on('click', function () {
+        console.log($button);
+        $button.parent('li').toggleClass('expanded');
+      });
+    });
+  }
+
+  function closeSideMenuDraw() {
+    $('.close-draw').on('click', function () {
+      if (sidemeneuExpanded) {
+        sidemeneuExpanded = !sidemeneuExpanded;
+        $('.sidemenu-homepage .expanded-draw').removeClass('expanded-draw');
+        $draw.toggleClass('active');
+      }
+    }); //close if body is clicked on?? tbd
+    // $( 'body' ).on( 'click', ( e ) => {
+    //   console.log( e.target.className, 'clicked' );
+    //   // if ( e.target.className.includes( 'tray-open' )) {
+    //   //   e.preventDefault();
+    //   //   toggleTray();
+    //   // }
+    //   if(sidemeneuExpanded) {
+    //     console.log('sidemenu is expanded');
+    //     // sidemeneuExpanded = !sidemeneuExpanded;
+    //     // $( '.sidemenu-homepage .expanded-draw' ).removeClass( 'expanded-draw' );
+    //     // $draw.toggleClass('active');
+    //   } else {
+    //     console.log('draw not expanded');
+    //   }
+    // });
+  }
+
+  function sidemenuTray() {
+    var menu = $('.sidemenu-homepage'); // console.log(menu);
+    //build tray nav content
+
+    var trayNavItems = $('.sidemenu-homepage > ul > li > ul');
+    var buttonExpander = $('.sidemenu-homepage > ul > li > .btn-expander'); // console.log(trayNavItems);
+
+    buttonExpander.each(expandTray);
+    trayNavItems.each(buildTray);
+    expandDrawSubContent();
+    closeSideMenuDraw();
+  }
+
+  if ($('.sidemenu-homepage').length) {
+    // console.log('sidemeny homepage init');
+    // enquire.register( TABLET_AND_SMALLER, () => {
+    //   console.log('tray is small size for mob');
+    //   initSidemenuExpandability( sidemenu-homepage );
+    // });
+    src_default.a.register(DESKTOP_AND_LARGER, function () {
+      // console.log('Tray is large size cool ');
+      sidemenuTray();
+    });
+  }
 }
 // CONCATENATED MODULE: ./src/assets/toolkit/scripts/modules/urls.js
 // Import 3rd party dependencies
@@ -14929,12 +15046,12 @@ __webpack_require__(20);
 external_jQuery_default()('.select').select2();
 /* CONSTANT ATTRIBUTES */
 
-var TRANSITION_TIMEOUT = 200; //update in _settings.variables.scss(135)
+var TRANSITION_TIMEOUT = 200; // update in _settings.variables.scss(135)
 
 var MOBILE_LARGE_AND_SMALLER = 'screen and (max-width: 42.99em)',
-    //update in _settings.responsive.scss(57)
-DESKTOP_AND_LARGER = 'screen and (min-width: 61em)',
-    TABLET_AND_SMALLER = 'screen and (max-width: 975px)',
+    // update in _settings.responsive.scss(57)
+toolkit_DESKTOP_AND_LARGER = 'screen and (min-width: 61em)',
+    toolkit_TABLET_AND_SMALLER = 'screen and (max-width: 975px)',
     // Iframe selectors
 YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
     GMAPS_IFRAME_SELECTOR = 'iframe[src*="/maps/"]',
@@ -14944,15 +15061,15 @@ YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
 /** Wrap YT videos in .embed wrapper that helps with responsiveness. */
 
 function wrapEmbeddedIframes() {
-  var iframes = external_jQuery_default()(YOUTUBE_IFRAME_SELECTOR + ', ' + GMAPS_IFRAME_SELECTOR + ', ' + VIMEO_IFRAME_SELECTOR),
+  var iframes = external_jQuery_default()("".concat(YOUTUBE_IFRAME_SELECTOR, ", ").concat(GMAPS_IFRAME_SELECTOR, ", ").concat(VIMEO_IFRAME_SELECTOR)),
       singleIframe = null,
       iframeClasses;
   iframes.each(function (index) {
     singleIframe = external_jQuery_default()(this); // If it doesn't already have wrapper, wrap it!
 
     if (!singleIframe.parent().hasClass('embed')) {
-      iframeClasses = singleIframe.attr("class") || '';
-      singleIframe.wrap('<div class="embed ' + iframeClasses + '"></div>');
+      iframeClasses = singleIframe.attr('class') || '';
+      singleIframe.wrap("<div class=\"embed ".concat(iframeClasses, "\"></div>"));
       if (iframeClasses) singleIframe.removeClass();
     }
   });
@@ -14963,31 +15080,31 @@ keep the markup clean (and easily handled by the CSS) */
 
 function removedUnusedTiles() {
   external_jQuery_default()('.tiles-wrap .tile').each(function () {
-    if (external_jQuery_default()(this).css("display") == "none") {
+    if (external_jQuery_default()(this).css('display') == 'none') {
       external_jQuery_default()(this).remove();
     }
   });
 }
 
 var SIDEMENU_CLASS = 'sidemenu';
-var SIDEMENU_TOGGLE_CLASS = 'sidemenu-toggle';
-var SIDEMENU_EXPANDER_CLASS = 'btn-expander';
-var SIDEMENU_SUBMENU_CLASS = 'has-submenu';
-var SIDEMENU_SELECTED_ITEM_CLASS = 'active';
-var SIDEMENU_EXPANDED_CLASS = 'expanded';
+var toolkit_SIDEMENU_TOGGLE_CLASS = 'sidemenu-toggle';
+var toolkit_SIDEMENU_EXPANDER_CLASS = 'btn-expander';
+var toolkit_SIDEMENU_SUBMENU_CLASS = 'has-submenu';
+var toolkit_SIDEMENU_SELECTED_ITEM_CLASS = 'active';
+var toolkit_SIDEMENU_EXPANDED_CLASS = 'expanded';
 /** PRIVATE FUNCTIONS. */
 
 function initExpandableSubmenu() {
   var expandableButtonElement = external_jQuery_default()(this);
-  var submenuContainer = expandableButtonElement.parent('.' + SIDEMENU_SUBMENU_CLASS); // Init default state
+  var submenuContainer = expandableButtonElement.parent(".".concat(toolkit_SIDEMENU_SUBMENU_CLASS)); // Init default state
 
-  var isExpanded = submenuContainer.hasClass(SIDEMENU_SELECTED_ITEM_CLASS);
+  var isExpanded = submenuContainer.hasClass(toolkit_SIDEMENU_SELECTED_ITEM_CLASS);
 
   function apply() {
     if (isExpanded) {
-      submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
+      submenuContainer.addClass(toolkit_SIDEMENU_EXPANDED_CLASS);
     } else {
-      submenuContainer.removeClass(SIDEMENU_EXPANDED_CLASS);
+      submenuContainer.removeClass(toolkit_SIDEMENU_EXPANDED_CLASS);
     }
   } // Init
 
@@ -15002,16 +15119,16 @@ function initExpandableSubmenu() {
   });
 }
 
-function initSidemenuExpandability() {
-  var menuElement = external_jQuery_default()('.' + SIDEMENU_CLASS);
+function initSidemenuExpandability(menuClass) {
+  var menuElement = external_jQuery_default()(".".concat(menuClass));
   enhanceSidemenu(menuElement); // Expanding/Collapsing of the entire side menu on mobile devices
 
-  menuElement.children('.' + SIDEMENU_TOGGLE_CLASS).children('a').on('click', function (e) {
+  menuElement.children(".".concat(toolkit_SIDEMENU_TOGGLE_CLASS)).children('a').on('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
-    external_jQuery_default()(this).parent().toggleClass(SIDEMENU_EXPANDED_CLASS);
+    external_jQuery_default()(this).parent().toggleClass(toolkit_SIDEMENU_EXPANDED_CLASS);
   });
-  var expandableButtons = menuElement.find('.' + SIDEMENU_EXPANDER_CLASS); // Add tracking if enabled
+  var expandableButtons = menuElement.find(".".concat(toolkit_SIDEMENU_EXPANDER_CLASS)); // Add tracking if enabled
 
   if (tracker.shouldTrackElement(menuElement)) {
     tracker.registerForTracking(menuElement.find('li > a'), 'click', 'sidemenu-link');
@@ -15019,7 +15136,7 @@ function initSidemenuExpandability() {
   }
 
   expandableButtons.each(initExpandableSubmenu);
-} //TODO: Remove after this was implemented on the backend (~ in Squiz)
+} // TODO: Remove after this was implemented on the backend (~ in Squiz)
 
 /** Adds necessary classes and expanding/collapsing elements if the item has got submenu. */
 
@@ -15030,23 +15147,23 @@ function enhanceSidemenu(menuElement) {
   menuElement.find('li').each(function () {
     var listItem = external_jQuery_default()(this); // a) already has got a proper class in place? Skip!
 
-    if (listItem.hasClass(SIDEMENU_SUBMENU_CLASS)) return; // b) No submenu in <li>? Skip!
+    if (listItem.hasClass(toolkit_SIDEMENU_SUBMENU_CLASS)) return; // b) No submenu in <li>? Skip!
 
     if (listItem.children('ul').length === 0) return; // c) Has got a submenu => Enhance sidemenu's HTML
 
-    listItem.addClass(SIDEMENU_SUBMENU_CLASS);
+    listItem.addClass(toolkit_SIDEMENU_SUBMENU_CLASS);
     external_jQuery_default()(btnExpanderHtml).insertAfter(listItem.children('a'));
   });
 }
 /** HELPERS */
-//FIXME: Should be automatically pre-populated from the build/build.config.js
+// FIXME: Should be automatically pre-populated from the build/build.config.js
 
 
 var ENV_HOSTNAME = {
   STAGE: 'cms.wgtn.ac.nz',
   PROD: 'www.wgtn.ac.nz',
   LOCAL: 'local.wgtn.ac.nz'
-}; //FIXME: Should be automatically pre-populated from the build/build.config.js
+}; // FIXME: Should be automatically pre-populated from the build/build.config.js
 
 var URL_BASE = {
   TOOLKIT: 'local.wgtn.ac.nz:8080'
@@ -15081,13 +15198,10 @@ function decodeMailAddresses() {
         h = h.substring(0, m);
       }
 
-      ;
-
       for (j = 5; j < h.length; j += 2) {
-        k = k + a.charAt(h.substring(j, j + 2) - l - 1);
+        k += a.charAt(h.substring(j, j + 2) - l - 1);
       }
 
-      ;
       m = s.lastIndexOf('?subject=');
 
       if (m == -1) {
@@ -15096,7 +15210,6 @@ function decodeMailAddresses() {
         document.links[i].href = k + s.substring(m);
       }
 
-      ;
       n = document.links[i].innerHTML;
 
       if (n == 'address') {
@@ -15104,14 +15217,8 @@ function decodeMailAddresses() {
       } else {
         document.links[i].title = k.substring(7);
       }
-
-      ;
     }
-
-    ;
   }
-
-  ;
 }
 /** MESSAGE/NOTIFICATIONS HANDLING */
 
@@ -15157,11 +15264,11 @@ function showAdminErrorMessage(errorObject) {
 function addActiveClassToMainMenu() {
   // [url-path-segment]: [nav-item-classname]
   var rootPages = {
-    'study': 'future',
-    'international': 'international',
-    'students': 'current',
-    'research': 'research',
-    'engage': 'engage'
+    study: 'future',
+    international: 'international',
+    students: 'current',
+    research: 'research',
+    engage: 'engage'
   },
       urlPathSegments = window.location.pathname.split('/');
 
@@ -15366,7 +15473,6 @@ external_jQuery_default()(function () {
   moveWidgetsToSidebar();
   addActiveClassToMainMenu();
   moveOrphanedStaffCardIntoList();
-  initTray();
   tooltips.initTooltips(); // FIXME: Extract out to a standalone plugin and run on staff profiles *only*
 
   hideCoursesOnStaffProfile();
@@ -15376,12 +15482,24 @@ external_jQuery_default()(function () {
   /** Init side-menu, if it's present */
 
   if (external_jQuery_default()(".".concat(SIDEMENU_CLASS)).length) {
-    initSidemenuExpandability();
+    initSidemenuExpandability(SIDEMENU_CLASS);
   }
 
+  if (external_jQuery_default()(".sidemenu-homepage").length) {
+    src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
+      console.log("sidemenu-homepage");
+      initSidemenuExpandability('sidemenu-homepage');
+      console.log('tray is small size for mob');
+    });
+    var $sidemenuHomepage = external_jQuery_default()('.sidemenu-homepage');
+    enhanceSidemenu($sidemenuHomepage);
+  }
+
+  ;
+  initTray();
   initFloatingButtons();
-  decodeMailAddresses(); //http://wicky.nilia.ms/enquire.js/
-  //TODO: Refactor and extract to its own library
+  decodeMailAddresses(); // http://wicky.nilia.ms/enquire.js/
+  // TODO: Refactor and extract to its own library
 
   src_default.a.register(MOBILE_LARGE_AND_SMALLER, function () {
     if ($globalNav.length) {
@@ -15395,17 +15513,17 @@ external_jQuery_default()(function () {
           bannerHeaderElement = external_jQuery_default()('.site-header'),
           sidemenu = external_jQuery_default()('.sidemenu');
       var headroom = new headroom_default.a(eGlobalNav, {
-        'offset': $globalNav.outerHeight(),
+        offset: $globalNav.outerHeight(),
         // or scroll tolerance per direction
         tolerance: {
           down: 5,
           up: 20
         },
-        'classes': {
-          'initial': 'sticky',
-          'pinned': 'slide-down',
-          'unpinned': 'slide-up',
-          'notTop': 'no-top'
+        classes: {
+          initial: 'sticky',
+          pinned: 'slide-down',
+          unpinned: 'slide-up',
+          notTop: 'no-top'
         }
       });
       headroom.init();
@@ -15446,7 +15564,6 @@ external_jQuery_default()(function () {
         }
       };
 
-      ;
       $body.on('click ', '.js-toggle-global-nav', function (_event) {
         toggleMobileMenu();
       });
@@ -15477,7 +15594,7 @@ external_jQuery_default()(function () {
     }
 
     _event.preventDefault();
-  }); //Study areas tabs toggle
+  }); // Study areas tabs toggle
 
   external_jQuery_default()('#study-area-tabs li a').click(function () {
     if (external_jQuery_default()(this).parent().hasClass('active')) {
@@ -15522,12 +15639,12 @@ external_jQuery_default()(function () {
 
 
   external_jQuery_default()('.dynamic-height-tiles ').each(function (n) {
-    //get array of heights for each group of class
+    // get array of heights for each group of class
     var tileHeights = external_jQuery_default()(this).find('li.tile').map(function () {
       return external_jQuery_default()(this).height();
-    }).get(); //check heights for largest
+    }).get(); // check heights for largest
 
-    var maxHeight = Math.max.apply(null, tileHeights); //apply maxheight to tiles
+    var maxHeight = Math.max.apply(null, tileHeights); // apply maxheight to tiles
 
     external_jQuery_default()(this).find('li.tile').height(maxHeight + 16);
   });
@@ -15553,19 +15670,19 @@ external_jQuery_default()(function () {
   if (external_jQuery_default()('#study-area-tabs')) {
     var getUrlParameter = function getUrlParameter(name) {
       name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var regex = new RegExp("[\\?&]".concat(name, "=([^&#]*)"));
       var results = regex.exec(location.search);
       return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
 
     var handleSwitchInputClick = function handleSwitchInputClick(event) {
-      window.history.replaceState({}, '', window.location.pathname + '?grad=' + event.target.id);
+      window.history.replaceState({}, '', "".concat(window.location.pathname, "?grad=").concat(event.target.id));
     };
 
     var grad = 'URLSearchParams' in window ? new URLSearchParams(window.location.search).get('grad') : getUrlParameter('grad');
 
     if (grad === 'postgraduate' || grad === 'undergraduate') {
-      external_jQuery_default()('#' + grad).click();
+      external_jQuery_default()("#".concat(grad)).click();
     }
 
     var tabs = external_jQuery_default()('#study-area-tabs .switch-input');
@@ -15577,8 +15694,8 @@ external_jQuery_default()(function () {
 
 
   wrapEmbeddedIframes();
-  removedUnusedTiles(); //TODO: Review - Can be removed after all the study areas are migrated
-  //tile accordion
+  removedUnusedTiles(); // TODO: Review - Can be removed after all the study areas are migrated
+  // tile accordion
 
   external_jQuery_default()('.tile-accordion .tile').not('.tile-accordion.content-page').on('click', function (evt) {
     // evt.preventDefault();
@@ -15627,11 +15744,11 @@ function hubMegaMenu() {
   var menuExpandButton = external_jQuery_default()('.hub-mega-menu .btn-expander');
   var mobile = false;
   var desktop = false;
-  src_default.a.register(DESKTOP_AND_LARGER, function () {
+  src_default.a.register(toolkit_DESKTOP_AND_LARGER, function () {
     desktop = true;
     mobile = false;
   });
-  src_default.a.register(TABLET_AND_SMALLER, function () {
+  src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
     desktop = false;
     mobile = true;
   });
@@ -15658,16 +15775,16 @@ function hubMegaMenu2() {
   var menuExpandButton = external_jQuery_default()('.hub-mega-menu .btn-expander').parent();
   var mobile = false;
   var desktop = false;
-  src_default.a.register(DESKTOP_AND_LARGER, function () {
+  src_default.a.register(toolkit_DESKTOP_AND_LARGER, function () {
     desktop = true;
     mobile = false;
   });
-  src_default.a.register(TABLET_AND_SMALLER, function () {
+  src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
     desktop = false;
     mobile = true;
   });
   menuExpandButton.each(function () {
-    var $this = external_jQuery_default()(this); //Create and append Title to list of expanded links
+    var $this = external_jQuery_default()(this); // Create and append Title to list of expanded links
 
     var title = $this.children('a').text();
     var titleLink = $this.children('a').attr('href');
@@ -15726,46 +15843,44 @@ function openPopup() {
 })(jQuery);
 
 if (document.getElementsByClassName('calendar-cards').length > 0) {
-  external_jQuery_default()("#search-filter").on("keyup search", function () {
+  external_jQuery_default()('#search-filter').on('keyup search', function () {
     var value = external_jQuery_default()(this).val().toLowerCase(); // if input 3 or more filter
 
     if (external_jQuery_default()(this).val().length >= 2) {
-      external_jQuery_default()(".calendar-cards .card").filter(function () {
+      external_jQuery_default()('.calendar-cards .card').filter(function () {
         external_jQuery_default()(this).toggle(external_jQuery_default()(this).text().toLowerCase().indexOf(value) > -1);
       });
     } else {
       // show all if search input less then 2
-      external_jQuery_default()(".calendar-cards .card").show();
+      external_jQuery_default()('.calendar-cards .card').show();
     }
   }); // Filter on type tags
 
   external_jQuery_default()('.tags .tag').on('click', function () {
-    if (external_jQuery_default()(this).hasClass("selected")) {
-      external_jQuery_default()(this).removeClass("selected");
+    if (external_jQuery_default()(this).hasClass('selected')) {
+      external_jQuery_default()(this).removeClass('selected');
       external_jQuery_default()('.calendar-cards .card').show();
     } else {
-      external_jQuery_default()('.tags .tag').removeClass("selected");
+      external_jQuery_default()('.tags .tag').removeClass('selected');
       external_jQuery_default()('.calendar-cards .card').show();
 
-      if (external_jQuery_default()(this).text() === "Amendment") {
+      if (external_jQuery_default()(this).text() === 'Amendment') {
         external_jQuery_default()(this).addClass('selected');
         external_jQuery_default()('.calendar-cards .card').filter(':not([data-type="Amendment"])').hide();
       }
 
-      if (external_jQuery_default()(this).text() === "New") {
+      if (external_jQuery_default()(this).text() === 'New') {
         external_jQuery_default()(this).addClass('selected');
         external_jQuery_default()('.calendar-cards .card').filter(':not([data-type="New"])').hide();
       }
 
-      if (external_jQuery_default()(this).text() === "Errata") {
+      if (external_jQuery_default()(this).text() === 'Errata') {
         external_jQuery_default()(this).addClass('selected');
         external_jQuery_default()('.calendar-cards .card').filter(':not([data-type="Errata"])').hide();
       }
     }
   });
 }
-
-;
 
 /***/ })
 /******/ ]);
