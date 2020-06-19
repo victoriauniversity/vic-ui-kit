@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, June 16, 2020, 6:11 PM */
+/** Version: 0.10.13 | Friday, June 19, 2020, 2:07 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -5459,7 +5459,7 @@ aside .list.publications li {
 .form-flex input:not([type="submit"]) + .icon-button,
 .form-flex input:not([type="submit"]) + label + .icon-button,
 .form-flex textarea + .icon-button,
-.form-flex .select + .icon-button {
+.form-flex select + .icon-button {
   margin-left: 1rem;
 }
 
@@ -14021,80 +14021,59 @@ address.contact > img {
   }
 }
 
-.accordion {
-  display: grid;
-  padding: 1px;
-  grid-row-gap: 1px;
-  background-color: #DDD;
-}
-
-.accordion details {
-  /* Fallback for IE11 */
-  list-style-type: none !important;
-}
-
-.accordion details[open] .block * {
-  -webkit-animation: accordion-fade .5s ease-in;
-          animation: accordion-fade .5s ease-in;
-}
-
-.accordion .accordion-title {
-  padding: .5rem 1rem;
-  background-color: #EEE;
-  color: #424242;
-  cursor: pointer;
-  font-size: 1.15rem;
-}
-
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .accordion .accordion-title {
-    cursor: auto;
-  }
-}
-
-.accordion .accordion-title:hover,
-.accordion .accordion-title:focus {
-  background-color: #DDD;
-}
-
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .accordion .accordion-title:hover,
-  .accordion .accordion-title:focus {
-    background-color: #EEE;
-  }
-}
-
-.accordion .block {
-  background-color: #FFF;
-}
-
+.accordion details,
 .accordion-header details {
   /* Fallback for IE11 */
   list-style-type: none !important;
 }
 
+.accordion details[open] .block *,
 .accordion-header details[open] .block * {
   -webkit-animation: accordion-fade .5s ease-in;
           animation: accordion-fade .5s ease-in;
 }
 
+.accordion .accordion-title::marker,
 .accordion-header .accordion-title::marker {
   color: #005EA5;
 }
 
+.accordion .accordion-title:hover::marker,
+.accordion .accordion-title:focus::marker,
 .accordion-header .accordion-title:hover::marker,
 .accordion-header .accordion-title:focus::marker {
   color: #2B8CC4;
 }
 
+.accordion .accordion-title,
 .accordion-header .accordion-title {
   padding: .5rem 1rem;
-  font-size: 1.728em;
+  font-size: 1.81585rem;
   font-weight: 600;
   color: #005EA5;
+  text-decoration: underline;
   cursor: pointer;
 }
 
+.accordion .accordion-title:hover, .accordion .accordion-title:active, .accordion .accordion-title:focus,
+.accordion-header .accordion-title:hover,
+.accordion-header .accordion-title:active,
+.accordion-header .accordion-title:focus {
+  color: #2E8ACA;
+  text-decoration: none;
+}
+
+.accordion .accordion-title:visited,
+.accordion-header .accordion-title:visited {
+  color: #513391;
+}
+
+.accordion .accordion-title h1,
+.accordion .accordion-title h2,
+.accordion .accordion-title h3,
+.accordion .accordion-title h4,
+.accordion .accordion-title h5,
+.accordion .accordion-title h6,
 .accordion-header .accordion-title h1,
 .accordion-header .accordion-title h2,
 .accordion-header .accordion-title h3,
@@ -14105,23 +14084,29 @@ address.contact > img {
 }
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .accordion .accordion-title,
   .accordion-header .accordion-title {
     cursor: auto;
   }
 }
 
+.accordion .accordion-title:hover,
+.accordion .accordion-title:focus,
 .accordion-header .accordion-title:hover,
 .accordion-header .accordion-title:focus {
   color: #2B8CC4;
 }
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .accordion .accordion-title:hover,
+  .accordion .accordion-title:focus,
   .accordion-header .accordion-title:hover,
   .accordion-header .accordion-title:focus {
     color: #005EA5;
   }
 }
 
+.accordion .block,
 .accordion-header .block {
   background-color: #FFF;
 }
@@ -14308,7 +14293,9 @@ address.contact > img {
     -webkit-box-flex: 0;
             flex-grow: 0;
     /* initial */
-    margin: 0;
+    margin-right: 0;
+    /* initial */
+    margin-bottom: 0;
     /* initial */
   }
   .result-list .result .result-body {
