@@ -81,7 +81,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
         > li {
           flex: 1 1 auto;
            > a {
-              background-color: $green-brand;
+              background-color: $brand;
               border-radius: 2px;
               border-bottom: 5px solid $green-bottle;
               text-align: center;
@@ -89,11 +89,11 @@ $page-sub-nav-hover-bg: $brand-darker !default;
 
 
               @include hoverify() {
-                background-color: darken($green-brand, 5%);
+                background-color: darken($brand, 5%);
               }
 
               &.active {
-                background-color: darken($green-brand, 5%);
+                background-color: darken($brand, 5%);
                 border-bottom-color: lighten($green-bottle, 4%);
 
                 position: relative;
@@ -179,8 +179,8 @@ $page-sub-nav-hover-bg: $brand-darker !default;
             position: relative;
             flex: 1;
             align-content: flex-start;
-            background-color: #115737;
-            border-bottom: 5px solid #0D4B2F;
+            background-color: $brand;
+            border-bottom: 5px solid $green-bottle;
 
             &:last-child {
               .btn-expander {
@@ -221,7 +221,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
               font-weight: 600;
 
               @include hoverify() {
-                background-color: $green-brand;
+                background-color: $brand;
               }
             }
 
@@ -233,7 +233,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
               }
 
               > a {
-                background-color: $green-brand;
+                background-color: $brand;
                 border-bottom-color: $green-bottle;
 
                 &:before {
@@ -248,7 +248,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
                   top: 55%;
                   display: inline-block;
                   content: "";
-                  background-color: #FFF;
+                  background-color: $white;
                   width: 2px;
                   transform: translateY(-55%);
                 }
@@ -278,7 +278,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
               display: flex;
               flex-wrap: wrap;
               flex: 1;
-              background-color: $green-brand;
+              background-color: $brand;
               border-bottom: 5px solid $green-bottle;
 
               > a {
@@ -338,7 +338,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
 
                     &:not(:last-child) {
                       &:after {
-                        border-bottom: 1px solid $green-brand;
+                        border-bottom: 1px solid $brand;
                       }
                     }
                   }
@@ -356,8 +356,8 @@ $page-sub-nav-hover-bg: $brand-darker !default;
               }
 
               &.active {
-                background-color: #0D4B2F;
-                border-bottom: 5px solid $green-brand;
+                background-color: $green-bottle;
+                border-bottom: 5px solid $brand;
 
                 > a {
                   background-color: $green-bottle;
@@ -394,13 +394,13 @@ $page-sub-nav-hover-bg: $brand-darker !default;
                   box-shadow: $shadow;
                   // transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px) translateZ(0);
                   backface-visibility: hidden;
-                  background-color: #0D4B2F;
-                  border-bottom: 5px solid $green-brand;
+                  background-color: $green-bottle;
+                  border-bottom: 5px solid $brand;
                   will-change: auto;
 
 
                   > a {
-                    background-color: #0D4B2F;
+                    background-color: $green-bottle;
                   }
 
                 }
@@ -424,7 +424,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
             display: block;
 
             > li {
-              border-bottom: 5px solid #0D4B2F;
+              border-bottom: 5px solid $green-bottle;
               > a {
                 padding: 0.5rem 1rem;
                 border-bottom: none;
@@ -433,7 +433,7 @@ $page-sub-nav-hover-bg: $brand-darker !default;
 
               &.active {
                 background-color: $green-bottle;
-                border-bottom: 5px solid $green-brand;
+                border-bottom: 5px solid $brand;
 
                 > a {
                   background-color: $green-bottle;
@@ -503,8 +503,8 @@ $page-sub-nav-hover-bg: $brand-darker !default;
     }
     &.mega-menu-bar {
       margin-top: 0;
-      background-color: $green-brand;
-      border-bottom: 5px solid #0D4B2F;
+      background-color: $brand;
+      border-bottom: 5px solid $green-bottle;
 
       nav {
         > ul {
