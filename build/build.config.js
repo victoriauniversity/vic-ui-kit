@@ -101,7 +101,7 @@ const config = {
       name:   'stage',
       server: {
         protocol: 'https',
-        host:     'cms.wgtn.ac.nz',
+        host:     'www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778031/dist',
         port:     80,
       },
     },
@@ -109,7 +109,7 @@ const config = {
       name:   'production',
       server: {
         protocol: 'https',
-        host:     'wgtn.ac.nz',
+        host:     'www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist',
         port:     443,
       },
     },
