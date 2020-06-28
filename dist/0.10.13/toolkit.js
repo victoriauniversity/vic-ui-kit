@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, June 26, 2020, 10:01 AM */
+/** Version: 0.10.13 | Monday, June 29, 2020, 11:17 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -12341,7 +12341,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* 18 */
 /***/ (function(module) {
 
-module.exports = {"name":"production","server":{"protocol":"https","host":"static.victoria.ac.nz","port":443}};
+module.exports = {"name":"production","server":{"protocol":"https","host":"wgtn.ac.nz","port":443}};
 
 /***/ }),
 /* 19 */
