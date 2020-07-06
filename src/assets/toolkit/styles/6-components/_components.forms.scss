@@ -105,7 +105,27 @@
     width: 100%;
     flex-wrap: wrap;
 
+    .field + .icon-button,
+    input:not([type="submit"]) + .icon-button,
+    input:not([type="submit"]) + label + .icon-button,
+    textarea + .icon-button,
+    select + .icon-button {
+      margin-left: 1rem;
+    }
+  
+    .field,
+    input:not([type="submit"]):not([type="checkbox"]),
+    textarea {
+      flex: auto;
+    }
+  
+    input[type="checkbox"] + label {
+      margin-left: 1rem;
+      flex-grow: 1;
+    }
+
     .error-text {
+      width: 100%;
       color: $red-roof-terratcotta;
     }
   }
@@ -132,35 +152,9 @@
     }
   }
 
-  .field + .icon-button,
-  input:not([type="submit"]) + .icon-button,
-  input:not([type="submit"]) + label + .icon-button,
-  textarea + .icon-button,
-  select + .icon-button {
-    margin-left: 1rem;
-  }
-
-  .field,
-  input:not([type="submit"]):not([type="checkbox"]),
-  textarea {
-    flex-grow: 1;
-  }
-
-  // input[type="checkbox"] {
-  //   margin-right: 1rem;
-  // }
-  input[type="checkbox"] + label {
-    margin-left: 1rem;
-    flex-grow: 1;
-  }
-
   input:disabled {
     color: rgba(0, 0, 0, .247);
     background-color: rgb(218, 218, 218);
-  }
-
-  .error-text {
-    width: 100%;
   }
 }
 
