@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, June 29, 2020, 11:27 AM */
+/** Version: 0.10.13 | Monday, July 6, 2020, 12:40 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -5423,7 +5423,29 @@ aside .list.publications li {
   flex-wrap: wrap;
 }
 
+.form-flex .group .field + .icon-button,
+.form-flex .group input:not([type="submit"]) + .icon-button,
+.form-flex .group input:not([type="submit"]) + label + .icon-button,
+.form-flex .group textarea + .icon-button,
+.form-flex .group select + .icon-button {
+  margin-left: 1rem;
+}
+
+.form-flex .group .field,
+.form-flex .group input:not([type="submit"]):not([type="checkbox"]),
+.form-flex .group textarea {
+  -webkit-box-flex: 1;
+          flex: auto;
+}
+
+.form-flex .group input[type="checkbox"] + label {
+  margin-left: 1rem;
+  -webkit-box-flex: 1;
+          flex-grow: 1;
+}
+
 .form-flex .group .error-text {
+  width: 100%;
   color: #AF1B1B;
 }
 
@@ -5455,34 +5477,9 @@ aside .list.publications li {
   background-color: #DDD;
 }
 
-.form-flex .field + .icon-button,
-.form-flex input:not([type="submit"]) + .icon-button,
-.form-flex input:not([type="submit"]) + label + .icon-button,
-.form-flex textarea + .icon-button,
-.form-flex select + .icon-button {
-  margin-left: 1rem;
-}
-
-.form-flex .field,
-.form-flex input:not([type="submit"]):not([type="checkbox"]),
-.form-flex textarea {
-  -webkit-box-flex: 1;
-          flex-grow: 1;
-}
-
-.form-flex input[type="checkbox"] + label {
-  margin-left: 1rem;
-  -webkit-box-flex: 1;
-          flex-grow: 1;
-}
-
 .form-flex input:disabled {
   color: rgba(0, 0, 0, 0.247);
   background-color: #dadada;
-}
-
-.form-flex .error-text {
-  width: 100%;
 }
 
 .group--vspace {
