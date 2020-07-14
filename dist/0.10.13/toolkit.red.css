@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, July 6, 2020, 12:49 PM */
+/** Version: 0.10.13 | Tuesday, July 14, 2020, 12:24 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -14045,7 +14045,7 @@ address.contact > img {
 .accordion .accordion-title,
 .accordion-header .accordion-title {
   padding: .5rem 1rem;
-  font-size: 1.81585rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: #005EA5;
   text-decoration: underline;
@@ -14123,9 +14123,9 @@ address.contact > img {
 .search-result .search-result-header {
   display: -webkit-box;
   display: flex;
-  flex-wrap: wrap;
-  -webkit-box-pack: left;
-          justify-content: left;
+  flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
           align-items: center;
 }
@@ -14137,6 +14137,19 @@ address.contact > img {
 .search-result .search-result-header .search-result-title,
 .search-result .search-result-header .search-result-subtitle {
   margin-bottom: .25rem;
+}
+
+@media (max-width: 42.99em) {
+  .search-result .search-result-header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+            flex-direction: column-reverse;
+    -webkit-box-align: start;
+            align-items: flex-start;
+  }
+  .search-result .search-result-header .search-result-subtitle {
+    margin-bottom: .5rem !important;
+  }
 }
 
 .search-result .search-result-footer {
