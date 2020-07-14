@@ -13,8 +13,8 @@
 
   .search-result-header {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: left;
+    flex-wrap: nowrap;
+    justify-content: space-between;
     align-items: center;
 
     .search-result-title {
@@ -24,6 +24,15 @@
     .search-result-title,
     .search-result-subtitle {
       margin-bottom: .25rem;
+    }
+
+    @include breakpoint( $until: tablet) {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+
+      .search-result-subtitle {
+        margin-bottom: .5rem !important;
+      }
     }
   }
 
