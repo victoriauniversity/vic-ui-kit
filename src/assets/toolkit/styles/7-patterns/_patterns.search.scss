@@ -30,6 +30,14 @@
     &.search-inactive {
       display: none;
     }
+
+    .promo-panel {
+      // move curated rsults to top on mobile and tablet
+      order: 1;
+      @include breakpoint($from:desktop){
+        order: unset;
+      }
+    }
   }
 
   .animated {
