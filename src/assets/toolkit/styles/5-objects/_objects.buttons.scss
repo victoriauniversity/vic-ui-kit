@@ -72,12 +72,22 @@ button,
   // Secondary button: transparent with border outline
   &.flat-border {
     background: transparent;
-    border:     $button-border-width solid $button-primary-color;
-    color:      $button-primary-color;
+    border:     $button-border-width solid $black-tundora;
+    color:      $black-tundora;
+
+    &.primary {
+      border:     $button-border-width solid $button-primary-color;
+      color:      $button-primary-color;
+
+      @include hoverify() {
+        color: $white;
+        background: $button-primary-color;
+      }
+    }
 
     @include hoverify() {
       color: $white;
-      background: $button-primary-color;
+      background: $black-tundora;
     }
   }
 
