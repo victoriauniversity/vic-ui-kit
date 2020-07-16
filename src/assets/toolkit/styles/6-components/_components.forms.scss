@@ -84,6 +84,7 @@
 .form-flex {
   padding: $gap-box;
   background-color: $grey-gallery;
+  max-width: 600px;
 
   fieldset {
     margin: 2rem 0;
@@ -101,9 +102,14 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: .5em;
+    margin-bottom: .8em;
     width: 100%;
     flex-wrap: wrap;
+
+    label {
+      margin-bottom: .2rem;
+      width: 100%;
+    }
 
     .field + .icon-button,
     input:not([type="submit"]) + .icon-button,
@@ -112,13 +118,13 @@
     select + .icon-button {
       margin-left: 1rem;
     }
-  
+
     .field,
     input:not([type="submit"]):not([type="checkbox"]),
     textarea {
       flex: 1 1 0;
     }
-  
+
     input[type="checkbox"] + label {
       margin-left: 1rem;
       flex-grow: 1;

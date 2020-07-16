@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, July 14, 2020, 12:24 PM */
+/** Version: 0.10.13 | Thursday, July 16, 2020, 1:10 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -2950,7 +2950,7 @@ button.flat:hover, button.flat:active, button.flat:focus,
 
 button.primary,
 .button.primary {
-  background-color: #333;
+  background-color: #424242;
   color: #FFF;
 }
 
@@ -2959,14 +2959,28 @@ button.primary:hover, button.primary:active, button.primary:focus,
 .button.primary:active,
 .button.primary:focus {
   color: #FFF;
-  background: #666666;
+  background: #757575;
 }
 
 button.flat-border,
 .button.flat-border {
   background: transparent;
-  border: 0.125rem solid #333;
-  color: #333;
+  border: 0.125rem solid #424242;
+  color: #424242;
+}
+
+button.flat-border.primary,
+.button.flat-border.primary {
+  border: 0.125rem solid #424242;
+  color: #424242;
+}
+
+button.flat-border.primary:hover, button.flat-border.primary:active, button.flat-border.primary:focus,
+.button.flat-border.primary:hover,
+.button.flat-border.primary:active,
+.button.flat-border.primary:focus {
+  color: #FFF;
+  background: #424242;
 }
 
 button.flat-border:hover, button.flat-border:active, button.flat-border:focus,
@@ -2974,7 +2988,7 @@ button.flat-border:hover, button.flat-border:active, button.flat-border:focus,
 .button.flat-border:active,
 .button.flat-border:focus {
   color: #FFF;
-  background: #333;
+  background: #424242;
 }
 
 button.danger,
@@ -5397,6 +5411,7 @@ aside .list.publications li {
 .form-flex {
   padding: 1.5rem 1.5rem;
   background-color: #EEE;
+  max-width: 600px;
 }
 
 .form-flex fieldset {
@@ -5418,9 +5433,14 @@ aside .list.publications li {
           align-items: center;
   -webkit-box-pack: start;
           justify-content: flex-start;
-  margin-bottom: .5em;
+  margin-bottom: .8em;
   width: 100%;
   flex-wrap: wrap;
+}
+
+.form-flex .group label {
+  margin-bottom: .2rem;
+  width: 100%;
 }
 
 .form-flex .group .field + .icon-button,
@@ -14547,6 +14567,18 @@ address.contact > img {
 
 .p-search.search-results.search-inactive {
   display: none;
+}
+
+.p-search.search-results .promo-panel {
+  -webkit-box-ordinal-group: 2;
+          order: 1;
+}
+
+@media (min-width: 61em) {
+  .p-search.search-results .promo-panel {
+    -webkit-box-ordinal-group: unset;
+            order: unset;
+  }
 }
 
 .p-search .animated {
