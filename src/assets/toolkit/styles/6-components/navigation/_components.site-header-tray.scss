@@ -362,20 +362,22 @@ $tray-width-desktop: 400px;
 
       .header-logo {
         border-right: none;
+        width: 20%;
+        padding: .1rem .5rem .1rem;
       }
 
       .vict-logo {
         padding: 0 1rem;
-        width: 45%;
+        // width: 45%;
         flex: 1 0 auto;
 
         position: relative;
-        transition: 0.2s ease-in-out;
+        transition: all .2s ease-in-out;
 
         img {
           position: absolute;
           top: 40px;
-          transition: 0.2s ease-in-out;
+          transition: all .2s ease-in-out;
 
           width: 100%;
           max-width: 90%;
@@ -389,8 +391,8 @@ $tray-width-desktop: 400px;
         flex: 0;
       }
 
-      .header-toggle,
-      .header-search {
+      .header-toggle {
+        flex: 0 1 5%;
         margin: 0;
         button {
           // position: relative;
@@ -426,6 +428,31 @@ $tray-width-desktop: 400px;
             max-width: 50%;
           }
         }
+      }
+    }
+
+    @include breakpoint($until:tablet) {
+      .header-inner {
+        .vict-logo {
+          grid-column: 1/3;
+          grid-row-start: 3;
+          img {
+            top: 0;
+            position: relative;
+          }
+        }
+      }
+      &.header-shrink {
+        .header-inner {
+          .vict-logo {
+            grid-column: 2;
+            grid-row-start: 2;
+            img {
+              max-width: 95%;
+            }
+          }
+        }
+
       }
     }
   }
