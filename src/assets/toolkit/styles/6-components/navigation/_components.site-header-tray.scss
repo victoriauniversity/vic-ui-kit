@@ -357,6 +357,7 @@ $tray-width-desktop: 400px;
     top: 0;
     z-index: $z-index-top;
     padding-top: 0;
+    margin-bottom: 20px;
 
     .header-inner {
 
@@ -375,12 +376,13 @@ $tray-width-desktop: 400px;
         transition: all .2s ease-in-out;
 
         img {
-          position: absolute;
-          top: 40px;
+          // position: absolute;
+          // top: 40px;
           transition: all .2s ease-in-out;
+          transform: matrix( 2, 0, 0, 2, 0, 80 );
 
-          width: 100%;
-          max-width: 90%;
+          // width: 100%;
+          max-width: 50%;
           margin: 0 auto;
           display: block;
         }
@@ -415,14 +417,16 @@ $tray-width-desktop: 400px;
     }
 
     &.header-shrink {
+      margin-bottom: 0;
       .header-inner {
 
         .vict-logo {
           transition: all .2s ease-in-out;
 
           img {
-            position: relative;
-            top: 0;
+            // position: relative;
+            // top: 0;
+            transform: matrix( 1, 0, 0, 1, 0, 0 );
             transition: all .2s ease-in-out;
             width: 100%;
             max-width: 50%;
@@ -460,6 +464,7 @@ $tray-width-desktop: 400px;
           grid-column: 1/4;
           grid-row-start: 2;
           img {
+            transform: matrix( 2, 0, 0, 2, 0, 50 );
             top: 0;
             position: relative;
           }
