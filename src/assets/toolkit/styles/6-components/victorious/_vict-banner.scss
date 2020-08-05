@@ -1,0 +1,79 @@
+.vict-banner {
+  &.full {
+
+    // @include breakpoint($from:tablet) {
+      figure {
+        position: relative;
+        figcaption {
+          color: red;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+
+          .vict-banner-title-tag {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: .3rem;
+
+            &:after {
+              width: 40%;
+              position: absolute;
+              height: 1px;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%);
+              content: "";
+              background-color: $white;
+            }
+          }
+
+          .vict-banner-sub-heading {
+            margin-bottom: .5rem;
+          }
+        }
+        @include breakpoint($until:tablet) {
+          figcaption {
+            width: 100%;
+          }
+        }
+
+      }
+    // }
+  }
+
+  @include breakpoint($until:tablet) {
+
+  }
+
+
+  figure {
+    figcaption {
+      p,
+      h1,
+      h2,
+      h3 {
+        color: $white;
+      }
+    }
+  }
+  &.dark {
+    figure {
+      figcaption {
+        p,
+        h1,
+        h2,
+        h3 {
+          color: $black-mine-shaft;
+        }
+
+        .vict-banner-title-tag {
+          &:after {
+            background-color: $black-mine-shaft;
+          }
+        }
+      }
+    }
+  }
+}

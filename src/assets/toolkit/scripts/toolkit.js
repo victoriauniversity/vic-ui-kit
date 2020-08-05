@@ -546,7 +546,7 @@ function victoriousHeader() {
 
     const options = {
       // vertical offset in px before element is first unpinned
-      offset:    header.offsetHeight + 50,
+      offset:    15,
       // scroll tolerance in px before state changes
       tolerance: 10,
       // css classes to apply
