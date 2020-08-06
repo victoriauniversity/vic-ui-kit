@@ -1,0 +1,28 @@
+
+.articles-row {
+
+  .articles-row-title {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    h3 {
+      // text-align: center;
+      padding-bottom: .5rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .articles {
+    margin: 0 2rem;
+
+    .article-item {
+      flex: 1 1;
+      &:not(:last-child) {
+        padding-right: 1.2rem ;
+      }
+    }
+    @include breakpoint($until:tablet) {
+      flex-wrap: wrap;
+    }
+  }
+
+}
