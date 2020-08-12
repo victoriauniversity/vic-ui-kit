@@ -546,7 +546,7 @@ function victoriousHeader() {
 
     const options = {
       // vertical offset in px before element is first unpinned
-      offset:    15,
+      offset:    10,
       // scroll tolerance in px before state changes
       tolerance: 10,
       // css classes to apply
@@ -627,6 +627,21 @@ $(() => {
   initTray();
   victoriousHeader();
 
+  let s = skrollr.init({
+    smoothScrolling: true,
+  });
+
+  // if (s.isMobile()) {
+  //   s.destroy();
+  // }
+  $(window).on('resize', () => {
+    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { // no reason to destroy on mobile
+      if ($(window).width() <= 800) {
+        skrollr.init().destroy(); // skrollr.init() returns the singleton created above
+      }
+    }
+
+});
 
 
   initFloatingButtons();
