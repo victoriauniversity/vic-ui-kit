@@ -1,0 +1,273 @@
+.article-section {
+
+  @include breakpoint($from:tablet) {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+
+  }
+
+  .article-content {
+    margin: 1rem 0;
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    @include breakpoint($until:tablet) {
+      padding: 0 1rem;
+      // margin-left: 40%;
+    }
+    @include breakpoint($from:tablet) {
+      // margin: 1rem 0 1rem 40%;
+      flex: 0 1 60%;
+      padding-right: 3rem;
+      // margin-left: 40%;
+    }
+
+
+    &.text-pull {
+
+      @include breakpoint($from:tablet) {
+        // margin: 1rem 0 1rem 30%;
+        flex: 0 1 70%;
+        font-size: 1.6rem;
+        p {
+          font-weight: 700 !important;
+        }
+
+      }
+    }
+  }
+
+  &.side-image {
+
+    .article-content {
+
+    }
+
+    .article-side-image {
+      flex: 1 1 40%;
+      align-self: flex-end;
+
+      @include breakpoint($until:tablet) {
+        padding: 0 1rem;
+      }
+
+      @include breakpoint($from:tablet) {
+        margin-top: 1rem;
+        padding-left: 3rem;
+        padding-right: 2rem;
+        // margin-left: 40%;
+
+        img {
+          max-height: 600px;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  &.image-full {
+    margin: 2.5rem auto;
+
+    .article-image-full {
+
+      figcaption {
+        text-align: center;
+      }
+    }
+  }
+
+  &.video {
+    figure.video-cover-image {
+      margin: 2rem auto;
+      padding: 0 3rem;
+
+      a {
+        position: relative;
+      }
+      img {
+        filter: brightness(90%);
+      }
+      svg {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-45%, -50%);
+        z-index: 1;
+        fill: $white;
+        width: 100px;
+        height: 100px;
+      }
+
+      @include breakpoint($until:tablet) {
+        padding: 0 1rem;
+
+          svg {
+            width: 70px;
+            height: 70px;
+          }
+      }
+    }
+
+  }
+
+}
+
+.vict-quote {
+  margin: 2rem auto;
+  color: $white;
+
+  &.black {
+    background-color: $black;
+  }
+  &.green {
+    background-color: $green-brand;
+  }
+
+  blockquote {
+    padding: 5rem 10rem;
+    font-size: 1.5rem;
+    font-family: $caslon;
+    font-weight: 600;
+
+    footer {
+      margin-top: .5rem;
+      font-size: 1.2rem;
+      font-family: $proxima;
+    }
+  }
+  @include breakpoint($until:tablet) {
+
+    blockquote {
+      padding: 5rem;
+    }
+  }
+}
+
+
+.vict-gallery {
+  display: grid;
+  margin: 3rem auto;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 1.5rem;
+  // row-gap: 2rem;
+  padding: 0 3rem;
+
+  img {
+    margin-bottom: 0;
+  }
+
+  .gallery-row-1-3 {
+    grid-column: 1;
+  }
+  .gallery-row-2-3 {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    svg {
+      display: none;
+    }
+  }
+
+  .vict-caption {
+    grid-column: span 2;
+  }
+
+  @include hoverify() {
+    cursor: pointer;
+
+    img {
+      filter: brightness(105%);
+      transition: .1s ease-in-out;
+    }
+
+    .gallery-row-2-3 {
+      position: relative;
+
+      svg {
+        z-index: 20;
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        display: block;
+        width: 30px;
+        height: 30px;
+        fill: $white;
+
+      }
+
+      &:after {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 80px 80px 0;
+        border-color: transparent $black-victorious transparent transparent;
+      }
+    }
+  }
+
+  @include breakpoint($until:tablet) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    padding: 0 1rem;
+
+      .gallery-row-1-3 {
+        grid-column: unset;
+        grid-row: 1;
+      }
+
+      .gallery-row-2-3 {
+        grid-column: 1 /span 2;
+        grid-row: 2;
+      }
+
+  }
+}
+
+
+.vict-section-header {
+  text-align: center;
+
+  .section-title {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $black-victorious;
+    display: inline-block;
+  }
+
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      color: $black-victorious;
+      @include hoverify() {
+        text-decoration: underline;
+      }
+    }
+
+    .prev {
+      i:before {
+        margin-right: .5rem;
+      }
+    }
+    .next {
+      i:before {
+        margin-right: 0;
+        margin-left: .5rem;
+      }
+    }
+  }
+}

@@ -1,11 +1,19 @@
 .vict-banner {
+
+  h1,
+  h2,
+  h3 {
+    font-family: adobe-caslon-pro, serif;
+    letter-spacing: 1px;
+  }
+
   &.full {
+    overflow: hidden;
 
     // @include breakpoint($from:tablet) {
       figure {
         position: relative;
         figcaption {
-          color: red;
           position: absolute;
           top: 50%;
           left: 50%;
@@ -16,6 +24,7 @@
             margin-bottom: 1.5rem;
             position: relative;
             padding-bottom: .3rem;
+            font-family: proxima-nova, sans-serif !important;
 
             &:after {
               width: 40%;
@@ -43,6 +52,91 @@
     // }
   }
 
+  &.split {
+    display: flex;
+    margin-top: 1rem;
+
+    .banner-content,
+    .banner-image {
+      flex: 1 1 50%;
+    }
+
+    .banner-content {
+      padding: 3rem 0 0 0;
+      transition: all .2s ease;
+      position: sticky;
+
+      .meta {
+        margin-bottom: 2rem;
+        border-top: 1px solid $black-victorious;
+        width: 70%;
+        padding-top: .5rem;
+
+        p {
+          text-transform: uppercase;
+          font-size: .8rem;
+        }
+      }
+
+      .banner-titles {
+        h1 {
+          overflow: overlay;
+          margin-right: -10rem;
+          padding-bottom: 2rem;
+          min-height: 100%;
+        }
+        h3 {
+          margin-bottom: .5rem;
+        }
+      }
+    }
+
+    .banner-image {
+      img {
+        max-height: 90vh;
+        object-fit: contain;
+      }
+    }
+
+    @include breakpoint($until:tablet) {
+      flex-direction: column-reverse;
+
+      .banner-content,
+      .banner-image {
+        flex: 1 1;
+      }
+      .banner-content {
+        padding: 0 0 0 0;
+
+        .meta {
+          margin-bottom: 2rem;
+          border-top: 1px solid $black-victorious;
+          width: 70%;
+          padding-top: .5rem;
+
+          p {
+            text-transform: uppercase;
+            font-size: .8rem;
+          }
+        }
+
+        .banner-titles {
+          h1 {
+            padding-bottom: 1rem;
+            overflow: hidden;
+            margin-right: 0;
+            padding-bottom: 2rem;
+            min-height: unset;
+          }
+          h3 {
+            margin-bottom: .5rem;
+          }
+        }
+      }
+    }
+
+  }
+
   @include breakpoint($until:tablet) {
 
   }
@@ -54,7 +148,7 @@
       h1,
       h2,
       h3 {
-        color: $white;
+        color: $white !important;
       }
     }
   }
@@ -65,7 +159,7 @@
         h1,
         h2,
         h3 {
-          color: $black-victorious;
+          color: $black-victorious !important;
         }
 
         .vict-banner-title-tag {

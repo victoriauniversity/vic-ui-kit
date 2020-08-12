@@ -1,6 +1,11 @@
 
 .articles-row {
 
+  &.border-top {
+    border-top: 1px solid $black-victorious;
+    padding-top: 4rem;
+  }
+
   .articles-row-title {
     margin-bottom: 1.5rem;
     text-align: center;
@@ -8,6 +13,15 @@
       // text-align: center;
       padding-bottom: .5rem;
       margin-bottom: 1rem;
+    }
+
+    p {
+      a {
+        color: $black-victorious;
+      }
+    }
+    a {
+      color: $black-victorious;
     }
   }
 
@@ -23,6 +37,10 @@
     @include breakpoint($until:tablet) {
       flex-wrap: wrap;
     }
+  }
+
+  .vic-button {
+    margin: .5rem auto;
   }
 
 }

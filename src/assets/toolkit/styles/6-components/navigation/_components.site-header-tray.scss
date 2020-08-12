@@ -436,6 +436,7 @@ $tray-width-desktop: 400px;
     }
 
     @include breakpoint($until:tablet) {
+      margin-bottom: 1rem;
       .header-inner {
         grid-template-columns: 1fr 2fr 1fr;
         grid-template-rows: 1fr;
@@ -464,7 +465,7 @@ $tray-width-desktop: 400px;
           grid-column: 1/4;
           grid-row-start: 2;
           img {
-            transform: matrix( 2, 0, 0, 2, 0, 50 );
+            transform: matrix( 2, 0, 0, 2, 0, 30 );
             top: 0;
             position: relative;
           }
@@ -482,6 +483,56 @@ $tray-width-desktop: 400px;
         }
 
       }
+    }
+
+    .tray.tray-open {
+
+      .tray-close {
+        background-color: $white;
+        text-align: right;
+
+        .close-tray {
+          color: $black-mine-shaft;
+          width: 35px;
+          height: 35px;
+
+          span {
+            &:before {
+              margin: 0;
+            }
+          }
+        }
+      }
+
+      .tray-title {
+        color: $black-mine-shaft;
+        margin: 2rem 0 1rem;
+      }
+
+
+
+      .tray-content {
+        background-color: $white;
+        height: auto;
+
+        .tray-main-nav {
+          .main-nav-item {
+
+            padding: 2rem 0 1rem;
+            border-bottom: 1px solid $black-mine-shaft;
+
+            .main-nav-link {
+              color: $black-mine-shaft;
+              font-size: 1.2rem;
+
+              &.active {
+                // font-weight: 400;
+              }
+            }
+          }
+        }
+      }
+
     }
   }
 
