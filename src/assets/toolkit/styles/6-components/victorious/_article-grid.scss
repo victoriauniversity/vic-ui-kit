@@ -1,0 +1,99 @@
+/* Article grid
+  USed in Victorious
+*/
+
+.article-item {
+  margin-bottom: 1rem;
+  img {
+    margin-bottom: .5rem;
+  }
+  a {
+    color: $black-victorious;
+  }
+  .article-tag {
+    display: block;
+    margin-bottom: .5rem;
+    text-transform: uppercase;
+  }
+  h4 {
+    margin-bottom: .5rem;
+    font-family: proxima-nova, sans-serif;
+    font-weight: 600;
+    // text-transform: uppercase;
+    font-size: 1.2rem;
+  }
+}
+
+.articles-grid {
+  display: flex;
+  padding-bottom: 2rem;
+  flex-direction: column;
+  border-bottom: 1px solid $black-victorious;
+
+  .article-1-up {
+    margin-bottom: 1rem;
+
+    h4 {
+      font-size: 2rem;
+      font-family: adobe-caslon-pro, serif;
+    }
+  }
+
+  .article-3-up {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    > .article-item {
+      flex: 0 0 48%;
+      margin-bottom: 1rem;
+
+      // &:not(:nth-child(3n) ) {
+      //   margin-right: 1rem;
+      // }
+    }
+  }
+
+  .article-2-up {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    > .article-item {
+      flex: 0 0 48%;
+      margin-bottom: 1rem;
+    }
+  }
+
+  @include breakpoint($from:tablet) {
+    flex-direction: row;
+
+    &.col-2 {
+      > div {
+        flex: 1 0 50%;
+
+        &:first-child {
+          padding-right: 1rem;
+        }
+      }
+    }
+
+    .article-3-up {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      > .article-item {
+        flex: 0 0 31%;
+        margin-bottom: 1rem;
+
+        // &:not(:nth-child(3n) ) {
+        //   margin-right: 1rem;
+        // }
+      }
+    }
+  }
+
+
+
+}

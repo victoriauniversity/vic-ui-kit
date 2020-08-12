@@ -1,0 +1,48 @@
+$black-victorious: $black-mine-shaft;
+$caslon: adobe-caslon-pro, serif !important;
+$proxima: proxima-nova, sans-serif !important;
+
+.title-underline {
+  position: relative;
+  padding-bottom: .5rem;
+
+  &:after {
+    width: 40%;
+    position: absolute;
+    height: 1px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    content: "";
+    background-color: $black;
+  }
+}
+
+.article-tag {
+  display: block;
+  margin-bottom: .5rem;
+  font-family: proxima-nova, sans-serif !important;
+  text-transform: uppercase;
+}
+
+.vic-button {
+  font-family: proxima-nova, sans-serif;
+}
+
+.vict-caption {
+  font-style: italic;
+}
+
+.vic-button {
+  display: inline-block;
+  color: $black-victorious;
+  padding: .5rem 1rem;
+  border: 1px solid $black-victorious;
+  text-transform: uppercase;
+
+  @include hoverify() {
+    color: $white;
+    background-color: $black-victorious;
+    transition: .3s ease-in-out;
+  }
+}

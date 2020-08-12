@@ -1,0 +1,46 @@
+
+.articles-row {
+
+  &.border-top {
+    border-top: 1px solid $black-victorious;
+    padding-top: 4rem;
+  }
+
+  .articles-row-title {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    h3 {
+      // text-align: center;
+      padding-bottom: .5rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      a {
+        color: $black-victorious;
+      }
+    }
+    a {
+      color: $black-victorious;
+    }
+  }
+
+  .articles {
+    margin: 0 2rem;
+
+    .article-item {
+      flex: 1 1;
+      &:not(:last-child) {
+        padding-right: 1.2rem ;
+      }
+    }
+    @include breakpoint($until:tablet) {
+      flex-wrap: wrap;
+    }
+  }
+
+  .vic-button {
+    margin: .5rem auto;
+  }
+
+}

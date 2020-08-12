@@ -1,0 +1,39 @@
+.victorious-footer {
+  margin-top: 2rem;
+  padding: 0 2rem;
+  border-bottom: 20px solid $green-brand;
+
+  > section {
+    padding-top: 3rem;
+    border-top: 1px solid $black-victorious;
+    flex: 1 1;
+
+    &.social {
+      display: flex;
+      justify-content: flex-end;
+      .social-icon {
+        padding: 0 .5rem;
+        svg {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+  }
+  @include breakpoint($until:tablet) {
+
+    flex-direction: column;
+
+    > section {
+      padding-top: 1.5rem;
+      &.social {
+        justify-content: flex-start;
+      }
+      &:not(:first-child) {
+        border-top: none;
+        padding-top: 0;
+      }
+    }
+
+  }
+}
