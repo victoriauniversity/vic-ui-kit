@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, August 13, 2020, 1:17 PM */
+/** Version: 0.10.13 | Friday, August 14, 2020, 9:15 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -11995,6 +11995,12 @@ address.contact > img {
   padding: .1rem .5rem .1rem;
 }
 
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .main-site-header.victorious-header .header-inner .header-logo img {
+    height: 50px;
+  }
+}
+
 .main-site-header.victorious-header .header-inner .vict-logo {
   padding: 0 1rem;
   -webkit-box-flex: 1;
@@ -12012,6 +12018,13 @@ address.contact > img {
   max-width: 50%;
   margin: 0 auto;
   display: block;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .main-site-header.victorious-header .header-inner .vict-logo img {
+    -webkit-transform: matrix(2, 0, 0, 2, 0, 40);
+            transform: matrix(2, 0, 0, 2, 0, 40);
+  }
 }
 
 .main-site-header.victorious-header .header-inner .header-search {
@@ -14742,6 +14755,14 @@ address.contact > img {
   transition: .3s ease-in-out;
 }
 
+#progress {
+  position: fixed;
+  top: 0;
+  height: .5%;
+  background: #444;
+  z-index: 200;
+}
+
 .vict-banner h1,
 .vict-banner h2,
 .vict-banner h3 {
@@ -14809,10 +14830,10 @@ address.contact > img {
 }
 
 .vict-banner.split .banner-content {
-  padding: 3rem 0 0 0;
+  position: relative;
   -webkit-transition: all .2s ease;
   transition: all .2s ease;
-  position: relative;
+  padding: 3rem 0 0 0;
 }
 
 .vict-banner.split .banner-content .meta {
@@ -15305,9 +15326,10 @@ address.contact > img {
     margin-bottom: 1rem;
     margin-right: 0.5rem;
   }
-  .vict-gallery .gallery-row-1-3:last-child {
-    -ms-grid-row: 2;
-  }
+}
+
+.vict-gallery .gallery-row-1-3:nth-child(2) {
+  -ms-grid-row: 2;
 }
 
 .vict-gallery .gallery-row-2-3 {
@@ -17008,10 +17030,17 @@ ul.no-list li {
   line-height: 1.2;
 }
 
-.theme-victorious p {
+.theme-victorious p,
+.theme-victorious span {
   font-family: proxima-nova, sans-serif;
   font-weight: 400;
   font-size: 1.1rem;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .theme-victorious .layout {
+    margin-top: 5rem;
+  }
 }
 
 /*= TRUMP OVERRIDES ===============================*/

@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, August 13, 2020, 1:17 PM */
+/** Version: 0.10.13 | Friday, August 14, 2020, 9:15 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15533,8 +15533,7 @@ external_jQuery_default()(function () {
   ;
   initTray();
   victoriousHeader();
-  var s = skrollr.init({
-    smoothScrolling: true
+  var s = skrollr.init({// smoothScrolling: true,
   }); // if (s.isMobile()) {
   //   s.destroy();
   // }
