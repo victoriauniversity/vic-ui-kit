@@ -370,6 +370,12 @@ $tray-width-desktop: 400px;
         border-right: none;
         width: 20%;
         padding: .1rem .5rem .1rem;
+
+        img {
+          @include target-ie {
+            height: 50px;
+          }
+        }
       }
 
       .vict-logo {
@@ -385,6 +391,10 @@ $tray-width-desktop: 400px;
           // top: 40px;
           transition: all .2s ease-in-out;
           transform: matrix( 2, 0, 0, 2, 0, 80 );
+
+          @include target-ie {
+            transform: matrix( 2, 0, 0, 2, 0, 40 );
+          }
 
           // width: 100%;
           max-width: 50%;
