@@ -10,10 +10,17 @@
     line-height: 1.2;
   }
 
-  p {
+  p,
+  span {
     // font-family: adobe-caslon-pro, serif;
     font-family: proxima-nova, sans-serif;
     font-weight: 400;
     font-size: 1.1rem;
+  }
+
+  @include target-ie {
+    .layout {
+      margin-top: 5rem;
+    }
   }
 }

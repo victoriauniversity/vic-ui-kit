@@ -628,7 +628,7 @@ $(() => {
   victoriousHeader();
 
   let s = skrollr.init({
-    smoothScrolling: true,
+    // smoothScrolling: true,
   });
 
   // if (s.isMobile()) {
