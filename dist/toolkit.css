@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, August 12, 2020, 1:44 PM */
+/** Version: 0.10.13 | Thursday, August 13, 2020, 12:10 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -11979,6 +11979,8 @@ address.contact > img {
 .main-site-header.victorious-header {
   background-color: #FFF;
   border-bottom: none;
+  position: fixed;
+  width: 100%;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -15280,9 +15282,12 @@ address.contact > img {
 
 .vict-gallery {
   display: grid;
+  display: -ms-grid;
   margin: 3rem auto;
   grid-template-columns: 1fr 2fr;
+  -ms-grid-columns: 1fr 2fr;
   grid-template-rows: 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr;
   grid-gap: 1.5rem;
   padding: 0 3rem;
 }
@@ -15292,12 +15297,33 @@ address.contact > img {
 }
 
 .vict-gallery .gallery-row-1-3 {
+  -ms-grid-column: 1;
   grid-column: 1;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .vict-gallery .gallery-row-1-3 {
+    margin-bottom: 1rem;
+    margin-right: 0.5rem;
+  }
+  .vict-gallery .gallery-row-1-3:last-child {
+    -ms-grid-row: 2;
+  }
 }
 
 .vict-gallery .gallery-row-2-3 {
   grid-column: 2;
   grid-row: 1 / span 2;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .vict-gallery .gallery-row-2-3 {
+    -ms-grid-column: 2;
+    -ms-grid-row-span: 2;
+    -ms-grid-row: 1;
+    margin-left: 0.5rem;
+    margin-bottom: 1re;
+  }
 }
 
 .vict-gallery .gallery-row-2-3 img {
@@ -15312,6 +15338,14 @@ address.contact > img {
 
 .vict-gallery .vict-caption {
   grid-column: span 2;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .vict-gallery .vict-caption {
+    -ms-grid-column: 1;
+    -ms-grid-row: 3;
+    -ms-grid-column-span: 2;
+  }
 }
 
 .vict-gallery:hover, .vict-gallery:active, .vict-gallery:focus {
