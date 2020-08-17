@@ -305,6 +305,7 @@
     .submit-button {
       background-color: transparent;
       position: absolute;
+      top: 0;
       right: 0;
       width: 50px;
       &::after {
@@ -343,6 +344,15 @@
         span {
           color: $white;
         }
+      }
+    }
+  }
+
+  &.form-light {
+    form {
+      .search-input {
+        border: 1px solid lighten($black-mine-shaft, 50%);
+        border-radius: 3px;
       }
     }
   }

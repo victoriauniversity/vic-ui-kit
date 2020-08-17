@@ -1,0 +1,175 @@
+.vict-banner {
+
+  h1,
+  h2,
+  h3 {
+    font-family: adobe-caslon-pro, serif;
+    letter-spacing: 1px;
+  }
+
+  &.full {
+    overflow: hidden;
+
+    // @include breakpoint($from:tablet) {
+      figure {
+        position: relative;
+        figcaption {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+
+          .vict-banner-title-tag {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: .3rem;
+            font-family: proxima-nova, sans-serif !important;
+
+            &:after {
+              width: 40%;
+              position: absolute;
+              height: 1px;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%);
+              content: "";
+              background-color: $white;
+            }
+          }
+
+          .vict-banner-sub-heading {
+            margin-bottom: .5rem;
+          }
+        }
+        @include breakpoint($until:tablet) {
+          figcaption {
+            width: 100%;
+          }
+        }
+
+      }
+    // }
+  }
+
+  &.split {
+    display: flex;
+    margin-top: 1rem;
+    overflow-y: hidden;
+    // align-items: flex-start;
+
+    .banner-content,
+    .banner-image {
+      flex: 1 1 50%;
+    }
+
+    .banner-content {
+      position: relative;
+      transition: all .2s ease;
+      padding: 3rem 0 0 0;
+
+      .meta {
+        margin-bottom: 2rem;
+        border-top: 1px solid $black-victorious;
+        width: 70%;
+        padding-top: .5rem;
+
+        p {
+          text-transform: uppercase;
+          font-size: .8rem;
+        }
+      }
+
+      .banner-titles {
+        h1 {
+          // overflow: overlay;
+          margin-right: -11rem;
+          padding-bottom: 2rem;
+          min-height: 100%;
+        }
+        h3 {
+          margin-bottom: .5rem;
+        }
+      }
+    }
+
+    .banner-image {
+      img {
+        max-height: 90vh;
+        object-fit: contain;
+      }
+    }
+
+    @include breakpoint($until:tablet) {
+      flex-direction: column-reverse;
+
+      .banner-content,
+      .banner-image {
+        flex: 1 1;
+      }
+      .banner-content {
+        padding: 0 0 0 0;
+
+        .meta {
+          margin-bottom: 2rem;
+          border-top: 1px solid $black-victorious;
+          width: 70%;
+          padding-top: .5rem;
+
+          p {
+            text-transform: uppercase;
+            font-size: .8rem;
+          }
+        }
+
+        .banner-titles {
+          h1 {
+            padding-bottom: 1rem;
+            overflow: hidden;
+            margin-right: 0;
+            padding-bottom: 2rem;
+            min-height: unset;
+          }
+          h3 {
+            margin-bottom: .5rem;
+          }
+        }
+      }
+    }
+
+  }
+
+  @include breakpoint($until:tablet) {
+
+  }
+
+
+  figure {
+    figcaption {
+      p,
+      h1,
+      h2,
+      h3 {
+        color: $white !important;
+      }
+    }
+  }
+  &.dark {
+    figure {
+      figcaption {
+        p,
+        h1,
+        h2,
+        h3 {
+          color: $black-victorious !important;
+        }
+
+        .vict-banner-title-tag {
+          &:after {
+            background-color: $black-victorious;
+          }
+        }
+      }
+    }
+  }
+}
