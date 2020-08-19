@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, August 14, 2020, 9:48 AM */
+/** Version: 0.10.13 | Wednesday, August 19, 2020, 3:06 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15533,19 +15533,23 @@ external_jQuery_default()(function () {
   ;
   initTray();
   victoriousHeader();
-  var s = skrollr.init({// smoothScrolling: true,
-  }); // if (s.isMobile()) {
-  //   s.destroy();
-  // }
 
-  external_jQuery_default()(window).on('resize', function () {
-    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      // no reason to destroy on mobile
-      if (external_jQuery_default()(window).width() <= 800) {
-        skrollr.init().destroy(); // skrollr.init() returns the singleton created above
+  if (window.skrollr) {
+    var s = skrollr.init({// smoothScrolling: true,
+    }); // if (s.isMobile()) {
+    //   s.destroy();
+    // }
+
+    external_jQuery_default()(window).on('resize', function () {
+      if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        // no reason to destroy on mobile
+        if (external_jQuery_default()(window).width() <= 800) {
+          skrollr.init().destroy(); // skrollr.init() returns the singleton created above
+        }
       }
-    }
-  });
+    });
+  }
+
   initFloatingButtons();
   decodeMailAddresses(); // http://wicky.nilia.ms/enquire.js/
   // TODO: Refactor and extract to its own library
