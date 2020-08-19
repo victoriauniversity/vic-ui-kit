@@ -627,21 +627,24 @@ $(() => {
   initTray();
   victoriousHeader();
 
-  let s = skrollr.init({
-    // smoothScrolling: true,
-  });
+  if( window.skrollr ) {
+    let s = skrollr.init({
+      // smoothScrolling: true,
+    });
 
-  // if (s.isMobile()) {
-  //   s.destroy();
-  // }
-  $(window).on('resize', () => {
-    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { // no reason to destroy on mobile
-      if ($(window).width() <= 800) {
-        skrollr.init().destroy(); // skrollr.init() returns the singleton created above
+    // if (s.isMobile()) {
+    //   s.destroy();
+    // }
+    $(window).on('resize', () => {
+      if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { // no reason to destroy on mobile
+        if ($(window).width() <= 800) {
+          skrollr.init().destroy(); // skrollr.init() returns the singleton created above
+        }
       }
-    }
 
-});
+    });
+  }
+
 
 
   initFloatingButtons();
