@@ -538,7 +538,7 @@ function initFloatingButtons() {
 
 function victoriousHeader() {
   if ($('.victorious-header').length ) {
-    console.log('vistorious test');
+    // console.log('vistorious test');
 
     const header = document.querySelector('.victorious-header');
 
@@ -566,10 +566,13 @@ function victoriousHeader() {
         // when not at bottom of scroll area
         notBottom: 'headroom--not-bottom'
       },
-  };
+    };
+
     const headroom  = new Headroom( header, options );
 
-    headroom.init();
+    if ($('.victorious-expand').length ) {
+      headroom.init();
+    }
 
     // toggle issues in nav
     $( '.past-issues a' ).on( 'click', function () {
