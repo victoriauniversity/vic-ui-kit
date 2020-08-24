@@ -505,6 +505,8 @@ $tray-width-desktop: 400px;
     }
 
     .tray.tray-open {
+      overflow-y: scroll;
+      overflow-x: hidden;
 
       .tray-close {
         background-color: $white;
@@ -526,13 +528,19 @@ $tray-width-desktop: 400px;
       .tray-title {
         color: $black-mine-shaft;
         margin: 2rem 0 1rem;
+
+        .issue {
+          font-family: proxima-nova, sans-serif !important;
+          text-transform: uppercase;
+        }
       }
 
 
 
       .tray-content {
         background-color: $white;
-        // height: auto;
+        height: auto;
+        padding-bottom: 2rem;
 
         .tray-main-nav {
           .main-nav-item {
