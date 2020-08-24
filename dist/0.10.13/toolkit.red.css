@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, August 19, 2020, 3:06 PM */
+/** Version: 0.10.13 | Monday, August 24, 2020, 1:16 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -12108,6 +12108,11 @@ address.contact > img {
   }
 }
 
+.main-site-header.victorious-header .tray.tray-open {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 .main-site-header.victorious-header .tray.tray-open .tray-close {
   background-color: #FFF;
   text-align: right;
@@ -12128,19 +12133,57 @@ address.contact > img {
   margin: 2rem 0 1rem;
 }
 
+.main-site-header.victorious-header .tray.tray-open .tray-title .issue {
+  font-family: proxima-nova, sans-serif !important;
+  text-transform: uppercase;
+}
+
 .main-site-header.victorious-header .tray.tray-open .tray-content {
   background-color: #FFF;
   height: auto;
+  padding-bottom: 2rem;
 }
 
 .main-site-header.victorious-header .tray.tray-open .tray-content .tray-main-nav .main-nav-item {
-  padding: 2rem 0 1rem;
+  padding: 1rem 0 1rem;
   border-bottom: 1px solid #333;
 }
 
 .main-site-header.victorious-header .tray.tray-open .tray-content .tray-main-nav .main-nav-item .main-nav-link {
   color: #333;
   font-size: 1.2rem;
+}
+
+.main-site-header.victorious-header .tray.tray-open .tray-content .past-issues {
+  margin-top: 1.5rem;
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main-site-header.victorious-header .tray.tray-open .tray-content .past-issues a {
+  color: #333;
+  -webkit-box-flex: 1;
+          flex: 1 1 100%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+.main-site-header.victorious-header .tray.tray-open .tray-content .past-issues span {
+  color: #333;
+}
+
+.main-site-header.victorious-header .tray.tray-open .tray-content .past-issues .issues {
+  display: none;
+  -webkit-box-flex: 1;
+          flex: 1 0 100%;
+  padding: .5rem 0;
+}
+
+.main-site-header.victorious-header .tray.tray-open .tray-content .past-issues .issues li {
+  margin: .2rem 0;
 }
 
 .mf-heatmap-clicked + ul {
@@ -14707,6 +14750,11 @@ address.contact > img {
   }
 }
 
+@font-face {
+  font-family: Feijoa;
+  src: url("fonts/victorious/FeijoaBold.otf") format("opentype");
+}
+
 .title-underline {
   position: relative;
   padding-bottom: .5rem;
@@ -17025,16 +17073,37 @@ ul.no-list li {
 .theme-victorious h4,
 .theme-victorious h5 {
   color: #333;
-  font-family: adobe-caslon-pro, serif;
+  font-family: adobe-caslon-pro, serif !important;
   letter-spacing: 1px;
   line-height: 1.2;
 }
 
+.theme-victorious .vict-banner h1,
+.theme-victorious .vict-banner h2,
+.theme-victorious .vict-banner h3,
+.theme-victorious .vict-banner h4,
+.theme-victorious .vict-banner h5 {
+  font-family: Feijoa, adobe-caslon-pro, serif !important;
+}
+
 .theme-victorious p,
 .theme-victorious span {
-  font-family: proxima-nova, sans-serif;
+  font-family: adobe-caslon-pro, serif !important;
   font-weight: 400;
   font-size: 1.1rem;
+}
+
+.theme-victorious .article-item .article-summary .article-tag {
+  font-family: proxima-nova, sans-serif !important;
+}
+
+.theme-victorious .article-item .article-summary p {
+  font-family: adobe-caslon-pro, serif !important;
+}
+
+.theme-victorious .article-item .article-summary h4 {
+  font-family: proxima-nova, sans-serif !important;
+  font-weight: 600;
 }
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
