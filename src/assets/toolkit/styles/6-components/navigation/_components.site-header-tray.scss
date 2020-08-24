@@ -505,6 +505,8 @@ $tray-width-desktop: 400px;
     }
 
     .tray.tray-open {
+      overflow-y: scroll;
+      overflow-x: hidden;
 
       .tray-close {
         background-color: $white;
@@ -526,6 +528,11 @@ $tray-width-desktop: 400px;
       .tray-title {
         color: $black-mine-shaft;
         margin: 2rem 0 1rem;
+
+        .issue {
+          font-family: proxima-nova, sans-serif !important;
+          text-transform: uppercase;
+        }
       }
 
 
@@ -533,11 +540,12 @@ $tray-width-desktop: 400px;
       .tray-content {
         background-color: $white;
         height: auto;
+        padding-bottom: 2rem;
 
         .tray-main-nav {
           .main-nav-item {
 
-            padding: 2rem 0 1rem;
+            padding: 1rem 0 1rem;
             border-bottom: 1px solid $black-mine-shaft;
 
             .main-nav-link {
@@ -547,6 +555,33 @@ $tray-width-desktop: 400px;
               &.active {
                 // font-weight: 400;
               }
+            }
+          }
+        }
+
+        .past-issues {
+          margin-top: 1.5rem;
+          display: flex;
+          flex-wrap: wrap;
+
+          a {
+            color: $black-mine-shaft;
+            flex: 1 1 100%;
+            display: flex;
+            justify-content: space-between;
+          }
+
+          span {
+            color: $black-mine-shaft;
+          }
+
+          .issues {
+            display: none;
+            flex: 1 0 100%;
+            padding: .5rem 0;
+
+            li {
+              margin: .2rem 0;
             }
           }
         }
