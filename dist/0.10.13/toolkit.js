@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, August 19, 2020, 3:06 PM */
+/** Version: 0.10.13 | Monday, August 24, 2020, 1:16 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15489,7 +15489,12 @@ function victoriousHeader() {
       }
     };
     var headroom = new headroom_default.a(header, options);
-    headroom.init();
+    headroom.init(); // toggle issues in nav
+
+    external_jQuery_default()('.past-issues a').on('click', function () {
+      external_jQuery_default()('.issues').slideToggle();
+      external_jQuery_default()(this).find('span').toggleClass('icon-caret-right').toggleClass('icon-caret-down');
+    });
   } else {
     return;
   }

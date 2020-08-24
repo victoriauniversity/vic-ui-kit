@@ -571,6 +571,12 @@ function victoriousHeader() {
 
     headroom.init();
 
+    // toggle issues in nav
+    $( '.past-issues a' ).on( 'click', function () {
+      $( '.issues' ).slideToggle();
+      $( this ).find('span').toggleClass('icon-caret-right').toggleClass('icon-caret-down');
+    });
+
   } else {
     return;
   }
