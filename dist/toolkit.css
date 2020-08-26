@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, August 25, 2020, 11:41 AM */
+/** Version: 0.10.13 | Wednesday, August 26, 2020, 3:57 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -14818,11 +14818,23 @@ address.contact > img {
   z-index: 200;
 }
 
+.article-item:hover img, .article-item:active img, .article-item:focus img {
+  opacity: .9;
+}
+
+.article-item:hover h4, .article-item:active h4, .article-item:focus h4 {
+  text-decoration: underline;
+}
+
 .vict-banner h1,
 .vict-banner h2,
 .vict-banner h3 {
   font-family: adobe-caslon-pro, serif;
   letter-spacing: 1px;
+}
+
+.vict-banner .vict-banner-title {
+  font-size: 3.5rem;
 }
 
 .vict-banner.full {
@@ -14840,6 +14852,7 @@ address.contact > img {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   text-align: center;
+  width: 70%;
 }
 
 .vict-banner.full figure figcaption .vict-banner-title-tag {
@@ -14862,7 +14875,7 @@ address.contact > img {
 }
 
 .vict-banner.full figure figcaption .vict-banner-sub-heading {
-  margin-bottom: .5rem;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 42.99em) {
@@ -14888,7 +14901,7 @@ address.contact > img {
   position: relative;
   -webkit-transition: all .2s ease;
   transition: all .2s ease;
-  padding: 3rem 0 0 0;
+  padding: 3rem 1.5rem 0 0;
 }
 
 .vict-banner.split .banner-content .meta {
@@ -14904,13 +14917,18 @@ address.contact > img {
 }
 
 .vict-banner.split .banner-content .banner-titles h1 {
-  margin-right: -11rem;
+  margin-right: -14rem;
   padding-bottom: 2rem;
   min-height: 100%;
 }
 
 .vict-banner.split .banner-content .banner-titles h3 {
+  margin-bottom: 1rem;
+}
+
+.vict-banner.split .banner-content .banner-titles p {
   margin-bottom: .5rem;
+  width: 80%;
 }
 
 .vict-banner.split .banner-image img {
@@ -14952,6 +14970,9 @@ address.contact > img {
   }
   .vict-banner.split .banner-content .banner-titles h3 {
     margin-bottom: .5rem;
+  }
+  .vict-banner.split .banner-content .banner-titles p:last-child {
+    border-bottom: 1px solid #333;
   }
 }
 
@@ -15156,10 +15177,26 @@ address.contact > img {
 .vict-promo .promo-image {
   -webkit-box-pack: center;
           justify-content: center;
+  margin: 0 auto;
+  width: 70%;
 }
 
 .vict-promo .promo-image figure {
+  -webkit-box-flex: 0;
+          flex: 0 0 50%;
   padding: 0 2rem;
+}
+
+.vict-promo .promo-image figure img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .vict-promo .promo-image figure img {
+    height: unset;
+  }
 }
 
 .victorious-footer {
@@ -15385,6 +15422,18 @@ address.contact > img {
 
 .vict-gallery .gallery-row-1-3:nth-child(2) {
   -ms-grid-row: 2;
+}
+
+.vict-gallery .gallery-row-1-3 img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .vict-gallery .gallery-row-1-3 img {
+    height: unset;
+  }
 }
 
 .vict-gallery .gallery-row-2-3 {
@@ -17118,6 +17167,10 @@ ul.no-list li {
   .theme-victorious .layout {
     margin-top: 5rem;
   }
+}
+
+.theme-victorious footer {
+  overflow: unset;
 }
 
 /*= TRUMP OVERRIDES ===============================*/

@@ -32,8 +32,21 @@
 
   .promo-image {
     justify-content: center;
+    margin: 0 auto;
+    width: 70%;
+
     figure {
+      flex: 0 0 50%;
       padding: 0 2rem;
+
+      img {
+        height: 100%;
+        object-fit: cover;
+
+        @include target-ie {
+          height: unset;
+        }
+      }
     }
   }
 }

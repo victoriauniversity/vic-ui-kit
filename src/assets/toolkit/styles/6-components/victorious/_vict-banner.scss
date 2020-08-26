@@ -7,6 +7,14 @@
     letter-spacing: 1px;
   }
 
+  .vict-banner-sub-heading {
+
+  }
+
+  .vict-banner-title {
+    font-size: 3.5rem;
+  }
+
   &.full {
     overflow: hidden;
 
@@ -19,6 +27,7 @@
           left: 50%;
           transform: translate(-50%, -50%);
           text-align: center;
+          width: 70%;
 
           .vict-banner-title-tag {
             margin-bottom: 1.5rem;
@@ -39,7 +48,7 @@
           }
 
           .vict-banner-sub-heading {
-            margin-bottom: .5rem;
+            margin-bottom: 1rem;
           }
         }
         @include breakpoint($until:tablet) {
@@ -66,7 +75,7 @@
     .banner-content {
       position: relative;
       transition: all .2s ease;
-      padding: 3rem 0 0 0;
+      padding: 3rem 1.5rem 0 0;
 
       .meta {
         margin-bottom: 2rem;
@@ -83,12 +92,17 @@
       .banner-titles {
         h1 {
           // overflow: overlay;
-          margin-right: -11rem;
+          margin-right: -14rem;
           padding-bottom: 2rem;
           min-height: 100%;
         }
         h3 {
+          margin-bottom: 1rem;
+        }
+
+        p {
           margin-bottom: .5rem;
+          width: 80%;
         }
       }
     }
@@ -132,6 +146,12 @@
           }
           h3 {
             margin-bottom: .5rem;
+          }
+
+          p {
+            &:last-child {
+              border-bottom: 1px solid $black-victorious;
+            }
           }
         }
       }
