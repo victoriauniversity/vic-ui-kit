@@ -43,7 +43,9 @@
   &.side-image {
 
     .article-content {
-
+      @include bp-desktop-large {
+        align-self: flex-end;
+      }
     }
 
     .article-side-image {
@@ -314,6 +316,7 @@
   a {
     color: $black-victorious;
     text-decoration: underline;
+
     span {
       font-size: 1.2rem;
       font-weight: 500;
