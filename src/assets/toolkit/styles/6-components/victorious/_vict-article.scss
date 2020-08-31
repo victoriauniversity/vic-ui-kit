@@ -43,7 +43,9 @@
   &.side-image {
 
     .article-content {
-
+      @include bp-desktop-large {
+        align-self: flex-end;
+      }
     }
 
     .article-side-image {
@@ -303,6 +305,37 @@
         margin-right: 0;
         margin-left: .5rem;
       }
+    }
+  }
+}
+
+.article-nav {
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    color: $black-victorious;
+    text-decoration: underline;
+
+    span {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    @include hoverify() {
+      text-decoration: none;
+
+    }
+  }
+  .prev,
+  .next {
+    p {
+      font-family: $proxima;
+    }
+  }
+  .prev {
+    p {
+      text-align: right;
     }
   }
 }

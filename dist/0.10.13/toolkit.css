@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, August 26, 2020, 3:57 PM */
+/** Version: 0.10.13 | Tuesday, September 1, 2020, 9:28 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -14763,6 +14763,32 @@ address.contact > img {
   src: url("fonts/victorious/FeijoaBold.otf") format("opentype");
 }
 
+.theme-victorious h1,
+.theme-victorious h2,
+.theme-victorious h3,
+.theme-victorious h4,
+.theme-victorious h5 {
+  color: #333;
+  font-family: adobe-caslon-pro, serif !important;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.theme-victorious .vict-banner h1,
+.theme-victorious .vict-banner h2,
+.theme-victorious .vict-banner h3,
+.theme-victorious .vict-banner h4,
+.theme-victorious .vict-banner h5 {
+  font-family: Feijoa, adobe-caslon-pro, serif !important;
+}
+
+.theme-victorious p,
+.theme-victorious span {
+  font-family: adobe-caslon-pro, serif !important;
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
 .title-underline {
   position: relative;
   padding-bottom: .5rem;
@@ -15013,12 +15039,14 @@ address.contact > img {
   display: block;
   margin-bottom: .5rem;
   text-transform: uppercase;
+  font-size: .85em;
 }
 
 .article-item h4 {
   margin-bottom: .5rem;
   font-family: proxima-nova, sans-serif;
   font-weight: 600;
+  text-transform: uppercase;
   font-size: 1.2rem;
 }
 
@@ -15093,6 +15121,41 @@ address.contact > img {
     -webkit-box-flex: 0;
             flex: 0 0 31%;
     margin-bottom: 1rem;
+  }
+}
+
+.article-results {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.article-results .article-item {
+  -webkit-box-flex: 0;
+          flex: 0 0 20%;
+  padding: 0 .5rem;
+}
+
+.article-results .article-item:first-child {
+  -webkit-box-flex: 1;
+          flex: 1 0 50%;
+}
+
+.article-results .article-item:first-child h4 {
+  font-size: 2rem;
+}
+
+@media (min-width: 43em) and (max-width: 60.99em) {
+  .article-results .article-item {
+    -webkit-box-flex: 0;
+            flex: 0 0 33%;
+  }
+}
+
+@media (max-width: 42.99em) {
+  .article-results .article-item {
+    -webkit-box-flex: 0;
+            flex: 0 0 50%;
   }
 }
 
@@ -15288,6 +15351,12 @@ address.contact > img {
   .article-section .article-content.text-pull p {
     font-size: 1.6rem;
     font-weight: 700 !important;
+  }
+}
+
+@media (min-width: 88em) {
+  .article-section.side-image .article-content {
+    align-self: flex-end;
   }
 }
 
@@ -15559,6 +15628,36 @@ address.contact > img {
 .vict-section-header nav .next i:before {
   margin-right: 0;
   margin-left: .5rem;
+}
+
+.article-nav {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+.article-nav a {
+  color: #333;
+  text-decoration: underline;
+}
+
+.article-nav a span {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.article-nav a:hover, .article-nav a:active, .article-nav a:focus {
+  text-decoration: none;
+}
+
+.article-nav .prev p,
+.article-nav .next p {
+  font-family: proxima-nova, sans-serif !important;
+}
+
+.article-nav .prev p {
+  text-align: right;
 }
 
 /*= COMPONENTS - MOLECULES ========================*/
@@ -16990,6 +17089,12 @@ aside .old-sass-widget .media h3 {
   padding: 0 1rem 1rem;
 }
 
+aside .old-sass-widget img {
+  margin-bottom: 1rem;
+  max-width: 100%;
+  height: auto;
+}
+
 aside .old-sass-widget .quote.full {
   margin-top: .5rem;
 }
@@ -17122,32 +17227,6 @@ ul.no-list li {
 
 .result-list a:visited {
   color: #005EA5 !important;
-}
-
-.theme-victorious h1,
-.theme-victorious h2,
-.theme-victorious h3,
-.theme-victorious h4,
-.theme-victorious h5 {
-  color: #333;
-  font-family: adobe-caslon-pro, serif !important;
-  letter-spacing: 1px;
-  line-height: 1.2;
-}
-
-.theme-victorious .vict-banner h1,
-.theme-victorious .vict-banner h2,
-.theme-victorious .vict-banner h3,
-.theme-victorious .vict-banner h4,
-.theme-victorious .vict-banner h5 {
-  font-family: Feijoa, adobe-caslon-pro, serif !important;
-}
-
-.theme-victorious p,
-.theme-victorious span {
-  font-family: adobe-caslon-pro, serif !important;
-  font-weight: 400;
-  font-size: 1.1rem;
 }
 
 .theme-victorious .article-item .article-summary .article-tag {

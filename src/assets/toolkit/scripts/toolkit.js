@@ -636,22 +636,28 @@ $(() => {
   initTray();
   victoriousHeader();
 
-  if( window.skrollr ) {
-    let s = skrollr.init({
-      // smoothScrolling: true,
-    });
+  if( window.skrollr && $(window).width() > 800 && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 
+
+    window.onload = function() {
+      let s = skrollr.init({
+        smoothScrolling: true,
+        render: function() {
+          // console.log('skrollr init');
+        }
+      });
+    };
     // if (s.isMobile()) {
     //   s.destroy();
     // }
-    $(window).on('resize', () => {
-      if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { // no reason to destroy on mobile
-        if ($(window).width() <= 800) {
-          skrollr.init().destroy(); // skrollr.init() returns the singleton created above
-        }
-      }
+    // $(window).on('resize', () => {
+    //   if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { // no reason to destroy on mobile
+    //     if ($(window).width() <= 800) {
+    //       skrollr.init().destroy(); // skrollr.init() returns the singleton created above
+    //     }
+    //   }
 
-    });
+    // });
   }
 
 
