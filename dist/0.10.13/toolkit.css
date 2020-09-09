@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, September 4, 2020, 9:28 AM */
+/** Version: 0.10.13 | Wednesday, September 9, 2020, 12:10 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -15008,6 +15008,7 @@ address.contact > img {
     margin-bottom: .5rem;
   }
   .vict-banner.split .banner-content .banner-titles p:last-child {
+    padding-bottom: .75rem;
     border-bottom: 1px solid #333;
   }
 }
@@ -15146,13 +15147,14 @@ address.contact > img {
   padding: 0 .5rem;
 }
 
-.article-results .article-item:first-child {
-  -webkit-box-flex: 0;
-          flex: 0 0 60%;
-}
-
-.article-results .article-item:first-child h4 {
-  font-size: 2rem;
+@media (min-width: 43em) {
+  .article-results .article-item:first-child {
+    -webkit-box-flex: 0;
+            flex: 0 0 60%;
+  }
+  .article-results .article-item:first-child h4 {
+    font-size: 2rem;
+  }
 }
 
 @media (min-width: 43em) and (max-width: 60.99em) {
@@ -15163,9 +15165,13 @@ address.contact > img {
 }
 
 @media (max-width: 42.99em) {
+  .article-results {
+    -webkit-box-pack: justify;
+            justify-content: space-between;
+  }
   .article-results .article-item {
     -webkit-box-flex: 0;
-            flex: 0 0 50%;
+            flex: 0 0 47%;
   }
 }
 
@@ -15210,9 +15216,19 @@ address.contact > img {
   padding-right: 1.2rem;
 }
 
-@media (max-width: 42.99em) {
+@media (max-width: 60.99em) {
   .articles-row .articles {
     flex-wrap: wrap;
+    -webkit-box-pack: justify;
+            justify-content: space-between;
+  }
+  .articles-row .articles .article-item {
+    -webkit-box-flex: 1;
+            flex: 1 1;
+    width: 100%;
+  }
+  .articles-row .articles .article-item .article-summary p {
+    display: none;
   }
 }
 
@@ -15274,6 +15290,15 @@ address.contact > img {
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   .vict-promo .promo-image figure img {
     height: unset;
+  }
+}
+
+@media (max-width: 42.99em) {
+  .vict-promo .promo-image {
+    width: 100%;
+  }
+  .vict-promo .promo-image figure {
+    padding: 0 1.5rem;
   }
 }
 
