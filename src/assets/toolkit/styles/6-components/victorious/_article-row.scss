@@ -37,8 +37,21 @@
         padding-right: 1.2rem ;
       }
     }
-    @include breakpoint($until:tablet) {
+    @include breakpoint($until:desktop) {
       flex-wrap: wrap;
+      justify-content: space-between;
+
+      .article-item {
+        flex: 1 1;
+        width: 100%;
+
+        .article-summary {
+          p {
+            display: none;
+          }
+        }
+
+      }
     }
   }
 

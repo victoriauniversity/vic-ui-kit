@@ -106,22 +106,26 @@
     padding: 0 .5rem;
 
 
+    @include breakpoint($from:tablet) {
+      &:first-child {
+        flex: 0 0 60%;
 
-    &:first-child {
-      flex: 0 0 60%;
-
-      h4 {
-        font-size: 2rem;
+        h4 {
+          font-size: 2rem;
+        }
       }
-    }
+      }
 
     @include bp-tablet {
       flex: 0 0 33%;
     }
 
-    @include breakpoint($until:tablet) {
-      flex: 0 0 50%;
-
+  }
+  @include breakpoint($until:tablet) {
+    justify-content: space-between;
+    .article-item {
+      flex: 0 0 47%;
     }
+
   }
 }
