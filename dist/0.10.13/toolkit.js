@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, September 11, 2020, 10:35 AM */
+/** Version: 0.10.13 | Tuesday, September 15, 2020, 2:52 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14133,22 +14133,32 @@ function initTray() {
         $('.sidemenu-homepage .expanded-draw').removeClass('expanded-draw');
         $draw.toggleClass('active');
       }
-    }); //close if body is clicked on?? tbd
-    // $( 'body' ).on( 'click', ( e ) => {
-    //   console.log( e.target.className, 'clicked' );
-    //   // if ( e.target.className.includes( 'tray-open' )) {
-    //   //   e.preventDefault();
-    //   //   toggleTray();
-    //   // }
-    //   if(sidemeneuExpanded) {
-    //     console.log('sidemenu is expanded');
-    //     // sidemeneuExpanded = !sidemeneuExpanded;
-    //     // $( '.sidemenu-homepage .expanded-draw' ).removeClass( 'expanded-draw' );
-    //     // $draw.toggleClass('active');
-    //   } else {
-    //     console.log('draw not expanded');
-    //   }
-    // });
+    });
+    $('body').on('click', function (e) {
+      // console.log(e.target);
+      var sidemenu = $('.sidemenu-homepage'); // let  megamenu = $('.sidemenu-drawer');
+
+      if (sidemeneuExpanded && !sidemenu.is(e.target) // if the target of the click isn't the container...
+      && sidemenu.has(e.target).length === 0) // ... nor a descendant of the container
+        {
+          sidemeneuExpanded = !sidemeneuExpanded;
+          $('.sidemenu-homepage .expanded-draw').removeClass('expanded-draw');
+          $draw.toggleClass('active');
+        } // console.log( e.target.className, 'clicked' );
+      // if ( e.target.className.includes( 'tray-open' )) {
+      //   e.preventDefault();
+      //   toggleTray();
+      // }
+      // if(sidemeneuExpanded) {
+      //   console.log('sidemenu is expanded');
+      //   // sidemeneuExpanded = !sidemeneuExpanded;
+      //   // $( '.sidemenu-homepage .expanded-draw' ).removeClass( 'expanded-draw' );
+      //   // $draw.toggleClass('active');
+      // } else {
+      //   console.log('draw not expanded');
+      // }
+
+    });
   }
 
   function sidemenuTray() {
