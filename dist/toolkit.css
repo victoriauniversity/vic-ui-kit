@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, September 11, 2020, 10:35 AM */
+/** Version: 0.10.13 | Tuesday, September 15, 2020, 2:52 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -11269,8 +11269,44 @@ address.contact > img {
   }
 }
 
+.sidemenu-banner-wrap {
+  position: relative;
+}
+
+.sidemenu-banner-wrap .sidemenu-homepage > ul {
+  position: absolute;
+  left: 0;
+  right: 75%;
+}
+
+.sidemenu-banner-wrap .sidemenu-homepage > ul > li.sidemenu__label a {
+  padding: .8rem .9rem;
+}
+
 .sidemenu-banner-wrap .sidemenu-homepage > ul > li a:hover, .sidemenu-banner-wrap .sidemenu-homepage > ul > li a:active, .sidemenu-banner-wrap .sidemenu-homepage > ul > li a:focus {
   color: #005EA5;
+}
+
+.sidemenu-banner-wrap .sidemenu-homepage > ul > li:after {
+  content: "";
+  opacity: 0;
+  -webkit-transition: .8s;
+  transition: .8s;
+}
+
+.sidemenu-banner-wrap .sidemenu-homepage > ul > li.expanded-draw {
+  position: relative;
+}
+
+.sidemenu-banner-wrap .sidemenu-homepage > ul > li.expanded-draw:after {
+  opacity: 1;
+  background-color: #fff;
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 20px;
+  right: -20px;
+  z-index: 300;
 }
 
 .sidemenu-banner-wrap .sidemenu-homepage > ul > li.expanded-draw a {
@@ -11323,9 +11359,7 @@ address.contact > img {
     padding-right: 2rem;
     border: 1px solid #424242;
     display: flex;
-    width: 75%;
     background-color: #FFF;
-    min-height: 100%;
     height: auto;
     position: absolute;
     left: 25%;
@@ -11353,6 +11387,10 @@ address.contact > img {
     margin: 0 1rem;
     border-right: 1px solid #EEE;
     z-index: -10;
+    -webkit-box-flex: 1;
+            flex: auto;
+    min-width: 300px;
+    max-width: 300px;
   }
   .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav .btn-expander {
     font-size: 1.3rem;
@@ -11370,8 +11408,10 @@ address.contact > img {
     display: none;
   }
   .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul > li {
-    border-bottom: 1px solid #DDD;
     padding: .5rem 0;
+  }
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul > li:not(:last-child) {
+    border-bottom: 1px solid #DDD;
   }
   .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul > li > ul > li:not(:last-child) > a {
     border-bottom: 1px solid #DDD;
@@ -11393,6 +11433,16 @@ address.contact > img {
   .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-promo {
     padding-right: 2rem;
     width: 70%;
+  }
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer.no-promo {
+    padding-right: 1rem;
+  }
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer.no-promo .draw-promo {
+    display: none;
+  }
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer.no-promo .draw-nav {
+    padding-right: 0;
+    border-right: unset;
   }
 }
 
@@ -13214,6 +13264,10 @@ address.contact > img {
   position: relative;
 }
 
+.hub-banner-sidemenu .banner-image img {
+  margin-bottom: 0;
+}
+
 .hub-banner-sidemenu .banner-body {
   padding: 1rem;
   background-color: #115737;
@@ -13260,6 +13314,71 @@ address.contact > img {
   .hub-banner-sidemenu .banner-body.bottom-left {
     bottom: 1rem;
     left: 0;
+  }
+}
+
+@media all and (min-width: 61em) and (-ms-high-contrast: none), (min-width: 61em) and (-ms-high-contrast: active) {
+  .hub-banner-sidemenu .banner-image {
+    max-height: 450px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+  }
+  .hub-banner-sidemenu .banner-image img {
+    visibility: hidden;
+  }
+}
+
+@media (min-width: 61em) {
+  .hub-banner-sidemenu .banner-image img {
+    margin-bottom: 0;
+    max-height: 450px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: top;
+       object-position: top;
+  }
+  .hub-banner-sidemenu .banner-image.top img {
+    -o-object-position: top;
+       object-position: top;
+  }
+}
+
+@media all and (min-width: 61em) and (-ms-high-contrast: none), (min-width: 61em) and (-ms-high-contrast: active) {
+  .hub-banner-sidemenu .banner-image.top img {
+    background-position: top;
+  }
+}
+
+@media (min-width: 61em) {
+  .hub-banner-sidemenu .banner-image.center img {
+    -o-object-position: center;
+       object-position: center;
+  }
+}
+
+@media all and (min-width: 61em) and (-ms-high-contrast: none), (min-width: 61em) and (-ms-high-contrast: active) {
+  .hub-banner-sidemenu .banner-image.center img {
+    background-position: center;
+  }
+}
+
+@media (min-width: 61em) {
+  .hub-banner-sidemenu .banner-image.bottom img {
+    -o-object-position: bottom;
+       object-position: bottom;
+  }
+}
+
+@media all and (min-width: 61em) and (-ms-high-contrast: none), (min-width: 61em) and (-ms-high-contrast: active) {
+  .hub-banner-sidemenu .banner-image.bottom img {
+    background-position: bottom;
+  }
+}
+
+@media (min-width: 61em) {
+  .hub-banner-sidemenu .banner-image.tall img {
+    max-height: 550px;
   }
 }
 

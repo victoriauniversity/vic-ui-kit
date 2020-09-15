@@ -96,6 +96,12 @@
     position: relative;
   }
 
+  .banner-image {
+    img {
+      margin-bottom: 0;
+    }
+  }
+
   .banner-body {
     padding: 1rem;
     background-color: $green-brand;
@@ -146,6 +152,58 @@
         bottom: 1rem;
         left: 0;
       }
+    }
+
+    .banner-image {
+      @include target-ie {
+        max-height: 450px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top;
+
+        img {
+          visibility: hidden;
+        }
+      }
+
+      img {
+        margin-bottom: 0;
+        max-height: 450px;
+        object-fit: cover;
+        object-position: top;
+      }
+
+      &.top {
+        img {
+          object-position: top;
+          @include target-ie {
+            background-position: top;
+          }
+        }
+      }
+      &.center {
+        img {
+          object-position: center;
+          @include target-ie {
+            background-position: center;
+          }
+        }
+      }
+      &.bottom {
+        img {
+          object-position: bottom;
+          @include target-ie {
+            background-position: bottom;
+          }
+        }
+      }
+
+      &.tall {
+        img {
+          max-height: 550px;
+        }
+      }
+
     }
 
   }
