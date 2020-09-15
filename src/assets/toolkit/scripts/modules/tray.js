@@ -149,7 +149,7 @@ export function initTray() {
 
       let sidemenu = $('.sidemenu-homepage');
       // let  megamenu = $('.sidemenu-drawer');
-      if (!sidemenu.is(e.target) // if the target of the click isn't the container...
+      if (sidemeneuExpanded && !sidemenu.is(e.target) // if the target of the click isn't the container...
       && sidemenu.has(e.target).length === 0) // ... nor a descendant of the container
         {
           sidemeneuExpanded = !sidemeneuExpanded;
