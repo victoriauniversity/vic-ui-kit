@@ -397,9 +397,7 @@ $sidemenu-bg-light: $white;
     @extend .sidemenu;
 
     > ul {
-      position: absolute;
-      left: 0;
-      right: 75%;
+
       > li {
 
         &.sidemenu__label {
@@ -475,6 +473,12 @@ $sidemenu-bg-light: $white;
 
     .sidemenu-homepage {
       flex: 1 1 25%;
+
+      > ul {
+        position: absolute;
+        left: 0;
+        right: 75%;
+      }
 
       .sidemenu-drawer {
         display: flex;
@@ -621,6 +625,12 @@ $sidemenu-bg-light: $white;
 
   @include breakpoint ( $until: desktop ) {
     .sidemenu-homepage {
+
+      .sidemenu-toggle {
+        a {
+          padding-top: 1rem;
+        }
+      }
 
       > ul {
         > li {
