@@ -392,17 +392,47 @@ $sidemenu-bg-light: $white;
 
 
 .sidemenu-banner-wrap {
+  position: relative;
   .sidemenu-homepage {
     @extend .sidemenu;
 
     > ul {
+      position: absolute;
+      left: 0;
+      right: 75%;
       > li {
+
+        &.sidemenu__label {
+          a {
+            padding: .8rem .9rem;
+          }
+        }
+
         a {
           @include hoverify() {
             color: $blue-endeavoura;
           }
         }
+        &:after {
+          content: "";
+          opacity: 0;
+          // width: 0px;
+          transition: .8s;
+        }
         &.expanded-draw {
+          position: relative;
+
+          &:after {
+            opacity: 1;
+            background-color: #fff;
+            position: absolute;
+            content: "";
+            height: 100%;
+            width: 20px;
+            right: -20px;
+            // border-right: 1px solid #fff;
+            z-index: 300;
+          }
 
           a {
             color: $green-brand;
@@ -452,9 +482,9 @@ $sidemenu-bg-light: $white;
         padding-right: 2rem;
         border: 1px solid $black-tundora;
         display: flex;
-        width: 75%;
+        // width: 75%;
         background-color: $white;
-        min-height: 100%;
+        // min-height: 100%;
         height: auto;
         position: absolute;
         left: 25%;
@@ -490,6 +520,9 @@ $sidemenu-bg-light: $white;
           margin: 0 1rem;
           border-right: 1px solid $grey-gallery;
           z-index: -10;
+          flex: auto;
+          min-width: 300px;
+          max-width: 300px;
 
           .btn-expander {
             font-size: 1.3rem;
@@ -521,7 +554,9 @@ $sidemenu-bg-light: $white;
             // max-width: 320px;
 
             > li {
-              border-bottom: 1px solid $grey-alto;
+              &:not(:last-child) {
+                border-bottom: 1px solid $grey-alto;
+              }
               padding: .5rem 0;
 
               > ul {
@@ -561,8 +596,22 @@ $sidemenu-bg-light: $white;
           padding-right: 2rem;
           width: 70%;
         }
+
+        &.no-promo {
+          padding-right: 1rem;
+          .draw-promo {
+            display: none;
+          }
+
+          .draw-nav {
+            padding-right: 0;
+            border-right: unset;
+          }
+
+        }
       }
     }
+
 
     .hub-banner {
 

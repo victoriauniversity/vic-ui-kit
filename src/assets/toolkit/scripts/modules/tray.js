@@ -145,7 +145,7 @@ export function initTray() {
     });
 
     $( 'body' ).on( 'click', ( e ) => {
-      console.log(e.target);
+      // console.log(e.target);
 
       let sidemenu = $('.sidemenu-homepage');
       // let  megamenu = $('.sidemenu-drawer');
