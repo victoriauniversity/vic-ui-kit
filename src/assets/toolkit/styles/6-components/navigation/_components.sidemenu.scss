@@ -274,6 +274,10 @@ $sidemenu-bg-light: $white;
 
     a {
       color: $black-tundora;
+
+      @include hoverify() {
+        color: $blue-endeavoura;
+      }
     }
 
     > ul {
@@ -286,6 +290,11 @@ $sidemenu-bg-light: $white;
           > a {
             background-color: $sidemenu-bg-light;
             color: $black-tundora;
+            // color: $green-brand;
+
+            @include hoverify() {
+              color: $blue-endeavoura;
+            }
 
             &:before {
               border-color: $black-tundora;
@@ -300,6 +309,10 @@ $sidemenu-bg-light: $white;
         &.active {
           > a {
             color: $black-tundora;
+            // color: $green-brand;
+            @include hoverify() {
+              color: $blue-endeavoura;
+            }
 
             &:before {
               border-color: $black-tundora;
