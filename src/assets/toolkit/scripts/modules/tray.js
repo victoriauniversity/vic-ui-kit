@@ -144,24 +144,35 @@ export function initTray() {
       }
     });
 
-    //close if body is clicked on?? tbd
-    // $( 'body' ).on( 'click', ( e ) => {
+    $( 'body' ).on( 'click', ( e ) => {
+      // console.log(e.target);
 
-    //   console.log( e.target.className, 'clicked' );
-    //   // if ( e.target.className.includes( 'tray-open' )) {
-    //   //   e.preventDefault();
-    //   //   toggleTray();
-    //   // }
-    //   if(sidemeneuExpanded) {
-    //     console.log('sidemenu is expanded');
-    //     // sidemeneuExpanded = !sidemeneuExpanded;
-    //     // $( '.sidemenu-homepage .expanded-draw' ).removeClass( 'expanded-draw' );
-    //     // $draw.toggleClass('active');
-    //   } else {
-    //     console.log('draw not expanded');
-    //   }
+      let sidemenu = $('.sidemenu-homepage');
+      // let  megamenu = $('.sidemenu-drawer');
+      if (sidemeneuExpanded && !sidemenu.is(e.target) // if the target of the click isn't the container...
+      && sidemenu.has(e.target).length === 0) // ... nor a descendant of the container
+        {
+          sidemeneuExpanded = !sidemeneuExpanded;
+          $( '.sidemenu-homepage .expanded-draw' ).removeClass( 'expanded-draw' );
+          $draw.toggleClass('active');
+        }
 
-    // });
+
+      // console.log( e.target.className, 'clicked' );
+      // if ( e.target.className.includes( 'tray-open' )) {
+      //   e.preventDefault();
+      //   toggleTray();
+      // }
+      // if(sidemeneuExpanded) {
+      //   console.log('sidemenu is expanded');
+      //   // sidemeneuExpanded = !sidemeneuExpanded;
+      //   // $( '.sidemenu-homepage .expanded-draw' ).removeClass( 'expanded-draw' );
+      //   // $draw.toggleClass('active');
+      // } else {
+      //   console.log('draw not expanded');
+      // }
+
+    });
 
 
   }
