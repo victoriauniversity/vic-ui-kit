@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, September 16, 2020, 2:41 PM */
+/** Version: 0.10.13 | Friday, September 18, 2020, 2:09 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -15255,9 +15255,11 @@ address.contact > img {
             justify-content: space-between;
   }
   .articles-grid .article-3-up > .article-item {
-    -webkit-box-flex: 0;
-            flex: 0 0 31%;
+    -webkit-box-flex: 1;
+            flex: 1 0 31%;
     margin-bottom: 1rem;
+    min-width: 210px;
+    padding-right: 1rem;
   }
 }
 
@@ -15331,11 +15333,13 @@ address.contact > img {
 
 .articles-row .articles {
   margin: 0 2rem;
+  flex-wrap: wrap;
 }
 
 .articles-row .articles .article-item {
   -webkit-box-flex: 1;
           flex: 1 1;
+  min-width: 200px;
 }
 
 .articles-row .articles .article-item:not(:last-child) {
