@@ -1,0 +1,3607 @@
+<!doctype html>
+<html lang="">
+<head>
+
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title></title>
+
+  <!-- Fav icons compatible with all major browsers and devices -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="styleguide-assets/f.ddc913cb.css">
+
+  <!-- toolkit styles -->
+  <link rel="stylesheet" href="toolkit.5ca2442f.css">
+  <!-- /toolkit styles -->
+
+  <script src="https://polyfill.io/v3/polyfill.min.js"></script>
+
+  <script>
+      /** Allows to add custom scripts that will be executed inside the jQuery's $(document).ready().  */
+      var onDocumentReadyFunctions = [];
+      function runFunctionOnDocumentReady( fn ) { onDocumentReadyFunctions.push( fn ); }
+  </script>
+
+  
+
+</head>
+<body>
+  
+
+  <!-- If 'fabricator=true' is present in page's annotation. -->
+
+		<!-- fabricator icons -->
+		<svg style="display: none;">
+			<symbol id="f-icon-code" viewBox="0 0 512 512">
+				<path d="M377.3 121.3l-40.5 40.4 94.4 94.3-94.4 94.3 40.5 40.4L512 256zM134.7 121.3L0 256l134.7 134.7 40.5-40.4L80.8 256l94.4-94.3zM281.8 103.8zM230.183 408.16l-29.233-7.97 80.85-296.484 29.234 7.972z"/>
+			</symbol>
+			<symbol id="f-icon-notes" viewBox="0 0 512 512">
+				<path d="M443.8 0H68.2C30.6 0 0 30.5 0 68v264.2c0 16.6 8.9 29.5 25.9 37.5 15.3 7.2 33.1 8.4 40.1 8.5V512l201.6-134h176.1c37.6 0 68.2-30.3 68.2-67.8V68c.1-37.5-30.5-68-68.1-68zM114 438V330H68.2c-11.1 0-19.2-8.8-19.2-19.8V68c0-11 8.2-20 19.2-20h375.5c11.1 0 19.2 9 19.2 20v242.2c0 11-8.2 19.8-19.2 19.8H244.2L114 438z"/>
+			</symbol>
+			<symbol id="f-icon-labels" viewBox="0 0 512 512">
+				<path d="M304 280c0 13.2-10.8 24-24 24h-48c-13.2 0-24-10.8-24-24v-48c0-13.2 10.8-24 24-24h48c13.2 0 24 10.8 24 24v48zM464 280c0 13.2-10.8 24-24 24h-48c-13.2 0-24-10.8-24-24v-48c0-13.2 10.8-24 24-24h48c13.2 0 24 10.8 24 24v48zM144 280c0 13.2-10.8 24-24 24H72c-13.2 0-24-10.8-24-24v-48c0-13.2 10.8-24 24-24h48c13.2 0 24 10.8 24 24v48z"/>
+			</symbol>
+			<symbol id="f-icon-menu" viewBox="0 0 512 512">
+				<path d="M512 100c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h488c6.6 0 12 5.4 12 12v24zM512 212c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12v-24c0-6.6 5.4-12 12-12h488c6.6 0 12 5.4 12 12v24zM512 324c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12v-24c0-6.6 5.4-12 12-12h488c6.6 0 12 5.4 12 12v24zM512 436c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12v-24c0-6.6 5.4-12 12-12h488c6.6 0 12 5.4 12 12v24z"/>
+			</symbol>
+			<symbol id="f-icon-settings" viewBox="0 0 512 512">
+				<path d="M256 377.3c-67.5 0-121.6-53.9-121.6-121.3s54-121.3 121.6-121.3S377.6 188.6 377.6 256 323.5 377.3 256 377.3zm0-215.6c-52.7 0-94.6 41.8-94.6 94.3s41.9 94.3 94.6 94.3 94.6-41.8 94.6-94.3-41.9-94.3-94.6-94.3zM293.2 512h-72.9L200 450c-13.5-4-27-9.4-39.2-16.2l-59.4 29.6L50 412.3 79.7 353c-6.8-12.1-12.2-25.6-16.2-39.1L0 292.4v-72.8l62.1-20.2c4.1-13.5 9.5-26.9 16.2-39.1L48.6 101 100 49.9l59.4 29.6c12.2-6.7 25.7-12.1 39.2-16.2L220.2 0h72.9l20.3 62c13.5 4 27 9.4 39.2 16.2L412 48.5l51.3 51.2-29.7 59.3c6.8 12.1 12.2 25.6 16.2 39.1l62.1 20.2V291l-62.1 20.2c-4.1 13.5-9.5 26.9-16.2 39.1l29.7 59.3-51.3 51.2-59.4-29.6c-12.2 6.7-25.7 12.1-39.2 16.2L293.2 512zm-54.1-26.9h35.1l18.9-57.9 6.8-1.3c16.2-4 31.1-10.8 45.9-18.9l6.8-4 54 26.9 24.3-24.3-27-53.9 4.1-6.7c8.1-13.5 14.9-29.6 18.9-45.8l1.4-6.7 58.1-18.9v-35l-58.1-18.9-1.4-6.7c-4.1-16.2-10.8-31-18.9-45.8l-4.1-6.7 27-53.9-24.3-24.3-54 26.9-6.8-4c-14.8-8.2-29.7-14.9-45.9-19l-6.8-1.3L274.2 27h-35.1l-18.9 57.9-6.8 1.3c-16.2 4-31.1 10.8-45.9 18.9l-6.8 4-54-26.9-24.3 24.3 27 53.9-4.1 6.7c-8.1 13.5-14.9 29.6-18.9 45.8l-1.4 6.7-58 18.9v35l58.1 18.9 1.4 6.7c4.1 16.2 10.8 31 18.9 45.8l4.1 6.7-27 53.9 24.3 24.3 54-26.9 6.8 4c14.9 8.1 29.7 14.8 45.9 18.9l6.8 1.3 18.8 58z"/>
+			</symbol>
+		</svg>
+		<!-- /fabricator icons -->
+		<!-- fabricator menu -->
+		<div class="f-menu">
+		
+			<div class="f-controls">
+				<div class="f-control f-global-control" data-f-toggle-control="labels" title="Toggle Labels">
+					<svg>
+						<use xlink:href="#f-icon-labels" />
+					</svg>
+				</div>
+				<div class="f-control f-global-control" data-f-toggle-control="notes" title="Toggle Notes">
+					<svg>
+						<use xlink:href="#f-icon-notes" />
+					</svg>
+				</div>
+				<div class="f-control f-global-control" data-f-toggle-control="code" title="Toggle Code">
+					<svg>
+						<use xlink:href="#f-icon-code" />
+					</svg>
+				</div>
+			</div>
+		
+			<ul>
+		
+		    <li>
+		      <a href="index.html" class="f-menu__heading">Quick Start</a>
+		    </li>
+		
+		    <li>
+		      <a href="architecture-layout.html" class="f-menu__heading">Architecture &amp; Layout</a>
+		      <ul>
+		        <li>
+		          <a href="architecture-layout.html#architecture">Architecture</a>
+		          <a href="architecture-layout.html#layout">Layout</a>
+		        </li>
+		      </ul>
+		    </li>
+		
+				<li>
+					<a href="components.html" class="f-menu__heading">Components</a>
+					<ul>
+						<li>
+							<a href="components.html#01.icons">Icons</a>
+						</li>
+						<li>
+							<a href="components.html#02.buttons">Buttons</a>
+						</li>
+						<li>
+							<a href="components.html#03.lists">Lists</a>
+						</li>
+						<li>
+							<a href="components.html#04.forms">Forms</a>
+						</li>
+						<li>
+							<a href="components.html#05.messages">Messages</a>
+						</li>
+						<li>
+							<a href="components.html#06.tags">Tags</a>
+						</li>
+						<li>
+							<a href="components.html#07.Info-message">Info Message</a>
+						</li>
+						<li>
+							<a href="components.html#cards">Cards</a>
+						</li>
+						<li>
+							<a href="components.html#dialogs-and-popups">Dialogs And Popups</a>
+						</li>
+						<li>
+							<a href="components.html#navigation">Navigation</a>
+						</li>
+						<li>
+							<a href="components.html#promo-panels">Promo Panels</a>
+						</li>
+						<li>
+							<a href="components.html#stack">Stack</a>
+						</li>
+						<li>
+							<a href="components.html#tiles">Tiles</a>
+						</li>
+						<li>
+							<a href="components.html#toolbar">Toolbar</a>
+						</li>
+						<li>
+							<a href="components.html#tooltips">Tooltips</a>
+						</li>
+						<li>
+							<a href="components.html#tracking-api-for-gtm">Tracking Api For Gtm</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="features.html" class="f-menu__heading">Features</a>
+					<ul>
+						<li>
+							<a href="features.html#deprecated">Deprecated</a>
+						</li>
+						<li>
+							<a href="features.html#events">Events</a>
+						</li>
+						<li>
+							<a href="features.html#homepage-intro">Homepage Intro</a>
+						</li>
+						<li>
+							<a href="features.html#homepage-intro-video">Homepage Intro Video</a>
+						</li>
+						<li>
+							<a href="features.html#news">News</a>
+						</li>
+						<li>
+							<a href="features.html#news-row">News Row</a>
+						</li>
+						<li>
+							<a href="features.html#promo-panels-two-and-one-third">Promo Panels Two And One Third</a>
+						</li>
+						<li>
+							<a href="features.html#promo-quote">Promo Quote</a>
+						</li>
+						<li>
+							<a href="features.html#promo-strip-banner">Promo Strip Banner</a>
+						</li>
+						<li>
+							<a href="features.html#promo-with-1x-image">Promo With 1x Image</a>
+						</li>
+						<li>
+							<a href="features.html#promo-with-1x-image-rtl">Promo With 1x Image Rtl</a>
+						</li>
+						<li>
+							<a href="features.html#promo-with-button">Promo With Button</a>
+						</li>
+						<li>
+							<a href="features.html#promo-with-left-title-image">Promo With Left Title Image</a>
+						</li>
+						<li>
+							<a href="features.html#promo-with-list">Promo With List</a>
+						</li>
+						<li>
+							<a href="features.html#promo-with-pattern-bg">Promo With Pattern Bg</a>
+						</li>
+						<li>
+							<a href="features.html#promo-with-photo-background-left-text-panel">Promo With Photo Background Left Text Panel</a>
+						</li>
+						<li>
+							<a href="features.html#promo-with-photo-bg">Promo With Photo Bg</a>
+						</li>
+						<li>
+							<a href="features.html#promo-with-two-panels">Promo With Two Panels</a>
+						</li>
+						<li>
+							<a href="features.html#search-bar">Search Bar</a>
+						</li>
+						<li>
+							<a href="features.html#search-content">Search Content</a>
+						</li>
+						<li>
+							<a href="features.html#three-cols-images">Three Cols Images</a>
+						</li>
+						<li>
+							<a href="features.html#video-promo">Video Promo</a>
+						</li>
+					</ul>
+				</li>
+		
+				<li>
+					<a href="examples.html" class="f-menu__heading">Examples</a>
+					<ul>
+						<li>
+							<a href="examples/01-granular-content.html" target="_blank">01 Granular Content</a>
+						</li>
+						<li>
+							<a href="examples/2-columns-menu-and-content.html" target="_blank">2 Columns Menu And Content</a>
+						</li>
+						<li>
+							<a href="examples/3-columns-no-content.html" target="_blank">3 Columns No Content</a>
+						</li>
+						<li>
+							<a href="examples/3-columns-with-banner.html" target="_blank">3 Columns With Banner</a>
+						</li>
+						<li>
+							<a href="examples/3-columns-with-widgets.html" target="_blank">3 Columns With Widgets</a>
+						</li>
+						<li>
+							<a href="examples/accordion.html" target="_blank">Accordion</a>
+						</li>
+						<li>
+							<a href="examples/column-test.html" target="_blank">Column Test</a>
+						</li>
+						<li>
+							<a href="examples/contact-form.html" target="_blank">Contact Form</a>
+						</li>
+						<li>
+							<a href="examples/gtm-tracking.html" target="_blank">Gtm Tracking</a>
+						</li>
+						<li>
+							<a href="examples/homepage-banner.html" target="_blank">Homepage Banner</a>
+						</li>
+						<li>
+							<a href="examples/homepage-fewer-study-areas.html" target="_blank">Homepage Fewer Study Areas</a>
+						</li>
+						<li>
+							<a href="examples/homepage-many-study-areas-grad-toggle-search.html" target="_blank">Homepage Many Study Areas Grad Toggle Search</a>
+						</li>
+						<li>
+							<a href="examples/homepage-many-study-areas-grad-toggle.html" target="_blank">Homepage Many Study Areas Grad Toggle</a>
+						</li>
+						<li>
+							<a href="examples/homepage-many-study-areas.html" target="_blank">Homepage Many Study Areas</a>
+						</li>
+						<li>
+							<a href="examples/homepage-no-image-study-areas.html" target="_blank">Homepage No Image Study Areas</a>
+						</li>
+						<li>
+							<a href="examples/homepage-promos.html" target="_blank">Homepage Promos</a>
+						</li>
+						<li>
+							<a href="examples/homepage-split-events-and-news.html" target="_blank">Homepage Split Events And News</a>
+						</li>
+						<li>
+							<a href="examples/homepage-test-search.html" target="_blank">Homepage Test Search</a>
+						</li>
+						<li>
+							<a href="examples/image-gallery.html" target="_blank">Image Gallery</a>
+						</li>
+						<li>
+							<a href="examples/media.html" target="_blank">Media</a>
+						</li>
+						<li>
+							<a href="examples/messages.html" target="_blank">Messages</a>
+						</li>
+						<li>
+							<a href="examples/news-detail.html" target="_blank">News Detail</a>
+						</li>
+						<li>
+							<a href="examples/old-sidebar.html" target="_blank">Old Sidebar</a>
+						</li>
+						<li>
+							<a href="examples/overview.html" target="_blank">Overview</a>
+						</li>
+						<li>
+							<a href="examples/page-not-found-tracking.html" target="_blank">Page Not Found Tracking</a>
+						</li>
+						<li>
+							<a href="examples/search-child.html" target="_blank">Search Child</a>
+						</li>
+						<li>
+							<a href="examples/search-hub.html" target="_blank">Search Hub</a>
+						</li>
+						<li>
+							<a href="examples/select2.html" target="_blank">Select2</a>
+						</li>
+						<li>
+							<a href="examples/site-search-latest-courses.html" target="_blank">Site Search Latest Courses</a>
+						</li>
+						<li>
+							<a href="examples/staff-listing-complex.html" target="_blank">Staff Listing Complex</a>
+						</li>
+						<li>
+							<a href="examples/staff-listing.html" target="_blank">Staff Listing</a>
+						</li>
+						<li>
+							<a href="examples/staff-profile.html" target="_blank">Staff Profile</a>
+						</li>
+						<li>
+							<a href="examples/staff-toolbar.html" target="_blank">Staff Toolbar</a>
+						</li>
+						<li>
+							<a href="examples/standalone-libraries.html" target="_blank">Standalone Libraries</a>
+						</li>
+						<li>
+							<a href="examples/tables.html" target="_blank">Tables</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="prototypes.html" class="f-menu__heading">Prototypes</a>
+					<ul>
+						<li>
+							<a href="prototypes/about.html" target="_blank">About</a>
+						</li>
+						<li>
+							<a href="prototypes/calendar-update-cards.html" target="_blank">Calendar Update Cards</a>
+						</li>
+						<li>
+							<a href="prototypes/carousel.html" target="_blank">Carousel</a>
+						</li>
+						<li>
+							<a href="prototypes/content-page-templates.html" target="_blank">Content Page Templates</a>
+						</li>
+						<li>
+							<a href="prototypes/esol-resources-page-reading.html" target="_blank">Esol Resources Page Reading</a>
+						</li>
+						<li>
+							<a href="prototypes/esol-resources-page.html" target="_blank">Esol Resources Page</a>
+						</li>
+						<li>
+							<a href="prototypes/experience.html" target="_blank">Experience</a>
+						</li>
+						<li>
+							<a href="prototypes/find-degrees-FS.html" target="_blank">Find Degrees Fs</a>
+						</li>
+						<li>
+							<a href="prototypes/form-flex.html" target="_blank">Form Flex</a>
+						</li>
+						<li>
+							<a href="prototypes/home.html" target="_blank">Home</a>
+						</li>
+						<li>
+							<a href="prototypes/multiple-videos-content-page-pattern.html" target="_blank">Multiple Videos Content Page Pattern</a>
+						</li>
+						<li>
+							<a href="prototypes/New-hub-banner.html" target="_blank">New Hub Banner</a>
+						</li>
+						<li>
+							<a href="prototypes/New-nav-and-banner.html" target="_blank">New Nav And Banner</a>
+						</li>
+						<li>
+							<a href="prototypes/New-nav-content-page-light.html" target="_blank">New Nav Content Page Light</a>
+						</li>
+						<li>
+							<a href="prototypes/our-researchers-megamenu-banner-bar.html" target="_blank">Our Researchers Megamenu Banner Bar</a>
+						</li>
+						<li>
+							<a href="prototypes/our-researchers-megamenu.html" target="_blank">Our Researchers Megamenu</a>
+						</li>
+						<li>
+							<a href="prototypes/our-researchers.html" target="_blank">Our Researchers</a>
+						</li>
+						<li>
+							<a href="prototypes/playground.html" target="_blank">Playground</a>
+						</li>
+						<li>
+							<a href="prototypes/research-degrees.html" target="_blank">Research Degrees</a>
+						</li>
+						<li>
+							<a href="prototypes/research-partnerships.html" target="_blank">Research Partnerships</a>
+						</li>
+						<li>
+							<a href="prototypes/research-strengths.html" target="_blank">Research Strengths</a>
+						</li>
+						<li>
+							<a href="prototypes/research.html" target="_blank">Research</a>
+						</li>
+						<li>
+							<a href="prototypes/search-result.html" target="_blank">Search Result</a>
+						</li>
+						<li>
+							<a href="prototypes/search-results-web-collection.html" target="_blank">Search Results Web Collection</a>
+						</li>
+						<li>
+							<a href="prototypes/staff-profile-cards-external.html" target="_blank">Staff Profile Cards External</a>
+						</li>
+						<li>
+							<a href="prototypes/staff-profile-cards.html" target="_blank">Staff Profile Cards</a>
+						</li>
+						<li>
+							<a href="prototypes/study.html" target="_blank">Study</a>
+						</li>
+						<li>
+							<a href="prototypes/tabbed-search-stack.html" target="_blank">Tabbed Search Stack</a>
+						</li>
+						<li>
+							<a href="prototypes/victorious-article.html" target="_blank">Victorious Article</a>
+						</li>
+						<li>
+							<a href="prototypes/victorious-article2.html" target="_blank">Victorious Article2</a>
+						</li>
+						<li>
+							<a href="prototypes/victorious-home.html" target="_blank">Victorious Home</a>
+						</li>
+						<li>
+							<a href="prototypes/victorious-home2.html" target="_blank">Victorious Home2</a>
+						</li>
+						<li>
+							<a href="prototypes/victorious-results.html" target="_blank">Victorious Results</a>
+						</li>
+						<li>
+							<a href="prototypes/video-container.html" target="_blank">Video Container</a>
+						</li>
+						<li>
+							<a href="prototypes/widget-test.html" target="_blank">Widget Test</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="themed-pages.html" class="f-menu__heading">Themed Pages</a>
+					<ul>
+						<li>
+							<a href="themed-pages/living-pa.html" target="_blank">Living Pa</a>
+						</li>
+					</ul>
+				</li>
+		
+			</ul>
+		
+		
+		</div>
+		<!-- /fabricator menu -->
+		<div class="f-container">
+			<div class="f-control-bar">
+				<div class="f-control f-menu-toggle">
+					<svg>
+						<use xlink:href="#f-icon-menu" />
+					</svg>
+				</div>
+			</div>
+
+
+  <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
+
+  <!-- 'Go up' button -->
+  <a href="javascript:;" id="btn-up" title="Go to the top of the page" class="btn-floating sticky bottom" tabindex="-1"><span class="icon-arrow-up"></span></a>
+
+  <!-- 'Edit page' button -->
+  <a href="/_edit" id="btn-admin" style="display: none;" title="Edit the page in Squiz administration" class="btn-floating top" tabindex="-1"><span class="icon-edit"></span></a>
+
+
+
+	
+<h1 data-f-toggle="labels">Features</h1>
+
+<p>Built for <a href="https://victoriauniversity.atlassian.net/browse/WIP-1678">[EP] Faculty & School Template Development</a></p>
+
+
+<div class="f-item-group" id="deprecated">
+
+	<div class="f-item-heading-group">
+		<h2 class="f-item-heading" data-f-toggle="labels">Deprecated</h2>
+	</div>
+		<div class="f-item-group" id="deprecated.two-thirds-promo-panel">
+			<div class="f-item-heading-group" data-f-toggle="labels">
+				<h3 class="f-item-heading">Two Thirds Promo Panel</h3>
+				<div class="f-item-controls">
+					<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+						<svg>
+							<use xlink:href="#f-icon-notes" />
+						</svg>
+					</span>
+					<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+						<svg>
+							<use xlink:href="#f-icon-code" />
+						</svg>
+					</span>
+				</div>
+			</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>Deprecated - do not use.</p>
+
+</div>
+<div class="f-item-preview">
+	<div class="promo-panel">
+	<div class="block formatting centraliser">
+		<figure class="two-thirds">
+
+
+			<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0010/294427/varieties/ls_small.jpg">
+
+			<figcaption>
+				<h3>Master the Fine Arts</h3>
+				<p>Advance your design, film-making, music or theatre skills to prepare for a rewarding career in the creative industries</p>
+				<a title="Why to study at Victoria" href="https://www.wgtn.ac.nz/explore/postgraduate-programmes/master-of-fine-arts-creative-practice/about  " class="button">Find out more</a>
+			</figcaption>
+
+
+		</figure>
+	</div>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;div class&#x3D;&quot;promo-panel&quot;&gt;
+	&lt;div class&#x3D;&quot;block formatting centraliser&quot;&gt;
+		&lt;figure class&#x3D;&quot;two-thirds&quot;&gt;
+
+
+			&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0010/294427/varieties/ls_small.jpg&quot;&gt;
+
+			&lt;figcaption&gt;
+				&lt;h3&gt;Master the Fine Arts&lt;/h3&gt;
+				&lt;p&gt;Advance your design, film-making, music or theatre skills to prepare for a rewarding career in the creative industries&lt;/p&gt;
+				&lt;a title&#x3D;&quot;Why to study at Victoria&quot; href&#x3D;&quot;https://www.wgtn.ac.nz/explore/postgraduate-programmes/master-of-fine-arts-creative-practice/about  &quot; class&#x3D;&quot;button&quot;&gt;Find out more&lt;/a&gt;
+			&lt;/figcaption&gt;
+
+
+		&lt;/figure&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+		</div>
+
+</div>
+
+
+<div class="f-item-group" id="events">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Events</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>[TA] - Events Widget <a href="https://victoriauniversity.atlassian.net/browse/WIP-1707">https://victoriauniversity.atlassian.net/browse/WIP-1707</a></p>
+<p>[TA] - Event Listing Pages (MVP) <a href="https://victoriauniversity.atlassian.net/browse/WIP-1706">https://victoriauniversity.atlassian.net/browse/WIP-1706</a></p>
+<p>[TA] - events item full column width (+HP)(MVP) <a href="https://victoriauniversity.atlassian.net/browse/WIP-2082">https://victoriauniversity.atlassian.net/browse/WIP-2082</a></p>
+<p><a href="https://schema.org/Event">https://schema.org/Event</a> ld+json is the recommended format and doesn't pollute markup <a href="https://developers.google.com/search/docs/guides/intro-structured-data#testing-and-publishing-your-markup">https://developers.google.com/search/docs/guides/intro-structured-data#testing-and-publishing-your-markup</a></p>
+<p>Testing metadata: <a href="https://search.google.com/structured-data/testing-tool/u/0/">https://search.google.com/structured-data/testing-tool/u/0/</a></p>
+
+</div>
+<div class="f-item-preview">
+	<section class="articles-container block">
+	<header>
+		<a href="#" title="" class="link-more">All events</a>
+		<h2>Upcoming events</h2>
+	</header>
+
+	<ul class="events">
+		<li>
+			<article>
+				<p class="margin-notes">
+					<time class="highlight-strip">
+						<span>in a month</span>
+						<span class="date">17–18 October 2016</span>
+						<span class="time">from 9.00 am</span>
+					</time>
+				</p>
+				<div class="summary formatting">
+					<h3><a href="#" title="See event details">New Historians Conference 2016</a></h3>
+
+					<p>The History Programme invites current postgraduates and recent graduates to its annual New Historians Conference. Now in its 11th year, the conference brings together researchers from local, national and regional institutions and organisations.</p>
+
+					<p class="meta venue"><span class="icon-pin"></span>Alan Macdiarmid Lecture Theatre 105</p>
+					<p class="meta fees"><span class="icon-ticket"></span>The registration fee is $25, with an optional conference dinner at approx. $28-$35 per head.</p>
+				</div>
+
+			</article>
+
+			<script type="application/ld+json">
+				{
+					"@context": "http://schema.org/",
+					"@type": "Event",
+					"name": "New Historians Conference 2016",
+					"startDate": "2016-10-17T09:00",
+					"endDate": "2016-10-18",
+					"isAccessibleForFree": false,
+					"offers": [{
+						"@type": "Offer",
+						"price": "25.00",
+						"priceCurrency": "NZD"
+					}],
+					"description": "The History Programme invites current postgraduates and recent graduates to its annual New Historians Conference. Now in its 11th year, the conference brings together researchers from local, national and regional institutions and organisations.",
+					"location": {
+						"@type": "Place",
+						"name": "Alan Macdiarmid Lecture Theatre 105",
+						"address": {
+							"@type": "PostalAddress",
+							"addressLocality": "Wellington"
+						},
+						"hasMap": "https://www.wgtn.ac.nz/about/explore-victoria/campuses/kelburn/kelburn-campus-map.pdf"
+					},
+					"url": "https://www.wgtn.ac.nz/events/event-123-details"
+				}
+			</script>
+		</li>
+
+		<li>
+
+			<article>
+				<p class="margin-notes">
+					<time class="highlight-strip">
+						<span>in two months</span>
+						<span class="date">16–18 November 2016</span>
+						<span class="time">5:30pm</span>
+					</time>
+				</p>
+				<div class="summary formatting">
+					<h3><a href="#" title="See event details">The New Zealand Polymath - Colenso and his contemporaries</a></h3>
+
+					<p>The History Programme invites current postgraduates and recent graduates to its annual New Historians Conference. Now in its 11th year, the conference brings together researchers from local, national and regional institutions and organisations.</p>
+
+					<p class="meta venue"><span class="icon-pin"></span>Alan Macdiarmid Lecture Theatre 105</p>
+					<p class="meta fees"><span class="icon-ticket"></span>The registration fee is $25, with an optional conference dinner at approx. $28-$35 per head.</p>
+				</div>
+
+			</article>
+		</li>
+
+		<li>
+			<article>
+				<p class="margin-notes">
+					<time class="highlight-strip">
+						<span>archived</span>
+						<span class="date">7 - 15 February 2015</span>
+					</time>
+				</p>
+				<div class="summary formatting">
+					<h3><a href="#" title="See event details">NZSQ: Adam Summer School 2015</a></h3>
+
+					<figure class="media inline">
+						<img title="" src="//www.wgtn.ac.nz/__data/assets/image/0006/1524696/varieties/ls_medium.jpg" alt="Victoria health researchers Professor Kevin Dew and Dr Kirsten Smiler">
+					</figure>
+
+					<p>The 2015 Adam Summer School is presented by the New Zealand String Quartet, quartet in residence at Te Kōkī New Zealand School of Music, Victoria University of Wellington.</p>
+
+					<p class="meta venue"><span class="icon-pin"></span>Nelson</p>
+					<p class="meta fees"><span class="icon-ticket"></span>Free (with registration)</p>
+				</div>
+
+			</article>
+		</li>
+
+
+		<li>
+			<article>
+				<p class="margin-notes">
+					<time class="highlight-strip">
+						<span>Guest session</span>
+						<span class="date">4 March 2016</span>
+						<span class="time">11am - 12pm</span>
+					</time>
+				</p>
+				<div class="summary formatting">
+					<h3><a href="#" title="See event details">The Juilliard Experience – Ara Guzelimian</a></h3>
+
+					<figure class="media inline">
+						<img title="" src="//www.wgtn.ac.nz/__data/assets/image/0019/1524232/varieties/ls_medium.jpg" alt="The Juilliard Experience – Ara Guzelimian poster">
+					</figure>
+
+					<p>Ara Guzelimian, Provost and Dean of The Juilliard School, presents a session designed to give us a taste of studying at one of the world’s leading music, dance and drama institutions in the heart of a vibrant city.</p>
+
+					<p class="meta venue"><span class="icon-pin"></span>Adam Concert room, Wellington</p>
+					<p class="meta fees"><span class="icon-ticket"></span>Free</p>
+				</div>
+
+			</article>
+		</li>
+
+	</ul>
+</section>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;section class&#x3D;&quot;articles-container block&quot;&gt;
+	&lt;header&gt;
+		&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;&quot; class&#x3D;&quot;link-more&quot;&gt;All events&lt;/a&gt;
+		&lt;h2&gt;Upcoming events&lt;/h2&gt;
+	&lt;/header&gt;
+
+	&lt;ul class&#x3D;&quot;events&quot;&gt;
+		&lt;li&gt;
+			&lt;article&gt;
+				&lt;p class&#x3D;&quot;margin-notes&quot;&gt;
+					&lt;time class&#x3D;&quot;highlight-strip&quot;&gt;
+						&lt;span&gt;in a month&lt;/span&gt;
+						&lt;span class&#x3D;&quot;date&quot;&gt;17–18 October 2016&lt;/span&gt;
+						&lt;span class&#x3D;&quot;time&quot;&gt;from 9.00 am&lt;/span&gt;
+					&lt;/time&gt;
+				&lt;/p&gt;
+				&lt;div class&#x3D;&quot;summary formatting&quot;&gt;
+					&lt;h3&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;See event details&quot;&gt;New Historians Conference 2016&lt;/a&gt;&lt;/h3&gt;
+
+					&lt;p&gt;The History Programme invites current postgraduates and recent graduates to its annual New Historians Conference. Now in its 11th year, the conference brings together researchers from local, national and regional institutions and organisations.&lt;/p&gt;
+
+					&lt;p class&#x3D;&quot;meta venue&quot;&gt;&lt;span class&#x3D;&quot;icon-pin&quot;&gt;&lt;/span&gt;Alan Macdiarmid Lecture Theatre 105&lt;/p&gt;
+					&lt;p class&#x3D;&quot;meta fees&quot;&gt;&lt;span class&#x3D;&quot;icon-ticket&quot;&gt;&lt;/span&gt;The registration fee is $25, with an optional conference dinner at approx. $28-$35 per head.&lt;/p&gt;
+				&lt;/div&gt;
+
+			&lt;/article&gt;
+
+			&lt;script type&#x3D;&quot;application/ld+json&quot;&gt;
+				{
+					&quot;@context&quot;: &quot;http://schema.org/&quot;,
+					&quot;@type&quot;: &quot;Event&quot;,
+					&quot;name&quot;: &quot;New Historians Conference 2016&quot;,
+					&quot;startDate&quot;: &quot;2016-10-17T09:00&quot;,
+					&quot;endDate&quot;: &quot;2016-10-18&quot;,
+					&quot;isAccessibleForFree&quot;: false,
+					&quot;offers&quot;: [{
+						&quot;@type&quot;: &quot;Offer&quot;,
+						&quot;price&quot;: &quot;25.00&quot;,
+						&quot;priceCurrency&quot;: &quot;NZD&quot;
+					}],
+					&quot;description&quot;: &quot;The History Programme invites current postgraduates and recent graduates to its annual New Historians Conference. Now in its 11th year, the conference brings together researchers from local, national and regional institutions and organisations.&quot;,
+					&quot;location&quot;: {
+						&quot;@type&quot;: &quot;Place&quot;,
+						&quot;name&quot;: &quot;Alan Macdiarmid Lecture Theatre 105&quot;,
+						&quot;address&quot;: {
+							&quot;@type&quot;: &quot;PostalAddress&quot;,
+							&quot;addressLocality&quot;: &quot;Wellington&quot;
+						},
+						&quot;hasMap&quot;: &quot;https://www.wgtn.ac.nz/about/explore-victoria/campuses/kelburn/kelburn-campus-map.pdf&quot;
+					},
+					&quot;url&quot;: &quot;https://www.wgtn.ac.nz/events/event-123-details&quot;
+				}
+			&lt;/script&gt;
+		&lt;/li&gt;
+
+		&lt;li&gt;
+
+			&lt;article&gt;
+				&lt;p class&#x3D;&quot;margin-notes&quot;&gt;
+					&lt;time class&#x3D;&quot;highlight-strip&quot;&gt;
+						&lt;span&gt;in two months&lt;/span&gt;
+						&lt;span class&#x3D;&quot;date&quot;&gt;16–18 November 2016&lt;/span&gt;
+						&lt;span class&#x3D;&quot;time&quot;&gt;5:30pm&lt;/span&gt;
+					&lt;/time&gt;
+				&lt;/p&gt;
+				&lt;div class&#x3D;&quot;summary formatting&quot;&gt;
+					&lt;h3&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;See event details&quot;&gt;The New Zealand Polymath - Colenso and his contemporaries&lt;/a&gt;&lt;/h3&gt;
+
+					&lt;p&gt;The History Programme invites current postgraduates and recent graduates to its annual New Historians Conference. Now in its 11th year, the conference brings together researchers from local, national and regional institutions and organisations.&lt;/p&gt;
+
+					&lt;p class&#x3D;&quot;meta venue&quot;&gt;&lt;span class&#x3D;&quot;icon-pin&quot;&gt;&lt;/span&gt;Alan Macdiarmid Lecture Theatre 105&lt;/p&gt;
+					&lt;p class&#x3D;&quot;meta fees&quot;&gt;&lt;span class&#x3D;&quot;icon-ticket&quot;&gt;&lt;/span&gt;The registration fee is $25, with an optional conference dinner at approx. $28-$35 per head.&lt;/p&gt;
+				&lt;/div&gt;
+
+			&lt;/article&gt;
+		&lt;/li&gt;
+
+		&lt;li&gt;
+			&lt;article&gt;
+				&lt;p class&#x3D;&quot;margin-notes&quot;&gt;
+					&lt;time class&#x3D;&quot;highlight-strip&quot;&gt;
+						&lt;span&gt;archived&lt;/span&gt;
+						&lt;span class&#x3D;&quot;date&quot;&gt;7 - 15 February 2015&lt;/span&gt;
+					&lt;/time&gt;
+				&lt;/p&gt;
+				&lt;div class&#x3D;&quot;summary formatting&quot;&gt;
+					&lt;h3&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;See event details&quot;&gt;NZSQ: Adam Summer School 2015&lt;/a&gt;&lt;/h3&gt;
+
+					&lt;figure class&#x3D;&quot;media inline&quot;&gt;
+						&lt;img title&#x3D;&quot;&quot; src&#x3D;&quot;//www.wgtn.ac.nz/__data/assets/image/0006/1524696/varieties/ls_medium.jpg&quot; alt&#x3D;&quot;Victoria health researchers Professor Kevin Dew and Dr Kirsten Smiler&quot;&gt;
+					&lt;/figure&gt;
+
+					&lt;p&gt;The 2015 Adam Summer School is presented by the New Zealand String Quartet, quartet in residence at Te Kōkī New Zealand School of Music, Victoria University of Wellington.&lt;/p&gt;
+
+					&lt;p class&#x3D;&quot;meta venue&quot;&gt;&lt;span class&#x3D;&quot;icon-pin&quot;&gt;&lt;/span&gt;Nelson&lt;/p&gt;
+					&lt;p class&#x3D;&quot;meta fees&quot;&gt;&lt;span class&#x3D;&quot;icon-ticket&quot;&gt;&lt;/span&gt;Free (with registration)&lt;/p&gt;
+				&lt;/div&gt;
+
+			&lt;/article&gt;
+		&lt;/li&gt;
+
+
+		&lt;li&gt;
+			&lt;article&gt;
+				&lt;p class&#x3D;&quot;margin-notes&quot;&gt;
+					&lt;time class&#x3D;&quot;highlight-strip&quot;&gt;
+						&lt;span&gt;Guest session&lt;/span&gt;
+						&lt;span class&#x3D;&quot;date&quot;&gt;4 March 2016&lt;/span&gt;
+						&lt;span class&#x3D;&quot;time&quot;&gt;11am - 12pm&lt;/span&gt;
+					&lt;/time&gt;
+				&lt;/p&gt;
+				&lt;div class&#x3D;&quot;summary formatting&quot;&gt;
+					&lt;h3&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;See event details&quot;&gt;The Juilliard Experience – Ara Guzelimian&lt;/a&gt;&lt;/h3&gt;
+
+					&lt;figure class&#x3D;&quot;media inline&quot;&gt;
+						&lt;img title&#x3D;&quot;&quot; src&#x3D;&quot;//www.wgtn.ac.nz/__data/assets/image/0019/1524232/varieties/ls_medium.jpg&quot; alt&#x3D;&quot;The Juilliard Experience – Ara Guzelimian poster&quot;&gt;
+					&lt;/figure&gt;
+
+					&lt;p&gt;Ara Guzelimian, Provost and Dean of The Juilliard School, presents a session designed to give us a taste of studying at one of the world’s leading music, dance and drama institutions in the heart of a vibrant city.&lt;/p&gt;
+
+					&lt;p class&#x3D;&quot;meta venue&quot;&gt;&lt;span class&#x3D;&quot;icon-pin&quot;&gt;&lt;/span&gt;Adam Concert room, Wellington&lt;/p&gt;
+					&lt;p class&#x3D;&quot;meta fees&quot;&gt;&lt;span class&#x3D;&quot;icon-ticket&quot;&gt;&lt;/span&gt;Free&lt;/p&gt;
+				&lt;/div&gt;
+
+			&lt;/article&gt;
+		&lt;/li&gt;
+
+	&lt;/ul&gt;
+&lt;/section&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="homepage-intro">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Homepage Intro</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-preview">
+	<div class="sector">
+	<div class="centraliser">
+		<div class="homepage-intro block formatting">
+			<div class="intro-text">
+				<p>Challenge your ideas and cultivate your creativity at Victoria’s Faculty of Humanities and Social Sciences.</p>
+				<p>Our diverse range of courses and location in the nation’s capital and cultural heart will provide you with unrivalled opportunities to build your future.</p>
+			</div>
+			<div class="links-wrap">
+				<div class="button-links">
+					<a href="https://www.wgtn.ac.nz/fhss/about" class="button large">About us</a>
+					<a href="https://www.wgtn.ac.nz/fhss/schools" class="button large">Explore our Schools</a>
+				</div>
+				<div class="social-links">
+					<p>Find us on</p>
+					<a class="social-icon" title="Our Facebook page" href="https://www.facebook.com/">
+						<img alt="Facebook logo" src="images/social-facebook.df23b762.svg">
+					</a>
+					<a class="social-icon" title="Our Linkedin profile" href="https://www.linkedin.com/">
+						<img alt="LinkedIn icon" src="images/social-linkedin.fff45469.svg">
+					</a>
+					<a class="social-icon" title="Our YouTube profile" href="https://www.youtube.com/">
+						<img alt="YouTube icon" src="images/social-youtube.44bf45ab.svg">
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="text-promo-panel intro-promo">
+			<div class="block formatting centraliser">
+				<div class="text-wrap">
+					<h2>Research matters</h2>
+					<p>In the Faculty of Humanities and Social Sciences, we explore the fundamental questions that define human experience.</p>
+				</div>
+				<div class="button-wrap">
+					<a href="https://www.wgtn.ac.nz/fhss/research " title="Check out our student services" class="button primary large">Find out more</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;div class&#x3D;&quot;sector&quot;&gt;
+	&lt;div class&#x3D;&quot;centraliser&quot;&gt;
+		&lt;div class&#x3D;&quot;homepage-intro block formatting&quot;&gt;
+			&lt;div class&#x3D;&quot;intro-text&quot;&gt;
+				&lt;p&gt;Challenge your ideas and cultivate your creativity at Victoria’s Faculty of Humanities and Social Sciences.&lt;/p&gt;
+				&lt;p&gt;Our diverse range of courses and location in the nation’s capital and cultural heart will provide you with unrivalled opportunities to build your future.&lt;/p&gt;
+			&lt;/div&gt;
+			&lt;div class&#x3D;&quot;links-wrap&quot;&gt;
+				&lt;div class&#x3D;&quot;button-links&quot;&gt;
+					&lt;a href&#x3D;&quot;https://www.wgtn.ac.nz/fhss/about&quot; class&#x3D;&quot;button large&quot;&gt;About us&lt;/a&gt;
+					&lt;a href&#x3D;&quot;https://www.wgtn.ac.nz/fhss/schools&quot; class&#x3D;&quot;button large&quot;&gt;Explore our Schools&lt;/a&gt;
+				&lt;/div&gt;
+				&lt;div class&#x3D;&quot;social-links&quot;&gt;
+					&lt;p&gt;Find us on&lt;/p&gt;
+					&lt;a class&#x3D;&quot;social-icon&quot; title&#x3D;&quot;Our Facebook page&quot; href&#x3D;&quot;https://www.facebook.com/&quot;&gt;
+						&lt;img alt&#x3D;&quot;Facebook logo&quot; src&#x3D;&quot;images/social-facebook.df23b762.svg&quot;&gt;
+					&lt;/a&gt;
+					&lt;a class&#x3D;&quot;social-icon&quot; title&#x3D;&quot;Our Linkedin profile&quot; href&#x3D;&quot;https://www.linkedin.com/&quot;&gt;
+						&lt;img alt&#x3D;&quot;LinkedIn icon&quot; src&#x3D;&quot;images/social-linkedin.fff45469.svg&quot;&gt;
+					&lt;/a&gt;
+					&lt;a class&#x3D;&quot;social-icon&quot; title&#x3D;&quot;Our YouTube profile&quot; href&#x3D;&quot;https://www.youtube.com/&quot;&gt;
+						&lt;img alt&#x3D;&quot;YouTube icon&quot; src&#x3D;&quot;images/social-youtube.44bf45ab.svg&quot;&gt;
+					&lt;/a&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class&#x3D;&quot;text-promo-panel intro-promo&quot;&gt;
+			&lt;div class&#x3D;&quot;block formatting centraliser&quot;&gt;
+				&lt;div class&#x3D;&quot;text-wrap&quot;&gt;
+					&lt;h2&gt;Research matters&lt;/h2&gt;
+					&lt;p&gt;In the Faculty of Humanities and Social Sciences, we explore the fundamental questions that define human experience.&lt;/p&gt;
+				&lt;/div&gt;
+				&lt;div class&#x3D;&quot;button-wrap&quot;&gt;
+					&lt;a href&#x3D;&quot;https://www.wgtn.ac.nz/fhss/research &quot; title&#x3D;&quot;Check out our student services&quot; class&#x3D;&quot;button primary large&quot;&gt;Find out more&lt;/a&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="homepage-intro-video">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Homepage Intro Video</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-preview">
+	<div class="sector">
+	<div class="centraliser">
+		<div class="homepage-intro block formatting">
+			<div class="intro-text">
+				<p>Challenge your ideas and cultivate your creativity at Victoria’s Faculty of Humanities and Social Sciences.</p>
+				<p>Our diverse range of courses and location in the nation’s capital and cultural heart will provide you with unrivalled opportunities to build your future.</p>
+			</div>
+			<div class="links-wrap">
+				<div class="button-links">
+					<a href="https://www.wgtn.ac.nz/fhss/about" class="button large">About us</a>
+					<a href="https://www.wgtn.ac.nz/fhss/schools" class="button large">Explore our Schools</a>
+				</div>
+				<div class="social-links">
+					<p>Find us on</p>
+					<a class="social-icon" title="Our Facebook page" href="https://www.facebook.com/">
+						<img alt="Facebook logo" src="images/social-facebook.df23b762.svg">
+					</a>
+					<a class="social-icon" title="Our Linkedin profile" href="https://www.linkedin.com/">
+						<img alt="LinkedIn icon" src="images/social-linkedin.fff45469.svg">
+					</a>
+					<a class="social-icon" title="Our YouTube profile" href="https://www.youtube.com/">
+						<img alt="YouTube icon" src="images/social-youtube.44bf45ab.svg">
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Video block -->
+		<div class="text-promo-panel video">
+			<div class="block formatting centraliser">
+
+				<figure class="media featured">
+					<a data-lity="" href="http://www.youtube.com/watch?v=k1-243Uv5cw" target="_blank">
+						<img alt="The colour of crime" src="http://cms.wgtn.ac.nz/__data/assets/image/0009/475929/varieties/ls_small.jpg">
+						<figcaption class="outside">
+							<h4>The colour of crime <i class="icon-triangle-right"></i></h4>
+						</figcaption>
+					</a>
+				</figure>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;div class&#x3D;&quot;sector&quot;&gt;
+	&lt;div class&#x3D;&quot;centraliser&quot;&gt;
+		&lt;div class&#x3D;&quot;homepage-intro block formatting&quot;&gt;
+			&lt;div class&#x3D;&quot;intro-text&quot;&gt;
+				&lt;p&gt;Challenge your ideas and cultivate your creativity at Victoria’s Faculty of Humanities and Social Sciences.&lt;/p&gt;
+				&lt;p&gt;Our diverse range of courses and location in the nation’s capital and cultural heart will provide you with unrivalled opportunities to build your future.&lt;/p&gt;
+			&lt;/div&gt;
+			&lt;div class&#x3D;&quot;links-wrap&quot;&gt;
+				&lt;div class&#x3D;&quot;button-links&quot;&gt;
+					&lt;a href&#x3D;&quot;https://www.wgtn.ac.nz/fhss/about&quot; class&#x3D;&quot;button large&quot;&gt;About us&lt;/a&gt;
+					&lt;a href&#x3D;&quot;https://www.wgtn.ac.nz/fhss/schools&quot; class&#x3D;&quot;button large&quot;&gt;Explore our Schools&lt;/a&gt;
+				&lt;/div&gt;
+				&lt;div class&#x3D;&quot;social-links&quot;&gt;
+					&lt;p&gt;Find us on&lt;/p&gt;
+					&lt;a class&#x3D;&quot;social-icon&quot; title&#x3D;&quot;Our Facebook page&quot; href&#x3D;&quot;https://www.facebook.com/&quot;&gt;
+						&lt;img alt&#x3D;&quot;Facebook logo&quot; src&#x3D;&quot;images/social-facebook.df23b762.svg&quot;&gt;
+					&lt;/a&gt;
+					&lt;a class&#x3D;&quot;social-icon&quot; title&#x3D;&quot;Our Linkedin profile&quot; href&#x3D;&quot;https://www.linkedin.com/&quot;&gt;
+						&lt;img alt&#x3D;&quot;LinkedIn icon&quot; src&#x3D;&quot;images/social-linkedin.fff45469.svg&quot;&gt;
+					&lt;/a&gt;
+					&lt;a class&#x3D;&quot;social-icon&quot; title&#x3D;&quot;Our YouTube profile&quot; href&#x3D;&quot;https://www.youtube.com/&quot;&gt;
+						&lt;img alt&#x3D;&quot;YouTube icon&quot; src&#x3D;&quot;images/social-youtube.44bf45ab.svg&quot;&gt;
+					&lt;/a&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+		&lt;!-- Video block --&gt;
+		&lt;div class&#x3D;&quot;text-promo-panel video&quot;&gt;
+			&lt;div class&#x3D;&quot;block formatting centraliser&quot;&gt;
+
+				&lt;figure class&#x3D;&quot;media featured&quot;&gt;
+					&lt;a data-lity&#x3D;&quot;&quot; href&#x3D;&quot;http://www.youtube.com/watch?v&#x3D;k1-243Uv5cw&quot; target&#x3D;&quot;_blank&quot;&gt;
+						&lt;img alt&#x3D;&quot;The colour of crime&quot; src&#x3D;&quot;http://cms.wgtn.ac.nz/__data/assets/image/0009/475929/varieties/ls_small.jpg&quot;&gt;
+						&lt;figcaption class&#x3D;&quot;outside&quot;&gt;
+							&lt;h4&gt;The colour of crime &lt;i class&#x3D;&quot;icon-triangle-right&quot;&gt;&lt;/i&gt;&lt;/h4&gt;
+						&lt;/figcaption&gt;
+					&lt;/a&gt;
+				&lt;/figure&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="news">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">News</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>[TA] - news item 1/2 column width with text; with and without image (+HP)</p>
+<p><a href="https://victoriauniversity.atlassian.net/browse/WIP-2081">https://victoriauniversity.atlassian.net/browse/WIP-2081</a></p>
+<p>[TA] - news item column width with text; with and without image (+HP)(MVP)</p>
+<p><a href="https://victoriauniversity.atlassian.net/browse/WIP-2080">https://victoriauniversity.atlassian.net/browse/WIP-2080</a></p>
+<p>[TA] - News Widget</p>
+<p><a href="https://victoriauniversity.atlassian.net/browse/WIP-1708">https://victoriauniversity.atlassian.net/browse/WIP-1708</a></p>
+<p>See <code>&lt;time&gt;</code> code example on <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-time-element">https://www.w3.org/TR/html5/text-level-semantics.html#the-time-element</a></p>
+
+</div>
+<div class="f-item-preview">
+	<section class="articles-container block">
+	<header>
+		<a href="#" title="" class="link-more">Older news</a>
+		<h2>Latest news</h2>
+	</header>
+	<ul class="news">
+		<li>
+			<article>
+				<div class="summary formatting">
+					<h3><a href="#">Maurice Goldsmith Lecture: Aesthetic Responsibility</a></h3>
+					<p><time datetime="2016-09-14">14 September 2016</time></p>
+					<p>The attitudes and judgments we make of artists based on their artworks were discussed at this year's Maurice Goldsmith Public Lecture by a top visiting philosophy scholar from the United States. Susan Wolf is the Edna J. Koury Distinguished Professor at the University of North Carolina.</p>
+				</div>
+			</article>
+		</li>
+
+
+		<li>
+			<article>
+				<div class="summary formatting">
+					<h3><a href="#">Maurice Goldsmith Lecture: Aesthetic Responsibility</a></h3>
+					<p><time datetime="2016-09-14">14 September 2016</time></p>
+					<p>The attitudes and judgments we make of artists based on their artworks were discussed at this year's Maurice Goldsmith Public Lecture by a top visiting philosophy scholar from the United States. Susan Wolf is the Edna J. Koury Distinguished Professor at the University of North Carolina.</p>
+				</div>
+			</article>
+		</li>
+
+		<li>
+			<article>
+				<div class="summary formatting">
+					<h3><a href="#">Applications now open for Summer Research Scholarships</a></h3>
+					<p><time datetime="2016-09-01">1 September 2016</time></p>
+					<p>Applications are now invited from students for Faculty of Humanities and Social Sciences and Faculty of Education Summer Scholarships for 2016-17. Students can access information about the projects, and the online application form, by going to the FHSS Summer Scholars Scheme webpage.</p>
+				</div>
+			</article>
+		</li>
+
+
+
+		<li>
+			<article>
+				<figure class="media">
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/6nD-kAsV-rk?rel=0" frameborder="0" allowfullscreen=""></iframe>
+				</figure>
+				<div class="summary formatting">
+					<h3><a href="#">‘Must see’ show inspired by family history</a></h3>
+					<p><time datetime="2016-08-30">30 August 2016</time></p>
+					<p>Sitting in on a History lecture in 2014 on the Spanish Influenza, Victoria University Pacific Studies Honours graduate Tupe Lualua would never have imagined the path it was about to set her on.</p>
+				</div>
+			</article>
+		</li>
+
+		<li>
+			<article>
+
+				<figure class="media portrait">
+					<img title="Octavia treehouse 2.jpg" src="http://cms.wgtn.ac.nz/__data/assets/image/0010/369325/Octavia-treehouse-2.jpg" alt="">
+				</figure>
+				<div class="summary formatting">
+					<h3><a href="http://cms.wgtn.ac.nz/fad/about/news/news-archives/2016-news/architecture-student-heading-to-italy-to-build-his-winning-treehouse-design.">Architecture student heading to Italy to build his winning treehouse design.</a></h3>
+					<p>
+						<time datetime="2016-08-12">12 August 2016</time>
+					</p>
+					<p>
+						Victoria Architecture student Jacob Dench has won an international treehouse design competition and is heading to Italy at the end of August to build it.
+					</p>
+				</div>
+
+				<!-- 180 230 portrait -->
+
+			</article>
+		</li>
+
+		<li>
+			<article>
+				<figure class="media">
+					<img title="" src="https://www.wgtn.ac.nz/__data/assets/image/0004/370948/ls_medium.jpg" alt="Victoria health researchers Professor Kevin Dew and Dr Kirsten Smiler">
+				</figure>
+				<div class="summary formatting">
+					<h3><a href="#">Victoria University health researchers honoured</a></h3>
+					<p><time datetime="2016-08-23">23 August 2016</time></p>
+					<p>Two Victoria University of Wellington researchers have been recognised by the Health Research Council of New Zealand (HRC) for their work into understanding social issues of health and wellbeing.</p>
+				</div>
+			</article>
+		</li>
+	</ul>
+</section>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;section class&#x3D;&quot;articles-container block&quot;&gt;
+	&lt;header&gt;
+		&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;&quot; class&#x3D;&quot;link-more&quot;&gt;Older news&lt;/a&gt;
+		&lt;h2&gt;Latest news&lt;/h2&gt;
+	&lt;/header&gt;
+	&lt;ul class&#x3D;&quot;news&quot;&gt;
+		&lt;li&gt;
+			&lt;article&gt;
+				&lt;div class&#x3D;&quot;summary formatting&quot;&gt;
+					&lt;h3&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Maurice Goldsmith Lecture: Aesthetic Responsibility&lt;/a&gt;&lt;/h3&gt;
+					&lt;p&gt;&lt;time datetime&#x3D;&quot;2016-09-14&quot;&gt;14 September 2016&lt;/time&gt;&lt;/p&gt;
+					&lt;p&gt;The attitudes and judgments we make of artists based on their artworks were discussed at this year&#x27;s Maurice Goldsmith Public Lecture by a top visiting philosophy scholar from the United States. Susan Wolf is the Edna J. Koury Distinguished Professor at the University of North Carolina.&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/article&gt;
+		&lt;/li&gt;
+
+
+		&lt;li&gt;
+			&lt;article&gt;
+				&lt;div class&#x3D;&quot;summary formatting&quot;&gt;
+					&lt;h3&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Maurice Goldsmith Lecture: Aesthetic Responsibility&lt;/a&gt;&lt;/h3&gt;
+					&lt;p&gt;&lt;time datetime&#x3D;&quot;2016-09-14&quot;&gt;14 September 2016&lt;/time&gt;&lt;/p&gt;
+					&lt;p&gt;The attitudes and judgments we make of artists based on their artworks were discussed at this year&#x27;s Maurice Goldsmith Public Lecture by a top visiting philosophy scholar from the United States. Susan Wolf is the Edna J. Koury Distinguished Professor at the University of North Carolina.&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/article&gt;
+		&lt;/li&gt;
+
+		&lt;li&gt;
+			&lt;article&gt;
+				&lt;div class&#x3D;&quot;summary formatting&quot;&gt;
+					&lt;h3&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Applications now open for Summer Research Scholarships&lt;/a&gt;&lt;/h3&gt;
+					&lt;p&gt;&lt;time datetime&#x3D;&quot;2016-09-01&quot;&gt;1 September 2016&lt;/time&gt;&lt;/p&gt;
+					&lt;p&gt;Applications are now invited from students for Faculty of Humanities and Social Sciences and Faculty of Education Summer Scholarships for 2016-17. Students can access information about the projects, and the online application form, by going to the FHSS Summer Scholars Scheme webpage.&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/article&gt;
+		&lt;/li&gt;
+
+
+
+		&lt;li&gt;
+			&lt;article&gt;
+				&lt;figure class&#x3D;&quot;media&quot;&gt;
+					&lt;iframe width&#x3D;&quot;560&quot; height&#x3D;&quot;315&quot; src&#x3D;&quot;https://www.youtube.com/embed/6nD-kAsV-rk?rel&#x3D;0&quot; frameborder&#x3D;&quot;0&quot; allowfullscreen&#x3D;&quot;&quot;&gt;&lt;/iframe&gt;
+				&lt;/figure&gt;
+				&lt;div class&#x3D;&quot;summary formatting&quot;&gt;
+					&lt;h3&gt;&lt;a href&#x3D;&quot;#&quot;&gt;‘Must see’ show inspired by family history&lt;/a&gt;&lt;/h3&gt;
+					&lt;p&gt;&lt;time datetime&#x3D;&quot;2016-08-30&quot;&gt;30 August 2016&lt;/time&gt;&lt;/p&gt;
+					&lt;p&gt;Sitting in on a History lecture in 2014 on the Spanish Influenza, Victoria University Pacific Studies Honours graduate Tupe Lualua would never have imagined the path it was about to set her on.&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/article&gt;
+		&lt;/li&gt;
+
+		&lt;li&gt;
+			&lt;article&gt;
+
+				&lt;figure class&#x3D;&quot;media portrait&quot;&gt;
+					&lt;img title&#x3D;&quot;Octavia treehouse 2.jpg&quot; src&#x3D;&quot;http://cms.wgtn.ac.nz/__data/assets/image/0010/369325/Octavia-treehouse-2.jpg&quot; alt&#x3D;&quot;&quot;&gt;
+				&lt;/figure&gt;
+				&lt;div class&#x3D;&quot;summary formatting&quot;&gt;
+					&lt;h3&gt;&lt;a href&#x3D;&quot;http://cms.wgtn.ac.nz/fad/about/news/news-archives/2016-news/architecture-student-heading-to-italy-to-build-his-winning-treehouse-design.&quot;&gt;Architecture student heading to Italy to build his winning treehouse design.&lt;/a&gt;&lt;/h3&gt;
+					&lt;p&gt;
+						&lt;time datetime&#x3D;&quot;2016-08-12&quot;&gt;12 August 2016&lt;/time&gt;
+					&lt;/p&gt;
+					&lt;p&gt;
+						Victoria Architecture student Jacob Dench has won an international treehouse design competition and is heading to Italy at the end of August to build it.
+					&lt;/p&gt;
+				&lt;/div&gt;
+
+				&lt;!-- 180 230 portrait --&gt;
+
+			&lt;/article&gt;
+		&lt;/li&gt;
+
+		&lt;li&gt;
+			&lt;article&gt;
+				&lt;figure class&#x3D;&quot;media&quot;&gt;
+					&lt;img title&#x3D;&quot;&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0004/370948/ls_medium.jpg&quot; alt&#x3D;&quot;Victoria health researchers Professor Kevin Dew and Dr Kirsten Smiler&quot;&gt;
+				&lt;/figure&gt;
+				&lt;div class&#x3D;&quot;summary formatting&quot;&gt;
+					&lt;h3&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Victoria University health researchers honoured&lt;/a&gt;&lt;/h3&gt;
+					&lt;p&gt;&lt;time datetime&#x3D;&quot;2016-08-23&quot;&gt;23 August 2016&lt;/time&gt;&lt;/p&gt;
+					&lt;p&gt;Two Victoria University of Wellington researchers have been recognised by the Health Research Council of New Zealand (HRC) for their work into understanding social issues of health and wellbeing.&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/article&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/section&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="news-row">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">News Row</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>News three column row, for use on hub top level pages.</p>
+
+</div>
+<div class="f-item-preview">
+	<section class="centraliser  ">
+	<div class="block news-row ">
+		<header>
+			<a href="#" title="" class="link-more">More news</a>
+			<h2>Research news </h2>
+		</header>
+		<ul class="news">
+			<li>
+				<article>
+					<div class="summary formatting">
+						<h3><a href="#">Maurice Goldsmith Lecture: Aesthetic Responsibility</a></h3>
+						<p><time datetime="2016-09-14">14 September 2016</time></p>
+						<p>The attitudes and judgments we make of artists based on their artworks were discussed at this year's Maurice Goldsmith Public Lecture by a top visiting philosophy scholar from the United States. Susan Wolf is the Edna J. Koury Distinguished Professor
+							at the University of North Carolina.</p>
+					</div>
+				</article>
+			</li>
+
+			<li>
+				<article>
+					<div class="summary formatting">
+						<h3><a href="#">Maurice Goldsmith Lecture: Aesthetic Responsibility</a></h3>
+						<p><time datetime="2016-09-14">14 September 2016</time></p>
+						<p>The attitudes and judgments we make of artists based on their artworks were discussed at this year's Maurice Goldsmith Public Lecture by a top visiting philosophy scholar from the United States. Susan Wolf is the Edna J. Koury Distinguished Professor
+							at the University of North Carolina.</p>
+					</div>
+				</article>
+			</li>
+
+			<li>
+				<article>
+					<div class="summary formatting">
+						<h3><a href="#">Applications now open for Summer Research Scholarships</a></h3>
+						<p><time datetime="2016-09-01">1 September 2016</time></p>
+						<p>Applications are now invited from students for Faculty of Humanities and Social Sciences and Faculty of Education Summer Scholarships for 2016-17. Students can access information about the projects, and the online application form, by going to the
+							FHSS Summer Scholars Scheme webpage.</p>
+					</div>
+				</article>
+			</li>
+		</ul>
+	</div>
+</section>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;section class&#x3D;&quot;centraliser  &quot;&gt;
+	&lt;div class&#x3D;&quot;block news-row &quot;&gt;
+		&lt;header&gt;
+			&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;&quot; class&#x3D;&quot;link-more&quot;&gt;More news&lt;/a&gt;
+			&lt;h2&gt;Research news &lt;/h2&gt;
+		&lt;/header&gt;
+		&lt;ul class&#x3D;&quot;news&quot;&gt;
+			&lt;li&gt;
+				&lt;article&gt;
+					&lt;div class&#x3D;&quot;summary formatting&quot;&gt;
+						&lt;h3&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Maurice Goldsmith Lecture: Aesthetic Responsibility&lt;/a&gt;&lt;/h3&gt;
+						&lt;p&gt;&lt;time datetime&#x3D;&quot;2016-09-14&quot;&gt;14 September 2016&lt;/time&gt;&lt;/p&gt;
+						&lt;p&gt;The attitudes and judgments we make of artists based on their artworks were discussed at this year&#x27;s Maurice Goldsmith Public Lecture by a top visiting philosophy scholar from the United States. Susan Wolf is the Edna J. Koury Distinguished Professor
+							at the University of North Carolina.&lt;/p&gt;
+					&lt;/div&gt;
+				&lt;/article&gt;
+			&lt;/li&gt;
+
+			&lt;li&gt;
+				&lt;article&gt;
+					&lt;div class&#x3D;&quot;summary formatting&quot;&gt;
+						&lt;h3&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Maurice Goldsmith Lecture: Aesthetic Responsibility&lt;/a&gt;&lt;/h3&gt;
+						&lt;p&gt;&lt;time datetime&#x3D;&quot;2016-09-14&quot;&gt;14 September 2016&lt;/time&gt;&lt;/p&gt;
+						&lt;p&gt;The attitudes and judgments we make of artists based on their artworks were discussed at this year&#x27;s Maurice Goldsmith Public Lecture by a top visiting philosophy scholar from the United States. Susan Wolf is the Edna J. Koury Distinguished Professor
+							at the University of North Carolina.&lt;/p&gt;
+					&lt;/div&gt;
+				&lt;/article&gt;
+			&lt;/li&gt;
+
+			&lt;li&gt;
+				&lt;article&gt;
+					&lt;div class&#x3D;&quot;summary formatting&quot;&gt;
+						&lt;h3&gt;&lt;a href&#x3D;&quot;#&quot;&gt;Applications now open for Summer Research Scholarships&lt;/a&gt;&lt;/h3&gt;
+						&lt;p&gt;&lt;time datetime&#x3D;&quot;2016-09-01&quot;&gt;1 September 2016&lt;/time&gt;&lt;/p&gt;
+						&lt;p&gt;Applications are now invited from students for Faculty of Humanities and Social Sciences and Faculty of Education Summer Scholarships for 2016-17. Students can access information about the projects, and the online application form, by going to the
+							FHSS Summer Scholars Scheme webpage.&lt;/p&gt;
+					&lt;/div&gt;
+				&lt;/article&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="promo-panels-two-and-one-third">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Promo Panels Two And One Third</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>[TA] - Column Width Promo Panel spilt 2/3 1/3 (HP)
+<a href="https://victoriauniversity.atlassian.net/wiki/spaces/WIP/pages/69861415/F+S+Homesite+designs">https://victoriauniversity.atlassian.net/wiki/spaces/WIP/pages/69861415/F+S+Homesite+designs</a></p>
+
+</div>
+<div class="f-item-preview">
+	<div class="promo-panel two-one-third">
+	<div class="block formatting centraliser">
+		<figure class=" ">
+
+
+			<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0010/294427/varieties/ls_small.jpg">
+
+			<figcaption>
+				<h1>Get the global perspective</h1>
+				<p>Every student of Commerce has got unique opportunity to take a part in exchange in any of 115 partner countries.</p>
+				<a title="Why to study at Victoria" href="https://www.wgtn.ac.nz/about/victorias-story/statistics" class="button large">International Exchange</a>
+			</figcaption>
+
+
+		</figure>
+		<figure class=" ">
+
+
+
+			<figcaption>
+				<h1>Join our brilliant research team and be a part of something magnificent!</h1>
+				<a title="Why to study at Victoria" href="https://www.wgtn.ac.nz/about/victorias-story/statistics" class="button large">Join the research</a>
+			</figcaption>
+
+
+		</figure>
+	</div>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;div class&#x3D;&quot;promo-panel two-one-third&quot;&gt;
+	&lt;div class&#x3D;&quot;block formatting centraliser&quot;&gt;
+		&lt;figure class&#x3D;&quot; &quot;&gt;
+
+
+			&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0010/294427/varieties/ls_small.jpg&quot;&gt;
+
+			&lt;figcaption&gt;
+				&lt;h1&gt;Get the global perspective&lt;/h1&gt;
+				&lt;p&gt;Every student of Commerce has got unique opportunity to take a part in exchange in any of 115 partner countries.&lt;/p&gt;
+				&lt;a title&#x3D;&quot;Why to study at Victoria&quot; href&#x3D;&quot;https://www.wgtn.ac.nz/about/victorias-story/statistics&quot; class&#x3D;&quot;button large&quot;&gt;International Exchange&lt;/a&gt;
+			&lt;/figcaption&gt;
+
+
+		&lt;/figure&gt;
+		&lt;figure class&#x3D;&quot; &quot;&gt;
+
+
+
+			&lt;figcaption&gt;
+				&lt;h1&gt;Join our brilliant research team and be a part of something magnificent!&lt;/h1&gt;
+				&lt;a title&#x3D;&quot;Why to study at Victoria&quot; href&#x3D;&quot;https://www.wgtn.ac.nz/about/victorias-story/statistics&quot; class&#x3D;&quot;button large&quot;&gt;Join the research&lt;/a&gt;
+			&lt;/figcaption&gt;
+
+
+		&lt;/figure&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="promo-quote">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Promo Quote</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>Promo Quote panel to feature Researchers, facts etc. Can be used with or without an anchor tag</p>
+
+</div>
+<div class="f-item-preview">
+	<div class="quote-panel">
+	<div class="centraliser ">
+		<div class="block ">
+			<a href="#">
+				<figure class="quote full">
+					<blockquote>
+						<h3>Our researchers are making a positive impact - on the lives and wellbeing of people - not just in New Zealand,
+							but around the world - through exceptional innovation and research.</h3>
+					</blockquote>
+					<figcaption>Professor Kate Mcgrath
+						<br> Vice-Provost (Research)</figcaption>
+				</figure>
+			</a>
+		</div>
+	</div>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;div class&#x3D;&quot;quote-panel&quot;&gt;
+	&lt;div class&#x3D;&quot;centraliser &quot;&gt;
+		&lt;div class&#x3D;&quot;block &quot;&gt;
+			&lt;a href&#x3D;&quot;#&quot;&gt;
+				&lt;figure class&#x3D;&quot;quote full&quot;&gt;
+					&lt;blockquote&gt;
+						&lt;h3&gt;Our researchers are making a positive impact - on the lives and wellbeing of people - not just in New Zealand,
+							but around the world - through exceptional innovation and research.&lt;/h3&gt;
+					&lt;/blockquote&gt;
+					&lt;figcaption&gt;Professor Kate Mcgrath
+						&lt;br&gt; Vice-Provost (Research)&lt;/figcaption&gt;
+				&lt;/figure&gt;
+			&lt;/a&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="promo-strip-banner">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Promo Strip Banner</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>Full width intro strip banner with photo background. To be used on top level hub pages.</p>
+
+</div>
+<div class="f-item-preview">
+	<div class="promo-panel strip-banner">
+
+	<figure class=" photo">
+
+
+		<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0009/929007/aerial_2000x800.jpg">
+
+		<figcaption>
+
+			<div>
+				<div class="block formatting">
+					<h1>Research at Victoria</h1>
+					<p>Victoria is New Zealand’s No 1-ranked university for research quality. Our staff and students are committed to research excellence and helping to improve economic, social and environmental wellbeing.</p>
+				</div>
+				<!-- <div class="block formatting"> -->
+				<!-- </div> -->
+			</div>
+
+		</figcaption>
+
+
+
+	</figure>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;div class&#x3D;&quot;promo-panel strip-banner&quot;&gt;
+
+	&lt;figure class&#x3D;&quot; photo&quot;&gt;
+
+
+		&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0009/929007/aerial_2000x800.jpg&quot;&gt;
+
+		&lt;figcaption&gt;
+
+			&lt;div&gt;
+				&lt;div class&#x3D;&quot;block formatting&quot;&gt;
+					&lt;h1&gt;Research at Victoria&lt;/h1&gt;
+					&lt;p&gt;Victoria is New Zealand’s No 1-ranked university for research quality. Our staff and students are committed to research excellence and helping to improve economic, social and environmental wellbeing.&lt;/p&gt;
+				&lt;/div&gt;
+				&lt;!-- &lt;div class&#x3D;&quot;block formatting&quot;&gt; --&gt;
+				&lt;!-- &lt;/div&gt; --&gt;
+			&lt;/div&gt;
+
+		&lt;/figcaption&gt;
+
+
+
+	&lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="promo-with-1x-image">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Promo With 1x Image</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>[TA] - Column Width Promo Panel with Image (HP)
+<a href="https://victoriauniversity.atlassian.net/browse/WIP-1679">https://victoriauniversity.atlassian.net/browse/WIP-1679</a></p>
+
+</div>
+<div class="f-item-preview">
+	<div class="promo-panel">
+	<div class="block formatting centraliser">
+		<figure class=" ">
+
+
+			<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0010/351739/qs-stars.jpg">
+
+			<figcaption>
+				<h1>Our national and global rankings</h1>
+				<p>We are New Zealand's top ranked university for research quality and consistently rank among the world’s best universities.</p>
+				<a title="Why to study at Victoria" href="https://www.wgtn.ac.nz/about/victorias-story/statistics" class="button large">Victoria at a glance</a>
+			</figcaption>
+
+
+		</figure>
+	</div>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;div class&#x3D;&quot;promo-panel&quot;&gt;
+	&lt;div class&#x3D;&quot;block formatting centraliser&quot;&gt;
+		&lt;figure class&#x3D;&quot; &quot;&gt;
+
+
+			&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0010/351739/qs-stars.jpg&quot;&gt;
+
+			&lt;figcaption&gt;
+				&lt;h1&gt;Our national and global rankings&lt;/h1&gt;
+				&lt;p&gt;We are New Zealand&#x27;s top ranked university for research quality and consistently rank among the world’s best universities.&lt;/p&gt;
+				&lt;a title&#x3D;&quot;Why to study at Victoria&quot; href&#x3D;&quot;https://www.wgtn.ac.nz/about/victorias-story/statistics&quot; class&#x3D;&quot;button large&quot;&gt;Victoria at a glance&lt;/a&gt;
+			&lt;/figcaption&gt;
+
+
+		&lt;/figure&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="promo-with-1x-image-rtl">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Promo With 1x Image Rtl</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>[TA] - Column Width Promo Panel with Image (HP)
+<a href="https://victoriauniversity.atlassian.net/browse/WIP-1679">https://victoriauniversity.atlassian.net/browse/WIP-1679</a></p>
+
+</div>
+<div class="f-item-preview">
+	<div class="promo-panel">
+	<div class="centraliser block formatting">
+		<figure class=" ">
+
+
+
+			<figcaption>
+				<h1>Living in Wellington</h1>
+				<p>Hear our students talk about why they love living in the capital city.</p>
+				<a href="#" title="Play the video about Wellington" class="button large">Watch the video</a>
+			</figcaption>
+
+			<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0004/286015/wellington-info-evening-wide-3200x1800px.jpg">
+
+
+		</figure>
+	</div>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;div class&#x3D;&quot;promo-panel&quot;&gt;
+	&lt;div class&#x3D;&quot;centraliser block formatting&quot;&gt;
+		&lt;figure class&#x3D;&quot; &quot;&gt;
+
+
+
+			&lt;figcaption&gt;
+				&lt;h1&gt;Living in Wellington&lt;/h1&gt;
+				&lt;p&gt;Hear our students talk about why they love living in the capital city.&lt;/p&gt;
+				&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Play the video about Wellington&quot; class&#x3D;&quot;button large&quot;&gt;Watch the video&lt;/a&gt;
+			&lt;/figcaption&gt;
+
+			&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0004/286015/wellington-info-evening-wide-3200x1800px.jpg&quot;&gt;
+
+
+		&lt;/figure&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="promo-with-button">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Promo With Button</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>[TA] - column width promo with text and button (+HP)(MVP)
+<a href="https://victoriauniversity.atlassian.net/browse/WIP-2079">https://victoriauniversity.atlassian.net/browse/WIP-2079</a></p>
+
+</div>
+<div class="f-item-preview">
+	<div class="promo-panel">
+	<div class="block formatting centraliser">
+
+		<figure class=" ">
+
+
+
+			<figcaption>
+				<h2>When you first arrive</h2>
+				<p>Settle into life in New Zealand by checking out the campus, Wellington city and your new accommodation.</p>
+				<a href="#" title="Check out our student services" class="button">Student services</a>
+			</figcaption>
+
+
+		</figure>
+	</div>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;div class&#x3D;&quot;promo-panel&quot;&gt;
+	&lt;div class&#x3D;&quot;block formatting centraliser&quot;&gt;
+
+		&lt;figure class&#x3D;&quot; &quot;&gt;
+
+
+
+			&lt;figcaption&gt;
+				&lt;h2&gt;When you first arrive&lt;/h2&gt;
+				&lt;p&gt;Settle into life in New Zealand by checking out the campus, Wellington city and your new accommodation.&lt;/p&gt;
+				&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Check out our student services&quot; class&#x3D;&quot;button&quot;&gt;Student services&lt;/a&gt;
+			&lt;/figcaption&gt;
+
+
+		&lt;/figure&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="promo-with-left-title-image">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Promo With Left Title Image</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>Promo with image left and title overlay. For use on high level hub pages.</p>
+
+</div>
+<div class="f-item-preview">
+	<!-- promo panel with left aligned title and image -->
+<div class="promo-panel title-image">
+	<div class="block formatting centraliser">
+		<figure class=" ">
+
+			<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0016/370510/varieties/ls_medium.jpg">
+
+			<figcaption>
+				<h3>What is a research degree?</h3>
+			</figcaption>
+		</figure>
+		<section>
+			<p>Victoria’s research output is used at community, national and international levels. Our academic and business partnerships
+				have global impacts in many fields.</p>
+			<p>Victoria’s research output is used at community, national and international levels. Our academic and business partnerships
+				have global impacts in many fields.
+			</p>
+			<a title="Why to study at Victoria" href="https://www.wgtn.ac.nz/about/victorias-story/statistics" class="button large">Learn more</a>
+		</section>
+	</div>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;!-- promo panel with left aligned title and image --&gt;
+&lt;div class&#x3D;&quot;promo-panel title-image&quot;&gt;
+	&lt;div class&#x3D;&quot;block formatting centraliser&quot;&gt;
+		&lt;figure class&#x3D;&quot; &quot;&gt;
+
+			&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0016/370510/varieties/ls_medium.jpg&quot;&gt;
+
+			&lt;figcaption&gt;
+				&lt;h3&gt;What is a research degree?&lt;/h3&gt;
+			&lt;/figcaption&gt;
+		&lt;/figure&gt;
+		&lt;section&gt;
+			&lt;p&gt;Victoria’s research output is used at community, national and international levels. Our academic and business partnerships
+				have global impacts in many fields.&lt;/p&gt;
+			&lt;p&gt;Victoria’s research output is used at community, national and international levels. Our academic and business partnerships
+				have global impacts in many fields.
+			&lt;/p&gt;
+			&lt;a title&#x3D;&quot;Why to study at Victoria&quot; href&#x3D;&quot;https://www.wgtn.ac.nz/about/victorias-story/statistics&quot; class&#x3D;&quot;button large&quot;&gt;Learn more&lt;/a&gt;
+		&lt;/section&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="promo-with-list">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Promo With List</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>[TA] - 1/3 Column Promo with List Underneath
+<a href="https://victoriauniversity.atlassian.net/browse/WIP-1680">https://victoriauniversity.atlassian.net/browse/WIP-1680</a></p>
+
+</div>
+<div class="f-item-preview">
+	<div class="centraliser">
+	<div class="block formatting">
+
+		<h2>Discover Wellington</h2>
+		<section class="grid-flex col-3">
+
+			<figure class=" ">
+
+
+				<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0011/343874/varieties/ls_small.jpg">
+
+				<figcaption>
+
+					<h3> Sport and outdoors
+					</h3>
+					<ul class="links">
+						<li><a href="#" title="Go to the...">Biking in Wellington</a></li>
+						<li><a href="#" title="Go to the..."> Meet native wildlife</a></li>
+						<li><a href="#" title="Go to the..."> Stunning views of Wellington</a></li>
+						<li><a href="#" title="Go to the..."> Sports in the capital</a></li>
+						<li><a href="#" title="Go to the..."> Outdoor, recreation, sports and parks</a></li>
+					</ul>
+				</figcaption>
+
+
+			</figure>
+
+
+
+			<figure class=" ">
+
+
+				<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0016/344032/varieties/ls_small.jpg">
+
+				<figcaption>
+
+					<h3> Eating and drinking
+					</h3>
+					<ul class="links">
+						<li><a href="#" title="Go to the...">Top notch brunch spots</a></li>
+						<li><a href="#" title="Go to the..."> Cheap eats to fine dining</a></li>
+						<li><a href="#" title="Go to the..."> Coffee capital</a></li>
+						<li><a href="#" title="Go to the..."> Craft beer capital</a></li>
+						<li><a href="#" title="Go to the..."> Wellington city markets</a></li>
+					</ul>
+				</figcaption>
+
+
+			</figure>
+
+
+
+
+			<figure class=" ">
+
+
+				<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0010/343873/varieties/ls_small.jpg">
+
+				<figcaption>
+
+					<h3> Culture central
+					</h3>
+					<ul class="links">
+						<li><a href="#" title="Go to the...">Great gigs and cool concerts</a></li>
+						<li><a href="#" title="Go to the..."> Get your fill of festivals</a></li>
+						<li><a href="#" title="Go to the..."> Discover Māori culture</a></li>
+						<li><a href="#" title="Go to the..."> Must see exhibits at Te Papa</a></li>
+						<li><a href="#" title="Go to the..."> Middle of Middle Earth</a></li>
+					</ul>
+				</figcaption>
+
+
+			</figure>
+		</section>
+	</div>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;div class&#x3D;&quot;centraliser&quot;&gt;
+	&lt;div class&#x3D;&quot;block formatting&quot;&gt;
+
+		&lt;h2&gt;Discover Wellington&lt;/h2&gt;
+		&lt;section class&#x3D;&quot;grid-flex col-3&quot;&gt;
+
+			&lt;figure class&#x3D;&quot; &quot;&gt;
+
+
+				&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0011/343874/varieties/ls_small.jpg&quot;&gt;
+
+				&lt;figcaption&gt;
+
+					&lt;h3&gt; Sport and outdoors
+					&lt;/h3&gt;
+					&lt;ul class&#x3D;&quot;links&quot;&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Go to the...&quot;&gt;Biking in Wellington&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Go to the...&quot;&gt; Meet native wildlife&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Go to the...&quot;&gt; Stunning views of Wellington&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Go to the...&quot;&gt; Sports in the capital&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Go to the...&quot;&gt; Outdoor, recreation, sports and parks&lt;/a&gt;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/figcaption&gt;
+
+
+			&lt;/figure&gt;
+
+
+
+			&lt;figure class&#x3D;&quot; &quot;&gt;
+
+
+				&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0016/344032/varieties/ls_small.jpg&quot;&gt;
+
+				&lt;figcaption&gt;
+
+					&lt;h3&gt; Eating and drinking
+					&lt;/h3&gt;
+					&lt;ul class&#x3D;&quot;links&quot;&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Go to the...&quot;&gt;Top notch brunch spots&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Go to the...&quot;&gt; Cheap eats to fine dining&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Go to the...&quot;&gt; Coffee capital&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Go to the...&quot;&gt; Craft beer capital&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Go to the...&quot;&gt; Wellington city markets&lt;/a&gt;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/figcaption&gt;
+
+
+			&lt;/figure&gt;
+
+
+
+
+			&lt;figure class&#x3D;&quot; &quot;&gt;
+
+
+				&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0010/343873/varieties/ls_small.jpg&quot;&gt;
+
+				&lt;figcaption&gt;
+
+					&lt;h3&gt; Culture central
+					&lt;/h3&gt;
+					&lt;ul class&#x3D;&quot;links&quot;&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Go to the...&quot;&gt;Great gigs and cool concerts&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Go to the...&quot;&gt; Get your fill of festivals&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Go to the...&quot;&gt; Discover Māori culture&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Go to the...&quot;&gt; Must see exhibits at Te Papa&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;Go to the...&quot;&gt; Middle of Middle Earth&lt;/a&gt;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/figcaption&gt;
+
+
+			&lt;/figure&gt;
+		&lt;/section&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="promo-with-pattern-bg">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Promo With Pattern Bg</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>[TA] - Full width promo with links list</p>
+<p><a href="https://victoriauniversity.atlassian.net/browse/WIP-1682">https://victoriauniversity.atlassian.net/browse/WIP-1682</a></p>
+
+</div>
+<div class="f-item-preview">
+	<div class="promo-panel pattern">
+
+	<figure class=" pattern">
+
+
+
+		<figcaption>
+			<div class="block formatting">
+				<h1>Community, culture and support</h1>
+
+				</p>Victoria is a welcoming place full of people from a diverse range of communities. There are all sorts of resources and support available to help you make the best of your time at wgtn.</p>
+
+				<!-- TODO: Transform to list of links -->
+				<p>
+					<a class="button flat" href="#">Parents and whānau</a>
+					<a class="button flat" href="#">Māori at Victoria</a>
+					<a class="button flat" href="#">Pasifika at Victoria</a>
+					<a class="button flat" href="#">Student services and support</a>
+				</p>
+			</div>
+		</figcaption>
+
+
+	</figure>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;div class&#x3D;&quot;promo-panel pattern&quot;&gt;
+
+	&lt;figure class&#x3D;&quot; pattern&quot;&gt;
+
+
+
+		&lt;figcaption&gt;
+			&lt;div class&#x3D;&quot;block formatting&quot;&gt;
+				&lt;h1&gt;Community, culture and support&lt;/h1&gt;
+
+				&lt;/p&gt;Victoria is a welcoming place full of people from a diverse range of communities. There are all sorts of resources and support available to help you make the best of your time at wgtn.&lt;/p&gt;
+
+				&lt;!-- TODO: Transform to list of links --&gt;
+				&lt;p&gt;
+					&lt;a class&#x3D;&quot;button flat&quot; href&#x3D;&quot;#&quot;&gt;Parents and whānau&lt;/a&gt;
+					&lt;a class&#x3D;&quot;button flat&quot; href&#x3D;&quot;#&quot;&gt;Māori at Victoria&lt;/a&gt;
+					&lt;a class&#x3D;&quot;button flat&quot; href&#x3D;&quot;#&quot;&gt;Pasifika at Victoria&lt;/a&gt;
+					&lt;a class&#x3D;&quot;button flat&quot; href&#x3D;&quot;#&quot;&gt;Student services and support&lt;/a&gt;
+				&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/figcaption&gt;
+
+
+	&lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="promo-with-photo-background-left-text-panel">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Promo With Photo Background Left Text Panel</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>Full width promo with photo background and left aligned text panel. For use on high level hub pages.</p>
+
+</div>
+<div class="f-item-preview">
+	<div class="promo-panel">
+
+	<figure class=" photo left-text-panel">
+
+
+		<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0004/343957/hunter-building-close-up-2000x800px.jpg">
+
+		<figcaption>
+
+			<div class="block formatting">
+				<h1>Research impacts</h1>
+				<p>Victoria’s research output is used at community, national and international levels. Our academic and business partnerships provide global solutions in many fields.</p>
+				<a href="#" class="button primary large">Learn more</a>
+			</div>
+
+		</figcaption>
+
+
+
+	</figure>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;div class&#x3D;&quot;promo-panel&quot;&gt;
+
+	&lt;figure class&#x3D;&quot; photo left-text-panel&quot;&gt;
+
+
+		&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0004/343957/hunter-building-close-up-2000x800px.jpg&quot;&gt;
+
+		&lt;figcaption&gt;
+
+			&lt;div class&#x3D;&quot;block formatting&quot;&gt;
+				&lt;h1&gt;Research impacts&lt;/h1&gt;
+				&lt;p&gt;Victoria’s research output is used at community, national and international levels. Our academic and business partnerships provide global solutions in many fields.&lt;/p&gt;
+				&lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;button primary large&quot;&gt;Learn more&lt;/a&gt;
+			&lt;/div&gt;
+
+		&lt;/figcaption&gt;
+
+
+
+	&lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="promo-with-photo-bg">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Promo With Photo Bg</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>Full width promo with photo background.</p>
+
+</div>
+<div class="f-item-preview">
+	<div class="promo-panel">
+
+	<figure class=" photo">
+
+
+		<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0008/760517/varieties/ls_large.jpeg">
+
+		<figcaption>
+
+			<div class="block formatting">
+				<h1>Life on campus</h1>
+				<p>Coming to Victoria is about more than just studying. Explore our campuses and find all you need to know about our facilities, food and drink, healthcare and banking, transport and how you can get involved in life on campus.</p>
+				<a href="#" class="button primary large">Student life at Victoria</a>
+			</div>
+
+		</figcaption>
+
+
+
+	</figure>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;div class&#x3D;&quot;promo-panel&quot;&gt;
+
+	&lt;figure class&#x3D;&quot; photo&quot;&gt;
+
+
+		&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0008/760517/varieties/ls_large.jpeg&quot;&gt;
+
+		&lt;figcaption&gt;
+
+			&lt;div class&#x3D;&quot;block formatting&quot;&gt;
+				&lt;h1&gt;Life on campus&lt;/h1&gt;
+				&lt;p&gt;Coming to Victoria is about more than just studying. Explore our campuses and find all you need to know about our facilities, food and drink, healthcare and banking, transport and how you can get involved in life on campus.&lt;/p&gt;
+				&lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;button primary large&quot;&gt;Student life at Victoria&lt;/a&gt;
+			&lt;/div&gt;
+
+		&lt;/figcaption&gt;
+
+
+
+	&lt;/figure&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="promo-with-two-panels">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Promo With Two Panels</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>Promo panel with two side by side panels. Can be used with or without an image on high level hub pages.</p>
+
+</div>
+<div class="f-item-preview">
+	<!-- Promo Panel - two panels -->
+<div class="promo-panel two-panels">
+	<div class="block formatting centraliser">
+		<figure class=" ">
+			<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0011/386246/phd_3200x1800.jpg">
+			<figcaption>
+				<h2>Study with us</h2>
+				<p>Join Victoria’s world-leading researchers and take your expertise to the next level when you enrol for a PhD, Masters or other postgraduate study with us.</p>
+				<a href="#" title="" class="button large flat-border">Study with us</a>
+			</figcaption>
+		</figure>
+
+		<figure class=" ">
+			<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0011/386246/phd_3200x1800.jpg">
+			<figcaption>
+				<h2>Work with us </h2>
+				<p>We have the technologies and expertise to support collaborations, project resourcing, grant access and the translation of your ideas into impacts.</p>
+				<a href="#" title="" class="button large flat-border">Work with us</a>
+			</figcaption>
+		</figure>
+	</div>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;!-- Promo Panel - two panels --&gt;
+&lt;div class&#x3D;&quot;promo-panel two-panels&quot;&gt;
+	&lt;div class&#x3D;&quot;block formatting centraliser&quot;&gt;
+		&lt;figure class&#x3D;&quot; &quot;&gt;
+			&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0011/386246/phd_3200x1800.jpg&quot;&gt;
+			&lt;figcaption&gt;
+				&lt;h2&gt;Study with us&lt;/h2&gt;
+				&lt;p&gt;Join Victoria’s world-leading researchers and take your expertise to the next level when you enrol for a PhD, Masters or other postgraduate study with us.&lt;/p&gt;
+				&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;&quot; class&#x3D;&quot;button large flat-border&quot;&gt;Study with us&lt;/a&gt;
+			&lt;/figcaption&gt;
+		&lt;/figure&gt;
+
+		&lt;figure class&#x3D;&quot; &quot;&gt;
+			&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0011/386246/phd_3200x1800.jpg&quot;&gt;
+			&lt;figcaption&gt;
+				&lt;h2&gt;Work with us &lt;/h2&gt;
+				&lt;p&gt;We have the technologies and expertise to support collaborations, project resourcing, grant access and the translation of your ideas into impacts.&lt;/p&gt;
+				&lt;a href&#x3D;&quot;#&quot; title&#x3D;&quot;&quot; class&#x3D;&quot;button large flat-border&quot;&gt;Work with us&lt;/a&gt;
+			&lt;/figcaption&gt;
+		&lt;/figure&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="search-bar">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Search Bar</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>Search bar widget. For use on high level hub pages.</p>
+
+</div>
+<div class="f-item-preview">
+	<!-- Search bar -->
+<div class="centraliser">
+	<div class="block">
+		<div class="search-panel">
+			<form class="form wide-search-bar" method="GET" action="https://www.wgtn.ac.nz/research/researchers">
+				<h1 style="margin-bottom: 0.5rem">Find an expert</h1>
+				<div class="group required">
+					<input type="text" name="search" id="search" class="panel-search-input" placeholder="Find an expert..">
+					<input type="submit" class="button large primary" value="Search">
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;!-- Search bar --&gt;
+&lt;div class&#x3D;&quot;centraliser&quot;&gt;
+	&lt;div class&#x3D;&quot;block&quot;&gt;
+		&lt;div class&#x3D;&quot;search-panel&quot;&gt;
+			&lt;form class&#x3D;&quot;form wide-search-bar&quot; method&#x3D;&quot;GET&quot; action&#x3D;&quot;https://www.wgtn.ac.nz/research/researchers&quot;&gt;
+				&lt;h1 style&#x3D;&quot;margin-bottom: 0.5rem&quot;&gt;Find an expert&lt;/h1&gt;
+				&lt;div class&#x3D;&quot;group required&quot;&gt;
+					&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;search&quot; id&#x3D;&quot;search&quot; class&#x3D;&quot;panel-search-input&quot; placeholder&#x3D;&quot;Find an expert..&quot;&gt;
+					&lt;input type&#x3D;&quot;submit&quot; class&#x3D;&quot;button large primary&quot; value&#x3D;&quot;Search&quot;&gt;
+				&lt;/div&gt;
+
+			&lt;/form&gt;
+
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="search-content">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Search Content</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-preview">
+	<div class="p-search">
+	<div class="p-search__main">
+		<div class="c-stack ">
+
+
+			<div class="c-stack-info">
+				<h4 class="c-stack-title">
+					<a class="c-stack-link" href="#mainLink">Default Card in Stack</a>
+
+					<small>https://www.wgtn.ac.nz/explore/study-areas/software-and-computer-science
+					</small>
+				</h4>
+
+
+				<p class="c-stack-intro">Study Software Engineering and Computer Science and be at the forefront of the information revolution.</p>
+
+				<div class="c-stack-body">
+
+					<p>Study Software Engineering and Computer Science and be at the forefront of the information revolution. ... Find out what it’s like to study Software and Computer Science at Victoria from two students and a lecturer.</p>
+				</div>
+
+				<div class="c-stack-foot">
+
+					<ul class="links">
+						<li><a href="#footLink">Study options | Software and Computer Science</a></li>
+						<li><a href="#footLink">People | Software and Computer Science</a></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<div class="c-stack ">
+
+
+			<div class="c-stack-info">
+				<h4 class="c-stack-title">
+					<a class="c-stack-link" href="#mainLink">Default Card in Stack</a>
+
+					<small>https://www.wgtn.ac.nz/explore/study-areas/software-and-computer-science
+					</small>
+				</h4>
+
+
+				<p class="c-stack-intro">Study Software Engineering and Computer Science and be at the forefront of the information revolution.</p>
+
+				<div class="c-stack-body">
+
+					<p>Study Software Engineering and Computer Science and be at the forefront of the information revolution. ... Find out what it’s like to study Software and Computer Science at Victoria from two students and a lecturer.</p>
+				</div>
+
+				<div class="c-stack-foot">
+
+					<ul class="links">
+						<li><a href="#footLink">Study options | Software and Computer Science</a></li>
+						<li><a href="#footLink">People | Software and Computer Science</a></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<div class="c-stack c-stack-flexin c-stack-profile">
+			<figure class="c-stack-fig">
+				<img class="c-stack-fig--image" src="https://www.wgtn.ac.nz/images/staffpics/nopicture.gif" alt="Dr Ina Reichenberger">
+			</figure>
+
+
+			<div class="c-stack-info">
+				<h4 class="c-stack-title">
+					<a class="c-stack-link" href="#mainLink">Dr Ina Reichenberger</a>
+
+				</h4>
+
+
+
+				<div class="c-stack-body">
+
+					<header class="formatting">
+						<p class="subtitle">
+							<strong>Lecturer</strong> <span>School of Management</span>
+						</p>
+					</header>
+				</div>
+
+				<div class="c-stack-foot">
+					<ul class="meta">
+						<li class="highlight">
+							<a href="mailto:ina.reichenberger@vuw.ac.nz" title="Send an email to Dr Ina Reichenberger">
+								<i class="icon-mail"></i> ina.reichenberger@vuw.ac.nz
+							</a>
+						</li>
+						<li class="highlight">
+							<a href="tel:04 4635375" title="Call to Dr Ina Reichenberger work phone">
+								<i class="icon-phone"></i> 04 4635375
+							</a>
+						</li>
+						<li>
+							<i class="icon-pin"></i> Room 917, Rutherford House 23 Lambton Quay
+						</li>
+					</ul>
+
+				</div>
+
+			</div>
+		</div>
+		<div class="c-stack ">
+
+
+			<div class="c-stack-info">
+				<h4 class="c-stack-title">
+					<a class="c-stack-link" href="#mainLink">Default Card in Stack</a>
+
+					<small>https://www.wgtn.ac.nz/explore/study-areas/software-and-computer-science
+					</small>
+				</h4>
+
+
+				<p class="c-stack-intro">Study Software Engineering and Computer Science and be at the forefront of the information revolution.</p>
+
+				<div class="c-stack-body">
+
+					<p>Study Software Engineering and Computer Science and be at the forefront of the information revolution. ... Find out what it’s like to study Software and Computer Science at Victoria from two students and a lecturer.</p>
+				</div>
+
+				<div class="c-stack-foot">
+
+					<ul class="links">
+						<li><a href="#footLink">Study options | Software and Computer Science</a></li>
+						<li><a href="#footLink">People | Software and Computer Science</a></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<div class="c-stack c-stack-flexin">
+
+			<div class="c-stack-fig c-stack-fig--panel">
+				<h4 class="c-stack-code">GCertCom </h4>
+
+				<div class="c-stack-figcaption">
+					<p><i class="icon-calendar"></i> <em>Next start date 11 Nov 2019</em></p>
+
+				</div>
+			</div>
+
+			<div class="c-stack-info">
+				<h4 class="c-stack-title">
+					<a class="c-stack-link" href="#mainLink">Meta Card in Stack</a>
+
+					<small>https://www.wgtn.ac.nz/explore/degrees/science/overview
+					</small>
+				</h4>
+
+
+				<p class="c-stack-intro">Follow your passion, develop problem-solving skills, and dive into a fascinating career with a Bachelor of Science.</p>
+
+				<div class="c-stack-body">
+
+					<ul class="meta meta--labelled">
+						<li class="highlight meta-item">
+							<h5 class="meta-label"><i aria-hidden="true" class="icon-graduation-cap"></i> <span class="meta-labelText">Level of Study</span></h4>
+								<p class="meta-data"><strong>Undergraduate</strong></p>
+						</li>
+
+						<li class="highlight meta-item">
+							<h5 class="meta-label"><i aria-hidden="true" class="icon-clock"></i> <span class="meta-labelText">Length of full-time study</span></h4>
+								<p class="meta-data"><strong>3 years (360 points)</strong></p>
+						</li>
+
+						<li class="highlight meta-item">
+							<h5 class="meta-label"><i aria-hidden="true" class="icon-pin"></i> <span class="meta-labelText">Location</span></h5>
+							<p class="meta-data"><strong>Kelburn, Wellington</strong></p>
+						</li>
+					</ul>
+				</div>
+
+				<div class="c-stack-foot">
+
+				</div>
+
+			</div>
+		</div>
+		<div class="c-stack c-stack-flexin">
+
+			<div class="c-stack-fig c-stack-fig--panel">
+				<h4 class="c-stack-code">GISC401 <span>(2020)</span> </h4>
+
+				<div class="c-stack-figcaption">
+
+					<h5>Trimester</h5>
+					<ul class="c-stack-figlist">
+						<li>
+							<a class="c-stack-figLink" href="#trimLink">1</a>
+						</li>
+						<li>
+							<a class="c-stack-figLink" href="#trimLink">3</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="c-stack-info">
+				<h4 class="c-stack-title">
+					<a class="c-stack-link" href="#mainLink">Meta Card in Stack</a>
+
+					<small>https://www.wgtn.ac.nz/explore/degrees/science/overview
+					</small>
+				</h4>
+
+
+
+				<div class="c-stack-body">
+					<p>Study Software Engineering and Computer Science and be at the forefront of the information revolution. ... Find out what it’s like to study Software and Computer Science at Victoria from two students and a lecturer.</p>
+
+					<ul class="meta meta--labelled">
+						<li class="highlight meta-item">
+							<h5 class="meta-label"><i aria-hidden="true" class="icon-graduation-cap"></i> <span class="meta-labelText">Points</span></h4>
+								<p class="meta-data"><strong>20 points</strong></p>
+						</li>
+
+						<li class="highlight meta-item">
+							<h5 class="meta-label"><i aria-hidden="true" class="icon-clock"></i> <span class="meta-labelText">Duration</span></h4>
+								<p class="meta-data"><strong>1 trimester</strong></p>
+						</li>
+
+						<li class="highlight meta-item">
+							<h5 class="meta-label"><i aria-hidden="true" class="icon-user"></i> <span class="meta-labelText">Coordinator</span></h5>
+							<p class="meta-data"><strong>Jeffery Shima</strong></p>
+						</li>
+					</ul>
+				</div>
+
+				<div class="c-stack-foot">
+
+				</div>
+
+			</div>
+		</div>
+		<div class="c-stack c-stack-flexin c-stack-profile">
+			<figure class="c-stack-fig">
+				<img class="c-stack-fig--image" src="https://www.wgtn.ac.nz/images/staffpics/nopicture.gif" alt="Dr Ina Reichenberger">
+			</figure>
+
+
+			<div class="c-stack-info">
+				<h4 class="c-stack-title">
+					<a class="c-stack-link" href="#mainLink">Dr Ina Reichenberger</a>
+
+				</h4>
+
+
+
+				<div class="c-stack-body">
+
+					<header class="formatting">
+						<p class="subtitle">
+							<strong>Lecturer</strong> <span>School of Management</span>
+						</p>
+					</header>
+				</div>
+
+				<div class="c-stack-foot">
+					<ul class="meta">
+						<li class="highlight">
+							<a href="mailto:ina.reichenberger@vuw.ac.nz" title="Send an email to Dr Ina Reichenberger">
+								<i class="icon-mail"></i> ina.reichenberger@vuw.ac.nz
+							</a>
+						</li>
+						<li class="highlight">
+							<a href="tel:04 4635375" title="Call to Dr Ina Reichenberger work phone">
+								<i class="icon-phone"></i> 04 4635375
+							</a>
+						</li>
+						<li>
+							<i class="icon-pin"></i> Room 917, Rutherford House 23 Lambton Quay
+						</li>
+					</ul>
+
+				</div>
+
+			</div>
+		</div>
+		<div class="c-stack ">
+
+
+			<div class="c-stack-info">
+				<h4 class="c-stack-title">
+					<a class="c-stack-link" href="#mainLink">Default Card in Stack</a>
+
+					<small>https://www.wgtn.ac.nz/explore/study-areas/software-and-computer-science
+					</small>
+				</h4>
+
+
+				<p class="c-stack-intro">Study Software Engineering and Computer Science and be at the forefront of the information revolution.</p>
+
+				<div class="c-stack-body">
+
+					<p>Study Software Engineering and Computer Science and be at the forefront of the information revolution. ... Find out what it’s like to study Software and Computer Science at Victoria from two students and a lecturer.</p>
+				</div>
+
+				<div class="c-stack-foot">
+
+					<ul class="links">
+						<li><a href="#footLink">Study options | Software and Computer Science</a></li>
+						<li><a href="#footLink">People | Software and Computer Science</a></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<div class="c-stack c-stack-flexin">
+
+			<div class="c-stack-fig c-stack-fig--panel">
+				<h4 class="c-stack-code">GISC401 <span>(2020)</span> </h4>
+
+				<div class="c-stack-figcaption">
+
+					<h5>Trimester</h5>
+					<ul class="c-stack-figlist">
+						<li>
+							<a class="c-stack-figLink" href="#trimLink">1</a>
+						</li>
+						<li>
+							<a class="c-stack-figLink" href="#trimLink">3</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="c-stack-info">
+				<h4 class="c-stack-title">
+					<a class="c-stack-link" href="#mainLink">Meta Card in Stack</a>
+
+					<small>https://www.wgtn.ac.nz/explore/degrees/science/overview
+					</small>
+				</h4>
+
+
+
+				<div class="c-stack-body">
+					<p>Study Software Engineering and Computer Science and be at the forefront of the information revolution. ... Find out what it’s like to study Software and Computer Science at Victoria from two students and a lecturer.</p>
+
+					<ul class="meta meta--labelled">
+						<li class="highlight meta-item">
+							<h5 class="meta-label"><i aria-hidden="true" class="icon-graduation-cap"></i> <span class="meta-labelText">Points</span></h4>
+								<p class="meta-data"><strong>20 points</strong></p>
+						</li>
+
+						<li class="highlight meta-item">
+							<h5 class="meta-label"><i aria-hidden="true" class="icon-clock"></i> <span class="meta-labelText">Duration</span></h4>
+								<p class="meta-data"><strong>1 trimester</strong></p>
+						</li>
+
+						<li class="highlight meta-item">
+							<h5 class="meta-label"><i aria-hidden="true" class="icon-user"></i> <span class="meta-labelText">Coordinator</span></h5>
+							<p class="meta-data"><strong>Jeffery Shima</strong></p>
+						</li>
+					</ul>
+				</div>
+
+				<div class="c-stack-foot">
+
+				</div>
+
+			</div>
+		</div>
+		<div class="c-stack ">
+
+
+			<div class="c-stack-info">
+				<h4 class="c-stack-title">
+					<a class="c-stack-link" href="#mainLink">Default Card in Stack</a>
+
+					<small>https://www.wgtn.ac.nz/explore/study-areas/software-and-computer-science
+					</small>
+				</h4>
+
+
+				<p class="c-stack-intro">Study Software Engineering and Computer Science and be at the forefront of the information revolution.</p>
+
+				<div class="c-stack-body">
+
+					<p>Study Software Engineering and Computer Science and be at the forefront of the information revolution. ... Find out what it’s like to study Software and Computer Science at Victoria from two students and a lecturer.</p>
+				</div>
+
+				<div class="c-stack-foot">
+
+					<ul class="links">
+						<li><a href="#footLink">Study options | Software and Computer Science</a></li>
+						<li><a href="#footLink">People | Software and Computer Science</a></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<div class="c-stack ">
+
+
+			<div class="c-stack-info">
+				<h4 class="c-stack-title">
+					<a class="c-stack-link" href="#mainLink">Datacom Systems Scholarship in Computer Science</a>
+
+					<small>https://www.wgtn.ac.nz/scholarships/current/datacom-systems-scholarship-in-computer-science
+					</small>
+				</h4>
+
+
+
+				<div class="c-stack-body">
+
+					<p>This Scholarship has been sponsored by Datacom Systems who initially established the scholarship for a period of five years, until 2002, and have...</p>
+
+					<ul class="meta meta--labelled meta--grid">
+						<li class="highlight meta-item">
+							<h5 class="meta-label"><i aria-hidden="true" class="icon-calendar"></i> <span class="meta-labelText">Closing</span></h4>
+								<p class="meta-data"><strong>1 November 2019</strong></p>
+						</li>
+
+						<li class="highlight meta-item">
+							<h5 class="meta-label"><i aria-hidden="true" class="icon-people"></i> <span class="meta-labelText">Category</span></h4>
+								<p class="meta-data"><strong>Māori students; Pasifika students; Students facing financial hardship</strong></p>
+						</li>
+
+						<li class="highlight meta-item">
+							<h5 class="meta-label"><i aria-hidden="true" class="icon-graduation-cap"></i> <span class="meta-labelText">Level</span></h5>
+							<p class="meta-data"><strong>School leaver / 1st year</strong></p>
+						</li>
+
+						<li class="highlight meta-item">
+							<h5 class="meta-label"><i aria-hidden="true" class="icon-book"></i> <span class="meta-labelText">Study Areas</span></h5>
+							<p class="meta-data"><strong>Music</strong></p>
+						</li>
+					</ul>
+				</div>
+
+				<div class="c-stack-foot">
+
+				</div>
+
+			</div>
+		</div> <!-- Pagination -->
+		<nav class="pagination">
+			<!-- 'Previous page' -->
+			<a class="button primary no-icon previous" rel="prev" href="http://cms.wgtn.ac.nz/vbs/about/news?mode=results&amp;current_result_page=10&amp;results_per_page=5" title="Previous page">Previous</a>
+			<!-- 'Next page' -->
+			<a class="button primary no-icon next" rel="next" href="http://cms.wgtn.ac.nz/vbs/about/news?mode=results&amp;current_result_page=12&amp;results_per_page=5" title="Next page">Next</a>
+			<div class="pages">
+				<span class="icon 3dot">...</span>
+				<!-- ... -->
+				<!-- Show only two prior and two next pages -->
+				<a class="button primary no-icon" href="http://cms.wgtn.ac.nz/vbs/about/news?mode=results&amp;current_result_page=11&amp;results_per_page=5&amp;result_388447_result_page=9" title="9 out of  pages">9</a>
+				<a class="button primary no-icon" href="http://cms.wgtn.ac.nz/vbs/about/news?mode=results&amp;current_result_page=11&amp;results_per_page=5&amp;result_388447_result_page=10" title="10 out of  pages">10</a> <span class="button primary no-icon active">11</span> <a class="button primary no-icon" href="http://cms.wgtn.ac.nz/vbs/about/news?mode=results&amp;current_result_page=11&amp;results_per_page=5&amp;result_388447_result_page=12" title="12 out of  pages">12</a> <a class="button primary no-icon" href="http://cms.wgtn.ac.nz/vbs/about/news?mode=results&amp;current_result_page=11&amp;results_per_page=5&amp;result_388447_result_page=13" title="13 out of  pages">13</a>
+				<span class="icon 3dot">...</span>
+				<!-- ... -->
+			</div>
+		</nav>
+	</div>
+
+	<div class="p-search__aside">
+		<article class="data-sidebar data-downloads">
+			<div id="search_facets">
+				<h2>Limit search to</h2>
+
+				<ul class="toggle_block active facet_links">
+					<li class="tag"><a href="https://cms.wgtn.ac.nz/staff/new-search/search?query=Degree requirements&amp;gscope1=3&amp;gn=Library">Library</a></li>
+					<li class="tag"><a href="https://cms.wgtn.ac.nz/staff/new-search/search?query=Degree requirements&amp;gscope1=2&amp;gn=ITS">ITS</a></li>
+					<li class="tag"><a href="https://cms.wgtn.ac.nz/staff/new-search/search?query=Degree requirements&amp;gscope1=1&amp;gn=Documents">Documents</a></li>
+				</ul>
+			</div>
+		</article>
+
+		<article class="data-sidebar data-downloads">
+			<div id="search_facets">
+				<h2>Narrow your search</h2>
+
+				<h3 class="toggle">File type</h3>
+
+				<ul class="toggle_block active facet_links">
+					<li class="tag"><a href="https://cms.wgtn.ac.nz/staff/new-search/search?query=Degree requirements&amp;filter1=f.File type|f:doc">doc (16)</a></li>
+					<li class="tag"><a href="https://cms.wgtn.ac.nz/staff/new-search/search?query=Degree requirements&amp;filter1=f.File type|f:docx">docx (65)</a></li>
+					<li class="tag"><a href="https://cms.wgtn.ac.nz/staff/new-search/search?query=Degree requirements&amp;filter1=f.File type|f:pdf">pdf (400)</a></li>
+					<li class="tag"><a href="https://cms.wgtn.ac.nz/staff/new-search/search?query=Degree requirements&amp;filter1=f.File type|f:pptx">pptx (1)</a></li>
+					<li class="tag"><a href="https://cms.wgtn.ac.nz/staff/new-search/search?query=Degree requirements&amp;filter1=f.File type|f:xlsm">xlsm (2)</a></li>
+					<li class="tag"><a href="https://cms.wgtn.ac.nz/staff/new-search/search?query=Degree requirements&amp;filter1=f.File type|f:xlsx">xlsx (13)</a></li>
+				</ul>
+			</div>
+		</article>
+	</div>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;div class&#x3D;&quot;p-search&quot;&gt;
+	&lt;div class&#x3D;&quot;p-search__main&quot;&gt;
+		&lt;div class&#x3D;&quot;c-stack &quot;&gt;
+
+
+			&lt;div class&#x3D;&quot;c-stack-info&quot;&gt;
+				&lt;h4 class&#x3D;&quot;c-stack-title&quot;&gt;
+					&lt;a class&#x3D;&quot;c-stack-link&quot; href&#x3D;&quot;#mainLink&quot;&gt;Default Card in Stack&lt;/a&gt;
+
+					&lt;small&gt;https://www.wgtn.ac.nz/explore/study-areas/software-and-computer-science
+					&lt;/small&gt;
+				&lt;/h4&gt;
+
+
+				&lt;p class&#x3D;&quot;c-stack-intro&quot;&gt;Study Software Engineering and Computer Science and be at the forefront of the information revolution.&lt;/p&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-body&quot;&gt;
+
+					&lt;p&gt;Study Software Engineering and Computer Science and be at the forefront of the information revolution. ... Find out what it’s like to study Software and Computer Science at Victoria from two students and a lecturer.&lt;/p&gt;
+				&lt;/div&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-foot&quot;&gt;
+
+					&lt;ul class&#x3D;&quot;links&quot;&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#footLink&quot;&gt;Study options | Software and Computer Science&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#footLink&quot;&gt;People | Software and Computer Science&lt;/a&gt;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/div&gt;
+
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class&#x3D;&quot;c-stack &quot;&gt;
+
+
+			&lt;div class&#x3D;&quot;c-stack-info&quot;&gt;
+				&lt;h4 class&#x3D;&quot;c-stack-title&quot;&gt;
+					&lt;a class&#x3D;&quot;c-stack-link&quot; href&#x3D;&quot;#mainLink&quot;&gt;Default Card in Stack&lt;/a&gt;
+
+					&lt;small&gt;https://www.wgtn.ac.nz/explore/study-areas/software-and-computer-science
+					&lt;/small&gt;
+				&lt;/h4&gt;
+
+
+				&lt;p class&#x3D;&quot;c-stack-intro&quot;&gt;Study Software Engineering and Computer Science and be at the forefront of the information revolution.&lt;/p&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-body&quot;&gt;
+
+					&lt;p&gt;Study Software Engineering and Computer Science and be at the forefront of the information revolution. ... Find out what it’s like to study Software and Computer Science at Victoria from two students and a lecturer.&lt;/p&gt;
+				&lt;/div&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-foot&quot;&gt;
+
+					&lt;ul class&#x3D;&quot;links&quot;&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#footLink&quot;&gt;Study options | Software and Computer Science&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#footLink&quot;&gt;People | Software and Computer Science&lt;/a&gt;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/div&gt;
+
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class&#x3D;&quot;c-stack c-stack-flexin c-stack-profile&quot;&gt;
+			&lt;figure class&#x3D;&quot;c-stack-fig&quot;&gt;
+				&lt;img class&#x3D;&quot;c-stack-fig--image&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/images/staffpics/nopicture.gif&quot; alt&#x3D;&quot;Dr Ina Reichenberger&quot;&gt;
+			&lt;/figure&gt;
+
+
+			&lt;div class&#x3D;&quot;c-stack-info&quot;&gt;
+				&lt;h4 class&#x3D;&quot;c-stack-title&quot;&gt;
+					&lt;a class&#x3D;&quot;c-stack-link&quot; href&#x3D;&quot;#mainLink&quot;&gt;Dr Ina Reichenberger&lt;/a&gt;
+
+				&lt;/h4&gt;
+
+
+
+				&lt;div class&#x3D;&quot;c-stack-body&quot;&gt;
+
+					&lt;header class&#x3D;&quot;formatting&quot;&gt;
+						&lt;p class&#x3D;&quot;subtitle&quot;&gt;
+							&lt;strong&gt;Lecturer&lt;/strong&gt; &lt;span&gt;School of Management&lt;/span&gt;
+						&lt;/p&gt;
+					&lt;/header&gt;
+				&lt;/div&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-foot&quot;&gt;
+					&lt;ul class&#x3D;&quot;meta&quot;&gt;
+						&lt;li class&#x3D;&quot;highlight&quot;&gt;
+							&lt;a href&#x3D;&quot;mailto:ina.reichenberger@vuw.ac.nz&quot; title&#x3D;&quot;Send an email to Dr Ina Reichenberger&quot;&gt;
+								&lt;i class&#x3D;&quot;icon-mail&quot;&gt;&lt;/i&gt; ina.reichenberger@vuw.ac.nz
+							&lt;/a&gt;
+						&lt;/li&gt;
+						&lt;li class&#x3D;&quot;highlight&quot;&gt;
+							&lt;a href&#x3D;&quot;tel:04 4635375&quot; title&#x3D;&quot;Call to Dr Ina Reichenberger work phone&quot;&gt;
+								&lt;i class&#x3D;&quot;icon-phone&quot;&gt;&lt;/i&gt; 04 4635375
+							&lt;/a&gt;
+						&lt;/li&gt;
+						&lt;li&gt;
+							&lt;i class&#x3D;&quot;icon-pin&quot;&gt;&lt;/i&gt; Room 917, Rutherford House 23 Lambton Quay
+						&lt;/li&gt;
+					&lt;/ul&gt;
+
+				&lt;/div&gt;
+
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class&#x3D;&quot;c-stack &quot;&gt;
+
+
+			&lt;div class&#x3D;&quot;c-stack-info&quot;&gt;
+				&lt;h4 class&#x3D;&quot;c-stack-title&quot;&gt;
+					&lt;a class&#x3D;&quot;c-stack-link&quot; href&#x3D;&quot;#mainLink&quot;&gt;Default Card in Stack&lt;/a&gt;
+
+					&lt;small&gt;https://www.wgtn.ac.nz/explore/study-areas/software-and-computer-science
+					&lt;/small&gt;
+				&lt;/h4&gt;
+
+
+				&lt;p class&#x3D;&quot;c-stack-intro&quot;&gt;Study Software Engineering and Computer Science and be at the forefront of the information revolution.&lt;/p&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-body&quot;&gt;
+
+					&lt;p&gt;Study Software Engineering and Computer Science and be at the forefront of the information revolution. ... Find out what it’s like to study Software and Computer Science at Victoria from two students and a lecturer.&lt;/p&gt;
+				&lt;/div&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-foot&quot;&gt;
+
+					&lt;ul class&#x3D;&quot;links&quot;&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#footLink&quot;&gt;Study options | Software and Computer Science&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#footLink&quot;&gt;People | Software and Computer Science&lt;/a&gt;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/div&gt;
+
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class&#x3D;&quot;c-stack c-stack-flexin&quot;&gt;
+
+			&lt;div class&#x3D;&quot;c-stack-fig c-stack-fig--panel&quot;&gt;
+				&lt;h4 class&#x3D;&quot;c-stack-code&quot;&gt;GCertCom &lt;/h4&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-figcaption&quot;&gt;
+					&lt;p&gt;&lt;i class&#x3D;&quot;icon-calendar&quot;&gt;&lt;/i&gt; &lt;em&gt;Next start date 11 Nov 2019&lt;/em&gt;&lt;/p&gt;
+
+				&lt;/div&gt;
+			&lt;/div&gt;
+
+			&lt;div class&#x3D;&quot;c-stack-info&quot;&gt;
+				&lt;h4 class&#x3D;&quot;c-stack-title&quot;&gt;
+					&lt;a class&#x3D;&quot;c-stack-link&quot; href&#x3D;&quot;#mainLink&quot;&gt;Meta Card in Stack&lt;/a&gt;
+
+					&lt;small&gt;https://www.wgtn.ac.nz/explore/degrees/science/overview
+					&lt;/small&gt;
+				&lt;/h4&gt;
+
+
+				&lt;p class&#x3D;&quot;c-stack-intro&quot;&gt;Follow your passion, develop problem-solving skills, and dive into a fascinating career with a Bachelor of Science.&lt;/p&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-body&quot;&gt;
+
+					&lt;ul class&#x3D;&quot;meta meta--labelled&quot;&gt;
+						&lt;li class&#x3D;&quot;highlight meta-item&quot;&gt;
+							&lt;h5 class&#x3D;&quot;meta-label&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;icon-graduation-cap&quot;&gt;&lt;/i&gt; &lt;span class&#x3D;&quot;meta-labelText&quot;&gt;Level of Study&lt;/span&gt;&lt;/h4&gt;
+								&lt;p class&#x3D;&quot;meta-data&quot;&gt;&lt;strong&gt;Undergraduate&lt;/strong&gt;&lt;/p&gt;
+						&lt;/li&gt;
+
+						&lt;li class&#x3D;&quot;highlight meta-item&quot;&gt;
+							&lt;h5 class&#x3D;&quot;meta-label&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;icon-clock&quot;&gt;&lt;/i&gt; &lt;span class&#x3D;&quot;meta-labelText&quot;&gt;Length of full-time study&lt;/span&gt;&lt;/h4&gt;
+								&lt;p class&#x3D;&quot;meta-data&quot;&gt;&lt;strong&gt;3 years (360 points)&lt;/strong&gt;&lt;/p&gt;
+						&lt;/li&gt;
+
+						&lt;li class&#x3D;&quot;highlight meta-item&quot;&gt;
+							&lt;h5 class&#x3D;&quot;meta-label&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;icon-pin&quot;&gt;&lt;/i&gt; &lt;span class&#x3D;&quot;meta-labelText&quot;&gt;Location&lt;/span&gt;&lt;/h5&gt;
+							&lt;p class&#x3D;&quot;meta-data&quot;&gt;&lt;strong&gt;Kelburn, Wellington&lt;/strong&gt;&lt;/p&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/div&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-foot&quot;&gt;
+
+				&lt;/div&gt;
+
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class&#x3D;&quot;c-stack c-stack-flexin&quot;&gt;
+
+			&lt;div class&#x3D;&quot;c-stack-fig c-stack-fig--panel&quot;&gt;
+				&lt;h4 class&#x3D;&quot;c-stack-code&quot;&gt;GISC401 &lt;span&gt;(2020)&lt;/span&gt; &lt;/h4&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-figcaption&quot;&gt;
+
+					&lt;h5&gt;Trimester&lt;/h5&gt;
+					&lt;ul class&#x3D;&quot;c-stack-figlist&quot;&gt;
+						&lt;li&gt;
+							&lt;a class&#x3D;&quot;c-stack-figLink&quot; href&#x3D;&quot;#trimLink&quot;&gt;1&lt;/a&gt;
+						&lt;/li&gt;
+						&lt;li&gt;
+							&lt;a class&#x3D;&quot;c-stack-figLink&quot; href&#x3D;&quot;#trimLink&quot;&gt;3&lt;/a&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+
+			&lt;div class&#x3D;&quot;c-stack-info&quot;&gt;
+				&lt;h4 class&#x3D;&quot;c-stack-title&quot;&gt;
+					&lt;a class&#x3D;&quot;c-stack-link&quot; href&#x3D;&quot;#mainLink&quot;&gt;Meta Card in Stack&lt;/a&gt;
+
+					&lt;small&gt;https://www.wgtn.ac.nz/explore/degrees/science/overview
+					&lt;/small&gt;
+				&lt;/h4&gt;
+
+
+
+				&lt;div class&#x3D;&quot;c-stack-body&quot;&gt;
+					&lt;p&gt;Study Software Engineering and Computer Science and be at the forefront of the information revolution. ... Find out what it’s like to study Software and Computer Science at Victoria from two students and a lecturer.&lt;/p&gt;
+
+					&lt;ul class&#x3D;&quot;meta meta--labelled&quot;&gt;
+						&lt;li class&#x3D;&quot;highlight meta-item&quot;&gt;
+							&lt;h5 class&#x3D;&quot;meta-label&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;icon-graduation-cap&quot;&gt;&lt;/i&gt; &lt;span class&#x3D;&quot;meta-labelText&quot;&gt;Points&lt;/span&gt;&lt;/h4&gt;
+								&lt;p class&#x3D;&quot;meta-data&quot;&gt;&lt;strong&gt;20 points&lt;/strong&gt;&lt;/p&gt;
+						&lt;/li&gt;
+
+						&lt;li class&#x3D;&quot;highlight meta-item&quot;&gt;
+							&lt;h5 class&#x3D;&quot;meta-label&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;icon-clock&quot;&gt;&lt;/i&gt; &lt;span class&#x3D;&quot;meta-labelText&quot;&gt;Duration&lt;/span&gt;&lt;/h4&gt;
+								&lt;p class&#x3D;&quot;meta-data&quot;&gt;&lt;strong&gt;1 trimester&lt;/strong&gt;&lt;/p&gt;
+						&lt;/li&gt;
+
+						&lt;li class&#x3D;&quot;highlight meta-item&quot;&gt;
+							&lt;h5 class&#x3D;&quot;meta-label&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;icon-user&quot;&gt;&lt;/i&gt; &lt;span class&#x3D;&quot;meta-labelText&quot;&gt;Coordinator&lt;/span&gt;&lt;/h5&gt;
+							&lt;p class&#x3D;&quot;meta-data&quot;&gt;&lt;strong&gt;Jeffery Shima&lt;/strong&gt;&lt;/p&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/div&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-foot&quot;&gt;
+
+				&lt;/div&gt;
+
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class&#x3D;&quot;c-stack c-stack-flexin c-stack-profile&quot;&gt;
+			&lt;figure class&#x3D;&quot;c-stack-fig&quot;&gt;
+				&lt;img class&#x3D;&quot;c-stack-fig--image&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/images/staffpics/nopicture.gif&quot; alt&#x3D;&quot;Dr Ina Reichenberger&quot;&gt;
+			&lt;/figure&gt;
+
+
+			&lt;div class&#x3D;&quot;c-stack-info&quot;&gt;
+				&lt;h4 class&#x3D;&quot;c-stack-title&quot;&gt;
+					&lt;a class&#x3D;&quot;c-stack-link&quot; href&#x3D;&quot;#mainLink&quot;&gt;Dr Ina Reichenberger&lt;/a&gt;
+
+				&lt;/h4&gt;
+
+
+
+				&lt;div class&#x3D;&quot;c-stack-body&quot;&gt;
+
+					&lt;header class&#x3D;&quot;formatting&quot;&gt;
+						&lt;p class&#x3D;&quot;subtitle&quot;&gt;
+							&lt;strong&gt;Lecturer&lt;/strong&gt; &lt;span&gt;School of Management&lt;/span&gt;
+						&lt;/p&gt;
+					&lt;/header&gt;
+				&lt;/div&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-foot&quot;&gt;
+					&lt;ul class&#x3D;&quot;meta&quot;&gt;
+						&lt;li class&#x3D;&quot;highlight&quot;&gt;
+							&lt;a href&#x3D;&quot;mailto:ina.reichenberger@vuw.ac.nz&quot; title&#x3D;&quot;Send an email to Dr Ina Reichenberger&quot;&gt;
+								&lt;i class&#x3D;&quot;icon-mail&quot;&gt;&lt;/i&gt; ina.reichenberger@vuw.ac.nz
+							&lt;/a&gt;
+						&lt;/li&gt;
+						&lt;li class&#x3D;&quot;highlight&quot;&gt;
+							&lt;a href&#x3D;&quot;tel:04 4635375&quot; title&#x3D;&quot;Call to Dr Ina Reichenberger work phone&quot;&gt;
+								&lt;i class&#x3D;&quot;icon-phone&quot;&gt;&lt;/i&gt; 04 4635375
+							&lt;/a&gt;
+						&lt;/li&gt;
+						&lt;li&gt;
+							&lt;i class&#x3D;&quot;icon-pin&quot;&gt;&lt;/i&gt; Room 917, Rutherford House 23 Lambton Quay
+						&lt;/li&gt;
+					&lt;/ul&gt;
+
+				&lt;/div&gt;
+
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class&#x3D;&quot;c-stack &quot;&gt;
+
+
+			&lt;div class&#x3D;&quot;c-stack-info&quot;&gt;
+				&lt;h4 class&#x3D;&quot;c-stack-title&quot;&gt;
+					&lt;a class&#x3D;&quot;c-stack-link&quot; href&#x3D;&quot;#mainLink&quot;&gt;Default Card in Stack&lt;/a&gt;
+
+					&lt;small&gt;https://www.wgtn.ac.nz/explore/study-areas/software-and-computer-science
+					&lt;/small&gt;
+				&lt;/h4&gt;
+
+
+				&lt;p class&#x3D;&quot;c-stack-intro&quot;&gt;Study Software Engineering and Computer Science and be at the forefront of the information revolution.&lt;/p&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-body&quot;&gt;
+
+					&lt;p&gt;Study Software Engineering and Computer Science and be at the forefront of the information revolution. ... Find out what it’s like to study Software and Computer Science at Victoria from two students and a lecturer.&lt;/p&gt;
+				&lt;/div&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-foot&quot;&gt;
+
+					&lt;ul class&#x3D;&quot;links&quot;&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#footLink&quot;&gt;Study options | Software and Computer Science&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#footLink&quot;&gt;People | Software and Computer Science&lt;/a&gt;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/div&gt;
+
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class&#x3D;&quot;c-stack c-stack-flexin&quot;&gt;
+
+			&lt;div class&#x3D;&quot;c-stack-fig c-stack-fig--panel&quot;&gt;
+				&lt;h4 class&#x3D;&quot;c-stack-code&quot;&gt;GISC401 &lt;span&gt;(2020)&lt;/span&gt; &lt;/h4&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-figcaption&quot;&gt;
+
+					&lt;h5&gt;Trimester&lt;/h5&gt;
+					&lt;ul class&#x3D;&quot;c-stack-figlist&quot;&gt;
+						&lt;li&gt;
+							&lt;a class&#x3D;&quot;c-stack-figLink&quot; href&#x3D;&quot;#trimLink&quot;&gt;1&lt;/a&gt;
+						&lt;/li&gt;
+						&lt;li&gt;
+							&lt;a class&#x3D;&quot;c-stack-figLink&quot; href&#x3D;&quot;#trimLink&quot;&gt;3&lt;/a&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+
+			&lt;div class&#x3D;&quot;c-stack-info&quot;&gt;
+				&lt;h4 class&#x3D;&quot;c-stack-title&quot;&gt;
+					&lt;a class&#x3D;&quot;c-stack-link&quot; href&#x3D;&quot;#mainLink&quot;&gt;Meta Card in Stack&lt;/a&gt;
+
+					&lt;small&gt;https://www.wgtn.ac.nz/explore/degrees/science/overview
+					&lt;/small&gt;
+				&lt;/h4&gt;
+
+
+
+				&lt;div class&#x3D;&quot;c-stack-body&quot;&gt;
+					&lt;p&gt;Study Software Engineering and Computer Science and be at the forefront of the information revolution. ... Find out what it’s like to study Software and Computer Science at Victoria from two students and a lecturer.&lt;/p&gt;
+
+					&lt;ul class&#x3D;&quot;meta meta--labelled&quot;&gt;
+						&lt;li class&#x3D;&quot;highlight meta-item&quot;&gt;
+							&lt;h5 class&#x3D;&quot;meta-label&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;icon-graduation-cap&quot;&gt;&lt;/i&gt; &lt;span class&#x3D;&quot;meta-labelText&quot;&gt;Points&lt;/span&gt;&lt;/h4&gt;
+								&lt;p class&#x3D;&quot;meta-data&quot;&gt;&lt;strong&gt;20 points&lt;/strong&gt;&lt;/p&gt;
+						&lt;/li&gt;
+
+						&lt;li class&#x3D;&quot;highlight meta-item&quot;&gt;
+							&lt;h5 class&#x3D;&quot;meta-label&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;icon-clock&quot;&gt;&lt;/i&gt; &lt;span class&#x3D;&quot;meta-labelText&quot;&gt;Duration&lt;/span&gt;&lt;/h4&gt;
+								&lt;p class&#x3D;&quot;meta-data&quot;&gt;&lt;strong&gt;1 trimester&lt;/strong&gt;&lt;/p&gt;
+						&lt;/li&gt;
+
+						&lt;li class&#x3D;&quot;highlight meta-item&quot;&gt;
+							&lt;h5 class&#x3D;&quot;meta-label&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;icon-user&quot;&gt;&lt;/i&gt; &lt;span class&#x3D;&quot;meta-labelText&quot;&gt;Coordinator&lt;/span&gt;&lt;/h5&gt;
+							&lt;p class&#x3D;&quot;meta-data&quot;&gt;&lt;strong&gt;Jeffery Shima&lt;/strong&gt;&lt;/p&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/div&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-foot&quot;&gt;
+
+				&lt;/div&gt;
+
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class&#x3D;&quot;c-stack &quot;&gt;
+
+
+			&lt;div class&#x3D;&quot;c-stack-info&quot;&gt;
+				&lt;h4 class&#x3D;&quot;c-stack-title&quot;&gt;
+					&lt;a class&#x3D;&quot;c-stack-link&quot; href&#x3D;&quot;#mainLink&quot;&gt;Default Card in Stack&lt;/a&gt;
+
+					&lt;small&gt;https://www.wgtn.ac.nz/explore/study-areas/software-and-computer-science
+					&lt;/small&gt;
+				&lt;/h4&gt;
+
+
+				&lt;p class&#x3D;&quot;c-stack-intro&quot;&gt;Study Software Engineering and Computer Science and be at the forefront of the information revolution.&lt;/p&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-body&quot;&gt;
+
+					&lt;p&gt;Study Software Engineering and Computer Science and be at the forefront of the information revolution. ... Find out what it’s like to study Software and Computer Science at Victoria from two students and a lecturer.&lt;/p&gt;
+				&lt;/div&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-foot&quot;&gt;
+
+					&lt;ul class&#x3D;&quot;links&quot;&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#footLink&quot;&gt;Study options | Software and Computer Science&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href&#x3D;&quot;#footLink&quot;&gt;People | Software and Computer Science&lt;/a&gt;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/div&gt;
+
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class&#x3D;&quot;c-stack &quot;&gt;
+
+
+			&lt;div class&#x3D;&quot;c-stack-info&quot;&gt;
+				&lt;h4 class&#x3D;&quot;c-stack-title&quot;&gt;
+					&lt;a class&#x3D;&quot;c-stack-link&quot; href&#x3D;&quot;#mainLink&quot;&gt;Datacom Systems Scholarship in Computer Science&lt;/a&gt;
+
+					&lt;small&gt;https://www.wgtn.ac.nz/scholarships/current/datacom-systems-scholarship-in-computer-science
+					&lt;/small&gt;
+				&lt;/h4&gt;
+
+
+
+				&lt;div class&#x3D;&quot;c-stack-body&quot;&gt;
+
+					&lt;p&gt;This Scholarship has been sponsored by Datacom Systems who initially established the scholarship for a period of five years, until 2002, and have...&lt;/p&gt;
+
+					&lt;ul class&#x3D;&quot;meta meta--labelled meta--grid&quot;&gt;
+						&lt;li class&#x3D;&quot;highlight meta-item&quot;&gt;
+							&lt;h5 class&#x3D;&quot;meta-label&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;icon-calendar&quot;&gt;&lt;/i&gt; &lt;span class&#x3D;&quot;meta-labelText&quot;&gt;Closing&lt;/span&gt;&lt;/h4&gt;
+								&lt;p class&#x3D;&quot;meta-data&quot;&gt;&lt;strong&gt;1 November 2019&lt;/strong&gt;&lt;/p&gt;
+						&lt;/li&gt;
+
+						&lt;li class&#x3D;&quot;highlight meta-item&quot;&gt;
+							&lt;h5 class&#x3D;&quot;meta-label&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;icon-people&quot;&gt;&lt;/i&gt; &lt;span class&#x3D;&quot;meta-labelText&quot;&gt;Category&lt;/span&gt;&lt;/h4&gt;
+								&lt;p class&#x3D;&quot;meta-data&quot;&gt;&lt;strong&gt;Māori students; Pasifika students; Students facing financial hardship&lt;/strong&gt;&lt;/p&gt;
+						&lt;/li&gt;
+
+						&lt;li class&#x3D;&quot;highlight meta-item&quot;&gt;
+							&lt;h5 class&#x3D;&quot;meta-label&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;icon-graduation-cap&quot;&gt;&lt;/i&gt; &lt;span class&#x3D;&quot;meta-labelText&quot;&gt;Level&lt;/span&gt;&lt;/h5&gt;
+							&lt;p class&#x3D;&quot;meta-data&quot;&gt;&lt;strong&gt;School leaver / 1st year&lt;/strong&gt;&lt;/p&gt;
+						&lt;/li&gt;
+
+						&lt;li class&#x3D;&quot;highlight meta-item&quot;&gt;
+							&lt;h5 class&#x3D;&quot;meta-label&quot;&gt;&lt;i aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;icon-book&quot;&gt;&lt;/i&gt; &lt;span class&#x3D;&quot;meta-labelText&quot;&gt;Study Areas&lt;/span&gt;&lt;/h5&gt;
+							&lt;p class&#x3D;&quot;meta-data&quot;&gt;&lt;strong&gt;Music&lt;/strong&gt;&lt;/p&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/div&gt;
+
+				&lt;div class&#x3D;&quot;c-stack-foot&quot;&gt;
+
+				&lt;/div&gt;
+
+			&lt;/div&gt;
+		&lt;/div&gt; &lt;!-- Pagination --&gt;
+		&lt;nav class&#x3D;&quot;pagination&quot;&gt;
+			&lt;!-- &#x27;Previous page&#x27; --&gt;
+			&lt;a class&#x3D;&quot;button primary no-icon previous&quot; rel&#x3D;&quot;prev&quot; href&#x3D;&quot;http://cms.wgtn.ac.nz/vbs/about/news?mode&#x3D;results&amp;amp;current_result_page&#x3D;10&amp;amp;results_per_page&#x3D;5&quot; title&#x3D;&quot;Previous page&quot;&gt;Previous&lt;/a&gt;
+			&lt;!-- &#x27;Next page&#x27; --&gt;
+			&lt;a class&#x3D;&quot;button primary no-icon next&quot; rel&#x3D;&quot;next&quot; href&#x3D;&quot;http://cms.wgtn.ac.nz/vbs/about/news?mode&#x3D;results&amp;amp;current_result_page&#x3D;12&amp;amp;results_per_page&#x3D;5&quot; title&#x3D;&quot;Next page&quot;&gt;Next&lt;/a&gt;
+			&lt;div class&#x3D;&quot;pages&quot;&gt;
+				&lt;span class&#x3D;&quot;icon 3dot&quot;&gt;...&lt;/span&gt;
+				&lt;!-- ... --&gt;
+				&lt;!-- Show only two prior and two next pages --&gt;
+				&lt;a class&#x3D;&quot;button primary no-icon&quot; href&#x3D;&quot;http://cms.wgtn.ac.nz/vbs/about/news?mode&#x3D;results&amp;amp;current_result_page&#x3D;11&amp;amp;results_per_page&#x3D;5&amp;amp;result_388447_result_page&#x3D;9&quot; title&#x3D;&quot;9 out of  pages&quot;&gt;9&lt;/a&gt;
+				&lt;a class&#x3D;&quot;button primary no-icon&quot; href&#x3D;&quot;http://cms.wgtn.ac.nz/vbs/about/news?mode&#x3D;results&amp;amp;current_result_page&#x3D;11&amp;amp;results_per_page&#x3D;5&amp;amp;result_388447_result_page&#x3D;10&quot; title&#x3D;&quot;10 out of  pages&quot;&gt;10&lt;/a&gt; &lt;span class&#x3D;&quot;button primary no-icon active&quot;&gt;11&lt;/span&gt; &lt;a class&#x3D;&quot;button primary no-icon&quot; href&#x3D;&quot;http://cms.wgtn.ac.nz/vbs/about/news?mode&#x3D;results&amp;amp;current_result_page&#x3D;11&amp;amp;results_per_page&#x3D;5&amp;amp;result_388447_result_page&#x3D;12&quot; title&#x3D;&quot;12 out of  pages&quot;&gt;12&lt;/a&gt; &lt;a class&#x3D;&quot;button primary no-icon&quot; href&#x3D;&quot;http://cms.wgtn.ac.nz/vbs/about/news?mode&#x3D;results&amp;amp;current_result_page&#x3D;11&amp;amp;results_per_page&#x3D;5&amp;amp;result_388447_result_page&#x3D;13&quot; title&#x3D;&quot;13 out of  pages&quot;&gt;13&lt;/a&gt;
+				&lt;span class&#x3D;&quot;icon 3dot&quot;&gt;...&lt;/span&gt;
+				&lt;!-- ... --&gt;
+			&lt;/div&gt;
+		&lt;/nav&gt;
+	&lt;/div&gt;
+
+	&lt;div class&#x3D;&quot;p-search__aside&quot;&gt;
+		&lt;article class&#x3D;&quot;data-sidebar data-downloads&quot;&gt;
+			&lt;div id&#x3D;&quot;search_facets&quot;&gt;
+				&lt;h2&gt;Limit search to&lt;/h2&gt;
+
+				&lt;ul class&#x3D;&quot;toggle_block active facet_links&quot;&gt;
+					&lt;li class&#x3D;&quot;tag&quot;&gt;&lt;a href&#x3D;&quot;https://cms.wgtn.ac.nz/staff/new-search/search?query&#x3D;Degree requirements&amp;amp;gscope1&#x3D;3&amp;amp;gn&#x3D;Library&quot;&gt;Library&lt;/a&gt;&lt;/li&gt;
+					&lt;li class&#x3D;&quot;tag&quot;&gt;&lt;a href&#x3D;&quot;https://cms.wgtn.ac.nz/staff/new-search/search?query&#x3D;Degree requirements&amp;amp;gscope1&#x3D;2&amp;amp;gn&#x3D;ITS&quot;&gt;ITS&lt;/a&gt;&lt;/li&gt;
+					&lt;li class&#x3D;&quot;tag&quot;&gt;&lt;a href&#x3D;&quot;https://cms.wgtn.ac.nz/staff/new-search/search?query&#x3D;Degree requirements&amp;amp;gscope1&#x3D;1&amp;amp;gn&#x3D;Documents&quot;&gt;Documents&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/article&gt;
+
+		&lt;article class&#x3D;&quot;data-sidebar data-downloads&quot;&gt;
+			&lt;div id&#x3D;&quot;search_facets&quot;&gt;
+				&lt;h2&gt;Narrow your search&lt;/h2&gt;
+
+				&lt;h3 class&#x3D;&quot;toggle&quot;&gt;File type&lt;/h3&gt;
+
+				&lt;ul class&#x3D;&quot;toggle_block active facet_links&quot;&gt;
+					&lt;li class&#x3D;&quot;tag&quot;&gt;&lt;a href&#x3D;&quot;https://cms.wgtn.ac.nz/staff/new-search/search?query&#x3D;Degree requirements&amp;amp;filter1&#x3D;f.File type|f:doc&quot;&gt;doc (16)&lt;/a&gt;&lt;/li&gt;
+					&lt;li class&#x3D;&quot;tag&quot;&gt;&lt;a href&#x3D;&quot;https://cms.wgtn.ac.nz/staff/new-search/search?query&#x3D;Degree requirements&amp;amp;filter1&#x3D;f.File type|f:docx&quot;&gt;docx (65)&lt;/a&gt;&lt;/li&gt;
+					&lt;li class&#x3D;&quot;tag&quot;&gt;&lt;a href&#x3D;&quot;https://cms.wgtn.ac.nz/staff/new-search/search?query&#x3D;Degree requirements&amp;amp;filter1&#x3D;f.File type|f:pdf&quot;&gt;pdf (400)&lt;/a&gt;&lt;/li&gt;
+					&lt;li class&#x3D;&quot;tag&quot;&gt;&lt;a href&#x3D;&quot;https://cms.wgtn.ac.nz/staff/new-search/search?query&#x3D;Degree requirements&amp;amp;filter1&#x3D;f.File type|f:pptx&quot;&gt;pptx (1)&lt;/a&gt;&lt;/li&gt;
+					&lt;li class&#x3D;&quot;tag&quot;&gt;&lt;a href&#x3D;&quot;https://cms.wgtn.ac.nz/staff/new-search/search?query&#x3D;Degree requirements&amp;amp;filter1&#x3D;f.File type|f:xlsm&quot;&gt;xlsm (2)&lt;/a&gt;&lt;/li&gt;
+					&lt;li class&#x3D;&quot;tag&quot;&gt;&lt;a href&#x3D;&quot;https://cms.wgtn.ac.nz/staff/new-search/search?query&#x3D;Degree requirements&amp;amp;filter1&#x3D;f.File type|f:xlsx&quot;&gt;xlsx (13)&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/article&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="three-cols-images">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Three Cols Images</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>[TA] - 3 column promo with image and text (+HP)(MVP)
+<a href="https://victoriauniversity.atlassian.net/browse/WIP-2076">https://victoriauniversity.atlassian.net/browse/WIP-2076</a></p>
+
+</div>
+<div class="f-item-preview">
+	<div class="centraliser">
+	<div class=" block formatting">
+		<h2>Know your next move</h2>
+		<section class="grid-flex col-3">
+
+			<figure class=" ">
+
+				<a href="#">
+
+					<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0011/366851/varieties/ls_small.jpg">
+
+					<figcaption>
+						<h3>Course planning appointments</h3>
+						<p>If you need help deciding what degree might be right for you, or what courses to take, book a course planning session with us.</p>
+					</figcaption>
+
+				</a>
+
+			</figure>
+
+			<figure class=" ">
+
+				<a href="#">
+
+					<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0004/373945/varieties/ls_small.jpg">
+
+					<figcaption>
+						<h3>Book a campus tour</h3>
+						<p>Get a taste of what life at Victoria is like—book a campus tour and check out our student accommodation while you are here.</p>
+					</figcaption>
+
+				</a>
+
+			</figure>
+
+			<figure class=" ">
+
+				<a href="#">
+
+					<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0010/294427/varieties/ls_small.jpg">
+
+					<figcaption>
+						<h3>School visits</h3>
+						<p>We're visiting schools throughout the year. For your introduction to Victoria, find out when we're in your region.</p>
+					</figcaption>
+
+				</a>
+
+			</figure>
+		</section>
+	</div>
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;div class&#x3D;&quot;centraliser&quot;&gt;
+	&lt;div class&#x3D;&quot; block formatting&quot;&gt;
+		&lt;h2&gt;Know your next move&lt;/h2&gt;
+		&lt;section class&#x3D;&quot;grid-flex col-3&quot;&gt;
+
+			&lt;figure class&#x3D;&quot; &quot;&gt;
+
+				&lt;a href&#x3D;&quot;#&quot;&gt;
+
+					&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0011/366851/varieties/ls_small.jpg&quot;&gt;
+
+					&lt;figcaption&gt;
+						&lt;h3&gt;Course planning appointments&lt;/h3&gt;
+						&lt;p&gt;If you need help deciding what degree might be right for you, or what courses to take, book a course planning session with us.&lt;/p&gt;
+					&lt;/figcaption&gt;
+
+				&lt;/a&gt;
+
+			&lt;/figure&gt;
+
+			&lt;figure class&#x3D;&quot; &quot;&gt;
+
+				&lt;a href&#x3D;&quot;#&quot;&gt;
+
+					&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0004/373945/varieties/ls_small.jpg&quot;&gt;
+
+					&lt;figcaption&gt;
+						&lt;h3&gt;Book a campus tour&lt;/h3&gt;
+						&lt;p&gt;Get a taste of what life at Victoria is like—book a campus tour and check out our student accommodation while you are here.&lt;/p&gt;
+					&lt;/figcaption&gt;
+
+				&lt;/a&gt;
+
+			&lt;/figure&gt;
+
+			&lt;figure class&#x3D;&quot; &quot;&gt;
+
+				&lt;a href&#x3D;&quot;#&quot;&gt;
+
+					&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0010/294427/varieties/ls_small.jpg&quot;&gt;
+
+					&lt;figcaption&gt;
+						&lt;h3&gt;School visits&lt;/h3&gt;
+						&lt;p&gt;We&#x27;re visiting schools throughout the year. For your introduction to Victoria, find out when we&#x27;re in your region.&lt;/p&gt;
+					&lt;/figcaption&gt;
+
+				&lt;/a&gt;
+
+			&lt;/figure&gt;
+		&lt;/section&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+<div class="f-item-group" id="video-promo">
+
+	<div class="f-item-heading-group" data-f-toggle="labels">
+		<h2 class="f-item-heading">Video Promo</h2>
+		<div class="f-item-controls">
+			<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+				<svg>
+					<use xlink:href="#f-icon-notes" />
+				</svg>
+			</span>
+			<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+				<svg>
+					<use xlink:href="#f-icon-code" />
+				</svg>
+			</span>
+		</div>
+	</div><div class="f-item-notes" data-f-toggle="notes">
+	<p>[TA] - 1/3 column video promo (HP)
+Uses <a href="https://github.com/jsor/lity#usage">lity lightbox</a>
+<a href="https://victoriauniversity.atlassian.net/browse/WIP-2070">https://victoriauniversity.atlassian.net/browse/WIP-2070</a></p>
+
+</div>
+<div class="f-item-preview">
+	<div class="f-item-preview-one-third">
+
+	<figure class="media featured">
+		<a data-lity="" href="https://www.youtube.com/watch?v=6nD-kAsV-rk" target="_blank">
+			<img alt="Wellington waterfront" src="https://www.wgtn.ac.nz/__data/assets/image/0008/283994/varieties/ls_small.jpg">
+			<figcaption>
+				<h4>Business in the best capital <i class="icon-right-dir"></i></h4>
+			</figcaption>
+		</a>
+	</figure>
+
+</div>
+</div>
+<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<pre><code class="language-markup">&lt;div class&#x3D;&quot;f-item-preview-one-third&quot;&gt;
+
+	&lt;figure class&#x3D;&quot;media featured&quot;&gt;
+		&lt;a data-lity&#x3D;&quot;&quot; href&#x3D;&quot;https://www.youtube.com/watch?v&#x3D;6nD-kAsV-rk&quot; target&#x3D;&quot;_blank&quot;&gt;
+			&lt;img alt&#x3D;&quot;Wellington waterfront&quot; src&#x3D;&quot;https://www.wgtn.ac.nz/__data/assets/image/0008/283994/varieties/ls_small.jpg&quot;&gt;
+			&lt;figcaption&gt;
+				&lt;h4&gt;Business in the best capital &lt;i class&#x3D;&quot;icon-right-dir&quot;&gt;&lt;/i&gt;&lt;/h4&gt;
+			&lt;/figcaption&gt;
+		&lt;/a&gt;
+	&lt;/figure&gt;
+
+&lt;/div&gt;</code></pre>
+</div>
+
+
+</div>
+
+
+
+
+  <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
+
+  </div>
+
+
+	<script src="styleguide-assets/f.00ce296a.js"></script>
+
+  <script type="text/javascript">
+    // Prefix tag with 'f-'
+    Prism.plugins.customClass.map({
+      tag: 'f-tag'
+    })
+  </script>
+
+  <!-- jQuery -->
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+	<!-- toolkit scripts -->
+	<script src="toolkit.0a89b0c9.js"></script>
+	<!-- /toolkit scripts -->
+
+  
+
+</body>
+</html>
