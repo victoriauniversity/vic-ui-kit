@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, October 5, 2020, 2:47 PM */
+/** Version: 0.10.13 | Monday, October 5, 2020, 3:02 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -13256,7 +13256,8 @@ function initPopupBox(popupElement) {
   var buttonOkElements = popupElement.getElementsByClassName(CLASSNAME.BUTTON_OK),
       buttonCancelElement = popupElement.getElementsByClassName(CLASSNAME.BUTTON_CANCEL),
       buttonCloseElement = popupElement.getElementsByClassName(CLASSNAME.BUTTON_CLOSE)[0],
-      IS_SHOWN_CLASS = 'shown'; // console.log('popup');
+      IS_SHOWN_CLASS = 'shown';
+  console.log('popup show');
 
   function removeShownClass() {
     if (popupContainerElement) {
