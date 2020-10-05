@@ -25,7 +25,7 @@ function findAncestor( el, cls ) {
 
 /** Popup launcher. */
 function initPopupBox( popupElement, {
-  delayInMs = 7000,
+  delayInMs = 10000,
   suppressAfterCanceling = true,
 } = {}) {
   const COOKIE_ID       = popupElement.id || 'popup-default';
@@ -40,6 +40,7 @@ function initPopupBox( popupElement, {
     buttonCloseElement  = popupElement.getElementsByClassName( CLASSNAME.BUTTON_CLOSE )[0],
 
     IS_SHOWN_CLASS      = 'shown';
+    console.log('popup');
 
   function removeShownClass() {
     if ( popupContainerElement ) {
