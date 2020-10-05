@@ -40,7 +40,7 @@ function initPopupBox( popupElement, {
     buttonCloseElement  = popupElement.getElementsByClassName( CLASSNAME.BUTTON_CLOSE )[0],
 
     IS_SHOWN_CLASS      = 'shown';
-    console.log('popup');
+    // console.log('popup');
 
   function removeShownClass() {
     if ( popupContainerElement ) {
