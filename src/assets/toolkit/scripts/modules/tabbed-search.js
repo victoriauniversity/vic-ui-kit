@@ -148,7 +148,7 @@ if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
   }
 
     // change state based on session storage tab state
-    if ( window.sessionStorage.tabState ) {
+    if ( window.sessionStorage.tabState && queryParam ) {
       // console.log('tabstate exists in local storage');
 
     // get tabs
