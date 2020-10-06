@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, October 5, 2020, 3:02 PM */
+/** Version: 0.10.13 | Wednesday, October 7, 2020, 9:40 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -13242,7 +13242,7 @@ function findAncestor(el, cls) {
 function initPopupBox(popupElement) {
   var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
       _ref$delayInMs = _ref.delayInMs,
-      delayInMs = _ref$delayInMs === void 0 ? 10000 : _ref$delayInMs,
+      delayInMs = _ref$delayInMs === void 0 ? 8000 : _ref$delayInMs,
       _ref$suppressAfterCan = _ref.suppressAfterCanceling,
       suppressAfterCanceling = _ref$suppressAfterCan === void 0 ? true : _ref$suppressAfterCan;
 
@@ -13256,8 +13256,7 @@ function initPopupBox(popupElement) {
   var buttonOkElements = popupElement.getElementsByClassName(CLASSNAME.BUTTON_OK),
       buttonCancelElement = popupElement.getElementsByClassName(CLASSNAME.BUTTON_CANCEL),
       buttonCloseElement = popupElement.getElementsByClassName(CLASSNAME.BUTTON_CLOSE)[0],
-      IS_SHOWN_CLASS = 'shown';
-  console.log('popup show');
+      IS_SHOWN_CLASS = 'shown'; // console.log('popup show');
 
   function removeShownClass() {
     if (popupContainerElement) {
