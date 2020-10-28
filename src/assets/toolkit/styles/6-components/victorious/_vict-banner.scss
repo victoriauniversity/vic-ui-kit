@@ -52,19 +52,39 @@
           }
         }
         @include breakpoint($until:tablet) {
+
+          img {
+            transform: unset !important;
+          }
           figcaption {
             width: 100%;
+            position: initial;
+            transform: unset !important;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid  $black-victorious;
 
             .vict-banner-title-tag {
               font-size: 1rem;
+              color: $black-victorious !important;
+
+              &:after {
+                background-color: $black-victorious !important;
+              }
             }
 
             .vict-banner-sub-heading {
               font-size: 1.3rem;
+              color: $black-victorious !important;
             }
 
             .vict-banner-title {
               font-size: 1.8rem;
+              color: $black-victorious !important;
+            }
+
+            p {
+              color: $black-victorious !important;
+              padding: 0 .1rem;
             }
           }
         }
@@ -156,10 +176,15 @@
             margin-right: 0;
             padding-bottom: 2rem;
             min-height: unset;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            font-size: 3rem;
           }
 
           h3 {
             margin-bottom: .5rem;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
           }
 
           p {
