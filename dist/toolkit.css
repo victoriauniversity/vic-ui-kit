@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, October 27, 2020, 3:19 PM */
+/** Version: 0.10.13 | Wednesday, October 28, 2020, 1:24 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -14937,6 +14937,10 @@ address.contact > img {
   line-height: 1.5;
 }
 
+.theme-victorious p a {
+  text-decoration: underline;
+}
+
 .title-underline {
   position: relative;
   padding-bottom: .5rem;
@@ -15053,17 +15057,36 @@ address.contact > img {
 }
 
 @media (max-width: 42.99em) {
+  .vict-banner.full figure img {
+    -webkit-transform: unset !important;
+            transform: unset !important;
+  }
   .vict-banner.full figure figcaption {
     width: 100%;
+    position: initial;
+    -webkit-transform: unset !important;
+            transform: unset !important;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #040404;
   }
   .vict-banner.full figure figcaption .vict-banner-title-tag {
     font-size: 1rem;
+    color: #040404 !important;
+  }
+  .vict-banner.full figure figcaption .vict-banner-title-tag:after {
+    background-color: #040404 !important;
   }
   .vict-banner.full figure figcaption .vict-banner-sub-heading {
     font-size: 1.3rem;
+    color: #040404 !important;
   }
   .vict-banner.full figure figcaption .vict-banner-title {
     font-size: 1.8rem;
+    color: #040404 !important;
+  }
+  .vict-banner.full figure figcaption p {
+    color: #040404 !important;
+    padding: 0 .1rem;
   }
 }
 
@@ -15151,9 +15174,14 @@ address.contact > img {
     margin-right: 0;
     padding-bottom: 2rem;
     min-height: unset;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    font-size: 3rem;
   }
   .vict-banner.split .banner-content .banner-titles h3 {
     margin-bottom: .5rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
   .vict-banner.split .banner-content .banner-titles p:last-child {
     padding-bottom: .75rem;
@@ -15386,6 +15414,12 @@ address.contact > img {
 
 .articles-row .vic-button {
   margin: .5rem auto;
+}
+
+@media (max-width: 42.99em) {
+  .articles-row {
+    margin-top: 0rem;
+  }
 }
 
 /* Victorious promo
@@ -15759,18 +15793,6 @@ address.contact > img {
   width: 30px;
   height: 30px;
   fill: #FFF;
-}
-
-.vict-gallery:hover .gallery-row-2-3:after, .vict-gallery:active .gallery-row-2-3:after, .vict-gallery:focus .gallery-row-2-3:after {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 80px 80px 0;
-  border-color: transparent #040404 transparent transparent;
 }
 
 @media (max-width: 42.99em) {
