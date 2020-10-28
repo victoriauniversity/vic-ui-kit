@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, October 14, 2020, 1:09 PM */
+/** Version: 0.10.13 | Wednesday, October 28, 2020, 1:24 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -14908,7 +14908,7 @@ address.contact > img {
 .theme-victorious h4,
 .theme-victorious h5 {
   color: #040404;
-  font-family: adobe-caslon-pro, serif !important;
+  font-family: minion-pro, serif !important;
   letter-spacing: 1px;
   line-height: 1.2;
 }
@@ -14918,15 +14918,19 @@ address.contact > img {
 .theme-victorious .vict-banner h3,
 .theme-victorious .vict-banner h4,
 .theme-victorious .vict-banner h5 {
-  font-family: Feijoa, adobe-caslon-pro, serif !important;
+  font-family: Feijoa, minion-pro, serif !important;
 }
 
 .theme-victorious p,
 .theme-victorious span {
-  font-family: adobe-caslon-pro, serif !important;
+  font-family: minion-pro, serif !important;
   font-weight: 400;
   font-size: 1.2rem;
   line-height: 1.5;
+}
+
+.theme-victorious p a {
+  text-decoration: underline;
 }
 
 .title-underline {
@@ -14995,7 +14999,7 @@ address.contact > img {
 .vict-banner h1,
 .vict-banner h2,
 .vict-banner h3 {
-  font-family: adobe-caslon-pro, serif;
+  font-family: minion-pro, serif;
   letter-spacing: 1px;
 }
 
@@ -15045,17 +15049,36 @@ address.contact > img {
 }
 
 @media (max-width: 42.99em) {
+  .vict-banner.full figure img {
+    -webkit-transform: unset !important;
+            transform: unset !important;
+  }
   .vict-banner.full figure figcaption {
     width: 100%;
+    position: initial;
+    -webkit-transform: unset !important;
+            transform: unset !important;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #040404;
   }
   .vict-banner.full figure figcaption .vict-banner-title-tag {
     font-size: 1rem;
+    color: #040404 !important;
+  }
+  .vict-banner.full figure figcaption .vict-banner-title-tag:after {
+    background-color: #040404 !important;
   }
   .vict-banner.full figure figcaption .vict-banner-sub-heading {
     font-size: 1.3rem;
+    color: #040404 !important;
   }
   .vict-banner.full figure figcaption .vict-banner-title {
     font-size: 1.8rem;
+    color: #040404 !important;
+  }
+  .vict-banner.full figure figcaption p {
+    color: #040404 !important;
+    padding: 0 .1rem;
   }
 }
 
@@ -15104,7 +15127,7 @@ address.contact > img {
 .vict-banner.split .banner-content .banner-titles p {
   margin-bottom: .5rem;
   width: 80%;
-  font-family: adobe-caslon-pro, serif !important;
+  font-family: minion-pro, serif !important;
 }
 
 .vict-banner.split .banner-image img {
@@ -15143,9 +15166,14 @@ address.contact > img {
     margin-right: 0;
     padding-bottom: 2rem;
     min-height: unset;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    font-size: 3rem;
   }
   .vict-banner.split .banner-content .banner-titles h3 {
     margin-bottom: .5rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
   .vict-banner.split .banner-content .banner-titles p:last-child {
     padding-bottom: .75rem;
@@ -15217,7 +15245,7 @@ address.contact > img {
 
 .articles-grid .article-1-up h4 {
   font-size: 2rem;
-  font-family: adobe-caslon-pro, serif;
+  font-family: minion-pro, serif;
 }
 
 .articles-grid .article-3-up {
@@ -15378,6 +15406,12 @@ address.contact > img {
 
 .articles-row .vic-button {
   margin: .5rem auto;
+}
+
+@media (max-width: 42.99em) {
+  .articles-row {
+    margin-top: 0rem;
+  }
 }
 
 /* Victorious promo
@@ -15630,7 +15664,7 @@ address.contact > img {
 .vict-quote blockquote {
   padding: 5rem 10rem;
   font-size: 1.5rem;
-  font-family: adobe-caslon-pro, serif !important;
+  font-family: minion-pro, serif !important;
   font-weight: 600;
 }
 
@@ -15751,18 +15785,6 @@ address.contact > img {
   width: 30px;
   height: 30px;
   fill: #FFF;
-}
-
-.vict-gallery:hover .gallery-row-2-3:after, .vict-gallery:active .gallery-row-2-3:after, .vict-gallery:focus .gallery-row-2-3:after {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 80px 80px 0;
-  border-color: transparent #040404 transparent transparent;
 }
 
 @media (max-width: 42.99em) {
@@ -17493,7 +17515,7 @@ ul.no-list li {
 }
 
 .theme-victorious .article-item .article-summary p {
-  font-family: adobe-caslon-pro, serif !important;
+  font-family: minion-pro, serif !important;
 }
 
 .theme-victorious .article-item .article-summary h4 {
