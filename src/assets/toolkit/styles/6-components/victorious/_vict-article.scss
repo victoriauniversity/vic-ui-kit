@@ -1,10 +1,8 @@
 .article-section {
-
-  @include breakpoint($from:tablet) {
+  @include breakpoint($from: tablet) {
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
-
   }
 
   .article-content {
@@ -14,34 +12,30 @@
       margin-bottom: 1rem;
     }
 
-    @include breakpoint($until:tablet) {
+    @include breakpoint($until: tablet) {
       padding: 0 1rem;
       // margin-left: 40%;
     }
-    @include breakpoint($from:tablet) {
+    @include breakpoint($from: tablet) {
       // margin: 1rem 0 1rem 40%;
       flex: 0 1 60%;
       padding-right: 3rem;
       // margin-left: 40%;
     }
 
-
     &.text-pull {
-
-      @include breakpoint($from:tablet) {
+      @include breakpoint($from: tablet) {
         // margin: 1rem 0 1rem 30%;
         flex: 0 1 70%;
         p {
           font-size: 1.6rem;
           font-weight: 700 !important;
         }
-
       }
     }
   }
 
   &.side-image {
-
     .article-content {
       @include bp-desktop-large {
         align-self: flex-end;
@@ -52,11 +46,11 @@
       flex: 1 1 40%;
       align-self: flex-end;
 
-      @include breakpoint($until:tablet) {
+      @include breakpoint($until: tablet) {
         padding: 0 1rem;
       }
 
-      @include breakpoint($from:tablet) {
+      @include breakpoint($from: tablet) {
         margin-top: 1rem;
         padding-left: 3rem;
         padding-right: 4rem;
@@ -75,7 +69,6 @@
     margin: 2.5rem auto;
 
     .article-image-full {
-
       figcaption {
         text-align: center;
       }
@@ -104,18 +97,16 @@
         height: 100px;
       }
 
-      @include breakpoint($until:tablet) {
+      @include breakpoint($until: tablet) {
         padding: 0 1rem;
 
-          svg {
-            width: 70px;
-            height: 70px;
-          }
+        svg {
+          width: 70px;
+          height: 70px;
+        }
       }
     }
-
   }
-
 }
 
 .vict-quote {
@@ -136,19 +127,17 @@
     font-weight: 600;
 
     footer {
-      margin-top: .5rem;
+      margin-top: 0.5rem;
       font-size: 1.2rem;
       font-family: $proxima;
     }
   }
-  @include breakpoint($until:tablet) {
-
+  @include breakpoint($until: tablet) {
     blockquote {
       padding: 5rem;
     }
   }
 }
-
 
 .vict-gallery {
   display: grid;
@@ -166,13 +155,48 @@
     margin-bottom: 0;
   }
 
+  figure {
+    position: relative;
+    svg {
+      // z-index: 20;
+      // position: absolute;
+      // bottom: 8px;
+      // right: 8px;
+      // // display: block;
+      // width: 30px;
+      // height: 30px;
+      // fill: $white;
+
+      display: none;
+    }
+
+    @include hoverify() {
+      cursor: pointer;
+
+      img {
+        filter: brightness(105%);
+        transition: 0.1s ease-in-out;
+      }
+
+      svg {
+        z-index: 20;
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        display: block;
+        width: 30px;
+        height: 30px;
+        fill: $white;
+      }
+    }
+  }
+
   .gallery-row-1-3 {
     -ms-grid-column: 1;
     grid-column: 1;
     @include target-ie {
       margin-bottom: 1rem;
       margin-right: 0.5rem;
-
     }
     &:nth-child(2) {
       -ms-grid-row: 2;
@@ -219,63 +243,25 @@
     }
   }
 
-  @include hoverify() {
-    cursor: pointer;
-
-    img {
-      filter: brightness(105%);
-      transition: .1s ease-in-out;
-    }
-
-    .gallery-row-2-3 {
-      position: relative;
-
-      svg {
-        z-index: 20;
-        position: absolute;
-        bottom: 8px;
-        right: 8px;
-        display: block;
-        width: 30px;
-        height: 30px;
-        fill: $white;
-
-      }
-
-      // &:after {
-      //   position: absolute;
-      //   bottom: 0;
-      //   right: 0;
-      //   content: '';
-      //   width: 0;
-      //   height: 0;
-      //   border-style: solid;
-      //   border-width: 80px 80px 0;
-      //   border-color: transparent $black-victorious transparent transparent;
-      // }
-    }
-  }
-
-  @include breakpoint($until:tablet) {
+  @include breakpoint($until: tablet) {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     padding: 0 1rem;
 
-      .gallery-row-1-3 {
-        grid-column: unset;
-        grid-row: 1;
-      }
+    .gallery-row-1-3 {
+      grid-column: unset;
+      grid-row: 1;
+    }
 
-      .gallery-row-2-3 {
-        grid-column: 1 /span 2;
-        grid-row: 2;
-      }
-
+    .gallery-row-2-3 {
+      grid-column: 1 / span 2;
+      grid-row: 2;
+    }
   }
 
   &.two-third {
-      grid-template-columns: 2fr 1fr;
-      -ms-grid-columns: 2fr 1fr;
+    grid-template-columns: 2fr 1fr;
+    -ms-grid-columns: 2fr 1fr;
 
     .gallery-row-2-3 {
       grid-column: 1;
@@ -302,7 +288,6 @@
         -ms-grid-row: 1;
         margin-bottom: 1rem;
         margin-right: 0.5rem;
-
       }
       &:nth-child(2) {
         display: none;
@@ -310,7 +295,6 @@
     }
   }
 }
-
 
 .vict-section-header {
   text-align: center;
@@ -320,7 +304,6 @@
     border-bottom: 1px solid $black-victorious;
     display: inline-block;
   }
-
 
   nav {
     display: flex;
@@ -336,14 +319,14 @@
 
     .prev {
       i:before {
-        margin-right: .5rem;
+        margin-right: 0.5rem;
       }
     }
     .next {
       margin-left: auto;
       i:before {
         margin-right: 0;
-        margin-left: .5rem;
+        margin-left: 0.5rem;
       }
     }
   }
@@ -368,7 +351,6 @@
 
     @include hoverify() {
       text-decoration: none;
-
     }
   }
   .prev,
