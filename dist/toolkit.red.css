@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, November 3, 2020, 2:36 PM */
+/** Version: 0.10.13 | Thursday, November 5, 2020, 8:24 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -10069,6 +10069,62 @@ address.contact > img {
   .footer-secondary.two-columns nav ul > li {
     float: none;
     width: auto;
+  }
+}
+
+/* FOOTER PORT FOR HOMEPAGE AND INTRANET */
+footer .footer-secondary .site_links {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+footer .footer-secondary .site_links .cols {
+  width: calc(20% - 1rem);
+  margin-right: 1rem;
+}
+
+footer .footer-secondary .site_links h2 {
+  float: none;
+  margin: .5rem 0 .2rem;
+}
+
+footer .footer-secondary .site_links h2 a:not(.button) {
+  color: #424242;
+}
+
+footer .footer-secondary .site_links .button {
+  margin-bottom: 0.7rem;
+  line-break: anywhere;
+}
+
+footer .footer-secondary .site_links a:hover, footer .footer-secondary .site_links a:active, footer .footer-secondary .site_links a:focus {
+  text-decoration: underline;
+}
+
+footer .footer-secondary .site_links .link_list a {
+  font-size: .9rem;
+}
+
+footer .footer-secondary .site_links .link_list .social_logo {
+  width: 30px;
+  margin-right: 0.1rem;
+  margin-bottom: 0.2rem;
+}
+
+@media (max-width: 42.99em) {
+  footer .footer-secondary .site_links {
+    display: block;
+    -webkit-columns: 3;
+       -moz-columns: 3;
+            columns: 3;
+  }
+  footer .footer-secondary .site_links .link_list {
+    display: none;
+  }
+  footer .footer-secondary .site_links .cols {
+    width: auto;
+    margin-right: 1rem;
   }
 }
 
