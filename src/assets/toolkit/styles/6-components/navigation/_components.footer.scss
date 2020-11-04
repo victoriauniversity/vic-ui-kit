@@ -410,3 +410,68 @@ $footer-heading-margin-bottom: .75em;
     }
   }
 }
+
+/* FOOTER PORT FOR HOMEPAGE AND INTRANET */
+
+
+footer {
+  .footer-secondary {
+    .site_links {
+      display: flex;
+      flex-wrap: wrap;
+
+      .cols {
+        width: calc(20% - 1rem);
+        margin-right: 1rem;
+      }
+
+      h2 {
+        float: none;
+        margin: .5rem 0 .2rem;
+
+        a {
+          &:not(.button) {
+            color: $black-tundora;
+          }
+        }
+      }
+
+      .button {
+        margin-bottom: 0.7rem;
+        line-break: anywhere;
+      }
+
+      a {
+        @include hoverify() {
+          text-decoration: underline;
+        }
+      }
+
+      .link_list {
+        a {
+          font-size: .9rem;
+        }
+
+        .social_logo {
+          width: 30px;
+          margin-right: 0.1rem;
+          margin-bottom: 0.2rem;
+        }
+      }
+      @include breakpoint( $until: tablet ) {
+        // display: grid;
+        // grid-template-columns: 1fr 1fr 1fr;
+        display: block;
+        columns: 3;
+        .link_list {
+          display: none;
+        }
+        .cols {
+          // width: calc(33% - 1rem);
+          width: auto;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}
