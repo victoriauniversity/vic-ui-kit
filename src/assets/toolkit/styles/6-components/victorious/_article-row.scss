@@ -1,6 +1,4 @@
-
 .articles-row {
-
   margin-top: 3rem;
 
   &.border-top {
@@ -14,7 +12,7 @@
     text-align: center;
     h3 {
       // text-align: center;
-      padding-bottom: .5rem;
+      padding-bottom: 0.5rem;
       margin-bottom: 1rem;
     }
 
@@ -36,10 +34,10 @@
       flex: 1 1;
       min-width: 200px;
       &:not(:last-child) {
-        padding-right: 1.2rem ;
+        padding-right: 1.2rem;
       }
     }
-    @include breakpoint($until:desktop) {
+    @include breakpoint($until: desktop) {
       flex-wrap: wrap;
       justify-content: space-between;
 
@@ -52,22 +50,29 @@
             display: none;
           }
         }
+      }
 
+      @supports not (-ms-high-contrast: none) {
+        /* Non-IE styles here */
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: 1rem;
+
+        .article-item {
+          padding-right: 0 !important;
+        }
       }
     }
-
   }
 
   .vic-button {
-    margin: .5rem auto;
+    margin: 0.5rem auto;
   }
 
   .victorious-article & {
-
   }
 
-  @include breakpoint($until:tablet) {
+  @include breakpoint($until: tablet) {
     margin-top: 0rem;
   }
-
 }
