@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, November 5, 2020, 8:24 AM */
+/** Version: 0.10.13 | Thursday, November 5, 2020, 1:03 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -15361,6 +15361,12 @@ footer .footer-secondary .site_links .link_list .social_logo {
   }
 }
 
+@supports not (-ms-high-contrast: none) {
+  .articles-grid {
+    /* Non-IE styles here */
+  }
+}
+
 .article-results {
   display: -webkit-box;
   display: flex;
@@ -15417,7 +15423,7 @@ footer .footer-secondary .site_links .link_list .social_logo {
 }
 
 .articles-row .articles-row-title h3 {
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
   margin-bottom: 1rem;
 }
 
@@ -15458,10 +15464,21 @@ footer .footer-secondary .site_links .link_list .social_logo {
   .articles-row .articles .article-item .article-summary p {
     display: none;
   }
+  @supports not (-ms-high-contrast: none) {
+    .articles-row .articles {
+      /* Non-IE styles here */
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-gap: 1rem;
+    }
+    .articles-row .articles .article-item {
+      padding-right: 0 !important;
+    }
+  }
 }
 
 .articles-row .vic-button {
-  margin: .5rem auto;
+  margin: 0.5rem auto;
 }
 
 @media (max-width: 42.99em) {
