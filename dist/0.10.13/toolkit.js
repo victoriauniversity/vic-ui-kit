@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, November 10, 2020, 1:10 PM */
+/** Version: 0.10.13 | Wednesday, November 11, 2020, 8:26 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15905,22 +15905,25 @@ function openPopup() {
   return this;
 }
 
-external_jQuery_default()('.toggle').on('click', function () {
-  console.log(external_jQuery_default()(this));
-  external_jQuery_default()(this).toggleClass('active');
-  external_jQuery_default()(this).next('.toggle-block').toggleClass('active');
-})
+if (document.getElementsByClassName('toggle').length > 0) {
+  external_jQuery_default()('.toggle').on('click', function () {
+    external_jQuery_default()(this).toggleClass('active');
+    external_jQuery_default()(this).next('.toggle-block').toggleClass('active');
+  });
+}
 /**
  * jQuery's plugin as a utility factory
  * Usage as: $( jquerySelector ).vicApp().method( options )
  */
+
+
 (function ($) {
   $.fn.vicApp = function () {
     return {
       openPopup: openPopup.bind(this)
     };
   };
-}(jQuery));
+})(jQuery);
 
 if (document.getElementsByClassName('calendar-cards').length > 0) {
   external_jQuery_default()('#search-filter').on('keyup search', function () {
