@@ -1031,6 +1031,12 @@ function openPopup() {
 
 
 
+$('.toggle').on('click', function () {
+  console.log($(this));
+  $(this).toggleClass('active');
+  $(this).next('.toggle-block').toggleClass('active');
+})
+
 
 /**
  * jQuery's plugin as a utility factory
