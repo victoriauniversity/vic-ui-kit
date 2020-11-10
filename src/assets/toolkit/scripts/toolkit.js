@@ -1030,12 +1030,12 @@ function openPopup() {
 }
 
 
-
-$('.toggle').on('click', function () {
-  console.log($(this));
-  $(this).toggleClass('active');
-  $(this).next('.toggle-block').toggleClass('active');
-})
+if(document.getElementsByClassName( 'toggle' ).length > 0) {
+  $('.toggle').on('click', function () {
+    $(this).toggleClass('active');
+    $(this).next('.toggle-block').toggleClass('active');
+  });
+}
 
 
 /**
