@@ -309,3 +309,86 @@ $banner-figure-bg: $brand !default;
   }
 
 }
+
+
+.home-6-up-banner {
+  position: relative;
+  overflow: visible;
+  clear: both;
+  overflow: hidden;
+  background-color: $green-brand;
+
+  .banner-panel {
+    float: left;
+    width: 33.33%;
+    position: relative;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .hero-image__text {
+      background-color: rgba(0, 31, 24, 0.9);
+      width: 55%;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      padding: 1rem;
+      min-width: 8.5em;
+      max-height: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      h3 {
+        color: #fff !important;
+        font-size: 1.3rem;
+      }
+    }
+
+    @include hoverify() {
+      img {
+        filter: brightness(.8);
+      }
+    }
+
+    @include breakpoint( $until:desktop ) {
+      width: 50%;
+    }
+
+    @include breakpoint( $until:tablet ) {
+      width: 100%;
+
+      &:not(:first-child) {
+        img {
+          display: none;
+        }
+      }
+      .hero-image__text {
+        padding: 3%;
+        position: relative;
+        display: block;
+        width: 100%;
+        background-color: #0d4b2f;
+
+      }
+      &:nth-child(odd) {
+        .hero-image__text {
+          background-color: $green-brand;
+        }
+      }
+
+      &.panel-text-banner {
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    }
+
+  }
+
+  .panel-text-banner {
+    padding: 2.5%;
+  }
+}
