@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, November 11, 2020, 8:26 AM */
+/** Version: 0.10.13 | Friday, November 27, 2020, 10:56 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -6596,6 +6596,81 @@ aside .promo h3::before {
   .home-3-up-banner .secondary-banner figure figcaption h3 {
     font-size: 1.4rem;
   }
+}
+
+.home-6-up-banner {
+  position: relative;
+  overflow: visible;
+  clear: both;
+  overflow: hidden;
+  background-color: #115737;
+}
+
+.home-6-up-banner .banner-panel {
+  float: left;
+  width: 33.33%;
+  position: relative;
+}
+
+.home-6-up-banner .banner-panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.home-6-up-banner .banner-panel .hero-image__text {
+  background-color: rgba(0, 31, 24, 0.9);
+  width: 55%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 1rem;
+  min-width: 8.5em;
+  max-height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.home-6-up-banner .banner-panel .hero-image__text h3 {
+  color: #fff !important;
+  font-size: 1.3rem;
+}
+
+.home-6-up-banner .banner-panel:hover img, .home-6-up-banner .banner-panel:active img, .home-6-up-banner .banner-panel:focus img {
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
+}
+
+@media (max-width: 60.99em) {
+  .home-6-up-banner .banner-panel {
+    width: 50%;
+  }
+}
+
+@media (max-width: 42.99em) {
+  .home-6-up-banner .banner-panel {
+    width: 100%;
+  }
+  .home-6-up-banner .banner-panel:not(:first-child) img {
+    display: none;
+  }
+  .home-6-up-banner .banner-panel .hero-image__text {
+    padding: 3%;
+    position: relative;
+    display: block;
+    width: 100%;
+    background-color: #0d4b2f;
+  }
+  .home-6-up-banner .banner-panel:nth-child(odd) .hero-image__text {
+    background-color: #115737;
+  }
+  .home-6-up-banner .banner-panel.panel-text-banner h1 {
+    font-size: 2rem;
+  }
+}
+
+.home-6-up-banner .panel-text-banner {
+  padding: 2.5%;
 }
 
 /** In-page block with promotion */
