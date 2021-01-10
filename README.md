@@ -69,5 +69,9 @@ If you want to contribute to the project by adding new features, enhancing exist
 ## Requirements and dependencies
 
  * jQuery 3.1+
- * *(only contributing developers)* Node.js 5+ and npm 3+
+ * *(only contributing developers)* Node.js 5+ and npm 3+. Is currently broken using Node > 11. Recommend installing ```n``` and switching to node 11:
+ ``` shell
+npm install -g n
+sudo n 11
+```
  * *(only contributing developers)* Git 2+
