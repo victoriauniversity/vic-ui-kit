@@ -633,7 +633,10 @@ $(() => {
     enhanceSidemenu($sidemenuHomepage);
   };
 
-  initTray();
+  if( $( '.header-tray' ).length ) {
+    // console.log('init tray');
+    initTray();
+  }
   victoriousHeader();
 
   if( window.skrollr && $(window).width() > 800 && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
