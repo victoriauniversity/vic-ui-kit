@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, November 27, 2020, 10:56 AM */
+/** Version: 0.10.13 | Thursday, March 18, 2021, 11:07 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15550,7 +15550,12 @@ external_jQuery_default()(function () {
   }
 
   ;
-  initTray();
+
+  if (external_jQuery_default()('.header-tray').length) {
+    // console.log('init tray');
+    initTray();
+  }
+
   victoriousHeader();
 
   if (window.skrollr && external_jQuery_default()(window).width() > 800 && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
