@@ -46,7 +46,7 @@ If you want to contribute to the project by adding new features, enhancing exist
 3. Hack your feature/enhancement/fix.
 4. Test your changes in all supported browsers.
 5. Before pushing your branch  run ``` gulp build-bridge --prod ``` This will rebuild the dist folder which we now use directly in squiz to serve the UIKIT via a gitbridge. 
-6. Create a pull request into the [dev branch](https://github.com/victoriauniversity/vic-ui-kit/tree/dev).
+6. Create a pull request into the [dev branch](https://github.com/victoriauniversity/vic-ui-kit/tree/dev). You can test the dev branch on live using the query string `?mode=dev`.
 7. Your pull request will be reviewed and tested - if everything is OK, it will be added to a next production release. 
 8. Feel good!
 
