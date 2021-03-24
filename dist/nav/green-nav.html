@@ -18,7 +18,7 @@
 
   <script src="https://polyfill.io/v3/polyfill.min.js"></script>
 </head>
-<body>
+<body class="">
 
 
   <!-- If 'fabricator=true' is present in page's annotation. -->
@@ -29,76 +29,139 @@
 
 
 
-      <header role="banner" class="main-site-header existing-ia">
-        <div class="block centraliser">
+      <header role="banner" class="main-site-header header-tray existing-ia reset-formatting  green ">
+        <div class="block centraliser header-inner">
           <!-- Logotype -->
-          <div class="logo">
+          <div class="logo header-logo">
             <a href="https://static.victoria.ac.nz/prototypes/home.html" title="Victoria University of Wellington homepage">
-              <picture>
-                <!-- *MUST* be in pixels to avoid inconsistencies between CSS mediaqueries and HTML mediaqueries on Safari (*facepalm*)  -->
-                <source media="(max-width: 687px)" srcset="../images/new/v2/logo-white-mini.svg">
-                <source media="(min-width: 688px) and (max-width: 1087px)" srcset="../images/new/v2/logo-white-portrait.svg">
-                <img src="../images/new/v2/logo-white-full.svg" alt="Victoria University of Wellington - Te Whare Wānanga o te Ūpoko o te Ika a Māui">
-              </picture>
+                <picture>
+                  <!-- *MUST* be in pixels to avoid inconsistencies between CSS mediaqueries and HTML mediaqueries on Safari (*facepalm*)  -->
+                  <source media="(max-width: 687px)" srcset="../images/new/v2/logo-white-mini.svg">
+                  <source media="(min-width: 688px) and (max-width: 1087px)" srcset="../images/new/v2/logo-white-portrait.svg">
+                  <img src="../images/new/v2/logo-white-full.svg" alt="Victoria University of Wellington - Te Whare Wānanga o te Ūpoko o te Ika a Māui">
+                </picture>
+      
             </a>
           </div>
-          <!-- Mobile Menu toggle -->
-          <a class="main-menu-toggle" role="toggle-mobile-menu">
-            <div class="menu-toggle-icon">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
+          <div class="header-content">
+            <h2 class="tereo-title">Ngā tauira o āpōpō</h2>
+            <h1>Future students</h1>
+          </div>
+      
+          <div class="header-search">
+            <div class="header-search-bar search-button-inside form-black-white-outline">
+              <form class="" action="https://www.wgtn.ac.nz/search" role="search">
+                <label class="search-label visually-hidden" for="search">
+                    <span>Search</span>
+                </label>
+                <input class="search-input" id="search" type="text" placeholder="Search" name="q" autocorrect="off">
+                <button class="submit-button" type="submit"><span class="icon-search"></span></button>
+              </form>
             </div>
-          </a>
-          <!-- Introductory block -->
-          <nav class="menu-container">
-            <div role="sub-menu" class="sub-nav horizontal-menu">
-              <div class="menu-bar">
-                <a href="">About Victoria</a>
-                <a href="">Staff</a>
-                <a href="">Library</a>
-                <a href="">Blackboard</a>
-                <a href="">Maps</a>
+          </div>
+      
+          <div class="header-toggle">
+      
+            <button  role="search" class="search-toggle flat" href="javascript:void(0)">
+              <span class="icon-search"></span></button>
+      
+              <!--  Menu toggle -->
+              <button class="tray-toggle flat" role="toggle-menu" >
+                <span class="icon-menu"></span>
+                <!-- <span class="text-menu-button">MENU</span> -->
+              </button>
+          </div>
+          <!--  tray slide out-->
+          <nav class="menu-container main-nav tray tray-closed" aria-label="Main Navigation">
+            <div class="tray-content">
+              <div class="tray-close">
+                <button class="close-tray flat"><span class="icon-cross"></span>Close</button>
+              </div>
+      
+              <div class="tray-search-bar search-button-inside form-dark-grey">
+                <form class="" action="https://www.wgtn.ac.nz/search" role="search">
+                  <label class="search-label visually-hidden" for="search">
+                      <span>Search</span>
+                  </label>
+                  <input class="search-input" id="search" type="text" placeholder="Search" name="q" autocorrect="off">
+                  <button class="submit-button" type="submit"><span class="icon-search"></span></button>
+                </form>
+              </div>
+      
+              <div role="menu" class="tray-main-nav">
+                <ul class="main-nav-list">
+      
+                  <li class="main-nav-item">
+                    <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/[object Object].html" title="[object Object] page" class="[object Object] main-nav-link active">Future students</a>
+                  </li>
+      
+                     
+                    <li class="main-nav-item">
+                      <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/International students.html" title="International students page" class="International students main-nav-link">International students</a>
+                    </li>
+                    
+                    <li class="main-nav-item">
+                      <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Current students.html" title="Current students page" class="Current students main-nav-link">Current students</a>
+                    </li>
+                    
+                    <li class="main-nav-item">
+                      <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Research.html" title="Research page" class="Research main-nav-link">Research</a>
+                    </li>
+                    
+                    <li class="main-nav-item">
+                      <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Engage.html" title="Engage page" class="Engage main-nav-link">Engage</a>
+                    </li>
+                     
+      
+      
+                  </ul>
+              </div>
+              <div role="sub-menu" class="tray-sub-menu">
+                <ul class="sub-menu-list">
+                   
+                  <li class="sub-menu-item">
+                    <a href="#" class="sub-nav-link">About</a>
+                  </li>
+                  
+                  <li class="sub-menu-item">
+                    <a href="#" class="sub-nav-link">Library</a>
+                  </li>
+                  
+                  <li class="sub-menu-item">
+                    <a href="#" class="sub-nav-link">Blackboard</a>
+                  </li>
+                  
+                  <li class="sub-menu-item">
+                    <a href="#" class="sub-nav-link">Maps</a>
+                  </li>
+                  
+                  <li class="sub-menu-item">
+                    <a href="#" class="sub-nav-link">Staff Intranet</a>
+                  </li>
+                  
+                  <li class="sub-menu-item">
+                    <a href="#" class="sub-nav-link">myTools</a>
+                  </li>
+                  
+                  <li class="sub-menu-item">
+                    <a href="#" class="sub-nav-link">Learning &amp; teaching</a>
+                  </li>
+                   
+                </ul>
+      
               </div>
       
             </div>
-            <div role="menu" class="main-nav horizontal-menu">
-              <div role="menu-bar" class="menu-bar">
-      
-                   
-                  <a role="menu-item" href="https://static.victoria.ac.nz/prototypes/study.html" title="study page" class="study">study</a>
-                  
-                  <a role="menu-item" href="https://static.victoria.ac.nz/prototypes/experience.html" title="experience page" class="experience">experience</a>
-                  
-                  <a role="menu-item" href="https://static.victoria.ac.nz/prototypes/research.html" title="research page" class="research">research</a>
-                  
-                  <a role="menu-item" href="https://static.victoria.ac.nz/prototypes/about.html" title="about page" class="about">about</a>
-                   
-      
-                  <a  role="search" class="menu-item search-item" href="javascript:void(0)"><span class="icon-search"></span></a>
-                </div>
-            </div>
           </nav>
-          <div class="centraliser search-bar">
-      
-            <form class="search-form" action="//www.wgtn.ac.nz/search" role="search">
-              <input id="search-query" class="search-input" aria-label="Search term:" autocomplete="off" autocorrect="off" type="search" name="q" placeholder="Search Victoria for..">
-              <input id="search-submit" class="primary button" type="submit" value="Go">
-            </form>
-      
-          </div>
       
         </div>
-      
       </header>
 
 
   <!-- 'Go up' button -->
   <a href="javascript:;" id="btn-up" title="Go to the top of the page" class="btn-floating sticky bottom" tabindex="-1"><span class="icon-arrow-up"></span></a>
 
-  <!-- 'Edit page' button -->
-  <a href="javascript:;" style="display: none;" id="btn-admin" title="Go to the top of the page" class="btn-floating top" tabindex="-1"><span class="icon-edit"></span></a>
+
 
 
 
@@ -107,54 +170,281 @@
 <section class="layout">
   <div class="content-panel">
     <!-- Center 'content' column -->
-    <main class="study-hub-dark-green">
+    <main class="hub hub-sidebar">
 
-
-      <div class="promo-panel strip-banner">
-        <figure class=" photo">
-          <img alt="" src="https://www.wgtn.ac.nz/__data/assets/image/0009/929007/aerial_2000x800.jpg">
-          <figcaption>
-            <div>
-              <div class="block formatting">
-                <h1>Support for researchers</h1>
-                <p>Find out about ways you can collaborate with Victoria research and access our technologies, expertise, business solutions, students and staff.</p>
+      <div class="sidemenu-banner-wrap centraliser">
+        <!-- <nav class="home-sidebar">
+      sidebar
+      
+        </nav> -->
+      
+        <nav data-gtm-track="" class="sidemenu-homepage sidemenu-light" role="navigation">
+          <h1 class="sidemenu-toggle"><a href="#" title="Show/Hide About us menu">About us</a></h1>
+          <ul>
+            <li class="sidemenu__label"><a href="https://cms.wgtn.ac.nz/menu-nav-test">About us</a></li>
+      
+      
+            <li class="" data-for="draw-1856598"
+              onClick='$("[id^=draw]").hide(); $("#draw-1856598").show(); $("#draw-1856598").length ? $(".sidemenu-drawer").removeClass("no-promo") : $(".sidemenu-drawer").addClass("no-promo");'>
+              <a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story" title="Our story">Our story</a>
+              <ul>
+      
+      
+      
+      
+      
+      
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events" title="News and events">News
+                    and events</a>
+                  <ul>
+      
+      
+      
+      
+      
+      
+                    <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events/news-events"
+                        title="News and events">News and events</a>
+                    <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events/global-civic-university"
+                        title="A global–civic university">A global–civic university</a>
+                    <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events/hunter-club"
+                        title="The Hunter Club">The Hunter Club</a>
+                    <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events/history"
+                        title="History">History</a>
+                    <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events/statistics"
+                        title="At a glance">At a glance</a>
+                  </ul>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/global-civic-university"
+                    title="A global–civic university">A global–civic university</a>
+                  <ul>
+      
+      
+      
+      
+      
+      
+                    <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/global-civic-university/reputation"
+                        title="(( Reputation and rankings ))">(( Reputation and rankings ))</a>
+                    <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/global-civic-university/wellington"
+                        title="(( Our position ))">(( Our position ))</a>
+                  </ul>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/hunter-club" title="The Hunter Club">The
+                    Hunter Club</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/history" title="History">History</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/statistics" title="At a glance">At a
+                    glance</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/victoria-and-the-treaty"
+                    title="The University and the Treaty">The University and the Treaty</a>
+                </li>
+              </ul>
+            </li>
+      
+      
+            <li class="" data-for="draw-1856608"
+              onClick='$("[id^=draw]").hide(); $("#draw-1856608").show(); $("#draw-1856608").length ? $(".sidemenu-drawer").removeClass("no-promo") : $(".sidemenu-drawer").addClass("no-promo");'>
+              <a href="https://cms.wgtn.ac.nz/menu-nav-test/governance" title="Leadership and governance">Leadership and
+                governance</a>
+              <ul>
+      
+      
+      
+      
+      
+      
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/structure" title="Our structure">Our
+                    structure</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/council"
+                    title="University Council">University Council</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/senior-leadership"
+                    title="Senior Leadership">Senior Leadership</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/academic"
+                    title="Academic Office">Academic Office</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/strategy"
+                    title="Strategy and policy">Strategy and policy</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/strategic-plan"
+                    title="Strategic plan">Strategic plan</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/copyright"
+                    title="Copyright at the University">Copyright at the University</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/delegations"
+                    title="Delegations">Delegations</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/university-publications"
+                    title="University publications">University publications</a>
+                </li>
+              </ul>
+            </li>
+      
+      
+            <li class="" data-for="draw-1856616"
+              onClick='$("[id^=draw]").hide(); $("#draw-1856616").show(); $("#draw-1856616").length ? $(".sidemenu-drawer").removeClass("no-promo") : $(".sidemenu-drawer").addClass("no-promo");'>
+              <a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities" title="Campuses and facilities">Campuses and
+                facilities</a>
+              <ul>
+      
+      
+      
+      
+      
+      
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/campuses"
+                    title="(( Our campuses and sites ))">(( Our campuses and sites ))</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/marae" title="Marae">Marae</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/wellington"
+                    title="Wellington life">Wellington life</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/sustainability"
+                    title="Sustainability">Sustainability</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/pasifika-haos"
+                    title="Pasifika Haos">Pasifika Haos</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/venue-hire"
+                    title="Venues, conferences, and alcohol events on campus">Venues, conferences, and alcohol events on
+                    campus</a>
+                </li>
+              </ul>
+            </li>
+      
+      
+            <li class="" data-for="draw-1856628"
+              onClick='$("[id^=draw]").hide(); $("#draw-1856628").show(); $("#draw-1856628").length ? $(".sidemenu-drawer").removeClass("no-promo") : $(".sidemenu-drawer").addClass("no-promo");'>
+              <a href="https://cms.wgtn.ac.nz/menu-nav-test/working-here" title="Working here | Mahi ana i konei">Working here
+                | Mahi ana i konei</a>
+              <ul>
+      
+      
+      
+      
+      
+      
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/current-vacancies-broadbean"
+                    title="Current vacancies">Current vacancies</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/notes-for-applicants"
+                    title="Notes for applicants">Notes for applicants</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/wellington"
+                    title="Wellington life">Wellington life</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/values"
+                    title="Vision, mission and values">Vision, mission and values</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/employment-information"
+                    title="Benefits of working with us">Benefits of working with us</a>
+                </li>
+                <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/facilities-for-staff"
+                    title="Facilities for staff">Facilities for staff</a>
+                </li>
+              </ul>
+            </li>
+      
+      
+            <li class="" data-for="draw-1856636"
+              onClick='$("[id^=draw]").hide(); $("#draw-1856636").show(); $("#draw-1856636").length ? $(".sidemenu-drawer").removeClass("no-promo") : $(".sidemenu-drawer").addClass("no-promo");'>
+              <a href="https://cms.wgtn.ac.nz/menu-nav-test/contacts" title="Contacts and directories">Contacts and
+                directories</a>
+            </li>
+          </ul>
+      
+          <div class="sidemenu-drawer">
+      
+            <div class="draw-nav"></div>
+            <div class="draw-promo">
+              <div id="draw-1856598" style="display: none">
+                <div class="highlight-message green">
+                  <div class="highlight-image">
+                    <img alt=""
+                      src="https://cms.wgtn.ac.nz/__data/assets/git_bridge/0009/1778031/dist/images/rueben-3200.jpg">
+                  </div>
+                  <div class="highlight-content">
+                    <h3>Trimester 2</h3>
+                    <p>Apply now for study in trimester 2.</p>
+                    <a href="#" class="button primary"> Browse courses</a>
+                  </div>
+                </div>
+      
+                <div class="highlight-message red">
+                  <!-- <div class="highlight-image">
+      <img alt="" src="../images/rueben-3200.jpg">
+      </div> -->
+                  <div class="highlight-content">
+                    <h3>COVID-19 update</h3>
+      
+      
+                    <p>Read the latest <a href="#">COVID-19 updates</a> from the University and find out how we are supporting
+                      our community.</p>
+                  </div>
+                </div>
+      
               </div>
-
+      
+              <div id="draw-1856628" style="display: none">
+                <div class="highlight-message green">
+                  <div class="highlight-image">
+                    <img alt=""
+                      src="https://cms.wgtn.ac.nz/__data/assets/git_bridge/0009/1778031/dist/images/rueben-3200.jpg">
+                  </div>
+                  <div class="highlight-content">
+                    <h3>Trimester 2</h3>
+                    <p>Apply now for study in trimester 2.</p>
+                    <a href="#" class="button primary"> Browse courses</a>
+                  </div>
+                </div>
+      
+                <div class="highlight-message red">
+                  <!-- <div class="highlight-image">
+      <img alt="" src="../images/rueben-3200.jpg">
+      </div> -->
+                  <div class="highlight-content">
+                    <h3>COVID-19 update</h3>
+      
+      
+                    <p>Read the latest <a href="#">COVID-19 updates</a> from the University and find out how we are supporting
+                      our community.</p>
+                  </div>
+                </div>
+      
+              </div>
+      
+      
             </div>
-
-          </figcaption>
-        </figure>
+            <button class="close-draw flat"><span class="icon-cross"></span></button>
+        </nav>
+      
+        <div class="hub-banner-sidemenu reset-formatting">
+          <a href="http://" target="_blank" rel="noopener noreferrer">
+            <figure class="">
+              <div class="banner-image"
+                style="background-image: url(../images/reuben-3200.jpg);">
+                <img alt="" src="../images/rueben-3200.jpg">
+              </div>
+              <div class="banner-body top-left">
+                <div class=" banner-title">
+                  <h1>Study at Wellington</h1>
+                </div>
+                <div class=" banner-text">
+                  <p>Find out about ways you can collaborate with Victoria research and access our technologies, expertise,
+                    business solutions, students and staff.</p>
+                </div>
+              </div>
+            </figure>
+          </a>
+        </div>
       </div>
-
-        <section class="page-sub-nav nav-buttons">
-          <div class="centraliser">
-
-              <nav role="navigation">
-                <ul role="menubar">
-                  <!-- <li>
-                    <a role="menuitem" title="Course finder" href="../prototypes/research.html">Home</a>
-                  </li> -->
-                  <li>
-                    <a role="menuitem" title="Course finder" href="../prototypes/research-strengths.html" class="">Research strengths</a>
-                  </li>
-                  <li>
-                    <a role="menuitem" title="Faculties and Schools" href="../prototypes/research-degrees.html" class="">Research degrees</a>
-                  </li>
-                  <li role="menuitem">
-                    <a href="../prototypes/research-partnerships.html" role="menuitem" title="Read about Campuses">Research partnerships</a>
-                  </li>
-                  <li>
-                    <a role="menuitem" title="" href="../prototypes/research-strengths.html" class="">Find a researcher</a>
-                  </li>
-                  <li>
-                    <a role="menuitem" title="Faculties and Schools" href="../prototypes/our-researchers.html" class="active">Support for researchers</a>
-                  </li>
-
-                </ul>
-              </nav>
-
-          </div>
-        </section>
 
     <!-- Search panel -->
       <div class="centraliser">
