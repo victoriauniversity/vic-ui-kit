@@ -5,7 +5,7 @@
   display: flex;
 }
 
-.grid-flex, .grid,
+.grid-flex,
 .columns {
   display: flex;
   flex-wrap: wrap;
@@ -13,29 +13,6 @@
   > * {
     margin-bottom: 1rem;
   }
-
-.col{
-  flex:1;
-}
-
-.flex-grid-thirds{
-  display:flex;
-
-}
-
-.col-1-4{
-  width:25%;
-  background:#ccc;
-  float:left;
-  height:100%;
-}
-
-
-.col-3-4{
-  width:75%;
-  float:left;
-}
-
 
   // Desktop
   @include breakpoint ( $from: desktop ) {
@@ -70,13 +47,6 @@
       margin-right: 0;
     }
 
-
-    .flex-grid-thirds{
-      width:100%;
-      display:block;
-      flex-direction: column;
-
-    }
   }
   // Tablet
   @include bp-tablet {
@@ -97,14 +67,6 @@
     &.columns2 > *:nth-child(2n+2) {
       margin-right: 0;
     }
-
-
-    .flex-grid-thirds{
-      width:100%;
-      display:block;
-
-    }
-
   }
 
 }

@@ -1,0 +1,3249 @@
+<!-- Version: 0.10.13 | Thursday, March 25, 2021, 11:43 AM -->
+<!doctype html>
+<body lang="">
+<head>
+
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title></title>
+
+  <!-- Fav icons compatible with all major browsers and devices -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="mask-icon" href="../images/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="theme-color" content="#ffffff">
+
+  
+
+  <!-- toolkit styles -->
+  <link rel="stylesheet" href="../toolkit.css">
+  <!-- /toolkit styles -->
+
+  <script src="https://polyfill.io/v3/polyfill.min.js"></script>
+
+  <script>
+      /** Allows to add custom scripts that will be executed inside the jQuery's $(document).ready().  */
+      var onDocumentReadyFunctions = [];
+      function runFunctionOnDocumentReady( fn ) { onDocumentReadyFunctions.push( fn ); }
+  </script>
+
+  
+
+</head>
+
+<body>
+
+  
+<body>
+  <div class="popup" id="global-cookie-bar" data-autoload="" data-opts="{ &quot;delayInMs&quot;: 0 }">
+    <div class="global-cookies-body">
+      <p>Victoria University of Wellington uses cookies to enhance your experience, to display customised content, and
+        to help us better understand how you use our website. To accept cookies, click 'Close'. To find out more about
+        cookies and change your preferences, visit our <a href="https://www.wgtn.ac.nz/site-info/privacy"
+          target="_blank">privacy notice</a>.</p>
+    </div>
+    <a class="global-cookie-btn button-cancel" href="javascript:;" title="Close">Close</a>
+  </div>
+  <div id="modal" class="SSloading"
+    style="display:none; overflow: auto;  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999;   -webkit-overflow-scrolling: touch; background: rgba(0,0,0,0.5); zoom: 1;">
+    <div id="frame-cover"
+      style="display:none; width:310px; height:453px; left:50%; margin-left: -155px; position: fixed; z-index:90;">
+      <iframe id="shieldedFrame" sandbox="allow-forms allow-scripts allow-same-origin allow-popups"
+        data-src="https://d3f5l8ze0o4j2m.cloudfront.net" width="310" height="420"
+        style="opacity: .98; width:310px; height:420px;" frameborder="0"></iframe><a href="#" id="frame-close"><img
+          style=" display: block; margin: -4px auto; width: 50px; height: 35px;  cursor: pointer;"
+          src="https://d3f5l8ze0o4j2m.cloudfront.net/m87/close.png" alt=""></a></div>
+  </div>
+  <style>
+    .SSloading:not(:required):after {
+      content: "";
+      display: block;
+      font-size: 10px;
+      width: 1em;
+      height: 1em;
+      margin: 25% 49%;
+      -webkit-animation: spinner 1.5s infinite linear;
+      -moz-animation: spinner 1.5s infinite linear;
+      -ms-animation: spinner 1.5s infinite linear;
+      -o-animation: spinner 1.5s infinite linear;
+      animation: spinner 1.5s infinite linear;
+      border-radius: .5em;
+      -webkit-box-shadow: rgba(0, 0, 0, .75) 1.5em 0 0 0, rgba(0, 0, 0, .75) 1.1em 1.1em 0 0, rgba(0, 0, 0, .75) 0 1.5em 0 0, rgba(0, 0, 0, .75) -1.1em 1.1em 0 0, rgba(0, 0, 0, .5) -1.5em 0 0 0, rgba(0, 0, 0, .5) -1.1em -1.1em 0 0, rgba(0, 0, 0, .75) 0 -1.5em 0 0, rgba(0, 0, 0, .75) 1.1em -1.1em 0 0;
+      box-shadow: rgba(0, 0, 0, .75) 1.5em 0 0 0, rgba(0, 0, 0, .75) 1.1em 1.1em 0 0, rgba(0, 0, 0, .75) 0 1.5em 0 0, rgba(0, 0, 0, .75) -1.1em 1.1em 0 0, rgba(0, 0, 0, .75) -1.5em 0 0 0, rgba(0, 0, 0, .75) -1.1em -1.1em 0 0, rgba(0, 0, 0, .75) 0 -1.5em 0 0, rgba(0, 0, 0, .75) 1.1em -1.1em 0 0
+    }
+
+    @-webkit-keyframes spinner {
+      0% {
+        -webkit-transform: rotate(0);
+        -moz-transform: rotate(0);
+        -ms-transform: rotate(0);
+        -o-transform: rotate(0);
+        transform: rotate(0)
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg)
+      }
+    }
+
+    @-moz-keyframes spinner {
+      0% {
+        -webkit-transform: rotate(0);
+        -moz-transform: rotate(0);
+        -ms-transform: rotate(0);
+        -o-transform: rotate(0);
+        transform: rotate(0)
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg)
+      }
+    }
+
+    @-o-keyframes spinner {
+      0% {
+        -webkit-transform: rotate(0);
+        -moz-transform: rotate(0);
+        -ms-transform: rotate(0);
+        -o-transform: rotate(0);
+        transform: rotate(0)
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg)
+      }
+    }
+
+    @keyframes spinner {
+      0% {
+        -webkit-transform: rotate(0);
+        -moz-transform: rotate(0);
+        -ms-transform: rotate(0);
+        -o-transform: rotate(0);
+        transform: rotate(0)
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg)
+      }
+    }
+  </style>
+
+
+
+
+  <input type="hidden" name="token" value="ae23ddab1c9230bb4845641cda18b8576f6ce6f6" class="sq-form-field" id="token">
+
+
+
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe
+      src="https://www.googletagmanager.com/ns.html?id=GTM-NL8WSRD&gtm_auth=8Gmp5bNFt3S6pEqM-1pTbw&gtm_preview=env-34&gtm_cookies_win=x"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+
+
+
+  <!--dynamic-header-->
+  <header role="navigation" class="header-port main-site-header existing-ia">
+    <div class="block centraliser">
+      <!-- Logotype -->
+      <div class="logo"><a href="https://www.wgtn.ac.nz" title="Victoria University of Wellington">
+          <picture>
+            <source media="(min-width: 688px) and (max-width: 1087px)"
+              srcset="https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/images/new/v2/logo-white-portrait.svg?v=2">
+            <source media="(max-width: 687px)"
+              srcset="https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/images/new/logo-white-mini.svg">
+            <img
+              src="https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/images/new/v2/logo-white-full.svg?v=2"
+              alt=""></picture>
+        </a></div><!-- Mobile Menu toggle --><a class="main-menu-toggle" role="toggle-mobile-menu"
+        href="javascript:void(0)">
+        <div class="menu-toggle-icon"><span></span><span></span><span></span><span></span></div>
+      </a><!-- Nav block -->
+      <nav class="menu-container">
+        <div role="menu" class="sub-nav horizontal-menu">
+          <div class="menu-bar" role="menubar"><a href="https://www.wgtn.ac.nz/about" role="menuitem">About</a><a
+              href="https://intranet.wgtn.ac.nz/staff" role="menuitem">Staff intranet</a><a
+              href="https://www.wgtn.ac.nz/library/" role="menuitem">Library</a><a
+              href="javascript:window.toolkitToolbarLoader &amp;&amp; window.toolkitToolbarLoader( 'https://www.wgtn.ac.nz/api/toolbar/students' ); void 0;"
+              role="menuitem">myTools</a><a href="https://blackboard.vuw.ac.nz/" role="menuitem">Blackboard</a><a
+              href="https://www.wgtn.ac.nz/about/campuses-facilities/campuses" role="menuitem">Maps</a><a
+              href="https://www.wgtn.ac.nz/learning-teaching" role="menuitem">Learning &amp; teaching</a></div>
+        </div>
+        <div role="menu" class="main-nav horizontal-menu">
+          <div role="menubar" class="menu-bar"><a role="menuitem" href="https://www.wgtn.ac.nz/study"
+              class="future">Future students</a><a role="menuitem" href="https://www.wgtn.ac.nz/international"
+              class="international">International students</a><a role="menuitem" href="https://www.wgtn.ac.nz/students"
+              class="current">Current students</a><a role="menuitem" href="https://www.wgtn.ac.nz/research"
+              class="research">Research</a><a role="menuitem" href="https://www.wgtn.ac.nz/engage"
+              class="engage">Engage</a><a role="search" class="menu-item search-item" href="javascript:void(0)"><span
+                class="icon-search"></span></a></div>
+        </div>
+      </nav>
+      <div class="centraliser search-bar">
+        <form class="search-form" action="https://www.wgtn.ac.nz/search" role="search"><input id="search-query"
+            class="search-input" aria-label="Search term:" autocomplete="off" autocorrect="off" type="search" name="q"
+            placeholder="Search for..."><input id="search-submit" class="primary button" type="submit" value="Go">
+        </form>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- 'Go up' button -->
+  <a href="javascript:;" id="btn-up" title="Go to the top of the page" class="btn-floating sticky bottom"
+    tabindex="-1"><span class="icon-arrow-up"></span></a>
+
+  <!-- 'Edit page' button -->
+  <a href="https://cms.wgtn.ac.nz/about/our-story/_edit" id="btn-admin" style=""
+    title="Edit the page in Squiz administration" class="btn-floating top" tabindex="-1"><span
+      class="icon-edit"></span></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section class="layout centraliser block">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="sidebar">
+      <nav data-gtm-track="" class="sidemenu" role="navigation">
+        <h1 class="sidemenu-toggle"><a href="#" title="Show/Hide  menu"> menu</a></h1>
+        <ul>
+          <li class="sidemenu__label"><a href="https://cms.wgtn.ac.nz"></a></li>
+          <li class=""><a href="https://cms.wgtn.ac.nz/home" title="Home">Home</a>
+          </li>
+          <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study" title="Study at Wellington">Study at
+              Wellington</a><span class="btn-expander" title="Toggle subpages"></span>
+            <ul>
+
+
+
+
+
+
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/why-choose-us" title="Why choose us">Why
+                  choose us</a><span class="btn-expander" title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/why-choose-us/living-in-wellington"
+                      title="Living in Wellington">Living in Wellington</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/why-choose-us/accommodation"
+                      title="Accommodation">Accommodation</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/why-choose-us/getting-involved"
+                      title="Getting involved">Getting involved</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/programmes-courses"
+                  title="Programmes and courses">Programmes and courses</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/programmes-courses/undergraduates"
+                      title="Undergraduates">Undergraduates</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/undergraduates/bachelors-degrees"
+                          title="Individual degree listings">Individual degree listings</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/undergraduates/conjoint-double"
+                          title="Conjoint and double degrees">Conjoint and double degrees</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/undergraduates/degree-structure"
+                          title="How degrees are structured">How degrees are structured</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/undergraduates/planning-your-degree-and-courses"
+                          title="Planning your degree and courses">Planning your degree and courses</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/undergraduates/prospectus"
+                          title="Get a prospectus">Get a prospectus</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/programmes-courses/postgraduates"
+                      title="Postgraduates">Postgraduates</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/postgraduates/explore-postgraduate-subjects"
+                          title="Explore postgraduate subjects">Explore postgraduate subjects</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/postgraduates/phds-doctorates"
+                          title="PhD and other doctoral degrees">PhD and other doctoral degrees</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/postgraduates/masters"
+                          title="Master’s programmes">Master’s programmes</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/postgraduates/honours"
+                          title="Honours degrees">Honours degrees</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/postgraduates/postgrad-certificates-diplomas"
+                          title="Postgraduate certificates and diplomas">Postgraduate certificates and diplomas</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/postgraduates/graduate-certificates-diplomas"
+                          title="Graduate certificates and diplomas">Graduate certificates and diplomas</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/postgraduates/information-evening"
+                          title="Postgraduate information evenings">Postgraduate information evenings</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/postgraduates/wellington-life"
+                          title="Wellington life">Wellington life</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/postgraduates/prospectus"
+                          title="Get a prospectus">Get a prospectus</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/subjects"
+                      title="Explore subject areas">Explore subject areas</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/postgraduate-subjects"
+                      title="Explore postgraduate subjects">Explore postgraduate subjects</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/study-in-trimester-3"
+                      title="Study in Trimester 3">Study in Trimester 3</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/programmes-courses/courses"
+                      title="Course finder">Course finder</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/courses/estimator"
+                          title="Fees estimator">Fees estimator</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/courses/codes"
+                          title="Subject codes">Subject codes</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/programmes-courses/limited-entry"
+                      title="Limited entry">Limited entry</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/limited-entry/architecture-and-design"
+                          title="Architecture and Design">Architecture and Design</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/limited-entry/business"
+                          title="Commerce and Tourism">Commerce and Tourism</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/limited-entry/humanities-and-social-sciences"
+                          title="Humanities and Social Sciences">Humanities and Social Sciences</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/limited-entry/law"
+                          title="Law">Law</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/limited-entry/science-and-engineering"
+                          title="Science and Engineering">Science and Engineering</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/limited-entry/health"
+                          title="Health">Health</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/programmes-courses/flexible"
+                      title="Flexible study">Flexible study</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/flexible/ba-minors"
+                          title="Minors in the Bachelor of Arts">Minors in the Bachelor of Arts</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/flexible/bbmedsc-minors"
+                          title="Minors in the Bachelor of Biomedical Science">Minors in the Bachelor of Biomedical
+                          Science</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/flexible/bcom-minors"
+                          title="Minors in the Bachelor of Commerce">Minors in the Bachelor of Commerce</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/flexible/bc-minors"
+                          title="Minors in the Bachelor of Communication">Minors in the Bachelor of Communication</a>
+                      </li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/flexible/minors-in-the-bachelor-of-health"
+                          title="Minors in the Bachelor of Health">Minors in the Bachelor of Health</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/flexible/bmus-minors"
+                          title="Minors in the Bachelor of Music">Minors in the Bachelor of Music</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/programmes-courses/flexible/bsc-minors"
+                          title="Minors in the Bachelor of Science">Minors in the Bachelor of Science</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/programmes-courses/short-courses"
+                      title="Short courses and non-degree programmes">Short courses and non-degree programmes</a><span
+                      class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/short-courses/pre-degree-programmes-and-courses"
+                          title="Pre-degree programmes and courses">Pre-degree programmes and courses</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/short-courses/certificate-of-proficiency"
+                          title="Certificate of Proficiency">Certificate of Proficiency</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/short-courses/certificate-in-deaf-studies2"
+                          title="Certificate in Deaf Studies">Certificate in Deaf Studies</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/short-courses/certificate-in-management-studies2"
+                          title="Certificate in Management Studies">Certificate in Management Studies</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/short-courses/continuing-education"
+                          title="Continuing education">Continuing education</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/programmes-courses/short-courses/professional-development"
+                          title="Professional and executive development courses">Professional and executive development
+                          courses</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/course-planning"
+                  title="Planning your studies">Planning your studies</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/course-planning/appointments"
+                      title="Course advice for new students">Course advice for new students</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/course-planning/degrees-courses"
+                      title="Choosing your degree and courses">Choosing your degree and courses</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/course-planning/liaison-officers"
+                      title="Meet our recruitment team">Meet our recruitment team</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/course-planning/school-subjects"
+                      title="Planning school subjects">Planning school subjects</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/course-planning/publications"
+                      title="Latest publications">Latest publications</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/course-planning/campus-tour"
+                      title="Book a campus tour">Book a campus tour</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/course-planning/career-options"
+                      title="Career pathways">Career pathways</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/course-planning/mature-students"
+                      title="Returning to study">Returning to study</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/apply-enrol" title="Apply to enrol">Apply to
+                  enrol</a><span class="btn-expander" title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/apply-enrol/apply" title="Apply now">Apply now</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/apply-enrol/steps" title="Steps to apply">Steps to
+                      apply</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/apply-enrol/admissions"
+                      title="Admissions">Admissions</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/apply-enrol/admissions/nz-university-entrance"
+                          title="University Entrance">University Entrance</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/apply-enrol/admissions/cambridge-international"
+                          title="Cambridge International Examinations">Cambridge International Examinations</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/apply-enrol/admissions/international-baccalaureate"
+                          title="International Baccalaureate">International Baccalaureate</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/apply-enrol/admissions/entrance-level-qualification"
+                          title="Qualification assessment at entrance level">Qualification assessment at entrance
+                          level</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/apply-enrol/admissions/above-entrance-level"
+                          title="Qualification assessment above entrance level ">Qualification assessment above entrance
+                          level </a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/apply-enrol/admissions/victoria-entrance-qualification"
+                          title="University entrance qualification">University entrance qualification</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/apply-enrol/admissions/discretionary-entrance"
+                          title="Discretionary Entrance">Discretionary Entrance</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/apply-enrol/admissions/special-admission"
+                          title="Special Admission">Special Admission</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/apply-enrol/admissions/pre-degree-programme-admissions"
+                          title="Pre-degree programme admissions">Pre-degree programme admissions</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/apply-enrol/admissions/postgraduate-entry-procedures"
+                          title="Postgraduate entry">Postgraduate entry</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/apply-enrol/offer-of-study"
+                      title="Your Offer of Study">Your Offer of Study</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/apply-enrol/documentation"
+                      title="Send your documentation">Send your documentation</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/apply-enrol/student-id"
+                      title="Student ID cards">Student ID cards</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/apply-enrol/declined-admission"
+                      title="Declined admission">Declined admission</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/student-finance"
+                  title="Financing your study">Financing your study</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/student-finance/fees"
+                      title="Fees">Fees</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/student-finance/fees/domestic"
+                          title="Domestic students">Domestic students</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/student-finance/fees/international-students"
+                          title="International students">International students</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/student-finance/fees/how-to-pay"
+                          title="How to pay">How to pay</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/student-finance/fees-free"
+                      title="Fees-free">Fees-free</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/student-finance/loans-allowances"
+                      title="Student loans and allowances">Student loans and allowances</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/student-finance/loans-allowances/requirements"
+                          title="Enrolment requirements for loans and allowances">Enrolment requirements for loans and
+                          allowances</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/student-finance/loans-allowances/loan-performance-criteria"
+                          title="Student loan performance criteria">Student loan performance criteria</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/student-finance/scholarships"
+                      title="Scholarships">Scholarships</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/student-finance/financial-survival"
+                      title="Financial survival">Financial survival</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/student-finance/financial-survival/studylink-support"
+                          title="StudyLink support">StudyLink support</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/study/student-finance/financial-survival/halls-of-residence-payment-schedule"
+                          title="Halls of residence payment schedules">Halls of residence payment schedules</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/preparing"
+                  title="Preparing for university">Preparing for university</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/preparing/academic-preparation"
+                      title="Transition to university life">Transition to university life</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/preparing/preparation"
+                      title="Pre-degree courses and programmes">Pre-degree courses and programmes</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/preparing/english-proficiency-programme"
+                      title="English Proficiency Programme">English Proficiency Programme</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/preparing/student-services-and-support"
+                      title="Student services and support">Student services and support</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/preparing/parents-whanau"
+                      title="Parents and whānau">Parents and whānau</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/preparing/test-logged-in"
+                      title="(( Test logged in ))">(( Test logged in ))</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/events-visits"
+                  title="Events, open days and visits">Events, open days and visits</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/events-visits/first-year-information-evenings"
+                      title="Undergraduate information evenings">Undergraduate information evenings</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/events-visits/postgraduate-evenings"
+                      title="Postgraduate information evenings">Postgraduate information evenings</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/events-visits/open-day" title="Open Day">Open
+                      Day</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/events-visits/visits-expos"
+                      title="School visits and expos">School visits and expos</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/events-visits/careers-advisers"
+                      title="Information for school careers advisers">Information for school careers advisers</a><span
+                      class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/events-visits/careers-advisers/degree-sheets"
+                          title="Degree sheets">Degree sheets</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/events-visits/careers-advisers/advice"
+                          title="Course planning and school visits">Course planning and school visits</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/events-visits/careers-advisers/publications"
+                          title="Request publications">Request publications</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/study/events-visits/careers-advisers/resources"
+                          title="Resources">Resources</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/events-visits/new-students-orientation"
+                      title="New Students’ Orientation">New Students’ Orientation</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/study/engineering"
+                  title="Discover Engineering">Discover Engineering</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/future"
+                      title="(( Engineer your future ))">(( Engineer your future ))</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/outreach"
+                      title="(( Engineering outreach ))">(( Engineering outreach ))</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/experience"
+                      title="(( First-year engineering ))">(( First-year engineering ))</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/mirror-mirror-on-the-wall"
+                      title="(( Mirror mirror on the wall ))">(( Mirror mirror on the wall ))</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/animation"
+                      title="(( Animation algorithms ))">(( Animation algorithms ))</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/oculus"
+                      title="(( Oculus Rift—Virtual Reality ))">(( Oculus Rift—Virtual Reality ))</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/sound"
+                      title="(( Dedicated to the art of sound ))">(( Dedicated to the art of sound ))</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/riding"
+                      title="(( Riding high on a great idea ))">(( Riding high on a great idea ))</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/zombie"
+                      title="(( Zombie apocalypse ))">(( Zombie apocalypse ))</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/rockets"
+                      title="(( Aiming for the sky ))">(( Aiming for the sky ))</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/big-ears"
+                      title="(( Student project hits the ear-waves ))">(( Student project hits the ear-waves ))</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/using-agile-methods-to-teach-others"
+                      title="(( Using Agile methods to teach others ))">(( Using Agile methods to teach others ))</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/study-cybersecurity"
+                      title="Cybersecurity">Cybersecurity</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/renewable-energy"
+                      title="Renewable energy">Renewable energy</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/robotics" title="Robotics">Robotics</a>
+                  </li>
+                  <li class=""><a
+                      href="https://cms.wgtn.ac.nz/study/engineering/autonomous-learning-makes-smarter-robots"
+                      title="Autonomous learning makes smarter robots">Autonomous learning makes smarter robots</a>
+                  </li>
+                  <li class=""><a
+                      href="https://cms.wgtn.ac.nz/study/engineering/the-building-blocks-to-a-creative-career"
+                      title="The building blocks to a creative career">The building blocks to a creative career</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/a-safe-career-option"
+                      title="A safe career option">A safe career option</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/household-solar-power-a-bright-idea"
+                      title="Household solar power a bright idea">Household solar power a bright idea</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/study/engineering/going-with-the-flow"
+                      title="Going with the flow">Going with the flow</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students" title="Current students">Current
+              students</a><span class="btn-expander" title="Toggle subpages"></span>
+            <ul>
+
+
+
+
+
+
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/study" title="Manage your studies">Manage
+                  your studies</a><span class="btn-expander" title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/study/dates" title="Key dates">Key dates</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/study/enrolment"
+                      title="Re-enrolment and course advice">Re-enrolment and course advice</a><span
+                      class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/study/enrolment/planning"
+                          title="Course planning and advice">Course planning and advice</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/study/enrolment/course-finder2"
+                          title="Course Finder">Course Finder</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/study/enrolment/limited-entry"
+                          title="Limited entry">Limited entry</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/study/enrolment/re-enrolling-domestic-students"
+                          title="Re-enrolling domestic students">Re-enrolling domestic students</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/study/enrolment/international-students"
+                          title="Re-enrolling international students">Re-enrolling international students</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/study/enrolment/renewing-visa"
+                          title="Renewing your visa">Renewing your visa</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/study/enrolment/insurance"
+                          title="Renew or extend your insurance">Renew or extend your insurance</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/study/enrolment/declined-admission-and-academic-holds"
+                          title="Declined admission and academic holds">Declined admission and academic holds</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/study/timetables"
+                      title="Timetables">Timetables</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/study/timetables/tutorials"
+                          title="Tutorials">Tutorials</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/study/timetables/tutorial-sign-up"
+                          title="Tutorial sign-up">Tutorial sign-up</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/study/student-id"
+                      title="Student ID cards">Student ID cards</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/study/course-additions-withdrawals"
+                      title="Course additions and withdrawals">Course additions and withdrawals</a><span
+                      class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/study/course-additions-withdrawals/fee-reconsideration"
+                          title="Fee reconsideration">Fee reconsideration</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/study/exams"
+                      title="Examinations and assessments">Examinations and assessments</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/study/exams/rules" title="Exam rules">Exam
+                          rules</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/study/exams/aegrotats"
+                          title="Help at exam time">Help at exam time</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/study/exams/academic-integrity"
+                          title="Academic integrity">Academic integrity</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/study/exams/digital-exams-pilot"
+                          title="Digital exams pilot">Digital exams pilot</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/study/progress"
+                      title="Grades and academic progress">Grades and academic progress</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/study/progress/student-and-academic-policies"
+                          title="Student and academic policies">Student and academic policies</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/study/progress/grades"
+                          title="Grades">Grades</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/study/progress/academic-progress"
+                          title="Academic progress">Academic progress</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/study/progress/graduation"
+                          title="Graduation">Graduation</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/study/progress/postgraduate"
+                          title="Postgraduate studies">Postgraduate studies</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/study/mydegree" title="myDegree">myDegree</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/study/academic-policies"
+                      title="Student and academic policies">Student and academic policies</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/study/faculty-offices"
+                      title="Faculty offices">Faculty offices</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/study/student-publications"
+                      title="Student publications">Student publications</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/study/study-in-trimester-3"
+                      title="Study in Trimester 3">Study in Trimester 3</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/support"
+                  title="Student services and support">Student services and support</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/support/admin" title="Manage your admin">Manage
+                      your admin</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/support/learning"
+                      title="Extend your learning">Extend your learning</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/learning/skills"
+                          title="Study and research skills">Study and research skills</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/learning/library"
+                          title="Library">Library</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/learning/disability"
+                          title="Disability Services">Disability Services</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/learning/language-learning-centre"
+                          title="Language Learning Centre">Language Learning Centre</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/learning/awhina"
+                          title="Āwhina">Āwhina</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/learning/te-putahi-atawhai"
+                          title="Pasifika Student Success">Pasifika Student Success</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/learning/awhina-ex"
+                          title="(( Te Rōpū Āwhina ))">(( Te Rōpū Āwhina ))</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/learning/law-maori-student-support"
+                          title="Māori and Pasifika Law Student Coordinators">Māori and Pasifika Law Student
+                          Coordinators</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/learning/international"
+                          title="Wellington University International">Wellington University International</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/support/wellness"
+                      title="Stay well">Stay well</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/wellness/student-health"
+                          title="Student Health">Student Health</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/wellness/student-counselling"
+                          title="Student Counselling">Student Counselling</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/wellness/victoria-recreation"
+                          title="University Recreation Wellington">University Recreation Wellington</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/wellness/physiotherapy-clinic"
+                          title="Physiotherapy Clinic">Physiotherapy Clinic</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a
+                      href="https://cms.wgtn.ac.nz/students/support/student-interest-and-conflict-resolution"
+                      title="Student interest and conflict resolution">Student interest and conflict resolution</a><span
+                      class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/support/student-interest-and-conflict-resolution/safety-on-campus"
+                          title="Safer communities">Safer communities</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/support/student-interest-and-conflict-resolution/sexually-harmful-behaviours"
+                          title="Sexually harmful behaviours">Sexually harmful behaviours</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/support/student-interest-and-conflict-resolution/academic-integrity"
+                          title="Academic integrity">Academic integrity</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/support/student-interest-and-conflict-resolution/restorative-communities"
+                          title="Restorative communities">Restorative communities</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/support/student-interest-and-conflict-resolution/respectful-communities"
+                          title="Respectful communities">Respectful communities</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/support/student-interest-and-conflict-resolution/student-interest-and-conflict-resolution"
+                          title="Student interest and conflict resolution team">Student interest and conflict resolution
+                          team</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/support/employability"
+                      title="Maximise your employability">Maximise your employability</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/support/employability/victoria-plus-programme"
+                          title="CareerHub">CareerHub</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/employability/student-job-search"
+                          title="Student Job Search">Student Job Search</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/employability/get-involved"
+                          title="Get involved">Get involved</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/support/student-services-a-z"
+                      title="Student services (A-Z)">Student services (A-Z)</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/support/ihonui" title="Info Ihonui">Info
+                      Ihonui</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/support/disability-services"
+                      title="Disability Services">Disability Services</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/support/international"
+                      title="International student support">International student support</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/international/wellbeing"
+                          title="Health and wellbeing">Health and wellbeing</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/international/insurance-claim"
+                          title="Making an insurance claim">Making an insurance claim</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/international/safety"
+                          title="Safety and security">Safety and security</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/international/help-mentoring"
+                          title="Academic help and mentoring">Academic help and mentoring</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/international/code-of-practice"
+                          title="Code of practice">Code of practice</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/international/re-enrolling"
+                          title="Re-enrolling">Re-enrolling</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/international/renewing-your-visa"
+                          title="Renewing your visa">Renewing your visa</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/support/international/renew-or-extend-your-insurance"
+                          title="Renew or extend your insurance">Renew or extend your insurance</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/support/international/post-study-work-visa"
+                          title="Post study work visa">Post study work visa</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/support/international/new-zealand-scholarships-programme-support"
+                          title="New Zealand Scholarships programme support">New Zealand Scholarships programme
+                          support</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/money" title="Manage your money">Manage
+                  your money</a><span class="btn-expander" title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/money/fees"
+                      title="Fees">Fees</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/money/fees/domestic"
+                          title="Domestic students">Domestic students</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/money/fees/international"
+                          title="International students">International students</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/money/fees/student-services-levy-faqs"
+                          title="Student Services Levy FAQs">Student Services Levy FAQs</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/money/payments" title="How to pay">How to
+                      pay</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/money/financial-survival"
+                      title="Financial survival">Financial survival</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/money/financial-survival/studylink-support"
+                          title="StudyLink support">StudyLink support</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/money/financial-survival/halls-of-residence-payment-schedule"
+                          title="Halls of residence payment schedules">Halls of residence payment schedules</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/money/hardship-fund"
+                      title="Hardship Fund">Hardship Fund</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/money/scholarships"
+                      title="Scholarships">Scholarships</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/money/loans-allowances"
+                      title="Student loans and allowances">Student loans and allowances</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/money/loans-allowances/requirements"
+                          title="Enrolment requirements for loans and allowances">Enrolment requirements for loans and
+                          allowances</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/money/loans-allowances/loan-performance-criteria"
+                          title="Student loan performance criteria">Student loan performance criteria</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/money/withdrawals-refunds"
+                      title="Course additions and withdrawals">Course additions and withdrawals</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/money/workshops"
+                      title="Financial wellbeing workshops">Financial wellbeing workshops</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/money/student-finance-advisers"
+                      title="Meet with a student finance adviser">Meet with a student finance adviser</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/money/blackbullion"
+                      title="Blackbullion">Blackbullion</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/campus" title="On campus">On
+                  campus</a><span class="btn-expander" title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/campuses" title="Our campuses">Our
+                      campuses</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/food" title="Food and drink">Food and
+                      drink</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/healthcare-shops"
+                      title="Healthcare, banking and shops">Healthcare, banking and shops</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/campus/clubs"
+                      title="Clubs and societies">Clubs and societies</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/clubs/directory"
+                          title="Clubs directory">Clubs directory</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/clubs/resources"
+                          title="Club resources">Club resources</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/clubs/start"
+                          title="Register a club">Register a club</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/clubs/sponsorship"
+                          title="Sponsorship and funding">Sponsorship and funding</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/clubs/room-bookings"
+                          title="Facilities and venue hire">Facilities and venue hire</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/clubs/awards"
+                          title="Awards">Awards</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/clubs/partnerships"
+                          title="Partnerships">Partnerships</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/clubs/victoria-clubs-support-team"
+                          title="Clubs support team">Clubs support team</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/marae" title="Marae">Marae</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/gym-and-recreation-centre"
+                      title="Recreation and fitness services">Recreation and fitness services</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/campus/health"
+                      title="Health, safety and wellbeing">Health, safety and wellbeing</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/health/health-and-safety"
+                          title="Healthcare and wellness">Healthcare and wellness</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/health/wellbeing"
+                          title="Wellbeing">Wellbeing</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/health/sexually-harmful-behaviours"
+                          title="Sexually harmful behaviours">Sexually harmful behaviours</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/health/disputes-resolution"
+                          title="Student interest and conflict resolution">Student interest and conflict resolution</a>
+                      </li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/health/fruit-and-vegetable-co-op"
+                          title="Fruit and vegetable co-operative">Fruit and vegetable co-operative</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/health/staying-safe-on-campus"
+                          title="Staying safe on campus">Staying safe on campus</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/health/online-safety"
+                          title="Online safety">Online safety</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/health/suicidal-behaviour-in-halls"
+                          title="Suicidal behaviour in halls of residence">Suicidal behaviour in halls of residence</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/campus/public-transport"
+                      title="Getting to campus">Getting to campus</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/public-transport/tertiary-concession"
+                          title="Tertiary concession">Tertiary concession</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/free-bus-passes"
+                      title="Inter-campus bus passes">Inter-campus bus passes</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/parking" title="Student parking">Student
+                      parking</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/adam-art-gallery"
+                      title="Adam Art Gallery">Adam Art Gallery</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/pasifika-haos"
+                      title="Pasifika Haos">Pasifika Haos</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/campus/environment-and-sustainability"
+                      title="Sustainability">Sustainability</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/new-students" title="New students">New
+                  students</a><span class="btn-expander" title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/new-students/prepare"
+                      title="Before you arrive">Before you arrive</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/prepare/uni101"
+                          title="UNI 101">UNI 101</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/prepare/wgtn-hall"
+                          title="WGTN Hall">WGTN Hall</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/new-students/prepare/international-buddy-programme"
+                          title="International buddy programme">International buddy programme</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/new-students/prepare/accept-your-offer-of-study"
+                          title="Accept your offer of study">Accept your offer of study</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/prepare/money-matters"
+                          title="Pay your fees">Pay your fees</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/new-students/prepare/organise-your-accommodation"
+                          title="Organise your accommodation">Organise your accommodation</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/prepare/parents-whanau"
+                          title="Parents and whānau">Parents and whānau</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/new-students/start"
+                      title="When you arrive">When you arrive</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/new-students/start/international-orientation-and-enrolment"
+                          title="International orientation and enrolment">International orientation and enrolment</a>
+                      </li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/start/get-set-up-online"
+                          title="Get set up online">Get set up online</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/new-students/start/finding-your-way-to-campus"
+                          title="Explore our campuses">Explore our campuses</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/start/finding-your-way-around"
+                          title="Finding your way around">Finding your way around</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/start/student-id"
+                          title="Student ID cards">Student ID cards</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/new-students/start/books-and-course-materials"
+                          title="Books and course materials">Books and course materials</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/new-students/after-starting"
+                      title="Once you’ve started">Once you’ve started</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/after-starting/first-year"
+                          title="What to expect in your first year">What to expect in your first year</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/new-students/after-starting/getting-prepared-academically"
+                          title="Get set up for success">Get set up for success</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/after-starting/connect"
+                          title="Getting involved">Getting involved</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/after-starting/academic-tips"
+                          title="Maximise your studies">Maximise your studies</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/new-students/after-starting/setting-career-goals"
+                          title="Setting career goals">Setting career goals</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/new-students/after-starting/understanding-your-timetable"
+                          title="Understanding your timetable">Understanding your timetable</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/new-students/after-starting/updating-your-preferred-or-legal-name"
+                          title="Updating your preferred or legal name">Updating your preferred or legal name</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/new-students/orientation"
+                      title="New Students’ Orientation">New Students’ Orientation</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/orientation/timetable"
+                          title="Orientation timetable">Orientation timetable</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/orientation/tours"
+                          title="Take a tour">Take a tour</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/orientation/study-skills"
+                          title="Study skills and IT workshops">Study skills and IT workshops</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/orientation/events-workshops"
+                          title="Social events and workshops">Social events and workshops</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/new-students/orientation/international-orientation"
+                          title="International Orientation">International Orientation</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/orientation/maori"
+                          title="Māori orientation">Māori orientation</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/orientation/pasifika"
+                          title="Pasifika orientation">Pasifika orientation</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/orientation/postgraduate"
+                          title="Postgraduate students' orientation">Postgraduate students' orientation</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/new-students/orientation/oweek"
+                          title="OWeek">OWeek</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/get-involved" title="Get involved">Get
+                  involved</a><span class="btn-expander" title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/get-involved/clubs"
+                      title="Clubs and societies">Clubs and societies</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/clubs/directory"
+                          title="Clubs directory">Clubs directory</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/clubs/resources"
+                          title="Club resources">Club resources</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/clubs/start"
+                          title="Register a club">Register a club</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/clubs/sponsorship"
+                          title="Sponsorship and funding">Sponsorship and funding</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/clubs/room-bookings"
+                          title="Facilities and venue hire">Facilities and venue hire</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/clubs/awards"
+                          title="Awards">Awards</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/clubs/partnerships"
+                          title="Partnerships">Partnerships</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/clubs/victoria-clubs-support-team"
+                          title="Clubs support team">Clubs support team</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/get-involved/recreation-services"
+                      title="Recreation and fitness services">Recreation and fitness services</a><span
+                      class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/recreation-services/memberships"
+                          title="Memberships">Memberships</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/recreation-services/timetable"
+                          title="Group exercise timetable">Group exercise timetable</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/recreation-services/fitness"
+                          title="Fitness and personal training">Fitness and personal training</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/recreation-services/sports"
+                          title="Sports ">Sports </a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/recreation-services/clubs-and-societies"
+                          title="Clubs and societies">Clubs and societies</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/recreation-services/venue-hire"
+                          title="Facilities and venue hire">Facilities and venue hire</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/recreation-services/events-and-programmes"
+                          title="Events and programmes">Events and programmes</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/recreation-services/wellbeing"
+                          title="Wellbeing">Wellbeing</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/recreation-services/athlete-support"
+                          title="Athlete support">Athlete support</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/get-involved/lead-mentor"
+                      title="Leadership and mentoring">Leadership and mentoring</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/lead-mentor/UNI-101-Ambassadors"
+                          title="UNI 101 Student Ambassadors">UNI 101 Student Ambassadors</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/lead-mentor/te-putahi-atawhai"
+                          title="(( Te Pūtahi Atawhai ))">(( Te Pūtahi Atawhai ))</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/lead-mentor/awhina"
+                          title="Āwhina">Āwhina</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/lead-mentor/pasifika"
+                          title="Pasifika Student Success">Pasifika Student Success</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/lead-mentor/student-leadership-conference"
+                          title="Student Leadership Conference">Student Leadership Conference</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/get-involved/international"
+                      title="Make international connections">Make international connections</a><span
+                      class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/international/conservation-leaders"
+                          title="Conversation leaders">Conversation leaders</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/international/excell"
+                          title="ExcelL">ExcelL</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/international/buddy"
+                          title="International Buddy Programme">International Buddy Programme</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/international/language-learning-centre-buddy"
+                          title="Language Learning Centre Buddy">Language Learning Centre Buddy</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/international/volunteer"
+                          title="Volunteer at International Orientation">Volunteer at International Orientation</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/representation"
+                      title="Representation">Representation</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/study_support"
+                      title="Study support">Study support</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/victoria-abroad"
+                      title="Wellington Global Exchange">Wellington Global Exchange</a>
+                  </li>
+                  <li class="has-submenu"><a
+                      href="https://cms.wgtn.ac.nz/students/get-involved/international-leadership"
+                      title="Wellington International Leadership Programme">Wellington International Leadership
+                      Programme</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/international-leadership/seminars"
+                          title="Seminars">Seminars</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/international-leadership/speaker-events"
+                          title="Speaker events">Speaker events</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/international-leadership/experiential-activities"
+                          title="Experiential activities">Experiential activities</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/international-leadership/eligibility-joining"
+                          title="Eligibility and how to join">Eligibility and how to join</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/international-leadership/participants"
+                          title="Information for participants">Information for participants</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/international-leadership/stakeholders"
+                          title="Information for stakeholders">Information for stakeholders</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/international-leadership/pasifika-wilp-graduates"
+                          title="Pasifika WILP graduates">Pasifika WILP graduates</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/international-leadership/contact-us"
+                          title="Contact us">Contact us</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/get-involved/wellington-plus"
+                      title="Wellington Plus Programme">Wellington Plus Programme</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/wellington-plus/requirements"
+                          title="Requirements">Requirements</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/wellington-plus/activities"
+                          title="Activities">Activities</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/get-involved/communities"
+                      title="Student communities">Student communities</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/communities/student-volunteer-stories"
+                          title="(( Student volunteer stories ))">(( Student volunteer stories ))</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/communities/new-students"
+                          title="New students">New students</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/communities/maori-at-victoria"
+                          title="Māori hub">Māori hub</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/communities/pasifika-at-vic2"
+                          title="Pasifika hub">Pasifika hub</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/communities/internation-students"
+                          title="International students">International students</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/communities/refugee-background-students"
+                          title="Refugee-background students">Refugee-background students</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/communities/rainbow-students"
+                          title="Rainbow students">Rainbow students</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/communities/students-with-families"
+                          title="Students with families">Students with families</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/communities/clubs-and-societies"
+                          title="Clubs and societies">Clubs and societies</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/get-involved/have-your-say"
+                      title="Have your say">Have your say</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/have-your-say/student-experience"
+                          title="Student experience surveys">Student experience surveys</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/have-your-say/sexual-harassment-prevention-draft-policy"
+                          title="Sexual harassment prevention draft policy">Sexual harassment prevention draft
+                          policy</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/get-involved/have-your-say/student-services-levy-consultation"
+                          title="(( Student Services Levy consultation ))">(( Student Services Levy consultation ))</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/get-involved/volunteer"
+                      title="Volunteer">Volunteer</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/graduation-and-beyond"
+                  title="Graduation and beyond">Graduation and beyond</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/graduation-and-beyond/graduation"
+                      title="Graduation">Graduation</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/graduation-and-beyond/graduation/apply"
+                          title="Applying to graduate">Applying to graduate</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/graduation-and-beyond/graduation/ceremonies"
+                          title="About the ceremonies">About the ceremonies</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/graduation-and-beyond/graduation/academic-dress"
+                          title="Academic dress">Academic dress</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/graduation-and-beyond/graduation/qualification-certificate"
+                          title="Qualification Certificates">Qualification Certificates</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a
+                      href="https://cms.wgtn.ac.nz/students/graduation-and-beyond/careers-and-employment2"
+                      title="Careers and employment">Careers and employment</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/graduation-and-beyond/careers-and-employment2/career-services"
+                          title="Career services">Career services</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/graduation-and-beyond/careers-and-employment2/resources-and-publications"
+                          title="Resources and publications">Resources and publications</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/graduation-and-beyond/careers-and-employment2/career-development"
+                          title="Career development">Career development</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/graduation-and-beyond/alumni-and-friends"
+                      title="Alumni and friends">Alumni and friends</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/graduation-and-beyond/roll-of-graduates"
+                      title="Roll of graduates">Roll of graduates</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/graduation-and-beyond/work-visa"
+                      title="Post-study work visa">Post-study work visa</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/graduation-and-beyond/transcripts"
+                      title="Academic transcripts ">Academic transcripts </a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/students/graduation-and-beyond/transcripts/myequals"
+                          title="myeQuals">myeQuals</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/students/graduation-and-beyond/transcripts/understanding-transcripts"
+                          title="Understanding transcripts">Understanding transcripts</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/students/tools"
+                  title="myTools for students">myTools for students</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/tools/change-password"
+                      title="Password">Password</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/tools/blackboard"
+                      title="Blackboard">Blackboard</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/tools/student-records"
+                      title="Student Records">Student Records</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/tools/email" title="Student email">Student
+                      email</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/tools/office-365" title="Office 365">Office
+                      365</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/tools/mydegree" title="myDegree">myDegree</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/tools/mytimetable" title="(( myTimetable ))">((
+                      myTimetable ))</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/tools/myallocator"
+                      title="myAllocator">myAllocator</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/tools/myworkspace"
+                      title="myWorkspace">myWorkspace</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/tools/exam-timetable"
+                      title="Exam timetable">Exam timetable</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/tools/wifi-printing" title="Wifi printing">Wifi
+                      printing</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/tools/pay-my-fees" title="Pay your fees">Pay
+                      your fees</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/tools/payments" title="Other payments">Other
+                      payments</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/students/tools/careerhub" title="CareerHub">CareerHub</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/learning-teaching"
+              title="Learning and teaching">Learning and teaching</a><span class="btn-expander"
+              title="Toggle subpages"></span>
+            <ul>
+
+
+
+
+
+
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/learning-teaching/support"
+                  title="Supporting learning and teaching">Supporting learning and teaching</a><span
+                  class="btn-expander" title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/learning-teaching/support/approach"
+                      title="Approaches to teaching">Approaches to teaching</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/support/approach/inclusive"
+                          title="Inclusive teaching">Inclusive teaching</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/support/approach/maori-learning-and-teaching"
+                          title="Māori learning and teaching">Māori learning and teaching</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/support/approach/pasifika"
+                          title="Pasifika learning and teaching">Pasifika learning and teaching</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/support/approach/teaching-international-students"
+                          title="Teaching international students">Teaching international students</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/support/approach/guides"
+                          title="Learning and teaching guides">Learning and teaching guides</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/support/approach/steps-to-teaching-success"
+                          title="Steps to teaching success">Steps to teaching success</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/learning-teaching/support/course-design"
+                      title="Programme and course design">Programme and course design</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/support/course-design/process"
+                          title="Starting the design process">Starting the design process</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/support/course-design/attributes"
+                          title="Developing graduate attributes">Developing graduate attributes</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/support/course-design/mapping"
+                          title="Mapping programmes and courses">Mapping programmes and courses</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/support/course-design/objectives"
+                          title="Aligning learning objectives, assessments and activities">Aligning learning objectives,
+                          assessments and activities</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/support/course-design/group-work"
+                          title="Group work">Group work</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/support/resources"
+                      title="Readings and resources">Readings and resources</a>
+                  </li>
+                  <li class="has-submenu"><a
+                      href="https://cms.wgtn.ac.nz/learning-teaching/support/professional-development"
+                      title="Professional development">Professional development</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/support/professional-development/phelt"
+                          title="PHELT qualifications">PHELT qualifications</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/support/professional-development/ako-victoria"
+                          title="Ako Victoria">Ako Victoria</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/support/tutor-training"
+                      title="Tutor training and development">Tutor training and development</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/learning-teaching/partnership"
+                  title="Learning partnership">Learning partnership</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/partnership/experiential"
+                      title="Experiential learning">Experiential learning</a>
+                  </li>
+                  <li class="has-submenu"><a
+                      href="https://cms.wgtn.ac.nz/learning-teaching/partnership/student-feedback"
+                      title="Student feedback">Student feedback</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/partnership/student-feedback/teaching"
+                          title="Feedback on teaching, courses and tutoring">Feedback on teaching, courses and
+                          tutoring</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/partnership/student-feedback/programmes"
+                          title="Feedback on programmes">Feedback on programmes</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/partnership/technology"
+                      title="Learning and teaching technology">Learning and teaching technology</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/partnership/student-success"
+                      title="Supporting student success">Supporting student success</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/partnership/student-charter"
+                      title="Student charter">Student charter</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/partnership/graduate-profile"
+                      title="Graduate profile">Graduate profile</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/learning-teaching/initiatives"
+                  title="New initiatives and successes">New initiatives and successes</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/initiatives/current-projects"
+                      title="Current projects">Current projects</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/initiatives/teaching-awards"
+                      title="Teaching awards">Teaching awards</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/initiatives/recipients"
+                      title="Award recipients">Award recipients</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/initiatives/innovation-incubator"
+                      title="Digital learning">Digital learning</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/learning-teaching/governance-and-policy"
+                  title="Governance and policy">Governance and policy</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/governance-and-policy/academic-policy"
+                      title="Academic policy publications and resources">Academic policy publications and resources</a>
+                  </li>
+                  <li class=""><a
+                      href="https://cms.wgtn.ac.nz/learning-teaching/governance-and-policy/university-calendar"
+                      title="University Calendar">University Calendar</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/governance-and-policy/committees"
+                      title="Committees and boards">Committees and boards</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/governance-and-policy/meeting-dates"
+                      title="Meeting dates">Meeting dates</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/learning-teaching/quality"
+                  title="Quality assurance">Quality assurance</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/quality/improving-student-experience"
+                      title="Improving student experience">Improving student experience</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/quality/teaching"
+                      title="Feedback on teaching, courses and tutoring">Feedback on teaching, courses and tutoring</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/quality/academic-audit"
+                      title="Academic audit">Academic audit</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/quality/programme-reviews"
+                      title="Academic programme reviews">Academic programme reviews</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/quality/graduating-year-reviews"
+                      title="Graduating year reviews">Graduating year reviews</a>
+                  </li>
+                </ul>
+              </li>
+              <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/innovation-incubator"
+                  title="Digital learning hub">Digital learning hub</a>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/learning-teaching/cad"
+                  title="Centre for Academic Development">Centre for Academic Development</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/learning-teaching/cad/staff"
+                      title="Staff">Staff</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/cad/staff/irina-elgort"
+                          title="Dr Irina Elgort">Dr Irina Elgort</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/cad/staff/amanda-gilbert"
+                          title="Dr Amanda Gilbert">Dr Amanda Gilbert</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/cad/staff/meegan-hall"
+                          title="Dr Meegan Hall">Dr Meegan Hall</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/cad/staff/stephen-marshall"
+                          title="Dr Stephen Marshall">Dr Stephen Marshall</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/cad/staff/kwongnui-sim"
+                          title="Dr Kwong Nui Sim">Dr Kwong Nui Sim</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/cad/staff/dr-cherie-chu"
+                          title="Dr Cherie Chu">Dr Cherie Chu</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/cad/staff/dr-kathryn-sutherland"
+                          title="Dr Kathryn Sutherland">Dr Kathryn Sutherland</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/cad/staff/beth-smith"
+                          title="(( Beth Smith ))">(( Beth Smith ))</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/learning-teaching/academic-office"
+                  title="Academic Office">Academic Office</a><span class="btn-expander" title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/academic-office/staff"
+                      title="Academic Office staff">Academic Office staff</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/learning-teaching/victeach"
+                  title="VicTeach">VicTeach</a><span class="btn-expander" title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/victeach/community-of-practice"
+                      title="Professional Learning Community">Professional Learning Community</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/learning-teaching/victeach/events"
+                      title="VicTeach events">VicTeach events</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/victeach/events/previous-events"
+                          title="VicTeach events 2013">VicTeach events 2013</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/victeach/events/previous-victeach-events-2014"
+                          title="VicTeach events 2014">VicTeach events 2014</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/victeach/events/previous-victeach-events-2015"
+                          title="VicTeach events 2015">VicTeach events 2015</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/victeach/events/previous-victeach-events-2016"
+                          title="VicTeach events 2016">VicTeach events 2016</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/victeach/events/previous-victeach-events-2017"
+                          title="(( VicTeach events 2017 ))">(( VicTeach events 2017 ))</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/victeach/events/previous-victeach-events-2018"
+                          title="VicTeach events 2018">VicTeach events 2018</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/victeach/events/victeach-events-2019"
+                          title="VicTeach events 2019">VicTeach events 2019</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/victeach/grants"
+                      title="Get Involved">Get Involved</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/learning-teaching/victeach/hubs"
+                      title="(( Hubs ))">(( Hubs ))</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/victeach/hubs/digital-hub"
+                          title="(( Digital hub ))">(( Digital hub ))</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/victeach/hubs/fye-hub"
+                          title="(( FYE hub ))">(( FYE hub ))</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/victeach/hubs/large-class-hub"
+                          title="(( Large class hub ))">(( Large class hub ))</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/victeach/hubs/culturally-responsive-hub"
+                          title="(( Culturally Responsive hub ))">(( Culturally Responsive hub ))</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/victeach/hubs/modern-learning-environments-hub"
+                          title="(( Modern Learning Environments hub ))">(( Modern Learning Environments hub ))</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/victeach/hubs/research-into-victeach-hub"
+                          title="(( Research into VicTeach hub ))">(( Research into VicTeach hub ))</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/victeach/hubs/active-learning-hub"
+                          title="(( Active Learning hub ))">(( Active Learning hub ))</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/learning-teaching/victeach/hubs/graduate-attributes-hub"
+                          title="(( Graduate Attributes hub ))">(( Graduate Attributes hub ))</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/victeach/hubs/sustainability-hub"
+                          title="(( Sustainability hub ))">(( Sustainability hub ))</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/victeach/hubs/civic-engagement-hub"
+                          title="(( Civic engagement hub ))">(( Civic engagement hub ))</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/victeach/advisory-committee"
+                      title="Advisory Committee">Advisory Committee</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/learning-teaching/victeach/contact"
+                      title="Contact">Contact</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="active has-submenu expanded"><a href="https://cms.wgtn.ac.nz/about" title="About us">About
+              us</a><span class="btn-expander" title="Toggle subpages"></span>
+            <ul>
+
+
+
+
+
+
+              <li class="active has-submenu expanded"><a href="https://cms.wgtn.ac.nz/about/our-story"
+                  title="Our story">Our story</a><span class="btn-expander" title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/our-story/history"
+                      title="History">History</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/our-story/history/maori-name-old-archived"
+                          title="(( Our Māori name ))">(( Our Māori name ))</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/our-story/history/wwi-plaques"
+                          title="World War I Memorial Plaques">World War I Memorial Plaques</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/our-story/history/campus-plaques"
+                          title="Campus plaques">Campus plaques</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/our-story/history/honorary-graduates"
+                          title="Honorary graduates and Hunter fellowships">Honorary graduates and Hunter
+                          fellowships</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/our-story/history/the-hunter-building"
+                          title="The Hunter Building">The Hunter Building</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/our-story/history/maori-name"
+                          title="Māori name">Māori name</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/our-story/statistics" title="At a glance">At a
+                      glance</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/our-story/victoria-and-the-treaty"
+                      title="The University and the Treaty">The University and the Treaty</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/our-story/name-simplification-archived"
+                      title="(( Name change—University of Wellington ))">(( Name change—University of Wellington
+                      ))</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/our-story/name-simplification-archived/council-decision"
+                          title="(( Name change—University of Wellington ))">(( Name change—University of Wellington
+                          ))</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/our-story/our-identity" title="Our identity">Our
+                      identity</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/governance"
+                  title="Leadership and governance">Leadership and governance</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/structure" title="Our structure">Our
+                      structure</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/governance/council"
+                      title="University Council">University Council</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/council/about-the-council"
+                          title="About the Council">About the Council</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/council/membership"
+                          title="Structure and membership">Structure and membership</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/council/committees"
+                          title="Council Committees">Council Committees</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/council/meetings"
+                          title="Meeting dates and agendas">Meeting dates and agendas</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/council/minutes"
+                          title="Minutes">Minutes</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/council/elections"
+                          title="Council elections">Council elections</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/council/contact"
+                          title="Contact us">Contact us</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/senior-leadership"
+                      title="Senior Leadership">Senior Leadership</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/governance/academic"
+                      title="Academic Office">Academic Office</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/academic/staff"
+                          title="Staff">Staff</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/academic/academic-audit"
+                          title="Academic audit">Academic audit</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/academic/academic-programme-reviews"
+                          title="Academic programme reviews">Academic programme reviews</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/academic/committees"
+                          title="Committees and boards">Committees and boards</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/academic/important-dates"
+                          title="Important dates">Important dates</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/academic/publications"
+                          title="Publications">Publications</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/governance/strategy"
+                      title="Strategy and policy">Strategy and policy</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/strategy/academic-policies"
+                          title="Student and academic policies">Student and academic policies</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/strategy/campus-services-policies"
+                          title="Campus services policies">Campus services policies</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/strategy/finance-policies"
+                          title="Finance policies">Finance policies</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/strategy/governance-policies"
+                          title="Governance policies">Governance policies</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/governance/strategy/library-and-information-systems-policies"
+                          title="Library and information systems policies">Library and information systems policies</a>
+                      </li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/strategy/research-policies"
+                          title="Research policies">Research policies</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/strategy/staff-policies"
+                          title="Staff policies">Staff policies</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/strategy/policies"
+                          title="A–Z policies ">A–Z policies </a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/strategy/values-archived"
+                          title="(( Contact ))">(( Contact ))</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/strategy/values"
+                          title="Vision, mission and values">Vision, mission and values</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/governance/strategic-plan"
+                      title="Strategic plan">Strategic plan</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/governance/strategic-plan/vision-mission-and-purpose-archived"
+                          title="(( Vision, mission and values ))">(( Vision, mission and values ))</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/governance/strategic-plan/heritage-and-position-archived"
+                          title="(( Heritage and position ))">(( Heritage and position ))</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/governance/strategic-plan/primary-strategies-archived"
+                          title="(( Primary strategies ))">(( Primary strategies ))</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/governance/strategic-plan/enabling-strategies-archived"
+                          title="(( Enabling strategies and implementation ))">(( Enabling strategies and implementation
+                          ))</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/governance/strategic-plan/vice-chancellors-message-archived"
+                          title="(( Vice-Chancellor’s message ))">(( Vice-Chancellor’s message ))</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/strategic-plan/strategic-context"
+                          title="Strategic context">Strategic context</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/governance/strategic-plan/vision-heritage-values-purpose"
+                          title="Vision, heritage, values, and purpose">Vision, heritage, values, and purpose</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/governance/strategic-plan/iho-and-distinctiveness"
+                          title="Iho and distinctiveness">Iho and distinctiveness</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/strategic-plan/strategies"
+                          title="Strategies and implementation">Strategies and implementation</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/governance/copyright"
+                      title="Copyright at the University">Copyright at the University</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/copyright/law"
+                          title="Copyright Law in New Zealand">Copyright Law in New Zealand</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/copyright/teaching"
+                          title="Copyright in teaching">Copyright in teaching</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/copyright/research-students"
+                          title="Copyright in research for students">Copyright in research for students</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/copyright/creative-commons"
+                          title="Creative Commons Licences">Creative Commons Licences</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/copyright/open-source"
+                          title="Open source educational resources">Open source educational resources</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/governance/delegations"
+                      title="Delegations">Delegations</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/delegations/sub-delegation"
+                          title="Sub-delegation">Sub-delegation</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/governance/university-publications"
+                      title="University publications">University publications</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/governance/university-publications/annual-report"
+                          title="Annual report">Annual report</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/university-publications/previous"
+                          title="Previous annual reports">Previous annual reports</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/governance/university-publications/a-z-publications"
+                          title="Publications A–Z">Publications A–Z</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/university-publications/victorious"
+                          title="Victorious">Victorious</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/governance/university-publications/calendar"
+                          title="University Calendar">University Calendar</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/campuses-facilities"
+                  title="Campuses and facilities">Campuses and facilities</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/faculties-schools"
+                      title="Faculties and schools">Faculties and schools</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/campuses-facilities/faculties-schools/health-archived"
+                          title="(( Faculty of Health ))">(( Faculty of Health ))</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/campuses-facilities/faculties-schools/wellington-ict-graduate-school"
+                          title="ICT Graduate School">ICT Graduate School</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/campuses"
+                      title="Our campuses">Our campuses</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/campuses/kelburn"
+                          title="Kelburn campus">Kelburn campus</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/campuses/pipitea"
+                          title="Pipitea campus">Pipitea campus</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/campuses/te-aro"
+                          title="Te Aro campus">Te Aro campus</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/campuses/auckland"
+                          title="Auckland premises">Auckland premises</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/campuses-facilities/campuses/miramar-creative-centre"
+                          title="Miramar Creative Centre">Miramar Creative Centre</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/campuses-facilities/campuses/aro-valley-properties-archived"
+                          title="(( Aro Valley properties ))">(( Aro Valley properties ))</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/public-transport"
+                      title="Public transport">Public transport</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/parking"
+                      title="Parking">Parking</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/marae" title="Marae">Marae</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/wellington"
+                      title="Wellington life">Wellington life</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/sustainability"
+                      title="Sustainability">Sustainability</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/adam-art-gallery"
+                      title="Adam Art Gallery">Adam Art Gallery</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/pasifika-haos"
+                      title="Pasifika Haos">Pasifika Haos</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/venue-hire"
+                      title="Venues, conferences, and alcohol events on campus">Venues, conferences, and alcohol events
+                      on campus</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/320-the-terrace"
+                      title="320 The Terrace">320 The Terrace</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/news-events" title="News and events">News
+                  and events</a><span class="btn-expander" title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/news-events/news" title="News">News</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/news-events/events" title="Events">Events</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/news-events/media-guide" title="Media Guide">Media
+                      Guide</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/news-events/social-media"
+                      title="Social media directory">Social media directory</a>
+                  </li>
+                  <li class="has-submenu"><a
+                      href="https://cms.wgtn.ac.nz/about/news-events/victoria-public-lecture-series"
+                      title="Public lecture series">Public lecture series</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/news-events/victoria-public-lecture-series/in-search-of-the-new-zealand-middle-class"
+                          title="In search of the New Zealand middle class">In search of the New Zealand middle
+                          class</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/news-events/victoria-public-lecture-series/regulatory-philosophy,-theory,-and-practice-ka-mua,-ka-muri"
+                          title="Regulatory philosophy, theory, and practice: Ka mua, ka muri">Regulatory philosophy,
+                          theory, and practice: Ka mua, ka muri</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/news-events/victoria-public-lecture-series/towards-a-new-public-ethics"
+                          title="Towards a New Public Ethics">Towards a New Public Ethics</a></li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/news-events/victoria-public-lecture-series/beyond-horizonsand-forward-to-the-moon"
+                          title="Beyond horizons…and forward to the Moon">Beyond horizons…and forward to the Moon</a>
+                      </li>
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/news-events/victoria-public-lecture-series/previous-lectures"
+                          title="Previous lectures">Previous lectures</a></li>
+                    </ul>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/news-events/victorious-magazine"
+                      title="Victorious magazine">Victorious magazine</a>
+                  </li>
+                  <li class="has-submenu"><a
+                      href="https://cms.wgtn.ac.nz/about/news-events/public-lecture-series-template"
+                      title="(( Public lecture series - template ))">(( Public lecture series - template ))</a><span
+                      class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a
+                          href="https://cms.wgtn.ac.nz/about/news-events/public-lecture-series-template/hub-events-listing"
+                          title="(( Series events listing ))">(( Series events listing ))</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/global-civic-university"
+                  title="A global–civic university">A global–civic university</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/global-civic-university/reputation"
+                      title="Reputation and rankings">Reputation and rankings</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/global-civic-university/wellington"
+                      title="Our position">Our position</a><span class="btn-expander" title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/global-civic-university/wellington/story"
+                          title="Our story">Our story</a></li>
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/global-civic-university/wellington/history"
+                          title="Our history">Our history</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class=""><a href="https://cms.wgtn.ac.nz/about/hunter-club" title="The Hunter Club">The Hunter
+                  Club</a>
+              </li>
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/contacts"
+                  title="Contacts and directories">Contacts and directories</a><span class="btn-expander"
+                  title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/contacts/faculty-contacts"
+                      title="Faculty contacts">Faculty contacts</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/contacts/course-advice"
+                      title="Course advice contacts">Course advice contacts</a>
+                  </li>
+                  <li class=""><a href="https://cms.wgtn.ac.nz/about/contacts/accommodation-archived"
+                      title="Campuses">Campuses</a>
+                  </li>
+                  <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/about/contacts/media-enquiries"
+                      title="Media enquiries">Media enquiries</a><span class="btn-expander"
+                      title="Toggle subpages"></span>
+                    <ul>
+
+
+
+
+
+                      <li class=""><a href="https://cms.wgtn.ac.nz/about/contacts/media-enquiries/commentators"
+                          title="(( Budget 2019—media commentators ))">(( Budget 2019—media commentators ))</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/news" title="News">News</a><span class="btn-expander"
+              title="Toggle subpages"></span>
+            <ul>
+
+
+
+
+
+
+              <li class="has-submenu"><a href="https://cms.wgtn.ac.nz/news/victorious"
+                  title="Victorious">Victorious</a><span class="btn-expander" title="Toggle subpages"></span>
+                <ul>
+
+
+
+
+
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="content-panel">
+      <main>
+
+
+        <nav aria-label="breadcrumb" role="navigation">
+          <ul class="breadcrumbs block">
+            <li><a href="/">Home</a></li>
+
+
+
+
+
+
+            <li><a href="https://cms.wgtn.ac.nz">Responsive</a></li>
+            <li><a href="https://cms.wgtn.ac.nz/about">About us</a></li>
+            <li>Our story</li>
+          </ul>
+        </nav>
+
+
+        <div class="block formatting">
+          <h1>Our story</h1>
+          <p class="intro">Victoria University of Wellington, originally known as Victoria College, was founded in 1897,
+            the year of Queen Victoria's Diamond Jubilee celebrations.</p>
+
+
+          <div class="bleed highlight_tertiary">
+            <p>Find out more about the new science building, <a
+                href="https://cms.wgtn.ac.nz/news/2018/02/prime-minister-opens-new-biological-sciences-building">Te Toki
+                a Rata</a> and the <a
+                href="https://cms.wgtn.ac.nz/about/campuses-facilities/campuses/pipitea">redevelopment of Rutherford
+                House</a> in central Wellington.</p>
+          </div>
+
+          <div class="a-z_paging bleed highlight_secondary" id="a-z_links_top_188948">
+
+            <ul class="static_pagination" role="navigation">
+              <li><a href="#letter_A"><span>A</span></a></li>
+              <li class="current"><span>B</span></li>
+              <li><a href="#letter_C"><span>C</span></a></li>
+              <li class="current"><span>D</span></li>
+              <li><a href="#letter_E"><span>E</span></a></li>
+              <li><a href="#letter_F"><span>F</span></a></li>
+              <li><a href="#letter_G"><span>G</span></a></li>
+              <li><a href="#letter_H"><span>H</span></a></li>
+              <li><a href="#letter_I"><span>I</span></a></li>
+              <li class="current"><span>J</span></li>
+              <li class="current"><span>K</span></li>
+              <li><a href="#letter_L"><span>L</span></a></li>
+              <li><a href="#letter_M"><span>M</span></a></li>
+              <li><a href="#letter_N"><span>N</span></a></li>
+              <li class="current"><span>O</span></li>
+              <li class="current"><span>P</span></li>
+              <li class="current"><span>Q</span></li>
+              <li class="current"><span>R</span></li>
+              <li><a href="#letter_S"><span>S</span></a></li>
+              <li><a href="#letter_T"><span>T</span></a></li>
+              <li class="current"><span>U</span></li>
+              <li><a href="#letter_V"><span>V</span></a></li>
+              <li><a href="#letter_W"><span>W</span></a></li>
+              <li class="current"><span>X</span></li>
+              <li><a href="#letter_Y"><span>Y</span></a></li>
+              <li class="current"><span>Z</span></li>
+            </ul>
+
+          </div>
+
+          <h3> <a name="letter_A">A</a> </h3>
+          <div class="block az-block">
+            <h2 class="az-listing-title">Accommodation Guide</h2>
+
+            <div class="block_primary">
+              <p>This guide provides information about the halls of residence for Victoria University of Wellington
+                students, including brief details about other accommodation.<br>
+                <a class="bullet_link"
+                  href="http://www.victoria.ac.nz/documents/publications/accommodation-guide.pdf"><i
+                    class="icon-download"></i>Download PDF</a></p>
+            </div>
+          </div>
+          <div class="block az-block">
+            <h2 class="az-listing-title">Annual Report</h2>
+
+            <div class="block_primary">
+              <p>Victoria University of Wellington’s Annual Report provides an overview of financial performance and a
+                look back on the highlights of the year.<br>
+                <a class="bullet_link" href="http://www.victoria.ac.nz/documents/publications/2018-annual-report.pdf"><i
+                    class="icon-download"></i>Download PDF</a></p>
+            </div>
+          </div>
+          <div class="block az-block">
+            <h2 class="az-listing-title">Architecture and Design Innovation Postgraduate Handbook</h2>
+
+            <div class="block_primary">
+              <p>This handbook provides practical information on postgraduate degrees and programmes offered by the
+                Wellington Faculty of Architecture and Design Innovation.<br>
+                <a class="bullet_link"
+                  href="http://www.victoria.ac.nz/documents/publications/fad-postgraduate-handbook.pdf"><i
+                    class="icon-download"></i>Download PDF</a></p>
+            </div>
+          </div>
+
+          <div class="directory">
+            <div class="block--channel">
+              <a href="https://www.facebook.com/victoriauniversityofwellington">
+                <span class="icon"></span>
+                <h3>Like us</h3>
+              </a>
+              <div class="channel__button">
+                <div class="fb-like fb_iframe_widget"
+                  data-href="https://www.facebook.com/victoriauniversityofwellington" data-layout="button_count"
+                  data-show-faces="true" data-width="450" fb-xfbml-state="rendered"
+                  fb-iframe-plugin-query="app_id=&amp;container_width=145&amp;href=https%3A%2F%2Fwww.facebook.com%2Fvictoriauniversityofwellington&amp;layout=button_count&amp;locale=en_GB&amp;sdk=joey&amp;show_faces=true&amp;width=450">
+                  <span style="vertical-align: bottom; width: 82px; height: 20px;"><iframe name="f1b193a892c3f7"
+                      width="450px" height="1000px" title="fb:like Facebook Social Plugin" frameborder="0"
+                      allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media"
+                      src="https://www.facebook.com/plugins/like.php?app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D46%23cb%3Df2287b39df0fc14%26domain%3Dcms.wgtn.ac.nz%26origin%3Dhttps%253A%252F%252Fcms.wgtn.ac.nz%252Ff34e5f81a0c17fc%26relation%3Dparent.parent&amp;container_width=145&amp;href=https%3A%2F%2Fwww.facebook.com%2Fvictoriauniversityofwellington&amp;layout=button_count&amp;locale=en_GB&amp;sdk=joey&amp;show_faces=true&amp;width=450"
+                      style="border: none; visibility: visible; width: 82px; height: 20px;" class=""></iframe></span>
+                </div>
+              </div>
+            </div>
+            <div class="block--channel">
+              <a href="https://twitter.com/VicUniWgtn">
+                <span class="icon twitter"></span>
+                <h3>Follow</h3>
+              </a>
+              <div class="channel__button">
+                <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true"
+                  allowfullscreen="true" class="twitter-follow-button twitter-follow-button-rendered"
+                  style="position: static; visibility: visible; width: 65px; height: 20px;"
+                  title="Twitter Follow Button"
+                  src="https://platform.twitter.com/widgets/follow_button.0ab153032b20288d9a500659d8c7ba17.en.html#dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;screen_name=VicUniWgtn&amp;show_count=false&amp;show_screen_name=false&amp;size=m&amp;time=1583794643938"
+                  data-screen-name="VicUniWgtn"></iframe>
+                <script>
+                  ! function ( d, s, id ) {
+                    var js, fjs = d.getElementsByTagName( s )[0],
+                      p = /^http:/.test( d.location ) ? 'http' : 'https';
+                    if ( !d.getElementById( id ) ) {
+                      js = d.createElement( s );
+                      js.id = id;
+                      js.src = p + '://platform.twitter.com/widgets.js';
+                      fjs.parentNode.insertBefore( js, fjs );
+                    }
+                  }( document, 'script', 'twitter-wjs' );
+                </script>
+              </div>
+            </div>
+            <div class="block--channel">
+              <a href="http://www.youtube.com/user/victoriamarketing">
+                <span class="icon youtube"></span>
+                <h3>Subscribe</h3>
+              </a>
+              <div class="channel__button">
+                <script src="https://apis.google.com/js/plusone.js" gapi_processed="true"></script>
+                <div id="___ytsubscribe_0"
+                  style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 111px; height: 24px;">
+                  <iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no"
+                    style="position: static; top: 0px; width: 111px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;"
+                    tabindex="0" vspace="0" width="100%" id="I0_1583794641827" name="I0_1583794641827"
+                    src="https://www.youtube.com/subscribe_embed?usegapi=1&amp;channel=victoriamarketing&amp;layout=default&amp;origin=https%3A%2F%2Fcms.wgtn.ac.nz&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en_GB.-Dp7GbUo7cs.O%2Fam%3DwQE%2Fd%3D1%2Fct%3Dzgms%2Frs%3DAGLTcCO91qW6sTy6mMb8guMwdvyX9ynLWQ%2Fm%3D__features__#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1583794641827&amp;_gfid=I0_1583794641827&amp;parent=https%3A%2F%2Fcms.wgtn.ac.nz&amp;pfname=&amp;rpctoken=20424469"
+                    data-gapiattached="true"></iframe></div>
+              </div>
+            </div>
+            <div class="block--channel">
+              <a href="https://www.linkedin.com/school/victoria-university-of-wellington/">
+                <span class="icon linkedin"></span>
+                <h3>Follow</h3>
+              </a>
+              <div class="channel__button">
+                <script src="//platform.linkedin.com/in.js" type="text/javascript">
+                  lang: en_US
+                </script>
+                <span class="IN-widget"
+                  data-lnkd-debug="<script type=&quot;IN/FollowCompany+init&quot; data-id=&quot;3693&quot; data-counter=&quot;right&quot;></script>"
+                  style="display: inline-block; line-height: 1; vertical-align: bottom; padding: 0px; margin: 0px; text-indent: 0px;"><iframe
+                    id="{&quot;xdOrigin&quot;:&quot;https://cms.wgtn.ac.nz&quot;,&quot;xdChannel&quot;:&quot;7cdfb34a-62d0-4ad9-89ee-b966ddf99eac&quot;,&quot;framework&quot;:&quot;@linkedin/xdoor-sdk&quot;,&quot;version&quot;:&quot;0.1.149&quot;,&quot;debug&quot;:false}"
+                    name="{&quot;xdOrigin&quot;:&quot;https://cms.wgtn.ac.nz&quot;,&quot;xdChannel&quot;:&quot;7cdfb34a-62d0-4ad9-89ee-b966ddf99eac&quot;,&quot;framework&quot;:&quot;@linkedin/xdoor-sdk&quot;,&quot;version&quot;:&quot;0.1.149&quot;,&quot;debug&quot;:false}"
+                    src="https://www.linkedin.com/pages-extensions/FollowCompany?id=3693&amp;counter=right&amp;xdOrigin=https%3A%2F%2Fcms.wgtn.ac.nz&amp;xdChannel=7cdfb34a-62d0-4ad9-89ee-b966ddf99eac&amp;xd_origin_host=https%3A%2F%2Fcms.wgtn.ac.nz"
+                    class="IN-widget IN-widget--iframe" scrolling="no" allowtransparency="true" frameborder="0"
+                    border="0" width="1" height="1"
+                    style="vertical-align: bottom; width: 132px; height: 22px;"></iframe></span>
+              </div>
+            </div>
+            <div class="block--channel">
+              <a href="//instagram.com/vicuniwgtn/">
+                <span class="icon instagram"></span>
+                <h3>Follow</h3>
+              </a>
+              <div class="channel__button">
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <p>Victoria University of Wellington is characterised by the depth, consistency, and effectiveness of our
+            culture of domestic and international engagement. Our commitment to reciprocal, high-quality relationships
+            springs from identifying and understanding the need for New Zealand to achieve sustainable development.</p>
+          <p>We have developed close ties with a wide range of businesses and government organisations, and several
+            recent initiatives are aimed at improving the University’s engagement with industry.</p>
+          <p>The University's historic strength in public policy has been fully demonstrated by substantial
+            contributions to major government projects, and entrepreneurship education is an emerging strength on which
+            we intend to build. The University also gives high priority to engagement with Māori and Pacific
+            communities.</p>
+          <p>We aim to produce graduates whose learning has been developed inside and outside of the classroom,
+            experientially, and informed by a global perspective.</p>
+          <p>Victoria University of Wellington is one of New Zealand’s oldest and most prestigious tertiary institutions
+            with a proud tradition of academic excellence. Discover more about our 115 years of rich history.</p>
+          <div class="blocks blocks-2col bleed_box grid-flex col-4">
+            <a href="https://cms.wgtn.ac.nz/about/our-story/history" class="link_block">
+              <div class="link_block_body">
+                <h3>History</h3>
+                <p>The University was founded in 1897 and teaching began in April 1899 with 115 students enrolled in the
+                  first year.</p>
+              </div>
+            </a><a href="https://cms.wgtn.ac.nz/about/our-story/statistics" class="link_block">
+              <div class="link_block_body">
+                <h3>At a glance</h3>
+                <p>Key facts about the University's performance on the national and world stage.</p>
+              </div>
+            </a><a href="https://cms.wgtn.ac.nz/about/our-story/victoria-and-the-treaty" class="link_block">
+              <div class="link_block_body">
+                <h3>The University and the Treaty</h3>
+                <p>We are committed to our obligations and responsibilities under the Treaty of Waitangi.</p>
+              </div>
+            </a><a href="https://cms.wgtn.ac.nz/about/our-story/our-identity" class="link_block">
+              <div class="link_block_body">
+                <h3>Our identity</h3>
+                <p>Victoria University of Wellington's new visual identity embodies our values, our place in New
+                  Zealand, our bicultural heritage, and our history.</p>
+              </div>
+            </a>
+          </div>
+
+
+
+
+
+
+<div class="bleed highlight_secondary" id="content_container_1805129">
+<p>Sexually harmful behaviour includes:</p><ul><li>sexual harassment</li><li>sexual assault</li><li>any form of unwanted sexual advance</li><li>request for sexual favours</li><li>any other unwanted behaviour that is sexual in nature.</li></ul><p>It can be verbal, visual, or physical, and could involve electronic forms of communication.</p>
+</div>
+
+
+
+          <!-- globals_protocol = https -->
+          <!-- globals_site_url = https://cms.wgtn.ac.nz -->
+          <!-- globals_asset_url = https://cms.wgtn.ac.nz/about/our-story -->
+          <!-- globals_asset_urls = ["https:\/\/cms.victoria.ac.nz\/about\/our-story","https:\/\/www.victoria.ac.nz\/about\/our-story","https:\/\/cms.wgtn.ac.nz\/about\/our-story","https:\/\/www.wgtn.ac.nz\/about\/our-story"] -->
+          <!-- frontend_asset_url = https://cms.wgtn.ac.nz/about/our-story -->
+          <!-- globals_server_SERVER_NAME = cms.wgtn.ac.nz -->
+          <!-- globals_server_HTTP_HOST = cms.wgtn.ac.nz -->
+          <!--<iframe width="640" height="360" src="http://www.youtube.com/embed/EttP9FZZ7no?feature=player_profilepage" frameborder="0" allowfullscreen></iframe>-->
+          <!-- no results -->
+
+
+        </div>
+      </main>
+
+
+
+
+
+
+      <aside role="complementary">
+        <div class="block formatting" id="rightHandMenu">
+
+          <!-- 375566 google gly-->
+          <!-- <div class="data-sidebar old-sass-widget promo primary">
+                   <a class="promo highlight_primary" a=""
+                     href="https://www.youtube.com/watch?v=EttP9FZZ7no&amp;feature=youtu.be">
+                     <h2 class="promo_headline">Get a glimpse</h2>
+                     <p>Watch the Google flyover video of the University's campuses in central Wellington, New Zealand.
+                     </p>
+                   </a>
+                 </div> -->
+
+          <!-- 185229 Policies -->
+          <div class="data-sidebar old-sass-widget">
+            <h2 class="toggle">Related policies</h2>
+            <div class="toggle_block">
+              <ul class="divider_list links">
+                <li>
+                  <a href="https://cms.wgtn.ac.nz/__data/assets/pdf_file/0011/1685351/council-membership-statute.pdf"><em
+                      class="result_flag flag_pdf">pdf</em>&nbsp;Council Membership Statute</a> </li>
+
+                <li>
+                  <a href="https://cms.wgtn.ac.nz/__data/assets/pdf_file/0007/1685356/council-elections-procedure.pdf"><em
+                      class="result_flag flag_pdf">pdf</em>&nbsp;Council Elections Procedure</a> </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- related links  175634 -->
+          <!-- <div class="data-sidebar old-sass-widget">
+                   <h2 class="toggle">Related links</h2>
+                   <div class="toggle_block">
+                     <ul class="bullet_list divider_list links">
+                       <li><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/campuses/kelburn ">Kelburn
+                           Campus</a></li>
+                       <li><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/campuses/te-aro ">Te Aro Campus</a>
+                       </li>
+                       <li><a href="https://cms.wgtn.ac.nz/students/campus/parking ">Student parking</a></li>
+                       <li><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/campuses/pipitea ">Pipitea
+                           Campus</a></li>
+                       <li><a href="https://cms.wgtn.ac.nz/students/campus/parking ">Student parking</a></li>
+
+                     </ul>
+                   </div>
+                 </div> -->
+
+          <!-- downloads list 185118 -->
+          <!-- <div class="data-sidebar old-sass-widget">
+                   <h2 class="toggle">Downloads</h2>
+                   <ul class="toggle_block divider_list links">
+                     <li>
+                       <a id="d1" href="https://cms.wgtn.ac.nz/__data/assets/pdf_file/0003/238854/at-a-glance.pdf"
+                         data-assetid="189770"><em class="result_flag flag_pdf">pdf</em>&nbsp;At a glance
+                         (511.0&nbsp;KB)
+
+                       </a>
+                     </li>
+
+                   </ul>
+
+                 </div> -->
+
+          <!-- strategic plan promo 1786815 -->
+          <!-- <div class="data-sidebar old-sass-widget">
+                  <div class="highlight_secondary media promo secondary">
+                     <a href="https://cms.wgtn.ac.nz/__data/assets/pdf_file/0005/1791824/strategic-plan-2020-2024.pdf">
+                    <img src="https://cms.wgtn.ac.nz/__data/assets/image/0004/1786819/strategic-plan-cover.jpg" alt="strategic-plan-cover">
+                  </a>
+                      <h3><a href="https://cms.wgtn.ac.nz/__data/assets/pdf_file/0005/1791824/strategic-plan-2020-2024.pdf">Download Te Herenga Waka | Victoria University of Wellington Strategic Plan 2020-2024 (1.89MB)</a></h3>
+
+                  </div>
+              </div> -->
+
+          <!-- annual reports 732828 -->
+          <!-- <div class="data-sidebar old-sass-widget">
+                <div class="promo primary">
+                  <a class="promo highlight_primary" href="./?a=235435">
+                      <h2 class="promo_headline">Archived annual reports</h2>
+                      <p>Archived copies of our annual reports are all available to download as PDFs.</p>
+                  </a>
+                </div>
+            </div> -->
+
+          <!-- ICT quote 311823 -->
+          <div class="data-sidebar old-sass-widget">
+            <figure class="pullquote quote full">
+              <q>With more than 16,000 ICT jobs in the Wellington region contributing significantly to the country's ICT
+                related GDP, Wellington is the heart of ICT in New Zealand.</q>
+            </figure>
+          </div>
+
+          <!-- RH feedback 1500219 -->
+          <div class="data-sidebar old-sass-widget">
+            <div class="primary promo">
+              <a class="promo highlight_tertiary " href="mailto:alumni@vuw.ac.nz">
+                <h3>If you would like to contribute to discussion on the proposal, please email alumni@vuw.ac.nz by
+                  Friday 8 June.</h3>
+              </a>
+            </div>
+          </div>
+
+
+
+        </div>
+      </aside>
+    </div>
+
+  </section>
+
+
+
+
+
+  <footer role="contentinfo">
+
+
+
+
+    <!-- Footer Related links from global site -->
+    <section class="footer-secondary">
+      <div class="centraliser">
+        <div class="block">
+          <h2>Victoria University of Wellington</h2>
+          <nav role="navigation">
+            <ul role="menubar">
+              <li role="menuitem"><a href="https://cms.wgtn.ac.nz/about/campuses-facilities/faculties-schools"
+                  role="menuitem" title="Read about Faculties">Faculties</a></li>
+              <li role="menuitem"><a href="https://cms.wgtn.ac.nz/about/contacts" role="menuitem"
+                  title="Read about Contacts and directories">Contacts and directories</a></li>
+              <li role="menuitem"><a href="https://cms.wgtn.ac.nz/about/campuses-facilities" role="menuitem"
+                  title="Read about Campuses">Campuses</a></li>
+              <li role="menuitem"><a href="https://cms.wgtn.ac.nz/study" role="menuitem"
+                  title="Read about Study">Study</a></li>
+              <li role="menuitem"><a href="https://cms.wgtn.ac.nz/students" role="menuitem"
+                  title="Read about Students">Students</a></li>
+              <li role="menuitem"><a href="https://intranet.wgtn.ac.nz/staff" role="menuitem"
+                  title="Read about Staff">Staff</a></li>
+              <li role="menuitem"><a href="https://cms.wgtn.ac.nz/about/careers" role="menuitem"
+                  title="Read about Careers">Careers</a></li>
+              <li role="menuitem"><a href="https://cms.wgtn.ac.nz/engage/alumni" role="menuitem"
+                  title="Read about Alumni">Alumni</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </section>
+    <script src="https://d3f5l8ze0o4j2m.cloudfront.net/m87/k33spt.js"></script>
+    <script>
+        ( function () {
+          window.onload = function () {
+            var frameName = new ds07o6pcmkorn( {
+              openElementId: "#shielded"
+            } );
+            frameName.init();
+          }
+        } )();
+    </script>
+
+    <style>
+      #shielded {
+        width: 50px;
+        height: 50px;
+      }
+    </style>
+    <section class="footer-primary">
+      <div class="centraliser">
+
+        <div class="block">
+
+          <!-- Smaller version of logotype -->
+          <div class="logo">
+            <a href="/" title="Victoria University of Wellington homepage">
+              <img class="logo"
+                src="https://cms.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/images/new/v2/logo-white-full.svg"
+                alt="Victoria University of Wellington - Te Whare Wānanga o te Ūpoko o te Ika a Māui">
+            </a>
+          </div>
+          <!-- Global contacts -->
+          <ul class="contacts">
+            <li>
+              <a title="Call Victoria about general enquiries" href="tel:+6444721000">+64 4 472 1000</a>
+            </li>
+            <li>
+              <a title="Write Victoria an email" href="mailto:info@vuw.ac.nz">info@vuw.ac.nz</a>
+            </li>
+            <li>
+              Enrolments: <a title="Call Victoria regarding enrolments" href="tel:+64800040404"> 0800 04 04 04</a>
+            </li>
+            <li>
+              Emergency: <a title="Call in case of emergency" href="tel:+6444639999">+64 4 463 9999</a> or ext. 8888
+              (internal)
+            </li>
+          </ul>
+
+          <img src="/__data/assets/image/0004/1748434/custom-logo.png" id="shielded">
+        </div>
+
+        <div class="block small">
+
+          <nav role="navigation">
+            <ul role="menubar" class="minilinks">
+              <li role="menuitem"><a title="See ..." href="https://cms.wgtn.ac.nz/site-info">Site info</a></li>
+              <li role="menuitem"><a title="See ..." href="https://cms.wgtn.ac.nz/site-info/site-map-old">Site map</a>
+              </li>
+              <li role="menuitem"><a title="See ..." href="https://cms.wgtn.ac.nz/site-info/feedback">Feedback</a></li>
+              <li role="menuitem"><a title="See ..." href="https://cms.wgtn.ac.nz/site-info/glossary">Glossary</a></li>
+            </ul>
+          </nav>
+
+          <small class="copyright">Copyright © Victoria University of Wellington, New Zealand</small>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+  </footer>
+
+
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+
+
+  <script src="https://polyfill.io/v3/polyfill.min.js"></script>
+
+
+  <script src="https://cms.wgtn.ac.nz/__data/assets/git_bridge/0009/1778031/dist/toolkit.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  <iframe height="0" width="0" style="display: none; visibility: hidden;"
+    src="//8587206.fls.doubleclick.net/activityi;src=8587206;type=visit0;cat=dcmal0;ord=4237493573901;gtm=2wg2c0;auiddc=469514013.1575488274;u2=%2Fabout%2Four-story;~oref=https%3A%2F%2Fcms.wgtn.ac.nz%2Fabout%2Four-story%3FSQ_DESIGN_NAME%3Dhubtest%26mode%3Ddev?"></iframe><iframe
+    height="0" width="0" style="display: none; visibility: hidden;"
+    src="//8587206.fls.doubleclick.net/activityi;src=8587206;type=visit0;cat=dcmpa0;ord=1;num=6047309312004;gtm=2wg2c0;auiddc=469514013.1575488274;u2=%2Fabout%2Four-story;~oref=https%3A%2F%2Fcms.wgtn.ac.nz%2Fabout%2Four-story%3FSQ_DESIGN_NAME%3Dhubtest%26mode%3Ddev?"></iframe>
+  <div style="display: none; visibility: hidden;">
+    <script
+      type="text/javascript">( function () { function b() { !1 === c && ( c = !0, Munchkin.init( "515-DME-734" ) ) } if ( !document.marketoScript ) { var c = !1, a = document.createElement( "script" ); a.type = "text/javascript"; a.async = !0; a.src = "https://www.wgtn.ac.nz/__data/assets/js_file/0004/1797853/munchkin.js"; a.onreadystatechange = function () { "complete" != this.readyState && "loaded" != this.readyState || b() }; a.onload = b; document.getElementsByTagName( "head" )[0].appendChild( a ); document.marketoScript = a } } )();</script>
+  </div>
+  <script type="text/javascript" id="">( function () {
+      function d( b ) { return function ( a ) { return -1 == b.filter( e ).map( f ).indexOf( a ) } } function e( b ) { return "gtm.formSubmit" === b.event } function f( b ) { return b["gtm.element"].name } function g( b ) { return { name: b, history: c[b] || [] } } function h( b ) { return 0 < b.history.length } if ( "undefined" !== typeof document.querySelectorAll ) {
+        window.addEventListener( "beforeunload", function ( b ) {
+          Object.keys( c ).filter( d( window.dataLayer ) ).map( g ).filter( h ).forEach( function ( a ) {
+            window.dataLayer.push( {
+              event: "formAbandonment", eventCategory: "Form Abandonment",
+              eventAction: a.history.join( " \x3e " )
+            } )
+          } )
+        } ); var c = {}; window.addEventListener( "load", function () { document.addEventListener( "change", function ( b ) { var a = b.target; a && a.tagName && ( "INPUT" == a.tagName.toUpperCase() || "TEXTAREA" == a.tagName.toUpperCase() || "SELECT" == a.tagName.toUpperCase() ) && ( b = a.getAttribute( "name" ), ( a = a.form ) && b && ( a = a.getAttribute( "name" ), "undefined" == typeof c[a] && ( c[a] = [] ), c[a].slice( -1 ) != b && c[a].push( b ) ) ) } ) } )
+      }
+    } )();</script>
+  <script type="text/javascript"
+    id="">!function ( b, e, f, g, a, c, d ) { b.fbq || ( a = b.fbq = function () { a.callMethod ? a.callMethod.apply( a, arguments ) : a.queue.push( arguments ) }, b._fbq || ( b._fbq = a ), a.push = a, a.loaded = !0, a.version = "2.0", a.queue = [], c = e.createElement( f ), c.async = !0, c.src = g, d = e.getElementsByTagName( f )[0], d.parentNode.insertBefore( c, d ) ) }( window, document, "script", "https://connect.facebook.net/en_US/fbevents.js" ); fbq( "init", "236083700391771" ); fbq( "init", "842142339315627" ); fbq( "init", "663770773975836" ); fbq( "init", "451387185340867" ); fbq( "init", "2206042453000569" );
+      fbq( "init", "2126575684022147" ); fbq( "init", "414132459075961" ); fbq( "init", "709002789440385" ); fbq( "init", "464978224102861" );</script>
+  <script type="text/javascript" id="">fbq( "track", "PageView" );</script>
+  <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=451387185340867&amp;ev=PageView&amp;noscript=1"></noscript>
+  <script type="text/javascript"
+    id="">( function ( a, b, e ) { if ( !a.snaptr ) { var c = a.snaptr = function () { c.handleRequest ? c.handleRequest.apply( c, arguments ) : c.queue.push( arguments ) }; c.queue = []; var d = "script"; a = b.createElement( d ); a.async = !0; a.src = e; b = b.getElementsByTagName( d )[0]; b.parentNode.insertBefore( a, b ) } } )( window, document, "https://sc-static.net/scevent.min.js" ); snaptr( "init", "6fb15c29-a212-4edc-b713-1cfd3b459d01", { user_email: "\x3cUSER-EMAIL\x3e" } ); snaptr( "track", "PAGE_VIEW" );</script>
+  <style>
+    #global-cookie-bar {
+      z-index: 9999999;
+      width: auto;
+      display: none;
+      align-items: center;
+      justify-items: center;
+      background-color: #FFF;
+      padding-left: 10%;
+      padding: 1.5rem;
+      margin: 0;
+      font-family: "Helvetica Neue", "Segoe WP", "Helvetica", "Arial";
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #000000;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+
+    #global-cookie-bar .global-cookies-body {
+      vertical-align: middle;
+      vertical-align: -webkit-baseline-middle;
+      vertical-align: -moz-middle-with-baseline;
+      flex: 1 1 auto;
+    }
+
+    #global-cookie-bar .global-cookie-btn {
+      display: inline-block;
+      padding: .2rem .5rem;
+      background-color: #3363B3;
+      color: #FFF;
+      border-radius: .125rem;
+      text-decoration: none;
+    }
+
+    #global-cookie-bar a {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    @media (min-width:43em) {
+      #global-cookie-bar.shown {
+        display: flex;
+      }
+
+      #global-cookie-bar .global-cookie-btn {
+        margin-left: .5rem;
+      }
+    }
+
+    @media (max-width:42.99em) {
+      .global.sticky {
+        position: unset !important;
+      }
+
+      #global-cookie-bar.shown {
+        display: block;
+      }
+
+      #global-cookie-bar .global-cookie-btn {
+        margin-top: .5rem;
+      }
+    }
+  </style>
+
+
+
+  <script type="text/javascript"
+    id="">var bodyElement = document.getElementsByTagName( "body" )[0], cookieBarBottom = document.getElementById( "cookie-bar-bottom" ); cookieBarBottom && ( bodyElement = cookieBarBottom ); bodyElement.insertBefore( document.getElementById( "global-cookie-bar" ), bodyElement.firstChild ); var s = document.createElement( "script" ); s.type = "text/javascript"; s.async = !0; s.src = "https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/toolkit.popups.min.js"; document.getElementsByTagName( "head" )[0].appendChild( s );</script>
+</body>
+
+
+  	<!-- toolkit scripts -->
+	<script src="../toolkit.js"></script>
+	<!-- /toolkit scripts -->
+
+  </body>
