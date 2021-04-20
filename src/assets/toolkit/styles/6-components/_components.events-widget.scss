@@ -1,0 +1,238 @@
+
+/* HEADER*/
+.events-header{
+  border-bottom:4px solid #3E9C4F;
+  margin-bottom:20px;
+  position:relative;
+  height:60px;
+
+  h1{
+    width:50%;
+  }
+
+  .more-events-btn{
+    width:125px;
+    background:#3E9C4F;
+    color:#ffffff;
+    padding:5px 15px;
+    position:absolute;
+    right:0;
+    top:0;
+    margin-top:23px;
+    font-weight:600;
+  }
+}
+
+/* EVENT TILES */
+.events-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column wrap;
+  height: 541px;
+  margin-bottom: 5vh;
+  width: 100%;
+  margin:auto;
+}
+
+.card:nth-of-type(1){background:$white;}
+.card:nth-of-type(2){background:#115737;}
+.card:nth-of-type(3){background:#3E9C4F;}
+.card:nth-of-type(4){background:#115737;}
+.card {
+  align-items: center;
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+  display: block;
+  flex-grow: 1;
+  height: 50%;
+  justify-content: center;
+
+  h2 a {
+    text-decoration: none!important;
+    margin-top:0!important;
+    line-height:.4em;
+  }
+
+  .event-footer{
+    height:40px;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding-top:.5rem;
+    position:relative;
+    flex-wrap: wrap;
+    display:flex;
+    border-top:1px solid #ccc;
+  }
+
+  .date{
+    width:50%;
+  }
+
+  .time{
+    text-align:right;
+    width:49%;
+  }
+
+  &.lg{
+    height:500px;
+    width:50%;
+    margin-right:15px;
+    margin-bottom:19px;
+
+    h2 a{
+      color:#115737!important;
+    }
+
+    p{
+      color:#000000;
+    }
+
+    .event-img{
+      background-image:url( 'https://www.wgtn.ac.nz/__data/assets/image/0008/1722482/varieties/ls_medium.jpg');
+      background-color: $grey;
+      background-position: center;
+      background-size: cover;
+      height:250px;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 68%);
+      width:100%;
+    }
+
+    .event-content{
+      min-height:200px;
+      padding:0 2rem;
+      display:flex;
+      flex-direction: column;
+    }
+
+    .event-summary{
+      min-height:145px;
+    }
+
+    .event-footer{
+      color:#000000;
+    }
+  }
+
+  &.sml{
+    height:250px;
+    width:49%;
+    margin-bottom:19px;
+    margin-right:19px;
+
+    &:nth-of-type(1){
+      h2 a{color:#115737;}
+      p, .event-footer{color:#000000;}
+      .event-img{background-image:url('#{$dir-images}/pattern_overlay-02.png');}
+    }
+
+      p{
+        color:#000000;
+      }
+
+    h2 a{
+      color:#ffffff;
+    }
+
+    p{
+      color:#ffffff;
+    }
+
+    .event-img{
+      width:24%;
+      height:250px;
+      background-image:url('#{$dir-images}/pattern_overlay-01.png');
+      background-size: cover;
+      background-position: center;
+      float:right;
+    }
+
+    .event-content{
+      padding:1.4rem 2rem 0 2rem;
+      width:75%;
+      min-height:250px;
+    }
+
+    .event-summary{
+      min-height:120px;
+    }
+
+    .event-footer{
+      color:#ffffff;
+    }
+  }
+
+  &.intranet{
+    height:500px;
+    width:30%;
+    margin-right:15px;
+    margin-bottom:19px;
+    background:#ffffff;
+
+    h2 a{
+      color:#115737!important;
+    }
+
+    p{
+      color:#000000;
+    }
+
+    .event-img{
+      background-image:url( 'https://www.wgtn.ac.nz/__data/assets/image/0008/1722482/varieties/ls_medium.jpg');
+      background-color: $grey;
+      background-position: center;
+      background-size: cover;
+      height:250px;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 68%);
+      width:100%;
+    }
+
+    .event-content{
+      min-height:200px;
+      padding:0 2rem;
+      display:flex;
+      flex-direction: column;
+    }
+
+    .event-summary{
+      min-height:145px;
+    }
+
+    .event-footer{
+      color:#000000;
+    }
+  }
+}
+
+
+@media (max-width: 800px) {
+  .events-container{
+    width:90vw;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height:auto;
+  }
+
+  .card{
+    width:100%;
+    display:block;
+
+    &.sml{
+      width:100%;
+      margin-bottom:15px;
+
+      .date,.time{
+        width:100%;
+        text-align:left;
+      }
+    }
+    &.lg{
+      width:100%;
+      margin-bottom:15px;
+    }
+  }
+
+  .event-grid-intranet{
+    display:block;
+  }
+}
