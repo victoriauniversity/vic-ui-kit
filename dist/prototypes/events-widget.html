@@ -110,45 +110,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jssor-slider/26.1.5/jssor.slider.min.js" type="text/javascript">
 </script>
 
-<script type="text/javascript">
-  jssor_1_slider_init = function () {
 
-    var jssor_1_options = {
-      $AutoPlay: true,
-      $SlideDuration: 2000,
-      $SlideWidth: 1800,
-      $SlideHeight: 720,
-      $Idle: 8000,
-      $FillMode: 1,
-      $SlideEasing: $Jease$.$OutQuint,
-      $ArrowNavigatorOptions: {
-        $Class: $JssorArrowNavigator$
-      },
-      $BulletNavigatorOptions: {
-        $Class: $JssorBulletNavigator$
-      }
-    };
-
-    var jssor_1_slider = new $JssorSlider$( "jssor_1", jssor_1_options );
-
-    /*responsive code begin*/
-    /*you can remove responsive code if you don't want the slider scales while window resizing*/
-    function ScaleSlider() {
-      var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
-      if ( refSize ) {
-        refSize = Math.min( refSize, 1800 );
-        jssor_1_slider.$ScaleWidth( refSize );
-      } else {
-        window.setTimeout( ScaleSlider, 30 );
-      }
-    }
-    ScaleSlider();
-    $Jssor$.$AddEvent( window, "load", ScaleSlider );
-    $Jssor$.$AddEvent( window, "resize", ScaleSlider );
-    $Jssor$.$AddEvent( window, "orientationchange", ScaleSlider );
-    /*responsive code end*/
-  };
-</script>
 <style>
   /* jssor slider bullet navigator skin 05 css */
   /*
@@ -253,6 +215,11 @@
 </style>
 
 
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+
 <div class="centraliser" style="height:100%">
   <div id="" class="home-6-up-banner">
     <a class="banner-panel panel-banner sub"
@@ -340,81 +307,6 @@
 </div>
 
 
-
-
-<div id="jssor_1"
-  style="position:relative;margin:0 auto;top:0px;left:0px;width:1800px;height:720px;overflow:hidden;visibility:hidden;">
-  <!-- Loading Screen -->
-  <div data-u="loading" style="position:absolute;top:0px;left:0px;background-color:rgba(0,0,0,0.7);">
-    <div
-      style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;">
-    </div>
-    <div
-      style="position:absolute;display:block;background:url('https://www.wgtn.ac.nz/__data/assets/image/0007/669949/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;">
-    </div>
-  </div>
-  <div data-u="slides"
-    style="cursor:default;position:relative;top:0px;left:0px;width:1800px;height:720px;overflow:hidden;">
-
-    <!--slide one   -->
-    <div>
-      <a href="https://www.wgtn.ac.nz/study/apply-enrol/offer-of-study">
-        <img src="https://www.wgtn.ac.nz/__data/assets/image/0018/671400/varieties/ls_large.jpg" alt=""
-          style="width: 100%;">
-        <div
-          style="position:absolute;bottom:20%;left:110px;width:40%;height:auto;z-index:0;color:#ffffff;background-color: rgba(30,153,28,0.7); padding: 2em;">
-          <h1 style="color:#ffffff;">School visits <span class="icon-caret-right"></span></h1>
-          <h3 style="color:#ffffff;">Your introduction to Victoria—find out when we're visiting your region.</h3>
-        </div>
-      </a>
-    </div>
-    <a data-u="any" href="http://www.jssor.com" style="display:none">Full Width Slider</a>
-
-
-    <!--slide two-->
-    <div>
-      <a href="https://www.wgtn.ac.nz/students/new-students/orientation">
-        <img src="https://www.wgtn.ac.nz/__data/assets/image/0010/659935/varieties/ls_large.jpg"
-          alt="Students playing basketball at Victoria's Kelburn Recreation Centre" style="width: 100%;">
-        <div
-          style="position:absolute;bottom:20%;left:110px;width:40%;height:auto;z-index:0;color:#ffffff;background-color: rgba(30,153,28,0.7); padding: 2em;">
-          <h1 style="color:#ffffff;">New Students' Orientation <span class="icon-caret-right"></span></h1>
-          <h3 style="color:#ffffff;">Start planning your orientation week: 27 February–3 March.</h3>
-        </div>
-      </a>
-    </div>
-
-    <!--slide three-->
-    <div>
-      <a href="https://www.wgtn.ac.nz/capital-thinking">
-        <img src="https://www.wgtn.ac.nz/__data/assets/image/0007/354715/varieties/ls_large.png"
-          alt="Microscopic view of Multiple Sclerosis cells in the body" style="width: 100%;">
-        <div
-          style="position:absolute;bottom:20%;left:110px;width:40%;height:auto;z-index:0;color:#ffffff;background-color: rgba(30,153,28,0.7); padding: 2em;">
-          <h1 style="color:#ffffff;">Cyber security <span class="icon-caret-right"></span></h1>
-          <h3 style="color:#ffffff;">How vulnerable are you when sharing personal data online?</h3>
-        </div>
-      </a>
-    </div>
-
-
-
-
-  </div>
-  <!-- Bullet Navigator -->
-  <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1">
-    <!-- bullet navigator item prototype -->
-    <div data-u="prototype" style="width:26px;height:26px;"></div>
-  </div>
-  <!-- Arrow Navigator -->
-  <span data-u="arrowleft" class="jssora22l" style="top:0px;left:8px;width:40px;height:58px;"
-    data-autocenter="2"></span>
-  <span data-u="arrowright" class="jssora22r" style="top:0px;right:8px;width:40px;height:58px;"
-    data-autocenter="2"></span>
-</div>
-<script type="text/javascript">
-  jssor_1_slider_init();
-</script>
 
 <!-- in page styles for header/logo -->
 <style>
@@ -606,8 +498,6 @@
           <div class="promo primary">
             <a href="https://www.wgtn.ac.nz/psyc/about/psyc-survivor" title="Promo">
               <h2>Explore areas of study</h2>
-
-
               <p></p>
               <p>Thinking of studying at Victoria University? This is a good place to start. Discover our range of
                 undergraduate and
@@ -683,21 +573,84 @@
               <a class="social-icon" alt="Instagram icon" href="//instagram.com/vicuniwgtn/">
                 <img src="https://www.wgtn.ac.nz/assets/images/instagram_logo.png" alt="Instagram logo">
               </a>
-
-
-
-
             </div>
           </div>
         </div>
       </div>
 
 
+      <!-- EVENTS WIDGET -->
+        <div id="output">
+        </div>
+        <script type="text/javascript">
+          try {
+            $.get("https://search.wgtn.ac.nz/s/search.json?query=!showall&sort=adate&collection=wgtn-meta-events&meta_eventOwner_or=Staff%20Responsive&fmo=true&start_rank=1&meta_d3=%25globals_date%5Edate_format:dMY%25",
+            function(data){
+
+              var results = data.response.resultPacket.results;
+
+              console.log(results);
+              var ssconsole = {
+                log: function () {               
+                }
+              }
+
+                var htmlOutput = '';
+                htmlOutput += '<div class="promo-panel"><div class="centraliser block formatting">';
+                htmlOutput += '<div class="events-header"><h1>What\'s on</h1>';
+                htmlOutput += '<div class="more-events-btn">More events</div></div>';
+                htmlOutput += '<div class="events-container">';
+
+                var counter = 0;
+                var firstHasPicture = false;
+                var maxIterations = 4;
+
+              results.forEach( function ( result ) {
+                if(result.score == 998){
+                  firstHasPicture = true;
+                  maxIterations = 3;
+                }
+
+
+                if(counter < maxIterations){
+                  if((counter==0 )&&(firstHasPicture)){    // & (results.image = null)
+                    htmlOutput += '<div class="card lg">'
+                  }else{
+                    htmlOutput += '<div class="card sml">'
+                  }
+                  htmlOutput += '<div class="event-img"></div>'
+                  htmlOutput += '<div class="event-content">'
+                  htmlOutput += '<h2><a href="' + decodeURIComponent(result.metaData.url) + '">'+ result.title +'</a></h2>'
+                  htmlOutput += '<div class="event-summary"><p>'+ result.metaData.eventSummary +'</p></div>'
+                  htmlOutput += '<div class="event-footer">'
+                  htmlOutput += '<div class="date"><i class="icon-calendar"></i>'+  result.metaData.d +'</div>'; //add moment here. REF: jakes code
+                  htmlOutput += '<div class="time"><i class="icon-clock"></i>'+ result.metaData.eventStartTime + '-'+ result.metaData.eventStartTime + '</div>'
+                  htmlOutput += '</div></div></div>'
+                  counter++;
+                  }
+                }
+               );
+              htmlOutput += '</div></div></div>';
+
+              //$("#output").html(htmlOutput);
+              document.getElementById("output").innerHTML = htmlOutput;
+
+
+              });
+            }catch ( errorReturn ) {
+              console.log(errorReturn);
+             // htmlOutput +=  "<!-- errorReturn in listing: " );
+             // htmlOutput +=  errorReturn );
+             // htmlOutput +=  ' errorReturn finish -->' );
+            }
+        </script>
+
+
+<!-- -->
+
       <div class="promo-panel">
         <div class="centraliser block formatting">
           <figure class=" ">
-
-
 
             <figcaption>
               <h1>Explore PhD study</h1>
