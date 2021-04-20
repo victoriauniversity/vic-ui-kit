@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, April 20, 2021, 1:35 PM */
+/** Version: 0.10.13 | Tuesday, April 20, 2021, 1:44 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -6282,6 +6282,276 @@ aside .promo h3::before {
 @media (max-width: 42.99em) {
   .events .media img {
     margin-bottom: .8rem;
+  }
+}
+
+/* HEADER*/
+.events-header {
+  border-bottom: 4px solid #3E9C4F;
+  margin-bottom: 20px;
+  position: relative;
+  height: 60px;
+}
+
+.events-header h1 {
+  width: 50%;
+}
+
+.events-header .more-events-btn {
+  width: 125px;
+  background: #3E9C4F;
+  color: #ffffff;
+  padding: 5px 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-top: 23px;
+  font-weight: 600;
+}
+
+/* EVENT TILES */
+.events-container {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-flow: column wrap;
+  height: 541px;
+  margin-bottom: 5vh;
+  width: 100%;
+  margin: auto;
+}
+
+.card:nth-of-type(1) {
+  background: #FFF;
+}
+
+.card:nth-of-type(2) {
+  background: #115737;
+}
+
+.card:nth-of-type(3) {
+  background: #3E9C4F;
+}
+
+.card:nth-of-type(4) {
+  background: #115737;
+}
+
+.card {
+  -webkit-box-align: center;
+          align-items: center;
+  border: 1px solid #cccccc;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+  -webkit-box-flex: 1;
+          flex-grow: 1;
+  height: 50%;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
+.card h2 a {
+  text-decoration: none !important;
+  margin-top: 0 !important;
+  line-height: .4em;
+}
+
+.card .event-footer {
+  height: 40px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-top: .5rem;
+  position: relative;
+  flex-wrap: wrap;
+  display: -webkit-box;
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+
+.card .date {
+  width: 50%;
+}
+
+.card .time {
+  text-align: right;
+  width: 49%;
+}
+
+.card.lg {
+  height: 500px;
+  width: 50%;
+  margin-right: 15px;
+  margin-bottom: 19px;
+}
+
+.card.lg h2 a {
+  color: #115737 !important;
+}
+
+.card.lg p {
+  color: #000000;
+}
+
+.card.lg .event-img {
+  background-image: url("https://www.wgtn.ac.nz/__data/assets/image/0008/1722482/varieties/ls_medium.jpg");
+  background-color: #8B8B8B;
+  background-position: center;
+  background-size: cover;
+  height: 250px;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 68%);
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 68%);
+  width: 100%;
+}
+
+.card.lg .event-content {
+  min-height: 200px;
+  padding: 0 2rem;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+}
+
+.card.lg .event-summary {
+  min-height: 145px;
+}
+
+.card.lg .event-footer {
+  color: #000000;
+}
+
+.card.sml {
+  height: 250px;
+  width: 49%;
+  margin-bottom: 19px;
+  margin-right: 19px;
+}
+
+.card.sml:nth-of-type(1) h2 a {
+  color: #115737;
+}
+
+.card.sml:nth-of-type(1) p, .card.sml:nth-of-type(1) .event-footer {
+  color: #000000;
+}
+
+.card.sml:nth-of-type(1) .event-img {
+  background-image: url("./images/pattern_overlay-02.png");
+}
+
+.card.sml p {
+  color: #000000;
+}
+
+.card.sml h2 a {
+  color: #ffffff;
+}
+
+.card.sml p {
+  color: #ffffff;
+}
+
+.card.sml .event-img {
+  width: 24%;
+  height: 250px;
+  background-image: url("./images/pattern_overlay-01.png");
+  background-size: cover;
+  background-position: center;
+  float: right;
+}
+
+.card.sml .event-content {
+  padding: 1.4rem 2rem 0 2rem;
+  width: 75%;
+  min-height: 250px;
+}
+
+.card.sml .event-summary {
+  min-height: 120px;
+}
+
+.card.sml .event-footer {
+  color: #ffffff;
+}
+
+.card.intranet {
+  height: 500px;
+  width: 30%;
+  margin-right: 15px;
+  margin-bottom: 19px;
+  background: #ffffff;
+}
+
+.card.intranet h2 a {
+  color: #115737 !important;
+}
+
+.card.intranet p {
+  color: #000000;
+}
+
+.card.intranet .event-img {
+  background-image: url("https://www.wgtn.ac.nz/__data/assets/image/0008/1722482/varieties/ls_medium.jpg");
+  background-color: #8B8B8B;
+  background-position: center;
+  background-size: cover;
+  height: 250px;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 68%);
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 68%);
+  width: 100%;
+}
+
+.card.intranet .event-content {
+  min-height: 200px;
+  padding: 0 2rem;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+}
+
+.card.intranet .event-summary {
+  min-height: 145px;
+}
+
+.card.intranet .event-footer {
+  color: #000000;
+}
+
+@media (max-width: 800px) {
+  .events-container {
+    width: 90vw;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    flex-wrap: nowrap;
+    height: auto;
+  }
+  .card {
+    width: 100%;
+    display: block;
+  }
+  .card.sml {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .card.sml .date, .card.sml .time {
+    width: 100%;
+    text-align: left;
+  }
+  .card.lg {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .event-grid-intranet {
+    display: block;
   }
 }
 
