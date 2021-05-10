@@ -150,6 +150,7 @@ $tray-width-desktop: 400px;
 
       .header-logo {
         width: 25%;
+        padding-left: 0;
       }
 
       .header-content {
@@ -215,21 +216,47 @@ $tray-width-desktop: 400px;
 
           .main-nav-item {
             padding: 1rem 0;
+            position: relative;
+            line-height: 1.2;
 
             &:not(:last-child) {
               border-bottom: 1px solid $white;
             }
 
+            .tereo-nav-title {
+              display: block;
+              color: $green-brand;
+              font-size: 1.4rem;
+              font-weight: 500;
+            }
+
+            &:after {
+              position: absolute;
+              content: "";
+              font-family: "VicIcons";
+              color: $black-tundora;
+              font-size: 1.5rem;
+              right: 0;
+              top: 50%;
+              transform: translateY(-50%);
+              z-index: 0;
+            }
+
             a {
+              display: block;
               color: $white;
               font-size: 1.5rem;
               text-decoration: none;
               transition: .5s ease-in;
+              position: relative;
+              z-index: 50;
+
+              font-family: $font-name-brand;
+              font-weight: 600;
 
               @include hoverify() {
                 text-decoration: underline;
               }
-
 
               &.active {
                 font-weight: 600;
@@ -606,7 +633,7 @@ $tray-width-desktop: 400px;
     }
 
     .logo {
-      border-right-color: $green-brand-weaker;
+      border-right-color: $grey-silver;
     }
 
     .header-inner {
@@ -636,8 +663,23 @@ $tray-width-desktop: 400px;
         .icon-menu {
           color: $black-tundora;
         }
-        &:hover {
+        @include hoverify() {
           background-color: $grey-gallery;
+        }
+      }
+
+      @include breakpoint($until:desktop) {
+
+        .search-toggle {
+          height: 50px;
+          span {
+            color: $black-tundora;
+          }
+          @include hoverify() {
+            span {
+              color: $white;
+            }
+          }
         }
       }
     }
@@ -645,6 +687,12 @@ $tray-width-desktop: 400px;
     &.header-tray {
       .tray-content {
         background-color: $white;
+        background-image: url("https://www.wgtn.ac.nz/__data/assets/image/0008/1935395/tray-pattern@2x.png");
+        background-repeat: no-repeat;
+        background-position: bottom right;
+        background-size: 55%;
+        display: flex;
+        flex-direction: column;
 
         &:before {
           content: '';
@@ -659,9 +707,25 @@ $tray-width-desktop: 400px;
 
         .tray-main-nav {
           li.main-nav-item {
-            border-bottom: 1px solid $black-tundora !important;
+            border-bottom: 1px solid $grey-alto !important;
+
+            &:after {
+              color: $green-brand;
+            }
+
             a {
               color: $black-tundora;
+              // font-family: $font-name-brand;
+              // font-weight: 600;
+
+
+              &.active {
+                &:before {
+                  background-color: $green-brand;
+                  width: 3px;
+                  left: -8px;
+                }
+              }
             }
             &:not(:last-child) {
             }
@@ -669,6 +733,8 @@ $tray-width-desktop: 400px;
         }
 
         .tray-sub-menu {
+          margin-top: auto;
+          margin-bottom: 2rem;
           .sub-menu-list {
             .sub-menu-item {
               a {
@@ -681,10 +747,40 @@ $tray-width-desktop: 400px;
           form {
             border: 2px solid $black-emperor;
             border-radius: $radius;
+
+            .search-input {
+              background-color: transparent;
+              color: $grey-dove;
+
+              &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                color: $grey-chalice;
+                opacity: 1; /* Firefox */
+              }
+
+            }
+            .submit-button {
+              span {
+                color: $black-emperor;
+              }
+            }
           }
         }
         .tray-close {
           background-color: $brand;
+        }
+      }
+    }
+
+    @include breakpoint($until:tablet) {
+      .header-inner {
+
+        grid-template-rows: 1fr;
+
+        .header-content {
+          display: none;
+        }
+        .header-logo {
+          grid-row: 1 !important;
         }
       }
     }
