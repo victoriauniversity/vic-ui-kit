@@ -150,6 +150,7 @@ $tray-width-desktop: 400px;
 
       .header-logo {
         width: 25%;
+        padding-left: 0;
       }
 
       .header-content {
@@ -632,7 +633,7 @@ $tray-width-desktop: 400px;
     }
 
     .logo {
-      border-right-color: $green-brand-weaker;
+      border-right-color: $grey-silver;
     }
 
     .header-inner {
@@ -664,6 +665,21 @@ $tray-width-desktop: 400px;
         }
         @include hoverify() {
           background-color: $grey-gallery;
+        }
+      }
+
+      @include breakpoint($until:desktop) {
+
+        .search-toggle {
+          height: 50px;
+          span {
+            color: $black-tundora;
+          }
+          @include hoverify() {
+            span {
+              color: $white;
+            }
+          }
         }
       }
     }
@@ -734,6 +750,7 @@ $tray-width-desktop: 400px;
 
             .search-input {
               background-color: transparent;
+              color: $grey-dove;
 
               &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
                 color: $grey-chalice;
@@ -750,6 +767,20 @@ $tray-width-desktop: 400px;
         }
         .tray-close {
           background-color: $brand;
+        }
+      }
+    }
+
+    @include breakpoint($until:tablet) {
+      .header-inner {
+
+        grid-template-rows: 1fr;
+
+        .header-content {
+          display: none;
+        }
+        .header-logo {
+          grid-row: 1 !important;
         }
       }
     }

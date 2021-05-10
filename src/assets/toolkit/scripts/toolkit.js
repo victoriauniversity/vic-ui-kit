@@ -16,6 +16,7 @@ import { tracker, trackerConfig } from './modules/tracking';
 import popups from './modules/popups';
 import tooltips from './modules/tooltips';
 import { initTray } from './modules/tray';
+import horizontalNav from './modules/horizontalNav';
 
 // Core libs
 import { initToolbarLoader, initToolbarUrlListeners } from './modules/core';
@@ -27,6 +28,7 @@ import { hasProp } from './utils/helpers';
 trackerConfig({ autoRegister: true });
 
 
+horizontalNav.init();
 
 
 
@@ -158,7 +160,7 @@ function initSidemenuExpandability(menuClass) {
 
 // TODO: Remove after this was implemented on the backend (~ in Squiz)
 /** Adds necessary classes and expanding/collapsing elements if the item has got submenu. */
-const btnExpanderHtml = '<span class="btn-expander mf-heatmap-click" title="Toggle subpages"></span>';
+const btnExpanderHtml = '<span tabindex="0" class="btn-expander mf-heatmap-click" title="Toggle subpages" role="button"></span>';
 
 
 function enhanceSidemenu( menuElement ) {
@@ -627,11 +629,27 @@ $(() => {
       console.log(`sidemenu-homepage`);
 
       initSidemenuExpandability( 'sidemenu-homepage' );
-      console.log('tray is small size for mob');
+      // console.log('tray is small size for mob');
     });
     const $sidemenuHomepage = $('.sidemenu-homepage');
     enhanceSidemenu($sidemenuHomepage);
   };
+
+  // initSidemenuExpandability( 'horizontal-menu' );
+
+  // ***************************
+  // Init horizontal megamenu
+  // ***************************
+  if ( $( `.show-mega-menu-top` ).length ) {
+    enquire.register( TABLET_AND_SMALLER, () => {
+      console.log(`show-mega-menu-top`);
+
+      initSidemenuExpandability( 'mega-sub-menu' );
+      // console.log('tray is small size for mob');
+    });
+    enhanceSidemenu( $('.mega-sub-menu') );
+  };
+
 
   if( $( '.header-tray' ).length ) {
     // console.log('init tray');
