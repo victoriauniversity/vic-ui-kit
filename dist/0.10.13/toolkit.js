@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, May 11, 2021, 11:10 AM */
+/** Version: 0.10.13 | Tuesday, May 11, 2021, 1:31 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14074,6 +14074,8 @@ function initTray() {
   // const SIDEMENU_SELECTED_ITEM_CLASS = 'active';
   // const SIDEMENU_EXPANDED_CLASS      = 'expanded';
 
+  var horizontalMenuExpanded = false;
+
   function buildTray(index, item) {
     // console.log(index);
     // console.log( 'nav item', $(this).parent().children('a').text() );
@@ -14202,13 +14204,12 @@ function initTray() {
     });
   } // **********
   // Horizontal Nav
+  // **********
 
-
-  var horizontalMenuExpanded = false;
 
   function initHorizontalNav() {
     console.log('hori nav go');
-    var menuItems = $('.show-mega-menu-top .mega-menu-top-level > .nav-item-parent ');
+    var menuItems = $('.show-mega-menu-top .mega-menu-top-level .nav-item-parent ');
     var menuItemsWithSub = $('.show-mega-menu-top .mega-menu-top-level > .has-submenu');
     var subMenuItems = $('.show-mega-menu-top .mega-menu-top-level > .nav-item-parent '); // build sub menu for expand
 
@@ -14229,15 +14230,16 @@ function initTray() {
 
 
       $(".draw-nav > ul[data-index='".concat(index, "']")).prepend("<li class=\"sub-draw-title\"><a href=\"".concat(titleLink, "\">").concat(titleHtml, "</a></li>"));
-    }); // expand menu
+    });
+    console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded); // expand menu
 
     menuItems.on('click', function (e) {
       var index = $(this).index() - 1;
       console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index);
       e.preventDefault();
+      e.stopPropagation();
       console.log(e);
-      var $navItem = $(this);
-      console.log($(this).parent());
+      var $navItem = $(this); // console.log( $(this).parent() );
 
       if ($navItem.hasClass('expanded-nav')) {
         // console.log('has class button close tray');
@@ -14246,14 +14248,15 @@ function initTray() {
         $navItem.removeClass('expanded-nav');
       } else {
         //show expanded menu
-        console.log('not exapnded');
+        console.log('not exapnded.. expand');
+        console.log(horizontalMenuExpanded);
 
         if (horizontalMenuExpanded === false) {
           $('.sidemenu-drawer').addClass('horizontal-drawer-expanded');
           horizontalMenuExpanded = !horizontalMenuExpanded;
         }
 
-        menuItemsWithSub.removeClass('expanded-nav');
+        menuItems.removeClass('expanded-nav');
         $navItem.addClass('expanded-nav');
       } // set active submenu to display
 
@@ -14264,8 +14267,8 @@ function initTray() {
       console.log('horizontalMenuExpanded', horizontalMenuExpanded);
     }); // Set nav offset height for css variable
 
-    var navHeight = $('.show-mega-menu-top .mega-sub-menu').height() + 6;
-    console.log(navHeight);
+    var navHeight = $('.show-mega-menu-top .mega-sub-menu').height() + 6; // console.log(navHeight);
+
     document.querySelector(':root').style.setProperty('--horizontal-nav-offset', "".concat(navHeight, "px"));
     closeSideMenuDraw('horizontal-drawer-expanded');
     expandDrawSubContent();
