@@ -184,11 +184,13 @@ export function initTray() {
         }
 
         // closes menu if not clicking on header.. .should this be behaviour?
-      const horizontalNavHeader = $('.horizontal-sub-nav');
-        if(horizontalMenuExpanded && !horizontalNavHeader.is(e.target) && horizontalNavHeader.has(e.target) . length === 0) {
-          horizontalMenuExpanded = !horizontalMenuExpanded;
-          $( '.sidemenu-drawer' ).removeClass( `${loc}` );
-          $('.mega-menu-top-level > li').removeClass('expanded-nav');
+        if($('.show-mega-menu-top').length) {
+          const horizontalNavHeader = $('.main-site-header');
+            if(horizontalMenuExpanded && !horizontalNavHeader.is(e.target) && horizontalNavHeader.has(e.target) . length === 0) {
+              horizontalMenuExpanded = !horizontalMenuExpanded;
+              $( '.sidemenu-drawer' ).removeClass( `${loc}` );
+              $('.mega-menu-top-level > li').removeClass('expanded-nav');
+            }
         }
 
 
