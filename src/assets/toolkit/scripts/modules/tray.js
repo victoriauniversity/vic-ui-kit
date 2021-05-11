@@ -67,6 +67,10 @@ export function initTray() {
   // const SIDEMENU_SELECTED_ITEM_CLASS = 'active';
   // const SIDEMENU_EXPANDED_CLASS      = 'expanded';
 
+  let horizontalMenuExpanded = false;
+
+
+
   function buildTray(index, item) {
     // console.log(index);
 
@@ -233,11 +237,12 @@ export function initTray() {
 
   // **********
   // Horizontal Nav
-  let horizontalMenuExpanded = false;
+  // **********
+
   function initHorizontalNav() {
 
     console.log('hori nav go');
-    let menuItems = $( '.show-mega-menu-top .mega-menu-top-level > .nav-item-parent ' );
+    let menuItems = $( '.show-mega-menu-top .mega-menu-top-level .nav-item-parent ' );
     let menuItemsWithSub = $( '.show-mega-menu-top .mega-menu-top-level > .has-submenu' );
 
     let subMenuItems = $( '.show-mega-menu-top .mega-menu-top-level > .nav-item-parent ' );
@@ -267,6 +272,7 @@ export function initTray() {
       $( `.draw-nav > ul[data-index='${index}']` ).prepend(`<li class="sub-draw-title"><a href="${titleLink}">${titleHtml}</a></li>`);
     });
 
+    console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded);
 
     // expand menu
     menuItems.on('click', function( e ) {
@@ -274,11 +280,12 @@ export function initTray() {
       console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index)
 
       e.preventDefault();
+      e.stopPropagation();
       console.log(e);
       const $navItem = $(this);
-      console.log( $(this).parent() );
+      // console.log( $(this).parent() );
 
-      if( $navItem.hasClass('expanded-nav') ) {
+      if ( $navItem.hasClass( 'expanded-nav' )) {
 
         // console.log('has class button close tray');
         horizontalMenuExpanded = !horizontalMenuExpanded;
@@ -287,13 +294,14 @@ export function initTray() {
 
       } else {
         //show expanded menu
-        console.log('not exapnded');
+        console.log('not exapnded.. expand');
+        console.log( horizontalMenuExpanded );
         if (horizontalMenuExpanded === false) {
           $('.sidemenu-drawer').addClass('horizontal-drawer-expanded');
           horizontalMenuExpanded = !horizontalMenuExpanded;
         }
 
-        menuItemsWithSub.removeClass('expanded-nav');
+        menuItems.removeClass('expanded-nav');
         $navItem.addClass('expanded-nav');
       }
 
@@ -309,7 +317,7 @@ export function initTray() {
 
     // Set nav offset height for css variable
     const navHeight = $('.show-mega-menu-top .mega-sub-menu').height() + 6;
-    console.log(navHeight);
+    // console.log(navHeight);
     document.querySelector(':root').style.setProperty('--horizontal-nav-offset', `${navHeight}px`);
 
     closeSideMenuDraw('horizontal-drawer-expanded');
