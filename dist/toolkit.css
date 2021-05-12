@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, May 11, 2021, 1:31 PM */
+/** Version: 0.10.13 | Wednesday, May 12, 2021, 12:48 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -11788,6 +11788,14 @@ footer .footer-secondary .site_links .link_list .social_logo {
     margin-top: 0;
     margin-bottom: 0;
   }
+  .sidemenu .sidemenu-toggle, .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle, .show-mega-menu-top .mega-sub-menu .sidemenu-toggle {
+    color: #424242;
+  }
+  .sidemenu .sidemenu-toggle .tereo-title, .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle .tereo-title, .show-mega-menu-top .mega-sub-menu .sidemenu-toggle .tereo-title {
+    display: block;
+    color: #115737;
+    font-weight: 500;
+  }
   .sidemenu .sidemenu-toggle + ul, .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle + ul, .show-mega-menu-top .mega-sub-menu .sidemenu-toggle + ul {
     display: none;
   }
@@ -11829,11 +11837,11 @@ footer .footer-secondary .site_links .link_list .social_logo {
 }
 
 .sidemenu.sidemenu-light > ul > li, .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage > ul > li, .show-mega-menu-top .sidemenu-light.mega-sub-menu > ul > li {
-  border-bottom-color: #8B8B8B;
+  border-bottom-color: #CCC;
 }
 
 .sidemenu.sidemenu-light > ul > li.active, .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage > ul > li.active, .show-mega-menu-top .sidemenu-light.mega-sub-menu > ul > li.active {
-  border-bottom: 1px solid #8B8B8B;
+  border-bottom: 1px solid #CCC;
 }
 
 .sidemenu.sidemenu-light > ul > li.active > a, .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage > ul > li.active > a, .show-mega-menu-top .sidemenu-light.mega-sub-menu > ul > li.active > a {
@@ -12158,7 +12166,7 @@ footer .footer-secondary .site_links .link_list .social_logo {
     padding-top: 1rem;
   }
   .sidemenu-banner-wrap .sidemenu-homepage > ul > li:nth-child(2) {
-    border-top: 1px solid #8B8B8B;
+    border-top: 1px solid #CCC;
   }
   .sidemenu-banner-wrap .sidemenu-homepage .sidemenu__label {
     display: none;
@@ -13324,7 +13332,7 @@ footer .footer-secondary .site_links .link_list .social_logo {
     opacity: 0;
     z-index: 0;
   }
-  1% {
+  20% {
     visibility: visible;
   }
   80% {
@@ -13336,7 +13344,7 @@ footer .footer-secondary .site_links .link_list .social_logo {
             transform: translateY(0);
     visibility: visible;
     opacity: 1;
-    z-index: 100;
+    z-index: 1000;
   }
 }
 
@@ -13348,7 +13356,7 @@ footer .footer-secondary .site_links .link_list .social_logo {
     opacity: 0;
     z-index: 0;
   }
-  1% {
+  20% {
     visibility: visible;
   }
   80% {
@@ -13360,7 +13368,7 @@ footer .footer-secondary .site_links .link_list .social_logo {
             transform: translateY(0);
     visibility: visible;
     opacity: 1;
-    z-index: 100;
+    z-index: 1000;
   }
 }
 
@@ -13402,8 +13410,9 @@ footer .footer-secondary .site_links .link_list .social_logo {
   }
 }
 
-.main-site-header.show-mega-menu-top {
+.main-site-header.show-mega-menu-top-wrap {
   padding-top: 0;
+  overflow: unset !important;
 }
 
 .show-mega-menu-top {
