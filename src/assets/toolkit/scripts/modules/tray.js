@@ -40,13 +40,16 @@ export function initTray() {
     }, 500);
   });
 
-  $( 'body' ).on( 'click', ( e ) => {
+  $( 'body' ).on( 'click keyup', ( e ) => {
+    // Close tray if clicked away from or escpae buttons
 
     // console.log( e.target.className, 'clicked' );
-    if ( e.target.className.includes( 'tray-open' )) {
+    if ( e.target.className.includes( 'tray-open' ) || (e.key == 'Escape' && $('.tray-open').length ) ) {
       e.preventDefault();
       toggleTray();
     }
+
+
 
   });
 
@@ -94,7 +97,7 @@ export function initTray() {
   function expandTray(index, button) {
 
     $( button ).on( 'click keypress', (e) => {
-      console.log( e );
+      // console.log( e );
       if (e.type == 'click' || e.key == 'Enter' ) {
 
           //toggle sidemenu draw and content
@@ -184,11 +187,13 @@ export function initTray() {
         }
 
         // closes menu if not clicking on header.. .should this be behaviour?
-      const horizontalNavHeader = $('.horizontal-sub-nav');
-        if(horizontalMenuExpanded && !horizontalNavHeader.is(e.target) && horizontalNavHeader.has(e.target) . length === 0) {
-          horizontalMenuExpanded = !horizontalMenuExpanded;
-          $( '.sidemenu-drawer' ).removeClass( `${loc}` );
-          $('.mega-menu-top-level > li').removeClass('expanded-nav');
+        if($('.show-mega-menu-top').length) {
+          const horizontalNavHeader = $('.main-site-header');
+            if(horizontalMenuExpanded && !horizontalNavHeader.is(e.target) && horizontalNavHeader.has(e.target) . length === 0) {
+              horizontalMenuExpanded = !horizontalMenuExpanded;
+              $( '.sidemenu-drawer' ).removeClass( `${loc}` );
+              $('.mega-menu-top-level > li').removeClass('expanded-nav');
+            }
         }
 
 

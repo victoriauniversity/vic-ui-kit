@@ -624,6 +624,9 @@ $(() => {
     initSidemenuExpandability( SIDEMENU_CLASS );
   }
 
+    // ***************************
+  // Init homepage side megamenu
+  // ***************************
   if ( $( `.sidemenu-homepage` ).length ) {
     enquire.register( TABLET_AND_SMALLER, () => {
       console.log(`sidemenu-homepage`);
@@ -633,7 +636,7 @@ $(() => {
     });
     const $sidemenuHomepage = $('.sidemenu-homepage');
     enhanceSidemenu($sidemenuHomepage);
-  };
+  }
 
   // initSidemenuExpandability( 'horizontal-menu' );
 
