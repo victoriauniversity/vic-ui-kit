@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, May 13, 2021, 2:05 PM */
+/** Version: 0.10.13 | Friday, May 14, 2021, 12:59 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -10733,6 +10733,56 @@ footer .footer-secondary .site_links .link_list .social_logo {
   footer .footer-secondary .site_links .cols {
     width: auto;
     margin-right: 1rem;
+  }
+}
+
+footer .footer-secondary.dark {
+  background: #373f3d;
+  background-image: url("https://www.wgtn.ac.nz/__data/assets/image/0003/1940052/footer-pattern@2x.png"), url("https://www.wgtn.ac.nz/__data/assets/image/0003/1940052/footer-pattern@2x.png");
+  background-position: left top, right bottom;
+  background-repeat: no-repeat;
+  background-size: 13%;
+  padding: 3% 0;
+}
+
+footer .footer-secondary.dark a, footer .footer-secondary.dark li {
+  color: #FFF;
+  font-size: .9rem;
+}
+
+footer .footer-secondary.dark h4 a {
+  font-size: 1.22rem;
+}
+
+footer .footer-secondary.dark .footer-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: minmax(50px, auto);
+  gap: 2rem;
+}
+
+footer .footer-secondary.dark h2 {
+  margin: .5rem 0 .2rem;
+}
+
+footer .footer-secondary.dark h2 a:not(.button) {
+  color: #FFF;
+}
+
+footer .footer-secondary.dark .footer-num {
+  text-decoration: underline;
+}
+
+@media (max-width: 42.99em) {
+  footer .footer-secondary.dark {
+    background-size: 25%;
+  }
+  footer .footer-secondary.dark .footer-row {
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  footer .footer-secondary.dark .footer-row .link_list {
+    display: block;
   }
 }
 
