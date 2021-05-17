@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, May 14, 2021, 12:59 PM */
+/** Version: 0.10.13 | Monday, May 17, 2021, 10:52 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14055,10 +14055,9 @@ function initTray() {
       $('.tray .search-input').focus();
     }, 500);
   });
-  $('body').on('click keyup', function (e) {
-    // Close tray if clicked away from or escpae buttons
+  $('body').on('click', function (e) {
     // console.log( e.target.className, 'clicked' );
-    if (e.target.className.includes('tray-open') || e.key == 'Escape' && $('.tray-open').length) {
+    if (e.target.className.includes('tray-open')) {
       e.preventDefault();
       toggleTray();
     }
@@ -14096,7 +14095,8 @@ function initTray() {
 
   function expandTray(index, button) {
     $(button).on('click keypress', function (e) {
-      // console.log( e );
+      console.log(e);
+
       if (e.type == 'click' || e.key == 'Enter') {
         //toggle sidemenu draw and content
         if ($(button).parent().hasClass('expanded-draw')) {
@@ -14169,14 +14169,12 @@ function initTray() {
         } // closes menu if not clicking on header.. .should this be behaviour?
 
 
-      if ($('.show-mega-menu-top').length) {
-        var horizontalNavHeader = $('.main-site-header');
+      var horizontalNavHeader = $('.horizontal-sub-nav');
 
-        if (horizontalMenuExpanded && !horizontalNavHeader.is(e.target) && horizontalNavHeader.has(e.target).length === 0) {
-          horizontalMenuExpanded = !horizontalMenuExpanded;
-          $('.sidemenu-drawer').removeClass("".concat(loc));
-          $('.mega-menu-top-level > li').removeClass('expanded-nav');
-        }
+      if (horizontalMenuExpanded && !horizontalNavHeader.is(e.target) && horizontalNavHeader.has(e.target).length === 0) {
+        horizontalMenuExpanded = !horizontalMenuExpanded;
+        $('.sidemenu-drawer').removeClass("".concat(loc));
+        $('.mega-menu-top-level > li').removeClass('expanded-nav');
       }
     });
   }
@@ -15660,10 +15658,7 @@ external_jQuery_default()(function () {
 
   if (external_jQuery_default()(".".concat(SIDEMENU_CLASS)).length) {
     initSidemenuExpandability(SIDEMENU_CLASS);
-  } // ***************************
-  // Init homepage side megamenu
-  // ***************************
-
+  }
 
   if (external_jQuery_default()(".sidemenu-homepage").length) {
     src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
@@ -15672,11 +15667,12 @@ external_jQuery_default()(function () {
     });
     var $sidemenuHomepage = external_jQuery_default()('.sidemenu-homepage');
     enhanceSidemenu($sidemenuHomepage);
-  } // initSidemenuExpandability( 'horizontal-menu' );
+  }
+
+  ; // initSidemenuExpandability( 'horizontal-menu' );
   // ***************************
   // Init horizontal megamenu
   // ***************************
-
 
   if (external_jQuery_default()(".show-mega-menu-top").length) {
     src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
