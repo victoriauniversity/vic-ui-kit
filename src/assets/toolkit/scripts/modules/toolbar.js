@@ -190,6 +190,11 @@ const toolbarApi = window.toolkitToolbar || {};
   function saveFavouritesListToStorage( storageKey, favouriteToolsList ) {
     // Serialise the favourited tools and save to the local storage
     localStorage.setItem( storageKey, JSON.stringify( favouriteToolsList.map( tool => tool.id )));
+    // custom event to track local storage updates
+    const localStorageEvent = new CustomEvent('lsUpdated', {
+      bubbles: true,
+    });
+    window.dispatchEvent(localStorageEvent)
   }
 
 
