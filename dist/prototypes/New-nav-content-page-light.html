@@ -1,3 +1,4 @@
+<!-- Version: 0.10.13 | Tuesday, May 18, 2021, 1:08 PM -->
 <!doctype html>
 <html lang="">
 <head>
@@ -644,9 +645,11 @@
       </div>
 
       <div class="data-sidebar">
-        <div class="staff-tools-widget">
+        <div class="staff-tools-widget corner-border">
         <h4>mytools staff</h4>
-        <a href="javascript:window.toolkitToolbarLoader &amp;&amp; window.toolkitToolbarLoader( 'https://www.wgtn.ac.nz/api/toolbar/staff' );void 0;" title="Open staff toolbar">myTools for staff</a>
+        <div class="flex-center">
+          <a class="more-btn" href="javascript:window.toolkitToolbarLoader &amp;&amp; window.toolkitToolbarLoader( 'https://www.wgtn.ac.nz/api/toolbar/staff' );void 0;" title="Open staff toolbar">More tools</a>
+        </div>
       </div>
 
       <script>
@@ -730,7 +733,7 @@
           // console.log('toolbar', data)
           toolbarData = data;
           console.log('toolbarData', toolbarData)
-          sortFavourites();
+          buildTools();
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -739,17 +742,21 @@
         // Handle data
         //Check local storage for favourites clean names -- remove toolbar.
 
-        let lsData = window.localStorage.getItem('toolbar.favourites') ?
-        JSON.parse( window.localStorage.getItem('toolbar.favourites') ).map(element => {
-          return element.replace('toolbar.', '');
-        }) :
-        null ;
 
-        console.log('lsData - ', lsData);
 
-        function sortFavourites() {
+        function buildTools() {
+
+          let lsData = window.localStorage.getItem('toolbar.favourites') ?
+          JSON.parse( window.localStorage.getItem('toolbar.favourites') ).map(element => {
+            return element.replace('toolbar.', '');
+          }) :
+          null ;
+
+          // console.log('lsData - ', lsData);
+
           if (lsData) {
-            console.log('has local data');
+
+            // console.log('has local data');
             let allTools = [...toolbarData.data.defaults, ...toolbarData.data.favourites];
             console.log('altools ', allTools);
 
@@ -762,9 +769,18 @@
               return lsData.indexOf(a.id) - lsData.indexOf(b.id);
             })
 
+            // console.log('favs ', filteredFavs);
+
             let list = buildList(filteredFavs);
 
-            document.querySelector('.staff-tools-widget  h4').insertAdjacentHTML('afterend', list);
+            // if tools updated replace
+            if ( document.querySelector('.staff-tools-widget .tools') ? true : false ) {
+              // console.log('has tools remove and redraw');
+              document.querySelector('.staff-tools-widget .tools').remove();
+              document.querySelector('.staff-tools-widget  h4').insertAdjacentHTML('afterend', list);
+            } else {
+              document.querySelector('.staff-tools-widget  h4').insertAdjacentHTML('afterend', list);
+            }
 
           } else {
             // print defaults
@@ -815,7 +831,7 @@
 
           let html = `
           <section>
-            <ul class="flex-grid">
+            <ul class="tools">
               ${buidItem(tools)}
             </ul>
           </section>
@@ -825,23 +841,11 @@
 
         }
 
+        // watch for custom event - redraw tools if localstorage change triggered
+        window.addEventListener('lsUpdated', (e) => {
+          // console.log(e, ' ls updated');
+          buildTools();
 
-
-        // window.addEventListener('storage', (e) => {
-        //   // When local storage changes, dump the list to
-        //   // the console.
-        //   // console.log(JSON.parse(window.localStorage.getItem('sampleList')));
-        //   console.log( 'localstorage midified', e );
-        // });
-
-        // var originalSetItem = localStorage.setItem;
-        // localStorage.setItem = function(){
-        //     document.createEvent('Event').initEvent('itemInserted', true, true);
-        //     originalSetItem.apply(this, arguments);
-        // }
-
-        window.addEventListener('itemInserted', (e) => {
-          console.log(e, ' ls updated');
         })
 
 
