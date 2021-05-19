@@ -27,9 +27,6 @@ import { hasProp } from './utils/helpers';
 trackerConfig({ autoRegister: true });
 
 
-horizontalNav.init();
-
-
 
 // Export useful dependencies to the global namespace (~ window) so that
 //  they can be used outside of this toolkit.

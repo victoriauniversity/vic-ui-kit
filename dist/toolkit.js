@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, May 19, 2021, 2:06 PM */
+/** Version: 0.10.13 | Wednesday, May 19, 2021, 2:15 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15140,8 +15140,7 @@ window.toolkitCore = {
 
 trackerConfig({
   autoRegister: true
-});
-horizontalNav.init(); // Export useful dependencies to the global namespace (~ window) so that
+}); // Export useful dependencies to the global namespace (~ window) so that
 //  they can be used outside of this toolkit.
 
 /* harmony default export */ var toolkit = __webpack_exports__["default"] = ({});
