@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, May 18, 2021, 2:40 PM */
+/** Version: 0.10.13 | Wednesday, May 19, 2021, 1:56 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14283,30 +14283,6 @@ function initTray() {
     });
   }
 }
-// CONCATENATED MODULE: ./src/assets/toolkit/scripts/modules/horizontalNav.js
-// Public API interface
-function horizontalNav_init() {
-  console.log('is this working?');
-  var menuItems = $('.horizontal-menu .has-submenu');
-  var menuItemsWithSub = $('.horizontal-menu .has-submenu'); // menuItemsWithSub.on('click', (e)=>{
-  //   e.preventDefault();
-  //   console.log(e);
-  //   e.
-  // } )
-
-  function buildSubNav() {} // // Expanding/Collapsing of the entire side menu on mobile devices
-  // menuElement.children( `.${SIDEMENU_TOGGLE_CLASS}` ).children( 'a' ).on( 'click', function ( e ) {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   $( this ).parent().toggleClass( SIDEMENU_EXPANDED_CLASS );
-  // });
-
-}
-
-var horizontalNav = {
-  init: horizontalNav_init
-};
-/* harmony default export */ var modules_horizontalNav = (horizontalNav);
 // CONCATENATED MODULE: ./src/assets/toolkit/scripts/modules/urls.js
 // Import 3rd party dependencies
 var Url = __webpack_require__(15);
@@ -15156,7 +15132,6 @@ window.toolkitCore = {
 
 
 
-
  // Core libs
 
  // Import helpers
@@ -15166,7 +15141,7 @@ window.toolkitCore = {
 trackerConfig({
   autoRegister: true
 });
-modules_horizontalNav.init(); // Export useful dependencies to the global namespace (~ window) so that
+horizontalNav.init(); // Export useful dependencies to the global namespace (~ window) so that
 //  they can be used outside of this toolkit.
 
 /* harmony default export */ var toolkit = __webpack_exports__["default"] = ({});
