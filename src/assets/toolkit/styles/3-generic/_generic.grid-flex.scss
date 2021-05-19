@@ -70,3 +70,54 @@
   }
 
 }
+
+// Simple css based grid
+
+// creates grid row
+.ggrid {
+  display: grid;
+  grid-gap: .8rem;
+  grid-template-columns: repeat(12, 1fr);
+  margin: 0 auto;
+  width: 100%;
+
+  &.dynamic-fill {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+  }
+
+  &.dynamic {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+  }
+
+  .c1, .c2, .c3, .c4, .c5, .c6,
+  .c7, .c8, .c9, .c10, .c11, .c12 {
+      grid-column-end: span 12;
+  }
+
+  .nested {
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: repeat(12, 1fr);
+  }
+
+  .merge-two-rows { grid-row-end: span 2 }
+  .merge-three-rows { grid-row-end: span 3 }
+  .merge-four-rows { grid-row-end: span 4 }
+  .merge-five-rows { grid-row-end: span 5 }
+  .merge-six-rows { grid-row-end: span 6 }
+
+  @include breakpoint( $from: desktop ) {
+      .c1 { grid-column-end: span 1 }
+      .c2 { grid-column-end: span 2 }
+      .c3 { grid-column-end: span 3 }
+      .c4 { grid-column-end: span 4 }
+      .c5 { grid-column-end: span 5 }
+      .c6 { grid-column-end: span 6 }
+      .c7 { grid-column-end: span 7 }
+      .c8 { grid-column-end: span 8 }
+      .c9 { grid-column-end: span 9 }
+      .c10 { grid-column-end: span 10 }
+      .c11 { grid-column-end: span 11 }
+  }
+
+}
