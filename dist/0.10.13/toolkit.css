@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, May 26, 2021, 1:31 PM */
+/** Version: 0.10.13 | Wednesday, May 26, 2021, 2:33 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -7283,57 +7283,80 @@ aside .promo h3::before {
 }
 
 #hubv2 .intranet-video-container {
-  display: -webkit-box;
-  display: flex;
-  background-image: url("https://www.wgtn.ac.nz/__data/assets/image/0008/1929275/varieties/ls_medium.jpg");
-  background-position: center;
-  background-size: cover;
-  padding: 25% 0 0 5%;
   -webkit-clip-path: polygon(93% 0, 100% 23%, 100% 100%, 0 100%, 0 0);
           clip-path: polygon(93% 0, 100% 23%, 100% 100%, 0 100%, 0 0);
-}
-
-#hubv2 .intranet-video-container.video-banner {
-  width: 100%;
-  padding: 3% 5%;
-  border-bottom: 7px solid #3E9C4F;
-}
-
-#hubv2 .intranet-video-container .video-caption-box {
-  background: rgba(255, 255, 255, 0.85);
-  padding: 2%;
-  width: 60%;
-  margin-bottom: 25px;
+  max-height: 290px;
+  padding: 0;
   display: -webkit-box;
   display: flex;
+  /* media queries */
+}
+
+#hubv2 .intranet-video-container .video-caption-box .circle-icon {
+  padding: 1rem !important;
+}
+
+#hubv2 .intranet-video-container .video-banner {
+  position: relative;
+}
+
+#hubv2 .intranet-video-container a:hover .video-caption-box {
+  z-index: 10;
+  text-decoration: underline;
+  color: #115737;
 }
 
 #hubv2 .intranet-video-container .video-caption-box h2,
 #hubv2 .intranet-video-container .video-caption-box h2 a,
 #hubv2 .intranet-video-container .video-caption-box h2 a:hover,
 #hubv2 .intranet-video-container .video-caption-box h2 a:visited {
-  font-size: 1.5em;
-  margin-bottom: 0 !important;
-}
-
-#hubv2 .intranet-video-container .video-caption-box .content {
-  width: 85%;
-}
-
-#hubv2 .intranet-video-container .video-caption-box .icon {
-  width: 12%;
-  margin-left: 15px;
-  align-self: center;
-}
-
-#hubv2 .intranet-video-container .video-caption-box .icon-caret-right {
-  color: #115737;
+  font-size: 1.5em !important;
+  text-decoration: none !important;
+  color: #115737 !important;
+  margin-bottom: 0;
 }
 
 #hubv2 .intranet-video-container .video-caption-box .circle-icon {
   border: 2px solid #115737;
   border-radius: 50%;
-  padding: 7px 0px 8px 9px;
+  padding: 1rem;
+}
+
+#hubv2 .intranet-video-container .video-caption-box {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 2%;
+  display: -webkit-box;
+  display: flex;
+  position: absolute;
+  margin-top: 22% !important;
+  left: 2rem;
+  width: 60%;
+}
+
+#hubv2 .intranet-video-container .video-caption-box .icon {
+  width: 17% !important;
+  align-self: center;
+}
+
+#hubv2 .intranet-video-container .video-caption-box .icon i {
+  color: #115737;
+}
+
+#hubv2 .intranet-video-container img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
+}
+
+@media (max-width: 1200px) {
+  #hubv2 .intranet-video-container {
+    max-height: 220px !important;
+  }
+  #hubv2 .intranet-video-container .video-caption-box {
+    width: 83% !important;
+    margin-top: 22% !important;
+  }
 }
 
 #hubv2 .gradient-border {
@@ -8099,7 +8122,7 @@ aside .promo h3::before {
   width: 1em;
   text-align: center;
   line-height: 1;
-  margin-right: .3rem;
+  margin-right: 0.3rem;
   color: #115737;
 }
 
@@ -8119,7 +8142,7 @@ aside .promo h3::before {
 }
 
 #hubv2 #rightHandMenu .highlight .tag {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 #hubv2 #rightHandMenu .links-list {
@@ -8168,8 +8191,12 @@ aside .promo h3::before {
   width: 1em;
   text-align: center;
   line-height: 1;
-  margin-right: .3rem;
+  margin-right: 0.3rem;
   color: #115737;
+}
+
+#hubv2 #rightHandMenu .corner-border li::before {
+  content: none !important;
 }
 
 #hubv2 #rightHandMenu .links-list li::before,
