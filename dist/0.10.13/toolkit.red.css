@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, May 21, 2021, 10:33 AM */
+/** Version: 0.10.13 | Wednesday, May 26, 2021, 1:31 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -1722,6 +1722,32 @@ ol {
 
 .ggrid.dynamic {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.ggrid.col-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 42.99em) {
+  .ggrid.col-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ggrid.col-3 {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+@media (max-width: 60.99em) {
+  .ggrid.col-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 42.99em) {
+  .ggrid.col-3 {
+    grid-template-columns: 1fr;
+  }
 }
 
 .ggrid .c1, .ggrid .c2, .ggrid .c3, .ggrid .c4, .ggrid .c5, .ggrid .c6,
@@ -6393,6 +6419,7 @@ aside .promo h3::before {
   /* ---------------- 3. INTRANET NEWS ------------*/
   /*-----------------------------------------------*/
   /*--closing intranet-news-container--*/
+  /* NEW NEWS GRID LAYOUT */
   /*--------------------------------------------*/
   /*-------------------- SEARCH ----------------*/
   /*--------------------------------------------*/
@@ -6676,19 +6703,19 @@ aside .promo h3::before {
   color: #FFF;
 }
 
-#hubv2 .news-footer {
+#hubv2 .intranet-news-container .news-footer {
   margin-top: auto;
   border-top: 1px solid #CCC;
   padding: 1% 0 2% 0;
 }
 
-#hubv2 .news-footer .date {
+#hubv2 .intranet-news-container .news-footer .date {
   font-weight: 500;
   font-size: 0.95em;
 }
 
-#hubv2 .news-footer .lg .date,
-#hubv2 .news-footer .sml .date {
+#hubv2 .intranet-news-container .news-footer .lg .date,
+#hubv2 .intranet-news-container .news-footer .sml .date {
   color: #115737;
 }
 
@@ -6842,6 +6869,7 @@ aside .promo h3::before {
   -webkit-box-direction: normal;
           flex-flow: row wrap;
   gap: 0.5rem;
+  row-gap: 1rem;
   /** -- event tile colours -- **/
   /** -- event footer -- **/
 }
@@ -7074,11 +7102,16 @@ aside .promo h3::before {
   line-height: 1;
 }
 
+@media (max-width: 42.99em) {
+  #hubv2 .intranet-events-container .intranet.tile {
+    width: 100%;
+  }
+}
+
 #hubv2 .intranet-promos-container {
   display: -webkit-box;
   display: flex;
   margin-bottom: 25px;
-  gap: 19px;
 }
 
 #hubv2 .intranet-promos-container .promo-tile.lg {
@@ -7479,7 +7512,7 @@ aside .promo h3::before {
 }
 
 #hubv2 #rightHandMenu .service-center {
-  background: #115737;
+  background: #3E9C4F;
   margin-bottom: 19px;
 }
 
@@ -7516,13 +7549,26 @@ aside .promo h3::before {
 
 #hubv2 #rightHandMenu .service-center .icon {
   margin: 1px;
-  background: #ffffff;
-  float: right;
+  background: #3E9C4F;
   padding: 1rem;
+  color: #FFF;
+  position: relative;
 }
 
 #hubv2 #rightHandMenu .service-center .icon .icon-caret-right-thin {
-  color: #115737;
+  color: #FFF;
+}
+
+#hubv2 #rightHandMenu .service-center .icon:before {
+  content: "";
+  width: 2px;
+  background-color: #FFF;
+  height: 105%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translateY(-50%) skew(10deg);
+          transform: translateY(-50%) skew(10deg);
 }
 
 #hubv2 .outer-notched {
@@ -7997,6 +8043,130 @@ aside .promo h3::before {
   #hubv2 .intranet-video-container .video-caption-box {
     width: 95%;
   }
+}
+
+/* Overrides for new hub template child page pieces*/
+#hubv2 main .highlight.primary {
+  border: 1px solid #CCC;
+  border-left: 0.5rem solid #3E9C4F;
+  background-color: #FFF;
+}
+
+#hubv2 main .highlight_tertiary:not(.primary),
+#hubv2 main .highlight.secondary,
+#hubv2 main .highlight_secondary {
+  -webkit-clip-path: polygon(95% 0px, 100% 40px, 100% 100%, 0px 100%, 0px 0px);
+          clip-path: polygon(95% 0px, 100% 40px, 100% 100%, 0px 100%, 0px 0px);
+  background-color: #F9F9F9;
+}
+
+#hubv2 main .section-page-listing {
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+#hubv2 main .section-page-listing > a {
+  padding: 1rem;
+  border: 1px solid #CCC;
+  margin: 0;
+}
+
+#hubv2 main .bullet_list,
+#hubv2 main ul:not(.breadcrumbs):not(.links) {
+  padding-left: 0;
+}
+
+#hubv2 main .bullet_list li,
+#hubv2 main ul:not(.breadcrumbs):not(.links) li {
+  padding-left: 0;
+  list-style: none;
+}
+
+#hubv2 main .bullet_list li::before,
+#hubv2 main ul:not(.breadcrumbs):not(.links) li::before {
+  position: relative;
+  display: inline-block;
+  content: "";
+  font-family: "VicIcons";
+  width: 1em;
+  text-align: center;
+  line-height: 1;
+  margin-right: .3rem;
+  color: #115737;
+}
+
+#hubv2 main .staff-list-component .result-list .result:not(:last-child) {
+  border-color: #115737;
+}
+
+#hubv2 main .staff-list-component + script + .blocks,
+#hubv2 main .staff-list-component + script + h2 {
+  margin-top: 2rem !important;
+}
+
+#hubv2 #rightHandMenu .highlight {
+  -webkit-clip-path: polygon(239px 0, 100% 40px, 100% 100%, 0 100%, 0 0);
+          clip-path: polygon(239px 0, 100% 40px, 100% 100%, 0 100%, 0 0);
+  background-color: #F9F9F9;
+}
+
+#hubv2 #rightHandMenu .highlight .tag {
+  margin-bottom: .5rem;
+}
+
+#hubv2 #rightHandMenu .links-list {
+  padding: 1rem;
+  background-color: #F9F9F9;
+}
+
+#hubv2 #rightHandMenu .links-list:first-child {
+  -webkit-clip-path: polygon(239px 0, 100% 40px, 100% 100%, 0 100%, 0 0);
+          clip-path: polygon(239px 0, 100% 40px, 100% 100%, 0 100%, 0 0);
+  background-color: #115737;
+}
+
+#hubv2 #rightHandMenu .links-list:first-child h2,
+#hubv2 #rightHandMenu .links-list:first-child h3,
+#hubv2 #rightHandMenu .links-list:first-child h4 {
+  color: #FFF;
+}
+
+#hubv2 #rightHandMenu .links-list:first-child a {
+  color: #FFF;
+}
+
+#hubv2 #rightHandMenu .links-list:first-child a:hover, #hubv2 #rightHandMenu .links-list:first-child a:active, #hubv2 #rightHandMenu .links-list:first-child a:focus {
+  text-decoration: underline;
+}
+
+#hubv2 #rightHandMenu .links-list:first-child li {
+  border-color: #FFF;
+}
+
+#hubv2 #rightHandMenu div:not(.links-list):not(.corner-border) ul {
+  padding-left: 0;
+}
+
+#hubv2 #rightHandMenu div:not(.links-list):not(.corner-border) li {
+  padding-left: 0;
+  list-style: none;
+}
+
+#hubv2 #rightHandMenu div:not(.links-list):not(.corner-border) li::before {
+  position: relative;
+  display: inline-block;
+  content: "";
+  font-family: "VicIcons";
+  width: 1em;
+  text-align: center;
+  line-height: 1;
+  margin-right: .3rem;
+  color: #115737;
+}
+
+#hubv2 #rightHandMenu .links-list li::before,
+#hubv2 #rightHandMenu .links li::before {
+  content: none !important;
 }
 
 /* ===== THE REAL PAGE BANNERS ============================================== */

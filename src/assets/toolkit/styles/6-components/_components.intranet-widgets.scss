@@ -303,23 +303,26 @@
         }
       }
     }
+    .news-footer {
+      margin-top: auto;
+      border-top: 1px solid $grey-silver;
+      padding: 1% 0 2% 0;
+
+      .date {
+        font-weight: 500;
+        font-size: 0.95em;
+      }
+
+      .lg .date,
+      .sml .date {
+        color: $green-brand;
+      }
+    }
   } /*--closing intranet-news-container--*/
 
-  .news-footer {
-    margin-top: auto;
-    border-top: 1px solid $grey-silver;
-    padding: 1% 0 2% 0;
+  /* NEW NEWS GRID LAYOUT */
 
-    .date {
-      font-weight: 500;
-      font-size: 0.95em;
-    }
 
-    .lg .date,
-    .sml .date {
-      color: $green-brand;
-    }
-  }
 
   /*--------------------------------------------*/
   /*-------------------- SEARCH ----------------*/
@@ -517,6 +520,7 @@
     display: flex;
     flex-flow: row wrap;
     gap: 0.5rem;
+    row-gap: 1rem;
     .intranet {
       width: 49%;
       align-items: stretch;
@@ -731,6 +735,12 @@
         line-height: 1;
       }
     }
+
+    @include breakpoint($until: tablet) {
+      .intranet.tile {
+        width: 100%;
+      }
+    }
   }
 
   /*--------------------------------------------*/
@@ -740,7 +750,6 @@
   .intranet-promos-container {
     display: flex;
     margin-bottom: 25px;
-    gap: 19px;
 
     .promo-tile {
       &.lg {
@@ -1120,7 +1129,7 @@
     }
 
     .service-center {
-      background: $green-brand;
+      background: $green-brand-bright;
       margin-bottom: 19px;
 
       a {
@@ -1159,12 +1168,24 @@
 
       .icon {
         margin: 1px;
-        background: #ffffff;
-        float: right;
+        background: $green-brand-bright;
         padding: 1rem;
+        color: $white;
+        position: relative;
 
         .icon-caret-right-thin {
-          color: $green-brand;
+          color: $white;
+        }
+
+        &:before {
+          content: "";
+          width: 2px;
+          background-color: $white;
+          height: 105%;
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%) skew(10deg);
         }
       }
     }
@@ -1644,5 +1665,151 @@
       flex:1;
       width:100%;
     }*/
+  }
+}
+
+
+
+/* Overrides for new hub template child page pieces*/
+#hubv2 {
+  main {
+    .highlight {
+      &.primary {
+        border: 1px solid $grey-silver;
+        border-left: 0.5rem solid $green-brand-bright;
+        background-color: $white;
+      }
+    }
+
+    // Think this will only apply to intranet .. maybe about old sass hangover class
+    .highlight_tertiary:not(.primary),
+    .highlight.secondary,
+    .highlight_secondary {
+      clip-path: polygon(95% 0px, 100% 40px, 100% 100%, 0px 100%, 0px 0px);
+      background-color: $grey-light;
+    }
+
+    .section-page-listing {
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+
+      > a {
+        padding: 1rem;
+        border: 1px solid $grey-silver;
+        margin: 0;
+      }
+    }
+
+    .bullet_list,
+    ul:not(.breadcrumbs):not(.links) {
+        padding-left: 0;
+
+      li {
+        padding-left: 0;
+        list-style: none;
+
+        &::before {
+          position: relative;
+          display: inline-block;
+          content: "";
+          font-family: "VicIcons";
+          width: 1em;
+          text-align: center;
+          line-height: 1;
+          margin-right: .3rem;
+          color: $green-brand;
+        }
+      }
+    }
+
+    .staff-list-component {
+      .result-list .result:not(:last-child) {
+        border-color: $green-brand;
+      }
+
+      // .result-list {
+      //   padding: 1rem;
+      //   background-color: #f9f9f9;
+      // }
+    }
+
+    .staff-list-component + script + .blocks,
+    .staff-list-component + script + h2 {
+      margin-top: 2rem !important;
+    }
+
+  }
+
+  #rightHandMenu {
+    .highlight {
+      clip-path: polygon(239px 0, 100% 40px, 100% 100%, 0 100%, 0 0);
+      background-color: $grey-light;
+
+      .tag {
+        margin-bottom: .5rem;
+      }
+    }
+
+    .links-list {
+      padding: 1rem;
+
+      &:first-child {
+        clip-path: polygon(239px 0, 100% 40px, 100% 100%, 0 100%, 0 0);
+        background-color: $green-brand;
+
+        h2,
+        h3,
+        h4 {
+          color: $white;
+        }
+
+        a {
+          color: $white;
+
+          @include hoverify() {
+            text-decoration: underline;
+          }
+        }
+
+        li {
+          border-color: $white;
+        }
+      }
+
+      background-color: $grey-light;
+    }
+
+    div:not(.links-list):not(.corner-border) {
+
+      ul {
+        padding-left: 0;
+      }
+
+      li {
+        padding-left: 0;
+        list-style: none;
+
+        &::before {
+          position: relative;
+          display: inline-block;
+          content: "";
+          font-family: "VicIcons";
+          width: 1em;
+          text-align: center;
+          line-height: 1;
+          margin-right: .3rem;
+          color: $green-brand;
+        }
+      }
+    }
+
+    .links-list,
+    .links {
+      li {
+        &::before {
+          content: none !important;
+        }
+      }
+    }
   }
 }
