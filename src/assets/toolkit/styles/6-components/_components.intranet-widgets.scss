@@ -322,8 +322,6 @@
 
   /* NEW NEWS GRID LAYOUT */
 
-
-
   /*--------------------------------------------*/
   /*-------------------- SEARCH ----------------*/
   /*--------------------------------------------*/
@@ -342,10 +340,10 @@
         align-items: stretch;
 
         .submit-button {
-        width: auto;
-        position: relative;
-        border-radius: 0;
-        margin-left: 10px;
+          width: auto;
+          position: relative;
+          border-radius: 0;
+          margin-left: 10px;
         }
 
         .search-input {
@@ -361,7 +359,7 @@
 
       input[type="radio"] {
         position: absolute;
-        clip: rect(0,0,0,0);
+        clip: rect(0, 0, 0, 0);
         pointer-events: none;
       }
 
@@ -378,7 +376,6 @@
         cursor: pointer;
         display: flex;
         align-items: center;
-
 
         @include hoverify() {
           border: red;
@@ -402,12 +399,8 @@
         background-color: $green-brand-bright;
         color: $white;
       }
-
     }
   }
-
-
-
 
   /*--------------------------------------------*/
   /*----------- 4. INTRANET EVENTS -------------*/
@@ -892,50 +885,79 @@
   /*--------------------------------------------*/
 
   .intranet-video-container {
-    display: flex;
-    background-image: url("https://www.wgtn.ac.nz/__data/assets/image/0008/1929275/varieties/ls_medium.jpg");
-    background-position: center;
-    background-size: cover;
-    padding: 25% 0 0 5%;
-    clip-path: polygon(93% 0, 100% 23%, 100% 100%, 0 100%, 0 0);
 
-    &.video-banner {
-      width: 100%;
-      padding: 3% 5%;
-      border-bottom: 7px solid $green-brand-bright;
+    clip-path: polygon(93% 0, 100% 23%, 100% 100%, 0 100%, 0 0);
+    max-height: 290px;
+    padding: 0;
+    // overflow: hidden;
+    display: flex;
+
+
+    .video-caption-box .circle-icon {
+      padding: 1rem !important;
     }
+
+    .video-banner {
+      position: relative;
+    }
+
+    a:hover .video-caption-box {
+      z-index: 10;
+      text-decoration: underline;
+      color: #115737;
+    }
+
+    .video-caption-box h2,
+    .video-caption-box h2 a,
+    .video-caption-box h2 a:hover,
+    .video-caption-box h2 a:visited {
+      font-size: 1.5em !important;
+      text-decoration: none !important;
+      color: #115737 !important;
+      margin-bottom: 0;
+    }
+
+    .video-caption-box .circle-icon {
+      border: 2px solid #115737;
+      border-radius: 50%;
+      padding: 1rem;
+    }
+
     .video-caption-box {
       background: rgba(255, 255, 255, 0.85);
       padding: 2%;
-      width: 60%;
-      margin-bottom: 25px;
+      display: -webkit-box;
       display: flex;
+      position: absolute;
+      margin-top: 22% !important;
+      left: 2rem;
+      width: 60%;
+    }
 
-      h2,
-      h2 a,
-      h2 a:hover,
-      h2 a:visited {
-        font-size: 1.5em;
-        margin-bottom: 0 !important;
-      }
+    .video-caption-box .icon {
+      width: 17% !important;
+      align-self: center;
 
-      .content {
-        width: 85%;
-      }
-      .icon {
-        width: 12%;
-        margin-left: 15px;
-        align-self: center;
-      }
-
-      .icon-caret-right {
+      i {
         color: $green-brand;
       }
-      .circle-icon {
-        border: 2px solid $green-brand;
-        border-radius: 50%;
-        padding: 7px 0px 8px 9px;
+    }
+
+    img {
+      width: 100%;
+      object-fit: cover;
+      height: 100%;
+    }
+
+    /* media queries */
+
+    @media (max-width: 1200px) {
+      .video-caption-box {
+        width: 83% !important;
+        margin-top: 22% !important;
       }
+        max-height: 220px !important;
+
     }
   }
 
@@ -1189,8 +1211,6 @@
         }
       }
     }
-
-
   }
 
   /*-- notched corner --*/
@@ -1512,7 +1532,6 @@
       li {
         padding-left: 0;
         list-style: none;
-
       }
     }
     a {
@@ -1593,7 +1612,6 @@
 
   /** news media queries **/
 
-
   @media (max-width: 1200px) {
     .row {
       display: table-row;
@@ -1668,8 +1686,6 @@
   }
 }
 
-
-
 /* Overrides for new hub template child page pieces*/
 #hubv2 {
   main {
@@ -1702,7 +1718,7 @@
 
     .bullet_list,
     ul:not(.breadcrumbs):not(.links) {
-        padding-left: 0;
+      padding-left: 0;
 
       li {
         padding-left: 0;
@@ -1716,7 +1732,7 @@
           width: 1em;
           text-align: center;
           line-height: 1;
-          margin-right: .3rem;
+          margin-right: 0.3rem;
           color: $green-brand;
         }
       }
@@ -1737,7 +1753,6 @@
     .staff-list-component + script + h2 {
       margin-top: 2rem !important;
     }
-
   }
 
   #rightHandMenu {
@@ -1746,7 +1761,7 @@
       background-color: $grey-light;
 
       .tag {
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
       }
     }
 
@@ -1780,7 +1795,6 @@
     }
 
     div:not(.links-list):not(.corner-border) {
-
       ul {
         padding-left: 0;
       }
@@ -1797,8 +1811,16 @@
           width: 1em;
           text-align: center;
           line-height: 1;
-          margin-right: .3rem;
+          margin-right: 0.3rem;
           color: $green-brand;
+        }
+      }
+    }
+
+    .corner-border {
+      li {
+        &::before {
+          content: none !important;
         }
       }
     }
