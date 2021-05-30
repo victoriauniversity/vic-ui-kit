@@ -367,6 +367,7 @@ const toolbarApi = window.toolkitToolbar || {};
               <div class="links">
                 ${( hasProp( content, 'footerHtml' )) ? content.footerHtml : ''}
               </div>
+              <a href="javascript:;" title="${TEXTS.BUTTON_CLOSE_TITLE}" class="toolbar-close" aria-label="Close modal" data-micromodal-close tabindex="-1" >Close <span class="icon-cross"></span></a>
             </div>
           </footer>
 
