@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, May 26, 2021, 2:33 PM */
+/** Version: 0.10.13 | Monday, May 31, 2021, 10:56 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -6447,6 +6447,15 @@ aside .promo h3::before {
   /** news media queries **/
 }
 
+#hubv2 #btn-admin {
+  display: none;
+}
+
+#hubv2 main > div,
+#hubv2 aside > div {
+  padding-top: 0;
+}
+
 #hubv2 .formatting h2:not(:first-child) {
   margin-top: 0;
 }
@@ -6490,6 +6499,47 @@ aside .promo h3::before {
   right: 0;
   bottom: 0;
   font-weight: 600;
+}
+
+#hubv2 .intranet-component-title {
+  border-bottom: 1px solid #CCC;
+  margin-bottom: 20px;
+  position: relative;
+  height: 60px;
+  margin-top: 3.5rem;
+}
+
+#hubv2 .intranet-component-title h2 {
+  width: 70%;
+  font-size: 2.2em;
+}
+
+#hubv2 .intranet-component-title .more-btn-sec {
+  background: none;
+  color: #3E9C4F;
+  padding: 5px 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-weight: 600;
+  margin-top: .5rem;
+}
+
+#hubv2 .more-btn-sec {
+  color: #3E9C4F !important;
+  text-align: right;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+#hubv2 .more-btn-sec > a {
+  color: #3E9C4F !important;
+  text-align: right;
+  font-weight: bold;
+}
+
+#hubv2 .more-btn-sec > a:hover, #hubv2 .more-btn-sec > a:active, #hubv2 .more-btn-sec > a:focus {
+  text-decoration: underline;
 }
 
 #hubv2 .intranet-news-container {
@@ -6888,7 +6938,7 @@ aside .promo h3::before {
 
 #hubv2 .intranet-events-container .intranet h2,
 #hubv2 .intranet-events-container .intranet h2 a {
-  font-size: 1.1em;
+  font-size: 1.3rem;
   margin-top: 0;
   margin-bottom: 0;
   text-decoration: none;
@@ -7360,19 +7410,20 @@ aside .promo h3::before {
 }
 
 #hubv2 .intranet-keydates-container {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
-  -webkit-box-align: stretch;
-          align-items: stretch;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 42.99em) {
+  #hubv2 .intranet-keydates-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 #hubv2 .intranet-keydates-container .tile {
   display: -webkit-box;
   display: flex;
-  margin-bottom: 10px;
   background: #3E9C4F;
 }
 
@@ -7383,6 +7434,7 @@ aside .promo h3::before {
   text-align: center;
   align-self: center;
   padding: 1rem;
+  width: 70px;
 }
 
 #hubv2 .intranet-keydates-container .tile .date p {
@@ -13593,6 +13645,12 @@ footer .footer-secondary.dark .footer-num {
   background-color: #FFF;
 }
 
+@media (max-width: 42.99em) {
+  .sidemenu.sidemenu-light, .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage, .show-mega-menu-top .sidemenu-light.mega-sub-menu {
+    margin-bottom: 1rem;
+  }
+}
+
 .sidemenu.sidemenu-homepage, .sidemenu-banner-wrap .sidemenu-homepage, .show-mega-menu-top .sidemenu-homepage.mega-sub-menu {
   background: #FFF;
 }
@@ -14450,6 +14508,17 @@ footer .footer-secondary.dark .footer-num {
 
 .main-site-header.header-tray .header-inner.intranet .tray-toggle {
   display: none;
+}
+
+.main-site-header.header-tray .header-inner.intranet .header-toggle {
+  display: none;
+}
+
+@media (max-width: 60.99em) {
+  .main-site-header.header-tray .header-inner.intranet .header-search {
+    display: block;
+    margin-left: 0.5rem;
+  }
 }
 
 @media (max-width: 60.99em) {
@@ -20670,6 +20739,14 @@ https://gist.github.com/jacurtis/30da4bf9a6c9b9b5cc0aebac512ca7c9
 
 .dialog-content .icon-layout:before {
   font-size: 120%;
+}
+
+@media (max-width: 60.99em) {
+  .dialog .btn-close {
+    right: 20px;
+    top: 20px;
+    position: absolute;
+  }
 }
 
 .search-result {
