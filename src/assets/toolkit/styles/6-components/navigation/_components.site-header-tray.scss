@@ -336,7 +336,18 @@ $tray-width-desktop: 400px;
         .tray-toggle {
           display: none;
         }
+
+        .header-toggle {
+          display: none;
+        }
+        @include breakpoint($until:desktop) {
+          .header-search {
+            display: block;
+            margin-left: 0.5rem;
+          }
+        }
       }
+
     }
 
     @include breakpoint($until:desktop) {
