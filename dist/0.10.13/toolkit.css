@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, June 2, 2021, 1:02 PM */
+/** Version: 0.10.13 | Wednesday, June 2, 2021, 1:36 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -6545,9 +6545,6 @@ aside .promo h3::before {
 }
 
 @media (max-width: 60.99em) {
-  #hubv2 .sidemenu.sidemenu-light, #hubv2 .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage, .sidemenu-banner-wrap #hubv2 .sidemenu-light.sidemenu-homepage, #hubv2 .show-mega-menu-top .sidemenu-light.mega-sub-menu, .show-mega-menu-top #hubv2 .sidemenu-light.mega-sub-menu {
-    margin-bottom: 0;
-  }
   #hubv2 .sidemenu-toggle {
     position: relative;
   }
@@ -7166,6 +7163,7 @@ aside .promo h3::before {
   }
   #hubv2 .intranet-news-container-grid .triangle-edge {
     width: 7%;
+    margin-right: 0.5rem;
   }
 }
 
@@ -7270,6 +7268,9 @@ aside .promo h3::before {
   }
   #hubv2 .search-wrap.intranet form .search-select label {
     border-top: 1px solid #CCC;
+  }
+  #hubv2 .search-wrap.intranet form .search-select label[for="intranet"] {
+    border-left: 1px solid #CCC;
   }
   #hubv2 .search-wrap.intranet form .search-select label span {
     padding: .5rem 1rem;
@@ -7644,7 +7645,7 @@ aside .promo h3::before {
 }
 
 #hubv2 .intranet-promos-container .promo-tile .promo-img {
-  background-image: url("https://www.wgtn.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png");
+  background-color: #FFF;
   height: 90px;
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 83%);
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 83%);
@@ -7844,6 +7845,13 @@ aside .promo h3::before {
 @media (max-width: 1100px) {
   #hubv2 .intranet-video-container {
     max-height: 220px;
+  }
+}
+
+@media (max-width: 42.99em) {
+  #hubv2 .intranet-video-container .video-banner {
+    bottom: unset;
+    top: 6rem;
   }
 }
 
@@ -14971,6 +14979,12 @@ footer .footer-secondary.dark .footer-num {
   .main-site-header.header-tray .header-inner.intranet .header-search {
     display: block;
     margin-left: 0.5rem;
+  }
+}
+
+@media (max-width: 42.99em) {
+  .main-site-header.header-tray .header-inner.intranet .search-input {
+    padding: .5rem 1rem .5rem .5rem;
   }
 }
 
