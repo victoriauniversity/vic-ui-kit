@@ -163,7 +163,7 @@
   @include breakpoint($until: desktop) {
 
     .sidemenu.sidemenu-light {
-      margin-bottom: 0;
+      // margin-bottom: 0;
     }
 
     .sidemenu-toggle {
@@ -740,6 +740,7 @@
       }
       .triangle-edge {
         width: 7%;
+        margin-right: 0.5rem;
       }
     }
 
@@ -850,6 +851,9 @@
 
           label {
             border-top: 1px solid $grey-silver;
+            &[for="intranet"] {
+              border-left: 1px solid $grey-silver;
+            }
 
             span {
               padding: .5rem 1rem;
@@ -1247,7 +1251,8 @@
       }
 
       .promo-img {
-        background-image: url("https://www.wgtn.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png");
+        // background-image: url("https://www.wgtn.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png");
+        background-color: $white;
         height: 90px;
         -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 83%);
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 83%);
@@ -1434,6 +1439,13 @@
         // margin-top: 22% ;
       }
       max-height: 220px ;
+    }
+
+    @include breakpoint($until: tablet) {
+      .video-banner {
+        bottom: unset;
+        top: 6rem;
+      }
     }
   }
 
