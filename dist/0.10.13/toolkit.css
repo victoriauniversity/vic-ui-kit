@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, June 2, 2021, 2:28 PM */
+/** Version: 0.10.13 | Thursday, June 3, 2021, 11:08 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -6422,6 +6422,9 @@ aside .promo h3::before {
   /*-----------------------------------------------*/
   /* LAYOUT */
   /* Mobile nav caret */
+  /* SEARCH */
+  /* EVENTS  */
+  /* NEWS */
   /*-----------------------------------------------*/
   /* ------------- 2. COMPONENT HEADER ------------*/
   /*-----------------------------------------------*/
@@ -6566,6 +6569,19 @@ aside .promo h3::before {
   #hubv2 .sidemenu-toggle.expanded {
     margin-bottom: .5rem;
   }
+}
+
+#hubv2 .search-panel-wrap .intranet-search {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+#hubv2 .events .highlight-strip {
+  border-color: #115737;
+}
+
+#hubv2 .events .highlight-strip {
+  border-color: #115737;
 }
 
 #hubv2 .intranet-component-title {
@@ -6894,8 +6910,12 @@ aside .promo h3::before {
 }
 
 #hubv2 .intranet-news-container-grid .triangle-edge {
-  width: 15%;
+  width: 3rem;
   height: 100%;
+}
+
+#hubv2 .intranet-news-container-grid .triangle-edge svg {
+  width: 100%;
 }
 
 #hubv2 .intranet-news-container-grid .triangle-edge.no-img {
@@ -7165,7 +7185,7 @@ aside .promo h3::before {
             flex-flow: column;
   }
   #hubv2 .intranet-news-container-grid .triangle-edge {
-    width: 7%;
+    width: 2rem;
     margin-right: 0.5rem;
   }
 }
@@ -8589,15 +8609,21 @@ aside .promo h3::before {
 
 #hubv2 main .highlight_tertiary:not(.primary),
 #hubv2 main .highlight.secondary,
-#hubv2 main .highlight_secondary {
+#hubv2 main .highlight_secondary,
+#hubv2 main .primary.highlight_secondary {
   -webkit-clip-path: polygon(calc(100% - 40px) 0px, 100% 40px, 100% 100%, 0px 100%, 0px 0px);
           clip-path: polygon(calc(100% - 40px) 0px, 100% 40px, 100% 100%, 0px 100%, 0px 0px);
   background-color: #F9F9F9;
+  border: 0;
 }
 
 #hubv2 main .section-page-listing {
   gap: 1rem;
   margin-bottom: 1.5rem;
+}
+
+#hubv2 main .section-page-listing .link_block {
+  min-height: 240px;
 }
 
 #hubv2 main .section-page-listing > a {
@@ -8606,19 +8632,16 @@ aside .promo h3::before {
   margin: 0;
 }
 
-#hubv2 main .bullet_list,
-#hubv2 main ul:not(.breadcrumbs):not(.links) {
+#hubv2 main .bullet_list {
   padding-left: 0;
 }
 
-#hubv2 main .bullet_list li,
-#hubv2 main ul:not(.breadcrumbs):not(.links) li {
+#hubv2 main .bullet_list li {
   padding-left: 0;
   list-style: none;
 }
 
-#hubv2 main .bullet_list li::before,
-#hubv2 main ul:not(.breadcrumbs):not(.links) li::before {
+#hubv2 main .bullet_list li::before {
   position: relative;
   display: inline-block;
   content: "";
