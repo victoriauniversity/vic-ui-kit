@@ -249,6 +249,14 @@ $sidemenu-bg-light: $white;
     margin-bottom: 0;
 
     .sidemenu-toggle {
+
+      color: $black-tundora;
+
+      .tereo-title {
+        display: block;
+        color: $green-brand;
+        font-weight: 500;
+      }
       + ul { display: none; } // The menu
       &.expanded + ul { display: block; }
     }
@@ -283,10 +291,10 @@ $sidemenu-bg-light: $white;
     > ul {
       font-weight: 500;
       > li {
-        border-bottom-color: $grey;
+        border-bottom-color: $grey-silver;
 
         &.active {
-          border-bottom: 1px solid $grey;
+          border-bottom: 1px solid $grey-silver;
           > a {
             background-color: $sidemenu-bg-light;
             color: $black-tundora;
@@ -316,6 +324,7 @@ $sidemenu-bg-light: $white;
 
             &:before {
               border-color: $black-tundora;
+              margin-left: -1px;
             }
           }
         }
@@ -326,7 +335,7 @@ $sidemenu-bg-light: $white;
 
       > ul {
         > li {
-          border-left-color: $grey;
+          border-left-color: $grey-alto;
         }
       }
       &.expanded {
@@ -349,6 +358,9 @@ $sidemenu-bg-light: $white;
 
     @include breakpoint ( $from: desktop ) {
 
+    }
+    @include breakpoint ( $until: tablet ) {
+      margin-bottom: 1rem;
     }
   }
   &.sidemenu-homepage {
@@ -413,6 +425,7 @@ $sidemenu-bg-light: $white;
     > ul {
 
       > li {
+        border-left-color: $grey-alto;
 
         &.sidemenu__label {
           a {
@@ -420,9 +433,21 @@ $sidemenu-bg-light: $white;
           }
         }
 
+        .tereo-title {
+          color: $green-brand;
+          display: block;
+          font-weight: 500;
+        }
+
         a {
+          display: block;
+          line-height: 1.2;
+          font-weight: 600;
+
           @include hoverify() {
-            color: $blue-endeavoura;
+            // color: $blue-endeavoura;
+            text-decoration: underline;
+            color: inherit !important;
           }
         }
         &:after {
@@ -498,7 +523,7 @@ $sidemenu-bg-light: $white;
         display: flex;
         padding: 1rem;
         padding-right: 2rem;
-        border: 1px solid $black-tundora;
+        border: 1px solid $grey;
         display: flex;
         // width: 75%;
         background-color: $white;
@@ -650,7 +675,7 @@ $sidemenu-bg-light: $white;
       > ul {
         > li {
           &:nth-child(2) {
-            border-top: 1px solid $grey;
+            border-top: 1px solid $grey-silver;
           }
         }
 

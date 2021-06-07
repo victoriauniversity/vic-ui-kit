@@ -190,6 +190,11 @@ const toolbarApi = window.toolkitToolbar || {};
   function saveFavouritesListToStorage( storageKey, favouriteToolsList ) {
     // Serialise the favourited tools and save to the local storage
     localStorage.setItem( storageKey, JSON.stringify( favouriteToolsList.map( tool => tool.id )));
+    // custom event to track local storage updates
+    const localStorageEvent = new CustomEvent('lsUpdated', {
+      bubbles: true,
+    });
+    window.dispatchEvent(localStorageEvent);
   }
 
 
@@ -362,6 +367,7 @@ const toolbarApi = window.toolkitToolbar || {};
               <div class="links">
                 ${( hasProp( content, 'footerHtml' )) ? content.footerHtml : ''}
               </div>
+              <a href="javascript:;" title="${TEXTS.BUTTON_CLOSE_TITLE}" class="toolbar-close" aria-label="Close modal" data-micromodal-close tabindex="-1" >Close <span class="icon-cross"></span></a>
             </div>
           </footer>
 

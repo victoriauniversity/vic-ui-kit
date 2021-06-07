@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 import enquire from 'enquire.js';
 
 const TABLET_AND_SMALLER = 'screen and (max-width: 975px)',
@@ -7,6 +8,7 @@ export function initTray() {
 
   // console.log( 'tray...', $( '.tray-toggle' ));
 
+  // tray functionality
   function toggleTray() {
     $( '.tray' ).toggleClass( 'tray-closed', 'normal' );
     $( '.tray' ).toggleClass( 'tray-open', 'normal' );
@@ -38,13 +40,16 @@ export function initTray() {
     }, 500);
   });
 
-  $( 'body' ).on( 'click', ( e ) => {
+  $( 'body' ).on( 'click keyup', ( e ) => {
+    // Close tray if clicked away from or escpae buttons
 
     // console.log( e.target.className, 'clicked' );
-    if ( e.target.className.includes( 'tray-open' )) {
+    if ( e.target.className.includes( 'tray-open' ) || (e.key == 'Escape' && $('.tray-open').length ) ) {
       e.preventDefault();
       toggleTray();
     }
+
+
 
   });
 
@@ -54,20 +59,27 @@ export function initTray() {
 
   // })
 
+  // ****************************************
+  // ****************************************
   // sidemenu tray
 
-  const SIDEMENU_TOGGLE_CLASS   = 'sidemenu-toggle';
-  const SIDEMENU_EXPANDER_CLASS = 'btn-expander';
-  const SIDEMENU_SUBMENU_CLASS  = 'has-submenu';
+  // const SIDEMENU_TOGGLE_CLASS   = 'sidemenu-toggle';
+  // const SIDEMENU_EXPANDER_CLASS = 'btn-expander';
+  // const SIDEMENU_SUBMENU_CLASS  = 'has-submenu';
 
-  const SIDEMENU_SELECTED_ITEM_CLASS = 'active';
-  const SIDEMENU_EXPANDED_CLASS      = 'expanded';
+  // const SIDEMENU_SELECTED_ITEM_CLASS = 'active';
+  // const SIDEMENU_EXPANDED_CLASS      = 'expanded';
+
+  let horizontalMenuExpanded = false;
+
+
 
   function buildTray(index, item) {
     // console.log(index);
 
     // console.log( 'nav item', $(this).parent().children('a').text() );
     const nav = $(this);
+    // console.log(nav);
 
     let navClassString = $(this).parent().children('a').text();
     let titleLink = $(this).parent().children('a').attr('href');
@@ -84,35 +96,38 @@ export function initTray() {
 
   function expandTray(index, button) {
 
-    $( button ).on( 'click', () => {
+    $( button ).on( 'click keypress', (e) => {
+      // console.log( e );
+      if (e.type == 'click' || e.key == 'Enter' ) {
 
-      //toggle sidemenu draw and content
+          //toggle sidemenu draw and content
 
-      if( $(button).parent().hasClass('expanded-draw') ) {
+        if( $(button).parent().hasClass('expanded-draw') ) {
 
-        // console.log('has class button close tray');
-        sidemeneuExpanded = !sidemeneuExpanded;
-        $draw.toggleClass('active');
-        $(button).parent().removeClass('expanded-draw');
-
-      } else {
-
-        //show tray
-        if (sidemeneuExpanded === false) {
-          $draw.addClass('active');
+          // console.log('has class button close tray');
           sidemeneuExpanded = !sidemeneuExpanded;
+          $draw.toggleClass('active');
+          $(button).parent().removeClass('expanded-draw');
+
+        } else {
+
+          //show tray
+          if (sidemeneuExpanded === false) {
+            $draw.addClass('active');
+            sidemeneuExpanded = !sidemeneuExpanded;
+          }
+
+          $( '.sidemenu-homepage > ul > li').removeClass('expanded-draw');
+
+          $(button).parent().addClass('expanded-draw');
         }
 
-        $( '.sidemenu-homepage > ul > li').removeClass('expanded-draw');
+        // console.log(index, button);
+        let matchingNavGroup = $(`.draw-nav ul[data-index='${index}']`);
+        $('.draw-nav > ul').removeClass('active-nav-group');
+        matchingNavGroup.toggleClass('active-nav-group');
 
-        $(button).parent().addClass('expanded-draw');
       }
-
-      // console.log(index, button);
-      let matchingNavGroup = $(`.draw-nav ul[data-index='${index}']`);
-      $('.draw-nav > ul').removeClass('active-nav-group');
-      matchingNavGroup.toggleClass('active-nav-group');
-
     });
 
   }
@@ -126,21 +141,35 @@ export function initTray() {
 
       let $button = $(button);
 
-      $button.on('click', () => {
-        console.log($button);
-        $button.parent('li').toggleClass('expanded');
+      $button.on('click keypress', (e) => {
+        if (e.type == 'click' || e.key == 'Enter' ) {
+          // console.log($button);
+          $button.parent('li').toggleClass('expanded');
+        }
 
       });
     });
 
   }
 
-  function closeSideMenuDraw() {
-    $('.close-draw').on( 'click', ()=> {
+  function closeSideMenuDraw(location) {
+    let loc = location || 'expanded-draw';
+    console.log(loc);
+
+    $('.close-draw').on( 'click', (e) => {
       if(sidemeneuExpanded) {
         sidemeneuExpanded = !sidemeneuExpanded;
-        $( '.sidemenu-homepage .expanded-draw' ).removeClass( 'expanded-draw' );
+        $( `.sidemenu-homepage .${loc}` ).removeClass( 'expanded-draw' );
         $draw.toggleClass('active');
+      }
+
+      // horizontal mega menu draw
+      if(horizontalMenuExpanded) {
+        // console.log(e);
+        horizontalMenuExpanded = !horizontalMenuExpanded;
+        $( '.sidemenu-drawer' ).removeClass( `${loc}` );
+        $('.mega-menu-top-level > li').removeClass('expanded-nav');
+        // $draw.toggleClass('active');
       }
     });
 
@@ -157,20 +186,17 @@ export function initTray() {
           $draw.toggleClass('active');
         }
 
+        // closes menu if not clicking on header.. .should this be behaviour?
+        if($('.show-mega-menu-top').length) {
+          const horizontalNavHeader = $('.main-site-header');
+            if(horizontalMenuExpanded && !horizontalNavHeader.is(e.target) && horizontalNavHeader.has(e.target) . length === 0) {
+              horizontalMenuExpanded = !horizontalMenuExpanded;
+              $( '.sidemenu-drawer' ).removeClass( `${loc}` );
+              $('.mega-menu-top-level > li').removeClass('expanded-nav');
+            }
+        }
 
-      // console.log( e.target.className, 'clicked' );
-      // if ( e.target.className.includes( 'tray-open' )) {
-      //   e.preventDefault();
-      //   toggleTray();
-      // }
-      // if(sidemeneuExpanded) {
-      //   console.log('sidemenu is expanded');
-      //   // sidemeneuExpanded = !sidemeneuExpanded;
-      //   // $( '.sidemenu-homepage .expanded-draw' ).removeClass( 'expanded-draw' );
-      //   // $draw.toggleClass('active');
-      // } else {
-      //   console.log('draw not expanded');
-      // }
+
 
     });
 
@@ -213,6 +239,110 @@ export function initTray() {
     });
 
   }
+
+  // **********
+  // Horizontal Nav
+  // **********
+
+  function initHorizontalNav() {
+
+    console.log('hori nav go');
+    let menuItems = $( '.show-mega-menu-top .mega-menu-top-level .nav-item-parent ' );
+    let menuItemsWithSub = $( '.show-mega-menu-top .mega-menu-top-level > .has-submenu' );
+
+    let subMenuItems = $( '.show-mega-menu-top .mega-menu-top-level > .nav-item-parent ' );
+
+    // build sub menu for expand
+    subMenuItems.each( function ( index ) {
+      const $item = $( this );
+      console.log( $item, index );
+
+
+      let titleLink = $item.children('a').attr('href');
+      let titleText = $item.children('a').text();
+      let titleHtml = $item.children('a').html();
+
+
+      console.log(titleLink, ' ', titleText);
+
+      //push into traw div
+      if( $item.children('ul').length ) {
+        $item.children('ul').clone().appendTo('.draw-nav').attr("data-index",index);
+      } else {
+        // console.log('No UL CHILDREN');
+        $('.draw-nav').append(`<ul data-index="${index}"></ul>`);
+      }
+
+      //add title
+      $( `.draw-nav > ul[data-index='${index}']` ).prepend(`<li class="sub-draw-title"><a href="${titleLink}">${titleHtml}</a></li>`);
+    });
+
+    console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded);
+
+    // expand menu
+    menuItems.on('click', function( e ) {
+      let index = $(this).index() - 1;
+      console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index)
+
+      e.preventDefault();
+      e.stopPropagation();
+      console.log(e);
+      const $navItem = $(this);
+      // console.log( $(this).parent() );
+
+      if ( $navItem.hasClass( 'expanded-nav' )) {
+
+        // console.log('has class button close tray');
+        horizontalMenuExpanded = !horizontalMenuExpanded;
+        $('.sidemenu-drawer').toggleClass('horizontal-drawer-expanded');
+        $navItem.removeClass('expanded-nav');
+
+      } else {
+        //show expanded menu
+        console.log('not exapnded.. expand');
+        console.log( horizontalMenuExpanded );
+        if (horizontalMenuExpanded === false) {
+          $('.sidemenu-drawer').addClass('horizontal-drawer-expanded');
+          horizontalMenuExpanded = !horizontalMenuExpanded;
+        }
+
+        menuItems.removeClass('expanded-nav');
+        $navItem.addClass('expanded-nav');
+      }
+
+      // set active submenu to display
+      let matchingNavGroup = $(` .draw-nav > ul[data-index='${index}']`);
+      $('.draw-nav > ul').removeClass('active-nav-group');
+      matchingNavGroup.toggleClass('active-nav-group');
+
+      console.log('horizontalMenuExpanded',horizontalMenuExpanded);
+
+
+    });
+
+    // Set nav offset height for css variable
+    const navHeight = $('.show-mega-menu-top .mega-sub-menu').height() + 6;
+    // console.log(navHeight);
+    document.querySelector(':root').style.setProperty('--horizontal-nav-offset', `${navHeight}px`);
+
+    closeSideMenuDraw('horizontal-drawer-expanded');
+    expandDrawSubContent();
+  }
+
+
+
+
+  if ( $( '.show-mega-menu-top' ).length ) {
+
+    // only run on desktop size
+    enquire.register( DESKTOP_AND_LARGER, () => {
+
+      initHorizontalNav();
+
+    });
+
+  }
+
 
 }
 

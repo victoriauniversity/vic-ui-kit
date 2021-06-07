@@ -473,5 +473,70 @@ footer {
         }
       }
     }
+    &.dark {
+
+        background:$grey-dark;
+        background-image:url( 'https://www.wgtn.ac.nz/__data/assets/image/0003/1940052/footer-pattern@2x.png'), url( 'https://www.wgtn.ac.nz/__data/assets/image/0003/1940052/footer-pattern@2x.png');;
+        background-position:left top, right bottom;
+        background-repeat:no-repeat;
+        background-size:13%;
+        padding:3% 0;
+
+
+      a, li{
+        color: $white;
+        font-size: .9rem;
+      }
+
+      h4,
+      h4 a {
+        font-size: 1.22rem;
+      }
+
+      h4 {
+        margin-bottom: .5rem;
+        color: $white;
+      }
+
+      .footer-row {
+        display: grid;
+        grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
+        grid-auto-rows: minmax(50px, auto);
+        gap: 2rem;
+      }
+
+      h2 {
+        margin: .5rem 0 .2rem;
+
+        a {
+          &:not(.button) {
+            color: $white;
+          }
+        }
+      }
+      .footer-num {
+        text-decoration: underline;
+      }
+
+      .lrg-offset{
+        // width:26%;
+      }
+
+      .sml-offset{
+        // width:15%;
+      }
+
+      @include breakpoint( $until: tablet ) {
+        background-size: 25%;
+        .footer-row {;
+          gap: 1rem;
+          grid-template-columns: repeat( auto-fit, minmax(150px, 1fr) );
+          .link_list {
+            display: block;
+          }
+        }
+      }
+
+    }
   }
 }

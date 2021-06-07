@@ -17,7 +17,7 @@
 
   <script src="https://polyfill.io/v3/polyfill.min.js"></script>
 </head>
-<body class="">
+<body class="{{#if isIntranet}}intranet-home{{/if}}" id="hubv2">
 
 
   <!-- If 'fabricator=true' is present in page's annotation. -->
@@ -36,7 +36,7 @@
 
 
     {{#if _updated-header }}
-      {{> _updated-header NavColor=NavColor LogoColor=LogoColor}}
+      {{> _updated-header NavColor=NavColor LogoColor=LogoColor horizontalNav=horizontalNav isIntranet=isIntranet }}
     {{else}}
       <!-- Default fallback for header when not specified in the template. -->
       {{> _header header=header-default }}
@@ -62,7 +62,7 @@
   {{#unless fabricator}}
 
     {{#if footer }}
-      {{> _footer }}
+      {{> _footer-dark }}
     {{else}}
       <!-- Default fallback for footer when not specified in the template. -->
       {{> _footer footer=footer-default }}
