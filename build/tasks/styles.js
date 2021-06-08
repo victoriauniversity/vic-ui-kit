@@ -22,8 +22,6 @@ const
 
 /** Tasks. */
 
-
-
 // Fabricator's styles
 function processFabricatorStyles( done ) {
   return pump([
@@ -62,7 +60,7 @@ function processToolkitStyles( done ) {
         ],
       },
     })).on( 'error', sass.logError ),
-    prefix({ browsers: autoprefixBrowsers }),
+    prefix(),
     gulpif( config.devMode, sourcemaps.write()),
     gulpif( !config.devMode, gulp.dest( config.paths.tmp )),
     gulpif( !config.devMode, csso({ debug: true })),
