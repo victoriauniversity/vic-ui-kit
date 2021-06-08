@@ -22,6 +22,8 @@ const
 
 /** Tasks. */
 
+
+
 // Fabricator's styles
 function processFabricatorStyles( done ) {
   return pump([
@@ -35,6 +37,8 @@ function processFabricatorStyles( done ) {
     gulp.dest( `${config.paths.tmp}/${config.names.fabricator.dist}` ),
   ], done );
 }
+
+const autoprefixBrowsers = [ '> 1%', 'IE 10', 'IE 11' ];
 
 // Victoria UI Styles
 function processToolkitStyles( done ) {
@@ -58,7 +62,7 @@ function processToolkitStyles( done ) {
         ],
       },
     })).on( 'error', sass.logError ),
-    prefix(),
+    prefix({ browsers: autoprefixBrowsers }),
     gulpif( config.devMode, sourcemaps.write()),
     gulpif( !config.devMode, gulp.dest( config.paths.tmp )),
     gulpif( !config.devMode, csso({ debug: true })),
