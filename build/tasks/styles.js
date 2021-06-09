@@ -36,6 +36,8 @@ function processFabricatorStyles( done ) {
   ], done );
 }
 
+const autoprefixBrowsers = [ '> 1%', 'IE 10', 'IE 11' ];
+
 // Victoria UI Styles
 function processToolkitStyles( done ) {
   return pump([
