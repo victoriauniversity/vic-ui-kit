@@ -43,7 +43,7 @@ const toolbarApi = window.toolkitToolbar || {};
       SEARCH_OK_LABEL:               'Ok',
       SEARCH_INPUT_PLACEHOLDER:      'Search for a tool...',
       SEARCH_INPUT_ARIA_LABEL:       'Type to filter out tools:',
-      TITLE_FAVOURITES:              'My favourite',
+      TITLE_FAVOURITES:              'My favourites',
       TITLE_DEFAULTS:                'Tools and applications',
       BUTTON_FAVOURITE_REMOVE_TITLE: 'Remove from favourites',
       BUTTON_FAVOURITE_ADD_TITLE:    'Add to favourites',
@@ -634,8 +634,14 @@ const toolbarApi = window.toolkitToolbar || {};
         };
       };
 
+      console.log(this);
       this.data.favourites.forEach( getNormaliser( true ).bind( this ));
-      this.data.defaults.forEach( getNormaliser( false ).bind( this ));
+      if (this.id == "toolbar") {
+        // if staff alphabetise list
+        this.data.defaults.sort( (a, b) => a.name.localeCompare(b.name) ).forEach( getNormaliser( false ).bind( this ));
+      } else {
+        this.data.defaults.forEach( getNormaliser( false ).bind( this ));
+      }
     }
 
 
