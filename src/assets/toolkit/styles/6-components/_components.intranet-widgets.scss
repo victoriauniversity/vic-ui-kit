@@ -63,9 +63,19 @@
     display: none;
   }
 
-  .layout {
-    margin-top: 1rem;
+  .breadcrumbs-full ~ .layout {
+
   }
+
+  &.intranet-home {
+    .breadcrumbs-full ~ .layout {
+      // margin-top: 1rem;
+      @include breakpoint($from: desktop) {
+        margin-top: 1rem;
+      }
+    }
+  }
+
 
   main > div,
   aside > div {
