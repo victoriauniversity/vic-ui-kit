@@ -154,7 +154,7 @@ export function initTray() {
 
   function closeSideMenuDraw(location) {
     let loc = location || 'expanded-draw';
-    console.log(loc);
+    // console.log(loc);
 
     $('.close-draw').on( 'click', (e) => {
       if(sidemeneuExpanded) {
@@ -246,7 +246,7 @@ export function initTray() {
 
   function initHorizontalNav() {
 
-    console.log('hori nav go');
+    // console.log('hori nav go');
     let menuItems = $( '.show-mega-menu-top .mega-menu-top-level .nav-item-parent ' );
     let menuItemsWithSub = $( '.show-mega-menu-top .mega-menu-top-level > .has-submenu' );
 
@@ -255,7 +255,7 @@ export function initTray() {
     // build sub menu for expand
     subMenuItems.each( function ( index ) {
       const $item = $( this );
-      console.log( $item, index );
+      // console.log( $item, index );
 
 
       let titleLink = $item.children('a').attr('href');
@@ -263,7 +263,7 @@ export function initTray() {
       let titleHtml = $item.children('a').html();
 
 
-      console.log(titleLink, ' ', titleText);
+      // console.log(titleLink, ' ', titleText);
 
       //push into traw div
       if( $item.children('ul').length ) {
@@ -277,16 +277,18 @@ export function initTray() {
       $( `.draw-nav > ul[data-index='${index}']` ).prepend(`<li class="sub-draw-title"><a href="${titleLink}">${titleHtml}</a></li>`);
     });
 
-    console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded);
+    // console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded);
 
     // expand menu
     menuItems.on('click', function( e ) {
       let index = $(this).index() - 1;
-      console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index)
+      // console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index)
 
       e.preventDefault();
       e.stopPropagation();
-      console.log(e);
+
+      // console.log(e);
+
       const $navItem = $(this);
       // console.log( $(this).parent() );
 
@@ -299,8 +301,8 @@ export function initTray() {
 
       } else {
         //show expanded menu
-        console.log('not exapnded.. expand');
-        console.log( horizontalMenuExpanded );
+        // console.log('not exapnded.. expand');
+        // console.log( horizontalMenuExpanded );
         if (horizontalMenuExpanded === false) {
           $('.sidemenu-drawer').addClass('horizontal-drawer-expanded');
           horizontalMenuExpanded = !horizontalMenuExpanded;
@@ -315,7 +317,7 @@ export function initTray() {
       $('.draw-nav > ul').removeClass('active-nav-group');
       matchingNavGroup.toggleClass('active-nav-group');
 
-      console.log('horizontalMenuExpanded',horizontalMenuExpanded);
+      // console.log('horizontalMenuExpanded',horizontalMenuExpanded);
 
 
     });
