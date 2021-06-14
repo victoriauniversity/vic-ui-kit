@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, June 10, 2021, 11:49 AM */
+/** Version: 0.10.13 | Monday, June 14, 2021, 2:33 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14139,8 +14139,8 @@ function initTray() {
   }
 
   function closeSideMenuDraw(location) {
-    var loc = location || 'expanded-draw';
-    console.log(loc);
+    var loc = location || 'expanded-draw'; // console.log(loc);
+
     $('.close-draw').on('click', function (e) {
       if (sidemeneuExpanded) {
         sidemeneuExpanded = !sidemeneuExpanded;
@@ -14210,18 +14210,18 @@ function initTray() {
 
 
   function initHorizontalNav() {
-    console.log('hori nav go');
+    // console.log('hori nav go');
     var menuItems = $('.show-mega-menu-top .mega-menu-top-level .nav-item-parent ');
     var menuItemsWithSub = $('.show-mega-menu-top .mega-menu-top-level > .has-submenu');
     var subMenuItems = $('.show-mega-menu-top .mega-menu-top-level > .nav-item-parent '); // build sub menu for expand
 
     subMenuItems.each(function (index) {
-      var $item = $(this);
-      console.log($item, index);
+      var $item = $(this); // console.log( $item, index );
+
       var titleLink = $item.children('a').attr('href');
       var titleText = $item.children('a').text();
-      var titleHtml = $item.children('a').html();
-      console.log(titleLink, ' ', titleText); //push into traw div
+      var titleHtml = $item.children('a').html(); // console.log(titleLink, ' ', titleText);
+      //push into traw div
 
       if ($item.children('ul').length) {
         $item.children('ul').clone().appendTo('.draw-nav').attr("data-index", index);
@@ -14232,15 +14232,15 @@ function initTray() {
 
 
       $(".draw-nav > ul[data-index='".concat(index, "']")).prepend("<li class=\"sub-draw-title\"><a href=\"".concat(titleLink, "\">").concat(titleHtml, "</a></li>"));
-    });
-    console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded); // expand menu
+    }); // console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded);
+    // expand menu
 
     menuItems.on('click', function (e) {
-      var index = $(this).index() - 1;
-      console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index);
+      var index = $(this).index() - 1; // console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index)
+
       e.preventDefault();
-      e.stopPropagation();
-      console.log(e);
+      e.stopPropagation(); // console.log(e);
+
       var $navItem = $(this); // console.log( $(this).parent() );
 
       if ($navItem.hasClass('expanded-nav')) {
@@ -14250,9 +14250,8 @@ function initTray() {
         $navItem.removeClass('expanded-nav');
       } else {
         //show expanded menu
-        console.log('not exapnded.. expand');
-        console.log(horizontalMenuExpanded);
-
+        // console.log('not exapnded.. expand');
+        // console.log( horizontalMenuExpanded );
         if (horizontalMenuExpanded === false) {
           $('.sidemenu-drawer').addClass('horizontal-drawer-expanded');
           horizontalMenuExpanded = !horizontalMenuExpanded;
@@ -14265,8 +14264,7 @@ function initTray() {
 
       var matchingNavGroup = $(" .draw-nav > ul[data-index='".concat(index, "']"));
       $('.draw-nav > ul').removeClass('active-nav-group');
-      matchingNavGroup.toggleClass('active-nav-group');
-      console.log('horizontalMenuExpanded', horizontalMenuExpanded);
+      matchingNavGroup.toggleClass('active-nav-group'); // console.log('horizontalMenuExpanded',horizontalMenuExpanded);
     }); // Set nav offset height for css variable
 
     var navHeight = $('.show-mega-menu-top .mega-sub-menu').height() + 6; // console.log(navHeight);

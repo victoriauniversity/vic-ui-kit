@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, June 10, 2021, 11:49 AM */
+/** Version: 0.10.13 | Monday, June 14, 2021, 2:33 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -6464,8 +6464,10 @@ aside .promo h3::before {
   display: none;
 }
 
-#hubv2 .layout {
-  margin-top: 1rem;
+@media (min-width: 61em) {
+  #hubv2.intranet-home .breadcrumbs-full ~ .layout {
+    margin-top: 1rem;
+  }
 }
 
 #hubv2 main > div,
@@ -14812,6 +14814,10 @@ footer .footer-secondary.dark .footer-num {
 .main-site-header.header-tray .header-inner .header-content {
   padding-left: 1rem;
   width: 45%;
+}
+
+.main-site-header.header-tray .header-inner .header-content:hover a h1, .main-site-header.header-tray .header-inner .header-content:hover a h2, .main-site-header.header-tray .header-inner .header-content:hover a h3, .main-site-header.header-tray .header-inner .header-content:hover a h4, .main-site-header.header-tray .header-inner .header-content:hover a p, .main-site-header.header-tray .header-inner .header-content:active a h1, .main-site-header.header-tray .header-inner .header-content:active a h2, .main-site-header.header-tray .header-inner .header-content:active a h3, .main-site-header.header-tray .header-inner .header-content:active a h4, .main-site-header.header-tray .header-inner .header-content:active a p, .main-site-header.header-tray .header-inner .header-content:focus a h1, .main-site-header.header-tray .header-inner .header-content:focus a h2, .main-site-header.header-tray .header-inner .header-content:focus a h3, .main-site-header.header-tray .header-inner .header-content:focus a h4, .main-site-header.header-tray .header-inner .header-content:focus a p {
+  text-decoration: underline;
 }
 
 .main-site-header.header-tray .header-inner .header-search {

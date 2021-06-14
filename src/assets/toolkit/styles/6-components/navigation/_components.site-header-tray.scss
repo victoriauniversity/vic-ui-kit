@@ -156,6 +156,14 @@ $tray-width-desktop: 400px;
       .header-content {
         padding-left: 1rem;
         width: 45%;
+
+        @include hoverify() {
+          a {
+            h1, h2, h3, h4, p {
+              text-decoration: underline;
+            }
+          }
+        }
       }
 
       .header-search {
