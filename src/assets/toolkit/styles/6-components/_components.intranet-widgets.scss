@@ -2361,29 +2361,36 @@
     .links-list {
       padding: 1rem;
       clip-path: polygon(calc(100% - 40px) 0px, 100% 40px, 100% 100%, 0px 100%, 0px 0px);
+      margin-bottom: 1rem;
 
-      &:first-child {
-        clip-path: polygon(calc(100% - 40px) 0px, 100% 40px, 100% 100%, 0px 100%, 0px 0px);
-        background-color: $green-brand;
-
-        h2,
-        h3,
-        h4 {
-          color: $white;
-        }
-
-        a {
-          color: $white;
-
-          @include hoverify() {
-            text-decoration: underline;
-          }
-        }
-
-        li {
-          border-color: $white;
+      h2 {
+        &::before {
+          content: unset;
         }
       }
+
+      // &:first-child {
+      //   clip-path: polygon(calc(100% - 40px) 0px, 100% 40px, 100% 100%, 0px 100%, 0px 0px);
+      //   background-color: $green-brand;
+
+      //   h2,
+      //   h3,
+      //   h4 {
+      //     color: $white;
+      //   }
+
+      //   a {
+      //     color: $white;
+
+      //     @include hoverify() {
+      //       text-decoration: underline;
+      //     }
+      //   }
+
+      //   li {
+      //     border-color: $white;
+      //   }
+      // }
 
       background-color: $grey-light;
     }
