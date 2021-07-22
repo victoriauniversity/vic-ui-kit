@@ -21,40 +21,40 @@ $tray-width-desktop: 400px;
 
 @keyframes delay-visibility-out {
   0% {
-      visibility: visible;
-      opacity: 1;
+    visibility: visible;
+    opacity: 1;
   }
 
   99% {
-      visibility: visible;
+    visibility: visible;
   }
 
   100% {
-      visibility: hidden;
-      opacity: 0;
+    visibility: hidden;
+    opacity: 0;
   }
 }
 
 @keyframes delay-visibility-in {
   0% {
-      visibility: hidden;
-      opacity: 0;
+    visibility: hidden;
+    opacity: 0;
   }
 
   1% {
-      visibility: hidden;
+    visibility: hidden;
   }
 
   100% {
-      visibility: visible;
-      opacity: 1;
+    visibility: visible;
+    opacity: 1;
   }
 }
 
 @keyframes menu-slide-in {
   0% {
-      transform: translateX( 100% );
-      visibility: hidden;
+    transform: translateX(100%);
+    visibility: hidden;
   }
 
   1% {
@@ -62,24 +62,24 @@ $tray-width-desktop: 400px;
   }
 
   100% {
-      transform: translateX(0);
-      visibility: visible;
+    transform: translateX(0);
+    visibility: visible;
   }
 }
 
 @keyframes menu-slide-out {
   0% {
-      transform: translateX(0);
-      visibility: visible;
+    transform: translateX(0);
+    visibility: visible;
   }
 
   99% {
-      visibility: hidden;
-    }
+    visibility: hidden;
+  }
 
-    100% {
-      visibility: hidden;
-      transform: translateX(100%);
+  100% {
+    visibility: hidden;
+    transform: translateX(100%);
   }
 }
 
@@ -159,7 +159,12 @@ $tray-width-desktop: 400px;
 
         @include hoverify() {
           a {
-            h1, h2, h3, h4, p {
+
+            h1,
+            h2,
+            h3,
+            h4,
+            p {
               text-decoration: underline;
             }
           }
@@ -179,32 +184,33 @@ $tray-width-desktop: 400px;
         bottom: 0;
         left: 0;
         z-index: 100;
-        background: rgba(0,0,0,.6);
+        background: rgba(0, 0, 0, .6);
         color: #fff;
         // pointer-events: none;
 
 
         &.tray-open {
           display: block;
-          animation: delay-visibility-in .3s cubic-bezier(.77,0,.175,1) forwards;
+          animation: delay-visibility-in .3s cubic-bezier(.77, 0, .175, 1) forwards;
 
           .tray-content {
             // transform: translate3d(0,0,100%);
-            animation: menu-slide-in .6s cubic-bezier(.77,0,.175,1) forwards;
+            animation: menu-slide-in .6s cubic-bezier(.77, 0, .175, 1) forwards;
           }
         }
 
         &.tray-closed {
           display: none;
-          animation: delay-visibility-out .3s cubic-bezier(.77,0,.175,1) forwards;
+          animation: delay-visibility-out .3s cubic-bezier(.77, 0, .175, 1) forwards;
 
           .tray-content {
             visibility: hidden;
-            animation: menu-slide-out .6s cubic-bezier(.77,0,.175,1);
+            animation: menu-slide-out .6s cubic-bezier(.77, 0, .175, 1);
           }
         }
 
       }
+
       .tray-content {
         // transition: all .4s ease-in;
         padding: 1rem;
@@ -215,7 +221,7 @@ $tray-width-desktop: 400px;
         width: $tray-width-desktop;
         overflow-y: scroll;
 
-        > * {
+        >* {
           margin-left: .5rem;
         }
 
@@ -285,12 +291,11 @@ $tray-width-desktop: 400px;
           }
         }
 
-        .tray-search-bar {
-
-        }
+        .tray-search-bar {}
 
         .tray-sub-menu {
           margin-top: 2rem;
+
           .sub-menu-list {
             display: flex;
             flex-wrap: wrap;
@@ -302,6 +307,7 @@ $tray-width-desktop: 400px;
               a {
                 color: $white;
                 text-decoration: none;
+
                 @include hoverify() {
                   text-decoration: underline;
                 }
@@ -319,7 +325,7 @@ $tray-width-desktop: 400px;
           .close-tray {
             transition: .3s ease-in;
             color: $white;
-            padding:0;
+            padding: 0;
             text-decoration: none;
 
             @include hoverify() {
@@ -338,9 +344,11 @@ $tray-width-desktop: 400px;
           max-width: 270px;
           margin-left: auto;
         }
+
         .header-toggle {
           flex: none;
         }
+
         .tray-toggle {
           display: none;
         }
@@ -348,12 +356,14 @@ $tray-width-desktop: 400px;
         .header-toggle {
           display: none;
         }
+
         @include breakpoint($until:desktop) {
           .header-search {
             display: block;
             margin-left: 0.5rem;
           }
         }
+
         @include breakpoint($until:tablet) {
           .search-input {
             padding: .5rem 1rem .5rem .5rem;
@@ -381,7 +391,7 @@ $tray-width-desktop: 400px;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
 
-        > * {
+        >* {
           width: auto !important;
         }
 
@@ -458,10 +468,10 @@ $tray-width-desktop: 400px;
           // position: absolute;
           // top: 40px;
           transition: all .2s ease-in-out;
-          transform: matrix( 2, 0, 0, 2, 0, 80 );
+          transform: matrix(2, 0, 0, 2, 0, 80);
 
           @include target-ie {
-            transform: matrix( 2, 0, 0, 2, 0, 40 );
+            transform: matrix(2, 0, 0, 2, 0, 40);
           }
 
           // width: 100%;
@@ -483,6 +493,7 @@ $tray-width-desktop: 400px;
         @include target-ie {
           flex: 0 1 10%;
         }
+
         button {
           // position: relative;
           // padding: 0;
@@ -505,6 +516,7 @@ $tray-width-desktop: 400px;
 
     &.header-shrink {
       margin-bottom: 0;
+
       .header-inner {
 
         .vict-logo {
@@ -513,7 +525,7 @@ $tray-width-desktop: 400px;
           img {
             // position: relative;
             // top: 0;
-            transform: matrix( 1, 0, 0, 1, 0, 0 );
+            transform: matrix(1, 0, 0, 1, 0, 0);
             transition: all .2s ease-in-out;
             width: 100%;
             max-width: 50%;
@@ -524,6 +536,7 @@ $tray-width-desktop: 400px;
 
     @include breakpoint($until:tablet) {
       margin-bottom: 1rem;
+
       .header-inner {
         grid-template-columns: 1fr 2fr 1fr;
         grid-template-rows: 1fr;
@@ -551,18 +564,21 @@ $tray-width-desktop: 400px;
         .vict-logo {
           grid-column: 1/4;
           grid-row-start: 2;
+
           img {
-            transform: matrix( 2, 0, 0, 2, 0, 30 );
+            transform: matrix(2, 0, 0, 2, 0, 30);
             top: 0;
             position: relative;
           }
         }
       }
+
       &.header-shrink {
         .header-inner {
           .vict-logo {
             grid-column: 2;
             grid-row-start: 1;
+
             img {
               max-width: 95%;
             }
@@ -681,6 +697,7 @@ $tray-width-desktop: 400px;
           font-weight: 600;
           letter-spacing: .4px;
         }
+
         .tereo-title {
           color: $black-tundora;
           font-size: 1.5rem;
@@ -699,10 +716,13 @@ $tray-width-desktop: 400px;
 
     .header-toggle {
 
+      .search-toggle,
       .tray-toggle {
-        .icon-menu {
+        .icon-menu,
+        .icon-search {
           color: $black-tundora;
         }
+
         @include hoverify() {
           background-color: $grey-gallery;
         }
@@ -712,9 +732,11 @@ $tray-width-desktop: 400px;
 
         .search-toggle {
           height: 50px;
+
           span {
             color: $black-tundora;
           }
+
           @include hoverify() {
             span {
               color: $white;
@@ -767,14 +789,15 @@ $tray-width-desktop: 400px;
                 }
               }
             }
-            &:not(:last-child) {
-            }
+
+            &:not(:last-child) {}
           }
         }
 
         .tray-sub-menu {
           margin-top: auto;
           margin-bottom: 2rem;
+
           .sub-menu-list {
             .sub-menu-item {
               a {
@@ -783,6 +806,7 @@ $tray-width-desktop: 400px;
             }
           }
         }
+
         .tray-search-bar {
           form {
             border: 2px solid $black-emperor;
@@ -792,12 +816,15 @@ $tray-width-desktop: 400px;
               background-color: transparent;
               color: $grey-dove;
 
-              &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+              &::placeholder {
+                /* Chrome, Firefox, Opera, Safari 10.1+ */
                 color: $grey-chalice;
-                opacity: 1; /* Firefox */
+                opacity: 1;
+                /* Firefox */
               }
 
             }
+
             .submit-button {
               span {
                 color: $black-emperor;
@@ -805,6 +832,7 @@ $tray-width-desktop: 400px;
             }
           }
         }
+
         .tray-close {
           background-color: $brand;
         }
@@ -819,12 +847,14 @@ $tray-width-desktop: 400px;
         .header-content {
           display: none;
         }
+
         .header-logo {
           grid-row: 1 !important;
         }
       }
     }
   }
+
   &.green {
     background-color: $brand;
     border-bottom-color: #09653A;
@@ -847,6 +877,7 @@ $tray-width-desktop: 400px;
           color: $white;
           font-weight: 600;
         }
+
         .tereo-title {
           color: $grey-alto;
           font-size: 1.5rem;
@@ -865,9 +896,11 @@ $tray-width-desktop: 400px;
           background-color: $white;
           border: 1px solid #2B694D;
 
-          &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+          &::placeholder {
+            /* Chrome, Firefox, Opera, Safari 10.1+ */
             color: $grey-chalice;
-            opacity: 1; /* Firefox */
+            opacity: 1;
+            /* Firefox */
           }
         }
 
@@ -885,6 +918,7 @@ $tray-width-desktop: 400px;
         .icon-menu {
           // color: $black-tundora;
         }
+
         &:hover {
           background-color: lighten($brand, 10%);
         }
@@ -909,11 +943,12 @@ $tray-width-desktop: 400px;
         .tray-main-nav {
           li.main-nav-item {
             border-bottom: 1px solid $black-tundora !important;
+
             a {
               color: $black-tundora;
             }
-            &:not(:last-child) {
-            }
+
+            &:not(:last-child) {}
           }
         }
 
@@ -926,6 +961,7 @@ $tray-width-desktop: 400px;
             }
           }
         }
+
         .tray-search-bar {
           form {
             border-radius: $radius;
@@ -936,9 +972,11 @@ $tray-width-desktop: 400px;
               background-color: $white;
               border: 1px solid $black-tundora;
 
-              &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+              &::placeholder {
+                /* Chrome, Firefox, Opera, Safari 10.1+ */
                 color: $grey-chalice;
-                opacity: 1; /* Firefox */
+                opacity: 1;
+                /* Firefox */
               }
             }
 
@@ -949,11 +987,110 @@ $tray-width-desktop: 400px;
             }
           }
         }
+
         .tray-close {
           background-color: $brand;
         }
       }
     }
+  }
+
+  &.subjects-header {
+    padding-top: 0;
+
+    .header-inner {
+      .header-content {
+        @include hoverify {
+          h1,h2 {
+            text-decoration: none !important;
+          }
+        }
+        .crumbs {
+          ul {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .home span {
+              color: $green-brand;
+
+              &::before {
+                vertical-align: 0;
+                margin: 0;
+              }
+            }
+
+            li {
+              display: flex;
+              align-items: center;
+
+              a {
+                color: $black-tundora;
+                font-weight: 500;
+                text-decoration: none;
+                @include hoverify() {
+                  text-decoration: underline;
+                }
+              }
+
+
+              &::after {
+                content: "";
+                position: relative;
+                display: inline-block;
+                font-family: "VicIcons";
+                font-size: 1.3rem;
+                color: $green-brand;
+                margin-left: .5rem;
+              }
+            }
+          }
+        }
+        .subject-title {
+          margin-top: 0.2rem;
+          @include hoverify {
+            h1,h2 {
+              text-decoration: underline !important;
+            }
+          }
+          a {
+            display: flex;
+            align-items: center;
+          }
+
+          .tereo-title {
+            font-size: 2rem;
+            color: $green-brand;
+            font-weight: 400;
+          }
+
+          h1 {
+            font-size: 2rem;
+            color: $black-tundora;
+          }
+
+          span {
+            font-size: 1.5rem;
+            margin: 0 .5rem;
+            color: $grey-silver;
+          }
+
+        }
+      }
+    }
+
+    .header-search {
+      display: none;
+    }
+
+    .header-toggle {
+      margin-left: auto;
+      .search-toggle {
+        display: block;
+      }
+    }
+
+
   }
 
 }
@@ -962,6 +1099,6 @@ $tray-width-desktop: 400px;
 
 // Mouseflow tracking fix for sub menus and sidebar expandable menus
 
-.mf-heatmap-clicked + ul {
+.mf-heatmap-clicked+ul {
   display: block !important;
 }
