@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, June 22, 2021, 11:43 AM */
+/** Version: 0.10.13 | Friday, 23 July 2021, 10:45 am */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -14867,7 +14867,19 @@ footer .footer-secondary.dark .footer-num {
   width: 45%;
 }
 
-.main-site-header.header-tray .header-inner .header-content:hover a h1, .main-site-header.header-tray .header-inner .header-content:hover a h2, .main-site-header.header-tray .header-inner .header-content:hover a h3, .main-site-header.header-tray .header-inner .header-content:hover a h4, .main-site-header.header-tray .header-inner .header-content:hover a p, .main-site-header.header-tray .header-inner .header-content:active a h1, .main-site-header.header-tray .header-inner .header-content:active a h2, .main-site-header.header-tray .header-inner .header-content:active a h3, .main-site-header.header-tray .header-inner .header-content:active a h4, .main-site-header.header-tray .header-inner .header-content:active a p, .main-site-header.header-tray .header-inner .header-content:focus a h1, .main-site-header.header-tray .header-inner .header-content:focus a h2, .main-site-header.header-tray .header-inner .header-content:focus a h3, .main-site-header.header-tray .header-inner .header-content:focus a h4, .main-site-header.header-tray .header-inner .header-content:focus a p {
+.main-site-header.header-tray .header-inner .header-content:hover a h1,
+.main-site-header.header-tray .header-inner .header-content:hover a h2,
+.main-site-header.header-tray .header-inner .header-content:hover a h3,
+.main-site-header.header-tray .header-inner .header-content:hover a h4,
+.main-site-header.header-tray .header-inner .header-content:hover a p, .main-site-header.header-tray .header-inner .header-content:active a h1,
+.main-site-header.header-tray .header-inner .header-content:active a h2,
+.main-site-header.header-tray .header-inner .header-content:active a h3,
+.main-site-header.header-tray .header-inner .header-content:active a h4,
+.main-site-header.header-tray .header-inner .header-content:active a p, .main-site-header.header-tray .header-inner .header-content:focus a h1,
+.main-site-header.header-tray .header-inner .header-content:focus a h2,
+.main-site-header.header-tray .header-inner .header-content:focus a h3,
+.main-site-header.header-tray .header-inner .header-content:focus a h4,
+.main-site-header.header-tray .header-inner .header-content:focus a p {
   text-decoration: underline;
 }
 
@@ -15364,11 +15376,17 @@ footer .footer-secondary.dark .footer-num {
   border: 1px solid #555;
 }
 
-.main-site-header.white .header-toggle .tray-toggle .icon-menu {
+.main-site-header.white .header-toggle .search-toggle .icon-menu,
+.main-site-header.white .header-toggle .search-toggle .icon-search,
+.main-site-header.white .header-toggle .tray-toggle .icon-menu,
+.main-site-header.white .header-toggle .tray-toggle .icon-search {
   color: #424242;
 }
 
-.main-site-header.white .header-toggle .tray-toggle:hover, .main-site-header.white .header-toggle .tray-toggle:active, .main-site-header.white .header-toggle .tray-toggle:focus {
+.main-site-header.white .header-toggle .search-toggle:hover, .main-site-header.white .header-toggle .search-toggle:active, .main-site-header.white .header-toggle .search-toggle:focus,
+.main-site-header.white .header-toggle .tray-toggle:hover,
+.main-site-header.white .header-toggle .tray-toggle:active,
+.main-site-header.white .header-toggle .tray-toggle:focus {
   background-color: #EEE;
 }
 
@@ -15652,6 +15670,102 @@ footer .footer-secondary.dark .footer-num {
 
 .main-site-header.green.header-tray .tray-content .tray-close {
   background-color: #AF1B1B;
+}
+
+.main-site-header.subjects-header {
+  padding-top: 0;
+}
+
+.main-site-header.subjects-header .header-inner .header-content:hover h1, .main-site-header.subjects-header .header-inner .header-content:hover h2, .main-site-header.subjects-header .header-inner .header-content:active h1, .main-site-header.subjects-header .header-inner .header-content:active h2, .main-site-header.subjects-header .header-inner .header-content:focus h1, .main-site-header.subjects-header .header-inner .header-content:focus h2 {
+  text-decoration: none !important;
+}
+
+.main-site-header.subjects-header .header-inner .header-content .crumbs ul {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+
+.main-site-header.subjects-header .header-inner .header-content .crumbs ul .home span {
+  color: #115737;
+}
+
+.main-site-header.subjects-header .header-inner .header-content .crumbs ul .home span::before {
+  vertical-align: 0;
+  margin: 0;
+}
+
+.main-site-header.subjects-header .header-inner .header-content .crumbs ul li {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.main-site-header.subjects-header .header-inner .header-content .crumbs ul li a {
+  color: #424242;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.main-site-header.subjects-header .header-inner .header-content .crumbs ul li a:hover, .main-site-header.subjects-header .header-inner .header-content .crumbs ul li a:active, .main-site-header.subjects-header .header-inner .header-content .crumbs ul li a:focus {
+  text-decoration: underline;
+}
+
+.main-site-header.subjects-header .header-inner .header-content .crumbs ul li::after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  font-family: "VicIcons";
+  font-size: 1.3rem;
+  color: #115737;
+  margin-left: .5rem;
+}
+
+.main-site-header.subjects-header .header-inner .header-content .subject-title {
+  margin-top: 0.2rem;
+}
+
+.main-site-header.subjects-header .header-inner .header-content .subject-title:hover h1, .main-site-header.subjects-header .header-inner .header-content .subject-title:hover h2, .main-site-header.subjects-header .header-inner .header-content .subject-title:active h1, .main-site-header.subjects-header .header-inner .header-content .subject-title:active h2, .main-site-header.subjects-header .header-inner .header-content .subject-title:focus h1, .main-site-header.subjects-header .header-inner .header-content .subject-title:focus h2 {
+  text-decoration: underline !important;
+}
+
+.main-site-header.subjects-header .header-inner .header-content .subject-title a {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.main-site-header.subjects-header .header-inner .header-content .subject-title .tereo-title {
+  font-size: 2rem;
+  color: #115737;
+  font-weight: 400;
+}
+
+.main-site-header.subjects-header .header-inner .header-content .subject-title h1 {
+  font-size: 2rem;
+  color: #424242;
+}
+
+.main-site-header.subjects-header .header-inner .header-content .subject-title span {
+  font-size: 1.5rem;
+  margin: 0 .5rem;
+  color: #CCC;
+}
+
+.main-site-header.subjects-header .header-search {
+  display: none;
+}
+
+.main-site-header.subjects-header .header-toggle {
+  margin-left: auto;
+}
+
+.main-site-header.subjects-header .header-toggle .search-toggle {
+  display: block;
 }
 
 .mf-heatmap-clicked + ul {
@@ -18395,10 +18509,6 @@ footer .footer-secondary.dark .footer-num {
 .result-list .result img {
   width: 100%;
   height: auto;
-}
-
-.result-list .result .result-title-lg {
-  display: none;
 }
 
 .result-list .result .result-header {
