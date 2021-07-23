@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, 23 July 2021, 10:45 am */
+/** Version: 0.10.13 | Friday, 23 July 2021, 3:09 pm */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -19845,6 +19845,58 @@ footer .footer-secondary.dark .footer-num {
 
 .article-nav .prev p {
   text-align: right;
+}
+
+.subject-banner {
+  display: grid;
+  grid-template-columns: 200px 1fr 2fr;
+}
+
+.subject-banner img,
+.subject-banner svg {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.subject-banner .banner-content {
+  padding: 2.5rem 0;
+}
+
+.subject-banner .banner-content .banner-title {
+  margin-bottom: 1.5rem;
+}
+
+.subject-banner .banner-content .banner-title h1 {
+  font-size: 2.9rem;
+}
+
+.subject-banner .banner-content .banner-title h1 .tereo-title {
+  display: block;
+  color: #3E9C4F;
+  font-weight: 400;
+}
+
+.subject-banner .banner-content .banner-text p {
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
+
+.subject-banner .banner-image {
+  -webkit-clip-path: polygon(0px 0px, 100% 0%, 100% 100%, 25% 100%);
+          clip-path: polygon(0px 0px, 100% 0%, 100% 100%, 25% 100%);
+  overflow: hidden;
+}
+
+.subject-banner .banner-image img {
+  max-height: 400px;
+}
+
+@media (min-width: 88rem) {
+  .subject-banner {
+    grid-template-columns: 20% 1fr 2fr;
+  }
 }
 
 /*= COMPONENTS - MOLECULES ========================*/
