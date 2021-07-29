@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, 23 July 2021, 3:09 pm */
+/** Version: 0.10.13 | Thursday, July 29, 2021, 2:45 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -19839,17 +19839,59 @@ footer .footer-secondary.dark .footer-num {
   text-align: right;
 }
 
+.subject-button {
+  padding: .75rem;
+  border: 1px solid transparent;
+  font-family: "National";
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-right: .5rem;
+}
+
+.subject-button::after {
+  position: relative;
+  display: inline-block;
+  content: "";
+  font-family: "VicIcons";
+  margin: 0 0 0 0.5em;
+  width: 1em;
+  vertical-align: -0.19em;
+  text-align: center;
+  line-height: 1;
+  left: 0;
+}
+
+.subject-button:hover, .subject-button:active, .subject-button:focus {
+  text-decoration: underline;
+}
+
+.subject-button:hover::after, .subject-button:active::after, .subject-button:focus::after {
+  -webkit-transition: .3s;
+  transition: .3s;
+  left: 5px;
+}
+
+.subject-button.light {
+  border: 1px solid #CCC;
+  color: #115737;
+}
+
 .subject-banner {
   display: grid;
   grid-template-columns: 200px 1fr 2fr;
 }
 
-.subject-banner img,
-.subject-banner svg {
+.subject-banner .banner-pattern {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: end;
+          align-items: flex-end;
+}
+
+.subject-banner .banner-pattern svg {
+  height: auto;
   width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  max-height: 400px;
 }
 
 .subject-banner .banner-content {
@@ -19870,25 +19912,72 @@ footer .footer-secondary.dark .footer-num {
   font-weight: 400;
 }
 
+.subject-banner .banner-content .banner-text {
+  margin-bottom: 1.5rem;
+}
+
 .subject-banner .banner-content .banner-text p {
   font-size: 1.3rem;
   line-height: 1.4;
 }
 
 .subject-banner .banner-image {
-  -webkit-clip-path: polygon(0px 0px, 100% 0%, 100% 100%, 25% 100%);
-          clip-path: polygon(0px 0px, 100% 0%, 100% 100%, 25% 100%);
+  -webkit-clip-path: polygon(0px 0px, 100% 0%, 100% 100%, 35% 100%);
+          clip-path: polygon(0px 0px, 100% 0%, 100% 100%, 35% 100%);
   overflow: hidden;
 }
 
 .subject-banner .banner-image img {
   max-height: 400px;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 @media (min-width: 88rem) {
   .subject-banner {
     grid-template-columns: 20% 1fr 2fr;
   }
+}
+
+.switcher {
+  display: -webkit-box;
+  display: flex;
+  padding: 1rem;
+}
+
+.switcher .level-wrap,
+.switcher .location-wrap {
+  -webkit-box-flex: 1;
+          flex: 1 1 auto;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  margin-right: 1.5rem;
+}
+
+.switcher .v-select {
+  width: 300px;
+  margin: 0 .5rem;
+}
+
+.switcher .v-select button::after {
+  content: none !important;
+}
+
+.switcher-wrap {
+  -webkit-box-shadow: 0px 2px 15px 0px rgba(204, 204, 204, 0.93);
+          box-shadow: 0px 2px 15px 0px rgba(204, 204, 204, 0.93);
+  margin-bottom: 1rem;
+  gap: 0;
+}
+
+.switcher-wrap .icon-section {
+  background-color: #3E9C4F;
+  -webkit-clip-path: polygon(0px 0px, 76.89% 0%, 100% 100%, 0% 100%);
+          clip-path: polygon(0px 0px, 76.89% 0%, 100% 100%, 0% 100%);
 }
 
 /*= COMPONENTS - MOLECULES ========================*/
