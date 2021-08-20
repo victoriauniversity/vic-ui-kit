@@ -49,9 +49,187 @@ footer:
 
 {{> subjects.banner }}
 {{> subjects.switcher }}
+<div class="subject-content">
 
-<section class="layout centraliser">
+  <section class="subject-section overview spy" id="Overview">
+
+    <div class="fixed-spy">
+      <div id="fixedMenu" class="fixed-cta">
+        <ul id="fixedMenuList">
+          <li><a href=""><span>Apply now</span> <i class="icon-caret-right-thin"></i></a></li>
+          <li><a href=""><span>Contact us</span> <i class="icon-caret-right-thin"></i></a></li>
+          <li><a href=""><span>Stay updated</span> <i class="icon-caret-right-thin"></i></a></li>
+        </ul>
+      </div>
+
+      <nav role="navigation" class="spy-wrap">
+        <h5>On this page:</h4>
+        <ul id="spyList" class="scrollspy">
+
+        </ul>
+      </nav>
+    </div>
 
 
+    <div class="main-col">
+    TESTING
 
+  <h4>Ahupūngao Physics</h4>
+
+  Explore the way our world is put together and how it works. Study the universe from the smallest parts of an atom to the cosmos.
+
+
+  </div>
   </section>
+
+  <section class="subject-section qualifications grey-bg spy" id="Qualifications">
+
+    <div class="main-col">
+
+      <div class="qual-section-title flex">
+        <i class="icon-graduation-cap"></i>
+        <h3>Study options</h3>
+      </div>
+
+      <div class="qualification" >
+        <!-- NOTE: Initial Value MUST be the international API Code!!! -->
+        <div id="aaa" data-initial-value="BSC" data-initial-fetch="true">
+          <span>Showing information for students who
+            previously studied in - Afghanistan</span>
+          <div>
+            <div>
+              <div>
+                <div class="qual-title flex">
+                  <h2> Bachelor of Science <span class="code">- BSc</span>  </h2>
+                </div>
+                <div class="major">
+                  <span class="pill">Physics Major</span>
+                </div>
+
+                <div class="qual-row">
+                  <div class="qual-meta-item"><span class="meta-title"><i class="icon-clock"></i>Duration:</span> 3 years (360 points)
+                  </div>
+                  <div class="qual-meta-item"><span class="meta-title"><i class="icon-cog"></i>Intensity:</span> Full time or part time
+                  </div>
+
+                </div>
+
+                <div class="qual-row">
+                  <div class="qual-meta-item"><span class="meta-title"><i class="icon-pin"></i>Location:</span> Wellington campuses. This
+                    programme
+                    can be started online if you are outside New Zealand.
+                  </div>
+                </div>
+
+                <div class="qual-row">
+                  <div class="qual-meta-item qual-dates"><span class="meta-title"><i class="icon-calendar"></i>Key dates:</span>
+                    <span class="dates">Apply by <strong>01 Dec 2021</strong> to start studying <strong>28 Feb 2022</strong><br> Apply by
+                      <strong>01 May 2022</strong> to start studying <strong>11 Jul 2022</strong><br></span>
+                  </div>
+                </div>
+
+                <div class="qual-row">
+                  <div class="qual-meta-item"><span class="meta-title">Level of study:</span> Undergraduate
+                </div>
+
+                </div>
+
+
+                <div class="qual-row">
+                  <div class="qual-meta-item"><span class="meta-title"><i class="icon-money"></i>Cost: </span>
+                    <div>NZ$34,521.00 for the full programme. Approximately <strong>AF ؋1,911,176.97</strong> at current
+                      exchange rates <span> per 120 points </span></div></div>
+                </div>
+
+                <div class="qual-row">
+                  <div class="qual-meta-item"><span class="meta-title"><i class="icon-check"></i>Entry: </span> Achieve the International Baccalaureate
+                    Diploma, or three GCE Advanced Level passes at C grade, or equivalent. You may also be required to
+                    demonstrate your proficiency in English.
+                  </div>
+                </div>
+
+                <div class="qual-row">
+                  <div class="qual-meta-item"><span class="meta-title">Useful secondary school subjects: </span> Sciences and
+                    Maths
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#" class="learn-more">Learn more <i class="icon-caret-right-thin"></i></a>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+
+<script>
+    // build scrollspy menu dynamically
+    // should get in to a core library of helpers
+
+    window.addEventListener('DOMContentLoaded', function (e) {
+
+        var list = document.getElementsByClassName('spy');  // read divs tagged as spy in DOM
+        var nav = document.getElementById('spyList');       // where to inject menu items
+
+        for (var i = 0; i < list.length; i++){
+
+            // var newNode = document.createElement('a');
+            // newNode.innerHTML = list[i].id;
+            // newNode.href = '#' + list[i].id + '-' + i;
+            // list[i].id = list[i].id + '-' + i;
+
+            var newNode = document.createElement('li');
+            newNode.innerHTML = '<a href="#'+ list[i].id + '-' + i +'">'+list[i].id + '</a>';
+            newNode.href = '#' + list[i].id + '-' + i;
+            list[i].id = list[i].id + '-' + i;
+
+            // newNode.classList.add ("list-group-item", "list-group-item-action");
+            if (list[i].classList.contains("isChild")) {
+                newNode.classList.add("isAChild");
+            }
+            if (list[i].classList.contains("isChild1")) {
+                newNode.classList.add("isAChild1");
+            }
+            nav.appendChild(newNode);
+        }
+
+
+        var spy = new Gumshoe('#spyList a', {
+        	nested: true,
+        	nestedClass: 'active-parent',
+        	reflow: true
+        });
+
+        //set spy class when scrolled into view
+        window.onscroll = function () {
+          let isScrolled = false
+          const scrollPoint = document.querySelector('.subject-content').offsetTop
+          const content = document.querySelector('.subject-content')
+          const spy = document.querySelector('.fixed-spy');
+
+          function onScroll () {
+            if ( window.pageYOffset > scrollPoint && !isScrolled ) {
+              content.classList.add("scroll");
+              spy.classList.add("sticky");
+              isScrolled = true
+            } else if (window.pageYOffset <= scrollPoint && isScrolled) {
+              content.classList.remove("scroll");
+              spy.classList.remove("sticky");
+              isScrolled = false
+            }
+          }
+
+          onScroll()  // Makes sure that the class is attached on the first render
+          return onScroll
+        }()
+
+    });
+
+
+
+</script>
