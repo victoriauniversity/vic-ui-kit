@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, August 20, 2021, 2:07 PM */
+/** Version: 0.10.13 | Friday, August 20, 2021, 3:00 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -20093,33 +20093,46 @@ footer .footer-secondary.dark .footer-num {
   background-color: #3E9C4F;
 }
 
-.subject-section {
-  padding: 2rem 0;
-  display: grid;
-  grid-template-columns: 0.5fr 1.5fr 0.5fr;
-  grid-template-rows: 1fr;
-  gap: 0px 0px;
-  grid-template-areas: "left main right";
-}
-
-.main-col {
-  grid-area: main;
-}
-
-.left {
-  grid-area: left;
-}
-
-.right {
-  grid-area: right;
-}
-
 .subject-content {
   position: relative;
+  max-width: none;
+  display: grid;
+  grid-template-columns: [fullWidth-start] 1rem [left-start] 0.5fr [article-start right-start] 1.5fr [article-end left-end] 0.5fr [right-end] 1rem [fullWidth-end];
 }
 
 .subject-section {
+  grid-column: article;
   position: relative;
+  padding: 2rem 0;
+}
+
+.full-width {
+  grid-template-columns: .5fr 1.5fr .5fr;
+  -webkit-box-pack: center;
+          justify-content: center;
+  grid-column: fullWidth;
+  display: grid;
+}
+
+.full-width > * {
+  grid-column: 2/3;
+}
+
+@supports (grid-template-columns: subgrid) {
+  .full-width {
+    grid-template-columns: subgrid;
+    padding: 0;
+  }
+  .fullWidth-center {
+    grid-column: article;
+  }
+  .fullWidth-right {
+    grid-column: right;
+    text-align: right;
+  }
+  .fullWidth-left {
+    grid-column: left;
+  }
 }
 
 .fixed-spy {
