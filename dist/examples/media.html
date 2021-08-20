@@ -1,0 +1,639 @@
+<!-- Version: 0.10.13 | Friday, August 20, 2021, 2:07 PM -->
+<!doctype html>
+<html lang="">
+<head>
+
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title></title>
+
+  <!-- Fav icons compatible with all major browsers and devices -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="mask-icon" href="../images/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="theme-color" content="#ffffff">
+
+  
+
+  <!-- toolkit styles -->
+  <link rel="stylesheet" href="../toolkit.css">
+  <!-- /toolkit styles -->
+
+  <script src="https://polyfill.io/v3/polyfill.min.js"></script>
+
+  <script>
+      /** Allows to add custom scripts that will be executed inside the jQuery's $(document).ready().  */
+      var onDocumentReadyFunctions = [];
+      function runFunctionOnDocumentReady( fn ) { onDocumentReadyFunctions.push( fn ); }
+  </script>
+
+  
+
+</head>
+<body>
+  
+
+  <!-- If 'fabricator=true' is present in page's annotation. -->
+
+
+
+  <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
+
+    <div class="global" id="global-nav">
+    
+    	<div class="menu-toggle horisontal-links">
+    		<a href="javascript:void(0);"><div class="logo-mini">&nbsp;</div></a>
+    		<a href="javascript:void(0);" class="js-toggle-global-nav" role="button" aria-label="Toggle Navigation">
+    
+    			<span class="tcon tcon-menu--xcross" aria-label="toggle menu" style="float:right;">
+    			  <span class="tcon-menu__lines" aria-hidden="true"></span>
+    			  <span class="tcon-visuallyhidden">toggle menu</span>
+    			</span>
+    
+    		</a>
+    		<!-- <div class="mobile logo-mini"></div> -->
+    	</div>
+    
+    	<div class="menu">
+      	<nav>
+      		<div class="search">
+      			<form method="get" action="//wgtn.ac.nz/search">
+      			    <div role="search">
+    					<a href="javascript:void(0);" class="js-toggle-global-search hide-on-mobile">
+    						<span class="tcon tcon-search--xcross " aria-label="toggle search">
+    						  <span class="tcon-search__item" aria-hidden="true"></span>
+    						  <span class="tcon-visuallyhidden">toggle search</span>
+    						</span>
+    					</a>
+      				    <!-- <a href="#" class="icon-search js-toggle-global-search hide-on-mobile"></a> -->
+      			    	<label class="input-wrapper -icon-search" id="global-search">
+    
+      			        	<input type="text" autocomplete="off" name="q" placeholder="Search Victoria for…" required>
+      		  				  <input type="submit" value="Go">
+    
+      			        </label>
+      			    </div>
+      			</form>
+    
+      			<div class="horisontal-links align-center hide-on-desktop">
+      				<a href="#"><span class="icon-home"></span>Home</a>
+      				<a href="#"><span class="icon-phone"></span>Contact</a>
+      			</div>
+      		</div>
+    
+      		<div id="menu">
+      			<a href="#" class="home">
+      				<span class="icon-home"></span>
+      				<span class="hide-on-desktop">Victoria's main site</span>
+      			</a>
+      			<a href="#">Future students</a>
+      			<a href="#">International students</a>
+      			<a href="#">Current students</a>
+            <a href="#">Research</a>
+            <a href="#">About Victoria</a>
+    
+      <!-- 		    <label role="search" class="hide-on-mobile">
+      		    	<a href="#" class="icon-search"></a>
+      		    </label> -->
+      		</div>
+    
+    
+      	</nav>
+    
+    	</div>
+    </div>
+      <!-- Default fallback for header when not specified in the template. -->
+      <header role="banner" class="site-header">
+        <div class="block centraliser">
+      
+          <!-- Logotype -->
+          <div class="logo">
+            <a href="/" title="Victoria University of Wellington homepage">
+              <picture>
+                  <!-- *MUST* be in pixels to avoid inconsistencies between CSS mediaqueries and HTML mediaqueries on Safari (*facepalm*)  -->
+                <source media="(max-width: 1087px)" srcset="../images/new/v2/logo-white-portrait.svg">
+                <img src="../images//new/v2/logo-white-full.svg" alt="Victoria University of Wellington - Te Whare Wānanga o te Ūpoko o te Ika a Māui">
+              </picture>
+            </a>
+          </div>
+      
+          <!-- Introductory block -->
+          <div class="site-intro">
+      
+            <a href="#" title=" homepage">
+              <h1>
+                  <span class="preline">School of</span>
+      
+                
+                   History, Philosophy, Political Science and International Relations 
+                
+                 <small lang="mi"> Te Kura Ao Whakamuri, Rapunga Whakaaro, Matai Tōrangapū me te Ao </small> 
+              </h1>
+            </a>
+          </div>
+      
+        </div>
+      </header>
+
+  <!-- 'Go up' button -->
+  <a href="javascript:;" id="btn-up" title="Go to the top of the page" class="btn-floating sticky bottom" tabindex="-1"><span class="icon-arrow-up"></span></a>
+
+  <!-- 'Edit page' button -->
+  <a href="/_edit" id="btn-admin" style="display: none;" title="Edit the page in Squiz administration" class="btn-floating top" tabindex="-1"><span class="icon-edit"></span></a>
+
+
+
+	<!-- Media (video, images, galleries) handling -->
+
+<section class="layout centraliser block">
+
+  <!-- Left 'submenu' column -->
+  <div class="sidebar"> <nav class="sidemenu" role="navigation" data-gtm-track>
+
+  <!-- Mobile devices *only* sidemenu control -->
+  <h1 class="sidemenu-toggle"><a href="#" title="Show/Hide Research menu">Research menu</a></h1>
+
+  <ul>
+    <!-- Alt Root (1st) level items under the given Hub -->
+    <li class="sidemenu__label"><a href="#" title="">Engage</a></li>
+    
+    <!-- Root (1st) level items under the given Hub -->
+    <li><a class="sidemenu__link--withIcon" href="#" title="">Staff Support <i class="icon-arrow-left"></i></a></li>
+
+    <li>
+      <a href="#" title="">Research and ethics integrity</a>
+
+      <!-- 2nd level -->
+      <ul>
+        <li><a href="#" title="">General rules</a></li>
+        <li><a href="#" title="">Staff</a></li>
+        <li><a href="#" title="">Research and ethics integrity manual</a></li>
+        <li><a href="#" title="">Responsibilities</a></li>
+      </ul>
+    </li>
+
+    <li class="has-submenu active expanded">
+      <a href="/research-IA/engage-our-talent.html" title="">New research staff and their specialisation</a>
+      <span class="btn-expander" title="Toggle subpages"></span>
+
+      <!-- 2nd level -->
+      <ul>
+        <li><a href="#" title="">Welcome ceremony</a></li>
+        <li><a href="#" title="">Privacy rules</a></li>
+        <li><a href="#" title="">Research departments</a></li>
+
+        <li class="has-submenu active expanded">
+          <a href="#" title="">Contacts</a>
+          <span class="btn-expander" title="Toggle subpages"></span>
+
+          <!-- 3rd level -->
+          <ul>
+            <li><a href="#" title="">Directorate</a></li>
+            <li class="active"><a href="#" title="">General assistance</a></li>
+            <li><a href="#" title="">Emergency issues</a></li>
+            <li><a href="#" title="">E-mail and phone</a></li>
+            <li><a href="#" title="">Guidelines</a></li>
+          </ul>
+
+        </li>
+
+        <li><a href="#" title="">Organisational structure</a></li>
+        <li><a href="#" title="">Human resources and hiring process</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#" title="">Commercialise your research</a></li>
+    <li><a href="#" title="">Research funding and grants</a></li>
+
+    <li>
+        <a href="#" title="">PBRF</a>
+
+        <!-- 2nd level -->
+        <ul>
+          <li><a href="#" title="">Welcome ceremony</a></li>
+          <li><a href="#" title="">Privacy rules</a></li>
+          <li><a href="#" title="">Research departments</a></li>
+
+          <li>
+            <a href="#" title="">Contacts</a>
+
+              <!-- 3rd level -->
+              <ul>
+                <li><a href="#" title="">Directorate</a></li>
+                <li><a href="#" title="">General assistance</a></li>
+                <li><a href="#" title="">Emergency issues</a></li>
+                <li>
+                  <a href="#" title="">E-mail and phone</a>
+
+                  <!-- 4th level -->
+                  <ul>
+                    <li><a href="#" title="">Department of internal relationships</a></li>
+                    <li><a href="#" title="">Department of seriousness relationships</a></li>
+                    <li><a href="#" title="">Direct assistance services</a></li>
+                    <li><a href="#" title="">Lost and found</a></li>
+                  </ul>
+                </li>
+                <li><a href="#" title="">Guidelines</a></li>
+              </ul>
+
+          </li>
+
+          <li><a href="#" title="">Organisational structure</a></li>
+          <li><a href="#" title="">Human resources and hiring process</a></li>
+        </ul>
+      </li>
+
+    <li>
+      <a href="#" title="">Workshops, resources and support</a>
+
+      <ul>
+        <li><a href="#" title="">Workshop</a></li>
+        <li><a href="#" title="">Resources</a></li>
+        <li><a href="#" title="">Support</a></li>
+        <li><a href="#" title="">Events</a></li>
+        <li><a href="#" title="">Dates</a></li>
+        <li><a href="#" title="">Contacts</a></li>
+        <li><a href="#" title="">Issues resolution</a></li>
+        <li><a href="#" title="">Framework</a></li>
+        <li><a href="#" title="">Best practices</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#" title="">Supervising research students</a></li>
+  </ul>
+</nav> </div>
+
+  <!-- Center 'content' and right 'widget' columns -->
+  <div class="content-panel">
+
+    <!-- Center 'content' column -->
+    <main>
+      <section class="block formatting">
+        <h1>Media handling</h1>
+
+
+        <p><strong>Default behaviour (~ no classes + outside of paragraph) - an image stretches to full width.</strong></p>
+        <img src="//www.wgtn.ac.nz/__data/assets/image/0019/346330/about_2000x800.jpg" alt="Building">
+
+
+
+
+        <h2>Inline media natural flow </h2>
+
+        <p><strong>Demonstrates natural flow of inline media (images, videos, maps) when placed right behind each other, followed by enough content. If there is not enough content, breaks must be used to separate the section from each other.</strong></p>
+
+        <img class="inline" title="" src="//www.wgtn.ac.nz/__data/assets/image/0004/370948/ls_medium.jpg" alt="Victoria health researchers Professor Kevin Dew and Dr Kirsten Smiler">
+
+        <iframe class="inline" width="1280" height="720" src="https://www.youtube.com/embed/6nD-kAsV-rk?rel=0" frameborder="0" allowfullscreen=""></iframe>
+
+        <p>Dr Smiler is continuing this research—funded by a HRC Erihapeti Rehu-Murchie Postdoctoral Scholarship—in her role as a postdoctoral researcher in Victoria’s Health Services Research Centre.</p><p>“Support services for Māori Deaf and their whānau are often unaware that they exist at the intersection of languages and cultures, all of which have differing profiles, roles and status in New Zealand. My research has worked toward providing a better understanding of these complexities, and recommends that Māori and Deaf knowledge inform how services and professionals respond,” says Dr Smiler.</p><p>“This work is an acknowledgement of the importance of whānau, language, and culture on our overall health and wellbeing. I feel extremely privileged to have been able to do this work.”</p>
+
+
+
+
+        <h2>Inline media with not enough text content</h2>
+
+
+        <p><strong>Natural flow of media must be broken with usage of a 'break'.</strong></p>
+
+
+        <p>
+          <img src="//cms.wgtn.ac.nz/__data/assets/image/0003/307938/ird.jpg" alt="logo">
+
+          <img src="//cms.wgtn.ac.nz/__data/assets/image/0007/191149/msd-logo.gif">
+
+          Some pretty short paragraph
+        </p>
+
+        <!-- *MUST BE* used in the place to make the break -->
+        <hr class="break">
+
+        <p>
+
+          <img src="https://cdn.colorlib.com/wp/wp-content/uploads/sites/2/2014/02/Olympic-logo.png">
+
+          Another pretty short paragraph
+        </p>
+
+        <!-- *MUST BE* used in the place to make the break -->
+        <hr class="break">
+
+
+
+
+        <h2>Maps</h2>
+
+        <p><strong>Copy-paste Google Maps' code without wrapping it into any extra markup (this is done automatically on a page load). To make a video part of your content, add class 'inline' to the iframe.</strong></p>
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2997.8484954583428!2d174.76647281629434!3d-41.29040167927309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d38b02952575dbb%3A0xadf3ba89622116f0!2sVictoria+University+of+Wellington!5e0!3m2!1sen!2snz!4v1476656083281" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+
+        <p>In 1904, the first stage of what is today known as the Hunter Building was begun, and the building was opened in 1906 by the Governor of New Zealand, Lord Plunket.</p>
+
+        <iframe class="inline" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2997.8484954583428!2d174.76647281629434!3d-41.29040167927309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d38b02952575dbb%3A0xadf3ba89622116f0!2sVictoria+University+of+Wellington!5e0!3m2!1sen!2snz!4v1476656083281" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <p>
+        A pattern of growth was quickly established. Student numbers rose from 254 in 1905 to over 700 in 1923, with three additions made to the building over this period. A reputation for fine teaching and research also grew, thanks to the efforts of early academics such as Professors ‘Tommy’ Hunter, J.C. Beaglehole and George von Zedlitz.
+        </p>
+
+        <p>
+          In 1961, the University of New Zealand system was dissolved, and on 1 January 1962, Victoria College became Victoria University of Wellington.
+        </p>
+
+
+
+
+        <h2>Videos</h2>
+
+        <p><strong>Copy-paste YouTube's or Vimeo's code without wrapping it into any extra markup (this is done automatically on a page load). To make a video part of your content, add class 'inline' to the iframe.</strong></p>
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/MV3tNB6MP60" frameborder="0" allowfullscreen></iframe>
+
+        <iframe src="https://player.vimeo.com/video/148124447?byline=0&portrait=0" width="250" height="141" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <p>
+          Victoria University is characterised by the depth, consistency and effectiveness of our culture of domestic and international engagement. Our commitment to reciprocal, high-quality relationships springs from identifying and understanding the need for New Zealand to achieve sustainable development.
+        </p>
+
+
+        <iframe class="inline" src="https://player.vimeo.com/video/66287748?title=0&byline=0&portrait=0" width="250" height="141" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+        <p>
+          Victoria’s historic strength in public policy has been fully demonstrated by substantial contributions to major government projects, and entrepreneurship education is an emerging strength on which we intend to build. Victoria also gives high priority to engagement with Māori and Pacific communities.
+        </p>
+
+        <p>
+          Victoria has developed close ties with a wide range of businesses and government organisations, and several recent initiatives are aimed at improving the University’s engagement with industry.
+        </p>
+
+
+        <h2>Simple gallery (list of images with captions)</h2>
+        <section class="gallery">
+          <figure class="media"><img src="//cms.wgtn.ac.nz/__data/assets/image/0006/268260/tim-corballis.jpg" alt="Author image: Tim Corballis" title="Author image: Tim Corballis" />
+          <figcaption> 2015 Tim Corballis &copy; Robert Cross </figcaption>
+          </figure>
+          <figure class="media"><img alt="Image of Hinemoana Baker by Robert Cross" src="//cms.wgtn.ac.nz/__data/assets/image/0004/214474/hinemoana-baker.jpg" />
+              <figcaption> 2014 Hinemoana Baker &copy; Robert Cross </figcaption>
+          </figure>
+          <figure class="media"><img alt="Carl Shuker" src="//cms.wgtn.ac.nz/__data/assets/image/0009/229734/carl-shuker.jpg" />
+              <figcaption> 2013 Carl Shuker &copy; Robert Cross </figcaption>
+          </figure>
+          <figure class="media"><img alt="Image of Bernard Becket by Robert Cross" src="//cms.wgtn.ac.nz/__data/assets/image/0007/87127/bernard-beckett.jpg" />
+              <figcaption> 2012 Bernard Beckett &copy; Robert Cross </figcaption>
+          </figure>
+          <figure class="media"><img alt="Albert Belz" src="//cms.wgtn.ac.nz/__data/assets/image/0007/194596/albert-belz.jpg" />
+              <figcaption> 2011 Albert Belz &copy; Robert Cross </figcaption>
+          </figure>
+          <figure class="media"><img alt="Jenny Bornholdt" src="//cms.wgtn.ac.nz/__data/assets/image/0010/87229/jenny-bornholdt.jpg" />
+              <figcaption> 2010 Jenny Bornholdt &copy; Robert Cross </figcaption>
+          </figure>
+          <figure class="media"><img alt="paula-boock-thumb" src="//cms.wgtn.ac.nz/?a=22975" />
+              <figcaption> 2009 Paula Boock &copy; Robert Cross </figcaption>
+          </figure>
+          <figure class="media"><img alt="David Geary" src="//cms.wgtn.ac.nz/__data/assets/image/0016/22921/wir08-geary.jpg" />
+              <figcaption> 2008 David Geary &copy; Robert Cross </figcaption>
+          </figure>
+
+        </section>
+
+
+
+        <h2>Multiple custom sized images</h2>
+
+        <p><strong>To be used when sizing of one or more images must be respected (eg. partners' logos).</strong></p>
+
+        <p>The Chair in Public Finance is co-funded by Victoria University of Wellington in conjunction with support from the following sponsors:</p>
+
+        <!-- Default images container - holds default sizing -->
+        <div class="images">
+          <a href="#" title="go to website">
+            <img alt="logo" src="//cms.wgtn.ac.nz/__data/assets/image/0017/191150/PwC-logo.jpg">
+          </a>
+
+          <a href="#" title="go to website">
+            <img alt="logo" src="//cms.wgtn.ac.nz/__data/assets/image/0019/191152/NZ-treasury.jpg">
+          </a>
+
+          <a href="#" title="go to website">
+            <img alt="logo" src="//cms.wgtn.ac.nz/__data/assets/image/0015/309021/Productivity-Commission.jpg">
+          </a>
+        </div>
+
+
+
+        <h2>Two full-width images with captions</h2>
+
+        <figure class="media">
+
+          <img title="" src="//www.wgtn.ac.nz/__data/assets/image/0004/388003/varieties/ls_medium.jpg" alt="Victoria health researchers Professor Kevin Dew and Dr Kirsten Smiler">
+
+          <figcaption>
+            The CloudSpec team at the Raman Lab at Victoria's School of Chemical and Physical Sciences. (L-R) Professor Eric Le Ru, Matthias Meyer and Brendan Darby.
+          </figcaption>
+
+        </figure>
+
+        <figure class="media">
+
+          <img title="" src="//www.wgtn.ac.nz/news/2016/10/international-students-join-the-police/isa-students-web.jpg/ls_medium.jpg" alt="Victoria health researchers Professor Kevin Dew and Dr Kirsten Smiler">
+
+          <figcaption>
+            Victoria University International Student Ambassadors, Victoria International staff and Ethnic Liaison Officer Sergeant Philip Pithyou at the ISA initiative launch
+          </figcaption>
+
+        </figure>
+
+
+
+
+      </section>
+    </main>
+
+
+
+    <!-- Right 'widget' column -->
+  	<aside role="complementary">
+      <div class="block formatting" id="rightHandMenu">
+
+        <div class="quote-panel data-sidebar pullquote">
+          <figure class="quote full">
+            <blockquote>
+              <h3>At university, it's all over to you—you are helped a lot less, but if you look for help, it is always there.</h3>
+            </blockquote>
+            <figcaption>
+                <h4>Cameron</h4>
+            </figcaption>
+          </figure>
+        </div>
+
+      </div>
+  	</aside>
+
+  </div>
+
+</section>
+
+
+
+  <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
+
+      <!-- Default fallback for footer when not specified in the template. -->
+      <footer role="contentinfo">
+      
+        <!-- Links and contacts that can vary between sub-sites -->
+        <section class="footer-secondary two-columns">
+          <div class="centraliser">
+      
+            <!-- Sub-site's related or recommended links -->
+            <div class="block">
+      
+              <h2>Useful links</h2>
+              <nav role="navigation">
+                <ul role="menubar">
+                  <li>
+                    <a href="#" role="menuitem" title="Read Deadlines and dates for 2016">Deadlines and dates for 2016</a>
+                  </li>
+                  <li>
+                    <a href="#" role="menuitem" title="Read Organising events">Organising events</a>
+                  </li>
+                  <li>
+                    <a href="#" role="menuitem" title="Read PhD guidelines">PhD guidelines</a>
+                  </li>
+                  <li>
+                    <a href="#" role="menuitem" title="Read Contacts and directories">Contacts and directories</a>
+                  </li>
+                  <li>
+                    <a href="#" role="menuitem" title="Read Deadlines for last year">Deadlines for last year</a>
+                  </li>
+                </ul>
+              </nav>
+      
+            </div>
+      
+            <!-- Sub-site's related links -->
+            <div class="block contacts">
+      
+              <a href="#" title="See more contact information" class="link-more">Other contacts</a>
+              <h2>Useful contacts</h2>
+      
+              <address>
+      
+                <!-- Phone numbers -->
+                <ul class="phones">
+      
+                  <li>
+                    <a href="tel:+64 4 472 1000" title="Call to general enquiries">+64 4 472 1000</a>
+                    general enquiries
+                  </li>
+                  <li>
+                    <a href="tel:64221231210" title="Call to personal advisory">64221231210</a>
+                    personal advisory
+                  </li>
+                </ul>
+      
+                <!-- Mail addresses -->
+                <ul class="mails">
+                  <li>
+                    <a href="mailto:info@vbs.victoria.ac.nz" title="Send an email to info@vbs.victoria.ac.nz">info@vbs.victoria.ac.nz</a>
+                  </li>
+                </ul>
+              </address>
+      
+            </div>
+      
+          </div>
+        </section>
+      
+        <!-- Related links from global site -->
+        <section class="footer-secondary">
+          <div class="centraliser">
+            <div class="block">
+              <h2>Victoria University</h2>
+      
+              <nav role="navigation">
+                <ul role="menubar">
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Faculties</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Contacts and directories</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Campuses</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Study</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Students</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Students</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Staff</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Careers</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Alumni</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </section>
+      
+        <!-- Meta-links and contacts that are shared between sub-sites -->
+        <section class="footer-primary">
+          <div class="centraliser">
+      
+            <div class="block">
+      
+              <!-- Smaller version of logotype -->
+              <div class="logo">
+                <a href="/" title="Victoria University of Wellington homepage">
+                  <img class="logo"  src="../images/new/v2/logo-white-full.svg" alt="Victoria University of Wellington - Te Whare Wānanga o te Ūpoko o te Ika a Māui">
+                </a>
+              </div>
+      
+              <!-- Global contacts -->
+              <ul class="contacts">
+                <li>
+                  <a title="Call Victoria about general enquiries" href="tel:+6444721000">+64 4 472 1000</a>
+                </li>
+                <li>
+                  <a title="Write Victoria an email" href="mailto:info@wgtn.ac.nz">info@wgtn.ac.nz</a>
+                </li>
+                <li>
+                  Enrolments: <a title="Call Victoria regarding enrolments" href="tel:+64800842867">0800 VICTORIA</a>
+                </li>
+                <li>
+                  Emergency: <a title="Call in case of emergency" href="tel:+6444639999">+64 4 463 9999</a> or ext. 8888 (internal)
+                </li>
+              </ul>
+      
+            </div>
+      
+            <div class="block small">
+      
+              <nav role="navigation">
+                <ul role="menubar" class="minilinks">
+                  <li role="menuitem"><a title="See ..." href="https://www.wgtn.ac.nz/site-info">Site info</a></li>
+                  <li role="menuitem"><a title="See ..." href="https://www.wgtn.ac.nz/site-info/site-map">Site map</a></li>
+                  <li role="menuitem"><a title="See ..." href="https://www.wgtn.ac.nz/site-info/feedback">Feedback</a></li>
+                  <li role="menuitem"><a title="See ..." href="https://www.wgtn.ac.nz/site-info/glossary">Glossary</a></li>
+                </ul>
+              </nav>
+      
+              <small class="copyright">Copyright &copy; Victoria University of Wellington, New Zealand</small>
+      
+            </div>
+      
+          </div>
+        </section>
+      </footer>
+
+
+  <!-- jQuery -->
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+	<!-- toolkit scripts -->
+	<script src="../toolkit.js"></script>
+	<!-- /toolkit scripts -->
+
+  
+
+</body>
+</html>
