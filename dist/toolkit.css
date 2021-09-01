@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, August 20, 2021, 3:00 PM */
+/** Version: 0.10.13 | Wednesday, September 1, 2021, 2:46 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -1575,7 +1575,13 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   font-family: "National", "Helvetica Neue", "Segoe WP", "Helvetica", "Arial";
   font-weight: 600;
   color: #115737;
@@ -1583,27 +1589,27 @@ h6 {
   letter-spacing: -0.03em;
 }
 
-h1 {
+h1, .h1 {
   font-size: 2.70271rem;
 }
 
-h2 {
+h2, .h2 {
   font-size: 2.21533rem;
 }
 
-h3 {
+h3, .h3 {
   font-size: 1.81585rem;
 }
 
-h4 {
+h4, .h4 {
   font-size: 1.4884rem;
 }
 
-h5 {
+h5, .h5 {
   font-size: 1.22rem;
 }
 
-h6 {
+h6, .h6 {
   font-size: 1rem;
 }
 
@@ -1635,6 +1641,16 @@ ol {
 .flex {
   display: -webkit-box;
   display: flex;
+}
+
+.flex.space-between {
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+.flex.align-items-center {
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 .grid-flex,
@@ -19860,8 +19876,21 @@ footer .footer-secondary.dark .footer-num {
   text-align: right;
 }
 
+.subject-section h1, .subject-section h2, .subject-section h3, .subject-section h4, .subject-section h5 {
+  margin-bottom: 1.1rem;
+}
+
+.subject-section p {
+  margin-bottom: 1rem;
+}
+
+.subject-section p a {
+  color: #3E9C4F;
+  text-decoration: underline;
+}
+
 .subject-button {
-  padding: .75rem;
+  padding: .5rem .75rem;
   border: 1px solid transparent;
   font-family: "National";
   font-size: 1.25rem;
@@ -19983,6 +20012,21 @@ footer .footer-secondary.dark .footer-num {
   border-bottom: 1px solid #DDD;
 }
 
+.dropdown-title a {
+  color: #115737;
+}
+
+.dropdown-title .icon-caret-right-thin::before {
+  content: "+";
+  margin-right: 0;
+  line-height: 0;
+  vertical-align: unset;
+}
+
+.dropdown-title.active i::before {
+  content: "–";
+}
+
 .subject-banner {
   display: grid;
   grid-template-columns: 0.5fr .5fr 1.5fr;
@@ -20048,6 +20092,48 @@ footer .footer-secondary.dark .footer-num {
   }
 }
 
+@media (max-width: 900px) {
+  .subject-banner {
+    position: relative;
+  }
+  .subject-banner .banner-pattern {
+    display: none;
+    position: absolute;
+    z-index: 0;
+    width: 20%;
+    bottom: 0;
+    left: 0;
+  }
+  .subject-banner .banner-content {
+    grid-column: 1/3;
+    padding-left: 1rem;
+    z-index: 10;
+  }
+}
+
+@media (max-width: 42.99em) {
+  .subject-banner .banner-content {
+    grid-column: 1/4;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    z-index: 10;
+  }
+  .subject-banner .banner-image {
+    grid-column: 1/4;
+    grid-row: 1;
+    max-height: 150px;
+    -webkit-clip-path: none;
+            clip-path: none;
+  }
+  .subject-banner .banner-pattern {
+    grid-row: 1;
+    grid-column: 1;
+    position: relative;
+    width: 80%;
+    display: none;
+  }
+}
+
 .switcher {
   display: -webkit-box;
   display: flex;
@@ -20108,14 +20194,42 @@ footer .footer-secondary.dark .footer-num {
   grid-template-columns: [fullWidth-start] 1rem [left-start] 0.5fr [article-start right-start] 1.5fr [article-end left-end] 0.5fr [right-end] 1rem [fullWidth-end];
 }
 
+.subject-content > * {
+  grid-column: article;
+}
+
+@media (max-width: 60.99em) {
+  .subject-content > * {
+    grid-column: right;
+  }
+}
+
+@media (max-width: 900px) {
+  .subject-content > * {
+    grid-column: left/right;
+  }
+}
+
 .subject-section {
   grid-column: article;
   position: relative;
   padding: 2rem 0;
 }
 
+@media (max-width: 60.99em) {
+  .subject-section {
+    grid-column: right;
+  }
+}
+
+@media (max-width: 900px) {
+  .subject-section {
+    grid-column: left/right;
+  }
+}
+
 .full-width {
-  grid-template-columns: .5fr 1.5fr .5fr;
+  grid-template-columns: [fullWidth-start] 1rem [left-start] 0.5fr [article-start right-start] 1.5fr [article-end left-end] 0.5fr [right-end] 1rem [fullWidth-end];
   -webkit-box-pack: center;
           justify-content: center;
   grid-column: fullWidth;
@@ -20123,24 +20237,52 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .full-width > * {
-  grid-column: 2/3;
+  grid-column: article;
+}
+
+@media (max-width: 60.99em) {
+  .full-width > * {
+    grid-column: right;
+  }
+}
+
+@media (max-width: 900px) {
+  .full-width > * {
+    grid-column: left/right;
+  }
 }
 
 @supports (grid-template-columns: subgrid) {
   .full-width {
     grid-template-columns: subgrid;
-    padding: 0;
+    grid-column: fullWidth;
+  }
+  .full-width > * {
+    grid-column: article;
+  }
+  @media (max-width: 60.99em) {
+    .full-width > * {
+      grid-column: right;
+    }
+  }
+  @media (max-width: 900px) {
+    .full-width > * {
+      grid-column: left/right;
+    }
   }
   .fullWidth-center {
     grid-column: article;
   }
   .fullWidth-right {
     grid-column: right;
-    text-align: right;
   }
   .fullWidth-left {
     grid-column: left;
   }
+}
+
+.subject-content .fixed-spy {
+  grid-column: unset;
 }
 
 .fixed-spy {
@@ -20153,6 +20295,17 @@ footer .footer-secondary.dark .footer-num {
 .fixed-spy.sticky {
   position: fixed;
   top: 2rem;
+}
+
+@media (max-width: 900px) {
+  .fixed-spy {
+    position: relative !important;
+    width: 100%;
+    margin-left: 0;
+  }
+  .subject-content .fixed-spy {
+    grid-column: left/right;
+  }
 }
 
 .qual-section-title {
@@ -20169,6 +20322,7 @@ footer .footer-secondary.dark .footer-num {
   margin-left: 0.5rem;
   font-weight: 400;
   font-size: 1.6rem;
+  margin-bottom: 0;
 }
 
 .qual-section-title::after {
@@ -20193,12 +20347,22 @@ footer .footer-secondary.dark .footer-num {
           box-shadow: 0 1px 1px rgba(87, 87, 87, 0.15), 0 2px 2px rgba(87, 87, 87, 0.15), 0 4px 4px rgba(87, 87, 87, 0.15), 0 8px 8px rgba(87, 87, 87, 0.15);
 }
 
+.qualification .qual-content {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #DDD;
+}
+
 .qualification .major {
   margin: 1rem 0;
 }
 
 .qualification .qual-title {
   margin-bottom: 1rem;
+}
+
+.qualification .qual-title h2 {
+  margin-bottom: 0;
 }
 
 .qualification .qual-row {
@@ -20261,6 +20425,373 @@ footer .footer-secondary.dark .footer-num {
           transform: skewX(-15deg);
   -webkit-transform-origin: 100%;
           transform-origin: 100%;
+}
+
+.course-plan .timetable .year-row {
+  display: -webkit-box;
+  display: flex;
+  margin: 1rem 0;
+  padding: 1rem;
+  padding-right: 0;
+  border: 1px solid #DDD;
+}
+
+.course-plan .timetable .year-row .year {
+  -webkit-box-flex: 0;
+          flex: 0 0 12%;
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.course-plan .timetable .year-row .year h4 {
+  font-family: "Helvetica Neue", "Segoe WP", "Helvetica", "Arial";
+  font-size: 1.25rem;
+  color: #3E9C4F;
+}
+
+.course-plan .timetable .year-row .year::after {
+  width: 2px;
+  background-color: #DDD;
+  height: 80%;
+  right: 0;
+  content: "";
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%) skew(4deg);
+          transform: translateY(-50%) skew(4deg);
+}
+
+.course-plan .timetable .trimesters {
+  -webkit-box-flex: 1;
+          flex: 1 1 auto;
+  padding-left: 1rem;
+}
+
+.course-plan .timetable .trimesters .toggle-slide.active i::before {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.course-plan .timetable .trimesters .trimester > h4,
+.course-plan .timetable .trimesters .trimester > h5 {
+  margin-bottom: 0;
+}
+
+.course-plan .timetable .trimesters .trimester:first-child > h4,
+.course-plan .timetable .trimesters .trimester:first-child > h5 {
+  margin-bottom: .75rem;
+  padding-bottom: .75rem;
+}
+
+.course-plan .timetable .trimesters .trimester:first-child > h4:not(.active),
+.course-plan .timetable .trimesters .trimester:first-child > h5:not(.active) {
+  border-bottom: 1px solid #DDD;
+}
+
+.course-plan .timetable .trimesters .trimester > h4,
+.course-plan .timetable .trimesters .trimester > h5 {
+  font-family: "Helvetica Neue", "Segoe WP", "Helvetica", "Arial";
+  font-size: 1.1rem;
+  font-weight: medium;
+}
+
+.course-plan .timetable .trimesters .trimester > h4.active,
+.course-plan .timetable .trimesters .trimester > h5.active {
+  margin-bottom: .75rem;
+  padding-bottom: 0;
+}
+
+.course-plan .timetable .trimesters .trimester > h4 a,
+.course-plan .timetable .trimesters .trimester > h5 a {
+  color: #424242;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+.course-plan .timetable .trimesters .trimester > h4 a i,
+.course-plan .timetable .trimesters .trimester > h5 a i {
+  color: #3E9C4F;
+}
+
+.course-plan .timetable .trimesters .toggle-block {
+  display: none;
+}
+
+.course-plan .timetable .trimesters .courses {
+  margin-bottom: 1rem;
+  background-color: #F9F9F9;
+}
+
+.course-plan .timetable .trimesters .course {
+  width: 25%;
+  border-top: 6px solid #115737;
+  padding: 0.1rem 0.5rem 0.5rem 0.5rem;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+}
+
+.course-plan .timetable .trimesters .course.elective {
+  border-top-color: #3E9C4F;
+}
+
+.course-plan .timetable .trimesters .course .type {
+  margin-top: 0.2rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.course-plan .timetable .trimesters .course .title.h5 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.course-plan .timetable .trimesters .course .points {
+  font-size: 0.8rem;
+  color: #707070;
+}
+
+.course-plan .timetable .trimesters .course .code {
+  color: #3E9C4F;
+  text-decoration: underline;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+}
+
+.course-plan .timetable .trimesters .course .code:hover, .course-plan .timetable .trimesters .course .code:active, .course-plan .timetable .trimesters .course .code:focus {
+  text-decoration: none;
+}
+
+.course-plan .timetable .trimesters .course .course-foot {
+  margin-top: auto;
+}
+
+@media (max-width: 42.99em) {
+  .course-plan .timetable .year-row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+  .course-plan .timetable .year-row .year {
+    margin-bottom: 1rem;
+  }
+  .course-plan .timetable .year-row .year::after {
+    content: none;
+  }
+  .course-plan .timetable .trimesters {
+    padding-left: 0;
+  }
+}
+
+.s-highlight {
+  position: relative;
+  padding: 2rem 1rem;
+  border: 1px solid #CCC;
+}
+
+.s-highlight::before, .s-highlight::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 35px;
+  background-color: #115737;
+}
+
+.s-highlight::after {
+  bottom: -1px;
+  right: -1px;
+  background-color: #DDD;
+  -webkit-clip-path: polygon(0% 100%, 100% 100%, 100% 0px);
+          clip-path: polygon(0% 100%, 100% 100%, 100% 0px);
+}
+
+.s-highlight::before {
+  top: -1px;
+  left: -1px;
+  -webkit-clip-path: polygon(0px 0px, 100% 0px, 0% 100%);
+          clip-path: polygon(0px 0px, 100% 0px, 0% 100%);
+}
+
+.s-highlight p {
+  color: #115737;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.s-quote {
+  padding: 1.5rem;
+  border: 1px solid #CCC;
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-column-gap: 1rem;
+     -moz-column-gap: 1rem;
+          column-gap: 1rem;
+}
+
+.s-quote .quote-image img {
+  border-radius: 50%;
+}
+
+.s-quote .quote-meta {
+  max-width: 200px;
+}
+
+.s-quote .quote-title {
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.s-quote .quote-name {
+  color: #3E9C4F;
+  margin-bottom: 0.25rem;
+}
+
+.s-quote::before {
+  content: "";
+  right: -1px;
+  top: -1px;
+  border-top: 40px solid #ccc;
+  position: absolute;
+  border-left: 40px solid transparent;
+}
+
+.s-quote::after {
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  content: "";
+  border-top: 40px solid #fff;
+  border-left: 40px solid transparent;
+}
+
+.s-video {
+  margin: 2.5rem 0;
+  position: relative;
+}
+
+.s-video img {
+  width: 100%;
+}
+
+.s-video .video-text {
+  position: absolute;
+  left: 0;
+  bottom: 2rem;
+  background-color: #3E9C4F;
+  opacity: 0.9;
+  display: -webkit-box;
+  display: flex;
+  padding: 1rem 4rem 1rem 2rem;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-column-gap: 1.5rem;
+     -moz-column-gap: 1.5rem;
+          column-gap: 1.5rem;
+  -webkit-clip-path: polygon(0px 0px, 90% 0px, 100% 100%, 0% 100%);
+          clip-path: polygon(0px 0px, 90% 0px, 100% 100%, 0% 100%);
+}
+
+.s-video .video-text h4 {
+  color: #FFF;
+  margin-bottom: 0;
+}
+
+.s-promo.two-third {
+  display: -webkit-box;
+  display: flex;
+  -webkit-column-gap: 2rem;
+     -moz-column-gap: 2rem;
+          column-gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.s-promo.two-third .promo-content {
+  width: 63%;
+}
+
+.s-promo.two-third .promo-image {
+  position: relative;
+  width: 37%;
+}
+
+.s-promo.two-third .promo-image::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%) skew(-10deg);
+          transform: translateY(-50%) skew(-10deg);
+  width: 2px;
+  background-color: #DDD;
+  height: 105%;
+  left: 0;
+}
+
+.s-promo.two-third .promo-image::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  background-color: #3E9C4F;
+  opacity: 0.9;
+  height: 50%;
+  right: -10px;
+  bottom: -10px;
+  -webkit-clip-path: polygon(52px 0px, 100% 0px, 100% 100%, 0% 100%);
+          clip-path: polygon(52px 0px, 100% 0px, 100% 100%, 0% 100%);
+}
+
+.s-promo.two-third .promo-image img {
+  -webkit-clip-path: polygon(40px 0px, 100% 0px, 100% 100%, 0% 100%);
+          clip-path: polygon(40px 0px, 100% 0px, 100% 100%, 0% 100%);
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
+}
+
+.s-promo.single {
+  padding: 2rem;
+  height: 100%;
+  position: relative;
+}
+
+.s-promo.single.grey {
+  background-color: #F9F9F9;
+}
+
+.s-promo.single.light-green-top-left::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  background-color: #3E9C4F;
+  height: 100px;
+  left: 0;
+  top: 0;
+  -webkit-clip-path: polygon(0px 0px, 100% 0px, 0% 100%, 0% 100%);
+          clip-path: polygon(0px 0px, 100% 0px, 0% 100%, 0% 100%);
+}
+
+.s-promo.single.green-bottom-right::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  background-color: #115737;
+  height: 100px;
+  right: 0;
+  bottom: 0;
+  -webkit-clip-path: polygon(25px 0px, 100% 0px, 100% 100%, 0% 100%);
+          clip-path: polygon(25px 0px, 100% 0px, 100% 100%, 0% 100%);
 }
 
 /*= COMPONENTS - MOLECULES ========================*/

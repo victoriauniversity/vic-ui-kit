@@ -1056,6 +1056,13 @@ if(document.getElementsByClassName( 'toggle' ).length > 0) {
     $(this).next('.toggle-block').toggleClass('active');
   });
 }
+/* USing on subject page proto */
+if(document.getElementsByClassName( 'toggle-slide' ).length > 0) {
+  $('.toggle-slide').on('click', function () {
+    $(this).toggleClass('active');
+    $(this).next('.toggle-block').toggleClass('active').slideToggle();
+  });
+}
 
 
 /**

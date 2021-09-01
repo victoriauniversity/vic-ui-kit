@@ -1,5 +1,19 @@
+.subject-section {
+  h1,h2,h3,h4,h5 {
+    margin-bottom: 1.1rem;
+  }
+  p {
+    margin-bottom: 1rem;
+
+    a {
+      color: $green-brand-bright;
+      text-decoration: underline;
+    }
+  }
+}
+
 .subject-button {
-  padding: .75rem;
+  padding: .5rem .75rem;
   border: 1px solid transparent;
   font-family: $font-name-brand;
   font-size: 1.25rem;
@@ -120,6 +134,29 @@
         &:not(:last-child) {
           border-bottom: 1px solid $grey-alto;
         }
+      }
+    }
+  }
+}
+
+.dropdown-title {
+  a {
+    color: $green-brand;
+  }
+
+  .icon-caret-right-thin {
+    &::before {
+      content: "+";
+      margin-right: 0;
+      line-height: 0;
+      vertical-align: unset;
+    }
+  }
+
+  &.active {
+    i {
+      &::before {
+        content: "–";
       }
     }
   }

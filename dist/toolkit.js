@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, August 20, 2021, 3:00 PM */
+/** Version: 0.10.13 | Wednesday, September 1, 2021, 2:46 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -16023,6 +16023,15 @@ if (document.getElementsByClassName('toggle').length > 0) {
   external_jQuery_default()('.toggle').on('click', function () {
     external_jQuery_default()(this).toggleClass('active');
     external_jQuery_default()(this).next('.toggle-block').toggleClass('active');
+  });
+}
+/* USing on subject page proto */
+
+
+if (document.getElementsByClassName('toggle-slide').length > 0) {
+  external_jQuery_default()('.toggle-slide').on('click', function () {
+    external_jQuery_default()(this).toggleClass('active');
+    external_jQuery_default()(this).next('.toggle-block').toggleClass('active').slideToggle();
   });
 }
 /**
