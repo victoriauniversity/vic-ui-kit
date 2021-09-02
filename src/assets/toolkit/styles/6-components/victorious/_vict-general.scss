@@ -7,7 +7,27 @@ $proxima: proxima-nova, sans-serif !important;
   src: url("fonts/victorious/FeijoaBold.otf") format("opentype");
 }
 
+@font-face {
+  font-family: 'Quilty';
+  src: url("fonts/victorious/quilty/Quilty-Bold.woff2") format('woff2'),
+      url("fonts/victorious/quilty/Quilty-Bold.woff") format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Quilty';
+  src: url("fonts/victorious/quilty/Quilty-Regular.woff2") format('woff2'),
+      url("fonts/victorious/quilty/Quilty-Regular.woff") format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 $feijoa: Feijoa, pt-serif, serif !important;
+$quilty: Quilty, serif !important;
+
 .theme-victorious {
 
   h1,
@@ -16,7 +36,7 @@ $feijoa: Feijoa, pt-serif, serif !important;
   h4,
   h5 {
     color: $black-victorious;
-    font-family: $ptserif;
+    font-family: $quilty;
     letter-spacing: 1px;
     line-height: 1.2;
   }
@@ -26,15 +46,15 @@ $feijoa: Feijoa, pt-serif, serif !important;
   .vict-banner h3,
   .vict-banner h4,
   .vict-banner h5 {
-    font-family: $feijoa;
+    font-family: $quilty;
   }
 
   p,
   span {
     // font-family: pt-serif, serif;
-    font-family: $ptserif;
-    font-weight: 400;
-    font-size: 1.2rem;
+    font-family: $quilty;
+    font-weight: normal;
+    font-size: 1.1rem;
     line-height: 1.5;
   }
 
