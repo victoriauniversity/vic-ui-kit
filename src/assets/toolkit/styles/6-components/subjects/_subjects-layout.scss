@@ -133,14 +133,23 @@
 }
 
 .subject-content .fixed-spy {
-  grid-column: unset;
+  // grid-column: unset;
 }
 
 .fixed-spy {
-  width: 17%;
-  margin-left: 1rem;
-  position: absolute;
+  // width: 17%;
+  // margin-left: 1rem;
+  padding-right: 1.5rem;
+  position: sticky;
+  top: 0;
   z-index: 100;
+
+  grid-column: 2/3;
+
+  .spy-inner-wrap {
+    position: sticky;
+    top: 7rem;
+  }
 
   &.sticky {
     position: fixed;

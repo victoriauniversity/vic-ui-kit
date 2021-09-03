@@ -52,20 +52,24 @@ footer:
 <div class="subject-content">
 
   <div class="fixed-spy">
-    <div id="fixedMenu" class="fixed-cta">
-      <ul id="fixedMenuList">
-        <li><a href=""><span>Apply now</span> <i class="icon-caret-right-thin"></i></a></li>
-        <li><a href=""><span>Contact us</span> <i class="icon-caret-right-thin"></i></a></li>
-        <li><a href=""><span>Stay updated</span> <i class="icon-caret-right-thin"></i></a></li>
-      </ul>
+
+    <div class="spy-inner-wrap">
+      <div id="fixedMenu" class="fixed-cta">
+        <ul id="fixedMenuList">
+          <li><a href=""><span>Apply now</span> <i class="icon-caret-right-thin"></i></a></li>
+          <li><a href=""><span>Contact us</span> <i class="icon-caret-right-thin"></i></a></li>
+          <li><a href=""><span>Stay updated</span> <i class="icon-caret-right-thin"></i></a></li>
+        </ul>
+      </div>
+
+      <nav role="navigation" class="spy-wrap">
+        <h5>On this page:</h4>
+        <ul id="spyList" class="scrollspy">
+
+        </ul>
+      </nav>
     </div>
 
-    <nav role="navigation" class="spy-wrap">
-      <h5>On this page:</h4>
-      <ul id="spyList" class="scrollspy">
-
-      </ul>
-    </nav>
   </div>
 
 
@@ -236,27 +240,27 @@ footer:
         });
 
         //set spy class when scrolled into view
-        window.onscroll = function () {
-          let isScrolled = false
-          const scrollPoint = document.querySelector('.subject-content').offsetTop
-          const content = document.querySelector('.subject-content')
-          const spy = document.querySelector('.fixed-spy');
+        // window.onscroll = function () {
+        //   let isScrolled = false
+        //   const scrollPoint = document.querySelector('.subject-content').offsetTop
+        //   const content = document.querySelector('.subject-content')
+        //   const spy = document.querySelector('.fixed-spy');
 
-          function onScroll () {
-            if ( window.pageYOffset > scrollPoint && !isScrolled ) {
-              content.classList.add("scroll");
-              spy.classList.add("sticky");
-              isScrolled = true
-            } else if (window.pageYOffset <= scrollPoint && isScrolled) {
-              content.classList.remove("scroll");
-              spy.classList.remove("sticky");
-              isScrolled = false
-            }
-          }
+        //   function onScroll () {
+        //     if ( window.pageYOffset > scrollPoint && !isScrolled ) {
+        //       content.classList.add("scroll");
+        //       spy.classList.add("sticky");
+        //       isScrolled = true
+        //     } else if (window.pageYOffset <= scrollPoint && isScrolled) {
+        //       content.classList.remove("scroll");
+        //       spy.classList.remove("sticky");
+        //       isScrolled = false
+        //     }
+        //   }
 
-          onScroll()  // Makes sure that the class is attached on the first render
-          return onScroll
-        }()
+        //   onScroll()  // Makes sure that the class is attached on the first render
+        //   return onScroll
+        // }()
 
     });
 
