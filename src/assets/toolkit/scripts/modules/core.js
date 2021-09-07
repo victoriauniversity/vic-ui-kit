@@ -14,6 +14,79 @@ const envConfig = require( '../env.conf.json' );
  */
 
 
+/* Hide levy info on courses page */
+ function waitForElm(selector) {
+  return new Promise(resolve => {
+      if (document.querySelector(selector)) {
+          return resolve(document.querySelector(selector));
+      }
+
+      const observer = new MutationObserver(mutations => {
+          if (document.querySelector(selector)) {
+              resolve(document.querySelector(selector));
+              observer.disconnect();
+          }
+      });
+
+      observer.observe(document.body, {
+          childList: true,
+          subtree: true
+      });
+  });
+}
+
+let searchParams = new URLSearchParams(window.location.search)
+
+function hideCourseLevies() {
+  if (searchParams.has('leviesTest')) {
+
+  console.log('hide levies');
+  console.log( searchParams.has('leviesTest')  );
+  // $('.fees-est').hide();
+  let assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
+  let servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
+  let totalLevy = document.querySelector('.cost-items > div:nth-child(6)');
+  let feeLocation = document.querySelector('#fees-type') ;
+
+  console.log(feeLocation.value);
+
+  assLevy.style.display = 'none';
+  servLevy.style.display = 'none';
+  totalLevy.style.display = 'none';
+
+  $('.cost-items').before('<p style="margin-top: 1rem;" class="levy-text"></p>')
+
+  feeLocation.addEventListener("change", function() {
+    setLevyText();
+  });
+
+  function setLevyText() {
+    if (feeLocation.value == 'domestic') {
+      let levyText = `Domestic <a href="#">levy text</a>`;
+      $('.levy-text').html(levyText);
+    } else {
+      let levyText = `International <a href="#">levy text</a>`;
+      $('.levy-text').html(levyText);
+    }
+  }
+
+  setLevyText();
+
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  // Your code to run since DOM is loaded and ready
+
+  waitForElm('.course-item-list').then( function() {
+    console.log('hide');
+    hideCourseLevies();
+  });
+
+});
+
+/* END Hide levy info on courses page */
+
 export function initToolbarUrlListeners() {
   UrlManager.onLoadWhenQueryExists( 'toolbar', () => {
     if ( window.toolkitToolbarLoader ) window.toolkitToolbarLoader( 'https://www.wgtn.ac.nz/api/toolbar/staff' );
