@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, September 7, 2021, 12:48 PM */
+/** Version: 0.10.13 | Tuesday, September 7, 2021, 1:40 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15066,6 +15066,15 @@ var searchParams = new URLSearchParams(window.location.search);
 
 function hideCourseLevies() {
   if (searchParams.has('leviesTest')) {
+    var removeLevies = function removeLevies() {
+      var assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
+      var servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
+      var totalLevy = document.querySelector('.cost-items > div:nth-child(6)');
+      assLevy ? assLevy.remove() : null;
+      servLevy ? servLevy.remove() : null;
+      totalLevy ? totalLevy.remove() : null;
+    };
+
     var setLevyText = function setLevyText() {
       if (feeLocation.value == 'domestic') {
         var levyText = "Domestic <a href=\"#\">levy text</a>";
@@ -15078,15 +15087,19 @@ function hideCourseLevies() {
 
     console.log('hide levies');
     console.log(searchParams.has('leviesTest')); // $('.fees-est').hide();
+    // let assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
+    // let servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
+    // let totalLevy = document.querySelector('.cost-items > div:nth-child(6)');
 
-    var assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
-    var servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
-    var totalLevy = document.querySelector('.cost-items > div:nth-child(6)');
     var feeLocation = document.querySelector('#fees-type');
     console.log(feeLocation.value);
-    assLevy.style.display = 'none';
-    servLevy.style.display = 'none';
-    totalLevy.style.display = 'none';
+    removeLevies();
+    document.querySelector('.fees-est').addEventListener("DOMNodeInserted", function (event) {
+      // console.log('content change', event.target);
+      if (document.querySelector('.fees-est .cost-items > div:nth-child(3)')) {
+        removeLevies();
+      }
+    }, false);
     $('.cost-items').before('<p style="margin-top: 1rem;" class="levy-text"></p>');
     feeLocation.addEventListener("change", function () {
       setLevyText();
