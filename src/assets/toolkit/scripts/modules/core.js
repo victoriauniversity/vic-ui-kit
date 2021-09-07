@@ -47,9 +47,18 @@ function hideCourseLevies() {
   // let assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
   // let servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
   // let totalLevy = document.querySelector('.cost-items > div:nth-child(6)');
-  let feeLocation = document.querySelector('#fees-type') ;
 
-  console.log(feeLocation.value);
+  $('.clear-cart-wrap').first().before('<p style="margin-top: .5rem; font-size: .95rem;" class="levy-text"></p>');
+
+  let feeLocation = document.querySelector('#fees-type') ;
+  function updateLocation() {
+    console.log(feeLocation.value);
+
+    feeLocation.addEventListener("change", function(e) {
+      setLevyText();
+    });
+  }
+
 
   function removeLevies() {
     let assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
@@ -65,20 +74,20 @@ function hideCourseLevies() {
 
 
   document.querySelector('.fees-est').addEventListener("DOMNodeInserted", function (event) {
+    feeLocation = document.querySelector('#fees-type') ;
     // console.log('content change', event.target);
     if( document.querySelector('.fees-est .cost-items > div:nth-child(3)') ) {
       removeLevies();
+      updateLocation();
     }
 
   }, false );
 
 
 
-  $('.clear-cart-wrap').first().before('<p style="margin-top: .5rem; font-size: .95rem;" class="levy-text"></p>');
 
-  feeLocation.addEventListener("change", function() {
-    setLevyText();
-  });
+
+  updateLocation();
 
   function setLevyText() {
     if (feeLocation.value == 'domestic') {
