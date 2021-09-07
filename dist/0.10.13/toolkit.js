@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, September 7, 2021, 2:08 PM */
+/** Version: 0.10.13 | Tuesday, September 7, 2021, 2:24 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15066,6 +15066,13 @@ var searchParams = new URLSearchParams(window.location.search);
 
 function hideCourseLevies() {
   if (searchParams.has('leviesTest')) {
+    var updateLocation = function updateLocation() {
+      console.log(feeLocation.value);
+      feeLocation.addEventListener("change", function (e) {
+        setLevyText();
+      });
+    };
+
     var removeLevies = function removeLevies() {
       var assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
       var servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
@@ -15091,19 +15098,18 @@ function hideCourseLevies() {
     // let servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
     // let totalLevy = document.querySelector('.cost-items > div:nth-child(6)');
 
+    $('.clear-cart-wrap').first().before('<p style="margin-top: .5rem; font-size: .95rem;" class="levy-text"></p>');
     var feeLocation = document.querySelector('#fees-type');
-    console.log(feeLocation.value);
     removeLevies();
     document.querySelector('.fees-est').addEventListener("DOMNodeInserted", function (event) {
-      // console.log('content change', event.target);
+      feeLocation = document.querySelector('#fees-type'); // console.log('content change', event.target);
+
       if (document.querySelector('.fees-est .cost-items > div:nth-child(3)')) {
         removeLevies();
+        updateLocation();
       }
     }, false);
-    $('.clear-cart-wrap').first().before('<p style="margin-top: .5rem; font-size: .95rem;" class="levy-text"></p>');
-    feeLocation.addEventListener("change", function () {
-      setLevyText();
-    });
+    updateLocation();
     setLevyText();
   }
 }
