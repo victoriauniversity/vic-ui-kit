@@ -38,21 +38,25 @@ const envConfig = require( '../env.conf.json' );
 let searchParams = new URLSearchParams(window.location.search)
 
 function hideCourseLevies() {
-  if (searchParams.has('leviesTest')) {
+  if ( window.location.pathname.includes('/courses/') ) {
 
-  console.log('hide levies');
-  console.log( searchParams.has('leviesTest')  );
+    // searchParams.has('leviesTest')
+    // console.log('is courses', window.location.pathname.includes('/courses/'));
+
+
+  // console.log('hide levies');
+  // console.log( searchParams.has('leviesTest')  );
   // $('.fees-est').hide();
 
   // let assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
   // let servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
   // let totalLevy = document.querySelector('.cost-items > div:nth-child(6)');
 
-  $('.clear-cart-wrap').first().before('<p style="margin-top: .5rem; font-size: .95rem;" class="levy-text"></p>');
+  $('.clear-cart-wrap').first().before('<p style="margin-top: .5rem; font-size: .9rem;" class="levy-text"></p>');
 
   let feeLocation = document.querySelector('#fees-type') ;
   function updateLocation() {
-    console.log(feeLocation.value);
+    // console.log(feeLocation.value);
 
     feeLocation.addEventListener("change", function(e) {
       setLevyText();
@@ -83,18 +87,14 @@ function hideCourseLevies() {
 
   }, false );
 
-
-
-
-
   updateLocation();
 
   function setLevyText() {
     if (feeLocation.value == 'domestic') {
-      let levyText = `Domestic <a href="#">levy text</a>`;
+      let levyText = `You will also pay an annual <a href="https://www.wgtn.ac.nz/students/money/fees/student-services-levy-faqs">Student Services Levy</a>.`;
       $('.levy-text').html(levyText);
     } else {
-      let levyText = `International <a href="#">levy text</a>`;
+      let levyText = `You will also pay an annual <a href="https://www.wgtn.ac.nz/students/money/fees/student-services-levy-faqs">Student Services Levy</a>.`;
       $('.levy-text').html(levyText);
     }
   }
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Your code to run since DOM is loaded and ready
 
   waitForElm('.course-item-list').then( function() {
-    console.log('hide');
+    // console.log('hide');
     hideCourseLevies();
   });
 
