@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, August 17, 2021, 9:09 AM */
+/** Version: 0.10.13 | Tuesday, September 7, 2021, 12:48 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15040,6 +15040,69 @@ var envConfig = __webpack_require__(18);
  * alternative to the beefy `toolkit.js`.
  */
 
+/* Hide levy info on courses page */
+
+
+function waitForElm(selector) {
+  return new Promise(function (resolve) {
+    if (document.querySelector(selector)) {
+      return resolve(document.querySelector(selector));
+    }
+
+    var observer = new MutationObserver(function (mutations) {
+      if (document.querySelector(selector)) {
+        resolve(document.querySelector(selector));
+        observer.disconnect();
+      }
+    });
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  });
+}
+
+var searchParams = new URLSearchParams(window.location.search);
+
+function hideCourseLevies() {
+  if (searchParams.has('leviesTest')) {
+    var setLevyText = function setLevyText() {
+      if (feeLocation.value == 'domestic') {
+        var levyText = "Domestic <a href=\"#\">levy text</a>";
+        $('.levy-text').html(levyText);
+      } else {
+        var _levyText = "International <a href=\"#\">levy text</a>";
+        $('.levy-text').html(_levyText);
+      }
+    };
+
+    console.log('hide levies');
+    console.log(searchParams.has('leviesTest')); // $('.fees-est').hide();
+
+    var assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
+    var servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
+    var totalLevy = document.querySelector('.cost-items > div:nth-child(6)');
+    var feeLocation = document.querySelector('#fees-type');
+    console.log(feeLocation.value);
+    assLevy.style.display = 'none';
+    servLevy.style.display = 'none';
+    totalLevy.style.display = 'none';
+    $('.cost-items').before('<p style="margin-top: 1rem;" class="levy-text"></p>');
+    feeLocation.addEventListener("change", function () {
+      setLevyText();
+    });
+    setLevyText();
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function (event) {
+  // Your code to run since DOM is loaded and ready
+  waitForElm('.course-item-list').then(function () {
+    console.log('hide');
+    hideCourseLevies();
+  });
+});
+/* END Hide levy info on courses page */
 
 function initToolbarUrlListeners() {
   urls.onLoadWhenQueryExists('toolbar', function () {
@@ -16023,6 +16086,15 @@ if (document.getElementsByClassName('toggle').length > 0) {
   external_jQuery_default()('.toggle').on('click', function () {
     external_jQuery_default()(this).toggleClass('active');
     external_jQuery_default()(this).next('.toggle-block').toggleClass('active');
+  });
+}
+/* USing on subject page proto */
+
+
+if (document.getElementsByClassName('toggle-slide').length > 0) {
+  external_jQuery_default()('.toggle-slide').on('click', function () {
+    external_jQuery_default()(this).toggleClass('active');
+    external_jQuery_default()(this).next('.toggle-block').toggleClass('active').slideToggle();
   });
 }
 /**

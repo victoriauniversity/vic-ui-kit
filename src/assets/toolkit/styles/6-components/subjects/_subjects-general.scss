@@ -1,5 +1,19 @@
+.subject-section {
+  h1,h2,h3,h4,h5 {
+    margin-bottom: 1.1rem;
+  }
+  p {
+    margin-bottom: 1rem;
+
+    a {
+      color: $green-brand-bright;
+      text-decoration: underline;
+    }
+  }
+}
+
 .subject-button {
-  padding: .75rem;
+  padding: .5rem .75rem;
   border: 1px solid transparent;
   font-family: $font-name-brand;
   font-size: 1.25rem;
@@ -30,5 +44,120 @@
   &.light {
     border: 1px solid $grey-silver;
     color: $green-brand;
+  }
+}
+
+.grey-bg {
+  background-color: $grey-gallery;
+}
+
+.pill {
+  margin: 1rem 0;
+  padding: .4rem 1rem;
+  background-color: #338982;
+  color: $white;
+  border-radius: 20px;
+}
+
+
+.fixed-spy {
+
+  .fixed-cta {
+
+    li {
+      background-color: $green-brand;
+      margin-bottom: 4px;
+      box-shadow: 0 1px 1px rgba(87, 87, 87, 0.15), 0 2px 2px rgba(87, 87, 87, 0.15);
+
+      a {
+        color: $white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+
+        > span, i {
+          padding: .5rem 1rem;
+        }
+
+        i {
+          height: 100%;
+          width: 2rem;
+          background-color: $white;
+          display: block;
+          color: $green-brand;
+          position: relative;
+
+          &::before {
+            margin: 0;
+            // position: absolute;
+            margin-left: -5px;
+          }
+        }
+      }
+    }
+
+  }
+
+  .spy-wrap {
+    margin-top: 2rem;
+
+    .scrollspy {
+      margin-top: .5rem;
+      background-color: $white;
+      box-shadow: 0 1px 1px rgba(87, 87, 87, 0.15), 0 2px 2px rgba(87, 87, 87, 0.15),
+      0 4px 4px rgba(87, 87, 87, 0.15), 0 8px 8px rgba(87, 87, 87, 0.15);
+
+      li {
+        padding: .5rem 1rem;
+
+        a {
+          color: $green-brand;
+          font-weight: 500;
+        }
+
+        &.active {
+          background-color: $green-brand-bright;
+          clip-path: polygon(0px 0px, 80% 0px, 100% 100%, 0% 100%);
+
+          a {
+            color: $white;
+          }
+        }
+
+        @include hoverify {
+          a {
+            text-decoration: underline;
+          }
+        }
+
+        &:not(:last-child) {
+          border-bottom: 1px solid $grey-alto;
+        }
+      }
+    }
+  }
+}
+
+.dropdown-title {
+  a {
+    color: $green-brand;
+  }
+
+  .icon-caret-right-thin {
+    &::before {
+      content: "+";
+      margin-right: 0;
+      line-height: 0;
+      vertical-align: unset;
+    }
+  }
+
+  &.active {
+    i {
+      &::before {
+        content: "–";
+      }
+    }
   }
 }
