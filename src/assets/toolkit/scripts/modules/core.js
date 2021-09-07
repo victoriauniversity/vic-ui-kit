@@ -54,7 +54,7 @@ function hideCourseLevies() {
   function removeLevies() {
     let assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
     let servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
-    let totalLevy = document.querySelector('.cost-items > div:nth-child(6)');
+    let totalLevy = document.querySelector('.cost-items > div:last-child');
 
     assLevy ? assLevy.remove() : null;
     servLevy ? servLevy.remove(): null ;
@@ -74,7 +74,7 @@ function hideCourseLevies() {
 
 
 
-  $('.cost-items').before('<p style="margin-top: 1rem;" class="levy-text"></p>')
+  $('.clear-cart-wrap').first().before('<p style="margin-top: .5rem; font-size: .95rem;" class="levy-text"></p>');
 
   feeLocation.addEventListener("change", function() {
     setLevyText();
