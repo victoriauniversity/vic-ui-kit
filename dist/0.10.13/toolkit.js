@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, September 7, 2021, 2:24 PM */
+/** Version: 0.10.13 | Wednesday, September 8, 2021, 11:02 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15065,9 +15065,9 @@ function waitForElm(selector) {
 var searchParams = new URLSearchParams(window.location.search);
 
 function hideCourseLevies() {
-  if (searchParams.has('leviesTest')) {
+  if (window.location.pathname.includes('/courses/')) {
     var updateLocation = function updateLocation() {
-      console.log(feeLocation.value);
+      // console.log(feeLocation.value);
       feeLocation.addEventListener("change", function (e) {
         setLevyText();
       });
@@ -15084,21 +15084,23 @@ function hideCourseLevies() {
 
     var setLevyText = function setLevyText() {
       if (feeLocation.value == 'domestic') {
-        var levyText = "Domestic <a href=\"#\">levy text</a>";
+        var levyText = "You will also pay an annual <a href=\"https://www.wgtn.ac.nz/students/money/fees/student-services-levy-faqs\">Student Services Levy</a>.";
         $('.levy-text').html(levyText);
       } else {
-        var _levyText = "International <a href=\"#\">levy text</a>";
+        var _levyText = "You will also pay an annual <a href=\"https://www.wgtn.ac.nz/students/money/fees/student-services-levy-faqs\">Student Services Levy</a>.";
         $('.levy-text').html(_levyText);
       }
     };
 
-    console.log('hide levies');
-    console.log(searchParams.has('leviesTest')); // $('.fees-est').hide();
+    // searchParams.has('leviesTest')
+    // console.log('is courses', window.location.pathname.includes('/courses/'));
+    // console.log('hide levies');
+    // console.log( searchParams.has('leviesTest')  );
+    // $('.fees-est').hide();
     // let assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
     // let servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
     // let totalLevy = document.querySelector('.cost-items > div:nth-child(6)');
-
-    $('.clear-cart-wrap').first().before('<p style="margin-top: .5rem; font-size: .95rem;" class="levy-text"></p>');
+    $('.clear-cart-wrap').first().before('<p style="margin-top: .5rem; font-size: .9rem;" class="levy-text"></p>');
     var feeLocation = document.querySelector('#fees-type');
     removeLevies();
     document.querySelector('.fees-est').addEventListener("DOMNodeInserted", function (event) {
@@ -15117,7 +15119,7 @@ function hideCourseLevies() {
 document.addEventListener("DOMContentLoaded", function (event) {
   // Your code to run since DOM is loaded and ready
   waitForElm('.course-item-list').then(function () {
-    console.log('hide');
+    // console.log('hide');
     hideCourseLevies();
   });
 });
