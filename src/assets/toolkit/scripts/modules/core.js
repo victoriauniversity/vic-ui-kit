@@ -43,16 +43,36 @@ function hideCourseLevies() {
   console.log('hide levies');
   console.log( searchParams.has('leviesTest')  );
   // $('.fees-est').hide();
-  let assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
-  let servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
-  let totalLevy = document.querySelector('.cost-items > div:nth-child(6)');
+
+  // let assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
+  // let servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
+  // let totalLevy = document.querySelector('.cost-items > div:nth-child(6)');
   let feeLocation = document.querySelector('#fees-type') ;
 
   console.log(feeLocation.value);
 
-  assLevy.style.display = 'none';
-  servLevy.style.display = 'none';
-  totalLevy.style.display = 'none';
+  function removeLevies() {
+    let assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
+    let servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
+    let totalLevy = document.querySelector('.cost-items > div:nth-child(6)');
+
+    assLevy ? assLevy.remove() : null;
+    servLevy ? servLevy.remove(): null ;
+    totalLevy ? totalLevy.remove(): null ;
+  }
+
+  removeLevies();
+
+
+  document.querySelector('.fees-est').addEventListener("DOMNodeInserted", function (event) {
+    // console.log('content change', event.target);
+    if( document.querySelector('.fees-est .cost-items > div:nth-child(3)') ) {
+      removeLevies();
+    }
+
+  }, false );
+
+
 
   $('.cost-items').before('<p style="margin-top: 1rem;" class="levy-text"></p>')
 
