@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, September 7, 2021, 1:40 PM */
+/** Version: 0.10.13 | Tuesday, September 7, 2021, 2:08 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15069,7 +15069,7 @@ function hideCourseLevies() {
     var removeLevies = function removeLevies() {
       var assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
       var servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
-      var totalLevy = document.querySelector('.cost-items > div:nth-child(6)');
+      var totalLevy = document.querySelector('.cost-items > div:last-child');
       assLevy ? assLevy.remove() : null;
       servLevy ? servLevy.remove() : null;
       totalLevy ? totalLevy.remove() : null;
@@ -15100,7 +15100,7 @@ function hideCourseLevies() {
         removeLevies();
       }
     }, false);
-    $('.cost-items').before('<p style="margin-top: 1rem;" class="levy-text"></p>');
+    $('.clear-cart-wrap').first().before('<p style="margin-top: .5rem; font-size: .95rem;" class="levy-text"></p>');
     feeLocation.addEventListener("change", function () {
       setLevyText();
     });
