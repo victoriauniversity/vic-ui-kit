@@ -1,5 +1,9 @@
 .subject-section {
-  h1,h2,h3,h4,h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     margin-bottom: 1.1rem;
   }
   p {
@@ -10,20 +14,64 @@
       text-decoration: underline;
     }
   }
+
+  .section-title {
+    margin-bottom: 2rem;
+
+    h2,
+    h3,
+    h4 {
+      padding-bottom: 1rem;
+      border-bottom: 1px solid $grey-silver;
+    }
+  }
+
+
+  ul {
+    margin-bottom: 1rem;
+
+    li {
+      a {
+        color: $green-brand-bright;
+        text-decoration: underline;
+
+        &::before {
+          position: relative;
+          display: inline-block;
+          content: "▪";
+          font-family: "VicIcons";
+          margin: 0 0.5em 0 0;
+          width: 1em;
+          text-align: center;
+          line-height: 1;
+          top: -2px;
+        }
+
+        @include hoverify() {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .ggrid {
+    margin: 0 0 2rem;
+    grid-gap: 1.5rem;
+  }
 }
 
 .subject-button {
-  padding: .5rem .75rem;
+  padding: 0.5rem 0.75rem;
   border: 1px solid transparent;
   font-family: $font-name-brand;
   font-size: 1.25rem;
   font-weight: 500;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 
   &::after {
     position: relative;
     display: inline-block;
-    content:"";
+    content: "";
     font-family: "VicIcons";
     margin: 0 0 0 0.5em;
     width: 1em;
@@ -36,7 +84,7 @@
   @include hoverify() {
     text-decoration: underline;
     &::after {
-      transition: .3s;
+      transition: 0.3s;
       left: 5px;
     }
   }
@@ -45,29 +93,32 @@
     border: 1px solid $grey-silver;
     color: $green-brand;
   }
+
+  &.light-green {
+    background-color: $green-brand-bright;
+    color: $white;
+  }
 }
 
 .grey-bg {
-  background-color: $grey-gallery;
+  background-color: $grey-light;
 }
 
 .pill {
   margin: 1rem 0;
-  padding: .4rem 1rem;
+  padding: 0.4rem 1rem;
   background-color: #338982;
   color: $white;
   border-radius: 20px;
 }
 
-
 .fixed-spy {
-
   .fixed-cta {
-
     li {
       background-color: $green-brand;
       margin-bottom: 4px;
-      box-shadow: 0 1px 1px rgba(87, 87, 87, 0.15), 0 2px 2px rgba(87, 87, 87, 0.15);
+      box-shadow: 0 1px 1px rgba(87, 87, 87, 0.15),
+        0 2px 2px rgba(87, 87, 87, 0.15);
 
       a {
         color: $white;
@@ -76,8 +127,9 @@
         align-items: center;
         position: relative;
 
-        > span, i {
-          padding: .5rem 1rem;
+        > span,
+        i {
+          padding: 0.5rem 1rem;
         }
 
         i {
@@ -96,20 +148,20 @@
         }
       }
     }
-
   }
 
   .spy-wrap {
     margin-top: 2rem;
 
     .scrollspy {
-      margin-top: .5rem;
+      margin-top: 0.5rem;
       background-color: $white;
-      box-shadow: 0 1px 1px rgba(87, 87, 87, 0.15), 0 2px 2px rgba(87, 87, 87, 0.15),
-      0 4px 4px rgba(87, 87, 87, 0.15), 0 8px 8px rgba(87, 87, 87, 0.15);
+      box-shadow: 0 1px 1px rgba(87, 87, 87, 0.15),
+        0 2px 2px rgba(87, 87, 87, 0.15), 0 4px 4px rgba(87, 87, 87, 0.15),
+        0 8px 8px rgba(87, 87, 87, 0.15);
 
       li {
-        padding: .5rem 1rem;
+        padding: 0.5rem 1rem;
 
         a {
           color: $green-brand;
