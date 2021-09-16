@@ -89,8 +89,8 @@ footer:
       <div class="qualification" >
         <!-- NOTE: Initial Value MUST be the international API Code!!! -->
         <div class="qual-content" id="aaa" data-initial-value="BSC" data-initial-fetch="true">
-          <span>Showing information for students who
-            previously studied in - Afghanistan</span>
+          <!-- <span>Showing information for students who
+            previously studied in - Afghanistan</span> -->
           <div>
             <div>
               <div>
@@ -431,9 +431,9 @@ footer:
             // list[i].id = list[i].id + '-' + i;
 
             var newNode = document.createElement('li');
-            newNode.innerHTML = '<a href="#'+ list[i].id + '-' + i +'">'+list[i].id + '</a>';
-            newNode.href = '#' + list[i].id + '-' + i;
-            list[i].id = list[i].id + '-' + i;
+            newNode.innerHTML = '<a href="#'+ list[i].id.replace(/ /g,'-') + '-' + i +'">'+list[i].id + '</a>';
+            newNode.href = '#' + list[i].id.replace(/ /g,'-') + '-' + i;
+            list[i].id = list[i].id.replace(/ /g,'-') + '-' + i;
 
             // newNode.classList.add ("list-group-item", "list-group-item-action");
             if (list[i].classList.contains("isChild")) {
@@ -449,8 +449,37 @@ footer:
         var spy = new Gumshoe('#spyList a', {
         	nested: true,
         	nestedClass: 'active-parent',
-        	reflow: true
+        	reflow: true,
+          offset: 80,
         });
+
+
+        // setTimeout(() => {
+        //   var scroll = new SmoothScroll('a[href*="#"]', {
+        //     offset: 50
+        //   });
+        // }, 1000);
+
+        document
+          .querySelectorAll('#spyList a[href^="#"]')
+          .forEach(link => {
+              link.onclick = function(e) {
+                  e.preventDefault();
+                  let hash = this.getAttribute('href');
+                  document.querySelector(hash).scrollIntoView({
+                    behavior: 'smooth',
+                  });
+              };
+          });
+
+
+        // If sticky add attribute
+        const observer = new IntersectionObserver(
+          ([e]) => e.target.toggleAttribute('stuck', e.intersectionRatio < 1),
+          {threshold: [1]}
+        );
+
+        observer.observe(document.querySelector('.switcher-wrap'));
 
 
 
