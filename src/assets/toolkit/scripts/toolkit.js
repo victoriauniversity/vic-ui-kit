@@ -1059,8 +1059,15 @@ if(document.getElementsByClassName( 'toggle' ).length > 0) {
 /* USing on subject page proto */
 if(document.getElementsByClassName( 'toggle-slide' ).length > 0) {
   $('.toggle-slide').on('click', function () {
+
     $(this).toggleClass('active');
-    $(this).next('.toggle-block').toggleClass('active').slideToggle();
+
+    if ( $(this).next('.toggle-block').hasClass( 'active' ) ) {
+      $(this).next('.toggle-block').slideUp().toggleClass('active');
+    } else {
+      $(this).next('.toggle-block').slideDown().toggleClass('active');
+
+    }
   });
 }
 
