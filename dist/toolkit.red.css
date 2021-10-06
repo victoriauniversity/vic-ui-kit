@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, September 16, 2021, 1:08 PM */
+/** Version: 0.10.13 | Wednesday, October 6, 2021, 1:48 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -13013,6 +13013,14 @@ footer .footer-secondary.dark .footer-row {
   gap: 2rem;
 }
 
+footer .footer-secondary.dark .footer-row.subjects {
+  gap: 4rem;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
 footer .footer-secondary.dark h2 {
   margin: .5rem 0 .2rem;
 }
@@ -18942,12 +18950,17 @@ footer .footer-secondary.dark .footer-num {
 .vict-banner h2,
 .vict-banner h3 {
   font-family: Quilty, serif !important;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   font-weight: 600;
+}
+
+.vict-banner .vict-banner-sub-heading {
+  font-size: 1.81585rem;
 }
 
 .vict-banner .vict-banner-title {
   font-size: 3.5rem;
+  margin-bottom: 1rem;
 }
 
 .vict-banner.full {
@@ -19058,14 +19071,20 @@ footer .footer-secondary.dark .footer-num {
   font-family: proxima-nova, sans-serif !important;
 }
 
-.vict-banner.split .banner-content .banner-titles h1 {
+.vict-banner.split .banner-content .banner-titles .vict-banner-title {
   margin-right: -14rem;
-  padding-bottom: 2rem;
+  padding-bottom: 1.5rem;
   min-height: 100%;
+  margin-bottom: 0;
 }
 
-.vict-banner.split .banner-content .banner-titles h3 {
+.vict-banner.split .banner-content .banner-titles .vict-banner-title + .vict-banner-sub-heading {
+  margin-bottom: 2.5rem;
+}
+
+.vict-banner.split .banner-content .banner-titles .vict-banner-sub-heading {
   margin-bottom: 1rem;
+  font-size: 1.81585rem;
 }
 
 .vict-banner.split .banner-content .banner-titles p {
@@ -20642,9 +20661,21 @@ footer .footer-secondary.dark .footer-num {
 
 .qualification .qual-title {
   margin-bottom: 1rem;
+  -webkit-box-align: baseline;
+          align-items: baseline;
 }
 
-.qualification .qual-title h2 {
+.qualification .qual-title .code {
+  font-size: 1.3rem;
+  color: #707070;
+}
+
+.qualification .qual-title .course-major {
+  margin-left: 1rem;
+  color: #424242;
+}
+
+.qualification .qual-title h2, .qualification .qual-title h3 {
   margin-bottom: 0;
 }
 
@@ -21011,6 +21042,10 @@ footer .footer-secondary.dark .footer-num {
           transform: rotate(90deg);
 }
 
+.subject-content .accordion-green-title {
+  margin-bottom: 1.5rem;
+}
+
 .subject-content .accordion-green-title > .toggle-slide {
   margin-bottom: 0;
   padding: 0.5rem 1rem;
@@ -21067,6 +21102,33 @@ footer .footer-secondary.dark .footer-num {
   color: #115737;
   font-weight: 600;
   font-size: 1.1rem;
+}
+
+.s-highlight.image {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.s-highlight.image img {
+  margin: 0 0 1rem;
+}
+
+.s-highlight.image p {
+  color: #424242;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.s-highlight.image p.large {
+  color: #3E9C4F;
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 
 .s-quote {
