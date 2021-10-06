@@ -1,3 +1,7 @@
+* .spy {
+  scroll-margin-top: 80px;
+}
+
 .subject-section {
   // padding: 2rem 0;
   // display: grid;
@@ -139,10 +143,11 @@
 .fixed-spy {
   // width: 17%;
   // margin-left: 1rem;
+  margin-bottom: 1rem;
   padding-right: 1.5rem;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 50;
 
   grid-column: 2/3;
   // grid-row: 1/1000;
@@ -165,6 +170,35 @@
 
     .subject-content & {
       grid-column: left/right;
+
+      .spy-inner-wrap {
+        display: flex;
+        flex-direction: row-reverse;
+        column-gap: 1.5rem;
+
+        .spy-wrap {
+          margin-top: 0;
+        }
+
+        > * {
+          width: 50%;
+        }
+      }
+    }
+  }
+  @media (max-width: 480px) {
+
+    .subject-content & {
+
+      .spy-inner-wrap {
+        flex-direction: column;
+        column-gap: 1.5rem;
+        row-gap: 1.5rem;
+
+        > * {
+          width: 100%;
+        }
+      }
     }
   }
 
