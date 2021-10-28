@@ -1057,19 +1057,29 @@ if(document.getElementsByClassName( 'toggle' ).length > 0) {
   });
 }
 /* USing on subject page proto */
-if(document.getElementsByClassName( 'toggle-slide' ).length > 0) {
-  $('.toggle-slide').on('click', function () {
 
-    $(this).toggleClass('active');
+document.addEventListener("DOMContentLoaded", function() {
 
-    if ( $(this).next('.toggle-block').hasClass( 'active' ) ) {
-      $(this).next('.toggle-block').slideUp().toggleClass('active');
-    } else {
-      $(this).next('.toggle-block').slideDown().toggleClass('active');
+  // ensure vue comps ready ..
+  setTimeout(() => {
+    // console.log('run toggle slide');
+  if(document.getElementsByClassName( 'toggle-slide' ).length > 0) {
+    $('.toggle-slide').on('click', function () {
 
-    }
-  });
-}
+      $(this).toggleClass('active');
+
+      if ( $(this).next('.toggle-block').hasClass( 'active' ) ) {
+        $(this).next('.toggle-block').slideUp().toggleClass('active');
+      } else {
+        $(this).next('.toggle-block').slideDown().toggleClass('active');
+
+      }
+    });
+  }
+
+  }, 750);
+
+});
 
 
 /**
