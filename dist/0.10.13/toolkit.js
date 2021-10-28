@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, October 21, 2021, 1:10 PM */
+/** Version: 0.10.13 | Thursday, October 28, 2021, 2:16 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -16112,22 +16112,27 @@ if (document.getElementsByClassName('toggle').length > 0) {
 /* USing on subject page proto */
 
 
-if (document.getElementsByClassName('toggle-slide').length > 0) {
-  external_jQuery_default()('.toggle-slide').on('click', function () {
-    external_jQuery_default()(this).toggleClass('active');
+document.addEventListener("DOMContentLoaded", function () {
+  // ensure vue comps ready ..
+  setTimeout(function () {
+    // console.log('run toggle slide');
+    if (document.getElementsByClassName('toggle-slide').length > 0) {
+      external_jQuery_default()('.toggle-slide').on('click', function () {
+        external_jQuery_default()(this).toggleClass('active');
 
-    if (external_jQuery_default()(this).next('.toggle-block').hasClass('active')) {
-      external_jQuery_default()(this).next('.toggle-block').slideUp().toggleClass('active');
-    } else {
-      external_jQuery_default()(this).next('.toggle-block').slideDown().toggleClass('active');
+        if (external_jQuery_default()(this).next('.toggle-block').hasClass('active')) {
+          external_jQuery_default()(this).next('.toggle-block').slideUp().toggleClass('active');
+        } else {
+          external_jQuery_default()(this).next('.toggle-block').slideDown().toggleClass('active');
+        }
+      });
     }
-  });
-}
+  }, 750);
+});
 /**
  * jQuery's plugin as a utility factory
  * Usage as: $( jquerySelector ).vicApp().method( options )
  */
-
 
 (function ($) {
   $.fn.vicApp = function () {
