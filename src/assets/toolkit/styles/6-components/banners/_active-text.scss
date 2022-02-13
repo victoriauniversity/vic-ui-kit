@@ -1,0 +1,114 @@
+.banner.active-text {
+  display: grid;
+  position: relative;
+  padding: 2rem 1.5rem;
+  grid-template-columns: 2fr 1fr 40px;
+  grid-gap: 1rem;
+  background-color: $pounamu;
+
+  &::after {
+    position: absolute;
+    content: "";
+    width: 24px;
+    height: 50%;
+    background-color: $kowhai;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .banner-text {
+    h2 {
+      font-size: 3.5rem;
+      color: $manuka;
+      margin-bottom: 2rem;
+      min-height: 60px;
+    }
+
+    h3 {
+      color: $kowhai;
+      span {
+        margin-top: 0.5rem;
+        display: block;
+        font-size: 1.5rem;
+      }
+    }
+
+    .promo {
+      margin-top: 2rem;
+
+      p {
+        color: $manuka;
+        font-size: 1.2rem;
+      }
+
+      a.button {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.75rem 1rem;
+        font-size: 1.1rem;
+        border-radius: 0;
+        color: $pounamu;
+        background-color: $kohuhu;
+        transition: all 0.5s ease-in-out;
+
+        &::after {
+          content: '';
+        }
+
+        @include hoverify() {
+          color: $manuka;
+          background-color: $mahoe;
+          box-shadow: 1.1px 2.2px 2.2px rgba(7, 7, 7, 0.47);
+
+        }
+      }
+    }
+  }
+
+  .banner-image {
+    display: flex;
+    align-items: center;
+    animation: fadein 2s ease-in-out;
+
+    img {
+      margin-bottom: 0;
+      object-fit: cover;
+    }
+  }
+
+  .typed-cursor {
+    display: none;
+  }
+
+  @include breakpoint($until: tablet) {
+    grid-template-columns: 1fr;
+
+    .banner-text {
+      h2 {
+        font-size: 3rem;
+      }
+    }
+
+    .banner-image {
+      display: none;
+    }
+
+    &::after {
+      content: none;
+    }
+  }
+}
+
+@keyframes fadein {
+  60% {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
