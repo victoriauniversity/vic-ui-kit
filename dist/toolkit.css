@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, October 28, 2021, 2:16 PM */
+/** Version: 0.10.13 | Monday, February 14, 2022, 1:31 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -41,6 +41,7 @@
 /*= BASIC =================================================================== */
 /*= BRANDED ==================================================================*/
 /* new colours */
+/* Know your mind colours */
 /*= GREYS ====================================================================*/
 /*= GREENS ===================================================================*/
 /*= BLUES ====================================================================*/
@@ -213,6 +214,7 @@
 /*= STRIPS & LINES ===========================================================*/
 /*= OTHER SHAPES =============================================================*/
 /*= IMPORTS ================================================================*/
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 .select2-container {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -21514,6 +21516,150 @@ footer .footer-secondary.dark .footer-num {
   opacity: 0.9;
 }
 
+.banner.active-text {
+  display: grid;
+  position: relative;
+  padding: 2rem 1.5rem;
+  grid-template-columns: 2fr 1fr 40px;
+  grid-gap: 1rem;
+  background-color: #0D4C38;
+}
+
+.banner.active-text::after {
+  position: absolute;
+  content: "";
+  width: 24px;
+  height: 50%;
+  background-color: #FCE500;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.banner.active-text .banner-text h2 {
+  font-size: 3.5rem;
+  color: #FEF9F0;
+  margin-bottom: 2rem;
+  min-height: 66px;
+}
+
+.banner.active-text .banner-text h3 {
+  color: #FCE500;
+}
+
+.banner.active-text .banner-text h3 span {
+  margin-top: 0.5rem;
+  display: block;
+  font-size: 1.5rem;
+}
+
+.banner.active-text .banner-text .promo {
+  margin-top: 2rem;
+}
+
+.banner.active-text .banner-text .promo p {
+  color: #FEF9F0;
+  font-size: 1.2rem;
+}
+
+.banner.active-text .banner-text .promo a.button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 0;
+  color: #0D4C38;
+  background-color: #CCDCD7;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.banner.active-text .banner-text .promo a.button::after {
+  content: '';
+}
+
+.banner.active-text .banner-text .promo a.button:hover, .banner.active-text .banner-text .promo a.button:active, .banner.active-text .banner-text .promo a.button:focus {
+  color: #FEF9F0;
+  background-color: #669787;
+  -webkit-box-shadow: 1.1px 2.2px 2.2px rgba(7, 7, 7, 0.47);
+          box-shadow: 1.1px 2.2px 2.2px rgba(7, 7, 7, 0.47);
+}
+
+.banner.active-text .banner-image {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-animation: fadein 2s ease-in-out;
+          animation: fadein 2s ease-in-out;
+}
+
+.banner.active-text .banner-image img {
+  margin-bottom: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.banner.active-text .typed-cursor {
+  display: none;
+}
+
+@media (max-width: 60.99em) {
+  .banner.active-text {
+    grid-template-columns: 2.5fr 1fr;
+  }
+  .banner.active-text .banner-text h2 {
+    font-size: 3rem;
+  }
+  .banner.active-text .banner-image {
+    margin-right: 1.5rem;
+  }
+}
+
+@media (max-width: 42.99em) {
+  .banner.active-text {
+    grid-template-columns: 1fr;
+  }
+  .banner.active-text .banner-text h2 {
+    font-size: 3rem;
+  }
+  .banner.active-text .banner-image {
+    display: none;
+  }
+  .banner.active-text::after {
+    content: none;
+  }
+}
+
+@-webkit-keyframes fadein {
+  60% {
+    opacity: 0;
+    -webkit-transform: translateY(-2rem);
+            transform: translateY(-2rem);
+  }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  60% {
+    opacity: 0;
+    -webkit-transform: translateY(-2rem);
+            transform: translateY(-2rem);
+  }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /*= COMPONENTS - MOLECULES ========================*/
 .p-search {
   display: -webkit-box;
@@ -22598,6 +22744,27 @@ https://gist.github.com/jacurtis/30da4bf9a6c9b9b5cc0aebac512ca7c9
 
 .lity-close::after {
   display: none !important;
+}
+
+.inter-font,
+.inter-font h1,
+.inter-font h2,
+.inter-font h3,
+.inter-font h4,
+.inter-font h5,
+.inter-font p,
+.inter-font a,
+.inter-font li {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.inter-font h1,
+.inter-font h2,
+.inter-font h3,
+.inter-font h4,
+.inter-font h5 {
+  font-weight: 700;
 }
 
 /*
