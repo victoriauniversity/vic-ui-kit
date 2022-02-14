@@ -22,7 +22,7 @@
       font-size: 3.5rem;
       color: $manuka;
       margin-bottom: 2rem;
-      min-height: 60px;
+      min-height: 66px;
     }
 
     h3 {
@@ -81,6 +81,19 @@
     display: none;
   }
 
+  @include breakpoint($until: desktop) {
+    grid-template-columns: 2.5fr 1fr;
+
+    .banner-text {
+      h2 {
+        font-size: 3rem;
+      }
+    }
+
+    .banner-image {
+      margin-right: 1.5rem;
+    }
+  }
   @include breakpoint($until: tablet) {
     grid-template-columns: 1fr;
 
