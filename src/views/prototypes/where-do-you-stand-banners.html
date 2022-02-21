@@ -52,6 +52,8 @@ footer:
 
 </style>
 
+{{> banners.int-block-banner }}
+
 {{> banners.active-text-banner }}
 
 <div class="hub-banner reset-formatting centraliser ">
@@ -989,25 +991,6 @@ footer:
         }
 
       </style>
-
-      <script>
-        /* Temporary workaround while debugging: remove all the event listeners from the body tag becuase it is causing the browser to pause on exceptions when a click event event bubbles up */
-        /* IMPORTANT - remove this and fix in the UI kit before deploying to production */
-        document.addEventListener(
-          'DOMContentLoaded',
-          function () {
-            if ( '$' in window ) {
-              document.querySelector( '.layout' ).addEventListener(
-                'click',
-                function () {
-                  window.$( 'body' ).off()
-                }
-              )
-            }
-          }
-        )
-
-      </script>
 
 
 
