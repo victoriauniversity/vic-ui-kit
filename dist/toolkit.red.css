@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, February 15, 2022, 1:35 PM */
+/** Version: 0.10.13 | Monday, February 21, 2022, 2:01 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -21660,6 +21660,195 @@ footer .footer-secondary.dark .footer-num {
   }
   100% {
     opacity: 1;
+  }
+}
+
+/* Block banner */
+.block-banner {
+  display: grid;
+  grid-template-columns: minmax(40px, 0.2fr) 1.3fr 2fr 40px;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.block-banner img {
+  grid-row: 1/2;
+  grid-column: 1/5;
+  margin-bottom: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  max-height: 550px;
+}
+
+.block-banner .banner-content {
+  grid-row: 1/2;
+  grid-column: 2/3;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-pack: center;
+          justify-content: center;
+  padding-right: 1rem;
+}
+
+.block-banner .banner-content > div {
+  padding-left: 10%;
+}
+
+.block-banner .banner-content h1, .block-banner .banner-content p {
+  color: #FEF9F0;
+  line-height: 1;
+}
+
+.block-banner .banner-content h1 {
+  font-size: 3.5rem;
+  position: relative;
+}
+
+.block-banner .banner-content h1::before {
+  display: block;
+  margin-bottom: 0.5rem;
+  content: "";
+  width: 0px;
+  height: 0px;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid #FCE500;
+  margin-left: 2px;
+}
+
+.block-banner .banner-content .yellow-word {
+  color: #FCE500;
+}
+
+.block-banner .banner-content .sub-head {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.block-banner .banner-content p {
+  font-size: 1.25rem;
+}
+
+.block-banner .banner-content a.button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.65rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 0;
+  color: #0D4C38;
+  background-color: #CCDCD7;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.block-banner .banner-content a.button::after {
+  content: '';
+}
+
+.block-banner .banner-content a.button:hover, .block-banner .banner-content a.button:active, .block-banner .banner-content a.button:focus {
+  color: #FEF9F0;
+  background-color: #0D4C38;
+  -webkit-box-shadow: 1.1px 2.2px 2.2px rgba(7, 7, 7, 0.47);
+          box-shadow: 1.1px 2.2px 2.2px rgba(7, 7, 7, 0.47);
+}
+
+.block-banner .banner-square-start {
+  grid-row: 1/2;
+  grid-column: 1/2;
+}
+
+.block-banner .banner-square-end {
+  grid-row: 1/2;
+  grid-column: 4/5;
+}
+
+.block-banner .banner-content,
+.block-banner .banner-square-start,
+.block-banner .banner-square-end {
+  height: 85%;
+  background-color: #669787;
+}
+
+.block-banner.dark-green .banner-content,
+.block-banner.dark-green .banner-square-start,
+.block-banner.dark-green .banner-square-end {
+  background-color: #0D4C38;
+}
+
+.block-banner.dark-green .banner-content h1 {
+  color: #CCDCD7;
+}
+
+.block-banner.dark-green .banner-content a.button:hover, .block-banner.dark-green .banner-content a.button:active, .block-banner.dark-green .banner-content a.button:focus {
+  background-color: #669787;
+}
+
+@media (min-width: 88em) {
+  .block-banner {
+    grid-template-columns: minmax(40px, 0.3fr) minmax(200px, 550px) 2fr 40px;
+  }
+}
+
+@media (max-width: 76.25em) {
+  .block-banner .banner-content h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 66.5625em) {
+  .block-banner .banner-content h1 {
+    font-size: 2.7rem;
+  }
+}
+
+@media (max-width: 60.99em) {
+  .block-banner {
+    grid-template-columns: minmax(40px, 0.1fr) 1.5fr 2fr 40px;
+  }
+  .block-banner .banner-content h1 {
+    font-size: 2.5rem;
+  }
+  .block-banner .banner-content h1::before {
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #FCE500;
+    margin-left: 0px;
+  }
+  .block-banner .banner-content .sub-head {
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+  .block-banner .banner-content p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 42.99em) {
+  .block-banner {
+    grid-template-columns: 1fr;
+  }
+  .block-banner .banner-content {
+    grid-area: 2/1/3/3;
+    height: 100%;
+    padding-right: 0;
+  }
+  .block-banner .banner-content h1 {
+    font-size: 3rem;
+  }
+  .block-banner .banner-content .block {
+    padding: 2rem 1.5rem;
+  }
+  .block-banner .banner-square-start,
+  .block-banner .banner-square-end {
+    display: none;
+  }
+  .block-banner img {
+    grid-area: 1/1/2/2;
+    max-height: 350px;
   }
 }
 
