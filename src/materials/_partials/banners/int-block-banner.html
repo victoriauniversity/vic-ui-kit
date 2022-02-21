@@ -1,0 +1,25 @@
+<div class=" block-banner inter-font ">
+  <img class="banner-image" alt="Students walking up Kelburn library stairs with view of Wellington behind."
+    src="../images/banners/walking-banner.jpg">
+  <div class="banner-content formatting">
+    <div class="block ">
+      <h1>Open for new connections?</h1>
+      <p class="sub-head">Plan your return to in-person study now.</p>
+      <p>New Zealand’s border is reopening this year.</p>
+      <a class="button" href="#">Contact us</a>
+    </div>
+  </div>
+  <div class="banner-square-start"></div>
+  <div class="banner-square-end">
+
+  </div>
+</div>
+
+<script>
+  // Wrap first word in span..
+  let titleNode = document.querySelector( ".block-banner .banner-content h1" );
+  let newTitle = titleNode.textContent.trim().split( " " ).map(
+    ( word, i ) => i === 0 ? `<span class="yellow-word">${word}</span>` : word ).join( " " );
+  titleNode.innerHTML = newTitle;
+
+</script>
