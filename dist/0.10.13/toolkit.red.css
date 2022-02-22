@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, February 22, 2022, 2:57 PM */
+/** Version: 0.10.13 | Wednesday, February 23, 2022, 11:24 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -21667,9 +21667,11 @@ footer .footer-secondary.dark .footer-num {
 .block-banner {
   display: grid;
   grid-template-columns: minmax(40px, 110px) 1.5fr 2fr 40px;
-  grid-template-rows: 12.5% 75% 12.5%;
+  grid-template-rows: 50px minmax(-webkit-min-content, -webkit-max-content) 50px;
+  grid-template-rows: 50px minmax(min-content, max-content) 50px;
   -webkit-box-align: center;
           align-items: center;
+  max-height: 550px;
 }
 
 .block-banner img {
@@ -21679,7 +21681,11 @@ footer .footer-secondary.dark .footer-num {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
-  max-height: 500px;
+  max-height: 550px;
+  -o-object-position: center;
+     object-position: center;
+  height: 100%;
+  aspect-ratio: 3/1;
 }
 
 .block-banner .banner-content {
@@ -21695,7 +21701,8 @@ footer .footer-secondary.dark .footer-num {
   padding-right: 1rem;
 }
 
-.block-banner .banner-content h1, .block-banner .banner-content p {
+.block-banner .banner-content h1,
+.block-banner .banner-content p {
   color: #FEF9F0;
   line-height: 1;
 }
@@ -21708,7 +21715,7 @@ footer .footer-secondary.dark .footer-num {
 
 .block-banner .banner-content h1::before {
   display: block;
-  margin-bottom: .8rem;
+  margin-bottom: 0.8rem;
   content: "";
   width: 0px;
   height: 0px;
@@ -21744,7 +21751,7 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .block-banner .banner-content a.button::after {
-  content: '';
+  content: "";
 }
 
 .block-banner .banner-content a.button:hover, .block-banner .banner-content a.button:active, .block-banner .banner-content a.button:focus {
@@ -21767,8 +21774,9 @@ footer .footer-secondary.dark .footer-num {
 .block-banner .banner-content,
 .block-banner .banner-square-start,
 .block-banner .banner-square-end {
-  grid-row: 2/3;
+  padding: 1.5rem 0;
   height: 100%;
+  grid-row: 2/3;
   background-color: #669787;
 }
 
@@ -21807,10 +21815,6 @@ footer .footer-secondary.dark .footer-num {
 @media (max-width: 60.99em) {
   .block-banner {
     grid-template-columns: minmax(40px, 90px) 1.5fr 2fr 35px;
-    grid-template-rows: 15% 70% 15%;
-  }
-  .block-banner img {
-    max-height: 400px;
   }
   .block-banner .banner-content h1 {
     font-size: 2.5rem;
@@ -21846,6 +21850,11 @@ footer .footer-secondary.dark .footer-num {
   .block-banner .banner-content .block {
     padding: 2rem 1.5rem;
   }
+  .block-banner .banner-content,
+  .block-banner .banner-square-start,
+  .block-banner .banner-square-end {
+    padding: .5rem;
+  }
   .block-banner .banner-square-start,
   .block-banner .banner-square-end {
     display: none;
@@ -21853,6 +21862,7 @@ footer .footer-secondary.dark .footer-num {
   .block-banner img {
     grid-area: 1/1/2/2;
     max-height: 250px;
+    aspect-ratio: 2/1;
   }
 }
 
