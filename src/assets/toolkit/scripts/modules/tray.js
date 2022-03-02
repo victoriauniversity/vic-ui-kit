@@ -81,7 +81,7 @@ export function initTray() {
     const nav = $(this);
     // console.log(nav);
 
-    let navClassString = $(this).parent().children('a').text();
+    let navClassString = $(this).parent().children('a').html();
     let titleLink = $(this).parent().children('a').attr('href');
     // console.log(titleLink);
 

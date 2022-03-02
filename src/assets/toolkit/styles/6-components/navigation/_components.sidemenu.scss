@@ -512,9 +512,10 @@ $sidemenu-bg-light: $white;
 
     .sidemenu-homepage {
       flex: 1 1 25%;
+      margin-bottom: 0;
 
       > ul {
-        position: absolute;
+        // position: absolute;
         left: 0;
         right: 75%;
       }
@@ -579,6 +580,22 @@ $sidemenu-bg-light: $white;
             display: flex;
             align-items: center;
 
+            a {
+              display: block;
+              @include hoverify() {
+                text-decoration: underline;
+              }
+            }
+
+            .tereo-title {
+              color: #115737;
+              display: block;
+              font-weight: 500;
+              margin-right: 0.5rem;
+            }
+
+
+
             // &:before {
             //   content: "";
             //   position: relative;
@@ -598,9 +615,12 @@ $sidemenu-bg-light: $white;
             // max-width: 320px;
 
             > li {
-              &:not(:last-child) {
-                border-bottom: 1px solid $grey-alto;
-              }
+
+              border-top: 1px solid $grey-alto;
+
+              // &:not(:last-child) {
+              //   border-bottom: 1px solid $grey-alto;
+              // }
               padding: .5rem 0;
 
               > ul {
