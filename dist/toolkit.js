@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, March 3, 2022, 1:08 PM */
+/** Version: 0.10.13 | Friday, March 4, 2022, 10:20 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14235,7 +14235,7 @@ function initTray() {
     }); // console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded);
     // expand menu
 
-    menuItems.on('click', function (e) {
+    menuItems.on('mouseenter', function (e) {
       var index = $(this).index() - 1; // console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index)
 
       e.preventDefault();

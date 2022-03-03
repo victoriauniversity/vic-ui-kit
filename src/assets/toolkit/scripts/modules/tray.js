@@ -280,7 +280,7 @@ export function initTray() {
     // console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded);
 
     // expand menu
-    menuItems.on('click', function( e ) {
+    menuItems.on('mouseenter', function( e ) {
       let index = $(this).index() - 1;
       // console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index)
 
