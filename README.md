@@ -24,9 +24,6 @@ By building new web projects on top of this library, developers can quickly reus
 To use the UI Kit in your project(s), [read the Style Guide](https://static.victoria.ac.nz/#start).
 
 
-
-
-
 ## Development and Contributions
 
 If you want to contribute to the project by adding new features, enhancing existing ones or fixing bugs, it is good to do few things first:
@@ -46,8 +43,8 @@ If you want to contribute to the project by adding new features, enhancing exist
 3. Hack your feature/enhancement/fix.
 4. Test your changes in all supported browsers.
 5. Before pushing your branch  run ``` gulp build-bridge --prod ``` This will rebuild the dist folder which we now use directly in squiz to serve the UIKIT via a gitbridge. 
-6. Create a pull request into the [dev branch](https://github.com/victoriauniversity/vic-ui-kit/tree/dev). You can test the dev branch on live using the query string `?mode=dev`.
-7. Your pull request will be reviewed and tested - if everything is OK, it will be added to a next production release. 
+6. Create a pull request into the [dev branch](https://github.com/victoriauniversity/vic-ui-kit/tree/dev). You can test the dev branch on the live site using the query string `?mode=dev`.
+7. Your pull request will be reviewed and tested - if everything is OK, merge into Master. 
 8. Feel good!
 
 
@@ -56,7 +53,7 @@ If you want to contribute to the project by adding new features, enhancing exist
 
 ## Supported browsers
 
- * Internet Explorer 10+
+ * Internet Explorer 10+ (no longer required)
  * Safari 9+ (OS X and iOS only)
  * Chrome 44+
  * Firefox 42+
@@ -67,6 +64,8 @@ If you want to contribute to the project by adding new features, enhancing exist
 
 
 ## Requirements and dependencies
+NODE v10.16.3
+can check the nvm file. 
 
  * jQuery 3.1+
  * *(only contributing developers)* Node.js 5+ and npm 3+. Is currently broken using Node > 11. Recommend installing ```n``` and switching to node 11:
