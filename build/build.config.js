@@ -92,7 +92,7 @@ const config = {
     development: {
       name:   'development', // Local
       server: {
-        protocol: 'https',
+        protocol: 'http',
         host:     'local.wgtn.ac.nz',
         port:     8080,
       },
