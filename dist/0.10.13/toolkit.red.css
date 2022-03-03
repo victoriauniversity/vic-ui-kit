@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, March 4, 2022, 10:20 AM */
+/** Version: 0.10.13 | Friday, March 4, 2022, 11:14 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -15936,18 +15936,18 @@ footer .footer-secondary.dark .footer-num {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
             flex-direction: row;
-    border-top: 1px solid #CCC;
     width: 100%;
+    border-top: 2px #EEE solid;
   }
   .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li {
     border-bottom: none;
-    -webkit-box-flex: 1;
-            flex: 1 1 100%;
     -webkit-transition: all 1s ease-in;
     transition: all 1s ease-in;
     position: relative;
     display: -webkit-box;
     display: flex;
+    -webkit-box-flex: 1;
+            flex: 1 auto;
   }
   .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li:hover i {
     color: #115737;
@@ -15960,7 +15960,16 @@ footer .footer-secondary.dark .footer-num {
   }
   .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li:not(:last-of-type) {
     padding-right: 5px;
-    border-right: 1px #CCC solid;
+  }
+  .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li:not(:first-of-type)::before {
+    content: "";
+    width: 2px;
+    height: 100%;
+    background: -webkit-gradient(linear, left bottom, left top, from(#EEE), to(#fff));
+    background: linear-gradient(0deg, #EEE, #fff);
+  }
+  .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li:nth-of-type(2):before {
+    content: none;
   }
   .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li::after {
     position: absolute;
@@ -15983,7 +15992,8 @@ footer .footer-secondary.dark .footer-num {
     display: block;
     color: #115737;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 18px;
+    margin-bottom: 6px;
   }
   .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li > a {
     display: block;
@@ -15991,7 +16001,7 @@ footer .footer-secondary.dark .footer-num {
     text-decoration: none;
     line-height: 1.2;
     margin-right: 1rem;
-    font-size: 18px;
+    font-size: 20px;
     padding-left: 5px;
   }
   .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li > a:hover, .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li > a:active, .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li > a:focus {
