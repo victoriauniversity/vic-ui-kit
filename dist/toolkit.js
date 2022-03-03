@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, February 24, 2022, 9:47 AM */
+/** Version: 0.10.13 | Thursday, March 3, 2022, 1:08 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14082,7 +14082,7 @@ function initTray() {
     // console.log( 'nav item', $(this).parent().children('a').text() );
     var nav = $(this); // console.log(nav);
 
-    var navClassString = $(this).parent().children('a').text();
+    var navClassString = $(this).parent().children('a').html();
     var titleLink = $(this).parent().children('a').attr('href'); // console.log(titleLink);
     //push into traw div
 
