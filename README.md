@@ -43,7 +43,7 @@ If you want to contribute to the project by adding new features, enhancing exist
 3. Hack your feature/enhancement/fix.
 4. Test your changes in all supported browsers.
 5. Before pushing your branch  run ``` gulp build-bridge --prod ``` This will rebuild the dist folder which we now use directly in squiz to serve the UIKIT via a gitbridge. 
-6. Create a pull request into the [dev branch](https://github.com/victoriauniversity/vic-ui-kit/tree/dev).
+6. Create a pull request into the [dev branch](https://github.com/victoriauniversity/vic-ui-kit/tree/dev). You can test the dev branch on the live site using the query string `?mode=dev`.
 7. Your pull request will be reviewed and tested - if everything is OK, merge into Master. 
 8. Feel good!
 
@@ -68,5 +68,9 @@ NODE v10.16.3
 can check the nvm file. 
 
  * jQuery 3.1+
- * *(only contributing developers)* Node.js 5+ and npm 3+
+ * *(only contributing developers)* Node.js 5+ and npm 3+. Is currently broken using Node > 11. Recommend installing ```n``` and switching to node 11:
+ ``` shell
+npm install -g n
+sudo n 11
+```
  * *(only contributing developers)* Git 2+
