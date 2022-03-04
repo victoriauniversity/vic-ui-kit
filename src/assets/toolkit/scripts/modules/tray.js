@@ -353,7 +353,7 @@ export function initTray() {
 
     if (activeItem.length) {
       $blip.css({
-        left: activeItem.offset().left - $(".tabs").offset().left,
+        left: activeItem.offset().left - $("#mega-menu").offset().left,
         width: activeItem.outerWidth(),
       });
     }
