@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, March 4, 2022, 2:53 PM */
+/** Version: 0.10.13 | Friday, March 4, 2022, 3:01 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14294,7 +14294,7 @@ function initTray() {
 
     if (activeItem.length) {
       $blip.css({
-        left: activeItem.offset().left - $(".tabs").offset().left,
+        left: activeItem.offset().left - $("#mega-menu").offset().left,
         width: activeItem.outerWidth()
       });
     }
