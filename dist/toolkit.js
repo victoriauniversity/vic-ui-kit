@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, March 4, 2022, 11:14 AM */
+/** Version: 0.10.13 | Friday, March 4, 2022, 1:31 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14023,42 +14023,42 @@ var tooltipsApi = window.toolkitTooltips || {};
 // CONCATENATED MODULE: ./src/assets/toolkit/scripts/modules/tray.js
 /* eslint-disable func-names */
 
-var TABLET_AND_SMALLER = 'screen and (max-width: 975px)',
-    DESKTOP_AND_LARGER = 'screen and (min-width: 61em)'; // eslint-disable-next-line import/prefer-default-export
+var TABLET_AND_SMALLER = "screen and (max-width: 975px)",
+    DESKTOP_AND_LARGER = "screen and (min-width: 61em)"; // eslint-disable-next-line import/prefer-default-export
 
 function initTray() {
   // console.log( 'tray...', $( '.tray-toggle' ));
   // tray functionality
   function toggleTray() {
-    $('.tray').toggleClass('tray-closed', 'normal');
-    $('.tray').toggleClass('tray-open', 'normal');
-    $('body').toggleClass('noscroll');
+    $(".tray").toggleClass("tray-closed", "normal");
+    $(".tray").toggleClass("tray-open", "normal");
+    $("body").toggleClass("noscroll");
   }
 
-  $('.tray-toggle').click(function (e) {
+  $(".tray-toggle").click(function (e) {
     toggleTray(); // return false;
 
     e.preventDefault();
   });
-  $('.expanded-draw').click(function (e) {
+  $(".expanded-draw").click(function (e) {
     e.preventDefault();
     toggleTray();
   });
-  $('.tray-close').click(function (e) {
+  $(".tray-close").click(function (e) {
     e.preventDefault();
     toggleTray();
   });
-  $('.search-toggle').click(function (e) {
+  $(".search-toggle").click(function (e) {
     e.preventDefault();
     toggleTray();
     setTimeout(function () {
-      $('.tray .search-input').focus();
+      $(".tray .search-input").focus();
     }, 500);
   });
-  $('body').on('click keyup', function (e) {
+  $("body").on("click keyup", function (e) {
     // Close tray if clicked away from or escpae buttons
     // console.log( e.target.className, 'clicked' );
-    if (e.target.className.includes('tray-open') || e.key == 'Escape' && $('.tray-open').length) {
+    if (e.target.className.includes("tray-open") || e.key == "Escape" && $(".tray-open").length) {
       e.preventDefault();
       toggleTray();
     }
@@ -14082,111 +14082,111 @@ function initTray() {
     // console.log( 'nav item', $(this).parent().children('a').text() );
     var nav = $(this); // console.log(nav);
 
-    var navClassString = $(this).parent().children('a').html();
-    var titleLink = $(this).parent().children('a').attr('href'); // console.log(titleLink);
+    var navClassString = $(this).parent().children("a").html();
+    var titleLink = $(this).parent().children("a").attr("href"); // console.log(titleLink);
     //push into traw div
 
-    nav.clone().appendTo('.draw-nav').addClass(navClassString).attr("data-index", index); //add title
+    nav.clone().appendTo(".draw-nav").addClass(navClassString).attr("data-index", index); //add title
 
     $(".draw-nav ul[data-index='".concat(index, "']")).prepend("<h4 class=\"sub-draw-title\"><a href=\"".concat(titleLink, "\">").concat(navClassString, "</a></h4>"));
   }
 
   var sidemeneuExpanded = false;
-  var $draw = $('.sidemenu-drawer');
+  var $draw = $(".sidemenu-drawer");
 
   function expandTray(index, button) {
-    $(button).on('click keypress', function (e) {
+    $(button).on("click keypress", function (e) {
       // console.log( e );
-      if (e.type == 'click' || e.key == 'Enter') {
+      if (e.type == "click" || e.key == "Enter") {
         //toggle sidemenu draw and content
-        if ($(button).parent().hasClass('expanded-draw')) {
+        if ($(button).parent().hasClass("expanded-draw")) {
           // console.log('has class button close tray');
           sidemeneuExpanded = !sidemeneuExpanded;
-          $draw.toggleClass('active');
-          $(button).parent().removeClass('expanded-draw');
+          $draw.toggleClass("active");
+          $(button).parent().removeClass("expanded-draw");
         } else {
           //show tray
           if (sidemeneuExpanded === false) {
-            $draw.addClass('active');
+            $draw.addClass("active");
             sidemeneuExpanded = !sidemeneuExpanded;
           }
 
-          $('.sidemenu-homepage > ul > li').removeClass('expanded-draw');
-          $(button).parent().addClass('expanded-draw');
+          $(".sidemenu-homepage > ul > li").removeClass("expanded-draw");
+          $(button).parent().addClass("expanded-draw");
         } // console.log(index, button);
 
 
         var matchingNavGroup = $(".draw-nav ul[data-index='".concat(index, "']"));
-        $('.draw-nav > ul').removeClass('active-nav-group');
-        matchingNavGroup.toggleClass('active-nav-group');
+        $(".draw-nav > ul").removeClass("active-nav-group");
+        matchingNavGroup.toggleClass("active-nav-group");
       }
     });
   }
 
   function expandDrawSubContent() {
     // console.log('expand expandDrawSubContent');
-    var subDrawExpander = $('.sidemenu-drawer .draw-nav ul ').find('.btn-expander'); // console.log(subDrawExpander);
+    var subDrawExpander = $(".sidemenu-drawer .draw-nav ul ").find(".btn-expander"); // console.log(subDrawExpander);
 
     subDrawExpander.each(function (i, button) {
       var $button = $(button);
-      $button.on('click keypress', function (e) {
-        if (e.type == 'click' || e.key == 'Enter') {
+      $button.on("click keypress", function (e) {
+        if (e.type == "click" || e.key == "Enter") {
           // console.log($button);
-          $button.parent('li').toggleClass('expanded');
+          $button.parent("li").toggleClass("expanded");
         }
       });
     });
   }
 
   function closeSideMenuDraw(location) {
-    var loc = location || 'expanded-draw'; // console.log(loc);
+    var loc = location || "expanded-draw"; // console.log(loc);
 
-    $('.close-draw').on('click', function (e) {
+    $(".close-draw").on("click", function (e) {
       if (sidemeneuExpanded) {
         sidemeneuExpanded = !sidemeneuExpanded;
-        $(".sidemenu-homepage .".concat(loc)).removeClass('expanded-draw');
-        $draw.toggleClass('active');
+        $(".sidemenu-homepage .".concat(loc)).removeClass("expanded-draw");
+        $draw.toggleClass("active");
       } // horizontal mega menu draw
 
 
       if (horizontalMenuExpanded) {
         // console.log(e);
         horizontalMenuExpanded = !horizontalMenuExpanded;
-        $('.sidemenu-drawer').removeClass("".concat(loc));
-        $('.mega-menu-top-level > li').removeClass('expanded-nav'); // $draw.toggleClass('active');
+        $(".sidemenu-drawer").removeClass("".concat(loc));
+        $(".mega-menu-top-level > li").removeClass("expanded-nav"); // $draw.toggleClass('active');
       }
     });
-    $('body').on('click', function (e) {
+    $("body").on("click", function (e) {
       // console.log(e.target);
-      var sidemenu = $('.sidemenu-homepage'); // let  megamenu = $('.sidemenu-drawer');
+      var sidemenu = $(".sidemenu-homepage"); // let  megamenu = $('.sidemenu-drawer');
 
-      if (sidemeneuExpanded && !sidemenu.is(e.target) // if the target of the click isn't the container...
-      && sidemenu.has(e.target).length === 0) // ... nor a descendant of the container
-        {
-          sidemeneuExpanded = !sidemeneuExpanded;
-          $('.sidemenu-homepage .expanded-draw').removeClass('expanded-draw');
-          $draw.toggleClass('active');
-        } // closes menu if not clicking on header.. .should this be behaviour?
+      if (sidemeneuExpanded && !sidemenu.is(e.target) && // if the target of the click isn't the container...
+      sidemenu.has(e.target).length === 0) {
+        // ... nor a descendant of the container
+        sidemeneuExpanded = !sidemeneuExpanded;
+        $(".sidemenu-homepage .expanded-draw").removeClass("expanded-draw");
+        $draw.toggleClass("active");
+      } // closes menu if not clicking on header.. .should this be behaviour?
 
 
-      if ($('.show-mega-menu-top').length) {
-        var horizontalNavHeader = $('.main-site-header');
+      if ($(".show-mega-menu-top").length) {
+        var horizontalNavHeader = $(".main-site-header");
 
         if (horizontalMenuExpanded && !horizontalNavHeader.is(e.target) && horizontalNavHeader.has(e.target).length === 0) {
           horizontalMenuExpanded = !horizontalMenuExpanded;
-          $('.sidemenu-drawer').removeClass("".concat(loc));
-          $('.mega-menu-top-level > li').removeClass('expanded-nav');
+          $(".sidemenu-drawer").removeClass("".concat(loc));
+          $(".mega-menu-top-level > li").removeClass("expanded-nav");
         }
       }
     });
   }
 
   function sidemenuTray() {
-    var menu = $('.sidemenu-homepage'); // console.log(menu);
+    var menu = $(".sidemenu-homepage"); // console.log(menu);
     //build tray nav content
 
-    var trayNavItems = $('.sidemenu-homepage > ul > li > ul');
-    var buttonExpander = $('.sidemenu-homepage > ul > li > .btn-expander'); // console.log(trayNavItems);
+    var trayNavItems = $(".sidemenu-homepage > ul > li > ul");
+    var buttonExpander = $(".sidemenu-homepage > ul > li > .btn-expander"); // console.log(trayNavItems);
 
     buttonExpander.each(expandTray);
     trayNavItems.each(buildTray);
@@ -14194,7 +14194,7 @@ function initTray() {
     closeSideMenuDraw();
   }
 
-  if ($('.sidemenu-homepage').length) {
+  if ($(".sidemenu-homepage").length) {
     // console.log('sidemeny homepage init');
     // enquire.register( TABLET_AND_SMALLER, () => {
     //   console.log('tray is small size for mob');
@@ -14211,23 +14211,23 @@ function initTray() {
 
   function initHorizontalNav() {
     // console.log('hori nav go');
-    var menuItems = $('.show-mega-menu-top .mega-menu-top-level .nav-item-parent ');
-    var menuItemsWithSub = $('.show-mega-menu-top .mega-menu-top-level > .has-submenu');
-    var subMenuItems = $('.show-mega-menu-top .mega-menu-top-level > .nav-item-parent '); // build sub menu for expand
+    var menuItems = $(".show-mega-menu-top .mega-menu-top-level .nav-item-parent ");
+    var menuItemsWithSub = $(".show-mega-menu-top .mega-menu-top-level > .has-submenu");
+    var subMenuItems = $(".show-mega-menu-top .mega-menu-top-level > .nav-item-parent "); // build sub menu for expand
 
     subMenuItems.each(function (index) {
       var $item = $(this); // console.log( $item, index );
 
-      var titleLink = $item.children('a').attr('href');
-      var titleText = $item.children('a').text();
-      var titleHtml = $item.children('a').html(); // console.log(titleLink, ' ', titleText);
+      var titleLink = $item.children("a").attr("href");
+      var titleText = $item.children("a").text();
+      var titleHtml = $item.children("a").html(); // console.log(titleLink, ' ', titleText);
       //push into traw div
 
-      if ($item.children('ul').length) {
-        $item.children('ul').clone().appendTo('.draw-nav').attr("data-index", index);
+      if ($item.children("ul").length) {
+        $item.children("ul").clone().appendTo(".draw-nav").attr("data-index", index);
       } else {
         // console.log('No UL CHILDREN');
-        $('.draw-nav').append("<ul data-index=\"".concat(index, "\"></ul>"));
+        $(".draw-nav").append("<ul data-index=\"".concat(index, "\"></ul>"));
       } //add title
 
 
@@ -14235,7 +14235,7 @@ function initTray() {
     }); // console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded);
     // expand menu
 
-    menuItems.on('mouseenter', function (e) {
+    menuItems.on("mouseenter", function (e) {
       var index = $(this).index() - 1; // console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index)
 
       e.preventDefault();
@@ -14243,43 +14243,62 @@ function initTray() {
 
       var $navItem = $(this); // console.log( $(this).parent() );
 
-      if ($navItem.hasClass('expanded-nav')) {
+      if ($navItem.hasClass("expanded-nav")) {
         // console.log('has class button close tray');
         horizontalMenuExpanded = !horizontalMenuExpanded;
-        $('.sidemenu-drawer').toggleClass('horizontal-drawer-expanded');
-        $navItem.removeClass('expanded-nav');
+        $(".sidemenu-drawer").toggleClass("horizontal-drawer-expanded");
+        $navItem.removeClass("expanded-nav");
       } else {
         //show expanded menu
         // console.log('not exapnded.. expand');
         // console.log( horizontalMenuExpanded );
         if (horizontalMenuExpanded === false) {
-          $('.sidemenu-drawer').addClass('horizontal-drawer-expanded');
+          $(".sidemenu-drawer").addClass("horizontal-drawer-expanded");
           horizontalMenuExpanded = !horizontalMenuExpanded;
         }
 
-        menuItems.removeClass('expanded-nav');
-        $navItem.addClass('expanded-nav');
+        menuItems.removeClass("expanded-nav");
+        $navItem.addClass("expanded-nav");
       } // set active submenu to display
 
 
       var matchingNavGroup = $(" .draw-nav > ul[data-index='".concat(index, "']"));
-      $('.draw-nav > ul').removeClass('active-nav-group');
-      matchingNavGroup.toggleClass('active-nav-group'); // console.log('horizontalMenuExpanded',horizontalMenuExpanded);
+      $(".draw-nav > ul").removeClass("active-nav-group");
+      matchingNavGroup.toggleClass("active-nav-group"); // console.log('horizontalMenuExpanded',horizontalMenuExpanded);
     }); // Set nav offset height for css variable
 
-    var navHeight = $('.show-mega-menu-top .mega-sub-menu').height() + 6; // console.log(navHeight);
+    var navHeight = $(".show-mega-menu-top .mega-sub-menu").height() + 6; // console.log(navHeight);
 
-    document.querySelector(':root').style.setProperty('--horizontal-nav-offset', "".concat(navHeight, "px"));
-    closeSideMenuDraw('horizontal-drawer-expanded');
+    document.querySelector(":root").style.setProperty("--horizontal-nav-offset", "".concat(navHeight, "px"));
+    closeSideMenuDraw("horizontal-drawer-expanded");
     expandDrawSubContent();
   }
 
-  if ($('.show-mega-menu-top').length) {
+  if ($(".show-mega-menu-top").length) {
     // only run on desktop size
     src_default.a.register(DESKTOP_AND_LARGER, function () {
       initHorizontalNav();
     });
-  }
+  } // Blip movement logic
+
+
+  var $blip = $(".menu-blip");
+  $("#mega-menu > li").on("mouseover", function () {
+    $blip.css({
+      left: $(this).offset().left - $("#mega-menu").offset().left,
+      width: $(this).outerWidth()
+    });
+  });
+  $("#mega-menu > li").on("mouseout", function () {
+    var activeItem = $(".expanded-nav");
+
+    if (activeItem.length) {
+      $blip.css({
+        left: activeItem.offset().left - $(".tabs").offset().left,
+        width: activeItem.outerWidth()
+      });
+    }
+  });
 }
 // CONCATENATED MODULE: ./src/assets/toolkit/scripts/modules/urls.js
 // Import 3rd party dependencies
