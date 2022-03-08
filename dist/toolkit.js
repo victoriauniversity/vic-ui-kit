@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, March 7, 2022, 8:23 AM */
+/** Version: 0.10.13 | Tuesday, March 8, 2022, 3:29 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14153,7 +14153,10 @@ function initTray() {
         // console.log(e);
         horizontalMenuExpanded = !horizontalMenuExpanded;
         $(".sidemenu-drawer").removeClass("".concat(loc));
-        $(".mega-menu-top-level > li").removeClass("expanded-nav"); // $draw.toggleClass('active');
+        $(".mega-menu-top-level > li").removeClass("expanded-nav");
+        $(".menu-blip").css({
+          width: 0
+        }); // $draw.toggleClass('active');
       }
     });
     $("body").on("click", function (e) {
@@ -14176,6 +14179,9 @@ function initTray() {
           horizontalMenuExpanded = !horizontalMenuExpanded;
           $(".sidemenu-drawer").removeClass("".concat(loc));
           $(".mega-menu-top-level > li").removeClass("expanded-nav");
+          $(".menu-blip").css({
+            width: 0
+          });
         }
       }
     });
