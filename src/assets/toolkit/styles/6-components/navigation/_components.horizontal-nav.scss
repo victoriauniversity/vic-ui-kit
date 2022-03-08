@@ -319,6 +319,25 @@
           &.active-nav-group {
             display: block;
             column-count: 2;
+            position: relative;
+
+            // &:after {
+            //   content: "";
+            //   position: absolute;
+            //   bottom: 0px;
+            //   width: 20px;
+            //   height: 56%;
+            //   left: -40px;
+            //   background: -webkit-gradient(
+            //     linear,
+            //     left bottom,
+            //     left top,
+            //     from(#eee),
+            //     to(#fff)
+            //   );
+            //   background: linear-gradient(0deg, #eee, #fff);
+            //   border-radius: 0 0 0 20px;
+            // }
 
             a {
               @include hoverify() {
@@ -329,11 +348,16 @@
               display: flex;
               align-items: center;
               break-inside: avoid-column;
-              min-height: 47px;
+              // min-height: 47px;
+              padding: 10px 0;
 
               &.sub-draw-title {
                 column-span: all;
                 border-bottom: none;
+
+                a {
+                  font-size: 28px;
+                }
               }
             }
           }

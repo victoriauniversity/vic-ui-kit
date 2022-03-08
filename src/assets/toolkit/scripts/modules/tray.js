@@ -163,6 +163,9 @@ export function initTray() {
         horizontalMenuExpanded = !horizontalMenuExpanded;
         $(".sidemenu-drawer").removeClass(`${loc}`);
         $(".mega-menu-top-level > li").removeClass("expanded-nav");
+        $(".menu-blip").css({
+          width: 0,
+        });
         // $draw.toggleClass('active');
       }
     });
@@ -194,6 +197,9 @@ export function initTray() {
           horizontalMenuExpanded = !horizontalMenuExpanded;
           $(".sidemenu-drawer").removeClass(`${loc}`);
           $(".mega-menu-top-level > li").removeClass("expanded-nav");
+          $(".menu-blip").css({
+            width: 0,
+          });
         }
       }
     });
