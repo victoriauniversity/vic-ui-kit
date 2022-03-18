@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, March 8, 2022, 3:29 PM */
+/** Version: 0.10.13 | Friday, March 18, 2022, 2:27 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -14842,13 +14842,13 @@ footer .footer-secondary.dark .footer-num {
   background-color: #424242;
 }
 
-.main-site-header .header-toggle button span {
+.main-site-header .header-toggle button i {
   margin: 0 .5rem;
-  color: #FFF;
+  color: #1D2624;
   font-size: 1.8rem;
 }
 
-.main-site-header .header-toggle button span:before {
+.main-site-header .header-toggle button i:before {
   margin: 0;
   display: inline;
 }
@@ -16015,6 +16015,20 @@ footer .footer-secondary.dark .footer-num {
     -webkit-animation: draw-up 0.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
             animation: draw-up 0.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
     display: none;
+    overflow: hidden;
+  }
+  .show-mega-menu-top .mega-sub-menu .sidemenu-drawer:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 200px;
+    background-image: url("../../../images/patterns/pattern-05.svg");
+    background-repeat: no-repeat;
+    background-size: 234px;
+    background-position: left;
+    z-index: 0;
+    left: -92px;
+    top: 0;
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul {
     display: none;
@@ -16095,18 +16109,47 @@ footer .footer-secondary.dark .footer-num {
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li .btn-expander {
     color: #424242;
+    -webkit-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+  }
+  .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li .btn-expander:hover {
+    background-color: #DDD;
+  }
+  .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li .btn-expander:after {
+    display: inline-block;
+    font-family: "Favorites";
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    line-height: 1.5;
+    text-decoration: inherit;
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    border: none;
+    width: auto;
+    height: auto;
+    top: initial;
+    content: "\f181";
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li.expanded .btn-expander {
     color: #424242 !important;
+    -webkit-transform: rotateZ(180deg);
+            transform: rotateZ(180deg);
   }
-  .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li.expanded .btn-expander::after {
-    border-color: transparent transparent #424242;
+  .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li.expanded .btn-expander:hover {
+    background-color: #DDD;
   }
-  .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li.expanded .btn-expander:hover, .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li.expanded .btn-expander:active, .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li.expanded .btn-expander:focus {
-    color: #424242 !important;
+  .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li.expanded .btn-expander:hover:after {
+    width: auto;
+    height: auto;
   }
-  .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li.expanded .btn-expander:hover::after, .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li.expanded .btn-expander:active::after, .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li.expanded .btn-expander:focus::after {
-    border-color: transparent transparent #424242;
+  .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li.expanded .btn-expander:after {
+    border: none;
+    width: auto;
+    height: auto;
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul > li {
     border-bottom: 1px solid #DDD;

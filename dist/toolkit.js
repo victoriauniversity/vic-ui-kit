@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, March 8, 2022, 3:29 PM */
+/** Version: 0.10.13 | Friday, March 18, 2022, 2:27 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14242,7 +14242,7 @@ function initTray() {
     // expand menu
 
     menuItems.on("mouseenter", function (e) {
-      var index = $(this).index() - 1; // console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index)
+      var index = $(this).index() - 2; // console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index)
 
       e.preventDefault();
       e.stopPropagation(); // console.log(e);
@@ -14291,7 +14291,7 @@ function initTray() {
   var $blip = $(".menu-blip");
   $("#mega-menu > li").on("mouseover", function () {
     $blip.css({
-      left: $(this).offset().left - $("#mega-menu").offset().left,
+      left: $(this).offset().left - $("#mega-menu").offset().left + 1,
       width: $(this).outerWidth()
     });
   });
@@ -14300,7 +14300,7 @@ function initTray() {
 
     if (activeItem.length) {
       $blip.css({
-        left: activeItem.offset().left - $("#mega-menu").offset().left,
+        left: activeItem.offset().left - $("#mega-menu").offset().left + 1,
         width: activeItem.outerWidth()
       });
     }

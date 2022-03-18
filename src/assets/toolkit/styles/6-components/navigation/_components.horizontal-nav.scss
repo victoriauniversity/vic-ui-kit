@@ -195,7 +195,22 @@
     .sidemenu-drawer {
       animation: draw-up 0.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
       display: none;
+      overflow: hidden;
 
+      &:before {
+        content: "";
+        position: absolute;
+        // transform: rotateZ(-45deg);
+        height: 100%;
+        width: 200px;
+        background-image: url("../../../images/patterns/pattern-05.svg");
+        background-repeat: no-repeat;
+        background-size: 234px;
+        background-position: left;
+        z-index: 0;
+        left: -92px;
+        top: 0;
+      }
       .draw-nav {
         > ul {
           display: none;
@@ -279,20 +294,51 @@
 
             .btn-expander {
               color: $black-tundora;
+              transition: all ease 0.3s;
+              &:hover {
+                background-color: $grey-alto;
+              }
+
+              &:after {
+                display: inline-block;
+                font-family: "Favorites";
+                font-style: normal;
+                font-weight: normal;
+                font-variant: normal;
+                line-height: 1.5;
+                text-decoration: inherit;
+                text-rendering: optimizeLegibility;
+                text-transform: none;
+                -moz-osx-font-smoothing: grayscale;
+                -webkit-font-smoothing: antialiased;
+                font-smoothing: antialiased;
+                border: none;
+                width: auto;
+                height: auto;
+                top: initial;
+                content: "\f181";
+              }
             }
 
             &.expanded {
               .btn-expander {
                 color: $black-tundora !important;
-                &::after {
-                  border-color: transparent transparent $black-tundora;
-                }
-                @include hoverify() {
-                  &::after {
-                    border-color: transparent transparent $black-tundora;
+                transform: rotateZ(180deg);
+                &:hover {
+                  background-color: $grey-alto;
+                  &:after {
+                    width: auto;
+                    height: auto;
                   }
-                  color: $black-tundora !important;
                 }
+                &:after {
+                  border: none;
+                  width: auto;
+                  height: auto;
+                }
+                // &::after {
+                //   border-color: transparent transparent $black-tundora;
+                // }
               }
             }
           }

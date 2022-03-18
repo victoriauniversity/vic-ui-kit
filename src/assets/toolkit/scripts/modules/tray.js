@@ -289,7 +289,7 @@ export function initTray() {
 
     // expand menu
     menuItems.on("mouseenter", function (e) {
-      let index = $(this).index() - 1;
+      let index = $(this).index() - 2;
       // console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index)
 
       e.preventDefault();
@@ -349,7 +349,7 @@ export function initTray() {
 
   $("#mega-menu > li").on("mouseover", function () {
     $blip.css({
-      left: $(this).offset().left - $("#mega-menu").offset().left,
+      left: $(this).offset().left - $("#mega-menu").offset().left + 1,
       width: $(this).outerWidth(),
     });
   });
@@ -359,7 +359,7 @@ export function initTray() {
 
     if (activeItem.length) {
       $blip.css({
-        left: activeItem.offset().left - $("#mega-menu").offset().left,
+        left: activeItem.offset().left - $("#mega-menu").offset().left + 1,
         width: activeItem.outerWidth(),
       });
     }
