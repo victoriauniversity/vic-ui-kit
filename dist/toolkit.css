@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, March 18, 2022, 2:33 PM */
+/** Version: 0.10.13 | Monday, March 21, 2022, 9:52 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -14826,8 +14826,8 @@ footer .footer-secondary.dark .footer-num {
   -webkit-box-pack: end;
           justify-content: flex-end;
   margin-left: 1rem;
-  -webkit-box-flex: 0;
-          flex: 0 1 5%;
+  -webkit-box-flex: 1;
+          flex: 1;
 }
 
 .main-site-header .header-toggle button {
@@ -14860,10 +14860,6 @@ footer .footer-secondary.dark .footer-num {
   left: 35%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-}
-
-.main-site-header .header-toggle .search-toggle {
-  display: none;
 }
 
 @media (max-width: 60.99em) {
@@ -15420,16 +15416,16 @@ footer .footer-secondary.dark .footer-num {
   background-color: #EEE;
 }
 
-@media (max-width: 60.99em) {
-  .main-site-header.white .header-toggle .search-toggle {
-    height: 50px;
-  }
-  .main-site-header.white .header-toggle .search-toggle span {
-    color: #424242;
-  }
-  .main-site-header.white .header-toggle .search-toggle:hover span, .main-site-header.white .header-toggle .search-toggle:active span, .main-site-header.white .header-toggle .search-toggle:focus span {
-    color: #FFF;
-  }
+.main-site-header.white .header-toggle .search-toggle {
+  height: 50px;
+}
+
+.main-site-header.white .header-toggle .search-toggle span {
+  color: #424242;
+}
+
+.main-site-header.white .header-toggle .search-toggle:hover span, .main-site-header.white .header-toggle .search-toggle:active span, .main-site-header.white .header-toggle .search-toggle:focus span {
+  color: #FFF;
 }
 
 .main-site-header.white.header-tray .tray-content {
@@ -16003,10 +15999,6 @@ footer .footer-secondary.dark .footer-num {
     padding-left: 5px;
     position: initial;
   }
-  .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li > a:hover, .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li > a:active, .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li > a:focus {
-    text-decoration: underline;
-    color: #424242;
-  }
   .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li.expanded-nav::after {
     -webkit-transform: rotateZ(90deg);
             transform: rotateZ(90deg);
@@ -16020,7 +16012,7 @@ footer .footer-secondary.dark .footer-num {
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer:before {
     content: "";
     position: absolute;
-    height: 100%;
+    min-height: 500px;
     width: 200px;
     background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
     background-repeat: no-repeat;

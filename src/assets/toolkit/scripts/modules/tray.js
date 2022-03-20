@@ -303,8 +303,8 @@ export function initTray() {
       if ($navItem.hasClass("expanded-nav")) {
         // console.log('has class button close tray');
         horizontalMenuExpanded = !horizontalMenuExpanded;
-        $(".sidemenu-drawer").toggleClass("horizontal-drawer-expanded");
-        $navItem.removeClass("expanded-nav");
+        // $(".sidemenu-drawer").toggleClass("horizontal-drawer-expanded");
+        // $navItem.removeClass("expanded-nav");
       } else {
         //show expanded menu
         // console.log('not exapnded.. expand');

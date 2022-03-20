@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, March 18, 2022, 2:33 PM */
+/** Version: 0.10.13 | Monday, March 21, 2022, 9:52 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14251,9 +14251,8 @@ function initTray() {
 
       if ($navItem.hasClass("expanded-nav")) {
         // console.log('has class button close tray');
-        horizontalMenuExpanded = !horizontalMenuExpanded;
-        $(".sidemenu-drawer").toggleClass("horizontal-drawer-expanded");
-        $navItem.removeClass("expanded-nav");
+        horizontalMenuExpanded = !horizontalMenuExpanded; // $(".sidemenu-drawer").toggleClass("horizontal-drawer-expanded");
+        // $navItem.removeClass("expanded-nav");
       } else {
         //show expanded menu
         // console.log('not exapnded.. expand');
