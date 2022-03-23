@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, March 21, 2022, 9:52 AM */
+/** Version: 0.10.13 | Thursday, March 24, 2022, 10:23 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14302,6 +14302,348 @@ function initTray() {
         left: activeItem.offset().left - $("#mega-menu").offset().left + 1,
         width: activeItem.outerWidth()
       });
+    }
+  }); // Custom SAVED menu
+
+  var fakeObject = '[{"rank":2,"score":735,"title":"Unemployment insurance: Smart idea? Or poor process and poor policy making?","collection":"vic-events-push","component":2,"collapsed":null,"liveUrl":"https://www.wgtn.ac.nz/events/2022/03/unemployment-insurance-smart-idea-or-poor-process-and-poor-policy-making","summary":"","cacheUrl":"/s/cache?collection=vic-events-push&url=https%3A%2F%2Fwww.wgtn.ac.nz%2Fevents%2F2022%2F03%2Funemployment-insurance-smart-idea-or-poor-process-and-poor-policy-making&profile=_default_preview","date":1646917200000,"fileSize":1679,"fileType":"xml","tier":1,"docNum":61,"exploreLink":null,"kmFromOrigin":null,"quickLinks":null,"displayUrl":"https://www.wgtn.ac.nz/events/2022/03/unemployment-insurance-smart-idea-or-poor-process-and-poor-policy-making","clickTrackingUrl":"","explain":null,"indexUrl":"https://www.wgtn.ac.nz/events/2022/03/unemployment-insurance-smart-idea-or-poor-process-and-poor-policy-making","gscopesSet":[],"documentVisibleToUser":true,"promoted":false,"diversified":false,"listMetadata":{"c":["Join this webinar to hear our experts share their insights and perspectives on the Government\'s proposed Social Unemployment Insurance scheme."],"d":["11Mar2022"],"eventSummary":["In Budget 2021, the New Zealand government announced a commitment to the development of a Social Unemployment Insurance scheme. Developed by a tripartite..."],"contactEmail":["madeleine.rashbrooke@vuw.ac.nz,madeleine.rashbrooke@vuw.ac.nz"],"endDate":["20220311"],"eventLocation":["Online (Zoom)"],"eventsTagCost":["free"],"url":["https%3A%2F%2Fwww.wgtn.ac.nz%2Fevents%2F2022%2F03%2Funemployment-insurance-smart-idea-or-poor-process-and-poor-policy-making"],"O":["20220311"],"eventBlurb":["null"],"eventsTagCategory":["General events"],"t":["Unemployment insurance: Smart idea? Or poor process and poor policy making?"],"eventOwner":["Responsive"],"assetId":["1992355"],"eventEndTime":["1:30pm"],"eventStartTime":["12:30pm"],"isApproved":["yes"],"isFeatured":["no"],"eventsTagOnline":["online"],"eventAudience":["General public"],"startDate":["20220311"],"statusCode":["16"]},"metaData":{"O":"20220311","c":"Join this webinar to hear our experts share their insights and perspectives on the Government\'s proposed Social Unemployment Insurance scheme.","eventsTagOnline":"online","eventBlurb":"null","eventStartTime":"12:30pm","endDate":"20220311","eventSummary":"In Budget 2021, the New Zealand government announced a commitment to the development of a Social Unemployment Insurance scheme. Developed by a tripartite...","url":"https%3A%2F%2Fwww.wgtn.ac.nz%2Fevents%2F2022%2F03%2Funemployment-insurance-smart-idea-or-poor-process-and-poor-policy-making","d":"11Mar2022","startDate":"20220311","eventsTagCost":"free","t":"Unemployment insurance: Smart idea? Or poor process and poor policy making?","eventLocation":"Online (Zoom)","eventsTagCategory":"General events","eventOwner":"Responsive","assetId":"1992355","eventAudience":"General public","isApproved":"yes","statusCode":"16","contactEmail":"madeleine.rashbrooke@vuw.ac.nz,madeleine.rashbrooke@vuw.ac.nz","eventEndTime":"1:30pm","isFeatured":"no"},"tags":[],"customData":{},"relatedDocuments":{},"uniqueId":"1992355R","favourited":true}]';
+  $(".ls-trigger").click(function (e) {
+    console.log(e);
+    window.localStorage.setItem("savedEvents", fakeObject);
+  });
+  Storage.prototype.setItem = new Proxy(Storage.prototype.setItem, {
+    apply: function apply(target, thisArg, argumentList) {
+      var event = new CustomEvent("localstorage", {
+        detail: {
+          key: argumentList[0],
+          oldValue: thisArg.getItem(argumentList[0]),
+          newValue: argumentList[1]
+        }
+      });
+      window.dispatchEvent(event); // checkSavedItems();
+
+      return Reflect.apply(target, thisArg, argumentList);
+    }
+  });
+  Storage.prototype.removeItem = new Proxy(Storage.prototype.removeItem, {
+    apply: function apply(target, thisArg, argumentList) {
+      var event = new CustomEvent("localstorage", {
+        detail: {
+          key: argumentList[0]
+        }
+      });
+      window.dispatchEvent(event);
+      return Reflect.apply(target, thisArg, argumentList);
+    }
+  });
+  Storage.prototype.clear = new Proxy(Storage.prototype.clear, {
+    apply: function apply(target, thisArg, argumentList) {
+      var event = new CustomEvent("localstorage", {
+        detail: {
+          key: "__all__"
+        }
+      });
+      window.dispatchEvent(event);
+      return Reflect.apply(target, thisArg, argumentList);
+    }
+  });
+  var notificationCount = 0;
+  window.addEventListener("localstorage", function (e) {
+    console.log(e.detail);
+    checkSavedItems(e.detail.key);
+    notificationCount++;
+
+    if (notificationCount > 0) {
+      // Show main menu notification count
+      if ($(".menu-notifcations").length) {
+        $(".menu-notifcations").show();
+      } else {
+        $(".header-toggle .tray-toggle").append("<div class='menu-notifcations'>" + notificationCount + "</div>");
+      } // Inner tab notification
+
+
+      if ($(".t-saved .notification").length) {
+        $(".t-saved .notification").show();
+      } else {
+        $(".t-saved span").append("<div class='notification'></div>");
+      } // Show inner tab notifcation count
+
+
+      $(".tabs .notification").show();
+      $(".tabs .notification").text(notificationCount);
+    } // }
+
+  }, false); // !Remove default icon injected on all role="button" elements
+
+  $(".btn-expander").addClass("no-icon"); // !Temporary override of toolkit hiding
+
+  $(".sidemenu  ul > .has-submenu").css("display", "flex"); // Window resize event
+  // var windowWidth = $(window).width();
+  // $(window).resize(function () {
+  //   var windowWidth = $(window).width();
+  // });
+  // Append accordians
+
+  $(".saved-items").append("<div class='group-title trigger scholarships-title'><div><i class='icons8-graduation-scroll'></i><span>Scholarships (<span class='count'>" + 0 + "</span>)</span></div><i class='icons8-expand-arrow'></i></div>");
+  $("<ul class='item-list scholarships-list'></ul>").insertAfter(".scholarships-title");
+  $(".saved-items").append("<div class='group-title trigger events-title'><div><i class='icons8-schedule'></i><span>Events (<span class='count'>" + 0 + "</span>)</span></div> <i class='icons8-expand-arrow'></i></div>");
+  $("<ul class='item-list events-list'></ul>").insertAfter(".events-title");
+  $(".saved-items").append("<div class='group-title trigger clubs-title'><div><i class='icons8-theatre-mask'></i><span>Clubs (<span class='count'>" + 0 + "</span>)</span></div> <i class='icons8-expand-arrow'></i></div>");
+  $("<ul class='item-list clubs-list'></ul>").insertAfter(".clubs-title");
+  $(".saved-items").append("<div class='group-title trigger pages-title'><div><i class='icons8-news'></i><span>Pages (<span class='count'>" + 0 + "</span>)</span></div> <i class='icons8-expand-arrow'></i></div>");
+  $("<ul class='item-list pages-list'></ul>").insertAfter(".pages-title"); // SAVED EVENTS LISTS
+
+  function checkSavedItems(item) {
+    var nameMaps = {
+      savedEvents: "events",
+      savedScholarships: "scholarships",
+      savedClubs: "clubs",
+      savedPages: "pages"
+    };
+
+    if (item == "savedEvents") {
+      var noResultsUrl = "https://cms.wgtn.ac.nz/events";
+    } else if (item == "savedScholarships") {
+      noResultsUrl = "https://cms.wgtn.ac.nz/scholarships/find-scholarships";
+    } else if (item == "savedClubs") {
+      noResultsUrl = "https://cms.wgtn.ac.nz/students/campus/clubs/directory";
+    }
+
+    if (item) {
+      if (nameMaps[item] !== undefined) {
+        setTimeout(function () {
+          if (localStorage[item]) {
+            var items = JSON.parse(localStorage[item]);
+          }
+
+          if (items && items.length > 0) {
+            var itemsLength = items.length;
+          } else {
+            itemsLength = 0;
+          }
+
+          if (items && items.length > 0) {
+            $("." + nameMaps[item] + "-list").prev().find(".count").text(items.length);
+            var first5 = items.slice(0, 5);
+            first5.forEach(function (e) {
+              // If liveUrl exists we presume it follows the Funnelback structure of 'title' and 'liveUrl', e.g. for Events
+              if (e.liveUrl) {
+                if (nameMaps[item] == "events") {
+                  $("." + nameMaps[item] + "-list").append("<li>  <a target='_blank' href='" + e.liveUrl + "'><span class='item-dates'>" + moment(e.metaData.O).format("ddd DD MMM YYYY") + "</span>" + e.title + "</a></li>");
+                } else {
+                  $("." + nameMaps[item] + "-list").append("<li><a target='_blank' href='" + e.liveUrl + "'>" + e.title + "</a></li>");
+                }
+              } else {
+                $("." + nameMaps[item] + "-list").append("<li><a target='_blank' href='" + e.url + "'>" + e.name + "</a></li>");
+              }
+            });
+
+            if ($("." + nameMaps[item] + "-list").find(".accordion-buttons").length) {// Do not append
+            } else {
+              $("." + nameMaps[item] + "-list").append("<div class='accordion-buttons'></div>");
+
+              if (items.length > 0) {
+                $("." + nameMaps[item] + "-list .accordion-buttons").append("<a class='btn rounded no-icon secondary view-all' href='#'>View all <i class='icons8-external-link'></i></a>");
+              }
+
+              $("." + nameMaps[item] + "-list .accordion-buttons").append("<a class='btn rounded no-icon primary add-more' href='#'>Add more <i class='icons8-external-link'></i></a>");
+            }
+          }
+
+          if (itemsLength == 0) {
+            $("." + nameMaps[item] + "-list").prev().addClass("empty");
+            $("." + nameMaps[item] + "-list").append("<div class='empty-message'>Nothing here... <a target='_blank' href='" + noResultsUrl + "'>Add some!</a></div>");
+          } else {
+            $("." + nameMaps[item] + "-list").prev().removeClass("empty");
+            $("." + nameMaps[item] + "-list").find(".empty-message").hide();
+          }
+        }, 100);
+      }
+    }
+  }
+
+  checkSavedItems("savedEvents");
+  checkSavedItems("savedScholarships");
+  checkSavedItems("savedClubs");
+  checkSavedItems("savedPages"); // Trigger to open/close items in saved items
+
+  $(".group-title").on("click", function (e) {
+    $(this).toggleClass("active");
+    $(this).next().slideToggle();
+    $(this).find("i").toggleClass("flipped");
+  });
+
+  var resizeTallBlip = function resizeTallBlip(el, hide) {
+    if (hide) {
+      $tallBlip.css({
+        top: 0,
+        height: "0px"
+      });
+    } else {
+      $tallBlip.css({
+        top: el.offset().top - el.parents(".main-nav-list").offset().top,
+        height: el.outerHeight()
+      });
+    }
+  }; // // Tabs
+  // $("<div class='tabs'><div class='blip'></div><div class='tab t-menu active'>Menu</div><div class='tab t-saved'>Saved <div class='notification'>2</div></div><div class='tab'>Other</div></div>").insertAfter(".menu-container .tray-close")
+  // !TAB BLIP MOVEMENT LOGIC
+
+
+  var $tabBlip = $(".tabs .blip");
+  $(".tabs .tab").click(function () {
+    $(".tabs .tab").removeClass("active");
+    $(this).addClass("active"); // Hide notification is there is one
+
+    $(".menu-notifcations").hide();
+
+    if ($(this).find(".notification")) {
+      $(this).find(".notification").hide();
+      notificationCount = 0;
+    }
+
+    if ($(this).hasClass("t-menu")) {
+      $(".tray-main-nav").show();
+      $(".saved-header").hide();
+      $(".saved-items").hide();
+    } else {
+      $(".tray-main-nav").hide();
+      $(".saved-header").show();
+      $(".saved-items").show();
+    }
+  });
+  $(".tabs .tab-background").on("mouseover", function () {
+    $tabBlip.css({
+      left: $(this).offset().left - $(".tabs").offset().left,
+      width: $(this).outerWidth()
+    });
+  }); // Initial position
+
+  var activeItem = $(".tabs .tab.active").parent();
+
+  if (activeItem.length) {
+    $tabBlip.css({
+      left: activeItem.offset().left - $(".tabs").offset().left,
+      width: activeItem.outerWidth()
+    });
+  }
+
+  $(".tabs").on("mouseout", function () {
+    var activeItem = $(".tabs .tab.active").parent();
+
+    if (activeItem.length) {
+      $tabBlip.css({
+        left: activeItem.offset().left - $(".tabs").offset().left,
+        width: activeItem.outerWidth()
+      });
+    }
+  }); // !TRAY MENU BLIP
+
+  var $tallBlip = $(".main-nav-list .tall-blip");
+  $(".main-nav-list > li ").on("mouseenter", function () {
+    resizeTallBlip($(this));
+  });
+  $(".main-nav-list").on("mouseleave", function () {
+    var activeItem = $(".main-nav-list > li.active");
+
+    if (!activeItem.length) {
+      resizeTallBlip($(this), true);
+    }
+  }); // Initial position
+
+  var activeItem = $(".main-nav-list > li.active");
+
+  if (activeItem.length) {
+    $tallBlip.css({
+      top: activeItem.offset().top - activeItem.parents(".main-nav-list").offset().top,
+      height: activeItem.outerHeight()
+    });
+  }
+
+  $(".tray-main-nav").on("mouseleave", function () {
+    var activeItem = $(".main-nav-list > li.active");
+
+    if (activeItem.length) {
+      resizeTallBlip(activeItem);
+    }
+  }); // !CUSTOM DROPDOWN
+
+  $(".custom-dropdown .selector").on("click", function (e) {
+    $(this).next().slideToggle("fast");
+    $(this).toggleClass("open");
+  });
+  $(".custom-dropdown ul li").on("click", function (e) {
+    // Clear open class on selector
+    if ($(".custom-dropdown .selector").hasClass("open")) {
+      $(".custom-dropdown .selector").removeClass("open");
+    } // Toggle active class
+
+
+    $(".custom-dropdown ul li").removeClass("active");
+    $(this).addClass("active"); // Set text to value
+
+    $(this).parent().prev().find(".selector-text").text($(this).text()); // Close list on click
+
+    $(this).parent().slideToggle("fast");
+    var text = $(this).text().toLowerCase();
+    showSavedData(text);
+  });
+
+  var showSavedData = function showSavedData(e) {
+    console.log(e);
+    $(".no-results").slideUp(); // Make titles visible
+
+    $(".group-title").hide();
+    $(".group-title").removeClass("active");
+    $(".item-list").hide();
+    $("." + e + "-title").css("display", "flex");
+    $("." + e + "-title").click();
+  }; // !MAIN NAV LIST ACCORDIONS
+
+
+  $(".tray .main-nav-item ul li").each(function (e) {
+    var $element = $(this);
+
+    if ($(this).find("ul").length > 0) {
+      $element.addClass("has-submenu");
+      $('<span tabindex="0" class="btn-expander mf-heatmap-click no-icon" title="Toggle subpages" role="button"></span>').insertAfter($element.find(">a"));
+    }
+  }); // Open on initial load
+
+  if ($(".tray .main-nav-item > a.active")) {
+    $(".tray .main-nav-item > a.active").parent().toggleClass("active");
+    $(".tray .main-nav-item > a.active").parent().toggleClass("expanded");
+    $(".tray .main-nav-item > a.active").parent().find(">ul").slideToggle();
+  } // On top level menu click
+
+
+  $(".tray .main-nav-item > a, .tray .main-nav-item > .btn-expander").on("click", function (e) {
+    $(this).parent().toggleClass("expanded");
+    $(this).parent().find(">a").toggleClass("active"); // Find any active/expanded children and close them
+
+    $(this).parent().find(">ul .active").removeClass("active");
+    $(this).parent().find(">ul .expanded").removeClass("expanded"); // Slide out main menu
+
+    $(this).parent().find(">ul").slideToggle("fast", function () {
+      // Resize blip
+      var activeItem = $(this).parent();
+
+      if (activeItem.length) {
+        resizeTallBlip(activeItem);
+      }
+    });
+  }); // Inner accordion
+
+  $(".tray .nav-item-parent.has-submenu .btn-expander").on("click keypress", function (e) {
+    // If enter or left-click
+    var activeItem = $(".main-nav-item.active");
+    setTimeout(function () {
+      resizeTallBlip(activeItem);
+    }, 300);
+
+    if (e.which == 13 || e.which == 1) {
+      $(this).parent().toggleClass("active");
+      $(this).parent().find(">a").toggleClass("active");
+      $(this).parent().toggleClass("expanded");
     }
   });
 }
