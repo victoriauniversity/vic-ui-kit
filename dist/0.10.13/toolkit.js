@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, March 24, 2022, 10:23 AM */
+/** Version: 0.10.13 | Friday, March 25, 2022, 10:48 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14481,6 +14481,7 @@ function initTray() {
     } else {
       $tallBlip.css({
         top: el.offset().top - el.parents(".main-nav-list").offset().top,
+        left: el.offset().left - $(".main-nav-list").offset().left,
         height: el.outerHeight()
       });
     }

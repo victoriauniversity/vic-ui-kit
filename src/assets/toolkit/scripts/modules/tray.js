@@ -621,6 +621,7 @@ export function initTray() {
     } else {
       $tallBlip.css({
         top: el.offset().top - el.parents(".main-nav-list").offset().top,
+        left: el.offset().left - $(".main-nav-list").offset().left,
         height: el.outerHeight(),
       });
     }
