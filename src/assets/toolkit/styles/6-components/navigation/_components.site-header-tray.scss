@@ -247,9 +247,16 @@ $tray-width-desktop: 400px;
         margin-left: calc(100vw - 400px);
         width: $tray-width-desktop;
         overflow-y: scroll;
+        overflow-x: hidden;
 
-        > * {
-          margin: 0 15px;
+        // > * {
+        //   margin: 0 15px;
+        // }
+        .tray-inner-content {
+          padding: 0 15px;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
         }
         .tray-search-bar {
           margin-bottom: 1rem;
@@ -257,15 +264,14 @@ $tray-width-desktop: 400px;
 
         .tray-main-nav {
           margin-top: 1rem;
+          margin-bottom: 1rem;
           .main-nav-list {
             position: relative;
-            // border-left: 2px $black-tundora solid;
             .tall-blip {
-              // display: none;
               height: 0;
-              width: 2px;
+              width: 3px;
               position: absolute;
-              background-color: $green-brand-bright;
+              background-color: #ccc;
               left: 0;
               transition: all ease-out 0.2s;
               z-index: 99;
@@ -275,6 +281,10 @@ $tray-width-desktop: 400px;
               > a.main-nav-link {
                 padding-bottom: 15px;
                 padding-top: 15px;
+                transition: all ease 0.2s;
+              }
+              &:not(.homesite) {
+                margin-left: 40px;
               }
             }
             &.hub-page {
@@ -292,40 +302,59 @@ $tray-width-desktop: 400px;
           li.main-nav-item {
             position: relative;
             line-height: 1.2;
-            // border-bottom: 1px $grey-alto solid;
             background-color: $white;
             border-left: 0px $green-brand-bright solid;
             transition: all ease 0.2s;
             display: flex;
             flex-wrap: wrap;
             user-select: none;
+
             &.homesite {
-              // color: #fff;
               margin-left: 0;
-              align-items: center;
               margin-left: 0;
-              i {
-                font-size: 24px;
+              .connector {
+                position: absolute;
+                left: 10px;
+                bottom: -50px;
+                z-index: 99;
+                width: 25px;
               }
               .btn-expander {
                 padding: 15px 15px;
+              }
+              > a {
               }
               > ul {
                 display: none;
                 flex: 1 0 auto;
                 li {
-                  a {
+                  > a {
+                    border-bottom: 1px transparent solid;
+                    border-top: 1px transparent solid;
+                    transition: all ease 0.3s;
                     .tereo-nav-title {
                       color: $green-brand;
+                    }
+                    &:hover {
+                      border-color: $green-brand-bright;
+                      z-index: 90;
                     }
                   }
                 }
               }
-
-              > a {
-                .tereo-nav-title {
+              .main-nav-item {
+                display: flex;
+                align-items: center;
+                i {
+                  font-size: 18px;
+                  margin-right: 10px;
+                  position: absolute;
+                  z-index: 99;
+                  right: 5px;
+                  top: 30%;
                 }
               }
+
               &.expanded {
                 -webkit-box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
                 box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
@@ -363,7 +392,6 @@ $tray-width-desktop: 400px;
               // z-index: 90;
               > a {
                 background-color: $white;
-
               }
             }
             &.expanded {
@@ -394,8 +422,8 @@ $tray-width-desktop: 400px;
             .tereo-nav-title {
               display: block;
               color: $green-brand;
-              font-size: 18px;
-              font-weight: 500;
+              font-size: 16px;
+              margin-bottom: 5px;
             }
 
             a {
@@ -406,6 +434,7 @@ $tray-width-desktop: 400px;
               z-index: 50;
               font-family: $font-name-brand;
               padding: 10px;
+              font-size: 18px;
               .tereo-title {
                 display: block;
                 display: none;
@@ -421,12 +450,11 @@ $tray-width-desktop: 400px;
               padding: 10px;
               padding-right: 50px;
               position: initial;
-              flex: 1 1 auto;
-              margin-bottom: 1px;
+              flex: 85%;
 
               &.active {
-                background-color: $green-brand;
-                color: $kowhai;
+                background-color: $green-brand-bright;
+                color: #fff;
               }
             }
             @include breakpoint($until: desktop) {
@@ -446,9 +474,16 @@ $tray-width-desktop: 400px;
 
                 a {
                   font-size: 16px;
-                  &:hover,
+                  @include breakpoint($until: desktop) {
+                    font-size: 14px;
+                  }
                   &:active,
                   &:focus {
+                    color: $green-brand-bright;
+                    outline: 2px dotted #ccc;
+                    outline-offset: -2px;
+                  }
+                  &:hover {
                     color: $green-brand-bright;
                   }
                 }
@@ -518,6 +553,9 @@ $tray-width-desktop: 400px;
                       border-left: none;
                       a {
                         font-size: 15px;
+                        @include breakpoint($until: desktop) {
+                          font-size: 14px;
+                        }
                         padding: 10px 30px 10px 15px;
                       }
                       &.has-submenu {
@@ -532,6 +570,9 @@ $tray-width-desktop: 400px;
                           a {
                             padding-right: 10px;
                             font-size: 14px;
+                            @include breakpoint($until: desktop) {
+                              font-size: 13px;
+                            }
                           }
                           .btn-expander {
                             margin-right: 5px;
@@ -606,17 +647,25 @@ $tray-width-desktop: 400px;
         }
 
         .tray-sub-menu {
-          margin-top: 2rem;
-          background-color: #f7f7f7;
-          border-radius: 10px;
-          padding: 1rem;
-          background-image: url("https://www.wgtn.ac.nz/__data/assets/image/0008/1935395/tray-pattern@2x.png");
-          background-repeat: no-repeat;
-          background-position: bottom right;
-          background-size: 55%;
+          margin-top: auto;
+          margin-bottom: 2rem;
+          position: relative;
+
+          .sub-menu-background {
+            background-image: url("../images/patterns/pattern-05.svg");
+            background-repeat: no-repeat;
+            transform: rotateZ(-90deg);
+            height: 600px;
+            width: 157px;
+            position: absolute;
+            left: 144px;
+            top: -362px;
+            background-size: 150px;
+          }
           h4 {
             margin-bottom: 15px;
-            color: $black-tundora;
+            color: $green-brand;
+            margin-top: 1rem;
           }
           .sub-menu-list {
             display: flex;
@@ -624,6 +673,11 @@ $tray-width-desktop: 400px;
             .sub-menu-item {
               width: 50%;
               padding: 0.1rem 0;
+              z-index: 10;
+              &:last-of-type {
+                margin: auto;
+                width: 60%;
+              }
 
               // Icons
               &.about {
@@ -685,18 +739,24 @@ $tray-width-desktop: 400px;
                 padding: 5px 10px;
                 display: flex;
                 align-items: center;
+                border: 1px $grey-alto solid;
                 margin-bottom: 5px;
                 margin-right: 5px;
                 transition: box-shadow ease 0.3s, transform ease 0.1s;
                 box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
                   rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-                &:hover {
+                &:hover,&:focus {
                   transform: translateY(-2px);
                   // outline: 2px $kowhai solid;
                   background-color: $green-brand-light;
                   // color: #fff;
                   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
                     rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+                }
+                &:active {
+                  transform: translateY(-0px);
+                  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 10px -5px,
+                    rgba(0, 0, 0, 0.04) 0px 5px 5px -5px;
                 }
 
                 &:before {
@@ -1161,26 +1221,13 @@ $tray-width-desktop: 400px;
           top: -1rem;
         }
 
-        .tray-sub-menu {
-          margin-top: auto;
-          margin-bottom: 2rem;
-
-          .sub-menu-list {
-            .sub-menu-item {
-              a {
-                color: $black-tundora;
-              }
-            }
-          }
-        }
-
         .tray-search-bar {
           form {
             border: 2px solid $black-emperor;
             border-radius: $radius;
 
             .search-input {
-              background-color: transparent;
+              background-color: #fff;
               color: $grey-dove;
 
               &::placeholder {
