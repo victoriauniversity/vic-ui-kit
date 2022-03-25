@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, March 25, 2022, 10:48 AM */
+/** Version: 0.10.13 | Friday, March 25, 2022, 2:08 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -15018,13 +15018,18 @@ footer .footer-secondary.dark .footer-num {
   transition: all ease 0.2s;
 }
 
-.main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list > li:not(.homesite) {
-  margin-left: 40px;
+.main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list:not(.hub-page) > li i {
+  margin-top: 30px;
+  margin-right: 10px;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list.hub-page > li {
   border-bottom: none;
   margin-bottom: 0;
+}
+
+.main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list.hub-page > li:not(.homesite) {
+  margin-left: 40px;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list.hub-page > li > a {
@@ -15404,7 +15409,7 @@ footer .footer-secondary.dark .footer-num {
 
 .main-site-header.header-tray .header-inner .tray-content .tray-sub-menu {
   margin-top: auto;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
   position: relative;
 }
 
@@ -15925,13 +15930,15 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .main-site-header.white.header-tray .tray-content .tray-search-bar form {
-  border: 2px solid #555;
   border-radius: 0.25rem;
 }
 
 .main-site-header.white.header-tray .tray-content .tray-search-bar form .search-input {
   background-color: #fff;
   color: #707070;
+  padding: 10px;
+  border: 1px #DDD solid;
+  border-radius: 10px;
 }
 
 .main-site-header.white.header-tray .tray-content .tray-search-bar form .search-input::-webkit-input-placeholder {
@@ -15969,8 +15976,13 @@ footer .footer-secondary.dark .footer-num {
   /* Firefox */
 }
 
+.main-site-header.white.header-tray .tray-content .tray-search-bar form .submit-button {
+  height: 100%;
+}
+
 .main-site-header.white.header-tray .tray-content .tray-search-bar form .submit-button span {
-  color: #555;
+  font-size: 20px;
+  color: #424242;
 }
 
 .main-site-header.white.header-tray .tray-content .tray-close {
