@@ -283,14 +283,22 @@ $tray-width-desktop: 400px;
                 padding-top: 15px;
                 transition: all ease 0.2s;
               }
-              &:not(.homesite) {
-                margin-left: 40px;
+            }
+            &:not(.hub-page) {
+              > li {
+                i {
+                  margin-top: 30px;
+                  margin-right: 10px;
+                }
               }
             }
             &.hub-page {
               > li {
                 border-bottom: none;
                 margin-bottom: 0;
+                &:not(.homesite) {
+                  margin-left: 40px;
+                }
                 > a {
                   padding: 10px;
                   background-color: #f7f7f7;
@@ -648,7 +656,7 @@ $tray-width-desktop: 400px;
 
         .tray-sub-menu {
           margin-top: auto;
-          margin-bottom: 2rem;
+          margin-bottom: 4rem;
           position: relative;
 
           .sub-menu-background {
@@ -745,7 +753,8 @@ $tray-width-desktop: 400px;
                 transition: box-shadow ease 0.3s, transform ease 0.1s;
                 box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
                   rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-                &:hover,&:focus {
+                &:hover,
+                &:focus {
                   transform: translateY(-2px);
                   // outline: 2px $kowhai solid;
                   background-color: $green-brand-light;
@@ -1223,12 +1232,14 @@ $tray-width-desktop: 400px;
 
         .tray-search-bar {
           form {
-            border: 2px solid $black-emperor;
             border-radius: $radius;
 
             .search-input {
               background-color: #fff;
               color: $grey-dove;
+              padding: 10px;
+              border: 1px $grey-alto solid;
+              border-radius: 10px;
 
               &::placeholder {
                 /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -1239,8 +1250,10 @@ $tray-width-desktop: 400px;
             }
 
             .submit-button {
+              height: 100%;
               span {
-                color: $black-emperor;
+                font-size: 20px;
+                color: $black-tundora;
               }
             }
           }
