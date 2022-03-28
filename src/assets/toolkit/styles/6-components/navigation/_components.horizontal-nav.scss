@@ -705,7 +705,7 @@ body {
 
 // Body background
 body {
-  .layout{
+  .layout {
     position: relative;
   }
   .body-background {
@@ -843,70 +843,47 @@ body {
       font-size: 100%;
       border: thin $grey-gallery solid;
       position: relative;
-      &:before {
-        content: "";
-        background-image: url("../../images/MKT0510\ -\ Te\ Tumu\ PNG-09.png");
-        // background-color: $mahoe;
-        background-position: center;
-        // background-attachment:;
-        // background-color: rgba(200, 200, 200, 0.4);
-        z-index: 99;
-        width: 20px;
-        position: absolute;
-        -webkit-filter: brightness(80%);
-        filter: brightness(80%);
-        left: -25px;
-        top: 0;
-      }
+
       .sidemenu__label {
-        padding: 10px 2px;
         position: relative;
-        // background-image: url("../../images/MKT0510\ -\ Te\ Tumu\ PNG-09.png");
-        // background-color: $mahoe;
         background-position: center;
-        // background-color: rgba(200, 200, 200, 0.4);
-        // filter: brightness(80%);
-        > a {
-          font-size: 20px;
-          color: #fff;
-          margin-left: -12px;
-          margin-top: -19px;
-          padding: 15px 20px;
-          width: 110%;
-          box-shadow: rgba(99, 99, 99, 0.8) -4px 7px 8px -4px;
-          clip-path: none;
-          z-index: 900;
-          // background-image: url("../../images/MKT0510\ -\ Te\ Tumu\ PNG-09.png");
-          background-color: $pounamu;
-          background: linear-gradient(
-              90deg,
-              #115737 0%,
-              #52951c 67%,
-              #77ba49 100%
-            )
-            0% 0%;
-          background-position: center;
-          //
-          &:hover {
-            color: #fff;
+        border-bottom: 2px #eee solid;
+        border-top: 0;
+        overflow: hidden;
+        .sidemenu__background {
+          position: absolute;
+          right: -30px;
+          top: 0;
+          z-index: 100;
+          overflow: hidden;
+          max-height: 100%;
+          svg {
+            max-height: 300px;
+            width: 77px;
+            margin-top: -100px;
           }
-          &:after {
-            content: "";
-            position: absolute;
-            right: -8px;
-            left: initial;
-            top: -15px;
-            border-top: 82px solid #fff;
-            border-left: 46px solid transparent;
-            z-index: 99;
+        }
+
+        > a {
+          // font-size: 20px;
+          // color: $kowhai;
+          // background-color: $green-brand;
+          // padding: 15px 20px;
+          // box-shadow: rgba(99, 99, 99, 0.8) -4px 7px 8px -4px;
+          // z-index: 900;
+          // clip-path: none;
+          background-color: $green-brand-light;
+          padding: 15px;
+          &:hover {
+            color: $green-brand-bright;
           }
         }
       }
 
       > li {
         position: relative;
-        overflow: visible !important;
-        transition: all ease 0.2s;
+        overflow: visible;
+        transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
         border-bottom: 1px transparent solid;
         border-top: 1px transparent solid;
 
@@ -918,15 +895,15 @@ body {
           height: 100%;
           margin-left: -25px;
         }
+
         &.expanded {
           border-top: none;
 
           > a {
             color: #fff;
             font-weight: 600;
-            background-color: $green-light-brand;
             &:hover {
-              color: $grey-alto;
+              color: #fff;
             }
           }
           > .btn-expander {
@@ -939,7 +916,7 @@ body {
         &:not(.sidemenu__label) {
           &.expanded,
           &:hover {
-            border-color: $green-light-brand;
+            border-color: $green-brand-bright;
             box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
           }
         }
@@ -980,31 +957,26 @@ body {
             width: 100%;
           }
         }
-        > a {
-          transition: all linear 0.2s;
-          z-index: 20;
-          clip-path: polygon(0% 0px, 92.19% 0%, 100% 100%, 0px 100%);
-
-          &:hover {
-            color: $green-light-brand;
-            // background-color: $green-nebula;
-          }
-          &:focus {
-            z-index: 1;
-            outline: 2px #eee solid;
-            color: $green-brand-bright;
-            // background-color: $green-nebula;
-          }
-        }
       }
     }
     // ALL LEVELS
     ul {
       font-size: 16px;
       li {
-        border-left: 0px $green-light-brand solid;
+        border-left: 0px $green-brand-bright solid;
         overflow: hidden;
         transition: all ease 0.3s;
+        a {
+          transition: all linear 0.2s;
+
+          &:hover {
+            color: $green-brand-bright;
+          }
+          &:focus {
+            outline-offset: -2px;
+            outline: 2px $black-emperor dotted;
+          }
+        }
         &:hover {
           // border-left: 5px $green-light-brand solid;
         }
@@ -1012,6 +984,10 @@ body {
           overflow: hidden;
           display: flex;
           flex-wrap: wrap;
+          justify-content: space-between;
+          > a {
+            flex: 0 auto;
+          }
 
           > .btn-expander {
             // transition: all ease 0.2s;
@@ -1030,17 +1006,21 @@ body {
             }
           }
           ul {
-            transition: all linear 0.3s;
+            transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.4s,
+              opacity cubic-bezier(0.22, 1, 0.36, 1) 1s;
             overflow: hidden;
             max-height: 0;
             padding-top: 0;
             padding-bottom: 0;
             display: block;
             border-left: 0px white solid;
+            background-color: #fff;
+
             li {
               &.expanded {
                 > a {
-                  color: $green-light-brand;
+                  color: $green-brand-bright;
+                  font-weight: 600;
                 }
               }
             }
@@ -1050,11 +1030,13 @@ body {
               border-left: none;
               a {
                 font-size: 15px;
-                padding: 10px 30px 10px 15px;
+                margin-left: 15px;
+                padding: 10px 30px 10px 5px;
               }
               &.has-submenu {
                 a {
                   padding-right: 10px;
+                  flex: 1;
                 }
               }
               .btn-expander {
@@ -1064,15 +1046,24 @@ body {
                 padding: 5px 8px;
                 border-radius: 100px;
               }
+              &.expanded {
+                > ul {
+                  > li {
+                  }
+                }
+              }
               // BOTTOM LEVEL
               > ul {
+                margin-left: 10px;
                 > li {
                   a {
                     padding-right: 10px;
+                    padding-left: 10px;
                     font-size: 14px;
+                    margin-left: 0;
                   }
                   .btn-expander {
-                    margin-right: 5px;
+                    margin-right: 20px;
                   }
                 }
               }
@@ -1081,6 +1072,7 @@ body {
           &.expanded {
             // box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
             z-index: 1;
+            background-color: $green-brand-bright;
 
             > .btn-expander {
               &:after {
@@ -1091,7 +1083,7 @@ body {
 
             > ul {
               max-height: 800px;
-              border-left: 5px solid $green-light-brand;
+              border-left: 5px solid $green-brand-bright;
 
               &.taller {
                 max-height: 1500px;
@@ -1109,21 +1101,28 @@ body {
               li {
                 position: relative;
                 overflow: visible;
+                background-color: #fff;
 
                 &:before {
                   content: "";
-                  background-color: $grey-silver;
+                  background-color: $grey-alto;
                   position: absolute;
                   left: -6px;
                   top: 19px;
                   height: 1px;
                   width: 16px;
+                  transition: all ease 0.3s;
+                }
+                &.expanded {
+                  &:before {
+                    background-color: $green-brand-bright;
+                  }
                 }
               }
               // NESTED CHILD JOINING ARROW ADJUSTMENT
               ul {
-                border-left: 1px $grey-silver solid;
-                margin-left: 10px;
+                border-left: 1px $grey-alto solid;
+
                 li {
                   &:before {
                     left: -16px;
@@ -1181,7 +1180,7 @@ body {
 /*Saved items style in drawer*/
 
 .menu-container .icons8-expand-arrow {
-  transition: all ease 0.2s;
+  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
 }
 .menu-container .icons8-expand-arrow.flipped {
   transform: rotateZ(180deg);
@@ -1198,34 +1197,33 @@ body {
 /*TABS*/
 .main-site-header.header-tray .header-inner .tray-content .tabs {
   margin: 0;
-  background-color: #eee;
-  color: #232323;
+  background-color: $grey-gallery;
+  color: $black-brand;
   display: flex;
   margin-bottom: 1rem;
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: 400;
   position: relative;
 
   .tab-background {
-    flex: 1 0 50%;
-
-    // &:last-of-type {
-    //     clip-path: none;
-    //     background-color: #eee;
-    //     z-index: 0;
-    //     margin-left: -10px;
-    //     .tab {
-    //         &.active {
-    //             background-color: $green-brand-bright;
-    //         }
-    //     }
+    flex: 1 0 30%;
+  }
+  .close-menu {
+    padding: 10px;
+    background-color: $grey-gallery;
+    color: #fff;
+    border-left: 2px $grey-alto solid;
+    cursor: pointer;
+    color: $message-red;
+    // &:hover {
+    //   background-color: $grey-chalice;
     // }
   }
 }
 .menu-container .tabs .tab {
   padding: 10px 25px;
   cursor: pointer;
-  transition: all ease 0.3s;
+  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
   user-select: none;
   flex: 1 0 50%;
   text-align: center;
@@ -1265,7 +1263,7 @@ body {
 }
 .menu-container .tabs .tab.active {
   background-color: $green-brand;
-  color: $white;
+  color: $kowhai;
 }
 .menu-container .tabs .tab.active:hover {
   background-color: $green-brand;
@@ -1298,7 +1296,17 @@ body {
     }
   }
 
-
+  .main-nav-list {
+    position: relative;
+    .tall-blip {
+      height: 0;
+      width: 3px;
+      position: absolute;
+      background-color: $green-brand-weaker;
+      left: -8px;
+      transition: all ease-out 0.2s;
+    }
+  }
 
   // Custom dropdown
   .saved-items-selector {
