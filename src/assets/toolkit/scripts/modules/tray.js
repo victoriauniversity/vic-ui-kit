@@ -41,13 +41,23 @@ export function initTray() {
   $("body").on("click keyup", (e) => {
     // Close tray if clicked away from or escpae buttons
 
-    // console.log( e.target.className, 'clicked' );
+    console.log(e.target.className, "clicked");
     if (
       e.target.className.includes("tray-open") ||
       (e.key == "Escape" && $(".tray-open").length)
     ) {
       e.preventDefault();
       toggleTray();
+    }
+
+    // Close dropdown if click away
+    if (
+      (!e.target.className.includes("selector") &&
+        $(".custom-dropdown .selector").hasClass("open")) ||
+      (!e.target.className.includes("selector") && e.key == "Escape")
+    ) {
+      $(".custom-dropdown .selector").next().slideUp();
+      $(".custom-dropdown .selector").removeClass("open");
     }
   });
 
@@ -608,7 +618,7 @@ export function initTray() {
   // Trigger to open/close items in saved items
   $(".group-title").on("click", function (e) {
     $(this).toggleClass("active");
-    $(this).next().slideToggle();
+    $(this).next().slideToggle("fast");
     $(this).find("i").toggleClass("flipped");
   });
 

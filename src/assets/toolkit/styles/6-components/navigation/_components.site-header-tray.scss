@@ -7,6 +7,8 @@ $page-sub-nav-bg: $brand-dark !default;
 $page-sub-nav-active-item-bg: $brand !default;
 $page-sub-nav-hover-bg: $brand-darker !default;
 
+$easing: cubic-bezier(0.22, 1, 0.36, 1);
+
 $green-linear-gradient: linear-gradient(
     90deg,
     #115737 0%,
@@ -274,13 +276,13 @@ $tray-width-desktop: 400px;
               position: absolute;
               background-color: $green-brand-bright;
               left: 3px;
-              transition: all ease-out 0.2s;
+              transition: all ease 0.2s;
               z-index: 99;
             }
             > li {
               border-bottom: 1px $grey-alto solid;
               > a.main-nav-link {
-                transition: all ease 0.2s;
+                transition: all $easing 0.2s;
               }
             }
             &:not(.hub-page) {
@@ -298,7 +300,10 @@ $tray-width-desktop: 400px;
                 border-bottom: none;
                 margin-bottom: 0;
                 &:not(.homesite) {
-                  // margin-left: 40px;
+                  margin-top: 5px;
+                  > a {
+                    padding: 10px 15px 10px 25px;
+                  }
                 }
                 > a {
                   padding: 10px 15px;
@@ -335,7 +340,7 @@ $tray-width-desktop: 400px;
             line-height: 1.2;
             background-color: $white;
             border-left: 0px $green-brand-bright solid;
-            transition: all ease 0.2s;
+            transition: all $easing 0.2s;
             display: flex;
             flex-wrap: wrap;
             user-select: none;
@@ -380,7 +385,7 @@ $tray-width-desktop: 400px;
                   > a {
                     border-bottom: 1px transparent solid;
                     border-top: 1px transparent solid;
-                    transition: all ease 0.3s;
+                    transition: all $easing 0.3s;
                     margin-left: 0;
 
                     .tereo-nav-title {
@@ -431,7 +436,7 @@ $tray-width-desktop: 400px;
               background-color: $grey-gallery;
 
               &:after {
-                transition: all ease 0.2s;
+                transition: all $easing 0.2s;
                 line-height: 2;
               }
             }
@@ -529,7 +534,7 @@ $tray-width-desktop: 400px;
               li {
                 border-left: 0px $green-brand-bright solid;
                 overflow: hidden;
-                transition: all ease 0.3s;
+                transition: all $easing 0.3s;
                 position: relative;
                 &.sidemenu__label {
                   display: none;
@@ -538,6 +543,7 @@ $tray-width-desktop: 400px;
                 a {
                   font-size: 16px;
                   margin-left: 5px;
+                  transition: all $easing .2s;
                   @include breakpoint($until: desktop) {
                     font-size: 14px;
                   }
@@ -579,7 +585,7 @@ $tray-width-desktop: 400px;
                   }
 
                   > .btn-expander {
-                    // transition: all ease 0.2s;
+                    // transition: all $easing 0.2s;
                     z-index: 505;
                     position: relative;
                     &:hover {
@@ -591,11 +597,11 @@ $tray-width-desktop: 400px;
                     }
 
                     &:after {
-                      transition: all ease 0.2s;
+                      transition: all $easing 0.2s;
                     }
                   }
                   ul {
-                    transition: all ease 0.3s;
+                    transition: all $easing 0.3s;
                     overflow: hidden;
                     max-height: 0;
                     padding-top: 0;
@@ -681,6 +687,8 @@ $tray-width-desktop: 400px;
                 // JOINING ARROWS IN NESTED LISTS
                 &:not(.homesite) {
                   &:before {
+                  transition: all $easing .2s;
+
                     content: "";
                     background-color: $grey-alto;
                     position: absolute;
@@ -692,8 +700,10 @@ $tray-width-desktop: 400px;
 
                   &.expanded,
                   &:hover {
+                    padding-left: 5px;
                     &:before {
                       background-color: $green-brand-bright;
+                      width: 20px;
                     }
                   }
                   ul {

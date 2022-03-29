@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, March 29, 2022, 1:47 PM */
+/** Version: 0.10.13 | Tuesday, March 29, 2022, 3:55 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14057,10 +14057,17 @@ function initTray() {
   });
   $("body").on("click keyup", function (e) {
     // Close tray if clicked away from or escpae buttons
-    // console.log( e.target.className, 'clicked' );
+    console.log(e.target.className, "clicked");
+
     if (e.target.className.includes("tray-open") || e.key == "Escape" && $(".tray-open").length) {
       e.preventDefault();
       toggleTray();
+    } // Close dropdown if click away
+
+
+    if (!e.target.className.includes("selector") && $(".custom-dropdown .selector").hasClass("open") || !e.target.className.includes("selector") && e.key == "Escape") {
+      $(".custom-dropdown .selector").next().slideUp();
+      $(".custom-dropdown .selector").removeClass("open");
     }
   }); // $('.search-button-inside form').on('focus', (e) => {
   //   $( this ).toggleClass('focus')
@@ -14468,7 +14475,7 @@ function initTray() {
 
   $(".group-title").on("click", function (e) {
     $(this).toggleClass("active");
-    $(this).next().slideToggle();
+    $(this).next().slideToggle("fast");
     $(this).find("i").toggleClass("flipped");
   });
 
