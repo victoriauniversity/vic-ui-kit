@@ -214,6 +214,9 @@ $tray-width-desktop: 400px;
         color: #fff;
         // pointer-events: none;
 
+        @include breakpoint($until: tablet) {
+          // right: 20px;
+        }
         &.tray-open {
           display: block;
           animation: delay-visibility-in 0.3s cubic-bezier(0.77, 0, 0.175, 1)
@@ -262,25 +265,21 @@ $tray-width-desktop: 400px;
         }
 
         .tray-main-nav {
-          margin-top: 1rem;
-          margin-bottom: 1rem;
+          margin: 15px -15px;
           .main-nav-list {
             position: relative;
-            padding-left: 20px;
             .tall-blip {
               height: 0;
               width: 3px;
               position: absolute;
-              background-color: #ccc;
-              left: 0;
+              background-color: $green-brand-bright;
+              left: 3px;
               transition: all ease-out 0.2s;
               z-index: 99;
             }
             > li {
               border-bottom: 1px $grey-alto solid;
               > a.main-nav-link {
-                padding-bottom: 15px;
-                padding-top: 15px;
                 transition: all ease 0.2s;
               }
             }
@@ -302,7 +301,7 @@ $tray-width-desktop: 400px;
                   // margin-left: 40px;
                 }
                 > a {
-                  padding: 10px;
+                  padding: 10px 15px;
                   background-color: #f7f7f7;
                 }
                 > a:not(.active) {
@@ -315,6 +314,7 @@ $tray-width-desktop: 400px;
           }
 
           .nav-separator {
+            display: none;
             flex: 1 1 auto;
             background-color: #fff;
             // height: 10px;
@@ -341,22 +341,6 @@ $tray-width-desktop: 400px;
             user-select: none;
 
             &.homesite {
-              margin-left: 0;
-              &:before {
-                content: "";
-                width: 20px;
-                height: 105%;
-                border: solid 2px $grey-silver;
-                border-top-color: rgb(238, 238, 238);
-                border-right-color: rgb(238, 238, 238);
-                border-bottom-color: rgb(238, 238, 238);
-                border-left-color: rgb(238, 238, 238);
-                border-color: #e5e5e5 transparent transparent #e5e5e5;
-                position: absolute;
-                left: -28px;
-                top: 33px;
-                border-radius: 5px 0 0 0;
-              }
               &.expanded {
                 &:before {
                   // height: 97%;
@@ -369,9 +353,23 @@ $tray-width-desktop: 400px;
                 bottom: -75px;
                 z-index: 99;
                 width: 25px;
+                display: none;
               }
               .btn-expander {
                 padding: 15px 15px;
+              }
+              > .btn-expander {
+                &:before {
+                  content: "more";
+                  position: absolute;
+                  bottom: 5px;
+                  font-size: 12px;
+                  color: #aaa;
+                  right: 6px;
+                }
+                &:after {
+                  margin-left: 10px;
+                }
               }
               > a {
               }
@@ -383,6 +381,8 @@ $tray-width-desktop: 400px;
                     border-bottom: 1px transparent solid;
                     border-top: 1px transparent solid;
                     transition: all ease 0.3s;
+                    margin-left: 0;
+
                     .tereo-nav-title {
                       color: $green-brand;
                     }
@@ -439,10 +439,10 @@ $tray-width-desktop: 400px;
             &.active {
               // border-left: 5px $green-brand solid;
               // border-bottom-color: $green-brand;
-              box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
+              // box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
               // z-index: 90;
               > a {
-                background-color: $white;
+                // background-color: $white;
               }
             }
             &.expanded {
@@ -484,13 +484,12 @@ $tray-width-desktop: 400px;
               position: relative;
               z-index: 50;
               font-family: $font-name-brand;
-              padding: 10px;
+              padding: 10px 15px;
               font-size: 18px;
               @include breakpoint($until: tablet) {
                 font-size: 16px;
               }
               .tereo-title {
-                display: block;
                 display: none;
                 color: $green-brand;
               }
@@ -505,7 +504,7 @@ $tray-width-desktop: 400px;
               padding-right: 50px;
               position: initial;
               flex: 85%;
-
+              padding-left: 20px;
               &.active {
                 background-color: $green-brand-bright;
                 color: #fff;
@@ -517,6 +516,11 @@ $tray-width-desktop: 400px;
               display: none;
             }
 
+            // TOP LEVEL
+            > ul > li.nav-item-parent > a {
+              margin-left: 25px;
+              padding-left: 5px;
+            }
             // ALL LEVELS
             ul {
               font-size: 16px;
@@ -526,9 +530,14 @@ $tray-width-desktop: 400px;
                 border-left: 0px $green-brand-bright solid;
                 overflow: hidden;
                 transition: all ease 0.3s;
+                position: relative;
+                &.sidemenu__label {
+                  display: none;
+                }
 
                 a {
                   font-size: 16px;
+                  margin-left: 5px;
                   @include breakpoint($until: desktop) {
                     font-size: 14px;
                   }
@@ -608,10 +617,12 @@ $tray-width-desktop: 400px;
                       border-left: none;
                       a {
                         font-size: 15px;
+                        padding: 10px 30px 10px 5px;
+                        margin-left: 15px;
+
                         @include breakpoint($until: desktop) {
                           font-size: 14px;
                         }
-                        padding: 10px 30px 10px 15px;
                       }
                       &.has-submenu {
                         a {
@@ -665,32 +676,42 @@ $tray-width-desktop: 400px;
                         border-left: none;
                       }
                     }
+                  }
+                }
+                // JOINING ARROWS IN NESTED LISTS
+                &:not(.homesite) {
+                  &:before {
+                    content: "";
+                    background-color: $grey-alto;
+                    position: absolute;
+                    left: 10px;
+                    top: 19px;
+                    height: 1px;
+                    width: 16px;
+                  }
 
-                    // JOINING ARROWS IN NESTED LISTS
-                    ul {
-                      li {
-                        position: relative;
-                        overflow: visible;
-
-                        &:before {
-                          content: "";
-                          background-color: $grey-silver;
-                          position: absolute;
-                          left: -6px;
-                          top: 19px;
-                          height: 1px;
-                          width: 16px;
-                        }
+                  &.expanded,
+                  &:hover {
+                    &:before {
+                      background-color: $green-brand-bright;
+                    }
+                  }
+                  ul {
+                    li {
+                      position: relative;
+                      overflow: visible;
+                      &:before {
+                        left: 0;
                       }
-                      // NESTED CHILD JOINING ARROW ADJUSTMENT
-                      > ul {
-                        border-left: 1px $grey-silver solid;
-                        margin-left: 10px;
-                        li {
-                          &:before {
-                            left: -16px;
-                            width: 20px;
-                          }
+                    }
+                    // NESTED CHILD JOINING ARROW ADJUSTMENT
+                    > ul {
+                      border-left: 1px $grey-alto solid;
+                      margin-left: 10px;
+                      li {
+                        &:before {
+                          left: -16px;
+                          width: 20px;
                         }
                       }
                     }
@@ -729,66 +750,63 @@ $tray-width-desktop: 400px;
             display: flex;
             flex-wrap: wrap;
             .sub-menu-item {
-              width: 50%;
               padding: 0.1rem 0;
               z-index: 10;
               &:last-of-type {
-                margin: auto;
-                width: 60%;
               }
 
               // Icons
-              &.about {
-                a {
-                  &:before {
-                    content: "\f18e";
-                  }
-                }
-              }
-              &.library {
-                a {
-                  &:before {
-                    content: "\f135";
-                  }
-                }
-              }
-              &.blackboard {
-                a {
-                  &:before {
-                    content: "\f1a4";
-                  }
-                }
-              }
+              // &.about {
+              //   a {
+              //     &:before {
+              //       content: "\f18e";
+              //     }
+              //   }
+              // }
+              // &.library {
+              //   a {
+              //     &:before {
+              //       content: "\f135";
+              //     }
+              //   }
+              // }
+              // &.blackboard {
+              //   a {
+              //     &:before {
+              //       content: "\f1a4";
+              //     }
+              //   }
+              // }
 
-              &.maps {
-                a {
-                  &:before {
-                    content: "\f197";
-                  }
-                }
-              }
+              // &.maps {
+              //   a {
+              //     &:before {
+              //       content: "\f197";
+              //     }
+              //   }
+              // }
 
-              &.staff-intranet {
-                a {
-                  &:before {
-                    content: "\f191";
-                  }
-                }
-              }
-              &.mytools {
-                a {
-                  &:before {
-                    content: "\f186";
-                  }
-                }
-              }
-              &.learning-\&-teaching {
-                a {
-                  &:before {
-                    content: "\f1a3";
-                  }
-                }
-              }
+              // &.staff-intranet {
+              //   a {
+              //     &:before {
+              //       content: "\f191";
+              //     }
+              //   }
+              // }
+              // &.mytools {
+              //   a {
+              //     &:before {
+              //       content: "\f186";
+              //     }
+              //   }
+              // }
+              // &.learning-\&-teaching {
+              //   a {
+              //     &:before {
+              //       content: "\f1a3";
+              //     }
+              //   }
+              // }
 
               a {
                 text-decoration: none;
@@ -818,8 +836,8 @@ $tray-width-desktop: 400px;
                     rgba(0, 0, 0, 0.04) 0px 5px 5px -5px;
                 }
 
-                &:before {
-                  content: "";
+                &:after {
+                  content: "\f156";
                   display: inline-block;
                   font-family: "Favorites";
                   font-style: normal;
