@@ -400,7 +400,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 
 @keyframes draw-open {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(-0%);
     visibility: hidden;
     opacity: 0;
     z-index: 0;
@@ -419,6 +419,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
     visibility: visible;
     opacity: 1;
     z-index: 100;
+    max-width: 100%;
   }
 }
 
@@ -426,15 +427,17 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
   0% {
     visibility: visible;
     opacity: 1;
+    max-width: 100%;
   }
 
-  99% {
-    visibility: visible;
+  50% {
+    overflow: hidden;
   }
 
   100% {
     visibility: hidden;
     opacity: 0;
+    max-width: 0;
   }
 }
 
@@ -533,10 +536,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
         }
       }
     }
-
-    .sidemenu-drawer {
-      display: none;
-    }
   }
 
   @include breakpoint($from: desktop) {
@@ -554,27 +553,66 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
       }
 
       .sidemenu-drawer {
-        display: none;
-        padding: 1rem;
-        padding-right: 2rem;
+        max-width: 0;
+        padding: 0;
         border: 2px solid $grey-alto;
-        // width: 75%;
         background-color: $white;
-        // min-height: 100%;
-        height: auto;
         position: absolute;
         left: 25%;
         top: -1px;
         z-index: -10;
-        height: 100%;
+        opacity: 0;
+        transition: all ease 0.3s;
+        min-height: 100%;
+        display: flex;
+        visibility: hidden;
+        background-image: url("../images/patterns/triangles.svg");
+        background-size: 100px;
+        background-position: bottom left;
+        background-repeat: no-repeat;
 
-        // animation: draw-close .3s cubic-bezier(.77,0,.175,1) forwards;
+        .draw-promo {
+          max-width: 800px;
+          transition: all ease 0.2s;
+          overflow: hidden;
+          min-width: 300px;
+          opacity: 1;
+          > div {
+            transition: all ease 0.3s;
+            max-width: 100%;
+            max-height: 500px;
+            overflow: hidden;
+          }
+        }
+        &.no-promo {
+          padding-right: 1rem;
+          .draw-promo {
+            max-width: 0;
+            min-width: 0;
+            > div {
+              max-width: 0;
+              max-height: 0;
+            }
+          }
+          .draw-nav {
+            padding-right: 0;
+            border-right: none;
+          }
+        }
 
         &.active {
-          display: flex;
+          padding: 1rem;
+          padding-right: 2rem;
           // box-shadow: -7px 14px 18px -9px rgba(0, 0, 0, 0.1);
+          overflow: visible;
+          opacity: 1;
+          max-width: 100%;
+          visibility: visible;
 
-          // animation: draw-open .5s cubic-bezier(.77,0,.175,1) forwards;
+          .draw-promo {
+            // overflow: visible;
+            // max-width: 100%;
+          }
           // width: 75%;
           // background-color: $white;
           // min-height: 100%;
@@ -591,6 +629,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
           font-size: 1.3rem;
           color: $black-tundora;
           text-decoration: none;
+          padding: 5px 7px;
         }
 
         .draw-nav {
@@ -652,12 +691,20 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 
               > ul {
                 > li {
-                  &:not(:last-child) {
-                    > a {
-                      border-bottom: 1px solid $grey-alto;
-                      padding-left: 0;
-                      margin-left: 0.7em;
-                    }
+                  position: relative;
+                  &:before {
+                    transition: all $easing 0.2s;
+                    content: "";
+                    background-color: $grey-alto;
+                    position: absolute;
+                    left: 0;
+                    top: 14px;
+                    height: 1px;
+                    width: 16px;
+                  }
+                  > a {
+                    padding-left: 0;
+                    margin-left: 20px;
                   }
                 }
               }
@@ -669,30 +716,31 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
               a {
                 @include hoverify() {
                   color: $blue-endeavoura;
+                  text-decoration: underline;
                 }
               }
               > li {
                 display: flex;
                 align-items: center;
+                flex-wrap: wrap;
+                &.expanded {
+                  > ul {
+                    max-height: 300px;
+                    visibility: visible;
+                    padding: 0.2em 0 0.75em 0;
+                  }
+                }
+                > ul {
+                  transition: all $easing 0.3s;
+                  display: block;
+                  max-height: 0;
+                  overflow: hidden;
+                  visibility: hidden;
+                  flex: 1 auto;
+                  padding: 0;
+                }
               }
             }
-          }
-        }
-
-        .draw-promo {
-          padding-right: 2rem;
-          width: 70%;
-        }
-
-        &.no-promo {
-          padding-right: 1rem;
-          .draw-promo {
-            display: none;
-          }
-
-          .draw-nav {
-            padding-right: 0;
-            border-right: none;
           }
         }
       }

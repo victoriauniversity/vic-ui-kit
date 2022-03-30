@@ -543,7 +543,7 @@ $tray-width-desktop: 400px;
                 a {
                   font-size: 16px;
                   margin-left: 5px;
-                  transition: all $easing .2s;
+                  transition: all $easing 0.2s;
                   @include breakpoint($until: desktop) {
                     font-size: 14px;
                   }
@@ -687,8 +687,7 @@ $tray-width-desktop: 400px;
                 // JOINING ARROWS IN NESTED LISTS
                 &:not(.homesite) {
                   &:before {
-                  transition: all $easing .2s;
-
+                    transition: all $easing 0.2s;
                     content: "";
                     background-color: $grey-alto;
                     position: absolute;
@@ -759,65 +758,85 @@ $tray-width-desktop: 400px;
           .sub-menu-list {
             display: flex;
             flex-wrap: wrap;
+            &.icons {
+              .sub-menu-item {
+                // Icons
+                &.about {
+                  a {
+                    &:before {
+                      content: "\f18e";
+                    }
+                  }
+                }
+                &.library {
+                  a {
+                    &:before {
+                      content: "\f135";
+                    }
+                  }
+                }
+                &.blackboard {
+                  a {
+                    &:before {
+                      content: "\f1a4";
+                    }
+                  }
+                }
+
+                &.maps {
+                  a {
+                    &:before {
+                      content: "\f197";
+                    }
+                  }
+                }
+
+                &.staff-intranet {
+                  a {
+                    &:before {
+                      content: "\f191";
+                    }
+                  }
+                }
+                &.mytools {
+                  a {
+                    &:before {
+                      content: "\f186";
+                    }
+                  }
+                }
+                &.learning-\&-teaching {
+                  a {
+                    &:before {
+                      content: "\f1a3";
+                    }
+                  }
+                }
+              }
+              a {
+                &:before {
+                  content: "";
+                  display: inline-block;
+                  font-family: "Favorites";
+                  font-style: normal;
+                  font-weight: normal;
+                  font-variant: normal;
+                  line-height: 1;
+                  text-decoration: inherit;
+                  text-rendering: optimizeLegibility;
+                  text-transform: none;
+                  -moz-osx-font-smoothing: grayscale;
+                  margin-right: 4px;
+                  font-size: 120%;
+                }
+                &:after {
+                  content: none !important;
+                }
+              }
+            }
             .sub-menu-item {
               padding: 0.1rem 0;
               z-index: 10;
-              &:last-of-type {
-              }
-
-              // Icons
-              // &.about {
-              //   a {
-              //     &:before {
-              //       content: "\f18e";
-              //     }
-              //   }
-              // }
-              // &.library {
-              //   a {
-              //     &:before {
-              //       content: "\f135";
-              //     }
-              //   }
-              // }
-              // &.blackboard {
-              //   a {
-              //     &:before {
-              //       content: "\f1a4";
-              //     }
-              //   }
-              // }
-
-              // &.maps {
-              //   a {
-              //     &:before {
-              //       content: "\f197";
-              //     }
-              //   }
-              // }
-
-              // &.staff-intranet {
-              //   a {
-              //     &:before {
-              //       content: "\f191";
-              //     }
-              //   }
-              // }
-              // &.mytools {
-              //   a {
-              //     &:before {
-              //       content: "\f186";
-              //     }
-              //   }
-              // }
-              // &.learning-\&-teaching {
-              //   a {
-              //     &:before {
-              //       content: "\f1a3";
-              //     }
-              //   }
-              // }
-
               a {
                 text-decoration: none;
                 background-color: #fff;

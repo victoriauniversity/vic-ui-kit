@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, March 30, 2022, 3:06 PM */
+/** Version: 0.10.13 | Thursday, March 31, 2022, 10:05 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -4306,7 +4306,7 @@ blockquote.quote {
   -webkit-box-flex: 1;
           flex: 1 1 70%;
   padding: 1rem;
-  background-color: #EEE;
+  background-color: #F9F9F9;
 }
 
 .draw-promo .highlight-message .highlight-content > * {
@@ -14208,8 +14208,8 @@ footer .footer-secondary.dark .footer-num {
 
 @-webkit-keyframes draw-open {
   0% {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
     visibility: hidden;
     opacity: 0;
     z-index: 0;
@@ -14227,13 +14227,14 @@ footer .footer-secondary.dark .footer-num {
     visibility: visible;
     opacity: 1;
     z-index: 100;
+    max-width: 100%;
   }
 }
 
 @keyframes draw-open {
   0% {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
     visibility: hidden;
     opacity: 0;
     z-index: 0;
@@ -14251,6 +14252,7 @@ footer .footer-secondary.dark .footer-num {
     visibility: visible;
     opacity: 1;
     z-index: 100;
+    max-width: 100%;
   }
 }
 
@@ -14258,13 +14260,15 @@ footer .footer-secondary.dark .footer-num {
   0% {
     visibility: visible;
     opacity: 1;
+    max-width: 100%;
   }
-  99% {
-    visibility: visible;
+  50% {
+    overflow: hidden;
   }
   100% {
     visibility: hidden;
     opacity: 0;
+    max-width: 0;
   }
 }
 
@@ -14272,13 +14276,15 @@ footer .footer-secondary.dark .footer-num {
   0% {
     visibility: visible;
     opacity: 1;
+    max-width: 100%;
   }
-  99% {
-    visibility: visible;
+  50% {
+    overflow: hidden;
   }
   100% {
     visibility: hidden;
     opacity: 0;
+    max-width: 0;
   }
 }
 
@@ -14368,10 +14374,6 @@ footer .footer-secondary.dark .footer-num {
   top: initial;
 }
 
-.sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer {
-  display: none;
-}
-
 @media (min-width: 61em) {
   .sidemenu-banner-wrap {
     display: -webkit-box;
@@ -14389,21 +14391,63 @@ footer .footer-secondary.dark .footer-num {
     right: 75%;
   }
   .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer {
-    display: none;
-    padding: 1rem;
-    padding-right: 2rem;
+    max-width: 0;
+    padding: 0;
     border: 2px solid #DDD;
     background-color: #FFF;
-    height: auto;
     position: absolute;
     left: 25%;
     top: -1px;
     z-index: -10;
-    height: 100%;
-  }
-  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer.active {
+    opacity: 0;
+    -webkit-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+    min-height: 100%;
     display: -webkit-box;
     display: flex;
+    visibility: hidden;
+    background-image: url("../images/patterns/triangles.svg");
+    background-size: 100px;
+    background-position: bottom left;
+    background-repeat: no-repeat;
+  }
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-promo {
+    max-width: 800px;
+    -webkit-transition: all ease 0.2s;
+    transition: all ease 0.2s;
+    overflow: hidden;
+    min-width: 300px;
+    opacity: 1;
+  }
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-promo > div {
+    -webkit-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+    max-width: 100%;
+    max-height: 500px;
+    overflow: hidden;
+  }
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer.no-promo {
+    padding-right: 1rem;
+  }
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer.no-promo .draw-promo {
+    max-width: 0;
+    min-width: 0;
+  }
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer.no-promo .draw-promo > div {
+    max-width: 0;
+    max-height: 0;
+  }
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer.no-promo .draw-nav {
+    padding-right: 0;
+    border-right: none;
+  }
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer.active {
+    padding: 1rem;
+    padding-right: 2rem;
+    overflow: visible;
+    opacity: 1;
+    max-width: 100%;
+    visibility: visible;
   }
   .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .close-draw {
     position: absolute;
@@ -14412,6 +14456,7 @@ footer .footer-secondary.dark .footer-num {
     font-size: 1.3rem;
     color: #424242;
     text-decoration: none;
+    padding: 5px 7px;
   }
   .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav {
     width: 30%;
@@ -14452,36 +14497,53 @@ footer .footer-secondary.dark .footer-num {
     border-top: 1px solid #DDD;
     padding: 0.5rem 0;
   }
-  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul > li > ul > li:not(:last-child) > a {
-    border-bottom: 1px solid #DDD;
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul > li > ul > li {
+    position: relative;
+  }
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul > li > ul > li:before {
+    -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+    transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+    content: "";
+    background-color: #DDD;
+    position: absolute;
+    left: 0;
+    top: 14px;
+    height: 1px;
+    width: 16px;
+  }
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul > li > ul > li > a {
     padding-left: 0;
-    margin-left: 0.7em;
+    margin-left: 20px;
   }
   .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul.active-nav-group {
     display: block;
   }
   .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul.active-nav-group a:hover, .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul.active-nav-group a:active, .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul.active-nav-group a:focus {
     color: #005EA5;
+    text-decoration: underline;
   }
   .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul.active-nav-group > li {
     display: -webkit-box;
     display: flex;
     -webkit-box-align: center;
             align-items: center;
+    flex-wrap: wrap;
   }
-  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-promo {
-    padding-right: 2rem;
-    width: 70%;
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul.active-nav-group > li.expanded > ul {
+    max-height: 300px;
+    visibility: visible;
+    padding: 0.2em 0 0.75em 0;
   }
-  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer.no-promo {
-    padding-right: 1rem;
-  }
-  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer.no-promo .draw-promo {
-    display: none;
-  }
-  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer.no-promo .draw-nav {
-    padding-right: 0;
-    border-right: none;
+  .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul.active-nav-group > li > ul {
+    -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+    transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    -webkit-box-flex: 1;
+            flex: 1 auto;
+    padding: 0;
   }
 }
 
@@ -15513,6 +15575,54 @@ footer .footer-secondary.dark .footer-num {
   display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
+}
+
+.main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list.icons .sub-menu-item.about a:before {
+  content: "\f18e";
+}
+
+.main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list.icons .sub-menu-item.library a:before {
+  content: "\f135";
+}
+
+.main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list.icons .sub-menu-item.blackboard a:before {
+  content: "\f1a4";
+}
+
+.main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list.icons .sub-menu-item.maps a:before {
+  content: "\f197";
+}
+
+.main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list.icons .sub-menu-item.staff-intranet a:before {
+  content: "\f191";
+}
+
+.main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list.icons .sub-menu-item.mytools a:before {
+  content: "\f186";
+}
+
+.main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list.icons .sub-menu-item.learning-\&-teaching a:before {
+  content: "\f1a3";
+}
+
+.main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list.icons a:before {
+  content: "";
+  display: inline-block;
+  font-family: "Favorites";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  margin-right: 4px;
+  font-size: 120%;
+}
+
+.main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list.icons a:after {
+  content: none !important;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list .sub-menu-item {
