@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, March 29, 2022, 3:55 PM */
+/** Version: 0.10.13 | Wednesday, March 30, 2022, 1:34 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14101,32 +14101,31 @@ function initTray() {
   var sidemeneuExpanded = false;
   var $draw = $(".sidemenu-drawer");
 
-  function expandTray(index, button) {
-    $(button).on("click keypress", function (e) {
+  function expandTray(index, listItem) {
+    $(listItem).on("mouseenter click", function (e) {
       // console.log( e );
-      if (e.type == "click" || e.key == "Enter") {
-        //toggle sidemenu draw and content
-        if ($(button).parent().hasClass("expanded-draw")) {
-          // console.log('has class button close tray');
+      if ($(listItem).parent().hasClass("expanded-draw")) {
+        // console.log('has class button close tray');
+        sidemeneuExpanded == true;
+        $draw.addClass("active"); // Remove other ones
+      } else {
+        //show tray
+        if (sidemeneuExpanded === false) {
+          $draw.addClass("active");
           sidemeneuExpanded = !sidemeneuExpanded;
-          $draw.toggleClass("active");
-          $(button).parent().removeClass("expanded-draw");
-        } else {
-          //show tray
-          if (sidemeneuExpanded === false) {
-            $draw.addClass("active");
-            sidemeneuExpanded = !sidemeneuExpanded;
-          }
+        }
 
-          $(".sidemenu-homepage > ul > li").removeClass("expanded-draw");
-          $(button).parent().addClass("expanded-draw");
-        } // console.log(index, button);
+        $(".sidemenu-homepage > ul > li").removeClass("expanded-draw");
+        $(listItem).parent().addClass("expanded-draw");
+      } // Hover trigger
 
 
-        var matchingNavGroup = $(".draw-nav ul[data-index='".concat(index, "']"));
-        $(".draw-nav > ul").removeClass("active-nav-group");
-        matchingNavGroup.toggleClass("active-nav-group");
-      }
+      $(".nav-item-parent.active-menu-item").removeClass("active-menu-item");
+      $(listItem).addClass("active-menu-item"); // console.log(index, listItem);
+
+      var matchingNavGroup = $(".draw-nav ul[data-index='".concat(index, "']"));
+      $(".draw-nav > ul").removeClass("active-nav-group");
+      matchingNavGroup.toggleClass("active-nav-group"); // }
     });
   }
 
@@ -14148,16 +14147,23 @@ function initTray() {
   function closeSideMenuDraw(location) {
     var loc = location || "expanded-draw"; // console.log(loc);
 
+    console.log(sidemeneuExpanded);
     $(".close-draw").on("click", function (e) {
       if (sidemeneuExpanded) {
         sidemeneuExpanded = !sidemeneuExpanded;
-        $(".sidemenu-homepage .".concat(loc)).removeClass("expanded-draw");
-        $draw.toggleClass("active");
+        $(".sidemenu-homepage .".concat(loc)).removeClass("expanded-draw"); // Remove any active item classes
+
+        $(".nav-item-parent.active-menu-item").removeClass("active-menu-item"); // Remove blip
+
+        $blip.css({
+          height: "0px"
+        });
+        $draw.removeClass("active");
       } // horizontal mega menu draw
 
 
       if (horizontalMenuExpanded) {
-        // console.log(e);
+        console.log(e);
         horizontalMenuExpanded = !horizontalMenuExpanded;
         $(".sidemenu-drawer").removeClass("".concat(loc));
         $(".mega-menu-top-level > li").removeClass("expanded-nav");
@@ -14171,12 +14177,19 @@ function initTray() {
       var sidemenu = $(".sidemenu-homepage"); // let  megamenu = $('.sidemenu-drawer');
 
       if (sidemeneuExpanded && !sidemenu.is(e.target) && // if the target of the click isn't the container...
-      sidemenu.has(e.target).length === 0) {
-        // ... nor a descendant of the container
-        sidemeneuExpanded = !sidemeneuExpanded;
-        $(".sidemenu-homepage .expanded-draw").removeClass("expanded-draw");
-        $draw.toggleClass("active");
-      } // closes menu if not clicking on header.. .should this be behaviour?
+      sidemenu.has(e.target).length === 0 && !e.target.className.includes("close-draw") // and not clicking the close button...
+      ) {
+          // ... nor a descendant of the container
+          sidemeneuExpanded = !sidemeneuExpanded;
+          $(".sidemenu-homepage .expanded-draw").removeClass("expanded-draw");
+          $draw.toggleClass("active"); // Remove any active item classes
+
+          $(".nav-item-parent.active-menu-item").removeClass("active-menu-item"); // Remove blip
+
+          $blip.css({
+            height: "0px"
+          });
+        } // closes menu if not clicking on header.. .should this be behaviour?
 
 
       if ($(".show-mega-menu-top").length) {
@@ -14199,9 +14212,9 @@ function initTray() {
     //build tray nav content
 
     var trayNavItems = $(".sidemenu-homepage > ul > li > ul");
-    var buttonExpander = $(".sidemenu-homepage > ul > li > .btn-expander"); // console.log(trayNavItems);
+    var listItem = $(".sidemenu-homepage > ul > li:not(.sidemenu__label)"); // console.log(trayNavItems);
 
-    buttonExpander.each(expandTray);
+    listItem.each(expandTray);
     trayNavItems.each(buildTray);
     expandDrawSubContent();
     closeSideMenuDraw();
@@ -14246,11 +14259,11 @@ function initTray() {
 
       $(".draw-nav > ul[data-index='".concat(index, "']")).prepend("<li class=\"sub-draw-title\"><a href=\"".concat(titleLink, "\">").concat(titleHtml, "</a></li>"));
     }); // console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded);
-    // expand menu
+    // !EXPAND MENU ON HOVER
 
     menuItems.on("mouseenter", function (e) {
-      var index = $(this).index() - 2; // console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index)
-
+      var index = $(this).index() - 2;
+      console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index);
       e.preventDefault();
       e.stopPropagation(); // console.log(e);
 
@@ -14296,10 +14309,19 @@ function initTray() {
 
   var $blip = $(".menu-blip");
   $("#mega-menu > li").on("mouseover", function () {
-    $blip.css({
-      left: $(this).offset().left - $("#mega-menu").offset().left + 1,
-      width: $(this).outerWidth()
-    });
+    // If we are using a sidemenu
+    if ($("#mega-menu").parent().hasClass("sidemenu-homepage")) {
+      $blip.css({
+        top: $(this).offset().top - $(this).parents("#mega-menu").offset().top + 1,
+        height: $(this).innerHeight()
+      });
+    } else {
+      // Else we are using horizontal menu
+      $blip.css({
+        left: $(this).offset().left - $("#mega-menu").offset().left + 1,
+        width: $(this).outerWidth()
+      });
+    }
   });
   $("#mega-menu > li").on("mouseout", function () {
     var activeItem = $(".expanded-nav");
@@ -14492,7 +14514,22 @@ function initTray() {
         height: el.outerHeight()
       });
     }
-  }; // // Tabs
+  }; // var $sideMenuBlip = $("#mega-nav .sidemenu-homepage .sidemenu-blip");
+  // var resizeSideMenuBlip = function (el, hide) {
+  //   if (hide) {
+  //     $sideMenuBlip.css({
+  //       top: 0,
+  //       height: "0px",
+  //     });
+  //   } else {
+  //     $sideMenuBlip.css({
+  //       top: el.offset().top - el.parents("#mega-nav").offset().top,
+  //       left: el.offset().left - $("#mega-nav").offset().left,
+  //       height: el.outerHeight(),
+  //     });
+  //   }
+  // };
+  // // Tabs
   // $("<div class='tabs'><div class='blip'></div><div class='tab t-menu active'>Menu</div><div class='tab t-saved'>Saved <div class='notification'>2</div></div><div class='tab'>Other</div></div>").insertAfter(".menu-container .tray-close")
   // !TAB BLIP MOVEMENT LOGIC
 
