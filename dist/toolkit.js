@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, March 31, 2022, 10:12 AM */
+/** Version: 0.10.13 | Thursday, March 31, 2022, 11:46 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14377,28 +14377,30 @@ function initTray() {
   });
   var notificationCount = 0;
   window.addEventListener("localstorage", function (e) {
-    console.log(e.detail);
-    checkSavedItems(e.detail.key);
-    notificationCount++;
+    if (e.detail.key.includes("saved")) {
+      console.log(e.detail);
+      checkSavedItems(e.detail.key);
+      notificationCount++;
 
-    if (notificationCount > 0) {
-      // Show main menu notification count
-      if ($(".menu-notifcations").length) {
-        $(".menu-notifcations").show();
-      } else {
-        $(".header-toggle .tray-toggle").append("<div class='menu-notifcations'>" + notificationCount + "</div>");
-      } // Inner tab notification
-
-
-      if ($(".t-saved .notification").length) {
-        $(".t-saved .notification").show();
-      } else {
-        $(".t-saved span").append("<div class='notification'></div>");
-      } // Show inner tab notifcation count
+      if (notificationCount > 0) {
+        // Show main menu notification count
+        if ($(".menu-notifcations").length) {
+          $(".menu-notifcations").show();
+        } else {
+          $(".header-toggle .tray-toggle").append("<div class='menu-notifcations'>" + notificationCount + "</div>");
+        } // Inner tab notification
 
 
-      $(".tabs .notification").show();
-      $(".tabs .notification").text(notificationCount);
+        if ($(".t-saved .notification").length) {
+          $(".t-saved .notification").show();
+        } else {
+          $(".t-saved span").append("<div class='notification'></div>");
+        } // Show inner tab notifcation count
+
+
+        $(".tabs .notification").show();
+        $(".tabs .notification").text(notificationCount);
+      }
     } // }
 
   }, false); // !Remove default icon injected on all role="button" elements
@@ -14690,6 +14692,18 @@ function initTray() {
       $(this).parent().find(">a").toggleClass("active");
       $(this).parent().toggleClass("expanded");
     }
+  }); // Hint
+
+  if (localStorage.getItem("newMenuNotice") !== "true" || !localStorage.getItem("newMenuNotice")) {
+    setTimeout(function () {
+      $(".hint").css("display", "flex").hide().fadeIn();
+    }, 1500);
+  } else {} // Clear hint
+
+
+  $(".hint .acknowledgement").on("click", function () {
+    localStorage.setItem("newMenuNotice", true);
+    $(".hint").fadeOut();
   });
 }
 // CONCATENATED MODULE: ./src/assets/toolkit/scripts/modules/urls.js

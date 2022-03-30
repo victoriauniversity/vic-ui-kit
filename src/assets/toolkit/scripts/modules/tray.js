@@ -382,7 +382,8 @@ export function initTray() {
     // If we are using a sidemenu
     if ($("#mega-menu").parent().hasClass("sidemenu-homepage")) {
       $blip.css({
-        top: $(this).offset().top - $(this).parents("#mega-menu").offset().top + 1,
+        top:
+          $(this).offset().top - $(this).parents("#mega-menu").offset().top + 1,
         height: $(this).innerHeight(),
       });
     } else {
@@ -459,30 +460,33 @@ export function initTray() {
   window.addEventListener(
     "localstorage",
     function (e) {
-      console.log(e.detail);
-      checkSavedItems(e.detail.key);
-      notificationCount++;
+      if (e.detail.key.includes("saved")) {
+        console.log(e.detail);
+        checkSavedItems(e.detail.key);
+        notificationCount++;
 
-      if (notificationCount > 0) {
-        // Show main menu notification count
-        if ($(".menu-notifcations").length) {
-          $(".menu-notifcations").show();
-        } else {
-          $(".header-toggle .tray-toggle").append(
-            "<div class='menu-notifcations'>" + notificationCount + "</div>"
-          );
-        }
-        // Inner tab notification
-        if ($(".t-saved .notification").length) {
-          $(".t-saved .notification").show();
-        } else {
-          $(".t-saved span").append("<div class='notification'></div>");
-        }
+        if (notificationCount > 0) {
+          // Show main menu notification count
+          if ($(".menu-notifcations").length) {
+            $(".menu-notifcations").show();
+          } else {
+            $(".header-toggle .tray-toggle").append(
+              "<div class='menu-notifcations'>" + notificationCount + "</div>"
+            );
+          }
+          // Inner tab notification
+          if ($(".t-saved .notification").length) {
+            $(".t-saved .notification").show();
+          } else {
+            $(".t-saved span").append("<div class='notification'></div>");
+          }
 
-        // Show inner tab notifcation count
-        $(".tabs .notification").show();
-        $(".tabs .notification").text(notificationCount);
+          // Show inner tab notifcation count
+          $(".tabs .notification").show();
+          $(".tabs .notification").text(notificationCount);
+        }
       }
+
       // }
     },
     false
@@ -863,4 +867,21 @@ export function initTray() {
       }
     }
   );
+
+  // Hint
+  if (
+    localStorage.getItem("newMenuNotice") !== "true" ||
+    !localStorage.getItem("newMenuNotice")
+  ) {
+    setTimeout(() => {
+      $(".hint").css("display", "flex").hide().fadeIn();
+    }, 1500);
+  } else {
+  }
+
+  // Clear hint
+  $(".hint .acknowledgement").on("click", function () {
+    localStorage.setItem("newMenuNotice", true);
+    $(".hint").fadeOut();
+  });
 }

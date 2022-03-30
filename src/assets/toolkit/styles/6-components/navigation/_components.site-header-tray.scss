@@ -9,6 +9,8 @@ $page-sub-nav-hover-bg: $brand-darker !default;
 
 $easing: cubic-bezier(0.22, 1, 0.36, 1);
 
+$shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
+
 $green-linear-gradient: linear-gradient(
     90deg,
     #115737 0%,
@@ -106,6 +108,51 @@ $tray-width-desktop: 400px;
     margin-left: 1rem;
     // flex: 0 1 5%;
     flex: 1;
+    position: relative;
+    .tray-tooltip {
+      position: absolute;
+      top: 0;
+      padding: 10px;
+      right: 60px;
+      min-width: 300px;
+      background-color: rgba($color: $black-brand, $alpha: 0.9);
+      color: #fff;
+      border: 2px $black-brand, solid;
+      border-radius: 10px;
+      box-shadow: $shadow;
+      display: flex;
+      display: none;
+      @include breakpoint($until: desktop) {
+        min-width: 200px;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        right: -20px;
+        top: 10px;
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-left: 20px solid rgba($color: $black-brand, $alpha: 0.9);
+        border-bottom: 10px solid transparent;
+      }
+
+      .hint-icon {
+        margin-right: 10px;
+        i {
+          font-size: 30px;
+        }
+      }
+
+      .hint-content {
+      }
+      .hint-actions {
+        text-align: right;
+      }
+      button {
+        border-radius: inherit;
+      }
+    }
 
     button {
       position: relative;
@@ -113,10 +160,6 @@ $tray-width-desktop: 400px;
       width: 50px;
       text-decoration: none;
       border-radius: 50%;
-
-      @include hoverify() {
-        background-color: $black-tundora;
-      }
 
       i {
         margin: 0 0.5rem;
@@ -141,6 +184,14 @@ $tray-width-desktop: 400px;
     // .search-toggle {
     //   display: none;
     // }
+
+    .tray-toggle {
+      position: relative;
+
+      &:hover {
+        background-color: lighten($brand, 10%);
+      }
+    }
 
     @include breakpoint($until: desktop) {
       .search-toggle {
@@ -1423,18 +1474,6 @@ $tray-width-desktop: 400px;
           .icon-search {
             color: $black-tundora;
           }
-        }
-      }
-    }
-
-    .header-toggle {
-      .tray-toggle {
-        .icon-menu {
-          // color: $black-tundora;
-        }
-
-        &:hover {
-          background-color: lighten($brand, 10%);
         }
       }
     }
