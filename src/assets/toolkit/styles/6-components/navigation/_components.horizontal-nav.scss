@@ -104,9 +104,16 @@
       }
 
       &.tereo-nav {
-        > li > a {
-          .tereo-title {
-            display: block;
+        > li {
+          &:after {
+            top: 30%;
+          }
+          > a {
+            padding-bottom: 10px;
+            padding-top: 10px;
+            .tereo-title {
+              display: block;
+            }
           }
         }
       }
@@ -152,7 +159,7 @@
         &::after {
           position: absolute;
           right: 5px;
-          top: 30%;
+          top: 10px;
           // transform: translate(-50%, 0%);
 
           content: "";
@@ -186,7 +193,7 @@
           font-size: 18px;
           padding-left: 5px;
           position: initial;
-          padding-top: 30px;
+          padding-top: 20px;
           padding-bottom: 25px;
 
           // @include hoverify() {
