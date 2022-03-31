@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, March 31, 2022, 11:46 AM */
+/** Version: 0.10.13 | Friday, April 1, 2022, 11:08 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -14771,6 +14771,7 @@ footer .footer-secondary.dark .footer-num {
   100% {
     visibility: hidden;
     opacity: 0;
+    display: none;
   }
 }
 
@@ -14785,6 +14786,7 @@ footer .footer-secondary.dark .footer-num {
   100% {
     visibility: hidden;
     opacity: 0;
+    display: none;
   }
 }
 
@@ -15061,25 +15063,24 @@ footer .footer-secondary.dark .footer-num {
 
 .main-site-header.header-tray .header-inner .tray.tray-open {
   display: block;
-  -webkit-animation: delay-visibility-in 0.3s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-          animation: delay-visibility-in 0.3s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  -webkit-animation: delay-visibility-in 0.2s ease forwards;
+          animation: delay-visibility-in 0.2s ease forwards;
 }
 
 .main-site-header.header-tray .header-inner .tray.tray-open .tray-content {
-  -webkit-animation: menu-slide-in 0.6s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-          animation: menu-slide-in 0.6s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  -webkit-animation: menu-slide-in 0.3s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+          animation: menu-slide-in 0.3s cubic-bezier(0.77, 0, 0.175, 1) forwards;
 }
 
 .main-site-header.header-tray .header-inner .tray.tray-closed {
-  display: none;
-  -webkit-animation: delay-visibility-out 0.3s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-          animation: delay-visibility-out 0.3s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  -webkit-animation: delay-visibility-out 0.2s ease forwards;
+          animation: delay-visibility-out 0.2s ease forwards;
 }
 
 .main-site-header.header-tray .header-inner .tray.tray-closed .tray-content {
   visibility: hidden;
-  -webkit-animation: menu-slide-out 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-          animation: menu-slide-out 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-animation: menu-slide-out 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+          animation: menu-slide-out 0.3s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 .main-site-header.header-tray .header-inner .tray-content {
@@ -15152,17 +15153,13 @@ footer .footer-secondary.dark .footer-num {
   margin-bottom: 0;
 }
 
-.main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list.hub-page > li:not(.homesite) {
-  margin-top: 5px;
-}
-
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list.hub-page > li:not(.homesite) > a {
   padding: 10px 15px 10px 25px;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list.hub-page > li > a {
   padding: 10px 15px;
-  background-color: #f7f7f7;
+  background-color: #fff;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list.hub-page > li > a:not(.active):hover {
@@ -15170,17 +15167,21 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .nav-separator {
-  display: none;
   -webkit-box-flex: 1;
           flex: 1 1 auto;
-  background-color: #fff;
   width: 100%;
-  margin-bottom: 10px;
-  border: 2px #EEE solid;
-  border-radius: 0 0 10px 10px;
   font-size: 14px;
-  text-align: center;
+  background-color: #EEE;
   color: #AAA;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: left;
+  padding-left: 15px;
+}
+
+.main-site-header.header-tray .header-inner .tray-content .tray-main-nav .nav-separator.current {
+  padding-left: 25px;
+  margin-top: 10px;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item {
@@ -15197,6 +15198,8 @@ footer .footer-secondary.dark .footer-num {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  -webkit-box-shadow: 0 3px 15px -7px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 3px 15px -7px rgba(0, 0, 0, 0.1);
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.homesite .connector {
@@ -15210,15 +15213,6 @@ footer .footer-secondary.dark .footer-num {
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.homesite .btn-expander {
   padding: 15px 15px;
-}
-
-.main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.homesite > .btn-expander:before {
-  content: "more";
-  position: absolute;
-  bottom: 5px;
-  font-size: 12px;
-  color: #aaa;
-  right: 6px;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.homesite > .btn-expander:after {
@@ -15304,24 +15298,20 @@ footer .footer-secondary.dark .footer-num {
   color: #F1F6F0;
 }
 
-.main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.expanded > .btn-expander {
-  background-color: #EEE;
-}
-
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.expanded > .btn-expander:after {
   -webkit-transform: rotateZ(180deg);
           transform: rotateZ(180deg);
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item:active, .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item:focus, .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.expanded {
-  -webkit-box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 3px 20px -7px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 20px -7px rgba(0, 0, 0, 0.2);
   z-index: 90;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item:hover {
-  -webkit-box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
-          box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 12px 3px 20px -7px rgba(0, 0, 0, 0.2);
+          box-shadow: 12px 3px 20px -7px rgba(0, 0, 0, 0.2);
   z-index: 90;
 }
 
@@ -15341,12 +15331,6 @@ footer .footer-secondary.dark .footer-num {
   font-family: "Inter";
   padding: 10px 15px;
   font-size: 18px;
-}
-
-@media (max-width: 42.99em) {
-  .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item a {
-    font-size: 16px;
-  }
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item a .tereo-title {
@@ -15370,6 +15354,8 @@ footer .footer-secondary.dark .footer-num {
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item > a.active {
   background-color: #3E9C4F;
+  background: -webkit-gradient(linear, left top, right top, from(#115737), color-stop(67%, #52951c), to(#77ba49)) 0% 0%;
+  background: linear-gradient(90deg, #115737 0%, #52951c 67%, #77ba49 100%) 0% 0%;
   color: #fff;
 }
 
@@ -15596,27 +15582,26 @@ footer .footer-secondary.dark .footer-num {
 
 .main-site-header.header-tray .header-inner .tray-content .tray-sub-menu {
   margin-top: auto;
-  margin-bottom: 4rem;
   position: relative;
-}
-
-.main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-background {
+  margin-left: -15px;
+  margin-right: -15px;
+  background-color: #f7f7f7;
+  padding: 15px;
+  padding-bottom: 4rem;
+  padding-top: 40px;
+  -webkit-clip-path: polygon(0% 25px, 100% 0%, 100% 100%, 1px 100%);
+          clip-path: polygon(0% 25px, 100% 0%, 100% 100%, 1px 100%);
   background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
+  background-size: cover;
   background-repeat: no-repeat;
-  -webkit-transform: rotateZ(-90deg);
-          transform: rotateZ(-90deg);
-  height: 600px;
-  width: 157px;
-  position: absolute;
-  left: 144px;
-  top: -362px;
-  background-size: 150px;
+  background-position: 200px;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-sub-menu h4 {
   margin-bottom: 15px;
   color: #115737;
   margin-top: 1rem;
+  font-weight: 300;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list {
