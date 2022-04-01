@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, April 1, 2022, 11:08 AM */
+/** Version: 0.10.13 | Friday, April 1, 2022, 2:08 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14698,7 +14698,7 @@ function initTray() {
     setTimeout(function () {
       $(".hint").css("display", "flex").hide().fadeIn();
     }, 1500);
-  } else {} // Clear hint
+  } else {} // Clear
 
 
   $(".hint .acknowledgement").on("click", function () {

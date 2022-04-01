@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, April 1, 2022, 11:08 AM */
+/** Version: 0.10.13 | Friday, April 1, 2022, 2:08 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -14398,7 +14398,7 @@ footer .footer-secondary.dark .footer-num {
     display: -webkit-box;
     display: flex;
     visibility: hidden;
-    background-image: url("../images/patterns/triangles.svg");
+    background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/triangles.svg");
     background-size: 100px;
     background-position: bottom left;
     background-repeat: no-repeat;
@@ -15354,8 +15354,6 @@ footer .footer-secondary.dark .footer-num {
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item > a.active {
   background-color: #3E9C4F;
-  background: -webkit-gradient(linear, left top, right top, from(#115737), color-stop(67%, #52951c), to(#77ba49)) 0% 0%;
-  background: linear-gradient(90deg, #115737 0%, #52951c 67%, #77ba49 100%) 0% 0%;
   color: #fff;
 }
 
@@ -15587,8 +15585,8 @@ footer .footer-secondary.dark .footer-num {
   margin-right: -15px;
   background-color: #f7f7f7;
   padding: 15px;
-  padding-bottom: 4rem;
-  padding-top: 40px;
+  padding-bottom: 80px;
+  padding-top: 60px;
   -webkit-clip-path: polygon(0% 25px, 100% 0%, 100% 100%, 1px 100%);
           clip-path: polygon(0% 25px, 100% 0%, 100% 100%, 1px 100%);
   background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
@@ -15666,37 +15664,29 @@ footer .footer-secondary.dark .footer-num {
 .main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list .sub-menu-item a {
   text-decoration: none;
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 100px;
   padding: 5px 10px;
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
           align-items: center;
-  border: 1px #DDD solid;
   color: #1D2624;
-  margin-bottom: 5px;
+  border: 1px #AAA solid;
+  margin-bottom: 7px;
   margin-right: 5px;
-  -webkit-transition: -webkit-box-shadow ease 0.3s, -webkit-transform ease 0.1s;
-  transition: -webkit-box-shadow ease 0.3s, -webkit-transform ease 0.1s;
-  transition: box-shadow ease 0.3s, transform ease 0.1s;
-  transition: box-shadow ease 0.3s, transform ease 0.1s, -webkit-box-shadow ease 0.3s, -webkit-transform ease 0.1s;
+  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
           box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list .sub-menu-item a:hover, .main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list .sub-menu-item a:focus {
-  -webkit-transform: translateY(-2px);
-          transform: translateY(-2px);
   background-color: #F1F6F0;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-          box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  border-color: #115737;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list .sub-menu-item a:active {
-  -webkit-transform: translateY(0px);
-          transform: translateY(0px);
-  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 10px -5px, rgba(0, 0, 0, 0.04) 0px 5px 5px -5px;
-          box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 10px -5px, rgba(0, 0, 0, 0.04) 0px 5px 5px -5px;
+  border-color: #115737;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list .sub-menu-item a:after {
@@ -16442,6 +16432,12 @@ footer .footer-secondary.dark .footer-num {
 
 .mf-heatmap-clicked + ul {
   display: block !important;
+}
+
+@media (max-width: 42.99em) {
+  #mega-nav {
+    display: none !important;
+  }
 }
 
 /*==================================================
@@ -17579,6 +17575,7 @@ body .body-background.second {
   text-transform: uppercase;
   font-weight: 400;
   position: relative;
+  border-bottom: 2px #DDD solid;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tabs .tab-background {
@@ -17645,13 +17642,17 @@ body .body-background.second {
   font-size: 12px;
 }
 
+.menu-container .tabs .tab:hover {
+  background-color: #F1F6F0;
+}
+
 .menu-container .tabs .tab.active {
-  background-color: #115737;
+  background-color: #3E9C4F;
   color: #fff;
 }
 
 .menu-container .tabs .tab.active:hover {
-  background-color: #115737;
+  background-color: #3E9C4F;
 }
 
 .no-results {
@@ -17773,7 +17774,7 @@ body .body-background.second {
 .blip {
   position: absolute;
   border-radius: 5px;
-  background: #222;
+  background: #3E9C4F;
   width: 40px;
   height: 2px;
   bottom: -2px;
