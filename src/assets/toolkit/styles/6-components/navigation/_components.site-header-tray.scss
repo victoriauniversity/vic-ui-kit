@@ -273,8 +273,7 @@ $tray-width-desktop: 400px;
         }
         &.tray-open {
           display: block;
-          animation: delay-visibility-in 0.2s ease
-            forwards;
+          animation: delay-visibility-in 0.2s ease forwards;
 
           .tray-content {
             // transform: translate3d(0,0,100%);
@@ -284,8 +283,7 @@ $tray-width-desktop: 400px;
         }
 
         &.tray-closed {
-          animation: delay-visibility-out 0.2s ease
-            forwards;
+          animation: delay-visibility-out 0.2s ease forwards;
 
           .tray-content {
             visibility: hidden;
@@ -549,7 +547,7 @@ $tray-width-desktop: 400px;
               padding-left: 20px;
               &.active {
                 background-color: $green-brand-bright;
-                background: $green-linear-gradient;
+                // background: $green-linear-gradient;
                 color: #fff;
               }
             }
@@ -791,8 +789,8 @@ $tray-width-desktop: 400px;
           margin-right: -15px;
           background-color: #f7f7f7;
           padding: 15px;
-          padding-bottom: 4rem;
-          padding-top: 40px;
+          padding-bottom: 80px;
+          padding-top: 60px;
           clip-path: polygon(0% 25px, 100% 0%, 100% 100%, 1px 100%);
           background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
           background-size: cover;
@@ -900,30 +898,27 @@ $tray-width-desktop: 400px;
               a {
                 text-decoration: none;
                 background-color: #fff;
-                border-radius: 10px;
+                border-radius: 100px;
                 padding: 5px 10px;
                 display: flex;
                 align-items: center;
-                border: 1px $grey-alto solid;
                 color: $black-brand;
-                margin-bottom: 5px;
+                border: 1px $grey-chalice solid;
+                margin-bottom: 7px;
                 margin-right: 5px;
-                transition: box-shadow ease 0.3s, transform ease 0.1s;
+                transition: all $easing 0.3s;
                 box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
                   rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
                 &:hover,
                 &:focus {
-                  transform: translateY(-2px);
                   // outline: 2px $kowhai solid;
                   background-color: $green-brand-light;
                   // color: #fff;
-                  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
-                    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+                  border-color: $green-brand;
                 }
                 &:active {
-                  transform: translateY(-0px);
-                  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 10px -5px,
-                    rgba(0, 0, 0, 0.04) 0px 5px 5px -5px;
+                  border-color: $green-brand;
+
                 }
 
                 &:after {
@@ -1656,4 +1651,11 @@ $tray-width-desktop: 400px;
 
 .mf-heatmap-clicked + ul {
   display: block !important;
+}
+
+// !Hide old nav on mobile (temporary)
+@include breakpoint($until: tablet) {
+  #mega-nav {
+    display: none !important;
+  }
 }

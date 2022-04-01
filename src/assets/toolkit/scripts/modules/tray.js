@@ -879,7 +879,7 @@ export function initTray() {
   } else {
   }
 
-  // Clear hint
+  // Clear
   $(".hint .acknowledgement").on("click", function () {
     localStorage.setItem("newMenuNotice", true);
     $(".hint").fadeOut();

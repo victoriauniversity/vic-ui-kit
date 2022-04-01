@@ -1228,6 +1228,7 @@ body {
   text-transform: uppercase;
   font-weight: 400;
   position: relative;
+  border-bottom: 2px $grey-alto solid;
 
   .tab-background {
     flex: 1 0 30%;
@@ -1281,17 +1282,17 @@ body {
     color: #fff;
     font-size: 12px;
   }
-}
-.menu-container .tabs .tab:hover {
-  // background-color: #ddd;
-}
-.menu-container .tabs .tab.active {
-  background-color: $green-brand;
-  // color: $kowhai;
-  color: #fff;
-}
-.menu-container .tabs .tab.active:hover {
-  background-color: $green-brand;
+  &:hover {
+    background-color: $green-brand-light;
+  }
+  &.active {
+    background-color: $green-brand-bright;
+    // color: $kowhai;
+    color: #fff;
+    &:hover {
+      background-color:  $green-brand-bright;
+    }
+  }
 }
 
 .no-results {
@@ -1396,7 +1397,7 @@ body {
 .blip {
   position: absolute;
   border-radius: 5px;
-  background: #222;
+  background: $green-brand-bright;
   width: 40px;
   height: 2px;
   bottom: -2px;
