@@ -720,7 +720,22 @@ $tray-width-desktop: 400px;
                     }
                   }
                 }
-                // JOINING ARROWS IN NESTED LISTS
+              }
+            }
+            // !JOINING ARROWS IN NESTED LISTS
+
+            // Remove before element for homesite links 
+            &.homesite {
+              ul {
+                li.main-nav-item {
+                  &:before {
+                    content: none;
+                  }
+                }
+              }
+            }
+            ul {
+              li {
                 &:not(.homesite) {
                   &:before {
                     transition: all $easing 0.2s;
@@ -741,6 +756,7 @@ $tray-width-desktop: 400px;
                       width: 20px;
                     }
                   }
+
                   ul {
                     li {
                       position: relative;
