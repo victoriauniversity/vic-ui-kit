@@ -370,12 +370,13 @@ $tray-width-desktop: 400px;
             flex: 1 1 auto;
             width: 100%;
             font-size: 14px;
-            background-color: $grey-gallery;
+            // background-color: $grey-gallery;
             color: $grey-chalice;
             letter-spacing: 1.5px;
-            text-transform: uppercase;
+            // text-transform: uppercase;
             text-align: left;
             padding-left: 15px;
+            padding: 5px 0 5px 15px;
             &.current {
               padding-left: 25px;
               margin-top: 10px;
@@ -872,6 +873,7 @@ $tray-width-desktop: 400px;
                 }
               }
               a {
+                justify-content: initial;
                 &:before {
                   content: "";
                   display: inline-block;
@@ -895,7 +897,10 @@ $tray-width-desktop: 400px;
             .sub-menu-item {
               padding: 0.1rem 0;
               z-index: 10;
+
               a {
+                justify-content: space-between;
+
                 text-decoration: none;
                 background-color: #fff;
                 border-radius: 100px;
@@ -918,7 +923,6 @@ $tray-width-desktop: 400px;
                 }
                 &:active {
                   border-color: $green-brand;
-
                 }
 
                 &:after {
