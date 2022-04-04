@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, April 4, 2022, 10:52 AM */
+/** Version: 0.10.13 | Monday, April 4, 2022, 12:36 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14375,7 +14375,41 @@ function initTray() {
       return Reflect.apply(target, thisArg, argumentList);
     }
   });
-  var notificationCount = 0;
+  var notificationCount = 0; // !Listen to storage changes from other windows on same domain
+
+  window.addEventListener("storage", function (e) {
+    // When local storage changes, dump the list to
+    // the console.
+    console.log(e);
+    console.log(window.localStorage);
+
+    if (e.key.includes("saved")) {
+      console.log(e);
+      checkSavedItems(e.key);
+      notificationCount++;
+
+      if (notificationCount > 0) {
+        // Show main menu notification count
+        if ($(".menu-notifcations").length) {
+          $(".menu-notifcations").show();
+        } else {
+          $(".header-toggle .tray-toggle").append("<div class='menu-notifcations'>" + notificationCount + "</div>");
+        } // Inner tab notification
+
+
+        if ($(".t-saved .notification").length) {
+          $(".t-saved .notification").show();
+        } else {
+          $(".t-saved span").append("<div class='notification'></div>");
+        } // Show inner tab notifcation count
+
+
+        $(".tabs .notification").show();
+        $(".tabs .notification").text(notificationCount);
+      }
+    }
+  }); // !Listen to local storage on CURRENT PAGE
+
   window.addEventListener("localstorage", function (e) {
     if (e.detail.key.includes("saved")) {
       console.log(e.detail);
