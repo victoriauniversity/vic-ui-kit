@@ -457,6 +457,41 @@ export function initTray() {
 
   var notificationCount = 0;
 
+  // !Listen to storage changes from other windows on same domain
+  window.addEventListener("storage", (e) => {
+    // When local storage changes, dump the list to
+    // the console.
+    console.log(e);
+    console.log(window.localStorage);
+    if (e.key.includes("saved")) {
+      console.log(e);
+      checkSavedItems(e.key);
+      notificationCount++;
+
+      if (notificationCount > 0) {
+        // Show main menu notification count
+        if ($(".menu-notifcations").length) {
+          $(".menu-notifcations").show();
+        } else {
+          $(".header-toggle .tray-toggle").append(
+            "<div class='menu-notifcations'>" + notificationCount + "</div>"
+          );
+        }
+        // Inner tab notification
+        if ($(".t-saved .notification").length) {
+          $(".t-saved .notification").show();
+        } else {
+          $(".t-saved span").append("<div class='notification'></div>");
+        }
+
+        // Show inner tab notifcation count
+        $(".tabs .notification").show();
+        $(".tabs .notification").text(notificationCount);
+      }
+    }
+  });
+
+  // !Listen to local storage on CURRENT PAGE
   window.addEventListener(
     "localstorage",
     function (e) {
