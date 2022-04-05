@@ -728,7 +728,6 @@ export function initTray() {
   var resizeTallBlip = function (el, hide) {
     if (hide) {
       $tallBlip.css({
-        top: 0,
         height: "0px",
       });
     } else {
