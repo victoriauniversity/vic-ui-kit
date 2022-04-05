@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, April 4, 2022, 1:18 PM */
+/** Version: 0.10.13 | Tuesday, April 5, 2022, 3:23 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14171,8 +14171,9 @@ function initTray() {
           width: 0
         }); // $draw.toggleClass('active');
       }
-    });
-    $("body").on("click", function (e) {
+    }); // On click OR mouseover of body, hide the tray if it's open
+
+    $("body").on("click, mouseover", function (e) {
       // console.log(e.target);
       var sidemenu = $(".sidemenu-homepage"); // let  megamenu = $('.sidemenu-drawer');
 
@@ -14308,7 +14309,7 @@ function initTray() {
 
 
   var $blip = $(".menu-blip");
-  $("#mega-menu > li").on("mouseover", function () {
+  $("#mega-menu > li").on("mouseover click", function () {
     // If we are using a sidemenu
     if ($("#mega-menu").parent().hasClass("sidemenu-homepage")) {
       $blip.css({
@@ -14594,15 +14595,13 @@ function initTray() {
 
     if ($(this).hasClass("t-menu")) {
       $(".tray-main-nav").show();
-      $(".saved-header").hide();
-      $(".saved-items").hide();
+      $(".saved-menu").hide();
     } else {
       $(".tray-main-nav").hide();
-      $(".saved-header").show();
-      $(".saved-items").show();
+      $(".saved-menu").show();
     }
   });
-  $(".tabs .tab-background").on("mouseover", function () {
+  $(".tabs .tab-background").on("mouseover click", function () {
     $tabBlip.css({
       left: $(this).offset().left - $(".tabs").offset().left,
       width: $(this).outerWidth()
@@ -14630,7 +14629,7 @@ function initTray() {
   }); // !TRAY MENU BLIP
 
   var $tallBlip = $(".main-nav-list .tall-blip");
-  $(".main-nav-list > li ").on("mouseenter", function () {
+  $(".main-nav-list > li ").on("mouseenter click", function () {
     resizeTallBlip($(this));
   });
   $(".main-nav-list").on("mouseleave", function () {
