@@ -1,6 +1,5 @@
-
 .hub-banner {
-  border-bottom: .25rem solid $green-bottle;
+  border-bottom: 0.25rem solid $green-bottle;
 
   .banner-image {
     background-color: $grey-alto;
@@ -54,7 +53,6 @@
   a {
     .banner-body {
       p {
-
         &:after {
           content: "";
           display: inline-block;
@@ -64,7 +62,6 @@
           font-size: 1.5rem;
         }
       }
-
     }
     @include hoverify() {
       .banner-body {
@@ -75,7 +72,7 @@
     }
   }
 
-  @include breakpoint( $until: desktop ) {
+  @include breakpoint($until: desktop) {
     .banner-image {
       img {
         max-height: 400px;
@@ -92,14 +89,20 @@
 .hub-banner-sidemenu {
   width: 100%;
   position: relative;
-
-  > figure {
-    position: relative;
+  > a {
+    height: 100%;
+    > figure {
+      height: 100%;
+      position: relative;
+    }
   }
 
   .banner-image {
+    height: 100%;
+    background-size: cover;
     img {
       margin-bottom: 0;
+      display: none;
     }
   }
 
@@ -116,7 +119,7 @@
 
         &:after {
           position: absolute;
-          bottom: -.5rem;
+          bottom: -0.5rem;
           left: 0;
           content: "";
           width: 50px;
@@ -127,7 +130,7 @@
     }
   }
 
-  @include breakpoint ( $from: desktop ) {
+  @include breakpoint($from: desktop) {
     width: 75%;
     .banner-body {
       position: absolute;
@@ -204,9 +207,6 @@
           max-height: 550px;
         }
       }
-
     }
-
   }
 }
-

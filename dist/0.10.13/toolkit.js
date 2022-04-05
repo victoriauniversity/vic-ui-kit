@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, April 5, 2022, 3:23 PM */
+/** Version: 0.10.13 | Wednesday, April 6, 2022, 10:40 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14551,7 +14551,6 @@ function initTray() {
   var resizeTallBlip = function resizeTallBlip(el, hide) {
     if (hide) {
       $tallBlip.css({
-        top: 0,
         height: "0px"
       });
     } else {

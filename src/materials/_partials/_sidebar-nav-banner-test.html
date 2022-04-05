@@ -14,6 +14,11 @@ sidebar
       nav.style.display = 'block';   // in case it is hidden by page metadata
     });
 
+    // Show responsive menu 
+    if (window.location.search.includes("responsive=true")) {
+      document.querySelector(".tray").classList.add("responsive-preview")
+    }
+
   </script>
 
 
@@ -22,8 +27,8 @@ sidebar
     <a href="http://" target="_blank" rel="noopener noreferrer">
       <figure class="">
         <div class="banner-image"
-          style="background-image: url({{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/reuben-3200.jpg);">
-          <img alt="" src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}images/rueben-3200.jpg">
+          style="background-image: url(https://www.wgtn.ac.nz/__data/assets/image/0018/635220/home-page-banner-1.jpg)">
+          <img alt="" src="https://www.wgtn.ac.nz/__data/assets/image/0018/635220/home-page-banner-1.jpg">
         </div>
         <div class="banner-body top-left">
           <div class=" banner-title">
