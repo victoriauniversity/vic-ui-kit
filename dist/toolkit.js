@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, April 6, 2022, 10:40 AM */
+/** Version: 0.10.13 | Wednesday, April 6, 2022, 1:17 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14023,6 +14023,11 @@ var tooltipsApi = window.toolkitTooltips || {};
 // CONCATENATED MODULE: ./src/assets/toolkit/scripts/modules/tray.js
 /* eslint-disable func-names */
 
+
+if (window.location.search.includes("responsive=true")) {
+  document.querySelector(".tray").classList.add("responsive-preview");
+}
+
 var TABLET_AND_SMALLER = "screen and (max-width: 975px)",
     DESKTOP_AND_LARGER = "screen and (min-width: 61em)"; // eslint-disable-next-line import/prefer-default-export
 
@@ -14455,7 +14460,18 @@ function initTray() {
   $(".saved-items").append("<div class='group-title trigger clubs-title'><div><i class='icons8-theatre-mask'></i><span>Clubs (<span class='count'>" + 0 + "</span>)</span></div> <i class='icons8-expand-arrow'></i></div>");
   $("<ul class='item-list clubs-list'></ul>").insertAfter(".clubs-title");
   $(".saved-items").append("<div class='group-title trigger pages-title'><div><i class='icons8-news'></i><span>Pages (<span class='count'>" + 0 + "</span>)</span></div> <i class='icons8-expand-arrow'></i></div>");
-  $("<ul class='item-list pages-list'></ul>").insertAfter(".pages-title"); // SAVED EVENTS LISTS
+  $("<ul class='item-list pages-list'></ul>").insertAfter(".pages-title");
+
+  var formatAsDate = function formatAsDate(date) {
+    var arr = date.split("");
+    var year = arr.slice(0, 4).join("");
+    var month = arr.slice(4, 6).join("");
+    var day = arr.slice(6, 8).join("");
+    var dateString = year + " " + month + " " + day;
+    dateString = new Date(dateString).toLocaleDateString("en-UK");
+    return dateString;
+  }; // SAVED EVENTS LISTS
+
 
   function checkSavedItems(item) {
     var nameMaps = {
@@ -14478,7 +14494,16 @@ function initTray() {
         setTimeout(function () {
           if (localStorage[item]) {
             var items = JSON.parse(localStorage[item]);
-          }
+          } // $(
+          //   ".custom-dropdown li[data-name='" +
+          //     nameMaps[item].charAt(0).toUpperCase() +
+          //     nameMaps[item].slice(1) +
+          //     "]'"
+          // )
+          //   .find(".count")
+          //   .text(items.length);
+          // console.log(items.length);
+
 
           if (items && items.length > 0) {
             var itemsLength = items.length;
@@ -14487,6 +14512,7 @@ function initTray() {
           }
 
           if (items && items.length > 0) {
+            // Update count in accordion
             $("." + nameMaps[item] + "-list").prev().find(".count").text(items.length); // Append accordion buttons
 
             if ($("." + nameMaps[item] + "-list").find(".accordion-buttons").length) {// Do not append
@@ -14506,8 +14532,17 @@ function initTray() {
             first5.forEach(function (e) {
               // If liveUrl exists we presume it follows the Funnelback structure of 'title' and 'liveUrl', e.g. for Events
               if (e.liveUrl) {
+                // Format date
                 if (nameMaps[item] == "events") {
-                  $("." + nameMaps[item] + "-list").append("<li>  <a target='_blank' href='" + e.liveUrl + "'><span class='item-dates'>" + moment(e.metaData.O).format("ddd DD MMM YYYY") + "</span>" + e.title + "</a></li>");
+                  if (!$("." + nameMaps[item] + "-list li > a").text().includes(e.title)) {
+                    // If the accordion buttons exist, insert BEFORE
+                    if ($("." + nameMaps[item] + "-list").find(".accordion-buttons")) {
+                      $("<li> <a target='_blank' href='" + e.liveUrl + "'><span class='item-dates'>" + formatAsDate(e.metaData.O) + "</span>" + e.title + "</a></li>").insertBefore($("." + nameMaps[item] + "-list").find(".accordion-buttons"));
+                    } else {
+                      // else append to list
+                      $("." + nameMaps[item] + "-list").append("<li><a target='_blank' href='" + e.liveUrl + "'>" + e.title + "</a></li>");
+                    }
+                  }
                 } else {
                   if (!$("." + nameMaps[item] + "-list li > a").text().includes(e.title)) {
                     // If the accordion buttons exist, insert BEFORE
@@ -14670,10 +14705,10 @@ function initTray() {
     $(".custom-dropdown ul li").removeClass("active");
     $(this).addClass("active"); // Set text to value
 
-    $(this).parent().prev().find(".selector-text").text($(this).text()); // Close list on click
+    $(this).parent().prev().find(".selector-text").text($(this).data("name")); // Close list on click
 
     $(this).parent().slideToggle("fast");
-    var text = $(this).text().toLowerCase();
+    var text = $(this).data("name").toLowerCase();
     showSavedData(text);
   });
 
