@@ -169,18 +169,28 @@
 
         &::after {
           position: absolute;
-          right: 5px;
-          top: 10px;
+          right: 10px;
+          top: 20px;
           // transform: translate(-50%, 0%);
-
-          content: "";
-          font-family: "VicIcons";
-          color: #424242;
-          font-size: 1.5rem;
+          content: "\f181";
+          display: inline-block;
+          font-family: "Favorites";
+          font-style: normal;
+          font-weight: normal;
+          font-variant: normal;
+          text-decoration: inherit;
+          text-rendering: optimizeLegibility;
+          text-transform: none;
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
+          font-smoothing: antialiased;
+          font-size: 1rem;
           z-index: 0;
           color: $green-brand;
           cursor: pointer;
           transition: all ease 0.3s;
+          transform: rotateZ(-90deg);
+
         }
 
         .btn-expander {
@@ -213,7 +223,7 @@
         }
         &.expanded-nav {
           &::after {
-            transform: rotateZ(90deg);
+            transform: rotateZ(0deg);
           }
         }
       }
@@ -770,6 +780,7 @@ body {
 body {
   .layout {
     position: relative;
+    overflow-x: hidden;
   }
   .body-background {
     position: absolute;
@@ -786,6 +797,18 @@ body {
       right: 0;
       opacity: 1;
     }
+  }
+}
+
+// Banner image
+.hub-banner {
+  min-height: 30vh;
+  .banner-image {
+    img {
+      display: none;
+    }
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 }
 
@@ -1241,19 +1264,6 @@ body {
     margin-top: 1rem;
     line-height: 1.2;
   }
-}
-
-.blip {
-  position: absolute;
-  border-radius: 5px;
-  background: $green-brand-bright;
-  width: 40px;
-  height: 2px;
-  bottom: -2px;
-  left: -100%;
-  -webkit-transition: all ease 0.3s;
-  transition: all ease 0.3s;
-  margin: 0 !important;
 }
 
 .group-title {

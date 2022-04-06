@@ -38,7 +38,11 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
     text-transform: uppercase;
     border-bottom: 1px solid $black-brand;
     font-family: $heading-family;
-    font-weight: $weight-bold;
+    font-weight: 600;
+    .tereo-title {
+      color: $green-brand;
+      font-weight: 300;
+    }
 
     a {
       padding: 6px 14px;
@@ -95,64 +99,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
       color: $sidemenu-text-hover-color;
       .btn-expander {
         color: $sidemenu-text-color;
-      }
-    }
-  }
-
-  // Root (1st) level menu & items
-  > ul {
-    font-size: $sidemenu-size;
-
-    > li {
-      border-bottom: 1px $grey-alto solid;
-      border-top: 1px transparent solid;
-      transition: all $easing 0.3s;
-      margin-left: 0;
-      &:after {
-        opacity: 0;
-        content: "";
-        height: 100%;
-        width: 14px;
-        background-color: $white;
-        right: -2px;
-        position: absolute;
-        top: 0;
-        // transition: all ease 0.3s;
-      }
-      &.active-menu-item {
-        border-color: $green-brand-bright;
-        z-index: 90;
-        position: relative;
-        box-shadow: -10px 12px 18px -10px rgba(0, 0, 0, 0.1);
-        &:after {
-          opacity: 1;
-        }
-        .btn-expander {
-          transform: rotateZ(-90deg);
-        }
-      }
-
-      &:not(.sidemenu__label) {
-        font-weight: 400;
-      }
-
-      > a {
-        padding: 0.8rem 0.9rem;
-      }
-
-      &:last-child > a,
-      &.active {
-        border-bottom: 0;
-      }
-
-      &.active > a {
-        padding-left: 0.35em;
-        background-color: $sidemenu-background-selected;
-
-        &::before {
-          margin: -0.2em 0.35em -0.2em 0;
-          border-color: $sidemenu-text-hover-color;
-        }
       }
     }
   }
@@ -232,7 +178,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
     cursor: pointer;
     text-align: center;
     font-weight: $weight-bold;
-    color: $sidemenu-text-color;
     line-height: 1.4;
     transition: all ease 0.2s;
     padding: 3px 8px;
@@ -457,6 +402,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
     @extend .sidemenu;
 
     > ul {
+      border-left: 1px $grey-alto solid;
       > li {
         border-left-color: $grey-alto;
 
@@ -547,7 +493,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
   @include breakpoint($from: desktop) {
     display: flex;
     align-items: stretch;
-    
 
     .sidemenu-homepage {
       flex: 1 1 25%;
@@ -792,7 +737,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
     height: 6px;
     position: absolute;
     bottom: -6px;
-    background-color: $green-brand-bright;
+    background-color: $green-brand;
     // right: -13px;
     width: 3px;
     z-index: 99;
@@ -813,5 +758,70 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
     // &::after {
     //   right: -13px;
     // }
+  }
+}
+
+// ! scoped ONLY to sidemenu
+// Root (1st) level menu & items
+.sidemenu-homepage {
+  > ul {
+    font-size: $sidemenu-size;
+
+    > li {
+      border-bottom: 1px $grey-alto solid;
+      border-top: 1px transparent solid;
+      transition: all $easing 0.3s;
+      margin-left: 0;
+      &:after {
+        opacity: 0;
+        content: "";
+        height: 100%;
+        width: 14px;
+        background-color: $white;
+        right: -2px;
+        position: absolute;
+        top: 0;
+        // transition: all ease 0.3s;
+      }
+      &.active-menu-item {
+        border-color: $green-brand;
+        z-index: 90;
+        position: relative;
+        box-shadow: -10px 12px 18px -10px rgba(0, 0, 0, 0.1);
+        &:after {
+          opacity: 1;
+        }
+        .btn-expander {
+          transform: rotateZ(-90deg);
+        }
+        > a {
+          padding-left: 20px;
+        }
+      }
+
+      &:not(.sidemenu__label) {
+        font-weight: 400;
+      }
+
+      > a {
+        padding: 0.8rem 0.9rem;
+        transition: all $easing 0.3s;
+      }
+
+      &:last-child > a,
+      &.active {
+        border-bottom: 0;
+      }
+
+      &.active > a {
+        padding-left: 0.35em;
+        background-color: $sidemenu-background-selected;
+
+        &::before {
+          margin: -0.2em 0.35em -0.2em 0;
+          border-color: $sidemenu-text-hover-color;
+        }
+      }
+    }
   }
 }
