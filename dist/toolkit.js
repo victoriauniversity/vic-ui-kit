@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, April 6, 2022, 1:17 PM */
+/** Version: 0.10.13 | Wednesday, April 6, 2022, 2:08 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14023,11 +14023,6 @@ var tooltipsApi = window.toolkitTooltips || {};
 // CONCATENATED MODULE: ./src/assets/toolkit/scripts/modules/tray.js
 /* eslint-disable func-names */
 
-
-if (window.location.search.includes("responsive=true")) {
-  document.querySelector(".tray").classList.add("responsive-preview");
-}
-
 var TABLET_AND_SMALLER = "screen and (max-width: 975px)",
     DESKTOP_AND_LARGER = "screen and (min-width: 61em)"; // eslint-disable-next-line import/prefer-default-export
 
@@ -14782,6 +14777,11 @@ function initTray() {
     localStorage.setItem("newMenuNotice", true);
     $(".hint").fadeOut();
   });
+
+  if (window.location.search.includes("responsive=true")) {
+    $(".tray").addClass("responsive-preview");
+    toggleTray();
+  }
 }
 // CONCATENATED MODULE: ./src/assets/toolkit/scripts/modules/urls.js
 // Import 3rd party dependencies
