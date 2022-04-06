@@ -380,7 +380,7 @@ export function initTray() {
   // Blip movement logic
   var $blip = $(".menu-blip");
 
-  $("#mega-menu > li").on("mouseover click", function () {
+  $("#mega-menu > li:not(.sidemenu__label)").on("mouseover click", function () {
     // If we are using a sidemenu
     if ($("#mega-menu").parent().hasClass("sidemenu-homepage")) {
       $blip.css({

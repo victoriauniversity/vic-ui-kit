@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, April 7, 2022, 9:51 AM */
+/** Version: 0.10.13 | Thursday, April 7, 2022, 11:14 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14309,7 +14309,7 @@ function initTray() {
 
 
   var $blip = $(".menu-blip");
-  $("#mega-menu > li").on("mouseover click", function () {
+  $("#mega-menu > li:not(.sidemenu__label)").on("mouseover click", function () {
     // If we are using a sidemenu
     if ($("#mega-menu").parent().hasClass("sidemenu-homepage")) {
       $blip.css({
