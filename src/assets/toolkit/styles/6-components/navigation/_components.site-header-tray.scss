@@ -271,6 +271,7 @@ body {
         z-index: 100;
         background: rgba(0, 0, 0, 0.6);
         color: #fff;
+        max-width: 100vw;
         &.responsive-preview {
           background: #000;
         }
@@ -1872,6 +1873,18 @@ body {
       right: 40px;
       transform: rotateY(180deg);
     }
+  }
+
+  .blip {
+    position: absolute;
+    border-radius: 5px;
+    background: $green-brand-bright;
+    width: 40px;
+    height: 2px;
+    bottom: -2px;
+    left: -100%;
+    transition: all ease-out 0.2s;
+    margin: 0 !important;
   }
 
   .main-nav-list {

@@ -23,19 +23,19 @@
       object-position: top;
     }
 
-    .banner-title {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding-bottom: 0rem;
-    }
+    // .banner-title {
+    //   position: absolute;
+    //   bottom: 0;
+    //   left: 0;
+    //   padding-bottom: 0rem;
+    // }
   }
 
   .banner-body,
   .banner-title {
     background-color: $green-brand;
     color: $white;
-    padding: 1rem 1.5rem;
+    // padding: 1rem 1.5rem;
 
     h1 {
       color: $white !important;
@@ -85,18 +85,22 @@
     }
   }
 }
-
-.hub-banner-sidemenu {
-  width: 100%;
+.layout {
+  .hub-banner:not(.hub-banner-sidemenu) {
+    width: 100%;
+  }
+}
+.hub-banner-sidemenu,
+.hub-banner {
   position: relative;
   > a {
     height: 100%;
+    display: block;
     > figure {
       height: 100%;
       position: relative;
     }
   }
-
   .banner-image {
     height: 100%;
     background-size: cover;
