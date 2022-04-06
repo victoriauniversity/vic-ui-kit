@@ -1,9 +1,7 @@
 /* eslint-disable func-names */
 import enquire from "enquire.js";
 
-if (window.location.search.includes("responsive=true")) {
-  document.querySelector(".tray").classList.add("responsive-preview");
-}
+
 const TABLET_AND_SMALLER = "screen and (max-width: 975px)",
   DESKTOP_AND_LARGER = "screen and (min-width: 61em)";
 // eslint-disable-next-line import/prefer-default-export
@@ -1001,4 +999,9 @@ export function initTray() {
     localStorage.setItem("newMenuNotice", true);
     $(".hint").fadeOut();
   });
+
+  if (window.location.search.includes("responsive=true")) {
+    $(".tray").addClass("responsive-preview");
+    toggleTray()
+  }
 }
