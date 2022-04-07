@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, April 7, 2022, 11:14 AM */
+/** Version: 0.10.13 | Thursday, April 7, 2022, 3:33 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15786,27 +15786,93 @@ var SIDEMENU_EXPANDED_CLASS = 'expanded';
 /** PRIVATE FUNCTIONS. */
 
 function initExpandableSubmenu() {
+  var _this = this;
+
   var expandableButtonElement = external_jQuery_default()(this);
   var submenuContainer = expandableButtonElement.parent(".".concat(SIDEMENU_SUBMENU_CLASS)); // Init default state
 
   var isExpanded = submenuContainer.hasClass(SIDEMENU_SELECTED_ITEM_CLASS);
 
-  function apply() {
+  function apply(topLevel) {
     if (isExpanded) {
       submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
+      console.log(listLength);
+
+      if (topLevel) {
+        // Remove others
+        var expandedLi = external_jQuery_default()(".sidebar > nav > ul > li.expanded");
+        expandedLi.find(">ul").css("max-height", "0px");
+        external_jQuery_default()(".sidebar > nav > ul li.has-submenu.expanded").not(submenuContainer).removeClass("expanded");
+      } else {
+        console.log("===== INNER EXPANDER CLICKED ====");
+        submenuContainer.find(">ul>li>ul").css("max-height", 50 * listLength + "px");
+      }
+
+      var expandedLi = external_jQuery_default()(".sidebar > nav > ul > li.expanded");
+      var listLength = expandedLi.find("> ul > li").length;
+      expandedLi.find(">ul").css("max-height", expandedLi.outerHeight() + 50 * listLength + "px");
     } else {
+      // !CLOSE ITEM
+      var expandedLi = external_jQuery_default()(".sidebar > nav > ul > li.expanded");
       submenuContainer.removeClass(SIDEMENU_EXPANDED_CLASS);
+
+      if (topLevel) {
+        submenuContainer.find(SIDEMENU_EXPANDED_CLASS).removeClass(SIDEMENU_EXPANDED_CLASS);
+        expandedLi.find(">ul").css("max-height", "0px");
+      }
     }
+
+    console.log("apply function");
   } // Init
 
 
-  apply(); // Bind `click` events to all expandable buttons
+  apply(); // Bind `click` events to all expandable buttons 
+  // expandableButtonElement.on("click", (e) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   isExpanded = !isExpanded;
+  //   apply();
+  // });
+  // Click event for expand buttons in SIDEMENU only
 
-  expandableButtonElement.on('click', function (e) {
+  expandableButtonElement.on("click", function (e) {
     e.preventDefault();
     e.stopPropagation();
     isExpanded = !isExpanded;
-    apply();
+    var topLevel = false;
+    var clickedButton = external_jQuery_default()(_this); // var listLength = clickedButton
+    //   .parents(".sidebar")
+    //   .find(".expanded > ul > li").length;
+    // If great grandparent (<nav>) has class, then we must be at top-level
+    // !TOP LEVEL
+
+    if (clickedButton.parent().parent().parent().hasClass("sidemenu")) {
+      topLevel = true;
+    } //   // Clear other expanded elements
+    //   if (clickedButton.parent().hasClass("expanded")) {
+    //     $(".sidebar li.has-submenu.expanded > ul").css("max-height", "0px");
+    //     $(".sidebar li.has-submenu.expanded").removeClass("expanded");
+    //   } else {
+    //     // Timeout to allow classes to apply
+    //     // setTimeout(() => {
+    //     //   $(".sidebar li.has-submenu.expanded > ul").css(
+    //     //     "max-height",
+    //     //     "800px"
+    //     //   );
+    //     // }, 100);
+    //   }
+    // } else {
+    //   // !INNER LEVEL CLICK
+    //   console.log(listLength);
+    //   var currentHeight = $(".sidebar li.has-submenu.expanded").innerHeight();
+    //   clickedButton
+    //     .parents(".sidebar")
+    //     .find("nav >ul > li.has-submenu.expanded > ul")
+    //     .css("max-height", currentHeight + 50 * listLength + "px");
+    // }
+
+
+    apply(topLevel);
   });
 }
 
@@ -16529,10 +16595,10 @@ function hubMegaMenu() {
     mobile = true;
   });
   menuExpandButton.each(function () {
-    var _this = this;
+    var _this2 = this;
 
     external_jQuery_default()(this).on('click', function (c) {
-      var $this = external_jQuery_default()(_this);
+      var $this = external_jQuery_default()(_this2);
 
       if (desktop) {
         menu.toggleClass('expanded');

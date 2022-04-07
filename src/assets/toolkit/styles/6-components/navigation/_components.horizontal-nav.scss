@@ -41,6 +41,7 @@
     max-height: 0;
   }
 }
+$easing: cubic-bezier(0.22, 1, 0.36, 1);
 
 .main-site-header.show-mega-menu-top-wrap {
   padding-top: 0;
@@ -190,7 +191,6 @@
           cursor: pointer;
           transition: all ease 0.3s;
           transform: rotateZ(-90deg);
-
         }
 
         .btn-expander {
@@ -411,7 +411,7 @@
 
             > ul {
               padding: 0;
-              transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+              transition: all $easing 0.3s;
               display: block;
               max-height: 0;
               overflow: hidden;
@@ -427,7 +427,7 @@
                   font-size: 16px;
                 }
                 &:before {
-                  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+                  transition: all $easing 0.2s;
                   content: "";
                   background-color: #ddd;
                   position: absolute;
@@ -780,7 +780,10 @@ body {
 body {
   .layout {
     position: relative;
-    overflow-x: hidden;
+    .content-panel {
+      // Overflow hidden to stop body-background from overflowing screen on MOBILE devices
+      overflow-x: hidden;
+    }
   }
   .body-background {
     position: absolute;
@@ -970,7 +973,7 @@ body {
       > li {
         position: relative;
         overflow: visible;
-        transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+        transition: all $easing 0.2s;
         border-bottom: 1px transparent solid;
         border-top: 1px transparent solid;
 
@@ -1054,7 +1057,8 @@ body {
         overflow: hidden;
         transition: all ease 0.3s;
         a {
-          transition: all ease 0.2s;
+          transition: all $easing 0.2s;
+          padding: 0.8rem 0.9rem;
 
           &:hover {
             color: $green-brand-bright;
@@ -1072,90 +1076,9 @@ body {
           display: flex;
           flex-wrap: wrap;
           justify-content: space-between;
-          > a {
-            flex: 0 auto;
-          }
-
-          > .btn-expander {
-            // transition: all ease 0.2s;
-            z-index: 505;
-            position: relative;
-            line-height: 2;
-            &:hover {
-              background-color: $grey-gallery;
-            }
-            &:active,
-            &:focus {
-              background-color: $grey-gallery;
-            }
-
-            &:after {
-              transition: all ease 0.2s;
-            }
-          }
-          ul {
-            transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.4s,
-              opacity cubic-bezier(0.22, 1, 0.36, 1) 1s;
-            overflow: hidden;
-            max-height: 0;
-            padding-top: 0;
-            padding-bottom: 0;
-            display: block;
-            border-left: 0px white solid;
-            background-color: #fff;
-
-            li {
-              &.expanded {
-                > a {
-                  color: $green-brand-bright;
-                  font-weight: 600;
-                }
-              }
-            }
-          }
-          > ul {
-            > li {
-              border-left: none;
-              a {
-                font-size: 15px;
-                margin-left: 15px;
-                padding: 10px 30px 10px 5px;
-              }
-              &.has-submenu {
-                a {
-                  padding-right: 10px;
-                  flex: 1;
-                }
-              }
-              .btn-expander {
-                margin-right: 10px;
-                width: auto;
-                height: auto;
-                padding: 5px 8px;
-                border-radius: 100px;
-              }
-              &.expanded {
-                > ul {
-                  > li {
-                  }
-                }
-              }
-              // BOTTOM LEVEL
-              > ul {
-                margin-left: 10px;
-                > li {
-                  a {
-                    padding-right: 10px;
-                    padding-left: 10px;
-                    font-size: 14px;
-                    margin-left: 0;
-                  }
-                  .btn-expander {
-                    margin-right: 20px;
-                  }
-                }
-              }
-            }
+          &.active {
+            border-bottom: none;
+            background-color: $green-brand-light;
           }
           &.expanded {
             // box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
@@ -1209,12 +1132,107 @@ body {
               }
               // NESTED CHILD JOINING ARROW ADJUSTMENT
               ul {
-                border-left: 1px $grey-alto solid;
-
                 li {
                   &:before {
                     left: -16px;
                     width: 20px;
+                  }
+                }
+              }
+            }
+          }
+          > a {
+            flex: 0 auto;
+            align-self: center;
+          }
+
+          > .btn-expander {
+            // transition: all ease 0.2s;
+            z-index: 505;
+            position: relative;
+            line-height: 1.7;
+            &:hover {
+              background-color: $grey-gallery;
+            }
+            &:active,
+            &:focus {
+              background-color: $grey-gallery;
+            }
+
+            &:after {
+              transition: all ease 0.2s;
+            }
+          }
+          ul {
+            transition: all $easing 0.3s, opacity $easing 1s;
+            overflow: hidden;
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            display: block;
+            border-left: 0px white solid;
+            background-color: #fff;
+
+            li.has-submenu {
+              background-color: #fff;
+              border-left: none;
+              &.active {
+                > a {
+                  color: $green-brand-bright;
+                }
+              }
+              &.expanded {
+                > a {
+                  color: $green-brand-bright;
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+          > ul {
+            > li {
+              border-left: none;
+
+              a {
+                font-size: 15px;
+                margin-left: 15px;
+                padding: 10px 30px 10px 5px;
+              }
+              &.has-submenu {
+                a {
+                  padding-right: 10px;
+                  flex: 1;
+                }
+              }
+              .btn-expander {
+                margin-right: 10px;
+                // width: auto;
+                // height: auto;
+                // padding: 5px 8px;
+                border-radius: 100px;
+              }
+              &.expanded {
+                > ul {
+                  margin-left: 10px;
+                  border-left: 1px $grey-alto solid;
+
+                  > li {
+                  }
+                }
+              }
+              // BOTTOM LEVEL
+              > ul {
+                border-left: 1px $grey-alto solid;
+
+                > li {
+                  a {
+                    padding-right: 10px;
+                    padding-left: 10px;
+                    font-size: 14px;
+                    margin-left: 0;
+                  }
+                  .btn-expander {
+                    margin-right: 20px;
                   }
                 }
               }
