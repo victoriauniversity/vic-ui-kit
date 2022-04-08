@@ -940,6 +940,7 @@ body {
         border-bottom: 2px #eee solid;
         border-top: 0;
         overflow: hidden;
+
         .sidemenu__background {
           position: absolute;
           right: -30px;
@@ -955,15 +956,13 @@ body {
         }
 
         > a {
-          // font-size: 20px;
-          // color: $kowhai;
-          // background-color: $green-brand;
-          // padding: 15px 20px;
-          // box-shadow: rgba(99, 99, 99, 0.8) -4px 7px 8px -4px;
-          // z-index: 900;
-          // clip-path: none;
           background-color: $green-brand-light;
           padding: 15px;
+          background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
+          background-repeat: no-repeat;
+          background-size: 100px;
+          background-position: 117% 5%;
+          background-blend-mode: multiply;
           &:hover {
             color: $green-brand-bright;
           }
@@ -997,7 +996,7 @@ body {
             }
           }
           > .btn-expander {
-            clip-path: polygon(0% 0px, 100% 0%, 100% 100%, 10px 100%);
+            clip-path: polygon(0% 0px, 100% 0%, 100% 104%, 10px 104%);
             background-color: #fff;
             padding-left: 15px;
             background-color: $grey-gallery;
@@ -1078,7 +1077,10 @@ body {
           justify-content: space-between;
           &.active {
             border-bottom: none;
-            background-color: $green-brand-light;
+            background-color: $green-brand;
+            > a, >.btn-expander {
+              color: #fff;
+            }
           }
           &.expanded {
             // box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
@@ -1195,7 +1197,7 @@ body {
 
               a {
                 font-size: 15px;
-                margin-left: 15px;
+                margin-left: 10px;
                 padding: 10px 30px 10px 5px;
               }
               &.has-submenu {

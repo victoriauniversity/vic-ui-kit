@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, April 7, 2022, 3:33 PM */
+/** Version: 0.10.13 | Friday, April 8, 2022, 12:02 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15793,11 +15793,11 @@ function initExpandableSubmenu() {
 
   var isExpanded = submenuContainer.hasClass(SIDEMENU_SELECTED_ITEM_CLASS);
 
-  function apply(topLevel) {
-    if (isExpanded) {
-      submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
-      console.log(listLength);
+  function apply(topLevel, clickedEl) {
+    console.log(isExpanded);
+    console.log(topLevel);
 
+    if (clickedEl && !clickedEl.parent().hasClass("expanded")) {
       if (topLevel) {
         // Remove others
         var expandedLi = external_jQuery_default()(".sidebar > nav > ul > li.expanded");
@@ -15808,6 +15808,7 @@ function initExpandableSubmenu() {
         submenuContainer.find(">ul>li>ul").css("max-height", 50 * listLength + "px");
       }
 
+      submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
       var expandedLi = external_jQuery_default()(".sidebar > nav > ul > li.expanded");
       var listLength = expandedLi.find("> ul > li").length;
       expandedLi.find(">ul").css("max-height", expandedLi.outerHeight() + 50 * listLength + "px");
@@ -15821,12 +15822,10 @@ function initExpandableSubmenu() {
         expandedLi.find(">ul").css("max-height", "0px");
       }
     }
-
-    console.log("apply function");
   } // Init
 
 
-  apply(); // Bind `click` events to all expandable buttons 
+  apply(true, external_jQuery_default()(".sidebar > nav > ul > li.active > .btn-expander")); // Bind `click` events to all expandable buttons 
   // expandableButtonElement.on("click", (e) => {
   //   e.preventDefault();
   //   e.stopPropagation();
@@ -15840,39 +15839,13 @@ function initExpandableSubmenu() {
     e.stopPropagation();
     isExpanded = !isExpanded;
     var topLevel = false;
-    var clickedButton = external_jQuery_default()(_this); // var listLength = clickedButton
-    //   .parents(".sidebar")
-    //   .find(".expanded > ul > li").length;
-    // If great grandparent (<nav>) has class, then we must be at top-level
-    // !TOP LEVEL
+    var clickedButton = external_jQuery_default()(_this); // !TOP LEVEL
 
     if (clickedButton.parent().parent().parent().hasClass("sidemenu")) {
       topLevel = true;
-    } //   // Clear other expanded elements
-    //   if (clickedButton.parent().hasClass("expanded")) {
-    //     $(".sidebar li.has-submenu.expanded > ul").css("max-height", "0px");
-    //     $(".sidebar li.has-submenu.expanded").removeClass("expanded");
-    //   } else {
-    //     // Timeout to allow classes to apply
-    //     // setTimeout(() => {
-    //     //   $(".sidebar li.has-submenu.expanded > ul").css(
-    //     //     "max-height",
-    //     //     "800px"
-    //     //   );
-    //     // }, 100);
-    //   }
-    // } else {
-    //   // !INNER LEVEL CLICK
-    //   console.log(listLength);
-    //   var currentHeight = $(".sidebar li.has-submenu.expanded").innerHeight();
-    //   clickedButton
-    //     .parents(".sidebar")
-    //     .find("nav >ul > li.has-submenu.expanded > ul")
-    //     .css("max-height", currentHeight + 50 * listLength + "px");
-    // }
+    }
 
-
-    apply(topLevel);
+    apply(topLevel, clickedButton);
   });
 }
 

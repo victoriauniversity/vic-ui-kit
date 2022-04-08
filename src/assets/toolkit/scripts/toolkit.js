@@ -111,46 +111,46 @@ function initExpandableSubmenu() {
   // Init default state
   let isExpanded = submenuContainer.hasClass(SIDEMENU_SELECTED_ITEM_CLASS);
 
-  function apply(topLevel) {
-    if (isExpanded) {
-      submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
-      console.log(listLength);
+  function apply(topLevel, clickedEl) {
+    console.log(isExpanded);
+    console.log(topLevel);
+
+    if (clickedEl && !clickedEl.parent().hasClass("expanded")) {
       if (topLevel) {
         // Remove others
-        var expandedLi = $(".sidebar > nav > ul > li.expanded")
-        expandedLi.find(">ul").css("max-height", "0px")
-        $(".sidebar > nav > ul li.has-submenu.expanded")
-          .not(submenuContainer)
-          .removeClass("expanded")
-
-
-  
+        var expandedLi = $(".sidebar > nav > ul > li.expanded");
+        expandedLi.find(">ul").css("max-height", "0px");
+        $(".sidebar > nav > ul li.has-submenu.expanded").not(submenuContainer).removeClass("expanded");
       } else {
         console.log("===== INNER EXPANDER CLICKED ====");
 
         submenuContainer
           .find(">ul>li>ul")
-          .css("max-height",  50 * listLength + "px");
+          .css("max-height", 50 * listLength + "px");
       }
-      var expandedLi = $(".sidebar > nav > ul > li.expanded")
+        
+        submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
+      var expandedLi = $(".sidebar > nav > ul > li.expanded");
       var listLength = expandedLi.find("> ul > li").length;
 
-      expandedLi.find(">ul").css("max-height",  expandedLi.outerHeight() + 50 * listLength + "px");
+      expandedLi
+        .find(">ul")
+        .css("max-height", expandedLi.outerHeight() + 50 * listLength + "px");
     } else {
       // !CLOSE ITEM
-      var expandedLi = $(".sidebar > nav > ul > li.expanded")
+      var expandedLi = $(".sidebar > nav > ul > li.expanded");
       submenuContainer.removeClass(SIDEMENU_EXPANDED_CLASS);
-      if(topLevel){
-        submenuContainer.find(SIDEMENU_EXPANDED_CLASS).removeClass(SIDEMENU_EXPANDED_CLASS);
-        expandedLi.find(">ul").css("max-height", "0px")
+      if (topLevel) {
+        submenuContainer
+          .find(SIDEMENU_EXPANDED_CLASS)
+          .removeClass(SIDEMENU_EXPANDED_CLASS);
+        expandedLi.find(">ul").css("max-height", "0px");
       }
-
     }
-    console.log("apply function");
   }
 
   // Init
-  apply();
+  apply(true, $(".sidebar > nav > ul > li.active > .btn-expander"));
 
   // Bind `click` events to all expandable buttons 
   // expandableButtonElement.on("click", (e) => {
@@ -167,37 +167,13 @@ function initExpandableSubmenu() {
     isExpanded = !isExpanded;
     var topLevel = false
     var clickedButton = $(this)
-    // var listLength = clickedButton
-    //   .parents(".sidebar")
-    //   .find(".expanded > ul > li").length;
-    // If great grandparent (<nav>) has class, then we must be at top-level
+
     // !TOP LEVEL
     if (clickedButton.parent().parent().parent().hasClass("sidemenu")) {
       topLevel = true
     }
-    //   // Clear other expanded elements
-    //   if (clickedButton.parent().hasClass("expanded")) {
-    //     $(".sidebar li.has-submenu.expanded > ul").css("max-height", "0px");
-    //     $(".sidebar li.has-submenu.expanded").removeClass("expanded");
-    //   } else {
-    //     // Timeout to allow classes to apply
-    //     // setTimeout(() => {
-    //     //   $(".sidebar li.has-submenu.expanded > ul").css(
-    //     //     "max-height",
-    //     //     "800px"
-    //     //   );
-    //     // }, 100);
-    //   }
-    // } else {
-    //   // !INNER LEVEL CLICK
-    //   console.log(listLength);
-    //   var currentHeight = $(".sidebar li.has-submenu.expanded").innerHeight();
-    //   clickedButton
-    //     .parents(".sidebar")
-    //     .find("nav >ul > li.has-submenu.expanded > ul")
-    //     .css("max-height", currentHeight + 50 * listLength + "px");
-    // }
-    apply(topLevel);
+
+    apply(topLevel, clickedButton);
   });
 }
 
