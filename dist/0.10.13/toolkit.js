@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, April 8, 2022, 12:02 PM */
+/** Version: 0.10.13 | Wednesday, April 13, 2022, 1:51 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15794,9 +15794,6 @@ function initExpandableSubmenu() {
   var isExpanded = submenuContainer.hasClass(SIDEMENU_SELECTED_ITEM_CLASS);
 
   function apply(topLevel, clickedEl) {
-    console.log(isExpanded);
-    console.log(topLevel);
-
     if (clickedEl && !clickedEl.parent().hasClass("expanded")) {
       if (topLevel) {
         // Remove others
@@ -15823,9 +15820,8 @@ function initExpandableSubmenu() {
       }
     }
   } // Init
-
-
-  apply(true, external_jQuery_default()(".sidebar > nav > ul > li.active > .btn-expander")); // Bind `click` events to all expandable buttons 
+  // apply(true, $(".sidebar > nav > ul > li.active > .btn-expander"));
+  // Bind `click` events to all expandable buttons 
   // expandableButtonElement.on("click", (e) => {
   //   e.preventDefault();
   //   e.stopPropagation();
@@ -15833,6 +15829,7 @@ function initExpandableSubmenu() {
   //   apply();
   // });
   // Click event for expand buttons in SIDEMENU only
+
 
   expandableButtonElement.on("click", function (e) {
     e.preventDefault();

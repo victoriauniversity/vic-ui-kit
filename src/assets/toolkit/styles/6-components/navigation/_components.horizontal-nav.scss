@@ -331,6 +331,8 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
               color: $black-tundora;
               text-decoration: none;
               padding: 10px 0;
+              display: block;
+              width: 100%;
 
               @include hoverify() {
                 text-decoration: underline;
@@ -339,7 +341,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 
             .btn-expander {
               color: $black-tundora;
-              transition: all ease 0.3s;
               &:hover {
                 background-color: $grey-alto;
               }
@@ -362,6 +363,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
                 height: auto;
                 top: initial;
                 content: "\f181";
+                transition: all $easing 0.3s;
               }
             }
 
@@ -369,11 +371,10 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
               > ul {
                 max-height: 300px;
                 visibility: visible;
-                padding-left: 5px;
+                // padding-left: 5px;
               }
               .btn-expander {
                 color: $black-tundora !important;
-                transform: rotateZ(180deg);
                 &:hover {
                   background-color: $grey-alto;
                   &:after {
@@ -385,6 +386,8 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
                   border: none;
                   width: auto;
                   height: auto;
+                  transform: rotateZ(180deg);
+
                 }
                 // &::after {
                 //   border-color: transparent transparent $black-tundora;
@@ -984,7 +987,21 @@ body {
           height: 100%;
           margin-left: -25px;
         }
-
+        &.active {
+          border-bottom: none;
+          background-color: $green-brand;
+          > a,
+          > .btn-expander {
+            color: #fff;
+          }
+          > .btn-expander {
+            &:hover,
+            &:active,
+            &:focus {
+              color: $black-brand;
+            }
+          }
+        }
         &.expanded {
           border-top: none;
 
@@ -1076,11 +1093,8 @@ body {
           flex-wrap: wrap;
           justify-content: space-between;
           &.active {
-            border-bottom: none;
+            border: none;
             background-color: $green-brand;
-            > a, >.btn-expander {
-              color: #fff;
-            }
           }
           &.expanded {
             // box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
