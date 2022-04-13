@@ -112,8 +112,6 @@ function initExpandableSubmenu() {
   let isExpanded = submenuContainer.hasClass(SIDEMENU_SELECTED_ITEM_CLASS);
 
   function apply(topLevel, clickedEl) {
-    console.log(isExpanded);
-    console.log(topLevel);
 
     if (clickedEl && !clickedEl.parent().hasClass("expanded")) {
       if (topLevel) {
@@ -150,7 +148,7 @@ function initExpandableSubmenu() {
   }
 
   // Init
-  apply(true, $(".sidebar > nav > ul > li.active > .btn-expander"));
+  // apply(true, $(".sidebar > nav > ul > li.active > .btn-expander"));
 
   // Bind `click` events to all expandable buttons 
   // expandableButtonElement.on("click", (e) => {
