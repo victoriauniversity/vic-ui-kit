@@ -1,7 +1,6 @@
 /* eslint-disable func-names */
 import enquire from "enquire.js";
 
-
 const TABLET_AND_SMALLER = "screen and (max-width: 975px)",
   DESKTOP_AND_LARGER = "screen and (min-width: 61em)";
 // eslint-disable-next-line import/prefer-default-export
@@ -541,37 +540,6 @@ export function initTray() {
   //   var windowWidth = $(window).width();
   // });
 
-  // Append accordians
-  $(".saved-items").append(
-    "<div class='group-title trigger scholarships-title'><div><i class='icons8-graduation-scroll'></i><span>Scholarships (<span class='count'>" +
-      0 +
-      "</span>)</span></div><i class='icons8-expand-arrow'></i></div>"
-  );
-  $("<ul class='item-list scholarships-list'></ul>").insertAfter(
-    ".scholarships-title"
-  );
-
-  $(".saved-items").append(
-    "<div class='group-title trigger events-title'><div><i class='icons8-schedule'></i><span>Events (<span class='count'>" +
-      0 +
-      "</span>)</span></div> <i class='icons8-expand-arrow'></i></div>"
-  );
-  $("<ul class='item-list events-list'></ul>").insertAfter(".events-title");
-
-  $(".saved-items").append(
-    "<div class='group-title trigger clubs-title'><div><i class='icons8-theatre-mask'></i><span>Clubs (<span class='count'>" +
-      0 +
-      "</span>)</span></div> <i class='icons8-expand-arrow'></i></div>"
-  );
-  $("<ul class='item-list clubs-list'></ul>").insertAfter(".clubs-title");
-
-  $(".saved-items").append(
-    "<div class='group-title trigger pages-title'><div><i class='icons8-news'></i><span>Pages (<span class='count'>" +
-      0 +
-      "</span>)</span></div> <i class='icons8-expand-arrow'></i></div>"
-  );
-  $("<ul class='item-list pages-list'></ul>").insertAfter(".pages-title");
-
   const formatAsDate = function (date) {
     var arr = date.split("");
     var year = arr.slice(0, 4).join("");
@@ -782,7 +750,7 @@ export function initTray() {
     } else {
       $tallBlip.css({
         top: el.offset().top - el.parents(".main-nav-list").offset().top,
-        left: el.offset().left - $(".main-nav-list").offset().left,
+        // left: el.offset().left - $(".main-nav-list").offset().left,
         height: el.outerHeight(),
       });
     }
@@ -866,17 +834,6 @@ export function initTray() {
       resizeTallBlip($(this), true);
     }
   });
-
-  // Initial position
-  var activeItem = $(".main-nav-list > li.active");
-  if (activeItem.length) {
-    $tallBlip.css({
-      top:
-        activeItem.offset().top -
-        activeItem.parents(".main-nav-list").offset().top,
-      height: activeItem.outerHeight(),
-    });
-  }
 
   $(".tray-main-nav").on("mouseleave", function () {
     var activeItem = $(".main-nav-list > li.active");
@@ -1002,6 +959,21 @@ export function initTray() {
 
   if (window.location.search.includes("responsive=true")) {
     $(".tray").addClass("responsive-preview");
-    toggleTray()
+    toggleTray();
   }
+
+  // Initial blip position
+  setTimeout(() => {
+    
+  var activeItem = $(".main-nav-list > li.active");
+  if (activeItem.length) {
+    $tallBlip.css({
+      top:
+        activeItem.offset().top -
+        activeItem.parents(".main-nav-list").offset().top,
+      height: activeItem.outerHeight(),
+    });
+  }
+}, 500);
+
 }

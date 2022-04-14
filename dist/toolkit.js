@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, April 13, 2022, 1:51 PM */
+/** Version: 0.10.13 | Thursday, April 14, 2022, 3:01 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14446,16 +14446,6 @@ function initTray() {
   // $(window).resize(function () {
   //   var windowWidth = $(window).width();
   // });
-  // Append accordians
-
-  $(".saved-items").append("<div class='group-title trigger scholarships-title'><div><i class='icons8-graduation-scroll'></i><span>Scholarships (<span class='count'>" + 0 + "</span>)</span></div><i class='icons8-expand-arrow'></i></div>");
-  $("<ul class='item-list scholarships-list'></ul>").insertAfter(".scholarships-title");
-  $(".saved-items").append("<div class='group-title trigger events-title'><div><i class='icons8-schedule'></i><span>Events (<span class='count'>" + 0 + "</span>)</span></div> <i class='icons8-expand-arrow'></i></div>");
-  $("<ul class='item-list events-list'></ul>").insertAfter(".events-title");
-  $(".saved-items").append("<div class='group-title trigger clubs-title'><div><i class='icons8-theatre-mask'></i><span>Clubs (<span class='count'>" + 0 + "</span>)</span></div> <i class='icons8-expand-arrow'></i></div>");
-  $("<ul class='item-list clubs-list'></ul>").insertAfter(".clubs-title");
-  $(".saved-items").append("<div class='group-title trigger pages-title'><div><i class='icons8-news'></i><span>Pages (<span class='count'>" + 0 + "</span>)</span></div> <i class='icons8-expand-arrow'></i></div>");
-  $("<ul class='item-list pages-list'></ul>").insertAfter(".pages-title");
 
   var formatAsDate = function formatAsDate(date) {
     var arr = date.split("");
@@ -14586,7 +14576,7 @@ function initTray() {
     } else {
       $tallBlip.css({
         top: el.offset().top - el.parents(".main-nav-list").offset().top,
-        left: el.offset().left - $(".main-nav-list").offset().left,
+        // left: el.offset().left - $(".main-nav-list").offset().left,
         height: el.outerHeight()
       });
     }
@@ -14667,17 +14657,7 @@ function initTray() {
     if (!activeItem.length) {
       resizeTallBlip($(this), true);
     }
-  }); // Initial position
-
-  var activeItem = $(".main-nav-list > li.active");
-
-  if (activeItem.length) {
-    $tallBlip.css({
-      top: activeItem.offset().top - activeItem.parents(".main-nav-list").offset().top,
-      height: activeItem.outerHeight()
-    });
-  }
-
+  });
   $(".tray-main-nav").on("mouseleave", function () {
     var activeItem = $(".main-nav-list > li.active");
 
@@ -14781,7 +14761,19 @@ function initTray() {
   if (window.location.search.includes("responsive=true")) {
     $(".tray").addClass("responsive-preview");
     toggleTray();
-  }
+  } // Initial blip position
+
+
+  setTimeout(function () {
+    var activeItem = $(".main-nav-list > li.active");
+
+    if (activeItem.length) {
+      $tallBlip.css({
+        top: activeItem.offset().top - activeItem.parents(".main-nav-list").offset().top,
+        height: activeItem.outerHeight()
+      });
+    }
+  }, 500);
 }
 // CONCATENATED MODULE: ./src/assets/toolkit/scripts/modules/urls.js
 // Import 3rd party dependencies

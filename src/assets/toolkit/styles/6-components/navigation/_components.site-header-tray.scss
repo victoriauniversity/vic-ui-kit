@@ -27,6 +27,14 @@ $green-top-gradient: linear-gradient(
   )
   0% 0%;
 
+$green-bottom-gradient: linear-gradient(
+    180deg,
+    $green-brand-bright 0%,
+    #52951c 67%,
+    $green-brand 100%
+  )
+  0% 0%;
+
 $header-bg: $black-brand;
 $tray-width-desktop: 400px;
 
@@ -107,6 +115,39 @@ body {
   overflow: hidden;
 }
 
+.menu-container {
+
+  //? Not sure if we should use this
+  .outer-close-tray {
+    right: 400px;
+    position: absolute;
+    top: 0%;
+    display: none;
+    
+    .tray-toggle {
+      background-color: #fff;
+      border-radius: 10px 0px 0px 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 5px 1px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      flex-direction: column;
+      color: $grey-chalice;
+      max-width: 20px;
+      min-height: 100px;
+
+    }
+    i {
+      margin-bottom: 8px;
+    }
+    .close-text {
+    transform: rotateZ(-90deg);
+
+    }
+  }
+}
 .main-site-header {
   .header-toggle {
     display: flex;
@@ -367,10 +408,10 @@ body {
         z-index: 150;
         height: 100vh;
         background-color: $header-bg;
-        margin-left: calc(100vw - 400px);
+        // margin-left: calc(100vw - 400px);
         width: $tray-width-desktop;
-        overflow-y: scroll;
-        overflow-x: hidden;
+        overflow: auto;
+
         @include breakpoint($until: tablet) {
           margin: 0;
           width: 100%;
@@ -397,9 +438,9 @@ body {
               width: 3px;
               position: absolute;
               background-color: $green-brand-bright;
-              left: 3px;
+              left: 0px;
               transition: all ease 0.2s;
-              z-index: 99;
+              z-index: 999;
             }
             > li {
               > a.main-nav-link {
@@ -654,7 +695,7 @@ body {
                   &:active,
                   &:focus {
                     color: $green-brand-bright;
-                    outline: 2px dotted #ccc;
+                    outline: 2px dotted $black-emperor;
                     outline-offset: -2px;
                   }
                   &:hover {
@@ -1465,22 +1506,22 @@ body {
     &.header-tray {
       .tray-content {
         background-color: $white;
-        // background-image: url("https://www.wgtn.ac.nz/__data/assets/image/0008/1935395/tray-pattern@2x.png");
-        // background-repeat: no-repeat;
-        // background-position: bottom right;
-        // background-size: 55%;
+
         display: flex;
         flex-direction: column;
+        position: absolute;
+        right: 0;
 
-        &:before {
-          content: "";
-          height: calc(100% + 1rem);
-          width: 3px;
-          background: $green-top-gradient;
-          display: block;
-          position: absolute;
-          left: 0;
-          top: -1rem;
+        &:after {
+          // content: "";
+          // position: absolute;
+          // right: 0;
+          // top: 10px;
+          // width: 50px;
+          // height: 50px;
+          // border-top: 10px solid transparent;
+          // border-left: 20px solid rgba($color: $black-brand, $alpha: 0.9);
+          // border-bottom: 10px solid transparent;
         }
 
         .tray-search-bar {
@@ -1589,65 +1630,65 @@ body {
       }
     }
 
-    &.header-tray {
-      .tray-content {
-        background-color: $white;
+    // &.header-tray {
+    //   .tray-content {
+    //     background-color: $white;
 
-        &:before {
-          content: "";
-          height: calc(100% + 1rem);
-          width: 3px;
-          background: $green-top-gradient;
-          display: block;
-          position: absolute;
-          left: 0;
-          top: -1rem;
-        }
+    //     &:before {
+    //       content: "";
+    //       height: calc(100% + 1rem);
+    //       width: 3px;
+    //       background: $green-top-gradient;
+    //       display: block;
+    //       position: absolute;
+    //       left: 0;
+    //       top: -1rem;
+    //     }
 
-        .tray-main-nav {
-          li.main-nav-item {
-            border-bottom: 1px solid $black-tundora !important;
+    //     .tray-main-nav {
+    //       li.main-nav-item {
+    //         border-bottom: 1px solid $black-tundora !important;
 
-            a {
-              color: $black-tundora;
-            }
+    //         a {
+    //           color: $black-tundora;
+    //         }
 
-            &:not(:last-child) {
-            }
-          }
-        }
+    //         &:not(:last-child) {
+    //         }
+    //       }
+    //     }
 
-        .tray-search-bar {
-          form {
-            border-radius: $radius;
-            // border: 1px solid #2B694D;
+    //     .tray-search-bar {
+    //       form {
+    //         border-radius: $radius;
+    //         // border: 1px solid #2B694D;
 
-            .search-input {
-              border-radius: $radius;
-              background-color: $white;
-              border: 1px solid $black-tundora;
+    //         .search-input {
+    //           border-radius: $radius;
+    //           background-color: $white;
+    //           border: 1px solid $black-tundora;
 
-              &::placeholder {
-                /* Chrome, Firefox, Opera, Safari 10.1+ */
-                color: $grey-chalice;
-                opacity: 1;
-                /* Firefox */
-              }
-            }
+    //           &::placeholder {
+    //             /* Chrome, Firefox, Opera, Safari 10.1+ */
+    //             color: $grey-chalice;
+    //             opacity: 1;
+    //             /* Firefox */
+    //           }
+    //         }
 
-            .submit-button {
-              .icon-search {
-                color: $black-tundora;
-              }
-            }
-          }
-        }
+    //         .submit-button {
+    //           .icon-search {
+    //             color: $black-tundora;
+    //           }
+    //         }
+    //       }
+    //     }
 
-        .tray-close {
-          background-color: $brand;
-        }
-      }
-    }
+    //     .tray-close {
+    //       background-color: $brand;
+    //     }
+    //   }
+    // }
   }
 
   &.subjects-header {
@@ -1885,18 +1926,6 @@ body {
     left: -100%;
     transition: all ease-out 0.2s;
     margin: 0 !important;
-  }
-
-  .main-nav-list {
-    position: relative;
-    .tall-blip {
-      height: 0;
-      width: 3px;
-      position: absolute;
-      background-color: $green-brand-weaker;
-      left: -8px;
-      transition: all ease-out 0.2s;
-    }
   }
 
   // Custom dropdown
