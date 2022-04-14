@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, April 13, 2022, 1:51 PM */
+/** Version: 0.10.13 | Thursday, April 14, 2022, 3:01 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -10437,7 +10437,6 @@ aside .promo h3::before {
   .main-site-header .menu-container {
     -webkit-box-flex: 1;
             flex: 1 1 100%;
-    margin-top: .3rem;
     display: -webkit-box;
     display: flex;
     -webkit-box-orient: vertical;
@@ -14906,6 +14905,41 @@ body {
   overflow: hidden;
 }
 
+.menu-container .outer-close-tray {
+  right: 400px;
+  position: absolute;
+  top: 0%;
+  display: none;
+}
+
+.menu-container .outer-close-tray .tray-toggle {
+  background-color: #fff;
+  border-radius: 10px 0px 0px 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  padding: 5px 1px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  color: #AAA;
+  max-width: 20px;
+  min-height: 100px;
+}
+
+.menu-container .outer-close-tray i {
+  margin-bottom: 8px;
+}
+
+.menu-container .outer-close-tray .close-text {
+  -webkit-transform: rotateZ(-90deg);
+          transform: rotateZ(-90deg);
+}
+
 .main-site-header .header-toggle {
   display: -webkit-box;
   display: flex;
@@ -15188,10 +15222,8 @@ body {
   z-index: 150;
   height: 100vh;
   background-color: #1D2624;
-  margin-left: calc(100vw - 400px);
   width: 400px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: auto;
 }
 
 @media (max-width: 42.99em) {
@@ -15231,10 +15263,10 @@ body {
   width: 3px;
   position: absolute;
   background-color: #3E9C4F;
-  left: 3px;
+  left: 0px;
   -webkit-transition: all ease 0.2s;
   transition: all ease 0.2s;
-  z-index: 99;
+  z-index: 999;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list > li > a.main-nav-link {
@@ -15509,7 +15541,7 @@ body {
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item ul li a:active, .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item ul li a:focus {
   color: #3E9C4F;
-  outline: 2px dotted #ccc;
+  outline: 2px dotted #555;
   outline-offset: -2px;
 }
 
@@ -16235,18 +16267,8 @@ body {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
           flex-direction: column;
-}
-
-.main-site-header.white.header-tray .tray-content:before {
-  content: "";
-  height: calc(100% + 1rem);
-  width: 3px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#115737), color-stop(67%, #52951c), to(#77ba49)) 0% 0%;
-  background: linear-gradient(180deg, #115737 0%, #52951c 67%, #77ba49 100%) 0% 0%;
-  display: block;
   position: absolute;
-  left: 0;
-  top: -1rem;
+  right: 0;
 }
 
 .main-site-header.white.header-tray .tray-content .tray-search-bar form {
@@ -16387,83 +16409,6 @@ body {
 
 .main-site-header.green .header-search form .submit-button .icon-search {
   color: #424242;
-}
-
-.main-site-header.green.header-tray .tray-content {
-  background-color: #FFF;
-}
-
-.main-site-header.green.header-tray .tray-content:before {
-  content: "";
-  height: calc(100% + 1rem);
-  width: 3px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#115737), color-stop(67%, #52951c), to(#77ba49)) 0% 0%;
-  background: linear-gradient(180deg, #115737 0%, #52951c 67%, #77ba49 100%) 0% 0%;
-  display: block;
-  position: absolute;
-  left: 0;
-  top: -1rem;
-}
-
-.main-site-header.green.header-tray .tray-content .tray-main-nav li.main-nav-item {
-  border-bottom: 1px solid #424242 !important;
-}
-
-.main-site-header.green.header-tray .tray-content .tray-main-nav li.main-nav-item a {
-  color: #424242;
-}
-
-.main-site-header.green.header-tray .tray-content .tray-search-bar form {
-  border-radius: 0.25rem;
-}
-
-.main-site-header.green.header-tray .tray-content .tray-search-bar form .search-input {
-  border-radius: 0.25rem;
-  background-color: #FFF;
-  border: 1px solid #424242;
-}
-
-.main-site-header.green.header-tray .tray-content .tray-search-bar form .search-input::-webkit-input-placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #AAA;
-  opacity: 1;
-  /* Firefox */
-}
-
-.main-site-header.green.header-tray .tray-content .tray-search-bar form .search-input::-moz-placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #AAA;
-  opacity: 1;
-  /* Firefox */
-}
-
-.main-site-header.green.header-tray .tray-content .tray-search-bar form .search-input:-ms-input-placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #AAA;
-  opacity: 1;
-  /* Firefox */
-}
-
-.main-site-header.green.header-tray .tray-content .tray-search-bar form .search-input::-ms-input-placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #AAA;
-  opacity: 1;
-  /* Firefox */
-}
-
-.main-site-header.green.header-tray .tray-content .tray-search-bar form .search-input::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #AAA;
-  opacity: 1;
-  /* Firefox */
-}
-
-.main-site-header.green.header-tray .tray-content .tray-search-bar form .submit-button .icon-search {
-  color: #424242;
-}
-
-.main-site-header.green.header-tray .tray-content .tray-close {
-  background-color: #115737;
 }
 
 .main-site-header.subjects-header {
@@ -16732,20 +16677,6 @@ body {
   -webkit-transition: all ease-out 0.2s;
   transition: all ease-out 0.2s;
   margin: 0 !important;
-}
-
-.tray .main-nav-list {
-  position: relative;
-}
-
-.tray .main-nav-list .tall-blip {
-  height: 0;
-  width: 3px;
-  position: absolute;
-  background-color: #3D6353;
-  left: -8px;
-  -webkit-transition: all ease-out 0.2s;
-  transition: all ease-out 0.2s;
 }
 
 .tray .saved-items-selector {
