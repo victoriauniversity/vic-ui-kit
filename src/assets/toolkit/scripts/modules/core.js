@@ -118,11 +118,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 export function initToolbarUrlListeners() {
   UrlManager.onLoadWhenQueryExists( 'toolbar', () => {
-    if ( window.toolkitToolbarLoader ) window.toolkitToolbarLoader( 'https://www.wgtn.ac.nz/api/toolbar/staff' );
+    if ( window.toolkitToolbarLoader ) document.location.href = 'https://puaha.wgtn.ac.nz/';
   });
 
   UrlManager.onLoadWhenQueryExists( 'mytools', () => {
-    if ( window.toolkitToolbarLoader ) window.toolkitToolbarLoader( 'https://www.wgtn.ac.nz/api/toolbar/students' );
+    if ( window.toolkitToolbarLoader )  document.location.href = 'https://puaha.wgtn.ac.nz/';
   });
 }
 
