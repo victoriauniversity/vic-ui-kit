@@ -733,80 +733,93 @@ $(() => {
 
   // http://wicky.nilia.ms/enquire.js/
   // TODO: Refactor and extract to its own library
-  enquire.register( MOBILE_LARGE_AND_SMALLER, () => {
+  // enquire.register( MOBILE_LARGE_AND_SMALLER, () => {
 
-    if ( $globalNav.length ) {
-      const eGlobalNav    = $globalNav[0],
-        bannerHeaderElement = $( '.site-header' ),
-        sidemenu            = $( '.sidemenu' );
+  //   if ( $globalNav.length ) {
+  //     const eGlobalNav    = $globalNav[0],
+  //       bannerHeaderElement = $( '.site-header' ),
+  //       sidemenu            = $( '.sidemenu' );
 
-      const headroom  = new Headroom( eGlobalNav, {
+  //     const headroom  = new Headroom( eGlobalNav, {
 
-			  offset:    $globalNav.outerHeight(),
-        // or scroll tolerance per direction
-        tolerance: {
-          down: 5,
-          up:   20,
-        },
-        classes: {
-          initial:  'sticky',
-          pinned:   'slide-down',
-          unpinned: 'slide-up',
-          notTop:   'no-top',
-        },
-      });
+	// 		  offset:    $globalNav.outerHeight(),
+  //       // or scroll tolerance per direction
+  //       tolerance: {
+  //         down: 5,
+  //         up:   20,
+  //       },
+  //       classes: {
+  //         initial:  'sticky',
+  //         pinned:   'slide-down',
+  //         unpinned: 'slide-up',
+  //         notTop:   'no-top',
+  //       },
+  //     });
 
-      headroom.init();
+  //     headroom.init();
 
-      const disableHeadroom = () => {
-        if ( headroom ) {
-          headroom.scroller.removeEventListener( 'scroll', headroom.debouncer, false );
-        }
-      };
+  //     const disableHeadroom = () => {
+  //       if ( headroom ) {
+  //         headroom.scroller.removeEventListener( 'scroll', headroom.debouncer, false );
+  //       }
+  //     };
 
-      const enableHeadroom = () => {
-        if ( headroom ) {
-          headroom.scroller.addEventListener( 'scroll', headroom.debouncer, false );
-        }
-      };
+  //     const enableHeadroom = () => {
+  //       if ( headroom ) {
+  //         headroom.scroller.addEventListener( 'scroll', headroom.debouncer, false );
+  //       }
+  //     };
 
-      const removeMenuOutClickListener = () => {
-        document.removeEventListener( 'click', menuOutsideClickListener );
-      };
+  //     const removeMenuOutClickListener = () => {
+  //       document.removeEventListener( 'click', menuOutsideClickListener );
+  //     };
 
-      const registerMenuOutClickListener = () => {
-        document.addEventListener( 'click', menuOutsideClickListener );
-      };
+  //     const registerMenuOutClickListener = () => {
+  //       document.addEventListener( 'click', menuOutsideClickListener );
+  //     };
 
-      const toggleMobileMenu = () => {
-        $globalNav.find( '.tcon' ).toggleClass( 'tcon-transform' );
-        $globalNav.toggleClass( 'is-open' );
+  //     const toggleMobileMenu = () => {
+  //       $globalNav.find( '.tcon' ).toggleClass( 'tcon-transform' );
+  //       $globalNav.toggleClass( 'is-open' );
 
-        if ( !headroom ) return;
+  //       if ( !headroom ) return;
 
-        if ( $globalNav.hasClass( 'is-open' )) {
-          disableHeadroom();
-          $body.addClass( 'unscrollable' );
-          registerMenuOutClickListener();
-        } else {
-          enableHeadroom();
-          $body.removeClass( 'unscrollable' );
-          removeMenuOutClickListener();
-        }
-      };
+  //       if ( $globalNav.hasClass( 'is-open' )) {
+  //         disableHeadroom();
+  //         $body.addClass( 'unscrollable' );
+  //         registerMenuOutClickListener();
+  //       } else {
+  //         enableHeadroom();
+  //         $body.removeClass( 'unscrollable' );
+  //         removeMenuOutClickListener();
+  //       }
+  //     };
 
-      function menuOutsideClickListener( event ) {
-        if ( !$( event.target ).closest( '#global-nav' ).length ) {
-          toggleMobileMenu();
-        }
-      }
+  //     function menuOutsideClickListener( event ) {
+  //       if ( !$( event.target ).closest( '#global-nav' ).length ) {
+  //         toggleMobileMenu();
+  //       }
+  //     }
 
-      $body.on( 'click ', '.js-toggle-global-nav', ( _event ) => {
-        toggleMobileMenu();
-      });
-    }
+  //     $body.on( 'click ', '.js-toggle-global-nav', ( _event ) => {
+  //       toggleMobileMenu();
+  //     });
+  //   }
 
-  });
+  // });
+
+
+  // Sticky header/nav on mobile
+  window.onscroll = function(e) { 
+    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    var header = $('.main-site-header');
+
+    scrollY <= this.lastScroll 
+      ? header.addClass("sticky")
+      : header.removeClass("sticky")
+
+    this.lastScroll = scrollY ;
+}
 
 
   // Opens/closes global search bar & gains auto-focus
