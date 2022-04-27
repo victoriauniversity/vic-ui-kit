@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, April 14, 2022, 3:01 PM */
+/** Version: 0.10.13 | Thursday, April 28, 2022, 8:29 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14099,33 +14099,51 @@ function initTray() {
   }
 
   var sidemeneuExpanded = false;
-  var $draw = $(".sidemenu-drawer");
+  var $draw = $(".sidemenu-drawer"); //! Sidemenu expand logic
 
   function expandTray(index, listItem) {
     $(listItem).on("mouseenter click", function (e) {
-      // console.log( e );
-      if ($(listItem).parent().hasClass("expanded-draw")) {
-        // console.log('has class button close tray');
-        sidemeneuExpanded == true;
-        $draw.addClass("active"); // Remove other ones
-      } else {
-        //show tray
-        if (sidemeneuExpanded === false) {
+      // If clicking on expander arrow
+      if (e.type == "click" && $(e.target).hasClass("btn-expander")) {
+        if ($(e.target).parent().hasClass("active-menu-item")) {
+          // If clicked parent is expanded
+          sidemeneuExpanded = false;
+          $draw.removeClass("active");
+          $(".nav-item-parent.active-menu-item").removeClass("active-menu-item");
+          $(".sidemenu-homepage > ul > li").removeClass("expanded-draw");
+        } else {
+          $draw.removeClass("active");
+          $(".nav-item-parent.active-menu-item").removeClass("active-menu-item");
+          $(".sidemenu-homepage > ul > li").removeClass("expanded-draw");
+          $(e.target).parent().addClass("active-menu-item");
           $draw.addClass("active");
-          sidemeneuExpanded = !sidemeneuExpanded;
+          sidemeneuExpanded = true;
         }
+      } else {
+        // Else we are hovering on the menu item.
+        if ($(listItem).parent().hasClass("expanded-draw")) {
+          // console.log('has class button close tray');
+          sidemeneuExpanded = true;
+          $draw.addClass("active"); // Remove other ones
+        } else {
+          //show tray
+          if (sidemeneuExpanded === false) {
+            $draw.addClass("active");
+            sidemeneuExpanded = !sidemeneuExpanded;
+          }
 
-        $(".sidemenu-homepage > ul > li").removeClass("expanded-draw");
-        $(listItem).parent().addClass("expanded-draw");
-      } // Hover trigger
+          $(".sidemenu-homepage > ul > li").removeClass("expanded-draw");
+          $(listItem).parent().addClass("expanded-draw");
+        } // Hover trigger
 
 
-      $(".nav-item-parent.active-menu-item").removeClass("active-menu-item");
-      $(listItem).addClass("active-menu-item"); // console.log(index, listItem);
+        $(".nav-item-parent.active-menu-item").removeClass("active-menu-item");
+        $(listItem).addClass("active-menu-item"); // console.log(index, listItem);
 
-      var matchingNavGroup = $(".draw-nav ul[data-index='".concat(index, "']"));
-      $(".draw-nav > ul").removeClass("active-nav-group");
-      matchingNavGroup.toggleClass("active-nav-group"); // }
+        var matchingNavGroup = $(".draw-nav ul[data-index='".concat(index, "']"));
+        $(".draw-nav > ul").removeClass("active-nav-group");
+        matchingNavGroup.toggleClass("active-nav-group"); // }
+      }
     });
   }
 
@@ -14222,13 +14240,7 @@ function initTray() {
   }
 
   if ($(".sidemenu-homepage").length) {
-    // console.log('sidemeny homepage init');
-    // enquire.register( TABLET_AND_SMALLER, () => {
-    //   console.log('tray is small size for mob');
-    //   initSidemenuExpandability( sidemenu-homepage );
-    // });
     src_default.a.register(DESKTOP_AND_LARGER, function () {
-      // console.log('Tray is large size cool ');
       sidemenuTray();
     });
   } // **********
@@ -14262,22 +14274,31 @@ function initTray() {
     }); // console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded);
     // !EXPAND MENU ON HOVER
 
-    menuItems.on("mouseenter", function (e) {
+    menuItems.on("mouseenter click", function (e) {
       var index = $(this).index() - 2;
       console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index);
       e.preventDefault();
-      e.stopPropagation(); // console.log(e);
+      e.stopPropagation();
+      var $navItem = $(this);
+      console.log($navItem); // if (e.type == "click" && $navItem.hasClass("expanded-nav")) {
+      //   horizontalMenuExpanded = !horizontalMenuExpanded;
+      //   $navItem.removeClass("expanded-nav")
+      //   $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
+      // }
 
-      var $navItem = $(this); // console.log( $(this).parent() );
+      console.log(e.type); // console.log( $(this).parent() );
 
       if ($navItem.hasClass("expanded-nav")) {
-        // console.log('has class button close tray');
-        horizontalMenuExpanded = !horizontalMenuExpanded; // $(".sidemenu-drawer").toggleClass("horizontal-drawer-expanded");
-        // $navItem.removeClass("expanded-nav");
+        // If nav item is already expanded... close it
+        horizontalMenuExpanded = !horizontalMenuExpanded;
+        $navItem.removeClass("expanded-nav");
+        $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
+        $(".draw-nav > ul").removeClass("active-nav-group");
+        $(".menu-blip").css({
+          width: 0
+        });
       } else {
-        //show expanded menu
-        // console.log('not exapnded.. expand');
-        // console.log( horizontalMenuExpanded );
+        // Else if nav item is NOT expanded... open it
         if (horizontalMenuExpanded === false) {
           $(".sidemenu-drawer").addClass("horizontal-drawer-expanded");
           horizontalMenuExpanded = !horizontalMenuExpanded;
@@ -14331,6 +14352,10 @@ function initTray() {
       $blip.css({
         left: activeItem.offset().left - $("#mega-menu").offset().left + 1,
         width: activeItem.outerWidth()
+      });
+    } else {
+      $blip.css({
+        width: 0
       });
     }
   }); // Custom SAVED menu
@@ -14479,16 +14504,7 @@ function initTray() {
         setTimeout(function () {
           if (localStorage[item]) {
             var items = JSON.parse(localStorage[item]);
-          } // $(
-          //   ".custom-dropdown li[data-name='" +
-          //     nameMaps[item].charAt(0).toUpperCase() +
-          //     nameMaps[item].slice(1) +
-          //     "]'"
-          // )
-          //   .find(".count")
-          //   .text(items.length);
-          // console.log(items.length);
-
+          }
 
           if (items && items.length > 0) {
             var itemsLength = items.length;
