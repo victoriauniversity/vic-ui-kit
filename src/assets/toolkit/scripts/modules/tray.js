@@ -432,11 +432,7 @@ export function initTray() {
         left: activeItem.offset().left - $("#mega-menu").offset().left + 1,
         width: activeItem.outerWidth(),
       });
-    } else {
-      $blip.css({
-        width: 0,
-      });
-    }
+    } 
   });
 
   // Custom SAVED menu
