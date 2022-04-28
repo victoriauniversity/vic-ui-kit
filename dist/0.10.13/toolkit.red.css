@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, April 28, 2022, 9:56 AM */
+/** Version: 0.10.13 | Thursday, April 28, 2022, 12:43 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -10109,7 +10109,7 @@ aside .promo h3::before {
   }
 }
 
-@-webkit-keyframes slidein {
+@-webkit-keyframes slide-in {
   from {
     -webkit-transform: translateY(-100%);
             transform: translateY(-100%);
@@ -10120,7 +10120,7 @@ aside .promo h3::before {
   }
 }
 
-@keyframes slidein {
+@keyframes slide-in {
   from {
     -webkit-transform: translateY(-100%);
             transform: translateY(-100%);
@@ -10128,6 +10128,42 @@ aside .promo h3::before {
   to {
     -webkit-transform: translateY(0%);
             transform: translateY(0%);
+  }
+}
+
+@-webkit-keyframes slide-out {
+  0% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+  }
+  50% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  100% {
+    position: relative;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+  }
+  50% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  100% {
+    position: relative;
   }
 }
 
@@ -10195,10 +10231,16 @@ aside .promo h3::before {
   position: sticky;
   z-index: 99;
   top: 0;
-  -webkit-animation-duration: .3s;
-          animation-duration: .3s;
-  -webkit-animation-name: slidein;
-          animation-name: slidein;
+  -webkit-animation: slide-in 0.3s;
+          animation: slide-in 0.3s;
+}
+
+@media (max-width: 60.99em) {
+  .site-header,
+  .main-site-header {
+    -webkit-animation: slide-out 0.3s;
+            animation: slide-out 0.3s;
+  }
 }
 
 .site-header .main-menu-toggle,
@@ -14923,7 +14965,8 @@ footer .footer-secondary.dark .footer-num {
   }
 }
 
-body {
+.layout {
+  z-index: 0 !important;
   overflow-x: hidden;
 }
 
@@ -16936,7 +16979,7 @@ body {
   display: block !important;
 }
 
-@media (max-width: 42.99em) {
+@media (max-width: 60.99em) {
   #mega-nav {
     display: none !important;
   }
@@ -17486,10 +17529,6 @@ body {
   top: var(--horizontal-nav-offset);
   left: 0;
   z-index: 100;
-}
-
-.layout {
-  z-index: 0 !important;
 }
 
 /*Toolkit Overrides*/

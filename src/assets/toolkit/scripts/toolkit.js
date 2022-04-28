@@ -809,17 +809,6 @@ $(() => {
   // });
 
 
-  // Sticky header/nav on mobile
-  window.onscroll = function(e) { 
-    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    var header = $('.main-site-header');
-
-    scrollY <= this.lastScroll 
-      ? header.addClass("sticky")
-      : header.removeClass("sticky")
-
-    this.lastScroll = scrollY ;
-}
 
 
   // Opens/closes global search bar & gains auto-focus
@@ -1139,6 +1128,24 @@ document.addEventListener("DOMContentLoaded", function() {
   }, 750);
 
 });
+
+
+// Sticky header/nav on mobile
+window.onscroll = function (e) {
+  if (window.pageYOffset > 100 && window.innerWidth < 976) {
+    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    var header = $(".main-site-header");
+
+    if (scrollY <= this.lastScroll) {
+      header.addClass("sticky");
+    } else {
+      header.removeClass("sticky");
+    }
+    this.lastScroll = scrollY;
+  }
+};
+
+
 
 
 /**

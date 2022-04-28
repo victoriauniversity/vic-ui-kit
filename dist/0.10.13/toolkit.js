@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, April 28, 2022, 9:56 AM */
+/** Version: 0.10.13 | Thursday, April 28, 2022, 12:43 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -16376,15 +16376,7 @@ external_jQuery_default()(function () {
   //     });
   //   }
   // });
-  // Sticky header/nav on mobile
-
-  window.onscroll = function (e) {
-    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    var header = external_jQuery_default()('.main-site-header');
-    scrollY <= this.lastScroll ? header.addClass("sticky") : header.removeClass("sticky");
-    this.lastScroll = scrollY;
-  }; // Opens/closes global search bar & gains auto-focus
-
+  // Opens/closes global search bar & gains auto-focus
 
   $body.on('click ', '.js-toggle-global-search', function (_event) {
     var $this = external_jQuery_default()(this);
@@ -16670,11 +16662,27 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   }, 750);
-});
+}); // Sticky header/nav on mobile
+
+window.onscroll = function (e) {
+  if (window.pageYOffset > 100 && window.innerWidth < 976) {
+    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    var header = external_jQuery_default()(".main-site-header");
+
+    if (scrollY <= this.lastScroll) {
+      header.addClass("sticky");
+    } else {
+      header.removeClass("sticky");
+    }
+
+    this.lastScroll = scrollY;
+  }
+};
 /**
  * jQuery's plugin as a utility factory
  * Usage as: $( jquerySelector ).vicApp().method( options )
  */
+
 
 (function ($) {
   $.fn.vicApp = function () {
