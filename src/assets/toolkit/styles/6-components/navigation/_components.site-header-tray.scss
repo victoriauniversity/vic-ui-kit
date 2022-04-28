@@ -107,10 +107,11 @@ $tray-width-desktop: 400px;
   }
 }
 
-body {
+
+.layout {
+  z-index: 0 !important;
   overflow-x: hidden;
 }
-
 .noscroll {
   overflow: hidden;
 }
@@ -2111,7 +2112,7 @@ body {
 }
 
 // !Hide old nav on mobile (temporary)
-@include breakpoint($until: tablet) {
+@include breakpoint($until: desktop) {
   #mega-nav {
     display: none !important;
   }
