@@ -109,7 +109,6 @@ export function initTray() {
   //! Sidemenu expand logic
   function expandTray(index, listItem) {
     $(listItem).on("mouseenter click", (e) => {
-
       // If clicking on expander arrow
       if (e.type == "click" && $(e.target).hasClass("btn-expander")) {
         if ($(e.target).parent().hasClass("active-menu-item")) {
@@ -121,14 +120,12 @@ export function initTray() {
           );
           $(".sidemenu-homepage > ul > li").removeClass("expanded-draw");
         } else {
-
           $draw.removeClass("active");
           $(".nav-item-parent.active-menu-item").removeClass(
             "active-menu-item"
           );
           $(".sidemenu-homepage > ul > li").removeClass("expanded-draw");
 
-          
           $(e.target).parent().addClass("active-menu-item");
           $draw.addClass("active");
           sidemeneuExpanded = true;
@@ -208,8 +205,8 @@ export function initTray() {
         horizontalMenuExpanded = !horizontalMenuExpanded;
         $(".sidemenu-drawer").removeClass(`${loc}`);
         $(".mega-menu-top-level > li").removeClass("expanded-nav");
-        $(".menu-blip").css({
-          width: 0,
+        $blip.css({
+          height: 0,
         });
         // $draw.toggleClass('active');
       }
@@ -346,14 +343,12 @@ export function initTray() {
       e.stopPropagation();
       const $navItem = $(this);
 
-      console.log($navItem);
       // if (e.type == "click" && $navItem.hasClass("expanded-nav")) {
       //   horizontalMenuExpanded = !horizontalMenuExpanded;
       //   $navItem.removeClass("expanded-nav")
       //   $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
 
       // }
-      console.log(e.type);
 
       // console.log( $(this).parent() );
 
@@ -424,7 +419,8 @@ export function initTray() {
     }
   });
 
-  $("#mega-menu > li").on("mouseout", function () {
+  // Only applies to horizontal nav
+  $(".main-site-header #mega-menu > li").on("mouseout", function () {
     var activeItem = $(".expanded-nav");
 
     if (activeItem.length) {
@@ -432,7 +428,11 @@ export function initTray() {
         left: activeItem.offset().left - $("#mega-menu").offset().left + 1,
         width: activeItem.outerWidth(),
       });
-    } 
+    } else {
+      $blip.css({
+        width: 0,
+      });
+    }
   });
 
   // Custom SAVED menu
@@ -917,26 +917,34 @@ export function initTray() {
 
   // On top level menu click
   $(".tray .main-nav-item > a, .tray .main-nav-item > .btn-expander").on(
-    "click",
+    "click keypress",
     function (e) {
-      $(this).parent().toggleClass("expanded");
-      $(this).parent().find(">a").toggleClass("active");
+      if (e.which == 13 || e.which == 1) {
+        $(this).parent().toggleClass("expanded");
+        $(this).parent().find(">a").toggleClass("active");
 
-      // Find any active/expanded children and close them
-      $(this).parent().find(">ul .active").removeClass("active");
-      $(this).parent().find(">ul .expanded").removeClass("expanded");
+        if ($(this).parent().find(">a").hasClass("active")) {
+          $(this).find("a").prop("disabled", false);
+        } else {
+          $(this).find("a").prop("disabled", true);
+        }
 
-      // Slide out main menu
-      $(this)
-        .parent()
-        .find(">ul")
-        .slideToggle("fast", function () {
-          // Resize blip
-          var activeItem = $(this).parent();
-          if (activeItem.length) {
-            resizeTallBlip(activeItem);
-          }
-        });
+        // Find any active/expanded children and close them
+        $(this).parent().find(">ul .active").removeClass("active");
+        $(this).parent().find(">ul .expanded").removeClass("expanded");
+
+        // Slide out main menu
+        $(this)
+          .parent()
+          .find(">ul")
+          .slideToggle("fast", function () {
+            // Resize blip
+            var activeItem = $(this).parent();
+            if (activeItem.length) {
+              resizeTallBlip(activeItem);
+            }
+          });
+      }
     }
   );
 
@@ -944,14 +952,14 @@ export function initTray() {
   $(".tray .nav-item-parent.has-submenu .btn-expander").on(
     "click keypress",
     function (e) {
-      // If enter or left-click
-      var activeItem = $(".main-nav-item.active");
-
-      setTimeout(() => {
-        resizeTallBlip(activeItem);
-      }, 300);
-
       if (e.which == 13 || e.which == 1) {
+        // If enter or left-click
+        var activeItem = $(".main-nav-item.active");
+
+        setTimeout(() => {
+          resizeTallBlip(activeItem);
+        }, 300);
+
         $(this).parent().toggleClass("active");
         $(this).parent().find(">a").toggleClass("active");
         $(this).parent().toggleClass("expanded");

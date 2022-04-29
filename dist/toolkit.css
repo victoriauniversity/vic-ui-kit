@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, April 28, 2022, 12:43 PM */
+/** Version: 0.10.13 | Friday, April 29, 2022, 1:40 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -10175,6 +10175,16 @@ aside .promo h3::before {
   }
 }
 
+.main-site-header a:active, .main-site-header a:focus,
+.main-site-header button:active,
+.main-site-header button:focus,
+#mega-nav a:active,
+#mega-nav a:focus,
+#mega-nav button:active,
+#mega-nav button:focus {
+  outline: 2px dotted #1D2624;
+}
+
 .site-header,
 .main-site-header {
   padding-top: 0.5rem;
@@ -13988,7 +13998,6 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .sidemenu .has-submenu.expanded, .sidemenu-banner-wrap .sidemenu-homepage .has-submenu.expanded, .show-mega-menu-top .mega-sub-menu .has-submenu.expanded {
-  overflow: hidden;
   flex-wrap: wrap;
 }
 
@@ -15363,6 +15372,7 @@ footer .footer-secondary.dark .footer-num {
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list:not(.hub-page) > li i {
   margin-top: 24px;
   margin-right: 10px;
+  padding-left: 15px;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list.hub-page {
@@ -15432,6 +15442,11 @@ footer .footer-secondary.dark .footer-num {
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.homesite .btn-expander {
   padding: 15px 15px;
+}
+
+.main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.homesite .btn-expander:active {
+  background-color: #f7f7f7;
+  color: #3E9C4F;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.homesite > .btn-expander:after {
@@ -15624,7 +15639,6 @@ footer .footer-secondary.dark .footer-num {
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item ul li a:active, .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item ul li a:focus {
   color: #3E9C4F;
-  outline: 2px dotted #555;
   outline-offset: -2px;
 }
 
@@ -15948,12 +15962,12 @@ footer .footer-secondary.dark .footer-num {
   -webkit-box-align: center;
           align-items: center;
   color: #1D2624;
-  border: 1px #AAA solid;
+  border: 1px #555 solid;
   margin-bottom: 7px;
   margin-right: 5px;
   position: relative;
-  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
-  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+  -webkit-transition: background-color cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+  transition: background-color cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
           box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
@@ -17006,15 +17020,17 @@ footer .footer-secondary.dark .footer-num {
     opacity: 0;
     z-index: 0;
     max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: block;
   }
-  20% {
-    visibility: visible;
-  }
-  100% {
+  50% {
     visibility: visible;
     opacity: 1;
-    z-index: 1000;
-    max-height: 700px !important;
+    z-index: 999;
+  }
+  100% {
+    padding: 1rem 5rem 2rem;
   }
 }
 
@@ -17024,15 +17040,17 @@ footer .footer-secondary.dark .footer-num {
     opacity: 0;
     z-index: 0;
     max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: block;
   }
-  20% {
-    visibility: visible;
-  }
-  100% {
+  50% {
     visibility: visible;
     opacity: 1;
-    z-index: 1000;
-    max-height: 700px !important;
+    z-index: 999;
+  }
+  100% {
+    padding: 1rem 5rem 2rem;
   }
 }
 
@@ -17040,14 +17058,16 @@ footer .footer-secondary.dark .footer-num {
   0% {
     visibility: visible;
     opacity: 1;
+    display: block;
   }
-  99% {
-    visibility: visible;
+  50% {
+    overflow: hidden;
   }
   100% {
     visibility: hidden;
     opacity: 0;
     max-height: 0;
+    display: none;
   }
 }
 
@@ -17055,14 +17075,16 @@ footer .footer-secondary.dark .footer-num {
   0% {
     visibility: visible;
     opacity: 1;
+    display: block;
   }
-  99% {
-    visibility: visible;
+  50% {
+    overflow: hidden;
   }
   100% {
     visibility: hidden;
     opacity: 0;
     max-height: 0;
+    display: none;
   }
 }
 
@@ -17220,12 +17242,12 @@ footer .footer-secondary.dark .footer-num {
     -webkit-animation: draw-up 0.5s cubic-bezier(0.77, 0, 0.175, 1);
             animation: draw-up 0.5s cubic-bezier(0.77, 0, 0.175, 1);
     overflow: hidden;
+    max-height: 0;
     display: none;
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer:before {
     content: "";
     position: absolute;
-    min-height: 500px;
     width: 200px;
     background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
     background-repeat: no-repeat;
@@ -17234,6 +17256,8 @@ footer .footer-secondary.dark .footer-num {
     z-index: 0;
     left: -92px;
     top: 0;
+    max-height: 0;
+    min-height: 0;
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul {
     display: none;
@@ -17244,9 +17268,10 @@ footer .footer-secondary.dark .footer-num {
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer.horizontal-drawer-expanded {
     display: -webkit-box;
     display: flex;
-    padding: 1rem 5rem 2rem !important;
+    padding: 1rem 5rem 2rem;
     -webkit-animation: draw-down 0.5s ease;
             animation: draw-down 0.5s ease;
+    max-height: 700px;
     border: 1px solid #CCC;
     border-top: none;
     -webkit-box-pack: start;
@@ -17254,6 +17279,10 @@ footer .footer-secondary.dark .footer-num {
     border-bottom: 4px solid #115737;
     -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px;
+  }
+  .show-mega-menu-top .mega-sub-menu .sidemenu-drawer.horizontal-drawer-expanded:before {
+    max-height: 1000px;
+    min-height: 500px;
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .close-draw {
     position: absolute;
@@ -17393,6 +17422,7 @@ footer .footer-secondary.dark .footer-num {
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul > li > ul > li {
     border-left: 1px #DDD solid;
+    padding: 2px;
     padding-left: 20px;
     position: relative;
   }
@@ -17407,7 +17437,7 @@ footer .footer-secondary.dark .footer-num {
     background-color: #ddd;
     position: absolute;
     left: 0;
-    top: 14px;
+    top: 15px;
     height: 1px;
     width: 16px;
   }
@@ -17480,9 +17510,6 @@ footer .footer-secondary.dark .footer-num {
     display: block;
     color: #115737;
     font-weight: 500;
-  }
-  .show-mega-menu-top .mega-sub-menu .sidemenu-drawer {
-    display: none;
   }
   .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li {
     border-bottom-color: #CCC;
