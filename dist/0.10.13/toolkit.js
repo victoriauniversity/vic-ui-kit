@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, April 28, 2022, 12:43 PM */
+/** Version: 0.10.13 | Friday, April 29, 2022, 1:40 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14185,8 +14185,8 @@ function initTray() {
         horizontalMenuExpanded = !horizontalMenuExpanded;
         $(".sidemenu-drawer").removeClass("".concat(loc));
         $(".mega-menu-top-level > li").removeClass("expanded-nav");
-        $(".menu-blip").css({
-          width: 0
+        $blip.css({
+          height: 0
         }); // $draw.toggleClass('active');
       }
     }); // On click OR mouseover of body, hide the tray if it's open
@@ -14279,14 +14279,12 @@ function initTray() {
       console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index);
       e.preventDefault();
       e.stopPropagation();
-      var $navItem = $(this);
-      console.log($navItem); // if (e.type == "click" && $navItem.hasClass("expanded-nav")) {
+      var $navItem = $(this); // if (e.type == "click" && $navItem.hasClass("expanded-nav")) {
       //   horizontalMenuExpanded = !horizontalMenuExpanded;
       //   $navItem.removeClass("expanded-nav")
       //   $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
       // }
-
-      console.log(e.type); // console.log( $(this).parent() );
+      // console.log( $(this).parent() );
 
       if ($navItem.hasClass("expanded-nav")) {
         // If nav item is already expanded... close it
@@ -14344,14 +14342,19 @@ function initTray() {
         width: $(this).outerWidth()
       });
     }
-  });
-  $("#mega-menu > li").on("mouseout", function () {
+  }); // Only applies to horizontal nav
+
+  $(".main-site-header #mega-menu > li").on("mouseout", function () {
     var activeItem = $(".expanded-nav");
 
     if (activeItem.length) {
       $blip.css({
         left: activeItem.offset().left - $("#mega-menu").offset().left + 1,
         width: activeItem.outerWidth()
+      });
+    } else {
+      $blip.css({
+        width: 0
       });
     }
   }); // Custom SAVED menu
@@ -14727,31 +14730,39 @@ function initTray() {
   } // On top level menu click
 
 
-  $(".tray .main-nav-item > a, .tray .main-nav-item > .btn-expander").on("click", function (e) {
-    $(this).parent().toggleClass("expanded");
-    $(this).parent().find(">a").toggleClass("active"); // Find any active/expanded children and close them
+  $(".tray .main-nav-item > a, .tray .main-nav-item > .btn-expander").on("click keypress", function (e) {
+    if (e.which == 13 || e.which == 1) {
+      $(this).parent().toggleClass("expanded");
+      $(this).parent().find(">a").toggleClass("active");
 
-    $(this).parent().find(">ul .active").removeClass("active");
-    $(this).parent().find(">ul .expanded").removeClass("expanded"); // Slide out main menu
+      if ($(this).parent().find(">a").hasClass("active")) {
+        $(this).find("a").prop("disabled", false);
+      } else {
+        $(this).find("a").prop("disabled", true);
+      } // Find any active/expanded children and close them
 
-    $(this).parent().find(">ul").slideToggle("fast", function () {
-      // Resize blip
-      var activeItem = $(this).parent();
 
-      if (activeItem.length) {
-        resizeTallBlip(activeItem);
-      }
-    });
+      $(this).parent().find(">ul .active").removeClass("active");
+      $(this).parent().find(">ul .expanded").removeClass("expanded"); // Slide out main menu
+
+      $(this).parent().find(">ul").slideToggle("fast", function () {
+        // Resize blip
+        var activeItem = $(this).parent();
+
+        if (activeItem.length) {
+          resizeTallBlip(activeItem);
+        }
+      });
+    }
   }); // Inner accordion
 
   $(".tray .nav-item-parent.has-submenu .btn-expander").on("click keypress", function (e) {
-    // If enter or left-click
-    var activeItem = $(".main-nav-item.active");
-    setTimeout(function () {
-      resizeTallBlip(activeItem);
-    }, 300);
-
     if (e.which == 13 || e.which == 1) {
+      // If enter or left-click
+      var activeItem = $(".main-nav-item.active");
+      setTimeout(function () {
+        resizeTallBlip(activeItem);
+      }, 300);
       $(this).parent().toggleClass("active");
       $(this).parent().find(">a").toggleClass("active");
       $(this).parent().toggleClass("expanded");

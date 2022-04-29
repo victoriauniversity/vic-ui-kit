@@ -11,17 +11,19 @@
     opacity: 0;
     z-index: 0;
     max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: block;
   }
 
-  20% {
+  50% {
     visibility: visible;
+    opacity: 1;
+    z-index: 999;
   }
 
   100% {
-    visibility: visible;
-    opacity: 1;
-    z-index: 1000;
-    max-height: 700px !important;
+    padding: 1rem 5rem 2rem;
   }
 }
 
@@ -29,16 +31,18 @@
   0% {
     visibility: visible;
     opacity: 1;
+    display: block;
   }
 
-  99% {
-    visibility: visible;
+  50% {
+    overflow: hidden;
   }
 
   100% {
     visibility: hidden;
     opacity: 0;
     max-height: 0;
+    display: none;
   }
 }
 $easing: cubic-bezier(0.22, 1, 0.36, 1);
@@ -92,9 +96,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 
   .sidemenu__label {
     display: none !important;
-  }
-
-  .sidemenu-drawer {
   }
 
   @include breakpoint($from: desktop) {
@@ -237,12 +238,12 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
     .sidemenu-drawer {
       animation: draw-up 0.5s cubic-bezier(0.77, 0, 0.175, 1);
       overflow: hidden;
+      max-height: 0;
       display: none;
 
       &:before {
         content: "";
         position: absolute;
-        min-height: 500px;
         width: 200px;
         background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
         background-repeat: no-repeat;
@@ -251,6 +252,8 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
         z-index: 0;
         left: -92px;
         top: 0;
+        max-height: 0;
+        min-height: 0;
       }
       .draw-nav {
         > ul {
@@ -264,13 +267,18 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 
       &.horizontal-drawer-expanded {
         display: flex;
-        padding: 1rem 5rem 2rem !important;
+        padding: 1rem 5rem 2rem;
         animation: draw-down 0.5s ease;
+        max-height: 700px;
         border: 1px solid $grey-silver;
         border-top: none;
         justify-content: flex-start;
         border-bottom: 4px solid $green-brand;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px;
+        &:before {
+          max-height: 1000px;
+          min-height: 500px;
+        }
       }
 
       .close-draw {
@@ -387,7 +395,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
                   width: auto;
                   height: auto;
                   transform: rotateZ(180deg);
-
                 }
                 // &::after {
                 //   border-color: transparent transparent $black-tundora;
@@ -423,6 +430,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
               flex: 1 0 99%;
               > li {
                 border-left: 1px $grey-alto solid;
+                padding: 2px;
                 padding-left: 20px;
                 position: relative;
                 > a {
@@ -435,7 +443,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
                   background-color: #ddd;
                   position: absolute;
                   left: 0;
-                  top: 14px;
+                  top: 15px;
                   height: 1px;
                   width: 16px;
                 }
@@ -536,10 +544,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
       }
     }
 
-    .sidemenu-drawer {
-      display: none;
-    }
-
     .mega-menu-top-level {
       > li {
         border-bottom-color: $grey-silver;
@@ -614,8 +618,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
   left: 0;
   z-index: 100;
 }
-
-
 
 // !RHS TRAY
 /*Toolkit Overrides*/
@@ -1297,4 +1299,3 @@ body {
     line-height: 1.2;
   }
 }
-

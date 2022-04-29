@@ -107,7 +107,6 @@ $tray-width-desktop: 400px;
   }
 }
 
-
 .layout {
   z-index: 0 !important;
   overflow-x: hidden;
@@ -451,6 +450,7 @@ $tray-width-desktop: 400px;
                 i {
                   margin-top: 24px;
                   margin-right: 10px;
+                  padding-left: 15px;
                 }
               }
             }
@@ -522,6 +522,10 @@ $tray-width-desktop: 400px;
               }
               .btn-expander {
                 padding: 15px 15px;
+                &:active {
+                  background-color: #f7f7f7;
+                  color: $green-brand-bright;
+                }
               }
               > .btn-expander {
                 &:after {
@@ -689,7 +693,6 @@ $tray-width-desktop: 400px;
                   &:active,
                   &:focus {
                     color: $green-brand-bright;
-                    outline: 2px dotted $black-emperor;
                     outline-offset: -2px;
                   }
                   &:hover {
@@ -1061,11 +1064,11 @@ $tray-width-desktop: 400px;
                 display: flex;
                 align-items: center;
                 color: $black-brand;
-                border: 1px $grey-chalice solid;
+                border: 1px $black-emperor solid;
                 margin-bottom: 7px;
                 margin-right: 5px;
                 position: relative;
-                transition: all $easing 0.3s;
+                transition: background-color $easing 0.3s;
                 box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
                   rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
                 &:hover,
