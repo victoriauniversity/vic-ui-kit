@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, April 29, 2022, 1:40 PM */
+/** Version: 0.10.13 | Monday, May 2, 2022, 11:47 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -10734,6 +10734,83 @@ aside .promo h3::before {
   }
 }
 
+body .pre-header {
+  background: -webkit-gradient(linear, left top, right top, from(#115737), color-stop(67%, #52951c), to(#77ba49)) 0% 0%;
+  background: linear-gradient(90deg, #115737 0%, #52951c 67%, #77ba49 100%) 0% 0%;
+  text-align: center;
+}
+
+@media (max-width: 60.99em) {
+  body .pre-header {
+    display: none;
+  }
+}
+
+body .pre-header.light {
+  background-color: #f7f7f7;
+}
+
+body .pre-header.light ul li {
+  color: #fff;
+}
+
+body .pre-header.light ul li a {
+  color: #1D2624;
+  background-color: #eee;
+}
+
+body .pre-header.light ul li a:hover {
+  background-color: #3E9C4F;
+  color: #fff;
+}
+
+body .pre-header > div {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+body .pre-header a:active, body .pre-header a:focus,
+body .pre-header button:active,
+body .pre-header button:focus {
+  outline: 2px solid #fff;
+}
+
+body .pre-header ul {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: end;
+          justify-content: flex-end;
+}
+
+body .pre-header ul li {
+  margin-right: 10px;
+  color: #fff;
+}
+
+body .pre-header ul li a {
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+body .pre-header ul li a:hover {
+  background-color: #3E9C4F;
+  color: #fff;
+}
+
+body .pre-header ul li:after {
+  margin-left: 10px;
+}
+
+body .pre-header ul li:last-of-type {
+  margin-right: 0;
+}
+
+body .pre-header ul li:last-of-type:after {
+  content: none;
+}
+
 .tile-grid::after {
   clear: both;
   content: "";
@@ -15948,6 +16025,7 @@ footer .footer-secondary.dark .footer-num {
   text-decoration: none;
   background-color: #fff;
   border-radius: 5px;
+  font-size: 15px;
   padding: 5px 10px;
   display: -webkit-box;
   display: flex;

@@ -13,7 +13,19 @@
 <link rel="stylesheet" href="https://cms.wgtn.ac.nz/?a=1935407">
 
 
+<div class="pre-header">
+  <div class="block centraliser">
+    <ul class="sub-menu-list">
+      {{#if sub-header}} {{#each sub-header}}
+      <li class="sub-menu-item {{lowercase (join (split this ' ') '-')}}">
+        <!-- <i class=""></i> -->
+        <a href="#" class="sub-nav-link">{{this}}</a>
+      </li>
+      {{/each}} {{/if}}
+    </ul>
+  </div>
 
+</div>
 <header role="banner"
   class="main-site-header header-tray reset-formatting {{#if NavColor}} {{NavColor}} {{/if}}  {{#if horizontalNav}}show-mega-menu-top-wrap{{/if}}">
   <div class="block centraliser header-inner {{#if isIntranet}} intranet {{/if}}">

@@ -1,6 +1,14 @@
 $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 $site-header-border-color: $brand !default;
 
+$green-linear-gradient: linear-gradient(
+    90deg,
+    #115737 0%,
+    #52951c 67%,
+    #77ba49 100%
+  )
+  0% 0%;
+
 @keyframes slide-in {
   from {
     transform: translateY(-100%);
@@ -507,6 +515,78 @@ $site-header-border-color: $brand !default;
     + .site-header {
       .logo {
         display: none;
+      }
+    }
+  }
+}
+
+// Preheader
+body {
+  .pre-header {
+    background: $green-linear-gradient;
+    text-align: center;
+    @include breakpoint($until: desktop) {
+      display: none;
+    }
+    &.light {
+      background-color: #f7f7f7;
+
+      ul {
+        li {
+          color: #fff;
+          a {
+            // color: #fff;
+            color: $black-brand;
+            background-color: #eee;
+            &:hover {
+              background-color: $green-brand-bright;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+    > div {
+      padding-top: 6px;
+      padding-bottom: 6px;
+    }
+    a,
+    button {
+      &:active,
+      &:focus {
+        outline: 2px solid #fff;
+      }
+    }
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      li {
+        margin-right: 10px;
+        color: #fff;
+        a {
+          // color: #fff;
+          color: #fff;
+          // background-color: #fff;
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-size: 15px;
+          &:hover {
+            background-color: $green-brand-bright;
+            color: #fff;
+          }
+        }
+        &:after {
+          // content: "-";
+          margin-left: 10px;
+        }
+        &:last-of-type {
+          margin-right: 0;
+          &:after {
+            content: none;
+          }
+          a {
+          }
+        }
       }
     }
   }

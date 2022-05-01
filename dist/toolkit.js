@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, April 29, 2022, 1:40 PM */
+/** Version: 0.10.13 | Monday, May 2, 2022, 11:47 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14083,6 +14083,7 @@ function initTray() {
   // const SIDEMENU_EXPANDED_CLASS      = 'expanded';
 
   var horizontalMenuExpanded = false;
+  var $blip = $(".menu-blip");
 
   function buildTray(index, item) {
     // console.log(index);
@@ -14218,7 +14219,7 @@ function initTray() {
           horizontalMenuExpanded = !horizontalMenuExpanded;
           $(".sidemenu-drawer").removeClass("".concat(loc));
           $(".mega-menu-top-level > li").removeClass("expanded-nav");
-          $(".menu-blip").css({
+          $(blip).css({
             width: 0
           });
         }
@@ -14292,7 +14293,7 @@ function initTray() {
         $navItem.removeClass("expanded-nav");
         $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
         $(".draw-nav > ul").removeClass("active-nav-group");
-        $(".menu-blip").css({
+        $(blip).css({
           width: 0
         });
       } else {
@@ -14327,7 +14328,6 @@ function initTray() {
   } // Blip movement logic
 
 
-  var $blip = $(".menu-blip");
   $("#mega-menu > li:not(.sidemenu__label)").on("mouseover click", function () {
     // If we are using a sidemenu
     if ($("#mega-menu").parent().hasClass("sidemenu-homepage")) {
@@ -14339,7 +14339,7 @@ function initTray() {
       // Else we are using horizontal menu
       $blip.css({
         left: $(this).offset().left - $("#mega-menu").offset().left + 1,
-        width: $(this).outerWidth()
+        width: $(this).innerWidth()
       });
     }
   }); // Only applies to horizontal nav
@@ -14350,7 +14350,7 @@ function initTray() {
     if (activeItem.length) {
       $blip.css({
         left: activeItem.offset().left - $("#mega-menu").offset().left + 1,
-        width: activeItem.outerWidth()
+        width: activeItem.innerWidth()
       });
     } else {
       $blip.css({
@@ -14465,11 +14465,7 @@ function initTray() {
 
   $(".btn-expander").addClass("no-icon"); // !Temporary override of toolkit hiding
 
-  $(".sidemenu  ul > .has-submenu").css("display", "flex"); // Window resize event
-  // var windowWidth = $(window).width();
-  // $(window).resize(function () {
-  //   var windowWidth = $(window).width();
-  // });
+  $(".sidemenu  ul > .has-submenu").css("display", "flex");
 
   var formatAsDate = function formatAsDate(date) {
     var arr = date.split("");
@@ -14479,7 +14475,7 @@ function initTray() {
     var dateString = year + " " + month + " " + day;
     dateString = new Date(dateString).toLocaleDateString("en-UK");
     return dateString;
-  }; // SAVED EVENTS LISTS
+  }; // !SAVED EVENTS LISTS
 
 
   function checkSavedItems(item) {
@@ -14579,8 +14575,14 @@ function initTray() {
 
   $(".group-title").on("click", function (e) {
     $(this).toggleClass("active");
+
+    if ($(this).hasClass("active")) {
+      $(this).find("i").addClass("flipped");
+    } else {
+      $(this).find("i").removeClass("flipped");
+    }
+
     $(this).next().slideToggle("fast");
-    $(this).find("i").toggleClass("flipped");
   });
 
   var resizeTallBlip = function resizeTallBlip(el, hide) {
@@ -14595,24 +14597,7 @@ function initTray() {
         height: el.outerHeight()
       });
     }
-  }; // var $sideMenuBlip = $("#mega-nav .sidemenu-homepage .sidemenu-blip");
-  // var resizeSideMenuBlip = function (el, hide) {
-  //   if (hide) {
-  //     $sideMenuBlip.css({
-  //       top: 0,
-  //       height: "0px",
-  //     });
-  //   } else {
-  //     $sideMenuBlip.css({
-  //       top: el.offset().top - el.parents("#mega-nav").offset().top,
-  //       left: el.offset().left - $("#mega-nav").offset().left,
-  //       height: el.outerHeight(),
-  //     });
-  //   }
-  // };
-  // // Tabs
-  // $("<div class='tabs'><div class='blip'></div><div class='tab t-menu active'>Menu</div><div class='tab t-saved'>Saved <div class='notification'>2</div></div><div class='tab'>Other</div></div>").insertAfter(".menu-container .tray-close")
-  // !TAB BLIP MOVEMENT LOGIC
+  }; // !TAB BLIP MOVEMENT LOGIC
 
 
   var $tabBlip = $(".tabs .blip");
@@ -14754,7 +14739,7 @@ function initTray() {
         }
       });
     }
-  }); // Inner accordion
+  }); // !INNER ACCORDION
 
   $(".tray .nav-item-parent.has-submenu .btn-expander").on("click keypress", function (e) {
     if (e.which == 13 || e.which == 1) {
