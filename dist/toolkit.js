@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, May 2, 2022, 2:19 PM */
+/** Version: 0.10.13 | Tuesday, May 3, 2022, 10:19 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14175,7 +14175,7 @@ function initTray() {
         $(".nav-item-parent.active-menu-item").removeClass("active-menu-item"); // Remove blip
 
         $blip.css({
-          height: "0px"
+          height: 0
         });
         $draw.removeClass("active");
       } // horizontal mega menu draw
@@ -14187,7 +14187,7 @@ function initTray() {
         $(".sidemenu-drawer").removeClass("".concat(loc));
         $(".mega-menu-top-level > li").removeClass("expanded-nav");
         $blip.css({
-          height: 0
+          width: 0
         }); // $draw.toggleClass('active');
       }
     }); // On click OR mouseover of body, hide the tray if it's open
@@ -14219,7 +14219,7 @@ function initTray() {
           horizontalMenuExpanded = !horizontalMenuExpanded;
           $(".sidemenu-drawer").removeClass("".concat(loc));
           $(".mega-menu-top-level > li").removeClass("expanded-nav");
-          $(blip).css({
+          $blip.css({
             width: 0
           });
         }
@@ -14293,7 +14293,7 @@ function initTray() {
         $navItem.removeClass("expanded-nav");
         $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
         $(".draw-nav > ul").removeClass("active-nav-group");
-        $(blip).css({
+        $blip.css({
           width: 0
         });
       } else {

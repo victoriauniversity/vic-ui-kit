@@ -523,8 +523,11 @@ $green-linear-gradient: linear-gradient(
 // Preheader
 body {
   .pre-header {
-    background: $green-linear-gradient;
+    // background: $green-linear-gradient;
+    background-color: $green-brand;
     text-align: center;
+    // background-image: url("../../images/patterns/pattern-03-horizontal.svg");
+    background-size: contain;
     @include breakpoint($until: desktop) {
       display: none;
     }
@@ -547,33 +550,53 @@ body {
       }
     }
     > div {
-      padding-top: 6px;
-      padding-bottom: 6px;
+      padding-top: 0;
+      padding-bottom: 0;
     }
     a,
     button {
       &:active,
       &:focus {
-        outline: 2px solid #fff;
+        background-color: rgba(100, 100, 100, 0.5);
       }
     }
-    ul {
+    ul.sub-menu-list {
       display: flex;
       justify-content: flex-end;
+      justify-self: flex-end;
       li {
-        margin-right: 10px;
         color: #fff;
+        // border-right: 1px #eee solid;
+        position: relative;
+        &:after {
+          content: "";
+          height: 100%;
+          width: 2px;
+          right: 0;
+          transform: rotateZ(10deg);
+          background-color: #eee;
+          position: absolute;
+          z-index: 1;
+        }
         a {
           // color: #fff;
           color: #fff;
-          // background-color: #fff;
           padding: 5px 10px;
-          border-radius: 3px;
           font-size: 15px;
+          display: inline-block;
+          clip-path: polygon(
+            8.32% -5px,
+            111% -5px,
+            106.08% 97.06%,
+            0.06% 97.06%
+          );
+          margin-left: -6px;
+          padding-left: 20px;
+          padding-right: 15px;
+
           &:hover {
             background-color: $green-brand-bright;
             background-color: rgba(100, 100, 100, 0.5);
-
             color: #fff;
           }
         }
@@ -583,6 +606,7 @@ body {
         }
         &:last-of-type {
           margin-right: 0;
+          border-right: 0;
           &:after {
             content: none;
           }

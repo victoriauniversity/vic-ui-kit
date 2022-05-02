@@ -195,7 +195,7 @@ export function initTray() {
 
         // Remove blip
         $blip.css({
-          height: "0px",
+          height: 0,
         });
 
         $draw.removeClass("active");
@@ -208,7 +208,7 @@ export function initTray() {
         $(".sidemenu-drawer").removeClass(`${loc}`);
         $(".mega-menu-top-level > li").removeClass("expanded-nav");
         $blip.css({
-          height: 0,
+          width: 0,
         });
         // $draw.toggleClass('active');
       }
@@ -251,7 +251,7 @@ export function initTray() {
           horizontalMenuExpanded = !horizontalMenuExpanded;
           $(".sidemenu-drawer").removeClass(`${loc}`);
           $(".mega-menu-top-level > li").removeClass("expanded-nav");
-          $(blip).css({
+          $blip.css({
             width: 0,
           });
         }
@@ -360,7 +360,7 @@ export function initTray() {
         $navItem.removeClass("expanded-nav");
         $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
         $(".draw-nav > ul").removeClass("active-nav-group");
-        $(blip).css({
+        $blip.css({
           width: 0,
         });
       } else {
