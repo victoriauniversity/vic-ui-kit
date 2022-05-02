@@ -172,7 +172,7 @@ export function initTray() {
     subDrawExpander.each((i, button) => {
       let $button = $(button);
 
-      $button.on("click keypress", (e) => {
+      $button.on("click keyup", (e) => {
         if (e.type == "click" || e.key == "Enter") {
           // console.log($button);
           $button.parent("li").toggleClass("expanded");
@@ -898,7 +898,7 @@ export function initTray() {
 
   // On top level menu click
   $(".tray .main-nav-item > a, .tray .main-nav-item > .btn-expander").on(
-    "click keypress",
+    "click keyup",
     function (e) {
       if (e.which == 13 || e.which == 1) {
         $(this).parent().toggleClass("expanded");
@@ -931,7 +931,7 @@ export function initTray() {
 
   // !INNER ACCORDION
   $(".tray .nav-item-parent.has-submenu .btn-expander").on(
-    "click keypress",
+    "click keyup",
     function (e) {
       if (e.which == 13 || e.which == 1) {
         // If enter or left-click
