@@ -1082,6 +1082,10 @@ $tray-width-desktop: 400px;
                 &:active {
                   border-color: $green-brand;
                 }
+
+                @include breakpoint($until: desktop) {
+                  font-size: 14px;
+                }
               }
             }
           }
@@ -1828,12 +1832,12 @@ $tray-width-desktop: 400px;
     padding: 10px;
     background-color: $grey-gallery;
     color: #fff;
-    border-left: 2px $grey-alto solid;
+    border-left: 1px $grey-alto solid;
     cursor: pointer;
     color: $black-brand;
-    // &:hover {
-    //   background-color: $grey-chalice;
-    // }
+    &:hover {
+      background-color: $grey-alto;
+    }
   }
 }
 .menu-container .tabs .tab {
