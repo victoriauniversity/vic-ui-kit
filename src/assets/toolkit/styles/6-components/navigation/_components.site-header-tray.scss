@@ -198,7 +198,8 @@ $tray-width-desktop: 400px;
       }
     }
 
-    button {
+    button,
+    .button {
       position: relative;
       padding: 0;
       width: 50px;
@@ -214,6 +215,44 @@ $tray-width-desktop: 400px;
           margin: 0;
           display: inline;
         }
+      }
+
+      &.puaha {
+        font-size: 15px;
+        padding: 5px 10px;
+        width: auto;
+        border-radius: 4px;
+        align-self: center;
+        background-color: $grey-gallery;
+
+        margin-right: 5px;
+
+        i {
+          // color: #fff;
+          font-size: 15px;
+          margin-left: 1px;
+          transition: color 0.15s ease-in-out,
+            background-color 0.15s ease-in-out;
+        }
+        &:hover {
+          color: #fff;
+          background-color: $green-brand-bright;
+          i {
+            color: #fff;
+          }
+        }
+        &.primary {
+          background-color: $green-brand-bright;
+          color: #fff;
+          i {
+            color: #fff;
+          }
+          &:hover {
+            background-color: $green-brand;
+      
+          }
+        }
+
       }
 
       .text-menu-button {
@@ -431,7 +470,7 @@ $tray-width-desktop: 400px;
               width: 3px;
               position: absolute;
               background-color: $green-brand-bright;
-              left: 0px;
+              left: 0;
               transition: all ease 0.2s;
               z-index: 999;
             }
@@ -461,6 +500,7 @@ $tray-width-desktop: 400px;
                 border-bottom: none;
                 margin-bottom: 0;
                 &:not(.homesite) {
+                  margin-left: 20px;
                   > a {
                     padding: 10px 15px 10px 25px;
                   }
@@ -491,7 +531,6 @@ $tray-width-desktop: 400px;
             padding: 5px 0 5px 15px;
             &.current {
               padding-left: 28px;
-              margin-top: 10px;
             }
           }
 
@@ -516,7 +555,7 @@ $tray-width-desktop: 400px;
               .connector {
                 position: absolute;
                 left: 2px;
-                bottom: -47px;
+                bottom: -36px;
                 z-index: 99;
                 width: 25px;
               }
@@ -527,11 +566,11 @@ $tray-width-desktop: 400px;
                   color: $green-brand-bright;
                 }
               }
-              > .btn-expander {
-                &:after {
-                  margin-left: 10px;
-                }
-              }
+              // > .btn-expander {
+              //   &:after {
+              //     margin-left: 10px;
+              //   }
+              // }
               > ul {
                 display: none;
                 flex: 1 0 auto;
@@ -588,10 +627,12 @@ $tray-width-desktop: 400px;
               justify-content: center;
               clip-path: polygon(0% 0px, 100% 0%, 98.13% 101.58%, 11px 101.58%);
               background-color: $grey-gallery;
+              flex: 1 0 10%;
 
               &:after {
                 transition: all $easing 0.2s;
                 line-height: 2;
+                text-align: center;
               }
             }
             &.expanded {
@@ -650,7 +691,7 @@ $tray-width-desktop: 400px;
               padding: 10px;
               padding-right: 50px;
               position: initial;
-              flex: 85%;
+              flex: 1 0 80%;
               padding-left: 20px;
               &.active {
                 background-color: $green-brand-bright;
@@ -716,14 +757,16 @@ $tray-width-desktop: 400px;
                     flex: 1 1 auto;
                   }
                   .btn-expander {
-                    margin-right: 10px;
-                    width: auto;
-                    height: auto;
+                    margin-right: 17px;
                     padding: 3px 8px;
                     border-radius: 100px;
                     cursor: pointer;
                     height: 32px;
                     width: 32px;
+                    text-align: center;
+                    @include breakpoint($until: desktop) {
+                      font-size: 14px;
+                    }
                   }
 
                   > .btn-expander {
@@ -777,7 +820,7 @@ $tray-width-desktop: 400px;
                           padding-right: 10px;
                         }
                         .btn-expander {
-                          margin-right: 15px;
+                          margin-right: 23px;
                         }
                       }
 
@@ -2070,7 +2113,7 @@ $tray-width-desktop: 400px;
         cursor: pointer;
         display: flex;
         justify-content: space-between;
-        background-color: $green-brand-light;
+        background-color: $green-brand-bright;
         border-radius: 10px;
         user-select: none;
         transition: background-color ease 0.2s;
@@ -2102,7 +2145,7 @@ $tray-width-desktop: 400px;
           cursor: pointer;
           padding: 10px;
           &.active {
-            background-color: $green-brand-light;
+            background-color: $green-brand-bright;
           }
           &:hover {
             background-color: #eee;
