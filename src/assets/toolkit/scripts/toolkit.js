@@ -100,6 +100,7 @@ function initExpandableSubmenu() {
 
   function apply(topLevel, clickedEl) {
     if (clickedEl && !clickedEl.parent().hasClass("expanded")) {
+
       if (topLevel) {
         // Remove others
         var expandedLi = $(".sidebar > nav > ul > li.expanded");
@@ -197,6 +198,15 @@ function initSidemenuExpandability(menuClass) {
   }
 
   expandableButtons.each(initExpandableSubmenu);
+
+  // Ensure expander height is the same as the link (for long link titles than span across 2+ lines)
+  $(".sidemenu > ul > li").each(function(e){
+    var link = $(this).find(">a")
+    var expander = $(this).find("> .btn-expander")
+
+    expander.css("height", link.outerHeight())
+  })
+
 }
 
 // TODO: Remove after this was implemented on the backend (~ in Squiz)
@@ -1126,6 +1136,12 @@ if (document.getElementsByClassName("toggle").length > 0) {
     $(this).next(".toggle-block").toggleClass("active");
   });
 }
+
+// !Add light class to all sidemenus (TEMPORARY)
+if ($(".sidemenu").length > 0 && !$(".sidemenu").hasClass("sidemenu-light")) {
+  $(".sidemenu").addClass("sidemenu-light");
+}
+
 /* USing on subject page proto */
 
 document.addEventListener("DOMContentLoaded", function () {
