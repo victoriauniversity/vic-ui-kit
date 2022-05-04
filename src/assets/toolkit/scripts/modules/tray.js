@@ -769,7 +769,7 @@ export function initTray() {
     } else {
       $tallBlip.css({
         top: el.offset().top - el.parents(".main-nav-list").offset().top,
-        // left: el.offset().left - $(".main-nav-list").offset().left,
+        left: el.offset().left - $(".main-nav-list").offset().left,
         height: el.outerHeight(),
       });
     }
@@ -897,7 +897,7 @@ export function initTray() {
   }
 
   // On top level menu click
-  $(".tray .main-nav-item > a, .tray .main-nav-item > .btn-expander").on(
+  $(".tray .main-nav-item > .btn-expander").on(
     "click keyup",
     function (e) {
       if (e.which == 13 || e.which == 1) {
@@ -979,6 +979,8 @@ export function initTray() {
           activeItem.offset().top -
           activeItem.parents(".main-nav-list").offset().top,
         height: activeItem.outerHeight(),
+        left: activeItem.offset().left - $(".main-nav-list").offset().left,
+
       });
     }
   }, 500);

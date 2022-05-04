@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, May 4, 2022, 9:50 AM */
+/** Version: 0.10.13 | Wednesday, May 4, 2022, 1:56 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14593,7 +14593,7 @@ function initTray() {
     } else {
       $tallBlip.css({
         top: el.offset().top - el.parents(".main-nav-list").offset().top,
-        // left: el.offset().left - $(".main-nav-list").offset().left,
+        left: el.offset().left - $(".main-nav-list").offset().left,
         height: el.outerHeight()
       });
     }
@@ -14715,7 +14715,7 @@ function initTray() {
   } // On top level menu click
 
 
-  $(".tray .main-nav-item > a, .tray .main-nav-item > .btn-expander").on("click keyup", function (e) {
+  $(".tray .main-nav-item > .btn-expander").on("click keyup", function (e) {
     if (e.which == 13 || e.which == 1) {
       $(this).parent().toggleClass("expanded");
       $(this).parent().find(">a").toggleClass("active");
@@ -14778,7 +14778,8 @@ function initTray() {
     if (activeItem.length) {
       $tallBlip.css({
         top: activeItem.offset().top - activeItem.parents(".main-nav-list").offset().top,
-        height: activeItem.outerHeight()
+        height: activeItem.outerHeight(),
+        left: activeItem.offset().left - $(".main-nav-list").offset().left
       });
     }
   }, 500);
