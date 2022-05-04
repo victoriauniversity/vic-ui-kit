@@ -100,7 +100,6 @@ function initExpandableSubmenu() {
 
   function apply(topLevel, clickedEl) {
     if (clickedEl && !clickedEl.parent().hasClass("expanded")) {
-
       if (topLevel) {
         // Remove others
         var expandedLi = $(".sidebar > nav > ul > li.expanded");
@@ -111,9 +110,6 @@ function initExpandableSubmenu() {
       } else {
         console.log("===== INNER EXPANDER CLICKED ====");
 
-        submenuContainer
-          .find(">ul>li>ul")
-          .css("max-height", 50 * listLength + "px");
       }
 
       submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
@@ -122,7 +118,7 @@ function initExpandableSubmenu() {
 
       expandedLi
         .find(">ul")
-        .css("max-height", expandedLi.outerHeight() + 50 * listLength + "px");
+        .css("max-height", expandedLi.outerHeight() + 100 * listLength + "px");
     } else {
       // !CLOSE ITEM
       var expandedLi = $(".sidebar > nav > ul > li.expanded");
@@ -200,13 +196,12 @@ function initSidemenuExpandability(menuClass) {
   expandableButtons.each(initExpandableSubmenu);
 
   // Ensure expander height is the same as the link (for long link titles than span across 2+ lines)
-  $(".sidemenu > ul > li").each(function(e){
-    var link = $(this).find(">a")
-    var expander = $(this).find("> .btn-expander")
+  $(".sidemenu > ul > li").each(function (e) {
+    var link = $(this).find(">a");
+    var expander = $(this).find("> .btn-expander");
 
-    expander.css("height", link.outerHeight())
-  })
-
+    expander.css("height", link.outerHeight());
+  });
 }
 
 // TODO: Remove after this was implemented on the backend (~ in Squiz)
