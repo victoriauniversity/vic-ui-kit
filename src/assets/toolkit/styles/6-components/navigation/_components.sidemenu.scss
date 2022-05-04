@@ -280,11 +280,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
       li {
         &.active {
           > a {
-            color: $black-tundora;
-            // color: $green-brand;
-            @include hoverify() {
-              color: $blue-endeavoura;
-            }
+            font-weight: 700;
 
             &:before {
               border-color: $black-tundora;
@@ -953,7 +949,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
       li {
         border-left: 0px $green-brand-bright solid;
         overflow: hidden;
-        transition: all ease 0.3s;
+        transition: all $easing 0.3s;
         a {
           transition: all $easing 0.2s;
           padding: 0.8rem 0.9rem;
@@ -977,10 +973,12 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
           &.active {
             border: none;
             font-weight: bold;
+            border-left: 5px solid $green-brand-bright;
           }
           &.expanded {
             // box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
             z-index: 1;
+            border-left: 5px solid $green-brand-bright;
 
             > .btn-expander {
               &:after {
@@ -991,7 +989,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 
             > ul {
               max-height: 800px;
-              border-left: 5px solid $green-brand-bright;
 
               &.taller {
                 max-height: 1500px;
@@ -1018,12 +1015,25 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
                   left: 0px;
                   top: 19px;
                   height: 1px;
-                  width: 16px;
+                  width: 18px;
                   transition: all ease 0.3s;
+                }
+                &:hover {
+                  &:before {
+                    width: 22px;
+                  }
                 }
                 &.expanded {
                   &:before {
                     background-color: $green-brand-bright;
+                  }
+                  a {
+                    padding-left: 10px;
+                  }
+                }
+                a {
+                  &:hover {
+                    padding-left: 10px;
                   }
                 }
               }
@@ -1077,7 +1087,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
               &.expanded {
                 > a {
                   color: $green-brand-bright;
-                  font-weight: 600;
+                  font-weight: 700;
                 }
               }
             }
@@ -1126,6 +1136,9 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
                     padding-left: 10px;
                     font-size: 14px;
                     margin-left: 0;
+                  }
+                  &:hover {
+                    padding-left: 15px;
                   }
                   .btn-expander {
                     margin-right: 20px;

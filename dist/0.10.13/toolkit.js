@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, May 4, 2022, 1:56 PM */
+/** Version: 0.10.13 | Thursday, May 5, 2022, 9:18 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15865,7 +15865,13 @@ function initSidemenuExpandability(menuClass) {
     tracker.registerForTracking(expandableButtons, "click", "sidemenu-expander");
   }
 
-  expandableButtons.each(initExpandableSubmenu);
+  expandableButtons.each(initExpandableSubmenu); // Ensure expander height is the same as the link (for long link titles than span across 2+ lines)
+
+  external_jQuery_default()(".sidemenu > ul > li").each(function (e) {
+    var link = external_jQuery_default()(this).find(">a");
+    var expander = external_jQuery_default()(this).find("> .btn-expander");
+    expander.css("height", link.outerHeight());
+  });
 } // TODO: Remove after this was implemented on the backend (~ in Squiz)
 
 /** Adds necessary classes and expanding/collapsing elements if the item has got submenu. */
@@ -16639,6 +16645,11 @@ if (document.getElementsByClassName("toggle").length > 0) {
     external_jQuery_default()(this).toggleClass("active");
     external_jQuery_default()(this).next(".toggle-block").toggleClass("active");
   });
+} // !Add light class to all sidemenus (TEMPORARY)
+
+
+if (external_jQuery_default()(".sidemenu").length > 0 && !external_jQuery_default()(".sidemenu").hasClass("sidemenu-light")) {
+  external_jQuery_default()(".sidemenu").addClass("sidemenu-light");
 }
 /* USing on subject page proto */
 

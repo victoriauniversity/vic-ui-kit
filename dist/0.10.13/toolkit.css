@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, May 4, 2022, 1:56 PM */
+/** Version: 0.10.13 | Thursday, May 5, 2022, 9:18 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -14280,11 +14280,7 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .sidemenu.sidemenu-light ul li.active > a, .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage ul li.active > a, .show-mega-menu-top .sidemenu-light.mega-sub-menu ul li.active > a {
-  color: #424242;
-}
-
-.sidemenu.sidemenu-light ul li.active > a:hover, .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage ul li.active > a:hover, .show-mega-menu-top .sidemenu-light.mega-sub-menu ul li.active > a:hover, .sidemenu.sidemenu-light ul li.active > a:active, .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage ul li.active > a:active, .show-mega-menu-top .sidemenu-light.mega-sub-menu ul li.active > a:active, .sidemenu.sidemenu-light ul li.active > a:focus, .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage ul li.active > a:focus, .show-mega-menu-top .sidemenu-light.mega-sub-menu ul li.active > a:focus {
-  color: #005EA5;
+  font-weight: 700;
 }
 
 .sidemenu.sidemenu-light ul li.active > a:before, .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage ul li.active > a:before, .show-mega-menu-top .sidemenu-light.mega-sub-menu ul li.active > a:before {
@@ -14936,8 +14932,8 @@ footer .footer-secondary.dark .footer-num {
 .sidebar .sidemenu ul li, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li, .sidebar .show-mega-menu-top .mega-sub-menu ul li, .show-mega-menu-top .sidebar .mega-sub-menu ul li {
   border-left: 0px #3E9C4F solid;
   overflow: hidden;
-  -webkit-transition: all ease 0.3s;
-  transition: all ease 0.3s;
+  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
 }
 
 .sidebar .sidemenu ul li a, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li a, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li a, .sidebar .show-mega-menu-top .mega-sub-menu ul li a, .show-mega-menu-top .sidebar .mega-sub-menu ul li a {
@@ -14967,10 +14963,12 @@ footer .footer-secondary.dark .footer-num {
 .sidebar .sidemenu ul li.has-submenu.active, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu.active, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu.active, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.active, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.active {
   border: none;
   font-weight: bold;
+  border-left: 5px solid #3E9C4F;
 }
 
 .sidebar .sidemenu ul li.has-submenu.expanded, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu.expanded, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu.expanded, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded {
   z-index: 1;
+  border-left: 5px solid #3E9C4F;
 }
 
 .sidebar .sidemenu ul li.has-submenu.expanded > .btn-expander, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu.expanded > .btn-expander, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu.expanded > .btn-expander, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded > .btn-expander, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded > .btn-expander {
@@ -14984,7 +14982,6 @@ footer .footer-secondary.dark .footer-num {
 
 .sidebar .sidemenu ul li.has-submenu.expanded > ul, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu.expanded > ul, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu.expanded > ul, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded > ul, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded > ul {
   max-height: 800px;
-  border-left: 5px solid #3E9C4F;
 }
 
 .sidebar .sidemenu ul li.has-submenu.expanded > ul.taller, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu.expanded > ul.taller, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu.expanded > ul.taller, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded > ul.taller, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded > ul.taller {
@@ -15012,13 +15009,25 @@ footer .footer-secondary.dark .footer-num {
   left: 0px;
   top: 19px;
   height: 1px;
-  width: 16px;
+  width: 18px;
   -webkit-transition: all ease 0.3s;
   transition: all ease 0.3s;
 }
 
+.sidebar .sidemenu ul li.has-submenu.expanded ul li:hover:before, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu.expanded ul li:hover:before, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu.expanded ul li:hover:before, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded ul li:hover:before, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded ul li:hover:before {
+  width: 22px;
+}
+
 .sidebar .sidemenu ul li.has-submenu.expanded ul li.expanded:before, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu.expanded ul li.expanded:before, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu.expanded ul li.expanded:before, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded ul li.expanded:before, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded ul li.expanded:before {
   background-color: #3E9C4F;
+}
+
+.sidebar .sidemenu ul li.has-submenu.expanded ul li.expanded a, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu.expanded ul li.expanded a, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu.expanded ul li.expanded a, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded ul li.expanded a, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded ul li.expanded a {
+  padding-left: 10px;
+}
+
+.sidebar .sidemenu ul li.has-submenu.expanded ul li a:hover, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu.expanded ul li a:hover, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu.expanded ul li a:hover, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded ul li a:hover, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded ul li a:hover {
+  padding-left: 10px;
 }
 
 .sidebar .sidemenu ul li.has-submenu.expanded ul ul li:before, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu.expanded ul ul li:before, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu.expanded ul ul li:before, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded ul ul li:before, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded ul ul li:before {
@@ -15070,7 +15079,7 @@ footer .footer-secondary.dark .footer-num {
 
 .sidebar .sidemenu ul li.has-submenu ul li.expanded > a, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu ul li.expanded > a, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu ul li.expanded > a, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu ul li.expanded > a, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu ul li.expanded > a {
   color: #3E9C4F;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .sidebar .sidemenu ul li.has-submenu > ul, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu > ul, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu > ul, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu > ul, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu > ul {
@@ -15113,6 +15122,10 @@ footer .footer-secondary.dark .footer-num {
   padding-left: 10px;
   font-size: 14px;
   margin-left: 0;
+}
+
+.sidebar .sidemenu ul li.has-submenu > ul > li > ul > li:hover, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu > ul > li > ul > li:hover, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu > ul > li > ul > li:hover, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu > ul > li > ul > li:hover, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu > ul > li > ul > li:hover {
+  padding-left: 15px;
 }
 
 .sidebar .sidemenu ul li.has-submenu > ul > li > ul > li .btn-expander, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu > ul > li > ul > li .btn-expander, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu > ul > li > ul > li .btn-expander, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu > ul > li > ul > li .btn-expander, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu > ul > li > ul > li .btn-expander {
