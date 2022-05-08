@@ -224,8 +224,10 @@ $tray-width-desktop: 400px;
         border-radius: 4px;
         align-self: center;
         background-color: $grey-gallery;
-
         margin-right: 5px;
+        @include breakpoint($until: tablet) {
+          display: none;
+        }
 
         i {
           // color: #fff;
@@ -249,10 +251,8 @@ $tray-width-desktop: 400px;
           }
           &:hover {
             background-color: $green-brand;
-      
           }
         }
-
       }
 
       .text-menu-button {
@@ -1937,6 +1937,21 @@ $tray-width-desktop: 400px;
   margin-top: 20px;
 }
 
+// Notifcation
+.tray-toggle {
+  position: relative;
+  .menu-notifcations {
+    padding: 2px 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #fff;
+    background-color: #af1b1b;
+    font-size: 14px;
+    border-radius: 100px;
+  }
+}
+
 .tray {
   .tray-content {
     background-image: url("/images/MKT0510 - Te Tumu PNG-05.png");
@@ -2078,21 +2093,6 @@ $tray-width-desktop: 400px;
           }
         }
       }
-    }
-  }
-
-  // Notifcation
-  .tray-toggle {
-    position: relative;
-    .menu-notifcations {
-      padding: 2px 10px;
-      position: absolute;
-      top: 0;
-      right: 0;
-      color: #fff;
-      background-color: #af1b1b;
-      font-size: 14px;
-      border-radius: 100px;
     }
   }
 
