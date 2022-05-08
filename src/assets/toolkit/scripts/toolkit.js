@@ -86,6 +86,8 @@ const SIDEMENU_SUBMENU_CLASS = "has-submenu";
 
 const SIDEMENU_SELECTED_ITEM_CLASS = "active";
 const SIDEMENU_EXPANDED_CLASS = "expanded";
+const pageName = $("main h1").first().text();
+console.log(pageName);
 
 /** PRIVATE FUNCTIONS. */
 
@@ -94,6 +96,8 @@ function initExpandableSubmenu() {
   const submenuContainer = expandableButtonElement.parent(
     `.${SIDEMENU_SUBMENU_CLASS}`
   );
+
+  // Open item of current page
 
   // Init default state
   let isExpanded = submenuContainer.hasClass(SIDEMENU_SELECTED_ITEM_CLASS);
@@ -109,7 +113,6 @@ function initExpandableSubmenu() {
           .removeClass("expanded");
       } else {
         console.log("===== INNER EXPANDER CLICKED ====");
-
       }
 
       submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
@@ -166,6 +169,21 @@ function initSidemenuExpandability(menuClass) {
   const menuElement = $(`.${menuClass}`);
 
   enhanceSidemenu(menuElement);
+
+  var matches = 0;
+
+  $("." + SIDEMENU_CLASS)
+    .find("a")
+    .each(function () {
+      var linkText = $(this).text();
+
+      // var matches is needed so that multiple menus don't open when there are duplicate links
+      if (linkText == pageName && matches < 1) {
+        matches++;
+        $(this).addClass("active");
+        $(this).parents("li").addClass("active expanded");
+      }
+    });
 
   // Expanding/Collapsing of the entire side menu on mobile devices
   menuElement

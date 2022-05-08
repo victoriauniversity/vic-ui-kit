@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, May 9, 2022, 9:31 AM */
+/** Version: 0.10.13 | Monday, May 9, 2022, 10:15 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15784,13 +15784,16 @@ var SIDEMENU_EXPANDER_CLASS = "btn-expander";
 var SIDEMENU_SUBMENU_CLASS = "has-submenu";
 var SIDEMENU_SELECTED_ITEM_CLASS = "active";
 var SIDEMENU_EXPANDED_CLASS = "expanded";
+var pageName = external_jQuery_default()("main h1").first().text();
+console.log(pageName);
 /** PRIVATE FUNCTIONS. */
 
 function initExpandableSubmenu() {
   var _this = this;
 
   var expandableButtonElement = external_jQuery_default()(this);
-  var submenuContainer = expandableButtonElement.parent(".".concat(SIDEMENU_SUBMENU_CLASS)); // Init default state
+  var submenuContainer = expandableButtonElement.parent(".".concat(SIDEMENU_SUBMENU_CLASS)); // Open item of current page
+  // Init default state
 
   var isExpanded = submenuContainer.hasClass(SIDEMENU_SELECTED_ITEM_CLASS);
 
@@ -15850,7 +15853,17 @@ function initExpandableSubmenu() {
 
 function initSidemenuExpandability(menuClass) {
   var menuElement = external_jQuery_default()(".".concat(menuClass));
-  enhanceSidemenu(menuElement); // Expanding/Collapsing of the entire side menu on mobile devices
+  enhanceSidemenu(menuElement);
+  var matches = 0;
+  external_jQuery_default()("." + SIDEMENU_CLASS).find("a").each(function () {
+    var linkText = external_jQuery_default()(this).text(); // var matches is needed so that multiple menus don't open when there are duplicate links
+
+    if (linkText == pageName && matches < 1) {
+      matches++;
+      external_jQuery_default()(this).addClass("active");
+      external_jQuery_default()(this).parents("li").addClass("active expanded");
+    }
+  }); // Expanding/Collapsing of the entire side menu on mobile devices
 
   menuElement.children(".".concat(SIDEMENU_TOGGLE_CLASS)).children("a").on("click", function (e) {
     e.preventDefault();
