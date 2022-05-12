@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, May 13, 2022, 10:57 AM */
+/** Version: 0.10.13 | Friday, May 13, 2022, 11:02 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15124,21 +15124,21 @@ document.addEventListener("DOMContentLoaded", function (event) {
   }); // Check toolbar to ensure myTools has been updated to Puaha
 
   if (document.location.pathname.split("/")[1] == "courses" || document.location.pathname.split("/")[1] == "explore") {
-    $("ul[role=menubar] > li > a").each(function (e) {
+    $("header ul[role=menubar] > li > a").each(function (e) {
       var text = $(this).text(); // Update link if mytools
 
       if (text.includes("myTools")) {
-        $el = $(this);
+        var $el = $(this);
         $el.text("Pūaha—Student Portal");
         $el.attr("href", "https://puaha.wgtn.ac.nz/");
       }
     });
   } else {
-    $(".menu-bar > a").each(function (e) {
+    $("header .menu-bar > a").each(function (e) {
       var text = $(this).text(); // Update link if mytools
 
       if (text.includes("myTools")) {
-        $el = $(this);
+        var $el = $(this);
         $el.text("Pūaha—Student Portal");
         $el.attr("href", "https://puaha.wgtn.ac.nz/");
       }

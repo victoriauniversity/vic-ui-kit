@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       var text = $(this).text();
       // Update link if mytools
       if (text.includes("myTools")) {
-        $el = $(this);
+        var $el = $(this);
         $el.text("Pūaha—Student Portal");
         $el.attr("href", "https://puaha.wgtn.ac.nz/");
       }
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       var text = $(this).text();
       // Update link if mytools
       if (text.includes("myTools")) {
-        $el = $(this);
+        var $el = $(this);
         $el.text("Pūaha—Student Portal");
         $el.attr("href", "https://puaha.wgtn.ac.nz/");
       }
