@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, May 12, 2022, 3:04 PM */
+/** Version: 0.10.13 | Friday, May 13, 2022, 10:04 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14028,18 +14028,37 @@ var TABLET_AND_SMALLER = "screen and (max-width: 975px)",
 
 function initTray() {
   // console.log( 'tray...', $( '.tray-toggle' ));
-  // tray functionality
+  $("body").on("click keyup", function (e) {
+    // Close tray if clicked away from or escpae buttons
+    console.log(e.target.className, "clicked"); // If not enter key
+
+    if (e.which !== 13) {
+      if (e.target.className.includes("tray-open") && $(".tray-open").length || e.key == "Escape" && $(".tray-open").length) {
+        e.preventDefault();
+        toggleTray();
+      }
+    } // Close dropdown if click away
+    // If key is not tab or shift
+
+
+    if (e.which !== 9 && e.which !== 16) {
+      if (!e.target.className.includes("selector") && $(".custom-dropdown .selector").hasClass("open") || !e.target.className.includes("selector") && e.key == "Escape") {
+        $(".custom-dropdown .selector").next().slideUp();
+        $(".custom-dropdown .selector").removeClass("open");
+      }
+    }
+  }); // tray functionality
+
   function toggleTray() {
     $(".tray").toggleClass("tray-closed", "normal");
     $(".tray").toggleClass("tray-open", "normal");
     $("body").toggleClass("noscroll");
   }
 
-  $(".tray-toggle").on("click keyup", function (e) {
+  $(".tray-toggle").on("click keydown", function (e) {
     if (e.which == 13 || e.which == 1) {
-      toggleTray(); // return false;
-
       e.preventDefault();
+      toggleTray(); // return false;
     }
   });
   $(".expanded-draw").click(function (e) {
@@ -14056,24 +14075,6 @@ function initTray() {
     setTimeout(function () {
       $(".tray .search-input").focus();
     }, 500);
-  });
-  $("body").on("click keyup", function (e) {
-    // Close tray if clicked away from or escpae buttons
-    console.log(e.target.className, "clicked");
-
-    if (e.target.className.includes("tray-open") && $(".tray-open").length || e.key == "Escape" && $(".tray-open").length) {
-      e.preventDefault();
-      toggleTray();
-    } // Close dropdown if click away
-    // If key is not tab or shift
-
-
-    if (e.which !== 9 && e.which !== 16) {
-      if (!e.target.className.includes("selector") && $(".custom-dropdown .selector").hasClass("open") || !e.target.className.includes("selector") && e.key == "Escape") {
-        $(".custom-dropdown .selector").next().slideUp();
-        $(".custom-dropdown .selector").removeClass("open");
-      }
-    }
   }); // $('.search-button-inside form').on('focus', (e) => {
   //   $( this ).toggleClass('focus')
   //   console.log( $(this) );
@@ -14091,13 +14092,10 @@ function initTray() {
   var $blip = $(".menu-blip");
 
   function buildTray(index, item) {
-    // console.log(index);
     // console.log( 'nav item', $(this).parent().children('a').text() );
-    var nav = $(this); // console.log(nav);
-
+    var nav = $(this);
     var navClassString = $(this).parent().children("a").html();
-    var titleLink = $(this).parent().children("a").attr("href"); // console.log(titleLink);
-    //push into traw div
+    var titleLink = $(this).parent().children("a").attr("href"); //push into traw div
 
     nav.clone().appendTo(".draw-nav").addClass(navClassString).attr("data-index", index); //add title
 
@@ -14171,7 +14169,6 @@ function initTray() {
   function closeSideMenuDraw(location) {
     var loc = location || "expanded-draw"; // console.log(loc);
 
-    console.log(sidemeneuExpanded);
     $(".close-draw").on("click", function (e) {
       if (sidemeneuExpanded) {
         sidemeneuExpanded = !sidemeneuExpanded;
@@ -14328,6 +14325,7 @@ function initTray() {
   if ($(".show-mega-menu-top").length) {
     // only run on desktop size
     src_default.a.register(DESKTOP_AND_LARGER, function () {
+      console.log("Desktop activated ");
       initHorizontalNav();
     });
   } // Blip movement logic
