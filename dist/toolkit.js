@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, May 9, 2022, 10:15 AM */
+/** Version: 0.10.13 | Thursday, May 12, 2022, 3:04 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14035,10 +14035,12 @@ function initTray() {
     $("body").toggleClass("noscroll");
   }
 
-  $(".tray-toggle").click(function (e) {
-    toggleTray(); // return false;
+  $(".tray-toggle").on("click keyup", function (e) {
+    if (e.which == 13 || e.which == 1) {
+      toggleTray(); // return false;
 
-    e.preventDefault();
+      e.preventDefault();
+    }
   });
   $(".expanded-draw").click(function (e) {
     e.preventDefault();
@@ -14059,15 +14061,18 @@ function initTray() {
     // Close tray if clicked away from or escpae buttons
     console.log(e.target.className, "clicked");
 
-    if (e.target.className.includes("tray-open") || e.key == "Escape" && $(".tray-open").length) {
+    if (e.target.className.includes("tray-open") && $(".tray-open").length || e.key == "Escape" && $(".tray-open").length) {
       e.preventDefault();
       toggleTray();
     } // Close dropdown if click away
+    // If key is not tab or shift
 
 
-    if (!e.target.className.includes("selector") && $(".custom-dropdown .selector").hasClass("open") || !e.target.className.includes("selector") && e.key == "Escape") {
-      $(".custom-dropdown .selector").next().slideUp();
-      $(".custom-dropdown .selector").removeClass("open");
+    if (e.which !== 9 && e.which !== 16) {
+      if (!e.target.className.includes("selector") && $(".custom-dropdown .selector").hasClass("open") || !e.target.className.includes("selector") && e.key == "Escape") {
+        $(".custom-dropdown .selector").next().slideUp();
+        $(".custom-dropdown .selector").removeClass("open");
+      }
     }
   }); // $('.search-button-inside form').on('focus', (e) => {
   //   $( this ).toggleClass('focus')
@@ -14483,7 +14488,8 @@ function initTray() {
       savedEvents: "events",
       savedScholarships: "scholarships",
       savedClubs: "clubs",
-      savedPages: "pages"
+      savedPages: "pages",
+      savedPrizes: "prizes"
     };
 
     if (item == "savedEvents") {
@@ -14492,6 +14498,10 @@ function initTray() {
       noResultsUrl = "https://cms.wgtn.ac.nz/scholarships/find-scholarships";
     } else if (item == "savedClubs") {
       noResultsUrl = "https://cms.wgtn.ac.nz/students/campus/clubs/directory";
+    } else if (item == "savedPrizes") {
+      noResultsUrl = "https://cms.wgtn.ac.nz/scholarships/annual-prizes";
+    } else {
+      noResultsUrl = "https://cms.wgtn.ac.nz/";
     }
 
     if (item) {
@@ -14508,20 +14518,18 @@ function initTray() {
           }
 
           if (items && items.length > 0) {
-            // Update count in accordion
+            // Update count in dropdown
+            $(".custom-dropdown").find("." + nameMaps[item] + " .count").text("(" + items.length + ")"); // Update count in accordion
+
             $("." + nameMaps[item] + "-list").prev().find(".count").text(items.length); // Append accordion buttons
 
-            if ($("." + nameMaps[item] + "-list").find(".accordion-buttons").length) {// Do not append
-            } else {
-              $("." + nameMaps[item] + "-list").append("<div class='accordion-buttons'></div>");
+            $("." + nameMaps[item] + "-list").append("<div class='accordion-buttons'></div>");
 
-              if (items.length > 0) {
-                $("." + nameMaps[item] + "-list .accordion-buttons").append("<a target='_blank' class='btn rounded no-icon secondary view-all' href=''>View all <i class='icons8-external-link'></i></a>");
-              }
+            if (items.length > 0) {
+              $("." + nameMaps[item] + "-list .accordion-buttons").append("<a target='_blank' class='btn rounded no-icon secondary view-all' href=''>View all <i class='icons8-external-link'></i></a>");
+            }
 
-              $("." + nameMaps[item] + "-list .accordion-buttons").append("<a target='_blank' class='btn rounded no-icon primary add-more' href='" + noResultsUrl + "'>Add more <i class='icons8-external-link'></i></a>");
-            } // Clear old list
-
+            $("." + nameMaps[item] + "-list .accordion-buttons").append("<a target='_blank' class='btn rounded no-icon primary add-more' href='" + noResultsUrl + "'>Add more <i class='icons8-external-link'></i></a>"); // Clear old list
 
             $("." + nameMaps[item] + "-list li").remove();
             var first5 = items.slice(0, 5);
@@ -14531,27 +14539,15 @@ function initTray() {
                 // Format date
                 if (nameMaps[item] == "events") {
                   if (!$("." + nameMaps[item] + "-list li > a").text().includes(e.title)) {
-                    // If the accordion buttons exist, insert BEFORE
-                    if ($("." + nameMaps[item] + "-list").find(".accordion-buttons")) {
-                      $("<li> <a target='_blank' href='" + e.liveUrl + "'><span class='item-dates'>" + formatAsDate(e.metaData.O) + "</span>" + e.title + "</a></li>").insertBefore($("." + nameMaps[item] + "-list").find(".accordion-buttons"));
-                    } else {
-                      // else append to list
-                      $("." + nameMaps[item] + "-list").append("<li><a target='_blank' href='" + e.liveUrl + "'>" + e.title + "</a></li>");
-                    }
+                    $("<li> <a target='_blank' href='" + e.liveUrl + "'><span class='item-dates'>" + formatAsDate(e.metaData.O) + "</span>" + e.title + "</a></li>").insertBefore($("." + nameMaps[item] + "-list").find(".accordion-buttons"));
                   }
                 } else {
                   if (!$("." + nameMaps[item] + "-list li > a").text().includes(e.title)) {
-                    // If the accordion buttons exist, insert BEFORE
-                    if ($("." + nameMaps[item] + "-list").find(".accordion-buttons")) {
-                      $("<li><a target='_blank' href='" + e.liveUrl + "'>" + e.title + "</a></li>").insertBefore($("." + nameMaps[item] + "-list").find(".accordion-buttons"));
-                    } else {
-                      // else append to list
-                      $("." + nameMaps[item] + "-list").append("<li><a target='_blank' href='" + e.liveUrl + "'>" + e.title + "</a></li>");
-                    }
+                    $("<li><a target='_blank' href='" + e.liveUrl + "'>" + e.title + "</a></li>").insertBefore($("." + nameMaps[item] + "-list").find(".accordion-buttons"));
                   }
                 }
               } else {
-                $("." + nameMaps[item] + "-list").append("<li><a target='_blank' href='" + e.url + "'>" + e.name + "</a></li>");
+                $("<li><a target='_blank' href='" + e.url + "'>" + e.name + "</a></li>").insertBefore($("." + nameMaps[item] + "-list").find(".accordion-buttons"));
               }
             });
           }
@@ -14571,18 +14567,21 @@ function initTray() {
   checkSavedItems("savedEvents");
   checkSavedItems("savedScholarships");
   checkSavedItems("savedClubs");
-  checkSavedItems("savedPages"); // Trigger to open/close items in saved items
+  checkSavedItems("savedPages");
+  checkSavedItems("savedPrizes"); // Trigger to open/close items in saved items
 
-  $(".group-title").on("click", function (e) {
-    $(this).toggleClass("active");
+  $(".group-title").on("click keyup", function (e) {
+    if (e.which == 13 || e.which == 1) {
+      $(this).toggleClass("active");
 
-    if ($(this).hasClass("active")) {
-      $(this).find("i").addClass("flipped");
-    } else {
-      $(this).find("i").removeClass("flipped");
+      if ($(this).hasClass("active")) {
+        $(this).find("i").addClass("flipped");
+      } else {
+        $(this).find("i").removeClass("flipped");
+      }
+
+      $(this).next().slideToggle("fast");
     }
-
-    $(this).next().slideToggle("fast");
   });
 
   var resizeTallBlip = function resizeTallBlip(el, hide) {
@@ -14601,23 +14600,25 @@ function initTray() {
 
 
   var $tabBlip = $(".tabs .blip");
-  $(".tabs .tab").click(function () {
-    $(".tabs .tab").removeClass("active");
-    $(this).addClass("active"); // Hide notification is there is one
+  $(".tabs .tab").on("click keyup", function (e) {
+    if (e.which == 13 || e.which == 1) {
+      $(".tabs .tab").removeClass("active");
+      $(this).addClass("active"); // Hide notification is there is one
 
-    $(".menu-notifcations").hide();
+      $(".menu-notifcations").hide();
 
-    if ($(this).find(".notification")) {
-      $(this).find(".notification").hide();
-      notificationCount = 0;
-    }
+      if ($(this).find(".notification")) {
+        $(this).find(".notification").hide();
+        notificationCount = 0;
+      }
 
-    if ($(this).hasClass("t-menu")) {
-      $(".tray-main-nav").show();
-      $(".saved-menu").hide();
-    } else {
-      $(".tray-main-nav").hide();
-      $(".saved-menu").show();
+      if ($(this).hasClass("t-menu")) {
+        $(".tray-main-nav").show();
+        $(".saved-menu").hide();
+      } else {
+        $(".tray-main-nav").hide();
+        $(".saved-menu").show();
+      }
     }
   });
   $(".tabs .tab-background").on("mouseover click", function () {
@@ -14666,36 +14667,50 @@ function initTray() {
     }
   }); // !CUSTOM DROPDOWN
 
-  $(".custom-dropdown .selector").on("click", function (e) {
-    $(this).next().slideToggle("fast");
-    $(this).toggleClass("open");
+  $(".custom-dropdown .selector").on("click keyup", function (e) {
+    if (e.which == 13 || e.which == 1) {
+      // If enter or left-click
+      $(this).next().slideToggle("fast");
+      $(this).toggleClass("open");
+    }
   });
-  $(".custom-dropdown ul li").on("click", function (e) {
-    // Clear open class on selector
-    if ($(".custom-dropdown .selector").hasClass("open")) {
-      $(".custom-dropdown .selector").removeClass("open");
-    } // Toggle active class
+  $(".custom-dropdown ul li").on("click keyup", function (e) {
+    if (e.which == 13 || e.which == 1) {
+      // If enter or left-click
+      // Clear open class on selector
+      if ($(".custom-dropdown .selector").hasClass("open")) {
+        $(".custom-dropdown .selector").removeClass("open");
+      } // Toggle active class
 
 
-    $(".custom-dropdown ul li").removeClass("active");
-    $(this).addClass("active"); // Set text to value
+      $(".custom-dropdown ul li").removeClass("active");
+      $(this).addClass("active"); // Set text to value
 
-    $(this).parent().prev().find(".selector-text").text($(this).data("name")); // Close list on click
+      $(this).parent().prev().find(".selector-text").text($(this).data("name")); // Close list on click
 
-    $(this).parent().slideToggle("fast");
-    var text = $(this).data("name").toLowerCase();
-    showSavedData(text);
+      $(this).parent().slideToggle("fast");
+      var text = $(this).data("name").toLowerCase();
+      showSavedData(text);
+    }
   });
 
   var showSavedData = function showSavedData(e) {
-    console.log(e);
     $(".no-results").slideUp(); // Make titles visible
 
     $(".group-title").hide();
     $(".group-title").removeClass("active");
     $(".item-list").hide();
-    $("." + e + "-title").css("display", "flex");
-    $("." + e + "-title").click();
+    var $toggler = $("." + e + "-title");
+    $toggler.css("display", "flex");
+    $toggler.toggleClass("active");
+
+    if ($toggler.hasClass("active")) {
+      $toggler.find("i").addClass("flipped");
+    } else {
+      $toggler.find("i").removeClass("flipped");
+    }
+
+    $toggler.next().slideToggle("fast");
   }; // !MAIN NAV LIST ACCORDIONS
 
 

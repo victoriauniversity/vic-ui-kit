@@ -1892,6 +1892,11 @@ $tray-width-desktop: 400px;
   text-align: center;
   position: relative;
   // transform: skew(20deg); /* SKEW */
+  &:focus {
+    outline: 2px dotted $black-brand;
+    outline-offset: -1px;
+
+  }
   span {
     display: inline-block;
     // transform: skew(-20deg); /* UNSKEW */
@@ -2037,6 +2042,11 @@ $tray-width-desktop: 400px;
     .empty-message {
       text-align: center;
       padding: 10px 0;
+      a,
+      a:hover,
+      a:visited &:hover {
+        color: #005ea5;
+      }
     }
 
     .item-dates {
