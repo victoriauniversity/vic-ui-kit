@@ -122,15 +122,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
     document.location.pathname.split("/")[1] == "courses" ||
     document.location.pathname.split("/")[1] == "explore"
   ) {
-    $("header ul[role=menubar] > li > a").each(function (e) {
-      var text = $(this).text();
-      // Update link if mytools
-      if (text.includes("myTools")) {
-        var $el = $(this);
-        $el.text("Pūaha—Student Portal");
-        $el.attr("href", "https://puaha.wgtn.ac.nz/");
-      }
-    });
+    if ($("header ul[role=menubar]")) {
+      $("header ul[role=menubar] > li > a").each(function (e) {
+        var text = $(this).text();
+        // Update link if mytools
+        if (text.includes("myTools")) {
+          var $el = $(this);
+          $el.text("Pūaha—Student Portal");
+          $el.attr("href", "https://puaha.wgtn.ac.nz/");
+        }
+      });
+    }
   } else {
     $("header .menu-bar > a").each(function (e) {
       var text = $(this).text();
