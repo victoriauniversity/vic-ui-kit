@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 export function initToolbarUrlListeners() {
   UrlManager.onLoadWhenQueryExists("toolbar", () => {
     if (window.toolkitToolbarLoader)
-      document.location.href = "https://puaha.wgtn.ac.nz/";
+      window.toolkitToolbarLoader("https://www.wgtn.ac.nz/api/toolbar/staff");
   });
 
   UrlManager.onLoadWhenQueryExists("mytools", () => {

@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, May 13, 2022, 11:02 AM */
+/** Version: 0.10.13 | Friday, May 13, 2022, 11:18 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15124,15 +15124,18 @@ document.addEventListener("DOMContentLoaded", function (event) {
   }); // Check toolbar to ensure myTools has been updated to Puaha
 
   if (document.location.pathname.split("/")[1] == "courses" || document.location.pathname.split("/")[1] == "explore") {
-    $("header ul[role=menubar] > li > a").each(function (e) {
-      var text = $(this).text(); // Update link if mytools
+    if ($("header ul[role=menubar]")) {
+      $("header ul[role=menubar] > li > a").each(function (e) {
+        var text = $(this).text(); // Update link if mytools
 
-      if (text.includes("myTools")) {
-        var $el = $(this);
-        $el.text("Pūaha—Student Portal");
-        $el.attr("href", "https://puaha.wgtn.ac.nz/");
-      }
-    });
+        if (text.includes("myTools")) {
+          var $el = $(this);
+          $el.text("Pūaha—Student Portal");
+          $el.attr("href", "https://puaha.wgtn.ac.nz/");
+          $el.attr("title", "Pūaha—Student Portal");
+        }
+      });
+    }
   } else {
     $("header .menu-bar > a").each(function (e) {
       var text = $(this).text(); // Update link if mytools
@@ -15141,6 +15144,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         var $el = $(this);
         $el.text("Pūaha—Student Portal");
         $el.attr("href", "https://puaha.wgtn.ac.nz/");
+        $el.attr("title", "Pūaha—Student Portal");
       }
     });
   }
@@ -15149,7 +15153,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 function initToolbarUrlListeners() {
   urls.onLoadWhenQueryExists("toolbar", function () {
-    if (window.toolkitToolbarLoader) document.location.href = "https://puaha.wgtn.ac.nz/";
+    if (window.toolkitToolbarLoader) window.toolkitToolbarLoader("https://www.wgtn.ac.nz/api/toolbar/staff");
   });
   urls.onLoadWhenQueryExists("mytools", function () {
     if (window.toolkitToolbarLoader) document.location.href = "https://puaha.wgtn.ac.nz/";
