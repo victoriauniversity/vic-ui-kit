@@ -15,10 +15,12 @@ export function initTray() {
     $("body").toggleClass("noscroll");
   }
 
-  $(".tray-toggle").click((e) => {
-    toggleTray();
-    // return false;
-    e.preventDefault();
+  $(".tray-toggle").on("click keyup", function (e) {
+    if (e.which == 13 || e.which == 1) {
+      toggleTray();
+      // return false;
+      e.preventDefault();
+    }
   });
 
   $(".expanded-draw").click((e) => {
@@ -43,7 +45,7 @@ export function initTray() {
 
     console.log(e.target.className, "clicked");
     if (
-      e.target.className.includes("tray-open") ||
+      (e.target.className.includes("tray-open") && $(".tray-open").length) ||
       (e.key == "Escape" && $(".tray-open").length)
     ) {
       e.preventDefault();
@@ -51,13 +53,16 @@ export function initTray() {
     }
 
     // Close dropdown if click away
-    if (
-      (!e.target.className.includes("selector") &&
-        $(".custom-dropdown .selector").hasClass("open")) ||
-      (!e.target.className.includes("selector") && e.key == "Escape")
-    ) {
-      $(".custom-dropdown .selector").next().slideUp();
-      $(".custom-dropdown .selector").removeClass("open");
+    // If key is not tab or shift
+    if (e.which !== 9 && e.which !== 16) {
+      if (
+        (!e.target.className.includes("selector") &&
+          $(".custom-dropdown .selector").hasClass("open")) ||
+        (!e.target.className.includes("selector") && e.key == "Escape")
+      ) {
+        $(".custom-dropdown .selector").next().slideUp();
+        $(".custom-dropdown .selector").removeClass("open");
+      }
     }
   });
 
@@ -582,6 +587,7 @@ export function initTray() {
       savedScholarships: "scholarships",
       savedClubs: "clubs",
       savedPages: "pages",
+      savedPrizes: "prizes",
     };
     if (item == "savedEvents") {
       var noResultsUrl = "https://cms.wgtn.ac.nz/events";
@@ -589,6 +595,10 @@ export function initTray() {
       noResultsUrl = "https://cms.wgtn.ac.nz/scholarships/find-scholarships";
     } else if (item == "savedClubs") {
       noResultsUrl = "https://cms.wgtn.ac.nz/students/campus/clubs/directory";
+    } else if (item == "savedPrizes") {
+      noResultsUrl = "https://cms.wgtn.ac.nz/scholarships/annual-prizes";
+    } else {
+      noResultsUrl = "https://cms.wgtn.ac.nz/";
     }
 
     if (item) {
@@ -605,6 +615,11 @@ export function initTray() {
           }
 
           if (items && items.length > 0) {
+            // Update count in dropdown
+            $(".custom-dropdown")
+              .find("." + nameMaps[item] + " .count")
+              .text("(" + items.length + ")");
+
             // Update count in accordion
             $("." + nameMaps[item] + "-list")
               .prev()
@@ -612,27 +627,21 @@ export function initTray() {
               .text(items.length);
 
             // Append accordion buttons
-            if (
-              $("." + nameMaps[item] + "-list").find(".accordion-buttons")
-                .length
-            ) {
-              // Do not append
-            } else {
-              $("." + nameMaps[item] + "-list").append(
-                "<div class='accordion-buttons'></div>"
-              );
 
-              if (items.length > 0) {
-                $("." + nameMaps[item] + "-list .accordion-buttons").append(
-                  "<a target='_blank' class='btn rounded no-icon secondary view-all' href=''>View all <i class='icons8-external-link'></i></a>"
-                );
-              }
+            $("." + nameMaps[item] + "-list").append(
+              "<div class='accordion-buttons'></div>"
+            );
+
+            if (items.length > 0) {
               $("." + nameMaps[item] + "-list .accordion-buttons").append(
-                "<a target='_blank' class='btn rounded no-icon primary add-more' href='" +
-                  noResultsUrl +
-                  "'>Add more <i class='icons8-external-link'></i></a>"
+                "<a target='_blank' class='btn rounded no-icon secondary view-all' href=''>View all <i class='icons8-external-link'></i></a>"
               );
             }
+            $("." + nameMaps[item] + "-list .accordion-buttons").append(
+              "<a target='_blank' class='btn rounded no-icon primary add-more' href='" +
+                noResultsUrl +
+                "'>Add more <i class='icons8-external-link'></i></a>"
+            );
 
             // Clear old list
             $("." + nameMaps[item] + "-list li").remove();
@@ -648,35 +657,19 @@ export function initTray() {
                       .text()
                       .includes(e.title)
                   ) {
-                    // If the accordion buttons exist, insert BEFORE
-                    if (
+                    $(
+                      "<li> <a target='_blank' href='" +
+                        e.liveUrl +
+                        "'><span class='item-dates'>" +
+                        formatAsDate(e.metaData.O) +
+                        "</span>" +
+                        e.title +
+                        "</a></li>"
+                    ).insertBefore(
                       $("." + nameMaps[item] + "-list").find(
                         ".accordion-buttons"
                       )
-                    ) {
-                      $(
-                        "<li> <a target='_blank' href='" +
-                          e.liveUrl +
-                          "'><span class='item-dates'>" +
-                          formatAsDate(e.metaData.O) +
-                          "</span>" +
-                          e.title +
-                          "</a></li>"
-                      ).insertBefore(
-                        $("." + nameMaps[item] + "-list").find(
-                          ".accordion-buttons"
-                        )
-                      );
-                    } else {
-                      // else append to list
-                      $("." + nameMaps[item] + "-list").append(
-                        "<li><a target='_blank' href='" +
-                          e.liveUrl +
-                          "'>" +
-                          e.title +
-                          "</a></li>"
-                      );
-                    }
+                    );
                   }
                 } else {
                   if (
@@ -684,42 +677,28 @@ export function initTray() {
                       .text()
                       .includes(e.title)
                   ) {
-                    // If the accordion buttons exist, insert BEFORE
-                    if (
+                    $(
+                      "<li><a target='_blank' href='" +
+                        e.liveUrl +
+                        "'>" +
+                        e.title +
+                        "</a></li>"
+                    ).insertBefore(
                       $("." + nameMaps[item] + "-list").find(
                         ".accordion-buttons"
                       )
-                    ) {
-                      $(
-                        "<li><a target='_blank' href='" +
-                          e.liveUrl +
-                          "'>" +
-                          e.title +
-                          "</a></li>"
-                      ).insertBefore(
-                        $("." + nameMaps[item] + "-list").find(
-                          ".accordion-buttons"
-                        )
-                      );
-                    } else {
-                      // else append to list
-                      $("." + nameMaps[item] + "-list").append(
-                        "<li><a target='_blank' href='" +
-                          e.liveUrl +
-                          "'>" +
-                          e.title +
-                          "</a></li>"
-                      );
-                    }
+                    );
                   }
                 }
               } else {
-                $("." + nameMaps[item] + "-list").append(
+                $(
                   "<li><a target='_blank' href='" +
                     e.url +
                     "'>" +
                     e.name +
                     "</a></li>"
+                ).insertBefore(
+                  $("." + nameMaps[item] + "-list").find(".accordion-buttons")
                 );
               }
             });
@@ -749,16 +728,19 @@ export function initTray() {
   checkSavedItems("savedScholarships");
   checkSavedItems("savedClubs");
   checkSavedItems("savedPages");
+  checkSavedItems("savedPrizes");
 
   // Trigger to open/close items in saved items
-  $(".group-title").on("click", function (e) {
-    $(this).toggleClass("active");
-    if ($(this).hasClass("active")) {
-      $(this).find("i").addClass("flipped");
-    } else {
-      $(this).find("i").removeClass("flipped");
+  $(".group-title").on("click keyup", function (e) {
+    if (e.which == 13 || e.which == 1) {
+      $(this).toggleClass("active");
+      if ($(this).hasClass("active")) {
+        $(this).find("i").addClass("flipped");
+      } else {
+        $(this).find("i").removeClass("flipped");
+      }
+      $(this).next().slideToggle("fast");
     }
-    $(this).next().slideToggle("fast");
   });
 
   var resizeTallBlip = function (el, hide) {
@@ -777,23 +759,25 @@ export function initTray() {
 
   // !TAB BLIP MOVEMENT LOGIC
   var $tabBlip = $(".tabs .blip");
-  $(".tabs .tab").click(function () {
-    $(".tabs .tab").removeClass("active");
-    $(this).addClass("active");
+  $(".tabs .tab").on("click keyup", function (e) {
+    if (e.which == 13 || e.which == 1) {
+      $(".tabs .tab").removeClass("active");
+      $(this).addClass("active");
 
-    // Hide notification is there is one
-    $(".menu-notifcations").hide();
-    if ($(this).find(".notification")) {
-      $(this).find(".notification").hide();
-      notificationCount = 0;
-    }
+      // Hide notification is there is one
+      $(".menu-notifcations").hide();
+      if ($(this).find(".notification")) {
+        $(this).find(".notification").hide();
+        notificationCount = 0;
+      }
 
-    if ($(this).hasClass("t-menu")) {
-      $(".tray-main-nav").show();
-      $(".saved-menu").hide();
-    } else {
-      $(".tray-main-nav").hide();
-      $(".saved-menu").show();
+      if ($(this).hasClass("t-menu")) {
+        $(".tray-main-nav").show();
+        $(".saved-menu").hide();
+      } else {
+        $(".tray-main-nav").hide();
+        $(".saved-menu").show();
+      }
     }
   });
   $(".tabs .tab-background").on("mouseover click", function () {
@@ -843,31 +827,35 @@ export function initTray() {
   });
 
   // !CUSTOM DROPDOWN
-  $(".custom-dropdown .selector").on("click", function (e) {
-    $(this).next().slideToggle("fast");
-    $(this).toggleClass("open");
-  });
-  $(".custom-dropdown ul li").on("click", function (e) {
-    // Clear open class on selector
-    if ($(".custom-dropdown .selector").hasClass("open")) {
-      $(".custom-dropdown .selector").removeClass("open");
+  $(".custom-dropdown .selector").on("click keyup", function (e) {
+    if (e.which == 13 || e.which == 1) {
+      // If enter or left-click
+      $(this).next().slideToggle("fast");
+      $(this).toggleClass("open");
     }
+  });
+  $(".custom-dropdown ul li").on("click keyup", function (e) {
+    if (e.which == 13 || e.which == 1) {
+      // If enter or left-click
+      // Clear open class on selector
+      if ($(".custom-dropdown .selector").hasClass("open")) {
+        $(".custom-dropdown .selector").removeClass("open");
+      }
 
-    // Toggle active class
-    $(".custom-dropdown ul li").removeClass("active");
-    $(this).addClass("active");
+      // Toggle active class
+      $(".custom-dropdown ul li").removeClass("active");
+      $(this).addClass("active");
 
-    // Set text to value
-    $(this).parent().prev().find(".selector-text").text($(this).data("name"));
-    // Close list on click
-    $(this).parent().slideToggle("fast");
-    var text = $(this).data("name").toLowerCase();
-    showSavedData(text);
+      // Set text to value
+      $(this).parent().prev().find(".selector-text").text($(this).data("name"));
+      // Close list on click
+      $(this).parent().slideToggle("fast");
+      var text = $(this).data("name").toLowerCase();
+      showSavedData(text);
+    }
   });
 
   var showSavedData = function (e) {
-    console.log(e);
-
     $(".no-results").slideUp();
 
     // Make titles visible
@@ -875,8 +863,15 @@ export function initTray() {
     $(".group-title").removeClass("active");
 
     $(".item-list").hide();
-    $("." + e + "-title").css("display", "flex");
-    $("." + e + "-title").click();
+    var $toggler = $("." + e + "-title");
+    $toggler.css("display", "flex");
+    $toggler.toggleClass("active");
+    if ($toggler.hasClass("active")) {
+      $toggler.find("i").addClass("flipped");
+    } else {
+      $toggler.find("i").removeClass("flipped");
+    }
+    $toggler.next().slideToggle("fast");
   };
 
   // !MAIN NAV LIST ACCORDIONS
@@ -897,37 +892,34 @@ export function initTray() {
   }
 
   // On top level menu click
-  $(".tray .main-nav-item > .btn-expander").on(
-    "click keyup",
-    function (e) {
-      if (e.which == 13 || e.which == 1) {
-        $(this).parent().toggleClass("expanded");
-        $(this).parent().find(">a").toggleClass("active");
+  $(".tray .main-nav-item > .btn-expander").on("click keyup", function (e) {
+    if (e.which == 13 || e.which == 1) {
+      $(this).parent().toggleClass("expanded");
+      $(this).parent().find(">a").toggleClass("active");
 
-        if ($(this).parent().find(">a").hasClass("active")) {
-          $(this).find("a").prop("disabled", false);
-        } else {
-          $(this).find("a").prop("disabled", true);
-        }
-
-        // Find any active/expanded children and close them
-        $(this).parent().find(">ul .active").removeClass("active");
-        $(this).parent().find(">ul .expanded").removeClass("expanded");
-
-        // Slide out main menu
-        $(this)
-          .parent()
-          .find(">ul")
-          .slideToggle("fast", function () {
-            // Resize blip
-            var activeItem = $(this).parent();
-            if (activeItem.length) {
-              resizeTallBlip(activeItem);
-            }
-          });
+      if ($(this).parent().find(">a").hasClass("active")) {
+        $(this).find("a").prop("disabled", false);
+      } else {
+        $(this).find("a").prop("disabled", true);
       }
+
+      // Find any active/expanded children and close them
+      $(this).parent().find(">ul .active").removeClass("active");
+      $(this).parent().find(">ul .expanded").removeClass("expanded");
+
+      // Slide out main menu
+      $(this)
+        .parent()
+        .find(">ul")
+        .slideToggle("fast", function () {
+          // Resize blip
+          var activeItem = $(this).parent();
+          if (activeItem.length) {
+            resizeTallBlip(activeItem);
+          }
+        });
     }
-  );
+  });
 
   // !INNER ACCORDION
   $(".tray .nav-item-parent.has-submenu .btn-expander").on(
@@ -980,7 +972,6 @@ export function initTray() {
           activeItem.parents(".main-nav-list").offset().top,
         height: activeItem.outerHeight(),
         left: activeItem.offset().left - $(".main-nav-list").offset().left,
-
       });
     }
   }, 500);
