@@ -130,6 +130,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
           var $el = $(this);
           $el.text("Pūaha—Student Portal");
           $el.attr("href", "https://puaha.wgtn.ac.nz/");
+          $el.attr("title", "Pūaha—Student Portal");
         }
       });
     }
@@ -141,6 +142,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         var $el = $(this);
         $el.text("Pūaha—Student Portal");
         $el.attr("href", "https://puaha.wgtn.ac.nz/");
+        $el.attr("title", "Pūaha—Student Portal");
       }
     });
   }
