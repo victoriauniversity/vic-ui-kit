@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, May 13, 2022, 10:04 AM */
+/** Version: 0.10.13 | Monday, May 16, 2022, 10:28 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -16055,8 +16055,8 @@ footer .footer-secondary.dark .footer-num {
           flex-direction: column;
   -webkit-box-pack: center;
           justify-content: center;
-  -webkit-clip-path: polygon(0% 0px, 100% 0%, 98.13% 101.58%, 11px 101.58%);
-          clip-path: polygon(0% 0px, 100% 0%, 98.13% 101.58%, 11px 101.58%);
+  -webkit-clip-path: polygon(0% -2px, 100% 0%, 100% 100%, 11px 101%);
+          clip-path: polygon(0% -2px, 100% 0%, 100% 100%, 11px 101%);
   background-color: #EEE;
   -webkit-box-flex: 1;
           flex: 1 0 10%;
@@ -17585,7 +17585,6 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
 @-webkit-keyframes draw-down {
   0% {
     visibility: hidden;
-    opacity: 0;
     z-index: 0;
     max-height: 0;
     padding-top: 0;
@@ -17594,18 +17593,15 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
   }
   50% {
     visibility: visible;
-    opacity: 1;
     z-index: 999;
   }
   100% {
-    padding: 1rem 5rem 2rem;
   }
 }
 
 @keyframes draw-down {
   0% {
     visibility: hidden;
-    opacity: 0;
     z-index: 0;
     max-height: 0;
     padding-top: 0;
@@ -17614,11 +17610,9 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
   }
   50% {
     visibility: visible;
-    opacity: 1;
     z-index: 999;
   }
   100% {
-    padding: 1rem 5rem 2rem;
   }
 }
 
@@ -17630,10 +17624,10 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
   }
   50% {
     overflow: hidden;
+    opacity: 0 !important;
   }
   100% {
     visibility: hidden;
-    opacity: 0;
     max-height: 0;
     display: none;
   }
@@ -17647,10 +17641,10 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
   }
   50% {
     overflow: hidden;
+    opacity: 0 !important;
   }
   100% {
     visibility: hidden;
-    opacity: 0;
     max-height: 0;
     display: none;
   }
@@ -17773,8 +17767,10 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
     z-index: 0;
     color: #115737;
     cursor: pointer;
-    -webkit-transition: all ease 0.3s;
-    transition: all ease 0.3s;
+    -webkit-transition: -webkit-transform cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+    transition: -webkit-transform cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+    transition: transform cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+    transition: transform cubic-bezier(0.22, 1, 0.36, 1) 0.3s, -webkit-transform cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
     -webkit-transform: rotateZ(-90deg);
             transform: rotateZ(-90deg);
   }
@@ -17803,16 +17799,30 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
   .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li.expanded-nav::after {
     -webkit-transform: rotateZ(0deg);
             transform: rotateZ(0deg);
+    color: #3E9C4F;
+  }
+  .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li.expanded-nav > a {
+    color: #3E9C4F;
   }
   .show-mega-menu-top .mega-sub-menu .mega-menu-top-level.tereo-nav .tereo-title {
     display: block;
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer {
-    -webkit-animation: draw-up 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-            animation: draw-up 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
+    transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
     overflow: hidden;
     max-height: 0;
-    display: none;
+    position: absolute;
+    top: var(--horizontal-nav-offset);
+    left: 0;
+    width: 100%;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: start;
+            justify-content: flex-start;
+    padding: 0 5rem;
+    opacity: 0;
+    background-color: #FFF;
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer:before {
     content: "";
@@ -17835,17 +17845,15 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
     display: block;
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer.horizontal-drawer-expanded {
-    display: -webkit-box;
-    display: flex;
-    padding: 1rem 5rem 2rem;
-    -webkit-animation: draw-down 0.5s ease;
-            animation: draw-down 0.5s ease;
+    z-index: 100;
+    opacity: 1;
+    -webkit-animation: draw-down 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            animation: draw-down 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     max-height: 700px;
     border: 1px solid #CCC;
     border-top: none;
-    -webkit-box-pack: start;
-            justify-content: flex-start;
     border-bottom: 4px solid #115737;
+    padding: 1rem 5rem 2rem;
     -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px;
   }
@@ -17929,7 +17937,6 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
-    line-height: 1.5;
     text-decoration: inherit;
     text-rendering: optimizeLegibility;
     text-transform: none;
@@ -18124,15 +18131,6 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
   .show-mega-menu-top .mega-sub-menu .mega-menu-top-level .has-submenu.expanded > ul > li {
     border-color: #CCC;
   }
-}
-
-.horizontal-drawer-expanded {
-  position: absolute;
-  background-color: #FFF;
-  width: 100%;
-  top: var(--horizontal-nav-offset);
-  left: 0;
-  z-index: 100;
 }
 
 /*Toolkit Overrides*/
