@@ -8,7 +8,6 @@
 @keyframes draw-down {
   0% {
     visibility: hidden;
-    opacity: 0;
     z-index: 0;
     max-height: 0;
     padding-top: 0;
@@ -18,12 +17,10 @@
 
   50% {
     visibility: visible;
-    opacity: 1;
     z-index: 999;
   }
 
   100% {
-    padding: 1rem 5rem 2rem;
   }
 }
 
@@ -36,11 +33,11 @@
 
   50% {
     overflow: hidden;
+    opacity: 0 !important;
   }
 
   100% {
     visibility: hidden;
-    opacity: 0;
     max-height: 0;
     display: none;
   }
@@ -192,7 +189,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
           z-index: 0;
           color: $green-brand;
           cursor: pointer;
-          transition: all ease 0.3s;
+          transition: transform $easing 0.3s;
           transform: rotateZ(-90deg);
         }
 
@@ -228,6 +225,11 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
         &.expanded-nav {
           &::after {
             transform: rotateZ(0deg);
+            color: $green-brand-bright;
+          }
+
+          > a {
+            color: $green-brand-bright;
           }
         }
       }
@@ -239,10 +241,20 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .sidemenu-drawer {
-      animation: draw-up 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+      transition: all $easing 0.5s;
+      // animation: draw-up 0.5s cubic-bezier(0.77, 0, 0.175, 1);
       overflow: hidden;
       max-height: 0;
-      display: none;
+      position: absolute;
+      // make top Dynamic width
+      top: var(--horizontal-nav-offset);
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      padding: 0 5rem;
+      opacity: 0;
+      background-color: $white;
 
       &:before {
         content: "";
@@ -269,14 +281,14 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
       }
 
       &.horizontal-drawer-expanded {
-        display: flex;
-        padding: 1rem 5rem 2rem;
-        animation: draw-down 0.5s ease;
+        z-index: 100;
+        opacity: 1;
+        animation: draw-down 0.3s $easing;
         max-height: 700px;
         border: 1px solid $grey-silver;
         border-top: none;
-        justify-content: flex-start;
         border-bottom: 4px solid $green-brand;
+        padding: 1rem 5rem 2rem;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px;
         &:before {
           max-height: 1000px;
@@ -362,7 +374,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
                 font-style: normal;
                 font-weight: normal;
                 font-variant: normal;
-                line-height: 1.5;
                 text-decoration: inherit;
                 text-rendering: optimizeLegibility;
                 text-transform: none;
@@ -613,13 +624,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .horizontal-drawer-expanded {
-  position: absolute;
-  background-color: $white;
-  width: 100%;
-  // make top Dynamic with
-  top: var(--horizontal-nav-offset);
-  left: 0;
-  z-index: 100;
 }
 
 // !RHS TRAY
@@ -892,8 +896,6 @@ body {
   height: auto;
   top: initial;
 }
-
-
 
 .menu-container {
   .info-message {

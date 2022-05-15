@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, May 13, 2022, 10:04 AM */
+/** Version: 0.10.13 | Monday, May 16, 2022, 10:28 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14043,7 +14043,7 @@ function initTray() {
 
     if (e.which !== 9 && e.which !== 16) {
       if (!e.target.className.includes("selector") && $(".custom-dropdown .selector").hasClass("open") || !e.target.className.includes("selector") && e.key == "Escape") {
-        $(".custom-dropdown .selector").next().slideUp();
+        $(".custom-dropdown .selector").next().slideUp("fast");
         $(".custom-dropdown .selector").removeClass("open");
       }
     }
@@ -14431,8 +14431,8 @@ function initTray() {
         } // Show inner tab notifcation count
 
 
-        $(".tabs .notification").show();
-        $(".tabs .notification").text(notificationCount);
+        $("nav.tray .tabs .notification").show();
+        $("nav.tray .tabs .notification").text(notificationCount);
       }
     }
   }); // !Listen to local storage on CURRENT PAGE
@@ -14459,8 +14459,8 @@ function initTray() {
         } // Show inner tab notifcation count
 
 
-        $(".tabs .notification").show();
-        $(".tabs .notification").text(notificationCount);
+        $("nav.tray .tabs .notification").show();
+        $("nav.tray .tabs .notification").text(notificationCount);
       }
     } // }
 
@@ -14597,10 +14597,10 @@ function initTray() {
   }; // !TAB BLIP MOVEMENT LOGIC
 
 
-  var $tabBlip = $(".tabs .blip");
-  $(".tabs .tab").on("click keyup", function (e) {
+  var $tabBlip = $("nav.tray .tabs .blip");
+  $("nav.tray .tabs .tab").on("click keyup", function (e) {
     if (e.which == 13 || e.which == 1) {
-      $(".tabs .tab").removeClass("active");
+      $("nav.tray .tabs .tab").removeClass("active");
       $(this).addClass("active"); // Hide notification is there is one
 
       $(".menu-notifcations").hide();
@@ -14619,28 +14619,30 @@ function initTray() {
       }
     }
   });
-  $(".tabs .tab-background").on("mouseover click", function () {
-    $tabBlip.css({
-      left: $(this).offset().left - $(".tabs").offset().left,
-      width: $(this).outerWidth()
-    });
+  $("nav.tray .tabs > div").on("mouseover click keyup", function (e) {
+    if (e.type == "mouseover" || e.type == "keyup" && e.which == 13) {
+      $tabBlip.css({
+        left: $(this).offset().left - $("nav.tray .tabs").offset().left,
+        width: $(this).outerWidth()
+      });
+    }
   }); // Initial position
 
-  var activeItem = $(".tabs .tab.active").parent();
+  var activeItem = $("nav.tray .tabs .active").parent();
 
   if (activeItem.length) {
     $tabBlip.css({
-      left: activeItem.offset().left - $(".tabs").offset().left,
+      left: activeItem.offset().left - $("nav.tray .tabs").offset().left,
       width: activeItem.outerWidth()
     });
   }
 
-  $(".tabs").on("mouseout", function () {
-    var activeItem = $(".tabs .tab.active").parent();
+  $("nav.tray .tabs").on("mouseout", function () {
+    var activeItem = $("nav.tray .tabs .active").parent();
 
     if (activeItem.length) {
       $tabBlip.css({
-        left: activeItem.offset().left - $(".tabs").offset().left,
+        left: activeItem.offset().left - $("nav.tray .tabs").offset().left,
         width: activeItem.outerWidth()
       });
     }
