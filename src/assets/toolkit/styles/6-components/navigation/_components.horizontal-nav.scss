@@ -28,12 +28,10 @@
   0% {
     visibility: visible;
     opacity: 1;
-    display: block;
   }
 
   50% {
     overflow: hidden;
-    opacity: 0 !important;
   }
 
   100% {
@@ -110,12 +108,15 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
         background-color: #fff;
         left: 0;
         transition: all ease 0.3s;
+        clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
+        // clip-path: polygon(0 0, 100% 0, 83% 48%, 100% 100%, 0 100%, 11% 47%);
+
         // &::before,
         // &::after {
         //   width: 20px;
         //   height: 10px;
         //   top: 5px;
-        //   background-color: #eee;
+        //   background-color: #fff;
         //   transform: rotateZ(70deg);
         //   content: "";
         //   position: absolute;
@@ -241,7 +242,8 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .sidemenu-drawer {
-      transition: all $easing 0.5s;
+      transition: max-height $easing 0.5s, opacity $easing 0.8s,
+        padding-top $easing 0.5s, padding-bottom $easing 0.5s;
       // animation: draw-up 0.5s cubic-bezier(0.77, 0, 0.175, 1);
       overflow: hidden;
       max-height: 0;
@@ -253,8 +255,8 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
       display: flex;
       justify-content: flex-start;
       padding: 0 5rem;
-      opacity: 0;
       background-color: $white;
+      opacity: 0;
 
       &:before {
         content: "";
@@ -283,9 +285,8 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
       &.horizontal-drawer-expanded {
         z-index: 100;
         opacity: 1;
-        animation: draw-down 0.3s $easing;
+        animation: draw-down 0.5s $easing;
         max-height: 700px;
-        border: 1px solid $grey-silver;
         border-top: none;
         border-bottom: 4px solid $green-brand;
         padding: 1rem 5rem 2rem;
@@ -420,6 +421,8 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
           > li {
             border-bottom: 1px $grey-alto solid;
             flex-wrap: wrap;
+       
+     
             &.active > a {
               padding-left: 0;
 
@@ -621,9 +624,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
       }
     }
   }
-}
-
-.horizontal-drawer-expanded {
 }
 
 // !RHS TRAY

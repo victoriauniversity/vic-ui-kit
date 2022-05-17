@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, May 16, 2022, 10:28 AM */
+/** Version: 0.10.13 | Tuesday, May 17, 2022, 1:59 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -17620,11 +17620,9 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
   0% {
     visibility: visible;
     opacity: 1;
-    display: block;
   }
   50% {
     overflow: hidden;
-    opacity: 0 !important;
   }
   100% {
     visibility: hidden;
@@ -17637,11 +17635,9 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
   0% {
     visibility: visible;
     opacity: 1;
-    display: block;
   }
   50% {
     overflow: hidden;
-    opacity: 0 !important;
   }
   100% {
     visibility: hidden;
@@ -17715,6 +17711,8 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
     left: 0;
     -webkit-transition: all ease 0.3s;
     transition: all ease 0.3s;
+    -webkit-clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
+            clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
   }
   .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li {
     border-bottom: none;
@@ -17808,8 +17806,8 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
     display: block;
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer {
-    -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
-    transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
+    -webkit-transition: max-height cubic-bezier(0.22, 1, 0.36, 1) 0.5s, opacity cubic-bezier(0.22, 1, 0.36, 1) 0.8s, padding-top cubic-bezier(0.22, 1, 0.36, 1) 0.5s, padding-bottom cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
+    transition: max-height cubic-bezier(0.22, 1, 0.36, 1) 0.5s, opacity cubic-bezier(0.22, 1, 0.36, 1) 0.8s, padding-top cubic-bezier(0.22, 1, 0.36, 1) 0.5s, padding-bottom cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
     overflow: hidden;
     max-height: 0;
     position: absolute;
@@ -17821,8 +17819,8 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
     -webkit-box-pack: start;
             justify-content: flex-start;
     padding: 0 5rem;
-    opacity: 0;
     background-color: #FFF;
+    opacity: 0;
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer:before {
     content: "";
@@ -17847,10 +17845,9 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer.horizontal-drawer-expanded {
     z-index: 100;
     opacity: 1;
-    -webkit-animation: draw-down 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-            animation: draw-down 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    -webkit-animation: draw-down 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            animation: draw-down 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     max-height: 700px;
-    border: 1px solid #CCC;
     border-top: none;
     border-bottom: 4px solid #115737;
     padding: 1rem 5rem 2rem;
