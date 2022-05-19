@@ -533,7 +533,7 @@ export function initTray() {
     function (e) {
       if (e.detail.key.includes("saved")) {
         console.log(e.detail);
-        checkSavedItems(e.detail.key);
+        // checkSavedItems(e.detail.key);
         notificationCount++;
 
         if (notificationCount > 0) {
@@ -569,15 +569,21 @@ export function initTray() {
   // !Temporary override of toolkit hiding
   $(".sidemenu  ul > .has-submenu").css("display", "flex");
 
-  const formatAsDate = function (date) {
+  const formatAsDate = function (date, locale) {
     var arr = date.split("");
     var year = arr.slice(0, 4).join("");
     var month = arr.slice(4, 6).join("");
     var day = arr.slice(6, 8).join("");
 
-    var dateString = year + " " + month + " " + day;
-    dateString = new Date(dateString).toLocaleDateString("en-UK");
-    return dateString;
+    if (locale == "us") {
+      var dateString = year + " " + month + " " + day;
+      dateString = new Date(dateString);
+      return dateString;
+    } else {
+      var dateString = year + " " + month + " " + day;
+      dateString = new Date(dateString).toLocaleDateString("en-UK");
+      return dateString;
+    }
   };
 
   // !SAVED EVENTS LISTS
@@ -627,7 +633,6 @@ export function initTray() {
               .text(items.length);
 
             // Append accordion buttons
-
             $("." + nameMaps[item] + "-list").append(
               "<div class='accordion-buttons'></div>"
             );
@@ -660,11 +665,16 @@ export function initTray() {
                     $(
                       "<li> <a target='_blank' href='" +
                         e.liveUrl +
-                        "'><span class='item-dates'>" +
-                        formatAsDate(e.metaData.O) +
+                        "'><span data-url='" +
+                        e.liveUrl +
+                        "' data-date='" +
+                        e.metaData.O +
+                        "' class='item-dates'>" +
+                        formatAsDate(e.metaData.O, "uk") +
                         "</span>" +
                         e.title +
-                        "</a></li>"
+                        "</a> " +
+                        "<button title='Remove this item from saved list' class='no-icon remove-item'><i class='icons8-close'></i></button></li>"
                     ).insertBefore(
                       $("." + nameMaps[item] + "-list").find(
                         ".accordion-buttons"
@@ -964,8 +974,8 @@ export function initTray() {
     toggleTray();
   }
 
-  // Initial blip position
   setTimeout(() => {
+    // Initial blip position
     var activeItem = $(".main-nav-list > li.active");
     if (activeItem.length) {
       $tallBlip.css({
@@ -976,5 +986,39 @@ export function initTray() {
         left: activeItem.offset().left - $(".main-nav-list").offset().left,
       });
     }
+
+    // Prune events
+    var dateNow = new Date();
+    $(".tray-content .events-list li ").each(function (e) {
+      var eventExpiryMessage = $(
+        "<div class='expired-text'>This event has expired, we have removed it for you :)</div>"
+      );
+      var $el = $(this).find("a span");
+      if (dateNow > formatAsDate($el.attr("data-date"), "us")) {
+        $el.append(eventExpiryMessage);
+        $el.parent().attr("target", "");
+        $el.parent().parent().addClass("expired");
+      }
+    });
+
+    // TODO: Make pruning automatic, display message on open of event-list
+
+    $(".tray-content .events-list li .remove-item").on("click", function () {
+      var $el = $(this);
+      var localObject = JSON.parse(localStorage.getItem("savedEvents"));
+
+      // Return array of items where displayUrl !== clicked li href
+      var filterdLocalObject = localObject.filter(function (item) {
+        return item.displayUrl !== $el.prev().attr("href");
+      });
+      console.log(filterdLocalObject);
+      $el.parent().slideUp();
+      $el
+        .parents(".item-list")
+        .prev()
+        .find(".count")
+        .text(filterdLocalObject.length);
+      localStorage.setItem("savedEvents", JSON.stringify(filterdLocalObject));
+    });
   }, 500);
 }

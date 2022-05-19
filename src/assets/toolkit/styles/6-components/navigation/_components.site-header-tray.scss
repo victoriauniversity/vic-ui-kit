@@ -933,9 +933,6 @@ $tray-width-desktop: 400px;
           }
         }
 
-        .tray-search-bar {
-        }
-
         .tray-background {
           // background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
           // background-repeat: repeat-y;
@@ -1569,6 +1566,10 @@ $tray-width-desktop: 400px;
         }
 
         .tray-search-bar {
+          padding: 20px 15px;
+          background-color: $grey-gallery;
+          border-bottom: 2px $grey-alto solid;
+
           form {
             border-radius: $radius;
 
@@ -1651,7 +1652,6 @@ $tray-width-desktop: 400px;
     .header-search {
       form {
         border-radius: $radius;
-        // border: 1px solid #2B694D;
 
         .search-input {
           border-radius: $radius;
@@ -1673,66 +1673,6 @@ $tray-width-desktop: 400px;
         }
       }
     }
-
-    // &.header-tray {
-    //   .tray-content {
-    //     background-color: $white;
-
-    //     &:before {
-    //       content: "";
-    //       height: calc(100% + 1rem);
-    //       width: 3px;
-    //       background: $green-top-gradient;
-    //       display: block;
-    //       position: absolute;
-    //       left: 0;
-    //       top: -1rem;
-    //     }
-
-    //     .tray-main-nav {
-    //       li.main-nav-item {
-    //         border-bottom: 1px solid $black-tundora !important;
-
-    //         a {
-    //           color: $black-tundora;
-    //         }
-
-    //         &:not(:last-child) {
-    //         }
-    //       }
-    //     }
-
-    //     .tray-search-bar {
-    //       form {
-    //         border-radius: $radius;
-    //         // border: 1px solid #2B694D;
-
-    //         .search-input {
-    //           border-radius: $radius;
-    //           background-color: $white;
-    //           border: 1px solid $black-tundora;
-
-    //           &::placeholder {
-    //             /* Chrome, Firefox, Opera, Safari 10.1+ */
-    //             color: $grey-chalice;
-    //             opacity: 1;
-    //             /* Firefox */
-    //           }
-    //         }
-
-    //         .submit-button {
-    //           .icon-search {
-    //             color: $black-tundora;
-    //           }
-    //         }
-    //       }
-    //     }
-
-    //     .tray-close {
-    //       background-color: $brand;
-    //     }
-    //   }
-    // }
   }
 
   &.subjects-header {
@@ -1862,7 +1802,6 @@ $tray-width-desktop: 400px;
   background-color: $grey-gallery;
   color: $black-brand;
   display: flex;
-  margin-bottom: 1rem;
   text-transform: uppercase;
   font-weight: 400;
   position: relative;
@@ -2057,11 +1996,46 @@ $tray-width-desktop: 400px;
 
     li {
       line-height: 1.1;
+      position: relative;
+      &.expired {
+        background-color: #eccdcd;
+        a {
+          pointer-events: none;
+        }
+        .expired-text {
+          color: #831212;
+        }
+      }
+      button.remove-item {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translate(0, -50%);
+        padding: 5px 10px;
+        border-radius: 100px;
+        opacity: 0;
+        transition: opacity ease 0.2s;
+        @include breakpoint($until: desktop) {
+          opacity: 1;
+        }
+        &:active,
+        &:focus {
+          opacity: 1;
+        }
+      }
+      &:hover,
+      &:active,
+      &:focus {
+        button.remove-item {
+          opacity: 1;
+        }
+      }
       a {
         padding: 8px 10px;
         display: block;
         text-decoration: none;
         border-bottom: 2px #eee solid;
+        padding-right: 50px;
 
         &:hover {
           background-color: #f7f7f7;
