@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         if (text.includes("myTools")) {
           var $el = $(this);
           $el.text("Pūaha—Student Portal");
-          $el.attr("href", "https://puaha.wgtn.ac.nz/");
+          $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
           $el.attr("title", "Pūaha—Student Portal");
         }
       });
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       if (text.includes("myTools")) {
         var $el = $(this);
         $el.text("Pūaha—Student Portal");
-        $el.attr("href", "https://puaha.wgtn.ac.nz/");
+        $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
         $el.attr("title", "Pūaha—Student Portal");
       }
     });
@@ -158,7 +158,7 @@ export function initToolbarUrlListeners() {
 
   UrlManager.onLoadWhenQueryExists("mytools", () => {
     if (window.toolkitToolbarLoader)
-      document.location.href = "https://puaha.wgtn.ac.nz/";
+      document.location.href = "https://puaha.wgtn.ac.nz/signin";
   });
 }
 

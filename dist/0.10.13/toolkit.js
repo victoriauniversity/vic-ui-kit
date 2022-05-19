@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, May 13, 2022, 11:18 AM */
+/** Version: 0.10.13 | Thursday, May 19, 2022, 2:05 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15131,7 +15131,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         if (text.includes("myTools")) {
           var $el = $(this);
           $el.text("Pūaha—Student Portal");
-          $el.attr("href", "https://puaha.wgtn.ac.nz/");
+          $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
           $el.attr("title", "Pūaha—Student Portal");
         }
       });
@@ -15143,7 +15143,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       if (text.includes("myTools")) {
         var $el = $(this);
         $el.text("Pūaha—Student Portal");
-        $el.attr("href", "https://puaha.wgtn.ac.nz/");
+        $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
         $el.attr("title", "Pūaha—Student Portal");
       }
     });
@@ -15156,7 +15156,7 @@ function initToolbarUrlListeners() {
     if (window.toolkitToolbarLoader) window.toolkitToolbarLoader("https://www.wgtn.ac.nz/api/toolbar/staff");
   });
   urls.onLoadWhenQueryExists("mytools", function () {
-    if (window.toolkitToolbarLoader) document.location.href = "https://puaha.wgtn.ac.nz/";
+    if (window.toolkitToolbarLoader) document.location.href = "https://puaha.wgtn.ac.nz/signin";
   });
 } // eslint-disable-next-line import/prefer-default-export
 
