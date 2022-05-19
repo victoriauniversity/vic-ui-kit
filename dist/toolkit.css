@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, May 17, 2022, 1:59 PM */
+/** Version: 0.10.13 | Friday, May 20, 2022, 10:40 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -16929,6 +16929,12 @@ footer .footer-secondary.dark .footer-num {
   right: 0;
 }
 
+.main-site-header.white.header-tray .tray-content .tray-search-bar {
+  padding: 20px 15px;
+  background-color: #EEE;
+  border-bottom: 2px #DDD solid;
+}
+
 .main-site-header.white.header-tray .tray-content .tray-search-bar form {
   border-radius: 0.25rem;
 }
@@ -17210,7 +17216,6 @@ footer .footer-secondary.dark .footer-num {
   color: #1D2624;
   display: -webkit-box;
   display: flex;
-  margin-bottom: 1rem;
   text-transform: uppercase;
   font-weight: 400;
   position: relative;
@@ -17449,6 +17454,46 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
 
 .tray .saved-items .item-list li {
   line-height: 1.1;
+  position: relative;
+}
+
+.tray .saved-items .item-list li.expired {
+  background-color: #eccdcd;
+}
+
+.tray .saved-items .item-list li.expired a {
+  pointer-events: none;
+}
+
+.tray .saved-items .item-list li.expired .expired-text {
+  color: #831212;
+}
+
+.tray .saved-items .item-list li button.remove-item {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  padding: 5px 10px;
+  border-radius: 100px;
+  opacity: 0;
+  -webkit-transition: opacity ease 0.2s;
+  transition: opacity ease 0.2s;
+}
+
+@media (max-width: 60.99em) {
+  .tray .saved-items .item-list li button.remove-item {
+    opacity: 1;
+  }
+}
+
+.tray .saved-items .item-list li button.remove-item:active, .tray .saved-items .item-list li button.remove-item:focus {
+  opacity: 1;
+}
+
+.tray .saved-items .item-list li:hover button.remove-item, .tray .saved-items .item-list li:active button.remove-item, .tray .saved-items .item-list li:focus button.remove-item {
+  opacity: 1;
 }
 
 .tray .saved-items .item-list li a {
@@ -17456,6 +17501,7 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
   display: block;
   text-decoration: none;
   border-bottom: 2px #eee solid;
+  padding-right: 50px;
 }
 
 .tray .saved-items .item-list li a:hover {
