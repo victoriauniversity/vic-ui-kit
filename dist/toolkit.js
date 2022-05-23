@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, May 20, 2022, 10:40 AM */
+/** Version: 0.10.13 | Monday, May 23, 2022, 12:33 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14808,7 +14808,7 @@ function initTray() {
 
     var dateNow = new Date();
     $(".tray-content .events-list li ").each(function (e) {
-      var eventExpiryMessage = $("<div class='expired-text'>This event has expired, we have removed it for you :)</div>");
+      var eventExpiryMessage = $("<div class='expired-text'>This event has expired</div>");
       var $el = $(this).find("a span");
 
       if (dateNow > formatAsDate($el.attr("data-date"), "us")) {
