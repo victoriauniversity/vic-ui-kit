@@ -179,7 +179,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 
         .tereo-title {
           color: $green-brand;
-          font-weight: 300;
           font-size: 16px;
           margin-bottom: 6px;
         }
@@ -884,5 +883,106 @@ body {
     color: #222;
     margin-top: 1rem;
     line-height: 1.2;
+  }
+}
+
+// Custom style overrides
+
+body {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+
+  // Typography
+  .formatting h1,
+  h1,
+  h2 {
+    font-weight: 300;
+  }
+
+  // Blocks
+  .promo-panel figure {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  }
+  .block {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .card-panel .card,
+  .search-panel form.wide-search-bar {
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  }
+  .search-panel form .group input[type="text"] {
+    height: initial;
+  }
+
+  // Buttons
+  .hub {
+    button.primary,
+    .button.primary {
+      border: 2px $green-brand-bright solid;
+      border-radius: 0;
+      font-weight: 400;
+      color: $black-brand;
+      background-color: #fff;
+      // background-color: $green-brand-bright;
+
+      &:hover,
+      &:active,
+      &:focus {
+        // background-color: darken($color: $green-brand-bright, $amount: 5);
+        background-color: $green-brand-bright;
+        color: #fff;
+      }
+    }
+    .button,
+    button {
+      border-radius: 0;
+      font-weight: 400;
+      border: 2px $black-brand solid;
+      background-color: #fff;
+      &:hover,
+      &:active,
+      &:focus {
+        // background-color: darken($color: $green-brand-bright, $amount: 5);
+        background-color: $black-brand;
+        color: #fff;
+      }
+    }
+
+    button:not(.flat):not(.no-icon)::after, .button:not(.flat):not(.no-icon)::after {
+      content: "\f15e";
+      font-family: "Favorites";
+      vertical-align: -0.1em;
+    }
+  }
+
+  // Carousel
+  .carousel-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0%, -50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 999;
+    padding: 0 10px;
+    .next,
+    .previous {
+      border-radius: 100px;
+      padding: 10px 14px;
+      background-color: rgba(200, 200, 200, 0.9);
+      color: #000;
+      border: none;
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: $grey;
+        color: #000;
+      }
+    }
+  }
+  .promo-panel {
+    position: relative;
   }
 }
