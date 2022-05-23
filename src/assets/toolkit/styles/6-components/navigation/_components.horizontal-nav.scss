@@ -314,7 +314,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
           .tereo-title {
             color: $green-brand;
             line-height: 1.2;
-            font-weight: 300;
             &:after {
               content: " / ";
               margin-right: 10px;
@@ -899,8 +898,12 @@ body {
   }
 
   // Blocks
-  .promo-panel figure {
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  .formatting {
+    .promo-panel figure,
+    figure {
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+      border-top: 4px $green-brand-bright solid;
+    }
   }
   .block {
     padding-top: 2rem;
@@ -910,6 +913,7 @@ body {
   .search-panel form.wide-search-bar {
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    border-top: 4px $green-brand-bright solid;
   }
   .search-panel form .group input[type="text"] {
     height: initial;
@@ -949,7 +953,8 @@ body {
       }
     }
 
-    button:not(.flat):not(.no-icon)::after, .button:not(.flat):not(.no-icon)::after {
+    button:not(.flat):not(.no-icon)::after,
+    .button:not(.flat):not(.no-icon)::after {
       content: "\f15e";
       font-family: "Favorites";
       vertical-align: -0.1em;
