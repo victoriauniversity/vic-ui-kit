@@ -991,7 +991,7 @@ export function initTray() {
     var dateNow = new Date();
     $(".tray-content .events-list li ").each(function (e) {
       var eventExpiryMessage = $(
-        "<div class='expired-text'>This event has expired, we have removed it for you :)</div>"
+        "<div class='expired-text'>This event has expired</div>"
       );
       var $el = $(this).find("a span");
       if (dateNow > formatAsDate($el.attr("data-date"), "us")) {

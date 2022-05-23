@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, May 20, 2022, 10:40 AM */
+/** Version: 0.10.13 | Monday, May 23, 2022, 12:33 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -10185,6 +10185,12 @@ aside .promo h3::before {
   outline: 2px dotted #1D2624;
 }
 
+.main-site-header li.nav-item-parent > a:active, .main-site-header li.nav-item-parent > a:focus,
+#mega-nav li.nav-item-parent > a:active,
+#mega-nav li.nav-item-parent > a:focus {
+  outline: initial;
+}
+
 .site-header,
 .main-site-header {
   padding-top: 0.5rem;
@@ -17765,8 +17771,6 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
     left: 0;
     -webkit-transition: all ease 0.3s;
     transition: all ease 0.3s;
-    -webkit-clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
-            clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
   }
   .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li {
     border-bottom: none;
@@ -17909,8 +17913,9 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
             box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px;
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer.horizontal-drawer-expanded:before {
-    max-height: 1000px;
     min-height: 500px;
+    height: 100%;
+    max-height: 1000px;
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .close-draw {
     position: absolute;
@@ -18052,6 +18057,9 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
     padding: 2px;
     padding-left: 20px;
     position: relative;
+  }
+  .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul > li > ul > li:last-of-type {
+    margin-bottom: 10px;
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul > li > ul > li > a {
     padding: 5px 0;
