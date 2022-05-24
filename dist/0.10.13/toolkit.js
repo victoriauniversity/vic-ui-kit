@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, May 24, 2022, 10:58 AM */
+/** Version: 0.10.13 | Tuesday, May 24, 2022, 2:51 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -16801,7 +16801,7 @@ if (document.getElementsByClassName("calendar-cards").length > 0) {
 } // Carousel
 
 
-var arrayOfPhotos = ["https://www.wgtn.ac.nz/__data/assets/image/0005/1756517/globe-top.jpg", "https://www.wgtn.ac.nz/__data/assets/image/0010/1750339/sleep-mat-banner-minds-v3.jpg", "https://www.wgtn.ac.nz/__data/assets/image/0006/1721877/windy-banner.jpg", "https://www.wgtn.ac.nz/__data/assets/image/0010/560773/MaoriStudiesBanner.jpg", "https://www.wgtn.ac.nz/__data/assets/image/0007/1873258/ai-fingers.jpg"];
+var arrayOfPhotos = ["https://www.wgtn.ac.nz/__data/assets/image/0010/1750339/sleep-mat-banner-minds-v3.jpg", "https://www.wgtn.ac.nz/__data/assets/image/0006/1721877/windy-banner.jpg", "https://www.wgtn.ac.nz/__data/assets/image/0010/560773/MaoriStudiesBanner.jpg", "https://www.wgtn.ac.nz/__data/assets/image/0007/1873258/ai-fingers.jpg", "https://www.wgtn.ac.nz/__data/assets/image/0005/1756517/globe-top.jpg"];
 var count = -1;
 external_jQuery_default()(".carousel-controls .next").on("click", function (e) {
   console.log(e);
