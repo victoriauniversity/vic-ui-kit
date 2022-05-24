@@ -338,6 +338,7 @@ export function initTray() {
     // console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded);
 
     // !EXPAND MENU ON HOVER
+
     menuItems.on("mouseenter click", function (e) {
       let index = $(this).index() - 2;
       console.log(
@@ -357,7 +358,6 @@ export function initTray() {
       // }
 
       // console.log( $(this).parent() );
-
       if ($navItem.hasClass("expanded-nav")) {
         // If nav item is already expanded... close it
         horizontalMenuExpanded = !horizontalMenuExpanded;
