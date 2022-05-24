@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, May 24, 2022, 12:40 PM */
+/** Version: 0.10.13 | Tuesday, May 24, 2022, 1:13 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15121,23 +15121,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
   waitForElm(".course-item-list").then(function () {
     // console.log('hide');
     hideCourseLevies();
-  }); // Check toolbar to ensure myTools has been updated to Puaha
+  });
+}); // Check toolbar to ensure myTools has been updated to Puaha
 
-  if (document.location.pathname.split("/")[1] == "courses" || document.location.pathname.split("/")[1] == "explore") {
-    if ($("header ul[role=menubar]")) {
-      $("header ul[role=menubar] > li > a").each(function (e) {
-        var text = $(this).text(); // Update link if mytools
-
-        if (text.includes("myTools")) {
-          var $el = $(this);
-          $el.text("Pūaha—Student Portal");
-          $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
-          $el.attr("title", "Pūaha—Student Portal");
-        }
-      });
-    }
-  } else {
-    $("header .menu-bar > a").each(function (e) {
+if (document.location.pathname.split("/")[1] == "courses" || document.location.pathname.split("/")[1] == "explore") {
+  if ($("header ul[role=menubar]")) {
+    $("header ul[role=menubar] > li > a").each(function (e) {
       var text = $(this).text(); // Update link if mytools
 
       if (text.includes("myTools")) {
@@ -15148,8 +15137,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
       }
     });
   }
-});
+} else {
+  $("header .menu-bar > a").each(function (e) {
+    var text = $(this).text(); // Update link if mytools
+
+    if (text.includes("myTools")) {
+      var $el = $(this);
+      $el.text("Pūaha—Student Portal");
+      $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
+      $el.attr("title", "Pūaha—Student Portal");
+    }
+  });
+}
 /* END Hide levy info on courses page */
+
 
 function initToolbarUrlListeners() {
   urls.onLoadWhenQueryExists("toolbar", function () {
