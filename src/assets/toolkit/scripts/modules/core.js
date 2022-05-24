@@ -116,26 +116,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
     // console.log('hide');
     hideCourseLevies();
   });
+});
 
-  // Check toolbar to ensure myTools has been updated to Puaha
-  if (
-    document.location.pathname.split("/")[1] == "courses" ||
-    document.location.pathname.split("/")[1] == "explore"
-  ) {
-    if ($("header ul[role=menubar]")) {
-      $("header ul[role=menubar] > li > a").each(function (e) {
-        var text = $(this).text();
-        // Update link if mytools
-        if (text.includes("myTools")) {
-          var $el = $(this);
-          $el.text("Pūaha—Student Portal");
-          $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
-          $el.attr("title", "Pūaha—Student Portal");
-        }
-      });
-    }
-  } else {
-    $("header .menu-bar > a").each(function (e) {
+// Check toolbar to ensure myTools has been updated to Puaha
+if (
+  document.location.pathname.split("/")[1] == "courses" ||
+  document.location.pathname.split("/")[1] == "explore"
+) {
+  if ($("header ul[role=menubar]")) {
+    $("header ul[role=menubar] > li > a").each(function (e) {
       var text = $(this).text();
       // Update link if mytools
       if (text.includes("myTools")) {
@@ -146,7 +135,18 @@ document.addEventListener("DOMContentLoaded", function (event) {
       }
     });
   }
-});
+} else {
+  $("header .menu-bar > a").each(function (e) {
+    var text = $(this).text();
+    // Update link if mytools
+    if (text.includes("myTools")) {
+      var $el = $(this);
+      $el.text("Pūaha—Student Portal");
+      $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
+      $el.attr("title", "Pūaha—Student Portal");
+    }
+  });
+}
 
 /* END Hide levy info on courses page */
 
