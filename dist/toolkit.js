@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, May 25, 2022, 3:11 PM */
+/** Version: 0.10.13 | Wednesday, May 25, 2022, 3:14 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15616,7 +15616,7 @@ function waitForElm(selector) {
 var searchParams = new URLSearchParams(window.location.search);
 
 function hideCourseLevies() {
-  if (window.location.pathname.includes('/courses/')) {
+  if (window.location.pathname.includes("/courses/")) {
     var updateLocation = function updateLocation() {
       // console.log(feeLocation.value);
       feeLocation.addEventListener("change", function (e) {
@@ -15625,21 +15625,21 @@ function hideCourseLevies() {
     };
 
     var removeLevies = function removeLevies() {
-      var assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
-      var servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
-      var totalLevy = document.querySelector('.cost-items > div:last-child');
+      var assLevy = document.querySelector(".fees-est .cost-items > div:nth-child(3)");
+      var servLevy = document.querySelector(".fees-est .cost-items > div:nth-child(4)");
+      var totalLevy = document.querySelector(".cost-items > div:last-child");
       assLevy ? assLevy.remove() : null;
       servLevy ? servLevy.remove() : null;
       totalLevy ? totalLevy.remove() : null;
     };
 
     var setLevyText = function setLevyText() {
-      if (feeLocation.value == 'domestic') {
+      if (feeLocation.value == "domestic") {
         var levyText = "You will also pay an annual <a href=\"https://www.wgtn.ac.nz/students/money/fees/student-services-levy-faqs\">Student Services Levy</a>.";
-        $('.levy-text').html(levyText);
+        $(".levy-text").html(levyText);
       } else {
         var _levyText = "You will also pay an annual <a href=\"https://www.wgtn.ac.nz/students/money/fees/student-services-levy-faqs\">Student Services Levy</a>.";
-        $('.levy-text').html(_levyText);
+        $(".levy-text").html(_levyText);
       }
     };
 
@@ -15651,13 +15651,13 @@ function hideCourseLevies() {
     // let assLevy = document.querySelector('.fees-est .cost-items > div:nth-child(3)');
     // let servLevy = document.querySelector('.fees-est .cost-items > div:nth-child(4)');
     // let totalLevy = document.querySelector('.cost-items > div:nth-child(6)');
-    $('.clear-cart-wrap').first().before('<p style="margin-top: .5rem; font-size: .9rem;" class="levy-text"></p>');
-    var feeLocation = document.querySelector('#fees-type');
+    $(".clear-cart-wrap").first().before('<p style="margin-top: .5rem; font-size: .9rem;" class="levy-text"></p>');
+    var feeLocation = document.querySelector("#fees-type");
     removeLevies();
-    document.querySelector('.fees-est').addEventListener("DOMNodeInserted", function (event) {
-      feeLocation = document.querySelector('#fees-type'); // console.log('content change', event.target);
+    document.querySelector(".fees-est").addEventListener("DOMNodeInserted", function (event) {
+      feeLocation = document.querySelector("#fees-type"); // console.log('content change', event.target);
 
-      if (document.querySelector('.fees-est .cost-items > div:nth-child(3)')) {
+      if (document.querySelector(".fees-est .cost-items > div:nth-child(3)")) {
         removeLevies();
         updateLocation();
       }
@@ -15669,32 +15669,59 @@ function hideCourseLevies() {
 
 document.addEventListener("DOMContentLoaded", function (event) {
   // Your code to run since DOM is loaded and ready
-  waitForElm('.course-item-list').then(function () {
+  waitForElm(".course-item-list").then(function () {
     // console.log('hide');
     hideCourseLevies();
   });
-});
+}); // Check toolbar to ensure myTools has been updated to Puaha
+
+if (document.location.pathname.split("/")[1] == "courses" || document.location.pathname.split("/")[1] == "explore") {
+  if ($("header ul[role=menubar]")) {
+    $("header ul[role=menubar] > li > a").each(function (e) {
+      var text = $(this).text(); // Update link if mytools
+
+      if (text.includes("myTools")) {
+        var $el = $(this);
+        $el.text("Pūaha—Student Portal");
+        $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
+        $el.attr("title", "Pūaha—Student Portal");
+      }
+    });
+  }
+} else {
+  $("header .menu-bar > a").each(function (e) {
+    var text = $(this).text(); // Update link if mytools
+
+    if (text.includes("myTools")) {
+      var $el = $(this);
+      $el.text("Pūaha—Student Portal");
+      $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
+      $el.attr("title", "Pūaha—Student Portal");
+    }
+  });
+}
 /* END Hide levy info on courses page */
 
+
 function initToolbarUrlListeners() {
-  urls.onLoadWhenQueryExists('toolbar', function () {
-    if (window.toolkitToolbarLoader) window.toolkitToolbarLoader('https://www.wgtn.ac.nz/api/toolbar/staff');
+  urls.onLoadWhenQueryExists("toolbar", function () {
+    if (window.toolkitToolbarLoader) window.toolkitToolbarLoader("https://www.wgtn.ac.nz/api/toolbar/staff");
   });
-  urls.onLoadWhenQueryExists('mytools', function () {
-    if (window.toolkitToolbarLoader) window.toolkitToolbarLoader('https://www.wgtn.ac.nz/api/toolbar/students');
+  urls.onLoadWhenQueryExists("mytools", function () {
+    if (window.toolkitToolbarLoader) document.location.href = "https://puaha.wgtn.ac.nz/signin";
   });
 } // eslint-disable-next-line import/prefer-default-export
 
 function initToolbarLoader(extraDependenciesList) {
-  var WINDOW_NAMESPACE_TOOLBAR_LOADER = 'toolkitToolbarLoader',
-      WINDOW_NAMESPACE_TOOLBAR = 'toolkitToolbar',
-      minifiedString = envConfig.name === 'production' ? '.min' : '',
-      URL_SCRIPT_TOOLBAR = "//".concat(envConfig.server.host).concat(envConfig.name === 'development' ? ":".concat(envConfig.server.port) : '', "/toolkit.toolbar").concat(minifiedString, ".js"); // Public API endpoint
+  var WINDOW_NAMESPACE_TOOLBAR_LOADER = "toolkitToolbarLoader",
+      WINDOW_NAMESPACE_TOOLBAR = "toolkitToolbar",
+      minifiedString = envConfig.name === "production" ? ".min" : "",
+      URL_SCRIPT_TOOLBAR = "//".concat(envConfig.server.host).concat(envConfig.name === "development" ? ":".concat(envConfig.server.port) : "", "/toolkit.toolbar").concat(minifiedString, ".js"); // Public API endpoint
 
   window[WINDOW_NAMESPACE_TOOLBAR_LOADER] = function (configObjectOrUrl) {
     // 1) Assemble dependencies
-    var configEndpointUrl = typeof configObjectOrUrl === 'string' ? configObjectOrUrl : null;
-    var configObject = _typeof(configObjectOrUrl) === 'object' ? configObjectOrUrl : undefined;
+    var configEndpointUrl = typeof configObjectOrUrl === "string" ? configObjectOrUrl : null;
+    var configObject = _typeof(configObjectOrUrl) === "object" ? configObjectOrUrl : undefined;
     var toolbarDependenciesList = [{
       url: URL_SCRIPT_TOOLBAR,
       namespace: WINDOW_NAMESPACE_TOOLBAR
@@ -15716,7 +15743,7 @@ function initToolbarLoader(extraDependenciesList) {
       });
     } else if (!configObject) {
       // Nor config & data model object -or- RESTful API is available
-      console.error('A toolbar requires valid configuration and model object or URL (%s) to the RESTful API endpoint that would return this object. Toolbar dialog will not be opened.', configEndpointUrl, configObject);
+      console.error("A toolbar requires valid configuration and model object or URL (%s) to the RESTful API endpoint that would return this object. Toolbar dialog will not be opened.", configEndpointUrl, configObject);
       return;
     } //TODO: 2) Turn on full screen loading service
     // 3) Load all dependencies asynchronously (skip if already available yet)
@@ -15741,7 +15768,7 @@ function initToolbarLoader(extraDependenciesList) {
         }
       } else {
         // 5B) Report errors
-        console.error('Unable to lazy load all the dependencies required to initialise and open the Toolbar dialog.', errors);
+        console.error("Unable to lazy load all the dependencies required to initialise and open the Toolbar dialog.", errors);
       }
     });
   };
