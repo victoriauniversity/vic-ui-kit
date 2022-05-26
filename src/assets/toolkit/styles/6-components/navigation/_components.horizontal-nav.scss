@@ -4,6 +4,21 @@
 :root {
   --horizontal-nav-offset: 100px;
 }
+$green-linear-gradient: linear-gradient(
+    90deg,
+    #115737 0%,
+    #52951c 67%,
+    #77ba49 100%
+  )
+  0% 0%;
+$green-bottom-gradient: linear-gradient(
+    180deg,
+    #fff 0%,
+    #3b7b07 90%,
+    $green-brand 100%
+  )
+  0% 0%;
+$box-shadow-card: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 
 @keyframes draw-down {
   0% {
@@ -669,15 +684,6 @@ body .layout {
   color: $black-brand;
 }
 
-.main-site-header.header-tray
-  .header-inner
-  .tray-content
-  .tray-main-nav
-  .main-nav-item
-  .tereo-nav-title {
-  font-size: 18px;
-  font-weight: 300;
-}
 h1,
 h2,
 h3,
@@ -900,7 +906,7 @@ body {
   .formatting {
     .promo-panel figure,
     figure {
-      box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+      box-shadow: $box-shadow-card;
       border-top: 4px $green-brand-bright solid;
     }
   }
@@ -911,8 +917,14 @@ body {
   .card-panel .card,
   .search-panel form.wide-search-bar {
     background-color: #fff;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    box-shadow: $box-shadow-card;
     border-top: 4px $green-brand-bright solid;
+  }
+  .card-panel .card > h1:first-child::after,
+  .card-panel .card > h2:first-child::after,
+  .card-panel .card > h3:first-child::after,
+  .card-panel .card > h4:first-child::after {
+    content: none;
   }
   .search-panel form .group input[type="text"] {
     height: initial;
@@ -948,7 +960,8 @@ body {
       &:focus {
         // background-color: darken($color: $green-brand-bright, $amount: 5);
         background-color: $black-brand;
-        color: #fff;
+        // !Temporary override - delete the important tag
+        color: #fff !important;
       }
     }
 
@@ -958,35 +971,132 @@ body {
       font-family: "Favorites";
       vertical-align: -0.1em;
     }
-  }
 
-  // Carousel
-  .carousel-controls {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translate(0%, -50%);
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    z-index: 999;
-    padding: 0 10px;
-    .next,
-    .previous {
-      border-radius: 100px;
-      padding: 10px 14px;
-      background-color: rgba(200, 200, 200, 0.9);
-      color: #000;
-      border: none;
-      &:hover,
-      &:active,
-      &:focus {
-        background-color: $grey;
+    // Carousel
+    .carousel-controls {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(0%, -50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      z-index: 999;
+      padding: 0 10px;
+      .next,
+      .previous {
+        border-radius: 100px;
+        padding: 10px 14px;
+        background-color: rgba(200, 200, 200, 0.9);
         color: #000;
+        border: none;
+        &:hover,
+        &:active,
+        &:focus {
+          background-color: $grey;
+          color: #000;
+        }
       }
     }
-  }
-  .promo-panel {
-    position: relative;
+    .promo-panel {
+      position: relative;
+    }
+
+    // Quote block
+    .quote-panel.quote-image {
+      background-color: $grey-gallery;
+      // &:before {
+      //   display: block;
+      //   content: "";
+      //   width: 100%;
+      //   height: 6px;
+      //   background: $green-linear-gradient;
+      // }
+      // &:after {
+      //   display: block;
+      //   content: "";
+      //   width: 100%;
+      //   height: 6px;
+      //   background: $green-linear-gradient;
+      // }
+
+      svg.quote-open {
+        position: absolute;
+        top: -30px;
+        left: -80px;
+        opacity: 0.3;
+      }
+      .quote {
+        padding: 0;
+        background-color: #fff;
+        box-shadow: $box-shadow-card;
+        // border-top: 4px $green-brand-bright solid;
+        position: relative;
+        .image-container {
+          position: relative;
+          clip-path: polygon(-0.25% -3px, 88% -13.74%, 99.5% 100%, 0px 100%);
+          @include breakpoint($from: desktop) {
+            // position: absolute;
+            // left: 0;
+            // top: 0;
+            // height: 100%;
+            // width: 242px;
+          }
+          &:before {
+            position: absolute;
+            left: 0;
+            content: "";
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background: $green-bottom-gradient;
+            opacity: 0;
+            z-index: 10;
+          }
+        }
+        img {
+          box-shadow: $box-shadow-card;
+          border-radius: 0;
+          height: 100%;
+          width: auto;
+          max-width: 300px;
+          position: relative;
+          margin: 0 !important;
+        }
+        .quote-content {
+          margin-left: 5rem;
+          display: block;
+          blockquote {
+            padding: 1rem 0;
+            position: relative;
+            width: 100%;
+            h3 {
+              font-weight: 300;
+              line-height: 1.2;
+              color: #000 !important;
+            }
+
+            &:before,
+            &:after {
+              content: none;
+            }
+          }
+        }
+        figcaption {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          margin-right: 2rem;
+          padding-left: 0;
+          margin-left: 2rem;
+          padding-top: 1rem;
+          h4 {
+            margin-bottom: 5px;
+          }
+          .quoter-info {
+          }
+        }
+      }
+    }
   }
 }

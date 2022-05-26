@@ -219,6 +219,8 @@ export function initTray() {
     });
 
     // On click OR mouseover of body, hide the tray if it's open
+
+    const horizontalNavHeader = $("#mega_menu_block");
     $("body").on("click, mouseover", (e) => {
       // console.log(e.target);
 
@@ -245,8 +247,8 @@ export function initTray() {
       }
 
       // closes menu if not clicking on header.. .should this be behaviour?
+
       if ($(".show-mega-menu-top").length) {
-        const horizontalNavHeader = $(".main-site-header");
         if (
           horizontalMenuExpanded &&
           !horizontalNavHeader.is(e.target) &&
