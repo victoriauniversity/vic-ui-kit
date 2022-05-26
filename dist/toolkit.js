@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, May 26, 2022, 12:20 PM */
+/** Version: 0.10.13 | Thursday, May 26, 2022, 2:41 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14142,8 +14142,7 @@ function initTray() {
 
 
         $(".nav-item-parent.active-menu-item").removeClass("active-menu-item");
-        $(listItem).addClass("active-menu-item"); // console.log(index, listItem);
-
+        $(listItem).addClass("active-menu-item");
         var matchingNavGroup = $(".draw-nav ul[data-index='".concat(index, "']"));
         $(".draw-nav > ul").removeClass("active-nav-group");
         matchingNavGroup.toggleClass("active-nav-group"); // }
@@ -14195,36 +14194,69 @@ function initTray() {
     }); // On click OR mouseover of body, hide the tray if it's open
 
     var horizontalNavHeader = $("#mega_menu_block");
-    $("body").on("click, mouseover", function (e) {
-      // console.log(e.target);
-      var sidemenu = $(".sidemenu-homepage"); // let  megamenu = $('.sidemenu-drawer');
+    $("body").on("click", function (e) {// console.log(e.target);
+      // let sidemenu = $(".sidemenu-homepage");
+      // // let  megamenu = $('.sidemenu-drawer');
+      // if (
+      //   sidemeneuExpanded &&
+      //   !sidemenu.is(e.target) && // if the target of the click isn't the container...
+      //   sidemenu.has(e.target).length === 0 &&
+      //   !e.target.className.includes("close-draw") // and not clicking the close button...
+      // ) {
+      //   // ... nor a descendant of the container
+      //   sidemeneuExpanded = !sidemeneuExpanded;
+      //   $(".sidemenu-homepage .expanded-draw").removeClass("expanded-draw");
+      //   $draw.toggleClass("active");
+      //   // Remove any active item classes
+      //   $(".nav-item-parent.active-menu-item").removeClass("active-menu-item");
+      //   // Remove blip
+      //   $blip.css({
+      //     height: "0px",
+      //   });
+      // }
+      // closes menu if not clicking on header.. .should this be behaviour?
+      // if ($(".show-mega-menu-top").length) {
+      //   if (
+      //     horizontalMenuExpanded &&
+      //     !horizontalNavHeader.is(e.target) &&
+      //     horizontalNavHeader.has(e.target).length === 0
+      //   ) {
+      //     horizontalMenuExpanded = !horizontalMenuExpanded;
+      //     $(".sidemenu-drawer").removeClass(`${loc}`);
+      //     $(".mega-menu-top-level > li").removeClass("expanded-nav");
+      //     $blip.css({
+      //       width: 0,
+      //     });
+      //   }
+      // }
+    });
+    src_default.a.register(DESKTOP_AND_LARGER, function () {
+      // Hide menu if mouseout for x seconds
+      var timeout;
+      $("#mega_menu_block").on("mouseleave", function (e) {
+        //dialog open
+        console.log("hello");
+        console.log(timeout);
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+          if ($(".show-mega-menu-top").length && horizontalMenuExpanded) {
+            horizontalMenuExpanded = !horizontalMenuExpanded;
+            $(".sidemenu-drawer").removeClass("".concat(loc));
+            $(".mega-menu-top-level > li").removeClass("expanded-nav");
+            0;
+            $blip.css({
+              width: 0
+            });
+          }
+        }, 300);
+      }); // If hover back in while timeout is active, cancel it so it doesn't hide
 
-      if (sidemeneuExpanded && !sidemenu.is(e.target) && // if the target of the click isn't the container...
-      sidemenu.has(e.target).length === 0 && !e.target.className.includes("close-draw") // and not clicking the close button...
-      ) {
-          // ... nor a descendant of the container
-          sidemeneuExpanded = !sidemeneuExpanded;
-          $(".sidemenu-homepage .expanded-draw").removeClass("expanded-draw");
-          $draw.toggleClass("active"); // Remove any active item classes
-
-          $(".nav-item-parent.active-menu-item").removeClass("active-menu-item"); // Remove blip
-
-          $blip.css({
-            height: "0px"
-          });
-        } // closes menu if not clicking on header.. .should this be behaviour?
-
-
-      if ($(".show-mega-menu-top").length) {
-        if (horizontalMenuExpanded && !horizontalNavHeader.is(e.target) && horizontalNavHeader.has(e.target).length === 0) {
-          horizontalMenuExpanded = !horizontalMenuExpanded;
-          $(".sidemenu-drawer").removeClass("".concat(loc));
-          $(".mega-menu-top-level > li").removeClass("expanded-nav");
-          $blip.css({
-            width: 0
-          });
-        }
-      }
+      $(".main-site-header, .gradient-line").on("mouseenter", function (e) {
+        //dialog open
+        console.log("hello");
+        console.log(timeout);
+        clearTimeout(timeout);
+      });
     });
   }
 
@@ -14334,7 +14366,8 @@ function initTray() {
     // If we are using a sidemenu
     if ($("#mega-menu").parent().hasClass("sidemenu-homepage")) {
       $blip.css({
-        top: $(this).offset().top - $(this).parents("#mega-menu").offset().top + 1,
+        top: $(this).offset().top - $(this).parents("#mega-menu").offset().top + 6,
+        // 6 is the px height of the gradient line
         height: $(this).innerHeight()
       });
     } else {
