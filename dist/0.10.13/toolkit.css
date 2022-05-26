@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, May 26, 2022, 12:20 PM */
+/** Version: 0.10.13 | Thursday, May 26, 2022, 2:41 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -16860,15 +16860,6 @@ footer .footer-secondary.dark .footer-num {
   border-bottom: none;
 }
 
-.main-site-header.white:after {
-  display: block;
-  content: "";
-  width: 100%;
-  height: 6px;
-  background: -webkit-gradient(linear, left top, right top, from(#115737), color-stop(67%, #52951c), to(#77ba49)) 0% 0%;
-  background: linear-gradient(90deg, #115737 0%, #52951c 67%, #77ba49 100%) 0% 0%;
-}
-
 .main-site-header.white .logo {
   border-right-color: #CCC;
 }
@@ -17708,6 +17699,8 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
 .main-site-header.show-mega-menu-top-wrap {
   padding-top: 0;
   overflow: unset !important;
+  position: relative;
+  padding-bottom: 6px;
 }
 
 .show-mega-menu-top {
@@ -17716,6 +17709,18 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
   position: relative;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+}
+
+.gradient-line {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 6px;
+  background: -webkit-gradient(linear, left top, right top, from(#115737), color-stop(67%, #52951c), to(#77ba49)) 0% 0%;
+  background: linear-gradient(90deg, #115737 0%, #52951c 67%, #77ba49 100%) 0% 0%;
+  position: absolute;
+  bottom: 0;
+  z-index: 0;
 }
 
 .show-mega-menu-top .mega-sub-menu {
@@ -17770,6 +17775,7 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
     left: 0;
     -webkit-transition: all ease 0.3s;
     transition: all ease 0.3s;
+    z-index: 50;
   }
   .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li {
     border-bottom: none;
@@ -18493,6 +18499,14 @@ body .card-panel .card > h4:first-child::after {
 
 body .search-panel form .group input[type="text"] {
   height: initial;
+}
+
+body .search-panel form .group input[type="submit"] {
+  -webkit-clip-path: polygon(6.23% -3px, 102.99% 0px, 103.29% 101.51%, 1.11% 105.97%);
+          clip-path: polygon(6.23% -3px, 102.99% 0px, 103.29% 101.51%, 1.11% 105.97%);
+  margin-left: -20px;
+  background-color: #3E9C4F;
+  color: #fff;
 }
 
 body .hub button.primary,
