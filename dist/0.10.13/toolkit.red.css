@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, May 25, 2022, 3:14 PM */
+/** Version: 0.10.13 | Thursday, May 26, 2022, 12:20 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -15910,7 +15910,7 @@ footer .footer-secondary.dark .footer-num {
   transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
   -webkit-box-shadow: none;
           box-shadow: none;
-  border-bottom: 1px transparent solid;
+  border-bottom: 1px #EEE solid;
   border-top: 1px transparent solid;
 }
 
@@ -16100,7 +16100,6 @@ footer .footer-secondary.dark .footer-num {
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item .tereo-nav-title {
   display: block;
   color: #115737;
-  font-size: 16px;
   margin-bottom: 5px;
 }
 
@@ -18226,11 +18225,6 @@ a:visited .tray .saved-items .item-list .empty-message:hover {
   color: #1D2624;
 }
 
-.main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-item .tereo-nav-title {
-  font-size: 18px;
-  font-weight: 300;
-}
-
 h1,
 h2,
 h3,
@@ -18482,6 +18476,13 @@ body .search-panel form.wide-search-bar {
   border-top: 4px #3E9C4F solid;
 }
 
+body .card-panel .card > h1:first-child::after,
+body .card-panel .card > h2:first-child::after,
+body .card-panel .card > h3:first-child::after,
+body .card-panel .card > h4:first-child::after {
+  content: none;
+}
+
 body .search-panel form .group input[type="text"] {
   height: initial;
 }
@@ -18516,7 +18517,7 @@ body .hub button:hover,
 body .hub button:active,
 body .hub button:focus {
   background-color: #1D2624;
-  color: #fff;
+  color: #fff !important;
 }
 
 body .hub button:not(.flat):not(.no-icon)::after,
@@ -18526,7 +18527,7 @@ body .hub .button:not(.flat):not(.no-icon)::after {
   vertical-align: -0.1em;
 }
 
-body .carousel-controls {
+body .hub .carousel-controls {
   position: absolute;
   top: 50%;
   left: 0;
@@ -18541,8 +18542,8 @@ body .carousel-controls {
   padding: 0 10px;
 }
 
-body .carousel-controls .next,
-body .carousel-controls .previous {
+body .hub .carousel-controls .next,
+body .hub .carousel-controls .previous {
   border-radius: 100px;
   padding: 10px 14px;
   background-color: rgba(200, 200, 200, 0.9);
@@ -18550,16 +18551,103 @@ body .carousel-controls .previous {
   border: none;
 }
 
-body .carousel-controls .next:hover, body .carousel-controls .next:active, body .carousel-controls .next:focus,
-body .carousel-controls .previous:hover,
-body .carousel-controls .previous:active,
-body .carousel-controls .previous:focus {
+body .hub .carousel-controls .next:hover, body .hub .carousel-controls .next:active, body .hub .carousel-controls .next:focus,
+body .hub .carousel-controls .previous:hover,
+body .hub .carousel-controls .previous:active,
+body .hub .carousel-controls .previous:focus {
   background-color: #8B8B8B;
   color: #000;
 }
 
-body .promo-panel {
+body .hub .promo-panel {
   position: relative;
+}
+
+body .hub .quote-panel.quote-image {
+  background-color: #EEE;
+}
+
+body .hub .quote-panel.quote-image svg.quote-open {
+  position: absolute;
+  top: -30px;
+  left: -80px;
+  opacity: 0.3;
+}
+
+body .hub .quote-panel.quote-image .quote {
+  padding: 0;
+  background-color: #fff;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+          box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  position: relative;
+}
+
+body .hub .quote-panel.quote-image .quote .image-container {
+  position: relative;
+  -webkit-clip-path: polygon(-0.25% -3px, 88% -13.74%, 99.5% 100%, 0px 100%);
+          clip-path: polygon(-0.25% -3px, 88% -13.74%, 99.5% 100%, 0px 100%);
+}
+
+body .hub .quote-panel.quote-image .quote .image-container:before {
+  position: absolute;
+  left: 0;
+  content: "";
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), color-stop(90%, #3b7b07), to(#115737)) 0% 0%;
+  background: linear-gradient(180deg, #fff 0%, #3b7b07 90%, #115737 100%) 0% 0%;
+  opacity: 0;
+  z-index: 10;
+}
+
+body .hub .quote-panel.quote-image .quote img {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+          box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  border-radius: 0;
+  height: 100%;
+  width: auto;
+  max-width: 300px;
+  position: relative;
+  margin: 0 !important;
+}
+
+body .hub .quote-panel.quote-image .quote .quote-content {
+  margin-left: 5rem;
+  display: block;
+}
+
+body .hub .quote-panel.quote-image .quote .quote-content blockquote {
+  padding: 1rem 0;
+  position: relative;
+  width: 100%;
+}
+
+body .hub .quote-panel.quote-image .quote .quote-content blockquote h3 {
+  font-weight: 300;
+  line-height: 1.2;
+  color: #000 !important;
+}
+
+body .hub .quote-panel.quote-image .quote .quote-content blockquote:before, body .hub .quote-panel.quote-image .quote .quote-content blockquote:after {
+  content: none;
+}
+
+body .hub .quote-panel.quote-image .quote figcaption {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+          align-items: flex-end;
+  margin-right: 2rem;
+  padding-left: 0;
+  margin-left: 2rem;
+  padding-top: 1rem;
+}
+
+body .hub .quote-panel.quote-image .quote figcaption h4 {
+  margin-bottom: 5px;
 }
 
 .tiles-panel {
