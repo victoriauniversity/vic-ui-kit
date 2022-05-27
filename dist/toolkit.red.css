@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, May 26, 2022, 2:41 PM */
+/** Version: 0.10.13 | Friday, May 27, 2022, 2:30 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -18493,7 +18493,7 @@ body .search-panel form .group input[type="text"] {
   height: initial;
 }
 
-body .search-panel form .group input[type="submit"] {
+body .hub .search-panel form .group input[type="submit"] {
   -webkit-clip-path: polygon(6.23% -3px, 102.99% 0px, 103.29% 101.51%, 1.11% 105.97%);
           clip-path: polygon(6.23% -3px, 102.99% 0px, 103.29% 101.51%, 1.11% 105.97%);
   margin-left: -20px;
@@ -18501,24 +18501,24 @@ body .search-panel form .group input[type="submit"] {
   color: #fff;
 }
 
-body .hub button.primary,
-body .hub .button.primary {
+body .hub button.primary:not(.flat),
+body .hub .button.primary:not(.flat) {
   border: 2px #3E9C4F solid;
   border-radius: 0;
   color: #1D2624;
   background-color: #fff;
 }
 
-body .hub button.primary:hover, body .hub button.primary:active, body .hub button.primary:focus,
-body .hub .button.primary:hover,
-body .hub .button.primary:active,
-body .hub .button.primary:focus {
+body .hub button.primary:not(.flat):hover, body .hub button.primary:not(.flat):active, body .hub button.primary:not(.flat):focus,
+body .hub .button.primary:not(.flat):hover,
+body .hub .button.primary:not(.flat):active,
+body .hub .button.primary:not(.flat):focus {
   background-color: #3E9C4F;
   color: #fff;
 }
 
-body .hub .button,
-body .hub button {
+body .hub .button:not(.flat),
+body .hub button:not(.flat) {
   border-radius: 0;
   font-weight: 600;
   border: 2px #1D2624 solid;
@@ -18526,10 +18526,10 @@ body .hub button {
   background-color: #fff;
 }
 
-body .hub .button:hover, body .hub .button:active, body .hub .button:focus,
-body .hub button:hover,
-body .hub button:active,
-body .hub button:focus {
+body .hub .button:not(.flat):hover, body .hub .button:not(.flat):active, body .hub .button:not(.flat):focus,
+body .hub button:not(.flat):hover,
+body .hub button:not(.flat):active,
+body .hub button:not(.flat):focus {
   background-color: #1D2624;
   color: #fff !important;
 }
@@ -18662,6 +18662,40 @@ body .hub .quote-panel.quote-image .quote figcaption {
 
 body .hub .quote-panel.quote-image .quote figcaption h4 {
   margin-bottom: 5px;
+}
+
+.highlight-message {
+  -webkit-clip-path: polygon(0% 0%, 94.45% -3px, 100% 24.44%, 100% 100%, 0% 100%);
+          clip-path: polygon(0% 0%, 94.45% -3px, 100% 24.44%, 100% 100%, 0% 100%);
+}
+
+.highlight-message .highlight-content {
+  background-color: #e5f6fd;
+  color: #014361;
+}
+
+.highlight-message.green .highlight-content {
+  color: #1e4620;
+  background-color: #edf7ed;
+}
+
+.highlight-message.green .highlight-content .button {
+  background-color: #fff;
+  color: #1D2624 !important;
+  border: 2px #3E9C4F solid;
+  border-radius: 0;
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+
+.highlight-message.green .highlight-content .button:hover {
+  background-color: #3E9C4F;
+  color: #fff !important;
+}
+
+.highlight-message.red .highlight-content {
+  color: #5f2120;
+  background-color: #fdeded;
 }
 
 .tiles-panel {

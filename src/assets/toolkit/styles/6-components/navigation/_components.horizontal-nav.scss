@@ -943,16 +943,21 @@ body {
   .search-panel form .group input[type="text"] {
     height: initial;
   }
-  .search-panel form .group input[type="submit"] {
-    clip-path: polygon(6.23% -3px, 102.99% 0px, 103.29% 101.51%, 1.11% 105.97%);
-    margin-left: -20px;
-    background-color: $green-brand-bright;
-    color: #fff;
-  }
-  // Buttons
   .hub {
-    button.primary,
-    .button.primary {
+    .search-panel form .group input[type="submit"] {
+      clip-path: polygon(
+        6.23% -3px,
+        102.99% 0px,
+        103.29% 101.51%,
+        1.11% 105.97%
+      );
+      margin-left: -20px;
+      background-color: $green-brand-bright;
+      color: #fff;
+    }
+    // Buttons
+    button.primary:not(.flat),
+    .button.primary:not(.flat) {
       border: 2px $green-brand-bright solid;
       border-radius: 0;
       color: $black-brand;
@@ -967,8 +972,8 @@ body {
         color: #fff;
       }
     }
-    .button,
-    button {
+    .button:not(.flat),
+    button:not(.flat) {
       border-radius: 0;
       font-weight: 600;
       border: 2px $black-brand solid;
@@ -990,7 +995,6 @@ body {
       font-family: "Favorites";
       vertical-align: -0.1em;
     }
-
     // Carousel
     .carousel-controls {
       position: absolute;
@@ -1116,6 +1120,42 @@ body {
           }
         }
       }
+    }
+  }
+}
+
+.highlight-message {
+  // clip-path: polygon(-0.25% -3px, 93.9% -0.75%, 100.2% 99.28%, 0px 100%);
+  // clip-path: polygon(0% 0%, 83% 0, 100% 14%, 100% 100%, 0% 100%);
+  clip-path: polygon(0% 0%, 94.45% -3px, 100% 24.44%, 100% 100%, 0% 100%);
+
+  .highlight-content {
+    background-color: rgb(229, 246, 253);
+    color: rgb(1, 67, 97);
+  }
+  &.green {
+    .highlight-content {
+      color: rgb(30, 70, 32);
+      background-color: rgb(237, 247, 237);
+
+      .button {
+        background-color: #fff;
+        color: $black-brand !important;
+        border: 2px $green-brand-bright solid;
+        border-radius: 0;
+        margin-top: 0.5rem;
+        display: inline-block;
+        &:hover {
+          background-color: $green-brand-bright;
+          color: #fff !important;
+        }
+      }
+    }
+  }
+  &.red {
+    .highlight-content {
+      color: rgb(95, 33, 32);
+      background-color: rgb(253, 237, 237);
     }
   }
 }
