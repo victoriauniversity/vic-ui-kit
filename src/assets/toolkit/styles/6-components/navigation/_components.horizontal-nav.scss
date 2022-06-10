@@ -913,7 +913,7 @@ body {
   .formatting h1,
   h1,
   h2 {
-    font-weight: 300;
+    font-weight: 700;
   }
 
   // Blocks
@@ -921,7 +921,7 @@ body {
     .promo-panel figure,
     figure {
       box-shadow: $box-shadow-card;
-      border-top: 4px $green-brand-bright solid;
+      border-top: 4px $green-brand solid;
     }
   }
   .block {
@@ -932,7 +932,7 @@ body {
   .search-panel form.wide-search-bar {
     background-color: #fff;
     box-shadow: $box-shadow-card;
-    border-top: 4px $green-brand-bright solid;
+    border-top: 4px $green-brand solid;
   }
   .card-panel .card > h1:first-child::after,
   .card-panel .card > h2:first-child::after,
@@ -952,13 +952,13 @@ body {
         1.11% 105.97%
       );
       margin-left: -20px;
-      background-color: $green-brand-bright;
+      background-color: $green-brand;
       color: #fff;
     }
     // Buttons
     button.primary:not(.flat),
     .button.primary:not(.flat) {
-      border: 2px $green-brand-bright solid;
+      border: 2px $green-brand solid;
       border-radius: 0;
       color: $black-brand;
       background-color: #fff;
@@ -991,9 +991,12 @@ body {
 
     button:not(.flat):not(.no-icon)::after,
     .button:not(.flat):not(.no-icon)::after {
-      content: "\f15e";
+      content: "\f181";
+      transform: rotateZ(45deg);
       font-family: "Favorites";
       vertical-align: -0.1em;
+      display: inline-block;
+      transform: rotate(-90deg);
     }
     // Carousel
     .carousel-controls {
@@ -1054,6 +1057,7 @@ body {
         background-color: #fff;
         box-shadow: $box-shadow-card;
         // border-top: 4px $green-brand-bright solid;
+
         position: relative;
         .image-container {
           position: relative;
@@ -1141,12 +1145,12 @@ body {
       .button {
         background-color: #fff;
         color: $black-brand !important;
-        border: 2px $green-brand-bright solid;
+        border: 2px $green-brand solid;
         border-radius: 0;
         margin-top: 0.5rem;
         display: inline-block;
         &:hover {
-          background-color: $green-brand-bright;
+          background-color: $green-brand;
           color: #fff !important;
         }
       }

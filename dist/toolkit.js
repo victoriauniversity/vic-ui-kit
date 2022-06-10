@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, May 27, 2022, 2:30 PM */
+/** Version: 0.10.13 | Friday, June 10, 2022, 3:17 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14229,7 +14229,8 @@ function initTray() {
       //     });
       //   }
       // }
-    });
+    }); // On mouse out
+
     src_default.a.register(DESKTOP_AND_LARGER, function () {
       // Hide menu if mouseout for x seconds
       var timeout;
@@ -14348,7 +14349,7 @@ function initTray() {
       } else {
         openTimeout = setTimeout(function () {
           expandHorizontalMenu(index, $navItem);
-        }, 200);
+        }, 100);
       }
     }); // Set nav offset height for css variable
 
