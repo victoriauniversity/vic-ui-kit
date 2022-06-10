@@ -257,6 +257,8 @@ export function initTray() {
       //   }
       // }
     });
+
+    // On mouse out
     enquire.register(DESKTOP_AND_LARGER, () => {
       // Hide menu if mouseout for x seconds
       var timeout;
@@ -413,7 +415,7 @@ export function initTray() {
       } else {
         openTimeout = setTimeout(function () {
           expandHorizontalMenu(index, $navItem);
-        }, 200);
+        }, 100);
       }
     });
 
