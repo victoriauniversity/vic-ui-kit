@@ -110,6 +110,7 @@ export function initTray() {
     );
   }
 
+  let openTimeout;
   let sidemeneuExpanded = false;
   const $draw = $(".sidemenu-drawer");
 
@@ -263,6 +264,8 @@ export function initTray() {
       // Hide menu if mouseout for x seconds
       var timeout;
       $("#mega_menu_block").on("mouseleave", function (e) {
+        clearTimeout(openTimeout);
+
         //dialog open
         clearTimeout(timeout);
         timeout = setTimeout(function () {
@@ -364,18 +367,17 @@ export function initTray() {
     // console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded);
 
     // !EXPAND MENU ON HOVER
-    var openTimeout;
 
-    var expandHorizontalMenu = function (index, $navItem) {
-      if ($navItem.hasClass("expanded-nav")) {
+    var expandHorizontalMenu = function (index, $navItem, eventType) {
+      if ($navItem.hasClass("expanded-nav") && eventType == "click") {
         // If nav item is already expanded... close it
         horizontalMenuExpanded = !horizontalMenuExpanded;
         $navItem.removeClass("expanded-nav");
         $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
         $(".draw-nav > ul").removeClass("active-nav-group");
-        $blip.css({
-          width: 0,
-        });
+        // $blip.css({
+        //   width: 0,
+        // });
       } else {
         // Else if nav item is NOT expanded... open it
         if (horizontalMenuExpanded === false) {
@@ -385,6 +387,10 @@ export function initTray() {
 
         menuItems.removeClass("expanded-nav");
         $navItem.addClass("expanded-nav");
+        $blip.css({
+          left: $navItem.offset().left - $("#mega-menu").offset().left + 1,
+          width: $navItem.innerWidth(),
+        });
       }
 
       // set active submenu to display
@@ -407,15 +413,14 @@ export function initTray() {
       e.preventDefault();
       e.stopPropagation();
 
-      console.log(e);
       // If menu is already open, don't delay expanding the menu, else do!
-      clearTimeout(openTimeout);
       if (horizontalMenuExpanded || e.type == "click") {
-        expandHorizontalMenu(index, $navItem);
+        expandHorizontalMenu(index, $navItem, e.type);
       } else {
+
         openTimeout = setTimeout(function () {
-          expandHorizontalMenu(index, $navItem);
-        }, 100);
+          expandHorizontalMenu(index, $navItem, e.type);
+        }, 200);
       }
     });
 
@@ -460,7 +465,6 @@ export function initTray() {
   // Only applies to horizontal nav
   $(".main-site-header #mega-menu > li").on("mouseout", function () {
     var activeItem = $(".expanded-nav");
-
     if (activeItem.length) {
       $blip.css({
         left: activeItem.offset().left - $("#mega-menu").offset().left + 1,

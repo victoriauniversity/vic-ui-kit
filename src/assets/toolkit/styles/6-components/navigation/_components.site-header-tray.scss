@@ -320,18 +320,6 @@ $tray-width-desktop: 400px;
       .header-content {
         padding-left: 1rem;
         width: 40%;
-
-        @include hoverify() {
-          a {
-            h1,
-            h2,
-            h3,
-            h4,
-            p {
-              text-decoration: underline;
-            }
-          }
-        }
       }
 
       .header-search {
@@ -1095,7 +1083,7 @@ $tray-width-desktop: 400px;
               padding: 0.1rem 0;
               z-index: 10;
 
-              a {
+              a.sub-nav-link {
                 text-decoration: none;
                 background-color: #fff;
                 border-radius: 5px;
@@ -1108,6 +1096,7 @@ $tray-width-desktop: 400px;
                 margin-bottom: 7px;
                 margin-right: 5px;
                 position: relative;
+                line-height: 1.4;
                 transition: background-color $easing 0.3s;
                 box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
                   rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
@@ -1124,6 +1113,11 @@ $tray-width-desktop: 400px;
 
                 @include breakpoint($until: desktop) {
                   font-size: 14px;
+                }
+                .tereo-nav-title {
+                  font-weight: bold;
+                  display: block;
+                  color: $green-brand;
                 }
               }
             }
@@ -1485,21 +1479,34 @@ $tray-width-desktop: 400px;
 
     .header-inner {
       .header-content {
+        > a {
+          display: inline-flex;
+          flex-direction: column;
+          &:hover {
+            h1,
+            h2,
+            p {
+              text-decoration: underline;
+            }
+          }
+        }
         h1,
         p {
-          color: $green-brand;
           font-weight: 600;
           letter-spacing: 0.4px;
-          font-family: $font-name-brand;
-          font-size: 2.21rem;
+          font-size: 1.8em;
           line-height: 1.08;
+          color: $black-tundora;
+          display: inline-flex;
         }
 
         .tereo-title,
         p.tereo-title {
-          color: $black-tundora;
-          font-size: 1.5rem;
-          font-family: $font-name-brand;
+          font-weight: 600;
+
+          display: inline-flex;
+          color: $green-brand;
+          font-size: 1.8em;
           letter-spacing: 0.2px;
           line-height: 1.08;
         }
