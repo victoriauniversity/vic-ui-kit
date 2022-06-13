@@ -577,10 +577,23 @@
 
             <ul class="sub-menu-list">
               {{#if sub-header}} {{#each sub-header}}
-              <li class="sub-menu-item {{lowercase (join (split this ' ') '-')}}">
+              {{#if this.tereo}}
+              <li class="sub-menu-item {{lowercase (join (split this.name ' ') '-')}}">
                 <!-- <i class=""></i> -->
+                <a href="#" class="sub-nav-link">
+                  <div class="text">
+                    <span class="tereo-nav-title">{{this.tereo}}</span>
+                    {{this.name}}
+                  </div>
+                </a>
+              </li>
+              {{/if}}
+              <!-- {{#if this.tereo}}
+              <li class="sub-menu-item {{lowercase (join (split this ' ') '-')}}">
                 <a href="#" class="sub-nav-link">{{this}}</a>
               </li>
+              {{/if}} -->
+
               {{/each}} {{/if}}
 
             </ul>
