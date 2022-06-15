@@ -34,11 +34,9 @@ function waitForElm(selector) {
 
 // Hide link for bots in case bot-version of page gets cached, e.g. on /events
 if (document.getElementById("clickLinks")) {
-  console.log("click links found.");
   if (
     !navigator.userAgent.match(/baidu|bing|msn|teoma|slurp|yandex|funnelback/i)
   ) {
-    console.log("browser is not a bot.");
     document.getElementById("clickLinks").style.display = "none";
   }
 }
