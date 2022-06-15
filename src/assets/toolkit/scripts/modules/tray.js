@@ -7,6 +7,16 @@ const TABLET_AND_SMALLER = "screen and (max-width: 975px)",
 export function initTray() {
   // console.log( 'tray...', $( '.tray-toggle' ));
 
+  // Check title length and shrink if too long
+  var pageTitleEl = $(".header-content > a");
+  var pageTitleLength = pageTitleEl.text().length;
+  console.log($(".header-content > a").text().length);
+
+  if (pageTitleLength > 150) {
+    pageTitleEl.parent().addClass("long-title");
+    pageTitleEl.addClass("long-title");
+  }
+
   $("body").on("click keyup", (e) => {
     // Close tray if clicked away from or escpae buttons
 
@@ -36,10 +46,22 @@ export function initTray() {
     }
   });
 
+  // Initial position
+  function setTabsBlipInitialPosition() {
+    var activeItem = $("nav.tray .tabs .active").parent();
+    if (activeItem.length) {
+      $tabBlip.css({
+        left: activeItem.offset().left - $("nav.tray .tabs").offset().left,
+        width: activeItem.outerWidth(),
+      });
+    }
+  }
+
   // tray functionality
   function toggleTray() {
     $(".tray").toggleClass("tray-closed", "normal");
     $(".tray").toggleClass("tray-open", "normal");
+    setTabsBlipInitialPosition();
 
     $("body").toggleClass("noscroll");
   }
@@ -59,6 +81,7 @@ export function initTray() {
   });
   $(".tray-close").click((e) => {
     e.preventDefault();
+
     toggleTray();
   });
 
@@ -417,7 +440,6 @@ export function initTray() {
       if (horizontalMenuExpanded || e.type == "click") {
         expandHorizontalMenu(index, $navItem, e.type);
       } else {
-
         openTimeout = setTimeout(function () {
           expandHorizontalMenu(index, $navItem, e.type);
         }, 200);
@@ -806,7 +828,7 @@ export function initTray() {
   // !TAB BLIP MOVEMENT LOGIC
   var $tabBlip = $("nav.tray .tabs .blip");
   $("nav.tray .tabs .tab").on("click keyup", function (e) {
-    if (e.which == 13 || e.which == 1) {
+    if (e.which == 13 || e.which == 1 || e.type == "click") {
       $("nav.tray .tabs .tab").removeClass("active");
       $(this).addClass("active");
 
@@ -827,22 +849,17 @@ export function initTray() {
     }
   });
   $("nav.tray .tabs > div").on("mouseover click keyup", function (e) {
-    if (e.type == "mouseover" || (e.type == "keyup" && e.which == 13)) {
+    if (
+      e.type == "click" ||
+      e.type == "mouseover" ||
+      (e.type == "keyup" && e.which == 13)
+    ) {
       $tabBlip.css({
         left: $(this).offset().left - $("nav.tray .tabs").offset().left,
         width: $(this).outerWidth(),
       });
     }
   });
-
-  // Initial position
-  var activeItem = $("nav.tray .tabs .active").parent();
-  if (activeItem.length) {
-    $tabBlip.css({
-      left: activeItem.offset().left - $("nav.tray .tabs").offset().left,
-      width: activeItem.outerWidth(),
-    });
-  }
 
   $("nav.tray .tabs").on("mouseout", function () {
     var activeItem = $("nav.tray .tabs .active").parent();

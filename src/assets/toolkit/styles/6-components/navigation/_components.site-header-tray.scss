@@ -225,7 +225,7 @@ $tray-width-desktop: 400px;
         align-self: center;
         background-color: $grey-gallery;
         margin-right: 5px;
-        @include breakpoint($until: desktop) {
+        @include breakpoint($until: desktop-medium) {
           display: none;
         }
 
@@ -320,6 +320,9 @@ $tray-width-desktop: 400px;
       .header-content {
         padding-left: 1rem;
         width: 40%;
+        @include breakpoint($until: desktop-medium) {
+          width: 58%;
+        }
       }
 
       .header-search {
@@ -457,7 +460,7 @@ $tray-width-desktop: 400px;
               height: 0;
               width: 3px;
               position: absolute;
-              background-color: $green-brand-bright;
+              background-color: $pounamu;
               left: 0;
               transition: all ease 0.2s;
               z-index: 999;
@@ -589,6 +592,10 @@ $tray-width-desktop: 400px;
                   z-index: 99;
                   right: 5px;
                   top: 30%;
+                  pointer-events: none;
+                  @include breakpoint($until: tablet) {
+                    font-size: 16px;
+                  }
                 }
               }
 
@@ -598,6 +605,7 @@ $tray-width-desktop: 400px;
                 z-index: 90;
                 .main-nav-item > a {
                   background-color: #fff;
+                  padding: 10px 15px;
                 }
               }
             }
@@ -623,9 +631,15 @@ $tray-width-desktop: 400px;
                 text-align: center;
               }
             }
+            .tereo-nav-title {
+              display: block;
+              color: $green-brand;
+              margin-bottom: 5px;
+            }
             &.expanded {
               .tereo-nav-title {
                 color: $green-brand-light;
+                color: $kowhai;
               }
               > .btn-expander {
                 &:after {
@@ -646,42 +660,39 @@ $tray-width-desktop: 400px;
               border-color: $green-brand-bright;
             }
 
-            .tereo-nav-title {
-              display: block;
-              color: $green-brand;
-              margin-bottom: 5px;
-            }
-
             a {
               display: block;
               color: $black-tundora;
               text-decoration: none;
               position: relative;
               z-index: 50;
-              font-family: $font-name-brand;
               padding: 10px 15px;
               font-size: 18px;
               @include breakpoint($until: tablet) {
                 font-size: 16px;
               }
               .tereo-title {
-                display: none;
-                color: $green-brand;
+                display: block;
+                color: $pounamu;
               }
               &.active {
                 font-weight: 600;
                 position: relative;
+                color: $green-brand-bright;
+                .tereo-title {
+                  color: $pounamu;
+                }
               }
             }
 
             > a {
-              padding: 10px;
+              padding: 10px 15px;
               padding-right: 50px;
+              padding-left: 20px;
               position: initial;
               flex: 1 0 80%;
-              padding-left: 20px;
               &.active {
-                background-color: $green-brand-bright;
+                background-color: $pounamu;
                 // background: $green-linear-gradient;
                 color: #fff;
               }
@@ -727,12 +738,7 @@ $tray-width-desktop: 400px;
                     color: $green-brand-bright;
                   }
                 }
-                &.expanded {
-                  > a,
-                  > span {
-                    color: $green-brand-bright;
-                  }
-                }
+
                 &:hover {
                   // border-left: 5px $green-brand-bright solid;
                 }
@@ -741,7 +747,7 @@ $tray-width-desktop: 400px;
                   display: flex;
                   flex-wrap: wrap;
                   > a {
-                    flex: 1 1 auto;
+                    flex: 1 0 75%;
                   }
                   .btn-expander {
                     margin-right: 17px;
@@ -758,8 +764,9 @@ $tray-width-desktop: 400px;
 
                   > .btn-expander {
                     // transition: all $easing 0.2s;
-                    z-index: 505;
+                    z-index: 100;
                     position: relative;
+                    align-self: center;
                     &:hover {
                       background-color: $grey-gallery;
                     }
@@ -887,10 +894,10 @@ $tray-width-desktop: 400px;
 
                   &.expanded,
                   &:hover {
-                    padding-left: 5px;
+                    // padding-left: 5px;
                     &:before {
                       background-color: $green-brand-bright;
-                      width: 20px;
+                      // width: 20px;
                     }
                   }
 
@@ -1062,7 +1069,7 @@ $tray-width-desktop: 400px;
                   padding-right: 0px;
 
                   &:after {
-                    content: "\f156";
+                    content: "\f19f";
                     display: inline-block;
                     font-family: "Favorites";
                     font-style: normal;
@@ -1215,9 +1222,35 @@ $tray-width-desktop: 400px;
         }
 
         .header-content {
-          grid-column-start: 2;
-          grid-row-start: 2;
-          margin-left: auto;
+          width: 100% !important;
+          grid-column: 1/-1;
+          padding-left: 0;
+          margin-top: 20px;
+          > a {
+            flex-direction: row !important;
+            justify-content: space-between;
+            margin: initial;
+            width: 100%;
+
+            .tereo-title,
+            h2,
+            h1 {
+              font-size: 1em !important;
+              text-align: left;
+              flex: 1 0 40%;
+            }
+            h1 {
+              display: flex;
+              justify-self: flex-end;
+              text-align: right;
+              display: grid;
+            }
+            .tereo-title {
+              border-right: 1px $grey-chalice solid;
+              margin-right: 1rem;
+              padding-right: 5px;
+            }
+          }
         }
       }
     }
@@ -1482,6 +1515,16 @@ $tray-width-desktop: 400px;
         > a {
           display: inline-flex;
           flex-direction: column;
+          &.long-title {
+            h1,
+            p,
+            .tereo-title {
+              font-size: 1.5em;
+            }
+            .tereo-title {
+              margin-bottom: 10px;
+            }
+          }
           &:hover {
             h1,
             h2,
@@ -1613,10 +1656,6 @@ $tray-width-desktop: 400px;
     @include breakpoint($until: tablet) {
       .header-inner {
         grid-template-rows: 1fr;
-
-        .header-content {
-          display: none;
-        }
 
         .header-logo {
           grid-row: 1 !important;
@@ -1873,12 +1912,12 @@ $tray-width-desktop: 400px;
     background-color: $green-brand-light;
   }
   &.active {
-    background-color: $green-brand-bright;
+    background-color: $pounamu;
     // color: $kowhai;
     color: #fff;
-    &:hover {
-      background-color: $green-brand-bright;
-    }
+    // &:hover {
+    //   background-color: $green-brand-bright;
+    // }
   }
 }
 
@@ -1927,7 +1966,7 @@ $tray-width-desktop: 400px;
   .blip {
     position: absolute;
     border-radius: 5px;
-    background: $green-brand-bright;
+    background: $pounamu;
     width: 40px;
     height: 2px;
     bottom: -2px;
