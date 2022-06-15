@@ -205,7 +205,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
     }
   }
 
-  @include breakpoint($until: desktop) {
+  @include breakpoint($until: desktop-medium) {
     margin-top: 0;
     margin-bottom: 0;
 
@@ -854,6 +854,9 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
         transition: all $easing 0.2s;
         border-bottom: 1px transparent solid;
         border-top: 1px transparent solid;
+        > a {
+          flex: 0 0 50% !important
+        }
         &.expanded {
           background-color: $green-brand-bright;
         }

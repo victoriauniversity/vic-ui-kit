@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, June 14, 2022, 11:35 AM */
+/** Version: 0.10.13 | Thursday, June 16, 2022, 11:03 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14028,6 +14028,16 @@ var TABLET_AND_SMALLER = "screen and (max-width: 975px)",
 
 function initTray() {
   // console.log( 'tray...', $( '.tray-toggle' ));
+  // Check title length and shrink if too long
+  var pageTitleEl = $(".header-content > a");
+  var pageTitleLength = pageTitleEl.text().length;
+  console.log($(".header-content > a").text().length);
+
+  if (pageTitleLength > 150) {
+    pageTitleEl.parent().addClass("long-title");
+    pageTitleEl.addClass("long-title");
+  }
+
   $("body").on("click keyup", function (e) {
     // Close tray if clicked away from or escpae buttons
     console.log(e.target.className, "clicked"); // If not enter key
@@ -14047,11 +14057,24 @@ function initTray() {
         $(".custom-dropdown .selector").removeClass("open");
       }
     }
-  }); // tray functionality
+  }); // Initial position
+
+  function setTabsBlipInitialPosition() {
+    var activeItem = $("nav.tray .tabs .active").parent();
+
+    if (activeItem.length) {
+      $tabBlip.css({
+        left: activeItem.offset().left - $("nav.tray .tabs").offset().left,
+        width: activeItem.outerWidth()
+      });
+    }
+  } // tray functionality
+
 
   function toggleTray() {
     $(".tray").toggleClass("tray-closed", "normal");
     $(".tray").toggleClass("tray-open", "normal");
+    setTabsBlipInitialPosition();
     $("body").toggleClass("noscroll");
   }
 
@@ -14645,7 +14668,7 @@ function initTray() {
 
   var $tabBlip = $("nav.tray .tabs .blip");
   $("nav.tray .tabs .tab").on("click keyup", function (e) {
-    if (e.which == 13 || e.which == 1) {
+    if (e.which == 13 || e.which == 1 || e.type == "click") {
       $("nav.tray .tabs .tab").removeClass("active");
       $(this).addClass("active"); // Hide notification is there is one
 
@@ -14666,23 +14689,13 @@ function initTray() {
     }
   });
   $("nav.tray .tabs > div").on("mouseover click keyup", function (e) {
-    if (e.type == "mouseover" || e.type == "keyup" && e.which == 13) {
+    if (e.type == "click" || e.type == "mouseover" || e.type == "keyup" && e.which == 13) {
       $tabBlip.css({
         left: $(this).offset().left - $("nav.tray .tabs").offset().left,
         width: $(this).outerWidth()
       });
     }
-  }); // Initial position
-
-  var activeItem = $("nav.tray .tabs .active").parent();
-
-  if (activeItem.length) {
-    $tabBlip.css({
-      left: activeItem.offset().left - $("nav.tray .tabs").offset().left,
-      width: activeItem.outerWidth()
-    });
-  }
-
+  });
   $("nav.tray .tabs").on("mouseout", function () {
     var activeItem = $("nav.tray .tabs .active").parent();
 
@@ -15650,6 +15663,16 @@ function waitForElm(selector) {
       subtree: true
     });
   });
+} // Hide link for bots in case bot-version of page gets cached, e.g. on /events
+
+
+if (document.getElementById("clickLinks")) {
+  console.log("click links found.");
+
+  if (!navigator.userAgent.match(/baidu|bing|msn|teoma|slurp|yandex|funnelback/i)) {
+    console.log("browser is not a bot.");
+    document.getElementById("clickLinks").style.display = "none";
+  }
 }
 
 var searchParams = new URLSearchParams(window.location.search);
