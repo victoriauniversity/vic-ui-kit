@@ -69,6 +69,15 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
   overflow: unset !important;
   position: relative;
   padding-bottom: 6px;
+  &.sticky {
+    position: sticky;
+    z-index: 99;
+    top: 0;
+    animation: slide-in 0.3s;
+  }
+  @include breakpoint($until: desktop) {
+    animation: slide-out 0.3s;
+  }
 }
 
 .show-mega-menu-top {
