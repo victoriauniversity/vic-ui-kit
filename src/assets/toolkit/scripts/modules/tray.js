@@ -552,74 +552,74 @@ export function initTray() {
   var notificationCount = 0;
 
   // !Listen to storage changes from other windows on same domain
-  window.addEventListener("storage", (e) => {
-    // When local storage changes, dump the list to
-    // the console.
-    console.log(e);
-    console.log(window.localStorage);
-    if (e.key.includes("saved")) {
-      console.log(e);
-      checkSavedItems(e.key);
-      notificationCount++;
+  // window.addEventListener("storage", (e) => {
+  //   // When local storage changes, dump the list to
+  //   // the console.
+  //   console.log(e);
+  //   console.log(window.localStorage);
+  //   if (e.key.includes("saved")) {
+  //     console.log(e);
+  //     checkSavedItems(e.key);
+  //     notificationCount++;
 
-      if (notificationCount > 0) {
-        // Show main menu notification count
-        if ($(".menu-notifcations").length) {
-          $(".menu-notifcations").show();
-        } else {
-          $(".header-toggle .tray-toggle").append(
-            "<div class='menu-notifcations'>" + notificationCount + "</div>"
-          );
-        }
-        // Inner tab notification
-        if ($(".t-saved .notification").length) {
-          $(".t-saved .notification").show();
-        } else {
-          $(".t-saved span").append("<div class='notification'></div>");
-        }
+  //     if (notificationCount > 0) {
+  //       // Show main menu notification count
+  //       if ($(".menu-notifcations").length) {
+  //         $(".menu-notifcations").show();
+  //       } else {
+  //         $(".header-toggle .tray-toggle").append(
+  //           "<div class='menu-notifcations'>" + notificationCount + "</div>"
+  //         );
+  //       }
+  //       // Inner tab notification
+  //       if ($(".t-saved .notification").length) {
+  //         $(".t-saved .notification").show();
+  //       } else {
+  //         $(".t-saved span").append("<div class='notification'></div>");
+  //       }
 
-        // Show inner tab notifcation count
-        $("nav.tray .tabs .notification").show();
-        $("nav.tray .tabs .notification").text(notificationCount);
-      }
-    }
-  });
+  //       // Show inner tab notifcation count
+  //       $("nav.tray .tabs .notification").show();
+  //       $("nav.tray .tabs .notification").text(notificationCount);
+  //     }
+  //   }
+  // });
 
-  // !Listen to local storage on CURRENT PAGE
-  window.addEventListener(
-    "localstorage",
-    function (e) {
-      if (e.detail.key.includes("saved")) {
-        console.log(e.detail);
-        // checkSavedItems(e.detail.key);
-        notificationCount++;
+  // // !Listen to local storage on CURRENT PAGE
+  // window.addEventListener(
+  //   "localstorage",
+  //   function (e) {
+  //     if (e.detail.key.includes("saved")) {
+  //       console.log(e.detail);
+  //       // checkSavedItems(e.detail.key);
+  //       notificationCount++;
 
-        if (notificationCount > 0) {
-          // Show main menu notification count
-          if ($(".menu-notifcations").length) {
-            $(".menu-notifcations").show();
-          } else {
-            $(".header-toggle .tray-toggle").append(
-              "<div class='menu-notifcations'>" + notificationCount + "</div>"
-            );
-          }
-          // Inner tab notification
-          if ($(".t-saved .notification").length) {
-            $(".t-saved .notification").show();
-          } else {
-            $(".t-saved span").append("<div class='notification'></div>");
-          }
+  //       if (notificationCount > 0) {
+  //         // Show main menu notification count
+  //         if ($(".menu-notifcations").length) {
+  //           $(".menu-notifcations").show();
+  //         } else {
+  //           $(".header-toggle .tray-toggle").append(
+  //             "<div class='menu-notifcations'>" + notificationCount + "</div>"
+  //           );
+  //         }
+  //         // Inner tab notification
+  //         if ($(".t-saved .notification").length) {
+  //           $(".t-saved .notification").show();
+  //         } else {
+  //           $(".t-saved span").append("<div class='notification'></div>");
+  //         }
 
-          // Show inner tab notifcation count
-          $("nav.tray .tabs .notification").show();
-          $("nav.tray .tabs .notification").text(notificationCount);
-        }
-      }
+  //         // Show inner tab notifcation count
+  //         $("nav.tray .tabs .notification").show();
+  //         $("nav.tray .tabs .notification").text(notificationCount);
+  //       }
+  //     }
 
-      // }
-    },
-    false
-  );
+  //     // }
+  //   },
+  //   false
+  // );
 
   // !Remove default icon injected on all role="button" elements
   $(".btn-expander").addClass("no-icon");
@@ -1027,51 +1027,51 @@ export function initTray() {
     toggleTray();
   }
 
-  setTimeout(() => {
-    // Initial blip position
-    var activeItem = $(".main-nav-list > li.active");
-    if (activeItem.length) {
-      $tallBlip.css({
-        top:
-          activeItem.offset().top -
-          activeItem.parents(".main-nav-list").offset().top,
-        height: activeItem.outerHeight(),
-        left: activeItem.offset().left - $(".main-nav-list").offset().left,
-      });
-    }
+  // setTimeout(() => {
+  //   // Initial blip position
+  //   var activeItem = $(".main-nav-list > li.active");
+  //   if (activeItem.length) {
+  //     $tallBlip.css({
+  //       top:
+  //         activeItem.offset().top -
+  //         activeItem.parents(".main-nav-list").offset().top,
+  //       height: activeItem.outerHeight(),
+  //       left: activeItem.offset().left - $(".main-nav-list").offset().left,
+  //     });
+  //   }
 
-    // Prune events
-    var dateNow = new Date();
-    $(".tray-content .events-list li ").each(function (e) {
-      var eventExpiryMessage = $(
-        "<div class='expired-text'>This event has expired</div>"
-      );
-      var $el = $(this).find("a span");
-      if (dateNow > formatAsDate($el.attr("data-date"), "us")) {
-        $el.append(eventExpiryMessage);
-        $el.parent().attr("target", "");
-        $el.parent().parent().addClass("expired");
-      }
-    });
+  //   // Prune events
+  //   var dateNow = new Date();
+  //   $(".tray-content .events-list li ").each(function (e) {
+  //     var eventExpiryMessage = $(
+  //       "<div class='expired-text'>This event has expired</div>"
+  //     );
+  //     var $el = $(this).find("a span");
+  //     if (dateNow > formatAsDate($el.attr("data-date"), "us")) {
+  //       $el.append(eventExpiryMessage);
+  //       $el.parent().attr("target", "");
+  //       $el.parent().parent().addClass("expired");
+  //     }
+  //   });
 
-    // TODO: Make pruning automatic, display message on open of event-list
+  //   // TODO: Make pruning automatic, display message on open of event-list
 
-    $(".tray-content .events-list li .remove-item").on("click", function () {
-      var $el = $(this);
-      var localObject = JSON.parse(localStorage.getItem("savedEvents"));
+  //   $(".tray-content .events-list li .remove-item").on("click", function () {
+  //     var $el = $(this);
+  //     var localObject = JSON.parse(localStorage.getItem("savedEvents"));
 
-      // Return array of items where displayUrl !== clicked li href
-      var filterdLocalObject = localObject.filter(function (item) {
-        return item.displayUrl !== $el.prev().attr("href");
-      });
-      console.log(filterdLocalObject);
-      $el.parent().slideUp();
-      $el
-        .parents(".item-list")
-        .prev()
-        .find(".count")
-        .text(filterdLocalObject.length);
-      localStorage.setItem("savedEvents", JSON.stringify(filterdLocalObject));
-    });
-  }, 500);
+  //     // Return array of items where displayUrl !== clicked li href
+  //     var filterdLocalObject = localObject.filter(function (item) {
+  //       return item.displayUrl !== $el.prev().attr("href");
+  //     });
+  //     console.log(filterdLocalObject);
+  //     $el.parent().slideUp();
+  //     $el
+  //       .parents(".item-list")
+  //       .prev()
+  //       .find(".count")
+  //       .text(filterdLocalObject.length);
+  //     localStorage.setItem("savedEvents", JSON.stringify(filterdLocalObject));
+  //   });
+  // }, 500);
 }
