@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, June 21, 2022, 3:47 PM */
+/** Version: 0.10.13 | Wednesday, June 22, 2022, 10:51 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -15829,7 +15829,7 @@ footer .footer-secondary.dark .footer-num {
   height: 100vh;
   background-color: #1D2624;
   width: 400px;
-  overflow: auto;
+  overflow: visible;
   position: absolute;
   right: -100%;
 }
@@ -15839,6 +15839,10 @@ footer .footer-secondary.dark .footer-num {
     margin: 0;
     width: 94%;
   }
+}
+
+.main-site-header.header-tray .header-inner .tray-content .tray-inner {
+  overflow: auto;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-inner-content {
@@ -17449,6 +17453,10 @@ footer .footer-secondary.dark .footer-num {
   }
 }
 
+#btn-up {
+  display: none;
+}
+
 /*==================================================
 =        Nav top horizontal mega menu nav        =
 ==================================================*/
@@ -17661,9 +17669,6 @@ footer .footer-secondary.dark .footer-num {
     text-decoration: inherit;
     text-rendering: optimizeLegibility;
     text-transform: none;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    font-smoothing: antialiased;
     font-size: 1rem;
     z-index: 0;
     color: #115737;
@@ -17778,18 +17783,16 @@ footer .footer-secondary.dark .footer-num {
             flex: auto;
     min-width: 300px;
     max-width: 1000px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav .sub-draw-title {
     color: #424242;
     font-size: 1.2rem;
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-align: center;
-            align-items: center;
     font-weight: 600;
-    -webkit-column-span: all;
-       -moz-column-span: all;
-            column-span: all;
     border: none;
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
@@ -17928,7 +17931,7 @@ footer .footer-secondary.dark .footer-num {
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul.active-nav-group a:hover, .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul.active-nav-group a:active, .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul.active-nav-group a:focus {
     color: #005EA5;
   }
-  .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul.active-nav-group > li {
+  .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul.active-nav-group > li:not(.sub-draw-title) {
     display: -webkit-box;
     display: flex;
     -webkit-box-align: center;
@@ -17958,6 +17961,11 @@ footer .footer-secondary.dark .footer-num {
     -webkit-column-count: 2;
        -moz-column-count: 2;
             column-count: 2;
+  }
+  .show-mega-menu-top .mega-sub-menu .sidemenu-drawer.no-promo .draw-nav .active-nav-group .sub-draw-title {
+    -webkit-column-span: all;
+       -moz-column-span: all;
+            column-span: all;
   }
 }
 
@@ -18445,6 +18453,13 @@ body .hub .quote-panel.quote-image svg.quote-open {
   opacity: 0.3;
 }
 
+@media (max-width: 60.99em) {
+  body .hub .quote-panel.quote-image svg.quote-open {
+    max-width: 50px;
+    left: -50px;
+  }
+}
+
 body .hub .quote-panel.quote-image .quote {
   padding: 0;
   background-color: #fff;
@@ -18457,6 +18472,15 @@ body .hub .quote-panel.quote-image .quote .image-container {
   position: relative;
   -webkit-clip-path: polygon(-0.25% -3px, 88% -13.74%, 99.5% 100%, 0px 100%);
           clip-path: polygon(-0.25% -3px, 88% -13.74%, 99.5% 100%, 0px 100%);
+}
+
+@media (max-width: 60.99em) {
+  body .hub .quote-panel.quote-image .quote .image-container {
+    -webkit-clip-path: initial;
+            clip-path: initial;
+    -webkit-box-flex: 1;
+            flex: 1 0 20%;
+  }
 }
 
 body .hub .quote-panel.quote-image .quote .image-container:before {
@@ -18480,12 +18504,29 @@ body .hub .quote-panel.quote-image .quote img {
   width: auto;
   max-width: 300px;
   position: relative;
-  margin: 0 !important;
+}
+
+@media (max-width: 60.99em) {
+  body .hub .quote-panel.quote-image .quote img {
+    max-width: 150px;
+    margin: auto;
+    border-radius: 100px;
+  }
 }
 
 body .hub .quote-panel.quote-image .quote .quote-content {
   margin-left: 5rem;
   display: block;
+  -webkit-box-flex: 1;
+          flex: 1 0 65%;
+}
+
+@media (max-width: 60.99em) {
+  body .hub .quote-panel.quote-image .quote .quote-content {
+    margin-left: 10px;
+    -webkit-box-flex: 1;
+            flex: 1 0 50%;
+  }
 }
 
 body .hub .quote-panel.quote-image .quote .quote-content blockquote {
@@ -18494,10 +18535,26 @@ body .hub .quote-panel.quote-image .quote .quote-content blockquote {
   width: 100%;
 }
 
+@media (max-width: 60.99em) {
+  body .hub .quote-panel.quote-image .quote .quote-content blockquote {
+    font-size: 1em;
+    padding: 10px;
+  }
+}
+
 body .hub .quote-panel.quote-image .quote .quote-content blockquote h3 {
   font-weight: 300;
   line-height: 1.2;
-  color: #000 !important;
+  color: #424242 !important;
+}
+
+@media (max-width: 60.99em) {
+  body .hub .quote-panel.quote-image .quote .quote-content blockquote h3 {
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0;
+  }
 }
 
 body .hub .quote-panel.quote-image .quote .quote-content blockquote:before, body .hub .quote-panel.quote-image .quote .quote-content blockquote:after {
@@ -18517,8 +18574,21 @@ body .hub .quote-panel.quote-image .quote figcaption {
   padding-top: 1rem;
 }
 
+@media (max-width: 60.99em) {
+  body .hub .quote-panel.quote-image .quote figcaption {
+    padding: 10px;
+    margin: 0;
+  }
+}
+
 body .hub .quote-panel.quote-image .quote figcaption h4 {
   margin-bottom: 5px;
+}
+
+@media (max-width: 60.99em) {
+  body .hub .quote-panel.quote-image .quote figcaption h4 {
+    font-size: 1.4em;
+  }
 }
 
 .highlight-message {
