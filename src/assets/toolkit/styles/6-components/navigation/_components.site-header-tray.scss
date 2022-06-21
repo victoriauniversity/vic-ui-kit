@@ -437,7 +437,7 @@ $tray-width-desktop: 400px;
         height: 100vh;
         background-color: $header-bg;
         width: $tray-width-desktop;
-        overflow: auto;
+        overflow: visible;
         position: absolute;
         right: -100%;
 
@@ -445,11 +445,9 @@ $tray-width-desktop: 400px;
           margin: 0;
           width: 94%;
         }
-        // .tray-inner {
-        //   width: $tray-width-desktop;
-        //   margin-left: auto;
-        //   background-color: #fff;
-        // }
+        .tray-inner {
+          overflow: auto;
+        }
 
         .tray-inner-content {
           padding: 0 15px;
@@ -1956,7 +1954,6 @@ $tray-width-desktop: 400px;
     background-image: url("/images/MKT0510 - Te Tumu PNG-05.png");
   }
 
-
   .blip {
     position: absolute;
     border-radius: 5px;
@@ -2189,4 +2186,9 @@ $tray-width-desktop: 400px;
   #mega-nav {
     display: none !important;
   }
+}
+
+// Properly hide back to top button
+#btn-up {
+  display: none;
 }

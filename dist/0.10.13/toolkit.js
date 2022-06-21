@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, June 21, 2022, 3:47 PM */
+/** Version: 0.10.13 | Wednesday, June 22, 2022, 10:51 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14024,11 +14024,12 @@ var tooltipsApi = window.toolkitTooltips || {};
 /* eslint-disable func-names */
 
 var TABLET_AND_SMALLER = "screen and (max-width: 975px)",
-    DESKTOP_AND_LARGER = "screen and (min-width: 61em)"; // eslint-disable-next-line import/prefer-default-export
+    DESKTOP_AND_LARGER = "screen and (min-width: 1200px)"; // eslint-disable-next-line import/prefer-default-export
 
 function initTray() {
   // console.log( 'tray...', $( '.tray-toggle' ));
-  // Check title length and shrink if too long
+  console.log("Init tray"); // Check title length and shrink if too long
+
   var pageTitleEl = $(".header-content > a");
   var pageTitleLength = pageTitleEl.text().length;
   console.log($(".header-content > a").text().length);
@@ -14386,10 +14387,14 @@ function initTray() {
   if ($(".show-mega-menu-top").length) {
     // only run on desktop size
     src_default.a.register(DESKTOP_AND_LARGER, function () {
-      console.log("Desktop activated ");
-      initHorizontalNav();
+      console.log("Desktop activated "); // Only inti horizontal nav if it hasn't rendered yet, prevents duplication when resizing multiple times
+
+      if ($(".sub-draw-title").length < 1) {
+        initHorizontalNav();
+      }
     });
-  } // Blip movement logic
+  } // initHorizontalNav();
+  // Blip movement logic
 
 
   $("#mega-menu > li:not(.sidemenu__label)").on("mouseover click", function () {
@@ -15924,7 +15929,6 @@ var SIDEMENU_SUBMENU_CLASS = "has-submenu";
 var SIDEMENU_SELECTED_ITEM_CLASS = "active";
 var SIDEMENU_EXPANDED_CLASS = "expanded";
 var pageName = external_jQuery_default()("main h1").first().text();
-console.log(pageName);
 /** PRIVATE FUNCTIONS. */
 
 function initExpandableSubmenu() {
@@ -16445,27 +16449,32 @@ external_jQuery_default()(function () {
     initTray();
   }
 
-  victoriousHeader();
-
-  if (window.skrollr && external_jQuery_default()(window).width() > 800 && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    window.onload = function () {
-      var s = skrollr.init({
-        smoothScrolling: true,
-        render: function render() {// console.log('skrollr init');
-        }
-      });
-    }; // if (s.isMobile()) {
-    //   s.destroy();
-    // }
-    // $(window).on('resize', () => {
-    //   if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { // no reason to destroy on mobile
-    //     if ($(window).width() <= 800) {
-    //       skrollr.init().destroy(); // skrollr.init() returns the singleton created above
-    //     }
-    //   }
-    // });
-
-  }
+  victoriousHeader(); // if (
+  //   window.skrollr &&
+  //   $(window).width() > 800 &&
+  //   !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+  //     navigator.userAgent
+  //   )
+  // ) {
+  //   window.onload = function () {
+  //     let s = skrollr.init({
+  //       smoothScrolling: true,
+  //       render: function () {
+  //         // console.log('skrollr init');
+  //       },
+  //     });
+  //   };
+  //   if (s.isMobile()) {
+  //     s.destroy();
+  //   }
+  //   $(window).on('resize', () => {
+  //     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { // no reason to destroy on mobile
+  //       if ($(window).width() <= 800) {
+  //         skrollr.init().destroy(); // skrollr.init() returns the singleton created above
+  //       }
+  //     }
+  //   });
+  // }
 
   initFloatingButtons();
   decodeMailAddresses(); // http://wicky.nilia.ms/enquire.js/
@@ -16828,7 +16837,7 @@ window.onscroll = function (e) {
     var scrollY = window.pageYOffset || document.documentElement.scrollTop;
     var header = external_jQuery_default()(".main-site-header");
 
-    if (scrollY <= this.lastScroll) {
+    if (scrollY < this.lastScroll) {
       header.addClass("sticky");
     } else {
       header.removeClass("sticky");

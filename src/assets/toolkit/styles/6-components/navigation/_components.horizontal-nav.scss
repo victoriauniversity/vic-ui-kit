@@ -207,9 +207,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
           text-decoration: inherit;
           text-rendering: optimizeLegibility;
           text-transform: none;
-          -moz-osx-font-smoothing: grayscale;
-          -webkit-font-smoothing: antialiased;
-          font-smoothing: antialiased;
           font-size: 1rem;
           z-index: 0;
           color: $green-brand;
@@ -338,14 +335,15 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
         flex: auto;
         min-width: 300px;
         max-width: 1000px;
+        display: flex;
+        flex-direction: column;
 
         .sub-draw-title {
           color: $black-tundora;
           font-size: 1.2rem;
-          display: flex;
-          align-items: center;
+          // display: flex;
+          // align-items: center;
           font-weight: 600;
-          column-span: all;
           border: none;
           margin-bottom: 0.5rem;
           margin-top: 0.5rem;
@@ -496,6 +494,8 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
             display: block;
             column-count: 1;
             position: relative;
+            .sub-draw-title {
+            }
 
             // &:after {
             //   content: "";
@@ -520,7 +520,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
                 color: $blue-endeavoura;
               }
             }
-            > li {
+            > li:not(.sub-draw-title) {
               display: flex;
               align-items: center;
               break-inside: avoid-column;
@@ -548,6 +548,9 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
           border-right: none;
           .active-nav-group {
             column-count: 2;
+            .sub-draw-title {
+              column-span: all;
+            }
           }
         }
       }
@@ -1071,6 +1074,10 @@ body {
         top: -30px;
         left: -80px;
         opacity: 0.3;
+        @include breakpoint($until: desktop) {
+          max-width: 50px;
+          left: -50px;
+        }
       }
       .quote {
         padding: 0;
@@ -1082,7 +1089,9 @@ body {
         .image-container {
           position: relative;
           clip-path: polygon(-0.25% -3px, 88% -13.74%, 99.5% 100%, 0px 100%);
-          @include breakpoint($from: desktop) {
+          @include breakpoint($until: desktop) {
+            clip-path: initial;
+            flex: 1 0 20%;
             // position: absolute;
             // left: 0;
             // top: 0;
@@ -1108,19 +1117,39 @@ body {
           width: auto;
           max-width: 300px;
           position: relative;
-          margin: 0 !important;
+          @include breakpoint($until: desktop) {
+            max-width: 150px;
+            margin: auto;
+            border-radius: 100px;
+          }
         }
         .quote-content {
           margin-left: 5rem;
+
           display: block;
+          flex: 1 0 65%;
+          @include breakpoint($until: desktop) {
+            margin-left: 10px;
+            flex: 1 0 50%;
+          }
           blockquote {
             padding: 1rem 0;
             position: relative;
             width: 100%;
+            @include breakpoint($until: desktop) {
+              font-size: 1em;
+              padding: 10px;
+            }
             h3 {
               font-weight: 300;
               line-height: 1.2;
-              color: #000 !important;
+              color: $black-tundora !important;
+              @include breakpoint($until: desktop) {
+                font-size: 1em;
+                font-weight: 400;
+                line-height: 1.5;
+                padding: 0;
+              }
             }
 
             &:before,
@@ -1137,8 +1166,15 @@ body {
           padding-left: 0;
           margin-left: 2rem;
           padding-top: 1rem;
+          @include breakpoint($until: desktop) {
+            padding: 10px;
+            margin: 0;
+          }
           h4 {
             margin-bottom: 5px;
+            @include breakpoint($until: desktop) {
+              font-size: 1.4em;
+            }
           }
           .quoter-info {
           }

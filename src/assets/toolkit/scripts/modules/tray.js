@@ -2,11 +2,11 @@
 import enquire from "enquire.js";
 
 const TABLET_AND_SMALLER = "screen and (max-width: 975px)",
-  DESKTOP_AND_LARGER = "screen and (min-width: 61em)";
+  DESKTOP_AND_LARGER = "screen and (min-width: 1200px)";
 // eslint-disable-next-line import/prefer-default-export
 export function initTray() {
   // console.log( 'tray...', $( '.tray-toggle' ));
-
+  console.log("Init tray");
   // Check title length and shrink if too long
   var pageTitleEl = $(".header-content > a");
   var pageTitleLength = pageTitleEl.text().length;
@@ -461,9 +461,13 @@ export function initTray() {
     // only run on desktop size
     enquire.register(DESKTOP_AND_LARGER, () => {
       console.log("Desktop activated ");
-      initHorizontalNav();
+      // Only inti horizontal nav if it hasn't rendered yet, prevents duplication when resizing multiple times
+      if ($(".sub-draw-title").length < 1) {
+        initHorizontalNav();
+      }
     });
   }
+  // initHorizontalNav();
 
   // Blip movement logic
 

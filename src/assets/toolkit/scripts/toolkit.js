@@ -87,7 +87,6 @@ const SIDEMENU_SUBMENU_CLASS = "has-submenu";
 const SIDEMENU_SELECTED_ITEM_CLASS = "active";
 const SIDEMENU_EXPANDED_CLASS = "expanded";
 const pageName = $("main h1").first().text();
-console.log(pageName);
 
 /** PRIVATE FUNCTIONS. */
 
@@ -724,33 +723,33 @@ $(() => {
   }
   victoriousHeader();
 
-  if (
-    window.skrollr &&
-    $(window).width() > 800 &&
-    !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    )
-  ) {
-    window.onload = function () {
-      let s = skrollr.init({
-        smoothScrolling: true,
-        render: function () {
-          // console.log('skrollr init');
-        },
-      });
-    };
-    // if (s.isMobile()) {
-    //   s.destroy();
-    // }
-    // $(window).on('resize', () => {
-    //   if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { // no reason to destroy on mobile
-    //     if ($(window).width() <= 800) {
-    //       skrollr.init().destroy(); // skrollr.init() returns the singleton created above
-    //     }
-    //   }
+  // if (
+  //   window.skrollr &&
+  //   $(window).width() > 800 &&
+  //   !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+  //     navigator.userAgent
+  //   )
+  // ) {
+  //   window.onload = function () {
+  //     let s = skrollr.init({
+  //       smoothScrolling: true,
+  //       render: function () {
+  //         // console.log('skrollr init');
+  //       },
+  //     });
+  //   };
+  //   if (s.isMobile()) {
+  //     s.destroy();
+  //   }
+  //   $(window).on('resize', () => {
+  //     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { // no reason to destroy on mobile
+  //       if ($(window).width() <= 800) {
+  //         skrollr.init().destroy(); // skrollr.init() returns the singleton created above
+  //       }
+  //     }
 
-    // });
-  }
+  //   });
+  // }
 
   initFloatingButtons();
   decodeMailAddresses();
@@ -1181,7 +1180,7 @@ window.onscroll = function (e) {
     var scrollY = window.pageYOffset || document.documentElement.scrollTop;
     var header = $(".main-site-header");
 
-    if (scrollY <= this.lastScroll) {
+    if (scrollY < this.lastScroll) {
       header.addClass("sticky");
     } else {
       header.removeClass("sticky");
