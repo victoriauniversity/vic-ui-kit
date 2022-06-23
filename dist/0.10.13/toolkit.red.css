@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, June 22, 2022, 2:00 PM */
+/** Version: 0.10.13 | Thursday, June 23, 2022, 1:17 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -14052,7 +14052,7 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .sidemenu a:hover, .show-mega-menu-top .mega-sub-menu a:hover, .sidemenu a:active, .show-mega-menu-top .mega-sub-menu a:active, .sidemenu a:focus, .show-mega-menu-top .mega-sub-menu a:focus {
-  color: #3E9C4F;
+  color: #115737;
 }
 
 .sidemenu a:hover .btn-expander, .show-mega-menu-top .mega-sub-menu a:hover .btn-expander, .sidemenu a:active .btn-expander, .show-mega-menu-top .mega-sub-menu a:active .btn-expander, .sidemenu a:focus .btn-expander, .show-mega-menu-top .mega-sub-menu a:focus .btn-expander {
@@ -14103,7 +14103,7 @@ footer .footer-secondary.dark .footer-num {
 .sidemenu .has-submenu > ul > li.active > a::before, .show-mega-menu-top .mega-sub-menu .has-submenu > ul > li.active > a::before {
   margin: -0.2em 0.25em -0.2em 0;
   border-width: 0.125rem;
-  border-color: #3E9C4F;
+  border-color: #115737;
 }
 
 .sidemenu .has-submenu .has-submenu > ul > li, .show-mega-menu-top .mega-sub-menu .has-submenu .has-submenu > ul > li {
@@ -14139,7 +14139,7 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .sidemenu .btn-expander:hover, .show-mega-menu-top .mega-sub-menu .btn-expander:hover, .sidemenu .btn-expander:active, .show-mega-menu-top .mega-sub-menu .btn-expander:active, .sidemenu .btn-expander:focus, .show-mega-menu-top .mega-sub-menu .btn-expander:focus {
-  color: #3E9C4F;
+  color: #115737;
   background-color: #EEE;
 }
 
@@ -14237,10 +14237,6 @@ footer .footer-secondary.dark .footer-num {
 
 .sidemenu.sidemenu-light a, .show-mega-menu-top .sidemenu-light.mega-sub-menu a {
   color: #424242;
-}
-
-.sidemenu.sidemenu-light a:hover, .show-mega-menu-top .sidemenu-light.mega-sub-menu a:hover, .sidemenu.sidemenu-light a:active, .show-mega-menu-top .sidemenu-light.mega-sub-menu a:active, .sidemenu.sidemenu-light a:focus, .show-mega-menu-top .sidemenu-light.mega-sub-menu a:focus {
-  color: #005EA5;
 }
 
 .sidemenu.sidemenu-light > ul, .show-mega-menu-top .sidemenu-light.mega-sub-menu > ul {
@@ -14438,7 +14434,7 @@ footer .footer-secondary.dark .footer-num {
 
 .sidemenu-homepage > ul > li.active > a::before {
   margin: -0.2em 0.35em -0.2em 0;
-  border-color: #3E9C4F;
+  border-color: #115737;
 }
 
 .sidebar {
@@ -14501,12 +14497,23 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .sidebar .sidemenu ul li a:hover, .sidebar .show-mega-menu-top .mega-sub-menu ul li a:hover, .show-mega-menu-top .sidebar .mega-sub-menu ul li a:hover {
-  color: #3E9C4F;
+  color: #115737;
+  text-decoration: underline;
+}
+
+.sidebar .sidemenu ul li a:hover + .btn-expander, .sidebar .show-mega-menu-top .mega-sub-menu ul li a:hover + .btn-expander, .show-mega-menu-top .sidebar .mega-sub-menu ul li a:hover + .btn-expander {
+  color: #115737;
 }
 
 .sidebar .sidemenu ul li a:focus, .sidebar .show-mega-menu-top .mega-sub-menu ul li a:focus, .show-mega-menu-top .sidebar .mega-sub-menu ul li a:focus {
   outline-offset: -2px;
   outline: 2px #555 dotted;
+}
+
+.sidebar .sidemenu ul li.active, .sidebar .show-mega-menu-top .mega-sub-menu ul li.active, .show-mega-menu-top .sidebar .mega-sub-menu ul li.active {
+  border: none;
+  font-weight: 600;
+  border-left: 5px solid #0D4C38;
 }
 
 .sidebar .sidemenu ul li.has-submenu, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu {
@@ -14518,18 +14525,12 @@ footer .footer-secondary.dark .footer-num {
           justify-content: space-between;
 }
 
-.sidebar .sidemenu ul li.has-submenu.active, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.active, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.active {
-  border: none;
-  font-weight: 600;
-  border-left: 5px solid #0D4C38;
-}
-
 .sidebar .sidemenu ul li.has-submenu.expanded, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded {
   z-index: 1;
 }
 
 .sidebar .sidemenu ul li.has-submenu.expanded > .btn-expander, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded > .btn-expander, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded > .btn-expander {
-  color: #3E9C4F;
+  color: #115737;
 }
 
 .sidebar .sidemenu ul li.has-submenu.expanded > .btn-expander:after, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded > .btn-expander:after, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded > .btn-expander:after {
@@ -14571,37 +14572,13 @@ footer .footer-secondary.dark .footer-num {
   transition: all ease 0.3s;
 }
 
-.sidebar .sidemenu ul li.has-submenu.expanded ul li:hover:before, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded ul li:hover:before, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded ul li:hover:before {
-  width: 22px;
-}
-
 .sidebar .sidemenu ul li.has-submenu.expanded ul li.expanded:before, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded ul li.expanded:before, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded ul li.expanded:before {
-  background-color: #3E9C4F;
-}
-
-.sidebar .sidemenu ul li.has-submenu.expanded ul li.expanded > a, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded ul li.expanded > a, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded ul li.expanded > a {
-  padding-left: 10px;
-  padding-right: 0;
-}
-
-.sidebar .sidemenu ul li.has-submenu.expanded ul li a:hover, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded ul li a:hover, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded ul li a:hover {
-  padding-left: 10px;
-  padding-right: 0;
+  background-color: #115737;
 }
 
 .sidebar .sidemenu ul li.has-submenu.expanded ul ul li:before, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded ul ul li:before, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded ul ul li:before {
   left: 0;
   width: 15px;
-}
-
-.sidebar .sidemenu ul li.has-submenu.expanded ul ul li.expanded > a, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded ul ul li.expanded > a, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded ul ul li.expanded > a {
-  padding-left: 15px;
-  padding-right: 5px;
-}
-
-.sidebar .sidemenu ul li.has-submenu.expanded ul ul li a:hover, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded ul ul li a:hover, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded ul ul li a:hover {
-  padding-left: 15px;
-  padding-right: 5px;
 }
 
 .sidebar .sidemenu ul li.has-submenu > .btn-expander, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu > .btn-expander, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu > .btn-expander {
@@ -14642,7 +14619,7 @@ footer .footer-secondary.dark .footer-num {
 
 .sidebar .sidemenu ul li.has-submenu ul li.expanded > a, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu ul li.expanded > a, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu ul li.expanded > a {
   font-weight: 600;
-  color: #3E9C4F;
+  color: #115737;
 }
 
 .sidebar .sidemenu ul li.has-submenu > ul, .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu > ul, .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu > ul {
@@ -14710,19 +14687,17 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .sidebar .sidemenu > ul, .sidebar .show-mega-menu-top .mega-sub-menu > ul, .show-mega-menu-top .sidebar .mega-sub-menu > ul {
-  -webkit-box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   font-size: 100%;
-  border: thin #EEE solid;
+  border: 1px #DDD solid;
   position: relative;
 }
 
 .sidebar .sidemenu > ul .sidemenu__label, .sidebar .show-mega-menu-top .mega-sub-menu > ul .sidemenu__label, .show-mega-menu-top .sidebar .mega-sub-menu > ul .sidemenu__label {
   position: relative;
   background-position: center;
-  border-bottom: 2px #eee solid;
-  border-top: 0;
   overflow: hidden;
+  border-top: none;
+  border-bottom: none;
 }
 
 .sidebar .sidemenu > ul .sidemenu__label .sidemenu__background, .sidebar .show-mega-menu-top .mega-sub-menu > ul .sidemenu__label .sidemenu__background, .show-mega-menu-top .sidebar .mega-sub-menu > ul .sidemenu__label .sidemenu__background {
@@ -14741,13 +14716,15 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .sidebar .sidemenu > ul .sidemenu__label > a, .sidebar .show-mega-menu-top .mega-sub-menu > ul .sidemenu__label > a, .show-mega-menu-top .sidebar .mega-sub-menu > ul .sidemenu__label > a {
-  background-color: #F1F6F0;
+  background-color: #CCDCD7;
   padding: 15px;
   background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
   background-repeat: no-repeat;
   background-size: 100px;
   background-position: 117% 5%;
   background-blend-mode: multiply;
+  color: #0D4C38;
+  font-weight: 700;
 }
 
 .sidebar .sidemenu > ul > li, .sidebar .show-mega-menu-top .mega-sub-menu > ul > li, .show-mega-menu-top .sidebar .mega-sub-menu > ul > li {
@@ -14784,12 +14761,17 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .sidebar .sidemenu > ul > li.active > a:hover, .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.active > a:hover, .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.active > a:hover {
-  color: #3E9C4F;
+  color: #115737;
 }
 
 .sidebar .sidemenu > ul > li.expanded, .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded, .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded {
   background-color: #0D4C38;
   border-top: none;
+  border-left-width: 5px;
+}
+
+.sidebar .sidemenu > ul > li.expanded:before, .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded:before, .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded:before, .sidebar .sidemenu > ul > li.expanded:after, .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded:after, .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded:after {
+  width: 100%;
 }
 
 .sidebar .sidemenu > ul > li.expanded > a, .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded > a, .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded > a {
@@ -14801,12 +14783,12 @@ footer .footer-secondary.dark .footer-num {
   color: #fff;
 }
 
-.sidebar .sidemenu > ul > li.expanded > .btn-expander, .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded > .btn-expander, .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded > .btn-expander {
+.sidebar .sidemenu > ul > li.expanded.has-submenu > .btn-expander, .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded.has-submenu > .btn-expander, .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded.has-submenu > .btn-expander {
   -webkit-clip-path: polygon(0% -2px, 100% -1%, 100% 104%, 10px 104%);
           clip-path: polygon(0% -2px, 100% -1%, 100% 104%, 10px 104%);
-  background-color: #fff;
   padding-left: 15px;
   background-color: #EEE;
+  color: #1D2624;
 }
 
 .sidebar .sidemenu > ul > li:not(.sidemenu__label).expanded, .sidebar .show-mega-menu-top .mega-sub-menu > ul > li:not(.sidemenu__label).expanded, .show-mega-menu-top .sidebar .mega-sub-menu > ul > li:not(.sidemenu__label).expanded, .sidebar .sidemenu > ul > li:not(.sidemenu__label):hover, .sidebar .show-mega-menu-top .mega-sub-menu > ul > li:not(.sidemenu__label):hover, .show-mega-menu-top .sidebar .mega-sub-menu > ul > li:not(.sidemenu__label):hover {
@@ -14837,14 +14819,6 @@ footer .footer-secondary.dark .footer-num {
   left: 0;
   bottom: 0;
   content: none;
-}
-
-.sidebar .sidemenu > ul > li.expanded, .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded, .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded {
-  border-top-color: transparent;
-}
-
-.sidebar .sidemenu > ul > li.expanded:before, .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded:before, .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded:before, .sidebar .sidemenu > ul > li.expanded:after, .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded:after, .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded:after {
-  width: 100%;
 }
 
 .tcon {
@@ -15543,6 +15517,7 @@ footer .footer-secondary.dark .footer-num {
 
 .main-site-header.header-tray .header-inner .tray-content .tray-inner {
   overflow: auto;
+  height: 100%;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-inner-content {
@@ -15553,6 +15528,7 @@ footer .footer-secondary.dark .footer-num {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
           flex-direction: column;
+  height: 100%;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .saved-menu {
@@ -16059,10 +16035,7 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-sub-menu {
-  margin-top: auto;
   position: relative;
-  margin-left: -15px;
-  margin-right: -15px;
   background-color: #f7f7f7;
   padding: 15px;
   padding-bottom: 90px;
@@ -16075,6 +16048,8 @@ footer .footer-secondary.dark .footer-num {
   background-position: 200px;
   -webkit-box-flex: 1;
           flex: 1 auto;
+  margin-left: -15px;
+  margin-right: -15px;
   margin-top: 30px;
   align-self: flex-end;
   align-content: flex-end;
@@ -16083,8 +16058,6 @@ footer .footer-secondary.dark .footer-num {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
           flex-direction: column;
-  -webkit-box-pack: end;
-          justify-content: end;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-sub-menu h4 {
@@ -17584,7 +17557,7 @@ footer .footer-secondary.dark .footer-num {
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul > li.active > a::before {
     margin: -0.2em 0.25em -0.2em 0;
     border-width: 0.125rem;
-    border-color: #3E9C4F;
+    border-color: #115737;
   }
   .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul > li > ul {
     padding: 0;

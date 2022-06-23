@@ -13,7 +13,7 @@ $sidemenu-background: $brand !default;
 $sidemenu-background-selected: $pounamu !default;
 
 $sidemenu-text-color: $grey-alto !default;
-$sidemenu-text-hover-color: $green-brand-bright !default;
+$sidemenu-text-hover-color: $green-brand !default;
 
 $sidemenu-lineheight: 1.25 !default;
 $sidemenu-size: $navigation-primary-item-size !default;
@@ -248,10 +248,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 
     a {
       color: $black-tundora;
-
-      @include hoverify() {
-        color: $blue-endeavoura;
-      }
     }
 
     > ul {
@@ -817,7 +813,11 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
           padding: 0.8rem 0.9rem;
 
           &:hover {
-            color: $green-brand-bright;
+            color: $sidemenu-text-hover-color;
+            text-decoration: underline;
+            + .btn-expander {
+              color: $sidemenu-text-hover-color;
+            }
           }
           &:focus {
             outline-offset: -2px;
@@ -827,16 +827,17 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
         &:hover {
           // border-left: 5px $green-light-brand solid;
         }
+        &.active {
+          border: none;
+          font-weight: 600;
+          border-left: 5px solid $sidemenu-background-selected;
+        }
         &.has-submenu {
           overflow: hidden;
           display: flex;
           flex-wrap: wrap;
           justify-content: space-between;
-          &.active {
-            border: none;
-            font-weight: 600;
-            border-left: 5px solid $sidemenu-background-selected;
-          }
+
           &.expanded {
             // box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
             z-index: 1;
@@ -861,6 +862,9 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
                 border-left: none;
               }
             }
+            .expanded {
+              // background-color: $sidemenu-background-selected;
+            }
 
             // JOINING ARROWS IN NESTED LISTS
             ul {
@@ -881,7 +885,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
                 }
                 &:hover {
                   &:before {
-                    width: 22px;
+                    // width: 22px;
                   }
                 }
                 &.expanded {
@@ -889,14 +893,14 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
                     background-color: $sidemenu-text-hover-color;
                   }
                   > a {
-                    padding-left: 10px;
-                    padding-right: 0;
+                    // padding-left: 10px;
+                    // padding-right: 0;
                   }
                 }
                 a {
                   &:hover {
-                    padding-left: 10px;
-                    padding-right: 0;
+                    // padding-left: 10px;
+                    // padding-right: 0;
                   }
                 }
               }
@@ -907,18 +911,18 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
                     left: 0;
                     width: 15px;
                   }
-                  &.expanded {
-                    > a {
-                      padding-left: 15px;
-                      padding-right: 5px;
-                    }
-                  }
-                  a {
-                    &:hover {
-                      padding-left: 15px;
-                      padding-right: 5px;
-                    }
-                  }
+                  //   &.expanded {
+                  //     > a {
+                  //       padding-left: 15px;
+                  //       padding-right: 5px;
+                  //     }
+                  //   }
+                  //   a {
+                  //     &:hover {
+                  //       padding-left: 15px;
+                  //       padding-right: 5px;
+                  //     }
+                  //   }
                 }
               }
             }
@@ -958,7 +962,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
               &.expanded {
                 > a {
                   font-weight: 600;
-                  color: $green-brand-bright;
+                  color: $sidemenu-text-hover-color;
                 }
               }
             }
@@ -1056,17 +1060,17 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 
     // !FIRST LEVEL ONLY
     > ul {
-      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      // box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
       font-size: 100%;
-      border: thin $grey-gallery solid;
+      border: 1px $grey-alto solid;
       position: relative;
 
       .sidemenu__label {
         position: relative;
         background-position: center;
-        border-bottom: 2px #eee solid;
-        border-top: 0;
         overflow: hidden;
+        border-top: none;
+        border-bottom: none;
 
         .sidemenu__background {
           position: absolute;
@@ -1083,13 +1087,15 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         > a {
-          background-color: $green-brand-light;
+          background-color: $kohuhu;
           padding: 15px;
           background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
           background-repeat: no-repeat;
           background-size: 100px;
           background-position: 117% 5%;
           background-blend-mode: multiply;
+          color: $pounamu;
+          font-weight: 700;
           // &:hover {
           //   color: $sidemenu-text-hover-color;
           // }
@@ -1136,6 +1142,13 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
         &.expanded {
           background-color: $sidemenu-background-selected;
           border-top: none;
+          border-left-width: 5px;
+
+          &:before,
+          &:after {
+            // height: 2px;
+            width: 100%;
+          }
 
           > a {
             color: #fff;
@@ -1144,11 +1157,13 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
               color: #fff;
             }
           }
-          > .btn-expander {
-            clip-path: polygon(0% -2px, 100% -1%, 100% 104%, 10px 104%);
-            background-color: #fff;
-            padding-left: 15px;
-            background-color: $grey-gallery;
+          &.has-submenu {
+            > .btn-expander {
+              clip-path: polygon(0% -2px, 100% -1%, 100% 104%, 10px 104%);
+              padding-left: 15px;
+              background-color: $grey-gallery;
+              color: $black-brand;
+            }
           }
         }
 
@@ -1185,16 +1200,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
           left: 0;
           bottom: 0;
           content: none;
-        }
-
-        &.expanded {
-          border-top-color: transparent;
-
-          &:before,
-          &:after {
-            // height: 2px;
-            width: 100%;
-          }
         }
       }
     }
