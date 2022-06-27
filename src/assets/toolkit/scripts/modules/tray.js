@@ -840,7 +840,6 @@ export function initTray() {
       $(".menu-notifcations").hide();
       if ($(this).find(".notification")) {
         $(this).find(".notification").hide();
-        notificationCount = 0;
       }
 
       if ($(this).hasClass("t-menu")) {

@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, June 23, 2022, 1:17 PM */
+/** Version: 0.10.13 | Tuesday, June 28, 2022, 10:16 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14682,7 +14682,6 @@ function initTray() {
 
       if ($(this).find(".notification")) {
         $(this).find(".notification").hide();
-        notificationCount = 0;
       }
 
       if ($(this).hasClass("t-menu")) {
