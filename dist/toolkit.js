@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, June 28, 2022, 10:16 AM */
+/** Version: 0.10.13 | Wednesday, June 29, 2022, 10:30 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -16021,10 +16021,12 @@ function initSidemenuExpandability(menuClass) {
 
   expandableButtons.each(initExpandableSubmenu); // Ensure expander height is the same as the link (for long link titles than span across 2+ lines)
 
-  external_jQuery_default()(".sidemenu > ul > li").each(function (e) {
-    var link = external_jQuery_default()(this).find(">a");
-    var expander = external_jQuery_default()(this).find("> .btn-expander");
-    expander.css("height", link.outerHeight());
+  src_default.a.register(toolkit_DESKTOP_AND_LARGER, function () {
+    external_jQuery_default()(".sidemenu > ul > li").each(function (e) {
+      var link = external_jQuery_default()(this).find(">a");
+      var expander = external_jQuery_default()(this).find("> .btn-expander");
+      expander.css("height", link.outerHeight());
+    });
   });
 } // TODO: Remove after this was implemented on the backend (~ in Squiz)
 
@@ -16832,18 +16834,22 @@ document.addEventListener("DOMContentLoaded", function () {
 }); // Sticky header/nav on mobile
 
 window.onscroll = function (e) {
-  if (window.pageYOffset > 100 && window.innerWidth < 976) {
-    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    var header = external_jQuery_default()(".main-site-header");
+  var _this3 = this;
 
-    if (scrollY < this.lastScroll) {
-      header.addClass("sticky");
-    } else {
-      header.removeClass("sticky");
+  src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
+    if (window.pageYOffset > 100) {
+      var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      var header = external_jQuery_default()(".main-site-header");
+
+      if (scrollY < _this3.lastScroll) {
+        header.addClass("sticky");
+      } else {
+        header.removeClass("sticky");
+      }
+
+      _this3.lastScroll = scrollY;
     }
-
-    this.lastScroll = scrollY;
-  }
+  });
 };
 /**
  * jQuery's plugin as a utility factory

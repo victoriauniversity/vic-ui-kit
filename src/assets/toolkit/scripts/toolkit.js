@@ -213,11 +213,13 @@ function initSidemenuExpandability(menuClass) {
   expandableButtons.each(initExpandableSubmenu);
 
   // Ensure expander height is the same as the link (for long link titles than span across 2+ lines)
-  $(".sidemenu > ul > li").each(function (e) {
-    var link = $(this).find(">a");
-    var expander = $(this).find("> .btn-expander");
+  enquire.register(DESKTOP_AND_LARGER, () => {
+    $(".sidemenu > ul > li").each(function (e) {
+      var link = $(this).find(">a");
+      var expander = $(this).find("> .btn-expander");
 
-    expander.css("height", link.outerHeight());
+      expander.css("height", link.outerHeight());
+    });
   });
 }
 
@@ -1176,17 +1178,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Sticky header/nav on mobile
 window.onscroll = function (e) {
-  if (window.pageYOffset > 100 && window.innerWidth < 976) {
-    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    var header = $(".main-site-header");
+  enquire.register(TABLET_AND_SMALLER, () => {
+    if (window.pageYOffset > 100) {
+      var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      var header = $(".main-site-header");
 
-    if (scrollY < this.lastScroll) {
-      header.addClass("sticky");
-    } else {
-      header.removeClass("sticky");
+      if (scrollY < this.lastScroll) {
+        header.addClass("sticky");
+      } else {
+        header.removeClass("sticky");
+      }
+      this.lastScroll = scrollY;
     }
-    this.lastScroll = scrollY;
-  }
+  });
 };
 
 /**

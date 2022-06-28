@@ -7,52 +7,74 @@
 ///
 /// @group navigation
 
+$breadcrumbs-size: $navigation-primary-item-size;
+$breadcrumbs-separator-color: $kohuhu;
 
-$breadcrumbs-size:               $navigation-primary-item-size;
-$breadcrumbs-separator-color:    $icon-weakest-color;
+$breadcrumbs-last-child: $kohuhu;
 
 $breadcrumbs-ellipsis-max-width: 18rem;
 
-
 .breadcrumbs {
-  font-family:    $heading-family;
-  font-size:      $breadcrumbs-size;
+  font-family: $heading-family;
+  font-size: $breadcrumbs-size;
   letter-spacing: $navigation-letter-spacing;
 
-  a { @include link-underline; }
+  a {
+    // @include link-underline;
+    color: $pounamu;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
   // Breadcrumb item (current page and links)
   > li {
-    display:     inline;
+    display: inline;
+    background-color: #f7f7f7;
+    display: flex;
+    align-items: center;
+    padding: 0.5em 1em;
+    position: relative;
+    padding-left: 1.5em;
 
     // First item? => Home with icon
     &:first-child a {
-      @include extend-icon-before( home ) {
-        margin-right:   _em( $gap-small );
+      @include extend-icon-before(home) {
+        margin-right: _em($gap-small);
         vertical-align: 0;
-        font-size:      $text-size-tiny;
+        font-size: $text-size-tiny;
         text-decoration: none;
       }
     }
 
     // Separator
-    @include extend-icon-after( triangle-right ) {
-      margin:    0 _em( $gap-small );
+    @include extend-icon-after(triangle-right) {
+      margin: 0 _em($gap-small);
       font-size: $text-size-tiny;
-      color:     $breadcrumbs-separator-color;
-    };
+      color: $breadcrumbs-separator-color;
+    }
 
     // Active page
     &:last-child {
       font-weight: $weight-semibold;
-      color:       $text-weaker-color;
+      // // color: $kowhai;
+      // background-color: $breadcrumbs-last-child;
+      // color: $pounamu;
+      padding-right: 1.5em;
+      clip-path: polygon(0% 0%, 85% 0, 100% 50%, 85% 100%, 0% 100%);
 
-      &::after { display: none; }
+      &::after,
+      &::before {
+        background-color: #fff !important;
+        display: none;
+      }
     }
   }
 
-  @include breakpoint( $until: desktop ) {
-    > li { white-space: nowrap; }
+  @include breakpoint($until: desktop) {
+    > li {
+      white-space: nowrap;
+    }
 
     > li,
     a {
@@ -61,20 +83,28 @@ $breadcrumbs-ellipsis-max-width: 18rem;
 
     a,
     li:last-child {
-      overflow:       hidden;
+      overflow: hidden;
       vertical-align: middle;
-      text-overflow:  ellipsis;
-      max-width:      $breadcrumbs-ellipsis-max-width;
-      white-space:    nowrap;
+      text-overflow: ellipsis;
+      max-width: $breadcrumbs-ellipsis-max-width;
+      white-space: nowrap;
     }
   }
 
   // If used within content panel, drop bottom padding to avoid double margins
-  .content-panel & { padding-bottom: 0; }
+  .content-panel & {
+    padding-bottom: 0;
+  }
 
   .breadcrumbs-full & {
-
-    padding: 1rem 1.5rem;
+    padding: 0;
+    margin: 1rem 1.5rem;
+    margin-left: 0.75rem;
+    padding-left: 0;
+    overflow: hidden;
+    @include breakpoint($until: desktop) {
+      margin: 1rem 0.75rem;
+    }
 
     li {
       font-size: 90%;
@@ -87,22 +117,66 @@ $breadcrumbs-ellipsis-max-width: 18rem;
 
   .breadcrumbs {
     display: flex;
+
     > li {
-      display: flex;
-      align-items: center;
+      &:nth-last-child(2) {
+        &:before {
+          display: none;
+        }
+      }
+      // &:before {
+      //   // content: "";
+      //   // position: absolute;
+      //   // width: 20px;
+      //   // background-color: #666;
+      //   // height: 1px;
+      //   // right: -13px;
+      //   // top: 20px;
+      //   // z-index: 2;
+      //   content: "";
+      //   background-color: $breadcrumbs-separator-color;
+      //   position: absolute;
+      //   right: -20px;
+      //   // width: 30px;
+      //   width: 30px;
+      //   top: 0;
+      //   z-index: 1;
+      //   height: 100%;
+
+      //   clip-path: polygon(
+      //     50% -9.72%,
+      //     86.67% 50%,
+      //     54.99% 100%,
+      //     26.67% 100%,
+      //     57% 50%,
+      //     16.67% -3px
+      //   );
+      // }
       &:after {
-        content:'';
+        content: none;
+      }
+      &:after {
+        content: "\f156";
+        font-family: "Favorites";
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        line-height: 1;
+        font-size: 20px;
+        right: -20px;
+        text-decoration: inherit;
+        text-rendering: optimizeLegibility;
+        text-transform: none;
+        color: $pounamu;
       }
     }
 
     a {
+      &:hover {
+      }
       &:before {
         top: 2px;
       }
     }
   }
 }
-
-
-
-

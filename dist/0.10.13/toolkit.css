@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, June 28, 2022, 10:16 AM */
+/** Version: 0.10.13 | Wednesday, June 29, 2022, 10:30 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -13216,15 +13216,23 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .breadcrumbs a {
-  text-decoration: underline;
+  color: #0D4C38;
 }
 
-.breadcrumbs a:hover, .breadcrumbs a:active, .breadcrumbs a:focus {
-  text-decoration: none;
+.breadcrumbs a:hover {
+  text-decoration: underline;
 }
 
 .breadcrumbs > li {
   display: inline;
+  background-color: #f7f7f7;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  padding: 0.5em 1em;
+  position: relative;
+  padding-left: 1.5em;
 }
 
 .breadcrumbs > li:first-child a::before {
@@ -13277,7 +13285,7 @@ footer .footer-secondary.dark .footer-num {
 .breadcrumbs > li::after {
   margin: 0 0.3125em;
   font-size: 85%;
-  color: #BFBFBF;
+  color: #CCDCD7;
 }
 
 .breadcrumbs > li::after {
@@ -13290,10 +13298,13 @@ footer .footer-secondary.dark .footer-num {
 
 .breadcrumbs > li:last-child {
   font-weight: 600;
-  color: #555;
+  padding-right: 1.5em;
+  -webkit-clip-path: polygon(0% 0%, 85% 0, 100% 50%, 85% 100%, 0% 100%);
+          clip-path: polygon(0% 0%, 85% 0, 100% 50%, 85% 100%, 0% 100%);
 }
 
-.breadcrumbs > li:last-child::after {
+.breadcrumbs > li:last-child::after, .breadcrumbs > li:last-child::before {
+  background-color: #fff !important;
   display: none;
 }
 
@@ -13320,7 +13331,17 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .breadcrumbs-full .breadcrumbs {
-  padding: 1rem 1.5rem;
+  padding: 0;
+  margin: 1rem 1.5rem;
+  margin-left: 0.75rem;
+  padding-left: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 60.99em) {
+  .breadcrumbs-full .breadcrumbs {
+    margin: 1rem 0.75rem;
+  }
 }
 
 .breadcrumbs-full .breadcrumbs li {
@@ -13336,15 +13357,27 @@ footer .footer-secondary.dark .footer-num {
   display: flex;
 }
 
-.breadcrumbs-full .breadcrumbs > li {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-          align-items: center;
+.breadcrumbs-full .breadcrumbs > li:nth-last-child(2):before {
+  display: none;
 }
 
 .breadcrumbs-full .breadcrumbs > li:after {
-  content: '';
+  content: none;
+}
+
+.breadcrumbs-full .breadcrumbs > li:after {
+  content: "\f156";
+  font-family: "Favorites";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  font-size: 20px;
+  right: -20px;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  color: #0D4C38;
 }
 
 .breadcrumbs-full .breadcrumbs a:before {
@@ -14158,43 +14191,35 @@ footer .footer-secondary.dark .footer-num {
   font-weight: 600;
 }
 
+.sidemenu .sidemenu-toggle:after, .show-mega-menu-top .mega-sub-menu .sidemenu-toggle:after {
+  background: #0D4C38 !important;
+}
+
 .sidemenu .sidemenu-toggle a, .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a {
   display: block;
   padding: 0.75rem 0.8rem;
 }
 
-.sidemenu .sidemenu-toggle a::after, .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a::after {
-  position: relative;
-  display: inline-block;
-  content: "";
-  font-family: "VicIcons";
-  margin: 0 0 0 0.5em;
-  width: 1em;
-  vertical-align: -0.222em;
-  text-align: center;
-  line-height: 1;
-}
-
-.sidemenu .sidemenu-toggle a::after, .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a::after {
-  content: "";
-}
-
-.sidemenu .sidemenu-toggle a::after, .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a::after {
+.sidemenu .sidemenu-toggle a:after, .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a:after {
   float: right;
-  line-height: 1.1;
-  font-size: 115%;
+  content: "\f181";
+  font-family: "Favorites";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  font-size: 20px;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  color: #1D2624;
 }
 
-.sidemenu .sidemenu-toggle a::after, .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a::after {
-  text-decoration: underline;
-}
-
-.sidemenu .sidemenu-toggle a::after, .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a::after {
-  text-decoration: none;
-}
-
-.sidemenu .sidemenu-toggle.expanded a::after, .show-mega-menu-top .mega-sub-menu .sidemenu-toggle.expanded a::after {
-  content: "";
+.sidemenu .sidemenu-toggle.expanded a:after, .show-mega-menu-top .mega-sub-menu .sidemenu-toggle.expanded a:after {
+  content: "\f181";
+  font-size: 20px;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 
 @media (min-width: 61em) {
@@ -14204,6 +14229,12 @@ footer .footer-secondary.dark .footer-num {
 }
 
 @media (max-width: 74.99em) {
+  .sidemenu #mega-menu, .show-mega-menu-top .mega-sub-menu #mega-menu {
+    display: none;
+  }
+}
+
+@media (max-width: 60.99em) {
   .sidemenu, .show-mega-menu-top .mega-sub-menu {
     margin-top: 0;
     margin-bottom: 0;
@@ -14242,6 +14273,7 @@ footer .footer-secondary.dark .footer-num {
 
 .sidemenu.sidemenu-light, .show-mega-menu-top .sidemenu-light.mega-sub-menu {
   background: #fff;
+  margin-bottom: 2rem !important;
 }
 
 .sidemenu.sidemenu-light a, .show-mega-menu-top .sidemenu-light.mega-sub-menu a {
@@ -14271,10 +14303,6 @@ footer .footer-secondary.dark .footer-num {
 
 .sidemenu.sidemenu-light .has-submenu > ul > li, .show-mega-menu-top .sidemenu-light.mega-sub-menu .has-submenu > ul > li {
   border-left-color: #DDD;
-}
-
-.sidemenu.sidemenu-light .has-submenu.expanded > .btn-expander, .show-mega-menu-top .sidemenu-light.mega-sub-menu .has-submenu.expanded > .btn-expander {
-  color: #FCE500;
 }
 
 .sidemenu.sidemenu-light .has-submenu.expanded > .btn-expander:after, .show-mega-menu-top .sidemenu-light.mega-sub-menu .has-submenu.expanded > .btn-expander:after {
@@ -14449,7 +14477,6 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .sidebar {
-  margin-right: 20px;
   width: initial;
   position: relative;
 }
@@ -14486,8 +14513,14 @@ footer .footer-secondary.dark .footer-num {
 
 .sidebar .sidemenu, .sidebar .show-mega-menu-top .mega-sub-menu, .show-mega-menu-top .sidebar .mega-sub-menu {
   margin-bottom: 0;
-  min-width: 300px;
   overflow: visible;
+  min-width: 300px;
+}
+
+@media (max-width: 74.99em) {
+  .sidebar .sidemenu, .sidebar .show-mega-menu-top .mega-sub-menu, .show-mega-menu-top .sidebar .mega-sub-menu {
+    min-width: 250px;
+  }
 }
 
 .sidebar .sidemenu ul, .sidebar .show-mega-menu-top .mega-sub-menu ul, .show-mega-menu-top .sidebar .mega-sub-menu ul {

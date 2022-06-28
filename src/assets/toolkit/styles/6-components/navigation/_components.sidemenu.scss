@@ -183,20 +183,41 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
     margin-top: -5px; // Offset the green line under the header!
     font-size: $text-size-4;
     font-weight: $weight-semibold;
+    &:after {
+      //! Remove important - needs #hubv2 id
+      background: $pounamu !important;
+    }
 
     a {
       display: block;
       padding: $gap-half 0.8rem;
 
-      @include extend-icon-after(list) {
+      &:after {
         float: right;
-        line-height: 1.1;
-        font-size: $text-size-huge;
+        content: "\f181";
+        font-family: "Favorites";
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        line-height: 1;
+        font-size: 20px;
+        text-decoration: inherit;
+        text-rendering: optimizeLegibility;
+        text-transform: none;
+        color: $black-brand;
       }
+      // @include extend-icon-after(list) {
+      //   line-height: 1.1;
+      //   font-size: $text-size-huge;
+      // }
     }
 
     &.expanded a {
-      @include add-icon-after(caret-up-thin);
+      &:after {
+        content: "\f181";
+        font-size: 20px;
+        transform: rotate(180deg);
+      }
     }
   }
 
@@ -207,6 +228,12 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   @include breakpoint($until: desktop-medium) {
+    #mega-menu {
+      display: none;
+    }
+  }
+
+  @include breakpoint($until: desktop) {
     margin-top: 0;
     margin-bottom: 0;
 
@@ -246,6 +273,9 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 
   &.sidemenu-light {
     background: $sidemenu-bg-light;
+
+    // !Remove important
+    margin-bottom: 2rem !important;
 
     a {
       color: $black-tundora;
@@ -294,7 +324,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
       }
       &.expanded {
         > .btn-expander {
-          color: $kowhai;
+          // color: $kowhai;
           &:after {
             border-color: transparent transparent $black-tundora;
             transform: rotateZ(180deg);
@@ -764,7 +794,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 
 // SIDEMENU STYLE
 .sidebar {
-  margin-right: 20px;
   width: initial;
   position: relative;
   .sidebar-blip {
@@ -800,8 +829,12 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
   }
   .sidemenu {
     margin-bottom: 0;
-    min-width: 300px;
     overflow: visible;
+    min-width: 300px;
+
+    @include breakpoint($until: desktop-medium) {
+      min-width: 250px;
+    }
 
     // !ALL LEVELS
     ul {
@@ -810,8 +843,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
         border-left: 0px $sidemenu-background-selected solid;
         overflow: hidden;
         transition: all $easing 0.3s;
-        &:hover {
-        }
+
         &:not(.sidemenu__label) {
           a {
             margin-right: 10px;
