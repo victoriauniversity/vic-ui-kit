@@ -32,6 +32,15 @@ function waitForElm(selector) {
   });
 }
 
+// Hide link for bots in case bot-version of page gets cached, e.g. on /events
+if (document.getElementById("clickLinks")) {
+  if (
+    !navigator.userAgent.match(/baidu|bing|msn|teoma|slurp|yandex|funnelback/i)
+  ) {
+    document.getElementById("clickLinks").style.display = "none";
+  }
+}
+
 let searchParams = new URLSearchParams(window.location.search);
 
 function hideCourseLevies() {
@@ -111,7 +120,6 @@ function hideCourseLevies() {
 
 document.addEventListener("DOMContentLoaded", function (event) {
   // Your code to run since DOM is loaded and ready
-
   waitForElm(".course-item-list").then(function () {
     // console.log('hide');
     hideCourseLevies();

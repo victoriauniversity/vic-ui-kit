@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, June 30, 2022, 7:13 AM */
+/** Version: 0.10.13 | Thursday, June 30, 2022, 7:17 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15060,6 +15060,13 @@ function waitForElm(selector) {
       subtree: true
     });
   });
+} // Hide link for bots in case bot-version of page gets cached, e.g. on /events
+
+
+if (document.getElementById("clickLinks")) {
+  if (!navigator.userAgent.match(/baidu|bing|msn|teoma|slurp|yandex|funnelback/i)) {
+    document.getElementById("clickLinks").style.display = "none";
+  }
 }
 
 var searchParams = new URLSearchParams(window.location.search);
