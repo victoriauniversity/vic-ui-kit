@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, May 24, 2022, 1:13 PM */
+/** Version: 0.10.13 | Thursday, June 30, 2022, 7:13 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15129,11 +15129,11 @@ if (document.location.pathname.split("/")[1] == "courses" || document.location.p
     $("header ul[role=menubar] > li > a").each(function (e) {
       var text = $(this).text(); // Update link if mytools
 
-      if (text.includes("myTools")) {
+      if (text.includes("myTools") || text.includes("Student Portal")) {
         var $el = $(this);
-        $el.text("Pūaha—Student Portal");
+        $el.text("Pūaha");
         $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
-        $el.attr("title", "Pūaha—Student Portal");
+        $el.attr("title", "Pūaha");
       }
     });
   }
@@ -15141,11 +15141,11 @@ if (document.location.pathname.split("/")[1] == "courses" || document.location.p
   $("header .menu-bar > a").each(function (e) {
     var text = $(this).text(); // Update link if mytools
 
-    if (text.includes("myTools")) {
+    if (text.includes("myTools") || text.includes("Student Portal")) {
       var $el = $(this);
-      $el.text("Pūaha—Student Portal");
+      $el.text("Pūaha");
       $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
-      $el.attr("title", "Pūaha—Student Portal");
+      $el.attr("title", "Pūaha");
     }
   });
 }
