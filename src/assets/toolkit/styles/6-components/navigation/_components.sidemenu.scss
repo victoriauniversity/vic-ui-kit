@@ -166,17 +166,21 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 
   // Mobile devices *only*, allows to hide/show the sidemenu
   .sidemenu-toggle {
-    margin-top: -5px; // Offset the green line under the header!
     font-size: $text-size-4;
     font-weight: $weight-semibold;
+    background-color: $green-brand-light;
+    border: 1px $grey-alto solid;
     &:after {
       //! Remove important - needs #hubv2 id
-      background: $pounamu !important;
+      // background: $pounamu !important;
+      // display: none !important;
     }
 
     a {
       display: block;
       padding: $gap-half 0.8rem;
+      font-size: 0.8em;
+
 
       &:after {
         float: right;
@@ -191,6 +195,10 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
         text-rendering: optimizeLegibility;
         text-transform: none;
         color: $black-brand;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translate(-0%, -50%);
       }
       // @include extend-icon-after(list) {
       //   line-height: 1.1;
@@ -198,11 +206,13 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
       // }
     }
 
-    &.expanded a {
-      &:after {
-        content: "\f181";
-        font-size: 20px;
-        transform: rotate(180deg);
+    &.expanded {
+      //! Remove important - needs #hubv2 id
+      margin-bottom: 0 !important;
+      a {
+        &:after {
+          transform: rotateZ(180deg) translate(0%, 20%);
+        }
       }
     }
   }
@@ -749,7 +759,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 
     // !ALL LEVELS
     ul {
-      font-size: 16px;
       li {
         border-left: 0px $sidemenu-background-selected solid;
         overflow: hidden;
@@ -869,7 +878,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
                 }
                 &:before {
                   content: "";
-                  // background-color: $grey-alto;
                   position: absolute;
                   left: 0px;
                   top: 12px;
@@ -878,8 +886,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
                   opacity: 0;
                   width: 0;
                   transition: all ease 0.3s;
-                  // width: 100px;
-                  // height: 80px;
                   border: solid 1px $sidemenu-delimiter-color;
                   border-color: transparent transparent
                     $sidemenu-delimiter-color $sidemenu-delimiter-color;
@@ -1024,21 +1030,18 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
       }
 
       // !MOBILE VERSION
-      @media only screen and (max-width: 690px) {
+      @include breakpoint($until: tablet) {
         > li {
           a {
-            font-size: 16px;
           }
         }
         li {
           ul {
             li {
               a {
-                font-size: 16px;
               }
               li {
                 a {
-                  font-size: 14px;
                 }
               }
             }
@@ -1097,6 +1100,9 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
           font-weight: 700;
           border-radius: 0;
           border-bottom: 1px $grey-alto solid;
+          @include breakpoint($until: desktop) {
+            background-position: 160% 5%;
+          }
         }
       }
 
