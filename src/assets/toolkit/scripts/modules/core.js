@@ -135,11 +135,11 @@ if (
     $("header ul[role=menubar] > li > a").each(function (e) {
       var text = $(this).text();
       // Update link if mytools
-      if (text.includes("myTools") || text.includes("Student Portal")) {
+      if (text.includes("myTools")) {
         var $el = $(this);
-        $el.text("Pūaha");
+        $el.text("Pūaha—Student Portal");
         $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
-        $el.attr("title", "Pūaha");
+        $el.attr("title", "Pūaha—Student Portal");
       }
     });
   }
@@ -147,11 +147,11 @@ if (
   $("header .menu-bar > a").each(function (e) {
     var text = $(this).text();
     // Update link if mytools
-    if (text.includes("myTools") || text.includes("Student Portal")) {
+    if (text.includes("myTools")) {
       var $el = $(this);
-      $el.text("Pūaha");
+      $el.text("Pūaha—Student Portal");
       $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
-      $el.attr("title", "Pūaha");
+      $el.attr("title", "Pūaha—Student Portal");
     }
   });
 }
