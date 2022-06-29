@@ -134,7 +134,7 @@ export function initTray() {
   }
 
   let openTimeout;
-  let sidemeneuExpanded = false;
+  let sidemenuExpanded = false;
   const $draw = $(".sidemenu-drawer");
 
   //! Sidemenu expand logic
@@ -144,7 +144,7 @@ export function initTray() {
       if (e.type == "click" && $(e.target).hasClass("btn-expander")) {
         if ($(e.target).parent().hasClass("active-menu-item")) {
           // If clicked parent is expanded
-          sidemeneuExpanded = false;
+          sidemenuExpanded = false;
           $draw.removeClass("active");
           $(".nav-item-parent.active-menu-item").removeClass(
             "active-menu-item"
@@ -159,20 +159,20 @@ export function initTray() {
 
           $(e.target).parent().addClass("active-menu-item");
           $draw.addClass("active");
-          sidemeneuExpanded = true;
+          sidemenuExpanded = true;
         }
       } else {
-        // Else we are hovering on the menu item.
+        // Else we are hovering on the menu item
         if ($(listItem).parent().hasClass("expanded-draw")) {
           // console.log('has class button close tray');
-          sidemeneuExpanded = true;
+          sidemenuExpanded = true;
           $draw.addClass("active");
           // Remove other ones
         } else {
           //show tray
-          if (sidemeneuExpanded === false) {
+          if (sidemenuExpanded === false) {
             $draw.addClass("active");
-            sidemeneuExpanded = !sidemeneuExpanded;
+            sidemenuExpanded = !sidemenuExpanded;
           }
           $(".sidemenu-homepage > ul > li").removeClass("expanded-draw");
           $(listItem).parent().addClass("expanded-draw");
@@ -209,97 +209,97 @@ export function initTray() {
     });
   }
 
-  function closeSideMenuDraw(location) {
+  // Close draw when clicking the X button
+  $(".close-draw").on("click", (e) => {
+    closeDraw();
+  });
+
+  function closeDraw(location) {
     let loc = location || "expanded-draw";
+    if ($("#banner-nav").length > 0) {
+      loc = "expanded-draw";
+    } else {
+      loc = "horizontal-drawer-expanded";
+    }
     // console.log(loc);
 
-    $(".close-draw").on("click", (e) => {
-      if (sidemeneuExpanded) {
-        sidemeneuExpanded = !sidemeneuExpanded;
-        $(`.sidemenu-homepage .${loc}`).removeClass("expanded-draw");
-        // Remove any active item classes
-        $(".nav-item-parent.active-menu-item").removeClass("active-menu-item");
+    if (sidemenuExpanded) {
+      sidemenuExpanded = !sidemenuExpanded;
+      $(`.sidemenu-homepage .${loc}`).removeClass("expanded-draw");
+      // Remove any active item classes
+      $(".nav-item-parent.active-menu-item").removeClass("active-menu-item");
 
-        // Remove blip
-        $blip.css({
-          height: 0,
-        });
+      // Remove blip
+      $blip.css({
+        height: 0,
+      });
+      $draw.removeClass("active");
+    }
+    // horizontal mega menu draw
+    if (horizontalMenuExpanded) {
+      horizontalMenuExpanded = !horizontalMenuExpanded;
+      $(".sidemenu-drawer").removeClass(`${loc}`);
+      $(".mega-menu-top-level > li").removeClass("expanded-nav");
+      $blip.css({
+        width: 0,
+      });
 
-        $draw.removeClass("active");
-      }
-
-      // horizontal mega menu draw
-      if (horizontalMenuExpanded) {
-        console.log(e);
-        horizontalMenuExpanded = !horizontalMenuExpanded;
-        $(".sidemenu-drawer").removeClass(`${loc}`);
-        $(".mega-menu-top-level > li").removeClass("expanded-nav");
-        $blip.css({
-          width: 0,
-        });
-        // $draw.toggleClass('active');
-      }
-    });
+      // $draw.toggleClass('active');
+    }
 
     // On click OR mouseover of body, hide the tray if it's open
-
+  }
+  // ! ==== HOMEPAGE SIDE-MENU ONLY ====
+  $("body").on("click", (e) => {
+    console.log(e.target);
     const horizontalNavHeader = $("#mega_menu_block");
-    $("body").on("click", (e) => {
-      // console.log(e.target);
-      // let sidemenu = $(".sidemenu-homepage");
-      // // let  megamenu = $('.sidemenu-drawer');
-      // if (
-      //   sidemeneuExpanded &&
-      //   !sidemenu.is(e.target) && // if the target of the click isn't the container...
-      //   sidemenu.has(e.target).length === 0 &&
-      //   !e.target.className.includes("close-draw") // and not clicking the close button...
-      // ) {
-      //   // ... nor a descendant of the container
-      //   sidemeneuExpanded = !sidemeneuExpanded;
-      //   $(".sidemenu-homepage .expanded-draw").removeClass("expanded-draw");
-      //   $draw.toggleClass("active");
-      //   // Remove any active item classes
-      //   $(".nav-item-parent.active-menu-item").removeClass("active-menu-item");
-      //   // Remove blip
-      //   $blip.css({
-      //     height: "0px",
-      //   });
-      // }
-      // closes menu if not clicking on header.. .should this be behaviour?
-      // if ($(".show-mega-menu-top").length) {
-      //   if (
-      //     horizontalMenuExpanded &&
-      //     !horizontalNavHeader.is(e.target) &&
-      //     horizontalNavHeader.has(e.target).length === 0
-      //   ) {
-      //     horizontalMenuExpanded = !horizontalMenuExpanded;
-      //     $(".sidemenu-drawer").removeClass(`${loc}`);
-      //     $(".mega-menu-top-level > li").removeClass("expanded-nav");
-      //     $blip.css({
-      //       width: 0,
-      //     });
-      //   }
-      // }
-    });
 
-    // On mouse out
-    enquire.register(DESKTOP_AND_LARGER, () => {
-      // Hide menu if mouseout for x seconds
-      var timeout;
-      $("#mega_menu_block").on("mouseleave", function (e) {
-        clearTimeout(openTimeout);
+    let sidemenu = $(".sidemenu-homepage");
+    // let  megamenu = $('.sidemenu-drawer');
+    if (
+      sidemenuExpanded &&
+      !sidemenu.is(e.target) && // if the target of the click isn't the container...
+      sidemenu.has(e.target).length === 0 &&
+      !e.target.className.includes("close-draw") // and not clicking the close button...
+    ) {
+      // ... nor a descendant of the container
+      closeDraw();
+    }
+    // closes menu if not clicking on header.. .should this be behaviour?
+    if ($(".show-mega-menu-top").length) {
+      if (
+        horizontalMenuExpanded &&
+        !horizontalNavHeader.is(e.target) &&
+        horizontalNavHeader.has(e.target).length === 0
+      ) {
+        closeDraw();
+      }
+    }
+  });
 
-        //dialog open
+  // On mouse out
+  enquire.register(DESKTOP_AND_LARGER, () => {
+    // Hide menu if mouseout for x seconds
+    var timeout;
+    // If banner nav is active
+    if ($("#banner-nav").length > 0) {
+      $("#banner-nav").on("mouseleave", function (e) {
         clearTimeout(timeout);
         timeout = setTimeout(function () {
+          closeDraw();
+        }, 300);
+      });
+      // If hover back in while timeout is active, cancel it so it doesn't hide
+      $("#banner-nav").on("mouseenter", function (e) {
+        clearTimeout(timeout);
+      });
+    } else {
+      $("#mega_menu_block").on("mouseleave", function (e) {
+        clearTimeout(timeout);
+
+        timeout = setTimeout(function () {
           if ($(".show-mega-menu-top").length && horizontalMenuExpanded) {
-            horizontalMenuExpanded = !horizontalMenuExpanded;
-            $(".sidemenu-drawer").removeClass(`${loc}`);
-            $(".mega-menu-top-level > li").removeClass("expanded-nav");
-            0;
-            $blip.css({
-              width: 0,
-            });
+            closeDraw();
           }
         }, 300);
       });
@@ -308,13 +308,11 @@ export function initTray() {
       $(".main-site-header, .gradient-line, #mega-nav").on(
         "mouseenter",
         function (e) {
-          //dialog open
           clearTimeout(timeout);
         }
       );
-    });
-  }
-
+    }
+  });
   function sidemenuTray() {
     const menu = $(".sidemenu-homepage");
     // console.log(menu);
@@ -332,7 +330,7 @@ export function initTray() {
 
     expandDrawSubContent();
 
-    closeSideMenuDraw();
+    closeDraw();
   }
 
   if ($(".sidemenu-homepage").length) {
@@ -453,7 +451,7 @@ export function initTray() {
       .querySelector(":root")
       .style.setProperty("--horizontal-nav-offset", `${navHeight}px`);
 
-    closeSideMenuDraw("horizontal-drawer-expanded");
+    closeDraw("horizontal-drawer-expanded");
     expandDrawSubContent();
   }
 
@@ -475,8 +473,7 @@ export function initTray() {
     // If we are using a sidemenu
     if ($("#mega-menu").parent().hasClass("sidemenu-homepage")) {
       $blip.css({
-        top:
-          $(this).offset().top - $(this).parents("#mega-menu").offset().top + 6, // 6 is the px height of the gradient line
+        top: $(this).offset().top - $(this).parents("#mega-menu").offset().top,
         height: $(this).innerHeight(),
       });
     } else {
@@ -488,7 +485,7 @@ export function initTray() {
     }
   });
 
-  // Only applies to horizontal nav
+  // On mouse out of horizontal nav
   $(".main-site-header #mega-menu > li").on("mouseout", function () {
     var activeItem = $(".expanded-nav");
     if (activeItem.length) {
@@ -502,6 +499,21 @@ export function initTray() {
       });
     }
   });
+
+  // On mouse out of sidemenu homepage
+  // $(".sidemenu-homepage #mega-menu > li").on("mouseout", function () {
+  //   var activeItem = $(".active-menu-item");
+  //   if (activeItem.length) {
+  //     $blip.css({
+  //       left: activeItem.offset().left - $("#mega-menu").offset().left + 1,
+  //       width: activeItem.innerWidth(),
+  //     });
+  //   } else {
+  //     $blip.css({
+  //       width: 0,
+  //     });
+  //   }
+  // });
 
   // Custom SAVED menu
 
