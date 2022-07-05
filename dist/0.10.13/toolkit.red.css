@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, July 6, 2022, 10:04 AM */
+/** Version: 0.10.13 | Wednesday, July 6, 2022, 11:46 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -14777,7 +14777,7 @@ footer .footer-secondary.dark .footer-num {
   position: absolute;
   width: 0;
   height: 0;
-  left: 0;
+  left: 3px;
   top: 8px;
   border-top: 10px solid transparent;
   border-left: 12px solid #0D4C38;
@@ -14795,7 +14795,6 @@ footer .footer-secondary.dark .footer-num {
           transform: rotateZ(0deg);
   left: 0px;
   opacity: 1;
-  border-left: 12px solid #0D4C38;
 }
 
 .sidebar .sidemenu ul li.has-submenu.expanded ul li.expanded ul li.expanded:before, .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu.expanded ul li.expanded ul li.expanded:before, .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu.expanded ul li.expanded ul li.expanded:before, .sidebar body#hubv2 .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded ul li.expanded ul li.expanded:before, body#hubv2 .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded ul li.expanded ul li.expanded:before {
@@ -15536,7 +15535,7 @@ footer .footer-secondary.dark .footer-num {
 .main-site-header .header-toggle button.puaha i,
 .main-site-header .header-toggle .button.puaha i {
   font-size: 15px;
-  margin-left: .2rem;
+  margin-left: 0.2rem;
   -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
 }
@@ -15721,12 +15720,25 @@ footer .footer-secondary.dark .footer-num {
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav {
   margin: 15px -15px;
+  margin-top: 0;
   -webkit-box-flex: 1;
           flex: 1 0 40%;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list {
   position: relative;
+}
+
+.main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list .home-link {
+  display: block;
+  padding: 10px 15px;
+  background-color: #669787;
+  color: #fff;
+  text-decoration: none;
+}
+
+.main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list .home-link:hover {
+  text-decoration: underline;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list .tall-blip {
@@ -15767,10 +15779,6 @@ footer .footer-secondary.dark .footer-num {
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list.hub-page > li {
   border-bottom: none;
   margin-bottom: 0;
-}
-
-.main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list.hub-page > li:not(.homesite) {
-  margin-left: 20px;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list.hub-page > li:not(.homesite) > a {
@@ -15834,7 +15842,7 @@ footer .footer-secondary.dark .footer-num {
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.homesite .btn-expander:active {
   background-color: #f7f7f7;
-  color: #3E9C4F;
+  color: #0D4C38;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.homesite > ul {
@@ -15852,11 +15860,11 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.homesite > ul li > a .tereo-nav-title {
-  color: #115737;
+  color: #0D4C38;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.homesite > ul li > a:hover {
-  border-color: #3E9C4F;
+  border-color: #0D4C38;
   z-index: 90;
 }
 
@@ -15930,7 +15938,6 @@ footer .footer-secondary.dark .footer-num {
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.expanded .tereo-nav-title {
-  color: #F1F6F0;
   color: #FCE500;
 }
 
@@ -16032,7 +16039,7 @@ footer .footer-secondary.dark .footer-num {
 
 @media (max-width: 60.99em) {
   .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item ul li a {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 
@@ -16152,6 +16159,7 @@ footer .footer-secondary.dark .footer-num {
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item ul li.has-submenu.expanded > ul {
   max-height: 800px;
+  border-left: 1px #DDD solid;
   margin-left: 25px;
 }
 
@@ -16180,20 +16188,23 @@ footer .footer-secondary.dark .footer-num {
   position: absolute;
   width: 0;
   height: 0;
-  left: 0;
   top: 10px;
-  border-top: 12px solid transparent;
-  border-left: 0px solid #FCE500;
-  border-bottom: 12px solid transparent;
+  border-top: 10px solid transparent;
+  border-left: 12px solid #0D4C38;
+  border-bottom: 10px solid transparent;
   opacity: 0;
-  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
-  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+  -webkit-transition: all ease 0.3s;
+  transition: all ease 0.3s;
+  -webkit-transform: rotateZ(45deg);
+          transform: rotateZ(45deg);
+  left: -13px;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item ul li:not(.homesite).expanded:before {
-  border-left: 14px solid #FCE500;
+  -webkit-transform: rotateZ(0deg);
+          transform: rotateZ(0deg);
+  left: 3px;
   opacity: 1;
-  left: 4px;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item ul li:not(.homesite) ul li {
@@ -16205,12 +16216,17 @@ footer .footer-secondary.dark .footer-num {
   top: 8px;
 }
 
+.main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item ul li:not(.homesite) ul li.expanded > a {
+  color: #0D4C38;
+}
+
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item ul li:not(.homesite) ul li.expanded:before {
   left: 0;
   width: 15px;
 }
 
 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item ul li:not(.homesite) ul > ul {
+  border-left: 1px #DDD solid;
   margin-left: 10px;
 }
 

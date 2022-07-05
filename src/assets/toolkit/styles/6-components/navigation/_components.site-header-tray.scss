@@ -234,7 +234,7 @@ $tray-width-desktop: 400px;
         i {
           // color: #fff;
           font-size: 15px;
-          margin-left: .2rem;
+          margin-left: 0.2rem;
           transition: color 0.15s ease-in-out,
             background-color 0.15s ease-in-out;
         }
@@ -402,9 +402,20 @@ $tray-width-desktop: 400px;
 
         .tray-main-nav {
           margin: 15px -15px;
+          margin-top: 0;
           flex: 1 0 40%;
           .main-nav-list {
             position: relative;
+            .home-link {
+              display: block;
+              padding: 10px 15px;
+              background-color: $mahoe;
+              color: #fff;
+              text-decoration: none;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
             .tall-blip {
               height: 0;
               width: 3px;
@@ -440,7 +451,7 @@ $tray-width-desktop: 400px;
                 border-bottom: none;
                 margin-bottom: 0;
                 &:not(.homesite) {
-                  margin-left: 20px;
+                  // margin-left: 20px;
                   > a {
                     padding: 10px 15px 10px 25px;
                   }
@@ -503,7 +514,7 @@ $tray-width-desktop: 400px;
                 padding: 15px 15px;
                 &:active {
                   background-color: #f7f7f7;
-                  color: $green-brand-bright;
+                  color: $pounamu;
                 }
               }
               // > .btn-expander {
@@ -522,10 +533,10 @@ $tray-width-desktop: 400px;
                     margin-left: 0;
 
                     .tereo-nav-title {
-                      color: $green-brand;
+                      color: $pounamu;
                     }
                     &:hover {
-                      border-color: $green-brand-bright;
+                      border-color: $pounamu;
                       z-index: 90;
                     }
                   }
@@ -587,7 +598,6 @@ $tray-width-desktop: 400px;
             }
             &.expanded {
               .tereo-nav-title {
-                color: $green-brand-light;
                 color: $kowhai;
               }
               > .btn-expander {
@@ -679,7 +689,7 @@ $tray-width-desktop: 400px;
                   border-radius: 8px;
 
                   @include breakpoint($until: desktop) {
-                    font-size: 14px;
+                    font-size: 15px;
                   }
                   &:active,
                   &:focus {
@@ -794,8 +804,9 @@ $tray-width-desktop: 400px;
 
                     > ul {
                       max-height: 800px;
-                      // border-left: 1px $grey-alto solid;
+                      border-left: 1px $grey-alto solid;
                       margin-left: 25px;
+           
 
                       &.taller {
                         max-height: 1500px;
@@ -835,29 +846,22 @@ $tray-width-desktop: 400px;
                     position: absolute;
                     width: 0;
                     height: 0;
-                    left: 0;
                     top: 10px;
-                    border-top: 12px solid transparent;
-                    border-left: 0px solid $kowhai;
-                    border-bottom: 12px solid transparent;
+                    border-top: 10px solid transparent;
+                    border-left: 12px solid $pounamu;
+                    border-bottom: 10px solid transparent;
                     opacity: 0;
-                    transition: all $easing 0.3s;
-                    // left: 0px;
-                    // top: 12px;
-                    // height: 5px;
-                    // opacity: 0;
-                    // width: 0;
-                    // border: solid 1px $grey-alto;
-                    // border-color: transparent transparent $grey-alto $grey-alto;
-                    // // border-radius: 0px 0px 0px 250px;
+                    transition: all ease 0.3s;
+                    transform: rotateZ(45deg);
+                    left: -13px;
                   }
 
                   &.expanded {
                     // padding-left: 5px;
                     &:before {
-                      border-left: 14px solid $kowhai;
+                      transform: rotateZ(0deg);
+                      left: 3px;
                       opacity: 1;
-                      left: 4px;
                     }
                   }
 
@@ -868,7 +872,13 @@ $tray-width-desktop: 400px;
                       &:before {
                         top: 8px;
                       }
+                      > a {
+
+                      }
                       &.expanded {
+                        > a {
+                          color: $pounamu;
+                        }
                         &:before {
                           left: 0;
                           width: 15px;
@@ -877,7 +887,7 @@ $tray-width-desktop: 400px;
                     }
                     // NESTED CHILD JOINING ARROW ADJUSTMENT
                     > ul {
-                      // border-left: 1px $grey-alto solid;
+                      border-left: 1px $grey-alto solid;
                       margin-left: 10px;
                       li {
                         &:before {
