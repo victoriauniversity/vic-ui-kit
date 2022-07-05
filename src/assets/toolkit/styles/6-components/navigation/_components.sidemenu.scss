@@ -104,7 +104,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
     // 2nd level menu & items
     > ul {
       padding: 0.2em 0 0.75em 0.9em;
-      font-size: 95%;
 
       > li {
         border-left: 1px solid rgba($white, 0.1);
@@ -180,7 +179,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
       display: block;
       padding: $gap-half 0.8rem;
       font-size: 0.8em;
-
 
       &:after {
         float: right;
@@ -799,9 +797,9 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 
           &:hover {
             // color: $sidemenu-text-hover-color;
-            // text-decoration: underline;
-            background-color: $grey-gallery;
-            background-color: $green-brand-light;
+            text-decoration: underline;
+            // background-color: $grey-gallery;
+            // background-color: $green-brand-light;
 
             + .btn-expander {
               color: $sidemenu-text-hover-color;
@@ -856,11 +854,8 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 
             //! Nested nested item
             .expanded {
-              background-color: $kohuhu;
-              background-color: $green-brand-light;
               background-color: #fff;
 
-              // background-color: $sidemenu-background-selected;
               a {
                 // color: black;
               }
@@ -879,41 +874,55 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
                 &:before {
                   content: "";
                   position: absolute;
-                  left: 0px;
-                  top: 12px;
-                  height: 5px;
-                  width: 18px;
-                  opacity: 0;
                   width: 0;
+                  height: 0;
+                  left: 0;
+                  top: 8px;
+                  border-top: 10px solid transparent;
+                  border-left: 12px solid $pounamu;
+                  border-bottom: 10px solid transparent;
+                  opacity: 0;
                   transition: all ease 0.3s;
-                  border: solid 1px $sidemenu-delimiter-color;
-                  border-color: transparent transparent
-                    $sidemenu-delimiter-color $sidemenu-delimiter-color;
-                  border-radius: 0px 0px 0px 250px;
+                  transform: rotateZ(45deg);
+                  left: -13px;
                 }
-                &:hover {
-                  &:before {
-                    // width: 22px;
-                  }
-                }
+
                 &.expanded {
                   &:before {
-                    // background-color: $sidemenu-text-hover-color;
-                    width: 18px;
+                    transform: rotateZ(0deg);
+                    left: 0px;
                     opacity: 1;
+                    border-left: 12px solid $pounamu;
                   }
-                  > a {
-                    // padding-left: 10px;
-                    // padding-right: 0;
-                  }
+
                   // NESTED CHILD JOINING ARROW ADJUSTMENT
 
                   ul {
-                    li.expanded {
-                      &:before {
-                        left: 0;
-                        width: 15px;
-                        opacity: 1;
+                    li {
+                      &.expanded {
+                        &:before {
+                          left: 0;
+                          opacity: 1;
+                        }
+
+                        ul {
+                          li {
+                            a {
+                              font-size: 95%;
+                            }
+                          }
+                        }
+
+                        // border: 1px green solid;
+                        &:after {
+                          // content: "";
+                          height: 10px;
+                          width: 1px;
+                          background-color: red;
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                        }
                       }
                     }
                   }
@@ -963,8 +972,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
                 > a {
                   font-weight: 700;
                   color: $sidemenu-text-hover-color;
-                  // box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-                  //   rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
                   z-index: 90;
                 }
               }
@@ -972,7 +980,6 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
           }
           > ul {
             padding-left: 0;
-            // margin-left: 5px;
             background-color: #fff;
 
             > li {
@@ -980,21 +987,18 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
               padding-left: 0.5em;
 
               a {
-                font-size: 1em;
                 margin-left: 5px;
                 padding: 10px 30px 10px 10px;
               }
               &.has-submenu {
                 a {
                   padding-right: 10px;
+
                   flex: 1;
                 }
               }
               .btn-expander {
                 margin-right: 10px;
-                // width: auto;
-                // height: auto;
-                // padding: 5px 8px;
                 border-radius: 100px;
               }
               &.expanded {
@@ -1006,12 +1010,31 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
               > ul {
                 border-left: 1px $sidemenu-delimiter-color solid;
                 > li {
-                  a {
+                  > a {
                     padding-right: 10px;
                     padding-left: 10px;
-                    font-size: 0.9em;
                     margin-left: 0;
-                    // background-color: #fff;
+                  }
+
+                  // ADJUST ARROW POSITION AND PADDING OF FIRST <a> LOWEST LEVEL <li>
+                  &:first-of-type {
+                    &:before {
+                      top: 0;
+                    }
+                    > a {
+                      padding-top: 2px;
+                      // color: red;
+                    }
+                  }
+                  > ul {
+                    > li {
+                      &:first-of-type {
+                        > a {
+                          padding-top: 10px;
+                          // color: blue;
+                        }
+                      }
+                    }
                   }
                   .btn-expander {
                     margin-right: 20px;
