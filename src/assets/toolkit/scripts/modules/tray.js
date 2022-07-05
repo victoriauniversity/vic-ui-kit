@@ -277,42 +277,6 @@ export function initTray() {
     }
   });
 
-  // On mouse out
-  enquire.register(DESKTOP_AND_LARGER, () => {
-    // Hide menu if mouseout for x seconds
-    var timeout;
-    // If banner nav is active
-    if ($("#banner-nav").length > 0) {
-      $("#banner-nav").on("mouseleave", function (e) {
-        clearTimeout(timeout);
-        timeout = setTimeout(function () {
-          closeDraw();
-        }, 300);
-      });
-      // If hover back in while timeout is active, cancel it so it doesn't hide
-      $("#banner-nav").on("mouseenter", function (e) {
-        clearTimeout(timeout);
-      });
-    } else {
-      $("#mega_menu_block").on("mouseleave", function (e) {
-        clearTimeout(timeout);
-
-        timeout = setTimeout(function () {
-          if ($(".show-mega-menu-top").length && horizontalMenuExpanded) {
-            closeDraw();
-          }
-        }, 300);
-      });
-
-      // If hover back in while timeout is active, cancel it so it doesn't hide
-      $(".main-site-header, .gradient-line, #mega-nav").on(
-        "mouseenter",
-        function (e) {
-          clearTimeout(timeout);
-        }
-      );
-    }
-  });
   function sidemenuTray() {
     const menu = $(".sidemenu-homepage");
     // console.log(menu);
@@ -388,7 +352,27 @@ export function initTray() {
     // console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded);
 
     // !EXPAND MENU ON HOVER
+    menuItems.on("mouseenter click", function (e) {
+      let index = $(this).index() - 2;
+      console.log(
+        "🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index",
+        index
+      );
 
+      const $navItem = $(this);
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      // If menu is already open, don't delay expanding the menu, else do!
+      if (horizontalMenuExpanded || e.type == "click") {
+        expandHorizontalMenu(index, $navItem, e.type);
+      } else {
+        openTimeout = setTimeout(function () {
+          expandHorizontalMenu(index, $navItem, e.type);
+        }, 200);
+      }
+    });
     var expandHorizontalMenu = function (index, $navItem, eventType) {
       if ($navItem.hasClass("expanded-nav") && eventType == "click") {
         // If nav item is already expanded... close it
@@ -422,25 +406,40 @@ export function initTray() {
 
       // console.log('horizontalMenuExpanded',horizontalMenuExpanded);
     };
-    menuItems.on("mouseenter click", function (e) {
-      let index = $(this).index() - 2;
-      console.log(
-        "🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index",
-        index
-      );
 
-      const $navItem = $(this);
-
-      e.preventDefault();
-      e.stopPropagation();
-
-      // If menu is already open, don't delay expanding the menu, else do!
-      if (horizontalMenuExpanded || e.type == "click") {
-        expandHorizontalMenu(index, $navItem, e.type);
+    // !CLOSE ON MENU MOUSE OUT 
+    enquire.register(DESKTOP_AND_LARGER, () => {
+      // Hide menu if mouseout for x seconds
+      // If banner nav is active
+      if ($("#banner-nav").length > 0) {
+        $("#banner-nav").on("mouseleave", function (e) {
+          clearTimeout(openTimeout);
+          openTimeout = setTimeout(function () {
+            closeDraw();
+          }, 300);
+        });
+        // If hover back in while timeout is active, cancel it so it doesn't hide
+        $("#banner-nav").on("mouseenter", function (e) {
+          clearTimeout(openTimeout);
+        });
       } else {
-        openTimeout = setTimeout(function () {
-          expandHorizontalMenu(index, $navItem, e.type);
-        }, 200);
+        $("#mega_menu_block").on("mouseleave", function (e) {
+          clearTimeout(openTimeout);
+
+          openTimeout = setTimeout(function () {
+            if ($(".show-mega-menu-top").length && horizontalMenuExpanded) {
+              closeDraw();
+            }
+          }, 300);
+        });
+
+        // If hover back in while timeout is active, cancel it so it doesn't hide
+        $(".main-site-header, .gradient-line, #mega-nav").on(
+          "mouseenter",
+          function (e) {
+            clearTimeout(openTimeout);
+          }
+        );
       }
     });
 
@@ -661,171 +660,171 @@ export function initTray() {
   };
 
   // !SAVED EVENTS LISTS
-  function checkSavedItems(item) {
-    var nameMaps = {
-      savedEvents: "events",
-      savedScholarships: "scholarships",
-      savedClubs: "clubs",
-      savedPages: "pages",
-      savedPrizes: "prizes",
-    };
-    if (item == "savedEvents") {
-      var noResultsUrl = "https://cms.wgtn.ac.nz/events";
-    } else if (item == "savedScholarships") {
-      noResultsUrl = "https://cms.wgtn.ac.nz/scholarships/find-scholarships";
-    } else if (item == "savedClubs") {
-      noResultsUrl = "https://cms.wgtn.ac.nz/students/campus/clubs/directory";
-    } else if (item == "savedPrizes") {
-      noResultsUrl = "https://cms.wgtn.ac.nz/scholarships/annual-prizes";
-    } else {
-      noResultsUrl = "https://cms.wgtn.ac.nz/";
-    }
+  // function checkSavedItems(item) {
+  //   var nameMaps = {
+  //     savedEvents: "events",
+  //     savedScholarships: "scholarships",
+  //     savedClubs: "clubs",
+  //     savedPages: "pages",
+  //     savedPrizes: "prizes",
+  //   };
+  //   if (item == "savedEvents") {
+  //     var noResultsUrl = "https://cms.wgtn.ac.nz/events";
+  //   } else if (item == "savedScholarships") {
+  //     noResultsUrl = "https://cms.wgtn.ac.nz/scholarships/find-scholarships";
+  //   } else if (item == "savedClubs") {
+  //     noResultsUrl = "https://cms.wgtn.ac.nz/students/campus/clubs/directory";
+  //   } else if (item == "savedPrizes") {
+  //     noResultsUrl = "https://cms.wgtn.ac.nz/scholarships/annual-prizes";
+  //   } else {
+  //     noResultsUrl = "https://cms.wgtn.ac.nz/";
+  //   }
 
-    if (item) {
-      if (nameMaps[item] !== undefined) {
-        setTimeout(() => {
-          if (localStorage[item]) {
-            var items = JSON.parse(localStorage[item]);
-          }
+  //   if (item) {
+  //     if (nameMaps[item] !== undefined) {
+  //       setTimeout(() => {
+  //         if (localStorage[item]) {
+  //           var items = JSON.parse(localStorage[item]);
+  //         }
 
-          if (items && items.length > 0) {
-            var itemsLength = items.length;
-          } else {
-            itemsLength = 0;
-          }
+  //         if (items && items.length > 0) {
+  //           var itemsLength = items.length;
+  //         } else {
+  //           itemsLength = 0;
+  //         }
 
-          if (items && items.length > 0) {
-            // Update count in dropdown
-            $(".custom-dropdown")
-              .find("." + nameMaps[item] + " .count")
-              .text("(" + items.length + ")");
+  //         if (items && items.length > 0) {
+  //           // Update count in dropdown
+  //           $(".custom-dropdown")
+  //             .find("." + nameMaps[item] + " .count")
+  //             .text("(" + items.length + ")");
 
-            // Update count in accordion
-            $("." + nameMaps[item] + "-list")
-              .prev()
-              .find(".count")
-              .text(items.length);
+  //           // Update count in accordion
+  //           $("." + nameMaps[item] + "-list")
+  //             .prev()
+  //             .find(".count")
+  //             .text(items.length);
 
-            // Append accordion buttons
-            $("." + nameMaps[item] + "-list").append(
-              "<div class='accordion-buttons'></div>"
-            );
+  //           // Append accordion buttons
+  //           $("." + nameMaps[item] + "-list").append(
+  //             "<div class='accordion-buttons'></div>"
+  //           );
 
-            if (items.length > 0) {
-              $("." + nameMaps[item] + "-list .accordion-buttons").append(
-                "<a target='_blank' class='btn rounded no-icon secondary view-all' href=''>View all <i class='icons8-external-link'></i></a>"
-              );
-            }
-            $("." + nameMaps[item] + "-list .accordion-buttons").append(
-              "<a target='_blank' class='btn rounded no-icon primary add-more' href='" +
-                noResultsUrl +
-                "'>Add more <i class='icons8-external-link'></i></a>"
-            );
+  //           if (items.length > 0) {
+  //             $("." + nameMaps[item] + "-list .accordion-buttons").append(
+  //               "<a target='_blank' class='btn rounded no-icon secondary view-all' href=''>View all <i class='icons8-external-link'></i></a>"
+  //             );
+  //           }
+  //           $("." + nameMaps[item] + "-list .accordion-buttons").append(
+  //             "<a target='_blank' class='btn rounded no-icon primary add-more' href='" +
+  //               noResultsUrl +
+  //               "'>Add more <i class='icons8-external-link'></i></a>"
+  //           );
 
-            // Clear old list
-            $("." + nameMaps[item] + "-list li").remove();
+  //           // Clear old list
+  //           $("." + nameMaps[item] + "-list li").remove();
 
-            var first5 = items.slice(0, 5);
-            first5.forEach(function (e) {
-              // If liveUrl exists we presume it follows the Funnelback structure of 'title' and 'liveUrl', e.g. for Events
-              if (e.liveUrl) {
-                // Format date
-                if (nameMaps[item] == "events") {
-                  if (
-                    !$("." + nameMaps[item] + "-list li > a")
-                      .text()
-                      .includes(e.title)
-                  ) {
-                    $(
-                      "<li> <a target='_blank' href='" +
-                        e.liveUrl +
-                        "'><span data-url='" +
-                        e.liveUrl +
-                        "' data-date='" +
-                        e.metaData.O +
-                        "' class='item-dates'>" +
-                        formatAsDate(e.metaData.O, "uk") +
-                        "</span>" +
-                        e.title +
-                        "</a> " +
-                        "<button title='Remove this item from saved list' class='no-icon remove-item'><i class='icons8-close'></i></button></li>"
-                    ).insertBefore(
-                      $("." + nameMaps[item] + "-list").find(
-                        ".accordion-buttons"
-                      )
-                    );
-                  }
-                } else {
-                  if (
-                    !$("." + nameMaps[item] + "-list li > a")
-                      .text()
-                      .includes(e.title)
-                  ) {
-                    $(
-                      "<li><a target='_blank' href='" +
-                        e.liveUrl +
-                        "'>" +
-                        e.title +
-                        "</a></li>"
-                    ).insertBefore(
-                      $("." + nameMaps[item] + "-list").find(
-                        ".accordion-buttons"
-                      )
-                    );
-                  }
-                }
-              } else {
-                $(
-                  "<li><a target='_blank' href='" +
-                    e.url +
-                    "'>" +
-                    e.name +
-                    "</a></li>"
-                ).insertBefore(
-                  $("." + nameMaps[item] + "-list").find(".accordion-buttons")
-                );
-              }
-            });
-          }
-          if (itemsLength == 0) {
-            $("." + nameMaps[item] + "-list")
-              .prev()
-              .addClass("empty");
-            $("." + nameMaps[item] + "-list").append(
-              "<div class='empty-message'>Nothing here... <a target='_blank' href='" +
-                noResultsUrl +
-                "'>Add some!</a></div>"
-            );
-          } else {
-            $("." + nameMaps[item] + "-list")
-              .prev()
-              .removeClass("empty");
-            $("." + nameMaps[item] + "-list")
-              .find(".empty-message")
-              .hide();
-          }
-        }, 100);
-      }
-    }
-  }
-  checkSavedItems("savedEvents");
-  checkSavedItems("savedScholarships");
-  checkSavedItems("savedClubs");
-  checkSavedItems("savedPages");
-  checkSavedItems("savedPrizes");
+  //           var first5 = items.slice(0, 5);
+  //           first5.forEach(function (e) {
+  //             // If liveUrl exists we presume it follows the Funnelback structure of 'title' and 'liveUrl', e.g. for Events
+  //             if (e.liveUrl) {
+  //               // Format date
+  //               if (nameMaps[item] == "events") {
+  //                 if (
+  //                   !$("." + nameMaps[item] + "-list li > a")
+  //                     .text()
+  //                     .includes(e.title)
+  //                 ) {
+  //                   $(
+  //                     "<li> <a target='_blank' href='" +
+  //                       e.liveUrl +
+  //                       "'><span data-url='" +
+  //                       e.liveUrl +
+  //                       "' data-date='" +
+  //                       e.metaData.O +
+  //                       "' class='item-dates'>" +
+  //                       formatAsDate(e.metaData.O, "uk") +
+  //                       "</span>" +
+  //                       e.title +
+  //                       "</a> " +
+  //                       "<button title='Remove this item from saved list' class='no-icon remove-item'><i class='icons8-close'></i></button></li>"
+  //                   ).insertBefore(
+  //                     $("." + nameMaps[item] + "-list").find(
+  //                       ".accordion-buttons"
+  //                     )
+  //                   );
+  //                 }
+  //               } else {
+  //                 if (
+  //                   !$("." + nameMaps[item] + "-list li > a")
+  //                     .text()
+  //                     .includes(e.title)
+  //                 ) {
+  //                   $(
+  //                     "<li><a target='_blank' href='" +
+  //                       e.liveUrl +
+  //                       "'>" +
+  //                       e.title +
+  //                       "</a></li>"
+  //                   ).insertBefore(
+  //                     $("." + nameMaps[item] + "-list").find(
+  //                       ".accordion-buttons"
+  //                     )
+  //                   );
+  //                 }
+  //               }
+  //             } else {
+  //               $(
+  //                 "<li><a target='_blank' href='" +
+  //                   e.url +
+  //                   "'>" +
+  //                   e.name +
+  //                   "</a></li>"
+  //               ).insertBefore(
+  //                 $("." + nameMaps[item] + "-list").find(".accordion-buttons")
+  //               );
+  //             }
+  //           });
+  //         }
+  //         if (itemsLength == 0) {
+  //           $("." + nameMaps[item] + "-list")
+  //             .prev()
+  //             .addClass("empty");
+  //           $("." + nameMaps[item] + "-list").append(
+  //             "<div class='empty-message'>Nothing here... <a target='_blank' href='" +
+  //               noResultsUrl +
+  //               "'>Add some!</a></div>"
+  //           );
+  //         } else {
+  //           $("." + nameMaps[item] + "-list")
+  //             .prev()
+  //             .removeClass("empty");
+  //           $("." + nameMaps[item] + "-list")
+  //             .find(".empty-message")
+  //             .hide();
+  //         }
+  //       }, 100);
+  //     }
+  //   }
+  // }
+  // checkSavedItems("savedEvents");
+  // checkSavedItems("savedScholarships");
+  // checkSavedItems("savedClubs");
+  // checkSavedItems("savedPages");
+  // checkSavedItems("savedPrizes");
 
-  // Trigger to open/close items in saved items
-  $(".group-title").on("click keyup", function (e) {
-    if (e.which == 13 || e.which == 1) {
-      $(this).toggleClass("active");
-      if ($(this).hasClass("active")) {
-        $(this).find("i").addClass("flipped");
-      } else {
-        $(this).find("i").removeClass("flipped");
-      }
-      $(this).next().slideToggle("fast");
-    }
-  });
+  // // Trigger to open/close items in saved items
+  // $(".group-title").on("click keyup", function (e) {
+  //   if (e.which == 13 || e.which == 1) {
+  //     $(this).toggleClass("active");
+  //     if ($(this).hasClass("active")) {
+  //       $(this).find("i").addClass("flipped");
+  //     } else {
+  //       $(this).find("i").removeClass("flipped");
+  //     }
+  //     $(this).next().slideToggle("fast");
+  //   }
+  // });
 
   var resizeTallBlip = function (el, hide) {
     if (hide) {
@@ -856,9 +855,11 @@ export function initTray() {
 
       if ($(this).hasClass("t-menu")) {
         $(".tray-main-nav").show();
+        $(".tray-sub-menu").show();
         $(".saved-menu").hide();
       } else {
         $(".tray-main-nav").hide();
+        $(".tray-sub-menu").hide();
         $(".saved-menu").show();
       }
     }
