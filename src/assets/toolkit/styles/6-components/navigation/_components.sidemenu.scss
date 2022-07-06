@@ -23,367 +23,369 @@ $sidemenu-delimiter-color: $brand-darker !default;
 
 $sidemenu-bg-light: $white;
 
-.sidemenu {
-  z-index: $z-index-lower;
-  overflow: hidden;
-  margin: 0 0 $gap-vertical;
-  background: $sidemenu-background;
+body:not(#hubv3) {
+  .sidemenu {
+    z-index: $z-index-lower;
+    overflow: hidden;
+    margin: 0 0 $gap-vertical;
+    background: $sidemenu-background;
 
-  .sidemenu__label {
-    @include breakpoint($until: tablet) {
-      border-top: 1px solid white;
+    .sidemenu__label {
+      @include breakpoint($until: tablet) {
+        border-top: 1px solid white;
+      }
+
+      text-transform: uppercase;
+      border-bottom: 1px solid white;
+      font-family: $heading-family;
+      font-weight: $weight-bold;
+
+      a {
+        padding: 6px 14px;
+      }
     }
 
-    text-transform: uppercase;
-    border-bottom: 1px solid white;
-    font-family: $heading-family;
-    font-weight: $weight-bold;
+    // All menu items
+    ul {
+      font-family: $heading-family;
+
+      li {
+        display: block;
+
+        &.active > a {
+          color: $sidemenu-text-hover-color;
+          font-weight: $weight-semibold;
+
+          &::before {
+            @include objectify();
+            @include scalable-rectangle-vertical($border-width-medium, auto);
+          }
+        }
+      }
+
+      ul {
+        display: none;
+        font-weight: $weight-normal;
+      }
+    }
 
     a {
-      padding: 6px 14px;
-    }
-  }
+      position: relative;
+      display: flex;
+      align-content: stretch;
+      color: $sidemenu-text-color;
+      line-height: $sidemenu-lineheight;
 
-  // All menu items
-  ul {
-    font-family: $heading-family;
+      &.sidemenu__link--withIcon {
+        justify-content: space-between;
 
-    li {
-      display: block;
+        i {
+          &::before {
+            margin: 0 5px;
 
-      &.active > a {
+            @include breakpoint(desktop) {
+              margin: 0;
+            }
+          }
+        }
+      }
+
+      @include hoverify() {
         color: $sidemenu-text-hover-color;
-        font-weight: $weight-semibold;
-
-        &::before {
-          @include objectify();
-          @include scalable-rectangle-vertical($border-width-medium, auto);
+        .btn-expander {
+          color: $sidemenu-text-color;
         }
       }
     }
 
-    ul {
-      display: none;
-      font-weight: $weight-normal;
-    }
-  }
-
-  a {
-    position: relative;
-    display: flex;
-    align-content: stretch;
-    color: $sidemenu-text-color;
-    line-height: $sidemenu-lineheight;
-
-    &.sidemenu__link--withIcon {
-      justify-content: space-between;
-
-      i {
-        &::before {
-          margin: 0 5px;
-
-          @include breakpoint(desktop) {
-            margin: 0;
-          }
-        }
-      }
-    }
-
-    @include hoverify() {
-      color: $sidemenu-text-hover-color;
-      .btn-expander {
-        color: $sidemenu-text-color;
-      }
-    }
-  }
-
-  // Root (1st) level menu & items
-  > ul {
-    font-size: $sidemenu-size;
-    font-weight: $weight-semibold;
-
-    > li {
-      border-bottom: $border-width-thin solid $sidemenu-delimiter-color;
-
-      > a {
-        padding: 0.8rem 0.9rem;
-      }
-
-      &:last-child > a,
-      &.active {
-        border-bottom: 0;
-      }
-
-      &.active > a {
-        padding-left: 0.35em;
-        background-color: $sidemenu-background-selected;
-
-        &::before {
-          margin: -0.2em 0.35em -0.2em 0;
-          border-color: $sidemenu-text-hover-color;
-        }
-      }
-    }
-  }
-
-  .has-submenu {
-    display: flex;
-
-    // Flex behaviour
-    > a {
-      flex: 1 1;
-    }
-
+    // Root (1st) level menu & items
     > ul {
-      flex-basis: 100%;
-      flex-grow: 0;
-    }
-
-    &.expanded {
-      overflow: hidden;
-      flex-wrap: wrap;
-
-      > ul {
-        display: block;
-      }
-
-      > .btn-expander {
-        &::after {
-          @include objectify($position: relative);
-          @include triangle(up, 0.5em, 0.2em, $sidemenu-text-color);
-          top: -0.15em;
-        }
-
-        @include hoverify() {
-          &::after {
-            @include triangle(up, 0.5em, 0.2em, $sidemenu-text-hover-color);
-          }
-        }
-      }
-    }
-
-    &:not(.expanded) {
-      .btn-expander::after {
-        content: "+";
-      }
-    }
-
-    &.active {
-      background-color: $sidemenu-background-selected;
-    }
-
-    // 2nd level menu & items
-    > ul {
-      padding: 0.2em 0 0.75em 0.9em;
-      font-size: 95%;
+      font-size: $sidemenu-size;
+      font-weight: $weight-semibold;
 
       > li {
-        border-left: 1px solid rgba($white, 0.1);
+        border-bottom: $border-width-thin solid $sidemenu-delimiter-color;
 
         > a {
-          padding: 0.3em 0.85em 0.3em 0.7em;
+          padding: 0.8rem 0.9rem;
+        }
+
+        &:last-child > a,
+        &.active {
+          border-bottom: 0;
         }
 
         &.active > a {
-          padding-left: 0;
+          padding-left: 0.35em;
+          background-color: $sidemenu-background-selected;
 
           &::before {
-            margin: -0.2em 0.25em -0.2em 0;
-            border-width: $border-width-small;
+            margin: -0.2em 0.35em -0.2em 0;
             border-color: $sidemenu-text-hover-color;
           }
         }
       }
     }
 
-    // 3rd level menu & items
-    .has-submenu > ul {
-      > li {
-        border-left: 0;
+    .has-submenu {
+      display: flex;
 
-        > a {
-          padding-left: 0.3em;
+      // Flex behaviour
+      > a {
+        flex: 1 1;
+      }
 
-          &::before {
-            display: none;
+      > ul {
+        flex-basis: 100%;
+        flex-grow: 0;
+      }
+
+      &.expanded {
+        overflow: hidden;
+        flex-wrap: wrap;
+
+        > ul {
+          display: block;
+        }
+
+        > .btn-expander {
+          &::after {
+            @include objectify($position: relative);
+            @include triangle(up, 0.5em, 0.2em, $sidemenu-text-color);
+            top: -0.15em;
+          }
+
+          @include hoverify() {
+            &::after {
+              @include triangle(up, 0.5em, 0.2em, $sidemenu-text-hover-color);
+            }
+          }
+        }
+      }
+
+      &:not(.expanded) {
+        .btn-expander::after {
+          content: "+";
+        }
+      }
+
+      &.active {
+        background-color: $sidemenu-background-selected;
+      }
+
+      // 2nd level menu & items
+      > ul {
+        padding: 0.2em 0 0.75em 0.9em;
+        font-size: 95%;
+
+        > li {
+          border-left: 1px solid rgba($white, 0.1);
+
+          > a {
+            padding: 0.3em 0.85em 0.3em 0.7em;
+          }
+
+          &.active > a {
+            padding-left: 0;
+
+            &::before {
+              margin: -0.2em 0.25em -0.2em 0;
+              border-width: $border-width-small;
+              border-color: $sidemenu-text-hover-color;
+            }
+          }
+        }
+      }
+
+      // 3rd level menu & items
+      .has-submenu > ul {
+        > li {
+          border-left: 0;
+
+          > a {
+            padding-left: 0.3em;
+
+            &::before {
+              display: none;
+            }
           }
         }
       }
     }
-  }
 
-  .btn-expander {
-    @include size(1.4em);
-    display: block;
-    margin: 0 0.5rem;
-    align-self: center;
-    cursor: pointer;
-    text-align: center;
-    font-weight: $weight-bold;
-    color: $sidemenu-text-color;
-    line-height: 1.4;
-    font-size: 1.2em;
-    border-radius: 0.7em;
-
-    @include hoverify() {
-      color: $sidemenu-text-hover-color;
-      background-color: rgba($black, 0.2);
-    }
-  }
-
-  // Mobile devices *only*, allows to hide/show the sidemenu
-  .sidemenu-toggle {
-    margin-top: -5px; // Offset the green line under the header!
-    font-size: $text-size-4;
-    font-weight: $weight-semibold;
-
-    a {
-      display: block;
-      padding: $gap-half 0.8rem;
-
-      @include extend-icon-after(list) {
-        float: right;
-        line-height: 1.1;
-        font-size: $text-size-huge;
-      }
-    }
-
-    &.expanded a {
-      @include add-icon-after(caret-up-thin);
-    }
-  }
-
-  @include breakpoint(desktop) {
-    .sidemenu-toggle {
-      display: none;
-    }
-  }
-
-  @include breakpoint($until: desktop) {
-    margin-top: 0;
-    margin-bottom: 0;
-
-    .sidemenu-toggle {
-      color: $black-tundora;
-
-      .tereo-title {
-        display: block;
-        color: $green-brand;
-        font-weight: 500;
-      }
-      + ul {
-        display: none;
-      } // The menu
-      &.expanded + ul {
-        display: block;
-      }
-    }
-  }
-
-  @include breakpoint($until: tablet) {
     .btn-expander {
-      @include size(auto);
-      margin: 0 0.35rem 0 0;
-      line-height: 1.5;
-
-      &::after {
-        display: inline-block;
-        margin: 0 0.85em;
-      }
-    }
-
-    .expanded > ul {
-      font-size: 100%;
-    }
-  }
-
-  &.sidemenu-light {
-    background: $sidemenu-bg-light;
-
-    a {
-      color: $black-tundora;
+      @include size(1.4em);
+      display: block;
+      margin: 0 0.5rem;
+      align-self: center;
+      cursor: pointer;
+      text-align: center;
+      font-weight: $weight-bold;
+      color: $sidemenu-text-color;
+      line-height: 1.4;
+      font-size: 1.2em;
+      border-radius: 0.7em;
 
       @include hoverify() {
-        color: $blue-endeavoura;
+        color: $sidemenu-text-hover-color;
+        background-color: rgba($black, 0.2);
       }
     }
 
-    > ul {
-      font-weight: 500;
-      > li {
-        border-bottom-color: $grey-silver;
+    // Mobile devices *only*, allows to hide/show the sidemenu
+    .sidemenu-toggle {
+      margin-top: -5px; // Offset the green line under the header!
+      font-size: $text-size-4;
+      font-weight: $weight-semibold;
 
-        &.active {
-          border-bottom: 1px solid $grey-silver;
-          > a {
-            background-color: $sidemenu-bg-light;
-            color: $black-tundora;
-            // color: $green-brand;
+      a {
+        display: block;
+        padding: $gap-half 0.8rem;
 
-            @include hoverify() {
-              color: $blue-endeavoura;
-            }
+        @include extend-icon-after(list) {
+          float: right;
+          line-height: 1.1;
+          font-size: $text-size-huge;
+        }
+      }
 
-            &:before {
-              border-color: $black-tundora;
-            }
-          }
+      &.expanded a {
+        @include add-icon-after(caret-up-thin);
+      }
+    }
+
+    @include breakpoint(desktop) {
+      .sidemenu-toggle {
+        display: none;
+      }
+    }
+
+    @include breakpoint($until: desktop) {
+      margin-top: 0;
+      margin-bottom: 0;
+
+      .sidemenu-toggle {
+        color: $black-tundora;
+
+        .tereo-title {
+          display: block;
+          color: $green-brand;
+          font-weight: 500;
+        }
+        + ul {
+          display: none;
+        } // The menu
+        &.expanded + ul {
+          display: block;
         }
       }
     }
 
-    ul {
-      li {
-        &.active {
-          > a {
-            color: $black-tundora;
-            // color: $green-brand;
-            @include hoverify() {
-              color: $blue-endeavoura;
-            }
-
-            &:before {
-              border-color: $black-tundora;
-              margin-left: -1px;
-            }
-          }
-        }
-      }
-    }
-
-    .has-submenu {
-      > ul {
-        > li {
-          border-left-color: $grey-alto;
-        }
-      }
-      &.expanded {
-        .btn-expander {
-          &:after {
-            border-color: transparent transparent $black-tundora;
-          }
-        }
-      }
-    }
-
-    .btn-expander {
-      color: $black-tundora;
-    }
-
-    .has-submenu.active {
-      background-color: $sidemenu-bg-light;
-    }
-
-    @include breakpoint($from: desktop) {
-    }
     @include breakpoint($until: tablet) {
-      margin-bottom: 1rem;
-    }
-  }
-  &.sidemenu-homepage {
-    background: $sidemenu-bg-light;
+      .btn-expander {
+        @include size(auto);
+        margin: 0 0.35rem 0 0;
+        line-height: 1.5;
 
-    @include breakpoint($from: desktop) {
+        &::after {
+          display: inline-block;
+          margin: 0 0.85em;
+        }
+      }
+
+      .expanded > ul {
+        font-size: 100%;
+      }
+    }
+
+    &.sidemenu-light {
+      background: $sidemenu-bg-light;
+
+      a {
+        color: $black-tundora;
+
+        @include hoverify() {
+          color: $blue-endeavoura;
+        }
+      }
+
+      > ul {
+        font-weight: 500;
+        > li {
+          border-bottom-color: $grey-silver;
+
+          &.active {
+            border-bottom: 1px solid $grey-silver;
+            > a {
+              background-color: $sidemenu-bg-light;
+              color: $black-tundora;
+              // color: $green-brand;
+
+              @include hoverify() {
+                color: $blue-endeavoura;
+              }
+
+              &:before {
+                border-color: $black-tundora;
+              }
+            }
+          }
+        }
+      }
+
+      ul {
+        li {
+          &.active {
+            > a {
+              color: $black-tundora;
+              // color: $green-brand;
+              @include hoverify() {
+                color: $blue-endeavoura;
+              }
+
+              &:before {
+                border-color: $black-tundora;
+                margin-left: -1px;
+              }
+            }
+          }
+        }
+      }
+
+      .has-submenu {
+        > ul {
+          > li {
+            border-left-color: $grey-alto;
+          }
+        }
+        &.expanded {
+          .btn-expander {
+            &:after {
+              border-color: transparent transparent $black-tundora;
+            }
+          }
+        }
+      }
+
+      .btn-expander {
+        color: $black-tundora;
+      }
+
+      .has-submenu.active {
+        background-color: $sidemenu-bg-light;
+      }
+
+      @include breakpoint($from: desktop) {
+      }
+      @include breakpoint($until: tablet) {
+        margin-bottom: 1rem;
+      }
+    }
+    &.sidemenu-homepage {
+      background: $sidemenu-bg-light;
+
+      @include breakpoint($from: desktop) {
+      }
     }
   }
 }
@@ -722,13 +724,32 @@ $sidemenu-background-selected-v3: $pounamu !default;
 $sidemenu-text-color-v3: $black-brand !default;
 $sidemenu-text-hover-color-v3: $pounamu !default;
 
-$sidemenu-lineheight: 1.25 !default;
+$sidemenu-lineheight: 1.5 !default;
 $sidemenu-size: $navigation-primary-item-size !default;
 
 $sidemenu-delimiter-color-v3: $grey-alto !default;
 
 $sidemenu-bg-light: #fff;
+// New icons
+@font-face {
+  font-family: "Favorites";
+  src: url("https://www.wgtn.ac.nz/__data/assets/file/0003/1935408/Favorites.woff2")
+      format("woff2"),
+    url("https://www.wgtn.ac.nz/__data/assets/file/0004/1935409/Favorites.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: "Favorites";
+    src: url("https://www.wgtn.ac.nz/__data/assets/file/0003/1935408/Favorites.svg")
+      format("svg");
+  }
+}
 #hubv3 {
+
   //! Shared styles between sidemenu and sidemenu-banner
   .sidemenu {
     z-index: $z-index-lower;
@@ -1597,6 +1618,17 @@ $sidemenu-bg-light: #fff;
                     transform: rotateZ(45deg);
                     left: -13px;
                   }
+                  ul {
+                    li {
+                      ul {
+                        li {
+                          a {
+                            font-size: 95%;
+                          }
+                        }
+                      }
+                    }
+                  }
 
                   &.expanded {
                     &:before {
@@ -1624,13 +1656,6 @@ $sidemenu-bg-light: #fff;
                             position: absolute;
                             top: 0;
                             left: 0;
-                          }
-                        }
-                        ul {
-                          li {
-                            a {
-                              font-size: 95%;
-                            }
                           }
                         }
                       }
