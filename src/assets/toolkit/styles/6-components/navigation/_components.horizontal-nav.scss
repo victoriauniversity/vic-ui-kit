@@ -1,6 +1,26 @@
 /*==================================================
 =        Nav top horizontal mega menu nav        =
 ==================================================*/
+
+// New icons
+@font-face {
+  font-family: "Favorites";
+  src: url("https://www.wgtn.ac.nz/__data/assets/file/0003/1935408/Favorites.woff2")
+      format("woff2"),
+    url("https://www.wgtn.ac.nz/__data/assets/file/0004/1935409/Favorites.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: "Favorites";
+    src: url("https://www.wgtn.ac.nz/__data/assets/file/0003/1935408/Favorites.svg")
+      format("svg");
+  }
+}
+
 :root {
   --horizontal-nav-offset: 100px;
 }
@@ -638,7 +658,7 @@ body#hubv3 {
   }
   .main-site-header.header-tray .header-inner {
     @include breakpoint($until: tablet) {
-      padding-bottom: .5rem;
+      padding-bottom: 0.5rem;
     }
     .tray-content .tray-close {
       margin: 0;
