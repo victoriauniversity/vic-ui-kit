@@ -125,6 +125,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
   });
 });
 
+// Check toolbar for mode=dev and apply class
+if (
+  document.location.href.includes("?mode=dev") ||
+  document.location.href.includes("local.wgtn")
+) {
+  $("body").attr("id", "hubv3");
+}
+
 // Check toolbar to ensure myTools has been updated to Puaha
 if (
   document.location.pathname.split("/")[1] == "courses" ||
