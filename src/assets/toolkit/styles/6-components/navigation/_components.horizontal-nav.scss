@@ -1319,37 +1319,37 @@ body#hubv3 {
       }
     }
   }
-}
+  .highlight-message {
+    // clip-path: polygon(-0.25% -3px, 93.9% -0.75%, 100.2% 99.28%, 0px 100%);
+    // clip-path: polygon(0% 0%, 83% 0, 100% 14%, 100% 100%, 0% 100%);
+    clip-path: polygon(0% 0%, 94.45% -3px, 100% 24.44%, 100% 100%, 0% 100%);
 
-.highlight-message {
-  // clip-path: polygon(-0.25% -3px, 93.9% -0.75%, 100.2% 99.28%, 0px 100%);
-  // clip-path: polygon(0% 0%, 83% 0, 100% 14%, 100% 100%, 0% 100%);
-  clip-path: polygon(0% 0%, 94.45% -3px, 100% 24.44%, 100% 100%, 0% 100%);
-
-  .highlight-content {
-    background-color: rgb(229, 246, 253);
-    color: rgb(1, 67, 97);
-  }
-  &.green {
     .highlight-content {
-      color: rgb(30, 70, 32);
-      background-color: rgb(237, 247, 237);
+      background-color: rgb(229, 246, 253);
+      color: rgb(1, 67, 97);
+    }
+    &.green {
+      .highlight-content {
+        color: $pounamu;
+        background-color: $kohuhu;
 
-      .button {
-        background-color: #fff;
-        color: $black-brand !important;
-        border-radius: 0;
-        margin-top: 0.5rem;
-        display: inline-block;
-        &:hover {
+        .button {
+          background-color: #fff;
+          color: $black-brand !important;
+          border-radius: 5px;
+          margin-top: 0.5rem;
+          border: 1px $miro solid;
+          display: inline-block;
+          &:hover {
+          }
         }
       }
     }
-  }
-  &.red {
-    .highlight-content {
-      color: rgb(95, 33, 32);
-      background-color: rgb(253, 237, 237);
+    &.red {
+      .highlight-content {
+        color: rgb(95, 33, 32);
+        background-color: rgb(253, 237, 237);
+      }
     }
   }
 }
