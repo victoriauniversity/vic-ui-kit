@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, July 6, 2022, 3:19 PM */
+/** Version: 0.10.13 | Thursday, July 7, 2022, 2:39 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15811,7 +15811,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   });
 }); // Check toolbar for mode=dev and apply class
 
-if (document.location.href.includes("?mode=dev") || document.location.href.includes("local.wgtn")) {
+if (document.location.href.includes("?mode=dev") || document.location.href.includes("local.wgtn") || document.location.href.includes("assets/git_bridge/0009/1778031/dist")) {
   $("body").attr("id", "hubv3");
 } // Check toolbar to ensure myTools has been updated to Puaha
 
