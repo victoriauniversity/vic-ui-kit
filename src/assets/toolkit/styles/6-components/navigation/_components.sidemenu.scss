@@ -730,6 +730,7 @@ $sidemenu-size: $navigation-primary-item-size !default;
 $sidemenu-delimiter-color-v3: $grey-alto !default;
 
 $sidemenu-bg-light: #fff;
+
 // New icons
 @font-face {
   font-family: "Favorites";
@@ -1588,10 +1589,6 @@ $sidemenu-bg-light: #fff;
               //! Nested nested item
               .expanded {
                 background-color: #fff;
-
-                a {
-                  // color: black;
-                }
               }
 
               //! JOINING ARROWS IN NESTED LISTS
@@ -1612,15 +1609,18 @@ $sidemenu-bg-light: #fff;
                     left: 3px;
                     top: 8px;
                     border-top: 10px solid transparent;
-                    border-left: 12px solid $pounamu;
+                    border-left: 12px solid $sidemenu-background-selected-v3;
                     border-bottom: 10px solid transparent;
                     opacity: 0;
                     transition: all ease 0.3s;
-                    transform: rotateZ(45deg);
+                    // transform: rotateZ(45deg);
                     left: -13px;
                   }
                   ul {
                     li {
+                      > a {
+                        font-size: 95%;
+                      }
                       ul {
                         li {
                           a {
@@ -1633,7 +1633,7 @@ $sidemenu-bg-light: #fff;
 
                   &.expanded {
                     &:before {
-                      transform: rotateZ(0deg);
+                      // transform: rotateZ(0deg);
                       left: 0px;
                       opacity: 1;
                     }
@@ -1734,9 +1734,17 @@ $sidemenu-bg-light: #fff;
                   margin-right: 10px;
                   border-radius: 100px;
                 }
+                > ul > li > a {
+                  opacity: 0;
+                }
                 &.expanded {
                   > ul {
                     margin-left: 10px;
+                    > li {
+                      > a {
+                        opacity: 1;
+                      }
+                    }
                   }
                 }
                 // BOTTOM LEVEL
@@ -1747,6 +1755,7 @@ $sidemenu-bg-light: #fff;
                       padding-right: 10px;
                       padding-left: 10px;
                       margin-left: 0;
+                      opacity: 0;
                     }
 
                     // ADJUST ARROW POSITION AND PADDING OF FIRST <a> LOWEST LEVEL <li>
@@ -1777,6 +1786,13 @@ $sidemenu-bg-light: #fff;
                         // padding-bottom: 0;
                       }
                       // white block to cover line
+                    }
+                    &.expanded {
+                      ul li {
+                        > a {
+                          opacity: 1;
+                        }
+                      }
                     }
                   }
                 }
@@ -1942,6 +1958,8 @@ $sidemenu-bg-light: #fff;
             &.expanded,
             &:hover {
               border-color: $sidemenu-background-selected-v3;
+              border-top-color: $miro;
+              border-bottom-color: $miro;
               box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
               // box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
               //   rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
