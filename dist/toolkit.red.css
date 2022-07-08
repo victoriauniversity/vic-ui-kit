@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, July 8, 2022, 1:57 PM */
+/** Version: 0.10.13 | Friday, July 8, 2022, 2:21 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -18715,45 +18715,23 @@ body#hubv3 h2 {
   font-weight: 700;
 }
 
-body#hubv3 .formatting .promo-panel figure,
-body#hubv3 .formatting figure {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-          box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-  border-top: 4px #0D4C38 solid;
+body#hubv3 aside > .formatting h2 {
+  font-size: 1.4rem;
 }
 
-body#hubv3 .formatting .promo-panel figure figcaption,
-body#hubv3 .formatting figure figcaption {
-  padding: 2rem;
+body#hubv3 aside > .formatting h3 {
+  font-size: 1.2rem;
 }
 
-body#hubv3 section.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin: 0;
-  width: 100%;
-}
-
-body#hubv3 section.grid > * {
-  margin: 0;
-  clear: none;
-  width: 100%;
-}
-
-body#hubv3 section.grid figcaption {
-  padding: 1rem;
-}
-
-body#hubv3 .content-panel h1 {
+body#hubv3 .content-panel main h1 {
   font-size: 2.4rem;
 }
 
-body#hubv3 .content-panel h2 {
+body#hubv3 .content-panel main h2 {
   font-size: 1.8rem;
 }
 
-body#hubv3 .content-panel h3 {
+body#hubv3 .content-panel main h3 {
   font-size: 1.5rem;
 }
 
@@ -18882,10 +18860,13 @@ body#hubv3 .content-panel a.btn.secondary:hover {
 
 body#hubv3 .content-panel .link_block {
   background-color: #F9F9F9;
-  padding: 1rem;
   -webkit-transition: all ease 0.2s;
   transition: all ease 0.2s;
   outline: 2px transparent solid;
+}
+
+body#hubv3 .content-panel .link_block .link_block_body {
+  padding: 1rem;
 }
 
 body#hubv3 .content-panel .link_block:visited h3 {
@@ -18903,6 +18884,36 @@ body#hubv3 .content-panel .link_block:hover h3 {
 
 body#hubv3 .content-panel .link_block h3 {
   text-decoration: none;
+}
+
+body#hubv3 .formatting .promo-panel figure,
+body#hubv3 .formatting figure {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+          box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  border-top: 4px #0D4C38 solid;
+}
+
+body#hubv3 .formatting .promo-panel figure figcaption,
+body#hubv3 .formatting figure figcaption {
+  padding: 2rem;
+}
+
+body#hubv3 section.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 0;
+  width: 100%;
+}
+
+body#hubv3 section.grid > * {
+  margin: 0;
+  clear: none;
+  width: 100%;
+}
+
+body#hubv3 section.grid figcaption {
+  padding: 1rem;
 }
 
 body#hubv3 .card-panel .card,
