@@ -970,8 +970,8 @@ body#hubv3 {
       // box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
       //   rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
       &:hover {
-        outline: 2px $miro solid;
-        background-color: $kohuhu;
+        outline: 2px $kohuhu solid;
+        background-color: $green-brand-light;
         h3 {
           color: $blue-endeavoura;
         }
@@ -1000,6 +1000,12 @@ body#hubv3 {
     gap: 10px;
     margin: 0;
     width: 100%;
+    @include breakpoint($until: desktop) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include breakpoint($until: tablet) {
+      grid-template-columns: repeat(1, 1fr);
+    }
     > * {
       margin: 0;
       clear: none;

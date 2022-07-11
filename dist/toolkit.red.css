@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, July 8, 2022, 2:21 PM */
+/** Version: 0.10.13 | Monday, July 11, 2022, 2:02 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -14832,9 +14832,9 @@ body:not(#hubv3) .sidemenu.sidemenu-homepage, body:not(#hubv3) .sidemenu-banner-
   color: #1D2624;
   position: absolute;
   right: 10px;
-  top: 50%;
-  -webkit-transform: translate(0%, -50%);
-          transform: translate(0%, -50%);
+  top: 30%;
+  -webkit-transition: all ease 0.3s;
+  transition: all ease 0.3s;
 }
 
 #hubv3 .sidemenu .sidemenu-toggle.expanded, .sidemenu-banner-wrap #hubv3 .sidemenu-homepage .sidemenu-toggle.expanded, #hubv3 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle.expanded, body#hubv3 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle.expanded {
@@ -14842,8 +14842,8 @@ body:not(#hubv3) .sidemenu.sidemenu-homepage, body:not(#hubv3) .sidemenu-banner-
 }
 
 #hubv3 .sidemenu .sidemenu-toggle.expanded a:after, .sidemenu-banner-wrap #hubv3 .sidemenu-homepage .sidemenu-toggle.expanded a:after, #hubv3 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle.expanded a:after, body#hubv3 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle.expanded a:after {
-  -webkit-transform: rotateZ(180deg) translate(0%, 20%);
-          transform: rotateZ(180deg) translate(0%, 20%);
+  -webkit-transform: rotateZ(180deg);
+          transform: rotateZ(180deg);
 }
 
 @media (min-width: 61em) {
@@ -15454,14 +15454,6 @@ body:not(#hubv3) .sidemenu.sidemenu-homepage, body:not(#hubv3) .sidemenu-banner-
   left: -13px;
 }
 
-#hubv3 .sidebar .sidemenu ul li.has-submenu.expanded ul li ul li > a, .sidemenu-banner-wrap #hubv3 .sidebar .sidemenu-homepage ul li.has-submenu.expanded ul li ul li > a, #hubv3 .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu.expanded ul li ul li > a, #hubv3 .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu.expanded ul li ul li > a, body#hubv3 .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded ul li ul li > a, body#hubv3 .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded ul li ul li > a {
-  font-size: 95%;
-}
-
-#hubv3 .sidebar .sidemenu ul li.has-submenu.expanded ul li ul li ul li a, .sidemenu-banner-wrap #hubv3 .sidebar .sidemenu-homepage ul li.has-submenu.expanded ul li ul li ul li a, #hubv3 .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu.expanded ul li ul li ul li a, #hubv3 .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu.expanded ul li ul li ul li a, body#hubv3 .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded ul li ul li ul li a, body#hubv3 .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded ul li ul li ul li a {
-  font-size: 95%;
-}
-
 #hubv3 .sidebar .sidemenu ul li.has-submenu.expanded ul li.expanded:before, .sidemenu-banner-wrap #hubv3 .sidebar .sidemenu-homepage ul li.has-submenu.expanded ul li.expanded:before, #hubv3 .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu.expanded ul li.expanded:before, #hubv3 .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu.expanded ul li.expanded:before, body#hubv3 .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded ul li.expanded:before, body#hubv3 .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded ul li.expanded:before {
   left: 0px;
   opacity: 1;
@@ -15519,6 +15511,14 @@ body:not(#hubv3) .sidemenu.sidemenu-homepage, body:not(#hubv3) .sidemenu-banner-
   font-weight: 700;
   color: #0D4C38;
   z-index: 90;
+}
+
+#hubv3 .sidebar .sidemenu ul li.has-submenu ul ul li > a, .sidemenu-banner-wrap #hubv3 .sidebar .sidemenu-homepage ul li.has-submenu ul ul li > a, #hubv3 .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu ul ul li > a, #hubv3 .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu ul ul li > a, body#hubv3 .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu ul ul li > a, body#hubv3 .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu ul ul li > a {
+  font-size: 95%;
+}
+
+#hubv3 .sidebar .sidemenu ul li.has-submenu ul ul li ul li a, .sidemenu-banner-wrap #hubv3 .sidebar .sidemenu-homepage ul li.has-submenu ul ul li ul li a, #hubv3 .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu ul ul li ul li a, #hubv3 .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu ul ul li ul li a, body#hubv3 .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu ul ul li ul li a, body#hubv3 .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu ul ul li ul li a {
+  font-size: 95%;
 }
 
 #hubv3 .sidebar .sidemenu ul li.has-submenu > ul, .sidemenu-banner-wrap #hubv3 .sidebar .sidemenu-homepage ul li.has-submenu > ul, #hubv3 .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu > ul, #hubv3 .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu > ul, body#hubv3 .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu > ul, body#hubv3 .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu > ul {
@@ -18874,8 +18874,8 @@ body#hubv3 .content-panel .link_block:visited h3 {
 }
 
 body#hubv3 .content-panel .link_block:hover {
-  outline: 2px #99B9AF solid;
-  background-color: #CCDCD7;
+  outline: 2px #CCDCD7 solid;
+  background-color: #F1F6F0;
 }
 
 body#hubv3 .content-panel .link_block:hover h3 {
@@ -18904,6 +18904,18 @@ body#hubv3 section.grid {
   gap: 10px;
   margin: 0;
   width: 100%;
+}
+
+@media (max-width: 60.99em) {
+  body#hubv3 section.grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 42.99em) {
+  body#hubv3 section.grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 body#hubv3 section.grid > * {
