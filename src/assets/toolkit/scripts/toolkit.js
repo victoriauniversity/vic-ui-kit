@@ -1177,21 +1177,28 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Sticky header/nav on mobile
-window.onscroll = function (e) {
-  enquire.register(TABLET_AND_SMALLER, () => {
-    if (window.pageYOffset > 100) {
-      var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-      var header = $(".main-site-header");
+if (
+  document.location.href.includes("?mode=dev") ||
+  document.location.href.includes("local.wgtn") ||
+  document.location.href.includes("assets/git_bridge/0009/1778031/dist")
+) {
+  // Sticky header/nav on mobile
+  window.onscroll = function (e) {
+    enquire.register(TABLET_AND_SMALLER, () => {
+      if (window.pageYOffset > 100) {
+        var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+        var header = $(".main-site-header");
 
-      if (scrollY < this.lastScroll) {
-        header.addClass("sticky");
-      } else {
-        header.removeClass("sticky");
+        if (scrollY < this.lastScroll -5) {
+          header.addClass("sticky");
+        } else {
+          header.removeClass("sticky");
+        }
+        this.lastScroll = scrollY
       }
-      this.lastScroll = scrollY;
-    }
-  });
-};
+    });
+  };
+}
 
 /**
  * jQuery's plugin as a utility factory
