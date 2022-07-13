@@ -23,7 +23,7 @@ $sidemenu-delimiter-color: $brand-darker !default;
 
 $sidemenu-bg-light: $white;
 
-body:not(#hubv3) {
+body:not(#hubv4) {
   .sidemenu {
     z-index: $z-index-lower;
     overflow: hidden;
@@ -749,7 +749,7 @@ $sidemenu-bg-light: #fff;
       format("svg");
   }
 }
-#hubv3 {
+#hubv4 {
   //! Shared styles between sidemenu and sidemenu-banner
   .sidemenu {
     z-index: $z-index-lower;
@@ -1357,11 +1357,8 @@ $sidemenu-bg-light: #fff;
                 display: block;
 
                 a {
-                  // All level menus
-                  border-radius: 8px;
                   padding: 0.4em 0.5em;
                   transition: all ease 0.3s;
-
                   &:hover {
                     text-decoration: none;
                     color: $sidemenu-text-color-v3;
@@ -1401,9 +1398,6 @@ $sidemenu-bg-light: #fff;
             }
           }
         }
-      }
-
-      .hub-banner {
       }
     }
 
@@ -1505,7 +1499,6 @@ $sidemenu-bg-light: #fff;
           a {
             transition: all $easing 0.2s;
             padding: 0.8rem 0.9rem;
-            border-radius: 8px;
 
             &.sidemenu__link--withIcon {
               justify-content: space-between;
@@ -1707,6 +1700,8 @@ $sidemenu-bg-light: #fff;
                     li {
                       a {
                         font-size: 95%;
+                        padding: 7px 10px;
+                        line-height: 1.2;
                       }
                     }
                   }
@@ -1937,12 +1932,10 @@ $sidemenu-bg-light: #fff;
 
             > a {
               font-weight: 700;
-              color: #fff;
+              color: $manuka;
               background-color: transparent;
-              z-index: 90;
               &:hover {
-                background-color: transparent;
-                color: #fff;
+                color: $manuka;
               }
             }
             &.has-submenu {

@@ -83,7 +83,7 @@ $box-shadow-card: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   }
 }
 $easing: cubic-bezier(0.22, 1, 0.36, 1);
-body#hubv3 {
+body#hubv4 {
   .main-site-header.show-mega-menu-top-wrap {
     padding-top: 0;
     overflow: unset !important;
@@ -844,10 +844,10 @@ body#hubv3 {
 // !Custom style overrides
 
 // Tidy up content area font sizes etc (temporary)
-#hubv3 {
+#hubv4 {
 }
 
-body#hubv3 {
+body#hubv4 {
   font-family: "Inter", Arial, Helvetica, sans-serif;
 
   // Typography
@@ -1362,16 +1362,22 @@ body#hubv3 {
         // Active page
         &:last-child {
           font-weight: $weight-semibold;
-          // // color: $kowhai;
-          // background-color: $breadcrumbs-last-child;
-          // color: $pounamu;
           padding-right: 1.5em;
-          clip-path: polygon(0% 0%, 85% 0, 100% 50%, 85% 100%, 0% 100%);
+          // clip-path: polygon(0% 0%, 85% 0, 100% 50%, 85% 100%, 0% 100%);
 
-          &::after,
-          &::before {
-            background-color: #fff !important;
-            display: none;
+          &:after {
+            content: "";
+            position: absolute;
+            right: -52px;
+            top: -5px;
+            display: block;
+            border-top: 25px solid transparent;
+            border-left: 30px solid #f9f9f9;
+            border-bottom: 25px solid transparent;
+            @include breakpoint($until: desktop) {
+              right: -45px;
+              display: none;
+            }
           }
         }
       }

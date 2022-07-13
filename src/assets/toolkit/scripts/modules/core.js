@@ -131,8 +131,7 @@ if (
   document.location.href.includes("local.wgtn") ||
   document.location.href.includes("assets/git_bridge/0009/1778031/dist")
 ) {
-  $("body").attr("id", "hubv3");
-  
+  $("body").attr("id", "hubv4");
 }
 
 // Check toolbar to ensure myTools has been updated to Puaha
