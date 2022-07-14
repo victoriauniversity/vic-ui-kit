@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, July 14, 2022, 11:32 AM */
+/** Version: 0.10.13 | Thursday, July 14, 2022, 2:00 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15812,7 +15812,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 }); // Check toolbar for mode=dev and apply class
 
 if (document.location.href.includes("?mode=dev") || document.location.href.includes("local.wgtn") || document.location.href.includes("assets/git_bridge/0009/1778031/dist")) {
-  $("body").attr("id", "hubv4");
+  $("body").attr("id", "hubv3");
 } // Check toolbar to ensure myTools has been updated to Puaha
 
 
@@ -16906,27 +16906,24 @@ document.addEventListener("DOMContentLoaded", function () {
   }, 750);
 }); // Sticky header/nav on mobile
 
-if (document.location.href.includes("?mode=dev") || document.location.href.includes("local.wgtn") || document.location.href.includes("assets/git_bridge/0009/1778031/dist")) {
-  // Sticky header/nav on mobile
-  window.onscroll = function (e) {
-    var _this3 = this;
+window.onscroll = function (e) {
+  var _this3 = this;
 
-    src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
-      if (window.pageYOffset > 100) {
-        var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-        var header = external_jQuery_default()(".main-site-header");
+  src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
+    if (window.pageYOffset > 100) {
+      var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      var header = external_jQuery_default()(".main-site-header");
 
-        if (scrollY < _this3.lastScroll - 5) {
-          header.addClass("sticky");
-        } else {
-          header.removeClass("sticky");
-        }
-
-        _this3.lastScroll = scrollY;
+      if (scrollY < _this3.lastScroll) {
+        header.addClass("sticky");
+      } else {
+        header.removeClass("sticky");
       }
-    });
-  };
-}
+
+      _this3.lastScroll = scrollY;
+    }
+  });
+};
 /**
  * jQuery's plugin as a utility factory
  * Usage as: $( jquerySelector ).vicApp().method( options )

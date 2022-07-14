@@ -1,4 +1,4 @@
-<!-- Version: 0.10.13 | Thursday, July 14, 2022, 11:32 AM -->
+<!-- Version: 0.10.13 | Thursday, July 14, 2022, 2:00 PM -->
 <!doctype html>
 <html lang="">
 <head>
@@ -104,7 +104,7 @@
 
 	
 <style>
-  .hub-banner .banner-body p {
+  /* .hub-banner .banner-body p {
     max-width: initial;
   }
 
@@ -120,10 +120,60 @@
     height: 100px;
     fill: #115737;
     opacity: .9;
-  }
+  } */
 
 </style>
 
+<div class=" block-banner inter-font dark-green video">
+  <div class="banner-video">
+    <video class="" loop muted autoplay
+      poster="https://image.mux.com/dy63e7IUuomnfixJj6szQL1kcIUsgiGf/thumbnail.jpg?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InQ5UHZucm9ZY0hQNjhYSmlRQnRHTEVVSkVSSXJ0UXhKIn0.eyJ3aWR0aCI6NjQwLCJ0aW1lIjowLCJleHAiOjMxNzE5MjI1MTE0NSwiYXVkIjoidCIsInN1YiI6ImR5NjNlN0lVdW9tbmZpeEpqNnN6UUwxa2NJVXNnaUdmIn0.bbNSbsqVEMdEgd8-oc8k4ufIn_JNsBWYlORAZXJXIeB_3QTbF8YD5GAfzMGgMQmb-MTFQ_7HDxcAuI7W4NYef62IKJcYo53XuSif9AVw7byviUEFUXui8nVDE8aEt97lEUtByi4XOkZVnVH0E28yrYbtqGXevshzTBNoT3XPoyrvju7VWL9ohTXbFHmxvWJdDk68ILFkXFWA4eAApoXen7iF8N0ZIQiCf_zu4Et3zs7yW55ZBqb0ORsvHr8Gn8pnWdv1dTczOaYWd-4js_97bJ1X_8ySuB-OeZ8MXIuf9XtWy5obJQOkrbIqbio_MrUcb7WfM04HlfJhLkrKJJhJoQ">
+      <!-- desktop -->
+      <source
+        src="https://storage.coverr.co/videos/dy63e7IUuomnfixJj6szQL1kcIUsgiGf?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6Ijg3NjdFMzIzRjlGQzEzN0E4QTAyIiwiaWF0IjoxNjU3MjQzNTAzfQ.YDzVj4B_LErV7nI-K0R4k4JlUSqma2_j02ON5_5pSqk"
+        type="video/mp4">
+
+      Your browser doesn't support HTML5 video tag.
+    </video>
+  </div>
+  <div class="banner-content formatting">
+    <div class="block ">
+      <h1>Stand on the edge of discovery </h1>
+      <p class="">Go further with postgraduate study at Te Herenga Waka—Victoria University of Wellington.</p>
+      <!-- <p>New Zealand’s border is reopening this year.</p> -->
+      <a class="button" href="#">Learn more</a>
+    </div>
+  </div>
+  <div class="banner-square-start"></div>
+  <div class="banner-square-end">
+
+  </div>
+</div>
+
+<script>
+  // Wrap first word in span..
+  let titleNode = document.querySelector( ".block-banner .banner-content h1" );
+  let newTitle = titleNode.textContent.trim().split( " " ).map(
+    ( word, i ) => i === 0 ? `<span class="yellow-word">${word}</span>` : word ).join( " " );
+  titleNode.innerHTML = newTitle;
+
+  // if video
+  var videoSource = document.querySelector('.banner-video video source');
+
+  console.log(videoSource);
+
+  var windowWidth = document.body.clientWidth;
+
+  console.log(windowWidth);
+
+  if ( windowWidth < 800 ) {
+    //load mobile video
+   videoSource.src = "https://storage.coverr.co/videos/md4FLzCN6pLuLBHbSfdDGze023DayfSKm?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6Ijg3NjdFMzIzRjlGQzEzN0E4QTAyIiwiaWF0IjoxNjU3MjQzNTkwfQ.R7rVlvF2EszgJtESwuhIXBbfH-MXUr6m_gzeGvpM2Sg";
+
+   console.log('mobile video load');
+  }
+
+</script>
 <div class=" block-banner inter-font ">
   <img class="banner-image" alt="Students walking up Kelburn library stairs with view of Wellington behind."
     src="../images/banners/walking-banner.jpg">
