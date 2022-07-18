@@ -390,45 +390,44 @@ body:not(#hubv4) {
   }
 }
 
-@keyframes draw-open {
-  0% {
-    transform: translateX(-100%);
-    visibility: hidden;
-    opacity: 0;
-    z-index: 0;
-  }
+// @keyframes draw-open {
+//   0% {
+//     max-width: 0;
+//     visibility: hidden;
+//     opacity: 0;
+//     z-index: -1;
+//     overflow: hidden;
+//   }
 
-  1% {
-    visibility: visible;
-  }
-  20% {
-    opacity: 0.5;
-    z-index: 10;
-  }
+//   1% {
+//     visibility: visible;
+//   }
+//   20% {
+//     opacity: 0.5;
+//     z-index: 10;
+//   }
 
-  100% {
-    transform: translateX(0);
-    visibility: visible;
-    opacity: 1;
-    z-index: 100;
-  }
-}
+//   100% {
+//     transform: translateX(0);
+//     visibility: visible;
+//     opacity: 1;
+//     max-width: 100%;
+//   }
+// }
 
-@keyframes draw-close {
-  0% {
-    visibility: visible;
-    opacity: 1;
-  }
+// @keyframes draw-close {
+//   0% {
+//     visibility: visible;
+//     opacity: 1;
+//     overflow: hidden;
+//   }
 
-  99% {
-    visibility: visible;
-  }
-
-  100% {
-    visibility: hidden;
-    opacity: 0;
-  }
-}
+//   100% {
+//     visibility: hidden;
+//     opacity: 0;
+//     max-width: 0;
+//   }
+// }
 
 .sidemenu-banner-wrap {
   z-index: 1;
@@ -636,7 +635,7 @@ body:not(#hubv4) {
                 > li {
                   &:not(:last-child) {
                     > a {
-                      border-bottom: 1px solid $grey-alto;
+                      // border-bottom: 1px solid $grey-alto;
                       padding-left: 0;
                       margin-left: 0.7em;
                     }
@@ -749,7 +748,7 @@ $sidemenu-bg-light: #fff;
       format("svg");
   }
 }
-#hubv4 {
+body#hubv4 {
   //! Shared styles between sidemenu and sidemenu-banner
   .sidemenu {
     z-index: $z-index-lower;
@@ -1077,48 +1076,47 @@ $sidemenu-bg-light: #fff;
     }
   }
 
-  @keyframes draw-open {
-    0% {
-      transform: translateX(-0%);
-      visibility: hidden;
-      opacity: 0;
-      z-index: 0;
-    }
+  // @keyframes draw-open {
+  //   0% {
+  //     transform: translateX(-0%);
+  //     visibility: hidden;
+  //     opacity: 0;
+  //     z-index: 0;
+  //   }
 
-    1% {
-      visibility: visible;
-    }
-    20% {
-      opacity: 0.5;
-      z-index: 10;
-    }
+  //   1% {
+  //     visibility: visible;
+  //   }
+  //   20% {
+  //     opacity: 0.5;
+  //     z-index: 10;
+  //   }
 
-    100% {
-      transform: translateX(0);
-      visibility: visible;
-      opacity: 1;
-      z-index: 100;
-      max-width: 100%;
-    }
-  }
+  //   100% {
+  //     transform: translateX(0);
+  //     visibility: visible;
+  //     opacity: 1;
+  //     max-width: 100%;
+  //   }
+  // }
 
-  @keyframes draw-close {
-    0% {
-      visibility: visible;
-      opacity: 1;
-      max-width: 100%;
-    }
+  // @keyframes draw-close {
+  //   0% {
+  //     visibility: visible;
+  //     opacity: 1;
+  //     max-width: 100%;
+  //   }
 
-    50% {
-      overflow: hidden;
-    }
+  //   50% {
+  //     overflow: hidden;
+  //   }
 
-    100% {
-      visibility: hidden;
-      opacity: 0;
-      max-width: 0;
-    }
-  }
+  //   100% {
+  //     visibility: hidden;
+  //     opacity: 0;
+  //     max-width: 0;
+  //   }
+  // }
 
   #mega-menu {
     position: relative;
@@ -1141,6 +1139,7 @@ $sidemenu-bg-light: #fff;
           transition: all $easing 0.3s;
           margin-left: 0;
           &:after {
+            transition: none;
             opacity: 0;
             content: "";
             height: 100%;
@@ -1163,7 +1162,10 @@ $sidemenu-bg-light: #fff;
               opacity: 1;
             }
             .btn-expander {
-              transform: rotateZ(-90deg);
+              &:after {
+                transform: rotateZ(-90deg);
+                opacity: 1;
+              }
             }
             > a {
               // padding-left: 20px;
@@ -1194,6 +1196,17 @@ $sidemenu-bg-light: #fff;
             &::before {
               margin: -0.2em 0.35em -0.2em 0;
               border-color: $sidemenu-text-hover-color-v3;
+            }
+          }
+        }
+      }
+
+      ul {
+        li.nav-item-parent {
+          .btn-expander {
+            &:after {
+              transition: all ease 0.2s;
+              line-height: 1.2;
             }
           }
         }
@@ -1328,22 +1341,20 @@ $sidemenu-bg-light: #fff;
               > li {
                 border-top: 1px solid $grey-gallery;
                 padding: 5px 0;
-
+                .btn-expander {
+                  display: flex;
+                  justify-content: center;
+                  flex-direction: column;
+                  font-size: 1rem;
+                  &:after {
+                    line-height: 1;
+                  }
+                }
                 > ul {
                   > li {
                     position: relative;
                     margin-left: 5px;
 
-                    // &:before {
-                    //   transition: all $easing 0.2s;
-                    //   content: "";
-                    //   background-color: $grey-alto;
-                    //   position: absolute;
-                    //   left: 0;
-                    //   top: 14px;
-                    //   height: 1px;
-                    //   width: 16px;
-                    // }
                     > a {
                       padding-left: 0;
                       margin-left: 5px;
@@ -1358,11 +1369,8 @@ $sidemenu-bg-light: #fff;
 
                 a {
                   padding: 0.4em 0.5em;
-                  transition: all ease 0.3s;
                   &:hover {
-                    text-decoration: none;
-                    color: $sidemenu-text-color-v3;
-                    background-color: $green-brand-light;
+                    text-decoration: underline;
                   }
                 }
                 > li {
@@ -1459,12 +1467,19 @@ $sidemenu-bg-light: #fff;
 
     // ICON FOR EXPANDER
 
-    .sidemenu ul .has-submenu > .btn-expander::after {
-      content: "\f17a";
-      line-height: 1;
-      width: initial;
-      height: initial;
-      top: initial;
+    .sidemenu ul .has-submenu > .btn-expander {
+      @include breakpoint(desktop-medium) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      &:after {
+        content: "\f17a";
+        line-height: 1.2;
+        width: initial;
+        height: initial;
+        top: initial;
+      }
     }
     // Top level gets thicker one
     .sidemenu > ul > .has-submenu > .btn-expander::after {
@@ -1654,9 +1669,8 @@ $sidemenu-bg-light: #fff;
 
             > .btn-expander {
               // transition: all ease 0.2s;
-              z-index: 505;
+              z-index: 100;
               position: relative;
-              line-height: 1.7;
               &:hover {
                 background-color: $grey-gallery;
               }
@@ -1901,6 +1915,7 @@ $sidemenu-bg-light: #fff;
             height: 100%;
             margin-left: 0px;
             flex: 1 0 2%;
+            max-width: 50px;
           }
           &.active {
             border-bottom: none;
