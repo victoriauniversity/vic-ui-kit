@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, July 15, 2022, 9:07 AM */
+/** Version: 0.10.13 | Monday, July 18, 2022, 1:50 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -22240,6 +22240,13 @@ body#hubv4 .highlight-message.red .highlight-content {
 .news-promos .news-item {
   padding: 1.5rem;
   background-color: #0D4C38;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-align: start;
+          align-items: flex-start;
 }
 
 .news-promos .news-item .news-title {
@@ -22253,6 +22260,10 @@ body#hubv4 .highlight-message.red .highlight-content {
   height: 5px;
   background-color: #FCE500;
   margin: 1rem 0;
+}
+
+.news-promos .news-item .btn {
+  margin-top: auto;
 }
 
 .news-promos .news-item .date,
@@ -22273,6 +22284,10 @@ body#hubv4 .highlight-message.red .highlight-content {
 
 .news-promos .news-item.light .news-title {
   color: #FEF9F0;
+}
+
+.news-promos .news-item:not(.light) .btn:hover, .news-promos .news-item:not(.light) .btn:active, .news-promos .news-item:not(.light) .btn:focus {
+  background-color: #669787;
 }
 
 .news-promos .button-block {
@@ -22313,7 +22328,7 @@ body#hubv4 .highlight-message.red .highlight-content {
 
 .promo-blocks .promo-card .link-icon {
   position: absolute;
-  padding: .2rem .5rem;
+  padding: 0.2rem 0.5rem;
   right: 0;
   bottom: 0;
   background-color: #CCDCD7;
@@ -22387,7 +22402,7 @@ body#hubv4 .highlight-message.red .highlight-content {
 }
 
 .section-links .section-link .text h4 {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 .section-links .section-link .text p {
@@ -22395,7 +22410,7 @@ body#hubv4 .highlight-message.red .highlight-content {
 }
 
 .section-links .section-link .caret {
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
   background-color: #669787;
   display: -webkit-box;
   display: flex;

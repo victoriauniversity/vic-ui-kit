@@ -223,6 +223,9 @@
   .news-item {
     padding: 1.5rem;
     background-color: $pounamu;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
     .news-title {
       color: $manuka;
@@ -235,6 +238,10 @@
         background-color: $kowhai;
         margin: 1rem 0;
       }
+    }
+
+    .btn {
+      margin-top: auto;
     }
 
     .date,
@@ -254,6 +261,13 @@
 
       .news-title {
         color: $manuka;
+      }
+    }
+    &:not(.light) {
+      .btn {
+        @include hoverify() {
+          background-color: $mahoe;
+        }
       }
     }
   }
@@ -295,7 +309,7 @@
 
     .link-icon {
       position: absolute;
-      padding: .2rem .5rem;
+      padding: 0.2rem 0.5rem;
       right: 0;
       bottom: 0;
       background-color: $kohuhu;
@@ -317,7 +331,6 @@
         p {
           text-decoration: underline;
         }
-
       }
     }
 
@@ -337,7 +350,6 @@
         background-color: $pounamu;
         color: $kohuhu;
       }
-
     }
   }
 }
@@ -368,7 +380,7 @@
       padding: 1rem;
 
       h4 {
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
       }
 
       p {
@@ -376,9 +388,8 @@
       }
     }
 
-
     .caret {
-      padding: 0 .5rem;
+      padding: 0 0.5rem;
       background-color: $mahoe;
       display: flex;
       align-items: center;
