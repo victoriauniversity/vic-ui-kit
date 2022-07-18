@@ -1,0 +1,599 @@
+<!-- Version: 0.10.13 | Monday, July 18, 2022, 3:13 PM -->
+<!doctype html>
+<html lang="">
+<head>
+
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Prototype | Menu and Content columns</title>
+
+  <!-- Fav icons compatible with all major browsers and devices -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="mask-icon" href="../images/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="theme-color" content="#ffffff">
+
+  
+
+
+  <!-- icons -->
+<link rel="stylesheet" href="https://www.wgtn.ac.nz/?a=1935407">
+  
+
+  <!-- toolkit styles -->
+  <link rel="stylesheet" href="../toolkit.css">
+  <!-- /toolkit styles -->
+
+  <script src="https://polyfill.io/v3/polyfill.min.js"></script>
+
+  <script>
+      /** Allows to add custom scripts that will be executed inside the jQuery's $(document).ready().  */
+      var onDocumentReadyFunctions = [];
+      function runFunctionOnDocumentReady( fn ) { onDocumentReadyFunctions.push( fn ); }
+  </script>
+
+  
+
+</head>
+<body>
+  
+
+  <!-- If 'fabricator=true' is present in page's annotation. -->
+
+
+
+  <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
+
+    <div class="global" id="global-nav">
+    
+    	<div class="menu-toggle horisontal-links">
+    		<a href="javascript:void(0);"><div class="logo-mini">&nbsp;</div></a>
+    		<a href="javascript:void(0);" class="js-toggle-global-nav" role="button" aria-label="Toggle Navigation">
+    
+    			<span class="tcon tcon-menu--xcross" aria-label="toggle menu" style="float:right;">
+    			  <span class="tcon-menu__lines" aria-hidden="true"></span>
+    			  <span class="tcon-visuallyhidden">toggle menu</span>
+    			</span>
+    
+    		</a>
+    		<!-- <div class="mobile logo-mini"></div> -->
+    	</div>
+    
+    	<div class="menu">
+      	<nav>
+      		<div class="search">
+      			<form method="get" action="//wgtn.ac.nz/search">
+      			    <div role="search">
+    					<a href="javascript:void(0);" class="js-toggle-global-search hide-on-mobile">
+    						<span class="tcon tcon-search--xcross " aria-label="toggle search">
+    						  <span class="tcon-search__item" aria-hidden="true"></span>
+    						  <span class="tcon-visuallyhidden">toggle search</span>
+    						</span>
+    					</a>
+      				    <!-- <a href="#" class="icon-search js-toggle-global-search hide-on-mobile"></a> -->
+      			    	<label class="input-wrapper -icon-search" id="global-search">
+    
+      			        	<input type="text" autocomplete="off" name="q" placeholder="Search Victoria for…" required>
+      		  				  <input type="submit" value="Go">
+    
+      			        </label>
+      			    </div>
+      			</form>
+    
+      			<div class="horisontal-links align-center hide-on-desktop">
+      				<a href="#"><span class="icon-home"></span>Home</a>
+      				<a href="#"><span class="icon-phone"></span>Contact</a>
+      			</div>
+      		</div>
+    
+      		<div id="menu">
+      			<a href="#" class="home">
+      				<span class="icon-home"></span>
+      				<span class="hide-on-desktop">Victoria's main site</span>
+      			</a>
+      			<a href="#">Future students</a>
+      			<a href="#">International students</a>
+      			<a href="#">Current students</a>
+            <a href="#">Research</a>
+            <a href="#">About Victoria</a>
+    
+      <!-- 		    <label role="search" class="hide-on-mobile">
+      		    	<a href="#" class="icon-search"></a>
+      		    </label> -->
+      		</div>
+    
+    
+      	</nav>
+    
+    	</div>
+    </div>
+      <header role="banner" class="site-header">
+        <div class="block centraliser">
+      
+          <!-- Logotype -->
+          <div class="logo">
+            <a href="/" title="Victoria University of Wellington homepage">
+              <picture>
+                  <!-- *MUST* be in pixels to avoid inconsistencies between CSS mediaqueries and HTML mediaqueries on Safari (*facepalm*)  -->
+                <source media="(max-width: 1087px)" srcset="../images/new/v2/logo-white-portrait.svg">
+                <img src="../images//new/v2/logo-white-full.svg" alt="Victoria University of Wellington - Te Whare Wānanga o te Ūpoko o te Ika a Māui">
+              </picture>
+            </a>
+          </div>
+      
+          <!-- Introductory block -->
+          <div class="site-intro">
+      
+            <a href="#" title="Prototype | Menu and Content columns homepage">
+              <h1>
+      
+                 <span class="large"> 
+                   Language Learning Centre 
+                 </span> 
+                 <small lang="mi"> Te Wāhanga Waihanga-Hoahoa </small> 
+              </h1>
+            </a>
+          </div>
+      
+        </div>
+      </header>
+
+  <!-- 'Go up' button -->
+  <a href="javascript:;" id="btn-up" title="Go to the top of the page" class="btn-floating sticky bottom" tabindex="-1"><span class="icon-arrow-up"></span></a>
+
+  <!-- 'Edit page' button -->
+  <a href="/_edit" id="btn-admin" style="display: none;" title="Edit the page in Squiz administration" class="btn-floating top" tabindex="-1"><span class="icon-edit"></span></a>
+
+
+
+	
+<!-- 2) Sidebar + Content only -->
+<section class="layout centraliser block">
+
+  <!-- Left 'submenu' column -->
+  <div class="sidebar"> <nav class="sidemenu" role="navigation" data-gtm-track>
+
+  <!-- Mobile devices *only* sidemenu control -->
+  <h1 class="sidemenu-toggle"><a href="#" title="Show/Hide Research menu">Research menu</a></h1>
+
+  <ul>
+    <!-- Alt Root (1st) level items under the given Hub -->
+    <li class="sidemenu__label"><a href="#" title="">Engage</a></li>
+    
+    <!-- Root (1st) level items under the given Hub -->
+    <li><a class="sidemenu__link--withIcon" href="#" title="">Staff Support <i class="icons8-right-arrow"></i></a></li>
+
+    <li>
+      <a href="#" title="">Research and ethics integrity</a>
+
+      <!-- 2nd level -->
+      <ul>
+        <li><a href="#" title="">General rules</a></li>
+        <li><a href="#" title="">Staff</a></li>
+        <li><a href="#" title="">Research and ethics integrity manual</a></li>
+        <li><a href="#" title="">Responsibilities</a></li>
+      </ul>
+    </li>
+
+    <li class="has-submenu active expanded">
+      <a href="/research-IA/engage-our-talent.html" title="">New research staff and their specialisation</a>
+      <span class="btn-expander" title="Toggle subpages"></span>
+
+      <!-- 2nd level -->
+      <ul>
+        <li><a href="#" title="">Welcome ceremony</a></li>
+        <li><a href="#" title="">Privacy rules</a></li>
+        <li><a href="#" title="">Research departments</a></li>
+
+        <li class="has-submenu active expanded">
+          <a href="#" title="">Contacts</a>
+          <span class="btn-expander" title="Toggle subpages"></span>
+
+          <!-- 3rd level -->
+          <ul>
+            <li><a href="#" title="">Directorate</a></li>
+            <li class="active"><a href="#" title="">General assistance</a></li>
+            <li><a href="#" title="">Emergency issues</a></li>
+            <li><a href="#" title="">E-mail and phone</a></li>
+            <li><a href="#" title="">Guidelines</a></li>
+          </ul>
+
+        </li>
+
+        <li><a href="#" title="">Organisational structure</a></li>
+        <li><a href="#" title="">Human resources and hiring process</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#" title="">Commercialise your research</a></li>
+    <li><a href="#" title="">Research funding and grants</a></li>
+
+    <li>
+        <a href="#" title="">PBRF</a>
+
+        <!-- 2nd level -->
+        <ul>
+          <li><a href="#" title="">Welcome ceremony</a></li>
+          <li><a href="#" title="">Privacy rules</a></li>
+          <li><a href="#" title="">Research departments</a></li>
+
+          <li>
+            <a href="#" title="">Contacts</a>
+
+              <!-- 3rd level -->
+              <ul>
+                <li><a href="#" title="">Directorate</a></li>
+                <li><a href="#" title="">General assistance</a></li>
+                <li><a href="#" title="">Emergency issues</a></li>
+                <li>
+                  <a href="#" title="">E-mail and phone</a>
+
+                  <!-- 4th level -->
+                  <ul>
+                    <li><a href="#" title="">Department of internal relationships</a></li>
+                    <li><a href="#" title="">Department of seriousness relationships</a></li>
+                    <li><a href="#" title="">Direct assistance services</a></li>
+                    <li><a href="#" title="">Lost and found</a></li>
+                  </ul>
+                </li>
+                <li><a href="#" title="">Guidelines</a></li>
+              </ul>
+
+          </li>
+
+          <li><a href="#" title="">Organisational structure</a></li>
+          <li><a href="#" title="">Human resources and hiring process</a></li>
+        </ul>
+      </li>
+
+    <li>
+      <a href="#" title="">Workshops, resources and support</a>
+
+      <ul>
+        <li><a href="#" title="">Workshop</a></li>
+        <li><a href="#" title="">Resources</a></li>
+        <li><a href="#" title="">Support</a></li>
+        <li><a href="#" title="">Events</a></li>
+        <li><a href="#" title="">Dates</a></li>
+        <li><a href="#" title="">Contacts</a></li>
+        <li><a href="#" title="">Issues resolution</a></li>
+        <li><a href="#" title="">Framework</a></li>
+        <li><a href="#" title="">Best practices</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#" title="">Supervising research students</a></li>
+  </ul>
+</nav> </div>
+
+  <!-- Center 'content' and right 'widget' columns -->
+  <div class="content-panel">
+
+    <!-- Center 'content' column -->
+    <main>
+      <div class="block formatting">
+
+        <article class="featured">
+            <h1>Practise your English online</h1>
+            <p>LLC staff have collected and regularly check the weblinks below with one goal in mind— to help you improve your English online. </p>
+            <p>Remember, the LLC has lots of offline practice materials for all language skills available in the Self-access Library and on LLC computers. Ask staff at the LLC counter. If you have any feedback on this website, we would like to hear from you! Happy practising!</p>
+
+            <div class="links-wrap">
+                <div class="button-links">
+                    <a href="" class="button large">Let us know what you think </a>
+                </div>
+            </div>
+
+          <!-- <div class="highlight primary" id="course_advice">
+            <h2>Talk to us about your study options</h2>
+            <p>Our liaison officers provide objective advice to help you make the right decisions when planning your first year of study and can provide assistance with selecting your admission type when you apply to enrol.</p>
+            <p>
+              <a href="//www.wgtn.ac.nz/study/course-planning/appointments">Book a course planning appointment</a> for one-to-one advice, email <a href="mailto:course-advice@vuw.ac.nz">course-advice@vuw.ac.nz</a>, or call 0800 VICTORIA (0800 842 867).</p>
+          </div> -->
+
+        </article>
+
+            <div>
+                <h2>Main skills</h2>
+                <p>Irure aliqua id in minim anim occaecat est. Est mollit duis consequat esse proident minim. Esse labore officia nisi culpa laboris eu sint enim deserunt amet culpa culpa et. Cillum aute veniam anim id. Ea proident ipsum occaecat Lorem aliquip.</p>
+                <section class="grid">
+<figure class=" ">
+
+	<a href="../prototypes/esol-resources-page-reading.html">
+
+	<img alt="Wellington waterfront" src="https://cdn.stocksnap.io/img-thumbs/960w/PLRKIF9VCU.jpg">
+
+	<figcaption>
+		                <h3>Reading</h3>
+		                <p>Find useful advice on and some practice in techniques and strategies for reading in an academic environment.</p>
+	</figcaption>
+
+	</a>
+
+</figure>
+<figure class=" ">
+
+	<a href="//www.wgtn.ac.nz/international/start/arrival">
+
+	<img alt="Wellington waterfront" src="https://cdn.stocksnap.io/img-thumbs/960w/TBJ9OPDGMK.jpg">
+
+	<figcaption>
+		                <h3>Writing</h3>
+		                <p>Learn about generating ideas, freewriting, clustering, paragraphing, topic sentences, essay structure, academic style, referencing, paraphrasing, and many other tricky aspects of academic writing.
+		                    </p>
+	</figcaption>
+
+	</a>
+
+</figure>
+<figure class=" ">
+
+	<a href="//www.wgtn.ac.nz/international/start/arrival">
+
+	<img alt="Wellington waterfront" src="https://cdn.stocksnap.io/img-thumbs/960w/S05DRRCFVB.jpg">
+
+	<figcaption>
+		                <h3>Listening</h3>
+		                <p>Simplified and authentic lectures or lecture extracts for practising note-taking and listening comprehension skills in an academic context</p>
+		
+	</figcaption>
+
+	</a>
+
+</figure><figure class=" ">
+
+	<a href="//www.wgtn.ac.nz/international/start/arrival">
+
+	<img alt="Wellington waterfront" src="https://cdn.stocksnap.io/img-thumbs/960w/Y2AHVPYB51.jpg">
+
+	<figcaption>
+		                <h3>Speaking</h3>
+		                <p>Whether you want to improve your general conversational skills or how you communicate in a professional setting, these resources may be useful.
+		                    </p>
+		
+	</figcaption>
+
+	</a>
+
+</figure>
+                </section>
+            </div>
+            <div>
+                <h2>Support skills</h2>
+                <p>Anim ullamco proident sunt aute anim et occaecat exercitation ullamco excepteur aliquip officia voluptate. Laborum dolore sit in veniam. Deserunt dolore ullamco enim aute. Et non excepteur cupidatat commodo.</p>
+                <section class="grid">
+<figure class=" ">
+
+	<a href="//www.wgtn.ac.nz/international/start/arrival">
+
+
+	<figcaption>
+		                <h3>Fluency</h3>
+		                <p>Fluency is hard to define, but easy to recognise. It has to do with the smoothness and ease of expression in another language.</p>
+		
+		
+	</figcaption>
+
+	</a>
+
+</figure>
+<figure class=" ">
+
+	<a href="//www.wgtn.ac.nz/international/start/arrival">
+
+
+	<figcaption>
+		                <h3>Grammar</h3>
+		                <p>First decide what area of grammar you want to practise, then find tasks related to that area.</p>
+		
+		
+	</figcaption>
+
+	</a>
+
+</figure>
+<figure class=" ">
+
+	<a href="//www.wgtn.ac.nz/international/start/arrival">
+
+
+	<figcaption>
+		                <h3>Vocabulary</h3>
+		                <p>Improve your knowledge and use of words that often go togethe.</p>
+		
+		
+	</figcaption>
+
+	</a>
+
+</figure><figure class=" ">
+
+	<a href="//www.wgtn.ac.nz/international/start/arrival">
+
+
+	<figcaption>
+		                <h3>Pronunciation</h3>
+		                <p>Work on your pronunciation by recording your voice as you practice the sounds of English, intonation, pitch, and sentence stress.</p>
+		
+		
+	</figcaption>
+
+	</a>
+
+</figure>
+                </section>
+            </div>
+
+      </div>
+    </main>
+
+  </div>
+
+</section>
+
+
+
+
+  <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
+
+      <footer role="contentinfo">
+      
+        <!-- Links and contacts that can vary between sub-sites -->
+        <section class="footer-secondary two-columns">
+          <div class="centraliser">
+      
+            <!-- Sub-site's related or recommended links -->
+            <div class="block">
+      
+              <h2>Useful links</h2>
+              <nav role="navigation">
+                <ul role="menubar">
+                  <li>
+                    <a href="#" role="menuitem" title="Read Deadlines and dates for 2016">Deadlines and dates for 2016</a>
+                  </li>
+                  <li>
+                    <a href="#" role="menuitem" title="Read Organising events">Organising events</a>
+                  </li>
+                  <li>
+                    <a href="#" role="menuitem" title="Read PhD guidelines">PhD guidelines</a>
+                  </li>
+                  <li>
+                    <a href="#" role="menuitem" title="Read Contacts and directories">Contacts and directories</a>
+                  </li>
+                  <li>
+                    <a href="#" role="menuitem" title="Read Deadlines for last year">Deadlines for last year</a>
+                  </li>
+                </ul>
+              </nav>
+      
+            </div>
+      
+            <!-- Sub-site's related links -->
+            <div class="block contacts">
+      
+              <a href="#" title="See more contact information" class="link-more">Other contacts</a>
+              <h2>Useful contacts</h2>
+      
+              <address>
+      
+                <!-- Phone numbers -->
+                <ul class="phones">
+      
+                  <li>
+                    <a href="tel:+64 4 472 1000" title="Call to general enquiries">+64 4 472 1000</a>
+                    general enquiries
+                  </li>
+                  <li>
+                    <a href="tel:64221231210" title="Call to personal advisory">64221231210</a>
+                    personal advisory
+                  </li>
+                </ul>
+      
+                <!-- Mail addresses -->
+                <ul class="mails">
+                  <li>
+                    <a href="mailto:info@vbs.wgtn.ac.nz" title="Send an email to info@vbs.wgtn.ac.nz">info@vbs.wgtn.ac.nz</a>
+                  </li>
+                </ul>
+              </address>
+      
+            </div>
+      
+          </div>
+        </section>
+      
+        <!-- Related links from global site -->
+        <section class="footer-secondary">
+          <div class="centraliser">
+            <div class="block">
+              <h2>Victoria University</h2>
+      
+              <nav role="navigation">
+                <ul role="menubar">
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Faculties</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Contacts and directories</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Campuses</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Study</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Students</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Students</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Staff</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Careers</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Alumni</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </section>
+      
+        <!-- Meta-links and contacts that are shared between sub-sites -->
+        <section class="footer-primary">
+          <div class="centraliser">
+      
+            <div class="block">
+      
+              <!-- Smaller version of logotype -->
+              <div class="logo">
+                <a href="/" title="Victoria University of Wellington homepage">
+                  <img class="logo"  src="../images/new/v2/logo-white-full.svg" alt="Victoria University of Wellington - Te Whare Wānanga o te Ūpoko o te Ika a Māui">
+                </a>
+              </div>
+      
+              <!-- Global contacts -->
+              <ul class="contacts">
+                <li>
+                  <a title="Call Victoria about general enquiries" href="tel:+6444721000">+64 4 472 1000</a>
+                </li>
+                <li>
+                  <a title="Write Victoria an email" href="mailto:info@wgtn.ac.nz">info@wgtn.ac.nz</a>
+                </li>
+                <li>
+                  Enrolments: <a title="Call Victoria regarding enrolments" href="tel:+64800842867">0800 VICTORIA</a>
+                </li>
+                <li>
+                  Emergency: <a title="Call in case of emergency" href="tel:+6444639999">+64 4 463 9999</a> or ext. 8888 (internal)
+                </li>
+              </ul>
+      
+            </div>
+      
+            <div class="block small">
+      
+              <nav role="navigation">
+                <ul role="menubar" class="minilinks">
+                  <li role="menuitem"><a title="See ..." href="https://www.wgtn.ac.nz/site-info">Site info</a></li>
+                  <li role="menuitem"><a title="See ..." href="https://www.wgtn.ac.nz/site-info/site-map">Site map</a></li>
+                  <li role="menuitem"><a title="See ..." href="https://www.wgtn.ac.nz/site-info/feedback">Feedback</a></li>
+                  <li role="menuitem"><a title="See ..." href="https://www.wgtn.ac.nz/site-info/glossary">Glossary</a></li>
+                </ul>
+              </nav>
+      
+              <small class="copyright">Copyright &copy; Victoria University of Wellington, New Zealand</small>
+      
+            </div>
+      
+          </div>
+        </section>
+      </footer>
+
+
+  <!-- jQuery -->
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+	<!-- toolkit scripts -->
+	<script src="../toolkit.js"></script>
+	<!-- /toolkit scripts -->
+
+  
+
+</body>
+</html>
