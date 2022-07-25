@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, July 26, 2022, 10:14 AM */
+/** Version: 0.10.13 | Tuesday, July 26, 2022, 10:23 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -22026,7 +22026,7 @@ body#hubv4 .highlight-message.red .highlight-content {
 }
 
 .landing-intro {
-  margin: 0 0 1rem;
+  margin: 0 auto 1rem;
 }
 
 .landing-intro > div {
@@ -22337,13 +22337,17 @@ body#hubv4 .highlight-message.red .highlight-content {
 }
 
 .promo-blocks .promo-card a:hover h3,
-.promo-blocks .promo-card a:hover h4,
-.promo-blocks .promo-card a:hover p, .promo-blocks .promo-card a:active h3,
-.promo-blocks .promo-card a:active h4,
-.promo-blocks .promo-card a:active p, .promo-blocks .promo-card a:focus h3,
-.promo-blocks .promo-card a:focus h4,
-.promo-blocks .promo-card a:focus p {
+.promo-blocks .promo-card a:hover h4, .promo-blocks .promo-card a:active h3,
+.promo-blocks .promo-card a:active h4, .promo-blocks .promo-card a:focus h3,
+.promo-blocks .promo-card a:focus h4 {
   text-decoration: underline;
+}
+
+.promo-blocks .promo-card a:hover .link-icon::before, .promo-blocks .promo-card a:active .link-icon::before, .promo-blocks .promo-card a:focus .link-icon::before {
+  -webkit-transition: all ease-in .2s;
+  transition: all ease-in .2s;
+  -webkit-transform: translateX(3px);
+          transform: translateX(3px);
 }
 
 .promo-blocks .promo-card.light {
@@ -22384,8 +22388,17 @@ body#hubv4 .highlight-message.red .highlight-content {
   height: 100%;
 }
 
-.section-links .section-link a:hover, .section-links .section-link a:active, .section-links .section-link a:focus {
+.section-links .section-link a:hover h4, .section-links .section-link a:active h4, .section-links .section-link a:focus h4 {
   text-decoration: underline;
+  -webkit-text-decoration-color: inherit;
+          text-decoration-color: inherit;
+}
+
+.section-links .section-link a:hover svg, .section-links .section-link a:active svg, .section-links .section-link a:focus svg {
+  -webkit-transition: all ease-in .2s;
+  transition: all ease-in .2s;
+  -webkit-transform: translateX(2px);
+          transform: translateX(2px);
 }
 
 .section-links .section-link .text {
@@ -25470,6 +25483,7 @@ body#hubv4 .highlight-message.red .highlight-content {
 
 .block-banner.video .banner-content {
   grid-column: 1/4;
+  z-index: 20;
 }
 
 .block-banner.video .banner-content h1 {
@@ -25482,6 +25496,7 @@ body#hubv4 .highlight-message.red .highlight-content {
 
 .block-banner.video .banner-square-end {
   grid-column: 9/11;
+  z-index: 20;
 }
 
 .block-banner.video .banner-square-start {
