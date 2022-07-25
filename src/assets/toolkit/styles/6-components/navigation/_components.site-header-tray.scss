@@ -225,8 +225,10 @@ $tray-width-desktop: 400px;
         width: auto;
         border-radius: 4px;
         align-self: center;
-        background-color: $grey-gallery;
+        background-color: $kohuhu;
         margin-right: 5px;
+        color: $pounamu;
+        transition: all 0.2s ease-in-out;
         @include breakpoint($until: desktop-medium) {
           display: none;
         }
@@ -235,12 +237,12 @@ $tray-width-desktop: 400px;
           // color: #fff;
           font-size: 15px;
           margin-left: 0.2rem;
-          transition: color 0.15s ease-in-out,
-            background-color 0.15s ease-in-out;
+          transition: all 0.2s ease-in-out;
         }
         &:hover {
+          box-shadow: 1.1px 2.2px 2.2px rgba(7, 7, 7, 0.47);
           color: #fff;
-          background-color: $pounamu;
+          background-color: $mahoe;
           i {
             color: #fff;
           }
@@ -1918,8 +1920,6 @@ $tray-width-desktop: 400px;
   }
 }
 
-
-
 // Mouseflow tracking fix for sub menus and sidebar expandable menus
 
 .mf-heatmap-clicked + ul {
@@ -1936,4 +1936,163 @@ $tray-width-desktop: 400px;
 // Properly hide back to top button
 #btn-up {
   display: none;
+}
+
+// HOMEPAGE - MONTY - 25/07/22
+.homepage#hubv4 {
+  .block-banner.video {
+    margin-top: 0;
+  }
+  .footer-secondary {
+    background-color: $kohuhu;
+  }
+
+  // Header
+  .top-header {
+    background-color: #f7f7f7;
+    border-bottom: 1px $grey-alto solid;
+  }
+  .show-mega-menu-top .mega-sub-menu .mega-menu-top-level {
+    border-top: none;
+  }
+  .main-site-header.header-tray .header-inner .header-logo {
+    width: 20%;
+  }
+  // Preheader
+  .header-content {
+    width: 90%;
+    flex: 1 0 50%;
+    .pre-header-inside {
+      background-color: transparent;
+      @include breakpoint($until: desktop) {
+        display: none;
+      }
+      .block {
+        padding: 0;
+      }
+      .sub-menu-list {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-between;
+        margin-right: 2rem;
+
+        .sub-menu-item {
+          &:not(:last-of-type) {
+            // margin-right: 0.5rem;
+            // padding-right: 0.5rem;
+            // border-right: 1px #ccc solid;
+          }
+          > a {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            .tereo-title {
+              color: $pounamu;
+            }
+            span {
+              color: $black-mine-shaft;
+            }
+          }
+        }
+        .tereo-title {
+          font-size: 1em;
+        }
+      }
+    }
+  }
+  .pre-header {
+    // background: $green-linear-gradient;
+    background-color: $pounamu;
+    text-align: center;
+    // background-image: url("../../images/patterns/pattern-03-horizontal.svg");
+    background-size: contain;
+    @include breakpoint($until: desktop) {
+      display: none;
+    }
+    &.light {
+      background-color: #f7f7f7;
+
+      ul {
+        li {
+          color: #fff;
+          a {
+            // color: #fff;
+            color: $black-brand;
+            background-color: #eee;
+            &:hover {
+              background-color: $green-brand-bright;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+    > div {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    a,
+    button {
+      &:active,
+      &:focus {
+        background-color: rgba(100, 100, 100, 0.5);
+      }
+    }
+    ul.sub-menu-list {
+      display: flex;
+      justify-content: flex-end;
+      justify-self: flex-end;
+      li {
+        color: #fff;
+        // border-right: 1px #eee solid;
+        position: relative;
+        &:after {
+          content: "";
+          height: 100%;
+          width: 2px;
+          right: 0;
+          transform: rotateZ(10deg);
+          background-color: rgba(255, 255, 255, 0.5);
+          position: absolute;
+          z-index: 1;
+        }
+        a {
+          // color: #fff;
+          color: #fff;
+          padding: 5px 10px;
+          font-size: 15px;
+          display: inline-block;
+          clip-path: polygon(
+            8.32% -5px,
+            111% -5px,
+            106.08% 97.06%,
+            0.06% 97.06%
+          );
+          margin-left: -6px;
+          padding-left: 20px;
+          padding-right: 15px;
+
+          &:hover {
+            background-color: $green-brand-bright;
+            background-color: rgba(100, 100, 100, 0.5);
+            color: #fff;
+          }
+        }
+        &:after {
+          // content: "-";
+          margin-left: 10px;
+        }
+        &:last-of-type {
+          margin-right: 0;
+          border-right: 0;
+          &:after {
+            content: none;
+          }
+          a {
+          }
+        }
+      }
+    }
+  }
 }
