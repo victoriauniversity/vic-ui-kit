@@ -1942,9 +1942,14 @@ $tray-width-desktop: 400px;
 .homepage#hubv4 {
   .block-banner.video {
     margin-top: 0;
+    z-index: 0;
   }
-  .footer-secondary {
-    background-color: $kohuhu;
+
+  // Search
+  .search-block {
+    .tereo {
+      display: block;
+    }
   }
 
   // Header
@@ -1989,6 +1994,9 @@ $tray-width-desktop: 400px;
             text-decoration: none;
             .tereo-title {
               color: $pounamu;
+            }
+            &:hover {
+              text-decoration: underline;
             }
             span {
               color: $black-mine-shaft;
@@ -2093,6 +2101,204 @@ $tray-width-desktop: 400px;
           }
         }
       }
+    }
+  }
+
+  // Banner
+  .home-3-up-banner {
+    max-width: 1600px;
+    max-height: 80vh;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "box1 box1 box2"
+      "box1 box1 box3";
+
+    @include breakpoint($until: desktop-medium) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 0px 0px;
+      grid-template-areas:
+        "box1 box1"
+        "box2 box3";
+    }
+    #box1 {
+      grid-area: box1;
+    }
+    #box2 {
+      grid-area: box2;
+    }
+    #box3 {
+      grid-area: box3;
+    }
+
+    .primary-banner,
+    .secondary-banner {
+      float: none;
+      width: 100%;
+    }
+
+    // Box
+    > div {
+      h1,
+      h3 {
+        margin-bottom: 20px;
+      }
+      &:hover {
+        ~ :not(:hover) {
+          img {
+            filter: brightness(0.85);
+          }
+        }
+      }
+    }
+    #box1 {
+      height: 100%;
+      > a {
+        height: 100%;
+        display: flex;
+      }
+      figure,
+      figcaption {
+        background-color: $pounamu;
+      }
+    }
+    #box2 {
+      // margin-left: -1rem;
+      @include breakpoint($until: desktop-medium) {
+        margin-left: 0;
+      }
+      figure,
+      figcaption {
+        background-color: $mahoe;
+      }
+    }
+    #box3 {
+      // margin-left: -2rem;
+      @include breakpoint($until: desktop-medium) {
+        margin-left: 0;
+      }
+      figure,
+      figcaption {
+        background-color: $mahoe;
+      }
+    }
+    a {
+      @include breakpoint($until: desktop-medium) {
+        height: 100%;
+        display: flex;
+      }
+    }
+    figure {
+      img {
+        transition: all ease 0.3s;
+        filter: brightness(0.85);
+        @include breakpoint($until: desktop-medium) {
+          display: block;
+        }
+      }
+      &:hover {
+        img {
+          filter: brightness(1);
+        }
+      }
+      padding: 1rem;
+    }
+  }
+
+  // Clip all images in content
+  main img {
+    &:not(.noclip) {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+    }
+  }
+  // Body blocks
+  .quicklinks-news {
+    #quicklinks {
+      background-color: $pounamu;
+      margin-top: 0;
+
+      h2 {
+        color: #fff;
+      }
+
+      ul {
+        li {
+          a {
+            color: #fff;
+            display: flex;
+            &:before {
+              content: "";
+              border-left: 13px $kowhai solid;
+              border-top: 13px transparent solid;
+              border-bottom: 13px transparent solid;
+              display: block;
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+    }
+    #panels {
+      .panel {
+        margin-top: 0;
+        padding-top: 0;
+        background-color: #f7f7f7;
+        &:nth-of-type(odd) {
+          img {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+          }
+        }
+        > div {
+          padding: 0.5em 1em;
+        }
+      }
+    }
+  }
+  // News/research grid
+  .grid {
+    figure {
+      figcaption {
+        margin-top: 0;
+      }
+      img {
+        margin-bottom: 0;
+      }
+      // Alternate image clip
+      &:nth-of-type(odd) {
+        img {
+          clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+      }
+    }
+  }
+  // Footer
+  footer {
+    .footer-secondary {
+      background-color: $kohuhu;
+
+      .footer-col {
+        a {
+          color: $black-brand;
+        }
+        li {
+          color: $black-brand;
+        }
+        h4 {
+          color: $black-brand;
+          font-weight: 700;
+          a {
+            color: $black-brand;
+          }
+        }
+      }
+    }
+
+    .footer-primary {
+      background-color: $pounamu;
     }
   }
 }
