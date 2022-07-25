@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{title}}</title>
+  <link rel="icon" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}favicon.ico" type="image/x-icon" />
+
+  {{#if fabricator}}
+  <link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}styleguide-assets/f.css">{{/if}}
+
+  <!-- toolkit styles -->
+  <link rel="stylesheet" href="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}toolkit.{{#if theme}}{{theme}}.{{/if}}css">
+  <!-- /toolkit styles -->
+
+  <script src="https://polyfill.io/v3/polyfill.min.js"></script>
+</head>
+
+<body class="{{#if isIntranet}}intranet-home{{/if}} hub-page homepage" id="hubv4">
+
+
+  <!-- If 'fabricator=true' is present in page's annotation. -->
+
+  {{#if fabricator}}
+  {{> f-icons}}
+  {{> f-menu}}
+  <div class="f-container">
+    {{> f-control-bar}}
+    {{/if}}
+
+
+    <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
+    {{#unless fabricator}}
+    {{#if tereoNavTitles }}
+    {{> _updated-header-home-tereo NavColor=NavColor LogoColor=LogoColor horizontalNav=horizontalNav isIntranet=isIntranet }}
+
+    {{else}}
+    {{> _updated-header-home NavColor=NavColor LogoColor=LogoColor horizontalNav=horizontalNav isIntranet=isIntranet }}
+  
+    {{/if}}
+
+
+    <!-- Default fallback for header when not specified in the template. -->
+ 
+
+    {{/unless}}
+
+
+    <!-- 'Go up' button -->
+    <a href="javascript:;" id="btn-up" title="Go to the top of the page" class="btn-floating sticky bottom"
+      tabindex="-1"><span class="icon-arrow-up"></span></a>
+
+
+
+
+
+    {% body %}
+
+
+
+
+
+    <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
+    {{#unless fabricator}}
+
+    {{#if footer }}
+    {{> _footer-dark }}
+    {{else}}
+    <!-- Default fallback for footer when not specified in the template. -->
+    {{> _footer footer=footer-default }}
+    {{/if}}
+
+
+    {{/unless}}
+
+    {{#if fabricator}}
+  </div>
+
+  <script src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}styleguide-assets/f.js"></script>
+
+  <script type="text/javascript">
+    // Prefix tag with 'f-'
+    Prism.plugins.customClass.map({
+      tag: 'f-tag'
+    })
+  </script>
+
+
+  {{/if}}
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <!-- Moment JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"
+    integrity="sha512-Wkxbeuy81yHqZNrMurMURCOCMzkJqaFYnvToublHiOGoVXQ2DS1lOUjKwstbe0GwELrRb9sicdV2y6GiAnVxuw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- toolkit scripts -->
+  <script src="{{#if baseurl}}{{baseurl}}/{{else}}{{/if}}toolkit.js"></script>
+  <!-- /toolkit scripts -->
+
+
+</body>
+
+</html>
