@@ -1938,7 +1938,11 @@ $tray-width-desktop: 400px;
   display: none;
 }
 
-// HOMEPAGE - MONTY - 25/07/22
+//! ====== HOMEPAGE - MONTY - 25/07/22 ======
+// Hide pre-header
+.pre-header {
+  display: none;
+}
 .homepage#hubv4 {
   .block-banner.video {
     margin-top: 0;
@@ -1946,17 +1950,19 @@ $tray-width-desktop: 400px;
   }
 
   // Search
+  .homepage-search {
+
+    background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+
   .search-block {
     .tereo {
       display: block;
     }
   }
 
-  // Header
-  .top-header {
-    background-color: #f7f7f7;
-    border-bottom: 1px $grey-alto solid;
-  }
   .show-mega-menu-top .mega-sub-menu .mega-menu-top-level {
     border-top: none;
   }
@@ -2210,16 +2216,17 @@ $tray-width-desktop: 400px;
   }
 
   // Clip all images in content
-  main img {
-    &:not(.noclip) {
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
-    }
-  }
+  // main img {
+  //   &:not(.noclip) {
+  //     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+  //   }
+  // }
   // Body blocks
   .quicklinks-news {
     #quicklinks {
       background-color: $pounamu;
       margin-top: 0;
+      border-radius: 0;
 
       h2 {
         color: #fff;
@@ -2247,6 +2254,9 @@ $tray-width-desktop: 400px;
         margin-top: 0;
         padding-top: 0;
         background-color: #f7f7f7;
+        img {
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+        }
         &:nth-of-type(odd) {
           img {
             clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
@@ -2261,17 +2271,33 @@ $tray-width-desktop: 400px;
   // News/research grid
   .grid {
     figure {
+      box-shadow: none;
+      background-color: #f7f7f7;
+
+      a {
+        display: block;
+        height: 100%;
+      }
       figcaption {
-        margin-top: 0;
+        margin-top: -0.5em;
+        padding: 0;
+        h3 {
+          margin-top: -2em;
+          margin-bottom: 0;
+          padding: 0.5em 1em;
+          position: relative;
+          display: inline-block;
+          background-color: $mahoe;
+          color: #fff;
+        }
+        p {
+          padding: 1em;
+          padding-top: 0.5em;
+        }
       }
       img {
         margin-bottom: 0;
-      }
-      // Alternate image clip
-      &:nth-of-type(odd) {
-        img {
-          clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-        }
+        transition: all ease 0.3s;
       }
     }
   }

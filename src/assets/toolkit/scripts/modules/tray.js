@@ -392,8 +392,10 @@ export function initTray() {
 
         menuItems.removeClass("expanded-nav");
         $navItem.addClass("expanded-nav");
+
+        // HORIZONTAL MENU BLIP ADJUSTMENT
         $blip.css({
-          left: $navItem.offset().left - $("#mega-menu").offset().left + 1,
+          left: $navItem.offset().left - $("#mega-menu").offset().left,
           width: $navItem.innerWidth(),
         });
       }
@@ -407,7 +409,7 @@ export function initTray() {
       // console.log('horizontalMenuExpanded',horizontalMenuExpanded);
     };
 
-    // !CLOSE ON MENU MOUSE OUT 
+    // !CLOSE ON MENU MOUSE OUT
     enquire.register(DESKTOP_AND_LARGER, () => {
       // Hide menu if mouseout for x seconds
       // If banner nav is active
@@ -478,7 +480,7 @@ export function initTray() {
     } else {
       // Else we are using horizontal menu
       $blip.css({
-        left: $(this).offset().left - $("#mega-menu").offset().left + 1,
+        left: $(this).offset().left - $("#mega-menu").offset().left,
         width: $(this).innerWidth(),
       });
     }
@@ -489,7 +491,7 @@ export function initTray() {
     var activeItem = $(".expanded-nav");
     if (activeItem.length) {
       $blip.css({
-        left: activeItem.offset().left - $("#mega-menu").offset().left + 1,
+        left: activeItem.offset().left - $("#mega-menu").offset().left,
         width: activeItem.innerWidth(),
       });
     } else {
@@ -499,20 +501,6 @@ export function initTray() {
     }
   });
 
-  // On mouse out of sidemenu homepage
-  // $(".sidemenu-homepage #mega-menu > li").on("mouseout", function () {
-  //   var activeItem = $(".active-menu-item");
-  //   if (activeItem.length) {
-  //     $blip.css({
-  //       left: activeItem.offset().left - $("#mega-menu").offset().left + 1,
-  //       width: activeItem.innerWidth(),
-  //     });
-  //   } else {
-  //     $blip.css({
-  //       width: 0,
-  //     });
-  //   }
-  // });
 
   // Custom SAVED menu
 
