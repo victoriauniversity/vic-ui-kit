@@ -2216,6 +2216,9 @@ $tray-width-desktop: 400px;
     &.v2 {
       gap: 10px;
       margin-top: 2rem;
+      @include breakpoint($until: desktop-medium) {
+        grid-template-rows: 1fr 0fr;
+      }
       figure {
         padding: 0;
         position: relative;
@@ -2229,6 +2232,7 @@ $tray-width-desktop: 400px;
           right: 0;
           width: 30%;
           height: 30%;
+          transition: all ease 0.6s;
         }
         img {
           // margin: 2rem;
@@ -2237,10 +2241,16 @@ $tray-width-desktop: 400px;
         }
         figcaption {
           max-width: 70%;
+          @include breakpoint($until: desktop-medium) {
+            max-width: 100%;
+          }
         }
       }
       #box1 {
         padding-right: 2rem;
+        @include breakpoint($until: desktop-medium) {
+          padding-right: 0;
+        }
         figure {
           &:after {
             border-color: $pounamu;
@@ -2251,9 +2261,22 @@ $tray-width-desktop: 400px;
       #box2,
       #box3 {
         a {
-          &:hover {
+          @include breakpoint($until: desktop-medium) {
+            height: auto;
+            display: block;
+          }
+          &:hover,
+          &:active,
+          &:focus {
+            h1,
+            h3 {
+              text-decoration: underline;
+            }
             figure {
-              padding: 0;
+              &:after {
+                width: calc(100% - 41px);
+                height: calc(100% - 25px);
+              }
             }
           }
         }
@@ -2262,6 +2285,10 @@ $tray-width-desktop: 400px;
           padding: 10px;
           background-color: #fff;
         }
+      }
+
+      .secondary-banner {
+        background-color: #fff;
       }
     }
   }
@@ -2305,18 +2332,22 @@ $tray-width-desktop: 400px;
         margin-top: 0;
         padding-top: 0;
         background-color: #f7f7f7;
+        @include breakpoint($until: desktop-medium) {
+          flex-direction: column;
+        }
         img {
-          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
           @include breakpoint($until: desktop-medium) {
-            clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+            max-width: 100%;
+            max-height: 100%;
+            margin-right: 0;
+            margin-bottom: 1rem;
           }
+
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
         }
         &:nth-of-type(odd) {
           img {
             clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-            @include breakpoint($until: desktop-medium) {
-              clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
-            }
           }
         }
         > div {
