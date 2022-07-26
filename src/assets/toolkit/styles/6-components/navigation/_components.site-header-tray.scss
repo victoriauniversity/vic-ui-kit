@@ -1951,8 +1951,7 @@ $tray-width-desktop: 400px;
 
   // Search
   .homepage-search {
-
-    background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
+    background-image: url("../images/patterns/downward-lines.svg");
     background-repeat: no-repeat;
     background-position: 50% 50%;
   }
@@ -2199,6 +2198,8 @@ $tray-width-desktop: 400px;
       }
     }
     figure {
+      padding: 1rem;
+
       img {
         transition: all ease 0.3s;
         filter: brightness(0.85);
@@ -2211,7 +2212,57 @@ $tray-width-desktop: 400px;
           filter: brightness(1);
         }
       }
-      padding: 1rem;
+    }
+    &.v2 {
+      gap: 10px;
+      margin-top: 2rem;
+      figure {
+        padding: 0;
+        position: relative;
+        &:after {
+          content: "";
+          border-top: 15px $miro solid;
+          border-right: 15px $miro solid;
+          background-color: transparent;
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 30%;
+          height: 30%;
+        }
+        img {
+          // margin: 2rem;
+          padding-left: 1rem;
+          position: relative;
+        }
+        figcaption {
+          max-width: 70%;
+        }
+      }
+      #box1 {
+        padding-right: 2rem;
+        figure {
+          &:after {
+            border-color: $pounamu;
+          }
+        }
+      }
+      #box1,
+      #box2,
+      #box3 {
+        a {
+          &:hover {
+            figure {
+              padding: 0;
+            }
+          }
+        }
+        figure {
+          transition: all ease 0.3s;
+          padding: 10px;
+          background-color: #fff;
+        }
+      }
     }
   }
 
@@ -2256,10 +2307,16 @@ $tray-width-desktop: 400px;
         background-color: #f7f7f7;
         img {
           clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+          @include breakpoint($until: desktop-medium) {
+            clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+          }
         }
         &:nth-of-type(odd) {
           img {
             clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            @include breakpoint($until: desktop-medium) {
+              clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+            }
           }
         }
         > div {
@@ -2272,11 +2329,20 @@ $tray-width-desktop: 400px;
   .grid {
     figure {
       box-shadow: none;
-      background-color: #f7f7f7;
-
+      background-color: $kohuhu;
       a {
         display: block;
         height: 100%;
+        &:hover {
+          figcaption {
+            h3 {
+              text-decoration: underline;
+            }
+          }
+          img {
+            filter: brightness(1);
+          }
+        }
       }
       figcaption {
         margin-top: -0.5em;
@@ -2287,8 +2353,9 @@ $tray-width-desktop: 400px;
           padding: 0.5em 1em;
           position: relative;
           display: inline-block;
-          background-color: $mahoe;
-          color: #fff;
+          background-color: $kohuhu;
+          color: $pounamu;
+          text-decoration: none;
         }
         p {
           padding: 1em;
@@ -2298,6 +2365,7 @@ $tray-width-desktop: 400px;
       img {
         margin-bottom: 0;
         transition: all ease 0.3s;
+        filter: brightness(0.85);
       }
     }
   }

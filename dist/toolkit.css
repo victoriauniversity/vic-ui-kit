@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, July 26, 2022, 2:54 PM */
+/** Version: 0.10.13 | Tuesday, July 26, 2022, 3:59 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -17767,7 +17767,7 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
 }
 
 .homepage#hubv4 .homepage-search {
-  background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
+  background-image: url("../images/patterns/downward-lines.svg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
@@ -18051,6 +18051,60 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
           filter: brightness(1);
 }
 
+.homepage#hubv4 .home-3-up-banner.v2 {
+  gap: 10px;
+  margin-top: 2rem;
+}
+
+.homepage#hubv4 .home-3-up-banner.v2 figure {
+  padding: 0;
+  position: relative;
+}
+
+.homepage#hubv4 .home-3-up-banner.v2 figure:after {
+  content: "";
+  border-top: 15px #99B9AF solid;
+  border-right: 15px #99B9AF solid;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 30%;
+}
+
+.homepage#hubv4 .home-3-up-banner.v2 figure img {
+  padding-left: 1rem;
+  position: relative;
+}
+
+.homepage#hubv4 .home-3-up-banner.v2 figure figcaption {
+  max-width: 70%;
+}
+
+.homepage#hubv4 .home-3-up-banner.v2 #box1 {
+  padding-right: 2rem;
+}
+
+.homepage#hubv4 .home-3-up-banner.v2 #box1 figure:after {
+  border-color: #0D4C38;
+}
+
+.homepage#hubv4 .home-3-up-banner.v2 #box1 a:hover figure,
+.homepage#hubv4 .home-3-up-banner.v2 #box2 a:hover figure,
+.homepage#hubv4 .home-3-up-banner.v2 #box3 a:hover figure {
+  padding: 0;
+}
+
+.homepage#hubv4 .home-3-up-banner.v2 #box1 figure,
+.homepage#hubv4 .home-3-up-banner.v2 #box2 figure,
+.homepage#hubv4 .home-3-up-banner.v2 #box3 figure {
+  -webkit-transition: all ease 0.3s;
+  transition: all ease 0.3s;
+  padding: 10px;
+  background-color: #fff;
+}
+
 .homepage#hubv4 .quicklinks-news #quicklinks {
   background-color: #0D4C38;
   margin-top: 0;
@@ -18087,9 +18141,23 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
           clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
 }
 
+@media (max-width: 74.99em) {
+  .homepage#hubv4 .quicklinks-news #panels .panel img {
+    -webkit-clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+            clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+  }
+}
+
 .homepage#hubv4 .quicklinks-news #panels .panel:nth-of-type(odd) img {
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
           clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+@media (max-width: 74.99em) {
+  .homepage#hubv4 .quicklinks-news #panels .panel:nth-of-type(odd) img {
+    -webkit-clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+  }
 }
 
 .homepage#hubv4 .quicklinks-news #panels .panel > div {
@@ -18099,12 +18167,21 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
 .homepage#hubv4 .grid figure {
   -webkit-box-shadow: none;
           box-shadow: none;
-  background-color: #f7f7f7;
+  background-color: #CCDCD7;
 }
 
 .homepage#hubv4 .grid figure a {
   display: block;
   height: 100%;
+}
+
+.homepage#hubv4 .grid figure a:hover figcaption h3 {
+  text-decoration: underline;
+}
+
+.homepage#hubv4 .grid figure a:hover img {
+  -webkit-filter: brightness(1);
+          filter: brightness(1);
 }
 
 .homepage#hubv4 .grid figure figcaption {
@@ -18118,8 +18195,9 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   padding: 0.5em 1em;
   position: relative;
   display: inline-block;
-  background-color: #669787;
-  color: #fff;
+  background-color: #CCDCD7;
+  color: #0D4C38;
+  text-decoration: none;
 }
 
 .homepage#hubv4 .grid figure figcaption p {
@@ -18131,6 +18209,8 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   margin-bottom: 0;
   -webkit-transition: all ease 0.3s;
   transition: all ease 0.3s;
+  -webkit-filter: brightness(0.85);
+          filter: brightness(0.85);
 }
 
 .homepage#hubv4 footer .footer-secondary {
@@ -19131,7 +19211,6 @@ body#hubv4 .formatting .promo-panel figure,
 body#hubv4 .formatting figure {
   -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
           box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-  border-top: 4px #0D4C38 solid;
 }
 
 body#hubv4 .formatting .promo-panel figure figcaption,
