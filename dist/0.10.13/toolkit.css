@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, July 26, 2022, 4:02 PM */
+/** Version: 0.10.13 | Wednesday, July 27, 2022, 8:57 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -18056,6 +18056,12 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   margin-top: 2rem;
 }
 
+@media (max-width: 74.99em) {
+  .homepage#hubv4 .home-3-up-banner.v2 {
+    grid-template-rows: 1fr 0fr;
+  }
+}
+
 .homepage#hubv4 .home-3-up-banner.v2 figure {
   padding: 0;
   position: relative;
@@ -18071,6 +18077,8 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   right: 0;
   width: 30%;
   height: 30%;
+  -webkit-transition: all ease 0.6s;
+  transition: all ease 0.6s;
 }
 
 .homepage#hubv4 .home-3-up-banner.v2 figure img {
@@ -18082,18 +18090,63 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   max-width: 70%;
 }
 
+@media (max-width: 74.99em) {
+  .homepage#hubv4 .home-3-up-banner.v2 figure figcaption {
+    max-width: 100%;
+  }
+}
+
 .homepage#hubv4 .home-3-up-banner.v2 #box1 {
   padding-right: 2rem;
+}
+
+@media (max-width: 74.99em) {
+  .homepage#hubv4 .home-3-up-banner.v2 #box1 {
+    padding-right: 0;
+  }
 }
 
 .homepage#hubv4 .home-3-up-banner.v2 #box1 figure:after {
   border-color: #0D4C38;
 }
 
-.homepage#hubv4 .home-3-up-banner.v2 #box1 a:hover figure,
-.homepage#hubv4 .home-3-up-banner.v2 #box2 a:hover figure,
-.homepage#hubv4 .home-3-up-banner.v2 #box3 a:hover figure {
-  padding: 0;
+@media (max-width: 74.99em) {
+  .homepage#hubv4 .home-3-up-banner.v2 #box1 a,
+  .homepage#hubv4 .home-3-up-banner.v2 #box2 a,
+  .homepage#hubv4 .home-3-up-banner.v2 #box3 a {
+    height: auto;
+    display: block;
+  }
+}
+
+.homepage#hubv4 .home-3-up-banner.v2 #box1 a:hover h1,
+.homepage#hubv4 .home-3-up-banner.v2 #box1 a:hover h3, .homepage#hubv4 .home-3-up-banner.v2 #box1 a:active h1,
+.homepage#hubv4 .home-3-up-banner.v2 #box1 a:active h3, .homepage#hubv4 .home-3-up-banner.v2 #box1 a:focus h1,
+.homepage#hubv4 .home-3-up-banner.v2 #box1 a:focus h3,
+.homepage#hubv4 .home-3-up-banner.v2 #box2 a:hover h1,
+.homepage#hubv4 .home-3-up-banner.v2 #box2 a:hover h3,
+.homepage#hubv4 .home-3-up-banner.v2 #box2 a:active h1,
+.homepage#hubv4 .home-3-up-banner.v2 #box2 a:active h3,
+.homepage#hubv4 .home-3-up-banner.v2 #box2 a:focus h1,
+.homepage#hubv4 .home-3-up-banner.v2 #box2 a:focus h3,
+.homepage#hubv4 .home-3-up-banner.v2 #box3 a:hover h1,
+.homepage#hubv4 .home-3-up-banner.v2 #box3 a:hover h3,
+.homepage#hubv4 .home-3-up-banner.v2 #box3 a:active h1,
+.homepage#hubv4 .home-3-up-banner.v2 #box3 a:active h3,
+.homepage#hubv4 .home-3-up-banner.v2 #box3 a:focus h1,
+.homepage#hubv4 .home-3-up-banner.v2 #box3 a:focus h3 {
+  text-decoration: underline;
+}
+
+.homepage#hubv4 .home-3-up-banner.v2 #box1 a:hover figure:after, .homepage#hubv4 .home-3-up-banner.v2 #box1 a:active figure:after, .homepage#hubv4 .home-3-up-banner.v2 #box1 a:focus figure:after,
+.homepage#hubv4 .home-3-up-banner.v2 #box2 a:hover figure:after,
+.homepage#hubv4 .home-3-up-banner.v2 #box2 a:active figure:after,
+.homepage#hubv4 .home-3-up-banner.v2 #box2 a:focus figure:after,
+.homepage#hubv4 .home-3-up-banner.v2 #box3 a:hover figure:after,
+.homepage#hubv4 .home-3-up-banner.v2 #box3 a:active figure:after,
+.homepage#hubv4 .home-3-up-banner.v2 #box3 a:focus figure:after {
+  width: calc(100% - 41px);
+  height: calc(100% - 25px);
 }
 
 .homepage#hubv4 .home-3-up-banner.v2 #box1 figure,
@@ -18102,6 +18155,10 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   -webkit-transition: all ease 0.3s;
   transition: all ease 0.3s;
   padding: 10px;
+  background-color: #fff;
+}
+
+.homepage#hubv4 .home-3-up-banner.v2 .secondary-banner {
   background-color: #fff;
 }
 
@@ -18136,6 +18193,14 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   background-color: #f7f7f7;
 }
 
+@media (max-width: 74.99em) {
+  .homepage#hubv4 .quicklinks-news #panels .panel {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+}
+
 .homepage#hubv4 .quicklinks-news #panels .panel img {
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
           clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
@@ -18143,21 +18208,16 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
 
 @media (max-width: 74.99em) {
   .homepage#hubv4 .quicklinks-news #panels .panel img {
-    -webkit-clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
-            clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+    max-width: 100%;
+    max-height: 100%;
+    margin-right: 0;
+    margin-bottom: 1rem;
   }
 }
 
 .homepage#hubv4 .quicklinks-news #panels .panel:nth-of-type(odd) img {
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
           clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-}
-
-@media (max-width: 74.99em) {
-  .homepage#hubv4 .quicklinks-news #panels .panel:nth-of-type(odd) img {
-    -webkit-clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
-            clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
-  }
 }
 
 .homepage#hubv4 .quicklinks-news #panels .panel > div {
