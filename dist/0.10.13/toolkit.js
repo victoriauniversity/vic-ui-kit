@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, July 26, 2022, 11:52 AM */
+/** Version: 0.10.13 | Tuesday, July 26, 2022, 2:54 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14331,9 +14331,10 @@ function initTray() {
         }
 
         menuItems.removeClass("expanded-nav");
-        $navItem.addClass("expanded-nav");
+        $navItem.addClass("expanded-nav"); // HORIZONTAL MENU BLIP ADJUSTMENT
+
         $blip.css({
-          left: $navItem.offset().left - $("#mega-menu").offset().left + 1,
+          left: $navItem.offset().left - $("#mega-menu").offset().left,
           width: $navItem.innerWidth()
         });
       } // set active submenu to display
@@ -14342,7 +14343,7 @@ function initTray() {
       var matchingNavGroup = $(" .draw-nav > ul[data-index='".concat(index, "']"));
       $(".draw-nav > ul").removeClass("active-nav-group");
       matchingNavGroup.toggleClass("active-nav-group"); // console.log('horizontalMenuExpanded',horizontalMenuExpanded);
-    }; // !CLOSE ON MENU MOUSE OUT 
+    }; // !CLOSE ON MENU MOUSE OUT
 
 
     src_default.a.register(DESKTOP_AND_LARGER, function () {
@@ -14405,7 +14406,7 @@ function initTray() {
     } else {
       // Else we are using horizontal menu
       $blip.css({
-        left: $(this).offset().left - $("#mega-menu").offset().left + 1,
+        left: $(this).offset().left - $("#mega-menu").offset().left,
         width: $(this).innerWidth()
       });
     }
@@ -14416,7 +14417,7 @@ function initTray() {
 
     if (activeItem.length) {
       $blip.css({
-        left: activeItem.offset().left - $("#mega-menu").offset().left + 1,
+        left: activeItem.offset().left - $("#mega-menu").offset().left,
         width: activeItem.innerWidth()
       });
     } else {
@@ -14424,21 +14425,7 @@ function initTray() {
         width: 0
       });
     }
-  }); // On mouse out of sidemenu homepage
-  // $(".sidemenu-homepage #mega-menu > li").on("mouseout", function () {
-  //   var activeItem = $(".active-menu-item");
-  //   if (activeItem.length) {
-  //     $blip.css({
-  //       left: activeItem.offset().left - $("#mega-menu").offset().left + 1,
-  //       width: activeItem.innerWidth(),
-  //     });
-  //   } else {
-  //     $blip.css({
-  //       width: 0,
-  //     });
-  //   }
-  // });
-  // Custom SAVED menu
+  }); // Custom SAVED menu
 
   $(".ls-trigger").click(function (e) {
     console.log(e);
