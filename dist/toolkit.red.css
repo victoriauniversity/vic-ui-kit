@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, July 28, 2022, 3:01 PM */
+/** Version: 0.10.13 | Friday, July 29, 2022, 2:32 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -16121,6 +16121,10 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   padding-left: 0;
 }
 
+.main-site-header.header-tray .header-inner .header-logo .logo {
+  max-width: 12%;
+}
+
 .main-site-header.header-tray .header-inner .header-content {
   padding-left: 1rem;
   width: 40%;
@@ -17244,12 +17248,41 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   border-right-color: #CCC;
 }
 
+.main-site-header.white .logo.small-logo {
+  max-width: 12%;
+}
+
+.main-site-header.white .header-inner .header-content.long-title {
+  width: 65%;
+}
+
+.main-site-header.white .header-inner .header-content h1 {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+}
+
+.main-site-header.white .header-inner .header-content h1 span.qualifier {
+  font-size: 0.8em;
+  font-weight: 400;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.main-site-header.white .header-inner .header-content .tereo-title {
+  margin-top: 5px;
+}
+
 .main-site-header.white .header-inner .header-content > a {
   display: -webkit-inline-box;
   display: inline-flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
           flex-direction: column;
+}
+
+.main-site-header.white .header-inner .header-content > a.long-title {
+  display: block;
 }
 
 .main-site-header.white .header-inner .header-content > a.long-title h1,
@@ -17268,8 +17301,7 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   text-decoration: underline;
 }
 
-.main-site-header.white .header-inner .header-content h1,
-.main-site-header.white .header-inner .header-content p {
+.main-site-header.white .header-inner h1 {
   font-weight: 600;
   letter-spacing: 0.4px;
   font-size: 1.8em;
@@ -17279,8 +17311,8 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   display: inline-flex;
 }
 
-.main-site-header.white .header-inner .header-content .tereo-title,
-.main-site-header.white .header-inner .header-content p.tereo-title {
+.main-site-header.white .header-inner .tereo-title,
+.main-site-header.white .header-inner p.tereo-title {
   font-weight: 600;
   display: -webkit-inline-box;
   display: inline-flex;
