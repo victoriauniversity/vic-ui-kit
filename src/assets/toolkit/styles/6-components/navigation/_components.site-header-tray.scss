@@ -319,6 +319,9 @@ $tray-width-desktop: 400px;
       .header-logo {
         width: 25%;
         padding-left: 0;
+        .logo {
+          max-width: 12%;
+        }
       }
 
       .header-content {
@@ -1191,6 +1194,7 @@ $tray-width-desktop: 400px;
           margin-top: 10px;
           border-top: 2px $grey-gallery solid;
           padding-top: 10px;
+
           > a {
             flex-direction: row !important;
             justify-content: center;
@@ -1471,14 +1475,33 @@ $tray-width-desktop: 400px;
 
     .logo {
       border-right-color: $grey-silver;
+      &.small-logo {
+        max-width: 12%;
+      }
     }
-
     .header-inner {
       .header-content {
+        &.long-title {
+          width: 65%;
+        }
+        h1 {
+          flex-direction: column;
+          span.qualifier {
+            font-size: 0.8em;
+            font-weight: 400;
+            display: block;
+            margin-bottom: 5px;
+          }
+        }
+
+        .tereo-title {
+          margin-top: 5px;
+        }
         > a {
           display: inline-flex;
           flex-direction: column;
           &.long-title {
+            display: block;
             h1,
             p,
             .tereo-title {
@@ -1496,26 +1519,24 @@ $tray-width-desktop: 400px;
             }
           }
         }
-        h1,
-        p {
-          font-weight: 600;
-          letter-spacing: 0.4px;
-          font-size: 1.8em;
-          line-height: 1.08;
-          color: $black-tundora;
-          display: inline-flex;
-        }
+      }
+      h1 {
+        font-weight: 600;
+        letter-spacing: 0.4px;
+        font-size: 1.8em;
+        line-height: 1.08;
+        color: $black-tundora;
+        display: inline-flex;
+      }
 
-        .tereo-title,
-        p.tereo-title {
-          font-weight: 600;
-
-          display: inline-flex;
-          color: $green-brand;
-          font-size: 1.8em;
-          letter-spacing: 0.2px;
-          line-height: 1.08;
-        }
+      .tereo-title,
+      p.tereo-title {
+        font-weight: 600;
+        display: inline-flex;
+        color: $green-brand;
+        font-size: 1.8em;
+        letter-spacing: 0.2px;
+        line-height: 1.08;
       }
     }
 
