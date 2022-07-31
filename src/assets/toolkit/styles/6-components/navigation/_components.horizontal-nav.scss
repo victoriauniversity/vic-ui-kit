@@ -131,39 +131,35 @@ body#hubv4 {
   }
   #mega-nav {
     margin: auto;
+    position: relative;
   }
   .show-mega-menu-top .mega-sub-menu {
+    padding-top: 0;
+    padding-bottom: 0;
+    position: relative;
     li {
       a {
-        .tereo-title {
-          display: none;
-        }
-      }
-    }
-    &.tereo-nav {
-      padding-top: 0;
-      padding-bottom: 0;
-      position: relative;
-      #mega-menu {
-        > li {
-          &:after {
-            top: 30%;
-          }
-          > a {
-            padding-bottom: 10px;
-            padding-top: 10px;
-            .tereo-title {
-              display: block;
-            }
-          }
-        }
-      }
-      li a {
         .tereo-title {
           display: block;
         }
       }
     }
+    #mega-menu {
+      > li {
+        &:after {
+          top: 30%;
+        }
+        > a {
+          padding-bottom: 10px;
+          padding-top: 10px;
+          .tereo-title {
+            display: block;
+          }
+        }
+      }
+    }
+
+
     @extend .sidemenu;
     background-color: transparent;
     margin: 0;
