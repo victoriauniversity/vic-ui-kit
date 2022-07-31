@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, August 1, 2022, 10:44 AM */
+/** Version: 0.10.13 | Monday, August 1, 2022, 10:51 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14041,8 +14041,7 @@ function initTray() {
 
   $("body").on("click keyup", function (e) {
     // Close tray if clicked away from or escpae buttons
-    console.log(e.target.className, "clicked"); // If not enter key
-
+    // If not enter key
     if (e.which !== 13) {
       if (e.target.className.includes("tray-open") && $(".tray-open").length || e.key == "Escape" && $(".tray-open").length) {
         e.preventDefault();
