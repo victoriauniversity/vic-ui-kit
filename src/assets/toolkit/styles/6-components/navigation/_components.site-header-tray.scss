@@ -1211,11 +1211,23 @@ $tray-width-desktop: 400px;
             }
             h1 {
               display: flex;
+              border-right: 2px $grey-gallery solid;
             }
             .tereo-title {
-              border-right: 2px $grey-gallery solid;
               margin-right: 0.5em;
               padding-right: 0.5em;
+            }
+          }
+          &.long-title {
+            > a {
+              &.long-title {
+                h2,
+                h1,
+                .tereo-title {
+                  border-right: none;
+                  font-size: 1.1em;
+                }
+              }
             }
           }
         }
@@ -1520,7 +1532,8 @@ $tray-width-desktop: 400px;
           }
         }
       }
-      h1 {
+      h1,
+      h2 {
         font-weight: 600;
         letter-spacing: 0.4px;
         font-size: 1.8em;

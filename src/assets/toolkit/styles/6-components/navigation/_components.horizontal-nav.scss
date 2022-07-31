@@ -90,10 +90,11 @@ body#hubv4 {
     position: relative;
     padding-bottom: 6px;
     &.sticky {
-      position: sticky;
-      z-index: 99;
-      top: 0;
-      animation: slide-in 0.3s;
+      // ? Leaving out for now as it's buggy
+      // position: sticky;
+      // z-index: 99;
+      // top: 0;
+      // animation: slide-in 0.3s;
     }
     @include breakpoint($until: desktop) {
       animation: slide-out 0.3s;
@@ -160,7 +161,6 @@ body#hubv4 {
       }
     }
 
-
     @extend .sidemenu;
     background-color: transparent;
     margin: 0;
@@ -176,7 +176,6 @@ body#hubv4 {
         display: flex;
         flex-direction: row;
         width: 100%;
-        // border-top: 2px $grey-gallery solid;
         position: relative;
         .menu-blip {
           width: 0;
@@ -195,6 +194,8 @@ body#hubv4 {
           display: flex;
           font-weight: 400;
           flex: 1 auto;
+          // Min height required just in case no Te Reo titles are present to pad out the nav
+          min-height: 65px;
           &:hover {
             i {
               color: $green-brand;
@@ -231,7 +232,6 @@ body#hubv4 {
             position: absolute;
             right: 10px;
             top: 20px;
-            // transform: translate(-50%, 0%);
             content: "\f181";
             display: inline-block;
             font-family: "Favorites";
@@ -288,7 +288,6 @@ body#hubv4 {
       .sidemenu-drawer {
         transition: max-height $easing 0.5s, opacity $easing 0.8s,
           padding-top $easing 0.5s, padding-bottom $easing 0.5s;
-        // animation: draw-up 0.5s cubic-bezier(0.77, 0, 0.175, 1);
         overflow: hidden;
         max-height: 0;
         position: absolute;
