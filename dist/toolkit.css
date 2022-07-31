@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, August 1, 2022, 10:51 AM */
+/** Version: 0.10.13 | Monday, August 1, 2022, 11:55 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -17021,11 +17021,17 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   .main-site-header.header-tray .header-inner .header-content > a h1 {
     display: -webkit-box;
     display: flex;
+    border-right: 2px #EEE solid;
   }
   .main-site-header.header-tray .header-inner .header-content > a .tereo-title {
-    border-right: 2px #EEE solid;
     margin-right: 0.5em;
     padding-right: 0.5em;
+  }
+  .main-site-header.header-tray .header-inner .header-content.long-title > a.long-title h2,
+  .main-site-header.header-tray .header-inner .header-content.long-title > a.long-title h1,
+  .main-site-header.header-tray .header-inner .header-content.long-title > a.long-title .tereo-title {
+    border-right: none;
+    font-size: 1.1em;
   }
 }
 
@@ -17309,7 +17315,8 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   text-decoration: underline;
 }
 
-.main-site-header.white .header-inner h1 {
+.main-site-header.white .header-inner h1,
+.main-site-header.white .header-inner h2 {
   font-weight: 600;
   letter-spacing: 0.4px;
   font-size: 1.8em;
@@ -18685,15 +18692,6 @@ body#hubv4 .main-site-header.show-mega-menu-top-wrap {
   padding-bottom: 6px;
 }
 
-body#hubv4 .main-site-header.show-mega-menu-top-wrap.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  z-index: 99;
-  top: 0;
-  -webkit-animation: slide-in 0.3s;
-          animation: slide-in 0.3s;
-}
-
 @media (max-width: 60.99em) {
   body#hubv4 .main-site-header.show-mega-menu-top-wrap {
     -webkit-animation: slide-out 0.3s;
@@ -18798,6 +18796,7 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu__label {
     font-weight: 400;
     -webkit-box-flex: 1;
             flex: 1 auto;
+    min-height: 65px;
   }
   body#hubv4 .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li:hover i {
     color: #115737;
