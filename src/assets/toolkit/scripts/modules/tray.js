@@ -20,7 +20,6 @@ export function initTray() {
   $("body").on("click keyup", (e) => {
     // Close tray if clicked away from or escpae buttons
 
-    console.log(e.target.className, "clicked");
     // If not enter key
     if (e.which !== 13) {
       if (
