@@ -467,12 +467,23 @@
   <!-- Animate SVG test -->
   <script type="text/javascript">
     new Vivus("svg-footer-right", {
-      type: "sync",
-      duration: 100,
+      type: "oneByOne",
+      duration: 200,
       reverseStack: true,
       animTimingFunction: Vivus.EASE,
     });
     new Vivus("svg-footer-left", {
+      type: "oneByOne",
+      duration: 200,
+      animTimingFunction: Vivus.EASE,
+    });
+
+    new Vivus("lines-top", {
+      type: "sync",
+      duration: 100,
+      animTimingFunction: Vivus.EASE,
+    });
+    new Vivus("lines-bottom", {
       type: "sync",
       duration: 100,
       animTimingFunction: Vivus.EASE,

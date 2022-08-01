@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, August 1, 2022, 3:08 PM */
+/** Version: 0.10.13 | Tuesday, August 2, 2022, 9:19 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -17823,8 +17823,8 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   max-height: calc(100% - 15px);
   width: 30%;
   height: 30%;
-  -webkit-transition: all ease 0.6s;
-  transition: all ease 0.6s;
+  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.6s;
+  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.6s;
 }
 
 .homepage#hubv4 figure.borders-tr.miro a:after {
@@ -17863,10 +17863,21 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   font-weight: 600;
 }
 
+.homepage#hubv4 .home-svg-lines #lines-top {
+  position: absolute;
+  left: 30%;
+  top: -600px;
+}
+
+.homepage#hubv4 .home-svg-lines #lines-bottom {
+  position: absolute;
+  left: 30%;
+  top: -1300px;
+}
+
 .homepage#hubv4 .homepage-search {
-  background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
+  position: relative;
+  overflow: hidden;
 }
 
 .homepage#hubv4 .search-block .tereo {
@@ -18138,8 +18149,8 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
 }
 
 .homepage#hubv4 .home-3-up-banner figure img {
-  -webkit-transition: all ease 0.3s;
-  transition: all ease 0.3s;
+  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
+  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
   -webkit-filter: brightness(0.85);
           filter: brightness(0.85);
 }
@@ -18183,10 +18194,10 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
           box-sizing: border-box;
   max-width: calc(100% - 25px);
   max-height: calc(100% - 10px);
-  width: 100px;
-  height: 100px;
-  -webkit-transition: all ease-in-out 0.5s;
-  transition: all ease-in-out 0.5s;
+  width: 20%;
+  height: 30%;
+  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
+  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
 }
 
 .homepage#hubv4 .home-3-up-banner.v2 figure img {
@@ -18391,14 +18402,16 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   content: none;
 }
 
-.homepage#hubv4 .promo-panel h3 {
-  font-size: 2rem;
+.homepage#hubv4 .promo-panel {
+  position: relative;
 }
 
-.homepage#hubv4 .promo-panel.bg-kohuhu {
-  background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
-  background-repeat: no-repeat;
-  background-position: 50% 80%;
+.homepage#hubv4 .promo-panel.has-svg-background {
+  overflow: hidden;
+}
+
+.homepage#hubv4 .promo-panel h3 {
+  font-size: 2rem;
 }
 
 .homepage#hubv4 .promo-panel.bg-kohuhu figure {
@@ -18571,6 +18584,7 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   position: absolute;
   top: -20px;
   height: 110%;
+  z-index: 0;
 }
 
 .homepage#hubv4 footer .footer-secondary .svg-bg-left {
