@@ -2002,7 +2002,7 @@ $tray-width-desktop: 400px;
           max-height: calc(100% - 15px);
           width: 30%;
           height: 30%;
-          transition: all ease 0.6s;
+          transition: all $easing 0.6s;
         }
       }
       &.miro {
@@ -2060,11 +2060,27 @@ $tray-width-desktop: 400px;
     }
   }
 
+  //? SVG backgrounds
+  .home-svg-lines {
+    #lines-top {
+      position: absolute;
+      left: 30%;
+      top: -600px;
+    }
+    #lines-bottom {
+      position: absolute;
+      left: 30%;
+      top: -1300px;
+    }
+  }
+
   //? Search
   .homepage-search {
-    background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+    // background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
+    // background-repeat: no-repeat;
+    // background-position: 50% 50%;
+    position: relative;
+    overflow: hidden;
   }
 
   .search-block {
@@ -2315,7 +2331,7 @@ $tray-width-desktop: 400px;
       padding: 1rem;
 
       img {
-        transition: all ease 0.3s;
+        transition: all $easing 0.5s;
         filter: brightness(0.85);
         @include breakpoint($until: desktop-medium) {
           display: block;
@@ -2347,9 +2363,9 @@ $tray-width-desktop: 400px;
           box-sizing: border-box;
           max-width: calc(100% - 25px);
           max-height: calc(100% - 10px);
-          width: 100px;
-          height: 100px;
-          transition: all ease-in-out 0.5s;
+          width: 20%;
+          height: 30%;
+          transition: all $easing 0.9s;
         }
         img {
           // margin: 2rem;
@@ -2532,15 +2548,22 @@ $tray-width-desktop: 400px;
       content: none;
     }
   }
+
   //? Promo panel
   .promo-panel {
+    position: relative;
+    &.has-svg-background {
+      overflow: hidden;
+    }
+
     h3 {
       font-size: 2rem;
     }
     &.bg-kohuhu {
-      background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
-      background-repeat: no-repeat;
-      background-position: 50% 80%;
+      // background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
+
+      // background-repeat: no-repeat;
+      // background-position: 50% 80%;
       figure {
         box-shadow: none;
         background-color: transparent;
@@ -2694,6 +2717,7 @@ $tray-width-desktop: 400px;
         position: absolute;
         top: -20px;
         height: 110%;
+        z-index: 0;
       }
       .svg-bg-left {
         left: -40px;
