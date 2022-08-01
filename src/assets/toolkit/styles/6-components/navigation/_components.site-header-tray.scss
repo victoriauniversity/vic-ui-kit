@@ -2456,7 +2456,6 @@ $tray-width-desktop: 400px;
             display: block;
             z-index: 10;
             padding: 5px 10px;
-
           }
         }
         &[data-type="info"] {
@@ -2689,6 +2688,26 @@ $tray-width-desktop: 400px;
 
     .footer-secondary {
       background-color: $kohuhu;
+
+      .svg-bg-left,
+      .svg-bg-right {
+        position: absolute;
+        top: -20px;
+        height: 110%;
+      }
+      .svg-bg-left {
+        left: -40px;
+        @include breakpoint($until: desktop-medium) {
+          left: 0;
+        }
+      }
+      .svg-bg-right {
+        right: -40px;
+        transform: rotateX(180deg);
+        @include breakpoint($until: desktop-medium) {
+          right: 0;
+        }
+      }
       @include breakpoint($until: desktop-medium) {
         .site_links {
           columns: 2;

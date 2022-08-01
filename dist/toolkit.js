@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, August 1, 2022, 1:25 PM */
+/** Version: 0.10.13 | Monday, August 1, 2022, 2:49 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14956,7 +14956,33 @@ function initTray() {
   //     localStorage.setItem("savedEvents", JSON.stringify(filterdLocalObject));
   //   });
   // }, 500);
+  //
+  // document.addEventListener("scroll", function (e) {
+  //   console.log(isScrolledIntoView("#svg-footer-left"));
+  //   if (isScrolledIntoView("#svg-footer-left")) {
+  //   }
+  // });
 
+
+  new Vivus("svg-footer-right", {
+    type: "sync",
+    duration: 100,
+    reverseStack: true,
+    animTimingFunction: Vivus.EASE
+  });
+  new Vivus("svg-footer-left", {
+    type: "sync",
+    duration: 100,
+    animTimingFunction: Vivus.EASE
+  });
+
+  function isScrolledIntoView(elem) {
+    var docViewTop = $(window).scrollTop();
+    var docViewBottom = docViewTop + $(window).height();
+    var elemTop = $(elem).offset().top;
+    var elemBottom = elemTop + $(elem).height();
+    return docViewBottom >= elemTop;
+  }
 }
 // CONCATENATED MODULE: ./src/assets/toolkit/scripts/modules/urls.js
 // Import 3rd party dependencies

@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, August 1, 2022, 1:25 PM */
+/** Version: 0.10.13 | Monday, August 1, 2022, 2:49 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -18566,6 +18566,35 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, .sidemenu-banner-wrap body#hubv4 
   background-color: #CCDCD7;
 }
 
+.homepage#hubv4 footer .footer-secondary .svg-bg-left,
+.homepage#hubv4 footer .footer-secondary .svg-bg-right {
+  position: absolute;
+  top: -20px;
+  height: 110%;
+}
+
+.homepage#hubv4 footer .footer-secondary .svg-bg-left {
+  left: -40px;
+}
+
+@media (max-width: 74.99em) {
+  .homepage#hubv4 footer .footer-secondary .svg-bg-left {
+    left: 0;
+  }
+}
+
+.homepage#hubv4 footer .footer-secondary .svg-bg-right {
+  right: -40px;
+  -webkit-transform: rotateX(180deg);
+          transform: rotateX(180deg);
+}
+
+@media (max-width: 74.99em) {
+  .homepage#hubv4 footer .footer-secondary .svg-bg-right {
+    right: 0;
+  }
+}
+
 @media (max-width: 74.99em) {
   .homepage#hubv4 footer .footer-secondary .site_links {
     -webkit-columns: 2;
@@ -18901,10 +18930,10 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu__label {
     width: 200px;
     background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
     background-repeat: no-repeat;
-    background-size: 234px;
+    background-attachment: fixed;
     background-position: left;
     z-index: 0;
-    left: -92px;
+    left: 0;
     top: 0;
     max-height: 0;
     min-height: 0;
