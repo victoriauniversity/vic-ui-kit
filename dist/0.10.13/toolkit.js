@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, August 1, 2022, 11:55 AM */
+/** Version: 0.10.13 | Monday, August 1, 2022, 1:17 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14302,7 +14302,18 @@ function initTray() {
       console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index);
       var $navItem = $(this);
       e.preventDefault();
-      e.stopPropagation(); // If menu is already open, don't delay expanding the menu, else do!
+      e.stopPropagation();
+      var $navItemId = $("#" + $navItem.attr("data-for"));
+      console.log($navItem.attr("data-for"));
+      $("[id^=draw]").hide();
+
+      if ($navItemId) {
+        $(".sidemenu-drawer").removeClass("no-promo");
+      } else {
+        $(".sidemenu-drawer").addClass("no-promo");
+      }
+
+      $navItemId.show(); // If menu is already open, don't delay expanding the menu, else do!
 
       if (horizontalMenuExpanded || e.type == "click") {
         expandHorizontalMenu(index, $navItem, e.type);
@@ -14343,37 +14354,40 @@ function initTray() {
       $(".draw-nav > ul").removeClass("active-nav-group");
       matchingNavGroup.toggleClass("active-nav-group"); // console.log('horizontalMenuExpanded',horizontalMenuExpanded);
     }; // !CLOSE ON MENU MOUSE OUT
+    // enquire.register(DESKTOP_AND_LARGER, () => {
+    //   // Hide menu if mouseout for x seconds
+    //   // If banner nav is active
+    //   if ($("#banner-nav").length > 0) {
+    //     $("#banner-nav").on("mouseleave", function (e) {
+    //       clearTimeout(openTimeout);
+    //       openTimeout = setTimeout(function () {
+    //         closeDraw();
+    //       }, 300);
+    //     });
+    //     // If hover back in while timeout is active, cancel it so it doesn't hide
+    //     $("#banner-nav").on("mouseenter", function (e) {
+    //       clearTimeout(openTimeout);
+    //     });
+    //   } else {
+    //     $("#mega_menu_block").on("mouseleave", function (e) {
+    //       clearTimeout(openTimeout);
+    //       openTimeout = setTimeout(function () {
+    //         if ($(".show-mega-menu-top").length && horizontalMenuExpanded) {
+    //           closeDraw();
+    //         }
+    //       }, 300);
+    //     });
+    //     // If hover back in while timeout is active, cancel it so it doesn't hide
+    //     $(".main-site-header, .gradient-line, #mega-nav").on(
+    //       "mouseenter",
+    //       function (e) {
+    //         clearTimeout(openTimeout);
+    //       }
+    //     );
+    //   }
+    // });
+    // Set nav offset height for css variable
 
-
-    src_default.a.register(DESKTOP_AND_LARGER, function () {
-      // Hide menu if mouseout for x seconds
-      // If banner nav is active
-      if ($("#banner-nav").length > 0) {
-        $("#banner-nav").on("mouseleave", function (e) {
-          clearTimeout(openTimeout);
-          openTimeout = setTimeout(function () {
-            closeDraw();
-          }, 300);
-        }); // If hover back in while timeout is active, cancel it so it doesn't hide
-
-        $("#banner-nav").on("mouseenter", function (e) {
-          clearTimeout(openTimeout);
-        });
-      } else {
-        $("#mega_menu_block").on("mouseleave", function (e) {
-          clearTimeout(openTimeout);
-          openTimeout = setTimeout(function () {
-            if ($(".show-mega-menu-top").length && horizontalMenuExpanded) {
-              closeDraw();
-            }
-          }, 300);
-        }); // If hover back in while timeout is active, cancel it so it doesn't hide
-
-        $(".main-site-header, .gradient-line, #mega-nav").on("mouseenter", function (e) {
-          clearTimeout(openTimeout);
-        });
-      }
-    }); // Set nav offset height for css variable
 
     var navHeight = $(".show-mega-menu-top .mega-sub-menu").height() + 6; // console.log(navHeight);
 

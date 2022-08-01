@@ -195,7 +195,6 @@ body#hubv4 {
           font-weight: 400;
           flex: 1 auto;
           // Min height required just in case no Te Reo titles are present to pad out the nav
-          min-height: 65px;
           &:hover {
             i {
               color: $green-brand;
@@ -270,6 +269,7 @@ body#hubv4 {
             padding-left: 5px;
             padding-right: 15px;
             width: 100%;
+            min-height: 65px;
           }
           &.expanded-nav {
             &::after {
@@ -372,7 +372,8 @@ body#hubv4 {
 
             a {
               display: flex;
-              font-size: 20px;
+              font-size: 1.1em;
+              flex-wrap: wrap;
             }
 
             .tereo-title {
@@ -1429,14 +1430,18 @@ body#hubv4 {
         color: $pounamu;
         background-color: $kohuhu;
 
-        .button {
-          background-color: #fff;
-          color: $black-brand !important;
-          border-radius: 5px;
+        a.button.primary {
+          background-color: $mahoe;
+          color: $manuka !important;
           margin-top: 0.5rem;
-          border: 1px $miro solid;
+          border-radius: 0;
+          // border: 1px $miro solid;
+          transition: all ease 0.2s;
           display: inline-block;
           &:hover {
+            box-shadow: 1.1px 2.2px 2.2px rgba(7, 7, 7, 0.47);
+            color: #fff;
+            background-color: $pounamu;
           }
         }
       }
