@@ -420,40 +420,40 @@ export function initTray() {
     };
 
     // !CLOSE ON MENU MOUSE OUT
-    enquire.register(DESKTOP_AND_LARGER, () => {
-      // Hide menu if mouseout for x seconds
-      // If banner nav is active
-      if ($("#banner-nav").length > 0) {
-        $("#banner-nav").on("mouseleave", function (e) {
-          clearTimeout(openTimeout);
-          openTimeout = setTimeout(function () {
-            closeDraw();
-          }, 300);
-        });
-        // If hover back in while timeout is active, cancel it so it doesn't hide
-        $("#banner-nav").on("mouseenter", function (e) {
-          clearTimeout(openTimeout);
-        });
-      } else {
-        $("#mega_menu_block").on("mouseleave", function (e) {
-          clearTimeout(openTimeout);
+    // enquire.register(DESKTOP_AND_LARGER, () => {
+    //   // Hide menu if mouseout for x seconds
+    //   // If banner nav is active
+    //   if ($("#banner-nav").length > 0) {
+    //     $("#banner-nav").on("mouseleave", function (e) {
+    //       clearTimeout(openTimeout);
+    //       openTimeout = setTimeout(function () {
+    //         closeDraw();
+    //       }, 300);
+    //     });
+    //     // If hover back in while timeout is active, cancel it so it doesn't hide
+    //     $("#banner-nav").on("mouseenter", function (e) {
+    //       clearTimeout(openTimeout);
+    //     });
+    //   } else {
+    //     $("#mega_menu_block").on("mouseleave", function (e) {
+    //       clearTimeout(openTimeout);
 
-          openTimeout = setTimeout(function () {
-            if ($(".show-mega-menu-top").length && horizontalMenuExpanded) {
-              closeDraw();
-            }
-          }, 300);
-        });
+    //       openTimeout = setTimeout(function () {
+    //         if ($(".show-mega-menu-top").length && horizontalMenuExpanded) {
+    //           closeDraw();
+    //         }
+    //       }, 300);
+    //     });
 
-        // If hover back in while timeout is active, cancel it so it doesn't hide
-        $(".main-site-header, .gradient-line, #mega-nav").on(
-          "mouseenter",
-          function (e) {
-            clearTimeout(openTimeout);
-          }
-        );
-      }
-    });
+    //     // If hover back in while timeout is active, cancel it so it doesn't hide
+    //     $(".main-site-header, .gradient-line, #mega-nav").on(
+    //       "mouseenter",
+    //       function (e) {
+    //         clearTimeout(openTimeout);
+    //       }
+    //     );
+    //   }
+    // });
 
     // Set nav offset height for css variable
     const navHeight = $(".show-mega-menu-top .mega-sub-menu").height() + 6;
