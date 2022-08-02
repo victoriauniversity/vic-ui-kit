@@ -51,18 +51,22 @@ $box-shadow-card: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   0% {
     visibility: hidden;
     z-index: 0;
-    max-height: 0;
+    max-height: 0px;
     padding-top: 0;
     padding-bottom: 0;
-    display: block;
+    overflow: hidden;
+
   }
 
   50% {
+    max-height: 700px;
+  }
+  
+  100% {
     visibility: visible;
     z-index: 999;
-  }
-
-  100% {
+    opacity: 1;
+    max-height: 700px;
   }
 }
 
@@ -292,7 +296,7 @@ body#hubv4 {
         transition: max-height $easing 0.5s, opacity $easing 0.8s,
           padding-top $easing 0.5s, padding-bottom $easing 0.5s;
         overflow: hidden;
-        max-height: 0;
+        max-height: 0px;
         position: absolute;
         // make top Dynamic width
         top: var(--horizontal-nav-offset);
@@ -333,7 +337,7 @@ body#hubv4 {
         &.horizontal-drawer-expanded {
           z-index: 100;
           opacity: 1;
-          animation: draw-down 0.5s $easing;
+          // animation: draw-down 1s $easing forwards;
           max-height: 700px;
           border-top: none;
           border-bottom: 4px solid $green-brand;
@@ -352,6 +356,7 @@ body#hubv4 {
           font-size: 1.3rem;
           color: $black-tundora;
           text-decoration: none;
+          border-radius: 0;
         }
 
         .draw-nav {
