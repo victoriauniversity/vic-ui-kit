@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, August 2, 2022, 1:46 PM */
+/** Version: 0.10.13 | Wednesday, August 3, 2022, 9:06 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -16514,7 +16514,6 @@ external_jQuery_default()(function () {
   }
 
   if (external_jQuery_default()(".header-tray").length) {
-    // console.log('init tray');
     initTray();
   }
 

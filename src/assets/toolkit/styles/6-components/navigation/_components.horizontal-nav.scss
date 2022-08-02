@@ -55,13 +55,12 @@ $box-shadow-card: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     padding-top: 0;
     padding-bottom: 0;
     overflow: hidden;
-
   }
 
   50% {
     max-height: 700px;
   }
-  
+
   100% {
     visibility: visible;
     z-index: 999;
@@ -161,6 +160,8 @@ body#hubv4 {
           display: flex;
           flex-direction: column;
           justify-content: center;
+          font-weight: 500;
+          font-size: 1.1rem;
           .tereo-title {
             display: block;
           }
@@ -219,14 +220,14 @@ body#hubv4 {
             padding-right: 5px;
           }
 
-          &:not(:first-of-type) {
-            &::before {
-              content: "";
-              width: 2px;
-              height: 100%;
-              background: linear-gradient(0deg, $grey-gallery, #fff);
-            }
-          }
+          // &:not(:first-of-type) {
+          //   &::before {
+          //     content: "";
+          //     width: 2px;
+          //     height: 100%;
+          //     background: linear-gradient(0deg, $grey-gallery, #fff);
+          //   }
+          // }
           // Ignore first <li> which is some side menu thing
           &:nth-of-type(2) {
             &:before {
@@ -370,26 +371,30 @@ body#hubv4 {
           max-width: 1000px;
           display: flex;
           flex-direction: column;
+          ul {
+            li.sub-draw-title {
+              color: $black-tundora;
+              font-size: 1.2rem;
+              font-weight: 600;
+              border: none;
+              margin-bottom: 0;
+              margin-top: 0.5rem;
 
-          .sub-draw-title {
-            color: $black-tundora;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border: none;
-            margin-bottom: 0;
-            margin-top: 0.5rem;
+              a {
+                display: flex;
+                font-size: 1.1em;
+                flex-wrap: wrap;
+                &:hover {
+                  color: $black-brand;
+                }
+              }
 
-            a {
-              display: flex;
-              font-size: 1.1em;
-              flex-wrap: wrap;
-            }
-
-            .tereo-title {
-              color: $green-brand;
-              &:after {
-                content: " / ";
-                margin-right: 5px;
+              .tereo-title {
+                color: $green-brand;
+                &:after {
+                  content: " / ";
+                  margin-right: 5px;
+                }
               }
             }
           }

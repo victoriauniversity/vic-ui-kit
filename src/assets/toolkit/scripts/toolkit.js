@@ -720,7 +720,7 @@ $(() => {
   }
 
   if ($(".header-tray").length) {
-    // console.log('init tray');
+
     initTray();
   }
   victoriousHeader();

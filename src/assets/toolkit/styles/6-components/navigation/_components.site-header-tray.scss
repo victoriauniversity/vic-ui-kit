@@ -2124,6 +2124,7 @@ $tray-width-desktop: 400px;
             display: flex;
             flex-direction: column;
             text-decoration: none;
+            font-size: 1em;
             .tereo-title {
               color: $pounamu;
             }
@@ -2239,7 +2240,6 @@ $tray-width-desktop: 400px;
   //? Banner
   .home-3-up-banner {
     max-width: 1600px;
-    max-height: 80vh;
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -2366,6 +2366,11 @@ $tray-width-desktop: 400px;
           width: 20%;
           height: 30%;
           transition: all $easing 0.9s;
+          @include breakpoint($until: desktop-medium) {
+            border-top-width: 10px;
+            border-right-width: 10px;
+            width: 30%;
+          }
         }
         img {
           // margin: 2rem;
@@ -2513,19 +2518,26 @@ $tray-width-desktop: 400px;
         &:nth-of-type(odd) {
           img {
             clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            @include breakpoint($until: desktop-medium) {
+              clip-path: none;
+            }
+            @include breakpoint($until: tablet) {
+              clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            }
           }
         }
         img {
           filter: brightness(0.9);
           clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+          @include breakpoint($until: desktop-medium) {
+            clip-path: none;
+          }
           @include breakpoint($until: tablet) {
             max-width: 100%;
             max-height: 100%;
             margin-right: 0;
             margin-bottom: 1rem;
-          }
-          @include breakpoint($until: desktop-medium) {
-            clip-path: none;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
           }
         }
 
