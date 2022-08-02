@@ -2507,25 +2507,28 @@ $tray-width-desktop: 400px;
             color: $pounamu;
           }
         }
-        @include breakpoint($until: desktop-medium) {
+        @include breakpoint($until: tablet) {
           flex-direction: column;
-        }
-        img {
-          filter: brightness(0.9);
-          @include breakpoint($until: desktop-medium) {
-            max-width: 100%;
-            max-height: 100%;
-            margin-right: 0;
-            margin-bottom: 1rem;
-          }
-
-          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
         }
         &:nth-of-type(odd) {
           img {
             clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
           }
         }
+        img {
+          filter: brightness(0.9);
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+          @include breakpoint($until: tablet) {
+            max-width: 100%;
+            max-height: 100%;
+            margin-right: 0;
+            margin-bottom: 1rem;
+          }
+          @include breakpoint($until: desktop-medium) {
+            clip-path: none;
+          }
+        }
+
         > div {
           padding: 0.5em 1em;
           h3 {
@@ -2691,7 +2694,6 @@ $tray-width-desktop: 400px;
       background-color: $kowhai;
       color: $pounamu;
     }
-
     .cols {
       h2 {
         margin-bottom: 0.5rem;
@@ -2711,23 +2713,49 @@ $tray-width-desktop: 400px;
 
     .footer-secondary {
       background-color: $kohuhu;
+      position: relative;
+
+      // Add padding for background
+      @include breakpoint($until: tablet) {
+        .centraliser {
+          padding-top: 2rem;
+        }
+      }
+
+      .svg-mobile {
+        display: none;
+        position: absolute;
+        top: 5px;
+        @include breakpoint($until: tablet) {
+          display: block;
+        }
+
+        svg {
+          height: 7vw;
+          width: 100vw;
+        }
+      }
 
       .svg-bg-left,
       .svg-bg-right {
         position: absolute;
         top: -20px;
-        height: 110%;
+        height: 113%;
         z-index: 0;
       }
       .svg-bg-left {
-        left: -40px;
+        left: -50px;
+        transform: rotateZ(180deg);
         @include breakpoint($until: desktop-medium) {
-          left: 0;
+          display: none;
         }
       }
       .svg-bg-right {
-        right: -40px;
+        right: -50px;
         transform: rotateX(180deg);
+        @include breakpoint($until: tablet) {
+          display: none;
+        }
         @include breakpoint($until: desktop-medium) {
           right: 0;
         }

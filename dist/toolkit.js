@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, August 2, 2022, 9:19 AM */
+/** Version: 0.10.13 | Tuesday, August 2, 2022, 1:46 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14230,7 +14230,6 @@ function initTray() {
 
 
   $("body").on("click", function (e) {
-    console.log(e.target);
     var horizontalNavHeader = $("#mega_menu_block");
     var sidemenu = $(".sidemenu-homepage"); // let  megamenu = $('.sidemenu-drawer');
 
@@ -14304,7 +14303,6 @@ function initTray() {
       e.preventDefault();
       e.stopPropagation();
       var $navItemId = $("#" + $navItem.attr("data-for"));
-      console.log($navItem.attr("data-for"));
       $("[id^=draw]").hide();
 
       if ($navItemId) {

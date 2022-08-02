@@ -250,7 +250,6 @@ export function initTray() {
   }
   // ! ==== HOMEPAGE SIDE-MENU ONLY ====
   $("body").on("click", (e) => {
-    console.log(e.target);
     const horizontalNavHeader = $("#mega_menu_block");
 
     let sidemenu = $(".sidemenu-homepage");
@@ -364,7 +363,6 @@ export function initTray() {
       e.stopPropagation();
 
       var $navItemId = $("#" + $navItem.attr("data-for"));
-      console.log($navItem.attr("data-for"));
       $("[id^=draw]").hide();
 
       if ($navItemId) {
