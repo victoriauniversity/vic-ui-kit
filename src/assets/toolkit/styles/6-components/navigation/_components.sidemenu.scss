@@ -1449,7 +1449,7 @@ body#hubv4 {
   .sidebar {
     width: initial;
     position: relative;
-    padding-top: 2rem;
+    // padding-top: 2rem;
 
     .sidebar-blip {
       position: absolute;
@@ -1855,6 +1855,9 @@ body#hubv4 {
           border-top: none;
           border-bottom: none;
           margin-right: 0;
+          @include breakpoint($until: desktop-medium) {
+            display: none;
+          }
           .sidemenu__label_background {
             display: none;
             position: absolute;
@@ -1895,6 +1898,9 @@ body#hubv4 {
           border-bottom: 1px transparent solid;
           &:not(:first-of-type) {
             border-top: 1px transparent solid;
+            @include breakpoint($until: desktop-medium) {
+              border-top: 1px $grey-gallery solid;
+            }
           }
 
           &:hover {

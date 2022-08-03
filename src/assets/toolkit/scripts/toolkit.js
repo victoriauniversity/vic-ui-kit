@@ -101,28 +101,45 @@ function initExpandableSubmenu() {
   // Init default state
   let isExpanded = submenuContainer.hasClass(SIDEMENU_SELECTED_ITEM_CLASS);
 
+  function calcHeight(items) {
+    var total = 0;
+    var item = $(this);
+    //Loop through each item and get height, add to total
+    items.each(function (i) {
+      if (item) {
+        total += $(items[i]).outerHeight();
+      }
+    });
+    return total;
+  }
+
   function apply(topLevel, clickedEl) {
     if (clickedEl && !clickedEl.parent().hasClass("expanded")) {
+      var expandedLi = $(".sidebar > nav > ul > li.expanded");
       if (topLevel) {
-        // Remove others
-        var expandedLi = $(".sidebar > nav > ul > li.expanded");
+        //? REMOVE OTHER ITEMS THAT ARE EXPANDED
         expandedLi.find(">ul").css("max-height", "0px");
         $(".sidebar > nav > ul li.has-submenu.expanded")
           .not(submenuContainer)
           .removeClass("expanded");
+
+
+        //? ADD EXPANDED CLASS TO CLICK EL
+        submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
+        var expandedLi = $(".sidebar > nav > ul > li.expanded");
+
+        //? CALC HEIGHT OF ITEMS (FOR SMOOTH ANIMATION)
+        var listHeight = calcHeight(expandedLi.find("> ul > li"));
+        expandedLi.find(">ul").css("max-height", listHeight + "px");
       } else {
         console.log("===== INNER EXPANDER CLICKED ====");
+        //? INNER EXPANDER HAS BEEN CLICKED, ADJUST HEIGHT AGAIN
+        submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
+        var listHeight = calcHeight(expandedLi.find("> ul li"));
+        expandedLi.find(">ul").css("max-height", listHeight + "px");
       }
-
-      submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
-      var expandedLi = $(".sidebar > nav > ul > li.expanded");
-      var listLength = expandedLi.find("> ul > li").length;
-
-      expandedLi
-        .find(">ul")
-        .css("max-height", expandedLi.outerHeight() + 100 * listLength + "px");
     } else {
-      // !CLOSE ITEM
+      //? CLOSE ITEM
       var expandedLi = $(".sidebar > nav > ul > li.expanded");
       submenuContainer.removeClass(SIDEMENU_EXPANDED_CLASS);
       if (topLevel) {
@@ -191,7 +208,9 @@ function initSidemenuExpandability(menuClass) {
     .on("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
+      $(this).parent().next().slideToggle()
       $(this).parent().toggleClass(SIDEMENU_EXPANDED_CLASS);
+      
     });
 
   const expandableButtons = menuElement.find(`.${SIDEMENU_EXPANDER_CLASS}`);
@@ -720,7 +739,6 @@ $(() => {
   }
 
   if ($(".header-tray").length) {
-
     initTray();
   }
   victoriousHeader();
@@ -1189,12 +1207,12 @@ if (
         var scrollY = window.pageYOffset || document.documentElement.scrollTop;
         var header = $(".main-site-header");
 
-        if (scrollY < this.lastScroll -5) {
+        if (scrollY < this.lastScroll - 5) {
           header.addClass("sticky");
         } else {
           header.removeClass("sticky");
         }
-        this.lastScroll = scrollY
+        this.lastScroll = scrollY;
       }
     });
   };
