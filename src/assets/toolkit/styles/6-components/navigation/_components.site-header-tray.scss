@@ -2724,13 +2724,47 @@ $tray-width-desktop: 400px;
     }
 
     .footer-secondary {
-      background-color: $kohuhu;
       position: relative;
+      background-color: $kohuhu;
 
       // Add padding for background
       @include breakpoint($until: tablet) {
         .centraliser {
           padding-top: 2rem;
+        }
+      }
+      .svg-container {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        &.svg-top {
+          right: 0;
+          top: -50px;
+          svg {
+            transform: rotate(-45deg);
+          }
+        }
+        &.svg-bottom {
+          bottom: -50px;
+          left: 0;
+          svg {
+            transform: rotate(135deg);
+          }
+        }
+        svg {
+          .cls-1,
+          .cls-2 {
+            isolation: isolate;
+          }
+          .cls-1 {
+            fill: $miro;
+            opacity: 0.3;
+          }
+
+          .cls-2 {
+            fill: $mahoe;
+            opacity: 0.1;
+          }
         }
       }
 

@@ -87,20 +87,23 @@ $box-shadow-card: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
 $easing: cubic-bezier(0.22, 1, 0.36, 1);
 body#hubv4 {
-  .main-site-header.show-mega-menu-top-wrap {
+  .main-site-header {
     padding-top: 0;
-    overflow: unset !important;
-    position: relative;
-    padding-bottom: 6px;
-    &.sticky {
-      // ? Leaving out for now as it's buggy
-      // position: sticky;
-      // z-index: 99;
-      // top: 0;
-      // animation: slide-in 0.3s;
-    }
-    @include breakpoint($until: desktop) {
-      animation: slide-out 0.3s;
+    &.show-mega-menu-top-wrap {
+      padding-top: 0;
+      overflow: unset !important;
+      position: relative;
+      padding-bottom: 6px;
+      &.sticky {
+        // ? Leaving out for now as it's buggy
+        // position: sticky;
+        // z-index: 99;
+        // top: 0;
+        // animation: slide-in 0.3s;
+      }
+      @include breakpoint($until: desktop) {
+        animation: slide-out 0.3s;
+      }
     }
   }
 
@@ -873,6 +876,10 @@ body#hubv4 {
 
 // Tidy up content area font sizes etc (temporary)
 #hubv4 {
+  section.layout {
+    margin-top: 2rem;
+    overflow: visible;
+  }
 }
 
 body#hubv4 {
