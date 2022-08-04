@@ -2343,94 +2343,94 @@ $tray-width-desktop: 400px;
         }
       }
     }
-    &.v2 {
-      gap: 10px;
-      margin-top: 2rem;
+
+    //! V2 OF DESIGN FORCE - REPLACE WITH &.v2{} FOR SCOPING
+    gap: 10px;
+    margin-top: 2rem;
+    @include breakpoint($until: desktop-medium) {
+      grid-template-rows: 1fr 0fr;
+    }
+    figure {
+      padding: 0;
+      position: relative;
+      &:after {
+        content: "";
+        border-top: 15px $miro solid;
+        border-right: 15px $miro solid;
+        background-color: transparent;
+        position: absolute;
+        top: 0;
+        right: 0;
+        box-sizing: border-box;
+        max-width: calc(100% - 25px);
+        max-height: calc(100% - 10px);
+        width: 20%;
+        height: 30%;
+        transition: all $easing 0.9s;
+        @include breakpoint($until: desktop-medium) {
+          border-top-width: 10px;
+          border-right-width: 10px;
+          width: 30%;
+        }
+      }
+      img {
+        // margin: 2rem;
+        padding-left: 1rem;
+        position: relative;
+      }
+      figcaption {
+        max-width: 70%;
+        @include breakpoint($until: desktop-medium) {
+          max-width: 100%;
+          padding: 10px;
+        }
+      }
+    }
+    #box1 {
+      padding-right: 2rem;
       @include breakpoint($until: desktop-medium) {
-        grid-template-rows: 1fr 0fr;
+        padding-right: 0;
       }
       figure {
-        padding: 0;
-        position: relative;
         &:after {
-          content: "";
-          border-top: 15px $miro solid;
-          border-right: 15px $miro solid;
-          background-color: transparent;
-          position: absolute;
-          top: 0;
-          right: 0;
-          box-sizing: border-box;
-          max-width: calc(100% - 25px);
-          max-height: calc(100% - 10px);
-          width: 20%;
-          height: 30%;
-          transition: all $easing 0.9s;
-          @include breakpoint($until: desktop-medium) {
-            border-top-width: 10px;
-            border-right-width: 10px;
-            width: 30%;
-          }
-        }
-        img {
-          // margin: 2rem;
-          padding-left: 1rem;
-          position: relative;
-        }
-        figcaption {
-          max-width: 70%;
-          @include breakpoint($until: desktop-medium) {
-            max-width: 100%;
-            padding: 10px;
-          }
+          border-color: $pounamu;
         }
       }
-      #box1 {
-        padding-right: 2rem;
+    }
+    #box1,
+    #box2,
+    #box3 {
+      a {
         @include breakpoint($until: desktop-medium) {
-          padding-right: 0;
+          height: auto;
+          display: block;
         }
-        figure {
-          &:after {
-            border-color: $pounamu;
+        &:hover,
+        &:active,
+        &:focus {
+          h1,
+          h3 {
+            text-decoration: underline;
           }
-        }
-      }
-      #box1,
-      #box2,
-      #box3 {
-        a {
-          @include breakpoint($until: desktop-medium) {
-            height: auto;
-            display: block;
-          }
-          &:hover,
-          &:active,
-          &:focus {
-            h1,
-            h3 {
-              text-decoration: underline;
-            }
-            figure {
-              &:after {
-                // width: calc(100% - 41px);
-                // height: calc(100% - 25px);
-                width: 100%;
-                height: 100%;
-              }
+          figure {
+            &:after {
+              // width: calc(100% - 41px);
+              // height: calc(100% - 25px);
+              width: 100%;
+              height: 100%;
             }
           }
         }
-        figure {
-          transition: all ease 0.3s;
-          padding: 10px;
-          background-color: #fff;
-        }
       }
-
-      .secondary-banner {
+      figure {
+        transition: all ease 0.3s;
+        padding: 10px;
         background-color: #fff;
       }
+    }
+
+    .secondary-banner {
+      background-color: #fff;
     }
   }
 
@@ -2557,14 +2557,15 @@ $tray-width-desktop: 400px;
         }
 
         // When whole block is linked
+        padding-bottom: 0;
         > a {
           height: 100%;
+          transition: all $easing 0.3s;
+          outline: 2px transparent solid;
           &:hover {
-            background-color: $kohuhu;
-            outline: 2px $miro solid;
-            h3 {
-              text-decoration: underline;
-            }
+            background-color: $green-brand-light;
+            background-color: #fff;
+            outline: 2px $kohuhu solid;
           }
           > div {
             padding: 0.5em 1em;
@@ -2728,38 +2729,13 @@ $tray-width-desktop: 400px;
   }
   //? Footer
   footer {
-    .button.primary {
-      background-color: $kowhai;
-      color: $pounamu;
-    }
-    .cols {
-      h2 {
-        margin-bottom: 0.5rem;
-      }
-      .link_list {
-        margin-bottom: 2rem;
-
-        .social_logo {
-          border-radius: 100px;
-          filter: grayscale(1);
-          &:hover {
-            filter: grayscale(0);
-          }
-        }
-      }
+    .svg-container {
+      display: none;
     }
 
-    .footer-secondary {
-      position: relative;
-      background-color: $kohuhu;
-
-      // Add padding for background
-      @include breakpoint($until: tablet) {
-        .centraliser {
-          padding-top: 2rem;
-        }
-      }
+    &.svg-pattern {
       .svg-container {
+        display: block;
         position: absolute;
         width: 100px;
         height: 100px;
@@ -2791,6 +2767,38 @@ $tray-width-desktop: 400px;
             fill: $mahoe;
             opacity: 0.1;
           }
+        }
+      }
+    }
+    .button.primary {
+      background-color: $kowhai;
+      color: $pounamu;
+    }
+    .cols {
+      h2 {
+        margin-bottom: 0.5rem;
+      }
+      .link_list {
+        margin-bottom: 2rem;
+
+        .social_logo {
+          border-radius: 100px;
+          filter: grayscale(1);
+          &:hover {
+            filter: grayscale(0);
+          }
+        }
+      }
+    }
+
+    .footer-secondary {
+      position: relative;
+      background-color: $kohuhu;
+
+      // Add padding for background
+      @include breakpoint($until: tablet) {
+        .centraliser {
+          padding-top: 2rem;
         }
       }
 
@@ -2932,6 +2940,10 @@ $buttonShadowHover: rgba(0, 0, 0, 0.16) 0px 3px 6px,
   //? Quicklinks
   .quicklinks-wrap {
     padding-bottom: 0;
+    padding: 20px 0;
+    .block {
+      padding-bottom: 10px;
+    }
     .quicklink-buttons {
       a.link-circle {
         background-color: $kohuhu;
@@ -3081,7 +3093,7 @@ $buttonShadowHover: rgba(0, 0, 0, 0.16) 0px 3px 6px,
         a.button {
           background-color: $mahoe;
           color: $manuka;
-          transition: all $easing .3s;
+          transition: all $easing 0.3s;
           &:hover {
             box-shadow: $buttonShadowHover;
           }
@@ -3116,7 +3128,7 @@ $buttonShadowHover: rgba(0, 0, 0, 0.16) 0px 3px 6px,
           display: block;
           max-width: 0;
           position: absolute;
-          left: 15px;
+          left: 20px;
           top: 0px;
           border-top: 20px $pounamu solid;
           border-left: 20px transparent solid;
