@@ -138,7 +138,6 @@ body#hubv4 {
   }
   #mega-nav {
     margin: auto;
-    position: relative;
   }
   .show-mega-menu-top .mega-sub-menu {
     padding-top: 0;
@@ -877,7 +876,6 @@ body#hubv4 {
 // Tidy up content area font sizes etc (temporary)
 #hubv4 {
   section.layout {
-    margin-top: 2rem;
     overflow: visible;
   }
 }
@@ -901,7 +899,15 @@ body#hubv4 {
     }
   }
 
+  // No top margin on hub page, so banner sits flush with header
+  &.hub-page {
+    .content-panel {
+      margin-top: 0rem;
+    }
+  }
+
   .content-panel {
+    margin-top: 1rem;
     main {
       h1 {
         font-size: 2.4rem;
@@ -1305,16 +1311,24 @@ body#hubv4 {
   $breadcrumbs-last-child: $kohuhu;
 
   $breadcrumbs-ellipsis-max-width: 18rem;
+
+  // Adjust breadcrumbs for intranet
+  &.intranet-home {
+    nav {
+      .breadcrumbs {
+        margin: 1rem 1.5rem;
+        margin-left: 0.75rem;
+      }
+    }
+  }
   nav {
     .breadcrumbs {
       font-family: $heading-family;
       font-size: $breadcrumbs-size;
       letter-spacing: $navigation-letter-spacing;
       padding: 0;
-      margin: 1rem 1.5rem;
-      margin-left: 0.75rem;
+
       margin-bottom: 0;
-      margin-top: 2rem;
       display: flex;
       padding-left: 0;
       overflow: hidden;
