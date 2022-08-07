@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, August 5, 2022, 11:20 AM */
+/** Version: 0.10.13 | Monday, August 8, 2022, 9:55 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -18721,7 +18721,14 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, body#hubv4 .sidebar .sidemenu-ban
 }
 
 .homepage#hubv4 .quicklinks-news #panels .panel > a > div {
-  padding: 0.5em 1em;
+  padding: 0.5rem 1rem;
+}
+
+@media (max-width: 42.99em) {
+  .homepage#hubv4 .quicklinks-news #panels .panel > a > div {
+    padding: 1rem;
+    padding-top: 0;
+  }
 }
 
 .homepage#hubv4 .quicklinks-news #panels .panel > a > div h3 {
@@ -18742,7 +18749,7 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, body#hubv4 .sidebar .sidemenu-ban
 }
 
 .homepage#hubv4 .link-more:after {
-  content: none;
+  content: "";
 }
 
 .homepage#hubv4 .promo-panel {
@@ -19076,6 +19083,14 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, body#hubv4 .sidebar .sidemenu-ban
   background-color: #f7f7f7;
 }
 
+#hubv4.homepage .home-search-wrap .search {
+  border: none;
+}
+
+#hubv4.homepage .home-search-wrap .promo {
+  border: none;
+}
+
 #hubv4.homepage .home-search-wrap .promo .promo-title {
   opacity: 1;
   background-color: #669787;
@@ -19083,6 +19098,12 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, body#hubv4 .sidebar .sidemenu-ban
 
 #hubv4.homepage .home-search-wrap .submit-button {
   background-color: #0D4C38;
+  -webkit-transition: background-color cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+  transition: background-color cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+
+#hubv4.homepage .home-search-wrap .submit-button:hover {
+  background-color: #669787;
 }
 
 #hubv4.homepage .home-search-wrap .submit-button span {
@@ -19119,6 +19140,14 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, body#hubv4 .sidebar .sidemenu-ban
 
 #hubv4.homepage .quicklinks-wrap .block {
   padding-bottom: 10px;
+}
+
+@media (max-width: 42.99em) {
+  #hubv4.homepage .quicklinks-wrap .quicklink-buttons {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
 }
 
 #hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle {
@@ -19230,6 +19259,13 @@ body#hubv4 .sidebar .sidemenu > ul > li:after, body#hubv4 .sidebar .sidemenu-ban
     -webkit-box-direction: normal;
             flex-direction: column;
   }
+}
+
+#hubv4.homepage #eventwidget .news-row header {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
 }
 
 #hubv4.homepage #eventwidget ul {

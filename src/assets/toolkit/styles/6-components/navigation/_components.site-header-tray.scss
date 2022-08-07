@@ -2568,7 +2568,11 @@ $tray-width-desktop: 400px;
             outline: 2px $kohuhu solid;
           }
           > div {
-            padding: 0.5em 1em;
+            padding: 0.5rem 1rem;
+            @include breakpoint($until: tablet) {
+              padding: 1rem;
+              padding-top: 0;
+            }
             h3 {
               color: $pounamu;
             }
@@ -2587,7 +2591,7 @@ $tray-width-desktop: 400px;
   .link-more {
     float: none;
     &:after {
-      content: none;
+      content: "";
     }
   }
 
@@ -2901,7 +2905,12 @@ $buttonShadowHover: rgba(0, 0, 0, 0.16) 0px 3px 6px,
     box-shadow: $buttonShadow;
     background-color: $off-white;
 
+    .search {
+      border: none;
+    }
+
     .promo {
+      border: none;
       .promo-title {
         opacity: 1;
         background-color: $mahoe;
@@ -2909,6 +2918,10 @@ $buttonShadowHover: rgba(0, 0, 0, 0.16) 0px 3px 6px,
     }
     .submit-button {
       background-color: $pounamu;
+      transition: background-color $easing 0.2s;
+      &:hover {
+        background-color: $mahoe;
+      }
       span {
         font-size: initial;
         &:before {
@@ -2945,6 +2958,9 @@ $buttonShadowHover: rgba(0, 0, 0, 0.16) 0px 3px 6px,
       padding-bottom: 10px;
     }
     .quicklink-buttons {
+      @include breakpoint($until: tablet) {
+        flex-direction: column;
+      }
       a.link-circle {
         background-color: $kohuhu;
         color: $pounamu;
@@ -3064,6 +3080,10 @@ $buttonShadowHover: rgba(0, 0, 0, 0.16) 0px 3px 6px,
 
   // ? Event widget
   #eventwidget {
+    .news-row header {
+      display: flex;
+      justify-content: space-between;
+    }
     ul {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
