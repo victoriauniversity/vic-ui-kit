@@ -126,13 +126,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
 });
 
 // Check toolbar for mode=dev and apply class
-if (
-  document.location.href.includes("?mode=dev") ||
-  document.location.href.includes("local.wgtn") ||
-  document.location.href.includes("assets/git_bridge/0009/1778031/dist")
-) {
-  $("body").attr("id", "hubv4");
-}
+// if (
+//   document.location.href.includes("?mode=dev") ||
+//   document.location.href.includes("local.wgtn") ||
+//   document.location.href.includes("assets/git_bridge/0009/1778031/dist")
+// ) {
+//   $("body").attr("id", "hubv4");
+// }
 
 // Check toolbar to ensure myTools has been updated to Puaha
 if (
