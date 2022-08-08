@@ -132,7 +132,6 @@ function initExpandableSubmenu() {
         var listHeight = calcHeight(expandedLi.find("> ul > li"));
         expandedLi.find(">ul").css("max-height", listHeight + "px");
       } else {
-        console.log("===== INNER EXPANDER CLICKED ====");
         //? INNER EXPANDER HAS BEEN CLICKED, ADJUST HEIGHT AGAIN
         submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
         var listHeight = calcHeight(expandedLi.find("> ul li"));
@@ -233,7 +232,7 @@ function initSidemenuExpandability(menuClass) {
 
   // Ensure expander height is the same as the link (for long link titles than span across 2+ lines)
   enquire.register(DESKTOP_AND_LARGER, () => {
-    $(".sidemenu > ul > li").each(function (e) {
+    $("#hubv4 .sidemenu > ul > li").each(function (e) {
       var link = $(this).find(">a");
       var expander = $(this).find("> .btn-expander");
 
