@@ -210,7 +210,7 @@ function initSidemenuExpandability(menuClass) {
       e.stopPropagation();
       $(this).parent().next().slideToggle()
       $(this).parent().toggleClass(SIDEMENU_EXPANDED_CLASS);
-      
+
     });
 
   const expandableButtons = menuElement.find(`.${SIDEMENU_EXPANDER_CLASS}`);
@@ -1170,9 +1170,9 @@ if (document.getElementsByClassName("toggle").length > 0) {
 }
 
 // !Add light class to all sidemenus (TEMPORARY)
-if ($(".sidemenu").length > 0 && !$(".sidemenu").hasClass("sidemenu-light")) {
-  $(".sidemenu").addClass("sidemenu-light");
-}
+// if ($(".sidemenu").length > 0 && !$(".sidemenu").hasClass("sidemenu-light")) {
+//   $(".sidemenu").addClass("sidemenu-light");
+// }
 
 /* USing on subject page proto */
 
