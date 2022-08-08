@@ -13,7 +13,8 @@
 /* ----------- TEMPORARY CONTAINERS -------------*/
 /*-----------------------------------------------*/
 
-#hubv2 {
+#hubv2,
+#hubv4 {
   // .row {
   //   display:flex;
   //   gap:15px;
@@ -65,11 +66,11 @@
 
   // old sass pd tag port
   .result_flag {
-    padding: .4em .5em .3em;
+    padding: 0.4em 0.5em 0.3em;
     font-weight: 400;
     font-style: normal;
-    margin-right: .5rem;
-    border-radius: .125rem;
+    margin-right: 0.5rem;
+    border-radius: 0.125rem;
     font-size: 80%;
     text-transform: uppercase;
     background: #eee;
@@ -85,7 +86,6 @@
   }
 
   .breadcrumbs-full ~ .layout {
-
   }
 
   &.intranet-home {
@@ -96,7 +96,6 @@
       }
     }
   }
-
 
   main > div,
   aside > div {
@@ -140,15 +139,13 @@
       border: 1px solid $grey-silver;
 
       .link_block_body {
-        padding: 0 .75rem .75rem .75rem;
+        padding: 0 0.75rem 0.75rem 0.75rem;
       }
     }
   }
 
   /* LAYOUT */
   &.intranet-home {
-
-
     .show-name-desktop {
       display: block;
     }
@@ -162,8 +159,6 @@
         flex: unset;
       }
 
-
-
       .content-panel {
         display: flex;
 
@@ -174,7 +169,6 @@
         > aside {
           width: 30%;
         }
-
       }
     }
 
@@ -200,38 +194,35 @@
           }
         }
       }
-
-
     }
   }
 
   /* Mobile nav caret */
 
   @include breakpoint($until: desktop) {
-
     .sidemenu.sidemenu-light {
       margin-bottom: 1rem;
     }
 
-    .sidemenu-toggle {
-      position: relative;
+    // .sidemenu-toggle {
+    //   position: relative;
 
-      &::after {
-        position: absolute;
-        bottom: 0;
-        left: 1rem;
-        display: block;
-        content: "";
-        width: 20%;
-        max-width: 65px;
-        height: 5px;
-        background: linear-gradient(90deg, #115737 0%, #52951C 67%, #77BA49 100%) 0% 0%;
-      }
+    //   &::after {
+    //     position: absolute;
+    //     bottom: 0;
+    //     left: 1rem;
+    //     display: block;
+    //     content: "";
+    //     width: 20%;
+    //     max-width: 65px;
+    //     height: 5px;
+    //     background: linear-gradient(90deg, #115737 0%, #52951C 67%, #77BA49 100%) 0% 0%;
+    //   }
 
-      &.expanded {
-        margin-bottom: .5rem;
-      }
-    }
+    //   &.expanded {
+    //     margin-bottom: .5rem;
+    //   }
+    // }
   }
 
   /* SEARCH */
@@ -253,8 +244,6 @@
     border-color: $green-brand;
   }
 
-
-
   /*-----------------------------------------------*/
   /* ------------- 2. COMPONENT HEADER ------------*/
   /*-----------------------------------------------*/
@@ -263,6 +252,9 @@
     margin-bottom: 1.25rem;
     position: relative;
     margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     h1,
     h2,
@@ -788,13 +780,9 @@
     /* ------------- MEDIA QUERIES -------------*/
 
     @media (max-width: 1200px) {
-
-
-
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-
+      display: flex;
+      flex: 1;
+      flex-direction: column;
 
       .tile-news.sml-container {
         display: flex;
@@ -905,12 +893,11 @@
       }
     }
 
-    @include breakpoint($from:desktop) {
-      margin-top: 34px;
+    @include breakpoint($from: desktop) {
+      margin-top: 0;
     }
 
-    @include breakpoint($until:tablet) {
-
+    @include breakpoint($until: tablet) {
       border: none;
 
       form {
@@ -926,7 +913,7 @@
             }
 
             span {
-              padding: .5rem 1rem;
+              padding: 0.5rem 1rem;
             }
           }
         }
@@ -941,12 +928,8 @@
           border: 1px solid $grey-silver;
           border-left: 0;
         }
-
-
       }
     }
-
-
   }
 
   /*--------------------------------------------*/
@@ -1062,7 +1045,7 @@
     gap: 0.5rem;
     row-gap: 1rem;
     .intranet {
-      width: 49%;
+      // width: 49%;
       align-items: stretch;
       position: relative;
 
@@ -1432,7 +1415,13 @@
   /*--------------------------------------------*/
 
   .intranet-video-container {
-    clip-path: polygon(calc(100% - 40px) 0px, 100% 40px, 100% 100%, 0px 100%, 0px 0px);
+    clip-path: polygon(
+      calc(100% - 40px) 0px,
+      100% 40px,
+      100% 100%,
+      0px 100%,
+      0px 0px
+    );
     max-height: 290px;
     padding: 0;
     // overflow: hidden;
@@ -1480,7 +1469,6 @@
       position: absolute;
       justify-content: space-between;
 
-
       .content {
         margin-right: 1rem;
       }
@@ -1508,7 +1496,7 @@
         // width: 83% ;
         // margin-top: 22% ;
       }
-      max-height: 220px ;
+      max-height: 220px;
     }
 
     @include breakpoint($until: tablet) {
@@ -2114,7 +2102,13 @@
     &.dark-green {
       background-color: $green-brand;
       border-color: $green-brand;
-      clip-path: polygon(calc(100% - 40px) 0px, 100% 40px, 100% 100%, 0px 100%, 0px 0px);
+      clip-path: polygon(
+        calc(100% - 40px) 0px,
+        100% 40px,
+        100% 100%,
+        0px 100%,
+        0px 0px
+      );
       &:before {
         content: none;
       }
@@ -2153,7 +2147,13 @@
     &.grey-light {
       background-color: #f9f9f9;
       border-color: #f9f9f9;
-      clip-path: polygon(calc(100% - 40px) 0px, 100% 40px, 100% 100%, 0px 100%, 0px 0px);
+      clip-path: polygon(
+        calc(100% - 40px) 0px,
+        100% 40px,
+        100% 100%,
+        0px 100%,
+        0px 0px
+      );
       &:before {
         content: none;
       }
@@ -2257,7 +2257,8 @@
 }
 
 /* Overrides for new hub template child page pieces*/
-#hubv2 {
+#hubv2,
+#hubv4 {
   main {
     .highlight {
       &.primary {
@@ -2272,9 +2273,15 @@
     .highlight.secondary,
     .highlight_secondary,
     .primary.highlight_secondary {
-      clip-path: polygon(calc(100% - 40px) 0px, 100% 40px, 100% 100%, 0px 100%, 0px 0px);
+      clip-path: polygon(
+        calc(100% - 40px) 0px,
+        100% 40px,
+        100% 100%,
+        0px 100%,
+        0px 0px
+      );
       background-color: $grey-light;
-      border:0;
+      border: 0;
     }
 
     .section-page-listing {
@@ -2345,12 +2352,17 @@
     .staff-list-component + h3 {
       margin-top: 2rem !important;
     }
-
   }
 
   #rightHandMenu {
     .highlight {
-      clip-path: polygon(calc(100% - 40px) 0px, 100% 40px, 100% 100%, 0px 100%, 0px 0px);
+      clip-path: polygon(
+        calc(100% - 40px) 0px,
+        100% 40px,
+        100% 100%,
+        0px 100%,
+        0px 0px
+      );
       background-color: $grey-light;
 
       .tag {
@@ -2360,7 +2372,13 @@
 
     .links-list {
       padding: 1rem;
-      clip-path: polygon(calc(100% - 40px) 0px, 100% 40px, 100% 100%, 0px 100%, 0px 0px);
+      clip-path: polygon(
+        calc(100% - 40px) 0px,
+        100% 40px,
+        100% 100%,
+        0px 100%,
+        0px 0px
+      );
       margin-bottom: 1rem;
 
       h2 {
@@ -2396,7 +2414,13 @@
     }
 
     .promo-green {
-      clip-path: polygon(calc(100% - 40px) 0px, 100% 40px, 100% 100%, 0px 100%, 0px 0px);
+      clip-path: polygon(
+        calc(100% - 40px) 0px,
+        100% 40px,
+        100% 100%,
+        0px 100%,
+        0px 0px
+      );
       background-color: $green-brand;
 
       h2,
@@ -2459,8 +2483,6 @@
       }
     }
 
-
-
     .tag {
       background-color: $white;
       color: $black-tundora;
@@ -2487,6 +2509,5 @@
       border: 1px solid $red-tamarillo;
       font-size: 75%;
     }
-
   }
 }
