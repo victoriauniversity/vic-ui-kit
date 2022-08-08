@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, August 8, 2022, 9:55 AM */
+/** Version: 0.10.13 | Monday, August 8, 2022, 2:03 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -1820,6 +1820,16 @@ ol {
   .ggrid .c11 {
     grid-column-end: span 11;
   }
+}
+
+.ggrid.align-end {
+  -webkit-box-align: end;
+          align-items: flex-end;
+}
+
+.ggrid.align-start {
+  -webkit-box-align: start;
+          align-items: flex-start;
 }
 
 /*= GENERIC =======================================*/
@@ -23856,11 +23866,21 @@ body#hubv4 .highlight-message.red .highlight-content {
   background-color: #CCDCD7;
 }
 
+.section-links .section-link img {
+  -webkit-box-flex: 1;
+          flex: 1 1 100%;
+  width: 100%;
+  max-height: 170px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .section-links .section-link a {
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: justify;
           justify-content: space-between;
+  flex-wrap: wrap;
   height: 100%;
 }
 
@@ -23879,6 +23899,7 @@ body#hubv4 .highlight-message.red .highlight-content {
 
 .section-links .section-link .text {
   padding: 1rem;
+  width: calc(100% - 27px);
 }
 
 .section-links .section-link .text h4 {
@@ -23890,6 +23911,7 @@ body#hubv4 .highlight-message.red .highlight-content {
 }
 
 .section-links .section-link .caret {
+  width: 27px;
   padding: 0 0.5rem;
   background-color: #669787;
   display: -webkit-box;
