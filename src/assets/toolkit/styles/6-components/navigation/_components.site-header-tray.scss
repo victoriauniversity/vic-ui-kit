@@ -2580,11 +2580,7 @@ body#hubv4 {
       border-bottom: none;
 
       &:after {
-        display: block;
-        content: "";
-        width: 100%;
-        height: 6px;
-        background: $green-linear-gradient;
+        content: none;
       }
 
       .logo {
@@ -3078,7 +3074,7 @@ body#hubv4 {
   .pre-header {
     display: none;
   }
-  .homepage#hubv4 {
+  &.homepage {
     .block-banner.video {
       margin-top: 0;
       z-index: 0;
@@ -3981,7 +3977,7 @@ body#hubv4 {
   $buttonShadowHover: rgba(0, 0, 0, 0.16) 0px 3px 6px,
     rgba(0, 0, 0, 0.23) 0px 3px 6px;
   //! === Homepage only CSS ===
-  #hubv4.homepage {
+  &.homepage {
     .promo-panel.pattern {
       background-color: $kohuhu;
       background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
@@ -4068,7 +4064,7 @@ body#hubv4 {
           background-color: $kohuhu;
           color: $pounamu;
           padding: 8px 10px;
-          border-radius: 5px;
+          border-radius: 0px;
           transition: all $easing 0.2s;
           box-shadow: $buttonShadow;
           span {
