@@ -17,6 +17,16 @@ export function initTray() {
     pageTitleEl.addClass("long-title");
   }
 
+  // Change URLs of all links in sidebar on #hubv4 design
+  if ($("body#hubv4")) {
+    $("body#hubv4 a").each(function () {
+      var href = $(this).attr("href");
+      if (href && href.includes("cms.wgtn.ac.nz")) {
+        $(this).attr("href", href + "?SQ_DESIGN_NAME=v4&mode=dev");
+      }
+    });
+  }
+
   $("body#hubv4").on("click keyup", (e) => {
     // Close tray if clicked away from or escpae buttons
 
@@ -478,21 +488,25 @@ export function initTray() {
 
   // Blip movement logic
 
-  $("#hubv4 #mega-menu > li:not(.sidemenu__label)").on("mouseover click", function () {
-    // If we are using a sidemenu
-    if ($("#mega-menu").parent().hasClass("sidemenu-homepage")) {
-      $blip.css({
-        top: $(this).offset().top - $(this).parents("#mega-menu").offset().top,
-        height: $(this).innerHeight(),
-      });
-    } else {
-      // Else we are using horizontal menu
-      $blip.css({
-        left: $(this).offset().left - $("#mega-menu").offset().left,
-        width: $(this).innerWidth(),
-      });
+  $("#hubv4 #mega-menu > li:not(.sidemenu__label)").on(
+    "mouseover click",
+    function () {
+      // If we are using a sidemenu
+      if ($("#mega-menu").parent().hasClass("sidemenu-homepage")) {
+        $blip.css({
+          top:
+            $(this).offset().top - $(this).parents("#mega-menu").offset().top,
+          height: $(this).innerHeight(),
+        });
+      } else {
+        // Else we are using horizontal menu
+        $blip.css({
+          left: $(this).offset().left - $("#mega-menu").offset().left,
+          width: $(this).innerWidth(),
+        });
+      }
     }
-  });
+  );
 
   // On mouse out of horizontal nav
   $("#hubv4 .main-site-header #mega-menu > li").on("mouseout", function () {
@@ -1085,8 +1099,4 @@ export function initTray() {
   //     localStorage.setItem("savedEvents", JSON.stringify(filterdLocalObject));
   //   });
   // }, 500);
-
-
-
-
 }

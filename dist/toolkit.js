@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, August 9, 2022, 1:22 PM */
+/** Version: 0.10.13 | Monday, August 15, 2022, 9:01 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14037,6 +14037,17 @@ function initTray() {
   if (pageTitleLength > 150) {
     pageTitleEl.parent().addClass("long-title");
     pageTitleEl.addClass("long-title");
+  } // Change URLs of all links in sidebar on #hubv4 design
+
+
+  if ($("body#hubv4")) {
+    $("body#hubv4 a").each(function () {
+      var href = $(this).attr("href");
+
+      if (href && href.includes("cms.wgtn.ac.nz")) {
+        $(this).attr("href", href + "?SQ_DESIGN_NAME=v4&mode=dev");
+      }
+    });
   }
 
   $("body#hubv4").on("click keyup", function (e) {
@@ -15806,7 +15817,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   });
 }); // Check toolbar for mode=dev and apply class
 
-if (document.location.href.includes("SQ_DESIGN_NAME=v4") || document.location.href.includes("assets/git_bridge/0009/1778031/dist")) {
+if (document.location.href.includes("SQ_DESIGN_NAME=v4") || document.location.href.includes("local.wgtn") || document.location.href.includes("assets/git_bridge/0009/1778031/dist")) {
   $("body").attr("id", "hubv4");
 } // Check toolbar to ensure myTools has been updated to Puaha
 
