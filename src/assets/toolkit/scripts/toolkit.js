@@ -1466,6 +1466,7 @@ keep the markup clean (and easily handled by the CSS) */
         e.preventDefault();
         e.stopPropagation();
         $(this).parent().toggleClass(SIDEMENU_EXPANDED_CLASS);
+        $(this).parent().find(">ul").slideToggle("fast");
       });
 
     const expandableButtons = menuElement.find(`.${SIDEMENU_EXPANDER_CLASS}`);
