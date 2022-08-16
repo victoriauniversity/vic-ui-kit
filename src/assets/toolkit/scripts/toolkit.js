@@ -100,54 +100,117 @@ if ($("body").attr("id") == "hubv4") {
     // Init default state
     let isExpanded = submenuContainer.hasClass(SIDEMENU_SELECTED_ITEM_CLASS);
 
-    function calcHeight(items) {
-      var total = 0;
-      var item = $(this);
-      //Loop through each item and get height, add to total
-      items.each(function (i) {
-        if (item) {
-          total += $(items[i]).outerHeight();
-        }
-      });
-      return total;
-    }
-
+    // function calcHeight(items) {
+    //   var total = 0;
+    //   var item = $(this);
+    //   //Loop through each item and get height, add to total
+    //   items.each(function (i) {
+    //     if (item) {
+    //       total += $(items[i]).outerHeight();
+    //     }
+    //   });
+    //   return total;
+    // }
     function apply(topLevel, clickedEl) {
-      if (clickedEl && !clickedEl.parent().hasClass("expanded")) {
-        var expandedLi = $(".sidebar > nav > ul > li.expanded");
-        if (topLevel) {
-          //? REMOVE OTHER ITEMS THAT ARE EXPANDED
-          expandedLi.find(">ul").css("max-height", "0px");
-          $(".sidebar > nav > ul li.has-submenu.expanded")
-            .not(submenuContainer)
-            .removeClass("expanded");
-
-          //? ADD EXPANDED CLASS TO CLICK EL
-          submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
+      //? REMOVE OTHER ITEMS THAT ARE EXPANDED
+      if (topLevel) {
+        if (clickedEl && !clickedEl.parent().hasClass("expanded")) {
           var expandedLi = $(".sidebar > nav > ul > li.expanded");
-
-          //? CALC HEIGHT OF ITEMS (FOR SMOOTH ANIMATION)
-          var listHeight = calcHeight(expandedLi.find("> ul > li"));
-          expandedLi.find(">ul").css("max-height", listHeight + "px");
-        } else {
-          console.log("===== INNER EXPANDER CLICKED ====");
-          //? INNER EXPANDER HAS BEEN CLICKED, ADJUST HEIGHT AGAIN
-          submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
-          var listHeight = calcHeight(expandedLi.find("> ul li"));
-          expandedLi.find(">ul").css("max-height", listHeight + "px");
-        }
-      } else {
-        //? CLOSE ITEM
-        var expandedLi = $(".sidebar > nav > ul > li.expanded");
-        submenuContainer.removeClass(SIDEMENU_EXPANDED_CLASS);
-        if (topLevel) {
-          submenuContainer
-            .find(SIDEMENU_EXPANDED_CLASS)
-            .removeClass(SIDEMENU_EXPANDED_CLASS);
-          expandedLi.find(">ul").css("max-height", "0px");
+          expandedLi.removeClass("expanded");
+          expandedLi.find(">ul").slideUp("fast");
         }
       }
+      clickedEl.parent().toggleClass("expanded");
+      clickedEl.parent().find(">ul").animate(
+        {
+          height: "toggle",
+        },
+        "fast"
+      );
     }
+
+    // function apply(topLevel, clickedEl) {
+    //   if (clickedEl && !clickedEl.parent().hasClass("expanded")) {
+    //     var expandedLi = $(".sidebar > nav > ul > li.expanded");
+    //     if (topLevel) {
+    //       //? REMOVE OTHER ITEMS THAT ARE EXPANDED
+    //       // expandedLi.find(">ul").css("max-height", "0px");
+    //       expandedLi.find(">ul").animate(
+    //         {
+    //           maxHeight: 0,
+    //         },
+    //         300,
+    //         function () {
+    //           // Animation complete.
+    //         }
+    //       );
+    //       $(".sidebar > nav > ul li.has-submenu.expanded")
+    //         .not(submenuContainer)
+    //         .removeClass("expanded");
+
+    //       //? ADD EXPANDED CLASS TO CLICK EL
+    //       submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
+    //       var expandedLi = $(".sidebar > nav > ul > li.expanded");
+
+    //       expandedLi.find(">ul").show();
+    //       //? CALC HEIGHT OF ITEMS (FOR SMOOTH ANIMATION)
+    //       var listHeight = calcHeight(expandedLi.find("> ul > li"));
+    //       // expandedLi.find(">ul").css("max-height", listHeight + "px");
+
+    //       expandedLi.find(">ul").animate(
+    //         {
+    //           opacity: 1,
+    //           maxHeight: listHeight,
+    //         },
+    //         300,
+    //         "swing",
+    //         function () {
+    //           // Animation complete.
+    //           console.log("animation complete");
+    //         }
+    //       );
+    //     } else {
+    //       console.log("===== INNER EXPANDER CLICKED ====");
+    //       //? INNER EXPANDER HAS BEEN CLICKED, ADJUST HEIGHT AGAIN
+    //       submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
+    //       var listHeight = calcHeight(expandedLi.find("> ul li"));
+    //       // expandedLi.find(">ul").css("max-height", listHeight + "px");
+
+    //       expandedLi.find(">ul").animate(
+    //         {
+    //           maxHeight: listHeight,
+    //         },
+    //         300,
+    //         function () {
+    //           // Animation complete.
+    //           console.log("animation complete");
+    //         }
+    //       );
+    //     }
+    //   } else {
+    //     //? CLOSE ITEM
+    //     var expandedLi = $(".sidebar > nav > ul > li.expanded");
+    //     submenuContainer.removeClass(SIDEMENU_EXPANDED_CLASS);
+
+    //     if (topLevel) {
+    //       submenuContainer
+    //         .find(SIDEMENU_EXPANDED_CLASS)
+    //         .removeClass(SIDEMENU_EXPANDED_CLASS);
+    //       // expandedLi.find(">ul").css("max-height", "0px");
+
+    //       expandedLi.find(">ul").animate(
+    //         {
+    //           maxHeight: 0,
+    //         },
+    //         300,
+    //         function () {
+    //           // Animation complete.
+    //           expandedLi.find(">ul").fadeOut();
+    //         }
+    //       );
+    //     }
+    //   }
+    // }
 
     // Init
     // apply(true, $(".sidebar > nav > ul > li.active > .btn-expander"));

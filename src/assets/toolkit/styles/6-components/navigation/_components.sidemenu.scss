@@ -1123,7 +1123,6 @@ body#hubv4 {
             right: -2px;
             position: absolute;
             top: 0;
-            // transition: all $easing 0.3s;
           }
           > .btn-expander {
             margin-right: 0.5rem;
@@ -1132,7 +1131,6 @@ body#hubv4 {
             border-color: $green-brand;
             z-index: 90;
             position: relative;
-            // box-shadow: -10px 12px 18px -10px rgba(0, 0, 0, 0.1);
             &:after {
               opacity: 1;
             }
@@ -1196,7 +1194,6 @@ body#hubv4 {
         margin-bottom: 0;
 
         > ul {
-          // position: absolute;
           left: 0;
           right: 75%;
         }
@@ -1213,7 +1210,6 @@ body#hubv4 {
           min-height: 100%;
           display: flex;
           visibility: hidden;
-          // box-shadow: 2px 3px 12px 3px rgba(0, 0, 0, 0.1);
           border: 1px $green-brand solid;
           border-top: none;
 
@@ -1556,14 +1552,14 @@ body#hubv4 {
               }
 
               > ul {
-                max-height: 1200px;
+                // max-height: 1200px;
 
-                &.taller {
-                  max-height: 1500px;
-                }
-                &.tallest {
-                  max-height: 2500px;
-                }
+                // &.taller {
+                //   max-height: 1500px;
+                // }
+                // &.tallest {
+                //   max-height: 2500px;
+                // }
                 li {
                   border-left: none;
                 }
@@ -1653,14 +1649,18 @@ body#hubv4 {
                 background-color: $grey-gallery;
               }
             }
+            &.active {
+              ul {
+                display: block;
+              }
+            }
             ul {
-              transition: all $easing 0.3s, opacity $easing 1s;
-              overflow: hidden;
-              max-height: 0;
               padding-top: 0;
+              display: none;
               padding-bottom: 0;
-              display: block;
               border-left: 0px white solid;
+              overflow: hidden;
+              position: relative;
               // background-color: #fff;
 
               li {
@@ -1719,7 +1719,6 @@ body#hubv4 {
                 }
                 &.expanded {
                   > ul {
-                    margin-left: 10px;
                     > li {
                       > a {
                         opacity: 1;
@@ -1729,6 +1728,8 @@ body#hubv4 {
                 }
                 // BOTTOM LEVEL
                 > ul {
+                  margin-left: 10px;
+
                   border-left: 1px $sidemenu-delimiter-color-v3 solid;
                   > li {
                     > a {
@@ -1893,6 +1894,7 @@ body#hubv4 {
           }
           &.active {
             border-bottom: none;
+            border-top: none;
             > .btn-expander {
               &:hover,
               &:active,

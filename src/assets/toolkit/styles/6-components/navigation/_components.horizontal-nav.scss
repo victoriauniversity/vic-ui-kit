@@ -89,6 +89,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 body#hubv4 {
   .main-site-header {
     padding-top: 0;
+    position: relative;
     &.show-mega-menu-top-wrap {
       padding-top: 0;
       overflow: unset !important;
@@ -450,8 +451,6 @@ body#hubv4 {
 
               &.expanded {
                 > ul {
-                  max-height: 300px;
-                  visibility: visible;
                   // padding-left: 5px;
                 }
                 .btn-expander {
@@ -495,11 +494,8 @@ body#hubv4 {
 
               > ul {
                 padding: 0;
-                transition: all $easing 0.3s;
-                display: block;
-                max-height: 0;
+                display: none;
                 overflow: hidden;
-                visibility: hidden;
                 -webkit-box-flex: 1;
                 flex: 1 0 99%;
                 > li {
@@ -1335,6 +1331,8 @@ body#hubv4 {
       }
       &.block {
         margin-bottom: 0;
+        padding-right: 0.75rem;
+        padding-left: 0.75rem;
       }
 
       a {
