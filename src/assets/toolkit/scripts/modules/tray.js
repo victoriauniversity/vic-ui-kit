@@ -213,7 +213,7 @@ export function initTray() {
         if (e.type == "click" || e.key == "Enter") {
           // console.log($button);
           $button.parent("li").toggleClass("expanded");
-          $button.parent("li").find(">ul").slideToggle("fast");
+          // $button.parent("li").find(">ul").slideToggle("fast");
         }
       });
     });
@@ -600,7 +600,7 @@ export function initTray() {
   $(".btn-expander").addClass("no-icon");
 
   // !Temporary override of toolkit hiding
-  $("#hubv4 .sidemenu  ul > .has-submenu").css("display", "flex");
+  // $("#hubv4 .sidemenu  ul > .has-submenu").css("display", "flex");
 
   const formatAsDate = function (date, locale) {
     var arr = date.split("");

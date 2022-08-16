@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, August 16, 2022, 1:51 PM */
+/** Version: 0.10.13 | Tuesday, August 16, 2022, 2:06 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14194,8 +14194,7 @@ function initTray() {
       $button.on("click keyup", function (e) {
         if (e.type == "click" || e.key == "Enter") {
           // console.log($button);
-          $button.parent("li").toggleClass("expanded");
-          $button.parent("li").find(">ul").slideToggle("fast");
+          $button.parent("li").toggleClass("expanded"); // $button.parent("li").find(">ul").slideToggle("fast");
         }
       });
     });
@@ -14512,8 +14511,7 @@ function initTray() {
   // !Remove default icon injected on all role="button" elements
 
   $(".btn-expander").addClass("no-icon"); // !Temporary override of toolkit hiding
-
-  $("#hubv4 .sidemenu  ul > .has-submenu").css("display", "flex");
+  // $("#hubv4 .sidemenu  ul > .has-submenu").css("display", "flex");
 
   var formatAsDate = function formatAsDate(date, locale) {
     var arr = date.split("");
@@ -17109,6 +17107,7 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
       e.preventDefault();
       e.stopPropagation();
       external_jQuery_default()(this).parent().toggleClass(_SIDEMENU_EXPANDED_CLASS);
+      external_jQuery_default()(this).parent().find(">ul").slideToggle("fast");
     });
     var expandableButtons = menuElement.find(".".concat(_SIDEMENU_EXPANDER_CLASS)); // Add tracking if enabled
 
