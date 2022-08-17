@@ -45,7 +45,8 @@ $marketing-linear-gradient: linear-gradient(
   #669787 77.11%,
   #99b9af 100%
 );
-$box-shadow-card: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+$box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+  rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 
 @keyframes draw-down {
   0% {
@@ -874,6 +875,7 @@ body#hubv4 {
   section.layout {
     overflow: visible;
   }
+
 }
 
 body#hubv4 {
@@ -930,8 +932,19 @@ body#hubv4 {
       border: 0;
       -webkit-transition: color 0.15s ease-in-out,
         background-color 0.15s ease-in-out;
-      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
-      color: #424242;
+      transition: all ease 0.2s;
+      background-color: $kohuhu;
+      color: $pounamu;
+
+      &:hover {
+        background-color: lighten($color: $kohuhu, $amount: 10);
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+          rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+      }
+      &:active{
+        box-shadow: none;
+
+      }
 
       &.rounded {
         border-radius: 100px;
@@ -1024,6 +1037,7 @@ body#hubv4 {
     .promo-panel figure,
     figure {
       box-shadow: $box-shadow-card;
+      // border: 1px $grey-alto solid;
       // border-top: 4px $pounamu solid;
       figcaption {
         padding: 2rem;

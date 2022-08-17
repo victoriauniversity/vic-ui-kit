@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, August 16, 2022, 2:06 PM */
+/** Version: 0.10.13 | Wednesday, August 17, 2022, 2:58 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -17570,7 +17570,7 @@ body#hubv4 .layout {
   overflow-x: hidden;
 }
 
-body#hubv4 .noscroll {
+body#hubv4.noscroll {
   overflow: hidden;
 }
 
@@ -18546,7 +18546,7 @@ body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-sub-m
 body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list .sub-menu-item a.sub-nav-link {
   text-decoration: none;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 3px;
   font-size: 15px;
   padding: 5px 10px;
   display: -webkit-box;
@@ -18554,7 +18554,7 @@ body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-sub-m
   -webkit-box-align: center;
           align-items: center;
   color: #1D2624;
-  border: 1px #555 solid;
+  border: 1px #0D4C38 solid;
   margin-bottom: 7px;
   margin-right: 5px;
   position: relative;
@@ -18566,8 +18566,8 @@ body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-sub-m
 }
 
 body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list .sub-menu-item a.sub-nav-link:hover, body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list .sub-menu-item a.sub-nav-link:focus {
-  background-color: #F1F6F0;
-  border-color: #115737;
+  background-color: #CCDCD7;
+  border-color: #669787;
 }
 
 body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-sub-menu .sub-menu-list .sub-menu-item a.sub-nav-link:active {
@@ -20470,6 +20470,28 @@ body#hubv4.homepage .promo-panel.pattern {
   background-position: -0px -500px;
   background-color: #99B9AF;
   background-color: rgba(153, 185, 175, 0.4);
+  -webkit-clip-path: polygon(0 30%, 50% 0, 100% 25%, 100% 100%, 50% 100%, 0 100%);
+          clip-path: polygon(0 30%, 50% 0, 100% 25%, 100% 100%, 50% 100%, 0 100%);
+  padding: 2rem 0;
+}
+
+@media (max-width: 42.99em) {
+  body#hubv4.homepage .promo-panel.pattern {
+    -webkit-clip-path: polygon(0 0, 100% 18%, 100% 100%, 50% 100%, 0 100%);
+            clip-path: polygon(0 0, 100% 18%, 100% 100%, 50% 100%, 0 100%);
+  }
+}
+
+body#hubv4.homepage .promo-panel.pattern figcaption a h1.title-tereo {
+  color: #FCE500;
+  background-color: #0D4C38;
+  display: inline-block;
+  padding: 10px;
+}
+
+body#hubv4.homepage .promo-panel.pattern figcaption a h2 {
+  font-weight: 300;
+  margin-top: 15px;
 }
 
 body#hubv4.homepage .home-search-wrap {
@@ -20481,6 +20503,19 @@ body#hubv4.homepage .home-search-wrap {
 
 body#hubv4.homepage .home-search-wrap .search {
   border: none;
+  background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: right;
+  display: -webkit-box;
+  display: flex;
+  align-self: initial;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  margin-top: 0;
 }
 
 body#hubv4.homepage .home-search-wrap .promo {
@@ -20555,6 +20590,7 @@ body#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle {
   transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
   -webkit-box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
           box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border: 1px #669787 solid;
 }
 
 body#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle span {
@@ -20564,7 +20600,7 @@ body#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle span {
 body#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle:hover {
   -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
           box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  background-color: rgba(204, 220, 215, 0.8);
+  background-color: #dbe6e3;
 }
 
 body#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle:hover span {
@@ -21596,8 +21632,27 @@ body#hubv4 .content-panel a.btn {
   cursor: pointer;
   border: 0;
   -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
-  color: #424242;
+  -webkit-transition: all ease 0.2s;
+  transition: all ease 0.2s;
+  background-color: #CCDCD7;
+  color: #0D4C38;
+}
+
+body#hubv4 .content-panel button:hover,
+body#hubv4 .content-panel .btn:hover,
+body#hubv4 .content-panel .button:hover,
+body#hubv4 .content-panel a.btn:hover {
+  background-color: #eaf1ef;
+  -webkit-box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+          box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+body#hubv4 .content-panel button:active,
+body#hubv4 .content-panel .btn:active,
+body#hubv4 .content-panel .button:active,
+body#hubv4 .content-panel a.btn:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 body#hubv4 .content-panel button.rounded,
@@ -21736,8 +21791,8 @@ body#hubv4 .content-panel .link_block h3 {
 
 body#hubv4 .formatting .promo-panel figure,
 body#hubv4 .formatting figure {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-          box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  -webkit-box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+          box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
 
 body#hubv4 .formatting .promo-panel figure figcaption,
@@ -21778,8 +21833,8 @@ body#hubv4 section.grid figcaption {
 body#hubv4 .card-panel .card,
 body#hubv4 .search-panel form.wide-search-bar {
   background-color: #fff;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-          box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  -webkit-box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+          box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   border-top: 4px #115737 solid;
 }
 
@@ -21908,8 +21963,8 @@ body#hubv4 .hub .quote-panel.quote-image svg.quote-open {
 body#hubv4 .hub .quote-panel.quote-image .quote {
   padding: 0;
   background-color: #fff;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-          box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  -webkit-box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+          box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   position: relative;
 }
 
@@ -21942,8 +21997,8 @@ body#hubv4 .hub .quote-panel.quote-image .quote .image-container:before {
 }
 
 body#hubv4 .hub .quote-panel.quote-image .quote img {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-          box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  -webkit-box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+          box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   border-radius: 0;
   height: 100%;
   width: auto;
