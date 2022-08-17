@@ -129,7 +129,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 if (
   document.location.href.includes("SQ_DESIGN_NAME=v4") ||
   document.location.href.includes("local.wgtn") ||
-
   document.location.href.includes("assets/git_bridge/0009/1778031/dist")
 ) {
   $("body").attr("id", "hubv4");
