@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, August 16, 2022, 2:06 PM */
+/** Version: 0.10.13 | Wednesday, August 17, 2022, 2:58 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14194,7 +14194,8 @@ function initTray() {
       $button.on("click keyup", function (e) {
         if (e.type == "click" || e.key == "Enter") {
           // console.log($button);
-          $button.parent("li").toggleClass("expanded"); // $button.parent("li").find(">ul").slideToggle("fast");
+          $button.parent("li").toggleClass("expanded");
+          $button.parent("li").find(">ul").slideToggle("fast");
         }
       });
     });

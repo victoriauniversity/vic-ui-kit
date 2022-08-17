@@ -1217,7 +1217,7 @@ body#hubv4 {
     z-index: 0 !important;
     overflow-x: hidden;
   }
-  .noscroll {
+  &.noscroll {
     overflow: hidden;
   }
 
@@ -2162,13 +2162,13 @@ body#hubv4 {
                 a.sub-nav-link {
                   text-decoration: none;
                   background-color: #fff;
-                  border-radius: 5px;
+                  border-radius: 3px;
                   font-size: 15px;
                   padding: 5px 10px;
                   display: flex;
                   align-items: center;
                   color: $black-brand;
-                  border: 1px $black-emperor solid;
+                  border: 1px $pounamu solid;
                   margin-bottom: 7px;
                   margin-right: 5px;
                   position: relative;
@@ -2179,9 +2179,8 @@ body#hubv4 {
                   &:hover,
                   &:focus {
                     // outline: 2px $kowhai solid;
-                    background-color: $green-brand-light;
-                    // color: #fff;
-                    border-color: $green-brand;
+                    background-color: $kohuhu;
+                    border-color: $mahoe;
                   }
                   &:active {
                     border-color: $green-brand;
@@ -3986,11 +3985,24 @@ body#hubv4 {
       background-position: -0px -500px;
       background-color: $miro;
       background-color: rgba($color: $miro, $alpha: 0.4);
+      clip-path: polygon(0 30%, 50% 0, 100% 25%, 100% 100%, 50% 100%, 0 100%);
+      padding: 2rem 0;
+
+      @include breakpoint($until: tablet) {
+        clip-path: polygon(0 0, 100% 18%, 100% 100%, 50% 100%, 0 100%);
+      }
 
       figcaption {
         a {
           h1.title-tereo {
-            // color: $kowhai;
+            color: $kowhai;
+            background-color: $pounamu;
+            display: inline-block;
+            padding: 10px;
+          }
+          h2 {
+            font-weight: 300;
+            margin-top: 15px;
           }
         }
         a {
@@ -4003,9 +4015,26 @@ body#hubv4 {
       border: none;
       box-shadow: $buttonShadow;
       background-color: $off-white;
+      // background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
+      // background-size: cover;
+      // background-repeat: no-repeat;
+      // background-position: -0px -800px;
+      // background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/triangles.svg");
+      // background-repeat: no-repeat;
+      // background-position: bottom left;
+      // background-size: 10%;
 
       .search {
         border: none;
+        background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
+        background-size: auto;
+        background-repeat: no-repeat;
+        background-position: right;
+        display: flex;
+        align-self: initial;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 0;
       }
 
       .promo {
@@ -4053,6 +4082,11 @@ body#hubv4 {
     .quicklinks-wrap {
       padding-bottom: 0;
       padding: 20px 0;
+      // background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
+      // background-size: auto;
+      // background-repeat: no-repeat;
+      // background-position: 0 200px;
+
       .block {
         padding-bottom: 10px;
       }
@@ -4067,6 +4101,7 @@ body#hubv4 {
           border-radius: 0px;
           transition: all $easing 0.2s;
           box-shadow: $buttonShadow;
+          border: 1px $mahoe solid;
           span {
             color: $pounamu;
           }
@@ -4075,7 +4110,7 @@ body#hubv4 {
               text-decoration: none !important;
             }
             box-shadow: $buttonShadowHover;
-            background-color: rgba($color: $kohuhu, $alpha: 0.8);
+            background-color: lighten($color: $kohuhu, $amount: 5);
             &:active {
               box-shadow: none;
             }

@@ -213,7 +213,7 @@ export function initTray() {
         if (e.type == "click" || e.key == "Enter") {
           // console.log($button);
           $button.parent("li").toggleClass("expanded");
-          // $button.parent("li").find(">ul").slideToggle("fast");
+          $button.parent("li").find(">ul").slideToggle("fast");
         }
       });
     });
