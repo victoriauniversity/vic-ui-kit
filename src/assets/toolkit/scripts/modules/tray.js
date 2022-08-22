@@ -946,6 +946,7 @@ export function initTray() {
 
       // Find any active/expanded children and close them
       $(this).parent().find(">ul .active").removeClass("active");
+      $(this).parent().find(">ul .expanded > ul").slideUp("fast");
       $(this).parent().find(">ul .expanded").removeClass("expanded");
 
       // Slide out main menu
@@ -973,7 +974,7 @@ export function initTray() {
         setTimeout(() => {
           resizeTallBlip(activeItem);
         }, 300);
-
+        $(this).parent().find(">ul").slideToggle("fast");
         $(this).parent().toggleClass("active");
         $(this).parent().find(">a").toggleClass("active");
         $(this).parent().toggleClass("expanded");
