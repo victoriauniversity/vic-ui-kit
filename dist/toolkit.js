@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, August 17, 2022, 3:28 PM */
+/** Version: 0.10.13 | Monday, August 22, 2022, 3:04 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14840,6 +14840,7 @@ function initTray() {
 
 
       $(this).parent().find(">ul .active").removeClass("active");
+      $(this).parent().find(">ul .expanded > ul").slideUp("fast");
       $(this).parent().find(">ul .expanded").removeClass("expanded"); // Slide out main menu
 
       $(this).parent().find(">ul").slideToggle("fast", function () {
@@ -14860,6 +14861,7 @@ function initTray() {
       setTimeout(function () {
         resizeTallBlip(activeItem);
       }, 300);
+      $(this).parent().find(">ul").slideToggle("fast");
       $(this).parent().toggleClass("active");
       $(this).parent().find(">a").toggleClass("active");
       $(this).parent().toggleClass("expanded");

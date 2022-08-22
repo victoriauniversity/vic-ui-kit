@@ -1481,7 +1481,7 @@ body#hubv4 {
         .tray-content {
           padding: 1rem;
           z-index: 150;
-          height: 100vh;
+          height: 100%;
           background-color: $header-bg;
           width: $tray-width-desktop;
           overflow: visible;
@@ -1499,7 +1499,6 @@ body#hubv4 {
 
           .tray-inner-content {
             padding: 0 15px;
-            height: 100%;
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -1792,7 +1791,7 @@ body#hubv4 {
 
                   a {
                     font-size: 16px;
-                    margin-left: 5px;
+                    margin-left: 10px;
                     transition: all $easing 0.2s;
 
                     @include breakpoint($until: desktop) {
@@ -1851,14 +1850,16 @@ body#hubv4 {
                       }
                     }
                     ul {
-                      transition: all $easing 0.3s;
+                      display: none;
+                      transition: border $easing 0.3s, margin $easing 0.3s;
                       overflow: hidden;
-                      max-height: 0;
-                      padding-top: 0;
-                      padding-bottom: 0;
-                      display: block;
+                      // max-height: 0;
+                      // padding-top: 0;
+                      // padding-bottom: 0;
+                      // display: block;
                       border-left: 0px white solid;
                       width: 100%;
+                      margin-left: 15px;
                     }
                     > ul {
                       > li {
@@ -1866,7 +1867,7 @@ body#hubv4 {
                         a {
                           font-size: 15px;
                           padding: 10px 30px 10px 5px;
-                          margin-left: 15px;
+                          margin-left: 10px;
                           margin-right: 10px;
 
                           @include breakpoint($until: desktop) {
@@ -1887,7 +1888,7 @@ body#hubv4 {
                           > li {
                             a {
                               padding-right: 10px;
-                              margin-left: 5px;
+                              margin-left: 10px;
                               @include breakpoint($until: desktop) {
                               }
                             }
@@ -1910,7 +1911,6 @@ body#hubv4 {
                       }
 
                       > ul {
-                        max-height: 800px;
                         border-left: 1px $grey-alto solid;
                         margin-left: 25px;
 
@@ -1954,18 +1954,18 @@ body#hubv4 {
                       height: 0;
                       top: 10px;
                       border-top: 10px solid transparent;
-                      border-left: 0px solid $pounamu;
+                      border-left: 12px solid $pounamu;
                       border-bottom: 10px solid transparent;
                       opacity: 0;
-                      transition: all ease 0.3s;
+                      transition: all $easing 0.3s;
+                      left: -13px;
                     }
 
                     &.expanded {
                       // padding-left: 5px;
                       &:before {
-                        left: 3px;
                         opacity: 1;
-                        border-left-width: 12px;
+                        left: 3px;
                       }
                     }
 
@@ -1995,7 +1995,6 @@ body#hubv4 {
                         li {
                           &:before {
                             left: -16px;
-                            width: 20px;
                           }
                         }
                       }
@@ -3289,7 +3288,6 @@ body#hubv4 {
         justify-self: flex-end;
         li {
           color: #fff;
-          // border-right: 1px #eee solid;
           position: relative;
           &:after {
             content: "";
@@ -3517,8 +3515,6 @@ body#hubv4 {
             }
             figure {
               &:after {
-                // width: calc(100% - 41px);
-                // height: calc(100% - 25px);
                 width: 100%;
                 height: 100%;
               }
@@ -3591,9 +3587,6 @@ body#hubv4 {
           }
           &[data-type="news"] {
             &:before {
-              // background-color: $pounamu;
-              // color: $manuka;
-
               background-color: $miro;
               color: $pounamu;
               content: "News";
@@ -3609,8 +3602,6 @@ body#hubv4 {
           &[data-type="apply"] {
             &:before {
               content: "Apply";
-              // background-color: $pounamu;
-              // color: $manuka;
               background-color: $miro;
               color: $pounamu;
             }
@@ -3710,7 +3701,6 @@ body#hubv4 {
       }
       &.bg-kohuhu {
         // background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
-
         // background-repeat: no-repeat;
         // background-position: 50% 80%;
         figure {
