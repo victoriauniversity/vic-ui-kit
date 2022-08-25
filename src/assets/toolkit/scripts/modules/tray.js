@@ -148,9 +148,12 @@ export function initTray() {
 
   //! Sidemenu expand logic
   function expandTray(index, listItem) {
-    $(listItem).on("mouseenter click", (e) => {
+    $(listItem).on("mouseenter click keyup", (e) => {
       // If clicking on expander arrow
-      if (e.type == "click" && $(e.target).hasClass("btn-expander")) {
+      if (
+        (e.type == "click" || e.key == "Enter") &&
+        $(e.target).hasClass("btn-expander")
+      ) {
         if ($(e.target).parent().hasClass("active-menu-item")) {
           // If clicked parent is expanded
           sidemenuExpanded = false;

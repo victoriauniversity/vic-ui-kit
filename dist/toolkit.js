@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, August 22, 2022, 3:04 PM */
+/** Version: 0.10.13 | Friday, August 26, 2022, 10:07 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14141,9 +14141,9 @@ function initTray() {
   var $draw = $(".sidemenu-drawer"); //! Sidemenu expand logic
 
   function expandTray(index, listItem) {
-    $(listItem).on("mouseenter click", function (e) {
+    $(listItem).on("mouseenter click keyup", function (e) {
       // If clicking on expander arrow
-      if (e.type == "click" && $(e.target).hasClass("btn-expander")) {
+      if ((e.type == "click" || e.key == "Enter") && $(e.target).hasClass("btn-expander")) {
         if ($(e.target).parent().hasClass("active-menu-item")) {
           // If clicked parent is expanded
           sidemenuExpanded = false;
