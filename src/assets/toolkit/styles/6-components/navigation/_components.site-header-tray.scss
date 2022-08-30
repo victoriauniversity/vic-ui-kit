@@ -1303,35 +1303,38 @@ body#hubv4 {
           border-radius: inherit;
         }
       }
-
-      button,
-      .button {
-        position: relative;
-        padding: 0;
-        width: 50px;
-        text-decoration: none;
-        border-radius: 50%;
-
-        i {
-          color: $black-brand;
-          font-size: 1.8rem;
-
-          &:before {
-            margin: 0;
-            display: inline;
+      .top-header-buttons {
+        display: flex;
+        > div {
+          align-self: center;
+          display: flex;
+          &:not(:last-of-type) {
+            &:after {
+              content: "";
+              height: auto;
+              width: 1px;
+              margin: 0 3px;
+              display: inline-block;
+              background-color: $grey-alto;
+            }
           }
         }
-
-        &.puaha {
+        .button {
           font-size: 15px;
+          display: flex;
           padding: 5px 10px;
-          width: auto;
-          border-radius: 4px;
           align-self: center;
-          background-color: $kohuhu;
-          margin-right: 5px;
-          color: $pounamu;
-          transition: all 0.2s ease-in-out;
+          // background-color: $miro;
+          border-radius: 4px;
+          background-color: transparent;
+          // color: $pounamu;
+
+          &.library {
+            // background-color: rgba($color: $miro, $alpha: 0.6);
+          }
+          &.nuku {
+            // background-color: rgba($color: $miro, $alpha: 0.8);
+          }
           @include breakpoint($until: desktop-medium) {
             display: none;
           }
@@ -1343,22 +1346,31 @@ body#hubv4 {
             transition: all 0.2s ease-in-out;
           }
           &:hover {
-            box-shadow: 1.1px 2.2px 2.2px rgba(7, 7, 7, 0.47);
-            color: #fff;
-            background-color: $mahoe;
+            // box-shadow: 1.1px 2.2px 2.2px rgba(7, 7, 7, 0.47);
+            // color: #fff;
+            background-color: #fff;
             i {
-              color: #fff;
+              // color: #fff;
             }
           }
-          &.primary {
-            background-color: $green-brand-bright;
-            color: #fff;
-            i {
-              color: #fff;
-            }
-            &:hover {
-              background-color: $green-brand;
-            }
+        }
+      }
+      // Toggle buttons (tray and search)
+      button {
+        position: relative;
+        padding: 0;
+        width: 50px;
+        text-decoration: none;
+        border-radius: 50%;
+        background-color: transparent;
+
+        i {
+          color: $black-brand;
+          font-size: 1.8rem;
+
+          &:before {
+            margin: 0;
+            display: inline;
           }
         }
 
@@ -1415,6 +1427,8 @@ body#hubv4 {
   .main-site-header {
     &.header-tray {
       .header-inner {
+        padding-top: 8px;
+        padding-bottom: 8px;
         z-index: 3;
         display: flex;
         align-items: center;

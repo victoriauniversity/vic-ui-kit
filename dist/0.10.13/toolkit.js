@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, August 26, 2022, 10:07 AM */
+/** Version: 0.10.13 | Tuesday, August 30, 2022, 1:32 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -16092,16 +16092,18 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
   var toolkit_initSidemenuExpandability = function initSidemenuExpandability(menuClass) {
     var menuElement = external_jQuery_default()(".".concat(menuClass));
     toolkit_enhanceSidemenu(menuElement);
-    var matches = 0;
-    external_jQuery_default()("." + SIDEMENU_CLASS).find("a").each(function () {
-      var linkText = external_jQuery_default()(this).text(); // var matches is needed so that multiple menus don't open when there are duplicate links
-
-      if (linkText == pageName && matches < 1) {
-        matches++;
-        external_jQuery_default()(this).addClass("active");
-        external_jQuery_default()(this).parents("li").addClass("active expanded");
-      }
-    }); // Expanding/Collapsing of the entire side menu on mobile devices
+    var matches = 0; // $("." + SIDEMENU_CLASS)
+    //   .find("a")
+    //   .each(function () {
+    //     var linkText = $(this).text();
+    //     // var matches is needed so that multiple menus don't open when there are duplicate links
+    //     if (linkText == pageName && matches < 1) {
+    //       matches++;
+    //       $(this).addClass("active");
+    //       $(this).parents("li").addClass("active expanded");
+    //     }
+    //   });
+    // Expanding/Collapsing of the entire side menu on mobile devices
 
     menuElement.children(".".concat(SIDEMENU_TOGGLE_CLASS)).children("a").on("click", function (e) {
       e.preventDefault();
@@ -17043,7 +17045,11 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
     external_jQuery_default()(this).parent().prev().find(">img").attr("src", arrayOfPhotos[count]);
   }); // Add Maori language tags to all tereo titles
 
-  external_jQuery_default()(".tereo-title").attr("lang", "mi");
+  external_jQuery_default()(".tereo-title").attr("lang", "mi"); // Save page toggle
+
+  external_jQuery_default()(".save-page").on("click", function () {
+    external_jQuery_default()(this).toggleClass("saved");
+  });
 } else {
   /* SUPPORTING FUNCTIONS */
 
