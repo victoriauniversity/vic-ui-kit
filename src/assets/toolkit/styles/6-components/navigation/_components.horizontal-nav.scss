@@ -224,14 +224,14 @@ body#hubv4 {
             padding-right: 5px;
           }
 
-          // &:not(:first-of-type) {
-          //   &::before {
-          //     content: "";
-          //     width: 2px;
-          //     height: 100%;
-          //     background: linear-gradient(0deg, $grey-gallery, #fff);
-          //   }
-          // }
+          &:not(:first-of-type) {
+            &::before {
+              content: "";
+              width: 2px;
+              height: 100%;
+              background: linear-gradient(0deg, $grey-gallery, #fff);
+            }
+          }
           // Ignore first <li> which is some side menu thing
           &:nth-of-type(2) {
             &:before {
@@ -875,7 +875,6 @@ body#hubv4 {
   section.layout {
     overflow: visible;
   }
-
 }
 
 body#hubv4 {
@@ -903,12 +902,137 @@ body#hubv4 {
       margin-top: 0rem;
     }
   }
+  // Buttons
+  button,
+  .btn,
+  .button,
+  a.btn {
+    border-radius: 0;
+    // padding: 5px 16px;
+    display: inline-block;
+    font-weight: 600;
+    line-height: 1.6;
+    cursor: pointer;
+    border: 0;
+    -webkit-transition: color 0.15s ease-in-out,
+      background-color 0.15s ease-in-out;
+    transition: all ease 0.2s;
+    background-color: $kohuhu;
+    color: $pounamu;
 
+    &:hover {
+      background-color: lighten($color: $kohuhu, $amount: 10);
+      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    }
+    &:active {
+      box-shadow: none;
+    }
+
+    &.rounded {
+      border-radius: 100px;
+    }
+    &.accent {
+      background-color: $kowhai;
+      color: #222;
+    }
+    &.raised {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    }
+    &.primary {
+      background-color: $pounamu;
+      // border: 1px $pounamu solid;
+      color: #fff;
+      &:hover {
+        background-color: $mahoe;
+      }
+      &:active,
+      &:focus {
+        background-color: $mahoe;
+      }
+    }
+    &.fade {
+      background-color: #f1f6f0;
+      color: $green-brand-bright;
+      &:hover {
+        background-color: #c0cfbc;
+        color: $green-brand-bright;
+      }
+    }
+    &.flat {
+      background-color: transparent;
+      outline: 1px transparent solid;
+      &:hover {
+        box-shadow: none;
+        outline: 1px $grey-alto solid;
+      }
+    }
+    &.save-page {
+      background-color: transparent;
+      font-size: 80%;
+      padding: 0;
+      line-height: 0;
+      outline: none;
+      margin-left: 5px;
+
+      > svg {
+        opacity: 0.6;
+        transition: all $easing 0.3s;
+        path {
+          transition: all $easing 0.3s;
+          fill: #fff;
+          stroke: #000;
+        }
+      }
+      &:hover {
+        outline: none;
+        opacity: 1;
+        > svg {
+          opacity: 1;
+        }
+      }
+      &.saved {
+        > svg {
+          opacity: 1;
+          path {
+            fill: $kowhai;
+          }
+        }
+      }
+    }
+    &.text {
+      background-color: transparent;
+      color: #005ea5;
+      border: none;
+      text-decoration: underline;
+      &:hover {
+        background-color: #eee;
+      }
+      &:active,
+      &:focus {
+        background-color: #eee;
+      }
+    }
+    &.secondary {
+      color: #232323;
+      &:hover {
+        background-color: #eee;
+        color: #232323;
+      }
+    }
+
+    // &:focus {
+    //   outline: 2px rgba(0, 0, 0, 0.3) solid;
+    // }
+  }
   .content-panel {
     margin-top: 1rem;
     main {
       h1 {
         font-size: 2.4rem;
+        display: flex;
+        align-items: center;
       }
       h2 {
         font-size: 1.8rem;
@@ -918,90 +1042,6 @@ body#hubv4 {
       }
     }
 
-    // Buttons
-    button,
-    .btn,
-    .button,
-    a.btn {
-      border-radius: 0;
-      // padding: 5px 16px;
-      display: inline-block;
-      font-weight: 600;
-      line-height: 1.6;
-      cursor: pointer;
-      border: 0;
-      -webkit-transition: color 0.15s ease-in-out,
-        background-color 0.15s ease-in-out;
-      transition: all ease 0.2s;
-      background-color: $kohuhu;
-      color: $pounamu;
-
-      &:hover {
-        background-color: lighten($color: $kohuhu, $amount: 10);
-        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-          rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-      }
-      &:active{
-        box-shadow: none;
-
-      }
-
-      &.rounded {
-        border-radius: 100px;
-      }
-      &.accent {
-        background-color: $kowhai;
-        color: #222;
-      }
-      &.raised {
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-          rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-      }
-      &.primary {
-        background-color: $pounamu;
-        // border: 1px $pounamu solid;
-        color: #fff;
-        &:hover {
-          background-color: $mahoe;
-        }
-        &:active,
-        &:focus {
-          background-color: $mahoe;
-        }
-      }
-      &.fade {
-        background-color: #f1f6f0;
-        color: $green-brand-bright;
-        &:hover {
-          background-color: #c0cfbc;
-          color: $green-brand-bright;
-        }
-      }
-      &.text {
-        background-color: transparent;
-        color: #005ea5;
-        border: none;
-        text-decoration: underline;
-        &:hover {
-          background-color: #eee;
-        }
-        &:active,
-        &:focus {
-          background-color: #eee;
-        }
-      }
-      &.secondary {
-        color: #232323;
-        &:hover {
-          background-color: #eee;
-          color: #232323;
-        }
-      }
-
-      // &:focus {
-      //   outline: 2px rgba(0, 0, 0, 0.3) solid;
-      // }
-    }
     .link_block {
       background-color: $grey-light;
       transition: all ease 0.2s;
