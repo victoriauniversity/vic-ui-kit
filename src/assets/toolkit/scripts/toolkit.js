@@ -302,6 +302,10 @@ if ($("body").attr("id") == "hubv4") {
     });
   }
 
+  enquire.register(DESKTOP_AND_LARGER, () => {
+    $(".sidebar > nav > ul").show();
+  });
+
   // TODO: Remove after this was implemented on the backend (~ in Squiz)
   /** Adds necessary classes and expanding/collapsing elements if the item has got submenu. */
   const btnExpanderHtml =
