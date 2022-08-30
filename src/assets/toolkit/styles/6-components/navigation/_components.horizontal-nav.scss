@@ -64,7 +64,7 @@ $box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
 
   100% {
     visibility: visible;
-    z-index: 999;
+    z-index: 10;
     opacity: 1;
     max-height: 700px;
   }
@@ -91,6 +91,7 @@ body#hubv4 {
   .main-site-header {
     padding-top: 0;
     position: relative;
+    z-index: 99;
     &.show-mega-menu-top-wrap {
       padding-top: 0;
       overflow: unset !important;
@@ -131,6 +132,8 @@ body#hubv4 {
   .top-header {
     background-color: #f7f7f7;
     border-bottom: 1px $grey-alto solid;
+    position: relative;
+    z-index: 50;
   }
 
   #mega_menu_block {
@@ -153,6 +156,8 @@ body#hubv4 {
       }
     }
     #mega-menu {
+      z-index: 50;
+      background-color: #fff;
       > li {
         &:after {
           top: 30%;
@@ -298,20 +303,22 @@ body#hubv4 {
       }
 
       .sidemenu-drawer {
-        transition: max-height $easing 0.5s, opacity $easing 0.8s,
+        transition: top $easing 0.5s, opacity $easing 0.8s,
           padding-top $easing 0.5s, padding-bottom $easing 0.5s;
         overflow: hidden;
-        max-height: 0px;
         position: absolute;
         // make top Dynamic width
-        top: var(--horizontal-nav-offset);
         left: 0;
+        top: var(--horizontal-nav-offset);
+
+        top: -300%;
         width: 100%;
         display: flex;
         justify-content: flex-start;
-        padding: 0 5rem;
+        padding: 1rem 5rem 2rem;
         background-color: $white;
         opacity: 0;
+        z-index: -1;
 
         &:before {
           content: "";
@@ -340,13 +347,12 @@ body#hubv4 {
         }
 
         &.horizontal-drawer-expanded {
-          z-index: 100;
+          z-index: 10;
           opacity: 1;
           // animation: draw-down 1s $easing forwards;
-          max-height: 700px;
+          top: var(--horizontal-nav-offset);
           border-top: none;
           border-bottom: 4px solid $green-brand;
-          padding: 1rem 5rem 2rem;
           box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px;
           &:before {
             max-height: 100vh;
@@ -369,7 +375,7 @@ body#hubv4 {
           padding-right: 1rem;
           margin: 0 1rem;
           border-right: 1px solid $grey-gallery;
-          z-index: -10;
+          z-index: 0;
           flex: auto;
           min-width: 300px;
           max-width: 1000px;
@@ -903,6 +909,14 @@ body#hubv4 {
     }
   }
   // Buttons
+
+  button:not(.flat):not(.no-icon)::after,
+  .button:not(.flat):not(.no-icon)::after {
+    content: "\f1ee";
+    font-family: "Favorites";
+    vertical-align: -0.1em;
+    display: inline-block;
+  }
   button,
   .btn,
   .button,
@@ -919,6 +933,7 @@ body#hubv4 {
     transition: all ease 0.2s;
     background-color: $kohuhu;
     color: $pounamu;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
 
     &:hover {
       background-color: lighten($color: $kohuhu, $amount: 10);
@@ -1107,6 +1122,10 @@ body#hubv4 {
     }
   }
 
+  .card-panel .card {
+    background-color: $off-white;
+  }
+
   .block {
     // padding-top: 2rem;
     // padding-bottom: 2rem;
@@ -1177,14 +1196,6 @@ body#hubv4 {
     //   }
     // }
 
-    // button:not(.flat):not(.no-icon)::after,
-    // .button:not(.flat):not(.no-icon)::after {
-    //   content: "\f181";
-    //   font-family: "Favorites";
-    //   vertical-align: -0.1em;
-    //   display: inline-block;
-    //   transform: rotate(-90deg);
-    // }
     // Carousel
     .carousel-controls {
       position: absolute;
