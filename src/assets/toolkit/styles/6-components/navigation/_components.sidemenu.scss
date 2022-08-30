@@ -921,13 +921,15 @@ body#hubv4 {
     .sidemenu-toggle {
       font-size: $text-size-4;
       font-weight: $weight-semibold;
-      background-color: $green-brand-light;
+      background-color: $kohuhu;
+
       border: 1px $grey-alto solid;
 
 
       a {
         display: block;
-        padding: $gap-half 0.8rem;
+        padding: 1rem .8rem;
+        color: $pounamu;
         font-size: 0.8em;
         position: relative;
 
@@ -939,11 +941,10 @@ body#hubv4 {
           font-weight: normal;
           font-variant: normal;
           line-height: 1;
-          font-size: 20px;
+          font-size: 18px;
           text-decoration: inherit;
           text-rendering: optimizeLegibility;
           text-transform: none;
-          color: $black-brand;
           position: absolute;
           right: 10px;
           top: 30%;
@@ -1023,9 +1024,6 @@ body#hubv4 {
       // !Remove important
       margin-bottom: 2rem !important;
 
-      a {
-        color: $black-tundora;
-      }
 
       > ul {
         font-weight: 500;
@@ -1413,6 +1411,9 @@ body#hubv4 {
     width: initial;
     position: relative;
     // padding-top: 2rem;
+    @include breakpoint($until: desktop-medium) {
+      padding: 1rem;
+    }
 
     .sidebar-blip {
       position: absolute;

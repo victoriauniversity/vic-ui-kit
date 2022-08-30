@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, August 31, 2022, 8:39 AM */
+/** Version: 0.10.13 | Wednesday, August 31, 2022, 11:37 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15907,10 +15907,7 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
         expander.css("height", link.outerHeight());
       });
     });
-  }; // TODO: Remove after this was implemented on the backend (~ in Squiz)
-
-  /** Adds necessary classes and expanding/collapsing elements if the item has got submenu. */
-
+  };
 
   var toolkit_enhanceSidemenu = function enhanceSidemenu(menuElement) {
     menuElement.find("li").each(function () {
@@ -16346,6 +16343,12 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
   var SIDEMENU_SELECTED_ITEM_CLASS = "active";
   var SIDEMENU_EXPANDED_CLASS = "expanded";
   var pageName = external_jQuery_default()("main h1").first().text();
+  src_default.a.register(toolkit_DESKTOP_AND_LARGER, function () {
+    external_jQuery_default()(".sidebar > nav > ul").show();
+  }); // TODO: Remove after this was implemented on the backend (~ in Squiz)
+
+  /** Adds necessary classes and expanding/collapsing elements if the item has got submenu. */
+
   var btnExpanderHtml = '<span tabindex="0" class="btn-expander mf-heatmap-click" title="Toggle subpages" role="button"></span>';
   var ENV_HOSTNAME = {
     STAGE: "cms.wgtn.ac.nz",

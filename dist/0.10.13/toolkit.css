@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, August 31, 2022, 8:39 AM */
+/** Version: 0.10.13 | Wednesday, August 31, 2022, 11:37 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -15259,13 +15259,14 @@ body#hubv4 .sidemenu .btn-expander:hover, body:not(#hubv4) .sidemenu-banner-wrap
 body#hubv4 .sidemenu .sidemenu-toggle, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle {
   font-size: 1.4884rem;
   font-weight: 600;
-  background-color: #F1F6F0;
+  background-color: #CCDCD7;
   border: 1px #DDD solid;
 }
 
 body#hubv4 .sidemenu .sidemenu-toggle a, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle a, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle a, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a {
   display: block;
-  padding: 0.75rem 0.8rem;
+  padding: 1rem .8rem;
+  color: #0D4C38;
   font-size: 0.8em;
   position: relative;
 }
@@ -15278,11 +15279,10 @@ body#hubv4 .sidemenu .sidemenu-toggle a:after, body:not(#hubv4) .sidemenu-banner
   font-weight: normal;
   font-variant: normal;
   line-height: 1;
-  font-size: 20px;
+  font-size: 18px;
   text-decoration: inherit;
   text-rendering: optimizeLegibility;
   text-transform: none;
-  color: #1D2624;
   position: absolute;
   right: 10px;
   top: 30%;
@@ -15351,10 +15351,6 @@ body#hubv4 .sidemenu .sidemenu-toggle.expanded a:after, body:not(#hubv4) .sideme
 body#hubv4 .sidemenu.sidemenu-light, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-light.sidemenu-homepage, body#hubv4 .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage, body#hubv4 .show-mega-menu-top .sidemenu-light.mega-sub-menu {
   background: #fff;
   margin-bottom: 2rem !important;
-}
-
-body#hubv4 .sidemenu.sidemenu-light a, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-light.sidemenu-homepage a, body#hubv4 .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage a, body#hubv4 .show-mega-menu-top .sidemenu-light.mega-sub-menu a {
-  color: #424242;
 }
 
 body#hubv4 .sidemenu.sidemenu-light > ul, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-light.sidemenu-homepage > ul, body#hubv4 .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage > ul, body#hubv4 .show-mega-menu-top .sidemenu-light.mega-sub-menu > ul {
@@ -15694,6 +15690,12 @@ body#hubv4 .sidemenu-banner-wrap .menu-blip {
 body#hubv4 .sidebar {
   width: initial;
   position: relative;
+}
+
+@media (max-width: 74.99em) {
+  body#hubv4 .sidebar {
+    padding: 1rem;
+  }
 }
 
 body#hubv4 .sidebar .sidebar-blip {
@@ -18931,7 +18933,7 @@ body#hubv4 .main-site-header.white .logo.small-logo {
 }
 
 body#hubv4 .main-site-header.white .header-inner .header-content.long-title {
-  width: 65%;
+  width: 55%;
 }
 
 body#hubv4 .main-site-header.white .header-inner .header-content h1 {
@@ -20957,10 +20959,6 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu #mega-menu {
   background-color: #fff;
 }
 
-body#hubv4 .show-mega-menu-top .mega-sub-menu #mega-menu > li:after {
-  top: 30%;
-}
-
 body#hubv4 .show-mega-menu-top .mega-sub-menu #mega-menu > li > a {
   padding-bottom: 10px;
   padding-top: 10px;
@@ -21037,9 +21035,6 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu__label {
     content: none;
   }
   body#hubv4 .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li::after {
-    position: absolute;
-    right: 10px;
-    top: 20px;
     content: "\f181";
     display: inline-block;
     font-family: "Favorites";
@@ -21059,6 +21054,8 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu__label {
     transition: transform cubic-bezier(0.22, 1, 0.36, 1) 0.3s, -webkit-transform cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
     -webkit-transform: rotateZ(-90deg);
             transform: rotateZ(-90deg);
+    position: relative;
+    align-self: center;
   }
   body#hubv4 .show-mega-menu-top .mega-sub-menu .mega-menu-top-level > li .btn-expander {
     display: none;
