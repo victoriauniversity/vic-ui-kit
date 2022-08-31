@@ -938,6 +938,7 @@ body#hubv4 {
     font-family: "Inter", Arial, Helvetica, sans-serif;
 
     &:hover {
+      text-decoration: none;
       background-color: lighten($color: $kohuhu, $amount: 10);
       box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
         rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
@@ -960,13 +961,15 @@ body#hubv4 {
     &.primary {
       background-color: $pounamu;
       // border: 1px $pounamu solid;
-      color: #fff;
+      color: $manuka;
       &:hover {
         background-color: $mahoe;
+        background-color: lighten($color: $pounamu, $amount: 6);
       }
       &:active,
       &:focus {
         background-color: $mahoe;
+        background-color: lighten($color: $pounamu, $amount: 6);
       }
     }
     &.fade {
@@ -1042,6 +1045,13 @@ body#hubv4 {
     // &:focus {
     //   outline: 2px rgba(0, 0, 0, 0.3) solid;
     // }
+
+    // Remove icon for submit buttons...
+    &.submit-button {
+      &:after {
+        content: none !important;
+      }
+    }
   }
   .content-panel {
     margin-top: 1rem;
@@ -1087,6 +1097,12 @@ body#hubv4 {
         text-decoration: none;
       }
     }
+  }
+
+  // Cards news/events
+
+  ul.news,
+  ul.events {
   }
 
   // Blocks

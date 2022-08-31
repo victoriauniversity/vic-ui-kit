@@ -2939,12 +2939,6 @@ body#hubv4 {
 
   /*Saved items style in drawer*/
 
-  .menu-container .icons8-expand-arrow {
-    transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
-  }
-  .menu-container .icons8-expand-arrow.flipped {
-    transform: rotateZ(180deg);
-  }
 
   .menu-container .saved-header {
     display: flex;
@@ -3167,13 +3161,6 @@ body#hubv4 {
     //? === END HELPERS ====
 
     //? Buttons
-    .btn {
-      transition: all ease 0.3s !important;
-      text-decoration: none !important;
-      &:hover {
-        text-decoration: underline !important;
-      }
-    }
 
     //? Font
     .sector {
@@ -3185,15 +3172,28 @@ body#hubv4 {
 
     //? SVG backgrounds
     .home-svg-lines {
+      position: absolute;
+      height: 100%;
+      left: 0;
+      top: 0;
+      width: 100%;
+      overflow: hidden;
+
       #lines-top {
         position: absolute;
-        left: 30%;
-        top: -600px;
+        left: 50%;
+        height: 1200px;
+        top: -500px;
       }
       #lines-bottom {
         position: absolute;
-        left: 30%;
-        top: -1300px;
+        left: 50%;
+        height: 1200px;
+        top: -500px;
+      }
+
+      #Layer_1 {
+        height: 100%;
       }
     }
 
@@ -3710,9 +3710,7 @@ body#hubv4 {
     }
     .link-more {
       float: none;
-      &:after {
-        content: "";
-      }
+      text-decoration: none;
     }
 
     //? Promo panel
@@ -3893,9 +3891,13 @@ body#hubv4 {
           }
         }
       }
-      .button.primary {
-        background-color: $kowhai;
-        color: $pounamu;
+
+      // Emergencies button
+      h2 {
+        .button.primary {
+          background-color: $kowhai;
+          color: $pounamu;
+        }
       }
       .cols {
         h2 {
@@ -4006,21 +4008,25 @@ body#hubv4 {
       background-position: -0px -500px;
       background-color: $miro;
       background-color: rgba($color: $miro, $alpha: 0.4);
-      clip-path: polygon(0 30%, 50% 0, 100% 25%, 100% 100%, 50% 100%, 0 100%);
+      // clip-path: polygon(0 30%, 50% 0, 100% 25%, 100% 100%, 50% 100%, 0 100%);
       padding: 2rem 0;
 
       @include breakpoint($until: tablet) {
-        clip-path: polygon(0 0, 100% 18%, 100% 100%, 50% 100%, 0 100%);
+        // clip-path: polygon(0 0, 100% 18%, 100% 100%, 50% 100%, 0 100%);
       }
 
       figcaption {
         a {
+          h1 {
+            display: block;
+          }
           h1.title-tereo {
             color: $kowhai;
             background-color: $pounamu;
             display: inline-block;
             padding: 10px;
           }
+
           h2 {
             font-weight: 300;
             margin-top: 15px;
@@ -4309,18 +4315,6 @@ body#hubv4 {
             border-left: 20px transparent solid;
             border-right: 20px transparent solid;
           }
-        }
-      }
-      a.button {
-        background-color: $pounamu;
-        color: $manuka;
-        transition: all $easing 0.3s;
-        &:hover {
-          box-shadow: $buttonShadowHover;
-          background-color: $mahoe;
-        }
-        &:active {
-          box-shadow: none;
         }
       }
     }

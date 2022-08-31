@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, August 31, 2022, 11:37 AM */
+/** Version: 0.10.13 | Wednesday, August 31, 2022, 2:53 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -19289,16 +19289,6 @@ body#hubv4 .main-site-header.subjects-header .header-toggle .search-toggle {
   display: block;
 }
 
-body#hubv4 .menu-container .icons8-expand-arrow {
-  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
-  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
-}
-
-body#hubv4 .menu-container .icons8-expand-arrow.flipped {
-  -webkit-transform: rotateZ(180deg);
-          transform: rotateZ(180deg);
-}
-
 body#hubv4 .menu-container .saved-header {
   display: -webkit-box;
   display: flex;
@@ -19509,31 +19499,36 @@ body#hubv4.homepage .text-center {
   text-align: center;
 }
 
-body#hubv4.homepage .btn {
-  -webkit-transition: all ease 0.3s !important;
-  transition: all ease 0.3s !important;
-  text-decoration: none !important;
-}
-
-body#hubv4.homepage .btn:hover {
-  text-decoration: underline !important;
-}
-
 body#hubv4.homepage .sector h2 {
   font-size: 2rem;
   font-weight: 600;
 }
 
+body#hubv4.homepage .home-svg-lines {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
 body#hubv4.homepage .home-svg-lines #lines-top {
   position: absolute;
-  left: 30%;
-  top: -600px;
+  left: 50%;
+  height: 1200px;
+  top: -500px;
 }
 
 body#hubv4.homepage .home-svg-lines #lines-bottom {
   position: absolute;
-  left: 30%;
-  top: -1300px;
+  left: 50%;
+  height: 1200px;
+  top: -500px;
+}
+
+body#hubv4.homepage .home-svg-lines #Layer_1 {
+  height: 100%;
 }
 
 body#hubv4.homepage .homepage-search {
@@ -20127,10 +20122,7 @@ body#hubv4.homepage .quicklinks-news #panels .panel > a > div p {
 
 body#hubv4.homepage .link-more {
   float: none;
-}
-
-body#hubv4.homepage .link-more:after {
-  content: "";
+  text-decoration: none;
 }
 
 body#hubv4.homepage .promo-panel {
@@ -20328,7 +20320,7 @@ body#hubv4.homepage footer.svg-pattern .svg-container svg .cls-2 {
   opacity: 0.1;
 }
 
-body#hubv4.homepage footer .button.primary {
+body#hubv4.homepage footer h2 .button.primary {
   background-color: #FCE500;
   color: #0D4C38;
 }
@@ -20455,16 +20447,11 @@ body#hubv4.homepage .promo-panel.pattern {
   background-position: -0px -500px;
   background-color: #99B9AF;
   background-color: rgba(153, 185, 175, 0.4);
-  -webkit-clip-path: polygon(0 30%, 50% 0, 100% 25%, 100% 100%, 50% 100%, 0 100%);
-          clip-path: polygon(0 30%, 50% 0, 100% 25%, 100% 100%, 50% 100%, 0 100%);
   padding: 2rem 0;
 }
 
-@media (max-width: 42.99em) {
-  body#hubv4.homepage .promo-panel.pattern {
-    -webkit-clip-path: polygon(0 0, 100% 18%, 100% 100%, 50% 100%, 0 100%);
-            clip-path: polygon(0 0, 100% 18%, 100% 100%, 50% 100%, 0 100%);
-  }
+body#hubv4.homepage .promo-panel.pattern figcaption a h1 {
+  display: block;
 }
 
 body#hubv4.homepage .promo-panel.pattern figcaption a h1.title-tereo {
@@ -20760,24 +20747,6 @@ body#hubv4.homepage .promo-panel:not(.pattern) figcaption h1:before {
   border-top: 20px #0D4C38 solid;
   border-left: 20px transparent solid;
   border-right: 20px transparent solid;
-}
-
-body#hubv4.homepage .promo-panel:not(.pattern) a.button {
-  background-color: #0D4C38;
-  color: #FEF9F0;
-  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
-  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
-}
-
-body#hubv4.homepage .promo-panel:not(.pattern) a.button:hover {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-          box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  background-color: #669787;
-}
-
-body#hubv4.homepage .promo-panel:not(.pattern) a.button:active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
 }
 
 /*==================================================
@@ -21630,6 +21599,7 @@ body#hubv4 button:hover,
 body#hubv4 .btn:hover,
 body#hubv4 .button:hover,
 body#hubv4 a.btn:hover {
+  text-decoration: none;
   background-color: #eaf1ef;
   -webkit-box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
           box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
@@ -21671,7 +21641,7 @@ body#hubv4 .btn.primary,
 body#hubv4 .button.primary,
 body#hubv4 a.btn.primary {
   background-color: #0D4C38;
-  color: #fff;
+  color: #FEF9F0;
 }
 
 body#hubv4 button.primary:hover,
@@ -21679,6 +21649,7 @@ body#hubv4 .btn.primary:hover,
 body#hubv4 .button.primary:hover,
 body#hubv4 a.btn.primary:hover {
   background-color: #669787;
+  background-color: #11664b;
 }
 
 body#hubv4 button.primary:active, body#hubv4 button.primary:focus,
@@ -21689,6 +21660,7 @@ body#hubv4 .button.primary:focus,
 body#hubv4 a.btn.primary:active,
 body#hubv4 a.btn.primary:focus {
   background-color: #669787;
+  background-color: #11664b;
 }
 
 body#hubv4 button.fade,
@@ -21824,6 +21796,13 @@ body#hubv4 .button.secondary:hover,
 body#hubv4 a.btn.secondary:hover {
   background-color: #eee;
   color: #232323;
+}
+
+body#hubv4 button.submit-button:after,
+body#hubv4 .btn.submit-button:after,
+body#hubv4 .button.submit-button:after,
+body#hubv4 a.btn.submit-button:after {
+  content: none !important;
 }
 
 body#hubv4 .content-panel {
