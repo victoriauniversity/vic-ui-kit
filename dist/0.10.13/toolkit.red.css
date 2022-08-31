@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, September 1, 2022, 9:31 AM */
+/** Version: 0.10.13 | Thursday, September 1, 2022, 10:27 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -16009,6 +16009,10 @@ body#hubv4 .sidebar .sidemenu > ul > .sidemenu__label, body:not(#hubv4) .sidemen
   margin-right: 0;
 }
 
+body#hubv4 .sidebar .sidemenu > ul > .sidemenu__label.hide-title, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > .sidemenu__label.hide-title, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > .sidemenu__label.hide-title, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > .sidemenu__label.hide-title, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > .sidemenu__label.hide-title, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > .sidemenu__label.hide-title {
+  display: none;
+}
+
 @media (max-width: 74.99em) {
   body#hubv4 .sidebar .sidemenu > ul > .sidemenu__label, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > .sidemenu__label, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > .sidemenu__label, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > .sidemenu__label, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > .sidemenu__label, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > .sidemenu__label {
     display: none;
@@ -20472,18 +20476,14 @@ body#hubv4.homepage .home-search-wrap {
   -webkit-box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
           box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   background-color: #f7f7f7;
-  background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/triangles.svg");
+  background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
   background-repeat: no-repeat;
-  background-position: bottom left;
-  background-size: 10%;
+  background-size: 250px;
+  background-position: -100px;
 }
 
 body#hubv4.homepage .home-search-wrap .search {
   border: none;
-  background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/stars");
-  background-size: auto;
-  background-repeat: no-repeat;
-  background-position: right;
   display: -webkit-box;
   display: flex;
   align-self: initial;
@@ -20501,7 +20501,8 @@ body#hubv4.homepage .home-search-wrap .promo {
 
 body#hubv4.homepage .home-search-wrap .promo .promo-title {
   opacity: 1;
-  background-color: #669787;
+  background-color: #99B9AF;
+  color: #0D4C38;
 }
 
 body#hubv4.homepage .home-search-wrap .submit-button {
@@ -21569,8 +21570,12 @@ body#hubv4 aside > .formatting h3 {
   font-size: 1.2rem;
 }
 
-body#hubv4.hub-page .content-panel {
+body#hubv4 .content-panel {
   margin-top: 0rem;
+}
+
+body#hubv4 .content-panel main > .block {
+  padding-top: 0;
 }
 
 body#hubv4 button:not(.flat):not(.no-icon)::after,
@@ -22264,6 +22269,11 @@ body#hubv4 nav .breadcrumbs > li:last-child:after {
 
 .content-panel body#hubv4 nav .breadcrumbs {
   padding-bottom: 0;
+}
+
+body#hubv4 nav .breadcrumbs.breadcrumbs-full {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 body#hubv4 .highlight-message {

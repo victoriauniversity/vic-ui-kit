@@ -28,12 +28,13 @@
 <div class="pre-header">
   <div class="block centraliser">
     <ul class="sub-menu-list">
-      {{#if sub-header}} {{#each sub-header}}
-      <li class="sub-menu-item {{lowercase (join (split this.name ' ') '-')}}">
-        <!-- <i class=""></i> -->
-        <a href="#" class="sub-nav-link">{{this.name}}</a>
-      </li>
-      {{/each}} {{/if}}
+      {{#if sub-header}} 
+        {{#each sub-header}}
+        <li class="sub-menu-item {{lowercase (join (split this.name ' ') '-')}}">
+          <a href="#" class="sub-nav-link">{{this.name}}</a>
+        </li>
+        {{/each}} 
+      {{/if}}
     </ul>
   </div>
 </div>
@@ -96,16 +97,16 @@
       <div class="header-toggle">
         <div class="top-header-buttons">
           <div>
-            <a href="https://puaha.wgtn.ac.nz/" target="_blank" class="button library no-icon">Library<i
+            <a title="Open the Library website in a new tab" href="https://puaha.wgtn.ac.nz/" target="_blank" class="button library no-icon">Library<i
                 class="icons8-external-link"></i></a>
           </div>
           <div>
-            <a href="https://puaha.wgtn.ac.nz/" target="_blank" class="button nuku no-icon">Nuku<i
+            <a title="Open Nuku in a new tab" href="https://puaha.wgtn.ac.nz/" target="_blank" class="button nuku no-icon">Nuku<i
                 class="icons8-external-link"></i></a>
           </div>
           <div>
 
-            <a href="https://puaha.wgtn.ac.nz/" target="_blank" class="button puaha no-icon">Pūaha<i
+            <a title="Open Pūaha (your student portal) in a new tab" href="https://puaha.wgtn.ac.nz/" target="_blank" class="button puaha no-icon">Pūaha<i
                 class="icons8-external-link"></i></a>
           </div>
         </div>
