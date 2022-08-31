@@ -905,11 +905,15 @@ body#hubv4 {
   }
 
   // No top margin on hub page, so banner sits flush with header
-  &.hub-page {
     .content-panel {
       margin-top: 0rem;
+      main {
+
+        > .block {
+          padding-top: 0;
+        }
+      }
     }
-  }
   // Buttons
 
   button:not(.flat):not(.no-icon)::after,
@@ -1526,6 +1530,11 @@ body#hubv4 {
       // If used within content panel, drop bottom padding to avoid double margins
       .content-panel & {
         padding-bottom: 0;
+      }
+
+      &.breadcrumbs-full {
+        margin-bottom: 1rem;
+        margin-top: 1rem;
       }
     }
   }
