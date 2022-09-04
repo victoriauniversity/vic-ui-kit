@@ -1,0 +1,706 @@
+// OLD/CURRENT SIDEMENU
+/*============================================================================*\
+| SIDE MENU
+\*============================================================================*/
+
+////
+/// In-site navigation placed next to the content.
+///
+/// @group navigation
+
+/** New dynamic menu with expandable items */
+
+$sidemenu-background: $brand !default;
+$sidemenu-background-selected: $brand-darker !default;
+
+$sidemenu-text-color: $grey-alto !default;
+$sidemenu-text-hover-color: $white !default;
+
+$sidemenu-lineheight: 1.25 !default;
+$sidemenu-size: $navigation-primary-item-size !default;
+
+$sidemenu-delimiter-color: $brand-darker !default;
+
+$sidemenu-bg-light: $white;
+
+.sidemenu {
+  z-index: $z-index-lower;
+  overflow: hidden;
+  margin: 0 0 $gap-vertical;
+  background: $sidemenu-background;
+
+  .sidemenu__label {
+    @include breakpoint($until: tablet) {
+      border-top: 1px solid white;
+    }
+
+    text-transform: uppercase;
+    border-bottom: 1px solid white;
+    font-family: $heading-family;
+    font-weight: $weight-bold;
+
+    a {
+      padding: 6px 14px;
+    }
+  }
+
+  // All menu items
+  ul {
+    font-family: $heading-family;
+
+    li {
+      display: block;
+
+      &.active > a {
+        color: $sidemenu-text-hover-color;
+        font-weight: $weight-semibold;
+
+        &::before {
+          @include objectify();
+          @include scalable-rectangle-vertical($border-width-medium, auto);
+        }
+      }
+    }
+
+    ul {
+      display: none;
+      font-weight: $weight-normal;
+    }
+  }
+
+  a {
+    position: relative;
+    display: flex;
+    align-content: stretch;
+    color: $sidemenu-text-color;
+    line-height: $sidemenu-lineheight;
+
+    &.sidemenu__link--withIcon {
+      justify-content: space-between;
+
+      i {
+        &::before {
+          margin: 0 5px;
+
+          @include breakpoint(desktop) {
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    @include hoverify() {
+      color: $sidemenu-text-hover-color;
+      .btn-expander {
+        color: $sidemenu-text-color;
+      }
+    }
+  }
+
+  // Root (1st) level menu & items
+  > ul {
+    font-size: $sidemenu-size;
+    font-weight: $weight-semibold;
+
+    > li {
+      border-bottom: $border-width-thin solid $sidemenu-delimiter-color;
+
+      > a {
+        padding: 0.8rem 0.9rem;
+      }
+
+      &:last-child > a,
+      &.active {
+        border-bottom: 0;
+      }
+
+      &.active > a {
+        padding-left: 0.35em;
+        background-color: $sidemenu-background-selected;
+
+        &::before {
+          margin: -0.2em 0.35em -0.2em 0;
+          border-color: $sidemenu-text-hover-color;
+        }
+      }
+    }
+  }
+
+  .has-submenu {
+    display: flex;
+
+    // Flex behaviour
+    > a {
+      flex: 1 1;
+    }
+
+    > ul {
+      flex-basis: 100%;
+      flex-grow: 0;
+    }
+
+    &.expanded {
+      overflow: hidden;
+      flex-wrap: wrap;
+
+      > ul {
+        display: block;
+      }
+
+      > .btn-expander {
+        &::after {
+          @include objectify($position: relative);
+          @include triangle(up, 0.5em, 0.2em, $sidemenu-text-color);
+          top: -0.15em;
+        }
+
+        @include hoverify() {
+          &::after {
+            @include triangle(up, 0.5em, 0.2em, $sidemenu-text-hover-color);
+          }
+        }
+      }
+    }
+
+    &:not(.expanded) {
+      .btn-expander::after {
+        content: "+";
+      }
+    }
+
+    &.active {
+      background-color: $sidemenu-background-selected;
+    }
+
+    // 2nd level menu & items
+    > ul {
+      padding: 0.2em 0 0.75em 0.9em;
+      font-size: 95%;
+
+      > li {
+        border-left: 1px solid rgba($white, 0.1);
+
+        > a {
+          padding: 0.3em 0.85em 0.3em 0.7em;
+        }
+
+        &.active > a {
+          padding-left: 0;
+
+          &::before {
+            margin: -0.2em 0.25em -0.2em 0;
+            border-width: $border-width-small;
+            border-color: $sidemenu-text-hover-color;
+          }
+        }
+      }
+    }
+
+    // 3rd level menu & items
+    .has-submenu > ul {
+      > li {
+        border-left: 0;
+
+        > a {
+          padding-left: 0.3em;
+
+          &::before {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .btn-expander {
+    @include size(1.4em);
+    display: block;
+    margin: 0 0.5rem;
+    align-self: center;
+    cursor: pointer;
+    text-align: center;
+    font-weight: $weight-bold;
+    color: $sidemenu-text-color;
+    line-height: 1.4;
+    font-size: 1.2em;
+    border-radius: 0.7em;
+
+    @include hoverify() {
+      color: $sidemenu-text-hover-color;
+      background-color: rgba($black, 0.2);
+    }
+  }
+
+  // Mobile devices *only*, allows to hide/show the sidemenu
+  .sidemenu-toggle {
+    margin-top: -5px; // Offset the green line under the header!
+    font-size: $text-size-4;
+    font-weight: $weight-semibold;
+
+    a {
+      display: block;
+      padding: $gap-half 0.8rem;
+
+      @include extend-icon-after(list) {
+        float: right;
+        line-height: 1.1;
+        font-size: $text-size-huge;
+      }
+    }
+
+    &.expanded a {
+      @include add-icon-after(caret-up-thin);
+    }
+  }
+
+  @include breakpoint(desktop) {
+    .sidemenu-toggle {
+      display: none;
+    }
+  }
+
+  @include breakpoint($until: desktop) {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    .sidemenu-toggle {
+      color: $black-tundora;
+
+      .tereo-title {
+        display: block;
+        color: $green-brand;
+        font-weight: 500;
+      }
+      + ul {
+        display: none;
+      } // The menu
+      &.expanded + ul {
+        display: block;
+      }
+    }
+  }
+
+  @include breakpoint($until: tablet) {
+    .btn-expander {
+      @include size(auto);
+      margin: 0 0.35rem 0 0;
+      line-height: 1.5;
+
+      &::after {
+        display: inline-block;
+        margin: 0 0.85em;
+      }
+    }
+
+    .expanded > ul {
+      font-size: 100%;
+    }
+  }
+
+  &.sidemenu-light {
+    background: $sidemenu-bg-light;
+
+    a {
+      color: $black-tundora;
+
+      @include hoverify() {
+        color: $blue-endeavoura;
+      }
+    }
+
+    > ul {
+      font-weight: 500;
+      > li {
+        border-bottom-color: $grey-silver;
+
+        &.active {
+          border-bottom: 1px solid $grey-silver;
+          > a {
+            background-color: $sidemenu-bg-light;
+            color: $black-tundora;
+            // color: $green-brand;
+
+            @include hoverify() {
+              color: $blue-endeavoura;
+            }
+
+            &:before {
+              border-color: $black-tundora;
+            }
+          }
+        }
+      }
+    }
+
+    ul {
+      li {
+        &.active {
+          > a {
+            color: $black-tundora;
+            // color: $green-brand;
+            @include hoverify() {
+              color: $blue-endeavoura;
+            }
+
+            &:before {
+              border-color: $black-tundora;
+              margin-left: -1px;
+            }
+          }
+        }
+      }
+    }
+
+    .has-submenu {
+      > ul {
+        > li {
+          border-left-color: $grey-alto;
+        }
+      }
+      &.expanded {
+        .btn-expander {
+          &:after {
+            border-color: transparent transparent $black-tundora;
+          }
+        }
+      }
+    }
+
+    .btn-expander {
+      color: $black-tundora;
+    }
+
+    .has-submenu.active {
+      background-color: $sidemenu-bg-light;
+    }
+
+    @include breakpoint($from: desktop) {
+    }
+    @include breakpoint($until: tablet) {
+      margin-bottom: 1rem;
+    }
+  }
+  &.sidemenu-homepage {
+    background: $sidemenu-bg-light;
+
+    @include breakpoint($from: desktop) {
+    }
+  }
+}
+
+@keyframes draw-open {
+  0% {
+    transform: translateX(-100%);
+    visibility: hidden;
+    opacity: 0;
+    z-index: 0;
+  }
+
+  1% {
+    visibility: visible;
+  }
+  20% {
+    opacity: 0.5;
+    z-index: 10;
+  }
+
+  100% {
+    transform: translateX(0);
+    visibility: visible;
+    opacity: 1;
+    z-index: 100;
+  }
+}
+
+@keyframes draw-close {
+  0% {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  99% {
+    visibility: visible;
+  }
+
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.sidemenu-banner-wrap {
+  z-index: 1;
+  position: relative;
+  .sidemenu-homepage {
+    @extend .sidemenu;
+
+    > ul {
+      > li {
+        border-left-color: $grey-alto;
+
+        &.sidemenu__label {
+          a {
+            padding: 0.8rem 0.9rem;
+          }
+        }
+
+        .tereo-title {
+          color: $green-brand;
+          display: block;
+          font-weight: 500;
+        }
+
+        a {
+          display: block;
+          line-height: 1.2;
+          font-weight: 600;
+
+          @include hoverify() {
+            // color: $blue-endeavoura;
+            text-decoration: underline;
+            color: inherit !important;
+          }
+        }
+        &:after {
+          content: "";
+          opacity: 0;
+          // width: 0px;
+          transition: 0.8s;
+        }
+        &.expanded-draw {
+          position: relative;
+
+          &:after {
+            opacity: 1;
+            background-color: #fff;
+            position: absolute;
+            content: "";
+            height: 100%;
+            width: 20px;
+            right: -20px;
+            // border-right: 1px solid #fff;
+            z-index: 300;
+          }
+
+          a {
+            color: $green-brand;
+            font-weight: 600;
+            position: relative;
+
+            &:before {
+              content: "";
+              width: 3px;
+              background-color: $green-brand;
+              height: 50%;
+              position: absolute;
+              left: 0px;
+              top: 50%;
+              -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+            }
+          }
+
+          .btn-expander {
+            font-family: "vicicons";
+            font-size: 1.5rem;
+            color: $green-brand;
+            &:after {
+              content: "" !important;
+            }
+          }
+        }
+      }
+    }
+
+    .sidemenu-drawer {
+      display: none;
+    }
+  }
+
+  @include breakpoint($from: desktop) {
+    display: flex;
+    align-items: flex-start;
+
+    .sidemenu-homepage {
+      flex: 1 1 25%;
+      margin-bottom: 0;
+
+      > ul {
+        // position: absolute;
+        left: 0;
+        right: 75%;
+      }
+
+      .sidemenu-drawer {
+        display: flex;
+        padding: 1rem;
+        padding-right: 2rem;
+        border: 1px solid $grey;
+        display: flex;
+        // width: 75%;
+        background-color: $white;
+        // min-height: 100%;
+        height: auto;
+        position: absolute;
+        left: 25%;
+        top: -1px;
+        z-index: -10;
+
+        animation: draw-close 0.3s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+
+        &.active {
+          display: flex;
+          animation: draw-open 0.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+          // width: 75%;
+          // background-color: $white;
+          // min-height: 100%;
+          // height: auto;
+          // position: absolute;
+          // left: 25%;
+          // top: 0;
+        }
+
+        .close-draw {
+          position: absolute;
+          right: 0;
+          top: 0rem;
+          font-size: 1.3rem;
+          color: $black-tundora;
+          text-decoration: none;
+        }
+
+        .draw-nav {
+          width: 30%;
+          padding-right: 1rem;
+          margin: 0 1rem;
+          border-right: 1px solid $grey-gallery;
+          z-index: -10;
+          flex: auto;
+          min-width: 300px;
+          max-width: 300px;
+
+          .btn-expander {
+            font-size: 1.3rem;
+          }
+
+          .sub-draw-title {
+            margin-bottom: 0.5rem;
+            color: $black-tundora;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+
+            a {
+              display: block;
+              @include hoverify() {
+                text-decoration: underline;
+              }
+            }
+
+            .tereo-title {
+              color: #115737;
+              display: block;
+              font-weight: 500;
+              margin-right: 0.5rem;
+            }
+
+            // &:before {
+            //   content: "";
+            //   position: relative;
+            //   display: inline-block;
+            //   font-family: "VicIcons";
+            //   margin: 0 0.5em 0 0;
+            //   width: 1em;
+            //   vertical-align: -0.222em;
+            //   text-align: center;
+            //   line-height: 1;
+            //   font-size: 1rem;
+            // }
+          }
+
+          > ul {
+            display: none;
+            // max-width: 320px;
+
+            > li {
+              border-top: 1px solid $grey-alto;
+
+              // &:not(:last-child) {
+              //   border-bottom: 1px solid $grey-alto;
+              // }
+              padding: 0.5rem 0;
+
+              > ul {
+                > li {
+                  &:not(:last-child) {
+                    > a {
+                      border-bottom: 1px solid $grey-alto;
+                      padding-left: 0;
+                      margin-left: 0.7em;
+                    }
+                  }
+                }
+              }
+            }
+
+            &.active-nav-group {
+              display: block;
+
+              a {
+                @include hoverify() {
+                  color: $blue-endeavoura;
+                }
+              }
+              > li {
+                display: flex;
+                align-items: center;
+              }
+            }
+          }
+        }
+
+        .draw-promo {
+          padding-right: 2rem;
+          width: 70%;
+        }
+
+        &.no-promo {
+          padding-right: 1rem;
+          .draw-promo {
+            display: none;
+          }
+
+          .draw-nav {
+            padding-right: 0;
+            border-right: none;
+          }
+        }
+      }
+    }
+
+    .hub-banner {
+    }
+  }
+
+  @include breakpoint($until: desktop) {
+    .sidemenu-homepage {
+      .sidemenu-toggle {
+        a {
+          padding-top: 1rem;
+        }
+      }
+
+      > ul {
+        > li {
+          &:nth-child(2) {
+            border-top: 1px solid $grey-silver;
+          }
+        }
+      }
+
+      .sidemenu__label {
+        display: none;
+      }
+    }
+  }
+}

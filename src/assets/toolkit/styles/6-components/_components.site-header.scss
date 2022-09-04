@@ -1,15 +1,67 @@
 $logo-max-height: 6.5rem; //TODO: Transfer to rems using function
 $site-header-border-color: $brand !default;
 
+$green-linear-gradient: linear-gradient(
+    90deg,
+    #115737 0%,
+    #52951c 67%,
+    #77ba49 100%
+  )
+  0% 0%;
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0%);
+  }
+}
+@keyframes slide-out {
+  0% {
+    transform: translateY(0%);
+    position: sticky;
+    top: 0;
+    z-index: 99;
+  }
+  50% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    position: relative;
+  }
+}
+
+.main-site-header,
+#mega-nav {
+  a,
+  button {
+    &:active,
+    &:focus {
+      outline: 2px dotted $black-brand;
+    }
+  }
+  #mega-menu {
+    li.nav-item-parent > a {
+      &:active,
+      &:focus {
+        outline: initial;
+      }
+    }
+  }
+}
+
 .site-header,
 .main-site-header {
-  padding-top: .5rem;
+  padding-top: 0.5rem;
   background: $black-brand;
   border-bottom: 6px solid $site-header-border-color;
 
   .block {
     display: flex;
-    padding-top:    1rem;
+    padding-top: 1rem;
     padding-bottom: 1rem;
   }
 
@@ -30,15 +82,15 @@ $site-header-border-color: $brand !default;
       background-color: $grey-alto;
       border-radius: 3px;
 
-      input[type=search] {
+      input[type="search"] {
         margin-right: 2%;
-        padding: .66em;
+        padding: 0.66em;
         width: 78%;
         max-height: 2.81rem;
       }
 
-      input[type=submit] {
-        padding: .5em;
+      input[type="submit"] {
+        padding: 0.5em;
         width: 18%;
         max-height: 2.81rem;
         cursor: pointer;
@@ -47,7 +99,9 @@ $site-header-border-color: $brand !default;
     }
   }
 
-  .main-menu-toggle { display: none; }
+  .main-menu-toggle {
+    display: none;
+  }
 
   .horizontal-menu {
     @include clearfix();
@@ -55,7 +109,7 @@ $site-header-border-color: $brand !default;
 
     .menu-bar {
       @include clearfix();
-      padding: .25em $gap-horizontal;
+      padding: 0.25em $gap-horizontal;
 
       .search-item {
         position: absolute;
@@ -74,18 +128,22 @@ $site-header-border-color: $brand !default;
           position: relative;
         }
 
-        &:hover { opacity: $base-hover-opacity; }
+        &:hover {
+          opacity: $base-hover-opacity;
+        }
 
-        @include breakpoint( desktop-large ) {
+        @include breakpoint(desktop-large) {
           font-size: 2vw;
           font-weight: $weight-medium;
         }
 
-        @include breakpoint( $until: desktop-large ) {
+        @include breakpoint($until: desktop-large) {
           font-size: 2.5vw;
         }
 
-        @media screen and ( min-width: 1400px ) { font-size: 28px; }
+        @media screen and (min-width: 1400px) {
+          font-size: 28px;
+        }
       }
     }
 
@@ -97,11 +155,10 @@ $site-header-border-color: $brand !default;
         padding: 0 $gap-horizontal 0 0;
         font-size: $text-size-tiny;
         color: $text-light-weaker-color;
-
       }
     }
 
-    @include breakpoint( desktop-large ) {
+    @include breakpoint(desktop-large) {
       display: flex;
     }
   }
@@ -114,7 +171,9 @@ $site-header-border-color: $brand !default;
     a {
       display: block;
 
-      @include hoverify() { opacity: $base-hover-opacity; }
+      @include hoverify() {
+        opacity: $base-hover-opacity;
+      }
     }
   }
 
@@ -132,15 +191,15 @@ $site-header-border-color: $brand !default;
   /* Site's introduction - eg. sitename, motto, short abstract */
   // Sitename
   h1 {
-    font-size:   $h2-size;
+    font-size: $h2-size;
     font-weight: $weight-normal;
-    color:       $white;
+    color: $white;
 
     .large {
       font-size: 140%;
 
       &:not(:first-child) {
-        line-height: .8; // Decrease the margins
+        line-height: 0.8; // Decrease the margins
       }
     }
 
@@ -150,20 +209,21 @@ $site-header-border-color: $brand !default;
     }
 
     // Puts given part of the heading to a separate line
-    .preline { font-size: 75%; }
+    .preline {
+      font-size: 75%;
+    }
 
     // Alternative translation
     small {
-      margin-top:  .25rem;
-      font-size:   50%;
+      margin-top: 0.25rem;
+      font-size: 50%;
       font-weight: normal;
-      color:       $grey-silver;
+      color: $grey-silver;
       line-height: 1.2;
     }
   }
 
-
-  @include breakpoint( tablet ) {
+  @include breakpoint(tablet) {
     .block {
       display: flex;
       width: 100%;
@@ -172,7 +232,7 @@ $site-header-border-color: $brand !default;
 
     .site-intro {
       float: left;
-      padding: .3rem $column-padding .5rem $column-padding * 1.5;
+      padding: 0.3rem $column-padding 0.5rem $column-padding * 1.5;
       width: 75%;
     }
 
@@ -181,7 +241,9 @@ $site-header-border-color: $brand !default;
 
       &.main-nav {
         display: block !important; //important used to protect mobile slidetoggle resizing
-        a { padding-bottom: .3em; }
+        a {
+          padding-bottom: 0.3em;
+        }
       }
 
       a {
@@ -192,29 +254,33 @@ $site-header-border-color: $brand !default;
 
         &.active {
           @include after() {
-            @include scalable-rectangle-horizontal( 100%, $border-width-medium, $white );
+            @include scalable-rectangle-horizontal(
+              100%,
+              $border-width-medium,
+              $white
+            );
             position: absolute;
             bottom: 0;
             left: 0;
             margin: 0 0 $bleed-half $bleed-horizontal / 2;
           }
 
-          &:hover::after { border-color: $grey-silver; }
+          &:hover::after {
+            border-color: $grey-silver;
+          }
         }
       }
     }
 
     .logo {
       float: left;
-      padding: .1rem $column-padding * 1.5 .1rem;
+      padding: 0.1rem $column-padding * 1.5 0.1rem;
       width: 25%;
       border-right: 1px solid $black-emperor;
     }
-
   }
 
-
-  @include breakpoint( $until: tablet ) {
+  @include breakpoint($until: tablet) {
     .block {
       // @include flex-direction(column);
       justify-content: space-between;
@@ -229,37 +295,37 @@ $site-header-border-color: $brand !default;
       margin-left: auto;
 
       .icon-menu {
-        &::before { margin-right: 0; }
+        &::before {
+          margin-right: 0;
+        }
       }
     }
 
     .menu-container {
       flex: 1 1 100%;
-      margin-top: .3rem;
+      // margin-top: .3rem;
       display: flex;
       flex-direction: column;
       order: 5;
 
-
-
-      .sub-nav { 
+      .sub-nav {
         display: none;
         order: 2;
-        
+
         .menu-bar {
           display: flex;
           flex-wrap: wrap;
           margin-top: 1rem;
           justify-content: center;
 
-           a {
-            padding: .5rem 1.5rem .5rem 0;
+          a {
+            padding: 0.5rem 1.5rem 0.5rem 0;
             font-size: 95%;
             color: #fff;
             text-transform: inherit;
             text-decoration: underline;
             font-weight: 500;
-           }
+          }
         }
       }
 
@@ -274,7 +340,9 @@ $site-header-border-color: $brand !default;
             background-color: $black-tundora;
 
             // TODO: Refactor & flatten to lower the depth!
-            .search-item { display: none; }
+            .search-item {
+              display: none;
+            }
 
             // TODO: Refactor & flatten to lower the depth!
             a {
@@ -285,21 +353,22 @@ $site-header-border-color: $brand !default;
 
               @include hoverify() {
                 background-color: $grey;
-                transition: all .5s ease;
+                transition: all 0.5s ease;
               }
 
-              &:nth-last-child( 2 ) {
+              &:nth-last-child(2) {
                 border-bottom-color: transparent;
               }
             }
-
           }
         }
       }
     }
 
     .logo {
-      img { width: 12rem; }
+      img {
+        width: 12rem;
+      }
     }
 
     .site-intro {
@@ -312,7 +381,9 @@ $site-header-border-color: $brand !default;
       line-height: #{$text-line-height * 1.2}rem;
       text-align: center;
 
-      .large { font-size: 120%; }
+      .large {
+        font-size: 120%;
+      }
     }
 
     .search-bar {
@@ -321,68 +392,72 @@ $site-header-border-color: $brand !default;
       form {
         width: 100%;
 
-        input[type=search] { width: 100%; }
+        input[type="search"] {
+          width: 100%;
+        }
 
-        input[type=submit] {
-          margin-top: .5rem;
+        input[type="submit"] {
+          margin-top: 0.5rem;
           width: 100%;
         }
       }
     }
-
   }
 }
 
 /* menu toggle icon css only transform hamburger to cross */
 .menu-toggle-icon {
-  @include size( 60px, 45px );
+  @include size(60px, 45px);
   position: relative;
-  transform: rotate( 0deg );
-  transition: .5s ease-in-out;
-  transform: scale( .5 );
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  transform: scale(0.5);
 }
 
 .menu-toggle-icon span {
-  @include size( 100%, 9px );
+  @include size(100%, 9px);
   position: absolute;
   left: 0;
   display: block;
-  transform: rotate( 0deg );
-  transition: .25s ease-in-out;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
   opacity: 1;
   background: $white;
   border-radius: 9px;
 }
 
-.menu-toggle-icon span:nth-child( 1 ) { top: 0; }
+.menu-toggle-icon span:nth-child(1) {
+  top: 0;
+}
 
-.menu-toggle-icon span:nth-child( 2 ),
-.menu-toggle-icon span:nth-child( 3 ) {
+.menu-toggle-icon span:nth-child(2),
+.menu-toggle-icon span:nth-child(3) {
   top: 18px;
 }
 
-.menu-toggle-icon span:nth-child( 4 ) { top: 36px; }
+.menu-toggle-icon span:nth-child(4) {
+  top: 36px;
+}
 
-.menu-toggle-icon.open span:nth-child( 1 ) {
+.menu-toggle-icon.open span:nth-child(1) {
   top: 18px;
   left: 50%;
   width: 0%;
 }
 
-.menu-toggle-icon.open span:nth-child( 2 ) {
-  transform: rotate( 45deg );
+.menu-toggle-icon.open span:nth-child(2) {
+  transform: rotate(45deg);
 }
 
-.menu-toggle-icon.open span:nth-child( 3 ) {
-  transform: rotate( -45deg );
+.menu-toggle-icon.open span:nth-child(3) {
+  transform: rotate(-45deg);
 }
 
-.menu-toggle-icon.open span:nth-child( 4 ) {
+.menu-toggle-icon.open span:nth-child(4) {
   top: 18px;
   left: 50%;
   width: 0;
 }
-
 
 /* Styling to fit existing site IA until hub IA is implemented */
 .main-site-header {
@@ -390,8 +465,7 @@ $site-header-border-color: $brand !default;
     overflow: hidden; // IE11 FIX to remove heading height explosion
 
     > div {
-
-      @include breakpoint( tablet ) {
+      @include breakpoint(tablet) {
         .logo {
           margin-right: 0;
           width: 25%;
@@ -410,33 +484,35 @@ $site-header-border-color: $brand !default;
                 margin-bottom: $gap-small;
                 padding: $gap-tiny $gap-horizontal $gap-tiny 0;
 
-                @include breakpoint( tablet ) {
+                @include breakpoint(tablet) {
                   font-size: 1.1rem;
                 }
 
-                @include breakpoint( $until: tablet ) {
+                @include breakpoint($until: tablet) {
                   padding: 1rem 1.5rem;
                   font-size: 1.2rem;
                 }
-
               }
             }
           }
         }
 
-        @include breakpoint( $until: tablet ) {
+        @include breakpoint($until: tablet) {
           padding-left: 0;
         }
       }
-
     }
   }
 }
 
-@include breakpoint( $until: tablet ) {
+@include breakpoint($until: tablet) {
   .global {
     + .site-header {
-      .logo { display: none; }
+      .logo {
+        display: none;
+      }
     }
   }
 }
+
+

@@ -31,7 +31,6 @@ function waitForElm(selector) {
     });
   });
 }
-
 // Hide link for bots in case bot-version of page gets cached, e.g. on /events
 if (document.getElementById("clickLinks")) {
   if (
@@ -40,7 +39,6 @@ if (document.getElementById("clickLinks")) {
     document.getElementById("clickLinks").style.display = "none";
   }
 }
-
 let searchParams = new URLSearchParams(window.location.search);
 
 function hideCourseLevies() {
@@ -120,11 +118,21 @@ function hideCourseLevies() {
 
 document.addEventListener("DOMContentLoaded", function (event) {
   // Your code to run since DOM is loaded and ready
+
   waitForElm(".course-item-list").then(function () {
     // console.log('hide');
     hideCourseLevies();
   });
 });
+
+// Check toolbar for mode=dev and apply class
+if (
+  document.location.href.includes("SQ_DESIGN_NAME=v4") ||
+  document.location.href.includes("local.wgtn") ||
+  document.location.href.includes("assets/git_bridge/0009/1778031/dist")
+) {
+  $("body").attr("id", "hubv4");
+}
 
 // Check toolbar to ensure myTools has been updated to Puaha
 if (
