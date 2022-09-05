@@ -307,13 +307,14 @@ body#hubv4 {
       .sidemenu-drawer {
         transition: top $easing 0.5s, opacity $easing 0.8s,
           padding-top $easing 0.5s, padding-bottom $easing 0.5s;
+
+        transition: all $easing 0.5s;
         overflow: hidden;
         position: absolute;
         // make top Dynamic width
         left: 0;
         top: var(--horizontal-nav-offset);
-
-        top: -300%;
+        top: -100%;
         width: 100%;
         display: flex;
         justify-content: flex-start;
@@ -321,6 +322,7 @@ body#hubv4 {
         background-color: $white;
         opacity: 0;
         z-index: -1;
+        max-height: 0;
 
         &:before {
           content: "";
@@ -356,6 +358,7 @@ body#hubv4 {
           border-top: none;
           border-bottom: 4px solid $green-brand;
           box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px;
+          max-height: 1200px;
           &:before {
             max-height: 100vh;
             height: 100vh;
@@ -427,6 +430,7 @@ body#hubv4 {
                 width: 100%;
 
                 @include hoverify() {
+                  color: $black-tundora;
                   text-decoration: underline;
                 }
               }
@@ -538,11 +542,7 @@ body#hubv4 {
               column-count: 1;
               position: relative;
 
-              a {
-                @include hoverify() {
-                  color: $blue-endeavoura;
-                }
-              }
+         
               > li:not(.sub-draw-title) {
                 display: flex;
                 align-items: center;
@@ -905,15 +905,14 @@ body#hubv4 {
   }
 
   // No top margin on hub page, so banner sits flush with header
-    .content-panel {
-      margin-top: 0rem;
-      main {
-
-        > .block {
-          padding-top: 0;
-        }
+  .content-panel {
+    margin-top: 0rem;
+    main {
+      > .block {
+        padding-top: 0;
       }
     }
+  }
   // Buttons
 
   button:not(.flat):not(.no-icon)::after,
@@ -1531,7 +1530,6 @@ body#hubv4 {
       .content-panel & {
         padding-bottom: 0;
       }
-
     }
     &.breadcrumbs-full {
       margin-bottom: 1rem;

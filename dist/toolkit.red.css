@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, September 5, 2022, 9:54 AM */
+/** Version: 0.10.13 | Tuesday, September 6, 2022, 11:26 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -18139,6 +18139,8 @@ body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-
   z-index: 50;
   padding: 10px 15px;
   font-size: 18px;
+  -webkit-transition: none;
+  transition: none;
 }
 
 @media (max-width: 42.99em) {
@@ -18150,6 +18152,8 @@ body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-
 body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item a .tereo-title {
   display: block;
   color: #0D4C38;
+  font-weight: 400;
+  margin-bottom: 5px;
 }
 
 body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item a.active {
@@ -18159,6 +18163,7 @@ body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-
 
 body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item a.active .tereo-title {
   color: #0D4C38;
+  font-weight: 600;
 }
 
 body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item > a {
@@ -18177,6 +18182,10 @@ body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-
 
 body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item .mobile-tray-menu {
   display: none;
+}
+
+body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item > ul > li.nav-item-parent {
+  border-bottom: 1px #EEE solid;
 }
 
 body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item > ul > li.nav-item-parent > a {
@@ -21070,11 +21079,13 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu__label {
   body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer {
     -webkit-transition: top cubic-bezier(0.22, 1, 0.36, 1) 0.5s, opacity cubic-bezier(0.22, 1, 0.36, 1) 0.8s, padding-top cubic-bezier(0.22, 1, 0.36, 1) 0.5s, padding-bottom cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
     transition: top cubic-bezier(0.22, 1, 0.36, 1) 0.5s, opacity cubic-bezier(0.22, 1, 0.36, 1) 0.8s, padding-top cubic-bezier(0.22, 1, 0.36, 1) 0.5s, padding-bottom cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
+    -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
+    transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
     overflow: hidden;
     position: absolute;
     left: 0;
     top: var(--horizontal-nav-offset);
-    top: -300%;
+    top: -100%;
     width: 100%;
     display: -webkit-box;
     display: flex;
@@ -21084,6 +21095,7 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu__label {
     background-color: #FFF;
     opacity: 0;
     z-index: -1;
+    max-height: 0;
   }
   body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer:before {
     content: "";
@@ -21115,6 +21127,7 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu__label {
     border-bottom: 4px solid #115737;
     -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px;
+    max-height: 1200px;
   }
   body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer.horizontal-drawer-expanded:before {
     max-height: 100vh;
@@ -21183,6 +21196,7 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu__label {
     width: 100%;
   }
   body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li a:hover, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li a:active, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li a:focus {
+    color: #424242;
     text-decoration: underline;
   }
   body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul li .btn-expander {
@@ -21278,9 +21292,6 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu__label {
        -moz-column-count: 1;
             column-count: 1;
     position: relative;
-  }
-  body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul.active-nav-group a:hover, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul.active-nav-group a:active, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul.active-nav-group a:focus {
-    color: #005EA5;
   }
   body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul.active-nav-group > li:not(.sub-draw-title) {
     display: -webkit-box;
