@@ -1755,12 +1755,15 @@ body#hubv4 {
                 z-index: 50;
                 padding: 10px 15px;
                 font-size: 18px;
+                transition: none;
                 @include breakpoint($until: tablet) {
                   font-size: 16px;
                 }
                 .tereo-title {
                   display: block;
                   color: $pounamu;
+                  font-weight: 400;
+                  margin-bottom: 5px;
                 }
                 &.active {
                   font-weight: 600;
@@ -1768,6 +1771,7 @@ body#hubv4 {
                   // color: $green-brand-bright;
                   .tereo-title {
                     color: $pounamu;
+                    font-weight: 600;
                   }
                 }
               }
@@ -1791,11 +1795,13 @@ body#hubv4 {
               }
 
               // TOP LEVEL
-              > ul > li.nav-item-parent > a {
-                margin-left: 20px;
-                padding-left: 5px;
+              > ul > li.nav-item-parent {
+                border-bottom: 1px $grey-gallery solid;
+                > a {
+                  margin-left: 20px;
+                  padding-left: 5px;
+                }
               }
-
               // ALL LEVELS
               ul {
                 font-size: 16px;
@@ -3716,7 +3722,7 @@ body#hubv4 {
     //? Promo panel
     .promo-panel {
       position: relative;
-      &.site-search{
+      &.site-search {
         margin-top: 2rem;
         padding-top: 2rem;
         padding-bottom: 2rem;
