@@ -73,17 +73,22 @@ $box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
 @keyframes draw-up {
   0% {
     visibility: visible;
+    z-index: 10;
     opacity: 1;
+    max-height: 700px;
   }
 
   50% {
-    overflow: hidden;
+    max-height: 700px;
   }
 
   100% {
     visibility: hidden;
-    max-height: 0;
-    display: none;
+    z-index: 0;
+    max-height: 0px !important;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
   }
 }
 $easing: cubic-bezier(0.22, 1, 0.36, 1);
@@ -305,24 +310,26 @@ body#hubv4 {
       }
 
       .sidemenu-drawer {
-        transition: top $easing 0.5s, opacity $easing 0.8s,
-          padding-top $easing 0.5s, padding-bottom $easing 0.5s;
-
+        // transition: top $easing 0.5s, opacity $easing 0.8s,
+        //   padding-top $easing 0.5s, padding-bottom $easing 0.5s;
+        // animation: draw-up 1s;
         transition: all $easing 0.5s;
         overflow: hidden;
-        position: absolute;
-        // make top Dynamic width
+        opacity: 0;
+        // max-height: 0;
+        z-index: -1;
         left: 0;
         top: var(--horizontal-nav-offset);
-        top: -100%;
+        // top: -100%;
         width: 100%;
+        position: absolute;
+        // make top Dynamic width
+
         display: flex;
         justify-content: flex-start;
         padding: 1rem 5rem 2rem;
         background-color: $white;
-        opacity: 0;
-        z-index: -1;
-        max-height: 0;
+        transform: translateY(-100%);
 
         &:before {
           content: "";
@@ -353,12 +360,14 @@ body#hubv4 {
         &.horizontal-drawer-expanded {
           z-index: 10;
           opacity: 1;
+          transform: translateY(0);
+          // animation: draw-down 1s;
           // animation: draw-down 1s $easing forwards;
           top: var(--horizontal-nav-offset);
           border-top: none;
           border-bottom: 4px solid $green-brand;
           box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px;
-          max-height: 1200px;
+          // max-height: 1200px;
           &:before {
             max-height: 100vh;
             height: 100vh;
@@ -542,7 +551,6 @@ body#hubv4 {
               column-count: 1;
               position: relative;
 
-         
               > li:not(.sub-draw-title) {
                 display: flex;
                 align-items: center;
@@ -1056,13 +1064,24 @@ body#hubv4 {
       }
     }
   }
+
+  // Flex h1 of page on non-hub pages. For save page icon alignment
+  &:not(.hub-page) {
+    .content-panel {
+      // margin-top: 1rem;
+      main {
+        h1 {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
   .content-panel {
     // margin-top: 1rem;
     main {
       h1 {
         font-size: 2.4rem;
-        display: flex;
-        align-items: center;
       }
       h2 {
         font-size: 1.8rem;
