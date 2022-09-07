@@ -219,7 +219,7 @@ body#hubv4 {
           // Min height required just in case no Te Reo titles are present to pad out the nav
           &:hover {
             i {
-              color: $green-brand;
+              color: $pounamu;
             }
           }
           // ICONS IN NAVBAR
@@ -250,9 +250,6 @@ body#hubv4 {
           }
 
           &::after {
-            // position: absolute;
-            // right: 10px;
-            // top: 20px;
             content: "\f181";
             display: inline-block;
             font-family: "Favorites";
@@ -264,7 +261,7 @@ body#hubv4 {
             text-transform: none;
             font-size: 1rem;
             z-index: 0;
-            color: $green-brand;
+            color: $pounamu;
             cursor: pointer;
             transition: transform $easing 0.3s;
             transform: rotateZ(-90deg);
@@ -277,7 +274,7 @@ body#hubv4 {
           }
 
           .tereo-title {
-            color: $green-brand;
+            color: $pounamu;
             margin-bottom: 6px;
           }
 
@@ -310,26 +307,20 @@ body#hubv4 {
       }
 
       .sidemenu-drawer {
-        // transition: top $easing 0.5s, opacity $easing 0.8s,
-        //   padding-top $easing 0.5s, padding-bottom $easing 0.5s;
-        // animation: draw-up 1s;
         transition: all $easing 0.5s;
         overflow: hidden;
         opacity: 0;
-        // max-height: 0;
         z-index: -1;
         left: 0;
         top: var(--horizontal-nav-offset);
-        // top: -100%;
         width: 100%;
         position: absolute;
-        // make top Dynamic width
-
         display: flex;
         justify-content: flex-start;
         padding: 1rem 5rem 2rem;
         background-color: $white;
         transform: translateY(-100%);
+        box-shadow: none;
 
         &:before {
           content: "";
@@ -361,13 +352,10 @@ body#hubv4 {
           z-index: 10;
           opacity: 1;
           transform: translateY(0);
-          // animation: draw-down 1s;
-          // animation: draw-down 1s $easing forwards;
           top: var(--horizontal-nav-offset);
           border-top: none;
-          border-bottom: 4px solid $green-brand;
+          border-bottom: 4px solid $pounamu;
           box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px;
-          // max-height: 1200px;
           &:before {
             max-height: 100vh;
             height: 100vh;
@@ -414,7 +402,7 @@ body#hubv4 {
               }
 
               .tereo-title {
-                color: $green-brand;
+                color: $pounamu;
                 &:after {
                   content: " / ";
                   margin-right: 5px;
@@ -427,7 +415,6 @@ body#hubv4 {
             padding: 0.2em 0 0.75em 0.9em;
             font-size: 95%;
             display: none;
-            // max-width: 320px;
 
             li {
               a {
@@ -447,7 +434,7 @@ body#hubv4 {
               .btn-expander {
                 color: $black-tundora;
                 &:hover {
-                  background-color: $grey-alto;
+                  background-color: $grey-gallery;
                 }
 
                 &:after {
@@ -498,7 +485,7 @@ body#hubv4 {
             }
 
             > li {
-              border-bottom: 1px $grey-alto solid;
+              border-bottom: 1px $grey-gallery solid;
               flex-wrap: wrap;
 
               &.active > a {
@@ -521,7 +508,7 @@ body#hubv4 {
                 -webkit-box-flex: 1;
                 flex: 1 0 99%;
                 > li {
-                  border-left: 1px $grey-alto solid;
+                  border-left: 1px $grey-gallery solid;
                   padding: 2px;
                   padding-left: 20px;
                   position: relative;
@@ -535,7 +522,7 @@ body#hubv4 {
                   &:before {
                     transition: all $easing 0.2s;
                     content: "";
-                    background-color: #ddd;
+                    background-color: $grey-gallery;
                     position: absolute;
                     left: 0;
                     top: 15px;
@@ -612,7 +599,7 @@ body#hubv4 {
 
         .tereo-title {
           display: block;
-          color: $green-brand;
+          color: $pounamu;
           font-weight: 500;
           // font-size: 1.2rem;
         }
@@ -635,7 +622,7 @@ body#hubv4 {
 
           .tereo-title {
             display: none;
-            color: $green-brand;
+            color: $pounamu;
             font-weight: 500;
           }
         }
@@ -664,7 +651,7 @@ body#hubv4 {
               color: $black-tundora;
 
               &::before {
-                border-color: $green-brand !important;
+                border-color: $pounamu !important;
                 position: absolute;
                 border: none;
               }
@@ -1201,40 +1188,9 @@ body#hubv4 {
         1.11% 105.97%
       );
       margin-left: -20px;
-      background-color: $green-brand;
+      background-color: $pounamu;
       color: #fff;
     }
-    // Buttons
-    // button.primary:not(.flat),
-    // .button.primary:not(.flat) {
-    //   border: 2px $pounamu solid;
-    //   border-radius: 0;
-    //   color: #fff;
-    //   background-color: $pounamu;
-
-    //   &:hover,
-    //   &:active,
-    //   &:focus {
-    //     // background-color: darken($color: $green-brand-bright, $amount: 5);
-    //     background-color: #fff;
-    //     color: $pounamu;
-    //   }
-    // }
-    // .button:not(.flat),
-    // button:not(.flat) {
-    //   border-radius: 0;
-    //   font-weight: 600;
-    //   border: 2px $black-brand solid;
-    //   color: $black-brand;
-    //   background-color: #fff;
-    //   &:hover,
-    //   &:active,
-    //   &:focus {
-    //     // background-color: darken($color: $green-brand-bright, $amount: 5);
-    //     background-color: $black-brand;
-    //     color: #fff;
-    //   }
-    // }
 
     // Carousel
     .carousel-controls {
@@ -1298,7 +1254,6 @@ body#hubv4 {
         padding: 0;
         background-color: #fff;
         box-shadow: $box-shadow-card;
-        // border-top: 4px $green-brand-bright solid;
 
         position: relative;
         .image-container {
@@ -1307,11 +1262,6 @@ body#hubv4 {
           @include breakpoint($until: desktop) {
             clip-path: initial;
             flex: 1 0 20%;
-            // position: absolute;
-            // left: 0;
-            // top: 0;
-            // height: 100%;
-            // width: 242px;
           }
           &:before {
             position: absolute;
