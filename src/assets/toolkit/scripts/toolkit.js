@@ -1376,6 +1376,38 @@ if ($("body").attr("id") == "hubv4") {
   $(".save-page").on("click", function () {
     $(this).toggleClass("saved");
   });
+
+  // Save a page
+  $(".save-page").on("click", function () {
+    var localSavedPages = JSON.parse(localStorage.getItem("savedPages"));
+
+    var savedPageObject = {
+      url: window.location.href,
+      name: document.title,
+    };
+
+    console.log(localSavedPages);
+
+    if (localSavedPages && localSavedPages.length > 0) {
+      console.log(localSavedPages);
+      var arrayOfSavedItems = [];
+
+      var filtered = localSavedPages.filter(function (option) {
+        return option.url !== savedPageObject.url;
+      });
+      localStorage.setItem("savedPages", [JSON.stringify(filtered)]);
+    } else {
+      // First saved page
+      var arrayOfSavedItems = [];
+      arrayOfSavedItems.push(savedPageObject);
+
+      localStorage.setItem("savedPages", JSON.stringify(arrayOfSavedItems));
+    }
+  });
+
+  // Apply style to page save icon if page is in local storage
+  if ($(".save-page")) {
+  }
 } else {
   /* CONSTANT ATTRIBUTES */
 

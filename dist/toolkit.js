@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, September 7, 2022, 9:31 AM */
+/** Version: 0.10.13 | Thursday, September 8, 2022, 9:38 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -16832,7 +16832,32 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
 
   external_jQuery_default()(".save-page").on("click", function () {
     external_jQuery_default()(this).toggleClass("saved");
-  });
+  }); // Save a page
+
+  external_jQuery_default()(".save-page").on("click", function () {
+    var localSavedPages = JSON.parse(localStorage.getItem("savedPages"));
+    var savedPageObject = {
+      url: window.location.href,
+      name: document.title
+    };
+    console.log(localSavedPages);
+
+    if (localSavedPages && localSavedPages.length > 0) {
+      console.log(localSavedPages);
+      var arrayOfSavedItems = [];
+      var filtered = localSavedPages.filter(function (option) {
+        return option.url !== savedPageObject.url;
+      });
+      localStorage.setItem("savedPages", [JSON.stringify(filtered)]);
+    } else {
+      // First saved page
+      var arrayOfSavedItems = [];
+      arrayOfSavedItems.push(savedPageObject);
+      localStorage.setItem("savedPages", JSON.stringify(arrayOfSavedItems));
+    }
+  }); // Apply style to page save icon if page is in local storage
+
+  if (external_jQuery_default()(".save-page")) {}
 } else {
   /* SUPPORTING FUNCTIONS */
 
