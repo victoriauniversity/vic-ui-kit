@@ -529,7 +529,6 @@ export function initTray() {
 
   var notificationCount = 0;
 
-
   // !Remove default icon injected on all role="button" elements
   $(".btn-expander").addClass("no-icon");
 
@@ -552,8 +551,6 @@ export function initTray() {
       return dateString;
     }
   };
-
-
 
   var resizeTallBlip = function (el, hide) {
     if (hide) {
@@ -772,6 +769,8 @@ export function initTray() {
     $(".tray").addClass("responsive-preview");
     toggleTray();
   }
+
+
 
   // setTimeout(() => {
   //   // Initial blip position

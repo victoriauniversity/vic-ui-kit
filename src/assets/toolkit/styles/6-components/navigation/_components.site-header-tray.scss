@@ -1755,12 +1755,15 @@ body#hubv4 {
                 z-index: 50;
                 padding: 10px 15px;
                 font-size: 18px;
+                transition: none;
                 @include breakpoint($until: tablet) {
                   font-size: 16px;
                 }
                 .tereo-title {
                   display: block;
                   color: $pounamu;
+                  font-weight: 400;
+                  margin-bottom: 5px;
                 }
                 &.active {
                   font-weight: 600;
@@ -1768,6 +1771,7 @@ body#hubv4 {
                   // color: $green-brand-bright;
                   .tereo-title {
                     color: $pounamu;
+                    font-weight: 600;
                   }
                 }
               }
@@ -1791,11 +1795,13 @@ body#hubv4 {
               }
 
               // TOP LEVEL
-              > ul > li.nav-item-parent > a {
-                margin-left: 20px;
-                padding-left: 5px;
+              > ul > li.nav-item-parent {
+                border-bottom: 1px $grey-gallery solid;
+                > a {
+                  margin-left: 20px;
+                  padding-left: 5px;
+                }
               }
-
               // ALL LEVELS
               ul {
                 font-size: 16px;
@@ -3716,7 +3722,7 @@ body#hubv4 {
     //? Promo panel
     .promo-panel {
       position: relative;
-      &.site-search{
+      &.site-search {
         margin-top: 2rem;
         padding-top: 2rem;
         padding-bottom: 2rem;
@@ -3854,148 +3860,150 @@ body#hubv4 {
       }
     }
     //? Footer
-    footer {
+
+  }
+
+  footer {
+    .svg-container {
+      display: none;
+    }
+
+    &.svg-pattern {
       .svg-container {
-        display: none;
-      }
-
-      &.svg-pattern {
-        .svg-container {
-          display: block;
-          position: absolute;
-          width: 100px;
-          height: 100px;
-          &.svg-top {
-            right: 0;
-            top: -50px;
-            svg {
-              transform: rotate(-45deg);
-            }
-          }
-          &.svg-bottom {
-            bottom: -50px;
-            left: 0;
-            svg {
-              transform: rotate(135deg);
-            }
-          }
+        display: block;
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        &.svg-top {
+          right: 0;
+          top: -50px;
           svg {
-            .cls-1,
-            .cls-2 {
-              isolation: isolate;
-            }
-            .cls-1 {
-              fill: $miro;
-              opacity: 0.3;
-            }
+            transform: rotate(-45deg);
+          }
+        }
+        &.svg-bottom {
+          bottom: -50px;
+          left: 0;
+          svg {
+            transform: rotate(135deg);
+          }
+        }
+        svg {
+          .cls-1,
+          .cls-2 {
+            isolation: isolate;
+          }
+          .cls-1 {
+            fill: $miro;
+            opacity: 0.3;
+          }
 
-            .cls-2 {
-              fill: $mahoe;
-              opacity: 0.1;
-            }
+          .cls-2 {
+            fill: $mahoe;
+            opacity: 0.1;
           }
         }
       }
+    }
 
-      // Emergencies button
+    // Emergencies button
+    h2 {
+      .button.primary {
+        background-color: $kowhai;
+        color: $pounamu;
+      }
+    }
+    .cols {
       h2 {
-        .button.primary {
-          background-color: $kowhai;
-          color: $pounamu;
-        }
+        margin-bottom: 0.5rem;
       }
-      .cols {
-        h2 {
-          margin-bottom: 0.5rem;
-        }
-        .link_list {
-          margin-bottom: 2rem;
+      .link_list {
+        margin-bottom: 2rem;
 
-          .social_logo {
-            border-radius: 100px;
-            filter: grayscale(1);
-            &:hover {
-              filter: grayscale(0);
-            }
+        .social_logo {
+          border-radius: 100px;
+          filter: grayscale(1);
+          &:hover {
+            filter: grayscale(0);
           }
         }
       }
+    }
 
-      .footer-secondary {
-        position: relative;
-        background-color: $kohuhu;
+    .footer-secondary {
+      position: relative;
+      background-color: $kohuhu;
 
-        // Add padding for background
+      // Add padding for background
+      @include breakpoint($until: tablet) {
+        .centraliser {
+          padding-top: 2rem;
+        }
+      }
+
+      .svg-mobile {
+        display: none;
+        position: absolute;
+        top: 5px;
         @include breakpoint($until: tablet) {
-          .centraliser {
-            padding-top: 2rem;
-          }
+          display: block;
         }
 
-        .svg-mobile {
+        svg {
+          height: 7vw;
+          width: 100vw;
+        }
+      }
+
+      .svg-bg-left,
+      .svg-bg-right {
+        position: absolute;
+        top: -20px;
+        height: 113%;
+        z-index: 0;
+      }
+      .svg-bg-left {
+        left: -50px;
+        transform: rotateZ(180deg);
+        @include breakpoint($until: desktop-medium) {
           display: none;
-          position: absolute;
-          top: 5px;
-          @include breakpoint($until: tablet) {
-            display: block;
-          }
-
-          svg {
-            height: 7vw;
-            width: 100vw;
-          }
         }
-
-        .svg-bg-left,
-        .svg-bg-right {
-          position: absolute;
-          top: -20px;
-          height: 113%;
-          z-index: 0;
-        }
-        .svg-bg-left {
-          left: -50px;
-          transform: rotateZ(180deg);
-          @include breakpoint($until: desktop-medium) {
-            display: none;
-          }
-        }
-        .svg-bg-right {
-          right: -50px;
-          transform: rotateX(180deg);
-          @include breakpoint($until: tablet) {
-            display: none;
-          }
-          @include breakpoint($until: desktop-medium) {
-            right: 0;
-          }
+      }
+      .svg-bg-right {
+        right: -50px;
+        transform: rotateX(180deg);
+        @include breakpoint($until: tablet) {
+          display: none;
         }
         @include breakpoint($until: desktop-medium) {
-          .site_links {
-            columns: 2;
-          }
+          right: 0;
         }
+      }
+      @include breakpoint($until: desktop-medium) {
+        .site_links {
+          columns: 2;
+        }
+      }
 
-        .footer-col {
+      .footer-col {
+        a {
+          color: $black-brand;
+        }
+        li {
+          color: $black-brand;
+        }
+        h4 {
+          color: $black-brand;
+          font-weight: 700;
           a {
             color: $black-brand;
           }
-          li {
-            color: $black-brand;
-          }
-          h4 {
-            color: $black-brand;
-            font-weight: 700;
-            a {
-              color: $black-brand;
-            }
-          }
         }
       }
+    }
 
-      .footer-primary {
-        background-color: $pounamu;
-      }
+    .footer-primary {
+      background-color: $pounamu;
     }
   }
 
