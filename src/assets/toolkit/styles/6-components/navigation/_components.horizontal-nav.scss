@@ -45,7 +45,8 @@ $marketing-linear-gradient: linear-gradient(
   #669787 77.11%,
   #99b9af 100%
 );
-$box-shadow-card: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+$box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+  rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 
 @keyframes draw-down {
   0% {
@@ -63,7 +64,7 @@ $box-shadow-card: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 
   100% {
     visibility: visible;
-    z-index: 999;
+    z-index: 10;
     opacity: 1;
     max-height: 700px;
   }
@@ -72,23 +73,30 @@ $box-shadow-card: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 @keyframes draw-up {
   0% {
     visibility: visible;
+    z-index: 10;
     opacity: 1;
+    max-height: 700px;
   }
 
   50% {
-    overflow: hidden;
+    max-height: 700px;
   }
 
   100% {
     visibility: hidden;
-    max-height: 0;
-    display: none;
+    z-index: 0;
+    max-height: 0px !important;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
   }
 }
 $easing: cubic-bezier(0.22, 1, 0.36, 1);
 body#hubv4 {
   .main-site-header {
     padding-top: 0;
+    position: relative;
+    z-index: 99;
     &.show-mega-menu-top-wrap {
       padding-top: 0;
       overflow: unset !important;
@@ -129,6 +137,8 @@ body#hubv4 {
   .top-header {
     background-color: #f7f7f7;
     border-bottom: 1px $grey-alto solid;
+    position: relative;
+    z-index: 50;
   }
 
   #mega_menu_block {
@@ -151,9 +161,11 @@ body#hubv4 {
       }
     }
     #mega-menu {
+      z-index: 50;
+      background-color: #fff;
       > li {
         &:after {
-          top: 30%;
+          // top: 30%;
         }
         > a {
           padding-bottom: 10px;
@@ -207,7 +219,7 @@ body#hubv4 {
           // Min height required just in case no Te Reo titles are present to pad out the nav
           &:hover {
             i {
-              color: $green-brand;
+              color: $pounamu;
             }
           }
           // ICONS IN NAVBAR
@@ -222,14 +234,14 @@ body#hubv4 {
             padding-right: 5px;
           }
 
-          // &:not(:first-of-type) {
-          //   &::before {
-          //     content: "";
-          //     width: 2px;
-          //     height: 100%;
-          //     background: linear-gradient(0deg, $grey-gallery, #fff);
-          //   }
-          // }
+          &:not(:first-of-type) {
+            &::before {
+              content: "";
+              width: 2px;
+              height: 100%;
+              background: linear-gradient(0deg, $grey-gallery, #fff);
+            }
+          }
           // Ignore first <li> which is some side menu thing
           &:nth-of-type(2) {
             &:before {
@@ -238,9 +250,6 @@ body#hubv4 {
           }
 
           &::after {
-            position: absolute;
-            right: 10px;
-            top: 20px;
             content: "\f181";
             display: inline-block;
             font-family: "Favorites";
@@ -252,10 +261,12 @@ body#hubv4 {
             text-transform: none;
             font-size: 1rem;
             z-index: 0;
-            color: $green-brand;
+            color: $pounamu;
             cursor: pointer;
             transition: transform $easing 0.3s;
             transform: rotateZ(-90deg);
+            position: relative;
+            align-self: center;
           }
 
           .btn-expander {
@@ -263,7 +274,7 @@ body#hubv4 {
           }
 
           .tereo-title {
-            color: $green-brand;
+            color: $pounamu;
             margin-bottom: 6px;
           }
 
@@ -296,20 +307,20 @@ body#hubv4 {
       }
 
       .sidemenu-drawer {
-        transition: max-height $easing 0.5s, opacity $easing 0.8s,
-          padding-top $easing 0.5s, padding-bottom $easing 0.5s;
+        transition: all $easing 0.5s;
         overflow: hidden;
-        max-height: 0px;
-        position: absolute;
-        // make top Dynamic width
-        top: var(--horizontal-nav-offset);
+        opacity: 0;
+        z-index: -1;
         left: 0;
+        top: var(--horizontal-nav-offset);
         width: 100%;
+        position: absolute;
         display: flex;
         justify-content: flex-start;
-        padding: 0 5rem;
+        padding: 1rem 5rem 2rem;
         background-color: $white;
-        opacity: 0;
+        transform: translateY(-100%);
+        box-shadow: none;
 
         &:before {
           content: "";
@@ -338,13 +349,12 @@ body#hubv4 {
         }
 
         &.horizontal-drawer-expanded {
-          z-index: 100;
+          z-index: 10;
           opacity: 1;
-          // animation: draw-down 1s $easing forwards;
-          max-height: 700px;
+          transform: translateY(0);
+          top: var(--horizontal-nav-offset);
           border-top: none;
-          border-bottom: 4px solid $green-brand;
-          padding: 1rem 5rem 2rem;
+          border-bottom: 4px solid $pounamu;
           box-shadow: rgba(0, 0, 0, 0.24) 0px 8px 8px;
           &:before {
             max-height: 100vh;
@@ -367,7 +377,7 @@ body#hubv4 {
           padding-right: 1rem;
           margin: 0 1rem;
           border-right: 1px solid $grey-gallery;
-          z-index: -10;
+          z-index: 0;
           flex: auto;
           min-width: 300px;
           max-width: 1000px;
@@ -392,7 +402,7 @@ body#hubv4 {
               }
 
               .tereo-title {
-                color: $green-brand;
+                color: $pounamu;
                 &:after {
                   content: " / ";
                   margin-right: 5px;
@@ -405,7 +415,6 @@ body#hubv4 {
             padding: 0.2em 0 0.75em 0.9em;
             font-size: 95%;
             display: none;
-            // max-width: 320px;
 
             li {
               a {
@@ -417,6 +426,7 @@ body#hubv4 {
                 width: 100%;
 
                 @include hoverify() {
+                  color: $black-tundora;
                   text-decoration: underline;
                 }
               }
@@ -424,7 +434,7 @@ body#hubv4 {
               .btn-expander {
                 color: $black-tundora;
                 &:hover {
-                  background-color: $grey-alto;
+                  background-color: $grey-gallery;
                 }
 
                 &:after {
@@ -450,8 +460,6 @@ body#hubv4 {
 
               &.expanded {
                 > ul {
-                  max-height: 300px;
-                  visibility: visible;
                   // padding-left: 5px;
                 }
                 .btn-expander {
@@ -477,7 +485,7 @@ body#hubv4 {
             }
 
             > li {
-              border-bottom: 1px $grey-alto solid;
+              border-bottom: 1px $grey-gallery solid;
               flex-wrap: wrap;
 
               &.active > a {
@@ -495,15 +503,12 @@ body#hubv4 {
 
               > ul {
                 padding: 0;
-                transition: all $easing 0.3s;
-                display: block;
-                max-height: 0;
+                display: none;
                 overflow: hidden;
-                visibility: hidden;
                 -webkit-box-flex: 1;
                 flex: 1 0 99%;
                 > li {
-                  border-left: 1px $grey-alto solid;
+                  border-left: 1px $grey-gallery solid;
                   padding: 2px;
                   padding-left: 20px;
                   position: relative;
@@ -517,7 +522,7 @@ body#hubv4 {
                   &:before {
                     transition: all $easing 0.2s;
                     content: "";
-                    background-color: #ddd;
+                    background-color: $grey-gallery;
                     position: absolute;
                     left: 0;
                     top: 15px;
@@ -533,11 +538,6 @@ body#hubv4 {
               column-count: 1;
               position: relative;
 
-              a {
-                @include hoverify() {
-                  color: $blue-endeavoura;
-                }
-              }
               > li:not(.sub-draw-title) {
                 display: flex;
                 align-items: center;
@@ -599,7 +599,7 @@ body#hubv4 {
 
         .tereo-title {
           display: block;
-          color: $green-brand;
+          color: $pounamu;
           font-weight: 500;
           // font-size: 1.2rem;
         }
@@ -622,7 +622,7 @@ body#hubv4 {
 
           .tereo-title {
             display: none;
-            color: $green-brand;
+            color: $pounamu;
             font-weight: 500;
           }
         }
@@ -651,7 +651,7 @@ body#hubv4 {
               color: $black-tundora;
 
               &::before {
-                border-color: $green-brand !important;
+                border-color: $pounamu !important;
                 position: absolute;
                 border: none;
               }
@@ -900,14 +900,172 @@ body#hubv4 {
   }
 
   // No top margin on hub page, so banner sits flush with header
-  &.hub-page {
-    .content-panel {
-      margin-top: 0rem;
+  .content-panel {
+    margin-top: 0rem;
+    main {
+      > .block {
+        padding-top: 0;
+      }
+    }
+  }
+  // Buttons
+
+  button:not(.flat):not(.no-icon)::after,
+  .button:not(.flat):not(.no-icon)::after {
+    content: "\f1ee";
+    font-family: "Favorites";
+    vertical-align: -0.1em;
+    display: inline-block;
+  }
+  button,
+  .btn,
+  .button,
+  a.btn {
+    border-radius: 0;
+    // padding: 5px 16px;
+    display: inline-block;
+    font-weight: 600;
+    line-height: 1.6;
+    cursor: pointer;
+    border: 0;
+    -webkit-transition: color 0.15s ease-in-out,
+      background-color 0.15s ease-in-out;
+    transition: all ease 0.2s;
+    background-color: $kohuhu;
+    color: $pounamu;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+
+    &:hover {
+      text-decoration: none;
+      background-color: lighten($color: $kohuhu, $amount: 10);
+      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    }
+    &:active {
+      box-shadow: none;
+    }
+
+    &.rounded {
+      border-radius: 100px;
+    }
+    &.accent {
+      background-color: $kowhai;
+      color: #222;
+    }
+    &.raised {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    }
+    &.primary {
+      background-color: $pounamu;
+      // border: 1px $pounamu solid;
+      color: $manuka;
+      &:hover {
+        background-color: $mahoe;
+        background-color: lighten($color: $pounamu, $amount: 6);
+      }
+      &:active,
+      &:focus {
+        background-color: $mahoe;
+        background-color: lighten($color: $pounamu, $amount: 6);
+      }
+    }
+    &.fade {
+      background-color: #f1f6f0;
+      color: $green-brand-bright;
+      &:hover {
+        background-color: #c0cfbc;
+        color: $green-brand-bright;
+      }
+    }
+    &.flat {
+      background-color: transparent;
+      outline: 1px transparent solid;
+      &:hover {
+        box-shadow: none;
+        outline: 1px $grey-alto solid;
+      }
+    }
+    &.save-page {
+      background-color: transparent;
+      font-size: 80%;
+      padding: 0;
+      line-height: 0;
+      outline: none;
+      margin-left: 5px;
+
+      > svg {
+        opacity: 0.6;
+        transition: all $easing 0.3s;
+        path {
+          transition: all $easing 0.3s;
+          fill: #fff;
+          stroke: #000;
+        }
+      }
+      &:hover {
+        outline: none;
+        opacity: 1;
+        > svg {
+          opacity: 1;
+        }
+      }
+      &.saved {
+        > svg {
+          opacity: 1;
+          path {
+            fill: $kowhai;
+          }
+        }
+      }
+    }
+    &.text {
+      background-color: transparent;
+      color: #005ea5;
+      border: none;
+      text-decoration: underline;
+      &:hover {
+        background-color: #eee;
+      }
+      &:active,
+      &:focus {
+        background-color: #eee;
+      }
+    }
+    &.secondary {
+      color: #232323;
+      &:hover {
+        background-color: #eee;
+        color: #232323;
+      }
+    }
+
+    // &:focus {
+    //   outline: 2px rgba(0, 0, 0, 0.3) solid;
+    // }
+
+    // Remove icon for submit buttons...
+    &.submit-button {
+      &:after {
+        content: none !important;
+      }
     }
   }
 
+  // Flex h1 of page on non-hub pages. For save page icon alignment
+  &:not(.hub-page) {
+    .content-panel {
+      // margin-top: 1rem;
+      main {
+        h1 {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
   .content-panel {
-    margin-top: 1rem;
+    // margin-top: 1rem;
     main {
       h1 {
         font-size: 2.4rem;
@@ -920,79 +1078,6 @@ body#hubv4 {
       }
     }
 
-    // Buttons
-    button,
-    .btn,
-    .button,
-    a.btn {
-      border-radius: 0;
-      // padding: 5px 16px;
-      display: inline-block;
-      font-weight: 600;
-      line-height: 1.6;
-      cursor: pointer;
-      border: 0;
-      -webkit-transition: color 0.15s ease-in-out,
-        background-color 0.15s ease-in-out;
-      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
-      color: #424242;
-
-      &.rounded {
-        border-radius: 100px;
-      }
-      &.accent {
-        background-color: $kowhai;
-        color: #222;
-      }
-      &.raised {
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-          rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-      }
-      &.primary {
-        background-color: $pounamu;
-        // border: 1px $pounamu solid;
-        color: #fff;
-        &:hover {
-          background-color: $mahoe;
-        }
-        &:active,
-        &:focus {
-          background-color: $mahoe;
-        }
-      }
-      &.fade {
-        background-color: #f1f6f0;
-        color: $green-brand-bright;
-        &:hover {
-          background-color: #c0cfbc;
-          color: $green-brand-bright;
-        }
-      }
-      &.text {
-        background-color: transparent;
-        color: #005ea5;
-        border: none;
-        text-decoration: underline;
-        &:hover {
-          background-color: #eee;
-        }
-        &:active,
-        &:focus {
-          background-color: #eee;
-        }
-      }
-      &.secondary {
-        color: #232323;
-        &:hover {
-          background-color: #eee;
-          color: #232323;
-        }
-      }
-
-      // &:focus {
-      //   outline: 2px rgba(0, 0, 0, 0.3) solid;
-      // }
-    }
     .link_block {
       background-color: $grey-light;
       transition: all ease 0.2s;
@@ -1023,11 +1108,18 @@ body#hubv4 {
     }
   }
 
+  // Cards news/events
+
+  ul.news,
+  ul.events {
+  }
+
   // Blocks
   .formatting {
     .promo-panel figure,
     figure {
       box-shadow: $box-shadow-card;
+      // border: 1px $grey-alto solid;
       // border-top: 4px $pounamu solid;
       figcaption {
         padding: 2rem;
@@ -1057,16 +1149,20 @@ body#hubv4 {
     }
   }
 
+  .card-panel .card {
+    background-color: $off-white;
+  }
+
   .block {
     // padding-top: 2rem;
     // padding-bottom: 2rem;
   }
-  .card-panel .card,
-  .search-panel form.wide-search-bar {
-    background-color: #fff;
-    box-shadow: $box-shadow-card;
-    border-top: 4px $green-brand solid;
-  }
+  // .card-panel .card,
+  // .search-panel form.wide-search-bar {
+  //   background-color: #fff;
+  //   box-shadow: $box-shadow-card;
+  //   border-top: 4px $green-brand solid;
+  // }
   .card-panel .card > h1:first-child::after,
   .card-panel .card > h2:first-child::after,
   .card-panel .card > h3:first-child::after,
@@ -1092,49 +1188,10 @@ body#hubv4 {
         1.11% 105.97%
       );
       margin-left: -20px;
-      background-color: $green-brand;
-      color: #fff;
-    }
-    // Buttons
-    button.primary:not(.flat),
-    .button.primary:not(.flat) {
-      border: 2px $pounamu solid;
-      border-radius: 0;
-      color: #fff;
       background-color: $pounamu;
-
-      &:hover,
-      &:active,
-      &:focus {
-        // background-color: darken($color: $green-brand-bright, $amount: 5);
-        background-color: #fff;
-        color: $pounamu;
-      }
-    }
-    .button:not(.flat),
-    button:not(.flat) {
-      border-radius: 0;
-      font-weight: 600;
-      border: 2px $black-brand solid;
-      color: $black-brand;
-      background-color: #fff;
-      &:hover,
-      &:active,
-      &:focus {
-        // background-color: darken($color: $green-brand-bright, $amount: 5);
-        background-color: $black-brand;
-        color: #fff;
-      }
+      color: #fff;
     }
 
-    button:not(.flat):not(.no-icon)::after,
-    .button:not(.flat):not(.no-icon)::after {
-      content: "\f181";
-      font-family: "Favorites";
-      vertical-align: -0.1em;
-      display: inline-block;
-      transform: rotate(-90deg);
-    }
     // Carousel
     .carousel-controls {
       position: absolute;
@@ -1197,7 +1254,6 @@ body#hubv4 {
         padding: 0;
         background-color: #fff;
         box-shadow: $box-shadow-card;
-        // border-top: 4px $green-brand-bright solid;
 
         position: relative;
         .image-container {
@@ -1206,11 +1262,6 @@ body#hubv4 {
           @include breakpoint($until: desktop) {
             clip-path: initial;
             flex: 1 0 20%;
-            // position: absolute;
-            // left: 0;
-            // top: 0;
-            // height: 100%;
-            // width: 242px;
           }
           &:before {
             position: absolute;
@@ -1317,21 +1368,17 @@ body#hubv4 {
   &.intranet-home {
     nav {
       .breadcrumbs {
-        margin: 1rem 1.5rem;
-        margin-left: 0.75rem;
+        padding: 1rem;
       }
     }
   }
   nav {
     .breadcrumbs {
-      font-family: $heading-family;
+      font-family: "Inter", sans-serif;
       font-size: $breadcrumbs-size;
       letter-spacing: $navigation-letter-spacing;
-      padding: 0;
-
       margin-bottom: 0;
       display: flex;
-      padding-left: 0;
       overflow: hidden;
       flex-wrap: wrap;
       @include breakpoint($until: desktop) {
@@ -1339,6 +1386,8 @@ body#hubv4 {
       }
       &.block {
         margin-bottom: 0;
+        padding-right: 0.75rem;
+        padding-left: 0.75rem;
       }
 
       a {
@@ -1450,6 +1499,10 @@ body#hubv4 {
       .content-panel & {
         padding-bottom: 0;
       }
+    }
+    &.breadcrumbs-full {
+      margin-bottom: 1rem;
+      margin-top: 1rem;
     }
   }
   .highlight-message {

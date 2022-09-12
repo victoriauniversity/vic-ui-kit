@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, August 9, 2022, 9:29 AM */
+/** Version: 0.10.13 | Friday, September 9, 2022, 2:58 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -101,6 +101,474 @@ module.exports = new MediaQueryDispatch();
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * headroom.js v0.9.4 - Give your page some headroom. Hide your header until you need it
+ * Copyright (c) 2017 Nick Williams - http://wicky.nillia.ms/headroom.js
+ * License: MIT
+ */
+
+(function(root, factory) {
+  'use strict';
+
+  if (true) {
+    // AMD. Register as an anonymous module.
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  }
+  else {}
+}(this, function() {
+  'use strict';
+
+  /* exported features */
+  
+  var features = {
+    bind : !!(function(){}.bind),
+    classList : 'classList' in document.documentElement,
+    rAF : !!(window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame)
+  };
+  window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
+  
+  /**
+   * Handles debouncing of events via requestAnimationFrame
+   * @see http://www.html5rocks.com/en/tutorials/speed/animations/
+   * @param {Function} callback The callback to handle whichever event
+   */
+  function Debouncer (callback) {
+    this.callback = callback;
+    this.ticking = false;
+  }
+  Debouncer.prototype = {
+    constructor : Debouncer,
+  
+    /**
+     * dispatches the event to the supplied callback
+     * @private
+     */
+    update : function() {
+      this.callback && this.callback();
+      this.ticking = false;
+    },
+  
+    /**
+     * ensures events don't get stacked
+     * @private
+     */
+    requestTick : function() {
+      if(!this.ticking) {
+        requestAnimationFrame(this.rafCallback || (this.rafCallback = this.update.bind(this)));
+        this.ticking = true;
+      }
+    },
+  
+    /**
+     * Attach this as the event listeners
+     */
+    handleEvent : function() {
+      this.requestTick();
+    }
+  };
+  /**
+   * Check if object is part of the DOM
+   * @constructor
+   * @param {Object} obj element to check
+   */
+  function isDOMElement(obj) {
+    return obj && typeof window !== 'undefined' && (obj === window || obj.nodeType);
+  }
+  
+  /**
+   * Helper function for extending objects
+   */
+  function extend (object /*, objectN ... */) {
+    if(arguments.length <= 0) {
+      throw new Error('Missing arguments in extend function');
+    }
+  
+    var result = object || {},
+        key,
+        i;
+  
+    for (i = 1; i < arguments.length; i++) {
+      var replacement = arguments[i] || {};
+  
+      for (key in replacement) {
+        // Recurse into object except if the object is a DOM element
+        if(typeof result[key] === 'object' && ! isDOMElement(result[key])) {
+          result[key] = extend(result[key], replacement[key]);
+        }
+        else {
+          result[key] = result[key] || replacement[key];
+        }
+      }
+    }
+  
+    return result;
+  }
+  
+  /**
+   * Helper function for normalizing tolerance option to object format
+   */
+  function normalizeTolerance (t) {
+    return t === Object(t) ? t : { down : t, up : t };
+  }
+  
+  /**
+   * UI enhancement for fixed headers.
+   * Hides header when scrolling down
+   * Shows header when scrolling up
+   * @constructor
+   * @param {DOMElement} elem the header element
+   * @param {Object} options options for the widget
+   */
+  function Headroom (elem, options) {
+    options = extend(options, Headroom.options);
+  
+    this.lastKnownScrollY = 0;
+    this.elem             = elem;
+    this.tolerance        = normalizeTolerance(options.tolerance);
+    this.classes          = options.classes;
+    this.offset           = options.offset;
+    this.scroller         = options.scroller;
+    this.initialised      = false;
+    this.onPin            = options.onPin;
+    this.onUnpin          = options.onUnpin;
+    this.onTop            = options.onTop;
+    this.onNotTop         = options.onNotTop;
+    this.onBottom         = options.onBottom;
+    this.onNotBottom      = options.onNotBottom;
+  }
+  Headroom.prototype = {
+    constructor : Headroom,
+  
+    /**
+     * Initialises the widget
+     */
+    init : function() {
+      if(!Headroom.cutsTheMustard) {
+        return;
+      }
+  
+      this.debouncer = new Debouncer(this.update.bind(this));
+      this.elem.classList.add(this.classes.initial);
+  
+      // defer event registration to handle browser
+      // potentially restoring previous scroll position
+      setTimeout(this.attachEvent.bind(this), 100);
+  
+      return this;
+    },
+  
+    /**
+     * Unattaches events and removes any classes that were added
+     */
+    destroy : function() {
+      var classes = this.classes;
+  
+      this.initialised = false;
+  
+      for (var key in classes) {
+        if(classes.hasOwnProperty(key)) {
+          this.elem.classList.remove(classes[key]);
+        }
+      }
+  
+      this.scroller.removeEventListener('scroll', this.debouncer, false);
+    },
+  
+    /**
+     * Attaches the scroll event
+     * @private
+     */
+    attachEvent : function() {
+      if(!this.initialised){
+        this.lastKnownScrollY = this.getScrollY();
+        this.initialised = true;
+        this.scroller.addEventListener('scroll', this.debouncer, false);
+  
+        this.debouncer.handleEvent();
+      }
+    },
+  
+    /**
+     * Unpins the header if it's currently pinned
+     */
+    unpin : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+  
+      if(classList.contains(classes.pinned) || !classList.contains(classes.unpinned)) {
+        classList.add(classes.unpinned);
+        classList.remove(classes.pinned);
+        this.onUnpin && this.onUnpin.call(this);
+      }
+    },
+  
+    /**
+     * Pins the header if it's currently unpinned
+     */
+    pin : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+  
+      if(classList.contains(classes.unpinned)) {
+        classList.remove(classes.unpinned);
+        classList.add(classes.pinned);
+        this.onPin && this.onPin.call(this);
+      }
+    },
+  
+    /**
+     * Handles the top states
+     */
+    top : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+  
+      if(!classList.contains(classes.top)) {
+        classList.add(classes.top);
+        classList.remove(classes.notTop);
+        this.onTop && this.onTop.call(this);
+      }
+    },
+  
+    /**
+     * Handles the not top state
+     */
+    notTop : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+  
+      if(!classList.contains(classes.notTop)) {
+        classList.add(classes.notTop);
+        classList.remove(classes.top);
+        this.onNotTop && this.onNotTop.call(this);
+      }
+    },
+  
+    bottom : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+  
+      if(!classList.contains(classes.bottom)) {
+        classList.add(classes.bottom);
+        classList.remove(classes.notBottom);
+        this.onBottom && this.onBottom.call(this);
+      }
+    },
+  
+    /**
+     * Handles the not top state
+     */
+    notBottom : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+  
+      if(!classList.contains(classes.notBottom)) {
+        classList.add(classes.notBottom);
+        classList.remove(classes.bottom);
+        this.onNotBottom && this.onNotBottom.call(this);
+      }
+    },
+  
+    /**
+     * Gets the Y scroll position
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Window.scrollY
+     * @return {Number} pixels the page has scrolled along the Y-axis
+     */
+    getScrollY : function() {
+      return (this.scroller.pageYOffset !== undefined)
+        ? this.scroller.pageYOffset
+        : (this.scroller.scrollTop !== undefined)
+          ? this.scroller.scrollTop
+          : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+    },
+  
+    /**
+     * Gets the height of the viewport
+     * @see http://andylangton.co.uk/blog/development/get-viewport-size-width-and-height-javascript
+     * @return {int} the height of the viewport in pixels
+     */
+    getViewportHeight : function () {
+      return window.innerHeight
+        || document.documentElement.clientHeight
+        || document.body.clientHeight;
+    },
+  
+    /**
+     * Gets the physical height of the DOM element
+     * @param  {Object}  elm the element to calculate the physical height of which
+     * @return {int}     the physical height of the element in pixels
+     */
+    getElementPhysicalHeight : function (elm) {
+      return Math.max(
+        elm.offsetHeight,
+        elm.clientHeight
+      );
+    },
+  
+    /**
+     * Gets the physical height of the scroller element
+     * @return {int} the physical height of the scroller element in pixels
+     */
+    getScrollerPhysicalHeight : function () {
+      return (this.scroller === window || this.scroller === document.body)
+        ? this.getViewportHeight()
+        : this.getElementPhysicalHeight(this.scroller);
+    },
+  
+    /**
+     * Gets the height of the document
+     * @see http://james.padolsey.com/javascript/get-document-height-cross-browser/
+     * @return {int} the height of the document in pixels
+     */
+    getDocumentHeight : function () {
+      var body = document.body,
+        documentElement = document.documentElement;
+  
+      return Math.max(
+        body.scrollHeight, documentElement.scrollHeight,
+        body.offsetHeight, documentElement.offsetHeight,
+        body.clientHeight, documentElement.clientHeight
+      );
+    },
+  
+    /**
+     * Gets the height of the DOM element
+     * @param  {Object}  elm the element to calculate the height of which
+     * @return {int}     the height of the element in pixels
+     */
+    getElementHeight : function (elm) {
+      return Math.max(
+        elm.scrollHeight,
+        elm.offsetHeight,
+        elm.clientHeight
+      );
+    },
+  
+    /**
+     * Gets the height of the scroller element
+     * @return {int} the height of the scroller element in pixels
+     */
+    getScrollerHeight : function () {
+      return (this.scroller === window || this.scroller === document.body)
+        ? this.getDocumentHeight()
+        : this.getElementHeight(this.scroller);
+    },
+  
+    /**
+     * determines if the scroll position is outside of document boundaries
+     * @param  {int}  currentScrollY the current y scroll position
+     * @return {bool} true if out of bounds, false otherwise
+     */
+    isOutOfBounds : function (currentScrollY) {
+      var pastTop  = currentScrollY < 0,
+        pastBottom = currentScrollY + this.getScrollerPhysicalHeight() > this.getScrollerHeight();
+  
+      return pastTop || pastBottom;
+    },
+  
+    /**
+     * determines if the tolerance has been exceeded
+     * @param  {int} currentScrollY the current scroll y position
+     * @return {bool} true if tolerance exceeded, false otherwise
+     */
+    toleranceExceeded : function (currentScrollY, direction) {
+      return Math.abs(currentScrollY-this.lastKnownScrollY) >= this.tolerance[direction];
+    },
+  
+    /**
+     * determine if it is appropriate to unpin
+     * @param  {int} currentScrollY the current y scroll position
+     * @param  {bool} toleranceExceeded has the tolerance been exceeded?
+     * @return {bool} true if should unpin, false otherwise
+     */
+    shouldUnpin : function (currentScrollY, toleranceExceeded) {
+      var scrollingDown = currentScrollY > this.lastKnownScrollY,
+        pastOffset = currentScrollY >= this.offset;
+  
+      return scrollingDown && pastOffset && toleranceExceeded;
+    },
+  
+    /**
+     * determine if it is appropriate to pin
+     * @param  {int} currentScrollY the current y scroll position
+     * @param  {bool} toleranceExceeded has the tolerance been exceeded?
+     * @return {bool} true if should pin, false otherwise
+     */
+    shouldPin : function (currentScrollY, toleranceExceeded) {
+      var scrollingUp  = currentScrollY < this.lastKnownScrollY,
+        pastOffset = currentScrollY <= this.offset;
+  
+      return (scrollingUp && toleranceExceeded) || pastOffset;
+    },
+  
+    /**
+     * Handles updating the state of the widget
+     */
+    update : function() {
+      var currentScrollY  = this.getScrollY(),
+        scrollDirection = currentScrollY > this.lastKnownScrollY ? 'down' : 'up',
+        toleranceExceeded = this.toleranceExceeded(currentScrollY, scrollDirection);
+  
+      if(this.isOutOfBounds(currentScrollY)) { // Ignore bouncy scrolling in OSX
+        return;
+      }
+  
+      if (currentScrollY <= this.offset ) {
+        this.top();
+      } else {
+        this.notTop();
+      }
+  
+      if(currentScrollY + this.getViewportHeight() >= this.getScrollerHeight()) {
+        this.bottom();
+      }
+      else {
+        this.notBottom();
+      }
+  
+      if(this.shouldUnpin(currentScrollY, toleranceExceeded)) {
+        this.unpin();
+      }
+      else if(this.shouldPin(currentScrollY, toleranceExceeded)) {
+        this.pin();
+      }
+  
+      this.lastKnownScrollY = currentScrollY;
+    }
+  };
+  /**
+   * Default options
+   * @type {Object}
+   */
+  Headroom.options = {
+    tolerance : {
+      up : 0,
+      down : 0
+    },
+    offset : 0,
+    scroller: window,
+    classes : {
+      pinned : 'headroom--pinned',
+      unpinned : 'headroom--unpinned',
+      top : 'headroom--top',
+      notTop : 'headroom--not-top',
+      bottom : 'headroom--bottom',
+      notBottom : 'headroom--not-bottom',
+      initial : 'headroom'
+    }
+  };
+  Headroom.cutsTheMustard = typeof features !== 'undefined' && features.rAF && features.bind && features.classList;
+
+  return Headroom;
+}));
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports) {
 
 var g;
@@ -126,7 +594,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, setImmediate) {// vim:ts=4:sts=4:sw=4:
@@ -2175,10 +2643,10 @@ return Q;
 
 });
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(5), __webpack_require__(16).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(6), __webpack_require__(16).setImmediate))
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 /**
@@ -2228,7 +2696,7 @@ module.exports = {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -2416,474 +2884,6 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * headroom.js v0.9.4 - Give your page some headroom. Hide your header until you need it
- * Copyright (c) 2017 Nick Williams - http://wicky.nillia.ms/headroom.js
- * License: MIT
- */
-
-(function(root, factory) {
-  'use strict';
-
-  if (true) {
-    // AMD. Register as an anonymous module.
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  }
-  else {}
-}(this, function() {
-  'use strict';
-
-  /* exported features */
-  
-  var features = {
-    bind : !!(function(){}.bind),
-    classList : 'classList' in document.documentElement,
-    rAF : !!(window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame)
-  };
-  window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
-  
-  /**
-   * Handles debouncing of events via requestAnimationFrame
-   * @see http://www.html5rocks.com/en/tutorials/speed/animations/
-   * @param {Function} callback The callback to handle whichever event
-   */
-  function Debouncer (callback) {
-    this.callback = callback;
-    this.ticking = false;
-  }
-  Debouncer.prototype = {
-    constructor : Debouncer,
-  
-    /**
-     * dispatches the event to the supplied callback
-     * @private
-     */
-    update : function() {
-      this.callback && this.callback();
-      this.ticking = false;
-    },
-  
-    /**
-     * ensures events don't get stacked
-     * @private
-     */
-    requestTick : function() {
-      if(!this.ticking) {
-        requestAnimationFrame(this.rafCallback || (this.rafCallback = this.update.bind(this)));
-        this.ticking = true;
-      }
-    },
-  
-    /**
-     * Attach this as the event listeners
-     */
-    handleEvent : function() {
-      this.requestTick();
-    }
-  };
-  /**
-   * Check if object is part of the DOM
-   * @constructor
-   * @param {Object} obj element to check
-   */
-  function isDOMElement(obj) {
-    return obj && typeof window !== 'undefined' && (obj === window || obj.nodeType);
-  }
-  
-  /**
-   * Helper function for extending objects
-   */
-  function extend (object /*, objectN ... */) {
-    if(arguments.length <= 0) {
-      throw new Error('Missing arguments in extend function');
-    }
-  
-    var result = object || {},
-        key,
-        i;
-  
-    for (i = 1; i < arguments.length; i++) {
-      var replacement = arguments[i] || {};
-  
-      for (key in replacement) {
-        // Recurse into object except if the object is a DOM element
-        if(typeof result[key] === 'object' && ! isDOMElement(result[key])) {
-          result[key] = extend(result[key], replacement[key]);
-        }
-        else {
-          result[key] = result[key] || replacement[key];
-        }
-      }
-    }
-  
-    return result;
-  }
-  
-  /**
-   * Helper function for normalizing tolerance option to object format
-   */
-  function normalizeTolerance (t) {
-    return t === Object(t) ? t : { down : t, up : t };
-  }
-  
-  /**
-   * UI enhancement for fixed headers.
-   * Hides header when scrolling down
-   * Shows header when scrolling up
-   * @constructor
-   * @param {DOMElement} elem the header element
-   * @param {Object} options options for the widget
-   */
-  function Headroom (elem, options) {
-    options = extend(options, Headroom.options);
-  
-    this.lastKnownScrollY = 0;
-    this.elem             = elem;
-    this.tolerance        = normalizeTolerance(options.tolerance);
-    this.classes          = options.classes;
-    this.offset           = options.offset;
-    this.scroller         = options.scroller;
-    this.initialised      = false;
-    this.onPin            = options.onPin;
-    this.onUnpin          = options.onUnpin;
-    this.onTop            = options.onTop;
-    this.onNotTop         = options.onNotTop;
-    this.onBottom         = options.onBottom;
-    this.onNotBottom      = options.onNotBottom;
-  }
-  Headroom.prototype = {
-    constructor : Headroom,
-  
-    /**
-     * Initialises the widget
-     */
-    init : function() {
-      if(!Headroom.cutsTheMustard) {
-        return;
-      }
-  
-      this.debouncer = new Debouncer(this.update.bind(this));
-      this.elem.classList.add(this.classes.initial);
-  
-      // defer event registration to handle browser
-      // potentially restoring previous scroll position
-      setTimeout(this.attachEvent.bind(this), 100);
-  
-      return this;
-    },
-  
-    /**
-     * Unattaches events and removes any classes that were added
-     */
-    destroy : function() {
-      var classes = this.classes;
-  
-      this.initialised = false;
-  
-      for (var key in classes) {
-        if(classes.hasOwnProperty(key)) {
-          this.elem.classList.remove(classes[key]);
-        }
-      }
-  
-      this.scroller.removeEventListener('scroll', this.debouncer, false);
-    },
-  
-    /**
-     * Attaches the scroll event
-     * @private
-     */
-    attachEvent : function() {
-      if(!this.initialised){
-        this.lastKnownScrollY = this.getScrollY();
-        this.initialised = true;
-        this.scroller.addEventListener('scroll', this.debouncer, false);
-  
-        this.debouncer.handleEvent();
-      }
-    },
-  
-    /**
-     * Unpins the header if it's currently pinned
-     */
-    unpin : function() {
-      var classList = this.elem.classList,
-        classes = this.classes;
-  
-      if(classList.contains(classes.pinned) || !classList.contains(classes.unpinned)) {
-        classList.add(classes.unpinned);
-        classList.remove(classes.pinned);
-        this.onUnpin && this.onUnpin.call(this);
-      }
-    },
-  
-    /**
-     * Pins the header if it's currently unpinned
-     */
-    pin : function() {
-      var classList = this.elem.classList,
-        classes = this.classes;
-  
-      if(classList.contains(classes.unpinned)) {
-        classList.remove(classes.unpinned);
-        classList.add(classes.pinned);
-        this.onPin && this.onPin.call(this);
-      }
-    },
-  
-    /**
-     * Handles the top states
-     */
-    top : function() {
-      var classList = this.elem.classList,
-        classes = this.classes;
-  
-      if(!classList.contains(classes.top)) {
-        classList.add(classes.top);
-        classList.remove(classes.notTop);
-        this.onTop && this.onTop.call(this);
-      }
-    },
-  
-    /**
-     * Handles the not top state
-     */
-    notTop : function() {
-      var classList = this.elem.classList,
-        classes = this.classes;
-  
-      if(!classList.contains(classes.notTop)) {
-        classList.add(classes.notTop);
-        classList.remove(classes.top);
-        this.onNotTop && this.onNotTop.call(this);
-      }
-    },
-  
-    bottom : function() {
-      var classList = this.elem.classList,
-        classes = this.classes;
-  
-      if(!classList.contains(classes.bottom)) {
-        classList.add(classes.bottom);
-        classList.remove(classes.notBottom);
-        this.onBottom && this.onBottom.call(this);
-      }
-    },
-  
-    /**
-     * Handles the not top state
-     */
-    notBottom : function() {
-      var classList = this.elem.classList,
-        classes = this.classes;
-  
-      if(!classList.contains(classes.notBottom)) {
-        classList.add(classes.notBottom);
-        classList.remove(classes.bottom);
-        this.onNotBottom && this.onNotBottom.call(this);
-      }
-    },
-  
-    /**
-     * Gets the Y scroll position
-     * @see https://developer.mozilla.org/en-US/docs/Web/API/Window.scrollY
-     * @return {Number} pixels the page has scrolled along the Y-axis
-     */
-    getScrollY : function() {
-      return (this.scroller.pageYOffset !== undefined)
-        ? this.scroller.pageYOffset
-        : (this.scroller.scrollTop !== undefined)
-          ? this.scroller.scrollTop
-          : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-    },
-  
-    /**
-     * Gets the height of the viewport
-     * @see http://andylangton.co.uk/blog/development/get-viewport-size-width-and-height-javascript
-     * @return {int} the height of the viewport in pixels
-     */
-    getViewportHeight : function () {
-      return window.innerHeight
-        || document.documentElement.clientHeight
-        || document.body.clientHeight;
-    },
-  
-    /**
-     * Gets the physical height of the DOM element
-     * @param  {Object}  elm the element to calculate the physical height of which
-     * @return {int}     the physical height of the element in pixels
-     */
-    getElementPhysicalHeight : function (elm) {
-      return Math.max(
-        elm.offsetHeight,
-        elm.clientHeight
-      );
-    },
-  
-    /**
-     * Gets the physical height of the scroller element
-     * @return {int} the physical height of the scroller element in pixels
-     */
-    getScrollerPhysicalHeight : function () {
-      return (this.scroller === window || this.scroller === document.body)
-        ? this.getViewportHeight()
-        : this.getElementPhysicalHeight(this.scroller);
-    },
-  
-    /**
-     * Gets the height of the document
-     * @see http://james.padolsey.com/javascript/get-document-height-cross-browser/
-     * @return {int} the height of the document in pixels
-     */
-    getDocumentHeight : function () {
-      var body = document.body,
-        documentElement = document.documentElement;
-  
-      return Math.max(
-        body.scrollHeight, documentElement.scrollHeight,
-        body.offsetHeight, documentElement.offsetHeight,
-        body.clientHeight, documentElement.clientHeight
-      );
-    },
-  
-    /**
-     * Gets the height of the DOM element
-     * @param  {Object}  elm the element to calculate the height of which
-     * @return {int}     the height of the element in pixels
-     */
-    getElementHeight : function (elm) {
-      return Math.max(
-        elm.scrollHeight,
-        elm.offsetHeight,
-        elm.clientHeight
-      );
-    },
-  
-    /**
-     * Gets the height of the scroller element
-     * @return {int} the height of the scroller element in pixels
-     */
-    getScrollerHeight : function () {
-      return (this.scroller === window || this.scroller === document.body)
-        ? this.getDocumentHeight()
-        : this.getElementHeight(this.scroller);
-    },
-  
-    /**
-     * determines if the scroll position is outside of document boundaries
-     * @param  {int}  currentScrollY the current y scroll position
-     * @return {bool} true if out of bounds, false otherwise
-     */
-    isOutOfBounds : function (currentScrollY) {
-      var pastTop  = currentScrollY < 0,
-        pastBottom = currentScrollY + this.getScrollerPhysicalHeight() > this.getScrollerHeight();
-  
-      return pastTop || pastBottom;
-    },
-  
-    /**
-     * determines if the tolerance has been exceeded
-     * @param  {int} currentScrollY the current scroll y position
-     * @return {bool} true if tolerance exceeded, false otherwise
-     */
-    toleranceExceeded : function (currentScrollY, direction) {
-      return Math.abs(currentScrollY-this.lastKnownScrollY) >= this.tolerance[direction];
-    },
-  
-    /**
-     * determine if it is appropriate to unpin
-     * @param  {int} currentScrollY the current y scroll position
-     * @param  {bool} toleranceExceeded has the tolerance been exceeded?
-     * @return {bool} true if should unpin, false otherwise
-     */
-    shouldUnpin : function (currentScrollY, toleranceExceeded) {
-      var scrollingDown = currentScrollY > this.lastKnownScrollY,
-        pastOffset = currentScrollY >= this.offset;
-  
-      return scrollingDown && pastOffset && toleranceExceeded;
-    },
-  
-    /**
-     * determine if it is appropriate to pin
-     * @param  {int} currentScrollY the current y scroll position
-     * @param  {bool} toleranceExceeded has the tolerance been exceeded?
-     * @return {bool} true if should pin, false otherwise
-     */
-    shouldPin : function (currentScrollY, toleranceExceeded) {
-      var scrollingUp  = currentScrollY < this.lastKnownScrollY,
-        pastOffset = currentScrollY <= this.offset;
-  
-      return (scrollingUp && toleranceExceeded) || pastOffset;
-    },
-  
-    /**
-     * Handles updating the state of the widget
-     */
-    update : function() {
-      var currentScrollY  = this.getScrollY(),
-        scrollDirection = currentScrollY > this.lastKnownScrollY ? 'down' : 'up',
-        toleranceExceeded = this.toleranceExceeded(currentScrollY, scrollDirection);
-  
-      if(this.isOutOfBounds(currentScrollY)) { // Ignore bouncy scrolling in OSX
-        return;
-      }
-  
-      if (currentScrollY <= this.offset ) {
-        this.top();
-      } else {
-        this.notTop();
-      }
-  
-      if(currentScrollY + this.getViewportHeight() >= this.getScrollerHeight()) {
-        this.bottom();
-      }
-      else {
-        this.notBottom();
-      }
-  
-      if(this.shouldUnpin(currentScrollY, toleranceExceeded)) {
-        this.unpin();
-      }
-      else if(this.shouldPin(currentScrollY, toleranceExceeded)) {
-        this.pin();
-      }
-  
-      this.lastKnownScrollY = currentScrollY;
-    }
-  };
-  /**
-   * Default options
-   * @type {Object}
-   */
-  Headroom.options = {
-    tolerance : {
-      up : 0,
-      down : 0
-    },
-    offset : 0,
-    scroller: window,
-    classes : {
-      pinned : 'headroom--pinned',
-      unpinned : 'headroom--unpinned',
-      top : 'headroom--top',
-      notTop : 'headroom--not-top',
-      bottom : 'headroom--bottom',
-      notBottom : 'headroom--not-bottom',
-      initial : 'headroom'
-    }
-  };
-  Headroom.cutsTheMustard = typeof features !== 'undefined' && features.rAF && features.bind && features.classList;
-
-  return Headroom;
-}));
 
 /***/ }),
 /* 7 */
@@ -3136,7 +3136,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 var MediaQuery = __webpack_require__(9);
-var Util = __webpack_require__(4);
+var Util = __webpack_require__(5);
 var each = Util.each;
 var isFunction = Util.isFunction;
 var isArray = Util.isArray;
@@ -3227,7 +3227,7 @@ module.exports = MediaQueryDispatch;
 /***/ (function(module, exports, __webpack_require__) {
 
 var QueryHandler = __webpack_require__(10);
-var each = __webpack_require__(4).each;
+var each = __webpack_require__(5).each;
 
 /**
  * Represents a single media query, manages it's state and registered handlers for this query
@@ -12142,7 +12142,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(3)))
 
 /***/ }),
 /* 17 */
@@ -12335,7 +12335,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(2), __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(3), __webpack_require__(6)))
 
 /***/ }),
 /* 18 */
@@ -13045,7 +13045,7 @@ var external_jQuery_ = __webpack_require__(0);
 var external_jQuery_default = /*#__PURE__*/__webpack_require__.n(external_jQuery_);
 
 // EXTERNAL MODULE: ./node_modules/headroom.js/dist/headroom.js
-var dist_headroom = __webpack_require__(6);
+var dist_headroom = __webpack_require__(2);
 var headroom_default = /*#__PURE__*/__webpack_require__.n(dist_headroom);
 
 // EXTERNAL MODULE: ./node_modules/enquire.js/src/index.js
@@ -14037,9 +14037,20 @@ function initTray() {
   if (pageTitleLength > 150) {
     pageTitleEl.parent().addClass("long-title");
     pageTitleEl.addClass("long-title");
+  } // Change URLs of all links in sidebar on #hubv4 design
+
+
+  if ($("body#hubv4")) {
+    $("body#hubv4 a").each(function () {
+      var href = $(this).attr("href");
+
+      if (href && href.includes("cms.wgtn.ac.nz")) {
+        $(this).attr("href", href + "?SQ_DESIGN_NAME=v4&mode=dev");
+      }
+    });
   }
 
-  $("body").on("click keyup", function (e) {
+  $("body#hubv4").on("click keyup", function (e) {
     // Close tray if clicked away from or escpae buttons
     // If not enter key
     if (e.which !== 13) {
@@ -14078,21 +14089,21 @@ function initTray() {
     $("body").toggleClass("noscroll");
   }
 
-  $(".tray-toggle").on("click keydown", function (e) {
+  $("#hubv4 .tray-toggle").on("click keydown", function (e) {
     if (e.which == 13 || e.which == 1) {
       e.preventDefault();
       toggleTray(); // return false;
     }
   });
-  $(".expanded-draw").click(function (e) {
+  $("#hubv4 .expanded-draw").click(function (e) {
     e.preventDefault();
     toggleTray();
   });
-  $(".tray-close").click(function (e) {
+  $("#hubv4 .tray-close").click(function (e) {
     e.preventDefault();
     toggleTray();
   });
-  $(".search-toggle").click(function (e) {
+  $("#hubv4 .search-toggle").click(function (e) {
     e.preventDefault();
     toggleTray();
     setTimeout(function () {
@@ -14130,9 +14141,9 @@ function initTray() {
   var $draw = $(".sidemenu-drawer"); //! Sidemenu expand logic
 
   function expandTray(index, listItem) {
-    $(listItem).on("mouseenter click", function (e) {
+    $(listItem).on("mouseenter click keyup", function (e) {
       // If clicking on expander arrow
-      if (e.type == "click" && $(e.target).hasClass("btn-expander")) {
+      if ((e.type == "click" || e.key == "Enter") && $(e.target).hasClass("btn-expander")) {
         if ($(e.target).parent().hasClass("active-menu-item")) {
           // If clicked parent is expanded
           sidemenuExpanded = false;
@@ -14184,6 +14195,7 @@ function initTray() {
         if (e.type == "click" || e.key == "Enter") {
           // console.log($button);
           $button.parent("li").toggleClass("expanded");
+          $button.parent("li").find(">ul").slideToggle("fast");
         }
       });
     });
@@ -14272,9 +14284,9 @@ function initTray() {
 
   function initHorizontalNav() {
     // console.log('hori nav go');
-    var menuItems = $(".show-mega-menu-top .mega-menu-top-level .nav-item-parent ");
-    var menuItemsWithSub = $(".show-mega-menu-top .mega-menu-top-level > .has-submenu");
-    var subMenuItems = $(".show-mega-menu-top .mega-menu-top-level > .nav-item-parent "); // build sub menu for expand
+    var menuItems = $("#hubv4 .show-mega-menu-top .mega-menu-top-level .nav-item-parent ");
+    var menuItemsWithSub = $("#hubv4 .show-mega-menu-top .mega-menu-top-level > .has-submenu");
+    var subMenuItems = $("#hubv4 .show-mega-menu-top .mega-menu-top-level > .nav-item-parent "); // build sub menu for expand
 
     subMenuItems.each(function (index) {
       var $item = $(this); // console.log( $item, index );
@@ -14369,7 +14381,7 @@ function initTray() {
           clearTimeout(openTimeout);
         });
       } else {
-        $("#mega_menu_block").on("mouseleave", function (e) {
+        $("#hubv4 #mega_menu_block").on("mouseleave", function (e) {
           clearTimeout(openTimeout);
           openTimeout = setTimeout(function () {
             if ($(".show-mega-menu-top").length && horizontalMenuExpanded) {
@@ -14391,7 +14403,7 @@ function initTray() {
     expandDrawSubContent();
   }
 
-  if ($(".show-mega-menu-top").length) {
+  if ($("#hubv4 .show-mega-menu-top").length) {
     // only run on desktop size
     src_default.a.register(DESKTOP_AND_LARGER, function () {
       console.log("Desktop activated "); // Only inti horizontal nav if it hasn't rendered yet, prevents duplication when resizing multiple times
@@ -14404,12 +14416,12 @@ function initTray() {
   // Blip movement logic
 
 
-  $("#mega-menu > li:not(.sidemenu__label)").on("mouseover click", function () {
+  $("#hubv4 #mega-menu > li:not(.sidemenu__label)").on("mouseover click", function () {
     // If we are using a sidemenu
     if ($("#mega-menu").parent().hasClass("sidemenu-homepage")) {
       $blip.css({
         top: $(this).offset().top - $(this).parents("#mega-menu").offset().top,
-        height: $(this).innerHeight()
+        height: $(this).outerHeight()
       });
     } else {
       // Else we are using horizontal menu
@@ -14420,7 +14432,7 @@ function initTray() {
     }
   }); // On mouse out of horizontal nav
 
-  $(".main-site-header #mega-menu > li").on("mouseout", function () {
+  $("#hubv4 .main-site-header #mega-menu > li").on("mouseout", function () {
     var activeItem = $(".expanded-nav");
 
     if (activeItem.length) {
@@ -14433,116 +14445,11 @@ function initTray() {
         width: 0
       });
     }
-  }); // Custom SAVED menu
-
-  $(".ls-trigger").click(function (e) {
-    console.log(e);
-    window.localStorage.setItem("savedScholarships", '[{"rank":1,"score":0,"title":"A K Elliot sadsdasdasd!","collection":"vic-schols-push","component":0,"collapsed":null,"liveUrl":"https://www.wgtn.ac.nz/scholarships/current/a-k-elliot-memorial-scholarship","summary":"1727054 https% 3A% 2F% 2Fwww.wgtn.ac.nz% 2Fscholarships% 2Fcurrent% 2Fa-k-elliot-memorial-scholarship 256.","cacheUrl":"/s/cache?collection=vic-schols-push&url=https%3A%2F%2Fwww.wgtn.ac.nz%2Fscholarships%2Fcurrent%2Fa-k-elliot-memorial-scholarship&profile=_default_preview","date":null,"fileSize":5565,"fileType":"xml","tier":1,"docNum":48,"exploreLink":null,"kmFromOrigin":null,"quickLinks":null,"displayUrl":"https://www.wgtn.ac.nz/scholarships/current/a-k-elliot-memorial-scholarship","clickTrackingUrl":"/s/redirect?collection=vic-schols-push&url=https%3A%2F%2Fwww.wgtn.ac.nz%2Fscholarships%2Fcurrent%2Fa-k-elliot-memorial-scholarship&auth=3phxo37ZFdx6vI4nWgWX9w&profile=_default_preview&rank=1&query=%21showall","explain":null,"indexUrl":"https://www.wgtn.ac.nz/scholarships/current/a-k-elliot-memorial-scholarship","gscopesSet":[],"documentVisibleToUser":true,"promoted":false,"diversified":false,"listMetadata":{"studyAreas":["Business"],"t":["A K Elliot Memorial Scholarship"],"contents":["Study Area(s): Business Subject Area(s): N/A --> Scholarship Level: Doctoral"," Master’s Research"," All postgraduate Closing Date(s): 1 November Tenure: One year Number offered: One Value: Approximately $5,000 (subject to funds available) Description This scholarship is to help students conduct research in the field of librarianship. History This scholarship arises from a bequest under the Will of Miss Agnes King Elliot, former President of the New Zealand Library Association, who died in 1982. Eligibility The scholarship is open to applicants who, in the year of tenure will be enrolled as Master\'s or PhD students undertaking a research degree in Information Studies, and intend to pursue a research topic in the field of Librarianship in New Zealand. Criteria Applicants must be intending to enrol in Master\'s by research or PhD degree in Information Studies at Victoria University of Wellington (preference will be given to a specialisation in Library Science (LIBR) or Archives and Records Management (ARCR). Applicants must be intending to pursue a research topic in the field of Librarianship in New Zealand. Application process <p>A completed online application must be submitted by 4.30 pm on the closing date. Late or incomplete applications will not be accepted. Any required supporting documentation (including references) must also be received by 4.30 pm on the closing date in order for the application to be considered.</p><p>Applications will normally open one month prior to the closing date. If no application link is provided below, check back again closer to the closing date. <a href=\\"https://cms.wgtn.ac.nz/scholarships/scholarships-office\\">Contact us</a> if you have any queries.</p> Scholarship specific documentation A brief description of the research topic to be undertaken Selection process The successful recipient will be selected by Head of School of Information Management in consultation with appropriate staff from the school. In making the award the panel may take into consideration academic and"],"level":["Doctoral"," Master’s Research"," All postgraduate"],"closing1":["2021-11-01"],"history":["This scholarship is open to applicants who, in the year of tenure will be enrolled as Masters or PhD students undertaking a research degree in Library and Information Studies, and intend to pursue a research topic in the field of Librarianship in New Zealand."],"subjectAreas":["Information Systems"],"value":["5000"],"tenure":["One year"]},"metaData":{"history":"This scholarship is open to applicants who, in the year of tenure will be enrolled as Masters or PhD students undertaking a research degree in Library and Information Studies, and intend to pursue a research topic in the field of Librarianship in New Zealand.","subjectAreas":"Information Systems","t":"A K Elliot Memorial Scholarship","tenure":"One year","level":"Doctoral; Master’s Research; All postgraduate","closing1":"2021-11-01","studyAreas":"Business","value":"5000","contents":"Study Area(s): Business Subject Area(s): N/A --> Scholarship Level: Doctoral; Master’s Research; All postgraduate Closing Date(s): 1 November Tenure: One year Number offered: One Value: Approximately $5,000 (subject to funds available) Description This scholarship is to help students conduct research in the field of librarianship. History This scholarship arises from a bequest under the Will of Miss Agnes King Elliot, former President of the New Zealand Library Association, who died in 1982. Eligibility The scholarship is open to applicants who, in the year of tenure will be enrolled as Master\'s or PhD students undertaking a research degree in Information Studies, and intend to pursue a research topic in the field of Librarianship in New Zealand. Criteria Applicants must be intending to enrol in Master\'s by research or PhD degree in Information Studies at Victoria University of Wellington (preference will be given to a specialisation in Library Science (LIBR) or Archives and Records Management (ARCR). Applicants must be intending to pursue a research topic in the field of Librarianship in New Zealand. Application process <p>A completed online application must be submitted by 4.30 pm on the closing date. Late or incomplete applications will not be accepted. Any required supporting documentation (including references) must also be received by 4.30 pm on the closing date in order for the application to be considered.</p><p>Applications will normally open one month prior to the closing date. If no application link is provided below, check back again closer to the closing date. <a href=\\"https://cms.wgtn.ac.nz/scholarships/scholarships-office\\">Contact us</a> if you have any queries.</p> Scholarship specific documentation A brief description of the research topic to be undertaken Selection process The successful recipient will be selected by Head of School of Information Management in consultation with appropriate staff from the school. In making the award the panel may take into consideration academic and"},"tags":[],"customData":{},"relatedDocuments":{},"favourited":"true","notice":"true"},{"rank":2,"score":0,"title":"ACC \\"Jonathan Nicholls\\" Scholarship","collection":"vic-schols-push","component":0,"collapsed":null,"liveUrl":"https://www.wgtn.ac.nz/scholarships/current/acc-jonathan-nicholls-scholarship","summary":"1727395 https% 3A% 2F% 2Fwww.wgtn.ac.nz% 2Fscholarships% 2Fcurrent% 2Facc-jonathan-nicholls-scholarship 256.","cacheUrl":"/s/cache?collection=vic-schols-push&url=https%3A%2F%2Fwww.wgtn.ac.nz%2Fscholarships%2Fcurrent%2Facc-jonathan-nicholls-scholarship&profile=_default_preview","date":null,"fileSize":7614,"fileType":"xml","tier":1,"docNum":140,"exploreLink":null,"kmFromOrigin":null,"quickLinks":null,"displayUrl":"https://www.wgtn.ac.nz/scholarships/current/acc-jonathan-nicholls-scholarship","clickTrackingUrl":"/s/redirect?collection=vic-schols-push&url=https%3A%2F%2Fwww.wgtn.ac.nz%2Fscholarships%2Fcurrent%2Facc-jonathan-nicholls-scholarship&auth=8tLSz%2FazWKSu0vNF1vtDww&profile=_default_preview&rank=2&query=%21showall","explain":null,"indexUrl":"https://www.wgtn.ac.nz/scholarships/current/acc-jonathan-nicholls-scholarship","gscopesSet":[],"documentVisibleToUser":true,"promoted":false,"diversified":false,"listMetadata":{"studyAreas":["Business"," Science"],"t":["ACC \\"Jonathan Nicholls\\" Scholarship"],"contents":["Study Area(s): Business"," Science Subject Area(s): N/A --> Scholarship Level: All postgraduate"," Returning students Closing Date(s): 31 October Tenure: One year Number offered: One Value: $5,000 (please see additional information) Description In honour of Jonathan Nicholls (ACC\'s Head of Actuarial Services who passed away in early 2015), ACC wishes to promote the actuarial profession in much the same way that Jonathan did. ACC is dedicated to supporting Actuarial Science students and others looking to pursue a career in the actuarial profession. ACC&rsquo","s actuarial team provides support to ACC and the Ministry of Social Development. This allows for a unique opportunity for any potential internship offered, as the successful candidate could be placed in either of the two agencies. As such, a successful student would have the chance to gain exposure to a variety of areas where actuarial skills can be applied, including a combination of traditional and non-traditional areas. History This scholarship is funded by ACC and has been established as a legacy for Jonathan Nicholls, the former Head of Actuarial Services at ACC, who was passionately committed to growing and developing the actuarial profession. The purpose of the scholarship is to promote, develop and grow students wishing to pursue a career as an Actuary. It is also an investment towards local talent to provide a student in Mathematics, Statistics, Economics, Finance or specifically Actuarial Science with financial support to complete their final year of study at Victoria University of Wellington. Eligibility This scholarship is offered to current students (undergraduate or postgraduate) at Victoria University of Wellington. The applicants are expected to have commitment to working in the actuarial profession, a good academic record, communication skills (ability to explain complex ideas clearly both verbally and in writing), motivation to achieve, committed to achieving agreed objectives and working in the actuarial profession and meeting the needs of our"],"level":["All postgraduate"," Returning students"],"closing1":["2021-10-31"],"history":["This scholarship is open to students currently studying (undergraduate or postgraduate) at Victoria University of Wellington. Applicants must be studying Actuarial Science, Economics, Finance, Mathematics, or Statistics. Preference will be given to applicants who are intending to finish their studies in the next year and have completed ACTS201."],"subjectAreas":["Actuarial Science"," Economics"," Finance"," Mathematics"," Statistics"],"value":["5000"],"tenure":["One year"]},"metaData":{"subjectAreas":"Actuarial Science; Economics; Finance; Mathematics; Statistics","history":"This scholarship is open to students currently studying (undergraduate or postgraduate) at Victoria University of Wellington. Applicants must be studying Actuarial Science, Economics, Finance, Mathematics, or Statistics. Preference will be given to applicants who are intending to finish their studies in the next year and have completed ACTS201.","tenure":"One year","t":"ACC \\"Jonathan Nicholls\\" Scholarship","closing1":"2021-10-31","studyAreas":"Business; Science","level":"All postgraduate; Returning students","value":"5000","contents":"Study Area(s): Business; Science Subject Area(s): N/A --> Scholarship Level: All postgraduate; Returning students Closing Date(s): 31 October Tenure: One year Number offered: One Value: $5,000 (please see additional information) Description In honour of Jonathan Nicholls (ACC\'s Head of Actuarial Services who passed away in early 2015), ACC wishes to promote the actuarial profession in much the same way that Jonathan did. ACC is dedicated to supporting Actuarial Science students and others looking to pursue a career in the actuarial profession. ACC&rsquo;s actuarial team provides support to ACC and the Ministry of Social Development. This allows for a unique opportunity for any potential internship offered, as the successful candidate could be placed in either of the two agencies. As such, a successful student would have the chance to gain exposure to a variety of areas where actuarial skills can be applied, including a combination of traditional and non-traditional areas. History This scholarship is funded by ACC and has been established as a legacy for Jonathan Nicholls, the former Head of Actuarial Services at ACC, who was passionately committed to growing and developing the actuarial profession. The purpose of the scholarship is to promote, develop and grow students wishing to pursue a career as an Actuary. It is also an investment towards local talent to provide a student in Mathematics, Statistics, Economics, Finance or specifically Actuarial Science with financial support to complete their final year of study at Victoria University of Wellington. Eligibility This scholarship is offered to current students (undergraduate or postgraduate) at Victoria University of Wellington. The applicants are expected to have commitment to working in the actuarial profession, a good academic record, communication skills (ability to explain complex ideas clearly both verbally and in writing), motivation to achieve, committed to achieving agreed objectives and working in the actuarial profession and meeting the needs of our"},"tags":[],"customData":{},"relatedDocuments":{},"favourited":"true","notice":"false"},{"rank":3,"score":0,"title":"Ahunuku Māori Summer Research Scholarship 2021-2022","collection":"vic-schols-push","component":1,"collapsed":null,"liveUrl":"https://www.wgtn.ac.nz/scholarships/current/ahunuku-maori-summer-research-scholarship-2020-2021","summary":"1886794 https% 3A% 2F% 2Fwww.wgtn.ac.nz% 2Fscholarships% 2Fcurrent% 2Fahunuku-maori-summer-research-scholarship-2020-2021 256.","cacheUrl":"/s/cache?collection=vic-schols-push&url=https%3A%2F%2Fwww.wgtn.ac.nz%2Fscholarships%2Fcurrent%2Fahunuku-maori-summer-research-scholarship-2020-2021&profile=_default_preview","date":null,"fileSize":8313,"fileType":"xml","tier":1,"docNum":112,"exploreLink":null,"kmFromOrigin":null,"quickLinks":null,"displayUrl":"https://www.wgtn.ac.nz/scholarships/current/ahunuku-maori-summer-research-scholarship-2020-2021","clickTrackingUrl":"/s/redirect?collection=vic-schols-push&url=https%3A%2F%2Fwww.wgtn.ac.nz%2Fscholarships%2Fcurrent%2Fahunuku-maori-summer-research-scholarship-2020-2021&auth=TCV3AvGOkTVV80%2BjDpYtQw&profile=_default_preview&rank=3&query=%21showall","explain":null,"indexUrl":"https://www.wgtn.ac.nz/scholarships/current/ahunuku-maori-summer-research-scholarship-2020-2021","gscopesSet":[],"documentVisibleToUser":true,"promoted":false,"diversified":false,"listMetadata":{"studyAreas":["Science"],"t":["Ahunuku Māori Summer Research Scholarship 2021-2022"],"contents":["Study area(s): Science Subject Area(s): N/A --> Scholarship level: Returning students"," Honours"," Master\'s by coursework Closing date(s): 20 September 2021 Award for: Māori Value: $6,000 Description The Ahunuku Māori Summer Research Scholarship 2021-2022 is available through GNS Science, Te Pū Ao over the summer. Selected scholars are expected to contribute a minimum of 400 hours to the project between November 2021 and February 2022. All projects must be completed by the start of Trimester 1, 2022. Each scholarship will have a value of $6,000, paid in four equal instalments. Eligibility and conditions Applicants must be Māori, or of Māori descent. Applicants will be selected on the basis of academic merit, expertise in the research area, and recommendations from GNS staff associated with the project. Applicants must have completed at least two years of their undergraduate degree and are currently enrolled at any Australian or New Zealand University in an undergraduate, Honours, or first year of a Masters\' degree. Selected applicants must comply with the standard Summer Research Scholarship conditions . Students enrolled in a PhD or Masters by Thesis programs are not eligible. Application process Applications for the 2021-2022 Ahunuku Māori Summer Scholarships will be open from 6 September 2021 and close 20 September 2021 at 4.30 pm (New Zealand time zone). To apply for any of the following projects, an online application must be submitted by 4.30 pm on the closing date. When applying, please note the corresponding scholarship code for each project. Late or incomplete applications will not be accepted. Any required supporting documentation (including references) must also be received by 4.30 pm on the closing date in order for the application to be considered. For further details on the projects or for any questions about the scholarship, please contact summer-research@vuw.ac.nz. 2021-2022 Project details Scholarship project code: 900 - Development of a new calibration to reconstruct past air and water"],"level":["Returning students"," Honours"," Master\'s by coursework"],"closing1":["2021-09-20"],"subjectAreas":["Nursing"],"category":["Māori"],"value":["$6,000"]},"metaData":{"level":"Returning students; Honours; Master\'s by coursework","value":"$6,000","subjectAreas":"Nursing","studyAreas":"Science","closing1":"2021-09-20","t":"Ahunuku Māori Summer Research Scholarship 2021-2022","category":"Māori","contents":"Study area(s): Science Subject Area(s): N/A --> Scholarship level: Returning students; Honours; Master\'s by coursework Closing date(s): 20 September 2021 Award for: Māori Value: $6,000 Description The Ahunuku Māori Summer Research Scholarship 2021-2022 is available through GNS Science, Te Pū Ao over the summer. Selected scholars are expected to contribute a minimum of 400 hours to the project between November 2021 and February 2022. All projects must be completed by the start of Trimester 1, 2022. Each scholarship will have a value of $6,000, paid in four equal instalments. Eligibility and conditions Applicants must be Māori, or of Māori descent. Applicants will be selected on the basis of academic merit, expertise in the research area, and recommendations from GNS staff associated with the project. Applicants must have completed at least two years of their undergraduate degree and are currently enrolled at any Australian or New Zealand University in an undergraduate, Honours, or first year of a Masters\' degree. Selected applicants must comply with the standard Summer Research Scholarship conditions . Students enrolled in a PhD or Masters by Thesis programs are not eligible. Application process Applications for the 2021-2022 Ahunuku Māori Summer Scholarships will be open from 6 September 2021 and close 20 September 2021 at 4.30 pm (New Zealand time zone). To apply for any of the following projects, an online application must be submitted by 4.30 pm on the closing date. When applying, please note the corresponding scholarship code for each project. Late or incomplete applications will not be accepted. Any required supporting documentation (including references) must also be received by 4.30 pm on the closing date in order for the application to be considered. For further details on the projects or for any questions about the scholarship, please contact summer-research@vuw.ac.nz. 2021-2022 Project details Scholarship project code: 900 - Development of a new calibration to reconstruct past air and water"},"tags":[],"customData":{},"relatedDocuments":{},"favourited":"true","notice":"false"},{"rank":5,"score":0,"title":"Alastair Whitelaw Undergraduate Scholarship in History","collection":"vic-schols-push","component":6,"collapsed":null,"liveUrl":"https://www.wgtn.ac.nz/scholarships/current/alastair-whitelaw-undergraduate-scholarship-in-history","summary":"1982276 https% 3A% 2F% 2Fwww.wgtn.ac.nz% 2Fscholarships% 2Fcurrent% 2Falastair-whitelaw-undergraduate-scholarship-in-history 256.","cacheUrl":"/s/cache?collection=vic-schols-push&url=https%3A%2F%2Fwww.wgtn.ac.nz%2Fscholarships%2Fcurrent%2Falastair-whitelaw-undergraduate-scholarship-in-history&profile=_default_preview","date":null,"fileSize":5880,"fileType":"xml","tier":1,"docNum":6,"exploreLink":null,"kmFromOrigin":null,"quickLinks":null,"displayUrl":"https://www.wgtn.ac.nz/scholarships/current/alastair-whitelaw-undergraduate-scholarship-in-history","clickTrackingUrl":"/s/redirect?collection=vic-schols-push&url=https%3A%2F%2Fwww.wgtn.ac.nz%2Fscholarships%2Fcurrent%2Falastair-whitelaw-undergraduate-scholarship-in-history&auth=oDILcipOUZqSHUq83hlpSA&profile=_default_preview&rank=5&query=%21showall","explain":null,"indexUrl":"https://www.wgtn.ac.nz/scholarships/current/alastair-whitelaw-undergraduate-scholarship-in-history","gscopesSet":[],"documentVisibleToUser":true,"promoted":false,"diversified":false,"listMetadata":{"studyAreas":["Humanities"],"t":["Alastair Whitelaw Undergraduate Scholarship in History"],"contents":["Study area(s): Humanities Subject Area(s): N/A --> Scholarship level: Returning students Closing date(s): 30 April Tenure: 1 year Award for: Māori"," Pasifika Number offered: One Value: $3,000 Description This Scholarship arises from a bequest under the Will of Alastair Whitelaw, who died in 2015. Teaching and history were both his lifelong passion. He graduated from Victoria University of Wellington in 1955. He went on to complete an MA at Oxford and had a long career as a secondary school teacher. He taught history at both St Kentigern&rsquo","s and King&rsquo","s College in Auckland where he was also a Boarding Housemaster. This Scholarship is designed to encourage and support&nbsp","Māori or Pasifika&nbsp","students to pursue study in History at Victoria University of Wellington-Te Herenga Waka. History This scholarship is to support a Māori or Pasifika student studying in 300 level in History. Eligibility Applicants for this scholarship must be enrolled, or be intending to enrol in&nbsp","300 level&nbsp","in History at Victoria University of Wellington - Te Herenga Waka. Selection will be based on academic merit. Criteria Applicants must be of Māori or Pasifika descent. Applicants must be currently enrolled or intending to enrol in&nbsp","300 level&nbsp","&nbsp","in History at Victoria University of Wellington. Applicants must be majoring in History. Application Process <p>A completed online application must be submitted by 4.30 pm on the closing date. Late or incomplete applications will not be accepted. Any required supporting documentation (including references) must also be received by 4.30 pm on the closing date in order for the application to be considered.</p><p>Applications will normally open one month prior to the closing date. If no application link is provided below, check back again closer to the closing date. <a href=\\"https://cms.wgtn.ac.nz/scholarships/scholarships-office\\">Contact us</a> if you have any queries.</p> Apply online Scholarship specific documentation A personal statement outlining the desired"],"level":["Returning students"],"closing1":["2022-04-30"],"history":["This Scholarship arises from a bequest under the Will of Alastair Whitelaw, who died in 2015. Teaching and history were both his lifelong passion. He graduated from Victoria University of Wellington in 1955. He went on to complete an MA at Oxford and had a long career as a secondary school teacher. He taught history at both St Kentigern’s and..."],"subjectAreas":["History"],"category":["Māori"," Pasifika"],"tenure":["1 year"]},"metaData":{"studyAreas":"Humanities","category":"Māori; Pasifika","subjectAreas":"History","closing1":"2022-04-30","tenure":"1 year","history":"This Scholarship arises from a bequest under the Will of Alastair Whitelaw, who died in 2015. Teaching and history were both his lifelong passion. He graduated from Victoria University of Wellington in 1955. He went on to complete an MA at Oxford and had a long career as a secondary school teacher. He taught history at both St Kentigern’s and...","contents":"Study area(s): Humanities Subject Area(s): N/A --> Scholarship level: Returning students Closing date(s): 30 April Tenure: 1 year Award for: Māori; Pasifika Number offered: One Value: $3,000 Description This Scholarship arises from a bequest under the Will of Alastair Whitelaw, who died in 2015. Teaching and history were both his lifelong passion. He graduated from Victoria University of Wellington in 1955. He went on to complete an MA at Oxford and had a long career as a secondary school teacher. He taught history at both St Kentigern&rsquo;s and King&rsquo;s College in Auckland where he was also a Boarding Housemaster. This Scholarship is designed to encourage and support&nbsp;Māori or Pasifika&nbsp;students to pursue study in History at Victoria University of Wellington-Te Herenga Waka. History This scholarship is to support a Māori or Pasifika student studying in 300 level in History. Eligibility Applicants for this scholarship must be enrolled, or be intending to enrol in&nbsp;300 level&nbsp;in History at Victoria University of Wellington - Te Herenga Waka. Selection will be based on academic merit. Criteria Applicants must be of Māori or Pasifika descent. Applicants must be currently enrolled or intending to enrol in&nbsp;300 level&nbsp;&nbsp;in History at Victoria University of Wellington. Applicants must be majoring in History. Application Process <p>A completed online application must be submitted by 4.30 pm on the closing date. Late or incomplete applications will not be accepted. Any required supporting documentation (including references) must also be received by 4.30 pm on the closing date in order for the application to be considered.</p><p>Applications will normally open one month prior to the closing date. If no application link is provided below, check back again closer to the closing date. <a href=\\"https://cms.wgtn.ac.nz/scholarships/scholarships-office\\">Contact us</a> if you have any queries.</p> Apply online Scholarship specific documentation A personal statement outlining the desired","level":"Returning students","t":"Alastair Whitelaw Undergraduate Scholarship in History"},"tags":[],"customData":{},"relatedDocuments":{},"favourited":"true","notice":"true"}]');
   });
-  Storage.prototype.setItem = new Proxy(Storage.prototype.setItem, {
-    apply: function apply(target, thisArg, argumentList) {
-      var event = new CustomEvent("localstorage", {
-        detail: {
-          key: argumentList[0],
-          oldValue: thisArg.getItem(argumentList[0]),
-          newValue: argumentList[1]
-        }
-      });
-      window.dispatchEvent(event); // checkSavedItems();
-
-      return Reflect.apply(target, thisArg, argumentList);
-    }
-  });
-  Storage.prototype.removeItem = new Proxy(Storage.prototype.removeItem, {
-    apply: function apply(target, thisArg, argumentList) {
-      var event = new CustomEvent("localstorage", {
-        detail: {
-          key: argumentList[0]
-        }
-      });
-      window.dispatchEvent(event);
-      return Reflect.apply(target, thisArg, argumentList);
-    }
-  });
-  Storage.prototype.clear = new Proxy(Storage.prototype.clear, {
-    apply: function apply(target, thisArg, argumentList) {
-      var event = new CustomEvent("localstorage", {
-        detail: {
-          key: "__all__"
-        }
-      });
-      window.dispatchEvent(event);
-      return Reflect.apply(target, thisArg, argumentList);
-    }
-  });
-  var notificationCount = 0; // !Listen to storage changes from other windows on same domain
-  // window.addEventListener("storage", (e) => {
-  //   // When local storage changes, dump the list to
-  //   // the console.
-  //   console.log(e);
-  //   console.log(window.localStorage);
-  //   if (e.key.includes("saved")) {
-  //     console.log(e);
-  //     checkSavedItems(e.key);
-  //     notificationCount++;
-  //     if (notificationCount > 0) {
-  //       // Show main menu notification count
-  //       if ($(".menu-notifcations").length) {
-  //         $(".menu-notifcations").show();
-  //       } else {
-  //         $(".header-toggle .tray-toggle").append(
-  //           "<div class='menu-notifcations'>" + notificationCount + "</div>"
-  //         );
-  //       }
-  //       // Inner tab notification
-  //       if ($(".t-saved .notification").length) {
-  //         $(".t-saved .notification").show();
-  //       } else {
-  //         $(".t-saved span").append("<div class='notification'></div>");
-  //       }
-  //       // Show inner tab notifcation count
-  //       $("nav.tray .tabs .notification").show();
-  //       $("nav.tray .tabs .notification").text(notificationCount);
-  //     }
-  //   }
-  // });
-  // // !Listen to local storage on CURRENT PAGE
-  // window.addEventListener(
-  //   "localstorage",
-  //   function (e) {
-  //     if (e.detail.key.includes("saved")) {
-  //       console.log(e.detail);
-  //       // checkSavedItems(e.detail.key);
-  //       notificationCount++;
-  //       if (notificationCount > 0) {
-  //         // Show main menu notification count
-  //         if ($(".menu-notifcations").length) {
-  //           $(".menu-notifcations").show();
-  //         } else {
-  //           $(".header-toggle .tray-toggle").append(
-  //             "<div class='menu-notifcations'>" + notificationCount + "</div>"
-  //           );
-  //         }
-  //         // Inner tab notification
-  //         if ($(".t-saved .notification").length) {
-  //           $(".t-saved .notification").show();
-  //         } else {
-  //           $(".t-saved span").append("<div class='notification'></div>");
-  //         }
-  //         // Show inner tab notifcation count
-  //         $("nav.tray .tabs .notification").show();
-  //         $("nav.tray .tabs .notification").text(notificationCount);
-  //       }
-  //     }
-  //     // }
-  //   },
-  //   false
-  // );
-  // !Remove default icon injected on all role="button" elements
+  var notificationCount = 0; // !Remove default icon injected on all role="button" elements
 
   $(".btn-expander").addClass("no-icon"); // !Temporary override of toolkit hiding
-
-  $(".sidemenu  ul > .has-submenu").css("display", "flex");
+  // $("#hubv4 .sidemenu  ul > .has-submenu").css("display", "flex");
 
   var formatAsDate = function formatAsDate(date, locale) {
     var arr = date.split("");
@@ -14559,164 +14466,7 @@ function initTray() {
       dateString = new Date(dateString).toLocaleDateString("en-UK");
       return dateString;
     }
-  }; // !SAVED EVENTS LISTS
-  // function checkSavedItems(item) {
-  //   var nameMaps = {
-  //     savedEvents: "events",
-  //     savedScholarships: "scholarships",
-  //     savedClubs: "clubs",
-  //     savedPages: "pages",
-  //     savedPrizes: "prizes",
-  //   };
-  //   if (item == "savedEvents") {
-  //     var noResultsUrl = "https://cms.wgtn.ac.nz/events";
-  //   } else if (item == "savedScholarships") {
-  //     noResultsUrl = "https://cms.wgtn.ac.nz/scholarships/find-scholarships";
-  //   } else if (item == "savedClubs") {
-  //     noResultsUrl = "https://cms.wgtn.ac.nz/students/campus/clubs/directory";
-  //   } else if (item == "savedPrizes") {
-  //     noResultsUrl = "https://cms.wgtn.ac.nz/scholarships/annual-prizes";
-  //   } else {
-  //     noResultsUrl = "https://cms.wgtn.ac.nz/";
-  //   }
-  //   if (item) {
-  //     if (nameMaps[item] !== undefined) {
-  //       setTimeout(() => {
-  //         if (localStorage[item]) {
-  //           var items = JSON.parse(localStorage[item]);
-  //         }
-  //         if (items && items.length > 0) {
-  //           var itemsLength = items.length;
-  //         } else {
-  //           itemsLength = 0;
-  //         }
-  //         if (items && items.length > 0) {
-  //           // Update count in dropdown
-  //           $(".custom-dropdown")
-  //             .find("." + nameMaps[item] + " .count")
-  //             .text("(" + items.length + ")");
-  //           // Update count in accordion
-  //           $("." + nameMaps[item] + "-list")
-  //             .prev()
-  //             .find(".count")
-  //             .text(items.length);
-  //           // Append accordion buttons
-  //           $("." + nameMaps[item] + "-list").append(
-  //             "<div class='accordion-buttons'></div>"
-  //           );
-  //           if (items.length > 0) {
-  //             $("." + nameMaps[item] + "-list .accordion-buttons").append(
-  //               "<a target='_blank' class='btn rounded no-icon secondary view-all' href=''>View all <i class='icons8-external-link'></i></a>"
-  //             );
-  //           }
-  //           $("." + nameMaps[item] + "-list .accordion-buttons").append(
-  //             "<a target='_blank' class='btn rounded no-icon primary add-more' href='" +
-  //               noResultsUrl +
-  //               "'>Add more <i class='icons8-external-link'></i></a>"
-  //           );
-  //           // Clear old list
-  //           $("." + nameMaps[item] + "-list li").remove();
-  //           var first5 = items.slice(0, 5);
-  //           first5.forEach(function (e) {
-  //             // If liveUrl exists we presume it follows the Funnelback structure of 'title' and 'liveUrl', e.g. for Events
-  //             if (e.liveUrl) {
-  //               // Format date
-  //               if (nameMaps[item] == "events") {
-  //                 if (
-  //                   !$("." + nameMaps[item] + "-list li > a")
-  //                     .text()
-  //                     .includes(e.title)
-  //                 ) {
-  //                   $(
-  //                     "<li> <a target='_blank' href='" +
-  //                       e.liveUrl +
-  //                       "'><span data-url='" +
-  //                       e.liveUrl +
-  //                       "' data-date='" +
-  //                       e.metaData.O +
-  //                       "' class='item-dates'>" +
-  //                       formatAsDate(e.metaData.O, "uk") +
-  //                       "</span>" +
-  //                       e.title +
-  //                       "</a> " +
-  //                       "<button title='Remove this item from saved list' class='no-icon remove-item'><i class='icons8-close'></i></button></li>"
-  //                   ).insertBefore(
-  //                     $("." + nameMaps[item] + "-list").find(
-  //                       ".accordion-buttons"
-  //                     )
-  //                   );
-  //                 }
-  //               } else {
-  //                 if (
-  //                   !$("." + nameMaps[item] + "-list li > a")
-  //                     .text()
-  //                     .includes(e.title)
-  //                 ) {
-  //                   $(
-  //                     "<li><a target='_blank' href='" +
-  //                       e.liveUrl +
-  //                       "'>" +
-  //                       e.title +
-  //                       "</a></li>"
-  //                   ).insertBefore(
-  //                     $("." + nameMaps[item] + "-list").find(
-  //                       ".accordion-buttons"
-  //                     )
-  //                   );
-  //                 }
-  //               }
-  //             } else {
-  //               $(
-  //                 "<li><a target='_blank' href='" +
-  //                   e.url +
-  //                   "'>" +
-  //                   e.name +
-  //                   "</a></li>"
-  //               ).insertBefore(
-  //                 $("." + nameMaps[item] + "-list").find(".accordion-buttons")
-  //               );
-  //             }
-  //           });
-  //         }
-  //         if (itemsLength == 0) {
-  //           $("." + nameMaps[item] + "-list")
-  //             .prev()
-  //             .addClass("empty");
-  //           $("." + nameMaps[item] + "-list").append(
-  //             "<div class='empty-message'>Nothing here... <a target='_blank' href='" +
-  //               noResultsUrl +
-  //               "'>Add some!</a></div>"
-  //           );
-  //         } else {
-  //           $("." + nameMaps[item] + "-list")
-  //             .prev()
-  //             .removeClass("empty");
-  //           $("." + nameMaps[item] + "-list")
-  //             .find(".empty-message")
-  //             .hide();
-  //         }
-  //       }, 100);
-  //     }
-  //   }
-  // }
-  // checkSavedItems("savedEvents");
-  // checkSavedItems("savedScholarships");
-  // checkSavedItems("savedClubs");
-  // checkSavedItems("savedPages");
-  // checkSavedItems("savedPrizes");
-  // // Trigger to open/close items in saved items
-  // $(".group-title").on("click keyup", function (e) {
-  //   if (e.which == 13 || e.which == 1) {
-  //     $(this).toggleClass("active");
-  //     if ($(this).hasClass("active")) {
-  //       $(this).find("i").addClass("flipped");
-  //     } else {
-  //       $(this).find("i").removeClass("flipped");
-  //     }
-  //     $(this).next().slideToggle("fast");
-  //   }
-  // });
-
+  };
 
   var resizeTallBlip = function resizeTallBlip(el, hide) {
     if (hide) {
@@ -14756,7 +14506,7 @@ function initTray() {
       }
     }
   });
-  $("nav.tray .tabs > div").on("mouseover click keyup", function (e) {
+  $("#hubv4 nav.tray .tabs > div").on("mouseover click keyup", function (e) {
     if (e.type == "click" || e.type == "mouseover" || e.type == "keyup" && e.which == 13) {
       $tabBlip.css({
         left: $(this).offset().left - $("nav.tray .tabs").offset().left,
@@ -14764,7 +14514,7 @@ function initTray() {
       });
     }
   });
-  $("nav.tray .tabs").on("mouseout", function () {
+  $("#hubv4 nav.tray .tabs").on("mouseout", function () {
     var activeItem = $("nav.tray .tabs .active").parent();
 
     if (activeItem.length) {
@@ -14775,18 +14525,18 @@ function initTray() {
     }
   }); // !TRAY MENU BLIP
 
-  var $tallBlip = $(".main-nav-list .tall-blip");
-  $(".main-nav-list > li ").on("mouseenter click", function () {
+  var $tallBlip = $("#hubv4 .main-nav-list .tall-blip");
+  $("#hubv4 .main-nav-list > li ").on("mouseenter click", function () {
     resizeTallBlip($(this));
   });
-  $(".main-nav-list").on("mouseleave", function () {
+  $("#hubv4 .main-nav-list").on("mouseleave", function () {
     var activeItem = $(".main-nav-list > li.active");
 
     if (!activeItem.length) {
       resizeTallBlip($(this), true);
     }
   });
-  $(".tray-main-nav").on("mouseleave", function () {
+  $("#hubv4 .tray-main-nav").on("mouseleave", function () {
     var activeItem = $(".main-nav-list > li.active");
 
     if (activeItem.length) {
@@ -14794,14 +14544,14 @@ function initTray() {
     }
   }); // !CUSTOM DROPDOWN
 
-  $(".custom-dropdown .selector").on("click keyup", function (e) {
+  $("#hubv4 .custom-dropdown .selector").on("click keyup", function (e) {
     if (e.which == 13 || e.which == 1) {
       // If enter or left-click
       $(this).next().slideToggle("fast");
       $(this).toggleClass("open");
     }
   });
-  $(".custom-dropdown ul li").on("click keyup", function (e) {
+  $("#hubv4 .custom-dropdown ul li").on("click keyup", function (e) {
     if (e.which == 13 || e.which == 1) {
       // If enter or left-click
       // Clear open class on selector
@@ -14841,7 +14591,7 @@ function initTray() {
   }; // !MAIN NAV LIST ACCORDIONS
 
 
-  $(".tray .main-nav-item ul li").each(function (e) {
+  $("#hubv4 .tray .main-nav-item ul li").each(function (e) {
     var $element = $(this);
 
     if ($(this).find("ul").length > 0) {
@@ -14870,6 +14620,7 @@ function initTray() {
 
 
       $(this).parent().find(">ul .active").removeClass("active");
+      $(this).parent().find(">ul .expanded > ul").slideUp("fast");
       $(this).parent().find(">ul .expanded").removeClass("expanded"); // Slide out main menu
 
       $(this).parent().find(">ul").slideToggle("fast", function () {
@@ -14890,6 +14641,7 @@ function initTray() {
       setTimeout(function () {
         resizeTallBlip(activeItem);
       }, 300);
+      $(this).parent().find(">ul").slideToggle("fast");
       $(this).parent().toggleClass("active");
       $(this).parent().find(">a").toggleClass("active");
       $(this).parent().toggleClass("expanded");
@@ -14998,7 +14750,7 @@ var little_loader = __webpack_require__(7);
 var little_loader_default = /*#__PURE__*/__webpack_require__.n(little_loader);
 
 // EXTERNAL MODULE: ./node_modules/q/q.js
-var q = __webpack_require__(3);
+var q = __webpack_require__(4);
 var q_default = /*#__PURE__*/__webpack_require__.n(q);
 
 // CONCATENATED MODULE: ./node_modules/whatwg-fetch/fetch.js
@@ -15806,7 +15558,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   });
 }); // Check toolbar for mode=dev and apply class
 
-if (document.location.href.includes("?mode=dev") || document.location.href.includes("local.wgtn") || document.location.href.includes("assets/git_bridge/0009/1778031/dist")) {
+if (document.location.href.includes("SQ_DESIGN_NAME=v4") || document.location.href.includes("local.wgtn") || document.location.href.includes("assets/git_bridge/0009/1778031/dist")) {
   $("body").attr("id", "hubv4");
 } // Check toolbar to ensure myTools has been updated to Puaha
 
@@ -15947,1081 +15699,2125 @@ __webpack_require__(19); // TODO: set up multiple entry points for webpack bundl
 __webpack_require__(20);
 
 external_jQuery_default()(".select").select2();
-/* CONSTANT ATTRIBUTES */
 
-var TRANSITION_TIMEOUT = 200; // update in _settings.variables.scss(135)
+if (external_jQuery_default()("body").attr("id") == "hubv4") {
+  /* SUPPORTING FUNCTIONS */
 
-var MOBILE_LARGE_AND_SMALLER = "screen and (max-width: 42.99em)",
-    // update in _settings.responsive.scss(57)
-toolkit_DESKTOP_AND_LARGER = "screen and (min-width: 61em)",
-    toolkit_TABLET_AND_SMALLER = "screen and (max-width: 975px)",
-    // Iframe selectors
-YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
-    GMAPS_IFRAME_SELECTOR = 'iframe[src*="/maps/"]',
-    VIMEO_IFRAME_SELECTOR = 'iframe[src*="vimeo"]';
-/* SUPPORTING FUNCTIONS */
+  /** Wrap YT videos in .embed wrapper that helps with responsiveness. */
+  var toolkit_wrapEmbeddedIframes = function wrapEmbeddedIframes() {
+    var iframes = external_jQuery_default()("".concat(YOUTUBE_IFRAME_SELECTOR, ", ").concat(GMAPS_IFRAME_SELECTOR, ", ").concat(VIMEO_IFRAME_SELECTOR)),
+        singleIframe = null,
+        iframeClasses;
+    iframes.each(function (index) {
+      singleIframe = external_jQuery_default()(this); // If it doesn't already have wrapper, wrap it!
 
-/** Wrap YT videos in .embed wrapper that helps with responsiveness. */
-
-function wrapEmbeddedIframes() {
-  var iframes = external_jQuery_default()("".concat(YOUTUBE_IFRAME_SELECTOR, ", ").concat(GMAPS_IFRAME_SELECTOR, ", ").concat(VIMEO_IFRAME_SELECTOR)),
-      singleIframe = null,
-      iframeClasses;
-  iframes.each(function (index) {
-    singleIframe = external_jQuery_default()(this); // If it doesn't already have wrapper, wrap it!
-
-    if (!singleIframe.parent().hasClass("embed")) {
-      iframeClasses = singleIframe.attr("class") || "";
-      singleIframe.wrap("<div class=\"embed ".concat(iframeClasses, "\"></div>"));
-      if (iframeClasses) singleIframe.removeClass();
-    }
-  });
-}
-/** Deletes all study areas tiles that are display: none from DOM to
-keep the markup clean (and easily handled by the CSS) */
-
-
-function removedUnusedTiles() {
-  external_jQuery_default()(".tiles-wrap .tile").each(function () {
-    if (external_jQuery_default()(this).css("display") == "none") {
-      external_jQuery_default()(this).remove();
-    }
-  });
-}
-
-var SIDEMENU_CLASS = "sidemenu";
-var SIDEMENU_TOGGLE_CLASS = "sidemenu-toggle";
-var SIDEMENU_EXPANDER_CLASS = "btn-expander";
-var SIDEMENU_SUBMENU_CLASS = "has-submenu";
-var SIDEMENU_SELECTED_ITEM_CLASS = "active";
-var SIDEMENU_EXPANDED_CLASS = "expanded";
-var pageName = external_jQuery_default()("main h1").first().text();
-/** PRIVATE FUNCTIONS. */
-
-function initExpandableSubmenu() {
-  var _this = this;
-
-  var expandableButtonElement = external_jQuery_default()(this);
-  var submenuContainer = expandableButtonElement.parent(".".concat(SIDEMENU_SUBMENU_CLASS)); // Open item of current page
-  // Init default state
-
-  var isExpanded = submenuContainer.hasClass(SIDEMENU_SELECTED_ITEM_CLASS);
-
-  function calcHeight(items) {
-    var total = 0;
-    var item = external_jQuery_default()(this); //Loop through each item and get height, add to total
-
-    items.each(function (i) {
-      if (item) {
-        total += external_jQuery_default()(items[i]).outerHeight();
+      if (!singleIframe.parent().hasClass("embed")) {
+        iframeClasses = singleIframe.attr("class") || "";
+        singleIframe.wrap("<div class=\"embed ".concat(iframeClasses, "\"></div>"));
+        if (iframeClasses) singleIframe.removeClass();
       }
     });
-    return total;
-  }
+  };
+  /** Deletes all study areas tiles that are display: none from DOM to
+  keep the markup clean (and easily handled by the CSS) */
 
-  function apply(topLevel, clickedEl) {
-    if (clickedEl && !clickedEl.parent().hasClass("expanded")) {
-      var expandedLi = external_jQuery_default()(".sidebar > nav > ul > li.expanded");
 
-      if (topLevel) {
-        //? REMOVE OTHER ITEMS THAT ARE EXPANDED
-        expandedLi.find(">ul").css("max-height", "0px");
-        external_jQuery_default()(".sidebar > nav > ul li.has-submenu.expanded").not(submenuContainer).removeClass("expanded"); //? ADD EXPANDED CLASS TO CLICK EL
-
-        submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
-        var expandedLi = external_jQuery_default()(".sidebar > nav > ul > li.expanded"); //? CALC HEIGHT OF ITEMS (FOR SMOOTH ANIMATION)
-
-        var listHeight = calcHeight(expandedLi.find("> ul > li"));
-        expandedLi.find(">ul").css("max-height", listHeight + "px");
-      } else {
-        console.log("===== INNER EXPANDER CLICKED ===="); //? INNER EXPANDER HAS BEEN CLICKED, ADJUST HEIGHT AGAIN
-
-        submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
-        var listHeight = calcHeight(expandedLi.find("> ul li"));
-        expandedLi.find(">ul").css("max-height", listHeight + "px");
+  var toolkit_removedUnusedTiles = function removedUnusedTiles() {
+    external_jQuery_default()(".tiles-wrap .tile").each(function () {
+      if (external_jQuery_default()(this).css("display") == "none") {
+        external_jQuery_default()(this).remove();
       }
-    } else {
-      //? CLOSE ITEM
-      var expandedLi = external_jQuery_default()(".sidebar > nav > ul > li.expanded");
-      submenuContainer.removeClass(SIDEMENU_EXPANDED_CLASS);
+    });
+  };
 
+  /** PRIVATE FUNCTIONS. */
+  var toolkit_initExpandableSubmenu = function initExpandableSubmenu() {
+    var _this = this;
+
+    var expandableButtonElement = external_jQuery_default()(this);
+    var submenuContainer = expandableButtonElement.parent(".".concat(SIDEMENU_SUBMENU_CLASS)); // Open item of current page
+    // Init default state
+
+    var isExpanded = submenuContainer.hasClass(SIDEMENU_SELECTED_ITEM_CLASS); // function calcHeight(items) {
+    //   var total = 0;
+    //   var item = $(this);
+    //   //Loop through each item and get height, add to total
+    //   items.each(function (i) {
+    //     if (item) {
+    //       total += $(items[i]).outerHeight();
+    //     }
+    //   });
+    //   return total;
+    // }
+
+    function apply(topLevel, clickedEl) {
+      //? REMOVE OTHER ITEMS THAT ARE EXPANDED
       if (topLevel) {
-        submenuContainer.find(SIDEMENU_EXPANDED_CLASS).removeClass(SIDEMENU_EXPANDED_CLASS);
-        expandedLi.find(">ul").css("max-height", "0px");
+        if (clickedEl && !clickedEl.parent().hasClass("expanded")) {
+          var expandedLi = external_jQuery_default()(".sidebar > nav > ul > li.expanded");
+          expandedLi.removeClass("expanded");
+          expandedLi.find(">ul").slideUp("fast");
+        }
+      }
+
+      clickedEl.parent().toggleClass("expanded");
+      clickedEl.parent().find(">ul").animate({
+        height: "toggle"
+      }, "fast");
+    } // function apply(topLevel, clickedEl) {
+    //   if (clickedEl && !clickedEl.parent().hasClass("expanded")) {
+    //     var expandedLi = $(".sidebar > nav > ul > li.expanded");
+    //     if (topLevel) {
+    //       //? REMOVE OTHER ITEMS THAT ARE EXPANDED
+    //       // expandedLi.find(">ul").css("max-height", "0px");
+    //       expandedLi.find(">ul").animate(
+    //         {
+    //           maxHeight: 0,
+    //         },
+    //         300,
+    //         function () {
+    //           // Animation complete.
+    //         }
+    //       );
+    //       $(".sidebar > nav > ul li.has-submenu.expanded")
+    //         .not(submenuContainer)
+    //         .removeClass("expanded");
+    //       //? ADD EXPANDED CLASS TO CLICK EL
+    //       submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
+    //       var expandedLi = $(".sidebar > nav > ul > li.expanded");
+    //       expandedLi.find(">ul").show();
+    //       //? CALC HEIGHT OF ITEMS (FOR SMOOTH ANIMATION)
+    //       var listHeight = calcHeight(expandedLi.find("> ul > li"));
+    //       // expandedLi.find(">ul").css("max-height", listHeight + "px");
+    //       expandedLi.find(">ul").animate(
+    //         {
+    //           opacity: 1,
+    //           maxHeight: listHeight,
+    //         },
+    //         300,
+    //         "swing",
+    //         function () {
+    //           // Animation complete.
+    //           console.log("animation complete");
+    //         }
+    //       );
+    //     } else {
+    //       console.log("===== INNER EXPANDER CLICKED ====");
+    //       //? INNER EXPANDER HAS BEEN CLICKED, ADJUST HEIGHT AGAIN
+    //       submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
+    //       var listHeight = calcHeight(expandedLi.find("> ul li"));
+    //       // expandedLi.find(">ul").css("max-height", listHeight + "px");
+    //       expandedLi.find(">ul").animate(
+    //         {
+    //           maxHeight: listHeight,
+    //         },
+    //         300,
+    //         function () {
+    //           // Animation complete.
+    //           console.log("animation complete");
+    //         }
+    //       );
+    //     }
+    //   } else {
+    //     //? CLOSE ITEM
+    //     var expandedLi = $(".sidebar > nav > ul > li.expanded");
+    //     submenuContainer.removeClass(SIDEMENU_EXPANDED_CLASS);
+    //     if (topLevel) {
+    //       submenuContainer
+    //         .find(SIDEMENU_EXPANDED_CLASS)
+    //         .removeClass(SIDEMENU_EXPANDED_CLASS);
+    //       // expandedLi.find(">ul").css("max-height", "0px");
+    //       expandedLi.find(">ul").animate(
+    //         {
+    //           maxHeight: 0,
+    //         },
+    //         300,
+    //         function () {
+    //           // Animation complete.
+    //           expandedLi.find(">ul").fadeOut();
+    //         }
+    //       );
+    //     }
+    //   }
+    // }
+    // Init
+    // apply(true, $(".sidebar > nav > ul > li.active > .btn-expander"));
+    // Bind `click` events to all expandable buttons
+    // expandableButtonElement.on("click", (e) => {
+    //   e.preventDefault();
+    //   e.stopPropagation();
+    //   isExpanded = !isExpanded;
+    //   apply();
+    // });
+    // Click event for expand buttons in SIDEMENU only
+
+
+    expandableButtonElement.on("click keyup", function (e) {
+      if (e.which == 13 || e.which == 1) {
+        e.preventDefault();
+        e.stopPropagation();
+        isExpanded = !isExpanded;
+        var topLevel = false;
+        var clickedButton = external_jQuery_default()(_this); // !TOP LEVEL
+
+        if (clickedButton.parent().parent().parent().hasClass("sidemenu")) {
+          topLevel = true;
+        }
+
+        apply(topLevel, clickedButton);
+      }
+    });
+  };
+
+  var toolkit_initSidemenuExpandability = function initSidemenuExpandability(menuClass) {
+    var menuElement = external_jQuery_default()(".".concat(menuClass));
+    toolkit_enhanceSidemenu(menuElement);
+    var matches = 0; // $("." + SIDEMENU_CLASS)
+    //   .find("a")
+    //   .each(function () {
+    //     var linkText = $(this).text();
+    //     // var matches is needed so that multiple menus don't open when there are duplicate links
+    //     if (linkText == pageName && matches < 1) {
+    //       matches++;
+    //       $(this).addClass("active");
+    //       $(this).parents("li").addClass("active expanded");
+    //     }
+    //   });
+    // Expanding/Collapsing of the entire side menu on mobile devices
+
+    menuElement.children(".".concat(SIDEMENU_TOGGLE_CLASS)).children("a").on("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      external_jQuery_default()(this).parent().next().slideToggle();
+      external_jQuery_default()(this).parent().toggleClass(SIDEMENU_EXPANDED_CLASS);
+    });
+    var expandableButtons = menuElement.find(".".concat(SIDEMENU_EXPANDER_CLASS)); // Add tracking if enabled
+
+    if (tracker.shouldTrackElement(menuElement)) {
+      tracker.registerForTracking(menuElement.find("li > a"), "click", "sidemenu-link");
+      tracker.registerForTracking(expandableButtons, "click", "sidemenu-expander");
+    }
+
+    expandableButtons.each(toolkit_initExpandableSubmenu); // Ensure expander height is the same as the link (for long link titles than span across 2+ lines)
+
+    src_default.a.register(toolkit_DESKTOP_AND_LARGER, function () {
+      external_jQuery_default()(".sidemenu > ul > li").each(function (e) {
+        var link = external_jQuery_default()(this).find(">a");
+        var expander = external_jQuery_default()(this).find("> .btn-expander");
+        expander.css("height", link.outerHeight());
+      });
+    });
+  };
+
+  var toolkit_enhanceSidemenu = function enhanceSidemenu(menuElement) {
+    menuElement.find("li").each(function () {
+      var listItem = external_jQuery_default()(this); // a) already has got a proper class in place? Skip!
+
+      if (listItem.hasClass(SIDEMENU_SUBMENU_CLASS)) return; // b) No submenu in <li>? Skip!
+
+      if (listItem.children("ul").length === 0) return; // c) Has got a submenu => Enhance sidemenu's HTML
+
+      listItem.addClass(SIDEMENU_SUBMENU_CLASS);
+      external_jQuery_default()(btnExpanderHtml).insertAfter(listItem.children("a"));
+    });
+  };
+  /** HELPERS */
+  // FIXME: Should be automatically pre-populated from the build/build.config.js
+
+
+  var isAdminEnvironment = function isAdminEnvironment() {
+    return window.location.hostname === ENV_HOSTNAME.STAGE || window.location.hostname === ENV_HOSTNAME.LOCAL;
+  };
+  /**
+   * Decodes email address into re-usable form.
+   *
+   * @deprecated Very old approach that won't work today - do not use.
+   */
+
+
+  var decodeMailAddresses = function decodeMailAddresses() {
+    var a = "dre:ams0of@g1niht.lp2c9u3v8k4w7y5j6zbx-_qfntigue6los5zar7b:y4dp8v3m9h2.x1w@k0jcq-_";
+    var i, h, j, k, l, m, n, s;
+
+    for (i = 0; i < document.links.length; i += 1) {
+      h = document.links[i].hash;
+
+      if (h.substring(0, 3) == "#sd") {
+        k = "";
+        l = h.substring(3, 5);
+        m = h.lastIndexOf("?subject=");
+
+        if (m == -1) {
+          s = document.links[i].href;
+        } else {
+          s = h.substring(m);
+          h = h.substring(0, m);
+        }
+
+        for (j = 5; j < h.length; j += 2) {
+          k += a.charAt(h.substring(j, j + 2) - l - 1);
+        }
+
+        m = s.lastIndexOf("?subject=");
+
+        if (m == -1) {
+          document.links[i].href = k;
+        } else {
+          document.links[i].href = k + s.substring(m);
+        }
+
+        n = document.links[i].innerHTML;
+
+        if (n == "address") {
+          document.links[i].innerHTML = k.substring(7);
+        } else {
+          document.links[i].title = k.substring(7);
+        }
       }
     }
-  } // Init
-  // apply(true, $(".sidebar > nav > ul > li.active > .btn-expander"));
-  // Bind `click` events to all expandable buttons
-  // expandableButtonElement.on("click", (e) => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   isExpanded = !isExpanded;
-  //   apply();
-  // });
-  // Click event for expand buttons in SIDEMENU only
+  };
+  /** MESSAGE/NOTIFICATIONS HANDLING */
 
 
-  expandableButtonElement.on("click keyup", function (e) {
-    if (e.which == 13 || e.which == 1) {
+  /**
+   * Renders the error message notification and adds it to the top of the
+   * content window. Will show only to administrators within non-production
+   * environments.
+   *
+   * @param {{type: string, message: string, invalidItems: Array[string]}} errorObject
+   *
+   * @returns {void}
+   */
+  var toolkit_showAdminErrorMessage = function showAdminErrorMessage(errorObject) {
+    if (!errorObject || !isAdminEnvironment()) return;
+    var invalidItemsListHtml;
+
+    if (errorObject.invalidItems.length > 0) {
+      invalidItemsListHtml = "\n        <ul>\n          <li>".concat(errorObject.invalidItems.join("</li><li>"), "</li>\n        </ul>\n      ");
+    } // Template
+
+
+    var errorNotificationHtml = "\n      <section class=\"flash-message error\">\n        ".concat(errorObject.message, "\n        ").concat(invalidItemsListHtml, "\n      </section>\n    ");
+    external_jQuery_default()(".content-panel > main > .formatting").prepend(errorNotificationHtml);
+    console.error("Content-related error has occured", errorObject);
+  };
+  /** NAVIGATION */
+
+  /**
+   * Adds the 'active' class to a main menu item
+   * that corresponds with the current top-level URL path
+   * segment.
+   *
+   * Note: This is *only* done due to Squiz 5.4 limitations. Once we can render
+   * this class on the backend, this function can be deprecated.
+   */
+
+
+  var toolkit_addActiveClassToMainMenu = function addActiveClassToMainMenu() {
+    // [url-path-segment]: [nav-item-classname]
+    var rootPages = {
+      study: "future",
+      international: "international",
+      students: "current",
+      research: "research",
+      engage: "engage"
+    },
+        urlPathSegments = window.location.pathname.split("/");
+
+    if (urlPathSegments.length > 1 && urlPathSegments[1] !== "" && hasProp(rootPages, urlPathSegments[1])) {
+      var activeNavItemClass = rootPages[urlPathSegments[1]];
+      var activeNavItem = document.querySelector(".menu-bar .".concat(activeNavItemClass));
+      if (activeNavItem) activeNavItem.classList.add("active");
+    }
+  };
+  /** CONTENT DYNAMIC MANIPULATIONS */
+
+  /**
+   * Moves `non-staff` contact cards into the previous/next <ul> with
+   * regular staff.
+   *
+   * @deprecated This approach should not be used in new updates! Please, follow
+   * clear syntax, so you don't have to move elements around.
+   *
+   * Notice: This is required to deal with structural and visual
+   * inconsistencies that stem from legacy code that powers rendering
+   * of non-staff contact cards. Once this is removed, this slow
+   * function can be removed too.
+   */
+
+
+  var toolkit_moveOrphanedStaffCardIntoList = function moveOrphanedStaffCardIntoList() {
+    var orphanBeforeStaffList = document.querySelector(".".concat(STAFF_CONTACT_CLASSNAME, " + .").concat(STAFF_LIST_CONTAINER_CLASSNAME));
+    var orphanAfterStaffList = document.querySelector(".".concat(STAFF_LIST_CONTAINER_CLASSNAME, " + .").concat(STAFF_CONTACT_CLASSNAME));
+    if (!orphanBeforeStaffList && !orphanAfterStaffList) return;
+
+    while (orphanAfterStaffList) {
+      var orphanedStaffCardElement = external_jQuery_default()(orphanAfterStaffList);
+      var staffListElement = orphanedStaffCardElement.prev().children(".".concat(STAFF_LIST_CLASSNAME));
+
+      if (staffListElement.length === 0) {
+        // Staff list is not within its container - abort
+        console.warn("The 'non-staff' profile could not be placed within the list of other 'staff' profiles, beceause the *previous* block does not contain '".concat(STAFF_LIST_CLASSNAME, "' class. You might experience visual inconsistencies."), orphanAfterStaffList, staffListElement);
+        return;
+      }
+
+      var listItem = external_jQuery_default()("<li></li>").append(orphanedStaffCardElement);
+      staffListElement.append(listItem);
+      orphanAfterStaffList = document.querySelector(".".concat(STAFF_LIST_CONTAINER_CLASSNAME, " + .").concat(STAFF_CONTACT_CLASSNAME));
+    } // Has to be re-evaluated again to reflect the previous content manipulations
+
+
+    orphanBeforeStaffList = document.querySelector(".".concat(STAFF_CONTACT_CLASSNAME, " + .").concat(STAFF_LIST_CONTAINER_CLASSNAME));
+
+    while (orphanBeforeStaffList) {
+      var _orphanedStaffCardElement = external_jQuery_default()(orphanBeforeStaffList).prev(".".concat(STAFF_CONTACT_CLASSNAME)); // Current selector is pointing to the <ul> - point to the previous sibling instead!
+
+
+      var _staffListElement = _orphanedStaffCardElement.next().children(".".concat(STAFF_LIST_CLASSNAME));
+
+      if (_staffListElement.length === 0) {
+        // Staff list is not within its container - abort
+        console.warn("The 'non-staff' profile could not be placed within the list of other 'staff' profiles, beceause the *following* block does not contain '".concat(STAFF_LIST_CLASSNAME, "' class. You might experience visual inconsistencies."), _orphanedStaffCardElement, _staffListElement);
+        break;
+      }
+
+      var _listItem = external_jQuery_default()("<li></li>").append(_orphanedStaffCardElement);
+
+      _staffListElement.prepend(_listItem);
+
+      orphanBeforeStaffList = document.querySelector(".".concat(STAFF_CONTACT_CLASSNAME, " + .").concat(STAFF_LIST_CONTAINER_CLASSNAME));
+    }
+  };
+  /**
+   * Because two sets of taught courses are rendered (one located at the top
+   * of the page, one at the bottom), it hides the other, non-used counterpart.
+   *
+   * @deprecated
+   *
+   * Note: This is legacy code and can be removed when the backend renders
+   * only one set of taught courses.
+   */
+
+
+  var toolkit_hideCoursesOnStaffProfile = function hideCoursesOnStaffProfile() {
+    if (!window.courseLocation) return;
+
+    if (window.courseLocation === "top") {
+      external_jQuery_default()("#courses-bottom").css({
+        display: "none"
+      });
+    }
+
+    if (window.courseLocation === "bottom") {
+      external_jQuery_default()("#courses-top").css({
+        display: "none"
+      });
+    }
+  };
+  /** CONTENT SIDE-BAR */
+  // Constants
+
+
+  /**
+   * Finds all widget blocks within the main content and moves them into the
+   * right-hand sidebar.
+   *
+   * Note: This is *only* done due to Squiz 5.4 limitations. Once we can render
+   * widgets into the sidebar on our backend, this client-side solution can be
+   * deprecated.
+   *
+   * @returns {void}
+   */
+  var toolkit_moveWidgetsToSidebar = function moveWidgetsToSidebar() {
+    // No widgets OR sidebar available -> Skip!
+    if (!document.querySelector(".".concat(SIDEBAR_WIDGET_CLASSNAME)) || !document.getElementById(SIDEBAR_ID)) return; // Members
+    // Original, unordered widgets
+
+    var widgetsToMove = external_jQuery_default()(".".concat(SIDEBAR_WIDGET_CLASSNAME)),
+        sidebarElement = external_jQuery_default()("#".concat(SIDEBAR_ID)); // Correctly ordered and prepared to be rendered
+
+    var widgetsMoved = [];
+    var error;
+    widgetsToMove.each(function moveWidgetToSidebar() {
+      var widgetElement = external_jQuery_default()(this);
+
+      if (widgetsMoved.length >= SIDEBAR_WIDGETS_MAX) {
+        if (!error) {
+          error = {
+            type: ERROR_TYPES.SIDEBAR_WIDGETS_COUNT_EXCEEDED,
+            message: "\n                <h2>Too many elements in the sidebar</h2>\n                <p>Currently added: ".concat(widgetsToMove.length, ", Maximum: ").concat(SIDEBAR_WIDGETS_MAX, ".</p>\n                <p>\n                  <strong>Please remove the class '").concat(SIDEBAR_WIDGET_CLASSNAME, "' from all blocks you do not want to appear in the sidebar.</strong>\n                </p>\n                <p>\n                  The blocks with following content will not be shown in the sidebar:\n                </p>\n              "),
+            invalidItems: []
+          };
+        }
+
+        error.invalidItems.push(this.id || "".concat(widgetElement.text().trim().substring(0, 80), "..."));
+        return;
+      }
+
+      if (widgetElement.hasClass(WIDGET_LINKS_CLASSNAME)) {
+        // A) Staff profile - add to the top!
+        widgetsMoved.unshift(widgetElement);
+      } else {
+        // B) Others (downloads, publications etc.) - Add to the last positions
+        widgetsMoved.push(widgetElement);
+      } // Remove from its original location
+
+
+      widgetElement.detach(); // Remove `display:none` if it exists
+
+      widgetElement.css("display", "");
+    }); // Render widgets in the sidebar
+
+    sidebarElement.append.apply(sidebarElement, widgetsMoved); // Render errors, if any
+
+    if (error) toolkit_showAdminErrorMessage(error);
+  };
+  /** 'GO UP' BUTTON */
+
+
+  var toolkit_initFloatingButtons = function initFloatingButtons() {
+    var buttonUpElement = document.getElementById(BTN_UP_ID),
+        buttonAdminElement = isAdminEnvironment() ? document.getElementById(BTN_ADMIN_EDIT_ID) : null;
+
+    if (buttonUpElement) {
+      external_jQuery_default()(buttonUpElement).click(function (e) {
+        e.preventDefault();
+        external_jQuery_default()("html,body").animate({
+          scrollTop: 0
+        }, SCROLL_ANIMATION_DURATION_IN_MS);
+      });
+    }
+
+    if (buttonAdminElement) {
+      external_jQuery_default()(buttonAdminElement).css("display", ""); // Remove inline 'display'
+      // Uncomment if the button and URL cannot be rendered by Squiz!
+      // $( buttonAdminElement ).click( ( e ) => {
+      //  e.preventDefault();
+      //    window.location.href += `/${ADMIN_URL_EXTENSION}`;
+      // })
+    }
+  };
+
+  var toolkit_victoriousHeader = function victoriousHeader() {
+    if (external_jQuery_default()(".victorious-header").length) {
+      // console.log('vistorious test');
+      var header = document.querySelector(".victorious-header");
+      console.log(header.offsetHeight);
+      var options = {
+        // vertical offset in px before element is first unpinned
+        offset: 10,
+        // scroll tolerance in px before state changes
+        tolerance: 10,
+        // css classes to apply
+        classes: {
+          // when element is initialised
+          initial: "",
+          // when scrolling up
+          pinned: "headroom--pinned",
+          // when scrolling down
+          unpinned: "headroom--unpinned",
+          // when above offset
+          top: "headroom--top",
+          // when below offset
+          notTop: "header-shrink",
+          // whe  n at bottom of scoll area
+          bottom: "headroom--bottom",
+          // when not at bottom of scroll area
+          notBottom: "headroom--not-bottom"
+        }
+      };
+      var headroom = new headroom_default.a(header, options);
+
+      if (external_jQuery_default()(".victorious-expand").length) {
+        headroom.init();
+      } // toggle issues in nav
+
+
+      external_jQuery_default()(".past-issues a").on("click", function () {
+        external_jQuery_default()(".issues").slideToggle();
+        external_jQuery_default()(this).find("span").toggleClass("icon-caret-right").toggleClass("icon-caret-down");
+      });
+    } else {
+      return;
+    }
+  };
+  /** INITIALISE ON SCRIPT LOAD. */
+
+
+  /* Add accessible title label for restricted links class  */
+  var restrictedLinkTitle = function restrictedLinkTitle() {
+    var lockLinks = document.querySelectorAll(".link-restricted");
+
+    for (var i = 0; i < lockLinks.length; i++) {
+      lockLinks[i].setAttribute("title", "Restricted intranet link");
+    }
+  };
+
+  /* Research hub mega menu */
+  var toolkit_hubMegaMenu = function hubMegaMenu() {
+    var menu = external_jQuery_default()(".hub-mega-menu .mega-menu-inner");
+    var menuExpandButton = external_jQuery_default()(".hub-mega-menu .btn-expander");
+    var mobile = false;
+    var desktop = false;
+    src_default.a.register(toolkit_DESKTOP_AND_LARGER, function () {
+      desktop = true;
+      mobile = false;
+    });
+    src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
+      desktop = false;
+      mobile = true;
+    });
+    menuExpandButton.each(function () {
+      var _this2 = this;
+
+      external_jQuery_default()(this).on("click", function (c) {
+        var $this = external_jQuery_default()(_this2);
+
+        if (desktop) {
+          menu.toggleClass("expanded");
+        }
+
+        if (mobile) {
+          menu.addClass("expanded");
+          $this.parent().toggleClass("js-dropdown-show");
+        }
+      });
+    });
+  };
+
+  var toolkit_hubMegaMenu2 = function hubMegaMenu2() {
+    var menu = external_jQuery_default()(".hub-mega-menu .mega-menu-inner");
+    var menuExpandButton = external_jQuery_default()(".hub-mega-menu .btn-expander").parent();
+    var mobile = false;
+    var desktop = false;
+    src_default.a.register(toolkit_DESKTOP_AND_LARGER, function () {
+      desktop = true;
+      mobile = false;
+    });
+    src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
+      desktop = false;
+      mobile = true;
+    });
+    menuExpandButton.each(function () {
+      var $this = external_jQuery_default()(this); // Create and append Title to list of expanded links
+
+      var title = $this.children("a").text();
+      var titleLink = $this.children("a").attr("href");
+      var newLink = "<li class=\"js-inject-title\"><a href=\"".concat(titleLink, "\"> ").concat(title, " </a></li>");
+      $this.children("ul").prepend(newLink); // subnav expand function
+
+      external_jQuery_default()(this).on("click", function (c) {
+        c.preventDefault();
+
+        if (desktop) {
+          menu.toggleClass("expanded");
+        }
+
+        if (mobile) {
+          menu.addClass("expanded");
+          $this.toggleClass("js-dropdown-show");
+        }
+      });
+    });
+  };
+
+  var toolkit_openPopup = function openPopup() {
+    popups.initAndOpen(this[0]);
+    return this;
+  };
+
+  var TRANSITION_TIMEOUT = 200; // update in _settings.variables.scss(135)
+
+  var MOBILE_LARGE_AND_SMALLER = "screen and (max-width: 42.99em)",
+      // update in _settings.responsive.scss(57)
+  toolkit_DESKTOP_AND_LARGER = "screen and (min-width: 61em)",
+      toolkit_TABLET_AND_SMALLER = "screen and (max-width: 975px)",
+      // Iframe selectors
+  YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
+      GMAPS_IFRAME_SELECTOR = 'iframe[src*="/maps/"]',
+      VIMEO_IFRAME_SELECTOR = 'iframe[src*="vimeo"]';
+  var SIDEMENU_CLASS = "sidemenu";
+  var SIDEMENU_TOGGLE_CLASS = "sidemenu-toggle";
+  var SIDEMENU_EXPANDER_CLASS = "btn-expander";
+  var SIDEMENU_SUBMENU_CLASS = "has-submenu";
+  var SIDEMENU_SELECTED_ITEM_CLASS = "active";
+  var SIDEMENU_EXPANDED_CLASS = "expanded";
+  var pageName = external_jQuery_default()("main h1").first().text();
+  src_default.a.register(toolkit_DESKTOP_AND_LARGER, function () {
+    external_jQuery_default()(".sidebar > nav > ul").show();
+  }); // TODO: Remove after this was implemented on the backend (~ in Squiz)
+
+  /** Adds necessary classes and expanding/collapsing elements if the item has got submenu. */
+
+  var btnExpanderHtml = '<span tabindex="0" class="btn-expander mf-heatmap-click" title="Toggle subpages" role="button"></span>';
+  var ENV_HOSTNAME = {
+    STAGE: "cms.wgtn.ac.nz",
+    PROD: "www.wgtn.ac.nz",
+    LOCAL: "local.wgtn.ac.nz"
+  }; // FIXME: Should be automatically pre-populated from the build/build.config.js
+
+  var URL_BASE = {
+    TOOLKIT: "local.wgtn.ac.nz:8080"
+  };
+  var ERROR_TYPES = {
+    SIDEBAR_WIDGETS_COUNT_EXCEEDED: "sidebar-widgets-count-exceeded"
+  };
+  var STAFF_LIST_CONTAINER_CLASSNAME = "articles-container",
+      STAFF_LIST_CLASSNAME = "staff-list",
+      STAFF_CONTACT_CLASSNAME = "contact";
+  var SIDEBAR_WIDGET_CLASSNAME = "data-sidebar",
+      SIDEBAR_ID = "rightHandMenu",
+      SIDEBAR_WIDGETS_MAX = 3,
+      WIDGET_LINKS_CLASSNAME = "data-relatedLinks";
+  var BTN_UP_ID = "btn-up",
+      BTN_ADMIN_EDIT_ID = "btn-admin",
+      // ADMIN_URL_EXTENSION = '_edit', // Uncomment if the button and URL cannot be rendered by Squiz!
+  SCROLL_ANIMATION_DURATION_IN_MS = 700;
+
+  (function init() {
+    initToolbarLoader();
+    initToolbarUrlListeners();
+  })();
+  /** INITIALISE ON DOM LOAD. */
+
+
+  external_jQuery_default()(function () {
+    toolkit_moveWidgetsToSidebar();
+    toolkit_addActiveClassToMainMenu();
+    toolkit_moveOrphanedStaffCardIntoList();
+    tooltips.initTooltips(); // FIXME: Extract out to a standalone plugin and run on staff profiles *only*
+
+    toolkit_hideCoursesOnStaffProfile();
+    var $body = external_jQuery_default()("body"),
+        $globalNav = external_jQuery_default()("#global-nav"),
+        $globalSearch = external_jQuery_default()("#global-search");
+    /** Init side-menu, if it's present */
+
+    if (external_jQuery_default()(".".concat(SIDEMENU_CLASS)).length) {
+      toolkit_initSidemenuExpandability(SIDEMENU_CLASS);
+    } // ***************************
+    // Init homepage side megamenu
+    // ***************************
+
+
+    if (external_jQuery_default()(".sidemenu-homepage").length) {
+      src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
+        console.log("sidemenu-homepage");
+        toolkit_initSidemenuExpandability("sidemenu-homepage"); // console.log('tray is small size for mob');
+      });
+      var $sidemenuHomepage = external_jQuery_default()(".sidemenu-homepage");
+      toolkit_enhanceSidemenu($sidemenuHomepage);
+    } // initSidemenuExpandability( 'horizontal-menu' );
+    // ***************************
+    // Init horizontal megamenu
+    // ***************************
+
+
+    if (external_jQuery_default()(".show-mega-menu-top").length) {
+      src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
+        console.log("show-mega-menu-top");
+        toolkit_initSidemenuExpandability("mega-sub-menu"); // console.log('tray is small size for mob');
+      });
+      toolkit_enhanceSidemenu(external_jQuery_default()(".mega-sub-menu"));
+    }
+
+    if (external_jQuery_default()(".header-tray").length) {
+      initTray();
+    }
+
+    toolkit_victoriousHeader(); // if (
+    //   window.skrollr &&
+    //   $(window).width() > 800 &&
+    //   !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    //     navigator.userAgent
+    //   )
+    // ) {
+    //   window.onload = function () {
+    //     let s = skrollr.init({
+    //       smoothScrolling: true,
+    //       render: function () {
+    //         // console.log('skrollr init');
+    //       },
+    //     });
+    //   };
+    //   if (s.isMobile()) {
+    //     s.destroy();
+    //   }
+    //   $(window).on('resize', () => {
+    //     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { // no reason to destroy on mobile
+    //       if ($(window).width() <= 800) {
+    //         skrollr.init().destroy(); // skrollr.init() returns the singleton created above
+    //       }
+    //     }
+    //   });
+    // }
+
+    toolkit_initFloatingButtons();
+    decodeMailAddresses(); // http://wicky.nilia.ms/enquire.js/
+    // TODO: Refactor and extract to its own library
+    // enquire.register( MOBILE_LARGE_AND_SMALLER, () => {
+    //   if ( $globalNav.length ) {
+    //     const eGlobalNav    = $globalNav[0],
+    //       bannerHeaderElement = $( '.site-header' ),
+    //       sidemenu            = $( '.sidemenu' );
+    //     const headroom  = new Headroom( eGlobalNav, {
+    // 		  offset:    $globalNav.outerHeight(),
+    //       // or scroll tolerance per direction
+    //       tolerance: {
+    //         down: 5,
+    //         up:   20,
+    //       },
+    //       classes: {
+    //         initial:  'sticky',
+    //         pinned:   'slide-down',
+    //         unpinned: 'slide-up',
+    //         notTop:   'no-top',
+    //       },
+    //     });
+    //     headroom.init();
+    //     const disableHeadroom = () => {
+    //       if ( headroom ) {
+    //         headroom.scroller.removeEventListener( 'scroll', headroom.debouncer, false );
+    //       }
+    //     };
+    //     const enableHeadroom = () => {
+    //       if ( headroom ) {
+    //         headroom.scroller.addEventListener( 'scroll', headroom.debouncer, false );
+    //       }
+    //     };
+    //     const removeMenuOutClickListener = () => {
+    //       document.removeEventListener( 'click', menuOutsideClickListener );
+    //     };
+    //     const registerMenuOutClickListener = () => {
+    //       document.addEventListener( 'click', menuOutsideClickListener );
+    //     };
+    //     const toggleMobileMenu = () => {
+    //       $globalNav.find( '.tcon' ).toggleClass( 'tcon-transform' );
+    //       $globalNav.toggleClass( 'is-open' );
+    //       if ( !headroom ) return;
+    //       if ( $globalNav.hasClass( 'is-open' )) {
+    //         disableHeadroom();
+    //         $body.addClass( 'unscrollable' );
+    //         registerMenuOutClickListener();
+    //       } else {
+    //         enableHeadroom();
+    //         $body.removeClass( 'unscrollable' );
+    //         removeMenuOutClickListener();
+    //       }
+    //     };
+    //     function menuOutsideClickListener( event ) {
+    //       if ( !$( event.target ).closest( '#global-nav' ).length ) {
+    //         toggleMobileMenu();
+    //       }
+    //     }
+    //     $body.on( 'click ', '.js-toggle-global-nav', ( _event ) => {
+    //       toggleMobileMenu();
+    //     });
+    //   }
+    // });
+    // Opens/closes global search bar & gains auto-focus
+
+    $body.on("click ", ".js-toggle-global-search", function (_event) {
+      var $this = external_jQuery_default()(this);
+
+      if ($this.data("js-has-active-transition")) {
+        return false;
+      }
+
+      $this.data("js-has-active-transition", true);
+      $this.find(".tcon").toggleClass("tcon-transform");
+
+      if ($globalSearch.hasClass("is-open")) {
+        $globalSearch.toggleClass("is-open", false);
+        setTimeout(function () {
+          $this.data("js-has-active-transition", false);
+        }, TRANSITION_TIMEOUT);
+      } else {
+        $globalSearch.toggleClass("is-open", true);
+        setTimeout(function () {
+          $globalSearch.find("input:text").focus();
+          $this.data("js-has-active-transition", false);
+        }, TRANSITION_TIMEOUT);
+      }
+
+      _event.preventDefault();
+    }); // Study areas tabs toggle
+
+    external_jQuery_default()("#study-area-tabs li a").click(function () {
+      if (external_jQuery_default()(this).parent().hasClass("active")) {
+        return;
+      }
+
+      external_jQuery_default()(".active").removeClass("active");
+      external_jQuery_default()(this).parent().addClass("active");
+      external_jQuery_default()(".study-areas").toggleClass("hidden");
+      external_jQuery_default()(".degrees-quals").toggleClass("hidden");
+    });
+    /* Show the tab content that is selected */
+
+    if (document.getElementById("undergraduate") && document.getElementById("undergraduate").checked) {
+      switchTabToUndergrad();
+    } else if (document.getElementById("postgraduate") && document.getElementById("postgraduate").checked) {
+      switchTabToPostgrad();
+    }
+
+    external_jQuery_default()(".switch .switch-input").on("change", function () {
+      if (external_jQuery_default()(this).attr("value") == "undergraduate") {
+        switchTabToUndergrad();
+      }
+
+      if (external_jQuery_default()(this).attr("value") == "postgraduate") {
+        switchTabToPostgrad();
+      }
+    });
+
+    function switchTabToUndergrad() {
+      external_jQuery_default()("#study-area-tabs > ul > li:nth-child(1) h4").html('<span class="icon-book-open"></span>Subject areas');
+      external_jQuery_default()(".study-areas-undergrad").show(500);
+      external_jQuery_default()(".study-areas-postgrad").hide(500);
+    }
+
+    function switchTabToPostgrad() {
+      external_jQuery_default()("#study-area-tabs > ul > li:nth-child(1) h4").html('<span class="icon-book-open"></span> Postgraduate subjects');
+      external_jQuery_default()(".study-areas-postgrad").show(500);
+      external_jQuery_default()(".study-areas-undergrad").hide(500);
+    }
+    /* dynamic height for tiles. setting height of all tiles from largest tile height */
+
+
+    external_jQuery_default()(".dynamic-height-tiles ").each(function (n) {
+      // get array of heights for each group of class
+      var tileHeights = external_jQuery_default()(this).find("li.tile").map(function () {
+        return external_jQuery_default()(this).height();
+      }).get(); // check heights for largest
+
+      var maxHeight = Math.max.apply(null, tileHeights); // apply maxheight to tiles
+
+      external_jQuery_default()(this).find("li.tile").height(maxHeight + 16);
+    });
+    /* Navigation toggle on mobile */
+
+    external_jQuery_default()(".main-menu-toggle").on("click", function () {
+      external_jQuery_default()(".main-nav").slideToggle();
+      external_jQuery_default()(".sub-nav").slideToggle();
+      external_jQuery_default()(".search-bar").slideToggle();
+      external_jQuery_default()(".menu-toggle-icon").toggleClass("open");
+    });
+    /* Show search bar on desktop */
+
+    external_jQuery_default()(".search-item").on("click", function () {
+      external_jQuery_default()(".search-bar").slideToggle();
+      var searchInputElement = external_jQuery_default()("#search-query");
+
+      if (searchInputElement.is(":visible")) {
+        searchInputElement.focus();
+      }
+    });
+
+    if (external_jQuery_default()("#study-area-tabs")) {
+      var getUrlParameter = function getUrlParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]".concat(name, "=([^&#]*)"));
+        var results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+      };
+
+      var handleSwitchInputClick = function handleSwitchInputClick(event) {
+        window.history.replaceState({}, "", "".concat(window.location.pathname, "?grad=").concat(event.target.id));
+      };
+
+      var grad = "URLSearchParams" in window ? new URLSearchParams(window.location.search).get("grad") : getUrlParameter("grad");
+
+      if (grad === "postgraduate" || grad === "undergraduate") {
+        external_jQuery_default()("#".concat(grad)).click();
+      }
+
+      var tabs = external_jQuery_default()("#study-area-tabs .switch-input");
+      tabs.each(function () {
+        this.addEventListener("click", handleSwitchInputClick);
+      });
+    }
+    /** DOM manipulation */
+
+
+    toolkit_wrapEmbeddedIframes();
+    toolkit_removedUnusedTiles(); // TODO: Review - Can be removed after all the study areas are migrated
+    // tile accordion
+
+    external_jQuery_default()(".tile-accordion .tile").not(".tile-accordion.content-page").on("click", function (evt) {
+      // evt.preventDefault();
+      if (external_jQuery_default()(this).hasClass("accordion-closed")) {
+        external_jQuery_default()(this).children(".accordion-content ").slideDown();
+        external_jQuery_default()(this).removeClass("accordion-closed").addClass("accordion-open");
+      } else if (external_jQuery_default()(this).hasClass("accordion-open")) {
+        external_jQuery_default()(this).children(".accordion-content ").slideUp();
+        external_jQuery_default()(this).removeClass("accordion-open").addClass("accordion-closed");
+      }
+
+      external_jQuery_default()(this).find(".links a").on("click", function (event) {
+        event.stopPropagation();
+      });
+    });
+    /** Runs any custom scripts that could be added in the content. */
+
+    if (onDocumentReadyFunctions && onDocumentReadyFunctions.length) {
+      onDocumentReadyFunctions.forEach(function (singleFunction) {
+        singleFunction();
+      });
+    }
+  });
+  /* Research hub content page tile accordian */
+
+  external_jQuery_default()(".tile-accordion.content-page .tile .toggle").on("click", function (evt) {
+    var $this = external_jQuery_default()(this);
+    $this.toggleClass("expanded");
+    $this.siblings("p").toggle();
+  });
+  restrictedLinkTitle();
+
+  if (document.getElementsByClassName("hub-mega-menu").length > 0 && !document.getElementsByClassName("mega-menu-bar").length > 0) {
+    var hubMegaMenuElement = external_jQuery_default()(".hub-mega-menu");
+    var megaMenuExpandButton = external_jQuery_default()(".hub-mega-menu .btn-expander");
+    toolkit_hubMegaMenu();
+
+    if (tracker.shouldTrackElement(hubMegaMenuElement)) {
+      tracker.registerForTracking(hubMegaMenuElement.find("li > a"), "click", "megamenu-link");
+      tracker.registerForTracking(megaMenuExpandButton, "click", "megamenu-expander");
+    }
+  }
+  /* New hub mega menu */
+
+
+  if (document.getElementsByClassName("hub-mega-menu").length > 0 && document.getElementsByClassName("mega-menu-bar").length > 0) {
+    toolkit_hubMegaMenu2();
+    console.log("new menu bar strip thing cool ");
+  }
+
+  if (document.getElementsByClassName("toggle").length > 0) {
+    external_jQuery_default()(".toggle").on("click", function () {
+      external_jQuery_default()(this).toggleClass("active");
+      external_jQuery_default()(this).next(".toggle-block").toggleClass("active");
+    });
+  } // !Add light class to all sidemenus (TEMPORARY)
+
+
+  if (external_jQuery_default()(".sidemenu").length > 0 && !external_jQuery_default()(".sidemenu").hasClass("sidemenu-light")) {
+    external_jQuery_default()(".sidemenu").addClass("sidemenu-light");
+  }
+  /* USing on subject page proto */
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // ensure vue comps ready ..
+    setTimeout(function () {
+      // console.log('run toggle slide');
+      if (document.getElementsByClassName("toggle-slide").length > 0) {
+        external_jQuery_default()(".toggle-slide").on("click", function () {
+          external_jQuery_default()(this).toggleClass("active");
+
+          if (external_jQuery_default()(this).next(".toggle-block").hasClass("active")) {
+            external_jQuery_default()(this).next(".toggle-block").slideUp().toggleClass("active");
+          } else {
+            external_jQuery_default()(this).next(".toggle-block").slideDown().toggleClass("active");
+          }
+        });
+      }
+    }, 750);
+  }); // Sticky header/nav on mobile
+
+  if (document.location.href.includes("?mode=dev") || document.location.href.includes("local.wgtn") || document.location.href.includes("assets/git_bridge/0009/1778031/dist")) {
+    // Sticky header/nav on mobile
+    window.onscroll = function (e) {
+      var _this3 = this;
+
+      src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
+        if (window.pageYOffset > 100) {
+          var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+          var header = external_jQuery_default()(".main-site-header");
+
+          if (scrollY < _this3.lastScroll - 5) {
+            header.addClass("sticky");
+          } else {
+            header.removeClass("sticky");
+          }
+
+          _this3.lastScroll = scrollY;
+        }
+      });
+    };
+  }
+  /**
+   * jQuery's plugin as a utility factory
+   * Usage as: $( jquerySelector ).vicApp().method( options )
+   */
+
+
+  (function ($) {
+    $.fn.vicApp = function () {
+      return {
+        openPopup: toolkit_openPopup.bind(this)
+      };
+    };
+  })(jQuery);
+
+  if (document.getElementsByClassName("calendar-cards").length > 0) {
+    external_jQuery_default()("#search-filter").on("keyup search", function () {
+      var value = external_jQuery_default()(this).val().toLowerCase(); // if input 3 or more filter
+
+      if (external_jQuery_default()(this).val().length >= 2) {
+        external_jQuery_default()(".calendar-cards .card").filter(function () {
+          external_jQuery_default()(this).toggle(external_jQuery_default()(this).text().toLowerCase().indexOf(value) > -1);
+        });
+      } else {
+        // show all if search input less then 2
+        external_jQuery_default()(".calendar-cards .card").show();
+      }
+    }); // Filter on type tags
+
+    external_jQuery_default()(".tags .tag").on("click", function () {
+      if (external_jQuery_default()(this).hasClass("selected")) {
+        external_jQuery_default()(this).removeClass("selected");
+        external_jQuery_default()(".calendar-cards .card").show();
+      } else {
+        external_jQuery_default()(".tags .tag").removeClass("selected");
+        external_jQuery_default()(".calendar-cards .card").show();
+
+        if (external_jQuery_default()(this).text() === "Amendment") {
+          external_jQuery_default()(this).addClass("selected");
+          external_jQuery_default()(".calendar-cards .card").filter(':not([data-type="Amendment"])').hide();
+        }
+
+        if (external_jQuery_default()(this).text() === "New") {
+          external_jQuery_default()(this).addClass("selected");
+          external_jQuery_default()(".calendar-cards .card").filter(':not([data-type="New"])').hide();
+        }
+
+        if (external_jQuery_default()(this).text() === "Errata") {
+          external_jQuery_default()(this).addClass("selected");
+          external_jQuery_default()(".calendar-cards .card").filter(':not([data-type="Errata"])').hide();
+        }
+      }
+    });
+  } // Carousel
+
+
+  var arrayOfPhotos = ["https://www.wgtn.ac.nz/__data/assets/image/0010/1750339/sleep-mat-banner-minds-v3.jpg", "https://www.wgtn.ac.nz/__data/assets/image/0006/1721877/windy-banner.jpg", "https://www.wgtn.ac.nz/__data/assets/image/0010/560773/MaoriStudiesBanner.jpg", "https://www.wgtn.ac.nz/__data/assets/image/0007/1873258/ai-fingers.jpg", "https://www.wgtn.ac.nz/__data/assets/image/0005/1756517/globe-top.jpg"];
+  var count = -1;
+  external_jQuery_default()(".carousel-controls .next").on("click", function (e) {
+    console.log(e);
+    console.log(count);
+
+    if (count < 4) {
+      count++;
+    } else {
+      count = 0;
+    }
+
+    external_jQuery_default()(this).parent().prev().find(">img").attr("src", arrayOfPhotos[count]);
+  });
+  external_jQuery_default()(".carousel-controls .previous").on("click", function (e) {
+    console.log(e);
+    console.log(count);
+
+    if (count > 0) {
+      count--;
+    } else {
+      count = 4;
+    }
+
+    external_jQuery_default()(this).parent().prev().find(">img").attr("src", arrayOfPhotos[count]);
+  }); // Add Maori language tags to all tereo titles
+
+  external_jQuery_default()(".tereo-title").attr("lang", "mi"); // Save page toggle
+
+  external_jQuery_default()(".save-page").on("click", function () {
+    external_jQuery_default()(this).toggleClass("saved");
+  }); // Save a page
+
+  external_jQuery_default()(".save-page").on("click", function () {
+    var localSavedPages = JSON.parse(localStorage.getItem("savedPages"));
+    var savedPageObject = {
+      url: window.location.href,
+      name: document.title
+    };
+    console.log(localSavedPages);
+
+    if (localSavedPages && localSavedPages.length > 0) {
+      console.log(localSavedPages);
+      var arrayOfSavedItems = [];
+      var filtered = localSavedPages.filter(function (option) {
+        return option.url !== savedPageObject.url;
+      });
+      localStorage.setItem("savedPages", [JSON.stringify(filtered)]);
+    } else {
+      // First saved page
+      var arrayOfSavedItems = [];
+      arrayOfSavedItems.push(savedPageObject);
+      localStorage.setItem("savedPages", JSON.stringify(arrayOfSavedItems));
+    }
+  }); // Apply style to page save icon if page is in local storage
+
+  if (external_jQuery_default()(".save-page")) {}
+} else {
+  /* SUPPORTING FUNCTIONS */
+
+  /** Wrap YT videos in .embed wrapper that helps with responsiveness. */
+  var scripts_toolkit_wrapEmbeddedIframes = function _wrapEmbeddedIframes() {
+    var iframes = external_jQuery_default()("".concat(_YOUTUBE_IFRAME_SELECTOR, ", ").concat(_GMAPS_IFRAME_SELECTOR, ", ").concat(_VIMEO_IFRAME_SELECTOR)),
+        singleIframe = null,
+        iframeClasses;
+    iframes.each(function (index) {
+      singleIframe = external_jQuery_default()(this); // If it doesn't already have wrapper, wrap it!
+
+      if (!singleIframe.parent().hasClass("embed")) {
+        iframeClasses = singleIframe.attr("class") || "";
+        singleIframe.wrap("<div class=\"embed ".concat(iframeClasses, "\"></div>"));
+        if (iframeClasses) singleIframe.removeClass();
+      }
+    });
+  };
+  /** Deletes all study areas tiles that are display: none from DOM to
+  keep the markup clean (and easily handled by the CSS) */
+
+
+  var scripts_toolkit_removedUnusedTiles = function _removedUnusedTiles() {
+    external_jQuery_default()(".tiles-wrap .tile").each(function () {
+      if (external_jQuery_default()(this).css("display") == "none") {
+        external_jQuery_default()(this).remove();
+      }
+    });
+  };
+
+  /** PRIVATE FUNCTIONS. */
+  var scripts_toolkit_initExpandableSubmenu = function _initExpandableSubmenu() {
+    var expandableButtonElement = external_jQuery_default()(this);
+    var submenuContainer = expandableButtonElement.parent(".".concat(_SIDEMENU_SUBMENU_CLASS)); // Init default state
+
+    var isExpanded = submenuContainer.hasClass(_SIDEMENU_SELECTED_ITEM_CLASS);
+
+    function apply() {
+      if (isExpanded) {
+        submenuContainer.addClass(_SIDEMENU_EXPANDED_CLASS);
+      } else {
+        submenuContainer.removeClass(_SIDEMENU_EXPANDED_CLASS);
+      }
+    } // Init
+
+
+    apply(); // Bind `click` events to all expandable buttons
+
+    expandableButtonElement.on("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
       isExpanded = !isExpanded;
-      var topLevel = false;
-      var clickedButton = external_jQuery_default()(_this); // !TOP LEVEL
-
-      if (clickedButton.parent().parent().parent().hasClass("sidemenu")) {
-        topLevel = true;
-      }
-
-      apply(topLevel, clickedButton);
-    }
-  });
-}
-
-function initSidemenuExpandability(menuClass) {
-  var menuElement = external_jQuery_default()(".".concat(menuClass));
-  enhanceSidemenu(menuElement);
-  var matches = 0;
-  external_jQuery_default()("." + SIDEMENU_CLASS).find("a").each(function () {
-    var linkText = external_jQuery_default()(this).text(); // var matches is needed so that multiple menus don't open when there are duplicate links
-
-    if (linkText == pageName && matches < 1) {
-      matches++;
-      external_jQuery_default()(this).addClass("active");
-      external_jQuery_default()(this).parents("li").addClass("active expanded");
-    }
-  }); // Expanding/Collapsing of the entire side menu on mobile devices
-
-  menuElement.children(".".concat(SIDEMENU_TOGGLE_CLASS)).children("a").on("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    external_jQuery_default()(this).parent().next().slideToggle();
-    external_jQuery_default()(this).parent().toggleClass(SIDEMENU_EXPANDED_CLASS);
-  });
-  var expandableButtons = menuElement.find(".".concat(SIDEMENU_EXPANDER_CLASS)); // Add tracking if enabled
-
-  if (tracker.shouldTrackElement(menuElement)) {
-    tracker.registerForTracking(menuElement.find("li > a"), "click", "sidemenu-link");
-    tracker.registerForTracking(expandableButtons, "click", "sidemenu-expander");
-  }
-
-  expandableButtons.each(initExpandableSubmenu); // Ensure expander height is the same as the link (for long link titles than span across 2+ lines)
-
-  src_default.a.register(toolkit_DESKTOP_AND_LARGER, function () {
-    external_jQuery_default()(".sidemenu > ul > li").each(function (e) {
-      var link = external_jQuery_default()(this).find(">a");
-      var expander = external_jQuery_default()(this).find("> .btn-expander");
-      expander.css("height", link.outerHeight());
+      apply();
     });
-  });
-} // TODO: Remove after this was implemented on the backend (~ in Squiz)
+  };
 
-/** Adds necessary classes and expanding/collapsing elements if the item has got submenu. */
+  var scripts_toolkit_initSidemenuExpandability = function _initSidemenuExpandability(menuClass) {
+    var menuElement = external_jQuery_default()(".".concat(menuClass));
 
+    scripts_toolkit_enhanceSidemenu(menuElement); // Expanding/Collapsing of the entire side menu on mobile devices
 
-var btnExpanderHtml = '<span tabindex="0" class="btn-expander mf-heatmap-click" title="Toggle subpages" role="button"></span>';
 
-function enhanceSidemenu(menuElement) {
-  menuElement.find("li").each(function () {
-    var listItem = external_jQuery_default()(this); // a) already has got a proper class in place? Skip!
-
-    if (listItem.hasClass(SIDEMENU_SUBMENU_CLASS)) return; // b) No submenu in <li>? Skip!
-
-    if (listItem.children("ul").length === 0) return; // c) Has got a submenu => Enhance sidemenu's HTML
-
-    listItem.addClass(SIDEMENU_SUBMENU_CLASS);
-    external_jQuery_default()(btnExpanderHtml).insertAfter(listItem.children("a"));
-  });
-}
-/** HELPERS */
-// FIXME: Should be automatically pre-populated from the build/build.config.js
-
-
-var ENV_HOSTNAME = {
-  STAGE: "cms.wgtn.ac.nz",
-  PROD: "www.wgtn.ac.nz",
-  LOCAL: "local.wgtn.ac.nz"
-}; // FIXME: Should be automatically pre-populated from the build/build.config.js
-
-var URL_BASE = {
-  TOOLKIT: "local.wgtn.ac.nz:8080"
-};
-
-function isAdminEnvironment() {
-  return window.location.hostname === ENV_HOSTNAME.STAGE || window.location.hostname === ENV_HOSTNAME.LOCAL;
-}
-/**
- * Decodes email address into re-usable form.
- *
- * @deprecated Very old approach that won't work today - do not use.
- */
-
-
-function decodeMailAddresses() {
-  var a = "dre:ams0of@g1niht.lp2c9u3v8k4w7y5j6zbx-_qfntigue6los5zar7b:y4dp8v3m9h2.x1w@k0jcq-_";
-  var i, h, j, k, l, m, n, s;
-
-  for (i = 0; i < document.links.length; i += 1) {
-    h = document.links[i].hash;
-
-    if (h.substring(0, 3) == "#sd") {
-      k = "";
-      l = h.substring(3, 5);
-      m = h.lastIndexOf("?subject=");
-
-      if (m == -1) {
-        s = document.links[i].href;
-      } else {
-        s = h.substring(m);
-        h = h.substring(0, m);
-      }
-
-      for (j = 5; j < h.length; j += 2) {
-        k += a.charAt(h.substring(j, j + 2) - l - 1);
-      }
-
-      m = s.lastIndexOf("?subject=");
-
-      if (m == -1) {
-        document.links[i].href = k;
-      } else {
-        document.links[i].href = k + s.substring(m);
-      }
-
-      n = document.links[i].innerHTML;
-
-      if (n == "address") {
-        document.links[i].innerHTML = k.substring(7);
-      } else {
-        document.links[i].title = k.substring(7);
-      }
-    }
-  }
-}
-/** MESSAGE/NOTIFICATIONS HANDLING */
-
-
-var ERROR_TYPES = {
-  SIDEBAR_WIDGETS_COUNT_EXCEEDED: "sidebar-widgets-count-exceeded"
-};
-/**
- * Renders the error message notification and adds it to the top of the
- * content window. Will show only to administrators within non-production
- * environments.
- *
- * @param {{type: string, message: string, invalidItems: Array[string]}} errorObject
- *
- * @returns {void}
- */
-
-function showAdminErrorMessage(errorObject) {
-  if (!errorObject || !isAdminEnvironment()) return;
-  var invalidItemsListHtml;
-
-  if (errorObject.invalidItems.length > 0) {
-    invalidItemsListHtml = "\n      <ul>\n        <li>".concat(errorObject.invalidItems.join("</li><li>"), "</li>\n      </ul>\n    ");
-  } // Template
-
-
-  var errorNotificationHtml = "\n    <section class=\"flash-message error\">\n      ".concat(errorObject.message, "\n      ").concat(invalidItemsListHtml, "\n    </section>\n  ");
-  external_jQuery_default()(".content-panel > main > .formatting").prepend(errorNotificationHtml);
-  console.error("Content-related error has occured", errorObject);
-}
-/** NAVIGATION */
-
-/**
- * Adds the 'active' class to a main menu item
- * that corresponds with the current top-level URL path
- * segment.
- *
- * Note: This is *only* done due to Squiz 5.4 limitations. Once we can render
- * this class on the backend, this function can be deprecated.
- */
-
-
-function addActiveClassToMainMenu() {
-  // [url-path-segment]: [nav-item-classname]
-  var rootPages = {
-    study: "future",
-    international: "international",
-    students: "current",
-    research: "research",
-    engage: "engage"
-  },
-      urlPathSegments = window.location.pathname.split("/");
-
-  if (urlPathSegments.length > 1 && urlPathSegments[1] !== "" && hasProp(rootPages, urlPathSegments[1])) {
-    var activeNavItemClass = rootPages[urlPathSegments[1]];
-    var activeNavItem = document.querySelector(".menu-bar .".concat(activeNavItemClass));
-    if (activeNavItem) activeNavItem.classList.add("active");
-  }
-}
-/** CONTENT DYNAMIC MANIPULATIONS */
-
-/**
- * Moves `non-staff` contact cards into the previous/next <ul> with
- * regular staff.
- *
- * @deprecated This approach should not be used in new updates! Please, follow
- * clear syntax, so you don't have to move elements around.
- *
- * Notice: This is required to deal with structural and visual
- * inconsistencies that stem from legacy code that powers rendering
- * of non-staff contact cards. Once this is removed, this slow
- * function can be removed too.
- */
-
-
-var STAFF_LIST_CONTAINER_CLASSNAME = "articles-container",
-    STAFF_LIST_CLASSNAME = "staff-list",
-    STAFF_CONTACT_CLASSNAME = "contact";
-
-function moveOrphanedStaffCardIntoList() {
-  var orphanBeforeStaffList = document.querySelector(".".concat(STAFF_CONTACT_CLASSNAME, " + .").concat(STAFF_LIST_CONTAINER_CLASSNAME));
-  var orphanAfterStaffList = document.querySelector(".".concat(STAFF_LIST_CONTAINER_CLASSNAME, " + .").concat(STAFF_CONTACT_CLASSNAME));
-  if (!orphanBeforeStaffList && !orphanAfterStaffList) return;
-
-  while (orphanAfterStaffList) {
-    var orphanedStaffCardElement = external_jQuery_default()(orphanAfterStaffList);
-    var staffListElement = orphanedStaffCardElement.prev().children(".".concat(STAFF_LIST_CLASSNAME));
-
-    if (staffListElement.length === 0) {
-      // Staff list is not within its container - abort
-      console.warn("The 'non-staff' profile could not be placed within the list of other 'staff' profiles, beceause the *previous* block does not contain '".concat(STAFF_LIST_CLASSNAME, "' class. You might experience visual inconsistencies."), orphanAfterStaffList, staffListElement);
-      return;
-    }
-
-    var listItem = external_jQuery_default()("<li></li>").append(orphanedStaffCardElement);
-    staffListElement.append(listItem);
-    orphanAfterStaffList = document.querySelector(".".concat(STAFF_LIST_CONTAINER_CLASSNAME, " + .").concat(STAFF_CONTACT_CLASSNAME));
-  } // Has to be re-evaluated again to reflect the previous content manipulations
-
-
-  orphanBeforeStaffList = document.querySelector(".".concat(STAFF_CONTACT_CLASSNAME, " + .").concat(STAFF_LIST_CONTAINER_CLASSNAME));
-
-  while (orphanBeforeStaffList) {
-    var _orphanedStaffCardElement = external_jQuery_default()(orphanBeforeStaffList).prev(".".concat(STAFF_CONTACT_CLASSNAME)); // Current selector is pointing to the <ul> - point to the previous sibling instead!
-
-
-    var _staffListElement = _orphanedStaffCardElement.next().children(".".concat(STAFF_LIST_CLASSNAME));
-
-    if (_staffListElement.length === 0) {
-      // Staff list is not within its container - abort
-      console.warn("The 'non-staff' profile could not be placed within the list of other 'staff' profiles, beceause the *following* block does not contain '".concat(STAFF_LIST_CLASSNAME, "' class. You might experience visual inconsistencies."), _orphanedStaffCardElement, _staffListElement);
-      break;
-    }
-
-    var _listItem = external_jQuery_default()("<li></li>").append(_orphanedStaffCardElement);
-
-    _staffListElement.prepend(_listItem);
-
-    orphanBeforeStaffList = document.querySelector(".".concat(STAFF_CONTACT_CLASSNAME, " + .").concat(STAFF_LIST_CONTAINER_CLASSNAME));
-  }
-}
-/**
- * Because two sets of taught courses are rendered (one located at the top
- * of the page, one at the bottom), it hides the other, non-used counterpart.
- *
- * @deprecated
- *
- * Note: This is legacy code and can be removed when the backend renders
- * only one set of taught courses.
- */
-
-
-function hideCoursesOnStaffProfile() {
-  if (!window.courseLocation) return;
-
-  if (window.courseLocation === "top") {
-    external_jQuery_default()("#courses-bottom").css({
-      display: "none"
-    });
-  }
-
-  if (window.courseLocation === "bottom") {
-    external_jQuery_default()("#courses-top").css({
-      display: "none"
-    });
-  }
-}
-/** CONTENT SIDE-BAR */
-// Constants
-
-
-var SIDEBAR_WIDGET_CLASSNAME = "data-sidebar",
-    SIDEBAR_ID = "rightHandMenu",
-    SIDEBAR_WIDGETS_MAX = 3,
-    WIDGET_LINKS_CLASSNAME = "data-relatedLinks";
-/**
- * Finds all widget blocks within the main content and moves them into the
- * right-hand sidebar.
- *
- * Note: This is *only* done due to Squiz 5.4 limitations. Once we can render
- * widgets into the sidebar on our backend, this client-side solution can be
- * deprecated.
- *
- * @returns {void}
- */
-
-function moveWidgetsToSidebar() {
-  // No widgets OR sidebar available -> Skip!
-  if (!document.querySelector(".".concat(SIDEBAR_WIDGET_CLASSNAME)) || !document.getElementById(SIDEBAR_ID)) return; // Members
-  // Original, unordered widgets
-
-  var widgetsToMove = external_jQuery_default()(".".concat(SIDEBAR_WIDGET_CLASSNAME)),
-      sidebarElement = external_jQuery_default()("#".concat(SIDEBAR_ID)); // Correctly ordered and prepared to be rendered
-
-  var widgetsMoved = [];
-  var error;
-  widgetsToMove.each(function moveWidgetToSidebar() {
-    var widgetElement = external_jQuery_default()(this);
-
-    if (widgetsMoved.length >= SIDEBAR_WIDGETS_MAX) {
-      if (!error) {
-        error = {
-          type: ERROR_TYPES.SIDEBAR_WIDGETS_COUNT_EXCEEDED,
-          message: "\n              <h2>Too many elements in the sidebar</h2>\n              <p>Currently added: ".concat(widgetsToMove.length, ", Maximum: ").concat(SIDEBAR_WIDGETS_MAX, ".</p>\n              <p>\n                <strong>Please remove the class '").concat(SIDEBAR_WIDGET_CLASSNAME, "' from all blocks you do not want to appear in the sidebar.</strong>\n              </p>\n              <p>\n                The blocks with following content will not be shown in the sidebar:\n              </p>\n            "),
-          invalidItems: []
-        };
-      }
-
-      error.invalidItems.push(this.id || "".concat(widgetElement.text().trim().substring(0, 80), "..."));
-      return;
-    }
-
-    if (widgetElement.hasClass(WIDGET_LINKS_CLASSNAME)) {
-      // A) Staff profile - add to the top!
-      widgetsMoved.unshift(widgetElement);
-    } else {
-      // B) Others (downloads, publications etc.) - Add to the last positions
-      widgetsMoved.push(widgetElement);
-    } // Remove from its original location
-
-
-    widgetElement.detach(); // Remove `display:none` if it exists
-
-    widgetElement.css("display", "");
-  }); // Render widgets in the sidebar
-
-  sidebarElement.append.apply(sidebarElement, widgetsMoved); // Render errors, if any
-
-  if (error) showAdminErrorMessage(error);
-}
-/** 'GO UP' BUTTON */
-
-
-var BTN_UP_ID = "btn-up",
-    BTN_ADMIN_EDIT_ID = "btn-admin",
-    // ADMIN_URL_EXTENSION = '_edit', // Uncomment if the button and URL cannot be rendered by Squiz!
-SCROLL_ANIMATION_DURATION_IN_MS = 700;
-
-function initFloatingButtons() {
-  var buttonUpElement = document.getElementById(BTN_UP_ID),
-      buttonAdminElement = isAdminEnvironment() ? document.getElementById(BTN_ADMIN_EDIT_ID) : null;
-
-  if (buttonUpElement) {
-    external_jQuery_default()(buttonUpElement).click(function (e) {
+    menuElement.children(".".concat(_SIDEMENU_TOGGLE_CLASS)).children("a").on("click", function (e) {
       e.preventDefault();
-      external_jQuery_default()("html,body").animate({
-        scrollTop: 0
-      }, SCROLL_ANIMATION_DURATION_IN_MS);
+      e.stopPropagation();
+      external_jQuery_default()(this).parent().toggleClass(_SIDEMENU_EXPANDED_CLASS);
+      external_jQuery_default()(this).parent().find(">ul").slideToggle("fast");
     });
-  }
+    var expandableButtons = menuElement.find(".".concat(_SIDEMENU_EXPANDER_CLASS)); // Add tracking if enabled
 
-  if (buttonAdminElement) {
-    external_jQuery_default()(buttonAdminElement).css("display", ""); // Remove inline 'display'
-    // Uncomment if the button and URL cannot be rendered by Squiz!
-    // $( buttonAdminElement ).click( ( e ) => {
-    //  e.preventDefault();
-    //    window.location.href += `/${ADMIN_URL_EXTENSION}`;
-    // })
-  }
-}
+    if (tracker.shouldTrackElement(menuElement)) {
+      tracker.registerForTracking(menuElement.find("li > a"), "click", "sidemenu-link");
+      tracker.registerForTracking(expandableButtons, "click", "sidemenu-expander");
+    }
 
-function victoriousHeader() {
-  if (external_jQuery_default()(".victorious-header").length) {
-    // console.log('vistorious test');
-    var header = document.querySelector(".victorious-header");
-    console.log(header.offsetHeight);
-    var options = {
-      // vertical offset in px before element is first unpinned
-      offset: 10,
-      // scroll tolerance in px before state changes
-      tolerance: 10,
-      // css classes to apply
-      classes: {
-        // when element is initialised
-        initial: "",
-        // when scrolling up
-        pinned: "headroom--pinned",
-        // when scrolling down
-        unpinned: "headroom--unpinned",
-        // when above offset
-        top: "headroom--top",
-        // when below offset
-        notTop: "header-shrink",
-        // whe  n at bottom of scoll area
-        bottom: "headroom--bottom",
-        // when not at bottom of scroll area
-        notBottom: "headroom--not-bottom"
+    expandableButtons.each(scripts_toolkit_initExpandableSubmenu);
+  }; // TODO: Remove after this was implemented on the backend (~ in Squiz)
+
+  /** Adds necessary classes and expanding/collapsing elements if the item has got submenu. */
+
+
+  var scripts_toolkit_enhanceSidemenu = function _enhanceSidemenu(menuElement) {
+    menuElement.find("li").each(function () {
+      var listItem = external_jQuery_default()(this); // a) already has got a proper class in place? Skip!
+
+      if (listItem.hasClass(_SIDEMENU_SUBMENU_CLASS)) return; // b) No submenu in <li>? Skip!
+
+      if (listItem.children("ul").length === 0) return; // c) Has got a submenu => Enhance sidemenu's HTML
+
+      listItem.addClass(_SIDEMENU_SUBMENU_CLASS);
+      external_jQuery_default()(_btnExpanderHtml).insertAfter(listItem.children("a"));
+    });
+  };
+  /** HELPERS */
+  // FIXME: Should be automatically pre-populated from the build/build.config.js
+
+
+  var _isAdminEnvironment = function _isAdminEnvironment() {
+    return window.location.hostname === _ENV_HOSTNAME.STAGE || window.location.hostname === _ENV_HOSTNAME.LOCAL;
+  };
+  /**
+   * Decodes email address into re-usable form.
+   *
+   * @deprecated Very old approach that won't work today - do not use.
+   */
+
+
+  var _decodeMailAddresses = function _decodeMailAddresses() {
+    var a = "dre:ams0of@g1niht.lp2c9u3v8k4w7y5j6zbx-_qfntigue6los5zar7b:y4dp8v3m9h2.x1w@k0jcq-_";
+    var i, h, j, k, l, m, n, s;
+
+    for (i = 0; i < document.links.length; i += 1) {
+      h = document.links[i].hash;
+
+      if (h.substring(0, 3) == "#sd") {
+        k = "";
+        l = h.substring(3, 5);
+        m = h.lastIndexOf("?subject=");
+
+        if (m == -1) {
+          s = document.links[i].href;
+        } else {
+          s = h.substring(m);
+          h = h.substring(0, m);
+        }
+
+        for (j = 5; j < h.length; j += 2) {
+          k += a.charAt(h.substring(j, j + 2) - l - 1);
+        }
+
+        m = s.lastIndexOf("?subject=");
+
+        if (m == -1) {
+          document.links[i].href = k;
+        } else {
+          document.links[i].href = k + s.substring(m);
+        }
+
+        n = document.links[i].innerHTML;
+
+        if (n == "address") {
+          document.links[i].innerHTML = k.substring(7);
+        } else {
+          document.links[i].title = k.substring(7);
+        }
       }
-    };
-    var headroom = new headroom_default.a(header, options);
-
-    if (external_jQuery_default()(".victorious-expand").length) {
-      headroom.init();
-    } // toggle issues in nav
+    }
+  };
+  /** MESSAGE/NOTIFICATIONS HANDLING */
 
 
-    external_jQuery_default()(".past-issues a").on("click", function () {
-      external_jQuery_default()(".issues").slideToggle();
-      external_jQuery_default()(this).find("span").toggleClass("icon-caret-right").toggleClass("icon-caret-down");
-    });
-  } else {
-    return;
-  }
-}
-/** INITIALISE ON SCRIPT LOAD. */
+  /**
+   * Renders the error message notification and adds it to the top of the
+   * content window. Will show only to administrators within non-production
+   * environments.
+   *
+   * @param {{type: string, message: string, invalidItems: Array[string]}} errorObject
+   *
+   * @returns {void}
+   */
+  var scripts_toolkit_showAdminErrorMessage = function _showAdminErrorMessage(errorObject) {
+    if (!errorObject || !_isAdminEnvironment()) return;
+    var invalidItemsListHtml;
+
+    if (errorObject.invalidItems.length > 0) {
+      invalidItemsListHtml = "\n      <ul>\n        <li>".concat(errorObject.invalidItems.join("</li><li>"), "</li>\n      </ul>\n    ");
+    } // Template
 
 
-(function init() {
-  initToolbarLoader();
-  initToolbarUrlListeners();
-})();
-/** INITIALISE ON DOM LOAD. */
+    var errorNotificationHtml = "\n    <section class=\"flash-message error\">\n      ".concat(errorObject.message, "\n      ").concat(invalidItemsListHtml, "\n    </section>\n  ");
+    external_jQuery_default()(".content-panel > main > .formatting").prepend(errorNotificationHtml);
+    console.error("Content-related error has occured", errorObject);
+  };
+  /** NAVIGATION */
+
+  /**
+   * Adds the 'active' class to a main menu item
+   * that corresponds with the current top-level URL path
+   * segment.
+   *
+   * Note: This is *only* done due to Squiz 5.4 limitations. Once we can render
+   * this class on the backend, this function can be deprecated.
+   */
 
 
-external_jQuery_default()(function () {
-  moveWidgetsToSidebar();
-  addActiveClassToMainMenu();
-  moveOrphanedStaffCardIntoList();
-  tooltips.initTooltips(); // FIXME: Extract out to a standalone plugin and run on staff profiles *only*
+  var scripts_toolkit_addActiveClassToMainMenu = function _addActiveClassToMainMenu() {
+    // [url-path-segment]: [nav-item-classname]
+    var rootPages = {
+      study: "future",
+      international: "international",
+      students: "current",
+      research: "research",
+      engage: "engage"
+    },
+        urlPathSegments = window.location.pathname.split("/");
 
-  hideCoursesOnStaffProfile();
-  var $body = external_jQuery_default()("body"),
-      $globalNav = external_jQuery_default()("#global-nav"),
-      $globalSearch = external_jQuery_default()("#global-search");
-  /** Init side-menu, if it's present */
+    if (urlPathSegments.length > 1 && urlPathSegments[1] !== "" && hasProp(rootPages, urlPathSegments[1])) {
+      var activeNavItemClass = rootPages[urlPathSegments[1]];
+      var activeNavItem = document.querySelector(".menu-bar .".concat(activeNavItemClass));
+      if (activeNavItem) activeNavItem.classList.add("active");
+    }
+  };
+  /** CONTENT DYNAMIC MANIPULATIONS */
 
-  if (external_jQuery_default()(".".concat(SIDEMENU_CLASS)).length) {
-    initSidemenuExpandability(SIDEMENU_CLASS);
-  } // ***************************
-  // Init homepage side megamenu
-  // ***************************
-
-
-  if (external_jQuery_default()(".sidemenu-homepage").length) {
-    src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
-      console.log("sidemenu-homepage");
-      initSidemenuExpandability("sidemenu-homepage"); // console.log('tray is small size for mob');
-    });
-    var $sidemenuHomepage = external_jQuery_default()(".sidemenu-homepage");
-    enhanceSidemenu($sidemenuHomepage);
-  } // initSidemenuExpandability( 'horizontal-menu' );
-  // ***************************
-  // Init horizontal megamenu
-  // ***************************
+  /**
+   * Moves `non-staff` contact cards into the previous/next <ul> with
+   * regular staff.
+   *
+   * @deprecated This approach should not be used in new updates! Please, follow
+   * clear syntax, so you don't have to move elements around.
+   *
+   * Notice: This is required to deal with structural and visual
+   * inconsistencies that stem from legacy code that powers rendering
+   * of non-staff contact cards. Once this is removed, this slow
+   * function can be removed too.
+   */
 
 
-  if (external_jQuery_default()(".show-mega-menu-top").length) {
-    src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
-      console.log("show-mega-menu-top");
-      initSidemenuExpandability("mega-sub-menu"); // console.log('tray is small size for mob');
-    });
-    enhanceSidemenu(external_jQuery_default()(".mega-sub-menu"));
-  }
+  var scripts_toolkit_moveOrphanedStaffCardIntoList = function _moveOrphanedStaffCardIntoList() {
+    var orphanBeforeStaffList = document.querySelector(".".concat(_STAFF_CONTACT_CLASSNAME, " + .").concat(_STAFF_LIST_CONTAINER_CLASSNAME));
+    var orphanAfterStaffList = document.querySelector(".".concat(_STAFF_LIST_CONTAINER_CLASSNAME, " + .").concat(_STAFF_CONTACT_CLASSNAME));
+    if (!orphanBeforeStaffList && !orphanAfterStaffList) return;
 
-  if (external_jQuery_default()(".header-tray").length) {
-    initTray();
-  }
+    while (orphanAfterStaffList) {
+      var orphanedStaffCardElement = external_jQuery_default()(orphanAfterStaffList);
+      var staffListElement = orphanedStaffCardElement.prev().children(".".concat(_STAFF_LIST_CLASSNAME));
 
-  victoriousHeader(); // if (
-  //   window.skrollr &&
-  //   $(window).width() > 800 &&
-  //   !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-  //     navigator.userAgent
-  //   )
-  // ) {
-  //   window.onload = function () {
-  //     let s = skrollr.init({
-  //       smoothScrolling: true,
-  //       render: function () {
-  //         // console.log('skrollr init');
-  //       },
-  //     });
-  //   };
-  //   if (s.isMobile()) {
-  //     s.destroy();
-  //   }
-  //   $(window).on('resize', () => {
-  //     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { // no reason to destroy on mobile
-  //       if ($(window).width() <= 800) {
-  //         skrollr.init().destroy(); // skrollr.init() returns the singleton created above
-  //       }
-  //     }
-  //   });
-  // }
+      if (staffListElement.length === 0) {
+        // Staff list is not within its container - abort
+        console.warn("The 'non-staff' profile could not be placed within the list of other 'staff' profiles, beceause the *previous* block does not contain '".concat(_STAFF_LIST_CLASSNAME, "' class. You might experience visual inconsistencies."), orphanAfterStaffList, staffListElement);
+        return;
+      }
 
-  initFloatingButtons();
-  decodeMailAddresses(); // http://wicky.nilia.ms/enquire.js/
-  // TODO: Refactor and extract to its own library
-  // enquire.register( MOBILE_LARGE_AND_SMALLER, () => {
-  //   if ( $globalNav.length ) {
-  //     const eGlobalNav    = $globalNav[0],
-  //       bannerHeaderElement = $( '.site-header' ),
-  //       sidemenu            = $( '.sidemenu' );
-  //     const headroom  = new Headroom( eGlobalNav, {
-  // 		  offset:    $globalNav.outerHeight(),
-  //       // or scroll tolerance per direction
-  //       tolerance: {
-  //         down: 5,
-  //         up:   20,
-  //       },
-  //       classes: {
-  //         initial:  'sticky',
-  //         pinned:   'slide-down',
-  //         unpinned: 'slide-up',
-  //         notTop:   'no-top',
-  //       },
-  //     });
-  //     headroom.init();
-  //     const disableHeadroom = () => {
-  //       if ( headroom ) {
-  //         headroom.scroller.removeEventListener( 'scroll', headroom.debouncer, false );
-  //       }
-  //     };
-  //     const enableHeadroom = () => {
-  //       if ( headroom ) {
-  //         headroom.scroller.addEventListener( 'scroll', headroom.debouncer, false );
-  //       }
-  //     };
-  //     const removeMenuOutClickListener = () => {
-  //       document.removeEventListener( 'click', menuOutsideClickListener );
-  //     };
-  //     const registerMenuOutClickListener = () => {
-  //       document.addEventListener( 'click', menuOutsideClickListener );
-  //     };
-  //     const toggleMobileMenu = () => {
-  //       $globalNav.find( '.tcon' ).toggleClass( 'tcon-transform' );
-  //       $globalNav.toggleClass( 'is-open' );
-  //       if ( !headroom ) return;
-  //       if ( $globalNav.hasClass( 'is-open' )) {
-  //         disableHeadroom();
-  //         $body.addClass( 'unscrollable' );
-  //         registerMenuOutClickListener();
-  //       } else {
-  //         enableHeadroom();
-  //         $body.removeClass( 'unscrollable' );
-  //         removeMenuOutClickListener();
-  //       }
-  //     };
-  //     function menuOutsideClickListener( event ) {
-  //       if ( !$( event.target ).closest( '#global-nav' ).length ) {
-  //         toggleMobileMenu();
-  //       }
-  //     }
-  //     $body.on( 'click ', '.js-toggle-global-nav', ( _event ) => {
-  //       toggleMobileMenu();
-  //     });
-  //   }
-  // });
-  // Opens/closes global search bar & gains auto-focus
+      var listItem = external_jQuery_default()("<li></li>").append(orphanedStaffCardElement);
+      staffListElement.append(listItem);
+      orphanAfterStaffList = document.querySelector(".".concat(_STAFF_LIST_CONTAINER_CLASSNAME, " + .").concat(_STAFF_CONTACT_CLASSNAME));
+    } // Has to be re-evaluated again to reflect the previous content manipulations
 
-  $body.on("click ", ".js-toggle-global-search", function (_event) {
-    var $this = external_jQuery_default()(this);
 
-    if ($this.data("js-has-active-transition")) {
-      return false;
+    orphanBeforeStaffList = document.querySelector(".".concat(_STAFF_CONTACT_CLASSNAME, " + .").concat(_STAFF_LIST_CONTAINER_CLASSNAME));
+
+    while (orphanBeforeStaffList) {
+      var _orphanedStaffCardElement2 = external_jQuery_default()(orphanBeforeStaffList).prev(".".concat(_STAFF_CONTACT_CLASSNAME)); // Current selector is pointing to the <ul> - point to the previous sibling instead!
+
+
+      var _staffListElement2 = _orphanedStaffCardElement2.next().children(".".concat(_STAFF_LIST_CLASSNAME));
+
+      if (_staffListElement2.length === 0) {
+        // Staff list is not within its container - abort
+        console.warn("The 'non-staff' profile could not be placed within the list of other 'staff' profiles, beceause the *following* block does not contain '".concat(_STAFF_LIST_CLASSNAME, "' class. You might experience visual inconsistencies."), _orphanedStaffCardElement2, _staffListElement2);
+        break;
+      }
+
+      var _listItem2 = external_jQuery_default()("<li></li>").append(_orphanedStaffCardElement2);
+
+      _staffListElement2.prepend(_listItem2);
+
+      orphanBeforeStaffList = document.querySelector(".".concat(_STAFF_CONTACT_CLASSNAME, " + .").concat(_STAFF_LIST_CONTAINER_CLASSNAME));
+    }
+  };
+  /**
+   * Because two sets of taught courses are rendered (one located at the top
+   * of the page, one at the bottom), it hides the other, non-used counterpart.
+   *
+   * @deprecated
+   *
+   * Note: This is legacy code and can be removed when the backend renders
+   * only one set of taught courses.
+   */
+
+
+  var scripts_toolkit_hideCoursesOnStaffProfile = function _hideCoursesOnStaffProfile() {
+    if (!window.courseLocation) return;
+
+    if (window.courseLocation === "top") {
+      external_jQuery_default()("#courses-bottom").css({
+        display: "none"
+      });
     }
 
-    $this.data("js-has-active-transition", true);
-    $this.find(".tcon").toggleClass("tcon-transform");
+    if (window.courseLocation === "bottom") {
+      external_jQuery_default()("#courses-top").css({
+        display: "none"
+      });
+    }
+  };
+  /** CONTENT SIDE-BAR */
+  // Constants
 
-    if ($globalSearch.hasClass("is-open")) {
-      $globalSearch.toggleClass("is-open", false);
-      setTimeout(function () {
-        $this.data("js-has-active-transition", false);
-      }, TRANSITION_TIMEOUT);
+
+  /**
+   * Finds all widget blocks within the main content and moves them into the
+   * right-hand sidebar.
+   *
+   * Note: This is *only* done due to Squiz 5.4 limitations. Once we can render
+   * widgets into the sidebar on our backend, this client-side solution can be
+   * deprecated.
+   *
+   * @returns {void}
+   */
+  var scripts_toolkit_moveWidgetsToSidebar = function _moveWidgetsToSidebar() {
+    // No widgets OR sidebar available -> Skip!
+    if (!document.querySelector(".".concat(_SIDEBAR_WIDGET_CLASSNAME)) || !document.getElementById(_SIDEBAR_ID)) return; // Members
+    // Original, unordered widgets
+
+    var widgetsToMove = external_jQuery_default()(".".concat(_SIDEBAR_WIDGET_CLASSNAME)),
+        sidebarElement = external_jQuery_default()("#".concat(_SIDEBAR_ID)); // Correctly ordered and prepared to be rendered
+
+    var widgetsMoved = [];
+    var error;
+    widgetsToMove.each(function moveWidgetToSidebar() {
+      var widgetElement = external_jQuery_default()(this);
+
+      if (widgetsMoved.length >= _SIDEBAR_WIDGETS_MAX) {
+        if (!error) {
+          error = {
+            type: _ERROR_TYPES.SIDEBAR_WIDGETS_COUNT_EXCEEDED,
+            message: "\n              <h2>Too many elements in the sidebar</h2>\n              <p>Currently added: ".concat(widgetsToMove.length, ", Maximum: ").concat(_SIDEBAR_WIDGETS_MAX, ".</p>\n              <p>\n                <strong>Please remove the class '").concat(_SIDEBAR_WIDGET_CLASSNAME, "' from all blocks you do not want to appear in the sidebar.</strong>\n              </p>\n              <p>\n                The blocks with following content will not be shown in the sidebar:\n              </p>\n            "),
+            invalidItems: []
+          };
+        }
+
+        error.invalidItems.push(this.id || "".concat(widgetElement.text().trim().substring(0, 80), "..."));
+        return;
+      }
+
+      if (widgetElement.hasClass(_WIDGET_LINKS_CLASSNAME)) {
+        // A) Staff profile - add to the top!
+        widgetsMoved.unshift(widgetElement);
+      } else {
+        // B) Others (downloads, publications etc.) - Add to the last positions
+        widgetsMoved.push(widgetElement);
+      } // Remove from its original location
+
+
+      widgetElement.detach(); // Remove `display:none` if it exists
+
+      widgetElement.css("display", "");
+    }); // Render widgets in the sidebar
+
+    sidebarElement.append.apply(sidebarElement, widgetsMoved); // Render errors, if any
+
+    if (error) scripts_toolkit_showAdminErrorMessage(error);
+  };
+  /** 'GO UP' BUTTON */
+
+
+  var scripts_toolkit_initFloatingButtons = function _initFloatingButtons() {
+    var buttonUpElement = document.getElementById(_BTN_UP_ID),
+        buttonAdminElement = _isAdminEnvironment() ? document.getElementById(_BTN_ADMIN_EDIT_ID) : null;
+
+    if (buttonUpElement) {
+      external_jQuery_default()(buttonUpElement).click(function (e) {
+        e.preventDefault();
+        external_jQuery_default()("html,body").animate({
+          scrollTop: 0
+        }, _SCROLL_ANIMATION_DURATION_IN_MS);
+      });
+    }
+
+    if (buttonAdminElement) {
+      external_jQuery_default()(buttonAdminElement).css("display", ""); // Remove inline 'display'
+      // Uncomment if the button and URL cannot be rendered by Squiz!
+      // $( buttonAdminElement ).click( ( e ) => {
+      //  e.preventDefault();
+      //    window.location.href += `/${ADMIN_URL_EXTENSION}`;
+      // })
+    }
+  };
+
+  var scripts_toolkit_victoriousHeader = function _victoriousHeader() {
+    if (external_jQuery_default()(".victorious-header").length) {
+      // console.log('vistorious test');
+      var header = document.querySelector(".victorious-header");
+      console.log(header.offsetHeight);
+      var options = {
+        // vertical offset in px before element is first unpinned
+        offset: 10,
+        // scroll tolerance in px before state changes
+        tolerance: 10,
+        // css classes to apply
+        classes: {
+          // when element is initialised
+          initial: "",
+          // when scrolling up
+          pinned: "headroom--pinned",
+          // when scrolling down
+          unpinned: "headroom--unpinned",
+          // when above offset
+          top: "headroom--top",
+          // when below offset
+          notTop: "header-shrink",
+          // whe  n at bottom of scoll area
+          bottom: "headroom--bottom",
+          // when not at bottom of scroll area
+          notBottom: "headroom--not-bottom"
+        }
+      };
+      var headroom = new headroom_default.a(header, options);
+
+      if (external_jQuery_default()(".victorious-expand").length) {
+        headroom.init();
+      } // toggle issues in nav
+
+
+      external_jQuery_default()(".past-issues a").on("click", function () {
+        external_jQuery_default()(".issues").slideToggle();
+        external_jQuery_default()(this).find("span").toggleClass("icon-caret-right").toggleClass("icon-caret-down");
+      });
     } else {
-      $globalSearch.toggleClass("is-open", true);
-      setTimeout(function () {
-        $globalSearch.find("input:text").focus();
-        $this.data("js-has-active-transition", false);
-      }, TRANSITION_TIMEOUT);
-    }
-
-    _event.preventDefault();
-  }); // Study areas tabs toggle
-
-  external_jQuery_default()("#study-area-tabs li a").click(function () {
-    if (external_jQuery_default()(this).parent().hasClass("active")) {
       return;
     }
+  };
+  /** INITIALISE ON SCRIPT LOAD. */
 
-    external_jQuery_default()(".active").removeClass("active");
-    external_jQuery_default()(this).parent().addClass("active");
-    external_jQuery_default()(".study-areas").toggleClass("hidden");
-    external_jQuery_default()(".degrees-quals").toggleClass("hidden");
-  });
-  /* Show the tab content that is selected */
 
-  if (document.getElementById("undergraduate") && document.getElementById("undergraduate").checked) {
-    switchTabToUndergrad();
-  } else if (document.getElementById("postgraduate") && document.getElementById("postgraduate").checked) {
-    switchTabToPostgrad();
-  }
+  /* Add accessible title label for restricted links class  */
+  var _restrictedLinkTitle = function _restrictedLinkTitle() {
+    var lockLinks = document.querySelectorAll(".link-restricted");
 
-  external_jQuery_default()(".switch .switch-input").on("change", function () {
-    if (external_jQuery_default()(this).attr("value") == "undergraduate") {
-      switchTabToUndergrad();
+    for (var i = 0; i < lockLinks.length; i++) {
+      lockLinks[i].setAttribute("title", "Restricted intranet link");
+    }
+  };
+
+  /* Research hub mega menu */
+  var scripts_toolkit_hubMegaMenu = function _hubMegaMenu() {
+    var menu = external_jQuery_default()(".hub-mega-menu .mega-menu-inner");
+    var menuExpandButton = external_jQuery_default()(".hub-mega-menu .btn-expander");
+    var mobile = false;
+    var desktop = false;
+    src_default.a.register(_DESKTOP_AND_LARGER, function () {
+      desktop = true;
+      mobile = false;
+    });
+    src_default.a.register(_TABLET_AND_SMALLER, function () {
+      desktop = false;
+      mobile = true;
+    });
+    menuExpandButton.each(function () {
+      var _this4 = this;
+
+      external_jQuery_default()(this).on("click", function (c) {
+        var $this = external_jQuery_default()(_this4);
+
+        if (desktop) {
+          menu.toggleClass("expanded");
+        }
+
+        if (mobile) {
+          menu.addClass("expanded");
+          $this.parent().toggleClass("js-dropdown-show");
+        }
+      });
+    });
+  };
+
+  var scripts_toolkit_hubMegaMenu2 = function _hubMegaMenu2() {
+    var menu = external_jQuery_default()(".hub-mega-menu .mega-menu-inner");
+    var menuExpandButton = external_jQuery_default()(".hub-mega-menu .btn-expander").parent();
+    var mobile = false;
+    var desktop = false;
+    src_default.a.register(_DESKTOP_AND_LARGER, function () {
+      desktop = true;
+      mobile = false;
+    });
+    src_default.a.register(_TABLET_AND_SMALLER, function () {
+      desktop = false;
+      mobile = true;
+    });
+    menuExpandButton.each(function () {
+      var $this = external_jQuery_default()(this); // Create and append Title to list of expanded links
+
+      var title = $this.children("a").text();
+      var titleLink = $this.children("a").attr("href");
+      var newLink = "<li class=\"js-inject-title\"><a href=\"".concat(titleLink, "\"> ").concat(title, " </a></li>");
+      $this.children("ul").prepend(newLink); // subnav expand function
+
+      external_jQuery_default()(this).on("click", function (c) {
+        c.preventDefault();
+
+        if (desktop) {
+          menu.toggleClass("expanded");
+        }
+
+        if (mobile) {
+          menu.addClass("expanded");
+          $this.toggleClass("js-dropdown-show");
+        }
+      });
+    });
+  };
+
+  var scripts_toolkit_openPopup = function _openPopup() {
+    popups.initAndOpen(this[0]);
+    return this;
+  };
+
+  /* CONSTANT ATTRIBUTES */
+  var _TRANSITION_TIMEOUT = 200; // update in _settings.variables.scss(135)
+
+  var _MOBILE_LARGE_AND_SMALLER = "screen and (max-width: 42.99em)",
+      // update in _settings.responsive.scss(57)
+  _DESKTOP_AND_LARGER = "screen and (min-width: 61em)",
+      _TABLET_AND_SMALLER = "screen and (max-width: 975px)",
+      // Iframe selectors
+  _YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
+      _GMAPS_IFRAME_SELECTOR = 'iframe[src*="/maps/"]',
+      _VIMEO_IFRAME_SELECTOR = 'iframe[src*="vimeo"]';
+  var _SIDEMENU_CLASS = "sidemenu";
+  var _SIDEMENU_TOGGLE_CLASS = "sidemenu-toggle";
+  var _SIDEMENU_EXPANDER_CLASS = "btn-expander";
+  var _SIDEMENU_SUBMENU_CLASS = "has-submenu";
+  var _SIDEMENU_SELECTED_ITEM_CLASS = "active";
+  var _SIDEMENU_EXPANDED_CLASS = "expanded";
+  var _btnExpanderHtml = '<span tabindex="0" class="btn-expander mf-heatmap-click" title="Toggle subpages" role="button"></span>';
+  var _ENV_HOSTNAME = {
+    STAGE: "cms.wgtn.ac.nz",
+    PROD: "www.wgtn.ac.nz",
+    LOCAL: "local.wgtn.ac.nz"
+  }; // FIXME: Should be automatically pre-populated from the build/build.config.js
+
+  var _URL_BASE = {
+    TOOLKIT: "local.wgtn.ac.nz:8080"
+  };
+  var _ERROR_TYPES = {
+    SIDEBAR_WIDGETS_COUNT_EXCEEDED: "sidebar-widgets-count-exceeded"
+  };
+  var _STAFF_LIST_CONTAINER_CLASSNAME = "articles-container",
+      _STAFF_LIST_CLASSNAME = "staff-list",
+      _STAFF_CONTACT_CLASSNAME = "contact";
+  var _SIDEBAR_WIDGET_CLASSNAME = "data-sidebar",
+      _SIDEBAR_ID = "rightHandMenu",
+      _SIDEBAR_WIDGETS_MAX = 3,
+      _WIDGET_LINKS_CLASSNAME = "data-relatedLinks";
+  var _BTN_UP_ID = "btn-up",
+      _BTN_ADMIN_EDIT_ID = "btn-admin",
+      // ADMIN_URL_EXTENSION = '_edit', // Uncomment if the button and URL cannot be rendered by Squiz!
+  _SCROLL_ANIMATION_DURATION_IN_MS = 700;
+
+  (function init() {
+    initToolbarLoader();
+    initToolbarUrlListeners();
+  })();
+  /** INITIALISE ON DOM LOAD. */
+
+
+  external_jQuery_default()(function () {
+    scripts_toolkit_moveWidgetsToSidebar();
+
+    scripts_toolkit_addActiveClassToMainMenu();
+
+    scripts_toolkit_moveOrphanedStaffCardIntoList();
+
+    tooltips.initTooltips(); // FIXME: Extract out to a standalone plugin and run on staff profiles *only*
+
+    scripts_toolkit_hideCoursesOnStaffProfile();
+
+    var $body = external_jQuery_default()("body"),
+        $globalNav = external_jQuery_default()("#global-nav"),
+        $globalSearch = external_jQuery_default()("#global-search");
+    /** Init side-menu, if it's present */
+
+    if (external_jQuery_default()(".".concat(_SIDEMENU_CLASS)).length) {
+      scripts_toolkit_initSidemenuExpandability(_SIDEMENU_CLASS);
+    } // ***************************
+    // Init homepage side megamenu
+    // ***************************
+
+
+    if (external_jQuery_default()(".sidemenu-homepage").length) {
+      src_default.a.register(_TABLET_AND_SMALLER, function () {
+        console.log("sidemenu-homepage");
+
+        scripts_toolkit_initSidemenuExpandability("sidemenu-homepage"); // console.log('tray is small size for mob');
+
+      });
+      var $sidemenuHomepage = external_jQuery_default()(".sidemenu-homepage");
+
+      scripts_toolkit_enhanceSidemenu($sidemenuHomepage);
+    } // initSidemenuExpandability( 'horizontal-menu' );
+    // ***************************
+    // Init horizontal megamenu
+    // ***************************
+
+
+    if (external_jQuery_default()(".show-mega-menu-top").length) {
+      src_default.a.register(_TABLET_AND_SMALLER, function () {
+        console.log("show-mega-menu-top");
+
+        scripts_toolkit_initSidemenuExpandability("mega-sub-menu"); // console.log('tray is small size for mob');
+
+      });
+
+      scripts_toolkit_enhanceSidemenu(external_jQuery_default()(".mega-sub-menu"));
     }
 
-    if (external_jQuery_default()(this).attr("value") == "postgraduate") {
+    if (external_jQuery_default()(".header-tray").length) {
+      // console.log('init tray');
+      initTray();
+    }
+
+    scripts_toolkit_victoriousHeader();
+
+    if (window.skrollr && external_jQuery_default()(window).width() > 800 && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      window.onload = function () {
+        var s = skrollr.init({
+          smoothScrolling: true,
+          render: function render() {// console.log('skrollr init');
+          }
+        });
+      }; // if (s.isMobile()) {
+      //   s.destroy();
+      // }
+      // $(window).on('resize', () => {
+      //   if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { // no reason to destroy on mobile
+      //     if ($(window).width() <= 800) {
+      //       skrollr.init().destroy(); // skrollr.init() returns the singleton created above
+      //     }
+      //   }
+      // });
+
+    }
+
+    scripts_toolkit_initFloatingButtons();
+
+    _decodeMailAddresses(); // http://wicky.nilia.ms/enquire.js/
+    // TODO: Refactor and extract to its own library
+
+
+    src_default.a.register(_MOBILE_LARGE_AND_SMALLER, function () {
+      if ($globalNav.length) {
+        var menuOutsideClickListener = function menuOutsideClickListener(event) {
+          if (!external_jQuery_default()(event.target).closest("#global-nav").length) {
+            toggleMobileMenu();
+          }
+        };
+
+        var eGlobalNav = $globalNav[0],
+            bannerHeaderElement = external_jQuery_default()(".site-header"),
+            sidemenu = external_jQuery_default()(".sidemenu");
+        var headroom = new headroom_default.a(eGlobalNav, {
+          offset: $globalNav.outerHeight(),
+          // or scroll tolerance per direction
+          tolerance: {
+            down: 5,
+            up: 20
+          },
+          classes: {
+            initial: "sticky",
+            pinned: "slide-down",
+            unpinned: "slide-up",
+            notTop: "no-top"
+          }
+        });
+        headroom.init();
+
+        var disableHeadroom = function disableHeadroom() {
+          if (headroom) {
+            headroom.scroller.removeEventListener("scroll", headroom.debouncer, false);
+          }
+        };
+
+        var enableHeadroom = function enableHeadroom() {
+          if (headroom) {
+            headroom.scroller.addEventListener("scroll", headroom.debouncer, false);
+          }
+        };
+
+        var removeMenuOutClickListener = function removeMenuOutClickListener() {
+          document.removeEventListener("click", menuOutsideClickListener);
+        };
+
+        var registerMenuOutClickListener = function registerMenuOutClickListener() {
+          document.addEventListener("click", menuOutsideClickListener);
+        };
+
+        var toggleMobileMenu = function toggleMobileMenu() {
+          $globalNav.find(".tcon").toggleClass("tcon-transform");
+          $globalNav.toggleClass("is-open");
+          if (!headroom) return;
+
+          if ($globalNav.hasClass("is-open")) {
+            disableHeadroom();
+            $body.addClass("unscrollable");
+            registerMenuOutClickListener();
+          } else {
+            enableHeadroom();
+            $body.removeClass("unscrollable");
+            removeMenuOutClickListener();
+          }
+        };
+
+        $body.on("click ", ".js-toggle-global-nav", function (_event) {
+          toggleMobileMenu();
+        });
+      }
+    }); // Opens/closes global search bar & gains auto-focus
+
+    $body.on("click ", ".js-toggle-global-search", function (_event) {
+      var $this = external_jQuery_default()(this);
+
+      if ($this.data("js-has-active-transition")) {
+        return false;
+      }
+
+      $this.data("js-has-active-transition", true);
+      $this.find(".tcon").toggleClass("tcon-transform");
+
+      if ($globalSearch.hasClass("is-open")) {
+        $globalSearch.toggleClass("is-open", false);
+        setTimeout(function () {
+          $this.data("js-has-active-transition", false);
+        }, _TRANSITION_TIMEOUT);
+      } else {
+        $globalSearch.toggleClass("is-open", true);
+        setTimeout(function () {
+          $globalSearch.find("input:text").focus();
+          $this.data("js-has-active-transition", false);
+        }, _TRANSITION_TIMEOUT);
+      }
+
+      _event.preventDefault();
+    }); // Study areas tabs toggle
+
+    external_jQuery_default()("#study-area-tabs li a").click(function () {
+      if (external_jQuery_default()(this).parent().hasClass("active")) {
+        return;
+      }
+
+      external_jQuery_default()(".active").removeClass("active");
+      external_jQuery_default()(this).parent().addClass("active");
+      external_jQuery_default()(".study-areas").toggleClass("hidden");
+      external_jQuery_default()(".degrees-quals").toggleClass("hidden");
+    });
+    /* Show the tab content that is selected */
+
+    if (document.getElementById("undergraduate") && document.getElementById("undergraduate").checked) {
+      switchTabToUndergrad();
+    } else if (document.getElementById("postgraduate") && document.getElementById("postgraduate").checked) {
       switchTabToPostgrad();
     }
-  });
 
-  function switchTabToUndergrad() {
-    external_jQuery_default()("#study-area-tabs > ul > li:nth-child(1) h4").html('<span class="icon-book-open"></span>Subject areas');
-    external_jQuery_default()(".study-areas-undergrad").show(500);
-    external_jQuery_default()(".study-areas-postgrad").hide(500);
-  }
+    external_jQuery_default()(".switch .switch-input").on("change", function () {
+      if (external_jQuery_default()(this).attr("value") == "undergraduate") {
+        switchTabToUndergrad();
+      }
 
-  function switchTabToPostgrad() {
-    external_jQuery_default()("#study-area-tabs > ul > li:nth-child(1) h4").html('<span class="icon-book-open"></span> Postgraduate subjects');
-    external_jQuery_default()(".study-areas-postgrad").show(500);
-    external_jQuery_default()(".study-areas-undergrad").hide(500);
-  }
-  /* dynamic height for tiles. setting height of all tiles from largest tile height */
+      if (external_jQuery_default()(this).attr("value") == "postgraduate") {
+        switchTabToPostgrad();
+      }
+    });
 
-
-  external_jQuery_default()(".dynamic-height-tiles ").each(function (n) {
-    // get array of heights for each group of class
-    var tileHeights = external_jQuery_default()(this).find("li.tile").map(function () {
-      return external_jQuery_default()(this).height();
-    }).get(); // check heights for largest
-
-    var maxHeight = Math.max.apply(null, tileHeights); // apply maxheight to tiles
-
-    external_jQuery_default()(this).find("li.tile").height(maxHeight + 16);
-  });
-  /* Navigation toggle on mobile */
-
-  external_jQuery_default()(".main-menu-toggle").on("click", function () {
-    external_jQuery_default()(".main-nav").slideToggle();
-    external_jQuery_default()(".sub-nav").slideToggle();
-    external_jQuery_default()(".search-bar").slideToggle();
-    external_jQuery_default()(".menu-toggle-icon").toggleClass("open");
-  });
-  /* Show search bar on desktop */
-
-  external_jQuery_default()(".search-item").on("click", function () {
-    external_jQuery_default()(".search-bar").slideToggle();
-    var searchInputElement = external_jQuery_default()("#search-query");
-
-    if (searchInputElement.is(":visible")) {
-      searchInputElement.focus();
-    }
-  });
-
-  if (external_jQuery_default()("#study-area-tabs")) {
-    var getUrlParameter = function getUrlParameter(name) {
-      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-      var regex = new RegExp("[\\?&]".concat(name, "=([^&#]*)"));
-      var results = regex.exec(location.search);
-      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    };
-
-    var handleSwitchInputClick = function handleSwitchInputClick(event) {
-      window.history.replaceState({}, "", "".concat(window.location.pathname, "?grad=").concat(event.target.id));
-    };
-
-    var grad = "URLSearchParams" in window ? new URLSearchParams(window.location.search).get("grad") : getUrlParameter("grad");
-
-    if (grad === "postgraduate" || grad === "undergraduate") {
-      external_jQuery_default()("#".concat(grad)).click();
+    function switchTabToUndergrad() {
+      external_jQuery_default()("#study-area-tabs > ul > li:nth-child(1) h4").html('<span class="icon-book-open"></span>Subject areas');
+      external_jQuery_default()(".study-areas-undergrad").show(500);
+      external_jQuery_default()(".study-areas-postgrad").hide(500);
     }
 
-    var tabs = external_jQuery_default()("#study-area-tabs .switch-input");
-    tabs.each(function () {
-      this.addEventListener("click", handleSwitchInputClick);
-    });
-  }
-  /** DOM manipulation */
-
-
-  wrapEmbeddedIframes();
-  removedUnusedTiles(); // TODO: Review - Can be removed after all the study areas are migrated
-  // tile accordion
-
-  external_jQuery_default()(".tile-accordion .tile").not(".tile-accordion.content-page").on("click", function (evt) {
-    // evt.preventDefault();
-    if (external_jQuery_default()(this).hasClass("accordion-closed")) {
-      external_jQuery_default()(this).children(".accordion-content ").slideDown();
-      external_jQuery_default()(this).removeClass("accordion-closed").addClass("accordion-open");
-    } else if (external_jQuery_default()(this).hasClass("accordion-open")) {
-      external_jQuery_default()(this).children(".accordion-content ").slideUp();
-      external_jQuery_default()(this).removeClass("accordion-open").addClass("accordion-closed");
+    function switchTabToPostgrad() {
+      external_jQuery_default()("#study-area-tabs > ul > li:nth-child(1) h4").html('<span class="icon-book-open"></span> Postgraduate subjects');
+      external_jQuery_default()(".study-areas-postgrad").show(500);
+      external_jQuery_default()(".study-areas-undergrad").hide(500);
     }
+    /* dynamic height for tiles. setting height of all tiles from largest tile height */
 
-    external_jQuery_default()(this).find(".links a").on("click", function (event) {
-      event.stopPropagation();
+
+    external_jQuery_default()(".dynamic-height-tiles ").each(function (n) {
+      // get array of heights for each group of class
+      var tileHeights = external_jQuery_default()(this).find("li.tile").map(function () {
+        return external_jQuery_default()(this).height();
+      }).get(); // check heights for largest
+
+      var maxHeight = Math.max.apply(null, tileHeights); // apply maxheight to tiles
+
+      external_jQuery_default()(this).find("li.tile").height(maxHeight + 16);
     });
-  });
-  /** Runs any custom scripts that could be added in the content. */
+    /* Navigation toggle on mobile */
 
-  if (onDocumentReadyFunctions && onDocumentReadyFunctions.length) {
-    onDocumentReadyFunctions.forEach(function (singleFunction) {
-      singleFunction();
+    external_jQuery_default()(".main-menu-toggle").on("click", function () {
+      external_jQuery_default()(".main-nav").slideToggle();
+      external_jQuery_default()(".sub-nav").slideToggle();
+      external_jQuery_default()(".search-bar").slideToggle();
+      external_jQuery_default()(".menu-toggle-icon").toggleClass("open");
     });
-  }
-});
-/* Research hub content page tile accordian */
+    /* Show search bar on desktop */
 
-external_jQuery_default()(".tile-accordion.content-page .tile .toggle").on("click", function (evt) {
-  var $this = external_jQuery_default()(this);
-  $this.toggleClass("expanded");
-  $this.siblings("p").toggle();
-});
-/* Add accessible title label for restricted links class  */
+    external_jQuery_default()(".search-item").on("click", function () {
+      external_jQuery_default()(".search-bar").slideToggle();
+      var searchInputElement = external_jQuery_default()("#search-query");
 
-function restrictedLinkTitle() {
-  var lockLinks = document.querySelectorAll(".link-restricted");
-
-  for (var i = 0; i < lockLinks.length; i++) {
-    lockLinks[i].setAttribute("title", "Restricted intranet link");
-  }
-}
-
-restrictedLinkTitle();
-/* Research hub mega menu */
-
-function hubMegaMenu() {
-  var menu = external_jQuery_default()(".hub-mega-menu .mega-menu-inner");
-  var menuExpandButton = external_jQuery_default()(".hub-mega-menu .btn-expander");
-  var mobile = false;
-  var desktop = false;
-  src_default.a.register(toolkit_DESKTOP_AND_LARGER, function () {
-    desktop = true;
-    mobile = false;
-  });
-  src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
-    desktop = false;
-    mobile = true;
-  });
-  menuExpandButton.each(function () {
-    var _this2 = this;
-
-    external_jQuery_default()(this).on("click", function (c) {
-      var $this = external_jQuery_default()(_this2);
-
-      if (desktop) {
-        menu.toggleClass("expanded");
-      }
-
-      if (mobile) {
-        menu.addClass("expanded");
-        $this.parent().toggleClass("js-dropdown-show");
+      if (searchInputElement.is(":visible")) {
+        searchInputElement.focus();
       }
     });
-  });
-}
 
-function hubMegaMenu2() {
-  var menu = external_jQuery_default()(".hub-mega-menu .mega-menu-inner");
-  var menuExpandButton = external_jQuery_default()(".hub-mega-menu .btn-expander").parent();
-  var mobile = false;
-  var desktop = false;
-  src_default.a.register(toolkit_DESKTOP_AND_LARGER, function () {
-    desktop = true;
-    mobile = false;
-  });
-  src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
-    desktop = false;
-    mobile = true;
-  });
-  menuExpandButton.each(function () {
-    var $this = external_jQuery_default()(this); // Create and append Title to list of expanded links
+    if (external_jQuery_default()("#study-area-tabs")) {
+      var getUrlParameter = function getUrlParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]".concat(name, "=([^&#]*)"));
+        var results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+      };
 
-    var title = $this.children("a").text();
-    var titleLink = $this.children("a").attr("href");
-    var newLink = "<li class=\"js-inject-title\"><a href=\"".concat(titleLink, "\"> ").concat(title, " </a></li>");
-    $this.children("ul").prepend(newLink); // subnav expand function
+      var handleSwitchInputClick = function handleSwitchInputClick(event) {
+        window.history.replaceState({}, "", "".concat(window.location.pathname, "?grad=").concat(event.target.id));
+      };
 
-    external_jQuery_default()(this).on("click", function (c) {
-      c.preventDefault();
+      var grad = "URLSearchParams" in window ? new URLSearchParams(window.location.search).get("grad") : getUrlParameter("grad");
 
-      if (desktop) {
-        menu.toggleClass("expanded");
+      if (grad === "postgraduate" || grad === "undergraduate") {
+        external_jQuery_default()("#".concat(grad)).click();
       }
 
-      if (mobile) {
-        menu.addClass("expanded");
-        $this.toggleClass("js-dropdown-show");
-      }
-    });
-  });
-}
-
-if (document.getElementsByClassName("hub-mega-menu").length > 0 && !document.getElementsByClassName("mega-menu-bar").length > 0) {
-  var hubMegaMenuElement = external_jQuery_default()(".hub-mega-menu");
-  var megaMenuExpandButton = external_jQuery_default()(".hub-mega-menu .btn-expander");
-  hubMegaMenu();
-
-  if (tracker.shouldTrackElement(hubMegaMenuElement)) {
-    tracker.registerForTracking(hubMegaMenuElement.find("li > a"), "click", "megamenu-link");
-    tracker.registerForTracking(megaMenuExpandButton, "click", "megamenu-expander");
-  }
-}
-/* New hub mega menu */
-
-
-if (document.getElementsByClassName("hub-mega-menu").length > 0 && document.getElementsByClassName("mega-menu-bar").length > 0) {
-  hubMegaMenu2();
-  console.log("new menu bar strip thing cool ");
-}
-
-function openPopup() {
-  popups.initAndOpen(this[0]);
-  return this;
-}
-
-if (document.getElementsByClassName("toggle").length > 0) {
-  external_jQuery_default()(".toggle").on("click", function () {
-    external_jQuery_default()(this).toggleClass("active");
-    external_jQuery_default()(this).next(".toggle-block").toggleClass("active");
-  });
-} // !Add light class to all sidemenus (TEMPORARY)
-// if ($(".sidemenu").length > 0 && !$(".sidemenu").hasClass("sidemenu-light")) {
-//   $(".sidemenu").addClass("sidemenu-light");
-// }
-
-/* USing on subject page proto */
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  // ensure vue comps ready ..
-  setTimeout(function () {
-    // console.log('run toggle slide');
-    if (document.getElementsByClassName("toggle-slide").length > 0) {
-      external_jQuery_default()(".toggle-slide").on("click", function () {
-        external_jQuery_default()(this).toggleClass("active");
-
-        if (external_jQuery_default()(this).next(".toggle-block").hasClass("active")) {
-          external_jQuery_default()(this).next(".toggle-block").slideUp().toggleClass("active");
-        } else {
-          external_jQuery_default()(this).next(".toggle-block").slideDown().toggleClass("active");
-        }
+      var tabs = external_jQuery_default()("#study-area-tabs .switch-input");
+      tabs.each(function () {
+        this.addEventListener("click", handleSwitchInputClick);
       });
     }
-  }, 750);
-}); // Sticky header/nav on mobile
+    /** DOM manipulation */
 
-if (document.location.href.includes("?mode=dev") || document.location.href.includes("local.wgtn") || document.location.href.includes("assets/git_bridge/0009/1778031/dist")) {
-  // Sticky header/nav on mobile
-  window.onscroll = function (e) {
-    var _this3 = this;
 
-    src_default.a.register(toolkit_TABLET_AND_SMALLER, function () {
-      if (window.pageYOffset > 100) {
-        var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-        var header = external_jQuery_default()(".main-site-header");
+    scripts_toolkit_wrapEmbeddedIframes();
 
-        if (scrollY < _this3.lastScroll - 5) {
-          header.addClass("sticky");
-        } else {
-          header.removeClass("sticky");
-        }
+    scripts_toolkit_removedUnusedTiles(); // TODO: Review - Can be removed after all the study areas are migrated
+    // tile accordion
 
-        _this3.lastScroll = scrollY;
+
+    external_jQuery_default()(".tile-accordion .tile").not(".tile-accordion.content-page").on("click", function (evt) {
+      // evt.preventDefault();
+      if (external_jQuery_default()(this).hasClass("accordion-closed")) {
+        external_jQuery_default()(this).children(".accordion-content ").slideDown();
+        external_jQuery_default()(this).removeClass("accordion-closed").addClass("accordion-open");
+      } else if (external_jQuery_default()(this).hasClass("accordion-open")) {
+        external_jQuery_default()(this).children(".accordion-content ").slideUp();
+        external_jQuery_default()(this).removeClass("accordion-open").addClass("accordion-closed");
       }
-    });
-  };
-}
-/**
- * jQuery's plugin as a utility factory
- * Usage as: $( jquerySelector ).vicApp().method( options )
- */
 
-
-(function ($) {
-  $.fn.vicApp = function () {
-    return {
-      openPopup: openPopup.bind(this)
-    };
-  };
-})(jQuery);
-
-if (document.getElementsByClassName("calendar-cards").length > 0) {
-  external_jQuery_default()("#search-filter").on("keyup search", function () {
-    var value = external_jQuery_default()(this).val().toLowerCase(); // if input 3 or more filter
-
-    if (external_jQuery_default()(this).val().length >= 2) {
-      external_jQuery_default()(".calendar-cards .card").filter(function () {
-        external_jQuery_default()(this).toggle(external_jQuery_default()(this).text().toLowerCase().indexOf(value) > -1);
+      external_jQuery_default()(this).find(".links a").on("click", function (event) {
+        event.stopPropagation();
       });
-    } else {
-      // show all if search input less then 2
-      external_jQuery_default()(".calendar-cards .card").show();
-    }
-  }); // Filter on type tags
+    });
+    /** Runs any custom scripts that could be added in the content. */
 
-  external_jQuery_default()(".tags .tag").on("click", function () {
-    if (external_jQuery_default()(this).hasClass("selected")) {
-      external_jQuery_default()(this).removeClass("selected");
-      external_jQuery_default()(".calendar-cards .card").show();
-    } else {
-      external_jQuery_default()(".tags .tag").removeClass("selected");
-      external_jQuery_default()(".calendar-cards .card").show();
-
-      if (external_jQuery_default()(this).text() === "Amendment") {
-        external_jQuery_default()(this).addClass("selected");
-        external_jQuery_default()(".calendar-cards .card").filter(':not([data-type="Amendment"])').hide();
-      }
-
-      if (external_jQuery_default()(this).text() === "New") {
-        external_jQuery_default()(this).addClass("selected");
-        external_jQuery_default()(".calendar-cards .card").filter(':not([data-type="New"])').hide();
-      }
-
-      if (external_jQuery_default()(this).text() === "Errata") {
-        external_jQuery_default()(this).addClass("selected");
-        external_jQuery_default()(".calendar-cards .card").filter(':not([data-type="Errata"])').hide();
-      }
+    if (onDocumentReadyFunctions && onDocumentReadyFunctions.length) {
+      onDocumentReadyFunctions.forEach(function (singleFunction) {
+        singleFunction();
+      });
     }
   });
-} // Carousel
+  /* Research hub content page tile accordian */
+
+  external_jQuery_default()(".tile-accordion.content-page .tile .toggle").on("click", function (evt) {
+    var $this = external_jQuery_default()(this);
+    $this.toggleClass("expanded");
+    $this.siblings("p").toggle();
+  });
+
+  _restrictedLinkTitle();
+
+  if (document.getElementsByClassName("hub-mega-menu").length > 0 && !document.getElementsByClassName("mega-menu-bar").length > 0) {
+    var _hubMegaMenuElement = external_jQuery_default()(".hub-mega-menu");
+
+    var _megaMenuExpandButton = external_jQuery_default()(".hub-mega-menu .btn-expander");
+
+    scripts_toolkit_hubMegaMenu();
+
+    if (tracker.shouldTrackElement(_hubMegaMenuElement)) {
+      tracker.registerForTracking(_hubMegaMenuElement.find("li > a"), "click", "megamenu-link");
+      tracker.registerForTracking(_megaMenuExpandButton, "click", "megamenu-expander");
+    }
+  }
+  /* New hub mega menu */
 
 
-var arrayOfPhotos = ["https://www.wgtn.ac.nz/__data/assets/image/0010/1750339/sleep-mat-banner-minds-v3.jpg", "https://www.wgtn.ac.nz/__data/assets/image/0006/1721877/windy-banner.jpg", "https://www.wgtn.ac.nz/__data/assets/image/0010/560773/MaoriStudiesBanner.jpg", "https://www.wgtn.ac.nz/__data/assets/image/0007/1873258/ai-fingers.jpg", "https://www.wgtn.ac.nz/__data/assets/image/0005/1756517/globe-top.jpg"];
-var count = -1;
-external_jQuery_default()(".carousel-controls .next").on("click", function (e) {
-  console.log(e);
-  console.log(count);
+  if (document.getElementsByClassName("hub-mega-menu").length > 0 && document.getElementsByClassName("mega-menu-bar").length > 0) {
+    scripts_toolkit_hubMegaMenu2();
 
-  if (count < 4) {
-    count++;
-  } else {
-    count = 0;
+    console.log("new menu bar strip thing cool ");
   }
 
-  external_jQuery_default()(this).parent().prev().find(">img").attr("src", arrayOfPhotos[count]);
-});
-external_jQuery_default()(".carousel-controls .previous").on("click", function (e) {
-  console.log(e);
-  console.log(count);
-
-  if (count > 0) {
-    count--;
-  } else {
-    count = 4;
+  if (document.getElementsByClassName("toggle").length > 0) {
+    external_jQuery_default()(".toggle").on("click", function () {
+      external_jQuery_default()(this).toggleClass("active");
+      external_jQuery_default()(this).next(".toggle-block").toggleClass("active");
+    });
   }
+  /* USing on subject page proto */
 
-  external_jQuery_default()(this).parent().prev().find(">img").attr("src", arrayOfPhotos[count]);
-}); // Add Maori language tags to all tereo titles
 
-external_jQuery_default()(".tereo-title").attr("lang", "mi");
+  document.addEventListener("DOMContentLoaded", function () {
+    // ensure vue comps ready ..
+    setTimeout(function () {
+      // console.log('run toggle slide');
+      if (document.getElementsByClassName("toggle-slide").length > 0) {
+        external_jQuery_default()(".toggle-slide").on("click", function () {
+          external_jQuery_default()(this).toggleClass("active");
+
+          if (external_jQuery_default()(this).next(".toggle-block").hasClass("active")) {
+            external_jQuery_default()(this).next(".toggle-block").slideUp().toggleClass("active");
+          } else {
+            external_jQuery_default()(this).next(".toggle-block").slideDown().toggleClass("active");
+          }
+        });
+      }
+    }, 750);
+  });
+  /**
+   * jQuery's plugin as a utility factory
+   * Usage as: $( jquerySelector ).vicApp().method( options )
+   */
+
+  (function ($) {
+    $.fn.vicApp = function () {
+      return {
+        openPopup: scripts_toolkit_openPopup.bind(this)
+      };
+    };
+  })(jQuery);
+
+  if (document.getElementsByClassName("calendar-cards").length > 0) {
+    external_jQuery_default()("#search-filter").on("keyup search", function () {
+      var value = external_jQuery_default()(this).val().toLowerCase(); // if input 3 or more filter
+
+      if (external_jQuery_default()(this).val().length >= 2) {
+        external_jQuery_default()(".calendar-cards .card").filter(function () {
+          external_jQuery_default()(this).toggle(external_jQuery_default()(this).text().toLowerCase().indexOf(value) > -1);
+        });
+      } else {
+        // show all if search input less then 2
+        external_jQuery_default()(".calendar-cards .card").show();
+      }
+    }); // Filter on type tags
+
+    external_jQuery_default()(".tags .tag").on("click", function () {
+      if (external_jQuery_default()(this).hasClass("selected")) {
+        external_jQuery_default()(this).removeClass("selected");
+        external_jQuery_default()(".calendar-cards .card").show();
+      } else {
+        external_jQuery_default()(".tags .tag").removeClass("selected");
+        external_jQuery_default()(".calendar-cards .card").show();
+
+        if (external_jQuery_default()(this).text() === "Amendment") {
+          external_jQuery_default()(this).addClass("selected");
+          external_jQuery_default()(".calendar-cards .card").filter(':not([data-type="Amendment"])').hide();
+        }
+
+        if (external_jQuery_default()(this).text() === "New") {
+          external_jQuery_default()(this).addClass("selected");
+          external_jQuery_default()(".calendar-cards .card").filter(':not([data-type="New"])').hide();
+        }
+
+        if (external_jQuery_default()(this).text() === "Errata") {
+          external_jQuery_default()(this).addClass("selected");
+          external_jQuery_default()(".calendar-cards .card").filter(':not([data-type="Errata"])').hide();
+        }
+      }
+    });
+  }
+}
 
 /***/ })
 /******/ ]);
