@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, September 9, 2022, 2:58 PM */
+/** Version: 0.10.13 | Tuesday, September 13, 2022, 8:10 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15561,6 +15561,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 if (document.location.href.includes("SQ_DESIGN_NAME=v4") || document.location.href.includes("local.wgtn") || document.location.href.includes("assets/git_bridge/0009/1778031/dist")) {
   $("body").attr("id", "hubv4");
 } // Check toolbar to ensure myTools has been updated to Puaha
+//TODO - remove below code
 
 
 if (document.location.pathname.split("/")[1] == "courses" || document.location.pathname.split("/")[1] == "explore") {
