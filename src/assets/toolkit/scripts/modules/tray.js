@@ -27,7 +27,7 @@ export function initTray() {
     });
   }
 
-  $("body#hubv4").on("click keyup", (e) => {
+  $("body").on("click keyup", (e) => {
     // Close tray if clicked away from or escpae buttons
 
     // If not enter key
@@ -75,7 +75,7 @@ export function initTray() {
     $("body").toggleClass("noscroll");
   }
 
-  $("#hubv4 .tray-toggle").on("click keydown", function (e) {
+  $(".tray-toggle").on("click keydown", function (e) {
     if (e.which == 13 || e.which == 1) {
       e.preventDefault();
 
@@ -84,17 +84,17 @@ export function initTray() {
     }
   });
 
-  $("#hubv4 .expanded-draw").click((e) => {
+  $(".expanded-draw").click((e) => {
     e.preventDefault();
     toggleTray();
   });
-  $("#hubv4 .tray-close").click((e) => {
+  $(".tray-close").click((e) => {
     e.preventDefault();
 
     toggleTray();
   });
 
-  $("#hubv4 .search-toggle").click((e) => {
+  $(".search-toggle").click((e) => {
     e.preventDefault();
     toggleTray();
     setTimeout(() => {
