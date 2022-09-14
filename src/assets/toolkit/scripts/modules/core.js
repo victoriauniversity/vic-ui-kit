@@ -135,6 +135,7 @@ if (
 }
 
 // Check toolbar to ensure myTools has been updated to Puaha
+//TODO - remove below code
 if (
   document.location.pathname.split("/")[1] == "courses" ||
   document.location.pathname.split("/")[1] == "explore"

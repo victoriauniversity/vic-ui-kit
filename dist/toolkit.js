@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, September 9, 2022, 2:58 PM */
+/** Version: 0.10.13 | Thursday, September 15, 2022, 8:54 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14050,7 +14050,7 @@ function initTray() {
     });
   }
 
-  $("body#hubv4").on("click keyup", function (e) {
+  $("body").on("click keyup", function (e) {
     // Close tray if clicked away from or escpae buttons
     // If not enter key
     if (e.which !== 13) {
@@ -14089,21 +14089,21 @@ function initTray() {
     $("body").toggleClass("noscroll");
   }
 
-  $("#hubv4 .tray-toggle").on("click keydown", function (e) {
+  $(".tray-toggle").on("click keydown", function (e) {
     if (e.which == 13 || e.which == 1) {
       e.preventDefault();
       toggleTray(); // return false;
     }
   });
-  $("#hubv4 .expanded-draw").click(function (e) {
+  $(".expanded-draw").click(function (e) {
     e.preventDefault();
     toggleTray();
   });
-  $("#hubv4 .tray-close").click(function (e) {
+  $(".tray-close").click(function (e) {
     e.preventDefault();
     toggleTray();
   });
-  $("#hubv4 .search-toggle").click(function (e) {
+  $(".search-toggle").click(function (e) {
     e.preventDefault();
     toggleTray();
     setTimeout(function () {
@@ -15561,6 +15561,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 if (document.location.href.includes("SQ_DESIGN_NAME=v4") || document.location.href.includes("local.wgtn") || document.location.href.includes("assets/git_bridge/0009/1778031/dist")) {
   $("body").attr("id", "hubv4");
 } // Check toolbar to ensure myTools has been updated to Puaha
+//TODO - remove below code
 
 
 if (document.location.pathname.split("/")[1] == "courses" || document.location.pathname.split("/")[1] == "explore") {
