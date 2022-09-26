@@ -894,11 +894,10 @@ body#hubv4 {
       text-align: center;
       font-weight: $weight-bold;
       line-height: 1.4;
-      padding: 3px 8px;
+      padding: 7px 8px;
       border-radius: 100px;
-      cursor: pointer;
-      height: 32px;
-      width: 32px;
+      // height: 32px;
+      // width: 32px;
       z-index: 99;
 
       &:after {
@@ -921,42 +920,65 @@ body#hubv4 {
     .sidemenu-toggle {
       font-size: $text-size-4;
       font-weight: $weight-semibold;
-      background-color: $kohuhu;
-
-      border: 1px $grey-alto solid;
-
+      // border: 1px $grey-alto solid;
+      display: block;
+      width: 100%;
+      display: flex;
+      background-color: #fff;
+      &.expanded {
+        background-color: $pounamu;
+        a {
+          color: #fff;
+          .tereo-nav-title {
+            color: $kowhai;
+          }
+        }
+        .btn-expander {
+          clip-path: polygon(0% -2px, 102% -2%, 102% 103%, 10px 104%);
+          padding-left: 15px;
+          background-color: #669787;
+          color: #fce500;
+          border-radius: 0;
+          margin-left: 0;
+          &:after {
+            transform: rotateZ(180deg);
+          }
+        }
+      }
 
       a {
-        display: block;
-        padding: 1rem .8rem;
-        color: $pounamu;
+        padding: 1rem 0.8rem;
+        color: $black-tundora;
         font-size: 0.8em;
         position: relative;
+        flex: 1 0 80%;
 
-        &:after {
-          float: right;
-          content: "\f181";
-          font-family: "Favorites";
-          font-style: normal;
-          font-weight: normal;
-          font-variant: normal;
-          line-height: 1;
-          font-size: 18px;
-          text-decoration: inherit;
-          text-rendering: optimizeLegibility;
-          text-transform: none;
-          position: absolute;
-          right: 10px;
-          top: 30%;
-          // transform: translate(-0%, -50%);
-          transition: all $easing 0.3s;
+        .tereo-nav-title {
+          display: block;
+          color: $pounamu;
         }
+
         // @include extend-icon-after(list) {
         //   line-height: 1.1;
         //   font-size: $text-size-huge;
         // }
       }
 
+      .btn-expander {
+        flex: 1 0 10%;
+        color: $pounamu;
+        align-self: stretch;
+        height: auto;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-right: 0;
+        background-color: $grey-gallery;
+        &:after {
+          line-height: 1;
+        }
+      }
       &.expanded {
         //! Remove important - needs #hubv2 id
         margin-bottom: 0 !important;
@@ -968,7 +990,7 @@ body#hubv4 {
       }
     }
 
-    @include breakpoint(desktop) {
+    @include breakpoint(desktop-medium) {
       .sidemenu-toggle {
         display: none;
       }
@@ -1023,7 +1045,6 @@ body#hubv4 {
 
       // !Remove important
       margin-bottom: 2rem !important;
-
 
       > ul {
         font-weight: 500;
@@ -1411,8 +1432,13 @@ body#hubv4 {
     width: initial;
     position: relative;
     // padding-top: 2rem;
-    @include breakpoint($until: desktop-medium) {
-      padding: 1rem;
+    // @include breakpoint($until: desktop-medium) {
+    //   padding: 1rem;
+    // }
+    &.childMenu {
+      @include breakpoint($from: desktop-medium) {
+        display: block !important;
+      }
     }
 
     .sidebar-blip {
@@ -1478,6 +1504,7 @@ body#hubv4 {
           a {
             transition: all $easing 0.2s;
             padding: 0.8rem 0.9rem;
+            text-decoration: none;
 
             &.sidemenu__link--withIcon {
               justify-content: space-between;
@@ -1516,9 +1543,7 @@ body#hubv4 {
               outline: 2px $black-emperor dotted;
             }
           }
-          &:hover {
-            // border-left: 5px $green-light-brand solid;
-          }
+
           &.active {
             font-weight: 700;
             border-left: 5px solid $sidemenu-background-selected-v3;
@@ -1546,14 +1571,6 @@ body#hubv4 {
               }
 
               > ul {
-                // max-height: 1200px;
-
-                // &.taller {
-                //   max-height: 1500px;
-                // }
-                // &.tallest {
-                //   max-height: 2500px;
-                // }
                 li {
                   border-left: none;
                 }
@@ -1569,7 +1586,6 @@ body#hubv4 {
                 li {
                   position: relative;
                   overflow: visible;
-                  // background-color: #fff;
 
                   > a {
                     color: $sidemenu-text-color-v3;
@@ -1591,12 +1607,10 @@ body#hubv4 {
 
                   &.expanded {
                     &:before {
-                      // transform: rotateZ(0deg);
                       left: 0px;
                       opacity: 1;
                     }
-
-                    // NESTED CHILD JOINING ARROW ADJUSTMENT
+                    // !NESTED CHILD JOINING ARROW ADJUSTMENT
 
                     ul {
                       li {
@@ -1605,25 +1619,8 @@ body#hubv4 {
                             left: 0;
                             opacity: 1;
                           }
-
-                          // border: 1px green solid;
-                          &:after {
-                            // content: "";
-                            height: 10px;
-                            width: 1px;
-                            background-color: red;
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                          }
                         }
                       }
-                    }
-                  }
-                  a {
-                    &:hover {
-                      // padding-left: 10px;
-                      // padding-right: 0;
                     }
                   }
                 }
@@ -1631,7 +1628,6 @@ body#hubv4 {
             }
 
             > .btn-expander {
-              // transition: all $easing 0.2s;
               z-index: 100;
               position: relative;
               &:hover {
@@ -1654,10 +1650,8 @@ body#hubv4 {
               border-left: 0px white solid;
               overflow: hidden;
               position: relative;
-              // background-color: #fff;
 
               li {
-                // background-color: #fff;
                 border-left: none;
 
                 &.expanded {
@@ -1706,6 +1700,9 @@ body#hubv4 {
                 .btn-expander {
                   margin-right: 6px;
                   border-radius: 100px;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
                 }
                 > ul > li > a {
                   opacity: 1;
@@ -1808,6 +1805,9 @@ body#hubv4 {
         // box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         font-size: 100%;
         border: 1px $grey-alto solid;
+        @include breakpoint($until: desktop-medium) {
+          border: none;
+        }
         position: relative;
 
         > .sidemenu__label {
@@ -1817,6 +1817,9 @@ body#hubv4 {
           border-top: none;
           border-bottom: none;
           margin-right: 0;
+          @include breakpoint($until: desktop-medium) {
+            border-bottom: none;
+          }
 
           &.hide-title {
             display: none;
@@ -1853,6 +1856,7 @@ body#hubv4 {
             border-bottom: 1px $grey-alto solid;
             @include breakpoint($until: desktop) {
               background-position: 160% 5%;
+              border-bottom: none;
             }
           }
         }
