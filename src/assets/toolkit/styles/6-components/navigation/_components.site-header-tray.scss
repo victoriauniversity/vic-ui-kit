@@ -1558,99 +1558,99 @@ body#hubv4 {
                   display: block !important;
                   .sidemenu {
                     border-bottom: 1px $grey-gallery solid;
-                    border-left: 4px $pounamu solid;
+                    // border-left: 4px $pounamu solid;
                   }
                   @include breakpoint(desktop-medium) {
                     display: block !important;
                     // display: none !important;
                   }
 
-                  #childPageMenu {
-                    // !ALL LEVELS
-                    li {
-                      border-left: none;
-                      &:before {
-                        top: 5px;
-                      }
-                      .btn-expander {
-                        font-size: 1.2rem;
-                      }
+                  // #childPageMenu {
+                  //   // !ALL LEVELS
+                  //   li {
+                  //     border-left: none;
+                  //     &:before {
+                  //       top: 5px;
+                  //     }
+                  //     .btn-expander {
+                  //       font-size: 1.2rem;
+                  //     }
 
-                      &.expanded {
-                        background-color: #fff;
-                        border-left: none;
-                        > a {
-                          font-weight: bold;
-                          color: $pounamu;
-                        }
-                      }
-                    }
-                    // !FIRST LEVEL
-                    > li {
-                      // padding-left: 10px;
-                      > .btn-expander {
-                        border-radius: 100px;
-                        clip-path: none;
-                        color: $black-tundora;
-                        background-color: transparent;
-                        text-align: center;
-                        flex: none;
-                        margin-right: 6px;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        // Important required to override JS custom height on desktop
-                        height: auto !important;
+                  //     &.expanded {
+                  //       background-color: #fff;
+                  //       border-left: none;
+                  //       > a {
+                  //         font-weight: bold;
+                  //         color: $pounamu;
+                  //       }
+                  //     }
+                  //   }
+                  //   // !FIRST LEVEL
+                  //   > li {
+                  //     // padding-left: 10px;
+                  //     > .btn-expander {
+                  //       border-radius: 100px;
+                  //       clip-path: none;
+                  //       color: $black-tundora;
+                  //       background-color: transparent;
+                  //       text-align: center;
+                  //       flex: none;
+                  //       margin-right: 6px;
+                  //       display: flex;
+                  //       flex-direction: column;
+                  //       justify-content: center;
+                  //       // Important required to override JS custom height on desktop
+                  //       height: auto !important;
 
-                        &:focus,
-                        &:hover {
-                          background-color: $grey-gallery;
-                        }
-                      }
-                      &:before {
-                        content: "";
-                        position: absolute;
-                        width: 0;
-                        height: 0;
-                        top: 10px;
-                        border-top: 10px solid transparent;
-                        border-left: 12px solid #0d4c38;
-                        border-bottom: 10px solid transparent;
-                        opacity: 0;
-                        transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
-                        left: -13px;
-                      }
-                      &.expanded {
-                        border-top: 1px $mahoe solid;
-                      > .btn-expander {
-                        color: $pounamu;
-                      }
-                        &:before {
-                          left: 0px;
-                          opacity: 1;
-                        }
-                      }
-                      > ul {
-                        border-left: 1px $grey-gallery solid;
-                        margin-left: 10px;
-                        // !SECOND LEVEL
-                        > li {
-                          > .btn-expander {
-                            margin-right: 20px;
-                          }
+                  //       &:focus,
+                  //       &:hover {
+                  //         background-color: $grey-gallery;
+                  //       }
+                  //     }
+                  //     &:before {
+                  //       content: "";
+                  //       position: absolute;
+                  //       width: 0;
+                  //       height: 0;
+                  //       top: 10px;
+                  //       border-top: 10px solid transparent;
+                  //       border-left: 12px solid #0d4c38;
+                  //       border-bottom: 10px solid transparent;
+                  //       opacity: 0;
+                  //       transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+                  //       left: -13px;
+                  //     }
+                  //     &.expanded {
+                  //       border-top: 1px $mahoe solid;
+                  //     > .btn-expander {
+                  //       color: $pounamu;
+                  //     }
+                  //       &:before {
+                  //         left: 0px;
+                  //         opacity: 1;
+                  //       }
+                  //     }
+                  //     > ul {
+                  //       border-left: 1px $grey-gallery solid;
+                  //       margin-left: 10px;
+                  //       // !SECOND LEVEL
+                  //       > li {
+                  //         > .btn-expander {
+                  //           margin-right: 20px;
+                  //         }
 
-                          // !THIRD (BOTTOM) LEVEL
-                          > ul {
-                            > li {
-                              > .btn-expander {
-                                margin-right: 30px;
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
+                  //         // !THIRD (BOTTOM) LEVEL
+                  //         > ul {
+                  //           > li {
+                  //             > .btn-expander {
+                  //               margin-right: 30px;
+                  //             }
+                  //           }
+                  //         }
+                  //       }
+                  //     }
+                  //   }
+                  // }
                 }
                 &:not(.childMenu) {
                   display: none;
@@ -1666,18 +1666,7 @@ body#hubv4 {
                   }
                 }
               }
-              .home-link {
-                padding: 6px 15px;
-                background-color: $mahoe;
-                color: #fff;
-                text-decoration: none;
-                @include breakpoint($until: desktop-medium) {
-                  display: block !important;
-                }
-                &:hover {
-                  text-decoration: underline;
-                }
-              }
+         
               .tall-blip {
                 height: 0;
                 width: 3px;

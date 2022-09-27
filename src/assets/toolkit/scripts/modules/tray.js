@@ -696,7 +696,7 @@ export function initTray() {
     $(".tray .childMenu").addClass("main-nav-list");
 
     // Open sidemenu by default
-    $(".tray #childPageMenu").show();
+    // $(".tray #childPageMenu").show();
     $(".tray .sidemenu-toggle").toggleClass("expanded");
     // $(".tray .sidemenu").toggleClass("expanded");
     //   .next()
@@ -729,9 +729,9 @@ export function initTray() {
       // If top level item
       if (
         !$(this).parent().hasClass("expanded") &&
-        $(this).parent().parent().attr("id") == "childPageMenu"
+        $(this).parent().parent().data("element-name")
       ) {
-        $(".tray #childPageMenu > .has-submenu.expanded")
+        $(".tray ul[data-element-name='childMenu'] > .has-submenu.expanded")
           .removeClass("expanded")
           .find(">ul")
           .slideUp("fast");
@@ -761,23 +761,23 @@ export function initTray() {
   });
 
   // !INNER ACCORDION
-  $(".tray .nav-item-parent.has-submenu .btn-expander").on(
-    "click keyup",
-    function (e) {
-      if (e.which == 13 || e.which == 1) {
-        // If enter or left-click
-        var activeItem = $(".main-nav-item.active");
+  // $(".tray .nav-item-parent.has-submenu .btn-expander").on(
+  //   "click keyup",
+  //   function (e) {
+  //     if (e.which == 13 || e.which == 1) {
+  //       // If enter or left-click
+  //       var activeItem = $(".main-nav-item.active");
 
-        setTimeout(() => {
-          resizeTallBlip(activeItem);
-        }, 300);
-        $(this).parent().find(">ul").slideToggle("fast");
-        $(this).parent().toggleClass("active");
-        $(this).parent().find(">a").toggleClass("active");
-        $(this).parent().toggleClass("expanded");
-      }
-    }
-  );
+  //       setTimeout(() => {
+  //         resizeTallBlip(activeItem);
+  //       }, 300);
+  //       $(this).parent().find(">ul").slideToggle("fast");
+  //       $(this).parent().toggleClass("active");
+  //       $(this).parent().find(">a").toggleClass("active");
+  //       $(this).parent().toggleClass("expanded");
+  //     }
+  //   }
+  // );
 
   // Hint
   if (
