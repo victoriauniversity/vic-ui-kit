@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, September 27, 2022, 1:20 PM */
+/** Version: 0.10.13 | Tuesday, September 27, 2022, 1:58 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -15291,27 +15291,16 @@ body#hubv4 .sidemenu .sidemenu-toggle.expanded .btn-expander:after, body:not(#hu
 }
 
 body#hubv4 .sidemenu .sidemenu-toggle a, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle a, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle a, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a {
-  padding: .5rem 0.8rem;
+  padding: 0.5rem 0.8rem;
   color: #424242;
   font-size: 0.8em;
   position: relative;
   -webkit-box-flex: 1;
           flex: 1 0 80%;
-  line-height: 1.2;
 }
 
 body#hubv4 .sidemenu .sidemenu-toggle a:hover, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle a:hover, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle a:hover, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a:hover {
   text-decoration: underline;
-}
-
-body#hubv4 .sidemenu .sidemenu-toggle a .tereo-title, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle a .tereo-title, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle a .tereo-title, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a .tereo-title,
-body#hubv4 .sidemenu .sidemenu-toggle a .tereo-nav-title,
-body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle a .tereo-nav-title,
-body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle a .tereo-nav-title,
-body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a .tereo-nav-title {
-  display: block;
-  color: #FCE500;
-  display: block;
 }
 
 body#hubv4 .sidemenu .sidemenu-toggle.expanded, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle.expanded, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle.expanded, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle.expanded {
@@ -15764,6 +15753,12 @@ body#hubv4 .sidebar .sidemenu > ul > .has-submenu > .btn-expander::after, body:n
   top: initial;
 }
 
+@media (max-width: 74.99em) {
+  body#hubv4 .sidebar .sidemenu > ul > .has-submenu > .btn-expander::after, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > .has-submenu > .btn-expander::after, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > .has-submenu > .btn-expander::after, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > .has-submenu > .btn-expander::after, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > .has-submenu > .btn-expander::after, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > .has-submenu > .btn-expander::after {
+    content: "\f17a";
+  }
+}
+
 body#hubv4 .sidebar .sidemenu, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu {
   margin-bottom: 0;
   overflow: visible;
@@ -16086,10 +16081,21 @@ body#hubv4 .sidebar .sidemenu > ul > .sidemenu__label > a, body:not(#hubv4) .sid
   background-size: 200px;
   background-position: 200% 5%;
   background-blend-mode: multiply;
-  color: #0D4C38;
+  color: #1D2624;
   font-weight: 700;
   border-radius: 0;
   border-bottom: 1px #DDD solid;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+}
+
+body#hubv4 .sidebar .sidemenu > ul > .sidemenu__label > a .tereo-title, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > .sidemenu__label > a .tereo-title, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > .sidemenu__label > a .tereo-title, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > .sidemenu__label > a .tereo-title, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > .sidemenu__label > a .tereo-title, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > .sidemenu__label > a .tereo-title {
+  display: block;
+  font-weight: 600;
+  color: #0D4C38;
 }
 
 @media (max-width: 60.99em) {
@@ -18038,6 +18044,9 @@ body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-
   body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list.childMenu #childPageMenu > li.expanded {
     border-top: 1px #669787 solid;
   }
+  body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list.childMenu #childPageMenu > li.expanded > .btn-expander {
+    color: #0D4C38;
+  }
   body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list.childMenu #childPageMenu > li.expanded:before {
     left: 0px;
     opacity: 1;
@@ -18055,6 +18064,12 @@ body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-
   body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list:not(.childMenu) {
     display: none;
   }
+}
+
+body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list .sidemenu-toggle > a > .tereo-nav-title,
+body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list .sidemenu-toggle > a > .tereo-title {
+  display: block;
+  color: #FCE500;
 }
 
 body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .main-nav-list .home-link {
@@ -18268,15 +18283,6 @@ body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-
   display: block;
   color: #115737;
   margin-bottom: 5px;
-}
-
-body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.expanded .tereo-nav-title {
-  color: #FCE500;
-}
-
-body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.expanded > .btn-expander:after {
-  -webkit-transform: rotateZ(180deg);
-          transform: rotateZ(180deg);
 }
 
 body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item:active, body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item:focus, body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav li.main-nav-item.expanded {
@@ -21047,7 +21053,6 @@ body#hubv4 {
 body#hubv4 .main-site-header {
   padding-top: 0;
   position: relative;
-  z-index: 99;
 }
 
 body#hubv4 .main-site-header.show-mega-menu-top-wrap {
@@ -21081,14 +21086,14 @@ body#hubv4 .gradient-line {
   background: linear-gradient(90deg, #0d4c38 0%, #669787 77.11%, #99b9af 100%);
   position: absolute;
   bottom: 0;
-  z-index: 0;
+  z-index: 1;
 }
 
 body#hubv4 .top-header {
   background-color: #f7f7f7;
   border-bottom: 1px #DDD solid;
   position: relative;
-  z-index: 50;
+  z-index: 5;
 }
 
 body#hubv4 #mega_menu_block {
