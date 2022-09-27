@@ -1425,7 +1425,18 @@ body#hubv4 {
     }
   }
 
+  //! Only show childmenu on desktop screens on child pages
+  &.childpage-type {
+    .sidebar {
+      &.childMenu {
+        @include breakpoint($from: desktop-medium) {
+          display: block !important;
+        }
+      }
+    }
+  }
   // ! Scoped sidemenu/Sidebar style
+
   .sidebar {
     width: initial;
     position: relative;
@@ -1433,11 +1444,6 @@ body#hubv4 {
     // @include breakpoint($until: desktop-medium) {
     //   padding: 1rem;
     // }
-    &.childMenu {
-      @include breakpoint($from: desktop-medium) {
-        display: block !important;
-      }
-    }
 
     .sidebar-blip {
       position: absolute;
@@ -1478,7 +1484,6 @@ body#hubv4 {
       top: initial;
       @include breakpoint($until: desktop-medium) {
         content: "\f17a";
-
       }
     }
     .sidemenu {
