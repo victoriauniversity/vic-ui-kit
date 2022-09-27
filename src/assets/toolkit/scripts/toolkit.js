@@ -250,18 +250,19 @@ if ($("body").attr("id") == "hubv4") {
 
     var matches = 0;
 
-    $("." + SIDEMENU_CLASS)
-      .find("a")
-      .each(function () {
-        var linkText = $(this).text();
+    //? Function not required anymore
+    // $("." + SIDEMENU_CLASS)
+    //   .find("a")
+    //   .each(function () {
+    //     var linkText = $(this).text();
 
-        // var matches is needed so that multiple menus don't open when there are duplicate links
-        if (linkText == pageName && matches < 1) {
-          matches++;
-          $(this).addClass("active");
-          $(this).parents("li").addClass("active expanded");
-        }
-      });
+    //     // var matches is needed so that multiple menus don't open when there are duplicate links
+    //     if (linkText == pageName && matches < 1) {
+    //       matches++;
+    //       $(this).addClass("active");
+    //       $(this).parents("li").addClass("active expanded");
+    //     }
+    //   });
 
     // Expanding/Collapsing of the entire side menu on mobile devices
     // !Moved to tray.js

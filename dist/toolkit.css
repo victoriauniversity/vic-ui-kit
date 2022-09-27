@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, September 27, 2022, 12:58 PM */
+/** Version: 0.10.13 | Tuesday, September 27, 2022, 1:20 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -15291,21 +15291,27 @@ body#hubv4 .sidemenu .sidemenu-toggle.expanded .btn-expander:after, body:not(#hu
 }
 
 body#hubv4 .sidemenu .sidemenu-toggle a, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle a, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle a, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a {
-  padding: 1rem 0.8rem;
+  padding: .5rem 0.8rem;
   color: #424242;
   font-size: 0.8em;
   position: relative;
   -webkit-box-flex: 1;
           flex: 1 0 80%;
+  line-height: 1.2;
 }
 
 body#hubv4 .sidemenu .sidemenu-toggle a:hover, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle a:hover, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle a:hover, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a:hover {
   text-decoration: underline;
 }
 
-body#hubv4 .sidemenu .sidemenu-toggle a .tereo-nav-title, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle a .tereo-nav-title, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle a .tereo-nav-title, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a .tereo-nav-title {
+body#hubv4 .sidemenu .sidemenu-toggle a .tereo-title, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle a .tereo-title, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle a .tereo-title, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a .tereo-title,
+body#hubv4 .sidemenu .sidemenu-toggle a .tereo-nav-title,
+body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle a .tereo-nav-title,
+body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle a .tereo-nav-title,
+body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a .tereo-nav-title {
   display: block;
-  color: #0D4C38;
+  color: #FCE500;
+  display: block;
 }
 
 body#hubv4 .sidemenu .sidemenu-toggle.expanded, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle.expanded, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle.expanded, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle.expanded {
@@ -17713,6 +17719,12 @@ body#hubv4 .main-site-header .header-toggle .puaha {
   align-self: center;
   border-radius: 4px;
   margin-right: 5px;
+}
+
+@media (max-width: 42.99em) {
+  body#hubv4 .main-site-header .header-toggle .puaha {
+    display: none;
+  }
 }
 
 body#hubv4 .main-site-header .header-toggle .top-header-buttons {

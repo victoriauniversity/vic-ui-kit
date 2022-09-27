@@ -402,9 +402,6 @@ export function initTray() {
         $navItem.removeClass("expanded-nav");
         $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
         $(".draw-nav > ul").removeClass("active-nav-group");
-        // $blip.css({
-        //   width: 0,
-        // });
       } else {
         // Else if nav item is NOT expanded... open it
         if (horizontalMenuExpanded === false) {
@@ -490,7 +487,7 @@ export function initTray() {
   }
   // initHorizontalNav();
 
-  // Blip movement logic
+  // !Blip movement logic
 
   $("#hubv4 #mega-menu > li:not(.sidemenu__label)").on(
     "mouseover click",
@@ -707,7 +704,6 @@ export function initTray() {
 
     // $(".tray .sidemenu-toggle").addClass("expanded")
     $(".tray .sidemenu-toggle > .btn-expander").on("click", function (e) {
-      console.log(e);
       // e.preventDefault();
       // e.stopPropagation();
       $(this).parent().toggleClass("expanded");
@@ -724,7 +720,6 @@ export function initTray() {
 
   // On top level menu click in TRAY
   $(".tray .has-submenu > .btn-expander").on("click keyup", function (e) {
-    console.log(e);
     if (e.which == 13 || e.which == 1) {
       // Close any items already open
       // Find any active/expanded children and close them
@@ -750,8 +745,6 @@ export function initTray() {
       } else {
         $(this).find("a").prop("disabled", true);
       }
-
-
 
       // Slide out main menu
       $(this)
