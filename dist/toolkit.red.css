@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, September 27, 2022, 1:58 PM */
+/** Version: 0.10.13 | Tuesday, September 27, 2022, 2:24 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -19202,6 +19202,7 @@ body#hubv4 .main-site-header.white.header-tray .tray-content {
           flex-direction: column;
   position: absolute;
   right: 0;
+  z-index: 8;
 }
 
 body#hubv4 .main-site-header.white.header-tray .tray-content .tray-search-bar {
@@ -21047,6 +21048,15 @@ body#hubv4 .main-site-header {
   position: relative;
 }
 
+body#hubv4 .main-site-header .gradient-line {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 6px;
+  background: -webkit-gradient(linear, left top, right top, from(#0d4c38), color-stop(77.11%, #669787), to(#99b9af));
+  background: linear-gradient(90deg, #0d4c38 0%, #669787 77.11%, #99b9af 100%);
+}
+
 body#hubv4 .main-site-header.show-mega-menu-top-wrap {
   padding-top: 0;
   overflow: unset !important;
@@ -21067,18 +21077,6 @@ body#hubv4 .show-mega-menu-top {
   position: relative;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
-}
-
-body#hubv4 .gradient-line {
-  display: block;
-  content: "";
-  width: 100%;
-  height: 6px;
-  background: -webkit-gradient(linear, left top, right top, from(#0d4c38), color-stop(77.11%, #669787), to(#99b9af));
-  background: linear-gradient(90deg, #0d4c38 0%, #669787 77.11%, #99b9af 100%);
-  position: absolute;
-  bottom: 0;
-  z-index: 1;
 }
 
 body#hubv4 .top-header {
