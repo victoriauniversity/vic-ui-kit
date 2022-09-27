@@ -947,21 +947,13 @@ body#hubv4 {
       }
 
       a {
-        padding: .5rem 0.8rem;
+        padding: 0.5rem 0.8rem;
         color: $black-tundora;
         font-size: 0.8em;
         position: relative;
         flex: 1 0 80%;
-        line-height: 1.2;
         &:hover {
           text-decoration: underline;
-        }
-
-        .tereo-title,
-        .tereo-nav-title {
-          display: block;
-          color: $kowhai;
-          display: block;
         }
 
         // @include extend-icon-after(list) {
@@ -1484,6 +1476,10 @@ body#hubv4 {
       width: initial;
       height: initial;
       top: initial;
+      @include breakpoint($until: desktop-medium) {
+        content: "\f17a";
+
+      }
     }
     .sidemenu {
       margin-bottom: 0;
@@ -1823,6 +1819,7 @@ body#hubv4 {
           border-top: none;
           border-bottom: none;
           margin-right: 0;
+
           @include breakpoint($until: desktop-medium) {
             border-bottom: none;
           }
@@ -1856,10 +1853,17 @@ body#hubv4 {
             background-size: 200px;
             background-position: 200% 5%;
             background-blend-mode: multiply;
-            color: $pounamu;
+            color: $black-brand;
             font-weight: 700;
             border-radius: 0;
             border-bottom: 1px $grey-alto solid;
+            display: flex;
+            flex-direction: column;
+            .tereo-title {
+              display: block;
+              font-weight: 600;
+              color: $pounamu;
+            }
             @include breakpoint($until: desktop) {
               background-position: 160% 5%;
               border-bottom: none;
