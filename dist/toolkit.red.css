@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, September 27, 2022, 10:18 AM */
+/** Version: 0.10.13 | Tuesday, September 27, 2022, 12:58 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -15291,31 +15291,13 @@ body#hubv4 .sidemenu .sidemenu-toggle a, body:not(#hubv4) .sidemenu-banner-wrap 
           flex: 1 0 80%;
 }
 
+body#hubv4 .sidemenu .sidemenu-toggle a:hover, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle a:hover, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle a:hover, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a:hover {
+  text-decoration: underline;
+}
+
 body#hubv4 .sidemenu .sidemenu-toggle a .tereo-nav-title, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle a .tereo-nav-title, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle a .tereo-nav-title, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle a .tereo-nav-title {
   display: block;
   color: #0D4C38;
-}
-
-body#hubv4 .sidemenu .sidemenu-toggle .btn-expander, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle .btn-expander, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle .btn-expander, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle .btn-expander {
-  -webkit-box-flex: 1;
-          flex: 1 0 10%;
-  color: #0D4C38;
-  align-self: stretch;
-  height: auto;
-  border-radius: 0;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
-  -webkit-box-pack: center;
-          justify-content: center;
-  margin-right: 0;
-  background-color: #EEE;
-}
-
-body#hubv4 .sidemenu .sidemenu-toggle .btn-expander:after, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle .btn-expander:after, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle .btn-expander:after, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle .btn-expander:after {
-  line-height: 1;
 }
 
 body#hubv4 .sidemenu .sidemenu-toggle.expanded, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu-toggle.expanded, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-toggle.expanded, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-toggle.expanded {
@@ -16138,12 +16120,17 @@ body#hubv4 .sidebar .sidemenu > ul > li > .btn-expander, body:not(#hubv4) .sidem
   width: auto;
   margin: 0;
   border-radius: 0;
-  padding: 10px 15px;
   height: 100%;
   margin-left: 0px;
   -webkit-box-flex: 1;
           flex: 1 0 2%;
   max-width: 50px;
+}
+
+@media (min-width: 75em) {
+  body#hubv4 .sidebar .sidemenu > ul > li > .btn-expander, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li > .btn-expander, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li > .btn-expander, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li > .btn-expander, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li > .btn-expander, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li > .btn-expander {
+    padding: 10px 15px;
+  }
 }
 
 body#hubv4 .sidebar .sidemenu > ul > li.active, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li.active, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li.active, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li.active, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.active, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.active {
@@ -16182,9 +16169,14 @@ body#hubv4 .sidebar .sidemenu > ul > li.expanded > a:hover, body:not(#hubv4) .si
 body#hubv4 .sidebar .sidemenu > ul > li.expanded.has-submenu > .btn-expander, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li.expanded.has-submenu > .btn-expander, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li.expanded.has-submenu > .btn-expander, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li.expanded.has-submenu > .btn-expander, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded.has-submenu > .btn-expander, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded.has-submenu > .btn-expander {
   -webkit-clip-path: polygon(0% -2px, 102% -2%, 102% 103%, 10px 104%);
           clip-path: polygon(0% -2px, 102% -2%, 102% 103%, 10px 104%);
-  padding-left: 15px;
   background-color: #669787;
   color: #FCE500;
+}
+
+@media (min-width: 75em) {
+  body#hubv4 .sidebar .sidemenu > ul > li.expanded.has-submenu > .btn-expander, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li.expanded.has-submenu > .btn-expander, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li.expanded.has-submenu > .btn-expander, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li.expanded.has-submenu > .btn-expander, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded.has-submenu > .btn-expander, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded.has-submenu > .btn-expander {
+    padding-left: 15px;
+  }
 }
 
 body#hubv4 .sidebar .sidemenu > ul > li:not(.sidemenu__label).expanded, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li:not(.sidemenu__label).expanded, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li:not(.sidemenu__label).expanded, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li:not(.sidemenu__label).expanded, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li:not(.sidemenu__label).expanded, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li:not(.sidemenu__label).expanded, body#hubv4 .sidebar .sidemenu > ul > li:not(.sidemenu__label):hover, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li:not(.sidemenu__label):hover, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li:not(.sidemenu__label):hover, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li:not(.sidemenu__label):hover, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li:not(.sidemenu__label):hover, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li:not(.sidemenu__label):hover {
