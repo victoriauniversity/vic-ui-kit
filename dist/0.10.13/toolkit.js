@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, September 27, 2022, 12:58 PM */
+/** Version: 0.10.13 | Tuesday, September 27, 2022, 1:20 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14340,9 +14340,7 @@ function initTray() {
         horizontalMenuExpanded = !horizontalMenuExpanded;
         $navItem.removeClass("expanded-nav");
         $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
-        $(".draw-nav > ul").removeClass("active-nav-group"); // $blip.css({
-        //   width: 0,
-        // });
+        $(".draw-nav > ul").removeClass("active-nav-group");
       } else {
         // Else if nav item is NOT expanded... open it
         if (horizontalMenuExpanded === false) {
@@ -14413,7 +14411,7 @@ function initTray() {
       }
     });
   } // initHorizontalNav();
-  // Blip movement logic
+  // !Blip movement logic
 
 
   $("#hubv4 #mega-menu > li:not(.sidemenu__label)").on("mouseover click", function () {
@@ -14607,9 +14605,8 @@ function initTray() {
     // $(".tray .sidemenu-toggle").addClass("expanded")
 
     $(".tray .sidemenu-toggle > .btn-expander").on("click", function (e) {
-      console.log(e); // e.preventDefault();
+      // e.preventDefault();
       // e.stopPropagation();
-
       $(this).parent().toggleClass("expanded");
       $(this).parent().next().slideToggle("fast");
     });
@@ -14623,8 +14620,6 @@ function initTray() {
 
 
   $(".tray .has-submenu > .btn-expander").on("click keyup", function (e) {
-    console.log(e);
-
     if (e.which == 13 || e.which == 1) {
       // Close any items already open
       // Find any active/expanded children and close them
@@ -15895,16 +15890,19 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
   var toolkit_initSidemenuExpandability = function initSidemenuExpandability(menuClass) {
     var menuElement = external_jQuery_default()(".".concat(menuClass));
     toolkit_enhanceSidemenu(menuElement);
-    var matches = 0;
-    external_jQuery_default()("." + SIDEMENU_CLASS).find("a").each(function () {
-      var linkText = external_jQuery_default()(this).text(); // var matches is needed so that multiple menus don't open when there are duplicate links
-
-      if (linkText == pageName && matches < 1) {
-        matches++;
-        external_jQuery_default()(this).addClass("active");
-        external_jQuery_default()(this).parents("li").addClass("active expanded");
-      }
-    }); // Expanding/Collapsing of the entire side menu on mobile devices
+    var matches = 0; //? Function not required anymore
+    // $("." + SIDEMENU_CLASS)
+    //   .find("a")
+    //   .each(function () {
+    //     var linkText = $(this).text();
+    //     // var matches is needed so that multiple menus don't open when there are duplicate links
+    //     if (linkText == pageName && matches < 1) {
+    //       matches++;
+    //       $(this).addClass("active");
+    //       $(this).parents("li").addClass("active expanded");
+    //     }
+    //   });
+    // Expanding/Collapsing of the entire side menu on mobile devices
     // !Moved to tray.js
     // $(".sidemenu-toggle > .btn-expander").on("click", function (e) {
     //   console.log(e);

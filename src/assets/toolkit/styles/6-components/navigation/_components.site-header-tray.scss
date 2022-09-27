@@ -1308,6 +1308,9 @@ body#hubv4 {
         align-self: center;
         border-radius: 4px;
         margin-right: 5px;
+        @include breakpoint($until: tablet) {
+          display: none;
+        }
       }
       .top-header-buttons {
         display: flex;
@@ -1572,7 +1575,7 @@ body#hubv4 {
                       .btn-expander {
                         font-size: 1.2rem;
                       }
-           
+
                       &.expanded {
                         background-color: #fff;
                         border-left: none;
