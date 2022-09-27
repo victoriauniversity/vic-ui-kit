@@ -38,6 +38,7 @@ if ($("body").attr("id") == "hubv4") {
   const TRANSITION_TIMEOUT = 200; // update in _settings.variables.scss(135)
   const MOBILE_LARGE_AND_SMALLER = "screen and (max-width: 42.99em)", // update in _settings.responsive.scss(57)
     DESKTOP_AND_LARGER = "screen and (min-width: 61em)",
+    TABLET_AND_LARGER = "screen and (min-width: 975px)",
     TABLET_AND_SMALLER = "screen and (max-width: 975px)",
     // Iframe selectors
     YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
@@ -249,6 +250,7 @@ if ($("body").attr("id") == "hubv4") {
 
     var matches = 0;
 
+    //? Function not required anymore
     // $("." + SIDEMENU_CLASS)
     //   .find("a")
     //   .each(function () {
@@ -263,15 +265,14 @@ if ($("body").attr("id") == "hubv4") {
     //   });
 
     // Expanding/Collapsing of the entire side menu on mobile devices
-    menuElement
-      .children(`.${SIDEMENU_TOGGLE_CLASS}`)
-      .children("a")
-      .on("click", function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        $(this).parent().next().slideToggle();
-        $(this).parent().toggleClass(SIDEMENU_EXPANDED_CLASS);
-      });
+    // !Moved to tray.js
+    // $(".sidemenu-toggle > .btn-expander").on("click", function (e) {
+    //   console.log(e);
+    //   // e.preventDefault();
+    //   // e.stopPropagation();
+    //   $(this).parent().next().slideToggle();
+    //   $(this).parent().toggleClass(SIDEMENU_EXPANDED_CLASS);
+    // });
 
     const expandableButtons = menuElement.find(`.${SIDEMENU_EXPANDER_CLASS}`);
 
@@ -296,8 +297,11 @@ if ($("body").attr("id") == "hubv4") {
       $(".sidemenu > ul > li").each(function (e) {
         var link = $(this).find(">a");
         var expander = $(this).find("> .btn-expander");
-
-        expander.css("height", link.outerHeight());
+        if (link.outerHeight() > 0) {
+          expander.css("height", link.outerHeight());
+        } else {
+          expander.css("height", "100%");
+        }
       });
     });
   }
