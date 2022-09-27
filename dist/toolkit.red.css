@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, September 27, 2022, 2:42 PM */
+/** Version: 0.10.13 | Wednesday, September 28, 2022, 9:40 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -15459,7 +15459,7 @@ body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage > ul > li.active-menu-item .
 }
 
 body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage > ul > li:not(.sidemenu__label) {
-  font-weight: 400;
+  font-weight: 500;
 }
 
 body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage > ul > li > a {
@@ -17834,8 +17834,8 @@ body#hubv4 .tray .tray-content .btn-expander::after {
 }
 
 body#hubv4 .main-site-header.header-tray .header-inner {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
   z-index: 3;
   display: -webkit-box;
   display: flex;
@@ -17844,7 +17844,7 @@ body#hubv4 .main-site-header.header-tray .header-inner {
 }
 
 body#hubv4 .main-site-header.header-tray .header-inner .header-logo {
-  width: 25%;
+  width: 20%;
   padding-left: 0;
 }
 
@@ -23640,11 +23640,115 @@ body#hubv4 .highlight-message.red .highlight-content {
 
 #hubv4 .hub-banner-sidemenu figure {
   height: 100%;
+  padding: 1.5rem;
+  position: relative;
+}
+
+#hubv4 .hub-banner-sidemenu figure:after {
+  content: "";
+  border-top: 1rem #0D4C38 solid;
+  border-right: 1rem #0D4C38 solid;
+  background-color: transparent;
+  position: absolute;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  max-width: calc(100% - 2.25rem);
+  max-height: calc(100% - 2.25rem);
+  width: 150px;
+  height: 150px;
+  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
+  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
+}
+
+#hubv4 .hub-banner-sidemenu a:hover figure h1, #hubv4 .hub-banner-sidemenu a:hover figure h2, #hubv4 .hub-banner-sidemenu a:active figure h1, #hubv4 .hub-banner-sidemenu a:active figure h2, #hubv4 .hub-banner-sidemenu a:focus figure h1, #hubv4 .hub-banner-sidemenu a:focus figure h2 {
+  text-decoration: underline;
+}
+
+#hubv4 .hub-banner-sidemenu a:hover figure:after, #hubv4 .hub-banner-sidemenu a:active figure:after, #hubv4 .hub-banner-sidemenu a:focus figure:after {
+  width: 100%;
+  height: 100%;
+}
+
+#hubv4 .hub-banner-sidemenu a:hover figure img, #hubv4 .hub-banner-sidemenu a:active figure img, #hubv4 .hub-banner-sidemenu a:focus figure img {
+  -webkit-filter: brightness(0.9);
+          filter: brightness(0.9);
 }
 
 #hubv4 .hub-banner-sidemenu .banner-image {
   height: 100%;
   background-size: cover;
+}
+
+#hubv4 .hub-banner-sidemenu .banner-body {
+  position: absolute;
+  margin: 0;
+  max-width: 60%;
+  background-color: #0D4C38;
+}
+
+#hubv4 .hub-banner-sidemenu .banner-title {
+  margin-bottom: 2rem;
+}
+
+#hubv4 .hub-banner-sidemenu .banner-title h1, #hubv4 .hub-banner-sidemenu .banner-title h2 {
+  color: #FEF9F0;
+}
+
+#hubv4 .hub-banner-sidemenu .banner-title h1:after, #hubv4 .hub-banner-sidemenu .banner-title h2:after {
+  bottom: -1rem;
+  background-color: #FCE500;
+}
+
+#hubv4 .hub-banner-sidemenu .banner-text p {
+  color: #FEF9F0;
+}
+
+#hubv4 .hub-banner-sidemenu .top-left .banner-body {
+  top: 0;
+  left: 0;
+}
+
+#hubv4 .hub-banner-sidemenu .top-left:after {
+  bottom: .75rem;
+  right: .75rem;
+  border-top: none;
+  border-bottom: 1rem #0D4C38 solid;
+}
+
+#hubv4 .hub-banner-sidemenu .bottom-left .banner-body {
+  bottom: 0;
+  left: 0;
+}
+
+#hubv4 .hub-banner-sidemenu .bottom-left:after {
+  top: .75rem;
+  right: .75rem;
+}
+
+#hubv4 .hub-banner-sidemenu .top-right .banner-body {
+  top: 0;
+  right: 0;
+}
+
+#hubv4 .hub-banner-sidemenu .top-right:after {
+  bottom: .75rem;
+  left: .75rem;
+  border-top: none;
+  border-right: none;
+  border-left: 1rem #0D4C38 solid;
+  border-bottom: 1rem #0D4C38 solid;
+}
+
+#hubv4 .hub-banner-sidemenu .bottom-right .banner-body {
+  bottom: 0;
+  right: 0;
+}
+
+#hubv4 .hub-banner-sidemenu .bottom-right:after {
+  top: .75rem;
+  left: .75rem;
+  border-right: none;
+  border-left: 1rem #0D4C38 solid;
 }
 
 #hubv4 .hub-banner-sidemenu img {
@@ -25587,7 +25691,7 @@ body#hubv4 .highlight-message.red .highlight-content {
 .theme-victorious h4,
 .theme-victorious h5 {
   color: #040404;
-  font-family: Quilty, serif !important;
+  font-family: "Inter", serif !important;
   letter-spacing: 1px;
   line-height: 1.2;
 }
@@ -25597,15 +25701,19 @@ body#hubv4 .highlight-message.red .highlight-content {
 .theme-victorious .vict-banner h3,
 .theme-victorious .vict-banner h4,
 .theme-victorious .vict-banner h5 {
-  font-family: Quilty, serif !important;
+  font-family: "Inter", serif !important;
 }
 
 .theme-victorious p,
 .theme-victorious span {
-  font-family: Quilty, serif !important;
+  font-family: "Inter", serif !important;
   font-weight: normal;
   font-size: 1.1rem;
   line-height: 1.5;
+}
+
+.theme-victorious ul, .theme-victorious li {
+  font-family: 'Inter' !important;
 }
 
 .theme-victorious p a {
@@ -25678,7 +25786,7 @@ body#hubv4 .highlight-message.red .highlight-content {
 .vict-banner h1,
 .vict-banner h2,
 .vict-banner h3 {
-  font-family: Quilty, serif !important;
+  font-family: "Inter", serif !important;
   letter-spacing: 1.5px;
   font-weight: 600;
 }
@@ -25797,7 +25905,7 @@ body#hubv4 .highlight-message.red .highlight-content {
 .vict-banner.split .banner-content .meta p {
   text-transform: uppercase;
   font-size: .8rem;
-  font-family: proxima-nova, sans-serif !important;
+  font-family: "Inter", sans-serif !important;
 }
 
 .vict-banner.split .banner-content .banner-titles .vict-banner-title {
@@ -25818,7 +25926,7 @@ body#hubv4 .highlight-message.red .highlight-content {
 .vict-banner.split .banner-content .banner-titles p {
   margin-bottom: .5rem;
   width: 80%;
-  font-family: Quilty, serif !important;
+  font-family: "Inter", serif !important;
 }
 
 .vict-banner.split .banner-image img {
@@ -26381,14 +26489,14 @@ body#hubv4 .highlight-message.red .highlight-content {
 .vict-quote blockquote {
   padding: 5rem 10rem;
   font-size: 1.5rem;
-  font-family: Quilty, serif !important;
+  font-family: "Inter", serif !important;
   font-weight: 600;
 }
 
 .vict-quote blockquote footer {
   margin-top: 0.5rem;
   font-size: 1.2rem;
-  font-family: proxima-nova, sans-serif !important;
+  font-family: "Inter", sans-serif !important;
 }
 
 @media (max-width: 42.99em) {
@@ -26631,7 +26739,7 @@ body#hubv4 .highlight-message.red .highlight-content {
 
 .article-nav .prev p,
 .article-nav .next p {
-  font-family: proxima-nova, sans-serif !important;
+  font-family: "Inter", sans-serif !important;
 }
 
 .article-nav .prev {
@@ -30558,16 +30666,16 @@ ul.no-list li {
 }
 
 .theme-victorious .article-item .article-summary .article-tag {
-  font-family: proxima-nova, sans-serif !important;
+  font-family: "Inter", sans-serif !important;
 }
 
 .theme-victorious .article-item .article-summary p {
-  font-family: Quilty, serif !important;
+  font-family: "Inter", serif !important;
   font-weight: normal;
 }
 
 .theme-victorious .article-item .article-summary h4 {
-  font-family: proxima-nova, sans-serif !important;
+  font-family: "Inter", sans-serif !important;
   font-weight: 600;
 }
 
