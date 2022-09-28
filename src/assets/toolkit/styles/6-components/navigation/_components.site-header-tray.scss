@@ -1454,6 +1454,40 @@ body#hubv4 {
           padding-left: 1rem;
           width: 40%;
           flex: 1;
+          .sub-menu-list {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            justify-content: space-between;
+            margin-right: 2rem;
+            margin-top: 5px;
+  
+            .sub-menu-item {
+              &:not(:last-of-type) {
+                // margin-right: 0.5rem;
+                // padding-right: 0.5rem;
+                // border-right: 1px #ccc solid;
+              }
+              > a {
+                display: flex;
+                flex-direction: column;
+                text-decoration: none;
+                font-size: 1em;
+                .tereo-title {
+                  color: $pounamu;
+                }
+                &:hover {
+                  text-decoration: underline;
+                }
+                span {
+                  color: $black-mine-shaft;
+                }
+              }
+            }
+            .tereo-title {
+              font-size: 1em;
+            }
+          }
           @include breakpoint($until: desktop-medium) {
             width: 58%;
           }
@@ -1666,7 +1700,7 @@ body#hubv4 {
                   }
                 }
               }
-         
+
               .tall-blip {
                 height: 0;
                 width: 3px;
@@ -3363,40 +3397,7 @@ body#hubv4 {
         .block {
           padding: 0;
         }
-        .sub-menu-list {
-          display: flex;
-          flex-wrap: wrap;
-          width: 100%;
-          justify-content: space-between;
-          margin-right: 2rem;
-          margin-top: 5px;
-
-          .sub-menu-item {
-            &:not(:last-of-type) {
-              // margin-right: 0.5rem;
-              // padding-right: 0.5rem;
-              // border-right: 1px #ccc solid;
-            }
-            > a {
-              display: flex;
-              flex-direction: column;
-              text-decoration: none;
-              font-size: 1em;
-              .tereo-title {
-                color: $pounamu;
-              }
-              &:hover {
-                text-decoration: underline;
-              }
-              span {
-                color: $black-mine-shaft;
-              }
-            }
-          }
-          .tereo-title {
-            font-size: 1em;
-          }
-        }
+ 
       }
     }
     .pre-header {
@@ -3469,7 +3470,7 @@ body#hubv4 {
             margin-left: -6px;
             padding-left: 20px;
             padding-right: 15px;
-
+  
             &:hover {
               background-color: $green-brand-bright;
               background-color: rgba(100, 100, 100, 0.5);
