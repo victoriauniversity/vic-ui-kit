@@ -201,7 +201,7 @@ body:not(#hubv4) {
       // 2nd level menu & items
       > ul {
         padding: 0.2em 0 0.75em 0.9em;
-        font-size: 95%;
+        // font-size: 95%;
 
         > li {
           border-left: 1px solid rgba($white, 0.1);
@@ -926,7 +926,7 @@ body#hubv4 {
       display: flex;
       background-color: #fff;
       &.expanded {
-        background-color: $pounamu;
+        background-color: $mahoe;
         a {
           color: #fff;
           .tereo-nav-title {
@@ -1458,6 +1458,18 @@ body#hubv4 {
         color: $sidemenu-text-color-v3;
       }
     }
+    .home-link {
+      padding: 6px 15px;
+      background-color: $kohuhu;
+      color: $pounamu;
+      text-decoration: none;
+      @include breakpoint($until: desktop-medium) {
+        display: block !important;
+      }
+      &:hover {
+        text-decoration: underline;
+      }
+    }
 
     // ICON FOR EXPANDER
 
@@ -1536,11 +1548,7 @@ body#hubv4 {
             }
 
             &:hover {
-              // color: $sidemenu-text-hover-color-v3;
               text-decoration: underline;
-              // background-color: $grey-gallery;
-              // background-color: $pounamu-light;
-
               + .btn-expander {
                 color: $sidemenu-text-hover-color-v3;
               }
@@ -1610,6 +1618,9 @@ body#hubv4 {
                     opacity: 0;
                     transition: all $easing 0.3s;
                     left: -13px;
+                    @include breakpoint($until: desktop-medium) {
+                      top: 5px;
+                    }
                   }
 
                   &.expanded {
@@ -1634,17 +1645,17 @@ body#hubv4 {
               }
             }
 
-            > .btn-expander {
-              z-index: 100;
-              position: relative;
-              &:hover {
-                background-color: $grey-gallery;
-              }
-              &:active,
-              &:focus {
-                background-color: $grey-gallery;
-              }
-            }
+            // > .btn-expander {
+            //   z-index: 100;
+            //   position: relative;
+            //   &:hover {
+            //     background-color: $grey-gallery;
+            //   }
+            //   &:active,
+            //   &:focus {
+            //     background-color: $grey-gallery;
+            //   }
+            // }
             &.active {
               > ul {
                 display: block;
@@ -1663,16 +1674,15 @@ body#hubv4 {
 
                 &.expanded {
                   > a {
-                    font-weight: 700;
+                    font-weight: 600;
                     color: $sidemenu-text-hover-color-v3;
-                    z-index: 90;
                   }
                 }
               }
               ul {
                 li {
                   > a {
-                    font-size: 95%;
+                    // font-size: 95%;
                   }
                   ul {
                     li {
@@ -1700,7 +1710,6 @@ body#hubv4 {
                 &.has-submenu {
                   a {
                     padding-right: 10px;
-
                     flex: 1;
                   }
                 }
@@ -1710,31 +1719,34 @@ body#hubv4 {
                   display: flex;
                   flex-direction: column;
                   justify-content: center;
-                }
-                > ul > li > a {
-                  opacity: 1;
-                }
-                &.expanded {
-                  > ul {
-                    > li {
-                      > a {
-                        opacity: 1;
-                      }
-                    }
+                  @include breakpoint($until: tablet) {
+                    margin-right: 15px;
                   }
                 }
+                // > ul > li > a {
+                //   opacity: 1;
+                // }
+                // &.expanded {
+                //   > ul {
+                //     > li {
+                //       > a {
+                //         opacity: 1;
+                //       }
+                //     }
+                //   }
+                // }
                 // BOTTOM LEVEL
                 > ul {
                   margin-left: 10px;
 
                   border-left: 1px $sidemenu-delimiter-color-v3 solid;
                   > li {
-                    > a {
-                      padding-right: 10px;
-                      padding-left: 10px;
-                      margin-left: 0;
-                      opacity: 1;
-                    }
+                    // > a {
+                    //   padding-right: 10px;
+                    //   padding-left: 10px;
+                    //   margin-left: 0;
+                    //   opacity: 1;
+                    // }
 
                     // ADJUST ARROW POSITION AND PADDING OF FIRST <a> LOWEST LEVEL <li>
                     // &:first-of-type {
@@ -1902,9 +1914,8 @@ body#hubv4 {
             width: auto;
             margin: 0;
             border-radius: 0;
-            @include breakpoint($from: desktop-medium) {
-              padding: 10px 15px;
-            }
+
+            padding: 10px 15px;
             height: 100%;
             margin-left: 0px;
             flex: 1 0 2%;
@@ -1950,11 +1961,11 @@ body#hubv4 {
             &.has-submenu {
               > .btn-expander {
                 clip-path: polygon(0% -2px, 102% -2%, 102% 103%, 10px 104%);
+                background-color: $mahoe;
+                color: $kowhai;
                 @include breakpoint($from: desktop-medium) {
                   padding-left: 15px;
                 }
-                background-color: $mahoe;
-                color: $kowhai;
               }
             }
           }

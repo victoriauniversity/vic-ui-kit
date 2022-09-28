@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, September 28, 2022, 9:40 AM */
+/** Version: 0.10.13 | Wednesday, September 28, 2022, 3:00 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14597,8 +14597,8 @@ function initTray() {
     var childMenuClone = $(".childMenu").clone();
     childMenuClone.appendTo(".tray-main-nav");
     $(".tray .childMenu").addClass("main-nav-list"); // Open sidemenu by default
+    // $(".tray #childPageMenu").show();
 
-    $(".tray #childPageMenu").show();
     $(".tray .sidemenu-toggle").toggleClass("expanded"); // $(".tray .sidemenu").toggleClass("expanded");
     //   .next()
     //   .slideToggle("fast");
@@ -14627,8 +14627,8 @@ function initTray() {
       $(this).parent().find(">ul .expanded > ul").slideUp("fast");
       $(this).parent().find(">ul .expanded").removeClass("expanded"); // If top level item
 
-      if (!$(this).parent().hasClass("expanded") && $(this).parent().parent().attr("id") == "childPageMenu") {
-        $(".tray #childPageMenu > .has-submenu.expanded").removeClass("expanded").find(">ul").slideUp("fast");
+      if (!$(this).parent().hasClass("expanded") && $(this).parent().parent().data("element-name")) {
+        $(".tray ul[data-element-name='childMenu'] > .has-submenu.expanded").removeClass("expanded").find(">ul").slideUp("fast");
       }
 
       $(this).parent().toggleClass("expanded"); // $(this).parent().find(">a").toggleClass("active");
@@ -14650,20 +14650,23 @@ function initTray() {
       });
     }
   }); // !INNER ACCORDION
-
-  $(".tray .nav-item-parent.has-submenu .btn-expander").on("click keyup", function (e) {
-    if (e.which == 13 || e.which == 1) {
-      // If enter or left-click
-      var activeItem = $(".main-nav-item.active");
-      setTimeout(function () {
-        resizeTallBlip(activeItem);
-      }, 300);
-      $(this).parent().find(">ul").slideToggle("fast");
-      $(this).parent().toggleClass("active");
-      $(this).parent().find(">a").toggleClass("active");
-      $(this).parent().toggleClass("expanded");
-    }
-  }); // Hint
+  // $(".tray .nav-item-parent.has-submenu .btn-expander").on(
+  //   "click keyup",
+  //   function (e) {
+  //     if (e.which == 13 || e.which == 1) {
+  //       // If enter or left-click
+  //       var activeItem = $(".main-nav-item.active");
+  //       setTimeout(() => {
+  //         resizeTallBlip(activeItem);
+  //       }, 300);
+  //       $(this).parent().find(">ul").slideToggle("fast");
+  //       $(this).parent().toggleClass("active");
+  //       $(this).parent().find(">a").toggleClass("active");
+  //       $(this).parent().toggleClass("expanded");
+  //     }
+  //   }
+  // );
+  // Hint
 
   if (localStorage.getItem("newMenuNotice") !== "true" || !localStorage.getItem("newMenuNotice")) {
     setTimeout(function () {
