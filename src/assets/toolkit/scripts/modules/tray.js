@@ -402,9 +402,6 @@ export function initTray() {
         $navItem.removeClass("expanded-nav");
         $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
         $(".draw-nav > ul").removeClass("active-nav-group");
-        // $blip.css({
-        //   width: 0,
-        // });
       } else {
         // Else if nav item is NOT expanded... open it
         if (horizontalMenuExpanded === false) {
@@ -490,7 +487,7 @@ export function initTray() {
   }
   // initHorizontalNav();
 
-  // Blip movement logic
+  // !Blip movement logic
 
   $("#hubv4 #mega-menu > li:not(.sidemenu__label)").on(
     "mouseover click",
@@ -634,52 +631,52 @@ export function initTray() {
   });
 
   // !CUSTOM DROPDOWN
-  $("#hubv4 .custom-dropdown .selector").on("click keyup", function (e) {
-    if (e.which == 13 || e.which == 1) {
-      // If enter or left-click
-      $(this).next().slideToggle("fast");
-      $(this).toggleClass("open");
-    }
-  });
-  $("#hubv4 .custom-dropdown ul li").on("click keyup", function (e) {
-    if (e.which == 13 || e.which == 1) {
-      // If enter or left-click
-      // Clear open class on selector
-      if ($(".custom-dropdown .selector").hasClass("open")) {
-        $(".custom-dropdown .selector").removeClass("open");
-      }
+  // $("#hubv4 .custom-dropdown .selector").on("click keyup", function (e) {
+  //   if (e.which == 13 || e.which == 1) {
+  //     // If enter or left-click
+  //     $(this).next().slideToggle("fast");
+  //     $(this).toggleClass("open");
+  //   }
+  // });
+  // $("#hubv4 .custom-dropdown ul li").on("click keyup", function (e) {
+  //   if (e.which == 13 || e.which == 1) {
+  //     // If enter or left-click
+  //     // Clear open class on selector
+  //     if ($(".custom-dropdown .selector").hasClass("open")) {
+  //       $(".custom-dropdown .selector").removeClass("open");
+  //     }
 
-      // Toggle active class
-      $(".custom-dropdown ul li").removeClass("active");
-      $(this).addClass("active");
+  //     // Toggle active class
+  //     $(".custom-dropdown ul li").removeClass("active");
+  //     $(this).addClass("active");
 
-      // Set text to value
-      $(this).parent().prev().find(".selector-text").text($(this).data("name"));
-      // Close list on click
-      $(this).parent().slideToggle("fast");
-      var text = $(this).data("name").toLowerCase();
-      showSavedData(text);
-    }
-  });
+  //     // Set text to value
+  //     $(this).parent().prev().find(".selector-text").text($(this).data("name"));
+  //     // Close list on click
+  //     $(this).parent().slideToggle("fast");
+  //     var text = $(this).data("name").toLowerCase();
+  //     showSavedData(text);
+  //   }
+  // });
 
-  var showSavedData = function (e) {
-    $(".no-results").slideUp();
+  // var showSavedData = function (e) {
+  //   $(".no-results").slideUp();
 
-    // Make titles visible
-    $(".group-title").hide();
-    $(".group-title").removeClass("active");
+  //   // Make titles visible
+  //   $(".group-title").hide();
+  //   $(".group-title").removeClass("active");
 
-    $(".item-list").hide();
-    var $toggler = $("." + e + "-title");
-    $toggler.css("display", "flex");
-    $toggler.toggleClass("active");
-    if ($toggler.hasClass("active")) {
-      $toggler.find("i").addClass("flipped");
-    } else {
-      $toggler.find("i").removeClass("flipped");
-    }
-    $toggler.next().slideToggle("fast");
-  };
+  //   $(".item-list").hide();
+  //   var $toggler = $("." + e + "-title");
+  //   $toggler.css("display", "flex");
+  //   $toggler.toggleClass("active");
+  //   if ($toggler.hasClass("active")) {
+  //     $toggler.find("i").addClass("flipped");
+  //   } else {
+  //     $toggler.find("i").removeClass("flipped");
+  //   }
+  //   $toggler.next().slideToggle("fast");
+  // };
 
   // !MAIN NAV LIST ACCORDIONS
   $("#hubv4 .tray .main-nav-item ul li").each(function (e) {
@@ -691,29 +688,63 @@ export function initTray() {
       ).insertAfter($element.find(">a"));
     }
   });
-  // Open on initial load
-  if ($(".tray .main-nav-item > a.active")) {
-    $(".tray .main-nav-item > a.active").parent().toggleClass("active");
-    $(".tray .main-nav-item > a.active").parent().toggleClass("expanded");
-    $(".tray .main-nav-item > a.active").parent().find(">ul").slideToggle();
+
+  // Clone child menu into tray if child page
+  if ($(".childMenu")) {
+    var childMenuClone = $(".childMenu").clone();
+    childMenuClone.appendTo(".tray-main-nav");
+    $(".tray .childMenu").addClass("main-nav-list");
+
+    // Open sidemenu by default
+    $(".tray #childPageMenu").show();
+    $(".tray .sidemenu-toggle").toggleClass("expanded");
+    // $(".tray .sidemenu").toggleClass("expanded");
+    //   .next()
+    //   .slideToggle("fast");
+
+    // $(".tray .sidemenu-toggle").addClass("expanded")
+    $(".tray .sidemenu-toggle > .btn-expander").on("click", function (e) {
+      // e.preventDefault();
+      // e.stopPropagation();
+      $(this).parent().toggleClass("expanded");
+      $(this).parent().next().slideToggle("fast");
+    });
   }
 
-  // On top level menu click
-  $(".tray .main-nav-item > .btn-expander").on("click keyup", function (e) {
+  // Open on initial load
+  // if ($(".tray .main-nav-item > a.active")) {
+  //   $(".tray .main-nav-item > a.active").parent().toggleClass("active");
+  //   $(".tray .main-nav-item > a.active").parent().toggleClass("expanded");
+  //   $(".tray .main-nav-item > a.active").parent().find(">ul").slideToggle();
+  // }
+
+  // On top level menu click in TRAY
+  $(".tray .has-submenu > .btn-expander").on("click keyup", function (e) {
     if (e.which == 13 || e.which == 1) {
+      // Close any items already open
+      // Find any active/expanded children and close them
+      $(this).parent().find(">ul .active").removeClass("active");
+      $(this).parent().find(">ul .expanded > ul").slideUp("fast");
+      $(this).parent().find(">ul .expanded").removeClass("expanded");
+      // If top level item
+      if (
+        !$(this).parent().hasClass("expanded") &&
+        $(this).parent().parent().attr("id") == "childPageMenu"
+      ) {
+        $(".tray #childPageMenu > .has-submenu.expanded")
+          .removeClass("expanded")
+          .find(">ul")
+          .slideUp("fast");
+      }
+
       $(this).parent().toggleClass("expanded");
-      $(this).parent().find(">a").toggleClass("active");
+      // $(this).parent().find(">a").toggleClass("active");
 
       if ($(this).parent().find(">a").hasClass("active")) {
         $(this).find("a").prop("disabled", false);
       } else {
         $(this).find("a").prop("disabled", true);
       }
-
-      // Find any active/expanded children and close them
-      $(this).parent().find(">ul .active").removeClass("active");
-      $(this).parent().find(">ul .expanded > ul").slideUp("fast");
-      $(this).parent().find(">ul .expanded").removeClass("expanded");
 
       // Slide out main menu
       $(this)
@@ -769,8 +800,6 @@ export function initTray() {
     $(".tray").addClass("responsive-preview");
     toggleTray();
   }
-
-
 
   // setTimeout(() => {
   //   // Initial blip position

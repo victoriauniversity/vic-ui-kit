@@ -1308,6 +1308,9 @@ body#hubv4 {
         align-self: center;
         border-radius: 4px;
         margin-right: 5px;
+        @include breakpoint($until: tablet) {
+          display: none;
+        }
       }
       .top-header-buttons {
         display: flex;
@@ -1417,7 +1420,7 @@ body#hubv4 {
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
-    line-height: 1.8;
+    // line-height: 1.8;
     text-decoration: inherit;
     text-rendering: optimizeLegibility;
     text-transform: none;
@@ -1433,14 +1436,14 @@ body#hubv4 {
   .main-site-header {
     &.header-tray {
       .header-inner {
-        padding-top: 8px;
-        padding-bottom: 8px;
+        padding-top: .75rem;
+        padding-bottom: .75rem;
         z-index: 3;
         display: flex;
         align-items: center;
 
         .header-logo {
-          width: 25%;
+          width: 20%;
           padding-left: 0;
           .logo {
             max-width: 12%;
@@ -1534,12 +1537,143 @@ body#hubv4 {
             flex: 1 0 40%;
             .main-nav-list {
               position: relative;
+
+              &.childMenu {
+                display: none !important;
+                float: none;
+
+                .sidemenu-toggle {
+                  // display: none;
+                  a {
+                    // pointer-events: none;
+                  }
+                }
+                .sidemenu__label {
+                  // display: flex;
+                }
+              }
+              @include breakpoint($until: desktop-medium) {
+                //! Child menu in tray view
+                &.childMenu {
+                  display: block !important;
+                  .sidemenu {
+                    border-bottom: 1px $grey-gallery solid;
+                    border-left: 4px $pounamu solid;
+                  }
+                  @include breakpoint(desktop-medium) {
+                    display: block !important;
+                    // display: none !important;
+                  }
+
+                  #childPageMenu {
+                    // !ALL LEVELS
+                    li {
+                      border-left: none;
+                      &:before {
+                        top: 5px;
+                      }
+                      .btn-expander {
+                        font-size: 1.2rem;
+                      }
+
+                      &.expanded {
+                        background-color: #fff;
+                        border-left: none;
+                        > a {
+                          font-weight: bold;
+                          color: $pounamu;
+                        }
+                      }
+                    }
+                    // !FIRST LEVEL
+                    > li {
+                      // padding-left: 10px;
+                      > .btn-expander {
+                        border-radius: 100px;
+                        clip-path: none;
+                        color: $black-tundora;
+                        background-color: transparent;
+                        text-align: center;
+                        flex: none;
+                        margin-right: 6px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        // Important required to override JS custom height on desktop
+                        height: auto !important;
+
+                        &:focus,
+                        &:hover {
+                          background-color: $grey-gallery;
+                        }
+                      }
+                      &:before {
+                        content: "";
+                        position: absolute;
+                        width: 0;
+                        height: 0;
+                        top: 10px;
+                        border-top: 10px solid transparent;
+                        border-left: 12px solid #0d4c38;
+                        border-bottom: 10px solid transparent;
+                        opacity: 0;
+                        transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+                        left: -13px;
+                      }
+                      &.expanded {
+                        border-top: 1px $mahoe solid;
+                      > .btn-expander {
+                        color: $pounamu;
+                      }
+                        &:before {
+                          left: 0px;
+                          opacity: 1;
+                        }
+                      }
+                      > ul {
+                        border-left: 1px $grey-gallery solid;
+                        margin-left: 10px;
+                        // !SECOND LEVEL
+                        > li {
+                          > .btn-expander {
+                            margin-right: 20px;
+                          }
+
+                          // !THIRD (BOTTOM) LEVEL
+                          > ul {
+                            > li {
+                              > .btn-expander {
+                                margin-right: 30px;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                &:not(.childMenu) {
+                  display: none;
+                }
+              }
+
+              .sidemenu-toggle {
+                > a {
+                  > .tereo-nav-title,
+                  > .tereo-title {
+                    display: block;
+                    color: $kowhai;
+                  }
+                }
+              }
               .home-link {
-                display: block;
                 padding: 6px 15px;
                 background-color: $mahoe;
                 color: #fff;
                 text-decoration: none;
+                @include breakpoint($until: desktop-medium) {
+                  display: block !important;
+                }
                 &:hover {
                   text-decoration: underline;
                 }
@@ -1724,16 +1858,16 @@ body#hubv4 {
                 color: $green-brand;
                 margin-bottom: 5px;
               }
-              &.expanded {
-                .tereo-nav-title {
-                  color: $kowhai;
-                }
-                > .btn-expander {
-                  &:after {
-                    transform: rotateZ(180deg);
-                  }
-                }
-              }
+              // &.expanded {
+              //   .tereo-nav-title {
+              //     color: $kowhai;
+              //   }
+              //   > .btn-expander {
+              //     &:after {
+              //       transform: rotateZ(180deg);
+              //     }
+              //   }
+              // }
               &:active,
               &:focus,
               &.expanded {
@@ -2716,11 +2850,11 @@ body#hubv4 {
       &.header-tray {
         .tray-content {
           background-color: #fff;
-
           display: flex;
           flex-direction: column;
           position: absolute;
           right: 0;
+          z-index: 8;
 
           &:after {
             // content: "";
@@ -3860,7 +3994,6 @@ body#hubv4 {
       }
     }
     //? Footer
-
   }
 
   footer {
