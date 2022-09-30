@@ -163,6 +163,7 @@ body#hubv4 {
         &:after {
           // top: 30%;
         }
+        // ! First level (visible straight away)
         > a {
           padding-bottom: 10px;
           padding-top: 10px;
@@ -172,6 +173,10 @@ body#hubv4 {
           justify-content: center;
           font-weight: 500;
           font-size: 1.1rem;
+          &:focus {
+            outline: 2px $grey-gallery solid;
+            outline-offset: -2px;
+          }
           .tereo-title {
             display: block;
           }
@@ -317,6 +322,9 @@ body#hubv4 {
         background-color: $white;
         transform: translateY(-100%);
         box-shadow: none;
+        &:focus {
+          // outline: 1px pink solid;
+        }
 
         &:before {
           content: "";

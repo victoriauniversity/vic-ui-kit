@@ -229,6 +229,8 @@ export function initTray() {
 
   function closeDraw(location) {
     let loc = location || "expanded-draw";
+    $(".sidemenu-drawer").attr("tabIndex", -1);
+
     if ($("#banner-nav").length > 0) {
       loc = "expanded-draw";
     } else {
@@ -400,12 +402,27 @@ export function initTray() {
         // If nav item is already expanded... close it
         horizontalMenuExpanded = !horizontalMenuExpanded;
         $navItem.removeClass("expanded-nav");
+        $(".sidemenu-drawer .active-nav-group .sub-draw-title > a").attr(
+          "tabIndex",
+          -1
+        );
         $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
         $(".draw-nav > ul").removeClass("active-nav-group");
+
+        menuItems.find(">a").attr("tabIndex", 0);
       } else {
         // Else if nav item is NOT expanded... open it
         if (horizontalMenuExpanded === false) {
           $(".sidemenu-drawer").addClass("horizontal-drawer-expanded");
+          // Focus title of drawer once opened
+          $(".sidemenu-drawer .active-nav-group .sub-draw-title > a").attr(
+            "tabIndex",
+            0
+          );
+          menuItems.find(">a").attr("tabIndex", 1);
+
+          // $(".sidemenu-drawer").trigger("focus");
+
           horizontalMenuExpanded = !horizontalMenuExpanded;
         }
 
@@ -425,16 +442,29 @@ export function initTray() {
       $(".draw-nav > ul").removeClass("active-nav-group");
       matchingNavGroup.toggleClass("active-nav-group");
 
+      // Updated tab indexes of children
+      $(".sidemenu-drawer .sub-draw-title > a").attr("tabIndex", 1);
+      $(matchingNavGroup).find(".sub-draw-title > a").attr("tabIndex", 0);
+
+      $navItem.find(">a").attr("tabIndex", 0);
+
       // console.log('horizontalMenuExpanded',horizontalMenuExpanded);
     };
 
     // !CLOSE ON MENU MOUSE OUT
     enquire.register(DESKTOP_AND_LARGER, () => {
-      // Hide menu if mouseout for x seconds
+      // Clear tabindex to avoid tabbing to invisible stuff
+      if ($(".active-nav-group")) {
+        $(".sidemenu-drawer .active-nav-group .sub-draw-title > a").attr(
+          "tabIndex",
+          -1
+        );
+      }
       // If banner nav is active
       if ($("#banner-nav").length > 0) {
         $("#banner-nav").on("mouseleave", function (e) {
           clearTimeout(openTimeout);
+          // Hide menu if mouseout for x seconds
           openTimeout = setTimeout(function () {
             closeDraw();
           }, 300);
@@ -723,7 +753,6 @@ export function initTray() {
     if (e.which == 13 || e.which == 1) {
       // Close any items already open
       // Find any active/expanded children and close them
-      $(this).parent().find(">ul .active").removeClass("active");
       $(this).parent().find(">ul .expanded > ul").slideUp("fast");
       $(this).parent().find(">ul .expanded").removeClass("expanded");
       // If top level item
@@ -832,12 +861,12 @@ export function initTray() {
 
   //   $(".tray-content .events-list li .remove-item").on("click", function () {
   //     var $el = $(this);
-  //     var localObject = JSON.parse(localStorage.getItem("savedEvents"));
+  // var localObject = JSON.parse(localStorage.getItem("savedEvents"));
 
-  //     // Return array of items where displayUrl !== clicked li href
-  //     var filterdLocalObject = localObject.filter(function (item) {
-  //       return item.displayUrl !== $el.prev().attr("href");
-  //     });
+  // Return array of items where displayUrl !== clicked li href
+  // var filterdLocalObject = localObject.filter(function (item) {
+  //   return item.displayUrl !== $el.prev().attr("href");
+  // });
   //     console.log(filterdLocalObject);
   //     $el.parent().slideUp();
   //     $el

@@ -224,7 +224,7 @@ if ($("body").attr("id") == "hubv4") {
     //   apply();
     // });
 
-    // Click event for expand buttons in SIDEMENU only
+    //! Click event for expand buttons in SIDEMENU only
     expandableButtonElement.on("click keyup", (e) => {
       if (e.which == 13 || e.which == 1) {
         e.preventDefault();
@@ -233,9 +233,17 @@ if ($("body").attr("id") == "hubv4") {
         var topLevel = false;
         var clickedButton = $(this);
 
-        // !TOP LEVEL
+        // !TOP LEVEL EXPANDER CLICKED
         if (clickedButton.parent().parent().parent().hasClass("sidemenu")) {
+          // When closing, also close any items which are expanded inside the parent
           topLevel = true;
+          clickedButton
+            .parent()
+            .find(".expanded")
+            .not(clickedButton.parent())
+            .removeClass("expanded")
+            .find(">ul")
+            .slideToggle();
         }
 
         apply(topLevel, clickedButton);
@@ -1412,6 +1420,13 @@ if ($("body").attr("id") == "hubv4") {
   // Apply style to page save icon if page is in local storage
   if ($(".save-page")) {
   }
+
+  // Save Qualification
+  if (window.location.href.includes("?saveTest")) {
+    var buttonEl =
+      "<button class='save-qual-button new primary no-icon'>Save Qualification</button>";
+    $("body#hubv4").append(buttonEl);
+  }
 } else {
   /* CONSTANT ATTRIBUTES */
 
@@ -1503,6 +1518,7 @@ keep the markup clean (and easily handled by the CSS) */
     enhanceSidemenu(menuElement);
 
     // Expanding/Collapsing of the entire side menu on mobile devices
+    // ! Not sure this is needed anymore
     menuElement
       .children(`.${SIDEMENU_TOGGLE_CLASS}`)
       .children("a")
