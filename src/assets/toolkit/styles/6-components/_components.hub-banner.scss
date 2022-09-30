@@ -91,6 +91,7 @@
 .hub-banner-sidemenu {
   width: 100%;
   position: relative;
+  // margin-bottom: 2rem;
 
   > figure {
     position: relative;
@@ -167,11 +168,31 @@
       }
 
       img {
+        height: 100%;
         margin-bottom: 0 !important;
         max-height: 520px;
         object-fit: cover;
         object-position: top;
+
+        &.top {
+          object-position: top;
+        }
+        &.bottom {
+          object-position: bottom;
+        }
+        &.center {
+          object-position: center;
+        }
+        &.right {
+          object-position: right;
+        }
+        &.left {
+          object-position: left;
+        }
       }
+              &.top {
+          object-position: top;
+        }
 
       &.top {
         img {
@@ -211,6 +232,12 @@
 
 
 #hubv4 {
+
+  .top-menu-banner {
+    .hub-banner-sidemenu {
+      width: 100%;
+    }
+  }
   .hub-banner-sidemenu {
     figure {
       height: 100%;
@@ -253,7 +280,11 @@
     }
     .banner-image {
       height: 100%;
-      background-size: cover;
+      // background-size: cover;
+      img {
+        // display: none;
+        width: 100%;
+      }
     }
 
     .banner-body {
@@ -328,8 +359,31 @@
         border-left: 1rem $pounamu solid;
       }
     }
-    img {
-      display: none;
+
+    &.no-overlay {
+      &:before {
+        bottom: .75rem;
+        left: .75rem;
+        content: "";
+        z-index: 20;
+        border-bottom: 1rem $pounamu solid;
+        border-left: 1rem $pounamu solid;
+        background-color: transparent;
+        position: absolute;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        max-width: calc(100% - 2.25rem);
+        max-height: calc(100% - 2.25rem);
+        width: 150px;
+        height: 150px;
+        transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
+      }
+
+      figure {
+        &:after {
+          border-color: $miro;
+        }
+      }
     }
   }
 }
