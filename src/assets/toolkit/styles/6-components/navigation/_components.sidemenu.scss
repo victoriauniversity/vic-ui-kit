@@ -1122,7 +1122,10 @@ body#hubv4 {
     .sidemenu-homepage {
       @extend .sidemenu;
 
+      margin-top: 1rem;
+
       .sidemenu__label {
+        display: none;
         a {
           &:hover {
             text-decoration: underline;
@@ -1218,6 +1221,7 @@ body#hubv4 {
       .sidemenu-homepage {
         flex: 1 1 25%;
         margin-bottom: 0;
+        margin-top: 1rem !important;
 
         > ul {
           left: 0;
@@ -1270,11 +1274,16 @@ body#hubv4 {
 
           &.active {
             padding: 1rem;
+            padding-left: 4.5rem;
             padding-right: 2rem;
             overflow: visible;
             opacity: 1;
             max-width: 100%;
             visibility: visible;
+            background-image: url(https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg);
+            background-repeat: no-repeat;
+            background-size: 234px;
+            background-position: -90px;
           }
 
           .close-draw {
@@ -1295,7 +1304,7 @@ body#hubv4 {
             width: 30%;
             padding-right: 1rem;
             margin: 0 1rem;
-            border-right: 1px solid $grey-gallery;
+            border-right: none;
             flex: auto;
             min-width: 300px;
             max-width: 300px;
@@ -1319,6 +1328,7 @@ body#hubv4 {
                 display: block;
                 font-weight: 500;
                 margin-right: 0.5rem;
+                margin-bottom: 0.15rem;
               }
             }
 

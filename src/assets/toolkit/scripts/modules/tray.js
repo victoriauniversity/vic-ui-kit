@@ -848,4 +848,60 @@ export function initTray() {
   //     localStorage.setItem("savedEvents", JSON.stringify(filterdLocalObject));
   //   });
   // }, 500);
+
+  // accesibility fix - tabbing currently doesn't go to expanded tray as it's outside the nav DIV
+  // TODO make work with horizontal NAV --- Monty or Jake
+  const tabLinks = document.querySelectorAll('#mega-menu > li.has-submenu > .btn-expander')
+
+  // console.log('tab links -- ', tabLinks);
+
+  tabLinks.forEach( (link, index) => {
+    // console.log(link, index);
+    let parentLink = link.previousSibling;
+    // console.log('parent link___', parentLink);
+    // handleTab(link, index)
+    link.addEventListener('keydown', (event) => handleTab(event, link, parentLink, index))
+  } )
+
+
+  function handleTab(e, link, parent, index) {
+    let tabLink = document.querySelector(`.draw-nav [data-index="${index}"] a`)
+    let allLinks = document.querySelectorAll(`.draw-nav [data-index="${index}"] a`)
+    let lastLink = allLinks[allLinks.length - 1 ]
+    let nextNavItem = document.querySelectorAll('#mega-menu > li.has-submenu')[index + 1].querySelector('a');
+
+
+    // console.log('nextNavItem----------', nextNavItem);
+
+    // console.log(e);
+
+    // console.log('tab to---', tabLink);
+    // console.log('last link---', lastLink);
+
+    // Focus on open menu
+    if (e.keyCode === 9 && !event.shiftKey) {
+      e.preventDefault()
+      tabLink.focus();
+    }
+
+    // Take you to next Nav item if last link
+    lastLink.addEventListener('keydown', event => {
+      if (e.keyCode === 9) {
+        event.preventDefault()
+        nextNavItem.focus();
+      }
+    })
+
+    // Take you back to main nav if tab shit
+    tabLink.addEventListener('keydown', event => {
+      if (event.shiftKey && event.keyCode == 9) {
+        event.preventDefault()
+        link.focus();
+      }
+    })
+
+  }
+
+
+
 }
