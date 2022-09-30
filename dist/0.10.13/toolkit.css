@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, September 29, 2022, 9:13 AM */
+/** Version: 0.10.13 | Friday, September 30, 2022, 1:19 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -15416,6 +15416,14 @@ body#hubv4 .sidemenu-banner-wrap {
   position: relative;
 }
 
+body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage {
+  margin-top: 1rem;
+}
+
+body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu__label {
+  display: none;
+}
+
 body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu__label a:hover {
   text-decoration: underline;
 }
@@ -15510,6 +15518,7 @@ body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage ul li.nav-item-parent .btn-e
     -webkit-box-flex: 1;
             flex: 1 1 25%;
     margin-bottom: 0;
+    margin-top: 1rem !important;
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage > ul {
     left: 0;
@@ -15564,11 +15573,16 @@ body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage ul li.nav-item-parent .btn-e
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer.active {
     padding: 1rem;
+    padding-left: 4.5rem;
     padding-right: 2rem;
     overflow: visible;
     opacity: 1;
     max-width: 100%;
     visibility: visible;
+    background-image: url(https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg);
+    background-repeat: no-repeat;
+    background-size: 234px;
+    background-position: -90px;
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .close-draw {
     position: absolute;
@@ -15588,7 +15602,7 @@ body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage ul li.nav-item-parent .btn-e
     width: 30%;
     padding-right: 1rem;
     margin: 0 1rem;
-    border-right: 1px solid #EEE;
+    border-right: none;
     -webkit-box-flex: 1;
             flex: auto;
     min-width: 300px;
@@ -15614,6 +15628,7 @@ body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage ul li.nav-item-parent .btn-e
     display: block;
     font-weight: 500;
     margin-right: 0.5rem;
+    margin-bottom: 0.15rem;
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul {
     display: none;
@@ -23497,10 +23512,35 @@ body#hubv4 .highlight-message.red .highlight-content {
 
 @media (min-width: 61em) {
   .hub-banner-sidemenu .banner-image img {
+    height: 100%;
     margin-bottom: 0 !important;
     max-height: 520px;
     -o-object-fit: cover;
        object-fit: cover;
+    -o-object-position: top;
+       object-position: top;
+  }
+  .hub-banner-sidemenu .banner-image img.top {
+    -o-object-position: top;
+       object-position: top;
+  }
+  .hub-banner-sidemenu .banner-image img.bottom {
+    -o-object-position: bottom;
+       object-position: bottom;
+  }
+  .hub-banner-sidemenu .banner-image img.center {
+    -o-object-position: center;
+       object-position: center;
+  }
+  .hub-banner-sidemenu .banner-image img.right {
+    -o-object-position: right;
+       object-position: right;
+  }
+  .hub-banner-sidemenu .banner-image img.left {
+    -o-object-position: left;
+       object-position: left;
+  }
+  .hub-banner-sidemenu .banner-image.top {
     -o-object-position: top;
        object-position: top;
   }
@@ -23548,6 +23588,10 @@ body#hubv4 .highlight-message.red .highlight-content {
   }
 }
 
+#hubv4 .top-menu-banner .hub-banner-sidemenu {
+  width: 100%;
+}
+
 #hubv4 .hub-banner-sidemenu figure {
   height: 100%;
   padding: 1.5rem;
@@ -23586,7 +23630,10 @@ body#hubv4 .highlight-message.red .highlight-content {
 
 #hubv4 .hub-banner-sidemenu .banner-image {
   height: 100%;
-  background-size: cover;
+}
+
+#hubv4 .hub-banner-sidemenu .banner-image img {
+  width: 100%;
 }
 
 #hubv4 .hub-banner-sidemenu .banner-body {
@@ -23661,8 +23708,27 @@ body#hubv4 .highlight-message.red .highlight-content {
   border-left: 1rem #0D4C38 solid;
 }
 
-#hubv4 .hub-banner-sidemenu img {
-  display: none;
+#hubv4 .hub-banner-sidemenu.no-overlay:before {
+  bottom: .75rem;
+  left: .75rem;
+  content: "";
+  z-index: 20;
+  border-bottom: 1rem #0D4C38 solid;
+  border-left: 1rem #0D4C38 solid;
+  background-color: transparent;
+  position: absolute;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  max-width: calc(100% - 2.25rem);
+  max-height: calc(100% - 2.25rem);
+  width: 150px;
+  height: 150px;
+  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
+  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
+}
+
+#hubv4 .hub-banner-sidemenu.no-overlay figure:after {
+  border-color: #99B9AF;
 }
 
 /** Search panel full page with or mods. */
