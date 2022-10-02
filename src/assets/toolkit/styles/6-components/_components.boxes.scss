@@ -7,13 +7,7 @@
 ///
 /// @group molecules
 
-
-
-
-
-
 /*= FACTS BOX ================================================================*/
-
 
 // for info message fact row research hub
 //TODO: remove a dependency on .flash-message and .info
@@ -25,7 +19,9 @@
   > h2 {
     margin-bottom: 0;
 
-    &::before { display: none; }
+    &::before {
+      display: none;
+    }
   }
 
   > * {
@@ -38,13 +34,13 @@
     }
   }
 
-  @include breakpoint( $until: desktop ) {
+  @include breakpoint($until: desktop) {
     flex-wrap: wrap;
 
     > * {
       &:first-child {
-        flex-basis:    100%;
-        margin-bottom: .5em;
+        flex-basis: 100%;
+        margin-bottom: 0.5em;
       }
 
       &:not(:first-child) {
@@ -53,15 +49,15 @@
     }
   }
 
-  @include breakpoint( $until: tablet ) {
+  @include breakpoint($until: tablet) {
     > *:not(:first-child) {
       flex-basis: 100%;
-      margin-bottom: .5em;
+      margin-bottom: 0.5em;
     }
   }
 
   .info-col {
-    @include breakpoint( $until: tablet ) {
+    @include breakpoint($until: tablet) {
       padding-bottom: $gap-third;
       border-bottom: $border-width-thin solid $blue-callypso;
     }
@@ -72,7 +68,6 @@
       color: inherit;
     }
   }
-
 }
 
 .content-panel > main .flash-message.info-row {
@@ -80,8 +75,8 @@
 
   > * {
     &:first-child {
-      flex-basis:    100%;
-      margin-bottom: .5em;
+      flex-basis: 100%;
+      margin-bottom: 0.5em;
     }
 
     &:not(:first-child) {
@@ -89,10 +84,38 @@
     }
   }
 
-  @include breakpoint( $until: tablet ) {
+  @include breakpoint($until: tablet) {
     > *:not(:first-child) {
       flex-basis: 100%;
-      margin-bottom: .5em;
+      margin-bottom: 0.5em;
+    }
+  }
+}
+//! ==== NEW DESIGN ====
+
+#hubv4 {
+  .link_block {
+    background-color: $grey-light;
+    transition: all ease 0.2s;
+    outline: 2px transparent solid;
+
+    .link_block_body {
+      padding: 1rem;
+    }
+    &:visited {
+      h3 {
+        color: $blue-endeavoura;
+      }
+    }
+    &:hover {
+      outline: 2px $kohuhu solid;
+      background-color: $green-brand-light;
+      h3 {
+        color: $blue-endeavoura;
+      }
+    }
+    h3 {
+      text-decoration: none;
     }
   }
 }

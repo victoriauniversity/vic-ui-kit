@@ -2,12 +2,13 @@
 
 $search-panel-shadow: $shadow-shallow !default;
 
-
 .search-panel {
   margin-top: 1em;
   margin-bottom: 1em;
 
-  section { box-shadow: $search-panel-shadow; }
+  section {
+    box-shadow: $search-panel-shadow;
+  }
 
   form {
     &.wide-search-bar {
@@ -19,25 +20,24 @@ $search-panel-shadow: $shadow-shallow !default;
       display: flex;
       width: 100%;
 
-      input[type=text] {
+      input[type="text"] {
         flex: 1 1;
-        padding: .2rem .6rem;
+        padding: 0.2rem 0.6rem;
         height: 42px;
         // width: 70%;
         border: 2px solid $grey-silver;
       }
 
-      input[type=submit] {
+      input[type="submit"] {
         flex: 25% 0 1;
         // width: 30%;
         border-radius: 0 2px 2px 0;
       }
-
     }
   }
 
   section {
-    box-shadow: 0 1px 5px rgba( $black, .25 );
+    box-shadow: 0 1px 5px rgba($black, 0.25);
   }
 
   @include bp-desktop {
@@ -48,37 +48,43 @@ $search-panel-shadow: $shadow-shallow !default;
     }
   }
 
-  @include breakpoint( $until: desktop ) {
+  @include breakpoint($until: desktop) {
     form {
-      &.wide-search-bar { padding: 2rem; }
+      &.wide-search-bar {
+        padding: 2rem;
+      }
 
       .group {
-        input[type=text] { width: 70%; }
-        input[type=submit] { width: 30%; }
+        input[type="text"] {
+          width: 70%;
+        }
+        input[type="submit"] {
+          width: 30%;
+        }
       }
     }
   }
 
-  @include breakpoint( $until: tablet ) {
+  @include breakpoint($until: tablet) {
     form {
-      &.wide-search-bar { padding: 2rem 1rem; }
+      &.wide-search-bar {
+        padding: 2rem 1rem;
+      }
 
       .group {
         flex-wrap: wrap;
 
-        input[type=text],
-        input[type=submit] {
+        input[type="text"],
+        input[type="submit"] {
           flex: 100% 1 1;
           width: 100%;
         }
       }
     }
   }
-
 }
 
 .intranet-search {
-
   .ui-helper-hidden-accessible {
     display: none;
   }
@@ -105,11 +111,13 @@ $search-panel-shadow: $shadow-shallow !default;
 
   li.ui-menu-item {
     &:hover {
-      background: #E4F3FB;
+      background: #e4f3fb;
       cursor: pointer;
     }
-    &:active, &.is-active, &:focus {
-      background: #E4F3FB;
+    &:active,
+    &.is-active,
+    &:focus {
+      background: #e4f3fb;
     }
   }
 
@@ -118,7 +126,7 @@ $search-panel-shadow: $shadow-shallow !default;
   }
 
   a.ui-corner-all.ui-state-focus {
-    background: #E4F3FB;
+    background: #e4f3fb;
   }
 
   #search-wrap .filter-bar .tag:hover .icon-check:before {
@@ -134,8 +142,10 @@ $search-panel-shadow: $shadow-shallow !default;
       width: 20%;
       border-right: 1px solid lightgrey;
       padding: 0 1em;
-      h3, h4, h5 {
-        margin-bottom: .8rem;
+      h3,
+      h4,
+      h5 {
+        margin-bottom: 0.8rem;
       }
       > div {
         margin-bottom: 1.5rem;
@@ -181,8 +191,8 @@ $search-panel-shadow: $shadow-shallow !default;
   }
 
   @media (max-width: 42.99em) {
-    .search-panel form input[type=submit] {
-      margin-top: .7rem;
+    .search-panel form input[type="submit"] {
+      margin-top: 0.7rem;
     }
     .results-flex {
       flex-direction: column;
@@ -208,5 +218,11 @@ $search-panel-shadow: $shadow-shallow !default;
       width: 100%;
     }
   }
+}
+//! ==== NEW DESIGN ====
 
+#hubv4 {
+  .search-panel form .group input[type="text"] {
+    height: initial;
+  }
 }
