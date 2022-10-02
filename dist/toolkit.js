@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, September 30, 2022, 2:57 PM */
+/** Version: 0.10.13 | Monday, October 3, 2022, 8:56 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14498,9 +14498,9 @@ function initTray() {
 
 
   var $tabBlip = $("nav.tray .tabs .blip");
-  $("nav.tray .tabs .tab").on("click keyup", function (e) {
+  $("nav.tray .tray-tabs .tab").on("click keyup", function (e) {
     if (e.which == 13 || e.which == 1 || e.type == "click") {
-      $("nav.tray .tabs .tab").removeClass("active");
+      $("nav.tray .tray-tabs .tab").removeClass("active");
       $(this).addClass("active"); // Hide notification is there is one
 
       $(".menu-notifcations").hide();

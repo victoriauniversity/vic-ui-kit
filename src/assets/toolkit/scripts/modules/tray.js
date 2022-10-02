@@ -595,9 +595,9 @@ export function initTray() {
 
   // !TAB BLIP MOVEMENT LOGIC
   var $tabBlip = $("nav.tray .tabs .blip");
-  $("nav.tray .tabs .tab").on("click keyup", function (e) {
+  $("nav.tray .tray-tabs .tab").on("click keyup", function (e) {
     if (e.which == 13 || e.which == 1 || e.type == "click") {
-      $("nav.tray .tabs .tab").removeClass("active");
+      $("nav.tray .tray-tabs .tab").removeClass("active");
       $(this).addClass("active");
 
       // Hide notification is there is one
