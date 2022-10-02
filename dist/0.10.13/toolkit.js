@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, September 30, 2022, 1:19 PM */
+/** Version: 0.10.13 | Friday, September 30, 2022, 2:57 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14208,6 +14208,7 @@ function initTray() {
 
   function closeDraw(location) {
     var loc = location || "expanded-draw";
+    $(".sidemenu-drawer").attr("tabIndex", -1);
 
     if ($("#banner-nav").length > 0) {
       loc = "expanded-draw";
@@ -14339,12 +14340,18 @@ function initTray() {
         // If nav item is already expanded... close it
         horizontalMenuExpanded = !horizontalMenuExpanded;
         $navItem.removeClass("expanded-nav");
+        $(".sidemenu-drawer .active-nav-group .sub-draw-title > a").attr("tabIndex", -1);
         $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
         $(".draw-nav > ul").removeClass("active-nav-group");
+        menuItems.find(">a").attr("tabIndex", 0);
       } else {
         // Else if nav item is NOT expanded... open it
         if (horizontalMenuExpanded === false) {
-          $(".sidemenu-drawer").addClass("horizontal-drawer-expanded");
+          $(".sidemenu-drawer").addClass("horizontal-drawer-expanded"); // Focus title of drawer once opened
+
+          $(".sidemenu-drawer .active-nav-group .sub-draw-title > a").attr("tabIndex", 0);
+          menuItems.find(">a").attr("tabIndex", 1); // $(".sidemenu-drawer").trigger("focus");
+
           horizontalMenuExpanded = !horizontalMenuExpanded;
         }
 
@@ -14360,16 +14367,25 @@ function initTray() {
 
       var matchingNavGroup = $(" .draw-nav > ul[data-index='".concat(index, "']"));
       $(".draw-nav > ul").removeClass("active-nav-group");
-      matchingNavGroup.toggleClass("active-nav-group"); // console.log('horizontalMenuExpanded',horizontalMenuExpanded);
+      matchingNavGroup.toggleClass("active-nav-group"); // Updated tab indexes of children
+
+      $(".sidemenu-drawer .sub-draw-title > a").attr("tabIndex", 1);
+      $(matchingNavGroup).find(".sub-draw-title > a").attr("tabIndex", 0);
+      $navItem.find(">a").attr("tabIndex", 0); // console.log('horizontalMenuExpanded',horizontalMenuExpanded);
     }; // !CLOSE ON MENU MOUSE OUT
 
 
     src_default.a.register(DESKTOP_AND_LARGER, function () {
-      // Hide menu if mouseout for x seconds
-      // If banner nav is active
+      // Clear tabindex to avoid tabbing to invisible stuff
+      if ($(".active-nav-group")) {
+        $(".sidemenu-drawer .active-nav-group .sub-draw-title > a").attr("tabIndex", -1);
+      } // If banner nav is active
+
+
       if ($("#banner-nav").length > 0) {
         $("#banner-nav").on("mouseleave", function (e) {
-          clearTimeout(openTimeout);
+          clearTimeout(openTimeout); // Hide menu if mouseout for x seconds
+
           openTimeout = setTimeout(function () {
             closeDraw();
           }, 300);
@@ -14623,7 +14639,6 @@ function initTray() {
     if (e.which == 13 || e.which == 1) {
       // Close any items already open
       // Find any active/expanded children and close them
-      $(this).parent().find(">ul .active").removeClass("active");
       $(this).parent().find(">ul .expanded > ul").slideUp("fast");
       $(this).parent().find(">ul .expanded").removeClass("expanded"); // If top level item
 
@@ -14711,11 +14726,11 @@ function initTray() {
   //   // TODO: Make pruning automatic, display message on open of event-list
   //   $(".tray-content .events-list li .remove-item").on("click", function () {
   //     var $el = $(this);
-  //     var localObject = JSON.parse(localStorage.getItem("savedEvents"));
-  //     // Return array of items where displayUrl !== clicked li href
-  //     var filterdLocalObject = localObject.filter(function (item) {
-  //       return item.displayUrl !== $el.prev().attr("href");
-  //     });
+  // var localObject = JSON.parse(localStorage.getItem("savedEvents"));
+  // Return array of items where displayUrl !== clicked li href
+  // var filterdLocalObject = localObject.filter(function (item) {
+  //   return item.displayUrl !== $el.prev().attr("href");
+  // });
   //     console.log(filterdLocalObject);
   //     $el.parent().slideUp();
   //     $el
@@ -15915,7 +15930,7 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
     //   isExpanded = !isExpanded;
     //   apply();
     // });
-    // Click event for expand buttons in SIDEMENU only
+    //! Click event for expand buttons in SIDEMENU only
 
 
     expandableButtonElement.on("click keyup", function (e) {
@@ -15924,10 +15939,12 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
         e.stopPropagation();
         isExpanded = !isExpanded;
         var topLevel = false;
-        var clickedButton = external_jQuery_default()(_this); // !TOP LEVEL
+        var clickedButton = external_jQuery_default()(_this); // !TOP LEVEL EXPANDER CLICKED
 
         if (clickedButton.parent().parent().parent().hasClass("sidemenu")) {
+          // When closing, also close any items which are expanded inside the parent
           topLevel = true;
+          clickedButton.parent().find(".expanded").not(clickedButton.parent()).removeClass("expanded").find(">ul").slideToggle();
         }
 
         apply(topLevel, clickedButton);
@@ -16932,7 +16949,13 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
     }
   }); // Apply style to page save icon if page is in local storage
 
-  if (external_jQuery_default()(".save-page")) {}
+  if (external_jQuery_default()(".save-page")) {} // Save Qualification
+
+
+  if (window.location.href.includes("?saveTest")) {
+    var buttonEl = "<button class='save-qual-button new primary no-icon'>Save Qualification</button>";
+    external_jQuery_default()("body#hubv4").append(buttonEl);
+  }
 } else {
   /* SUPPORTING FUNCTIONS */
 
@@ -16993,6 +17016,7 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
     var menuElement = external_jQuery_default()(".".concat(menuClass));
 
     scripts_toolkit_enhanceSidemenu(menuElement); // Expanding/Collapsing of the entire side menu on mobile devices
+    // ! Not sure this is needed anymore
 
 
     menuElement.children(".".concat(_SIDEMENU_TOGGLE_CLASS)).children("a").on("click", function (e) {

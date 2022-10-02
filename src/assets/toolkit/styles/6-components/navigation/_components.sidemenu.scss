@@ -1520,9 +1520,9 @@ body#hubv4 {
       // !ALL LEVELS
       ul {
         li {
-          border-left: 0px $sidemenu-background-selected-v3 solid;
+          border-left: 4px transparent solid;
           overflow: hidden;
-          transition: all $easing 0.3s;
+          // transition: all ease 0.3s;
 
           &:not(.sidemenu__label) {
             a {
@@ -1531,7 +1531,8 @@ body#hubv4 {
           }
 
           a {
-            transition: all $easing 0.2s;
+            color: $sidemenu-text-color-v3;
+            // transition: all $easing 0.2s;
             padding: 0.8rem 0.9rem;
             text-decoration: none;
 
@@ -1570,8 +1571,17 @@ body#hubv4 {
           }
 
           &.active {
-            font-weight: 700;
             border-left: 5px solid $sidemenu-background-selected-v3;
+            // background-color: $off-white;
+
+            > a {
+              font-weight: 600;
+              text-decoration: underline;
+              color: $pounamu;
+              &:hover {
+                text-decoration: none;
+              }
+            }
           }
           &.has-submenu {
             overflow: hidden;
@@ -1581,6 +1591,7 @@ body#hubv4 {
 
             > a {
               margin-right: 0px;
+              transition: all ease 0.1s;
             }
 
             &.expanded {
@@ -1603,7 +1614,7 @@ body#hubv4 {
 
               //! Nested nested item
               .expanded {
-                background-color: #fff;
+                // background-color: #fff;
               }
 
               //! JOINING ARROWS IN NESTED LISTS
@@ -1612,9 +1623,6 @@ body#hubv4 {
                   position: relative;
                   overflow: visible;
 
-                  > a {
-                    color: $sidemenu-text-color-v3;
-                  }
                   &:before {
                     content: "";
                     position: absolute;
@@ -1708,7 +1716,6 @@ body#hubv4 {
             }
             > ul {
               padding-left: 0;
-              background-color: #fff;
 
               > li {
                 border-left: none;
@@ -1834,10 +1841,11 @@ body#hubv4 {
         // box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         font-size: 100%;
         border: 1px $grey-alto solid;
+        position: relative;
+
         @include breakpoint($until: desktop-medium) {
           border: none;
         }
-        position: relative;
 
         > .sidemenu__label {
           position: relative;
@@ -1846,6 +1854,7 @@ body#hubv4 {
           border-top: none;
           border-bottom: none;
           margin-right: 0;
+          border-left: none;
 
           @include breakpoint($until: desktop-medium) {
             border-bottom: none;
@@ -1915,9 +1924,9 @@ body#hubv4 {
           }
           > a {
             flex: 1 0 80%;
-            &:hover {
-              background-color: #fff;
-            }
+            // &:hover {
+            //   background-color: #fff;
+            // }
           }
 
           > .btn-expander {
@@ -1931,9 +1940,11 @@ body#hubv4 {
             flex: 1 0 2%;
             max-width: 50px;
           }
+
           &.active {
             border-bottom: none;
             border-top: none;
+
             > .btn-expander {
               &:hover,
               &:active,
@@ -1941,10 +1952,9 @@ body#hubv4 {
                 color: $black-brand;
               }
             }
-          }
-
-          &.active {
             > a {
+              text-decoration: none;
+
               &:hover {
                 color: $sidemenu-text-hover-color-v3;
               }
@@ -1953,7 +1963,7 @@ body#hubv4 {
           &.expanded {
             background-color: $sidemenu-background-selected-v3;
             border-top: none;
-            border-left-width: 5px;
+            border-left-color: $sidemenu-background-selected-v3;
 
             &:before,
             &:after {
@@ -1964,6 +1974,9 @@ body#hubv4 {
               font-weight: 700;
               color: $manuka;
               background-color: transparent;
+              &:focus {
+                color: $manuka;
+              }
               &:hover {
                 color: $manuka;
               }
@@ -2017,6 +2030,27 @@ body#hubv4 {
             left: 0;
             bottom: 0;
             content: none;
+          }
+
+          // !Second level only
+          > ul {
+            background-color: #fff;
+          }
+        }
+      }
+
+      // Alt colour
+      &.light {
+        > ul > li:not(.sidemenu__label).expanded {
+          border-color: $mahoe;
+          background-color: $mahoe;
+          > .btn-expander {
+            background-color: $miro;
+          }
+        }
+        ul li.has-submenu.expanded ul li {
+          &:before {
+            border-left-color: $mahoe;
           }
         }
       }
