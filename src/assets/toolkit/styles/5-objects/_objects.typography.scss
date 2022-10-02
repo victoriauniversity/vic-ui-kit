@@ -10,10 +10,7 @@
 ///
 /// @group typography
 
-
-
-$subtitle-separator-character:  $character-middle-dot;
-
+$subtitle-separator-character: $character-middle-dot;
 
 .formatting {
   article {
@@ -23,7 +20,9 @@ $subtitle-separator-character:  $character-middle-dot;
   p {
     margin-bottom: $gap-content;
     color: $text-color;
-    &:last-child { margin-bottom: 0; }
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   // Links
@@ -36,7 +35,7 @@ $subtitle-separator-character:  $character-middle-dot;
       h4,
       h5,
       h6 {
-        color:           $link-hover-color;
+        color: $link-hover-color;
         text-decoration: $link-hover-decoration;
       }
     }
@@ -47,7 +46,7 @@ $subtitle-separator-character:  $character-middle-dot;
     h4,
     h5,
     h6 {
-      color:           $link-color;
+      color: $link-color;
       text-decoration: $link-decoration;
     }
 
@@ -75,11 +74,12 @@ $subtitle-separator-character:  $character-middle-dot;
   table,
   figcaption {
     a {
-      &:not(.button):visited { color: $link-visited-color; }
+      &:not(.button):visited {
+        color: $link-visited-color;
+      }
       @include linkify-text; // *MUST* come after :visited
     }
   }
-
 
   // Headings
 
@@ -93,30 +93,36 @@ $subtitle-separator-character:  $character-middle-dot;
 
     // Notes within headings
     > em {
-      margin-left: _em( $gap-small );
-      font-style:  normal;
-      color:       $text-weakest-color;
+      margin-left: _em($gap-small);
+      font-style: normal;
+      color: $text-weakest-color;
     }
   }
 
   // Top margins for formatted headings to improve block separation and readability
-  h2:not(:first-child) { margin-top: $gap-content * 1.75; }
-  h3:not(:first-child) { margin-top: $gap-content * 1.65; }
-  h4:not(:first-child) { margin-top: $gap-content * 1.5; }
+  h2:not(:first-child) {
+    margin-top: $gap-content * 1.75;
+  }
+  h3:not(:first-child) {
+    margin-top: $gap-content * 1.65;
+  }
+  h4:not(:first-child) {
+    margin-top: $gap-content * 1.5;
+  }
 
   // Subtitle
   .subtitle {
-    display:       inline-block;
+    display: inline-block;
     margin-bottom: $gap-content;
-    color:         $text-weaker-color;
-    line-height:   $text-stacked-line-height;
+    color: $text-weaker-color;
+    line-height: $text-stacked-line-height;
 
     // Secondary information of lower importance
     strong + span {
-      @include before( $text: $subtitle-separator-character ) {
-        margin-right: _em( $gap-third );
-        margin-left:  _em( $gap-small );
-        font-weight:  $weight-bold;
+      @include before($text: $subtitle-separator-character) {
+        margin-right: _em($gap-third);
+        margin-left: _em($gap-small);
+        font-weight: $weight-bold;
       }
     }
   }
@@ -125,31 +131,35 @@ $subtitle-separator-character:  $character-middle-dot;
   h1 + .subtitle {
     // Bleeding for the places in Squiz where the HTML structure cannot be implemented
     margin-top: $bleed-content - $bleed-half;
-    font-size:  $text-size-5; // Match .intro
+    font-size: $text-size-5; // Match .intro
   }
 
   // Header section that restarts the vertical alignment
   > header {
     margin-bottom: $gap-content;
 
-    > h1 { margin-bottom: $gap-half; }
-    > h1 + .subtitle { margin-top: 0; } // Reset negative bleeding if the header is in place
+    > h1 {
+      margin-bottom: $gap-half;
+    }
+    > h1 + .subtitle {
+      margin-top: 0;
+    } // Reset negative bleeding if the header is in place
   }
-
 
   // An abstract / page detail / introduction / summary
 
   .intro {
-    margin-top:  $gap-vertical;
-    font-size:   $text-size-5;
+    margin-top: $gap-vertical;
+    font-size: $text-size-5;
     font-weight: $weight-semibold;
-    color:       $black-tundora;
+    color: $black-tundora;
   }
-
 
   // Formatted imagery
 
-  .inline { clear: right; }
+  .inline {
+    clear: right;
+  }
 
   // Default image - full width
   .inline,
@@ -157,28 +167,27 @@ $subtitle-separator-character:  $character-middle-dot;
   > img,
   p > img,
   p > img ~ img {
-    @include size( 100%, auto );
+    @include size(100%, auto);
     margin-bottom: $gap-half;
   }
 
   // Portrait size inline media
   .portrait {
-    float:       right;
+    float: right;
     margin-left: $gap-horizontal;
-    width:       $media-inline-portrait-width;
+    width: $media-inline-portrait-width;
   }
-
 
   // Lists
 
   ul,
   ol {
     margin-bottom: $gap-content + $gap-third; // Increase the gap
-    padding-left:  $gap-horizontal;
+    padding-left: $gap-horizontal;
 
     li {
-      margin-bottom: _em( $gap-third );
-      padding-left:  _em( $gap-small );
+      margin-bottom: _em($gap-third);
+      padding-left: _em($gap-small);
       list-style-position: outside;
     }
 
@@ -189,20 +198,28 @@ $subtitle-separator-character:  $character-middle-dot;
   }
 
   ul {
-    li { list-style-type: square; }
-    ul li { list-style-type: circle; }
+    li {
+      list-style-type: square;
+    }
+    ul li {
+      list-style-type: circle;
+    }
   }
 
-  @include breakpoint( tablet ) {
+  @include breakpoint(tablet) {
     // Add bottom padding to visually separate content from footer
     .layout main > &,
     .layout aside > & {
-      &:last-child { padding-bottom: $gap-double; }
+      &:last-child {
+        padding-bottom: $gap-double;
+      }
     }
   }
 
   // Separators positioning
-  hr { margin: $gap-larger 0; }
+  hr {
+    margin: $gap-larger 0;
+  }
 }
 
 .reset-formatting {
@@ -213,7 +230,9 @@ $subtitle-separator-character:  $character-middle-dot;
   p {
     margin-bottom: initial;
     color: inherit;
-    &:last-child { margin-bottom: initial; }
+    &:last-child {
+      margin-bottom: initial;
+    }
   }
 
   // Links
@@ -226,7 +245,7 @@ $subtitle-separator-character:  $character-middle-dot;
       h4,
       h5,
       h6 {
-        color:           inherit;
+        color: inherit;
         text-decoration: initial;
       }
     }
@@ -237,7 +256,7 @@ $subtitle-separator-character:  $character-middle-dot;
     h4,
     h5,
     h6 {
-      color:           inherit;
+      color: inherit;
       text-decoration: initial;
     }
 
@@ -265,11 +284,12 @@ $subtitle-separator-character:  $character-middle-dot;
   table,
   figcaption {
     a {
-      &:not(.button):visited { color: inherit; }
+      &:not(.button):visited {
+        color: inherit;
+      }
       @include linkify-text; // *MUST* come after :visited
     }
   }
-
 
   // Headings
 
@@ -284,22 +304,28 @@ $subtitle-separator-character:  $character-middle-dot;
     // Notes within headings
     > em {
       margin-left: initial;
-      font-style:  inherit;
-      color:       inherit;
+      font-style: inherit;
+      color: inherit;
     }
   }
 
   // Top margins for formatted headings to improve block separation and readability
-  h2:not(:first-child) { margin-top: initial; }
-  h3:not(:first-child) { margin-top: initial; }
-  h4:not(:first-child) { margin-top: initial; }
+  h2:not(:first-child) {
+    margin-top: initial;
+  }
+  h3:not(:first-child) {
+    margin-top: initial;
+  }
+  h4:not(:first-child) {
+    margin-top: initial;
+  }
 
   // Subtitle
   .subtitle {
-    display:       initial;
+    display: initial;
     margin-bottom: initial;
-    color:         inherit;
-    line-height:   inherit;
+    color: inherit;
+    line-height: inherit;
 
     // Secondary information of lower importance
     // strong + span {
@@ -322,31 +348,35 @@ $subtitle-separator-character:  $character-middle-dot;
   h1 + .subtitle {
     // Bleeding for the places in Squiz where the HTML structure cannot be implemented
     margin-top: initial;
-    font-size:  inherit; // Match .intro
+    font-size: inherit; // Match .intro
   }
 
   // Header section that restarts the vertical alignment
   > header {
     margin-bottom: initial;
 
-    > h1 { margin-bottom: initial; }
-    > h1 + .subtitle { margin-top: initial; } // Reset negative bleeding if the header is in place
+    > h1 {
+      margin-bottom: initial;
+    }
+    > h1 + .subtitle {
+      margin-top: initial;
+    } // Reset negative bleeding if the header is in place
   }
-
 
   // An abstract / page detail / introduction / summary
 
   .intro {
-    margin-top:  initial;
-    font-size:   inherit;
+    margin-top: initial;
+    font-size: inherit;
     font-weight: inherit;
-    color:       inherit;
+    color: inherit;
   }
-
 
   // Formatted imagery
 
-  .inline { clear: initial; }
+  .inline {
+    clear: initial;
+  }
 
   // Default image - full width
   .inline,
@@ -362,22 +392,21 @@ $subtitle-separator-character:  $character-middle-dot;
 
   // Portrait size inline media
   .portrait {
-    float:       initial;
+    float: initial;
     margin-left: initial;
-    width:       initial;
+    width: initial;
   }
-
 
   // Lists
 
   ul,
   ol {
     margin-bottom: initial; // Increase the gap
-    padding-left:  initial;
+    padding-left: initial;
 
     li {
       margin-bottom: initial;
-      padding-left:  initial;
+      padding-left: initial;
       list-style-position: inherit;
     }
 
@@ -388,24 +417,31 @@ $subtitle-separator-character:  $character-middle-dot;
   }
 
   ul {
-    li { list-style-type: inherit; }
-    ul li { list-style-type: inherit; }
+    li {
+      list-style-type: inherit;
+    }
+    ul li {
+      list-style-type: inherit;
+    }
   }
 
-  @include breakpoint( tablet ) {
+  @include breakpoint(tablet) {
     // Add bottom padding to visually separate content from footer
     .layout main > &,
     .layout aside > & {
-      &:last-child { padding-bottom: initial; }
+      &:last-child {
+        padding-bottom: initial;
+      }
     }
   }
 
   // Separators positioning
-  hr { margin: initial; }
+  hr {
+    margin: initial;
+  }
 }
 
 /*= WIDGET-BAR CONTENT FORMATTING DIFFERENCES ================================*/
-
 
 $widgetbar-h2-font-size: $h4-size;
 $widgetbar-h3-font-size: $h5-size;
@@ -422,7 +458,7 @@ aside > .formatting {
 
     // Pre-heading delimiting line
     @include separator-strip() {
-      margin-bottom: _em( $gap-tiny );
+      margin-bottom: _em($gap-tiny);
     }
   }
 
@@ -432,19 +468,20 @@ aside > .formatting {
     color: $text-weaker-color;
     margin-bottom: $gap-third;
 
-    &:not(:first-child) { margin-top: $gap-half; }
+    &:not(:first-child) {
+      margin-top: $gap-half;
+    }
   }
 
-  h3 { font-size: $widgetbar-h3-font-size; }
-  h4 { font-size: $widgetbar-h4-font-size; }
+  h3 {
+    font-size: $widgetbar-h3-font-size;
+  }
+  h4 {
+    font-size: $widgetbar-h4-font-size;
+  }
 }
 
-
-
-
-
 /*= SPECIAL LINKS ============================================================*/
-
 
 // 'See more' link
 a.link-more {
@@ -453,12 +490,7 @@ a.link-more {
   order: $order-last;
 }
 
-
-
-
-
 /*= TYPOGRAPHICAL UTILITIES ==================================================*/
-
 
 // Breaks the page and forcefully clears the floating
 .break {
@@ -472,6 +504,56 @@ a.link-more {
   }
 }
 
+//! ==== NEW DESIGN ====
 
+body#hubv4 {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  a,
+  button {
+    font-family: "Inter", sans-serif;
+  }
 
+  // Flex h1 of page on non-hub pages. For save page icon alignment
+  &:not(.hub-page) {
+    .content-panel {
+      main {
+        h1 {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
 
+  .formatting h1,
+  h1,
+  h2 {
+    font-weight: 700;
+  }
+  aside > .formatting {
+    h2 {
+      font-size: 1.4rem;
+    }
+    h3 {
+      font-size: 1.2rem;
+    }
+  }
+  .content-panel {
+    main {
+      h1 {
+        font-size: 2.4rem;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+      h3 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
