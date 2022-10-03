@@ -311,15 +311,22 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
     &.save-page {
       background-color: transparent;
       font-size: 80%;
-      padding: 0;
-      line-height: 0;
       outline: none;
       margin-left: 5px;
+      display: inline-flex;
+      padding: 5px 10px;
+      padding-right: 5px;
+      border-radius: 3px;
+      background-color: $kohuhu;
+      align-items: center;
+      margin: .5rem 0;
 
       > svg {
         opacity: 0.6;
         transition: all $easing 0.3s;
         pointer-events: none;
+        height: 20px;
+        width: 20px;
         path {
           transition: all $easing 0.3s;
           fill: #fff;
