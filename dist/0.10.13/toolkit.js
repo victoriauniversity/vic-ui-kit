@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, October 3, 2022, 10:04 AM */
+/** Version: 0.10.13 | Monday, October 3, 2022, 1:50 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14071,11 +14071,11 @@ function initTray() {
   }); // Initial position
 
   function setTabsBlipInitialPosition() {
-    var activeItem = $("nav.tray .tabs .active").parent();
+    var activeItem = $("nav.tray .tray-tabs .active").parent();
 
     if (activeItem.length) {
       $tabBlip.css({
-        left: activeItem.offset().left - $("nav.tray .tabs").offset().left,
+        left: activeItem.offset().left - $("nav.tray .tray-tabs").offset().left,
         width: activeItem.outerWidth()
       });
     }
@@ -14497,7 +14497,7 @@ function initTray() {
   }; // !TAB BLIP MOVEMENT LOGIC
 
 
-  var $tabBlip = $("nav.tray .tabs .blip");
+  var $tabBlip = $("nav.tray .tray-tabs .blip");
   $("nav.tray .tray-tabs .tab").on("click keyup", function (e) {
     if (e.which == 13 || e.which == 1 || e.type == "click") {
       $("nav.tray .tray-tabs .tab").removeClass("active");
@@ -14520,20 +14520,20 @@ function initTray() {
       }
     }
   });
-  $("#hubv4 nav.tray .tabs > div").on("mouseover click keyup", function (e) {
+  $("#hubv4 nav.tray .tray-tabs > div").on("mouseover click keyup", function (e) {
     if (e.type == "click" || e.type == "mouseover" || e.type == "keyup" && e.which == 13) {
       $tabBlip.css({
-        left: $(this).offset().left - $("nav.tray .tabs").offset().left,
+        left: $(this).offset().left - $("nav.tray .tray-tabs").offset().left,
         width: $(this).outerWidth()
       });
     }
   });
-  $("#hubv4 nav.tray .tabs").on("mouseout", function () {
-    var activeItem = $("nav.tray .tabs .active").parent();
+  $("#hubv4 nav.tray .tray-tabs").on("mouseout", function () {
+    var activeItem = $("nav.tray .tray-tabs .active").parent();
 
     if (activeItem.length) {
       $tabBlip.css({
-        left: activeItem.offset().left - $("nav.tray .tabs").offset().left,
+        left: activeItem.offset().left - $("nav.tray .tray-tabs").offset().left,
         width: activeItem.outerWidth()
       });
     }
@@ -16920,36 +16920,69 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
     external_jQuery_default()(this).parent().prev().find(">img").attr("src", arrayOfPhotos[count]);
   }); // Add Maori language tags to all tereo titles
 
-  external_jQuery_default()(".tereo-title").attr("lang", "mi"); // Save page toggle
+  external_jQuery_default()(".tereo-title").attr("lang", "mi"); // Add save page element to first h1
 
-  external_jQuery_default()(".save-page").on("click", function () {
-    external_jQuery_default()(this).toggleClass("saved");
-  }); // Save a page
+  if (external_jQuery_default()("body").hasClass("childpage-type") && window.location.href.includes("showSaved")) {
+    var $saveButton = '<button class="save-page no-icon flat" data-tooltip><svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="35px" height="35px"><path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"d="M37 3L13 3 13 47 25 40 37 47z" /></svg></button>';
+    external_jQuery_default()(".childpage-type .content-panel h1").first().append($saveButton); // Save a page
 
-  external_jQuery_default()(".save-page").on("click", function () {
-    var localSavedPages = JSON.parse(localStorage.getItem("savedPages"));
-    var savedPageObject = {
-      url: window.location.href,
-      name: document.title
-    };
-    console.log(localSavedPages);
+    external_jQuery_default()(".save-page").on("click", function () {
+      external_jQuery_default()(this).toggleClass("saved");
 
-    if (localSavedPages && localSavedPages.length > 0) {
-      console.log(localSavedPages);
-      var arrayOfSavedItems = [];
-      var filtered = localSavedPages.filter(function (option) {
-        return option.url !== savedPageObject.url;
-      });
-      localStorage.setItem("savedPages", [JSON.stringify(filtered)]);
-    } else {
-      // First saved page
-      var arrayOfSavedItems = [];
-      arrayOfSavedItems.push(savedPageObject);
-      localStorage.setItem("savedPages", JSON.stringify(arrayOfSavedItems));
+      if (external_jQuery_default()(this).hasClass("saved")) {
+        saveButton.attr("title", "Remove this item from your saved pages");
+      } else {
+        saveButton.attr("title", "Add this item to your saved pages");
+      } // Update tooltip text
+
+
+      var localSavedPages = JSON.parse(localStorage.getItem("savedPages"));
+      var savedPageObject = {
+        name: document.title,
+        url: window.location.href
+      };
+      console.log(savedPageObject); // if we already have some saved pages
+
+      if (localSavedPages && localSavedPages.length > 0) {
+        console.log(localSavedPages); // If item already exists, remove it
+
+        if (localSavedPages.filter(function (e) {
+          return e.url === savedPageObject.url;
+        }).length > 0) {
+          var filtered = localSavedPages.filter(function (option) {
+            return option.url !== savedPageObject.url;
+          });
+          localStorage.setItem("savedPages", [JSON.stringify(filtered)]);
+        } else {
+          // Else, add it in
+          localSavedPages.push(savedPageObject);
+          localStorage.setItem("savedPages", [JSON.stringify(localSavedPages)]);
+        }
+      } else {
+        // First saved page
+        var arrayOfSavedItems = [];
+        arrayOfSavedItems.push(savedPageObject);
+        localStorage.setItem("savedPages", JSON.stringify(arrayOfSavedItems));
+      }
+    }); // Apply style to page save icon if page is in local storage
+
+    var saveButton = external_jQuery_default()(".save-page");
+
+    if (saveButton) {
+      var toolkit_localSavedPages = JSON.parse(localStorage.getItem("savedPages"));
+      console.log(toolkit_localSavedPages);
+
+      if (toolkit_localSavedPages.filter(function (e) {
+        return e.url === window.location.href;
+      }).length > 0) {
+        saveButton.addClass("saved");
+        saveButton.attr("title", "Remove this item from your saved pages");
+      } else {
+        saveButton.removeClass("saved");
+        saveButton.attr("title", "Add this page to your Saved Items");
+      }
     }
-  }); // Apply style to page save icon if page is in local storage
-
-  if (external_jQuery_default()(".save-page")) {} // Save Qualification
+  } // Save Qualification
 
 
   if (window.location.href.includes("?saveTest")) {

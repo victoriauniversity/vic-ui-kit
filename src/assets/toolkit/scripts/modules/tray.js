@@ -57,10 +57,10 @@ export function initTray() {
 
   // Initial position
   function setTabsBlipInitialPosition() {
-    var activeItem = $("nav.tray .tabs .active").parent();
+    var activeItem = $("nav.tray .tray-tabs .active").parent();
     if (activeItem.length) {
       $tabBlip.css({
-        left: activeItem.offset().left - $("nav.tray .tabs").offset().left,
+        left: activeItem.offset().left - $("nav.tray .tray-tabs").offset().left,
         width: activeItem.outerWidth(),
       });
     }
@@ -594,7 +594,7 @@ export function initTray() {
   };
 
   // !TAB BLIP MOVEMENT LOGIC
-  var $tabBlip = $("nav.tray .tabs .blip");
+  var $tabBlip = $("nav.tray .tray-tabs .blip");
   $("nav.tray .tray-tabs .tab").on("click keyup", function (e) {
     if (e.which == 13 || e.which == 1 || e.type == "click") {
       $("nav.tray .tray-tabs .tab").removeClass("active");
@@ -617,24 +617,24 @@ export function initTray() {
       }
     }
   });
-  $("#hubv4 nav.tray .tabs > div").on("mouseover click keyup", function (e) {
+  $("#hubv4 nav.tray .tray-tabs > div").on("mouseover click keyup", function (e) {
     if (
       e.type == "click" ||
       e.type == "mouseover" ||
       (e.type == "keyup" && e.which == 13)
     ) {
       $tabBlip.css({
-        left: $(this).offset().left - $("nav.tray .tabs").offset().left,
+        left: $(this).offset().left - $("nav.tray .tray-tabs").offset().left,
         width: $(this).outerWidth(),
       });
     }
   });
 
-  $("#hubv4 nav.tray .tabs").on("mouseout", function () {
-    var activeItem = $("nav.tray .tabs .active").parent();
+  $("#hubv4 nav.tray .tray-tabs").on("mouseout", function () {
+    var activeItem = $("nav.tray .tray-tabs .active").parent();
     if (activeItem.length) {
       $tabBlip.css({
-        left: activeItem.offset().left - $("nav.tray .tabs").offset().left,
+        left: activeItem.offset().left - $("nav.tray .tray-tabs").offset().left,
         width: activeItem.outerWidth(),
       });
     }

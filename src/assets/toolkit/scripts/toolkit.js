@@ -1384,41 +1384,75 @@ if ($("body").attr("id") == "hubv4") {
   // Add Maori language tags to all tereo titles
   $(".tereo-title").attr("lang", "mi");
 
-  // Save page toggle
-  $(".save-page").on("click", function () {
-    $(this).toggleClass("saved");
-  });
+  // Add save page element to first h1
+  if (
+    $("body").hasClass("childpage-type") &&
+    window.location.href.includes("showSaved")
+  ) {
+    var $saveButton =
+      '<button class="save-page no-icon flat" data-tooltip><svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="35px" height="35px"><path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"d="M37 3L13 3 13 47 25 40 37 47z" /></svg></button>';
+    $(".childpage-type .content-panel h1").first().append($saveButton);
 
-  // Save a page
-  $(".save-page").on("click", function () {
-    var localSavedPages = JSON.parse(localStorage.getItem("savedPages"));
+    // Save a page
+    $(".save-page").on("click", function () {
+      $(this).toggleClass("saved");
 
-    var savedPageObject = {
-      url: window.location.href,
-      name: document.title,
-    };
+      if ($(this).hasClass("saved")) {
+        saveButton.attr("title", "Remove this item from your saved pages");
+      } else {
+        saveButton.attr("title", "Add this item to your saved pages");
+      }
 
-    console.log(localSavedPages);
+      // Update tooltip text
 
-    if (localSavedPages && localSavedPages.length > 0) {
+      var localSavedPages = JSON.parse(localStorage.getItem("savedPages"));
+
+      var savedPageObject = {
+        name: document.title,
+        url: window.location.href,
+      };
+      console.log(savedPageObject);
+
+      // if we already have some saved pages
+      if (localSavedPages && localSavedPages.length > 0) {
+        console.log(localSavedPages);
+        // If item already exists, remove it
+        if (
+          localSavedPages.filter((e) => e.url === savedPageObject.url).length >
+          0
+        ) {
+          var filtered = localSavedPages.filter(function (option) {
+            return option.url !== savedPageObject.url;
+          });
+          localStorage.setItem("savedPages", [JSON.stringify(filtered)]);
+        } else {
+          // Else, add it in
+          localSavedPages.push(savedPageObject);
+          localStorage.setItem("savedPages", [JSON.stringify(localSavedPages)]);
+        }
+      } else {
+        // First saved page
+        var arrayOfSavedItems = [];
+        arrayOfSavedItems.push(savedPageObject);
+        localStorage.setItem("savedPages", JSON.stringify(arrayOfSavedItems));
+      }
+    });
+
+    // Apply style to page save icon if page is in local storage
+    var saveButton = $(".save-page");
+    if (saveButton) {
+      var localSavedPages = JSON.parse(localStorage.getItem("savedPages"));
       console.log(localSavedPages);
-      var arrayOfSavedItems = [];
-
-      var filtered = localSavedPages.filter(function (option) {
-        return option.url !== savedPageObject.url;
-      });
-      localStorage.setItem("savedPages", [JSON.stringify(filtered)]);
-    } else {
-      // First saved page
-      var arrayOfSavedItems = [];
-      arrayOfSavedItems.push(savedPageObject);
-
-      localStorage.setItem("savedPages", JSON.stringify(arrayOfSavedItems));
+      if (
+        localSavedPages.filter((e) => e.url === window.location.href).length > 0
+      ) {
+        saveButton.addClass("saved");
+        saveButton.attr("title", "Remove this item from your saved pages");
+      } else {
+        saveButton.removeClass("saved");
+        saveButton.attr("title", "Add this page to your Saved Items");
+      }
     }
-  });
-
-  // Apply style to page save icon if page is in local storage
-  if ($(".save-page")) {
   }
 
   // Save Qualification
