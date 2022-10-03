@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, October 3, 2022, 1:50 PM */
+/** Version: 0.10.13 | Tuesday, October 4, 2022, 8:18 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14053,7 +14053,7 @@ function initTray() {
   $("body").on("click keyup", function (e) {
     // Close tray if clicked away from or escpae buttons
     // If not enter key
-    if (e.which !== 13) {
+    if (e.which !== 13 && e.target) {
       if (e.target.className.includes("tray-open") && $(".tray-open").length || e.key == "Escape" && $(".tray-open").length) {
         e.preventDefault();
         toggleTray();
@@ -14138,7 +14138,7 @@ function initTray() {
 
   var openTimeout;
   var sidemenuExpanded = false;
-  var $draw = $(".sidemenu-drawer"); //! Sidemenu expand logic
+  var $draw = $(".sidemenu-drawer"); //! Sidemenu nav expand logic
 
   function expandTray(index, listItem) {
     $(listItem).on("mouseenter click keyup", function (e) {
@@ -14239,7 +14239,7 @@ function initTray() {
       }); // $draw.toggleClass('active');
     } // On click OR mouseover of body, hide the tray if it's open
 
-  } // ! ==== HOMEPAGE SIDE-MENU ONLY ====
+  } // ? ==== HOMEPAGE SIDE-MENU ONLY ====
 
 
   $("body").on("click", function (e) {
@@ -14307,7 +14307,7 @@ function initTray() {
 
       $(".draw-nav > ul[data-index='".concat(index, "']")).prepend("<li class=\"sub-draw-title\"><a href=\"".concat(titleLink, "\">").concat(titleHtml, "</a></li>"));
     }); // console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded);
-    // !EXPAND MENU ON HOVER
+    // ?EXPAND MENU ON HOVER
 
     menuItems.on("mouseenter click", function (e) {
       var index = $(this).index() - 2;
@@ -14372,7 +14372,7 @@ function initTray() {
       $(".sidemenu-drawer .sub-draw-title > a").attr("tabIndex", 1);
       $(matchingNavGroup).find(".sub-draw-title > a").attr("tabIndex", 0);
       $navItem.find(">a").attr("tabIndex", 0); // console.log('horizontalMenuExpanded',horizontalMenuExpanded);
-    }; // !CLOSE ON MENU MOUSE OUT
+    }; // ?CLOSE ON MENU MOUSE OUT
 
 
     src_default.a.register(DESKTOP_AND_LARGER, function () {
@@ -14427,7 +14427,7 @@ function initTray() {
       }
     });
   } // initHorizontalNav();
-  // !Blip movement logic
+  // ?Blip movement logic
 
 
   $("#hubv4 #mega-menu > li:not(.sidemenu__label)").on("mouseover click", function () {
@@ -14460,9 +14460,9 @@ function initTray() {
       });
     }
   });
-  var notificationCount = 0; // !Remove default icon injected on all role="button" elements
+  var notificationCount = 0; // ?Remove default icon injected on all role="button" elements
 
-  $(".btn-expander").addClass("no-icon"); // !Temporary override of toolkit hiding
+  $(".btn-expander").addClass("no-icon"); // ?Temporary override of toolkit hiding
   // $("#hubv4 .sidemenu  ul > .has-submenu").css("display", "flex");
 
   var formatAsDate = function formatAsDate(date, locale) {
@@ -14494,7 +14494,7 @@ function initTray() {
         height: el.outerHeight()
       });
     }
-  }; // !TAB BLIP MOVEMENT LOGIC
+  }; // ?TAB BLIP MOVEMENT LOGIC
 
 
   var $tabBlip = $("nav.tray .tray-tabs .blip");
@@ -14537,7 +14537,7 @@ function initTray() {
         width: activeItem.outerWidth()
       });
     }
-  }); // !TRAY MENU BLIP
+  }); // ?TRAY MENU BLIP
 
   var $tallBlip = $("#hubv4 .main-nav-list .tall-blip");
   $("#hubv4 .main-nav-list > li ").on("mouseenter click", function () {
@@ -14556,55 +14556,15 @@ function initTray() {
     if (activeItem.length) {
       resizeTallBlip(activeItem);
     }
-  }); // !CUSTOM DROPDOWN
-  // $("#hubv4 .custom-dropdown .selector").on("click keyup", function (e) {
-  //   if (e.which == 13 || e.which == 1) {
-  //     // If enter or left-click
-  //     $(this).next().slideToggle("fast");
-  //     $(this).toggleClass("open");
-  //   }
-  // });
-  // $("#hubv4 .custom-dropdown ul li").on("click keyup", function (e) {
-  //   if (e.which == 13 || e.which == 1) {
-  //     // If enter or left-click
-  //     // Clear open class on selector
-  //     if ($(".custom-dropdown .selector").hasClass("open")) {
-  //       $(".custom-dropdown .selector").removeClass("open");
-  //     }
-  //     // Toggle active class
-  //     $(".custom-dropdown ul li").removeClass("active");
-  //     $(this).addClass("active");
-  //     // Set text to value
-  //     $(this).parent().prev().find(".selector-text").text($(this).data("name"));
-  //     // Close list on click
-  //     $(this).parent().slideToggle("fast");
-  //     var text = $(this).data("name").toLowerCase();
-  //     showSavedData(text);
-  //   }
-  // });
-  // var showSavedData = function (e) {
-  //   $(".no-results").slideUp();
-  //   // Make titles visible
-  //   $(".group-title").hide();
-  //   $(".group-title").removeClass("active");
-  //   $(".item-list").hide();
-  //   var $toggler = $("." + e + "-title");
-  //   $toggler.css("display", "flex");
-  //   $toggler.toggleClass("active");
-  //   if ($toggler.hasClass("active")) {
-  //     $toggler.find("i").addClass("flipped");
-  //   } else {
-  //     $toggler.find("i").removeClass("flipped");
-  //   }
-  //   $toggler.next().slideToggle("fast");
-  // };
-  // !MAIN NAV LIST ACCORDIONS
+  }); // ?MAIN NAV LIST ACCORDIONS
 
   $("#hubv4 .tray .main-nav-item ul li").each(function (e) {
     var $element = $(this);
 
     if ($(this).find("ul").length > 0) {
-      $element.addClass("has-submenu");
+      $element.addClass("has-submenu"); // hide menu by default
+
+      $element.find(">ul").hide();
       $('<span tabindex="0" class="btn-expander mf-heatmap-click no-icon" title="Toggle subpages" role="button"></span>').insertAfter($element.find(">a"));
     }
   }); // Clone child menu into tray if child page
@@ -14632,39 +14592,39 @@ function initTray() {
   //   $(".tray .main-nav-item > a.active").parent().toggleClass("expanded");
   //   $(".tray .main-nav-item > a.active").parent().find(">ul").slideToggle();
   // }
-  // On top level menu click in TRAY
+
+
+  var expandItem = function expandItem(target) {
+    target = $(target); // Close any items already open
+    // Find any active/expanded children and close them
+
+    target.parent().find(">ul .expanded > ul").slideUp("fast");
+    target.parent().find(">ul .expanded").removeClass("expanded"); // If top level item
+
+    if (!target.parent().hasClass("expanded") && target.parent().parent().data("element-name")) {
+      $(".tray ul[data-element-name='childMenu'] > .has-submenu.expanded").removeClass("expanded").find(">ul").slideUp("fast");
+    }
+
+    target.parent().toggleClass("expanded"); // target.parent().find(">a").toggleClass("active");
+
+    if (target.parent().find(">a").hasClass("active")) {
+      target.find("a").prop("disabled", false);
+    } else {
+      target.find("a").prop("disabled", true);
+    } // Slide out main menu
+
+
+    target.parent().find(">ul").animate({
+      height: "toggle"
+    }, 200);
+  }; // ?EXPANDER LOGIC IN TRAY MOBILE MENU
 
 
   $(".tray .has-submenu > .btn-expander").on("click keyup", function (e) {
     if (e.which == 13 || e.which == 1) {
-      // Close any items already open
-      // Find any active/expanded children and close them
-      $(this).parent().find(">ul .expanded > ul").slideUp("fast");
-      $(this).parent().find(">ul .expanded").removeClass("expanded"); // If top level item
-
-      if (!$(this).parent().hasClass("expanded") && $(this).parent().parent().data("element-name")) {
-        $(".tray ul[data-element-name='childMenu'] > .has-submenu.expanded").removeClass("expanded").find(">ul").slideUp("fast");
-      }
-
-      $(this).parent().toggleClass("expanded"); // $(this).parent().find(">a").toggleClass("active");
-
-      if ($(this).parent().find(">a").hasClass("active")) {
-        $(this).find("a").prop("disabled", false);
-      } else {
-        $(this).find("a").prop("disabled", true);
-      } // Slide out main menu
-
-
-      $(this).parent().find(">ul").slideToggle("fast", function () {
-        // Resize blip
-        var activeItem = $(this).parent();
-
-        if (activeItem.length) {
-          resizeTallBlip(activeItem);
-        }
-      });
+      expandItem(e.target);
     }
-  }); // !INNER ACCORDION
+  }); // ?INNER ACCORDION
   // $(".tray .nav-item-parent.has-submenu .btn-expander").on(
   //   "click keyup",
   //   function (e) {
@@ -14698,95 +14658,52 @@ function initTray() {
   if (window.location.search.includes("responsive=true")) {
     $(".tray").addClass("responsive-preview");
     toggleTray();
-  } // setTimeout(() => {
-  //   // Initial blip position
-  //   var activeItem = $(".main-nav-list > li.active");
-  //   if (activeItem.length) {
-  //     $tallBlip.css({
-  //       top:
-  //         activeItem.offset().top -
-  //         activeItem.parents(".main-nav-list").offset().top,
-  //       height: activeItem.outerHeight(),
-  //       left: activeItem.offset().left - $(".main-nav-list").offset().left,
-  //     });
-  //   }
-  //   // Prune events
-  //   var dateNow = new Date();
-  //   $(".tray-content .events-list li ").each(function (e) {
-  //     var eventExpiryMessage = $(
-  //       "<div class='expired-text'>This event has expired</div>"
-  //     );
-  //     var $el = $(this).find("a span");
-  //     if (dateNow > formatAsDate($el.attr("data-date"), "us")) {
-  //       $el.append(eventExpiryMessage);
-  //       $el.parent().attr("target", "");
-  //       $el.parent().parent().addClass("expired");
-  //     }
-  //   });
-  //   // TODO: Make pruning automatic, display message on open of event-list
-  //   $(".tray-content .events-list li .remove-item").on("click", function () {
-  //     var $el = $(this);
-  // var localObject = JSON.parse(localStorage.getItem("savedEvents"));
-  // Return array of items where displayUrl !== clicked li href
-  // var filterdLocalObject = localObject.filter(function (item) {
-  //   return item.displayUrl !== $el.prev().attr("href");
-  // });
-  //     console.log(filterdLocalObject);
-  //     $el.parent().slideUp();
-  //     $el
-  //       .parents(".item-list")
-  //       .prev()
-  //       .find(".count")
-  //       .text(filterdLocalObject.length);
-  //     localStorage.setItem("savedEvents", JSON.stringify(filterdLocalObject));
-  //   });
-  // }, 500);
-  // accesibility fix - tabbing currently doesn't go to expanded tray as it's outside the nav DIV
+  } // accesibility fix - tabbing currently doesn't go to expanded tray as it's outside the nav DIV
   // TODO make work with horizontal NAV --- Monty or Jake
 
 
-  var tabLinks = document.querySelectorAll('#mega-menu > li.has-submenu > .btn-expander'); // console.log('tab links -- ', tabLinks);
-
-  tabLinks.forEach(function (link, index) {
-    // console.log(link, index);
-    var parentLink = link.previousSibling; // console.log('parent link___', parentLink);
-    // handleTab(link, index)
-
-    link.addEventListener('keydown', function (event) {
-      return handleTab(event, link, parentLink, index);
-    });
-  });
-
-  function handleTab(e, link, parent, index) {
-    var tabLink = document.querySelector(".draw-nav [data-index=\"".concat(index, "\"] a"));
-    var allLinks = document.querySelectorAll(".draw-nav [data-index=\"".concat(index, "\"] a"));
-    var lastLink = allLinks[allLinks.length - 1];
-    var nextNavItem = document.querySelectorAll('#mega-menu > li.has-submenu')[index + 1].querySelector('a'); // console.log('nextNavItem----------', nextNavItem);
-    // console.log(e);
-    // console.log('tab to---', tabLink);
-    // console.log('last link---', lastLink);
-    // Focus on open menu
-
-    if (e.keyCode === 9 && !event.shiftKey) {
-      e.preventDefault();
-      tabLink.focus();
-    } // Take you to next Nav item if last link
-
-
-    lastLink.addEventListener('keydown', function (event) {
-      if (e.keyCode === 9) {
-        event.preventDefault();
-        nextNavItem.focus();
-      }
-    }); // Take you back to main nav if tab shit
-
-    tabLink.addEventListener('keydown', function (event) {
-      if (event.shiftKey && event.keyCode == 9) {
-        event.preventDefault();
-        link.focus();
-      }
-    });
-  }
+  var tabLinks = document.querySelectorAll("#mega-menu > li.has-submenu > .btn-expander"); // tabLinks.forEach((link, index) => {
+  //   // console.log(link, index);
+  //   let parentLink = link.previousSibling;
+  //   // console.log('parent link___', parentLink);
+  //   // handleTab(link, index)
+  //   link.addEventListener("keydown", (event) =>
+  //     handleTab(event, link, parentLink, index)
+  //   );
+  // });
+  // function handleTab(e, link, parent, index) {
+  //   let tabLink = document.querySelector(`.draw-nav [data-index="${index}"] a`);
+  //   let allLinks = document.querySelectorAll(
+  //     `.draw-nav [data-index="${index}"] a`
+  //   );
+  //   let lastLink = allLinks[allLinks.length - 1];
+  //   let nextNavItem = document
+  //     .querySelectorAll("#mega-menu > li.has-submenu")
+  //     [index + 1].querySelector("a");
+  //   // console.log('nextNavItem----------', nextNavItem);
+  //   // console.log(e);
+  //   // console.log('tab to---', tabLink);
+  //   // console.log('last link---', lastLink);
+  //   // Focus on open menu
+  //   if (e.keyCode === 9 && !event.shiftKey) {
+  //     e.preventDefault();
+  //     tabLink.focus();
+  //   }
+  //   // Take you to next Nav item if last link
+  //   lastLink.addEventListener("keydown", (event) => {
+  //     if (e.keyCode === 9) {
+  //       event.preventDefault();
+  //       nextNavItem.focus();
+  //     }
+  //   });
+  //   // Take you back to main nav if tab shit
+  //   tabLink.addEventListener("keydown", (event) => {
+  //     if (event.shiftKey && event.keyCode == 9) {
+  //       event.preventDefault();
+  //       link.focus();
+  //     }
+  //   });
+  // }
 }
 // CONCATENATED MODULE: ./src/assets/toolkit/scripts/modules/urls.js
 // Import 3rd party dependencies
@@ -15933,7 +15850,9 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
     //! Click event for expand buttons in SIDEMENU only
 
 
-    expandableButtonElement.on("click keyup", function (e) {
+    expandableButtonElement.on("click keyup touchstart", function (e) {
+      console.log(e.which);
+
       if (e.which == 13 || e.which == 1) {
         e.preventDefault();
         e.stopPropagation();
@@ -16922,7 +16841,7 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
 
   external_jQuery_default()(".tereo-title").attr("lang", "mi"); // Add save page element to first h1
 
-  if (external_jQuery_default()("body").hasClass("childpage-type") && window.location.href.includes("showSaved")) {
+  if (external_jQuery_default()("body").hasClass("childpage-type")) {
     var $saveButton = '<button class="save-page no-icon flat" data-tooltip><svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="35px" height="35px"><path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"d="M37 3L13 3 13 47 25 40 37 47z" /></svg></button>';
     external_jQuery_default()(".childpage-type .content-panel h1").first().append($saveButton); // Save a page
 
