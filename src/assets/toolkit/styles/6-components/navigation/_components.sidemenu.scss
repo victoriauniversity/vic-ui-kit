@@ -920,63 +920,27 @@ body#hubv4 {
     .sidemenu-toggle {
       font-size: $text-size-4;
       font-weight: $weight-semibold;
-      // border: 1px $grey-alto solid;
       display: block;
       width: 100%;
-      display: flex;
-      background-color: #fff;
-      &.expanded {
-        background-color: $mahoe;
-        a {
-          color: #fff;
-          .tereo-nav-title {
-            color: $kowhai;
-          }
-        }
-        .btn-expander {
-          clip-path: polygon(0% -2px, 102% -2%, 102% 103%, 10px 104%);
-          padding-left: 15px;
-          background-color: #669787;
-          color: #fce500;
-          border-radius: 0;
-          margin-left: 0;
-          &:after {
-            transform: rotateZ(180deg);
-          }
-        }
-      }
+      background-color: $mahoe;
 
-      a {
-        padding: 0.5rem 0.8rem;
-        color: $black-tundora;
+      > a {
+        padding: 0.5rem 0.5rem;
+        display: block;
         font-size: 0.8em;
         position: relative;
         flex: 1 0 80%;
+        color: #fff;
         &:hover {
           text-decoration: underline;
         }
+        .tereo-nav-title {
+          color: $kowhai;
+        }
 
-        // @include extend-icon-after(list) {
-        //   line-height: 1.1;
-        //   font-size: $text-size-huge;
-        // }
+
       }
 
-      // .btn-expander {
-      //   flex: 1 0 10%;
-      //   color: $pounamu;
-      //   align-self: stretch;
-      //   height: auto;
-      //   border-radius: 0;
-      //   display: flex;
-      //   flex-direction: column;
-      //   justify-content: center;
-      //   margin-right: 0;
-      //   background-color: $grey-gallery;
-      //   &:after {
-      //     line-height: 1;
-      //   }
-      // }
       &.expanded {
         //! Remove important - needs #hubv2 id
         margin-bottom: 0 !important;
@@ -1438,6 +1402,19 @@ body#hubv4 {
   //! Only show childmenu on desktop screens on child pages
   &.childpage-type {
     .sidebar {
+      .home-link {
+        padding: 0.3rem 0.5rem;
+        // background-color: $kohuhu;
+        color: $pounamu;
+        text-decoration: none;
+
+        @include breakpoint($until: desktop-medium) {
+          display: inline-flex !important;
+        }
+        &:hover {
+          text-decoration: underline;
+        }
+      }
       &.childMenu {
         @include breakpoint($from: desktop-medium) {
           display: block !important;
@@ -1466,18 +1443,6 @@ body#hubv4 {
     .empty-message {
       a:visited {
         color: $sidemenu-text-color-v3;
-      }
-    }
-    .home-link {
-      padding: 6px 15px;
-      background-color: $kohuhu;
-      color: $pounamu;
-      text-decoration: none;
-      @include breakpoint($until: desktop-medium) {
-        display: block !important;
-      }
-      &:hover {
-        text-decoration: underline;
       }
     }
 

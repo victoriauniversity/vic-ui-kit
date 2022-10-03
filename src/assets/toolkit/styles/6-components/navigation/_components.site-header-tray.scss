@@ -409,9 +409,6 @@ body:not(#hubv4) {
             }
           }
 
-          .tray-search-bar {
-          }
-
           .tray-sub-menu {
             margin-top: 2rem;
 
@@ -1530,6 +1527,8 @@ body#hubv4 {
           }
 
           &.tray-closed {
+            display: none;
+
             animation: delay-visibility-out 0.2s ease forwards;
 
             .tray-content {
@@ -2893,7 +2892,9 @@ body#hubv4 {
 
           .tray-search-bar {
             padding: 20px 15px;
+            padding-bottom: 5px;
             background-color: $grey-gallery;
+            text-align: center;
 
             form {
               border-radius: $radius;
