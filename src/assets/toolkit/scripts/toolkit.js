@@ -225,7 +225,8 @@ if ($("body").attr("id") == "hubv4") {
     // });
 
     //! Click event for expand buttons in SIDEMENU only
-    expandableButtonElement.on("click keyup", (e) => {
+    expandableButtonElement.on("click keyup touchstart", (e) => {
+      console.log(e.which);
       if (e.which == 13 || e.which == 1) {
         e.preventDefault();
         e.stopPropagation();
@@ -1385,10 +1386,7 @@ if ($("body").attr("id") == "hubv4") {
   $(".tereo-title").attr("lang", "mi");
 
   // Add save page element to first h1
-  if (
-    $("body").hasClass("childpage-type") &&
-    window.location.href.includes("showSaved")
-  ) {
+  if ($("body").hasClass("childpage-type")) {
     var $saveButton =
       '<button class="save-page no-icon flat" data-tooltip><svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="35px" height="35px"><path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"d="M37 3L13 3 13 47 25 40 37 47z" /></svg></button>';
     $(".childpage-type .content-panel h1").first().append($saveButton);
