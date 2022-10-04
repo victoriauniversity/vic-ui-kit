@@ -149,8 +149,18 @@ export function initTray() {
   //! Sidemenu nav expand logic
   function expandTray(index, listItem) {
     $(listItem).on("mouseenter click keyup", (e) => {
+
+      //promo hideshow logic
+      var $navItemID = $(`#${$(this).attr("data-for")}`);
+      $("[id^=draw]").hide();
+      if ($navItemID) {
+        $(".sidemenu-drawer").removeClass("no-promo");
+      } else {
+        $(".sidemenu-drawer").addClass("no-promo");
+      }
+      $navItemID.show();
+
       // If clicking on expander arrow
-      // console.log('expand sidemenu  ', listItem);
       if (
         (e.type == "click" || e.key == "Enter") &&
         $(e.target).hasClass("btn-expander")
