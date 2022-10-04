@@ -149,6 +149,17 @@ export function initTray() {
   //! Sidemenu nav expand logic
   function expandTray(index, listItem) {
     $(listItem).on("mouseenter click keyup", (e) => {
+
+      //promo hideshow logic
+      var $navItemID = $(`#${$(this).attr("data-for")}`);
+      $("[id^=draw]").hide();
+      if ($navItemID) {
+        $(".sidemenu-drawer").removeClass("no-promo");
+      } else {
+        $(".sidemenu-drawer").addClass("no-promo");
+      }
+      $navItemID.show();
+
       // If clicking on expander arrow
       if (
         (e.type == "click" || e.key == "Enter") &&
@@ -173,13 +184,16 @@ export function initTray() {
           $draw.addClass("active");
           sidemenuExpanded = true;
         }
-      } else {
+      } else if ( $(listItem).hasClass("has-submenu") ) {
         // Else we are hovering on the menu item
-        if ($(listItem).parent().hasClass("expanded-draw")) {
+        if ($(listItem).parent().hasClass("expanded-draw") ) {
           // console.log('has class button close tray');
           sidemenuExpanded = true;
           $draw.addClass("active");
           // Remove other ones
+          if( $(listItem).hasClass("has-submenu")) {
+            console.log('np tray print tray');
+          }
         } else {
           //show tray
           if (sidemenuExpanded === false) {
@@ -198,6 +212,9 @@ export function initTray() {
         $(".draw-nav > ul").removeClass("active-nav-group");
         matchingNavGroup.toggleClass("active-nav-group");
         // }
+      } else if( !$(listItem).hasClass("has-submenu") ) {
+        //no children so close menu
+        closeDraw();
       }
     });
   }

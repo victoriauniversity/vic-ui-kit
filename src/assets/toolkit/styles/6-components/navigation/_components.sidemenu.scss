@@ -1083,6 +1083,8 @@ body#hubv4 {
   .sidemenu-banner-wrap {
     z-index: 1;
     position: relative;
+    margin-bottom: 1rem;
+
     .sidemenu-homepage {
       @extend .sidemenu;
 
@@ -1360,6 +1362,15 @@ body#hubv4 {
             }
           }
         }
+      }
+    }
+
+    @include breakpoint($until: desktop-medium) {
+      .sidemenu-homepage {
+        display: none !important;
+      }
+      .hub-banner-sidemenu {
+        width: 100%;
       }
     }
 

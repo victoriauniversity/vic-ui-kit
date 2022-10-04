@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, October 4, 2022, 9:58 AM */
+/** Version: 0.10.13 | Wednesday, October 5, 2022, 12:55 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -16128,6 +16128,7 @@ body#hubv4 .sidemenu.sidemenu-homepage, body:not(#hubv4) .sidemenu-banner-wrap b
 body#hubv4 .sidemenu-banner-wrap {
   z-index: 1;
   position: relative;
+  margin-bottom: 1rem;
 }
 
 body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage {
@@ -16402,6 +16403,15 @@ body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage ul li.nav-item-parent .btn-e
     padding: 0.2em 0 0.75em 0;
     display: none;
     overflow: hidden;
+  }
+}
+
+@media (max-width: 74.99em) {
+  body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage {
+    display: none !important;
+  }
+  body#hubv4 .sidemenu-banner-wrap .hub-banner-sidemenu {
+    width: 100%;
   }
 }
 
@@ -24283,7 +24293,7 @@ body#hubv4 .hub .quote-panel.quote-image .quote figcaption h4 {
   }
 }
 
-.btn {
+.btn:not(.mktoButton) {
   font-weight: 600;
   position: relative;
   display: inline-block;
@@ -24295,7 +24305,7 @@ body#hubv4 .hub .quote-panel.quote-image .quote figcaption h4 {
   transition: all ease-in 0.2s;
 }
 
-.btn:after {
+.btn:not(.mktoButton):after {
   display: inline-block;
   content: "";
   font-family: "VicIcons";
@@ -24306,41 +24316,41 @@ body#hubv4 .hub .quote-panel.quote-image .quote figcaption h4 {
   transition: all ease-in 0.5s;
 }
 
-.btn.primary {
+.btn:not(.mktoButton).primary {
   padding: 0.7rem 2rem 0.7rem 1rem;
   background-color: #0D4C38;
   color: #FEF9F0;
 }
 
-.btn.primary::after {
+.btn:not(.mktoButton).primary::after {
   right: 0.5rem;
 }
 
-.btn.primary:hover, .btn.primary:active, .btn.primary:focus {
+.btn:not(.mktoButton).primary:hover, .btn:not(.mktoButton).primary:active, .btn:not(.mktoButton).primary:focus {
   background-color: #669787;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
 }
 
-.btn.yellow {
+.btn:not(.mktoButton).yellow {
   color: #FCE500;
 }
 
-.btn.light {
+.btn:not(.mktoButton).light {
   background-color: #CCDCD7;
   color: #0D4C38;
 }
 
-.btn.light:hover, .btn.light:active, .btn.light:focus {
+.btn:not(.mktoButton).light:hover, .btn:not(.mktoButton).light:active, .btn:not(.mktoButton).light:focus {
   background-color: #0D4C38;
   color: #CCDCD7;
 }
 
-.btn.simple {
+.btn:not(.mktoButton).simple {
   font-size: 1.1rem;
 }
 
-.btn:hover, .btn:active, .btn:focus {
+.btn:not(.mktoButton):hover, .btn:not(.mktoButton):active, .btn:not(.mktoButton):focus {
   text-decoration: underline;
 }
 

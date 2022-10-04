@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, October 4, 2022, 9:58 AM */
+/** Version: 0.10.13 | Wednesday, October 5, 2022, 12:55 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14141,8 +14141,21 @@ function initTray() {
   var $draw = $(".sidemenu-drawer"); //! Sidemenu nav expand logic
 
   function expandTray(index, listItem) {
+    var _this = this;
+
     $(listItem).on("mouseenter click keyup", function (e) {
-      // If clicking on expander arrow
+      //promo hideshow logic
+      var $navItemID = $("#".concat($(_this).attr("data-for")));
+      $("[id^=draw]").hide();
+
+      if ($navItemID) {
+        $(".sidemenu-drawer").removeClass("no-promo");
+      } else {
+        $(".sidemenu-drawer").addClass("no-promo");
+      }
+
+      $navItemID.show(); // If clicking on expander arrow
+
       if ((e.type == "click" || e.key == "Enter") && $(e.target).hasClass("btn-expander")) {
         if ($(e.target).parent().hasClass("active-menu-item")) {
           // If clicked parent is expanded
@@ -14158,12 +14171,16 @@ function initTray() {
           $draw.addClass("active");
           sidemenuExpanded = true;
         }
-      } else {
+      } else if ($(listItem).hasClass("has-submenu")) {
         // Else we are hovering on the menu item
         if ($(listItem).parent().hasClass("expanded-draw")) {
           // console.log('has class button close tray');
           sidemenuExpanded = true;
           $draw.addClass("active"); // Remove other ones
+
+          if ($(listItem).hasClass("has-submenu")) {
+            console.log('np tray print tray');
+          }
         } else {
           //show tray
           if (sidemenuExpanded === false) {
@@ -14181,6 +14198,9 @@ function initTray() {
         var matchingNavGroup = $(".draw-nav ul[data-index='".concat(index, "']"));
         $(".draw-nav > ul").removeClass("active-nav-group");
         matchingNavGroup.toggleClass("active-nav-group"); // }
+      } else if (!$(listItem).hasClass("has-submenu")) {
+        //no children so close menu
+        closeDraw();
       }
     });
   }
