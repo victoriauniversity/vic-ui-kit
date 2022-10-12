@@ -385,5 +385,34 @@
         }
       }
     }
+
+    @include breakpoint( $until: 850px ) {
+
+      figure {
+        &::after {
+          top: 0.75rem !important;
+          right: 0.75rem !important;
+        }
+      }
+      .banner-body {
+        position: relative;
+        margin-top: -2rem;
+        max-width: 70%;
+      }
+    }
+    @include breakpoint( $until: 700px ) {
+
+      figure {
+        &::after {
+          top: 0.75rem !important;
+          right: 0.75rem !important;
+        }
+      }
+      .banner-body {
+        position: relative;
+        margin-top: 0;
+        max-width: 100%;
+      }
+    }
   }
 }
