@@ -10,10 +10,6 @@
 ///
 /// @group grids
 
-
-
-
-
 .grid {
   @include grid-container;
 
@@ -38,9 +34,9 @@
   }
 }
 
-@include breakpoint( tablet ) {
+@include breakpoint(tablet) {
   .grid {
-    @include grid-collapse( $neat-grid );
+    @include grid-collapse($neat-grid);
   }
 
   // Main content + Widgetbar/Sidebar - 3 items in a row
@@ -58,8 +54,7 @@
   }
 }
 
-@include breakpoint( desktop ) {
-
+@include breakpoint(desktop) {
   // Main content *ONLY* - 3/4 items in a row
   .content-panel:first-child > main:last-child {
     .grid > * {
@@ -74,7 +69,29 @@
     }
   }
 }
+//! ==== NEW DESIGN ====
 
-
-
-
+#hubv4 {
+  // Grids
+  section.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 0;
+    width: 100%;
+    @include breakpoint($until: desktop) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include breakpoint($until: tablet) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    > * {
+      margin: 0;
+      clear: none;
+      width: 100%;
+    }
+    figcaption {
+      padding: 1rem;
+    }
+  }
+}

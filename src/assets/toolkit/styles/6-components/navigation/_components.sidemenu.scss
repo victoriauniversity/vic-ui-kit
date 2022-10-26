@@ -201,7 +201,7 @@ body:not(#hubv4) {
       // 2nd level menu & items
       > ul {
         padding: 0.2em 0 0.75em 0.9em;
-        font-size: 95%;
+        // font-size: 95%;
 
         > li {
           border-left: 1px solid rgba($white, 0.1);
@@ -920,63 +920,27 @@ body#hubv4 {
     .sidemenu-toggle {
       font-size: $text-size-4;
       font-weight: $weight-semibold;
-      // border: 1px $grey-alto solid;
       display: block;
       width: 100%;
-      display: flex;
-      background-color: #fff;
-      &.expanded {
-        background-color: $pounamu;
-        a {
-          color: #fff;
-          .tereo-nav-title {
-            color: $kowhai;
-          }
-        }
-        .btn-expander {
-          clip-path: polygon(0% -2px, 102% -2%, 102% 103%, 10px 104%);
-          padding-left: 15px;
-          background-color: #669787;
-          color: #fce500;
-          border-radius: 0;
-          margin-left: 0;
-          &:after {
-            transform: rotateZ(180deg);
-          }
-        }
-      }
+      background-color: $mahoe;
 
-      a {
-        padding: 0.5rem 0.8rem;
-        color: $black-tundora;
+      > a {
+        padding: 0.5rem 0.5rem;
+        display: block;
         font-size: 0.8em;
         position: relative;
         flex: 1 0 80%;
+        color: #fff;
         &:hover {
           text-decoration: underline;
         }
+        .tereo-nav-title {
+          color: $kowhai;
+        }
 
-        // @include extend-icon-after(list) {
-        //   line-height: 1.1;
-        //   font-size: $text-size-huge;
-        // }
+
       }
 
-      // .btn-expander {
-      //   flex: 1 0 10%;
-      //   color: $pounamu;
-      //   align-self: stretch;
-      //   height: auto;
-      //   border-radius: 0;
-      //   display: flex;
-      //   flex-direction: column;
-      //   justify-content: center;
-      //   margin-right: 0;
-      //   background-color: $grey-gallery;
-      //   &:after {
-      //     line-height: 1;
-      //   }
-      // }
       &.expanded {
         //! Remove important - needs #hubv2 id
         margin-bottom: 0 !important;
@@ -1117,12 +1081,17 @@ body#hubv4 {
 
   //! Scoped vertical navigation (e.g. school of music) // sidemenu-banner
   .sidemenu-banner-wrap {
-    z-index: 1;
+    z-index: 10;
     position: relative;
+    margin-bottom: 1rem;
+
     .sidemenu-homepage {
       @extend .sidemenu;
 
+      margin-top: 1rem;
+
       .sidemenu__label {
+        display: none;
         a {
           &:hover {
             text-decoration: underline;
@@ -1218,6 +1187,7 @@ body#hubv4 {
       .sidemenu-homepage {
         flex: 1 1 25%;
         margin-bottom: 0;
+        margin-top: 1rem !important;
 
         > ul {
           left: 0;
@@ -1270,11 +1240,16 @@ body#hubv4 {
 
           &.active {
             padding: 1rem;
+            padding-left: 4.5rem;
             padding-right: 2rem;
             overflow: visible;
             opacity: 1;
             max-width: 100%;
             visibility: visible;
+            background-image: url(https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg);
+            background-repeat: no-repeat;
+            background-size: 234px;
+            background-position: -90px;
           }
 
           .close-draw {
@@ -1295,7 +1270,7 @@ body#hubv4 {
             width: 30%;
             padding-right: 1rem;
             margin: 0 1rem;
-            border-right: 1px solid $grey-gallery;
+            border-right: none;
             flex: auto;
             min-width: 300px;
             max-width: 300px;
@@ -1319,6 +1294,7 @@ body#hubv4 {
                 display: block;
                 font-weight: 500;
                 margin-right: 0.5rem;
+                margin-bottom: 0.15rem;
               }
             }
 
@@ -1389,6 +1365,15 @@ body#hubv4 {
       }
     }
 
+    @include breakpoint($until: desktop-medium) {
+      .sidemenu-homepage {
+        display: none !important;
+      }
+      .hub-banner-sidemenu {
+        width: 100%;
+      }
+    }
+
     @include breakpoint($until: desktop) {
       .sidemenu-homepage {
         .sidemenu-toggle {
@@ -1428,6 +1413,19 @@ body#hubv4 {
   //! Only show childmenu on desktop screens on child pages
   &.childpage-type {
     .sidebar {
+      .home-link {
+        padding: 0.3rem 0.5rem;
+        // background-color: $kohuhu;
+        color: $pounamu;
+        text-decoration: none;
+
+        @include breakpoint($until: desktop-medium) {
+          display: inline-flex !important;
+        }
+        &:hover {
+          text-decoration: underline;
+        }
+      }
       &.childMenu {
         @include breakpoint($from: desktop-medium) {
           display: block !important;
@@ -1498,9 +1496,9 @@ body#hubv4 {
       // !ALL LEVELS
       ul {
         li {
-          border-left: 0px $sidemenu-background-selected-v3 solid;
+          border-left: 4px transparent solid;
           overflow: hidden;
-          transition: all $easing 0.3s;
+          // transition: all ease 0.3s;
 
           &:not(.sidemenu__label) {
             a {
@@ -1509,7 +1507,8 @@ body#hubv4 {
           }
 
           a {
-            transition: all $easing 0.2s;
+            color: $sidemenu-text-color-v3;
+            // transition: all $easing 0.2s;
             padding: 0.8rem 0.9rem;
             text-decoration: none;
 
@@ -1536,11 +1535,7 @@ body#hubv4 {
             }
 
             &:hover {
-              // color: $sidemenu-text-hover-color-v3;
               text-decoration: underline;
-              // background-color: $grey-gallery;
-              // background-color: $pounamu-light;
-
               + .btn-expander {
                 color: $sidemenu-text-hover-color-v3;
               }
@@ -1552,8 +1547,17 @@ body#hubv4 {
           }
 
           &.active {
-            font-weight: 700;
-            border-left: 5px solid $sidemenu-background-selected-v3;
+            border-left: 4px solid $sidemenu-background-selected-v3;
+            // background-color: $off-white;
+
+            > a {
+              font-weight: 600;
+              text-decoration: underline;
+              color: $pounamu;
+              &:hover {
+                text-decoration: none;
+              }
+            }
           }
           &.has-submenu {
             overflow: hidden;
@@ -1563,6 +1567,7 @@ body#hubv4 {
 
             > a {
               margin-right: 0px;
+              transition: all ease 0.1s;
             }
 
             &.expanded {
@@ -1585,7 +1590,7 @@ body#hubv4 {
 
               //! Nested nested item
               .expanded {
-                background-color: #fff;
+                // background-color: #fff;
               }
 
               //! JOINING ARROWS IN NESTED LISTS
@@ -1594,9 +1599,6 @@ body#hubv4 {
                   position: relative;
                   overflow: visible;
 
-                  > a {
-                    color: $sidemenu-text-color-v3;
-                  }
                   &:before {
                     content: "";
                     position: absolute;
@@ -1610,6 +1612,9 @@ body#hubv4 {
                     opacity: 0;
                     transition: all $easing 0.3s;
                     left: -13px;
+                    @include breakpoint($until: desktop-medium) {
+                      top: 5px;
+                    }
                   }
 
                   &.expanded {
@@ -1634,17 +1639,17 @@ body#hubv4 {
               }
             }
 
-            > .btn-expander {
-              z-index: 100;
-              position: relative;
-              &:hover {
-                background-color: $grey-gallery;
-              }
-              &:active,
-              &:focus {
-                background-color: $grey-gallery;
-              }
-            }
+            // > .btn-expander {
+            //   z-index: 100;
+            //   position: relative;
+            //   &:hover {
+            //     background-color: $grey-gallery;
+            //   }
+            //   &:active,
+            //   &:focus {
+            //     background-color: $grey-gallery;
+            //   }
+            // }
             &.active {
               > ul {
                 display: block;
@@ -1663,16 +1668,15 @@ body#hubv4 {
 
                 &.expanded {
                   > a {
-                    font-weight: 700;
+                    font-weight: 600;
                     color: $sidemenu-text-hover-color-v3;
-                    z-index: 90;
                   }
                 }
               }
               ul {
                 li {
                   > a {
-                    font-size: 95%;
+                    // font-size: 95%;
                   }
                   ul {
                     li {
@@ -1688,7 +1692,6 @@ body#hubv4 {
             }
             > ul {
               padding-left: 0;
-              background-color: #fff;
 
               > li {
                 border-left: none;
@@ -1700,7 +1703,6 @@ body#hubv4 {
                 &.has-submenu {
                   a {
                     padding-right: 10px;
-
                     flex: 1;
                   }
                 }
@@ -1710,31 +1712,34 @@ body#hubv4 {
                   display: flex;
                   flex-direction: column;
                   justify-content: center;
-                }
-                > ul > li > a {
-                  opacity: 1;
-                }
-                &.expanded {
-                  > ul {
-                    > li {
-                      > a {
-                        opacity: 1;
-                      }
-                    }
+                  @include breakpoint($until: tablet) {
+                    margin-right: 15px;
                   }
                 }
+                // > ul > li > a {
+                //   opacity: 1;
+                // }
+                // &.expanded {
+                //   > ul {
+                //     > li {
+                //       > a {
+                //         opacity: 1;
+                //       }
+                //     }
+                //   }
+                // }
                 // BOTTOM LEVEL
                 > ul {
                   margin-left: 10px;
 
                   border-left: 1px $sidemenu-delimiter-color-v3 solid;
                   > li {
-                    > a {
-                      padding-right: 10px;
-                      padding-left: 10px;
-                      margin-left: 0;
-                      opacity: 1;
-                    }
+                    // > a {
+                    //   padding-right: 10px;
+                    //   padding-left: 10px;
+                    //   margin-left: 0;
+                    //   opacity: 1;
+                    // }
 
                     // ADJUST ARROW POSITION AND PADDING OF FIRST <a> LOWEST LEVEL <li>
                     // &:first-of-type {
@@ -1812,10 +1817,11 @@ body#hubv4 {
         // box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         font-size: 100%;
         border: 1px $grey-alto solid;
+        position: relative;
+
         @include breakpoint($until: desktop-medium) {
           border: none;
         }
-        position: relative;
 
         > .sidemenu__label {
           position: relative;
@@ -1824,6 +1830,7 @@ body#hubv4 {
           border-top: none;
           border-bottom: none;
           margin-right: 0;
+          border-left: none;
 
           @include breakpoint($until: desktop-medium) {
             border-bottom: none;
@@ -1893,26 +1900,27 @@ body#hubv4 {
           }
           > a {
             flex: 1 0 80%;
-            &:hover {
-              background-color: #fff;
-            }
+            // &:hover {
+            //   background-color: #fff;
+            // }
           }
 
           > .btn-expander {
             width: auto;
             margin: 0;
             border-radius: 0;
-            @include breakpoint($from: desktop-medium) {
-              padding: 10px 15px;
-            }
+
+            padding: 10px 15px;
             height: 100%;
             margin-left: 0px;
             flex: 1 0 2%;
             max-width: 50px;
           }
+
           &.active {
             border-bottom: none;
             border-top: none;
+
             > .btn-expander {
               &:hover,
               &:active,
@@ -1920,10 +1928,9 @@ body#hubv4 {
                 color: $black-brand;
               }
             }
-          }
-
-          &.active {
             > a {
+              text-decoration: none;
+
               &:hover {
                 color: $sidemenu-text-hover-color-v3;
               }
@@ -1932,7 +1939,7 @@ body#hubv4 {
           &.expanded {
             background-color: $sidemenu-background-selected-v3;
             border-top: none;
-            border-left-width: 5px;
+            border-left-color: $sidemenu-background-selected-v3;
 
             &:before,
             &:after {
@@ -1943,6 +1950,9 @@ body#hubv4 {
               font-weight: 700;
               color: $manuka;
               background-color: transparent;
+              &:focus {
+                color: $manuka;
+              }
               &:hover {
                 color: $manuka;
               }
@@ -1950,11 +1960,11 @@ body#hubv4 {
             &.has-submenu {
               > .btn-expander {
                 clip-path: polygon(0% -2px, 102% -2%, 102% 103%, 10px 104%);
+                background-color: $mahoe;
+                color: $kowhai;
                 @include breakpoint($from: desktop-medium) {
                   padding-left: 15px;
                 }
-                background-color: $mahoe;
-                color: $kowhai;
               }
             }
           }
@@ -1996,6 +2006,27 @@ body#hubv4 {
             left: 0;
             bottom: 0;
             content: none;
+          }
+
+          // !Second level only
+          > ul {
+            background-color: #fff;
+          }
+        }
+      }
+
+      // Alt colour
+      &.light {
+        > ul > li:not(.sidemenu__label).expanded {
+          border-color: $mahoe;
+          background-color: $mahoe;
+          > .btn-expander {
+            background-color: $miro;
+          }
+        }
+        ul li.has-submenu.expanded ul li {
+          &:before {
+            border-left-color: $mahoe;
           }
         }
       }

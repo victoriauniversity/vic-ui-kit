@@ -142,6 +142,16 @@
       width: $widgetbar-width;
     }
   }
+
+  #hubv4 & {
+    > img {
+      margin-bottom: 2rem;
+
+      @include breakpoint($from: desktop-medium) {
+        padding-left: 1.5rem;
+      }
+    }
+  }
 }
 
 .sidebar {
@@ -159,7 +169,7 @@
 
   body > .layout {
     display: flex;
-    
+
     //Content collapse fix for IE
     @media all and ( -ms-high-contrast: none ), ( -ms-high-contrast: active ) {
       height: 100%;

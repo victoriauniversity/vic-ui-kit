@@ -7,12 +7,7 @@
 ///
 /// @group messages
 
-
-
-
-
 /*= FLASH MESSAGES ===========================================================*/
-
 
 // Inside a con
 .flash-message {
@@ -23,7 +18,9 @@
   border-left: $border-width-medium solid $background-opaque-darkest;
 
   > * {
-    &:last-child { margin-bottom: 0; }
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
   // Keep links the same colour as the text
   a[href] {
@@ -42,43 +39,50 @@
   &.error {
     background-color: $background-danger;
 
-    > * { color: $color-danger; }
+    > * {
+      color: $color-danger;
+    }
 
     > h2 {
-      @include extend-icon-before( attention );
+      @include extend-icon-before(attention);
     }
   }
 
   &.warning {
     background-color: $background-warning;
 
-    > * { color: $color-warning; }
+    > * {
+      color: $color-warning;
+    }
 
     > h2 {
-      @include extend-icon-before( megaphone );
+      @include extend-icon-before(megaphone);
     }
   }
 
   &.info {
     background-color: $background-info-light;
 
-    > * { color: $color-info; }
+    > * {
+      color: $color-info;
+    }
 
     > h2 {
-      @include extend-icon-before( info );
+      @include extend-icon-before(info);
     }
   }
 
   &.success {
     background-color: $background-success;
 
-    > * { color: $color-success; }
+    > * {
+      color: $color-success;
+    }
 
     > h2 {
-      @include extend-icon-before( check );
+      @include extend-icon-before(check);
     }
   }
-
 }
 
 .highlight-message {
@@ -108,7 +112,7 @@
     padding: 1rem;
     background-color: $grey-gallery;
     > * {
-      margin: .5rem 0;
+      margin: 0.5rem 0;
     }
 
     a {
@@ -118,14 +122,12 @@
   }
 
   .draw-promo & {
-
-
     .highlight-content {
       flex: 1 1 70%;
       padding: 1rem;
       background-color: $grey-light;
       > * {
-        margin: .5rem 0;
+        margin: 0.5rem 0;
       }
 
       a {
@@ -134,12 +136,52 @@
       }
     }
 
-
     .button {
-      margin: .5rem 0;
+      margin: 0.5rem 0;
       display: inline-block;
       &.primary {
         color: $white !important;
+      }
+    }
+  }
+}
+//! ==== NEW DESIGN ====
+
+#hubv4 {
+  .highlight-message {
+    // clip-path: polygon(-0.25% -3px, 93.9% -0.75%, 100.2% 99.28%, 0px 100%);
+    // clip-path: polygon(0% 0%, 83% 0, 100% 14%, 100% 100%, 0% 100%);
+    clip-path: polygon(0% 0%, 94.45% -3px, 100% 24.44%, 100% 100%, 0% 100%);
+
+    .highlight-content {
+      background-color: rgb(229, 246, 253);
+      color: rgb(1, 67, 97);
+    }
+    &.green {
+      .highlight-content {
+        color: $pounamu;
+        background-color: $kohuhu;
+
+        a.button.primary {
+          background-color: $mahoe;
+          color: $manuka !important;
+          margin-top: 0.5rem;
+          border-radius: 0;
+          // border: 1px $miro solid;
+          transition: all ease 0.2s;
+          display: inline-block;
+          &:hover {
+            box-shadow: 1.1px 2.2px 2.2px rgba(7, 7, 7, 0.47);
+            color: #fff;
+            background-color: $pounamu;
+          }
+        }
+      }
+    }
+    &.red {
+      .highlight-content {
+        color: rgb(95, 33, 32);
+        background-color: rgb(253, 237, 237);
       }
     }
   }

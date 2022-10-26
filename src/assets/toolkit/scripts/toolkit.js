@@ -224,8 +224,9 @@ if ($("body").attr("id") == "hubv4") {
     //   apply();
     // });
 
-    // Click event for expand buttons in SIDEMENU only
-    expandableButtonElement.on("click keyup", (e) => {
+    //! Click event for expand buttons in SIDEMENU only
+    expandableButtonElement.on("click keyup touchstart", (e) => {
+      console.log(e.which);
       if (e.which == 13 || e.which == 1) {
         e.preventDefault();
         e.stopPropagation();
@@ -233,9 +234,17 @@ if ($("body").attr("id") == "hubv4") {
         var topLevel = false;
         var clickedButton = $(this);
 
-        // !TOP LEVEL
+        // !TOP LEVEL EXPANDER CLICKED
         if (clickedButton.parent().parent().parent().hasClass("sidemenu")) {
+          // When closing, also close any items which are expanded inside the parent
           topLevel = true;
+          clickedButton
+            .parent()
+            .find(".expanded")
+            .not(clickedButton.parent())
+            .removeClass("expanded")
+            .find(">ul")
+            .slideToggle();
         }
 
         apply(topLevel, clickedButton);
@@ -1376,41 +1385,72 @@ if ($("body").attr("id") == "hubv4") {
   // Add Maori language tags to all tereo titles
   $(".tereo-title").attr("lang", "mi");
 
-  // Save page toggle
-  $(".save-page").on("click", function () {
-    $(this).toggleClass("saved");
-  });
+  var saveButton = $(".save-page");
 
   // Save a page
   $(".save-page").on("click", function () {
+    $(this).toggleClass("saved");
+
+    if ($(this).hasClass("saved")) {
+      saveButton.attr("title", "Remove this page from your Saved Items");
+    } else {
+      saveButton.attr("title", "Add this page to your Saved Items");
+    }
+
+    // Update tooltip text
+
     var localSavedPages = JSON.parse(localStorage.getItem("savedPages"));
 
     var savedPageObject = {
-      url: window.location.href,
       name: document.title,
+      url: window.location.href,
     };
+    console.log(savedPageObject);
 
-    console.log(localSavedPages);
-
+    // if we already have some saved pages
     if (localSavedPages && localSavedPages.length > 0) {
       console.log(localSavedPages);
-      var arrayOfSavedItems = [];
-
-      var filtered = localSavedPages.filter(function (option) {
-        return option.url !== savedPageObject.url;
-      });
-      localStorage.setItem("savedPages", [JSON.stringify(filtered)]);
+      // If item already exists, remove it
+      if (
+        localSavedPages.filter((e) => e.url === savedPageObject.url).length > 0
+      ) {
+        var filtered = localSavedPages.filter(function (option) {
+          return option.url !== savedPageObject.url;
+        });
+        localStorage.setItem("savedPages", [JSON.stringify(filtered)]);
+      } else {
+        // Else, add it in
+        localSavedPages.push(savedPageObject);
+        localStorage.setItem("savedPages", [JSON.stringify(localSavedPages)]);
+      }
     } else {
       // First saved page
       var arrayOfSavedItems = [];
       arrayOfSavedItems.push(savedPageObject);
-
       localStorage.setItem("savedPages", JSON.stringify(arrayOfSavedItems));
     }
   });
 
   // Apply style to page save icon if page is in local storage
-  if ($(".save-page")) {
+  if (saveButton) {
+    var localSavedPages = JSON.parse(localStorage.getItem("savedPages"));
+    console.log(localSavedPages);
+    if (
+      localSavedPages.filter((e) => e.url === window.location.href).length > 0
+    ) {
+      saveButton.addClass("saved");
+      saveButton.attr("title", "Remove this page from your Saved Items");
+    } else {
+      saveButton.removeClass("saved");
+      saveButton.attr("title", "Add this page to your Saved Items");
+    }
+  }
+
+  // Save Qualification
+  if (window.location.href.includes("?saveTest")) {
+    var buttonEl =
+      "<button class='save-qual-button new primary no-icon'>Save Qualification</button>";
+    $("body#hubv4").append(buttonEl);
   }
 } else {
   /* CONSTANT ATTRIBUTES */
@@ -1503,6 +1543,7 @@ keep the markup clean (and easily handled by the CSS) */
     enhanceSidemenu(menuElement);
 
     // Expanding/Collapsing of the entire side menu on mobile devices
+    // ! Not sure this is needed anymore
     menuElement
       .children(`.${SIDEMENU_TOGGLE_CLASS}`)
       .children("a")

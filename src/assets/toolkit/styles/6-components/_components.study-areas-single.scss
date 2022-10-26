@@ -1,7 +1,6 @@
 // - The generic tile grid
 // - Used for both Study-areas and Degrees & Qualifactions block
 
-
 .study-area-single {
   .study-area-wide-panel {
     @include grid-container;
@@ -17,12 +16,14 @@
       padding-right: $gap-horizontal;
       width: 40%;
 
-      img { width: 100%; }
+      img {
+        width: 100%;
+      }
     }
 
     .content-wrap {
-
-      &:first-child { // Study area without an image
+      &:first-child {
+        // Study area without an image
         width: 100%;
       }
 
@@ -31,7 +32,9 @@
           width: 100%;
 
           // TODO: Refactor & flatten to lower the depth!
-          h2 { margin-bottom: 1rem; }
+          h2 {
+            margin-bottom: 1rem;
+          }
 
           p {
             margin-bottom: $gap-content;
@@ -46,29 +49,32 @@
 
           // TODO: Refactor & flatten to lower the depth!
           h4 {
-            margin-top: .35em;
+            margin-top: 0.35em;
             color: $grey;
           }
 
           ul {
-            padding-top: .5rem;
+            padding-top: 0.5rem;
 
             li {
-              padding: .5em .15em;
+              padding: 0.5em 0.15em;
               font-size: 1.1em;
               border-bottom: $border;
 
-              &:last-child { border-bottom: 0; }
+              &:last-child {
+                border-bottom: 0;
+              }
             }
           }
-
         }
       }
 
-      a.button { float: left; }
+      a.button {
+        float: left;
+      }
     }
 
-    @include breakpoint( tablet ) {
+    @include breakpoint(tablet) {
       .img-wrap {
         float: left;
         width: 40%;
@@ -83,14 +89,18 @@
         .text-subjects-wrap {
           display: inline;
 
-          .subjects-wrap { float: right; }
+          .subjects-wrap {
+            float: right;
+          }
         }
 
-        a.button { clear: left; }
+        a.button {
+          clear: left;
+        }
       }
     }
 
-    @include breakpoint( desktop ) {
+    @include breakpoint(desktop) {
       .content-wrap {
         .text-subjects-wrap {
           .text-wrap {
@@ -107,9 +117,11 @@
       }
     }
 
-    @include breakpoint( $until: desktop ) {
+    @include breakpoint($until: desktop) {
       .content-wrap {
-        a.button { margin-bottom: $gap-content; }
+        a.button {
+          margin-bottom: $gap-content;
+        }
 
         .text-subjects-wrap .subjects-wrap {
           clear: left;
@@ -117,11 +129,11 @@
       }
     }
 
-    @include breakpoint( $until: tablet ) {
-      .img-wrap { display: none; }
+    @include breakpoint($until: tablet) {
+      .img-wrap {
+        display: none;
+      }
     }
-
-
   }
 }
 
@@ -129,16 +141,182 @@
 .study-areas-undergrad {
   .study-area-single {
     .study-area-wide-panel {
-      border-bottom-color: rgba(0, 0, 0, .2);
+      border-bottom-color: rgba(0, 0, 0, 0.2);
 
       .text-subjects-wrap {
         .subjects-wrap {
           ul {
             li {
-              border-bottom-color: rgba(0, 0, 0, .2);
+              border-bottom-color: rgba(0, 0, 0, 0.2);
             }
           }
         }
+      }
+    }
+  }
+}
+
+// New style - Monty - 29/09/22
+$cardShadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+  rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+#hubv4 {
+  #study-area-tabs {
+    text-align: center;
+
+    .switch {
+      display: inline-flex;
+      margin: auto;
+      width: auto;
+      height: auto;
+      transform: initial;
+      margin-bottom: 2rem;
+      border-radius: 100px;
+      overflow: hidden;
+      &:hover {
+        background-color: $grey-gallery;
+      }
+      .switch-selection {
+        height: 100%;
+        width: 52%;
+        top: 0;
+        left: -1px;
+        background-color: $pounamu;
+        border-radius: 0;
+      }
+
+      .switch-label {
+        float: none;
+        line-height: initial;
+        font-size: 1rem;
+        width: auto;
+        padding: 10px;
+        font-weight: 700;
+
+        &:active {
+        }
+      }
+      .switch-label-on {
+        margin-left: 0;
+      }
+      .switch-input:checked {
+        & + .switch-label {
+          color: $manuka;
+        }
+        & + .switch-label-on ~ .switch-selection {
+          left: 132px;
+        }
+      }
+    }
+    ul {
+      li {
+        a {
+          background-color: $grey-alto;
+        }
+        &.active {
+          a {
+            background-color: $pounamu;
+            h4 {
+              color: $manuka;
+            }
+          }
+        }
+      }
+    }
+  }
+  .tiles-panel {
+    background-color: $off-white;
+    .study-area-single {
+      // Override icons
+      .icon-book::before {
+        display: inline-block;
+        font-family: "Favorites";
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        line-height: 1;
+        text-decoration: inherit;
+        text-rendering: optimizeLegibility;
+        text-transform: none;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        font-smoothing: antialiased;
+        content: "\f135";
+      }
+      .study-area-wide-panel {
+        box-shadow: $cardShadow;
+        border: 1px $grey-chalice solid;
+        display: flex;
+        .img-wrap {
+          padding: 0;
+          float: none;
+          width: 100%;
+          flex: 1 0 40%;
+        }
+        .content-wrap {
+          float: none;
+          flex: 1 0 50%;
+          width: 100%;
+          background-color: #fff;
+          padding: 1.5rem 2rem;
+          .text-subjects-wrap {
+            display: flex;
+            flex-direction: column;
+            .text-wrap {
+              float: none;
+              // flex: 1 0 58%;
+              width: 100%;
+            }
+            .subjects-wrap {
+              float: none;
+              // flex: 1 0 40%;
+              width: 100%;
+              padding: 0;
+              margin-top: 1rem;
+              h4 {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+                color: $black-tundora;
+
+                &:before {
+                  font-size: 120%;
+                }
+              }
+              ul {
+                display: flex;
+                flex-wrap: wrap;
+                li {
+                  padding: 4px 12px !important;
+                  margin: 0 5px 8px 0;
+                  border-radius: 100px;
+                  background-color: $grey-gallery;
+                  color: $black-tundora;
+                  &:after {
+                    content: none !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .list-long li {
+        padding: 0 !important;
+        border-bottom: none !important;
+        display: inline;
+        font-size: 0.8rem !important;
+        font-weight: 600;
+      }
+      .list-long li:after {
+        content: "•";
+        padding-left: 0.4rem;
+        padding-right: 0.2rem;
+      }
+
+      .list-long li:last-child:after {
+        content: "";
+        padding: 0;
       }
     }
   }
