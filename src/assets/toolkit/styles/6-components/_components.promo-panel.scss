@@ -628,8 +628,7 @@ $box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
   rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 #hubv4 {
   .formatting {
-    .promo-panel figure,
-    figure {
+    .promo-panel figure {
       box-shadow: $box-shadow-card;
 
       img {
@@ -637,6 +636,45 @@ $box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
       }
       figcaption {
         // padding: 2rem;
+      }
+    }
+
+    figure {
+      box-shadow: $box-shadow-card;
+
+      > a {
+        img {
+          margin-bottom: 0;
+        }
+        img + figcaption {
+          margin-top: 0;
+          padding: 1.5rem;
+        }
+      }
+    }
+  }
+
+  @include breakpoint($until: tablet) {
+    .promo-panel {
+      figure {
+        > img {
+          margin-bottom: 0;
+          & + figcaption{
+            padding: 1.5rem;
+            margin-top: 0;
+
+            h1, h2, h3 {
+              margin-top: 0;
+            }
+          }
+        }
+
+        > figcaption {
+          padding: 1.5rem;
+          h1, h2, h3 {
+            margin-top: 0;
+          }
+        }
       }
     }
   }
