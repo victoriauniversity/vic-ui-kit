@@ -641,6 +641,41 @@ $box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
 
     figure {
       box-shadow: $box-shadow-card;
+
+      > a {
+        img {
+          margin-bottom: 0;
+        }
+        img + figcaption {
+          margin-top: 0;
+          padding: 1.5rem;
+        }
+      }
+    }
+  }
+
+  @include breakpoint($until: tablet) {
+    .promo-panel {
+      figure {
+        > img {
+          margin-bottom: 0;
+          & + figcaption{
+            padding: 1.5rem;
+            margin-top: 0;
+
+            h1, h2, h3 {
+              margin-top: 0;
+            }
+          }
+        }
+
+        > figcaption {
+          padding: 1.5rem;
+          h1, h2, h3 {
+            margin-top: 0;
+          }
+        }
+      }
     }
   }
 }
