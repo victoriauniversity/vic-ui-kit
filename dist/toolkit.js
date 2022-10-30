@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, October 27, 2022, 1:23 PM */
+/** Version: 0.10.13 | Monday, October 31, 2022, 9:01 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15578,7 +15578,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 if (document.location.href.includes("SQ_DESIGN_NAME=v4") || document.location.href.includes("local.wgtn") || document.location.href.includes("assets/git_bridge/0009/1778031/dist")) {
   $("body").attr("id", "hubv4");
 } // Check toolbar to ensure myTools has been updated to Puaha
-//TODO - remove below code
 
 
 if (document.location.pathname.split("/")[1] == "courses" || document.location.pathname.split("/")[1] == "explore") {
@@ -15593,18 +15592,34 @@ if (document.location.pathname.split("/")[1] == "courses" || document.location.p
         $el.attr("title", "Pūaha");
       }
     });
+  } // Add Nuku link (course/programmes)
+
+
+  var $nukuLink = $("<li role='presentation' ng-repeat='menuItem in ::vm.header.navigation.alternate' ng-if=':: menuItem.type == 'link'' class=''><a title='Nuku' ng-href='https://wgtn.instructure.com/' role='menuitem' href='https://wgtn.instructure.com/'>Nuku</a></li>");
+  var target = $("header ul[role=menubar] > li").filter(function (i, el) {
+    return $(el).find(">a").text() == "Blackboard";
+  });
+  var checkIfAlreadyExists = $("header ul[role=menubar] > li").filter(function (i, el) {
+    return $(el).find(">a").text() == "Nuku";
+  });
+
+  if (target[0] && checkIfAlreadyExists.length < 1) {
+    $nukuLink.insertAfter(target[0]);
   }
 } else {
-  $("header .menu-bar > a").each(function (e) {
-    var text = $(this).text(); // Update link if mytools
+  // Add Nuku link (main site)
+  var $nukuLink = $("<a title='Nuku' href='https://wgtn.instructure.com/' target='_blank'>Nuku</a>");
+  var target = $("header .menu-bar > a").filter(function (i, el) {
+    return $(el).text() == "Blackboard";
+  }); // Make sure it's not already added
 
-    if (text.includes("myTools") || text.includes("—Student Portal")) {
-      var $el = $(this);
-      $el.text("Pūaha");
-      $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
-      $el.attr("title", "Pūaha");
-    }
+  var checkIfAlreadyExists = $("header .menu-bar > a").filter(function (i, el) {
+    return $(el).text() == "Nuku";
   });
+
+  if (target[0] && checkIfAlreadyExists.length < 1) {
+    $nukuLink.insertAfter(target[0]);
+  }
 }
 /* END Hide levy info on courses page */
 
@@ -16919,8 +16934,25 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
 
 
   if (window.location.href.includes("?saveTest")) {
-    var buttonEl = "<button class='save-qual-button new primary no-icon'>Save Qualification</button>";
-    external_jQuery_default()("body#hubv4").append(buttonEl);
+    var buttonEl = "<button class='save-qual-button button no-icon'>Save Qualification</button>";
+    external_jQuery_default()("body").append(buttonEl);
+    external_jQuery_default()(".save-qual-button").on("click", function () {
+      // Construct object
+      var qualObject = {};
+      qualObject.name = document.title.split("|")[0].trim();
+      qualObject.searchPageId = external_jQuery_default()("meta[name='search-page-id']")[0].content;
+      qualObject.level = external_jQuery_default()("meta[name='search-level-of-study']")[0].content;
+      qualObject.faculty = external_jQuery_default()("meta[name='search-relatedFaculty']")[0].content;
+
+      if (external_jQuery_default()("meta[name='search-code']")[0]) {
+        qualObject.code = external_jQuery_default()("meta[name='search-code']")[0].content;
+      } else {
+        qualObject.code = "";
+      }
+
+      qualObject.trimesterStart = external_jQuery_default()("meta[name='search-trimesterStart']")[0].content;
+      console.log(qualObject);
+    });
   }
 } else {
   /* SUPPORTING FUNCTIONS */

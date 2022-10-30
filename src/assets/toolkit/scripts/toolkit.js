@@ -1449,8 +1449,27 @@ if ($("body").attr("id") == "hubv4") {
   // Save Qualification
   if (window.location.href.includes("?saveTest")) {
     var buttonEl =
-      "<button class='save-qual-button new primary no-icon'>Save Qualification</button>";
-    $("body#hubv4").append(buttonEl);
+      "<button class='save-qual-button button no-icon'>Save Qualification</button>";
+    $("body").append(buttonEl);
+
+    $(".save-qual-button").on("click", function () {
+      // Construct object
+      var qualObject = {};
+      qualObject.name = document.title.split("|")[0].trim();
+      qualObject.searchPageId = $("meta[name='search-page-id']")[0].content;
+      qualObject.level = $("meta[name='search-level-of-study']")[0].content;
+      qualObject.faculty = $("meta[name='search-relatedFaculty']")[0].content;
+      if ($("meta[name='search-code']")[0]) {
+        qualObject.code = $("meta[name='search-code']")[0].content;
+      } else {
+        qualObject.code = "";
+      }
+      qualObject.trimesterStart = $(
+        "meta[name='search-trimesterStart']"
+      )[0].content;
+
+      console.log(qualObject);
+    });
   }
 } else {
   /* CONSTANT ATTRIBUTES */
