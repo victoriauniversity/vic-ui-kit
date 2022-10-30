@@ -409,9 +409,6 @@ body:not(#hubv4) {
             }
           }
 
-          .tray-search-bar {
-          }
-
           .tray-sub-menu {
             margin-top: 2rem;
 
@@ -1252,6 +1249,9 @@ body#hubv4 {
     }
   }
   .main-site-header {
+    &.existing-ia {
+      overflow: initial; // Override IE hack from `components.site-header.scss`
+    }
     .header-toggle {
       display: flex;
       justify-content: flex-end;
@@ -1308,6 +1308,9 @@ body#hubv4 {
         align-self: center;
         border-radius: 4px;
         margin-right: 5px;
+        @include breakpoint($until: tablet) {
+          display: none;
+        }
       }
       .top-header-buttons {
         display: flex;
@@ -1417,7 +1420,7 @@ body#hubv4 {
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
-    line-height: 1.8;
+    // line-height: 1.8;
     text-decoration: inherit;
     text-rendering: optimizeLegibility;
     text-transform: none;
@@ -1433,14 +1436,14 @@ body#hubv4 {
   .main-site-header {
     &.header-tray {
       .header-inner {
-        padding-top: 8px;
-        padding-bottom: 8px;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
         z-index: 3;
         display: flex;
         align-items: center;
 
         .header-logo {
-          width: 25%;
+          width: 20%;
           padding-left: 0;
           .logo {
             max-width: 12%;
@@ -1451,6 +1454,40 @@ body#hubv4 {
           padding-left: 1rem;
           width: 40%;
           flex: 1;
+          .sub-menu-list {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            justify-content: space-between;
+            margin-right: 2rem;
+            margin-top: 5px;
+
+            .sub-menu-item {
+              &:not(:last-of-type) {
+                // margin-right: 0.5rem;
+                // padding-right: 0.5rem;
+                // border-right: 1px #ccc solid;
+              }
+              > a {
+                display: flex;
+                flex-direction: column;
+                text-decoration: none;
+                font-size: 1em;
+                .tereo-title {
+                  color: $pounamu;
+                }
+                &:hover {
+                  text-decoration: underline;
+                }
+                span {
+                  color: $black-mine-shaft;
+                }
+              }
+            }
+            .tereo-title {
+              font-size: 1em;
+            }
+          }
           @include breakpoint($until: desktop-medium) {
             width: 58%;
           }
@@ -1490,6 +1527,8 @@ body#hubv4 {
           }
 
           &.tray-closed {
+            display: none;
+
             animation: delay-visibility-out 0.2s ease forwards;
 
             .tray-content {
@@ -1534,16 +1573,136 @@ body#hubv4 {
             flex: 1 0 40%;
             .main-nav-list {
               position: relative;
-              .home-link {
-                display: block;
-                padding: 6px 15px;
-                background-color: $mahoe;
-                color: #fff;
-                text-decoration: none;
-                &:hover {
-                  text-decoration: underline;
+
+              &.childMenu {
+                display: none !important;
+                float: none;
+
+                .sidemenu-toggle {
+                  // display: none;
+                  a {
+                    // pointer-events: none;
+                  }
+                }
+                .sidemenu__label {
+                  // display: flex;
                 }
               }
+              @include breakpoint($until: desktop-medium) {
+                //! Child menu in tray view
+                &.childMenu {
+                  display: block !important;
+                  .sidemenu {
+                    border-bottom: 1px $grey-gallery solid;
+                    // border-left: 4px $pounamu solid;
+                  }
+                  @include breakpoint(desktop-medium) {
+                    display: block !important;
+                    // display: none !important;
+                  }
+
+                  // #childPageMenu {
+                  //   // !ALL LEVELS
+                  //   li {
+                  //     border-left: none;
+                  //     &:before {
+                  //       top: 5px;
+                  //     }
+                  //     .btn-expander {
+                  //       font-size: 1.2rem;
+                  //     }
+
+                  //     &.expanded {
+                  //       background-color: #fff;
+                  //       border-left: none;
+                  //       > a {
+                  //         font-weight: bold;
+                  //         color: $pounamu;
+                  //       }
+                  //     }
+                  //   }
+                  //   // !FIRST LEVEL
+                  //   > li {
+                  //     // padding-left: 10px;
+                  //     > .btn-expander {
+                  //       border-radius: 100px;
+                  //       clip-path: none;
+                  //       color: $black-tundora;
+                  //       background-color: transparent;
+                  //       text-align: center;
+                  //       flex: none;
+                  //       margin-right: 6px;
+                  //       display: flex;
+                  //       flex-direction: column;
+                  //       justify-content: center;
+                  //       // Important required to override JS custom height on desktop
+                  //       height: auto !important;
+
+                  //       &:focus,
+                  //       &:hover {
+                  //         background-color: $grey-gallery;
+                  //       }
+                  //     }
+                  //     &:before {
+                  //       content: "";
+                  //       position: absolute;
+                  //       width: 0;
+                  //       height: 0;
+                  //       top: 10px;
+                  //       border-top: 10px solid transparent;
+                  //       border-left: 12px solid #0d4c38;
+                  //       border-bottom: 10px solid transparent;
+                  //       opacity: 0;
+                  //       transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+                  //       left: -13px;
+                  //     }
+                  //     &.expanded {
+                  //       border-top: 1px $mahoe solid;
+                  //     > .btn-expander {
+                  //       color: $pounamu;
+                  //     }
+                  //       &:before {
+                  //         left: 0px;
+                  //         opacity: 1;
+                  //       }
+                  //     }
+                  //     > ul {
+                  //       border-left: 1px $grey-gallery solid;
+                  //       margin-left: 10px;
+                  //       // !SECOND LEVEL
+                  //       > li {
+                  //         > .btn-expander {
+                  //           margin-right: 20px;
+                  //         }
+
+                  //         // !THIRD (BOTTOM) LEVEL
+                  //         > ul {
+                  //           > li {
+                  //             > .btn-expander {
+                  //               margin-right: 30px;
+                  //             }
+                  //           }
+                  //         }
+                  //       }
+                  //     }
+                  //   }
+                  // }
+                }
+                &:not(.childMenu) {
+                  display: none;
+                }
+              }
+
+              .sidemenu-toggle {
+                > a {
+                  > .tereo-nav-title,
+                  > .tereo-title {
+                    display: block;
+                    color: $kowhai;
+                  }
+                }
+              }
+
               .tall-blip {
                 height: 0;
                 width: 3px;
@@ -1724,16 +1883,16 @@ body#hubv4 {
                 color: $green-brand;
                 margin-bottom: 5px;
               }
-              &.expanded {
-                .tereo-nav-title {
-                  color: $kowhai;
-                }
-                > .btn-expander {
-                  &:after {
-                    transform: rotateZ(180deg);
-                  }
-                }
-              }
+              // &.expanded {
+              //   .tereo-nav-title {
+              //     color: $kowhai;
+              //   }
+              //   > .btn-expander {
+              //     &:after {
+              //       transform: rotateZ(180deg);
+              //     }
+              //   }
+              // }
               &:active,
               &:focus,
               &.expanded {
@@ -2336,11 +2495,8 @@ body#hubv4 {
                 flex: 1 0 40%;
                 justify-content: center;
               }
-              h1 {
-                display: flex;
-                border-right: 2px $grey-gallery solid;
-              }
               .tereo-title {
+                border-right: 2px $grey-gallery solid;
                 margin-right: 0.5em;
                 padding-right: 0.5em;
               }
@@ -2716,11 +2872,11 @@ body#hubv4 {
       &.header-tray {
         .tray-content {
           background-color: #fff;
-
           display: flex;
           flex-direction: column;
           position: absolute;
           right: 0;
+          z-index: 8;
 
           &:after {
             // content: "";
@@ -2736,7 +2892,9 @@ body#hubv4 {
 
           .tray-search-bar {
             padding: 20px 15px;
+            padding-bottom: 5px;
             background-color: $grey-gallery;
+            text-align: center;
 
             form {
               border-radius: $radius;
@@ -2954,7 +3112,7 @@ body#hubv4 {
     font-weight: 400;
   }
   /*TABS*/
-  .main-site-header.header-tray .header-inner .tray-content .tabs {
+  .main-site-header.header-tray .header-inner .tray-content .tray-tabs {
     margin: 0;
     background-color: $grey-gallery;
     color: $black-brand;
@@ -2979,7 +3137,7 @@ body#hubv4 {
       }
     }
   }
-  .menu-container .tabs .tab {
+  .menu-container .tray-tabs .tab {
     padding: 10px 25px;
     cursor: pointer;
     transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
@@ -3090,1256 +3248,5 @@ body#hubv4 {
   // Properly hide back to top button
   #btn-up {
     display: none;
-  }
-
-  //! ====== HOMEPAGE - MONTY - 25/07/22 ======
-  // Hide pre-header
-  .pre-header {
-    display: none;
-  }
-  &.homepage {
-    .block-banner.video {
-      margin-top: 0;
-      z-index: 0;
-    }
-
-    //? === HELPERS ===
-    // Top/Right pseudo border animation
-    figure {
-      &.borders-tr {
-        position: relative;
-        &:not(:last-of-type) {
-          margin-right: 1rem;
-        }
-        a {
-          &:after {
-            content: "";
-            border-top: 15px $miro solid;
-            border-right: 15px $miro solid;
-            background-color: transparent;
-            position: absolute;
-            top: -0;
-            right: -0;
-            max-width: calc(100% - 15px);
-            max-height: calc(100% - 15px);
-            width: 30%;
-            height: 30%;
-            transition: all $easing 0.6s;
-          }
-        }
-        &.miro {
-          a {
-            &:after {
-              border-color: $miro;
-            }
-          }
-        }
-        &.mahoe {
-          a {
-            &:after {
-              border-color: $mahoe;
-            }
-          }
-        }
-        &.pounamu {
-          a {
-            &:after {
-              border-color: $pounamu;
-            }
-          }
-        }
-
-        a {
-          &:hover {
-            &:after {
-              width: 100%;
-              height: 100%;
-            }
-          }
-        }
-      }
-    }
-    .text-center {
-      text-align: center;
-    }
-
-    //? === END HELPERS ====
-
-    //? Buttons
-
-    //? Font
-    .sector {
-      h2 {
-        font-size: 2rem;
-        font-weight: 600;
-      }
-    }
-
-    //? SVG backgrounds
-    .home-svg-lines {
-      position: absolute;
-      height: 100%;
-      left: 0;
-      top: 0;
-      width: 100%;
-      overflow: hidden;
-
-      #lines-top {
-        position: absolute;
-        left: 50%;
-        height: 1200px;
-        top: -600px;
-      }
-      #lines-bottom {
-        position: absolute;
-        left: 50%;
-        top: -1200px;
-      }
-    }
-
-    //? Search
-    .homepage-search {
-      // background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
-      // background-repeat: no-repeat;
-      // background-position: 50% 50%;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .search-block {
-      align-self: center;
-      #app {
-        .submit-button {
-          background-color: $mahoe;
-        }
-      }
-      h2 {
-        font-weight: 600;
-      }
-      .tereo {
-        display: block;
-        color: $black-brand;
-      }
-    }
-
-    .show-mega-menu-top .mega-sub-menu .mega-menu-top-level {
-      border-top: none;
-    }
-    .main-site-header.header-tray .header-inner .header-logo {
-      width: 20%;
-    }
-    //? Preheader
-    .header-content {
-      width: 90%;
-      flex: 1 0 40%;
-      .pre-header-inside {
-        background-color: transparent;
-        @include breakpoint($until: desktop) {
-          display: none;
-        }
-        .block {
-          padding: 0;
-        }
-        .sub-menu-list {
-          display: flex;
-          flex-wrap: wrap;
-          width: 100%;
-          justify-content: space-between;
-          margin-right: 2rem;
-          margin-top: 5px;
-
-          .sub-menu-item {
-            &:not(:last-of-type) {
-              // margin-right: 0.5rem;
-              // padding-right: 0.5rem;
-              // border-right: 1px #ccc solid;
-            }
-            > a {
-              display: flex;
-              flex-direction: column;
-              text-decoration: none;
-              font-size: 1em;
-              .tereo-title {
-                color: $pounamu;
-              }
-              &:hover {
-                text-decoration: underline;
-              }
-              span {
-                color: $black-mine-shaft;
-              }
-            }
-          }
-          .tereo-title {
-            font-size: 1em;
-          }
-        }
-      }
-    }
-    .pre-header {
-      // background: $green-linear-gradient;
-      background-color: $pounamu;
-      text-align: center;
-      // background-image: url("../../images/patterns/pattern-03-horizontal.svg");
-      background-size: contain;
-      @include breakpoint($until: desktop) {
-        display: none;
-      }
-      &.light {
-        background-color: #f7f7f7;
-
-        ul {
-          li {
-            color: #fff;
-            a {
-              // color: #fff;
-              color: $black-brand;
-              background-color: #eee;
-              &:hover {
-                background-color: $green-brand-bright;
-                color: #fff;
-              }
-            }
-          }
-        }
-      }
-      > div {
-        padding-top: 0;
-        padding-bottom: 0;
-      }
-      a,
-      button {
-        &:active,
-        &:focus {
-          background-color: rgba(100, 100, 100, 0.5);
-        }
-      }
-      ul.sub-menu-list {
-        display: flex;
-        justify-content: flex-end;
-        justify-self: flex-end;
-        li {
-          color: #fff;
-          position: relative;
-          &:after {
-            content: "";
-            height: 100%;
-            width: 2px;
-            right: 0;
-            transform: rotateZ(10deg);
-            background-color: rgba(255, 255, 255, 0.5);
-            position: absolute;
-            z-index: 1;
-          }
-          a {
-            // color: #fff;
-            color: #fff;
-            padding: 5px 10px;
-            font-size: 15px;
-            display: inline-block;
-            clip-path: polygon(
-              8.32% -5px,
-              111% -5px,
-              106.08% 97.06%,
-              0.06% 97.06%
-            );
-            margin-left: -6px;
-            padding-left: 20px;
-            padding-right: 15px;
-
-            &:hover {
-              background-color: $green-brand-bright;
-              background-color: rgba(100, 100, 100, 0.5);
-              color: #fff;
-            }
-          }
-          &:after {
-            // content: "-";
-            margin-left: 10px;
-          }
-          &:last-of-type {
-            margin-right: 0;
-            border-right: 0;
-            &:after {
-              content: none;
-            }
-            a {
-            }
-          }
-        }
-      }
-    }
-
-    //? Banner
-    .home-3-up-banner {
-      max-width: 1600px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 0px 0px;
-      grid-template-areas:
-        "box1 box1 box2"
-        "box1 box1 box3";
-
-      @include breakpoint($until: desktop-medium) {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        gap: 0px 0px;
-        grid-template-areas:
-          "box1 box1"
-          "box2 box3";
-      }
-      #box1 {
-        grid-area: box1;
-      }
-      #box2 {
-        grid-area: box2;
-      }
-      #box3 {
-        grid-area: box3;
-      }
-
-      .primary-banner,
-      .secondary-banner {
-        float: none;
-        width: 100%;
-      }
-
-      // Box
-      > div {
-        h1,
-        h3 {
-          margin-bottom: 20px;
-          @include breakpoint($until: desktop-medium) {
-            margin-bottom: 10px;
-          }
-        }
-        &:hover {
-          ~ :not(:hover) {
-            img {
-              filter: brightness(0.85);
-            }
-          }
-        }
-      }
-      #box1 {
-        height: 100%;
-        > a {
-          height: 100%;
-          display: flex;
-        }
-        figure,
-        figcaption {
-          background-color: $pounamu;
-        }
-      }
-      #box2 {
-        // margin-left: -1rem;
-        @include breakpoint($until: desktop-medium) {
-          margin-left: 0;
-        }
-        figure,
-        figcaption {
-          background-color: $mahoe;
-        }
-      }
-      #box3 {
-        // margin-left: -2rem;
-        @include breakpoint($until: desktop-medium) {
-          margin-left: 0;
-        }
-        figure,
-        figcaption {
-          background-color: $mahoe;
-        }
-      }
-      a {
-        @include breakpoint($until: desktop-medium) {
-          height: 100%;
-          display: flex;
-        }
-      }
-      figure {
-        padding: 1rem;
-
-        img {
-          transition: all $easing 0.5s;
-          filter: brightness(0.85);
-          @include breakpoint($until: desktop-medium) {
-            display: block;
-          }
-        }
-        &:hover {
-          img {
-            filter: brightness(1);
-          }
-        }
-      }
-
-      //! V2 OF DESIGN FORCE - REPLACE WITH &.v2{} FOR SCOPING
-      gap: 10px;
-      margin-top: 2rem;
-      @include breakpoint($until: desktop-medium) {
-        grid-template-rows: 1fr 0fr;
-      }
-      figure {
-        padding: 0;
-        position: relative;
-        &:after {
-          content: "";
-          border-top: 15px $miro solid;
-          border-right: 15px $miro solid;
-          background-color: transparent;
-          position: absolute;
-          top: 0;
-          right: 0;
-          box-sizing: border-box;
-          max-width: calc(100% - 25px);
-          max-height: calc(100% - 10px);
-          width: 20%;
-          height: 30%;
-          transition: all $easing 0.9s;
-          @include breakpoint($until: desktop-medium) {
-            border-top-width: 10px;
-            border-right-width: 10px;
-            width: 30%;
-          }
-        }
-        img {
-          // margin: 2rem;
-          padding-left: 1rem;
-          position: relative;
-        }
-        figcaption {
-          max-width: 70%;
-          @include breakpoint($until: desktop-medium) {
-            max-width: 100%;
-            padding: 10px;
-          }
-        }
-      }
-      #box1 {
-        padding-right: 2rem;
-        @include breakpoint($until: desktop-medium) {
-          padding-right: 0;
-        }
-        figure {
-          &:after {
-            border-color: $pounamu;
-          }
-        }
-      }
-      #box1,
-      #box2,
-      #box3 {
-        a {
-          @include breakpoint($until: desktop-medium) {
-            height: auto;
-            display: block;
-          }
-          &:hover,
-          &:active,
-          &:focus {
-            h1,
-            h3 {
-              text-decoration: underline;
-            }
-            figure {
-              &:after {
-                width: 100%;
-                height: 100%;
-              }
-            }
-          }
-        }
-        figure {
-          transition: all ease 0.3s;
-          padding: 10px;
-          background-color: #fff;
-        }
-      }
-
-      .secondary-banner {
-        background-color: #fff;
-      }
-    }
-
-    //? Body blocks
-    .quicklinks-news {
-      #quicklinks {
-        background-color: $pounamu;
-        margin-top: 0;
-        border-radius: 0;
-
-        h2 {
-          color: #fff;
-        }
-
-        ul {
-          li {
-            a {
-              color: #fff;
-              display: flex;
-              &:before {
-                content: "";
-                border-left: 16px $kowhai solid;
-                border-top: 14px transparent solid;
-                border-bottom: 15px transparent solid;
-                display: block;
-                margin-right: 10px;
-              }
-            }
-          }
-        }
-      }
-      #panels {
-        .panel {
-          margin-top: 0;
-          padding-top: 0;
-          background-color: #f7f7f7;
-          position: relative;
-          &[data-type] {
-            &:before {
-              content: none !important;
-              position: absolute;
-              top: 0;
-              right: 0;
-              display: block;
-              z-index: 10;
-              padding: 5px 10px;
-            }
-          }
-          &[data-type="info"] {
-            &:before {
-              background-color: lightblue;
-              color: royalblue;
-              content: "Info";
-            }
-          }
-          &[data-type="news"] {
-            &:before {
-              background-color: $miro;
-              color: $pounamu;
-              content: "News";
-            }
-          }
-          &[data-type="research"] {
-            &:before {
-              content: "Research";
-              background-color: $miro;
-              color: $pounamu;
-            }
-          }
-          &[data-type="apply"] {
-            &:before {
-              content: "Apply";
-              background-color: $miro;
-              color: $pounamu;
-            }
-          }
-          @include breakpoint($until: tablet) {
-            flex-direction: column;
-          }
-          &:nth-of-type(odd) {
-            img {
-              clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-              @include breakpoint($until: desktop-medium) {
-                clip-path: none;
-              }
-              @include breakpoint($until: tablet) {
-                clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-              }
-            }
-          }
-          img {
-            filter: brightness(0.9);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
-            @include breakpoint($until: desktop-medium) {
-              clip-path: none;
-            }
-            @include breakpoint($until: tablet) {
-              max-width: 100%;
-              max-height: 100%;
-              margin-right: 0;
-              margin-bottom: 1rem;
-              clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
-            }
-          }
-
-          // When whole block not linked
-          > div {
-            padding: 0.5em 1em;
-            h3 {
-              color: $pounamu;
-            }
-            a {
-              display: block;
-              margin-bottom: 1rem;
-            }
-            p {
-              font-size: 95%;
-            }
-          }
-
-          // When whole block is linked
-          padding-bottom: 0;
-          > a {
-            height: 100%;
-            transition: all $easing 0.3s;
-            outline: 2px transparent solid;
-            &:hover {
-              background-color: $green-brand-light;
-              background-color: #fff;
-              outline: 2px $kohuhu solid;
-            }
-            > div {
-              padding: 0.5rem 1rem;
-              @include breakpoint($until: tablet) {
-                padding: 1rem;
-                padding-top: 0;
-              }
-              h3 {
-                color: $pounamu;
-              }
-              a {
-                display: block;
-                margin-bottom: 1rem;
-              }
-              p {
-                font-size: 95%;
-              }
-            }
-          }
-        }
-      }
-    }
-    .link-more {
-      float: none;
-      text-decoration: none;
-    }
-
-    //? Promo panel
-    .promo-panel {
-      position: relative;
-      &.site-search {
-        margin-top: 2rem;
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-      }
-      &.has-svg-background {
-        overflow: hidden;
-      }
-
-      h3 {
-        font-size: 2rem;
-      }
-      &.bg-kohuhu {
-        // background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
-        // background-repeat: no-repeat;
-        // background-position: 50% 80%;
-        figure {
-          box-shadow: none;
-          background-color: transparent;
-          flex-direction: column;
-          margin-right: 2rem;
-          @include breakpoint($until: desktop-medium) {
-            margin-bottom: 2rem;
-            margin-right: 0;
-            width: 100%;
-          }
-          figcaption {
-            padding: 0;
-            width: 100%;
-            p {
-              font-size: 1rem;
-            }
-          }
-
-          form {
-            padding: 0;
-            margin-left: 0;
-            margin-right: 0;
-            width: 100%;
-            background-color: transparent;
-            input {
-              padding: 1rem 70px 1rem 1rem;
-              -webkit-box-flex: 1;
-              flex: 1 1 auto;
-              border: 1px solid $miro;
-            }
-            .button {
-              i {
-                font-size: 1.5em;
-              }
-            }
-          }
-        }
-        .promo {
-          background-color: $pounamu;
-          position: relative;
-          a {
-            &:after {
-              display: inline-block;
-              font-family: "Favorites";
-              font-style: normal;
-              font-weight: normal;
-              font-variant: normal;
-              line-height: 1;
-              text-decoration: inherit;
-              text-rendering: optimizeLegibility;
-              text-transform: none;
-              -moz-osx-font-smoothing: grayscale;
-
-              content: "\f1de";
-              text-align: center;
-              display: flex;
-              justify-content: center;
-              flex-direction: column;
-              height: 100%;
-              width: 20px;
-              position: absolute;
-              right: 0;
-              top: 0;
-              background-color: $miro;
-              color: $kowhai;
-            }
-          }
-          a,
-          h2,
-          p {
-            color: $manuka;
-          }
-        }
-      }
-    }
-
-    //? News/research grid
-    .grid {
-      figure {
-        box-shadow: none;
-        a {
-          display: block;
-          height: 100%;
-          background-color: #f7f7f7;
-          transition: all ease 0.3s;
-          &:hover {
-            figcaption {
-              h3 {
-                text-decoration: underline;
-              }
-            }
-            img {
-              filter: brightness(1);
-            }
-          }
-        }
-        figcaption {
-          margin-top: -0.5em;
-          padding: 0;
-          h3 {
-            margin-top: -2em;
-            margin-bottom: 0;
-            padding: 0.5rem 1rem;
-            position: relative;
-            display: inline-block;
-            background-color: $pounamu;
-            color: $manuka;
-            text-decoration: none;
-          }
-          p {
-            padding: 1em;
-            padding-top: 0.5em;
-          }
-        }
-        img {
-          margin-bottom: 0;
-          transition: all ease 0.3s;
-          filter: brightness(0.85);
-        }
-      }
-    }
-    //? Footer
-
-  }
-
-  footer {
-    .svg-container {
-      display: none;
-    }
-
-    &.svg-pattern {
-      .svg-container {
-        display: block;
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        &.svg-top {
-          right: 0;
-          top: -50px;
-          svg {
-            transform: rotate(-45deg);
-          }
-        }
-        &.svg-bottom {
-          bottom: -50px;
-          left: 0;
-          svg {
-            transform: rotate(135deg);
-          }
-        }
-        svg {
-          .cls-1,
-          .cls-2 {
-            isolation: isolate;
-          }
-          .cls-1 {
-            fill: $miro;
-            opacity: 0.3;
-          }
-
-          .cls-2 {
-            fill: $mahoe;
-            opacity: 0.1;
-          }
-        }
-      }
-    }
-
-    // Emergencies button
-    h2 {
-      .button.primary {
-        background-color: $kowhai;
-        color: $pounamu;
-      }
-    }
-    .cols {
-      h2 {
-        margin-bottom: 0.5rem;
-      }
-      .link_list {
-        margin-bottom: 2rem;
-
-        .social_logo {
-          border-radius: 100px;
-          filter: grayscale(1);
-          &:hover {
-            filter: grayscale(0);
-          }
-        }
-      }
-    }
-
-    .footer-secondary {
-      position: relative;
-      background-color: $kohuhu;
-
-      // Add padding for background
-      @include breakpoint($until: tablet) {
-        .centraliser {
-          padding-top: 2rem;
-        }
-      }
-
-      .svg-mobile {
-        display: none;
-        position: absolute;
-        top: 5px;
-        @include breakpoint($until: tablet) {
-          display: block;
-        }
-
-        svg {
-          height: 7vw;
-          width: 100vw;
-        }
-      }
-
-      .svg-bg-left,
-      .svg-bg-right {
-        position: absolute;
-        top: -20px;
-        height: 113%;
-        z-index: 0;
-      }
-      .svg-bg-left {
-        left: -50px;
-        transform: rotateZ(180deg);
-        @include breakpoint($until: desktop-medium) {
-          display: none;
-        }
-      }
-      .svg-bg-right {
-        right: -50px;
-        transform: rotateX(180deg);
-        @include breakpoint($until: tablet) {
-          display: none;
-        }
-        @include breakpoint($until: desktop-medium) {
-          right: 0;
-        }
-      }
-      @include breakpoint($until: desktop-medium) {
-        .site_links {
-          columns: 2;
-        }
-      }
-
-      .footer-col {
-        a {
-          color: $black-brand;
-        }
-        li {
-          color: $black-brand;
-        }
-        h4 {
-          color: $black-brand;
-          font-weight: 700;
-          a {
-            color: $black-brand;
-          }
-        }
-      }
-    }
-
-    .footer-primary {
-      background-color: $pounamu;
-    }
-  }
-
-  $buttonShadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  $buttonShadowHover: rgba(0, 0, 0, 0.16) 0px 3px 6px,
-    rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  //! === Homepage only CSS ===
-  &.homepage {
-    .promo-panel.pattern {
-      background-color: $kohuhu;
-      background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/te-tumu/herenga-export.svg");
-
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-color: $miro;
-      background-position: center;
-      // clip-path: polygon(0 30%, 50% 0, 100% 25%, 100% 100%, 50% 100%, 0 100%);
-      padding: 2rem 0;
-
-      @include breakpoint($until: tablet) {
-        // clip-path: polygon(0 0, 100% 18%, 100% 100%, 50% 100%, 0 100%);
-      }
-
-      figcaption {
-        margin-top: 5rem;
-        text-align: center;
-        a {
-          h1 {
-            display: block;
-            color: $black-brand;
-          }
-          h1.title-tereo {
-            color: $kowhai;
-            background-color: $pounamu;
-            display: inline-block;
-            padding: 10px;
-          }
-
-          h2 {
-            font-weight: 500;
-            margin-top: 15px;
-            color: $pounamu;
-          }
-        }
-        a {
-        }
-      }
-    }
-
-    // ? Search
-    .home-search-wrap {
-      border: none;
-      box-shadow: $buttonShadow;
-      background-color: $off-white;
-      // background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
-      // background-size: cover;
-      // background-repeat: no-repeat;
-      // background-position: -0px -800px;
-      // background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/triangles.svg");
-      // background-repeat: no-repeat;
-      // background-position: bottom left;
-      // background-size: 10%;
-      background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
-      background-repeat: no-repeat;
-      background-size: 250px;
-      background-position: -100px;
-
-      .search {
-        border: none;
-        // background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/stars");
-        // background-size: auto;
-        // background-repeat: no-repeat;
-        // background-position: right;
-        display: flex;
-        align-self: initial;
-        justify-content: center;
-        flex-direction: column;
-        margin-top: 0;
-      }
-
-      .promo {
-        border: none;
-        .promo-title {
-          opacity: 1;
-          background-color: $kohuhu;
-          h3 {
-            color: $pounamu;
-          }
-        }
-      }
-      .submit-button {
-        background-color: $pounamu;
-        transition: background-color $easing 0.2s;
-        &:hover {
-          background-color: $mahoe;
-        }
-        span {
-          font-size: initial;
-          &:before {
-            background-color: transparent;
-            line-height: 0;
-            display: inline-block;
-            font-family: "Favorites";
-            font-style: normal;
-            font-weight: normal;
-            font-variant: normal;
-            text-decoration: inherit;
-            text-rendering: optimizeLegibility;
-            text-transform: none;
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-font-smoothing: antialiased;
-            font-smoothing: antialiased;
-            border: none;
-            width: auto;
-            height: auto;
-            top: initial;
-            font-size: 1.8rem;
-            content: "\f18b";
-          }
-        }
-      }
-    }
-
-    //? Quicklinks
-    .quicklinks-wrap {
-      padding-bottom: 0;
-      padding: 20px 0;
-      // background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
-      // background-size: auto;
-      // background-repeat: no-repeat;
-      // background-position: 0 200px;
-
-      .block {
-        padding-bottom: 10px;
-      }
-      .quicklink-buttons {
-        @include breakpoint($until: tablet) {
-          flex-direction: column;
-        }
-        a.link-circle {
-          background-color: $kohuhu;
-          color: $pounamu;
-          padding: 8px 10px;
-          border-radius: 0px;
-          transition: all $easing 0.2s;
-          box-shadow: $buttonShadow;
-          border: 1px $mahoe solid;
-          span {
-            color: $pounamu;
-          }
-          &:hover {
-            span {
-              text-decoration: none !important;
-            }
-            box-shadow: $buttonShadowHover;
-            background-color: lighten($color: $kohuhu, $amount: 5);
-            &:active {
-              box-shadow: none;
-            }
-          }
-
-          &:before {
-            background-color: transparent;
-            line-height: 0;
-            display: inline-block;
-            font-family: "Favorites";
-            font-style: normal;
-            font-weight: normal;
-            font-variant: normal;
-            text-decoration: inherit;
-            text-rendering: optimizeLegibility;
-            text-transform: none;
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-font-smoothing: antialiased;
-            font-smoothing: antialiased;
-            border: none;
-            width: auto;
-            height: auto;
-            top: initial;
-            font-size: 1.8rem;
-            color: $pounamu;
-          }
-          &:nth-of-type(1) {
-            &:before {
-              content: "\f1a4";
-            }
-          }
-          &:nth-of-type(2) {
-            &:before {
-              content: "\f18b";
-            }
-          }
-          &:nth-of-type(3) {
-            &:before {
-              content: "\f1a1";
-            }
-          }
-          &:nth-of-type(4) {
-            &:before {
-              content: "\f1d2";
-            }
-          }
-          &:nth-of-type(5) {
-            &:before {
-              content: "\f1d1";
-            }
-          }
-          &:nth-of-type(6) {
-            &:before {
-              content: "\f1ac";
-            }
-          }
-        }
-      }
-    }
-
-    //? News
-    .quicklinks-news {
-      #quicklinks {
-        background-color: $pounamu;
-        margin-top: 0;
-        border-radius: 0;
-
-        h2 {
-          color: #fff;
-        }
-
-        ul {
-          li {
-            a {
-              color: #fff;
-              display: flex;
-              &:before {
-                content: "";
-                border-left: 16px $kowhai solid;
-                border-top: 14px transparent solid;
-                border-bottom: 15px transparent solid;
-                display: block;
-                margin-right: 10px;
-              }
-            }
-          }
-        }
-      }
-      #panels {
-        .panel {
-          // When whole block is linked
-          > a {
-            @include breakpoint($until: tablet) {
-              display: flex;
-              flex-direction: column;
-            }
-          }
-        }
-      }
-    }
-
-    // ? Event widget
-    #eventwidget {
-      .news-row header {
-        display: flex;
-        justify-content: space-between;
-      }
-      ul {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 10px;
-        margin-left: 0;
-        width: 100%;
-        @include breakpoint($until: tablet) {
-          grid-template-columns: 1fr;
-        }
-        li {
-          width: 100%;
-          background-color: $off-white;
-          padding: 1.2rem 1.5rem;
-          &:after {
-            content: none;
-          }
-          h3 {
-            a {
-              color: $pounamu;
-              text-decoration: none;
-              &:hover {
-                text-decoration: underline;
-              }
-            }
-          }
-
-          a.button {
-            background-color: $mahoe;
-            color: $manuka;
-            transition: all $easing 0.3s;
-            &:hover {
-              box-shadow: $buttonShadowHover;
-            }
-            &:active {
-              box-shadow: none;
-            }
-          }
-
-          .margin-notes {
-            .highlight-strip {
-              background-color: #fff;
-              color: $pounamu;
-              border: 1px $miro solid;
-              margin-left: 0;
-              padding: 2px 10px;
-              font-size: 90%;
-              border-radius: 5px;
-              display: inline-block;
-            }
-          }
-        }
-      }
-    }
-
-    //? Promo blocks
-    .promo-panel:not(.pattern) {
-      figcaption {
-        position: relative;
-        h1 {
-          &:before {
-            content: "";
-            display: block;
-            max-width: 0;
-            position: absolute;
-            left: 20px;
-            top: 0px;
-            border-top: 20px $pounamu solid;
-            border-left: 20px transparent solid;
-            border-right: 20px transparent solid;
-          }
-        }
-      }
-    }
   }
 }

@@ -1,16 +1,15 @@
 /** In-page block with promotion */
 
 $banner-background: $grey-gallery;
-$promo-max-width:   60em;
-$promo-figcaption-bg: rgba( 99, 166, 89, .9 ) !default;
+$promo-max-width: 60em;
+$promo-figcaption-bg: rgba(99, 166, 89, 0.9) !default;
 $promo-figcaption-left-bg: $brand !default;
 $promo-fig-bg--title-image: $brand !default;
-
 
 .promo-panel {
   @include clearfix;
 
-  @include breakpoint( tablet ) {
+  @include breakpoint(tablet) {
     overflow: hidden;
     position: relative;
     background: $banner-background;
@@ -20,15 +19,17 @@ $promo-fig-bg--title-image: $brand !default;
     }
   } //media desktop
 
-  @include breakpoint( $until: tablet ) {
-    border-top:    3px solid $banner-background;
+  @include breakpoint($until: tablet) {
+    border-top: 3px solid $banner-background;
     border-bottom: 3px solid $banner-background;
 
-    + .promo-panel { border-top: 0; }
+    + .promo-panel {
+      border-top: 0;
+    }
   } //media desktop
 
   &.pattern {
-    background: url( 'https://www.wgtn.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png' ); //TODO: Autolink from CDN!
+    background: url("https://www.wgtn.ac.nz/__data/assets/image/0005/216698/maori-bg-pattern.png"); //TODO: Autolink from CDN!
 
     figure {
       background: transparent;
@@ -51,7 +52,7 @@ $promo-fig-bg--title-image: $brand !default;
     figure {
       border: $border;
 
-      @include breakpoint( $until: tablet ) {
+      @include breakpoint($until: tablet) {
         border: 0;
       }
     }
@@ -73,16 +74,17 @@ $promo-fig-bg--title-image: $brand !default;
     padding: 0;
     background: $white;
 
-
-    @include breakpoint( $until: tablet ) {
+    @include breakpoint($until: tablet) {
       figcaption {
         padding-bottom: $gap-vertical;
 
-        h1 { margin-top: $gap-vertical; }
+        h1 {
+          margin-top: $gap-vertical;
+        }
       }
     }
 
-    @include breakpoint( tablet ) {
+    @include breakpoint(tablet) {
       display: flex;
       align-items: center;
       box-shadow: $shadow-shallow;
@@ -106,27 +108,29 @@ $promo-fig-bg--title-image: $brand !default;
         width: 40%;
         margin-bottom: 0;
 
-        + figcaption { margin-top: 0; }
+        + figcaption {
+          margin-top: 0;
+        }
       }
 
       &.two-thirds {
-          //@include span-columns(8 of 12);
-          //@include shift(2);
-          figcaption {
-              padding: $base-spacing;
-              //@include span-columns(4 of 8);
-              //@include shift(4);
-              background: $white;
-              position: relative;
-          }
+        //@include span-columns(8 of 12);
+        //@include shift(2);
+        figcaption {
+          padding: $base-spacing;
+          //@include span-columns(4 of 8);
+          //@include shift(4);
+          background: $white;
+          position: relative;
+        }
 
-          img {
-              position: absolute;
-              width: auto;
-              top: 0;
-              left: 0;
-              height: 100%;
-          }
+        img {
+          position: absolute;
+          width: auto;
+          top: 0;
+          left: 0;
+          height: 100%;
+        }
       }
 
       &.photo,
@@ -156,8 +160,8 @@ $promo-fig-bg--title-image: $brand !default;
       h4,
       p {
         display: inline-block;
-        margin-bottom: .5em;
-        padding: .5rem 1rem;
+        margin-bottom: 0.5em;
+        padding: 0.5rem 1rem;
         color: $white;
         background-color: $promo-figcaption-bg;
       }
@@ -166,7 +170,6 @@ $promo-fig-bg--title-image: $brand !default;
     //Research hub new panel, promo panel with left align grey text panel
     &.photo {
       &.left-text-panel {
-
         figcaption {
           max-width: $centered-max-width;
 
@@ -179,7 +182,7 @@ $promo-fig-bg--title-image: $brand !default;
             box-shadow: $shadow-shallow;
             text-align: left;
 
-            @include breakpoint( $until: tablet ) {
+            @include breakpoint($until: tablet) {
               margin-bottom: $gap-content;
             }
 
@@ -194,7 +197,8 @@ $promo-fig-bg--title-image: $brand !default;
               background-color: $promo-figcaption-left-bg;
 
               // IE 10+ fix bg not covering text
-              @media screen and ( -ms-high-contrast: active ), ( -ms-high-contrast: none ) {
+              @media screen and (-ms-high-contrast: active),
+                (-ms-high-contrast: none) {
                 float: left;
               }
             }
@@ -207,124 +211,122 @@ $promo-fig-bg--title-image: $brand !default;
             }
           }
         }
-
       }
     }
   }
 
-
-
   &.study-hub {
-      background-color: $white;
+    background-color: $white;
 
-      figure {
-          padding: $base-spacing 0;
-          color: $grey;
-          box-shadow: none;
+    figure {
+      padding: $base-spacing 0;
+      color: $grey;
+      box-shadow: none;
 
-          p {
-              color: $grey;
-          }
-
-          figcaption {
-              padding: $base-spacing $base-spacing * 1.5;
-
-              &:first-child {
-                  //@include span-columns( 7 of 12,block-collapse);
-
-                  h1 {
-                      color: $green-light-brand;
-                  }
-              }
-          }
-
-          &>:last-child {
-              border-left: 2px solid $grey-alto;
-              padding: $base-spacing $base-spacing * 1.5;
-              //@include span-columns( 5 of 12,block-collapse);
-
-              >h3 {
-                  color: $grey;
-              }
-              >ul {
-                  padding-left: 0;
-
-                  li {
-                      padding-left: 0;
-                      list-style: none;
-                      span {
-                          color: $green-light-brand ;
-                          font-weight: $weight-bold;
-                      }
-                  }
-              }
-          }
+      p {
+        color: $grey;
       }
+
+      figcaption {
+        padding: $base-spacing $base-spacing * 1.5;
+
+        &:first-child {
+          //@include span-columns( 7 of 12,block-collapse);
+
+          h1 {
+            color: $green-light-brand;
+          }
+        }
+      }
+
+      & > :last-child {
+        border-left: 2px solid $grey-alto;
+        padding: $base-spacing $base-spacing * 1.5;
+        //@include span-columns( 5 of 12,block-collapse);
+
+        > h3 {
+          color: $grey;
+        }
+        > ul {
+          padding-left: 0;
+
+          li {
+            padding-left: 0;
+            list-style: none;
+            span {
+              color: $green-light-brand;
+              font-weight: $weight-bold;
+            }
+          }
+        }
+      }
+    }
   }
 
   // half panels with green title and image above content
   &.two-panels {
+    > div {
+      display: flex;
+    }
+
+    figure {
+      flex: 0 1 50%;
+      display: block;
+
+      img {
+        width: 100%;
+
+        & + figcaption {
+          margin-top: -25%;
+          background-color: #fff;
+          padding-top: 0;
+
+          h1,
+          h2 {
+            margin-top: -1em;
+          }
+        }
+      }
+
+      figcaption {
+        width: 100%;
+
+        h1,
+        h2 {
+          color: $white;
+          background-color: $promo-figcaption-left-bg;
+          padding: 0.4em 0.5em;
+          display: inline-block;
+          margin-left: -0.5em;
+        }
+      }
+
+      &:first-child {
+        margin-right: 1em;
+      }
+    }
+
+    @include breakpoint($until: tablet) {
       > div {
-          display: flex;
+        flex-wrap: wrap;
       }
-
       figure {
-          flex: 0 1 50%;
-          display: block;
+        flex: 0 1 100%;
 
-          img {
-              width: 100%;
+        img {
+          width: 100%;
 
-              &+figcaption {
-                  margin-top: -25%;
-                  background-color: #fff;
-                  padding-top: 0;
-
-                  h1, h2 {
-                      margin-top: -1em;
-                  }
-              }
+          & + figcaption {
+            margin-top: 0;
+            padding-left: 1em;
           }
+        }
 
-          figcaption {
-              width: 100%;
-
-              h1, h2 {
-                  color: $white;
-                  background-color: $promo-figcaption-left-bg;
-                  padding: 0.4em 0.5em;
-                  display: inline-block;
-                  margin-left: -0.5em;
-              }
-          }
-
-          &:first-child {
-              margin-right: 1em;
-          }
-
+        &:first-child {
+          margin-right: 0;
+        }
       }
-
-      @include breakpoint( $until: tablet ) {
-          > div {
-              flex-wrap: wrap;
-          }
-          figure {
-              flex: 0 1 100%;
-
-              img {
-                  width: 100%;
-
-                  &+figcaption {
-                      margin-top: 0;
-                      padding-left: 1em;
-                  }
-              }
-
-              &:first-child {
-                  margin-right: 0;
-              }
-          }
-      }
+    }
   }
 
   &.dual-content {
@@ -337,9 +339,8 @@ $promo-fig-bg--title-image: $brand !default;
 
         // Left block
         &:first-child {
-
           figcaption {
-            @include size( 100% );
+            @include size(100%);
             padding: 0;
           }
         }
@@ -369,15 +370,18 @@ $promo-fig-bg--title-image: $brand !default;
         }
       }
 
-      @include breakpoint( $until: tablet ) {
+      @include breakpoint($until: tablet) {
         > figure {
-          &:first-child { // Left block
+          &:first-child {
+            // Left block
             margin-bottom: $gap-vertical;
           }
         }
 
         .media {
-          > a:before { display: none; } // Disable the video overlay
+          > a:before {
+            display: none;
+          } // Disable the video overlay
 
           figcaption {
             position: relative;
@@ -386,8 +390,7 @@ $promo-fig-bg--title-image: $brand !default;
         }
       }
 
-
-      @include breakpoint( tablet ) {
+      @include breakpoint(tablet) {
         display: flex;
         align-items: stretch;
         box-shadow: $shadow-shallow;
@@ -395,98 +398,96 @@ $promo-fig-bg--title-image: $brand !default;
         > figure {
           float: left;
 
-          &:first-child { // Left block
+          &:first-child {
+            // Left block
             padding: $gap-larger;
             width: 60%;
           }
 
-          &:last-child { width: 40%; } // Right block
+          &:last-child {
+            width: 40%;
+          } // Right block
         }
 
-        .media { align-self: center; }
+        .media {
+          align-self: center;
+        }
       }
     }
   }
 
   &.two-one-third {
-      > div {
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: flex;
+    > div {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
 
+      @include breakpoint($until: tablet) {
+        flex-direction: column;
 
-          @include breakpoint( $until: tablet ) {
-              flex-direction: column;
-
-              >:first-child,
-              >:last-child {
-                  width: 100%;
-              }
-          }
-
-          &.half-panel {
-
-              >:first-child {
-                  width: 100/3 * 2%;
-                  margin-right: 0;
-                  display: flex;
-                  align-items: center;
-                  justify-content: space-around;
-
-                  @include breakpoint( $until: desktop ) {
-                      flex-direction: column;
-
-                      figcaption:first-child {
-                          width: 100%;
-                      }
-                  }
-
-                  >:first-child {
-                      width: 50%;
-                  }
-
-
-
-              }
-              >:last-child {
-                  width: 100 / 3 * 1%;
-              }
-
-              @include breakpoint( $until: tablet ) {
-
-                  >:first-child,
-                  >:last-child {
-                      width: 100%;
-                  }
-              }
-          }
-
+        > :first-child,
+        > :last-child {
+          width: 100%;
+        }
       }
 
-      figure {
-          figcaption {
-              padding: 1.4em;
-          }
+      &.half-panel {
+        > :first-child {
+          width: 100/3 * 2%;
+          margin-right: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
 
-          &:first-child {
-            margin-right: $gap-horizontal;
-            width: 100 / 3 * 2%;
+          @include breakpoint($until: desktop) {
+            flex-direction: column;
 
-            img {
-                height: 100%;
-                object-fit: cover;
+            figcaption:first-child {
+              width: 100%;
             }
           }
 
-          &:last-child {
-              width: 100/3 * 1%;
-
-              figcaption {
-                  width: 100%;
-                  text-align: right;
-              }
+          > :first-child {
+            width: 50%;
           }
+        }
+        > :last-child {
+          width: 100 / 3 * 1%;
+        }
+
+        @include breakpoint($until: tablet) {
+          > :first-child,
+          > :last-child {
+            width: 100%;
+          }
+        }
       }
+    }
+
+    figure {
+      figcaption {
+        padding: 1.4em;
+      }
+
+      &:first-child {
+        margin-right: $gap-horizontal;
+        width: 100 / 3 * 2%;
+
+        img {
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &:last-child {
+        width: 100/3 * 1%;
+
+        figcaption {
+          width: 100%;
+          text-align: right;
+        }
+      }
+    }
   }
 
   // image with offset title and text on right
@@ -522,10 +523,12 @@ $promo-fig-bg--title-image: $brand !default;
     section {
       width: 100%;
 
-      p { font-size: 1.2rem; }
+      p {
+        font-size: 1.2rem;
+      }
     }
 
-    @include breakpoint( desktop ) {
+    @include breakpoint(desktop) {
       figure figcaption {
         position: absolute;
         top: 10%;
@@ -535,13 +538,15 @@ $promo-fig-bg--title-image: $brand !default;
       }
     }
 
-    @include breakpoint( tablet ) {
+    @include breakpoint(tablet) {
       > div {
         display: flex;
         align-items: center;
       }
 
-      figure { width: 40%; }
+      figure {
+        width: 40%;
+      }
 
       section {
         padding-left: $gap-vertical;
@@ -549,19 +554,18 @@ $promo-fig-bg--title-image: $brand !default;
       }
     }
 
-    @include breakpoint( $until: desktop ) {
+    @include breakpoint($until: desktop) {
       figure {
         display: flex;
         flex-direction: column-reverse;
       }
     }
 
-    @include breakpoint( $until: tablet ) {
+    @include breakpoint($until: tablet) {
       figure {
         margin-bottom: $gap-content;
       }
     }
-
   }
 }
 
@@ -570,9 +574,9 @@ $promo-fig-bg--title-image: $brand !default;
 }
 
 .text-promo-panel {
-border-bottom: $border;
+  border-bottom: $border;
 
-  @include breakpoint( tablet ) {
+  @include breakpoint(tablet) {
     padding: $gap-vertical 0;
 
     .text-wrap {
@@ -588,14 +592,14 @@ border-bottom: $border;
     }
   }
 
-
-  @include breakpoint( $until: tablet ) {
-    .text-wrap { margin-bottom: $gap-content; }
+  @include breakpoint($until: tablet) {
+    .text-wrap {
+      margin-bottom: $gap-content;
+    }
   }
 
   // TODO: Move into its standalone .promo-video class
   &.video {
-
     // Figure
     .media .outside {
       position: relative;
@@ -608,14 +612,70 @@ border-bottom: $border;
     }
 
     .outside {
-
       h4 {
         margin-bottom: 0;
-        padding: .65em .5em;
+        padding: 0.65em 0.5em;
 
-        i { margin-left: .5em; }
+        i {
+          margin-left: 0.5em;
+        }
+      }
+    }
+  }
+}
+//! ==== NEW DESIGN ====
+$box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+  rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+#hubv4 {
+  .formatting {
+    .promo-panel figure {
+      box-shadow: $box-shadow-card;
+
+      img {
+        margin-bottom: 0;
+      }
+      figcaption {
+        // padding: 2rem;
       }
     }
 
+    figure {
+      box-shadow: $box-shadow-card;
+
+      > a {
+        img {
+          margin-bottom: 0;
+        }
+        img + figcaption {
+          margin-top: 0;
+          padding: 1.5rem;
+        }
+      }
+    }
+  }
+
+  @include breakpoint($until: tablet) {
+    .promo-panel {
+      figure {
+        > img {
+          margin-bottom: 0;
+          & + figcaption{
+            padding: 1.5rem;
+            margin-top: 0;
+
+            h1, h2, h3 {
+              margin-top: 0;
+            }
+          }
+        }
+
+        > figcaption {
+          padding: 1.5rem;
+          h1, h2, h3 {
+            margin-top: 0;
+          }
+        }
+      }
+    }
   }
 }

@@ -1,20 +1,19 @@
 $card-padding: $gap-larger;
-$card-shadow:  $shadow-shallow;
+$card-shadow: $shadow-shallow;
 
 $card-background-color: $background-light;
 
-
 .card-panel {
-  display:         flex;
+  display: flex;
   justify-content: space-between;
-  padding:         $gap-vertical / 2 0;
-  flex-wrap:       wrap;
+  padding: $gap-vertical / 2 0;
+  flex-wrap: wrap;
 
   .card {
     flex: 0 1 auto;
     margin-bottom: $gap-vertical;
     padding: $card-padding;
-    width: calc( 50% - #{ $gap-vertical / 2 } );
+    width: calc(50% - #{$gap-vertical / 2});
     background-color: $grey-gallery;
     box-shadow: $card-shadow;
 
@@ -25,13 +24,13 @@ $card-background-color: $background-light;
       &:first-child {
         position: relative;
 
-        @include separator-strip( 3.125rem, $border-width-thick, after ) {
+        @include separator-strip(3.125rem, $border-width-thick, after) {
           margin-top: $gap-half;
         }
       }
     }
 
-    &:nth-last-child( 2 ),
+    &:nth-last-child(2),
     &:last-child {
       margin-bottom: 0;
     }
@@ -50,20 +49,22 @@ $card-background-color: $background-light;
     .contact-card-details {
       display: flex;
       align-items: center;
-      margin-bottom: .5em;
+      margin-bottom: 0.5em;
       padding: 0 0 1em;
 
       > * {
         padding-right: 2.5em;
         width: 50%;
 
-        @include breakpoint( $until: desktop ) {
+        @include breakpoint($until: desktop) {
           padding-right: 0;
         }
       }
 
       .contact-title {
-        h3 { color: $black-tundora; }
+        h3 {
+          color: $black-tundora;
+        }
       }
 
       .contact-info {
@@ -82,16 +83,20 @@ $card-background-color: $background-light;
         }
       }
 
-      @include breakpoint( $until: tablet ) {
+      @include breakpoint($until: tablet) {
         margin-bottom: 0;
         flex-direction: column;
 
         > * {
           width: 100%;
 
-          &:first-child { margin-bottom: 1em; }
+          &:first-child {
+            margin-bottom: 1em;
+          }
 
-          ul { padding-left: 0; }
+          ul {
+            padding-left: 0;
+          }
         }
       }
     }
@@ -114,31 +119,34 @@ $card-background-color: $background-light;
       text-align: center;
 
       i {
-        padding-left: .5em;
+        padding-left: 0.5em;
         font-size: 5rem;
         color: $green-brand;
       }
 
-      p { text-align: left; }
+      p {
+        text-align: left;
+      }
     }
   }
 
-  @include breakpoint( $until: tablet ) {
+  @include breakpoint($until: tablet) {
     flex-direction: column;
 
     .card {
       width: 100%;
 
-      .button + .button { margin-top: $gap-half; }
+      .button + .button {
+        margin-top: $gap-half;
+      }
 
-      &:nth-last-child( 2 ) {
+      &:nth-last-child(2) {
         margin-bottom: 1.5em;
       }
     }
   }
 
   &.calendar-cards {
-
     .card-filter {
       display: flex;
       align-items: baseline;
@@ -151,7 +159,7 @@ $card-background-color: $background-light;
       }
 
       input {
-        padding: .5rem;
+        padding: 0.5rem;
         margin-left: 1rem;
       }
 
@@ -164,14 +172,13 @@ $card-background-color: $background-light;
           cursor: pointer;
           &:not(.selected) {
             span {
-
               display: none;
             }
           }
         }
       }
 
-      @include breakpoint( $until: tablet ) {
+      @include breakpoint($until: tablet) {
         flex-wrap: wrap;
 
         > div {
@@ -180,30 +187,32 @@ $card-background-color: $background-light;
           }
         }
       }
-
-
     }
 
     .card {
       width: 100%;
       margin-bottom: 1rem;
 
-      p, h3, h4, h5 {
+      p,
+      h3,
+      h4,
+      h5 {
         margin: 0;
       }
 
       > div {
-        margin-bottom: .8rem;
+        margin-bottom: 0.8rem;
 
         &:last-child {
           margin-bottom: 0;
         }
       }
 
-      .title, .date {
+      .title,
+      .date {
         display: flex;
 
-        >div {
+        > div {
           &:first-child {
             // width: 15%;
             margin-right: 2.5rem;
@@ -222,7 +231,7 @@ $card-background-color: $background-light;
       time {
         font-weight: bold;
         color: $black-tundora;
-        font-size: .95rem;
+        font-size: 0.95rem;
       }
 
       .update {
@@ -231,9 +240,9 @@ $card-background-color: $background-light;
         display: flex;
 
         .sub-head {
-          font-size: .95rem;
+          font-size: 0.95rem;
           margin-bottom: 0.5rem;
-          
+
           strong {
             color: $black-tundora;
           }
@@ -241,7 +250,7 @@ $card-background-color: $background-light;
 
         > div {
           margin-right: 1rem;
-          padding-left: .8rem;
+          padding-left: 0.8rem;
 
           border-left: 4px solid $green-brand;
 
@@ -252,9 +261,9 @@ $card-background-color: $background-light;
 
         .content {
           @include breakpoint($until: tablet) {
-            overflow-x:scroll;
+            overflow-x: scroll;
           }
-          
+
           p + table {
             margin-top: 1rem;
           }
@@ -269,13 +278,13 @@ $card-background-color: $background-light;
         color: $grey-dove;
       }
 
-      @include breakpoint( $until: tablet ) {
-
-        .title, .date {
+      @include breakpoint($until: tablet) {
+        .title,
+        .date {
           display: flex;
           flex-wrap: wrap;
-  
-          >div {
+
+          > div {
             &:first-child {
               width: auto;
               margin-right: 2rem;
@@ -295,96 +304,95 @@ $card-background-color: $background-light;
       }
     }
   }
-
 }
 
 // For content pages
 .contact-card-highlight {
   box-shadow: $card-shadow;
-	margin-top: 2em;
-	padding: 1.5em;
+  margin-top: 2em;
+  padding: 1.5em;
   background-color: $grey-gallery;
 
-	> h2,
-	> h3,
-	> h4 {
-		position: relative;
-		padding-bottom: .5em;
+  > h2,
+  > h3,
+  > h4 {
+    position: relative;
+    padding-bottom: 0.5em;
 
-		&:after {
-			content: '';
-			position: absolute;
-			width: 50px;
-			height: 5px;
-			bottom: 0;
-			left: 0;
-			background-color: #115737;
-		}
-	}
+    &:after {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 5px;
+      bottom: 0;
+      left: 0;
+      background-color: #115737;
+    }
+  }
 
-	.contact-info-block {
-		> ul {
-			padding: 0;
-			margin: 0;
+  .contact-info-block {
+    > ul {
+      padding: 0;
+      margin: 0;
 
-			> li {
-				display: flex;
-				justify-content: flex-start;
-				align-items: flex-start;
+      > li {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
 
-				padding: 0;
-				margin: 0;
-				list-style: none;
+        padding: 0;
+        margin: 0;
+        list-style: none;
 
-				&:not(:first-child) {
-					margin-top: 1em;
-				}
+        &:not(:first-child) {
+          margin-top: 1em;
+        }
 
-				img {
-					margin-right: 1em;
+        img {
+          margin-right: 1em;
 
-					@include size( $portrait-width, auto );
+          @include size($portrait-width, auto);
 
-					@include breakpoint( $until: desktop ) {
-						width: 20%;
-					}
-				}
+          @include breakpoint($until: desktop) {
+            width: 20%;
+          }
+        }
 
-				.details {
+        .details {
+          h3,
+          h4,
+          h5 {
+            margin-bottom: 0.4em;
+          }
 
-					h3,
-					h4,
-					h5 {
-						margin-bottom: 0.4em;
-					}
+          h5 {
+            color: #444;
+          }
 
-					h5 {
-						color: #444;
-					}
+          address {
+            font-style: normal;
+          }
+        }
+      }
+    }
+  }
 
-					address {
-						font-style: normal;
-					}
-				}
-			}
-		}
+  &.card-green {
+    background-color: #f4f4e9;
+    box-shadow: none;
 
-
-	}
-
-	&.card-green {
-		background-color: #F4F4E9;
-		box-shadow: none;
-
-		.contact-info-block {
-
-			.tag,
-			address {
-				font-size: .8rem;
-			}
-		}
-
-	}
-
+    .contact-info-block {
+      .tag,
+      address {
+        font-size: 0.8rem;
+      }
+    }
+  }
 }
+//! ==== NEW DESIGN ====
 
+#hubv4 {
+  .card-panel .card {
+    background-color: $off-white;
+  }
+}

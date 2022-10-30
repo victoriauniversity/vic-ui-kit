@@ -96,12 +96,18 @@ body#hubv4 {
   .main-site-header {
     padding-top: 0;
     position: relative;
-    z-index: 99;
+    .gradient-line {
+      display: block;
+      content: "";
+      width: 100%;
+      height: 6px;
+      background: $marketing-linear-gradient;
+    }
+    // z-index: 99;
     &.show-mega-menu-top-wrap {
       padding-top: 0;
-      overflow: unset !important;
+      // overflow: unset !important;
       position: relative;
-      padding-bottom: 6px;
       &.sticky {
         // ? Leaving out for now as it's buggy
         // position: sticky;
@@ -122,23 +128,13 @@ body#hubv4 {
     padding-bottom: 0 !important;
   }
 
-  .gradient-line {
-    display: block;
-    content: "";
-    width: 100%;
-    height: 6px;
-    background: $marketing-linear-gradient;
-    position: absolute;
-    bottom: 0;
-    z-index: 0;
-  }
-
   // Header
   .top-header {
     background-color: #f7f7f7;
     border-bottom: 1px $grey-alto solid;
     position: relative;
-    z-index: 50;
+    // z-index: 50;
+    z-index: 5;
   }
 
   #mega_menu_block {
@@ -167,6 +163,7 @@ body#hubv4 {
         &:after {
           // top: 30%;
         }
+        // ! First level (visible straight away)
         > a {
           padding-bottom: 10px;
           padding-top: 10px;
@@ -176,6 +173,10 @@ body#hubv4 {
           justify-content: center;
           font-weight: 500;
           font-size: 1.1rem;
+          &:focus {
+            outline: 2px $grey-gallery solid;
+            outline-offset: -2px;
+          }
           .tereo-title {
             display: block;
           }
@@ -321,6 +322,9 @@ body#hubv4 {
         background-color: $white;
         transform: translateY(-100%);
         box-shadow: none;
+        &:focus {
+          // outline: 1px pink solid;
+        }
 
         &:before {
           content: "";
@@ -739,19 +743,6 @@ body#hubv4 {
     color: $black-brand;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  a,
-  button {
-    font-family: "Inter", sans-serif;
-  }
-
-  h2 {
-  }
-
   // Body background
   body {
     .layout {
@@ -784,7 +775,7 @@ body#hubv4 {
     min-height: 30vh;
     .banner-image {
       img {
-        display: none;
+        // display: none;
       }
       background-size: cover;
       background-repeat: no-repeat;
@@ -881,24 +872,6 @@ body#hubv4 {
 }
 
 body#hubv4 {
-  font-family: "Inter", Arial, Helvetica, sans-serif;
-
-  // Typography
-  .formatting h1,
-  h1,
-  h2 {
-    font-weight: 700;
-  }
-
-  aside > .formatting {
-    h2 {
-      font-size: 1.4rem;
-    }
-    h3 {
-      font-size: 1.2rem;
-    }
-  }
-
   // No top margin on hub page, so banner sits flush with header
   .content-panel {
     margin-top: 0rem;
@@ -908,269 +881,12 @@ body#hubv4 {
       }
     }
   }
-  // Buttons
 
-  button:not(.flat):not(.no-icon)::after,
-  .button:not(.flat):not(.no-icon)::after {
-    content: "\f1ee";
-    font-family: "Favorites";
-    vertical-align: -0.1em;
-    display: inline-block;
-  }
-  button,
-  .btn,
-  .button,
-  a.btn {
-    border-radius: 0;
-    // padding: 5px 16px;
-    display: inline-block;
-    font-weight: 600;
-    line-height: 1.6;
-    cursor: pointer;
-    border: 0;
-    -webkit-transition: color 0.15s ease-in-out,
-      background-color 0.15s ease-in-out;
-    transition: all ease 0.2s;
-    background-color: $kohuhu;
-    color: $pounamu;
-    font-family: "Inter", Arial, Helvetica, sans-serif;
-
-    &:hover {
-      text-decoration: none;
-      background-color: lighten($color: $kohuhu, $amount: 10);
-      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-        rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    }
-    &:active {
-      box-shadow: none;
-    }
-
-    &.rounded {
-      border-radius: 100px;
-    }
-    &.accent {
-      background-color: $kowhai;
-      color: #222;
-    }
-    &.raised {
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    }
-    &.primary {
-      background-color: $pounamu;
-      // border: 1px $pounamu solid;
-      color: $manuka;
-      &:hover {
-        background-color: $mahoe;
-        background-color: lighten($color: $pounamu, $amount: 6);
-      }
-      &:active,
-      &:focus {
-        background-color: $mahoe;
-        background-color: lighten($color: $pounamu, $amount: 6);
-      }
-    }
-    &.fade {
-      background-color: #f1f6f0;
-      color: $green-brand-bright;
-      &:hover {
-        background-color: #c0cfbc;
-        color: $green-brand-bright;
-      }
-    }
-    &.flat {
-      background-color: transparent;
-      outline: 1px transparent solid;
-      &:hover {
-        box-shadow: none;
-        outline: 1px $grey-alto solid;
-      }
-    }
-    &.save-page {
-      background-color: transparent;
-      font-size: 80%;
-      padding: 0;
-      line-height: 0;
-      outline: none;
-      margin-left: 5px;
-
-      > svg {
-        opacity: 0.6;
-        transition: all $easing 0.3s;
-        path {
-          transition: all $easing 0.3s;
-          fill: #fff;
-          stroke: #000;
-        }
-      }
-      &:hover {
-        outline: none;
-        opacity: 1;
-        > svg {
-          opacity: 1;
-        }
-      }
-      &.saved {
-        > svg {
-          opacity: 1;
-          path {
-            fill: $kowhai;
-          }
-        }
-      }
-    }
-    &.text {
-      background-color: transparent;
-      color: #005ea5;
-      border: none;
-      text-decoration: underline;
-      &:hover {
-        background-color: #eee;
-      }
-      &:active,
-      &:focus {
-        background-color: #eee;
-      }
-    }
-    &.secondary {
-      color: #232323;
-      &:hover {
-        background-color: #eee;
-        color: #232323;
-      }
-    }
-
-    // &:focus {
-    //   outline: 2px rgba(0, 0, 0, 0.3) solid;
-    // }
-
-    // Remove icon for submit buttons...
-    &.submit-button {
-      &:after {
-        content: none !important;
-      }
-    }
-  }
-
-  // Flex h1 of page on non-hub pages. For save page icon alignment
-  &:not(.hub-page) {
-    .content-panel {
-      // margin-top: 1rem;
-      main {
-        h1 {
-          display: flex;
-          align-items: center;
-        }
-      }
-    }
-  }
-  .content-panel {
-    // margin-top: 1rem;
-    main {
-      h1 {
-        font-size: 2.4rem;
-      }
-      h2 {
-        font-size: 1.8rem;
-      }
-      h3 {
-        font-size: 1.5rem;
-      }
-    }
-
-    .link_block {
-      background-color: $grey-light;
-      transition: all ease 0.2s;
-      outline: 2px transparent solid;
-      // border: 1px $grey-alto solid;
-      // border-left: 4px $pounamu solid;
-
-      .link_block_body {
-        padding: 1rem;
-      }
-      &:visited {
-        h3 {
-          color: $blue-endeavoura;
-        }
-      }
-      // box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
-      //   rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-      &:hover {
-        outline: 2px $kohuhu solid;
-        background-color: $green-brand-light;
-        h3 {
-          color: $blue-endeavoura;
-        }
-      }
-      h3 {
-        text-decoration: none;
-      }
-    }
-  }
-
-  // Cards news/events
-
-  ul.news,
-  ul.events {
-  }
-
-  // Blocks
-  .formatting {
-    .promo-panel figure,
-    figure {
-      box-shadow: $box-shadow-card;
-      // border: 1px $grey-alto solid;
-      // border-top: 4px $pounamu solid;
-      figcaption {
-        padding: 2rem;
-      }
-    }
-  }
-  // Grids
-  section.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin: 0;
-    width: 100%;
-    @include breakpoint($until: desktop) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    @include breakpoint($until: tablet) {
-      grid-template-columns: repeat(1, 1fr);
-    }
-    > * {
-      margin: 0;
-      clear: none;
-      width: 100%;
-    }
-    figcaption {
-      padding: 1rem;
-    }
-  }
-
-  .card-panel .card {
-    background-color: $off-white;
-  }
-
-  .block {
-    // padding-top: 2rem;
-    // padding-bottom: 2rem;
-  }
-  // .card-panel .card,
-  // .search-panel form.wide-search-bar {
-  //   background-color: #fff;
-  //   box-shadow: $box-shadow-card;
-  //   border-top: 4px $green-brand solid;
-  // }
   .card-panel .card > h1:first-child::after,
   .card-panel .card > h2:first-child::after,
   .card-panel .card > h3:first-child::after,
   .card-panel .card > h4:first-child::after {
     content: none;
-  }
-  .search-panel form .group input[type="text"] {
-    height: initial;
   }
 
   // !SCOPED TO NEW HUB PAGE
@@ -1225,21 +941,6 @@ body#hubv4 {
     // Quote block
     .quote-panel.quote-image {
       background-color: $grey-gallery;
-      // &:before {
-      //   display: block;
-      //   content: "";
-      //   width: 100%;
-      //   height: 6px;
-      //   background: $green-linear-gradient;
-      // }
-      // &:after {
-      //   display: block;
-      //   content: "";
-      //   width: 100%;
-      //   height: 6px;
-      //   background: $green-linear-gradient;
-      // }
-
       svg.quote-open {
         position: absolute;
         top: -30px;
@@ -1344,201 +1045,6 @@ body#hubv4 {
           .quoter-info {
           }
         }
-      }
-    }
-  }
-  // Breadcrumbs overide
-  /*============================================================================*\
-| NAVIGATION - BREADCRUMBS
-\*============================================================================*/
-
-  ////
-  /// Breadcrumb-like main navigational component.
-  ///
-  /// @group navigation
-
-  $breadcrumbs-size: $navigation-primary-item-size;
-  $breadcrumbs-separator-color: $kohuhu;
-
-  $breadcrumbs-last-child: $kohuhu;
-
-  $breadcrumbs-ellipsis-max-width: 18rem;
-
-  // Adjust breadcrumbs for intranet
-  &.intranet-home {
-    nav {
-      .breadcrumbs {
-        padding: 1rem;
-      }
-    }
-  }
-  nav {
-    .breadcrumbs {
-      font-family: "Inter", sans-serif;
-      font-size: $breadcrumbs-size;
-      letter-spacing: $navigation-letter-spacing;
-      margin-bottom: 0;
-      display: flex;
-      overflow: hidden;
-      flex-wrap: wrap;
-      @include breakpoint($until: desktop) {
-        margin: 1rem 0.75rem;
-      }
-      &.block {
-        margin-bottom: 0;
-        padding-right: 0.75rem;
-        padding-left: 0.75rem;
-      }
-
-      a {
-        // @include link-underline;
-        color: $pounamu;
-        text-decoration: none;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-
-      // Breadcrumb item (current page and links)
-      > li {
-        background-color: $grey-light;
-        display: flex;
-        font-size: 90%;
-        align-items: center;
-        padding: 0.5em 1em;
-        position: relative;
-        padding-left: 1.5em;
-        @include breakpoint($until: desktop) {
-          padding: 0.5em 0.5em;
-        }
-
-        &:nth-last-child(2) {
-          &:before {
-            display: none;
-          }
-        }
-
-        &:after {
-          content: "\f156";
-          font-family: "Favorites";
-          font-style: normal;
-          font-weight: normal;
-          font-variant: normal;
-          position: relative;
-          line-height: 1;
-          right: -20px;
-          font-size: 20px;
-          text-decoration: inherit;
-          text-rendering: optimizeLegibility;
-          text-transform: none;
-          color: $pounamu;
-          margin: 0 0.3125em;
-          @include breakpoint($until: desktop) {
-            font-size: 15px;
-            right: -5px;
-          }
-        }
-
-        // First item? => Home with icon
-        &:first-child a {
-          @include extend-icon-before(home) {
-            margin-right: _em($gap-small);
-            vertical-align: 0;
-            font-size: $text-size-tiny;
-            text-decoration: none;
-          }
-        }
-
-        // Separator
-        // @include extend-icon-after(triangle-right) {
-        //   margin: 0 _em($gap-small);
-        //   font-size: $text-size-tiny;
-        //   color: $breadcrumbs-separator-color;
-        // }
-
-        // Active page
-        &:last-child {
-          font-weight: $weight-semibold;
-          padding-right: 1.5em;
-          // clip-path: polygon(0% 0%, 85% 0, 100% 50%, 85% 100%, 0% 100%);
-
-          &:after {
-            content: "";
-            position: absolute;
-            right: -52px;
-            top: -5px;
-            display: block;
-            border-top: 25px solid transparent;
-            border-left: 30px solid #f9f9f9;
-            border-bottom: 25px solid transparent;
-            @include breakpoint($until: desktop) {
-              right: -45px;
-              display: none;
-            }
-          }
-        }
-      }
-
-      @include breakpoint($until: desktop) {
-        > li {
-          white-space: nowrap;
-        }
-
-        a,
-        li:last-child {
-          overflow: hidden;
-          vertical-align: middle;
-          text-overflow: ellipsis;
-          max-width: $breadcrumbs-ellipsis-max-width;
-          white-space: nowrap;
-        }
-      }
-
-      // If used within content panel, drop bottom padding to avoid double margins
-      .content-panel & {
-        padding-bottom: 0;
-      }
-    }
-    &.breadcrumbs-full {
-      margin-bottom: 1rem;
-      margin-top: 1rem;
-    }
-  }
-  .highlight-message {
-    // clip-path: polygon(-0.25% -3px, 93.9% -0.75%, 100.2% 99.28%, 0px 100%);
-    // clip-path: polygon(0% 0%, 83% 0, 100% 14%, 100% 100%, 0% 100%);
-    clip-path: polygon(0% 0%, 94.45% -3px, 100% 24.44%, 100% 100%, 0% 100%);
-
-    .highlight-content {
-      background-color: rgb(229, 246, 253);
-      color: rgb(1, 67, 97);
-    }
-    &.green {
-      .highlight-content {
-        color: $pounamu;
-        background-color: $kohuhu;
-
-        a.button.primary {
-          background-color: $mahoe;
-          color: $manuka !important;
-          margin-top: 0.5rem;
-          border-radius: 0;
-          // border: 1px $miro solid;
-          transition: all ease 0.2s;
-          display: inline-block;
-          &:hover {
-            box-shadow: 1.1px 2.2px 2.2px rgba(7, 7, 7, 0.47);
-            color: #fff;
-            background-color: $pounamu;
-          }
-        }
-      }
-    }
-    &.red {
-      .highlight-content {
-        color: rgb(95, 33, 32);
-        background-color: rgb(253, 237, 237);
       }
     }
   }

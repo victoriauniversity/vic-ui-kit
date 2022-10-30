@@ -38,6 +38,7 @@ if ($("body").attr("id") == "hubv4") {
   const TRANSITION_TIMEOUT = 200; // update in _settings.variables.scss(135)
   const MOBILE_LARGE_AND_SMALLER = "screen and (max-width: 42.99em)", // update in _settings.responsive.scss(57)
     DESKTOP_AND_LARGER = "screen and (min-width: 61em)",
+    TABLET_AND_LARGER = "screen and (min-width: 975px)",
     TABLET_AND_SMALLER = "screen and (max-width: 975px)",
     // Iframe selectors
     YOUTUBE_IFRAME_SELECTOR = 'iframe[src*="youtube"]',
@@ -223,8 +224,9 @@ if ($("body").attr("id") == "hubv4") {
     //   apply();
     // });
 
-    // Click event for expand buttons in SIDEMENU only
-    expandableButtonElement.on("click keyup", (e) => {
+    //! Click event for expand buttons in SIDEMENU only
+    expandableButtonElement.on("click keyup touchstart", (e) => {
+      console.log(e.which);
       if (e.which == 13 || e.which == 1) {
         e.preventDefault();
         e.stopPropagation();
@@ -232,9 +234,17 @@ if ($("body").attr("id") == "hubv4") {
         var topLevel = false;
         var clickedButton = $(this);
 
-        // !TOP LEVEL
+        // !TOP LEVEL EXPANDER CLICKED
         if (clickedButton.parent().parent().parent().hasClass("sidemenu")) {
+          // When closing, also close any items which are expanded inside the parent
           topLevel = true;
+          clickedButton
+            .parent()
+            .find(".expanded")
+            .not(clickedButton.parent())
+            .removeClass("expanded")
+            .find(">ul")
+            .slideToggle();
         }
 
         apply(topLevel, clickedButton);
@@ -249,6 +259,7 @@ if ($("body").attr("id") == "hubv4") {
 
     var matches = 0;
 
+    //? Function not required anymore
     // $("." + SIDEMENU_CLASS)
     //   .find("a")
     //   .each(function () {
@@ -263,15 +274,14 @@ if ($("body").attr("id") == "hubv4") {
     //   });
 
     // Expanding/Collapsing of the entire side menu on mobile devices
-    menuElement
-      .children(`.${SIDEMENU_TOGGLE_CLASS}`)
-      .children("a")
-      .on("click", function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        $(this).parent().next().slideToggle();
-        $(this).parent().toggleClass(SIDEMENU_EXPANDED_CLASS);
-      });
+    // !Moved to tray.js
+    // $(".sidemenu-toggle > .btn-expander").on("click", function (e) {
+    //   console.log(e);
+    //   // e.preventDefault();
+    //   // e.stopPropagation();
+    //   $(this).parent().next().slideToggle();
+    //   $(this).parent().toggleClass(SIDEMENU_EXPANDED_CLASS);
+    // });
 
     const expandableButtons = menuElement.find(`.${SIDEMENU_EXPANDER_CLASS}`);
 
@@ -296,8 +306,11 @@ if ($("body").attr("id") == "hubv4") {
       $(".sidemenu > ul > li").each(function (e) {
         var link = $(this).find(">a");
         var expander = $(this).find("> .btn-expander");
-
-        expander.css("height", link.outerHeight());
+        if (link.outerHeight() > 0) {
+          expander.css("height", link.outerHeight());
+        } else {
+          expander.css("height", "100%");
+        }
       });
     });
   }
@@ -1372,41 +1385,72 @@ if ($("body").attr("id") == "hubv4") {
   // Add Maori language tags to all tereo titles
   $(".tereo-title").attr("lang", "mi");
 
-  // Save page toggle
-  $(".save-page").on("click", function () {
-    $(this).toggleClass("saved");
-  });
+  var saveButton = $(".save-page");
 
   // Save a page
   $(".save-page").on("click", function () {
+    $(this).toggleClass("saved");
+
+    if ($(this).hasClass("saved")) {
+      saveButton.attr("title", "Remove this page from your Saved Items");
+    } else {
+      saveButton.attr("title", "Add this page to your Saved Items");
+    }
+
+    // Update tooltip text
+
     var localSavedPages = JSON.parse(localStorage.getItem("savedPages"));
 
     var savedPageObject = {
-      url: window.location.href,
       name: document.title,
+      url: window.location.href,
     };
+    console.log(savedPageObject);
 
-    console.log(localSavedPages);
-
+    // if we already have some saved pages
     if (localSavedPages && localSavedPages.length > 0) {
       console.log(localSavedPages);
-      var arrayOfSavedItems = [];
-
-      var filtered = localSavedPages.filter(function (option) {
-        return option.url !== savedPageObject.url;
-      });
-      localStorage.setItem("savedPages", [JSON.stringify(filtered)]);
+      // If item already exists, remove it
+      if (
+        localSavedPages.filter((e) => e.url === savedPageObject.url).length > 0
+      ) {
+        var filtered = localSavedPages.filter(function (option) {
+          return option.url !== savedPageObject.url;
+        });
+        localStorage.setItem("savedPages", [JSON.stringify(filtered)]);
+      } else {
+        // Else, add it in
+        localSavedPages.push(savedPageObject);
+        localStorage.setItem("savedPages", [JSON.stringify(localSavedPages)]);
+      }
     } else {
       // First saved page
       var arrayOfSavedItems = [];
       arrayOfSavedItems.push(savedPageObject);
-
       localStorage.setItem("savedPages", JSON.stringify(arrayOfSavedItems));
     }
   });
 
   // Apply style to page save icon if page is in local storage
-  if ($(".save-page")) {
+  if (saveButton) {
+    var localSavedPages = JSON.parse(localStorage.getItem("savedPages"));
+    console.log(localSavedPages);
+    if (
+      localSavedPages.filter((e) => e.url === window.location.href).length > 0
+    ) {
+      saveButton.addClass("saved");
+      saveButton.attr("title", "Remove this page from your Saved Items");
+    } else {
+      saveButton.removeClass("saved");
+      saveButton.attr("title", "Add this page to your Saved Items");
+    }
+  }
+
+  // Save Qualification
+  if (window.location.href.includes("?saveTest")) {
+    var buttonEl =
+      "<button class='save-qual-button new primary no-icon'>Save Qualification</button>";
+    $("body#hubv4").append(buttonEl);
   }
 } else {
   /* CONSTANT ATTRIBUTES */
@@ -1499,6 +1543,7 @@ keep the markup clean (and easily handled by the CSS) */
     enhanceSidemenu(menuElement);
 
     // Expanding/Collapsing of the entire side menu on mobile devices
+    // ! Not sure this is needed anymore
     menuElement
       .children(`.${SIDEMENU_TOGGLE_CLASS}`)
       .children("a")

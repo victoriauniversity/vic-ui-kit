@@ -28,12 +28,12 @@
 <div class="pre-header">
   <div class="block centraliser">
     <ul class="sub-menu-list">
-      {{#if sub-header}} 
+      {{#if sub-header}}
         {{#each sub-header}}
         <li class="sub-menu-item {{lowercase (join (split this.name ' ') '-')}}">
           <a href="#" class="sub-nav-link">{{this.name}}</a>
         </li>
-        {{/each}} 
+        {{/each}}
       {{/if}}
     </ul>
   </div>
@@ -75,7 +75,7 @@
         <!-- <a href="#">
           <h2 class="tereo-title">Te Kura Aro Whakamuri, Rapunga Whakaaro, Matai Tōrangapū me te Ao</h2>
           <h1>School of History, Philosophy, Political Science and International Relations</h1>
-          
+
 
         </a> -->
       </div>
@@ -150,7 +150,7 @@
             <div class="tray-close">
               <button class="close-tray flat"><span class="icon-cross"></span>Close</button>
             </div>
-            <div class="tabs">
+            <div class="tray-tabs">
               <div class="blip" style="left: 0px; width: 0px;"></div>
               <div class="tab-background">
                 <div tabindex="0" class="tab t-menu active">
@@ -181,17 +181,24 @@
                 </label>
                 <input class="search-input" id="search" type="text" placeholder="Search entire site" name="q"
                   autocorrect="off">
-                <button class="submit-button" type="submit"><span class="icons8-search"></span></button>
+                <button class="submit-button flat" type="submit"><span class="icons8-search"></span></button>
               </form>
+              <button class="save-page no-icon button" data-tooltip>Save current page<svg fill="#000000"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="35px" height="35px">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"
+                  d="M37 3L13 3 13 47 25 40 37 47z" />
+              </svg></button>
+
             </div>
             <div class="tray-inner-content">
-
               <div role="menu" class="tray-main-nav">
                 {{#if hubPage}}
                 <ul class="main-nav-list hub-page">
                   <div class="tall-blip"></div>
+                  <div class="sidemenu-top">
+                    <a class="home-link" href="/"> <i class="icons8-back"></i> Home</a>
 
-                  <a class="home-link" href="/"> <i class="icons8-back"></i> Home</a>
+                  </div>
                   <!-- <div class="nav-separator">Main university menu</div>
                   <li class="main-nav-item homesite">
                     <svg class="connector" fill="#CCCCCC" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"
@@ -244,7 +251,7 @@
                     <a href="https://www.wgtn.ac.nz/study" role="nav-item" title="{{{this}}} page"
                       class="{{this}} main-nav-link active"><span class="tereo-nav-title">Nga akonga kei te heke mai</span>Future
                       students</a>
-                
+
                     <span tabindex="0" class="btn-expander mf-heatmap-click no-icon" title="Toggle subpages"
                       role="button"></span>
                     <ul class="tray-main-nav-submenu mobile-tray-menu">
@@ -379,7 +386,7 @@
                         </ul>
                       </li>
 
-                     
+
                     </ul>
 
                   </li>
@@ -514,7 +521,7 @@
                   </div>
 
                   <div id="saved-app"></div>
-                  <!-- 
+                  <!--
                 <div class="saved-items-selector">
                   Show saved items for:
                   <div class="custom-dropdown">
@@ -605,14 +612,13 @@
   </div>
 
   {{#if horizontalNav}}
-  <div class="gradient-line"></div>
   <div class="centraliser block horizontal-sub-nav-wrap show-mega-menu-top
   " id="mega_menu_block">
     <nav role="navigation" id="mega-nav" class="mega-sub-menu  {{#if tereoNavTitles}}tereo-nav{{/if}}">
       <h1 class="sidemenu-toggle"><a href="#" title="Show/Hide About us menu"><span class="tereo-title">Mō
             mātou</span>About us</a></h1>
 
-       
+
 
 
       <ul id="mega-menu" role="menubar" class="mega-menu-top-level">
@@ -620,8 +626,8 @@
         <li class="sidemenu__label"><a href="menu-nav-test/home">Menu Nav Test - Hub</a></li>
 
         <li class="nav-item-parent" data-for="draw-1856598"
-          onmouseenter='$("[id^=draw]").hide(); $("#draw-1856598").show(); $("#draw-1856598").length ? $(".sidemenu-drawer").removeClass("no-promo") : $(".sidemenu-drawer").addClass("no-promo");'>
-          <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Nga akonga kei te heke mai</span>Future students</a>
+       >
+          <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Ngā tauira o āpōpō</span>Future students</a>
           <ul>
 
 
@@ -676,10 +682,10 @@
             </li>
           </ul>
         </li>
-     
+
         <li class="nav-item-parent" data-for="draw-1856616"
           onmouseenter='$("[id^=draw]").hide(); $("#draw-1856616").show(); $("#draw-1856616").length ? $(".sidemenu-drawer").removeClass("no-promo") : $(".sidemenu-drawer").addClass("no-promo");'>
-          <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Te ao ki konei</span>International students</a>
+          <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Te whirika</span>International students</a>
           <ul>
 
 
@@ -710,7 +716,7 @@
         </li>
         <li class="nav-item-parent" data-for="draw-1856628"
           onmouseenter='$("[id^=draw]").hide(); $("#draw-1856628").show(); $("#draw-1856628").length ? $(".sidemenu-drawer").removeClass("no-promo") : $(".sidemenu-drawer").addClass("no-promo");'>
-          <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Mahi ana i konei</span>Current students</a>
+          <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Tauira o nāianei</span>Current students</a>
           <ul>
 
 
@@ -740,11 +746,11 @@
         </li>
         <li class="nav-item-parent" data-for="draw-1856636"
           onmouseenter='$("[id^=draw]").hide(); $("#draw-1856636").show(); $("#draw-1856636").length ? $(".sidemenu-drawer").removeClass("no-promo") : $(".sidemenu-drawer").addClass("no-promo");'>
-          <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Hoapā</span>Research</a>
+          <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Rangahau</span>Research</a>
         </li>
         <li class="nav-item-parent" data-for="draw-1940832"
           onmouseenter='$("[id^=draw]").hide(); $("#draw-1940832").show(); $("#draw-1940832").length ? $(".sidemenu-drawer").removeClass("no-promo") : $(".sidemenu-drawer").addClass("no-promo");'>
-          <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Kaimahi</span>Engage</a>
+          <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Turipū</span>Engage</a>
           <ul>
             <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/staff/test" title="Test">Test</a>
             </li>
@@ -816,4 +822,6 @@
     </nav>
   </div>
   {{/if}}
+  <div class="gradient-line"></div>
+
 </header>

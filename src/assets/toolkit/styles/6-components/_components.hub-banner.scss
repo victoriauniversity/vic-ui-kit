@@ -86,11 +86,46 @@
       }
     }
   }
+
+  #hubv4 & {
+    border-color: $miro;
+    .banner-image {
+      background-image: none;
+      img {
+        display: block;
+      }
+    }
+
+    .banner-title {
+      h1 {
+        display: block !important;
+
+        &::before {
+          display: block;
+          margin-bottom: 0.8rem;
+          content: "";
+          width: 0;
+          height: 0;
+          border-left: 15px solid transparent;
+          border-right: 15px solid transparent;
+          border-top: 15px solid $kowhai;
+          margin-left: 2px;
+        }
+      }
+    }
+
+    .banner-title,
+    .banner-body {
+      background-color: $pounamu;
+      color: $manuka;
+    }
+  }
 }
 
 .hub-banner-sidemenu {
   width: 100%;
   position: relative;
+  // margin-bottom: 2rem;
 
   > figure {
     position: relative;
@@ -167,11 +202,31 @@
       }
 
       img {
+        height: 100%;
         margin-bottom: 0 !important;
         max-height: 520px;
         object-fit: cover;
         object-position: top;
+
+        &.top {
+          object-position: top;
+        }
+        &.bottom {
+          object-position: bottom;
+        }
+        &.center {
+          object-position: center;
+        }
+        &.right {
+          object-position: right;
+        }
+        &.left {
+          object-position: left;
+        }
       }
+              &.top {
+          object-position: top;
+        }
 
       &.top {
         img {
@@ -211,16 +266,187 @@
 
 
 #hubv4 {
+
+  .top-menu-banner {
+    .hub-banner-sidemenu {
+      width: 100%;
+    }
+  }
   .hub-banner-sidemenu {
     figure {
       height: 100%;
+      padding: 1.5rem;
+      position: relative;
+
+      &:after {
+        content: "";
+        border-top: 1rem $pounamu solid;
+        border-right: 1rem $pounamu solid;
+        background-color: transparent;
+        position: absolute;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        max-width: calc(100% - 2.25rem);
+        max-height: calc(100% - 2.25rem);
+        width: 150px;
+        height: 150px;
+        transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
+      }
+    }
+
+    a {
+      @include hoverify() {
+        figure {
+            h1,h2 {
+              text-decoration: underline;
+            }
+
+          &:after {
+            width: 100%;
+            height: 100%
+          }
+
+          img {
+            filter: brightness(.9);
+          }
+        }
+      }
     }
     .banner-image {
       height: 100%;
-      background-size: cover;
+      // background-size: cover;
+      img {
+        // display: none;
+        width: 100%;
+      }
     }
-    img {
-      display: none;
+
+    .banner-body {
+      position: absolute;
+      margin: 0;
+      max-width: 60%;
+      background-color: $pounamu;
+    }
+
+    .banner-title {
+      margin-bottom: 2rem;
+
+      h1, h2 {
+        color: $manuka;
+        &:after {
+          bottom: -1rem;
+          background-color: $kowhai;
+        }
+      }
+    }
+
+    .banner-text {
+      p {
+        color: $manuka;
+      }
+    }
+    .top-left {
+      .banner-body {
+        top: 0;
+        left: 0;
+      }
+      &:after {
+        bottom: .75rem;
+        right: .75rem;
+        border-top: none;
+        border-bottom: 1rem $pounamu solid;
+      }
+    }
+    .bottom-left {
+      .banner-body {
+        bottom: 0;
+        left: 0;
+      }
+      &:after {
+        top: .75rem;
+        right: .75rem;
+      }
+    }
+    .top-right {
+      .banner-body {
+        top: 0;
+        right: 0;
+      }
+      &:after {
+        bottom: .75rem;
+        left: .75rem;
+        border-top: none;
+        border-right: none;
+        border-left: 1rem $pounamu solid;
+        border-bottom: 1rem $pounamu solid;
+      }
+    }
+    .bottom-right {
+      .banner-body {
+        bottom: 0;
+        right: 0;
+      }
+      &:after {
+        top: .75rem;
+        left: .75rem;
+        border-right: none;
+        border-left: 1rem $pounamu solid;
+      }
+    }
+
+    &.no-overlay {
+      &:before {
+        bottom: .75rem;
+        left: .75rem;
+        content: "";
+        z-index: 20;
+        border-bottom: 1rem $pounamu solid;
+        border-left: 1rem $pounamu solid;
+        background-color: transparent;
+        position: absolute;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        max-width: calc(100% - 2.25rem);
+        max-height: calc(100% - 2.25rem);
+        width: 150px;
+        height: 150px;
+        transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
+      }
+
+      figure {
+        &:after {
+          border-color: $miro;
+        }
+      }
+    }
+
+    @include breakpoint( $until: 850px ) {
+
+      figure {
+        &::after {
+          top: 0.75rem !important;
+          right: 0.75rem !important;
+        }
+      }
+      .banner-body {
+        position: relative;
+        margin-top: -2rem;
+        max-width: 70%;
+      }
+    }
+    @include breakpoint( $until: 700px ) {
+
+      figure {
+        &::after {
+          top: 0.75rem !important;
+          right: 0.75rem !important;
+        }
+      }
+      .banner-body {
+        position: relative;
+        margin-top: 0;
+        max-width: 100%;
+      }
     }
   }
 }
