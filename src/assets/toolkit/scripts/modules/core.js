@@ -135,7 +135,6 @@ if (
 }
 
 // Check toolbar to ensure myTools has been updated to Puaha
-//TODO - remove below code
 if (
   document.location.pathname.split("/")[1] == "courses" ||
   document.location.pathname.split("/")[1] == "explore"
@@ -183,17 +182,6 @@ if (
   if (target[0] && checkIfAlreadyExists.length < 1) {
     $nukuLink.insertAfter(target[0]);
   }
-  // $("header .menu-bar > a").each(function (e) {
-  //   var text = $(this).text();
-  //   // Update link if mytools
-
-  //   if (text.includes("myTools") || text.includes("—Student Portal")) {
-  //     var $el = $(this);
-  //     $el.text("Pūaha");
-  //     $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
-  //     $el.attr("title", "Pūaha");
-  //   }
-  // });
 }
 
 /* END Hide levy info on courses page */
