@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, October 31, 2022, 9:01 AM */
+/** Version: 0.10.13 | Monday, October 31, 2022, 9:15 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15572,54 +15572,53 @@ document.addEventListener("DOMContentLoaded", function (event) {
   waitForElm(".course-item-list").then(function () {
     // console.log('hide');
     hideCourseLevies();
-  });
+  }); // Check toolbar to ensure myTools has been updated to Puaha
+
+  if (document.location.pathname.split("/")[1] == "courses" || document.location.pathname.split("/")[1] == "explore") {
+    if ($("header ul[role=menubar]")) {
+      $("header ul[role=menubar] > li > a").each(function (e) {
+        var text = $(this).text(); // Update link if mytools
+
+        if (text.includes("myTools") || text.includes("—Student Portal")) {
+          var $el = $(this);
+          $el.text("Pūaha");
+          $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
+          $el.attr("title", "Pūaha");
+        }
+      });
+    } // Add Nuku link (course/programmes)
+
+
+    var $nukuLink = $("<li role='presentation' ng-repeat='menuItem in ::vm.header.navigation.alternate' ng-if=':: menuItem.type == 'link'' class=''><a title='Nuku' ng-href='https://wgtn.instructure.com/' role='menuitem' href='https://wgtn.instructure.com/'>Nuku</a></li>");
+    var target = $("header ul[role=menubar] > li").filter(function (i, el) {
+      return $(el).find(">a").text() == "Blackboard";
+    });
+    var checkIfAlreadyExists = $("header ul[role=menubar] > li").filter(function (i, el) {
+      return $(el).find(">a").text() == "Nuku";
+    });
+
+    if (target[0] && checkIfAlreadyExists.length < 1) {
+      $nukuLink.insertAfter(target[0]);
+    }
+  } else {
+    // Add Nuku link (main site)
+    var $nukuLink = $("<a title='Nuku' href='https://wgtn.instructure.com/' target='_blank'>Nuku</a>");
+    var target = $("header .menu-bar > a").filter(function (i, el) {
+      return $(el).text() == "Blackboard";
+    }); // Make sure it's not already added
+
+    var checkIfAlreadyExists = $("header .menu-bar > a").filter(function (i, el) {
+      return $(el).text() == "Nuku";
+    });
+
+    if (target[0] && checkIfAlreadyExists.length < 1) {
+      $nukuLink.insertAfter(target[0]);
+    }
+  }
 }); // Check toolbar for mode=dev and apply class
 
 if (document.location.href.includes("SQ_DESIGN_NAME=v4") || document.location.href.includes("local.wgtn") || document.location.href.includes("assets/git_bridge/0009/1778031/dist")) {
   $("body").attr("id", "hubv4");
-} // Check toolbar to ensure myTools has been updated to Puaha
-
-
-if (document.location.pathname.split("/")[1] == "courses" || document.location.pathname.split("/")[1] == "explore") {
-  if ($("header ul[role=menubar]")) {
-    $("header ul[role=menubar] > li > a").each(function (e) {
-      var text = $(this).text(); // Update link if mytools
-
-      if (text.includes("myTools") || text.includes("—Student Portal")) {
-        var $el = $(this);
-        $el.text("Pūaha");
-        $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
-        $el.attr("title", "Pūaha");
-      }
-    });
-  } // Add Nuku link (course/programmes)
-
-
-  var $nukuLink = $("<li role='presentation' ng-repeat='menuItem in ::vm.header.navigation.alternate' ng-if=':: menuItem.type == 'link'' class=''><a title='Nuku' ng-href='https://wgtn.instructure.com/' role='menuitem' href='https://wgtn.instructure.com/'>Nuku</a></li>");
-  var target = $("header ul[role=menubar] > li").filter(function (i, el) {
-    return $(el).find(">a").text() == "Blackboard";
-  });
-  var checkIfAlreadyExists = $("header ul[role=menubar] > li").filter(function (i, el) {
-    return $(el).find(">a").text() == "Nuku";
-  });
-
-  if (target[0] && checkIfAlreadyExists.length < 1) {
-    $nukuLink.insertAfter(target[0]);
-  }
-} else {
-  // Add Nuku link (main site)
-  var $nukuLink = $("<a title='Nuku' href='https://wgtn.instructure.com/' target='_blank'>Nuku</a>");
-  var target = $("header .menu-bar > a").filter(function (i, el) {
-    return $(el).text() == "Blackboard";
-  }); // Make sure it's not already added
-
-  var checkIfAlreadyExists = $("header .menu-bar > a").filter(function (i, el) {
-    return $(el).text() == "Nuku";
-  });
-
-  if (target[0] && checkIfAlreadyExists.length < 1) {
-    $nukuLink.insertAfter(target[0]);
-  }
 }
 /* END Hide levy info on courses page */
 
