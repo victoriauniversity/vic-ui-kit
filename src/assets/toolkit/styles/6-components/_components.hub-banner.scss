@@ -86,6 +86,40 @@
       }
     }
   }
+
+  #hubv4 & {
+    border-color: $miro;
+    .banner-image {
+      background-image: none;
+      img {
+        display: block;
+      }
+    }
+
+    .banner-title {
+      h1 {
+        display: block !important;
+
+        &::before {
+          display: block;
+          margin-bottom: 0.8rem;
+          content: "";
+          width: 0;
+          height: 0;
+          border-left: 15px solid transparent;
+          border-right: 15px solid transparent;
+          border-top: 15px solid $kowhai;
+          margin-left: 2px;
+        }
+      }
+    }
+
+    .banner-title,
+    .banner-body {
+      background-color: $pounamu;
+      color: $manuka;
+    }
+  }
 }
 
 .hub-banner-sidemenu {
@@ -383,6 +417,35 @@
         &:after {
           border-color: $miro;
         }
+      }
+    }
+
+    @include breakpoint( $until: 850px ) {
+
+      figure {
+        &::after {
+          top: 0.75rem !important;
+          right: 0.75rem !important;
+        }
+      }
+      .banner-body {
+        position: relative;
+        margin-top: -2rem;
+        max-width: 70%;
+      }
+    }
+    @include breakpoint( $until: 700px ) {
+
+      figure {
+        &::after {
+          top: 0.75rem !important;
+          right: 0.75rem !important;
+        }
+      }
+      .banner-body {
+        position: relative;
+        margin-top: 0;
+        max-width: 100%;
       }
     }
   }

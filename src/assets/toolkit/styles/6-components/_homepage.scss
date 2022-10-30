@@ -809,6 +809,10 @@
       .button.primary {
         background-color: $kowhai;
         color: $pounamu;
+
+        @include hoverify() {
+          color: $manuka;
+        }
       }
     }
     .cols {
@@ -818,8 +822,12 @@
       .link_list {
         margin-bottom: 2rem;
 
+        > li {
+          margin-bottom: 0.25rem;
+        }
+
         .social_logo {
-          border-radius: 100px;
+          // border-radius: 100px;
           filter: grayscale(1);
           &:hover {
             filter: grayscale(0);

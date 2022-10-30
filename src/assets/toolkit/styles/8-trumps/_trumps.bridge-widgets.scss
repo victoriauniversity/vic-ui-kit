@@ -175,6 +175,43 @@ ul.no-list {
     flex-wrap: wrap;
   }
 
+  #hubv4 & {
+    margin-bottom: 2rem;
+    background-color: $kohuhu;
+    border: 1px solid $miro;
+    padding: 1rem;
+    grid-gap: 0.5rem;
+
+    .block--channel {
+      a {
+        align-items: center;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+    }
+
+    .icon {
+      display: block;
+      width: 30px;
+      height: 30px;
+      background: url(images/social-facebook.svg) no-repeat 0 0;
+
+      &.twitter {
+        background-image: url(images/social-twitter.svg);
+      }
+      &.youtube {
+        background-image: url(images/social-youtube.svg);
+      }
+      &.linkedin {
+        background-image: url(images/social-linkedin.svg);
+      }
+      &.instagram {
+        background-image: url(images/social-instagram.svg);
+      }
+    }
+  }
+
 }
 
 // A to Z list
@@ -266,12 +303,15 @@ ul.no-list {
 }
 
 // OLD highlight blocks
-.layout {
+// not needed in new design
+body:not(#hubv4) {
+  .layout {
 
-  .highlight_secondary {
-    clear: both;
-    background-color: #eee;
-    margin-bottom: 1.6rem;
-    padding: 1.25rem;
+    .highlight_secondary {
+      clear: both;
+      background-color: #eee;
+      margin-bottom: 1.6rem;
+      padding: 1.25rem;
+    }
   }
 }
