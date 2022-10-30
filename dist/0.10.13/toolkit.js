@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, October 31, 2022, 9:20 AM */
+/** Version: 0.10.13 | Monday, October 31, 2022, 9:25 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15577,31 +15577,33 @@ document.addEventListener("DOMContentLoaded", function (event) {
     // console.log('hide');
     // Check toolbar to ensure myTools has been updated to Puaha
     if (document.location.pathname.split("/")[1] == "courses" || document.location.pathname.split("/")[1] == "explore") {
-      if ($("header ul[role=menubar]")) {
-        $("header ul[role=menubar] > li > a").each(function (e) {
-          var text = $(this).text(); // Update link if mytools
+      setTimeout(function () {
+        if ($("header ul[role=menubar]")) {
+          $("header ul[role=menubar] > li > a").each(function (e) {
+            var text = $(this).text(); // Update link if mytools
 
-          if (text.includes("myTools") || text.includes("—Student Portal")) {
-            var $el = $(this);
-            $el.text("Pūaha");
-            $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
-            $el.attr("title", "Pūaha");
-          }
+            if (text.includes("myTools") || text.includes("—Student Portal")) {
+              var $el = $(this);
+              $el.text("Pūaha");
+              $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
+              $el.attr("title", "Pūaha");
+            }
+          });
+        } // Add Nuku link (course/programmes)
+
+
+        var $nukuLink = $("<li role='presentation' ng-repeat='menuItem in ::vm.header.navigation.alternate' ng-if=':: menuItem.type == 'link'' class=''><a title='Nuku' ng-href='https://wgtn.instructure.com/' role='menuitem' href='https://wgtn.instructure.com/'>Nuku</a></li>");
+        var target = $("header ul[role=menubar] > li").filter(function (i, el) {
+          return $(el).find(">a").text() == "Blackboard";
         });
-      } // Add Nuku link (course/programmes)
+        var checkIfAlreadyExists = $("header ul[role=menubar] > li").filter(function (i, el) {
+          return $(el).find(">a").text() == "Nuku";
+        });
 
-
-      var $nukuLink = $("<li role='presentation' ng-repeat='menuItem in ::vm.header.navigation.alternate' ng-if=':: menuItem.type == 'link'' class=''><a title='Nuku' ng-href='https://wgtn.instructure.com/' role='menuitem' href='https://wgtn.instructure.com/'>Nuku</a></li>");
-      var target = $("header ul[role=menubar] > li").filter(function (i, el) {
-        return $(el).find(">a").text() == "Blackboard";
-      });
-      var checkIfAlreadyExists = $("header ul[role=menubar] > li").filter(function (i, el) {
-        return $(el).find(">a").text() == "Nuku";
-      });
-
-      if (target[0] && checkIfAlreadyExists.length < 1) {
-        $nukuLink.insertAfter(target[0]);
-      }
+        if (target[0] && checkIfAlreadyExists.length < 1) {
+          $nukuLink.insertAfter(target[0]);
+        }
+      }, 100);
     }
   }); // Check toolbar to ensure myTools has been updated to Puaha
 

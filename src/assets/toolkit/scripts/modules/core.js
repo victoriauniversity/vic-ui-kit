@@ -131,33 +131,35 @@ document.addEventListener("DOMContentLoaded", function (event) {
       document.location.pathname.split("/")[1] == "courses" ||
       document.location.pathname.split("/")[1] == "explore"
     ) {
-      if ($("header ul[role=menubar]")) {
-        $("header ul[role=menubar] > li > a").each(function (e) {
-          var text = $(this).text();
-          // Update link if mytools
-          if (text.includes("myTools") || text.includes("—Student Portal")) {
-            var $el = $(this);
-            $el.text("Pūaha");
-            $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
-            $el.attr("title", "Pūaha");
-          }
-        });
-      }
-      // Add Nuku link (course/programmes)
-      var $nukuLink = $(
-        "<li role='presentation' ng-repeat='menuItem in ::vm.header.navigation.alternate' ng-if=':: menuItem.type == 'link'' class=''><a title='Nuku' ng-href='https://wgtn.instructure.com/' role='menuitem' href='https://wgtn.instructure.com/'>Nuku</a></li>"
-      );
-      var target = $("header ul[role=menubar] > li").filter(function (i, el) {
-        return $(el).find(">a").text() == "Blackboard";
-      });
-      var checkIfAlreadyExists = $("header ul[role=menubar] > li").filter(
-        function (i, el) {
-          return $(el).find(">a").text() == "Nuku";
+      setTimeout(() => {
+        if ($("header ul[role=menubar]")) {
+          $("header ul[role=menubar] > li > a").each(function (e) {
+            var text = $(this).text();
+            // Update link if mytools
+            if (text.includes("myTools") || text.includes("—Student Portal")) {
+              var $el = $(this);
+              $el.text("Pūaha");
+              $el.attr("href", "https://puaha.wgtn.ac.nz/signin");
+              $el.attr("title", "Pūaha");
+            }
+          });
         }
-      );
-      if (target[0] && checkIfAlreadyExists.length < 1) {
-        $nukuLink.insertAfter(target[0]);
-      }
+        // Add Nuku link (course/programmes)
+        var $nukuLink = $(
+          "<li role='presentation' ng-repeat='menuItem in ::vm.header.navigation.alternate' ng-if=':: menuItem.type == 'link'' class=''><a title='Nuku' ng-href='https://wgtn.instructure.com/' role='menuitem' href='https://wgtn.instructure.com/'>Nuku</a></li>"
+        );
+        var target = $("header ul[role=menubar] > li").filter(function (i, el) {
+          return $(el).find(">a").text() == "Blackboard";
+        });
+        var checkIfAlreadyExists = $("header ul[role=menubar] > li").filter(
+          function (i, el) {
+            return $(el).find(">a").text() == "Nuku";
+          }
+        );
+        if (target[0] && checkIfAlreadyExists.length < 1) {
+          $nukuLink.insertAfter(target[0]);
+        }
+      }, 100);
     }
   });
 
