@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         }
         // Add Nuku link (course/programmes)
         var $nukuLink = $(
-          "<li role='presentation' ng-repeat='menuItem in ::vm.header.navigation.alternate' ng-if=':: menuItem.type == 'link'' class=''><a title='Nuku' ng-href='https://wgtn.instructure.com/' role='menuitem' href='https://wgtn.instructure.com/'>Nuku</a></li>"
+          "<li role='presentation' ng-repeat='menuItem in ::vm.header.navigation.alternate' ng-if=':: menuItem.type == 'link'' class=''><a title='Nuku' ng-href='https://nuku.wgtn.ac.nz/' role='menuitem' href='https://nuku.wgtn.ac.nz/'>Nuku</a></li>"
         );
         var target = $("header ul[role=menubar] > li").filter(function (i, el) {
           return $(el).find(">a").text() == "Blackboard";
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   } else {
     // Add Nuku link (main site)
     var $nukuLink = $(
-      "<a title='Nuku' href='https://wgtn.instructure.com/' target='_blank'>Nuku</a>"
+      "<a title='Nuku' href='https://nuku.wgtn.ac.nz/' target='_blank'>Nuku</a>"
     );
     var target = $("header .menu-bar > a").filter(function (i, el) {
       return $(el).text() == "Blackboard";
