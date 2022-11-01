@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, October 31, 2022, 9:25 AM */
+/** Version: 0.10.13 | Wednesday, November 2, 2022, 8:13 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15592,7 +15592,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         } // Add Nuku link (course/programmes)
 
 
-        var $nukuLink = $("<li role='presentation' ng-repeat='menuItem in ::vm.header.navigation.alternate' ng-if=':: menuItem.type == 'link'' class=''><a title='Nuku' ng-href='https://wgtn.instructure.com/' role='menuitem' href='https://wgtn.instructure.com/'>Nuku</a></li>");
+        var $nukuLink = $("<li role='presentation' ng-repeat='menuItem in ::vm.header.navigation.alternate' ng-if=':: menuItem.type == 'link'' class=''><a title='Nuku' ng-href='https://nuku.wgtn.ac.nz/' role='menuitem' href='https://nuku.wgtn.ac.nz/'>Nuku</a></li>");
         var target = $("header ul[role=menubar] > li").filter(function (i, el) {
           return $(el).find(">a").text() == "Blackboard";
         });
@@ -15611,7 +15611,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     return; // do nothing
   } else {
     // Add Nuku link (main site)
-    var $nukuLink = $("<a title='Nuku' href='https://wgtn.instructure.com/' target='_blank'>Nuku</a>");
+    var $nukuLink = $("<a title='Nuku' href='https://nuku.wgtn.ac.nz/' target='_blank'>Nuku</a>");
     var target = $("header .menu-bar > a").filter(function (i, el) {
       return $(el).text() == "Blackboard";
     }); // Make sure it's not already added
