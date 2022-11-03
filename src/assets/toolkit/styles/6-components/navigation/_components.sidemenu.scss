@@ -937,8 +937,6 @@ body#hubv4 {
         .tereo-nav-title {
           color: $kowhai;
         }
-
-
       }
 
       &.expanded {
@@ -1106,7 +1104,7 @@ body#hubv4 {
         > li {
           border-bottom: 1px $grey-alto solid;
           border-top: 1px transparent solid;
-          transition: all $easing 0.3s;
+          // transition: all $easing 0.3s;
           margin-left: 0;
           &:after {
             transition: none;
@@ -1135,9 +1133,6 @@ body#hubv4 {
                 opacity: 1;
               }
             }
-            > a {
-              // padding-left: 20px;
-            }
           }
 
           &:not(.sidemenu__label) {
@@ -1146,7 +1141,7 @@ body#hubv4 {
 
           > a {
             padding: 0.8rem 0.9rem;
-            transition: all $easing 0.3s;
+            // transition: all $easing 0.3s;
             flex-direction: column;
             .tereo-title {
               color: $pounamu;
@@ -1549,14 +1544,12 @@ body#hubv4 {
           &.active {
             border-left: 4px solid $sidemenu-background-selected-v3;
             // background-color: $off-white;
+            // background-color: $kohuhu;
 
             > a {
               font-weight: 600;
-              text-decoration: underline;
-              color: $pounamu;
-              &:hover {
-                text-decoration: none;
-              }
+              // text-decoration: underline;
+              color: $black-brand;
             }
           }
           &.has-submenu {
@@ -1598,22 +1591,23 @@ body#hubv4 {
                 li {
                   position: relative;
                   overflow: visible;
-
-                  &:before {
-                    content: "";
-                    position: absolute;
-                    width: 0;
-                    height: 0;
-                    left: 3px;
-                    top: 8px;
-                    border-top: 10px solid transparent;
-                    border-left: 12px solid $sidemenu-background-selected-v3;
-                    border-bottom: 10px solid transparent;
-                    opacity: 0;
-                    transition: all $easing 0.3s;
-                    left: -13px;
-                    @include breakpoint($until: desktop-medium) {
-                      top: 5px;
+                  &.active {
+                    &:before {
+                      content: "";
+                      position: absolute;
+                      width: 0;
+                      height: 0;
+                      left: 0px;
+                      top: 8px;
+                      border-top: 10px solid transparent;
+                      border-left: 12px solid $sidemenu-background-selected-v3;
+                      border-bottom: 10px solid transparent;
+                      // opacity: 0;
+                      transition: all $easing 0.3s;
+                      // left: -13px;
+                      @include breakpoint($until: desktop-medium) {
+                        top: 5px;
+                      }
                     }
                   }
 
@@ -1639,17 +1633,6 @@ body#hubv4 {
               }
             }
 
-            // > .btn-expander {
-            //   z-index: 100;
-            //   position: relative;
-            //   &:hover {
-            //     background-color: $grey-gallery;
-            //   }
-            //   &:active,
-            //   &:focus {
-            //     background-color: $grey-gallery;
-            //   }
-            // }
             &.active {
               > ul {
                 display: block;
@@ -1669,15 +1652,12 @@ body#hubv4 {
                 &.expanded {
                   > a {
                     font-weight: 600;
-                    color: $sidemenu-text-hover-color-v3;
+                    // color: $sidemenu-text-hover-color-v3;
                   }
                 }
               }
               ul {
                 li {
-                  > a {
-                    // font-size: 95%;
-                  }
                   ul {
                     li {
                       a {
@@ -1920,7 +1900,17 @@ body#hubv4 {
           &.active {
             border-bottom: none;
             border-top: none;
-
+            > ul {
+              > li {
+                &.active {
+                  > a {
+                    // Add some slight extra padding to the first nested active item
+                    // padding-top: 12px;
+                    // padding-bottom: 12px;
+                  }
+                }
+              }
+            }
             > .btn-expander {
               &:hover,
               &:active,
@@ -1976,8 +1966,6 @@ body#hubv4 {
               border-top-color: $miro;
               border-bottom-color: $miro;
               box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.1);
-              // box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-              //   rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
             }
           }
 
