@@ -1218,6 +1218,24 @@ body#hubv4 {
     overflow: hidden;
   }
 
+  // !NOT HOMESITE
+  &:not(.homepage) {
+    .tray {
+      .main-nav-list {
+        @include breakpoint($until: desktop-medium) {
+          display: none;
+        }
+      }
+      .childMenu {
+        display: none !important;
+        float: none;
+        @include breakpoint($until: desktop-medium) {
+          display: block !important;
+        }
+      }
+    }
+  }
+
   .menu-container {
     //? Not sure if we should use this
     .outer-close-tray {
@@ -1574,30 +1592,16 @@ body#hubv4 {
             .main-nav-list {
               position: relative;
 
-              &.childMenu {
-                display: none !important;
-                float: none;
-
-                .sidemenu-toggle {
-                  // display: none;
-                  a {
-                    // pointer-events: none;
-                  }
-                }
-                .sidemenu__label {
-                  // display: flex;
-                }
-              }
               @include breakpoint($until: desktop-medium) {
                 //! Child menu in tray view
                 &.childMenu {
-                  display: block !important;
+                  // display: block !important;
                   .sidemenu {
                     border-bottom: 1px $grey-gallery solid;
                     // border-left: 4px $pounamu solid;
                   }
                   @include breakpoint(desktop-medium) {
-                    display: block !important;
+                    // display: block !important;
                     // display: none !important;
                   }
 
@@ -1688,9 +1692,6 @@ body#hubv4 {
                   //   }
                   // }
                 }
-                &:not(.childMenu) {
-                  display: none;
-                }
               }
 
               .sidemenu-toggle {
@@ -1737,12 +1738,7 @@ body#hubv4 {
                 > li {
                   border-bottom: none;
                   margin-bottom: 0;
-                  &:not(.homesite) {
-                    // margin-left: 20px;
-                    > a {
-                      padding: 10px 15px 10px 25px;
-                    }
-                  }
+
                   > a {
                     padding: 10px 15px;
                     background-color: #fff;
@@ -2132,56 +2128,54 @@ body#hubv4 {
               }
               ul {
                 li {
-                  &:not(.homesite) {
+                  &:before {
+                    content: "";
+                    position: absolute;
+                    width: 0;
+                    height: 0;
+                    top: 10px;
+                    border-top: 10px solid transparent;
+                    border-left: 12px solid $pounamu;
+                    border-bottom: 10px solid transparent;
+                    opacity: 0;
+                    transition: all $easing 0.3s;
+                    left: -13px;
+                  }
+
+                  &.expanded {
+                    // padding-left: 5px;
                     &:before {
-                      content: "";
-                      position: absolute;
-                      width: 0;
-                      height: 0;
-                      top: 10px;
-                      border-top: 10px solid transparent;
-                      border-left: 12px solid $pounamu;
-                      border-bottom: 10px solid transparent;
-                      opacity: 0;
-                      transition: all $easing 0.3s;
-                      left: -13px;
+                      opacity: 1;
+                      left: 3px;
                     }
+                  }
 
-                    &.expanded {
-                      // padding-left: 5px;
+                  ul {
+                    li {
+                      position: relative;
+                      overflow: visible;
                       &:before {
-                        opacity: 1;
-                        left: 3px;
+                        top: 8px;
+                      }
+                      > a {
+                      }
+                      &.expanded {
+                        > a {
+                          color: $pounamu;
+                        }
+                        &:before {
+                          left: 0;
+                          width: 15px;
+                        }
                       }
                     }
-
-                    ul {
+                    // NESTED CHILD JOINING ARROW ADJUSTMENT
+                    > ul {
+                      border-left: 1px $grey-alto solid;
+                      margin-left: 10px;
                       li {
-                        position: relative;
-                        overflow: visible;
                         &:before {
-                          top: 8px;
-                        }
-                        > a {
-                        }
-                        &.expanded {
-                          > a {
-                            color: $pounamu;
-                          }
-                          &:before {
-                            left: 0;
-                            width: 15px;
-                          }
-                        }
-                      }
-                      // NESTED CHILD JOINING ARROW ADJUSTMENT
-                      > ul {
-                        border-left: 1px $grey-alto solid;
-                        margin-left: 10px;
-                        li {
-                          &:before {
-                            left: -16px;
-                          }
+                          left: -16px;
                         }
                       }
                     }
@@ -3239,7 +3233,7 @@ body#hubv4 {
   }
 
   // !Hide old nav on mobile (temporary)
-  @include breakpoint($until: desktop) {
+  @include breakpoint($until: desktop-medium) {
     #mega-nav {
       display: none !important;
     }
