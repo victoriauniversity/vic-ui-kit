@@ -296,6 +296,22 @@
     }
   }
 
+  &.intro-promo {
+    background-color: $kohuhu;
+    border: 1px solid $miro;
+    // margin-left: 1rem;
+    &::before {
+      content: none;
+    }
+
+    @include breakpoint(tablet) {
+      width: calc(35% - 1rem);
+    }
+    @include breakpoint( $until: 900px ) {
+      width: 100%;
+    }
+  }
+
 }
 
 
