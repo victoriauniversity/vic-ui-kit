@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, November 4, 2022, 2:18 PM */
+/** Version: 0.10.13 | Thursday, November 17, 2022, 11:51 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14179,7 +14179,7 @@ function initTray() {
           $draw.addClass("active"); // Remove other ones
 
           if ($(listItem).hasClass("has-submenu")) {
-            console.log('np tray print tray');
+            console.log("np tray print tray");
           }
         } else {
           //show tray
@@ -14254,9 +14254,18 @@ function initTray() {
       horizontalMenuExpanded = !horizontalMenuExpanded;
       $(".sidemenu-drawer").removeClass("".concat(loc));
       $(".mega-menu-top-level > li").removeClass("expanded-nav");
-      $blip.css({
-        width: 0
-      }); // $draw.toggleClass('active');
+
+      if ($(".mega-menu-top-level > li.active").length) {
+        $blip.css({
+          left: $(".mega-menu-top-level > li.active").offset().left - $("#mega-menu").offset().left,
+          width: $(".mega-menu-top-level > li.active").innerWidth()
+        });
+      } else {
+        $blip.css({
+          width: 0
+        });
+      } // $draw.toggleClass('active');
+
     } // On click OR mouseover of body, hide the tray if it's open
 
   } // ? ==== HOMEPAGE SIDE-MENU ONLY ====
@@ -14467,9 +14476,23 @@ function initTray() {
   }); // On mouse out of horizontal nav
 
   $("#hubv4 .main-site-header #mega-menu > li").on("mouseout", function () {
-    var activeItem = $(".expanded-nav");
+    var activeItem = $(".expanded-nav"); // if (activeItem.length) {
+    //   $blip.css({
+    //     left: activeItem.offset().left - $("#mega-menu").offset().left,
+    //     width: activeItem.innerWidth(),
+    //   });
+    // } else {
+    //   $blip.css({
+    //     width: 0,
+    //   });
+    // }
 
-    if (activeItem.length) {
+    if ($(".mega-menu-top-level > li.active").length) {
+      $blip.css({
+        left: $(".mega-menu-top-level > li.active").offset().left - $("#mega-menu").offset().left,
+        width: $(".mega-menu-top-level > li.active").innerWidth()
+      });
+    } else if (activeItem.length) {
       $blip.css({
         left: activeItem.offset().left - $("#mega-menu").offset().left,
         width: activeItem.innerWidth()
@@ -14479,28 +14502,10 @@ function initTray() {
         width: 0
       });
     }
-  });
-  var notificationCount = 0; // ?Remove default icon injected on all role="button" elements
+  }); // ?Remove default icon injected on all role="button" elements
 
   $(".btn-expander").addClass("no-icon"); // ?Temporary override of toolkit hiding
   // $("#hubv4 .sidemenu  ul > .has-submenu").css("display", "flex");
-
-  var formatAsDate = function formatAsDate(date, locale) {
-    var arr = date.split("");
-    var year = arr.slice(0, 4).join("");
-    var month = arr.slice(4, 6).join("");
-    var day = arr.slice(6, 8).join("");
-
-    if (locale == "us") {
-      var dateString = year + " " + month + " " + day;
-      dateString = new Date(dateString);
-      return dateString;
-    } else {
-      var dateString = year + " " + month + " " + day;
-      dateString = new Date(dateString).toLocaleDateString("en-UK");
-      return dateString;
-    }
-  };
 
   var resizeTallBlip = function resizeTallBlip(el, hide) {
     if (hide) {
@@ -14591,8 +14596,7 @@ function initTray() {
 
   if ($(".childMenu")) {
     var childMenuClone = $(".childMenu").clone();
-    childMenuClone.appendTo(".tray-main-nav");
-    $(".tray .childMenu").addClass("main-nav-list"); // Open sidemenu by default
+    childMenuClone.appendTo(".menu-slide-container"); // Open sidemenu by default
     // $(".tray #childPageMenu").show();
 
     $(".tray .sidemenu-toggle").toggleClass("expanded"); // $(".tray .sidemenu").toggleClass("expanded");
@@ -14606,13 +14610,26 @@ function initTray() {
       $(this).parent().toggleClass("expanded");
       $(this).parent().next().slideToggle("fast");
     });
-  } // Open on initial load
+  } //! Mobile menu navigation
+  // ? Hide child menu, show main menu
+
+
+  $("#hubv4 .tray .mobile-menu-navigation button.main-menu-link").on("click", function (e) {
+    // $(".tray .childMenu").removeClass("slide-in");
+    // $(".tray .childMenu").addClass("slide-out");
+    // $(".main-nav-list").addClass("slide-in");
+    $(".tray-main-nav").addClass("show-main-menu");
+  }); // ? Hide main nav, show child mobile menu
+
+  $("#hubv4 .tray .mobile-menu-navigation button.current-menu-link").on("click", function (e) {
+    $(".tray-main-nav").removeClass("show-main-menu"); // $(".main-nav-list").hide();
+    // $(".tray .childMenu").addClass("slide-in");
+  }); // Open on initial load
   // if ($(".tray .main-nav-item > a.active")) {
   //   $(".tray .main-nav-item > a.active").parent().toggleClass("active");
   //   $(".tray .main-nav-item > a.active").parent().toggleClass("expanded");
   //   $(".tray .main-nav-item > a.active").parent().find(">ul").slideToggle();
   // }
-
 
   var expandItem = function expandItem(target) {
     target = $(target); // Close any items already open
@@ -14678,9 +14695,17 @@ function initTray() {
   if (window.location.search.includes("responsive=true")) {
     $(".tray").addClass("responsive-preview");
     toggleTray();
-  } // accesibility fix - tabbing currently doesn't go to expanded tray as it's outside the nav DIV
-  // TODO make work with horizontal NAV --- Monty or Jake
+  } // Set initial position of tall blip (in tray)
 
+
+  setTimeout(function () {
+    var activeItem = $(".main-nav-list > li.active");
+
+    if (activeItem.length) {
+      resizeTallBlip(activeItem);
+    }
+  }, 500); // accesibility fix - tabbing currently doesn't go to expanded tray as it's outside the nav DIV
+  // TODO make work with horizontal NAV --- Monty or Jake
 
   var tabLinks = document.querySelectorAll("#mega-menu > li.has-submenu > .btn-expander"); // tabLinks.forEach((link, index) => {
   //   // console.log(link, index);
@@ -16600,7 +16625,8 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
     external_jQuery_default()("#study-area-tabs li a").click(function () {
       if (external_jQuery_default()(this).parent().hasClass("active")) {
         return;
-      }
+      } //! This is problematic... needs scoping, lots of things have .active class
+
 
       external_jQuery_default()(".active").removeClass("active");
       external_jQuery_default()(this).parent().addClass("active");
