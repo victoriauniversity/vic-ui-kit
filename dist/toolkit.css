@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, November 17, 2022, 1:29 PM */
+/** Version: 0.10.13 | Friday, November 18, 2022, 9:20 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -16757,6 +16757,16 @@ body#hubv4 .sidebar .sidemenu ul li a, body:not(#hubv4) .sidemenu-banner-wrap bo
   color: #1D2624;
   padding: 0.8rem 0.9rem;
   text-decoration: none;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  align-self: center;
+}
+
+body#hubv4 .sidebar .sidemenu ul li a .tereo-childmenu, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage ul li a .tereo-childmenu, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li a .tereo-childmenu, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li a .tereo-childmenu, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu ul li a .tereo-childmenu, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu ul li a .tereo-childmenu {
+  color: #0D4C38;
 }
 
 body#hubv4 .sidebar .sidemenu ul li a.sidemenu__link--withIcon, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage ul li a.sidemenu__link--withIcon, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li a.sidemenu__link--withIcon, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li a.sidemenu__link--withIcon, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu ul li a.sidemenu__link--withIcon, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu ul li a.sidemenu__link--withIcon {
@@ -18584,6 +18594,10 @@ body#hubv4.noscroll {
   overflow: hidden;
 }
 
+body#hubv4:not(.homepage) .homesite-header-image {
+  display: none;
+}
+
 @media (max-width: 74.99em) {
   body#hubv4:not(.homepage) .tray .main-nav-list {
     display: none;
@@ -18603,6 +18617,35 @@ body#hubv4:not(.homepage) .tray .childMenu {
 
 body#hubv4.homepage .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .mobile-menu-navigation {
   display: none;
+}
+
+body#hubv4.homepage .main-site-header .top-header .header-content {
+  position: relative;
+  align-self: stretch;
+}
+
+body#hubv4.homepage .main-site-header .top-header .header-content .homesite-header-image {
+  display: block;
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  height: 100%;
+}
+
+@media (max-width: 74.99em) {
+  body#hubv4.homepage .main-site-header .top-header .header-content .homesite-header-image {
+    display: none;
+  }
+}
+
+body#hubv4.homepage .main-site-header .top-header .header-content .homesite-header-image path {
+  opacity: 0.5;
+}
+
+body#hubv4.homepage .main-site-header.header-tray .header-inner .header-logo {
+  border: none;
 }
 
 body#hubv4 .menu-container .outer-close-tray {
