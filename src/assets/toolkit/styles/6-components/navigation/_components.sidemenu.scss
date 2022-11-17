@@ -746,7 +746,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
 $sidemenu-background-v3: #f7f7f7;
 $sidemenu-background-selected-v3: $pounamu !default;
 
-$sidemenu-text-color-v3: $black-brand !default;
+$sidemenu-text-color-v3: $black-tundora !default;
 $sidemenu-text-hover-color-v3: $pounamu !default;
 
 $sidemenu-lineheight: 1.5 !default;
@@ -1510,7 +1510,7 @@ body#hubv4 {
             flex-direction: column;
             align-self: center;
             .tereo-childmenu {
-              color: $pounamu;
+              color: $black-brand;
             }
 
             &.sidemenu__link--withIcon {
@@ -1543,7 +1543,7 @@ body#hubv4 {
             }
             &:focus {
               outline-offset: -2px;
-              outline: 1px $black-emperor solid;
+              outline: 1px $grey solid;
             }
           }
 
@@ -1807,6 +1807,7 @@ body#hubv4 {
 
         @include breakpoint($until: desktop-medium) {
           border: none;
+          font-size: 15px;
         }
 
         > .sidemenu__label {
@@ -1892,12 +1893,14 @@ body#hubv4 {
             width: auto;
             margin: 0;
             border-radius: 0;
-
             padding: 10px 15px;
-            height: 100%;
             margin-left: 0px;
             flex: 1 0 2%;
             max-width: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-self: stretch;
           }
 
           &.active {
