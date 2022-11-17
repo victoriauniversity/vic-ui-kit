@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, November 18, 2022, 9:24 AM */
+/** Version: 0.10.13 | Friday, November 18, 2022, 10:00 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15972,19 +15972,17 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
     }
 
     expandableButtons.each(toolkit_initExpandableSubmenu); // Ensure expander height is the same as the link (for long link titles than span across 2+ lines)
-
-    src_default.a.register(toolkit_DESKTOP_AND_LARGER, function () {
-      external_jQuery_default()(".sidemenu > ul > li").each(function (e) {
-        var link = external_jQuery_default()(this).find(">a");
-        var expander = external_jQuery_default()(this).find("> .btn-expander");
-
-        if (link.outerHeight() > 0) {
-          expander.css("height", link.outerHeight());
-        } else {
-          expander.css("height", "100%");
-        }
-      });
-    });
+    // enquire.register(DESKTOP_AND_LARGER, () => {
+    //   $(".sidemenu > ul > li").each(function (e) {
+    //     var link = $(this).find(">a");
+    //     var expander = $(this).find("> .btn-expander");
+    //     if (link.outerHeight() > 0) {
+    //       expander.css("height", link.outerHeight());
+    //     } else {
+    //       expander.css("height", "100%");
+    //     }
+    //   });
+    // });
   };
 
   var toolkit_enhanceSidemenu = function enhanceSidemenu(menuElement) {

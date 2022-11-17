@@ -302,17 +302,17 @@ if ($("body").attr("id") == "hubv4") {
     expandableButtons.each(initExpandableSubmenu);
 
     // Ensure expander height is the same as the link (for long link titles than span across 2+ lines)
-    enquire.register(DESKTOP_AND_LARGER, () => {
-      $(".sidemenu > ul > li").each(function (e) {
-        var link = $(this).find(">a");
-        var expander = $(this).find("> .btn-expander");
-        if (link.outerHeight() > 0) {
-          expander.css("height", link.outerHeight());
-        } else {
-          expander.css("height", "100%");
-        }
-      });
-    });
+    // enquire.register(DESKTOP_AND_LARGER, () => {
+    //   $(".sidemenu > ul > li").each(function (e) {
+    //     var link = $(this).find(">a");
+    //     var expander = $(this).find("> .btn-expander");
+    //     if (link.outerHeight() > 0) {
+    //       expander.css("height", link.outerHeight());
+    //     } else {
+    //       expander.css("height", "100%");
+    //     }
+    //   });
+    // });
   }
 
   enquire.register(DESKTOP_AND_LARGER, () => {
