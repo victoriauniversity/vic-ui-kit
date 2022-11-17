@@ -163,6 +163,20 @@ body#hubv4 {
         &:after {
           // top: 30%;
         }
+        &.nav-item-parent {
+          &.active {
+            // background-color: $pounamu; 
+
+            > a {
+              font-weight: 700;
+              // color: $manuka;
+              // text-decoration: underline;
+            }
+            .tereo-title {
+              // color: $kowhai;
+            }
+          }
+        }
         // ! First level (visible straight away)
         > a {
           padding-bottom: 10px;
@@ -223,6 +237,21 @@ body#hubv4 {
               color: $pounamu;
             }
           }
+
+          > a {
+            display: block;
+            color: $black-tundora;
+            text-decoration: none;
+            line-height: 1.2;
+            font-size: 18px;
+            position: initial;
+            padding-top: 20px;
+            padding-bottom: 25px;
+            padding-left: 5px;
+            padding-right: 15px;
+            width: 100%;
+            min-height: 65px;
+          }
           // ICONS IN NAVBAR
           i {
             margin-top: 10px;
@@ -279,20 +308,6 @@ body#hubv4 {
             margin-bottom: 6px;
           }
 
-          > a {
-            display: block;
-            color: $black-tundora;
-            text-decoration: none;
-            line-height: 1.2;
-            font-size: 18px;
-            position: initial;
-            padding-top: 20px;
-            padding-bottom: 25px;
-            padding-left: 5px;
-            padding-right: 15px;
-            width: 100%;
-            min-height: 65px;
-          }
           &.expanded-nav {
             &::after {
               transform: rotateZ(0deg);
@@ -330,7 +345,7 @@ body#hubv4 {
           content: "";
           position: absolute;
           width: 200px;
-          background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
+          background-image: url("https://www.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
           background-repeat: no-repeat;
           background-size: 234px;
           background-position: left;
@@ -348,6 +363,21 @@ body#hubv4 {
 
             &.active-nav-group {
               display: block;
+            }
+          }
+          .active {
+            > a {
+              font-weight: 600;
+              display: inline-flex;
+              align-items: center;
+              &:before {
+                content: "";
+                height: 0;
+                margin-right: 5px;
+                border-top: 10px solid transparent;
+                border-left: 12px solid $pounamu;
+                border-bottom: 10px solid transparent;
+              }
             }
           }
         }
@@ -463,9 +493,6 @@ body#hubv4 {
               }
 
               &.expanded {
-                > ul {
-                  // padding-left: 5px;
-                }
                 .btn-expander {
                   color: $black-tundora !important;
                   &:hover {
@@ -491,18 +518,6 @@ body#hubv4 {
             > li {
               border-bottom: 1px $grey-gallery solid;
               flex-wrap: wrap;
-
-              &.active > a {
-                padding-left: 0;
-
-                &::before {
-                  margin: -0.2em 0.25em -0.2em 0;
-                  border-width: $border-width-small;
-                  border-color: $sidemenu-text-hover-color;
-                }
-              }
-              &:not(:last-child) {
-              }
               padding: 0.5rem 0;
 
               > ul {

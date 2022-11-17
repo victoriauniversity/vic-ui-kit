@@ -1274,6 +1274,7 @@ body#hubv4 {
       display: flex;
       justify-content: flex-end;
       margin-left: 1rem;
+      align-items: center;
       // flex: 0 1 5%;
       position: relative;
       .tray-tooltip {
@@ -1322,14 +1323,68 @@ body#hubv4 {
           margin-top: 10px;
         }
       }
-      .puaha {
-        align-self: center;
-        border-radius: 4px;
-        margin-right: 5px;
+      // Student-related buttons (puaha and nuku)
+      .header-student-tools {
+        display: flex;
+        flex-direction: column;
+        margin-right: 15px;
         @include breakpoint($until: tablet) {
           display: none;
         }
+        > a {
+          border-radius: 4px;
+          padding: 3px 12px;
+          font-size: 15px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .puaha {
+          align-self: center;
+          margin-bottom: 5px;
+        }
+        .nuku {
+          // background-color: $pounamu;
+          // color: $manuka;
+        }
       }
+      // Toggle buttons (tray and search)
+      .header-controls {
+        display: flex;
+        flex-direction: column;
+        @include breakpoint($until: tablet) {
+          flex-direction: row;
+        }
+        > button {
+          position: relative;
+          padding: 0;
+          text-decoration: none;
+          border-radius: 5px;
+          background-color: transparent;
+          line-height: 1;
+          padding: 3px 5px;
+          i {
+            color: $black-brand;
+            font-size: 1.8rem;
+
+            &:before {
+              margin: 0;
+              display: inline;
+            }
+          }
+
+          .text-menu-button {
+            font-size: 0.7rem;
+            position: absolute;
+            bottom: -5px;
+            left: 35%;
+            transform: translateX(-50%);
+          }
+        }
+      }
+
+      //! Might not be needed anymore
       .top-header-buttons {
         display: flex;
         > div {
@@ -1382,45 +1437,10 @@ body#hubv4 {
           }
         }
       }
-      // Toggle buttons (tray and search)
-      > button {
-        position: relative;
-        padding: 0;
-        width: 50px;
-        text-decoration: none;
-        border-radius: 50%;
-        background-color: transparent;
-
-        i {
-          color: $black-brand;
-          font-size: 1.8rem;
-
-          &:before {
-            margin: 0;
-            display: inline;
-          }
-        }
-
-        .text-menu-button {
-          font-size: 0.7rem;
-          position: absolute;
-          bottom: -5px;
-          left: 35%;
-          transform: translateX(-50%);
-        }
-      }
 
       // .search-toggle {
       //   display: none;
       // }
-
-      .tray-toggle {
-        position: relative;
-
-        &:hover {
-          background-color: lighten($brand, 10%);
-        }
-      }
 
       @include breakpoint($until: desktop) {
         .search-toggle {
@@ -1454,8 +1474,8 @@ body#hubv4 {
   .main-site-header {
     &.header-tray {
       .header-inner {
-        padding-top: 0.75rem;
-        padding-bottom: 0.75rem;
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
         z-index: 3;
         display: flex;
         align-items: center;
@@ -1584,125 +1604,166 @@ body#hubv4 {
           .saved-menu {
             flex: 1 0 40%;
           }
+          @keyframes slide-in-from-left {
+            0% {
+              transform: translateX(-100%);
+              opacity: 0;
+            }
+            50% {
+              transform: translateX(0%);
+            }
+            100% {
+              display: block;
+              position: relative;
+              opacity: 1;
+            }
+          }
+          @keyframes slide-in-from-right {
+            0% {
+              transform: translateX(100%);
+              opacity: 0;
+            }
+            50% {
+              transform: translateX(0%);
+            }
+            100% {
+              display: block;
+              position: relative;
+              opacity: 1;
+            }
+          }
+          @keyframes slide-out {
+            0% {
+            }
+            100% {
+              transform: translateX(100%);
+            }
+          }
 
           .tray-main-nav {
             margin: 15px -15px;
             margin-top: 0;
             flex: 1 0 40%;
-            .main-nav-list {
-              position: relative;
+            .mobile-menu-navigation {
+              display: flex;
+              background-color: #fff;
+              align-items: stretch;
+              @include breakpoint(desktop-medium) {
+                display: none;
+              }
+              button,
+              a {
+                transform: all $easing 0.2s;
+              }
+              button {
+                border-radius: 5px 5px 0 0;
+                border-radius: 0;
+                display: none;
+                @include breakpoint($until: desktop-medium) {
+                  display: block;
+                  flex: 1;
+                  text-align: left;
+                }
+              }
+              .main-menu-link {
+                text-decoration: none;
+                color: $pounamu;
+                &:hover {
+                  background-color: $mahoe;
+                  color: $manuka;
+                }
+              }
+              .home-link {
+                background-color: $pounamu;
+                color: $manuka;
+                padding: 0 0.5rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &:hover {
+                  background-color: $mahoe;
+                }
+              }
+              .current-menu-link {
+                display: none;
+                background-color: $mahoe;
+                color: $manuka;
+                text-decoration: none;
+                &:hover {
+                  background-color: $pounamu;
+                }
+              }
 
+            }
+            &.show-main-menu {
+              .mobile-menu-navigation {
+                .current-menu-link {
+                  display: block;
+
+                  i {
+                    &:before {
+                      transform: rotateZ(180deg);
+                    }
+                  }
+                }
+                .main-menu-link {
+                  display: none;
+                  // background-color: $white;
+                  text-decoration: none;
+                  background-color: $mahoe;
+                  color: $manuka;
+                }
+              }
               @include breakpoint($until: desktop-medium) {
-                //! Child menu in tray view
-                &.childMenu {
+                .main-nav-list {
+                  display: block;
+                  animation: slide-in-from-left 0.5s forwards;
+                }
+                .childMenu {
+                  // display: none !important;
+                  animation: slide-out 0.5s forwards;
+                }
+              }
+            }
+            .menu-slide-container {
+              display: flex;
+              overflow: hidden;
+              > ul,
+              > div {
+                position: relative;
+                flex: 1 0 100%;
+              }
+            }
+            @include breakpoint($until: desktop-medium) {
+              //! Child menu in tray view
+              .childMenu {
+                // display: block !important;
+                animation: slide-in-from-right 0.5s forwards;
+
+                .sidemenu {
+                  border-bottom: 1px $grey-gallery solid;
+                  // border-left: 4px $pounamu solid;
+                }
+                @include breakpoint(desktop-medium) {
                   // display: block !important;
-                  .sidemenu {
-                    border-bottom: 1px $grey-gallery solid;
-                    // border-left: 4px $pounamu solid;
-                  }
-                  @include breakpoint(desktop-medium) {
-                    // display: block !important;
-                    // display: none !important;
-                  }
-
-                  // #childPageMenu {
-                  //   // !ALL LEVELS
-                  //   li {
-                  //     border-left: none;
-                  //     &:before {
-                  //       top: 5px;
-                  //     }
-                  //     .btn-expander {
-                  //       font-size: 1.2rem;
-                  //     }
-
-                  //     &.expanded {
-                  //       background-color: #fff;
-                  //       border-left: none;
-                  //       > a {
-                  //         font-weight: bold;
-                  //         color: $pounamu;
-                  //       }
-                  //     }
-                  //   }
-                  //   // !FIRST LEVEL
-                  //   > li {
-                  //     // padding-left: 10px;
-                  //     > .btn-expander {
-                  //       border-radius: 100px;
-                  //       clip-path: none;
-                  //       color: $black-tundora;
-                  //       background-color: transparent;
-                  //       text-align: center;
-                  //       flex: none;
-                  //       margin-right: 6px;
-                  //       display: flex;
-                  //       flex-direction: column;
-                  //       justify-content: center;
-                  //       // Important required to override JS custom height on desktop
-                  //       height: auto !important;
-
-                  //       &:focus,
-                  //       &:hover {
-                  //         background-color: $grey-gallery;
-                  //       }
-                  //     }
-                  //     &:before {
-                  //       content: "";
-                  //       position: absolute;
-                  //       width: 0;
-                  //       height: 0;
-                  //       top: 10px;
-                  //       border-top: 10px solid transparent;
-                  //       border-left: 12px solid #0d4c38;
-                  //       border-bottom: 10px solid transparent;
-                  //       opacity: 0;
-                  //       transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
-                  //       left: -13px;
-                  //     }
-                  //     &.expanded {
-                  //       border-top: 1px $mahoe solid;
-                  //     > .btn-expander {
-                  //       color: $pounamu;
-                  //     }
-                  //       &:before {
-                  //         left: 0px;
-                  //         opacity: 1;
-                  //       }
-                  //     }
-                  //     > ul {
-                  //       border-left: 1px $grey-gallery solid;
-                  //       margin-left: 10px;
-                  //       // !SECOND LEVEL
-                  //       > li {
-                  //         > .btn-expander {
-                  //           margin-right: 20px;
-                  //         }
-
-                  //         // !THIRD (BOTTOM) LEVEL
-                  //         > ul {
-                  //           > li {
-                  //             > .btn-expander {
-                  //               margin-right: 30px;
-                  //             }
-                  //           }
-                  //         }
-                  //       }
-                  //     }
-                  //   }
-                  // }
+                  // display: none !important;
                 }
               }
+            }
 
-              .sidemenu-toggle {
-                > a {
-                  > .tereo-nav-title,
-                  > .tereo-title {
-                    display: block;
-                    color: $kowhai;
-                  }
+            .sidemenu-toggle {
+              > a {
+                display: flex;
+                flex-direction: column;
+                > .tereo-nav-title,
+                > .tereo-title {
+                  display: block;
+                  color: $kowhai;
                 }
               }
+            }
+            .main-nav-list {
+              transition: all ease 1s;
 
               .tall-blip {
                 height: 0;
@@ -1778,6 +1839,12 @@ body#hubv4 {
               flex-wrap: wrap;
               user-select: none;
               box-shadow: 0 3px 15px -7px rgba(0, 0, 0, 0.1);
+
+              &.active {
+                > a {
+                  font-weight: 600;
+                }
+              }
 
               &.homesite {
                 &.expanded {
@@ -1876,7 +1943,7 @@ body#hubv4 {
               }
               .tereo-nav-title {
                 display: block;
-                color: $green-brand;
+                color: $pounamu;
                 margin-bottom: 5px;
               }
               // &.expanded {
@@ -2846,19 +2913,6 @@ body#hubv4 {
 
         // @include breakpoint($until:desktop) {
 
-        .search-toggle {
-          height: 50px;
-
-          span {
-            color: $black-tundora;
-          }
-
-          @include hoverify() {
-            span {
-              color: $white;
-            }
-          }
-        }
         // }
       }
 
@@ -2871,26 +2925,51 @@ body#hubv4 {
           right: 0;
           z-index: 8;
 
-          &:after {
-            // content: "";
-            // position: absolute;
-            // right: 0;
-            // top: 10px;
-            // width: 50px;
-            // height: 50px;
-            // border-top: 10px solid transparent;
-            // border-left: 20px solid rgba($color: $black-brand, $alpha: 0.9);
-            // border-bottom: 10px solid transparent;
-          }
-
           .tray-search-bar {
             padding: 20px 15px;
-            padding-bottom: 5px;
             background-color: $grey-gallery;
-            text-align: center;
+            text-align: right;
+            display: flex;
+            border-bottom: 1px $grey-alto solid;
 
+            .save-page {
+              background-color: transparent;
+              outline: none;
+              margin-left: 5px;
+              display: inline-flex;
+              border-radius: 3px;
+              align-items: center;
+              padding: 5px;
+
+              > svg {
+                pointer-events: none;
+                height: 30px;
+                width: 25px;
+                path {
+                  transition: all $easing 0.3s;
+                  fill: #fff;
+                  stroke: #000;
+                }
+              }
+              &:hover {
+                // outline: none;
+                box-shadow: none;
+                > svg {
+                  opacity: 1;
+                }
+              }
+              &.saved {
+                > svg {
+                  opacity: 1;
+                  path {
+                    fill: $moana;
+                  }
+                }
+              }
+            }
             form {
               border-radius: $radius;
+              flex: 1;
 
               .search-input {
                 background-color: #fff;
@@ -3058,7 +3137,7 @@ body#hubv4 {
             .tereo-title,
             p.tereo-title {
               font-size: 2rem;
-              color: $green-brand;
+              color: $pounamu;
               font-weight: 400;
               font-family: $font-name-brand;
               line-height: 1.08;
@@ -3140,7 +3219,7 @@ body#hubv4 {
     position: relative;
     // transform: skew(20deg); /* SKEW */
     &:focus {
-      outline: 2px dotted $black-brand;
+      outline: 1px solid $black-brand;
       outline-offset: -1px;
     }
     span {
@@ -3204,7 +3283,7 @@ body#hubv4 {
 
   .tray {
     .tray-content {
-      background-image: url("/images/MKT0510 - Te Tumu PNG-05.png");
+      background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:src/assets/toolkit/images/patterns/MKT0510%20-%20Te%20Tumu%20PNG-05.png");
     }
 
     .blip {

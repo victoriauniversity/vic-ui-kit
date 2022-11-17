@@ -961,6 +961,7 @@ if ($("body").attr("id") == "hubv4") {
       if ($(this).parent().hasClass("active")) {
         return;
       }
+      //! This is problematic... needs scoping, lots of things have .active class
       $(".active").removeClass("active");
       $(this).parent().addClass("active");
       $(".study-areas").toggleClass("hidden");
