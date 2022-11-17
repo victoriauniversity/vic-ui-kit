@@ -1218,7 +1218,7 @@ body#hubv4 {
     overflow: hidden;
   }
 
-  // !NOT HOMESITE
+  //! NOT HOMESITE
   &:not(.homepage) {
     .tray {
       .main-nav-list {
@@ -1233,6 +1233,19 @@ body#hubv4 {
           display: block !important;
         }
       }
+    }
+  }
+
+  //! IS HOMESITE
+
+  // Hide hub navigation on homepage
+  &.homepage {
+    .main-site-header.header-tray
+      .header-inner
+      .tray-content
+      .tray-main-nav
+      .mobile-menu-navigation {
+      display: none;
     }
   }
 
@@ -1329,7 +1342,18 @@ body#hubv4 {
         flex-direction: column;
         margin-right: 15px;
         @include breakpoint($until: tablet) {
-          display: none;
+          // display: none;
+          margin-right: 5px;
+          a.button {
+            background-color: transparent;
+            padding: 2px 10px;
+            background-color: $kohuhu;
+            font-size: 14px;
+            i {
+              display: none;
+            }
+          }
+
         }
         > a {
           border-radius: 4px;
@@ -1354,7 +1378,7 @@ body#hubv4 {
         display: flex;
         flex-direction: column;
         @include breakpoint($until: tablet) {
-          flex-direction: row;
+          // flex-direction: row;
         }
         > button {
           position: relative;
@@ -1693,7 +1717,6 @@ body#hubv4 {
                   background-color: $pounamu;
                 }
               }
-
             }
             &.show-main-menu {
               .mobile-menu-navigation {

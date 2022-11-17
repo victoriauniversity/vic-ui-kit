@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, November 17, 2022, 11:51 AM */
+/** Version: 0.10.13 | Thursday, November 17, 2022, 1:29 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -18713,6 +18713,10 @@ body#hubv4:not(.homepage) .tray .childMenu {
   }
 }
 
+body#hubv4.homepage .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .mobile-menu-navigation {
+  display: none;
+}
+
 body#hubv4 .menu-container .outer-close-tray {
   right: 400px;
   position: absolute;
@@ -18827,6 +18831,15 @@ body#hubv4 .main-site-header .header-toggle .header-student-tools {
 
 @media (max-width: 42.99em) {
   body#hubv4 .main-site-header .header-toggle .header-student-tools {
+    margin-right: 5px;
+  }
+  body#hubv4 .main-site-header .header-toggle .header-student-tools a.button {
+    background-color: transparent;
+    padding: 2px 10px;
+    background-color: #CCDCD7;
+    font-size: 14px;
+  }
+  body#hubv4 .main-site-header .header-toggle .header-student-tools a.button i {
     display: none;
   }
 }
@@ -18854,14 +18867,6 @@ body#hubv4 .main-site-header .header-toggle .header-controls {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
           flex-direction: column;
-}
-
-@media (max-width: 42.99em) {
-  body#hubv4 .main-site-header .header-toggle .header-controls {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-            flex-direction: row;
-  }
 }
 
 body#hubv4 .main-site-header .header-toggle .header-controls > button {
