@@ -1220,12 +1220,16 @@ body#hubv4 {
 
   //! NOT HOMESITE
   &:not(.homepage) {
+    .homesite-header-image {
+      display: none;
+    }
     .tray {
       .main-nav-list {
         @include breakpoint($until: desktop-medium) {
           display: none;
         }
       }
+
       .childMenu {
         display: none !important;
         float: none;
@@ -1246,6 +1250,37 @@ body#hubv4 {
       .tray-main-nav
       .mobile-menu-navigation {
       display: none;
+    }
+    .main-site-header {
+      // Header patterns
+      .top-header {
+        .header-content {
+          position: relative;
+          align-self: stretch;
+          .homesite-header-image {
+            display: block;
+            @include breakpoint($until: desktop-medium) {
+              display: none;
+            }
+            top: 0;
+            left: 0;
+            position: absolute;
+            width: 100%;
+            z-index: 1;
+            height: 100%;
+            path {
+              opacity: 0.5;
+            }
+          }
+        }
+      }
+      &.header-tray {
+        .header-inner {
+          .header-logo {
+            border: none;
+          }
+        }
+      }
     }
   }
 
@@ -1353,7 +1388,6 @@ body#hubv4 {
               display: none;
             }
           }
-
         }
         > a {
           border-radius: 4px;
