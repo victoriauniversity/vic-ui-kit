@@ -1641,22 +1641,13 @@ body#hubv4 {
                       }
                     }
                   }
+                  // !NESTED CHILD JOINING ARROW ADJUSTMENT
 
-                  &.expanded {
-                    &:before {
-                      left: 0px;
-                      opacity: 1;
-                    }
-                    // !NESTED CHILD JOINING ARROW ADJUSTMENT
-
-                    ul {
-                      li {
-                        &.expanded {
-                          &:before {
-                            left: 0;
-                            opacity: 1;
-                          }
-                        }
+                  ul {
+                    li,
+                    li.active {
+                      &:before {
+                        left: 0;
                       }
                     }
                   }
