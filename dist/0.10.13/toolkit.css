@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, November 18, 2022, 10:00 AM */
+/** Version: 0.10.13 | Wednesday, November 23, 2022, 9:23 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -14608,7 +14608,7 @@ footer .footer-secondary.dark .footer-num {
 }
 
 #hubv4 nav .breadcrumbs > li {
-  background-color: #F9F9F9;
+  background-color: #f7f7f7;
   display: -webkit-box;
   display: flex;
   font-size: 90%;
@@ -14692,19 +14692,15 @@ footer .footer-secondary.dark .footer-num {
 #hubv4 nav .breadcrumbs > li:last-child:after {
   content: "";
   position: absolute;
-  right: -52px;
-  top: -5px;
+  right: -20px;
   display: block;
-  border-top: 25px solid transparent;
-  border-left: 30px solid #f9f9f9;
-  border-bottom: 25px solid transparent;
-}
-
-@media (max-width: 60.99em) {
-  #hubv4 nav .breadcrumbs > li:last-child:after {
-    right: -45px;
-    display: none;
-  }
+  margin: 0;
+  height: 100%;
+  background-color: #f7f7f7;
+  top: 0;
+  width: 20px;
+  -webkit-clip-path: polygon(100% 45%, 0% 0%, 0% 100%);
+          clip-path: polygon(100% 45%, 0% 0%, 0% 100%);
 }
 
 @media (max-width: 60.99em) {
@@ -14714,10 +14710,10 @@ footer .footer-secondary.dark .footer-num {
   #hubv4 nav .breadcrumbs a,
   #hubv4 nav .breadcrumbs li:last-child {
     overflow: hidden;
-    vertical-align: middle;
-    text-overflow: ellipsis;
-    max-width: 18rem;
-    white-space: nowrap;
+    overflow: visible;
+    white-space: initial;
+    text-overflow: initial;
+    max-width: initial;
   }
 }
 
@@ -16081,6 +16077,18 @@ body#hubv4 .sidemenu, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemen
   background: #f7f7f7;
 }
 
+body#hubv4 .sidemenu[menu-lang="lang-en"] ul li a .tereo-childmenu, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage[menu-lang="lang-en"] ul li a .tereo-childmenu, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage[menu-lang="lang-en"] ul li a .tereo-childmenu, body#hubv4 .show-mega-menu-top .mega-sub-menu[menu-lang="lang-en"] ul li a .tereo-childmenu {
+  display: none;
+}
+
+body#hubv4 .sidemenu[menu-lang="lang-mo"] ul li a > span, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage[menu-lang="lang-mo"] ul li a > span, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage[menu-lang="lang-mo"] ul li a > span, body#hubv4 .show-mega-menu-top .mega-sub-menu[menu-lang="lang-mo"] ul li a > span {
+  display: none;
+}
+
+body#hubv4 .sidemenu[menu-lang="lang-mo"] ul li a .tereo-childmenu, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage[menu-lang="lang-mo"] ul li a .tereo-childmenu, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage[menu-lang="lang-mo"] ul li a .tereo-childmenu, body#hubv4 .show-mega-menu-top .mega-sub-menu[menu-lang="lang-mo"] ul li a .tereo-childmenu {
+  display: block;
+}
+
 body#hubv4 .sidemenu .sidemenu__label, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .sidemenu__label, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu__label, body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu__label {
   text-transform: uppercase;
   font-family: "Inter", Arial, Helvetica, sans-serif;
@@ -16164,22 +16172,12 @@ body#hubv4 .sidemenu .has-submenu > ul > li.active > a, body:not(#hubv4) .sideme
   padding-left: 0;
 }
 
-body#hubv4 .sidemenu .has-submenu > ul > li.active > a::before, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .has-submenu > ul > li.active > a::before, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .has-submenu > ul > li.active > a::before, body#hubv4 .show-mega-menu-top .mega-sub-menu .has-submenu > ul > li.active > a::before {
-  margin: -0.2em 0.25em -0.2em 0;
-  border-width: 0.125rem;
-  border-color: #0D4C38;
-}
-
 body#hubv4 .sidemenu .has-submenu .has-submenu > ul > li, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .has-submenu .has-submenu > ul > li, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .has-submenu .has-submenu > ul > li, body#hubv4 .show-mega-menu-top .mega-sub-menu .has-submenu .has-submenu > ul > li {
   border-left: 0;
 }
 
 body#hubv4 .sidemenu .has-submenu .has-submenu > ul > li > a, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .has-submenu .has-submenu > ul > li > a, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .has-submenu .has-submenu > ul > li > a, body#hubv4 .show-mega-menu-top .mega-sub-menu .has-submenu .has-submenu > ul > li > a {
   padding-left: 0.3em;
-}
-
-body#hubv4 .sidemenu .has-submenu .has-submenu > ul > li > a::before, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .has-submenu .has-submenu > ul > li > a::before, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .has-submenu .has-submenu > ul > li > a::before, body#hubv4 .show-mega-menu-top .mega-sub-menu .has-submenu .has-submenu > ul > li > a::before {
-  display: none;
 }
 
 body#hubv4 .sidemenu .btn-expander, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .btn-expander, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .btn-expander, body#hubv4 .show-mega-menu-top .mega-sub-menu .btn-expander {
@@ -16298,7 +16296,6 @@ body#hubv4 .sidemenu .sidemenu-toggle.expanded a:after, body:not(#hubv4) .sideme
 
 body#hubv4 .sidemenu.sidemenu-light, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-light.sidemenu-homepage, body#hubv4 .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage, body#hubv4 .show-mega-menu-top .sidemenu-light.mega-sub-menu {
   background: #fff;
-  margin-bottom: 2rem !important;
 }
 
 body#hubv4 .sidemenu.sidemenu-light > ul, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-light.sidemenu-homepage > ul, body#hubv4 .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage > ul, body#hubv4 .show-mega-menu-top .sidemenu-light.mega-sub-menu > ul {
@@ -16429,11 +16426,6 @@ body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage > ul > li:last-child > a, bo
 
 body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage > ul > li.active > a {
   padding-left: 0.35em;
-}
-
-body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage > ul > li.active > a::before {
-  margin: -0.2em 0.35em -0.2em 0;
-  border-color: #0D4C38;
 }
 
 body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage ul li.nav-item-parent .btn-expander:after {
@@ -16698,6 +16690,47 @@ body#hubv4 .sidebar .empty-message a:visited {
   color: #424242;
 }
 
+body#hubv4 .sidebar .language-switcher {
+  display: -webkit-box;
+  display: flex;
+  display: none;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+@media (max-width: 74.99em) {
+  body#hubv4 .sidebar .language-switcher {
+    margin: 0 1rem;
+  }
+}
+
+body#hubv4 .sidebar .language-switcher button {
+  padding: 2px 5px;
+  background-color: transparent;
+  border: 1px transparent solid;
+  color: #8B8B8B;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-size: 13px;
+  -webkit-transition: all ease 0.3s;
+  transition: all ease 0.3s;
+}
+
+body#hubv4 .sidebar .language-switcher button:disabled {
+  color: #8B8B8B;
+  cursor: not-allowed;
+}
+
+body#hubv4 .sidebar .language-switcher button:hover {
+  color: #1D2624;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+body#hubv4 .sidebar .language-switcher button.active {
+  color: #1D2624;
+}
+
 @media (min-width: 75em) {
   body#hubv4 .sidebar .sidemenu ul .has-submenu > .btn-expander, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage ul .has-submenu > .btn-expander, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul .has-submenu > .btn-expander, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul .has-submenu > .btn-expander, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu ul .has-submenu > .btn-expander, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu ul .has-submenu > .btn-expander {
     display: -webkit-box;
@@ -16733,7 +16766,7 @@ body#hubv4 .sidebar .sidemenu > ul > .has-submenu > .btn-expander::after, body:n
 }
 
 body#hubv4 .sidebar .sidemenu, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu {
-  margin-bottom: 0;
+  margin-bottom: 1rem;
   overflow: visible;
   min-width: 300px;
 }
@@ -16745,7 +16778,6 @@ body#hubv4 .sidebar .sidemenu, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4
 }
 
 body#hubv4 .sidebar .sidemenu ul li, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage ul li, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu ul li, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu ul li {
-  border-left: 4px transparent solid;
   overflow: hidden;
 }
 
@@ -16810,10 +16842,6 @@ body#hubv4 .sidebar .sidemenu ul li a:focus, body:not(#hubv4) .sidemenu-banner-w
   outline: 1px #8B8B8B solid;
 }
 
-body#hubv4 .sidebar .sidemenu ul li.active, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage ul li.active, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.active, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.active, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu ul li.active, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu ul li.active {
-  border-left: 4px solid #0D4C38;
-}
-
 body#hubv4 .sidebar .sidemenu ul li.active > a, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage ul li.active > a, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.active > a, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.active > a, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu ul li.active > a, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu ul li.active > a {
   font-weight: 600;
   color: #1D2624;
@@ -16862,7 +16890,7 @@ body#hubv4 .sidebar .sidemenu ul li.has-submenu.expanded ul li.active:before, bo
   position: absolute;
   width: 0;
   height: 0;
-  left: 0px;
+  left: 3px;
   top: 8px;
   border-top: 10px solid transparent;
   border-left: 12px solid #0D4C38;
@@ -17031,7 +17059,7 @@ body#hubv4 .sidebar .sidemenu > ul > .sidemenu__label .sidemenu__label_backgroun
 body#hubv4 .sidebar .sidemenu > ul > .sidemenu__label > a, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > .sidemenu__label > a, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > .sidemenu__label > a, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > .sidemenu__label > a, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > .sidemenu__label > a, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > .sidemenu__label > a {
   background-color: #F9F9F9;
   padding: 1rem;
-  background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
+  background-image: url("https://www.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
   background-repeat: no-repeat;
   background-size: 200px;
   background-position: 200% 5%;
@@ -17066,6 +17094,16 @@ body#hubv4 .sidebar .sidemenu > ul > li, body:not(#hubv4) .sidemenu-banner-wrap 
   -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
   transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
   border-bottom: 1px transparent solid;
+}
+
+body#hubv4 .sidebar .sidemenu > ul > li:before, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li:before, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li:before, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li:before, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li:before, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li:before {
+  content: "";
+  width: 4px;
+  position: absolute;
+  height: 100%;
+  display: block;
+  background-color: transparent;
+  z-index: 1;
 }
 
 body#hubv4 .sidebar .sidemenu > ul > li:not(:first-of-type), body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li:not(:first-of-type), body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li:not(:first-of-type), body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li:not(:first-of-type), body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li:not(:first-of-type), body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li:not(:first-of-type) {
@@ -17107,8 +17145,12 @@ body#hubv4 .sidebar .sidemenu > ul > li > .btn-expander, body:not(#hubv4) .sidem
 }
 
 body#hubv4 .sidebar .sidemenu > ul > li.active, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li.active, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li.active, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li.active, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.active, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.active {
-  border-bottom: none;
-  border-top: none;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+
+body#hubv4 .sidebar .sidemenu > ul > li.active:before, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li.active:before, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li.active:before, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li.active:before, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.active:before, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.active:before {
+  background-color: #0D4C38;
 }
 
 body#hubv4 .sidebar .sidemenu > ul > li.active > .btn-expander:hover, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li.active > .btn-expander:hover, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li.active > .btn-expander:hover, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li.active > .btn-expander:hover, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.active > .btn-expander:hover, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.active > .btn-expander:hover, body#hubv4 .sidebar .sidemenu > ul > li.active > .btn-expander:active, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li.active > .btn-expander:active, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li.active > .btn-expander:active, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li.active > .btn-expander:active, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.active > .btn-expander:active, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.active > .btn-expander:active, body#hubv4 .sidebar .sidemenu > ul > li.active > .btn-expander:focus, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li.active > .btn-expander:focus, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li.active > .btn-expander:focus, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li.active > .btn-expander:focus, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.active > .btn-expander:focus, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.active > .btn-expander:focus {
@@ -17129,8 +17171,8 @@ body#hubv4 .sidebar .sidemenu > ul > li.expanded, body:not(#hubv4) .sidemenu-ban
   border-left-color: #0D4C38;
 }
 
-body#hubv4 .sidebar .sidemenu > ul > li.expanded:before, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li.expanded:before, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li.expanded:before, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li.expanded:before, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded:before, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded:before, body#hubv4 .sidebar .sidemenu > ul > li.expanded:after, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li.expanded:after, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li.expanded:after, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li.expanded:after, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded:after, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded:after {
-  width: 100%;
+body#hubv4 .sidebar .sidemenu > ul > li.expanded:before, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li.expanded:before, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li.expanded:before, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li.expanded:before, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded:before, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded:before {
+  background-color: #0D4C38;
 }
 
 body#hubv4 .sidebar .sidemenu > ul > li.expanded > a, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li.expanded > a, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li.expanded > a, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li.expanded > a, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded > a, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded > a {
@@ -17166,34 +17208,10 @@ body#hubv4 .sidebar .sidemenu > ul > li.expanded.has-submenu > .btn-expander, bo
 
 body#hubv4 .sidebar .sidemenu > ul > li:not(.sidemenu__label).expanded, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li:not(.sidemenu__label).expanded, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li:not(.sidemenu__label).expanded, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li:not(.sidemenu__label).expanded, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li:not(.sidemenu__label).expanded, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li:not(.sidemenu__label).expanded, body#hubv4 .sidebar .sidemenu > ul > li:not(.sidemenu__label):hover, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li:not(.sidemenu__label):hover, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li:not(.sidemenu__label):hover, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li:not(.sidemenu__label):hover, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li:not(.sidemenu__label):hover, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li:not(.sidemenu__label):hover {
   border-color: #0D4C38;
-  border-top-color: #99B9AF;
-  border-bottom-color: #99B9AF;
+  border-top-color: #DDD;
+  border-bottom-color: #DDD;
   -webkit-box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.1);
-}
-
-body#hubv4 .sidebar .sidemenu > ul > li:before, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li:before, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li:before, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li:before, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li:before, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li:before, body#hubv4 .sidebar .sidemenu > ul > li:after, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li:after, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li:after, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li:after, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li:after, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li:after {
-  content: "";
-  position: absolute;
-  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
-  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
-  height: 5px;
-  width: 0;
-  background: -webkit-gradient(linear, left top, right top, from(#64A659), color-stop(67%, #52951c), to(#0D4C38)) 0% 0%;
-  background: linear-gradient(90deg, #64A659 0%, #52951c 67%, #0D4C38 100%) 0% 0%;
-  -webkit-transform-origin: center center;
-          transform-origin: center center;
-}
-
-body#hubv4 .sidebar .sidemenu > ul > li:before, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li:before, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li:before, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li:before, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li:before, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li:before {
-  left: 0;
-  content: none;
-}
-
-body#hubv4 .sidebar .sidemenu > ul > li:after, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li:after, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li:after, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li:after, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li:after, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li:after {
-  left: 0;
-  bottom: 0;
-  content: none;
 }
 
 body#hubv4 .sidebar .sidemenu > ul > li > ul, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li > ul, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li > ul, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li > ul, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li > ul, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li > ul {
