@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, November 18, 2022, 10:00 AM */
+/** Version: 0.10.13 | Wednesday, November 23, 2022, 9:23 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15830,97 +15830,10 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
       clickedEl.parent().find(">ul").animate({
         height: "toggle"
       }, "fast");
-    } // function apply(topLevel, clickedEl) {
-    //   if (clickedEl && !clickedEl.parent().hasClass("expanded")) {
-    //     var expandedLi = $(".sidebar > nav > ul > li.expanded");
-    //     if (topLevel) {
-    //       //? REMOVE OTHER ITEMS THAT ARE EXPANDED
-    //       // expandedLi.find(">ul").css("max-height", "0px");
-    //       expandedLi.find(">ul").animate(
-    //         {
-    //           maxHeight: 0,
-    //         },
-    //         300,
-    //         function () {
-    //           // Animation complete.
-    //         }
-    //       );
-    //       $(".sidebar > nav > ul li.has-submenu.expanded")
-    //         .not(submenuContainer)
-    //         .removeClass("expanded");
-    //       //? ADD EXPANDED CLASS TO CLICK EL
-    //       submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
-    //       var expandedLi = $(".sidebar > nav > ul > li.expanded");
-    //       expandedLi.find(">ul").show();
-    //       //? CALC HEIGHT OF ITEMS (FOR SMOOTH ANIMATION)
-    //       var listHeight = calcHeight(expandedLi.find("> ul > li"));
-    //       // expandedLi.find(">ul").css("max-height", listHeight + "px");
-    //       expandedLi.find(">ul").animate(
-    //         {
-    //           opacity: 1,
-    //           maxHeight: listHeight,
-    //         },
-    //         300,
-    //         "swing",
-    //         function () {
-    //           // Animation complete.
-    //           console.log("animation complete");
-    //         }
-    //       );
-    //     } else {
-    //       console.log("===== INNER EXPANDER CLICKED ====");
-    //       //? INNER EXPANDER HAS BEEN CLICKED, ADJUST HEIGHT AGAIN
-    //       submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
-    //       var listHeight = calcHeight(expandedLi.find("> ul li"));
-    //       // expandedLi.find(">ul").css("max-height", listHeight + "px");
-    //       expandedLi.find(">ul").animate(
-    //         {
-    //           maxHeight: listHeight,
-    //         },
-    //         300,
-    //         function () {
-    //           // Animation complete.
-    //           console.log("animation complete");
-    //         }
-    //       );
-    //     }
-    //   } else {
-    //     //? CLOSE ITEM
-    //     var expandedLi = $(".sidebar > nav > ul > li.expanded");
-    //     submenuContainer.removeClass(SIDEMENU_EXPANDED_CLASS);
-    //     if (topLevel) {
-    //       submenuContainer
-    //         .find(SIDEMENU_EXPANDED_CLASS)
-    //         .removeClass(SIDEMENU_EXPANDED_CLASS);
-    //       // expandedLi.find(">ul").css("max-height", "0px");
-    //       expandedLi.find(">ul").animate(
-    //         {
-    //           maxHeight: 0,
-    //         },
-    //         300,
-    //         function () {
-    //           // Animation complete.
-    //           expandedLi.find(">ul").fadeOut();
-    //         }
-    //       );
-    //     }
-    //   }
-    // }
-    // Init
-    // apply(true, $(".sidebar > nav > ul > li.active > .btn-expander"));
-    // Bind `click` events to all expandable buttons
-    // expandableButtonElement.on("click", (e) => {
-    //   e.preventDefault();
-    //   e.stopPropagation();
-    //   isExpanded = !isExpanded;
-    //   apply();
-    // });
-    //! Click event for expand buttons in SIDEMENU only
+    } //! Click event for expand buttons in SIDEMENU only
 
 
     expandableButtonElement.on("click keyup touchstart", function (e) {
-      console.log(e.which);
-
       if (e.which == 13 || e.which == 1) {
         e.preventDefault();
         e.stopPropagation();
@@ -15971,18 +15884,7 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
       tracker.registerForTracking(expandableButtons, "click", "sidemenu-expander");
     }
 
-    expandableButtons.each(toolkit_initExpandableSubmenu); // Ensure expander height is the same as the link (for long link titles than span across 2+ lines)
-    // enquire.register(DESKTOP_AND_LARGER, () => {
-    //   $(".sidemenu > ul > li").each(function (e) {
-    //     var link = $(this).find(">a");
-    //     var expander = $(this).find("> .btn-expander");
-    //     if (link.outerHeight() > 0) {
-    //       expander.css("height", link.outerHeight());
-    //     } else {
-    //       expander.css("height", "100%");
-    //     }
-    //   });
-    // });
+    expandableButtons.each(toolkit_initExpandableSubmenu);
   };
 
   var toolkit_enhanceSidemenu = function enhanceSidemenu(menuElement) {
@@ -16530,7 +16432,17 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
     // }
 
     toolkit_initFloatingButtons();
-    decodeMailAddresses(); // http://wicky.nilia.ms/enquire.js/
+    decodeMailAddresses(); // !Language switcher
+
+    external_jQuery_default()(".language-switcher button").on("click", function (e) {
+      // Remove active from others
+      external_jQuery_default()(".language-switcher button").removeClass("active"); // Add active to clicked
+
+      external_jQuery_default()(this).addClass("active");
+      var id = e.target.dataset.lang;
+      console.log(id);
+      external_jQuery_default()(".sidemenu").attr("menu-lang", id);
+    }); // http://wicky.nilia.ms/enquire.js/
     // TODO: Refactor and extract to its own library
     // enquire.register( MOBILE_LARGE_AND_SMALLER, () => {
     //   if ( $globalNav.length ) {
