@@ -194,15 +194,32 @@
       }
     }
 
+    + .text-promo-panel {
+      .media {
+        figcaption {
+          position: absolute;
+        }
+      }
+    }
+
     @include breakpoint( $until: 900px ) {
       width: 100%;
     }
+
+
+
   }
 }
 
-#hubv4 .text-promo-panel {
+#hubv4 .homepage-intro + .text-promo-panel {
   margin-top: 1rem;
   width: 35%;
+
+  // utility to escape general use of .text-promo-panel class.. not ideal
+  > div {
+    background-color: unset !important;
+    border: unset !important;
+  }
 
 .media {
 

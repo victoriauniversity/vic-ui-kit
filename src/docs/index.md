@@ -11,7 +11,7 @@
 
 <div class="flash-message error">
 
-  If you wish to use this UI Kit you need to contact [Nathan Irwin](https://www.wgtn.ac.nz/search?q=Nathan+Irwin&site=people_search_collection) or other members of the [Web Team].
+  If you wish to use this UI Kit you need to contact [Mike Clarke](https://www.wgtn.ac.nz/search?q=Mike+clarke&tab=people) or other members of the [Web Team].
 
   This isn't a supported self service UI package.
 

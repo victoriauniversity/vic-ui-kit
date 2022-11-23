@@ -1,9 +1,9 @@
 ---
-layout: nav-update-music
+layout: nav-update-nested
 title: "Study Hub | Experience Victoria"
 NavColor: "white"
 LogoColor: "green"
-horizontalNav: "true"
+horizontalNav: "false"
 hubPage: "true"
 
 main-header:
@@ -49,9 +49,22 @@ footer:
 <section class="layout">
   <div class="content-panel">
     <!-- Center 'content' column -->
-    <main class="hub hub-sidebar">
+    <main class="hub">
 
-      {{> _sidebar-nav-banner-test }}
+      <figure class="banner">
+        <nav class="banner-nav">
+          <ul>
+            <li class="parent"><a href="#"><i class="icon-triangle-up"></i> Study</a></li>
+            <li class="selected"><a href="#">Postgraduate study</a></li>
+            <li><a href="#">PhD</a></li>
+          </ul>
+        </nav>
+        <img src="https://cms.wgtn.ac.nz/__data/assets/image/0009/1961721/MDDN451_philipmatich_yearning7.png">
+        <!-- Use class="wider, bottom or top" to position the text box -->
+        <figcaption class="bottom">
+            <h1>Postgraduate study</h1>
+        </figcaption>
+    </figure>
 
       <!-- Faculty intro  -->
       <div class="sector">
@@ -95,6 +108,7 @@ footer:
         </div>
     </div>
 
+
     <!-- <style>
         @media (min-width: 900px) {
             .text-promo-panel .media.featured figcaption {
@@ -118,7 +132,85 @@ footer:
         </div>
     </div>
 
+    <div class="centraliser">
+      <div class=" block formatting">
+        <h2>Our priority areas</h2>            <section class="grid">
+             <figure class=" ">
+            <a href="https://cms.wgtn.ac.nz/engage/giving/priorities/environment-sustainability?SQ_DESIGN_NAME=v4&amp;mode=dev">
+                <img alt="A large iceberg sticking out of the ocean." src="
+                                        https://cms.wgtn.ac.nz/__data/assets/image/0010/1784368/varieties/ls_medium.jpg
+                                    ">
+              <figcaption>
+                    <h3>Environment and sustainability</h3>
+                    <p>The world is changing quickly and protecting our natural environment has never been more important. Help us protect our planet for future generations.</p>
+              </figcaption>
+            </a>
+          </figure>
+                            <figure class=" ">
+            <a href="https://cms.wgtn.ac.nz/engage/giving/priorities/student-experience?SQ_DESIGN_NAME=v4&amp;mode=dev">
+                <img alt="Two students carrying books and bags walking." src="
+                                        https://cms.wgtn.ac.nz/__data/assets/image/0007/1948399/varieties/ls_medium.jpg
+                                    ">
+              <figcaption>
+                    <h3>Student experience</h3>
+                    <p>Help our students create great futures through scholarships that change lives, and access to an unrivalled student experience.</p>
+              </figcaption>
+            </a>
+          </figure>
 
+                          <figure class=" ">
+            <a href="https://cms.wgtn.ac.nz/engage/giving/priorities/creativity?SQ_DESIGN_NAME=v4&amp;mode=dev">
+                <img alt="A close-up of printing press block letters on a table." src="
+                                        https://cms.wgtn.ac.nz/__data/assets/image/0004/1784371/varieties/ls_medium.jpg
+                                    ">
+              <figcaption>
+                    <h3>Creativity</h3>
+                    <p>Support state-of-the-art facilities, students and projects for creative excellence on campus and in our community.</p>
+              </figcaption>
+            </a>
+          </figure>
+                      </section>
+                  </div>
+    </div>
+
+    <div class="sector">
+      <div class="centraliser">
+      <div class="homepage-intro block formatting">
+          <div class="intro-text">
+              <p>Te Amaru—Disability Services is a leading provider of disability advice, expertise and support. We work in partnership with staff, students and the disability community to strengthen Victoria University of Wellington’s culture of inclusion, celebrate disability and ensure students can fully participate and achieve their aspirations.</p>
+          </div>
+          <div class="links-wrap">
+              <div class="button-links">
+                                  <a href="https://cms.wgtn.ac.nz/disability/about/staff?SQ_DESIGN_NAME=v4&amp;mode=dev" class="button large">Our team</a>
+                                                  <a href="https://cms.wgtn.ac.nz/disability/about/our-approach?SQ_DESIGN_NAME=v4&amp;mode=dev" class="button large">Our approach</a>
+                              </div>
+              <div class="social-links">
+                  <p>Find us on</p>
+                  <a class="social-icon" alt="Facebook icon" href="https://cms.wgtn.ac.nz/facebook-disability-services?SQ_DESIGN_NAME=v4&amp;mode=dev">
+                      <img src="https://cms.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/images/social-facebook.svg">
+                  </a>
+
+
+
+
+
+
+
+
+              </div>
+          </div>
+      </div>
+  <div class="text-promo-panel intro-promo">
+      <div class="block formatting centraliser">
+          <div class="text-wrap">
+              <h2>Get in touch</h2>
+              <p></p><p>To book a face-to-face or remote appointment with a Disability and Inclusion Adviser, email <a href="mailto:disability@vuw.ac.nz">disability@vuw.ac.nz</a> or call <a href="tel:044636070">04 463 6070</a>.</p><p>Read about the University's response to <a href="https://cms.wgtn.ac.nz/covid-19/index?SQ_DESIGN_NAME=v4&amp;mode=dev" title="COVID-19 information from the University">COVID-19</a>.</p><p></p>
+          </div>
+              </div>
+  </div>
+
+      </div>
+  </div>
     <!-- Search panel -->
       <div class="centraliser">
         <div class="block">
@@ -134,13 +226,17 @@ footer:
         </div>
       </div>
 
-      <div>
-        <section class="centraliser flash-message info">
-
-                <h2 class="mb3"><a href="https://enrol.wgtn.ac.nz/">Enrol for Trimester 3 2022 or 2023</a></h2>
-                <p class="intro mt0">If you are continuing your existing programme, you only need to <a href="https://enrol.wgtn.ac.nz/" style="text-decoration: underline; font-weight: bold;">complete course enrolment</a>. Current students only need to apply for admission if you are starting a new programme.</p>
-        </section>
-        </div>
+      <div class="text-promo-panel ">
+        <div class="block formatting centraliser">
+            <div class="text-wrap">
+                <h2>Research</h2>
+                <p></p><p>The School of Design Innovation is involved in cutting-edge local and international design and research.</p><p></p>
+            </div>
+                    <div class="button-wrap">
+                <a href="https://cms.wgtn.ac.nz/design-innovation/research?SQ_DESIGN_NAME=v4&amp;mode=dev" title="" class="button primary large">Discover our research</a>
+            </div>
+                </div>
+    </div>
 
          <!-- card panel  -->
          <div class="centraliser ">
@@ -246,6 +342,35 @@ footer:
             </div>
           </div>
 
+
+          <section class="centraliser" id="newswidget">
+            <div class="block news-row ">
+                          <!-- wide -->
+                <header>
+                                                         <a href="https://cms.wgtn.ac.nz/research/strengths/news-commentary?SQ_DESIGN_NAME=v4&amp;mode=dev" title="More news" class="link-more">More news</a>
+                                                          <h2>Research news and commentary</h2>
+                </header>
+
+
+
+
+          <div id="app"><!----><!----><div><ul class="news"><li index="0" class="news-item "><article itemscope="itemscope" itemtype="http://schema.org/NewsArticle"><div class="summary formatting"><h3 itemprop="name"><a href="https://www.wgtn.ac.nz/news/2022/10/long-dead-marine-organisms-may-influence-next-major-earthquake" itemprop="url"> Long-dead marine organisms may influence next major earthquake
+                        </a></h3><p><time itemprop="datePublished" datetime="10 October 2022">10 October 2022 </time></p><p itemprop="description">
+                       Research reveals the role tiny sea creatures may play.
+                      </p></div></article></li><li index="1" class="news-item "><article itemscope="itemscope" itemtype="http://schema.org/NewsArticle"><div class="summary formatting"><h3 itemprop="name"><a href="https://www.wgtn.ac.nz/robinson/about/news/partnership-to-launch-ground-breaking-superconducting-magnet-in-space" itemprop="url"> Partnership to launch ground-breaking superconducting magnet in space
+                        </a></h3><p><time itemprop="datePublished" datetime="10 October 2022">10 October 2022 </time></p><p itemprop="description">
+                       Paihau—Robinson Research Institute (Wellington, New Zealand) and Nanoracks (Houston, TX) announce partnership to launch ground-breaking new superconducting magnet technology demonstrator.
+                      </p></div></article></li><li index="2" class="news-item "><article itemscope="itemscope" itemtype="http://schema.org/NewsArticle"><div class="summary formatting"><h3 itemprop="name"><a href="https://www.wgtn.ac.nz/restorative-justice/news/summer-school-maynooth-university-ireland" itemprop="url"> Summer school at Maynooth University, Ireland
+                        </a></h3><p><time itemprop="datePublished" datetime="5 October 2022">5 October 2022 </time></p><p itemprop="description">
+                       Christina Tay participated in the inaugural Maynooth University Summer School in Ireland during August. The Summer School is a collaboration between the Restorative Justice Pedagogy Network (of which we are a part) and the Maynooth Innovation Lab.
+                      </p></div></article></li></ul></div></div>
+
+
+
+
+          </div>
+           </section>
+
           <!-- //promo panel right aligned image -->
 
           <div class="promo-panel">
@@ -311,7 +436,80 @@ footer:
 
       </figure>
     </div>
+    <div class="centraliser">
+      <div class="block formatting" style="margin-top: 2em;">
+        <h4>Find out more about Victoria University of Wellington in your language:</h4>
+        <section class="grid">
+        <figure class="">
+         <ul>
+              <li><a href="https://www.hotcourses.cn/study/newzealand/school-college-university/victoria-university-of-wellington/142321/international.html" target="_blank" rel="noopener">中文</a> (Chinese)</li>
+              <li><a href="https://www.hotcourses.co.id/study/newzealand/school-college-university/victoria-university-of-wellington/142321/international.html" target="_blank" rel="noopener">Bahasa Indonesia</a> (Indonesian)</li>
+              <li><a href="https://www.hotcourseslatinoamerica.com/study/newzealand/school-college-university/victoria-university-of-wellington/142321/international.html" target="_blank" rel="noopener">Español</a> (Spanish)</li>
 
+            </ul>
+        </figure>
+        <figure class="">
+       <ul>
+               <li><a href="https://www.hotcourses.vn/study/newzealand/school-college-university/victoria-university-of-wellington/142321/international.html" target="_blank" rel="noopener">tiếng Việt</a> (Vietnamese)</li>
+               <li><a href="https://www.hotcourses.in.th/study/newzealand/school-college-university/victoria-university-of-wellington/142321/international.html" target="_blank" rel="noopener">ภาษาไทย</a> (Thai)</li>
+              <li><a href="https://www.hotcourses.com.br/study/newzealand/school-college-university/victoria-university-of-wellington/142321/international.html" target="_blank" rel="noopener">Português</a> (Portuguese)</li>
+            </ul>
+        </figure>
+        <figure class="">
+      <ul>
+              <li><a href="https://www.hotcourses.ae/study/newzealand/school-college-university/victoria-university-of-wellington/142321/international.html" target="_blank" rel="noopener">العَرَبِيَّة</a> (Arabic)</li>
+              <!--<li><a href="https://www.hotcourses.kr/study/secure-pocs-institution-profile/newzealand/victoria-university-of-wellington/overview/142321/77204/info.html" target="_blank" rel="noopener">&#54620;&#44397;&#50612;</a> (Korean)</li>-->
+              <li><a href="https://www.hotcourses.ru/study/newzealand/school-college-university/victoria-university-of-wellington/142321/international.html" target="_blank" rel="noopener">русский язык</a> (Russian)</li>
+                <li><a href="https://www.hotcourses-turkey.com/study/newzealand/school-college-university/victoria-university-of-wellington/142321/international.html" target="_blank" rel="noopener">Türkçe</a> (Turkish)</li>
+            </ul>
+        </figure>
+        </section>
+       </div>
+    </div>
+
+
+    <div class="separated">
+      <div class="centraliser">
+      <div class="block formatting">
+
+                  <section class="grid promos">
+              <figure class="">
+                  <a href="https://cms.wgtn.ac.nz/disability/for-students/disability-at-the-university?SQ_DESIGN_NAME=v4&amp;mode=dev">
+                      <img alt="Hunter Building, Kelburn Campus" src="
+                                              https://cms.wgtn.ac.nz/news/images/hunter.jpg/ls_medium.jpg
+                                          ">
+                      <figcaption>
+                          <h3>Disability at the University</h3>
+                          <p>The number of students with disabilities at the University is steadily growing, and we greatly welcome the increasing diversity of our community.</p>
+                      </figcaption>
+                  </a>
+              </figure>
+              <figure class="">
+                  <a href="https://cms.wgtn.ac.nz/disability/for-students/key-services?SQ_DESIGN_NAME=v4&amp;mode=dev">
+                      <img alt="A pair of hands typing on a laptop." src="
+                                              https://cms.wgtn.ac.nz/__data/assets/image/0010/1518616/varieties/ls_medium.jpg
+                                          ">
+                      <figcaption>
+                          <h3>Key services for students</h3>
+                          <p>We offer a broad range of quality services which are tailored to your individual needs.</p>
+                      </figcaption>
+                  </a>
+              </figure>
+              <figure class="">
+                  <a href="https://cms.wgtn.ac.nz/disability/for-students/register?SQ_DESIGN_NAME=v4&amp;mode=dev">
+                      <img alt="A small pile of grey stones against a white background." src="
+                                              https://cms.wgtn.ac.nz/__data/assets/image/0009/1518615/varieties/ls_medium.jpg
+                                          ">
+                      <figcaption>
+                          <h3>Register with us</h3>
+                          <p>Access our online registration form and find out what supporting documents you'll need to provide.</p>
+                      </figcaption>
+                  </a>
+              </figure>
+          </section>
+      </div>
+  </div>
+  </div>
 
       <!-- Tiled study hub 3 col pattern images no gutter-->
       <div class="tiles-panel ">
