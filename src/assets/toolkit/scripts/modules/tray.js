@@ -149,7 +149,6 @@ export function initTray() {
   //! Sidemenu nav expand logic
   function expandTray(index, listItem) {
     $(listItem).on("mouseenter click keyup", (e) => {
-
       //promo hideshow logic
       var $navItemID = $(`#${$(this).attr("data-for")}`);
       $("[id^=draw]").hide();
@@ -184,15 +183,15 @@ export function initTray() {
           $draw.addClass("active");
           sidemenuExpanded = true;
         }
-      } else if ( $(listItem).hasClass("has-submenu") ) {
+      } else if ($(listItem).hasClass("has-submenu")) {
         // Else we are hovering on the menu item
-        if ($(listItem).parent().hasClass("expanded-draw") ) {
+        if ($(listItem).parent().hasClass("expanded-draw")) {
           // console.log('has class button close tray');
           sidemenuExpanded = true;
           $draw.addClass("active");
           // Remove other ones
-          if( $(listItem).hasClass("has-submenu")) {
-            console.log('np tray print tray');
+          if ($(listItem).hasClass("has-submenu")) {
+            console.log("np tray print tray");
           }
         } else {
           //show tray
@@ -212,7 +211,7 @@ export function initTray() {
         $(".draw-nav > ul").removeClass("active-nav-group");
         matchingNavGroup.toggleClass("active-nav-group");
         // }
-      } else if( !$(listItem).hasClass("has-submenu") ) {
+      } else if (!$(listItem).hasClass("has-submenu")) {
         //no children so close menu
         closeDraw();
       }
@@ -272,9 +271,19 @@ export function initTray() {
       horizontalMenuExpanded = !horizontalMenuExpanded;
       $(".sidemenu-drawer").removeClass(`${loc}`);
       $(".mega-menu-top-level > li").removeClass("expanded-nav");
-      $blip.css({
-        width: 0,
-      });
+
+      if ($(".mega-menu-top-level > li.active").length) {
+        $blip.css({
+          left:
+            $(".mega-menu-top-level > li.active").offset().left -
+            $("#mega-menu").offset().left,
+          width: $(".mega-menu-top-level > li.active").innerWidth(),
+        });
+      } else {
+        $blip.css({
+          width: 0,
+        });
+      }
 
       // $draw.toggleClass('active');
     }
@@ -559,7 +568,25 @@ export function initTray() {
   // On mouse out of horizontal nav
   $("#hubv4 .main-site-header #mega-menu > li").on("mouseout", function () {
     var activeItem = $(".expanded-nav");
-    if (activeItem.length) {
+    // if (activeItem.length) {
+    //   $blip.css({
+    //     left: activeItem.offset().left - $("#mega-menu").offset().left,
+    //     width: activeItem.innerWidth(),
+    //   });
+    // } else {
+    //   $blip.css({
+    //     width: 0,
+    //   });
+    // }
+
+    if ($(".mega-menu-top-level > li.active").length) {
+      $blip.css({
+        left:
+          $(".mega-menu-top-level > li.active").offset().left -
+          $("#mega-menu").offset().left,
+        width: $(".mega-menu-top-level > li.active").innerWidth(),
+      });
+    } else if (activeItem.length) {
       $blip.css({
         left: activeItem.offset().left - $("#mega-menu").offset().left,
         width: activeItem.innerWidth(),
@@ -571,30 +598,11 @@ export function initTray() {
     }
   });
 
-  var notificationCount = 0;
-
   // ?Remove default icon injected on all role="button" elements
   $(".btn-expander").addClass("no-icon");
 
   // ?Temporary override of toolkit hiding
   // $("#hubv4 .sidemenu  ul > .has-submenu").css("display", "flex");
-
-  const formatAsDate = function (date, locale) {
-    var arr = date.split("");
-    var year = arr.slice(0, 4).join("");
-    var month = arr.slice(4, 6).join("");
-    var day = arr.slice(6, 8).join("");
-
-    if (locale == "us") {
-      var dateString = year + " " + month + " " + day;
-      dateString = new Date(dateString);
-      return dateString;
-    } else {
-      var dateString = year + " " + month + " " + day;
-      dateString = new Date(dateString).toLocaleDateString("en-UK");
-      return dateString;
-    }
-  };
 
   var resizeTallBlip = function (el, hide) {
     if (hide) {
@@ -677,7 +685,7 @@ export function initTray() {
     var activeItem = $(".main-nav-list > li.active");
     if (activeItem.length) {
       resizeTallBlip(activeItem);
-    }
+    } 
   });
 
   // ?MAIN NAV LIST ACCORDIONS
@@ -697,8 +705,7 @@ export function initTray() {
   // Clone child menu into tray if child page
   if ($(".childMenu")) {
     var childMenuClone = $(".childMenu").clone();
-    childMenuClone.appendTo(".tray-main-nav");
-    $(".tray .childMenu").addClass("main-nav-list");
+    childMenuClone.appendTo(".menu-slide-container");
 
     // Open sidemenu by default
     // $(".tray #childPageMenu").show();
@@ -715,6 +722,29 @@ export function initTray() {
       $(this).parent().next().slideToggle("fast");
     });
   }
+
+  //! Mobile menu navigation
+  // ? Hide child menu, show main menu
+  $("#hubv4 .tray .mobile-menu-navigation button.main-menu-link").on(
+    "click",
+    function (e) {
+      // $(".tray .childMenu").removeClass("slide-in");
+      // $(".tray .childMenu").addClass("slide-out");
+      // $(".main-nav-list").addClass("slide-in");
+
+      $(".tray-main-nav").addClass("show-main-menu");
+    }
+  );
+  // ? Hide main nav, show child mobile menu
+  $("#hubv4 .tray .mobile-menu-navigation button.current-menu-link").on(
+    "click",
+    function (e) {
+      $(".tray-main-nav").removeClass("show-main-menu");
+
+      // $(".main-nav-list").hide();
+      // $(".tray .childMenu").addClass("slide-in");
+    }
+  );
 
   // Open on initial load
   // if ($(".tray .main-nav-item > a.active")) {
@@ -800,7 +830,13 @@ export function initTray() {
     $(".tray").addClass("responsive-preview");
     toggleTray();
   }
-
+  // Set initial position of tall blip (in tray)
+  setTimeout(() => {
+    var activeItem = $(".main-nav-list > li.active");
+    if (activeItem.length) {
+      resizeTallBlip(activeItem);
+    }
+  }, 500);
   // accesibility fix - tabbing currently doesn't go to expanded tray as it's outside the nav DIV
   // TODO make work with horizontal NAV --- Monty or Jake
   const tabLinks = document.querySelectorAll(
@@ -856,6 +892,4 @@ export function initTray() {
   //     }
   //   });
   // }
-
-
 }

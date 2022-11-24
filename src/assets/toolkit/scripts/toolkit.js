@@ -130,103 +130,9 @@ if ($("body").attr("id") == "hubv4") {
       );
     }
 
-    // function apply(topLevel, clickedEl) {
-    //   if (clickedEl && !clickedEl.parent().hasClass("expanded")) {
-    //     var expandedLi = $(".sidebar > nav > ul > li.expanded");
-    //     if (topLevel) {
-    //       //? REMOVE OTHER ITEMS THAT ARE EXPANDED
-    //       // expandedLi.find(">ul").css("max-height", "0px");
-    //       expandedLi.find(">ul").animate(
-    //         {
-    //           maxHeight: 0,
-    //         },
-    //         300,
-    //         function () {
-    //           // Animation complete.
-    //         }
-    //       );
-    //       $(".sidebar > nav > ul li.has-submenu.expanded")
-    //         .not(submenuContainer)
-    //         .removeClass("expanded");
-
-    //       //? ADD EXPANDED CLASS TO CLICK EL
-    //       submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
-    //       var expandedLi = $(".sidebar > nav > ul > li.expanded");
-
-    //       expandedLi.find(">ul").show();
-    //       //? CALC HEIGHT OF ITEMS (FOR SMOOTH ANIMATION)
-    //       var listHeight = calcHeight(expandedLi.find("> ul > li"));
-    //       // expandedLi.find(">ul").css("max-height", listHeight + "px");
-
-    //       expandedLi.find(">ul").animate(
-    //         {
-    //           opacity: 1,
-    //           maxHeight: listHeight,
-    //         },
-    //         300,
-    //         "swing",
-    //         function () {
-    //           // Animation complete.
-    //           console.log("animation complete");
-    //         }
-    //       );
-    //     } else {
-    //       console.log("===== INNER EXPANDER CLICKED ====");
-    //       //? INNER EXPANDER HAS BEEN CLICKED, ADJUST HEIGHT AGAIN
-    //       submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
-    //       var listHeight = calcHeight(expandedLi.find("> ul li"));
-    //       // expandedLi.find(">ul").css("max-height", listHeight + "px");
-
-    //       expandedLi.find(">ul").animate(
-    //         {
-    //           maxHeight: listHeight,
-    //         },
-    //         300,
-    //         function () {
-    //           // Animation complete.
-    //           console.log("animation complete");
-    //         }
-    //       );
-    //     }
-    //   } else {
-    //     //? CLOSE ITEM
-    //     var expandedLi = $(".sidebar > nav > ul > li.expanded");
-    //     submenuContainer.removeClass(SIDEMENU_EXPANDED_CLASS);
-
-    //     if (topLevel) {
-    //       submenuContainer
-    //         .find(SIDEMENU_EXPANDED_CLASS)
-    //         .removeClass(SIDEMENU_EXPANDED_CLASS);
-    //       // expandedLi.find(">ul").css("max-height", "0px");
-
-    //       expandedLi.find(">ul").animate(
-    //         {
-    //           maxHeight: 0,
-    //         },
-    //         300,
-    //         function () {
-    //           // Animation complete.
-    //           expandedLi.find(">ul").fadeOut();
-    //         }
-    //       );
-    //     }
-    //   }
-    // }
-
-    // Init
-    // apply(true, $(".sidebar > nav > ul > li.active > .btn-expander"));
-
-    // Bind `click` events to all expandable buttons
-    // expandableButtonElement.on("click", (e) => {
-    //   e.preventDefault();
-    //   e.stopPropagation();
-    //   isExpanded = !isExpanded;
-    //   apply();
-    // });
 
     //! Click event for expand buttons in SIDEMENU only
     expandableButtonElement.on("click keyup touchstart", (e) => {
-      console.log(e.which);
       if (e.which == 13 || e.which == 1) {
         e.preventDefault();
         e.stopPropagation();
@@ -301,18 +207,7 @@ if ($("body").attr("id") == "hubv4") {
 
     expandableButtons.each(initExpandableSubmenu);
 
-    // Ensure expander height is the same as the link (for long link titles than span across 2+ lines)
-    enquire.register(DESKTOP_AND_LARGER, () => {
-      $(".sidemenu > ul > li").each(function (e) {
-        var link = $(this).find(">a");
-        var expander = $(this).find("> .btn-expander");
-        if (link.outerHeight() > 0) {
-          expander.css("height", link.outerHeight());
-        } else {
-          expander.css("height", "100%");
-        }
-      });
-    });
+
   }
 
   enquire.register(DESKTOP_AND_LARGER, () => {
@@ -851,6 +746,19 @@ if ($("body").attr("id") == "hubv4") {
     initFloatingButtons();
     decodeMailAddresses();
 
+
+    // !Language switcher
+    $(".language-switcher button").on("click", function (e) {
+      // Remove active from others
+      $(".language-switcher button").removeClass("active");
+
+      // Add active to clicked
+      $(this).addClass("active");
+      var id = e.target.dataset.lang;
+      console.log(id);
+      $(".sidemenu").attr("menu-lang", id);
+    });
+
     // http://wicky.nilia.ms/enquire.js/
     // TODO: Refactor and extract to its own library
     // enquire.register( MOBILE_LARGE_AND_SMALLER, () => {
@@ -961,6 +869,7 @@ if ($("body").attr("id") == "hubv4") {
       if ($(this).parent().hasClass("active")) {
         return;
       }
+      //! This is problematic... needs scoping, lots of things have .active class
       $(".active").removeClass("active");
       $(this).parent().addClass("active");
       $(".study-areas").toggleClass("hidden");
