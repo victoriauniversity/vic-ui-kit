@@ -392,3 +392,80 @@ $banner-figure-bg: $brand !default;
     padding: 2.5%;
   }
 }
+
+#hubv4 {
+  .banner {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    width: 100%;
+    max-width: 88rem;
+    display: flex;
+    flex: 1 1 auto;
+
+    .banner-nav {
+      width: calc(20% - 1rem);
+      flex: 1 0 auto;
+      margin-right: 1rem;
+
+      @include breakpoint($until: desktop-medium) {
+        display: none;
+      }
+
+      ul {
+        margin-top: 1rem;
+        li {
+          font-weight: 500;
+          font-size: 1.1rem;
+          padding: .75rem .5rem;
+          border-bottom: 1px solid $grey-alto;
+
+          &.selected {
+            border-left: 5px solid $pounamu;
+
+            a {
+              color: $pounamu;
+            }
+          }
+
+          a {
+            color: $black-brand;
+
+            @include hoverify() {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+
+    img {
+      margin-bottom: 0;
+    }
+
+    figcaption {
+      min-width: 40%;
+      background-color: $pounamu;
+      padding: 1.25rem;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+
+      &.bottom {
+        right: 0;
+        bottom: 0;
+      }
+      &.top {
+        right: 0;
+        top: 0;
+        bottom: unset;
+      }
+
+
+      h1,h2,h3 {
+        color: $manuka;
+      }
+    }
+  }
+}

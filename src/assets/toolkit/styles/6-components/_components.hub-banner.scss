@@ -395,27 +395,28 @@
     }
 
     &.no-overlay {
-      &:before {
-        bottom: .75rem;
-        left: .75rem;
-        content: "";
-        z-index: 20;
-        border-bottom: 1rem $pounamu solid;
-        border-left: 1rem $pounamu solid;
-        background-color: transparent;
-        position: absolute;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        max-width: calc(100% - 2.25rem);
-        max-height: calc(100% - 2.25rem);
-        width: 150px;
-        height: 150px;
-        transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
-      }
+
 
       figure {
         &:after {
           border-color: $miro;
+        }
+        &:before {
+          bottom: .75rem;
+          left: .75rem;
+          content: "";
+          z-index: 0;
+          border-bottom: 1rem $pounamu solid;
+          border-left: 1rem $pounamu solid;
+          background-color: transparent;
+          position: absolute;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          max-width: calc(100% - 2.25rem);
+          max-height: calc(100% - 2.25rem);
+          width: 150px;
+          height: 150px;
+          transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
         }
       }
     }

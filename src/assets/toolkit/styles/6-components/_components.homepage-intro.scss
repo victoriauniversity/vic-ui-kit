@@ -194,15 +194,32 @@
       }
     }
 
+    + .text-promo-panel {
+      .media {
+        figcaption {
+          position: absolute;
+        }
+      }
+    }
+
     @include breakpoint( $until: 900px ) {
       width: 100%;
     }
+
+
+
   }
 }
 
-#hubv4 .text-promo-panel {
+#hubv4 .homepage-intro + .text-promo-panel {
   margin-top: 1rem;
   width: 35%;
+
+  // utility to escape general use of .text-promo-panel class.. not ideal
+  > div {
+    background-color: unset !important;
+    border: unset !important;
+  }
 
 .media {
 
@@ -293,6 +310,22 @@
       &::before {
         content: none;
       }
+    }
+  }
+
+  &.intro-promo {
+    background-color: $kohuhu;
+    border: 1px solid $miro;
+    // margin-left: 1rem;
+    &::before {
+      content: none;
+    }
+
+    @include breakpoint(tablet) {
+      width: calc(35% - 1rem);
+    }
+    @include breakpoint( $until: 900px ) {
+      width: 100%;
     }
   }
 
