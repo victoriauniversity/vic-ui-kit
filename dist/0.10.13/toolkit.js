@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, November 24, 2022, 1:54 PM */
+/** Version: 0.10.13 | Friday, November 25, 2022, 2:03 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14127,13 +14127,21 @@ function initTray() {
 
   function buildTray(index, item) {
     // console.log( 'nav item', $(this).parent().children('a').text() );
-    var nav = $(this);
-    var navClassString = $(this).parent().children("a").html();
-    var titleLink = $(this).parent().children("a").attr("href"); //push into traw div
+    // console.log( 'nav item', $(this).children('ul'));
+    var nav = $(this).children('ul'); // console.log($(this));
 
-    nav.clone().appendTo(".draw-nav").addClass(navClassString).attr("data-index", index); //add title
+    var navClassString = $(this).children("a").html();
+    var titleLink = $(this).children("a").attr("href"); //push into traw div
 
-    $(".draw-nav ul[data-index='".concat(index, "']")).prepend("<h4 class=\"sub-draw-title\"><a href=\"".concat(titleLink, "\">").concat(navClassString, "</a></h4>"));
+    if (nav.length > 0) {
+      nav.clone().appendTo(".draw-nav").addClass(navClassString).attr("data-index", index); //add title
+
+      $(".draw-nav ul[data-index='".concat(index, "']")).prepend("<h4 class=\"sub-draw-title\"><a href=\"".concat(titleLink, "\">").concat(navClassString, "</a></h4>"));
+    } else {// console.log('no children');
+      // $(`.draw-nav ul[data-index='${index}']`).prepend(
+      //   `<h4 class="sub-draw-title"><a href="${titleLink}">${navClassString}</a></h4>`
+      // );
+    }
   }
 
   var openTimeout;
@@ -14294,7 +14302,7 @@ function initTray() {
     var menu = $(".sidemenu-homepage"); // console.log(menu);
     //build tray nav content
 
-    var trayNavItems = $(".sidemenu-homepage > ul > li > ul");
+    var trayNavItems = $(".sidemenu-homepage > ul > .nav-item-parent ");
     var listItem = $(".sidemenu-homepage > ul > li:not(.sidemenu__label)"); // console.log(trayNavItems);
 
     listItem.each(expandTray);
