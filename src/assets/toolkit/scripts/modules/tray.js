@@ -101,12 +101,62 @@ export function initTray() {
       $(".tray .search-input").focus();
     }, 500);
   });
+  var hideSearchHistory = function () {
+    $(".tray .saved-searches").hide();
+  };
+  $(".tray .search-input").on("focus", (e) => {
+    $(".tray .saved-searches").show();
+  });
+  $(".tray .search-input").on("focusout", (e) => {
+    setTimeout(() => {
+      hideSearchHistory();
+    }, 100);
+  });
 
-  // $('.search-button-inside form').on('focus', (e) => {
-  //   $( this ).toggleClass('focus')
-  //   console.log( $(this) );
+  // Init saved searches
+  var checkSavedSearches = function () {
+    if (localStorage.savedSearches) {
+      var savedSearchesArray = JSON.parse(localStorage.savedSearches);
+      console.log(savedSearchesArray);
+      savedSearchesArray.forEach(function (item) {
+        var div =
+          "<div class='search-item'> " +
+          item.term +
+          " <button title='Remove this search term from history' class='clear-term flat no-icon'> <i class='icons8-delete'></i></button </div>";
+        $(".tray .saved-searches").append($(div));
+      });
 
-  // })
+      // On click of search item
+      $(".tray .search-item").on("click", function (e) {
+        console.log(e);
+        var searchText = $(this).text().trim();
+        $(".tray .search-input").val(searchText);
+        $(".tray-search-bar>form").submit();
+        hideSearchHistory();
+      });
+
+      // On click of clear search item
+      $(".tray .clear-term").on("click", function (e) {
+        console.log(e);
+        e.preventDefault();
+        var searchText = $(this).parent().text().trim();
+        $(this).parent().remove();
+
+        if (!$(".tray .saved-searches .search-item").length) {
+          $(".tray .saved-searches").hide();
+        } else {
+          $(".tray .saved-searches").show();
+        }
+
+        var filtered = savedSearchesArray.filter(function (e) {
+          return e.term !== searchText;
+        });
+        localStorage.setItem("savedSearches", JSON.stringify(filtered));
+        console.log(filtered);
+      });
+    }
+  };
+  checkSavedSearches();
 
   // ****************************************
   // ****************************************
@@ -685,7 +735,7 @@ export function initTray() {
     var activeItem = $(".main-nav-list > li.active");
     if (activeItem.length) {
       resizeTallBlip(activeItem);
-    } 
+    }
   });
 
   // ?MAIN NAV LIST ACCORDIONS
