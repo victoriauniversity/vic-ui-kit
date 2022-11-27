@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, November 25, 2022, 2:14 PM */
+/** Version: 0.10.13 | Monday, November 28, 2022, 8:06 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -3787,8 +3787,14 @@ body > .layout {
   .content-panel:first-child > main:last-child > .block {
     padding-left: 0;
   }
+  #hubv4 .content-panel:first-child > main:last-child > .block {
+    padding-left: 1.5rem;
+  }
   .content-panel > main:last-child > .block {
     padding-right: 0;
+  }
+  #hubv4 .content-panel > main:last-child > .block {
+    padding-right: 1.5rem;
   }
   .content-panel:not(:first-child) {
     float: left;
@@ -11245,7 +11251,7 @@ aside .promo h3::before {
 }
 
 #hubv4 .homepage-intro + .text-promo-panel .media figcaption {
-  position: absolute;
+  position: relative;
 }
 
 @media (max-width: 56.25em) {
@@ -11297,18 +11303,19 @@ aside .promo h3::before {
 
 @media (min-width: 43em) {
   #hubv4 .homepage-intro + .text-promo-panel .media figcaption {
-    width: 70% !important;
+    width: 100%;
     padding: 1.5rem  1rem;
     margin: 0;
     max-width: unset;
     left: unset !important;
-    top: unset !important;
-    bottom: -1.5rem !important;
-    right: -1.5rem;
+    top: -1px !important;
+    bottom: 0 !important;
+    right: 0rem;
   }
   #hubv4 .homepage-intro + .text-promo-panel .media figcaption h4 {
     margin: 0;
     padding: 0;
+    padding-left: 2rem;
     -webkit-box-pack: justify;
             justify-content: space-between;
   }
