@@ -914,7 +914,7 @@ body#hubv4 {
         font-variant: normal;
         line-height: 1;
         text-decoration: inherit;
-        transition: all $easing 0.3s;
+        transition: transform $easing 0.3s;
       }
 
       @include hoverify() {
@@ -1099,7 +1099,7 @@ body#hubv4 {
         > li {
           border-bottom: 1px $grey-alto solid;
           border-top: 1px transparent solid;
-          // transition: all $easing 0.3s;
+          transition: all $easing 0.3s;
           margin-left: 0;
           &:after {
             transition: none;
@@ -1587,13 +1587,8 @@ body#hubv4 {
           }
 
           &.active {
-            // border-left: 4px solid $sidemenu-background-selected-v3;
-            // background-color: $off-white;
-            // background-color: $kohuhu;
-
             > a {
               font-weight: 600;
-              // text-decoration: underline;
               color: $black-brand;
             }
           }
@@ -1605,11 +1600,10 @@ body#hubv4 {
 
             > a {
               margin-right: 0px;
-              transition: all ease 0.1s;
+              // transition: color ease 0.2s;
             }
 
             &.expanded {
-              // box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.1);
               z-index: 1;
               border-bottom: none;
 
@@ -1642,7 +1636,7 @@ body#hubv4 {
                       border-top: 10px solid transparent;
                       border-left: 12px solid $sidemenu-background-selected-v3;
                       border-bottom: 10px solid transparent;
-                      transition: all $easing 0.3s;
+                      // transition: all $easing 0.3s;
                       @include breakpoint($until: desktop-medium) {
                         top: 5px;
                       }
@@ -1895,11 +1889,14 @@ body#hubv4 {
         > li {
           position: relative;
           overflow: visible;
-          // transition: all $easing 0.2s;
           border-bottom: 1px transparent solid;
+          // Only transition on bigger devices (slow on phones)
+          @include breakpoint($from: desktop-medium) {
+            transition: all $easing 0.2s;
+          }
 
           &:before {
-            transition: all $easing 0.2s;
+            // transition: all $easing 0.2s;
             content: "";
             width: 4px;
             position: absolute;
@@ -1977,6 +1974,9 @@ body#hubv4 {
               font-weight: 700;
               color: $manuka;
               background-color: transparent;
+              @include breakpoint($until: desktop-medium) {
+                font-weight: 500;
+              }
               .tereo-childmenu {
                 color: $kohuhu;
               }

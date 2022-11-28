@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, November 28, 2022, 3:09 PM */
+/** Version: 0.10.13 | Tuesday, November 29, 2022, 12:00 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -16768,8 +16768,10 @@ body#hubv4 .sidemenu .btn-expander:after, body:not(#hubv4) .sidemenu-banner-wrap
   font-variant: normal;
   line-height: 1;
   text-decoration: inherit;
-  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
-  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+  -webkit-transition: -webkit-transform cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+  transition: -webkit-transform cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+  transition: transform cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+  transition: transform cubic-bezier(0.22, 1, 0.36, 1) 0.3s, -webkit-transform cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
 }
 
 body#hubv4 .sidemenu .btn-expander:hover, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .btn-expander:hover, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .btn-expander:hover, body#hubv4 .show-mega-menu-top .mega-sub-menu .btn-expander:hover, body#hubv4 .sidemenu .btn-expander:active, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .btn-expander:active, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .btn-expander:active, body#hubv4 .show-mega-menu-top .mega-sub-menu .btn-expander:active, body#hubv4 .sidemenu .btn-expander:focus, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-homepage .btn-expander:focus, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .btn-expander:focus, body#hubv4 .show-mega-menu-top .mega-sub-menu .btn-expander:focus {
@@ -16931,6 +16933,8 @@ body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage > ul {
 body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage > ul > li {
   border-bottom: 1px #DDD solid;
   border-top: 1px transparent solid;
+  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
   margin-left: 0;
 }
 
@@ -17433,8 +17437,6 @@ body#hubv4 .sidebar .sidemenu ul li.has-submenu, body:not(#hubv4) .sidemenu-bann
 
 body#hubv4 .sidebar .sidemenu ul li.has-submenu > a, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage ul li.has-submenu > a, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu > a, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu > a, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu > a, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu > a {
   margin-right: 0px;
-  -webkit-transition: all ease 0.1s;
-  transition: all ease 0.1s;
 }
 
 body#hubv4 .sidebar .sidemenu ul li.has-submenu.expanded, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage ul li.has-submenu.expanded, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage ul li.has-submenu.expanded, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage ul li.has-submenu.expanded, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu ul li.has-submenu.expanded, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu ul li.has-submenu.expanded {
@@ -17470,8 +17472,6 @@ body#hubv4 .sidebar .sidemenu ul li.has-submenu.expanded ul li.active:before, bo
   border-top: 10px solid transparent;
   border-left: 12px solid #0D4C38;
   border-bottom: 10px solid transparent;
-  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
-  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
 }
 
 @media (max-width: 74.99em) {
@@ -17669,9 +17669,14 @@ body#hubv4 .sidebar .sidemenu > ul > li, body:not(#hubv4) .sidemenu-banner-wrap 
   border-bottom: 1px transparent solid;
 }
 
+@media (min-width: 75em) {
+  body#hubv4 .sidebar .sidemenu > ul > li, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li {
+    -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+    transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+  }
+}
+
 body#hubv4 .sidebar .sidemenu > ul > li:before, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li:before, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li:before, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li:before, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li:before, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li:before {
-  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
-  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
   content: "";
   width: 4px;
   position: absolute;
@@ -17749,6 +17754,12 @@ body#hubv4 .sidebar .sidemenu > ul > li.expanded > a, body:not(#hubv4) .sidemenu
   font-weight: 700;
   color: #FEF9F0;
   background-color: transparent;
+}
+
+@media (max-width: 74.99em) {
+  body#hubv4 .sidebar .sidemenu > ul > li.expanded > a, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li.expanded > a, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li.expanded > a, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li.expanded > a, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded > a, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded > a {
+    font-weight: 500;
+  }
 }
 
 body#hubv4 .sidebar .sidemenu > ul > li.expanded > a .tereo-childmenu, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage > ul > li.expanded > a .tereo-childmenu, body#hubv4 .sidebar .sidemenu-banner-wrap .sidemenu-homepage > ul > li.expanded > a .tereo-childmenu, body#hubv4 .sidemenu-banner-wrap .sidebar .sidemenu-homepage > ul > li.expanded > a .tereo-childmenu, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu > ul > li.expanded > a .tereo-childmenu, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu > ul > li.expanded > a .tereo-childmenu {
@@ -18064,53 +18075,57 @@ body#hubv4 .sidebar .sidemenu.light ul li.has-submenu.expanded ul li:before, bod
 
 @-webkit-keyframes menu-slide-in {
   0% {
+    -webkit-transform: translateX(100vh);
+            transform: translateX(100vh);
+    visibility: visible;
   }
   100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+    -webkit-transform: translateX(0vh);
+            transform: translateX(0vh);
     visibility: visible;
   }
 }
 
 @keyframes menu-slide-in {
   0% {
+    -webkit-transform: translateX(100vh);
+            transform: translateX(100vh);
+    visibility: visible;
   }
   100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+    -webkit-transform: translateX(0vh);
+            transform: translateX(0vh);
     visibility: visible;
   }
 }
 
 @-webkit-keyframes menu-slide-out {
   0% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+    -webkit-transform: translateX(0vh);
+            transform: translateX(0vh);
     visibility: visible;
   }
   99% {
     visibility: hidden;
   }
   100% {
-    visibility: hidden;
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%);
+    -webkit-transform: translateX(100vh);
+            transform: translateX(100vh);
   }
 }
 
 @keyframes menu-slide-out {
   0% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+    -webkit-transform: translateX(0vh);
+            transform: translateX(0vh);
     visibility: visible;
   }
   99% {
     visibility: hidden;
   }
   100% {
-    visibility: hidden;
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%);
+    -webkit-transform: translateX(100vh);
+            transform: translateX(100vh);
   }
 }
 
@@ -19594,25 +19609,25 @@ body#hubv4 .main-site-header.header-tray .header-inner .tray.responsive-preview 
 }
 
 body#hubv4 .main-site-header.header-tray .header-inner .tray.tray-open {
-  -webkit-transition: all ease 0.3s;
-  transition: all ease 0.3s;
   opacity: 1;
+  -webkit-transition: opacity ease 0.3s;
+  transition: opacity ease 0.3s;
 }
 
 body#hubv4 .main-site-header.header-tray .header-inner .tray.tray-open .tray-content {
-  -webkit-animation: menu-slide-in 0.3s ease forwards;
-          animation: menu-slide-in 0.3s ease forwards;
+  -webkit-animation: menu-slide-in 0.3s ease-out 0.1s forwards;
+          animation: menu-slide-in 0.3s ease-out 0.1s forwards;
 }
 
 body#hubv4 .main-site-header.header-tray .header-inner .tray.tray-closed {
-  -webkit-animation: delay-visibility-out 0.2s ease forwards;
-          animation: delay-visibility-out 0.2s ease forwards;
+  -webkit-animation: delay-visibility-out 0.3s ease forwards;
+          animation: delay-visibility-out 0.3s ease forwards;
 }
 
 body#hubv4 .main-site-header.header-tray .header-inner .tray.tray-closed .tray-content {
   visibility: hidden;
-  -webkit-animation: menu-slide-out 0.3s ease forwards;
-          animation: menu-slide-out 0.3s ease forwards;
+  -webkit-animation: menu-slide-out 0.3s ease-out forwards;
+          animation: menu-slide-out 0.3s ease-out forwards;
 }
 
 body#hubv4 .main-site-header.header-tray .header-inner .tray-content {
@@ -19630,6 +19645,8 @@ body#hubv4 .main-site-header.header-tray .header-inner .tray-content {
   -webkit-box-direction: normal;
           flex-direction: column;
   z-index: 8;
+  -webkit-transform: translateX(100vh);
+          transform: translateX(100vh);
 }
 
 @media (max-width: 42.99em) {
@@ -21361,8 +21378,6 @@ body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-tabs 
 body#hubv4 .menu-container .tray-tabs .tab {
   padding: 10px 25px;
   cursor: pointer;
-  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
-  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
