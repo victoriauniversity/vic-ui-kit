@@ -77,16 +77,14 @@ $tray-width-desktop: 400px;
 
 @keyframes menu-slide-in {
   0% {
-    transform: translateX(100%);
+    // transform: translateX(100%);
     // right: -100%;
   }
 
-  1% {
-    visibility: visible;
-  }
+
 
   100% {
-    // transform: translateX(0);
+    transform: translateX(0);
     // right: 0;
     visibility: visible;
   }
@@ -318,7 +316,7 @@ body:not(#hubv4) {
           }
 
           &.tray-closed {
-            display: none;
+            // display: none;
             animation: delay-visibility-out 0.3s cubic-bezier(0.77, 0, 0.175, 1)
               forwards;
 
@@ -1287,9 +1285,9 @@ body#hubv4 {
   .menu-container {
     //? Not sure if we should use this
     .outer-close-tray {
-      right: 400px;
-      position: absolute;
-      top: 0%;
+      // right: 400px;
+      // position: absolute;
+      // top: 0%;
       display: none;
 
       .tray-toggle {
@@ -1624,13 +1622,13 @@ body#hubv4 {
           }
 
           &.tray-closed {
-            visibility: hidden;
-            opacity: 0;
-            // animation: delay-visibility-out 0.2s ease forwards;
+            // visibility: hidden;
+            // opacity: 0;
+            animation: delay-visibility-out 0.2s ease forwards;
 
             .tray-content {
               visibility: hidden;
-              animation: menu-slide-out 0.3s ease;
+              animation: menu-slide-out 0.3s ease forwards; 
             }
           }
         }
@@ -1643,7 +1641,7 @@ body#hubv4 {
           background-color: $header-bg;
           width: $tray-width-desktop;
           overflow: visible;
-          transform: translateX(100%);
+          // transform: translateX(100%);
           will-change: transform;
           display: flex;
           flex-direction: column;

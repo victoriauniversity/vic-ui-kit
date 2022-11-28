@@ -1,0 +1,2133 @@
+<!-- Version: 0.10.13 | Monday, November 28, 2022, 3:09 PM -->
+<!doctype html>
+<html lang="">
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Study Hub | Experience Victoria</title>
+  <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+
+	
+
+	<!-- toolkit styles -->
+	<link rel="stylesheet" href="../toolkit.css">
+  <!-- /toolkit styles -->
+
+  <script src="https://polyfill.io/v3/polyfill.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
+  <script src="https://cdn.jsdelivr.net/gh/cferdinandi/gumshoe@4/dist/gumshoe.polyfills.min.js"></script>
+
+</head>
+<body class="subject-page" id="hubv2 subject-page">
+
+
+  <!-- If 'fabricator=true' is present in page's annotation. -->
+
+
+
+  <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
+
+
+
+      <header role="banner"
+        class="main-site-header header-tray reset-formatting  white    subjects-header">
+        <div class="block centraliser header-inner ">
+          <!-- Logotype -->
+          <div class="logo header-logo">
+            <a href="https://static.victoria.ac.nz/prototypes/home.html" title="Victoria University of Wellington homepage">
+              <picture>
+                <!-- *MUST* be in pixels to avoid inconsistencies between CSS mediaqueries and HTML mediaqueries on Safari (*facepalm*)  -->
+                <source media="(max-width: 687px)"
+                  srcset="../images/new/v2/logo-green-mini.svg">
+                <source media="(min-width: 688px) and (max-width: 1087px)"
+                  srcset="../images/new/v2/logo-green-portrait.svg">
+                <img src="../images/new/v2/logo-green-full.svg"
+                  alt="Victoria University of Wellington - Te Whare Wānanga o te Ūpoko o te Ika a Māui">
+              </picture>
+      
+            </a>
+          </div>
+      
+      
+          <div class="header-content">
+            <div class="crumbs">
+              <ul>
+                <li class="home"><a href="./"><span class="icon-home"></span></a></li>
+                <li><a href="#">Study</a></li>
+                <li><a href="#">Subjects</a></li>
+              </ul>
+            </div>
+            <div class="subject-title">
+              <a href="#">
+                <p class="tereo-title">Ahupūngao</p>
+                <span>/</span>
+                <p>Physics</p>
+              </a>
+            </div>
+          </div>
+      
+          <div class="header-search">
+            <div class="header-search-bar search-button-inside ">
+              <form class="" action="https://www.wgtn.ac.nz/search" role="search">
+                <label class="search-label visually-hidden" for="search">
+                  <span>Search</span>
+                </label>
+                <input class="search-input" id="search" type="text" placeholder="Search" name="q" autocorrect="off">
+                <button class="submit-button" type="submit"><span class="icon-search"></span></button>
+              </form>
+            </div>
+          </div>
+      
+          <div class="header-toggle">
+      
+            <button role="search" class="search-toggle flat" href="javascript:void(0)">
+              <span class="icon-search"></span></button>
+      
+            <!--  Menu toggle -->
+            <button class="tray-toggle flat" role="toggle-menu">
+              <span class="icon-menu"></span>
+              <!-- <span class="text-menu-button">MENU</span> -->
+            </button>
+          </div>
+      
+      
+      
+      
+          <!--  tray slide out-->
+          <nav class="menu-container main-nav tray tray-closed" aria-label="Main Navigation">
+            <div class="tray-content">
+              <div class="tray-close">
+                <button class="close-tray flat"><span class="icon-cross"></span>Close</button>
+              </div>
+      
+              <div class="tray-search-bar search-button-inside form-dark-grey">
+                <form class="" action="https://www.wgtn.ac.nz/search" role="search">
+                  <label class="search-label visually-hidden" for="search">
+                    <span>Search</span>
+                  </label>
+                  <input class="search-input" id="search" type="text" placeholder="Search" name="q" autocorrect="off">
+                  <button class="submit-button flat" type="submit"><span class="icon-search"></span></button>
+                </form>
+              </div>
+      
+              <div role="menu" class="tray-main-nav">
+                <ul class="main-nav-list">
+      
+                  <li class="main-nav-item">
+                    <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/[object Object].html" title="[object Object] page"
+                      class="[object Object] main-nav-link active"><span class="tereo-nav-title">Ngā tauira o āpōpō</span>Future
+                      students</a>
+                  </li>
+      
+                  <!--  
+                    <li class="main-nav-item">
+                      <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/International students.html" title="International students page" class="International students main-nav-link">International students</a>
+                    </li>
+                    
+                    <li class="main-nav-item">
+                      <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Current students.html" title="Current students page" class="Current students main-nav-link">Current students</a>
+                    </li>
+                    
+                    <li class="main-nav-item">
+                      <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Research.html" title="Research page" class="Research main-nav-link">Research</a>
+                    </li>
+                    
+                    <li class="main-nav-item">
+                      <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Engage.html" title="Engage page" class="Engage main-nav-link">Engage</a>
+                    </li>
+                      -->
+      
+                  <li class="main-nav-item">
+                    <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/International students.html"
+                      title="International students page" class="International students main-nav-link"><span
+                        class="tereo-nav-title">Te whirika</span>International students</a>
+                  </li>
+      
+                  <li class="main-nav-item">
+                    <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Current students.html"
+                      title="Current students page" class="Current students main-nav-link"><span
+                        class="tereo-nav-title">Tauira o nāianei</span>Current students</a>
+                  </li>
+      
+                  <li class="main-nav-item">
+                    <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Research.html" title="Research page"
+                      class="Research main-nav-link"><span class="tereo-nav-title">Rangahau</span>Research</a>
+                  </li>
+      
+                  <li class="main-nav-item">
+                    <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Engage.html" title="Engage page"
+                      class="Engage main-nav-link"><span class="tereo-nav-title">Turipū</span>
+                      Engage</a>
+                  </li>
+      
+      
+                </ul>
+              </div>
+              <div role="sub-menu" class="tray-sub-menu">
+                <ul class="sub-menu-list">
+                   
+                  <li class="sub-menu-item">
+                    <a href="#" class="sub-nav-link">About</a>
+                  </li>
+                  
+                  <li class="sub-menu-item">
+                    <a href="#" class="sub-nav-link">Library</a>
+                  </li>
+                  
+                  <li class="sub-menu-item">
+                    <a href="#" class="sub-nav-link">Blackboard</a>
+                  </li>
+                  
+                  <li class="sub-menu-item">
+                    <a href="#" class="sub-nav-link">Maps</a>
+                  </li>
+                  
+                  <li class="sub-menu-item">
+                    <a href="#" class="sub-nav-link">Staff Intranet</a>
+                  </li>
+                  
+                  <li class="sub-menu-item">
+                    <a href="#" class="sub-nav-link">myTools</a>
+                  </li>
+                  
+                  <li class="sub-menu-item">
+                    <a href="#" class="sub-nav-link">Learning &amp; teaching</a>
+                  </li>
+                   
+                </ul>
+      
+              </div>
+      
+            </div>
+          </nav>
+      
+        </div>
+      
+      </header>
+
+
+  <!-- 'Go up' button -->
+  <!-- <a href="javascript:;" id="btn-up" title="Go to the top of the page" class="btn-floating sticky bottom" tabindex="-1"><span class="icon-arrow-up"></span></a> -->
+
+
+
+
+
+	
+<!-- Subject page banner -->
+
+<div class="subject-banner">
+
+  <div class="banner-pattern">
+    <svg id="Layer_1" preserveAspectRatio="" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><style>.cls-1{fill:#efefef;opacity:0.739;}.cls-1,.cls-2{isolation:isolate;}.cls-2{fill:#d9d9d8;opacity:0.816;}</style></defs><polygon class="cls-1" points="200 200 0 200 0 0 200 200"/><polygon class="cls-2" points="200 400 0 400 0 200 200 400"/><polygon class="cls-1" points="400 400 200 400 200 200 400 400"/></svg>
+  </div>
+
+  <div class=" banner-content">
+    <div class="banner-title">
+      <h1>
+        <span class="tereo-title">Ahupūngao
+        </span>
+        Physics
+
+      </h1>
+    </div>
+    <div class="banner-text">
+      <p>Explore the way our world is put together and how it works. Study the universe from the smallest parts of an atom to the cosmos.</p>
+    </div>
+    <div class="banner-buttons">
+      <a href="#" class="subject-button light">Explore subject</a>
+    </div>
+  </div>
+  <div class="banner-image">
+    <img src="../images/subjects/banner-image.jpg" alt="solar panels">
+  </div>
+</div><div id="switcher" class="switcher-wrap reset-formatting">
+  <div class=" icon-section"></div>
+  <div class="switcher ">
+    <div class="level-wrap">
+      <p class="h4">You want to know about: </p>
+      <div class="select-wrap">
+        <i class="icon-graduation-cap"></i>
+        <select class="">
+            <option value="Undergraduate">Undergraduate</option>
+            <option value="Postgraduate">Postgraduate</option>
+        </select>
+        <span class="focus"></span>
+      </div>
+      <p class="h4">study </p>
+    </div>
+    <div class="location-wrap">
+      <p class="h4">You come from:</p>
+      <div class="select-wrap">
+        <i class="icon-globe"></i>
+        <select>
+          <option value="Afghanistan">Afghanistan</option>
+          <option value="Åland Islands">Åland Islands</option>
+          <option value="Albania">Albania</option>
+          <option value="Algeria">Algeria</option>
+          <option value="American Samoa">American Samoa</option>
+          <option value="Andorra">Andorra</option>
+          <option value="Angola">Angola</option>
+          <option value="Anguilla">Anguilla</option>
+          <option value="Antarctica">Antarctica</option>
+          <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+          <option value="Argentina">Argentina</option>
+          <option value="Armenia">Armenia</option>
+          <option value="Aruba">Aruba</option>
+          <option value="Australia">Australia</option>
+          <option value="Austria">Austria</option>
+          <option value="Azerbaijan">Azerbaijan</option>
+          <option value="Bahamas">Bahamas</option>
+          <option value="Bahrain">Bahrain</option>
+          <option value="Bangladesh">Bangladesh</option>
+          <option value="Barbados">Barbados</option>
+          <option value="Belarus">Belarus</option>
+          <option value="Belgium">Belgium</option>
+          <option value="Belize">Belize</option>
+          <option value="Benin">Benin</option>
+          <option value="Bermuda">Bermuda</option>
+          <option value="Bhutan">Bhutan</option>
+          <option value="Bolivia (Plurinational State of)">Bolivia (Plurinational State of)</option>
+          <option value="Bonaire, Sint Eustatius and Saba">Bonaire, Sint Eustatius and Saba</option>
+          <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+          <option value="Botswana">Botswana</option>
+          <option value="Bouvet Island">Bouvet Island</option>
+          <option value="Brazil">Brazil</option>
+          <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+          <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+          <option value="Virgin Islands (British)">Virgin Islands (British)</option>
+          <option value="Virgin Islands (U.S.)">Virgin Islands (U.S.)</option>
+          <option value="Brunei Darussalam">Brunei Darussalam</option>
+          <option value="Bulgaria">Bulgaria</option>
+          <option value="Burkina Faso">Burkina Faso</option>
+          <option value="Burundi">Burundi</option>
+          <option value="Cambodia">Cambodia</option>
+          <option value="Cameroon">Cameroon</option>
+          <option value="Canada">Canada</option>
+          <option value="Cabo Verde">Cabo Verde</option>
+          <option value="Cayman Islands">Cayman Islands</option>
+          <option value="Central African Republic">Central African Republic</option>
+          <option value="Chad">Chad</option>
+          <option value="Chile">Chile</option>
+          <option value="China">China</option>
+          <option value="Christmas Island">Christmas Island</option>
+          <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+          <option value="Colombia">Colombia</option>
+          <option value="Comoros">Comoros</option>
+          <option value="Congo">Congo</option>
+          <option value="Congo (Democratic Republic of the)">Congo (Democratic Republic of the)</option>
+          <option value="Cook Islands">Cook Islands</option>
+          <option value="Costa Rica">Costa Rica</option>
+          <option value="Croatia">Croatia</option>
+          <option value="Cuba">Cuba</option>
+          <option value="Curaçao">Curaçao</option>
+          <option value="Cyprus">Cyprus</option>
+          <option value="Czech Republic">Czech Republic</option>
+          <option value="Denmark">Denmark</option>
+          <option value="Djibouti">Djibouti</option>
+          <option value="Dominica">Dominica</option>
+          <option value="Dominican Republic">Dominican Republic</option>
+          <option value="Ecuador">Ecuador</option>
+          <option value="Egypt">Egypt</option>
+          <option value="El Salvador">El Salvador</option>
+          <option value="Equatorial Guinea">Equatorial Guinea</option>
+          <option value="Eritrea">Eritrea</option>
+          <option value="Estonia">Estonia</option>
+          <option value="Ethiopia">Ethiopia</option>
+          <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+          <option value="Faroe Islands">Faroe Islands</option>
+          <option value="Fiji">Fiji</option>
+          <option value="Finland">Finland</option>
+          <option value="France">France</option>
+          <option value="French Guiana">French Guiana</option>
+          <option value="French Polynesia">French Polynesia</option>
+          <option value="French Southern Territories">French Southern Territories</option>
+          <option value="Gabon">Gabon</option>
+          <option value="Gambia">Gambia</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Germany">Germany</option>
+          <option value="Ghana">Ghana</option>
+          <option value="Gibraltar">Gibraltar</option>
+          <option value="Greece">Greece</option>
+          <option value="Greenland">Greenland</option>
+          <option value="Grenada">Grenada</option>
+          <option value="Guadeloupe">Guadeloupe</option>
+          <option value="Guam">Guam</option>
+          <option value="Guatemala">Guatemala</option>
+          <option value="Guernsey">Guernsey</option>
+          <option value="Guinea">Guinea</option>
+          <option value="Guinea-Bissau">Guinea-Bissau</option>
+          <option value="Guyana">Guyana</option>
+          <option value="Haiti">Haiti</option>
+          <option value="Heard Island and McDonald Islands">Heard Island and McDonald Islands</option>
+          <option value="Holy See">Holy See</option>
+          <option value="Honduras">Honduras</option>
+          <option value="Hong Kong">Hong Kong</option>
+          <option value="Hungary">Hungary</option>
+          <option value="Iceland">Iceland</option>
+          <option value="India">India</option>
+          <option value="Indonesia">Indonesia</option>
+          <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+          <option value="Iran (Islamic Republic of)">Iran (Islamic Republic of)</option>
+          <option value="Iraq">Iraq</option>
+          <option value="Ireland">Ireland</option>
+          <option value="Isle of Man">Isle of Man</option>
+          <option value="Israel">Israel</option>
+          <option value="Italy">Italy</option>
+          <option value="Jamaica">Jamaica</option>
+          <option value="Japan">Japan</option>
+          <option value="Jersey">Jersey</option>
+          <option value="Jordan">Jordan</option>
+          <option value="Kazakhstan">Kazakhstan</option>
+          <option value="Kenya">Kenya</option>
+          <option value="Kiribati">Kiribati</option>
+          <option value="Kuwait">Kuwait</option>
+          <option value="Kyrgyzstan">Kyrgyzstan</option>
+          <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+          <option value="Latvia">Latvia</option>
+          <option value="Lebanon">Lebanon</option>
+          <option value="Lesotho">Lesotho</option>
+          <option value="Liberia">Liberia</option>
+          <option value="Libya">Libya</option>
+          <option value="Liechtenstein">Liechtenstein</option>
+          <option value="Lithuania">Lithuania</option>
+          <option value="Luxembourg">Luxembourg</option>
+          <option value="Macao">Macao</option>
+          <option value="Macedonia (the former Yugoslav Republic of)">Macedonia (the former Yugoslav Republic of)
+          </option>
+          <option value="Madagascar">Madagascar</option>
+          <option value="Malawi">Malawi</option>
+          <option value="Malaysia">Malaysia</option>
+          <option value="Maldives">Maldives</option>
+          <option value="Mali">Mali</option>
+          <option value="Malta">Malta</option>
+          <option value="Marshall Islands">Marshall Islands</option>
+          <option value="Martinique">Martinique</option>
+          <option value="Mauritania">Mauritania</option>
+          <option value="Mauritius">Mauritius</option>
+          <option value="Mayotte">Mayotte</option>
+          <option value="Mexico">Mexico</option>
+          <option value="Micronesia (Federated States of)">Micronesia (Federated States of)</option>
+          <option value="Moldova (Republic of)">Moldova (Republic of)</option>
+          <option value="Monaco">Monaco</option>
+          <option value="Mongolia">Mongolia</option>
+          <option value="Montenegro">Montenegro</option>
+          <option value="Montserrat">Montserrat</option>
+          <option value="Morocco">Morocco</option>
+          <option value="Mozambique">Mozambique</option>
+          <option value="Myanmar">Myanmar</option>
+          <option value="Namibia">Namibia</option>
+          <option value="Nauru">Nauru</option>
+          <option value="Nepal">Nepal</option>
+          <option value="Netherlands">Netherlands</option>
+          <option value="New Caledonia">New Caledonia</option>
+          <option value="New Zealand">New Zealand</option>
+          <option value="Nicaragua">Nicaragua</option>
+          <option value="Niger">Niger</option>
+          <option value="Nigeria">Nigeria</option>
+          <option value="Niue">Niue</option>
+          <option value="Norfolk Island">Norfolk Island</option>
+          <option value="Korea (Democratic People's Republic of)">Korea (Democratic People's Republic of)</option>
+          <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+          <option value="Norway">Norway</option>
+          <option value="Oman">Oman</option>
+          <option value="Pakistan">Pakistan</option>
+          <option value="Palau">Palau</option>
+          <option value="Palestine, State of">Palestine, State of</option>
+          <option value="Panama">Panama</option>
+          <option value="Papua New Guinea">Papua New Guinea</option>
+          <option value="Paraguay">Paraguay</option>
+          <option value="Peru">Peru</option>
+          <option value="Philippines">Philippines</option>
+          <option value="Pitcairn">Pitcairn</option>
+          <option value="Poland">Poland</option>
+          <option value="Portugal">Portugal</option>
+          <option value="Puerto Rico">Puerto Rico</option>
+          <option value="Qatar">Qatar</option>
+          <option value="Republic of Kosovo">Republic of Kosovo</option>
+          <option value="Réunion">Réunion</option>
+          <option value="Romania">Romania</option>
+          <option value="Russian Federation">Russian Federation</option>
+          <option value="Rwanda">Rwanda</option>
+          <option value="Saint Barthélemy">Saint Barthélemy</option>
+          <option value="Saint Helena, Ascension and Tristan da Cunha">Saint Helena, Ascension and Tristan da Cunha
+          </option>
+          <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+          <option value="Saint Lucia">Saint Lucia</option>
+          <option value="Saint Martin (French part)">Saint Martin (French part)</option>
+          <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+          <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+          <option value="Samoa">Samoa</option>
+          <option value="San Marino">San Marino</option>
+          <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+          <option value="Saudi Arabia">Saudi Arabia</option>
+          <option value="Senegal">Senegal</option>
+          <option value="Serbia">Serbia</option>
+          <option value="Seychelles">Seychelles</option>
+          <option value="Sierra Leone">Sierra Leone</option>
+          <option value="Singapore">Singapore</option>
+          <option value="Sint Maarten (Dutch part)">Sint Maarten (Dutch part)</option>
+          <option value="Slovakia">Slovakia</option>
+          <option value="Slovenia">Slovenia</option>
+          <option value="Solomon Islands">Solomon Islands</option>
+          <option value="Somalia">Somalia</option>
+          <option value="South Africa">South Africa</option>
+          <option value="South Georgia and the South Sandwich Islands">South Georgia and the South Sandwich Islands
+          </option>
+          <option value="Korea (Republic of)">Korea (Republic of)</option>
+          <option value="South Sudan">South Sudan</option>
+          <option value="Spain">Spain</option>
+          <option value="Sri Lanka">Sri Lanka</option>
+          <option value="Sudan">Sudan</option>
+          <option value="Suriname">Suriname</option>
+          <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+          <option value="Swaziland">Swaziland</option>
+          <option value="Sweden">Sweden</option>
+          <option value="Switzerland">Switzerland</option>
+          <option value="Syrian Arab Republic">Syrian Arab Republic</option>
+          <option value="Taiwan">Taiwan</option>
+          <option value="Tajikistan">Tajikistan</option>
+          <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+          <option value="Thailand">Thailand</option>
+          <option value="Timor-Leste">Timor-Leste</option>
+          <option value="Togo">Togo</option>
+          <option value="Tokelau">Tokelau</option>
+          <option value="Tonga">Tonga</option>
+          <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+          <option value="Tunisia">Tunisia</option>
+          <option value="Turkey">Turkey</option>
+          <option value="Turkmenistan">Turkmenistan</option>
+          <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+          <option value="Tuvalu">Tuvalu</option>
+          <option value="Uganda">Uganda</option>
+          <option value="Ukraine">Ukraine</option>
+          <option value="United Arab Emirates">United Arab Emirates</option>
+          <option value="United Kingdom of Great Britain and Northern Ireland">United Kingdom of Great Britain and
+            Northern Ireland</option>
+          <option value="United States of America">United States of America</option>
+          <option value="Uruguay">Uruguay</option>
+          <option value="Uzbekistan">Uzbekistan</option>
+          <option value="Vanuatu">Vanuatu</option>
+          <option value="Venezuela (Bolivarian Republic of)">Venezuela (Bolivarian Republic of)</option>
+          <option value="Viet Nam">Viet Nam</option>
+          <option value="Wallis and Futuna">Wallis and Futuna</option>
+          <option value="Western Sahara">Western Sahara</option>
+          <option value="Yemen">Yemen</option>
+          <option value="Zambia">Zambia</option>
+          <option value="Zimbabwe">Zimbabwe</option>
+        </select>
+        <span class="focus"></span>
+      </div>
+    </div>
+  </div>
+</div><div class="subject-content">
+
+  <div class="fixed-spy">
+
+    <div class="spy-inner-wrap">
+      <div id="fixedMenu" class="fixed-cta">
+        <ul id="fixedMenuList">
+          <li><a href=""><span>Apply now</span> <i class="icon-caret-right-thin"></i></a></li>
+          <li><a href=""><span>Contact us</span> <i class="icon-caret-right-thin"></i></a></li>
+          <li><a href=""><span>Stay updated</span> <i class="icon-caret-right-thin"></i></a></li>
+        </ul>
+      </div>
+
+      <nav role="navigation" class="spy-wrap">
+        <h5>On this page:</h4>
+        <ul id="spyList" class="scrollspy">
+
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+
+
+  <section class="subject-section overview spy" id="Overview">
+  
+    <h2>Physics drives technology
+    </h2>
+    <p>Physics is the problem-solving engine behind the new tech industries that are reinventing New Zealand’s economy.
+      Learn to create theoretical models that fuel real innovation. You’ll develop the skills to help to create cutting edge technologies like next-generation solar panels, or to model climate change more accurately than ever before.  </p>
+  
+      <div class="ggrid">
+        <div class="c8">
+          <h2>The mechanics of the universe </h2>
+        <p>When you study Physics at Te Herenga Waka—Victoria University of Wellington, you’ll discover the components and forces that make up our universe. You’ll be learning from world-leading specialists in exciting new areas like biophysics, astrophysics, and spintronics—visiting their laboratories and participating in their research.
+        </p>
+        <p>Learn about orbital mechanics and develop an understanding of how objects move around the galaxy. Explore electromagnetism, the science behind radio-based technologies as diverse as mobile phones, microwaves, and medical scanners. Discover thermal physics, and build an understanding of the theoretical framework behind climate change.
+        </p>
+        <p> Finally, you’ll delve into quantum mechanics and learn to create models of the smallest processes in the universe, those between atoms and molecules—models that can, in turn, help us to better understand tiny entities like coronaviruses.  </p>
+        </div>
+        <div class="c4">
+          <div class="s-highlight image">
+            <img src="../images/subjects/promo-astro-image.png" alt="astro image">
+            <p class="large">1.75 billion</p>
+             <p>Estimated revenue of the NZ space economy, 2018-2019</p>
+          </div>
+        </div>
+      </div>
+  
+      <h2>Wellington—New Zealand’s technology hub
+      </h2>
+      <p>You’ll build connections for your future through the University’s relationships with Wellington’s technology and innovation community.
+      </p>
+      <p>You’ll have the opportunity to learn from and work with leading researchers at institutes like NIWA and the Robinson and MacDiarmid research institutes, as well as forging relationships with the city’s start-ups and growing tech industry.
+      </p>
+      <div class="flex mb5">
+        <a href="#" class="subject-button light">Need help?</a>
+        <a href="#" class="subject-button light">Download a brochure</a>
+      </div>
+  
+      <div class="s-quote">
+        <div class="quote-content">
+          <p class="pull-quote h4">
+            “It’s a place of state-of-the-art fundamental research, fully equipped laboratories, lecturers who are experts in their fields, and an environment that nurtures the scientists-to-be”.
+          </p>
+          <div class="flex space-between align-items-center">
+            <div class="quote-meta">
+              <p class="h5 quote-name">Aleksa Djorovic</p>
+              <p class="quote-title">Bachelor of Science student in Physics and Chemistry</p>
+            </div>
+            <a href="#" class="subject-button light">Full story</a>
+          </div>
+        </div>
+        <div class="quote-image">
+          <img src="../images/subjects/quote-image.jpg">
+        </div>
+      </div>
+  
+      <div class="s-video">
+        <a href="https://www.youtube.com/watch?v=Fx-7isGhxbQ" data-lity>
+          <img src="../images/subjects/video-image.jpg" alt="">
+          <div class="video-text">
+            <svg xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="0 0 68 68">
+              <g id="Group_1558" data-name="Group 1558" transform="translate(-0.209 0.465)">
+                <circle id="Ellipse_34" data-name="Ellipse 34" cx="34" cy="34" r="34" transform="translate(0.209 -0.465)" fill="#fff" opacity="0.933"/>
+                <path id="Path_4847" data-name="Path 4847" d="M11.355,0,22.709,24.171H0Z" transform="translate(50.312 22.747) rotate(90)" fill="#3e9c4f"/>
+              </g>
+            </svg>
+  
+            <h4>Learning through curiosity</h4>
+          </div>
+        </a>
+      </div>
+  
+      <h2>Physics is collaborative   </h2>
+      <p>Modern physics is all about working as a team—and our approach to teaching reflects this. You’ll get close support from teaching staff and other students throughout your study. Physics at Wellington has a whānau approach where it’s safe to make mistakes as you’re learning, where you know the staff and the staff know you.
+      </p>
+      <p>We’re housed in a bright and open building, with plenty of common spaces where you can learn collaboratively. </p>
+  
+  </section>
+
+
+  <section class="subject-section qualifications full-width grey-bg spy" id="Qualifications">
+
+    <div class="main-col">
+
+      <div class="qual-section-title flex">
+        <i class="icon-graduation-cap"></i>
+        <h3>Study options</h3>
+      </div>
+
+      <div class="qualification" >
+        <!-- NOTE: Initial Value MUST be the international API Code!!! -->
+        <div class="qual-content" id="aaa" data-initial-value="BSC" data-initial-fetch="true">
+          <!-- <span>Showing information for students who
+            previously studied in - Afghanistan</span> -->
+          <div>
+            <div>
+              <div>
+                <div class="qual-title flex">
+                  <h3> Bachelor of Science <span class="code">- BSc</span>  </h3><span class="course-major h4">Physics Major</span>
+                </div>
+
+                <!-- <div class="major">
+                  <span class="pill">Physics Major</span>
+                </div> -->
+
+                <div class="qual-row">
+                  <div class="qual-meta-item"><span class="meta-title"><i class="icon-clock"></i>Duration:</span> 3 years (360 points)
+                  </div>
+                  <div class="qual-meta-item"><span class="meta-title"><i class="icon-cog"></i>Intensity:</span> Full time or part time
+                  </div>
+
+                </div>
+
+                <div class="qual-row">
+                  <div class="qual-meta-item"><span class="meta-title"><i class="icon-pin"></i>Location:</span> Wellington campuses. This
+                    programme
+                    can be started online if you are outside New Zealand.
+                  </div>
+                </div>
+
+                <div class="qual-row">
+                  <div class="qual-meta-item qual-dates"><span class="meta-title"><i class="icon-calendar"></i>Key dates:</span>
+                    <span class="dates">Apply by <strong>01 Dec 2021</strong> to start studying <strong>28 Feb 2022</strong><br> Apply by
+                      <strong>01 May 2022</strong> to start studying <strong>11 Jul 2022</strong><br></span>
+                  </div>
+                </div>
+
+                <div class="qual-row">
+                  <div class="qual-meta-item"><span class="meta-title">Level of study:</span> Undergraduate
+                </div>
+
+                </div>
+
+
+                <div class="qual-row">
+                  <div class="qual-meta-item"><span class="meta-title"><i class="icon-money"></i>Cost: </span>
+                    <div>NZ$34,521.00 for the full programme. Approximately <strong>AF ؋1,911,176.97</strong> at current
+                      exchange rates <span> per 120 points </span></div></div>
+                </div>
+
+                <div class="qual-row">
+                  <div class="qual-meta-item"><span class="meta-title"><i class="icon-check"></i>Entry: </span> Achieve the International Baccalaureate
+                    Diploma, or three GCE Advanced Level passes at C grade, or equivalent. You may also be required to
+                    demonstrate your proficiency in English.
+                  </div>
+                </div>
+
+                <div class="qual-row">
+                  <div class="qual-meta-item"><span class="meta-title">Useful secondary school subjects: </span> Sciences and
+                    Maths
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class=" spy isChild1" id="Major requirements">
+        
+          <div id="" class="qual-content">
+            <h3 class="toggle-slide dropdown-title"><a href="javascript:;" class="flex space-between">Major requirements
+                <i class="icon-caret-right-thin"></i></a></h3>
+            <div class=" toggle-block">
+              <p>In addition to the degree requirements [link to degree page], to graduate with a BSc with a major in Physics
+                you will need to include:</p>
+        
+              <div class="qual-requirements">
+                <div class="req-block">
+                  <h5 class="toggle-slide active"><a href="javascript:;">Four courses at 100 level: <i
+                        class="icon-caret-right-thin"></i></a></h5>
+                  <div class="toggle-block active">
+                    <ul>
+                      <li>Either (Calculus 1B (MATH 142) and Algebra (MATH 151)) <strong>or</strong>
+                        (Engineering Mathematics Foundations (ENGR 121) and B+ or better in Engineering Mathematics with
+                        Calculus (ENGR 122))</li>
+                      <li><a href="#">Physics 1A (PHYS 114)</a></li>
+                      <li>Physics 1B (PHYS 115)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="req-block">
+                  <h5 class="toggle-slide active"><a href="javascript:;">Five courses at 200 level: <i
+                        class="icon-caret-right-thin"></i></a></h5>
+                  <div class="toggle-block active">
+                    <ul>
+                      <li>Multivariable Calculus (MATH 243)</li>
+                    </ul>
+                    <p><strong>Three courses from:</strong></p>
+                    <ul>
+                      <li>Quantum Mechanics and Kinetic Theory (PHYS 241)
+                      </li>
+                      <li>Electromagnetism I (PHYS 242)</li>
+                      <li>Classical Mechanics and Relativity (PHYS 243)</li>
+                      <li>Methods of Experimental Physics (PHYS 245)</li>
+                    </ul>
+                    <p><strong>One further course from:
+                      </strong></p>
+                    <ul>
+                      <li> EEEN 201-204</li>
+                      <li>PHYS 201-259</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="req-block">
+                  <h5 class="toggle-slide active"><a href="javascript:;">Four courses at 300 level:
+                      <i class="icon-caret-right-thin"></i></a></h5>
+                  <div class="toggle-block active">
+                    <ul>
+                      <li>Electromagnetism II (PHYS 304)</li>
+                      <li>Thermal Physics (PHYS 305)</li>
+                      <li>Quantum Physics (PHYS 307)</li>
+                      <li>Solid State and Nuclear Physics (PHYS 309) </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+        
+            </div>
+        
+          </div>
+        
+        
+        
+          <!-- <script>
+            new Vue( {
+              el: '#bsc-plan',
+              data: {
+                message: 'Hello Vue!',
+                loaded: false,
+                y1t1: 'core,phys114|core,math151|elective,writ101|elective,engr122',
+                timetable: [ {
+                      year: 'one',
+                      trimesters: [
+                        {
+                          trimester: 'one',
+                          courses: ["core,phys114","core,math151","elective,writ101","elective,engr122"]
+                        },
+                        {
+                          trimester: 'two',
+                          courses: ["core,phys115","core,Math142","elective,quan111","elective,engr122"]
+                        }
+                      ]
+                    }, {
+                      year: 'two',
+                      trimesters: [ {
+                          trimester: 'one',
+                          courses: ["core,phys241","core,phys243","elective,quan111","elective,engr122"]
+                        },
+                        {
+                          trimester: 'two',
+                          courses: ["core,math243","core,phys242","elective,quan111","elective,engr122"]
+                        }
+                      ]
+                    },
+                    {
+                      year: 'three',
+                      trimesters: [ {
+                          trimester: 'one',
+                          courses: ["core,phys305","core,phys307","elective,quan111","elective,engr122"]
+                        },
+                        {
+                          trimester: 'two',
+                          courses: ["core,phys304","core,phys309","elective,quan111","elective,engr122"]
+                        }
+                      ]
+                    }
+                  ]
+              },
+              components: {
+                "course-plan": coursePlan,
+              }
+            } )
+          </script> -->
+        
+        
+        </div>        <div class=" spy isChild1" id="Eligibility">
+        
+          <div id="" class="qual-content">
+        
+            <h3 class="toggle-slide dropdown-title"><a href="javascript:;" class="flex space-between">Eligibility
+                <i class="icon-caret-right-thin"></i></a></h3>
+            <div class=" toggle-block">
+        
+              <div class="flex">
+                <p>Requirements for domestic/international students who studied in</p>
+        
+                <div class="location-wrap">
+                  <div class="select-wrap">
+                    <i class="icon-globe"></i>
+                    <select>
+                      <option value="Afghanistan">Afghanistan</option>
+                      <option value="Åland Islands">Åland Islands</option>
+                      <option value="Albania">Albania</option>
+                      <option value="Algeria">Algeria</option>
+                      <option value="American Samoa">American Samoa</option>
+                      <option value="Andorra">Andorra</option>
+                      <option value="Angola">Angola</option>
+                      <option value="Anguilla">Anguilla</option>
+                      <option value="Antarctica">Antarctica</option>
+                      <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                      <option value="Argentina">Argentina</option>
+                      <option value="Armenia">Armenia</option>
+                      <option value="Aruba">Aruba</option>
+                      <option value="Australia">Australia</option>
+                      <option value="Austria">Austria</option>
+                      <option value="Azerbaijan">Azerbaijan</option>
+                      <option value="Bahamas">Bahamas</option>
+                      <option value="Bahrain">Bahrain</option>
+                      <option value="Bangladesh">Bangladesh</option>
+                      <option value="Barbados">Barbados</option>
+                      <option value="Belarus">Belarus</option>
+                      <option value="Belgium">Belgium</option>
+                      <option value="Belize">Belize</option>
+                      <option value="Benin">Benin</option>
+                      <option value="Bermuda">Bermuda</option>
+                      <option value="Bhutan">Bhutan</option>
+                      <option value="Bolivia (Plurinational State of)">Bolivia (Plurinational State of)</option>
+                      <option value="Bonaire, Sint Eustatius and Saba">Bonaire, Sint Eustatius and Saba</option>
+                      <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                      <option value="Botswana">Botswana</option>
+                      <option value="Bouvet Island">Bouvet Island</option>
+                      <option value="Brazil">Brazil</option>
+                      <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                      <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                      <option value="Virgin Islands (British)">Virgin Islands (British)</option>
+                      <option value="Virgin Islands (U.S.)">Virgin Islands (U.S.)</option>
+                      <option value="Brunei Darussalam">Brunei Darussalam</option>
+                      <option value="Bulgaria">Bulgaria</option>
+                      <option value="Burkina Faso">Burkina Faso</option>
+                      <option value="Burundi">Burundi</option>
+                      <option value="Cambodia">Cambodia</option>
+                      <option value="Cameroon">Cameroon</option>
+                      <option value="Canada">Canada</option>
+                      <option value="Cabo Verde">Cabo Verde</option>
+                      <option value="Cayman Islands">Cayman Islands</option>
+                      <option value="Central African Republic">Central African Republic</option>
+                      <option value="Chad">Chad</option>
+                      <option value="Chile">Chile</option>
+                      <option value="China">China</option>
+                      <option value="Christmas Island">Christmas Island</option>
+                      <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+                      <option value="Colombia">Colombia</option>
+                      <option value="Comoros">Comoros</option>
+                      <option value="Congo">Congo</option>
+                      <option value="Congo (Democratic Republic of the)">Congo (Democratic Republic of the)</option>
+                      <option value="Cook Islands">Cook Islands</option>
+                      <option value="Costa Rica">Costa Rica</option>
+                      <option value="Croatia">Croatia</option>
+                      <option value="Cuba">Cuba</option>
+                      <option value="Curaçao">Curaçao</option>
+                      <option value="Cyprus">Cyprus</option>
+                      <option value="Czech Republic">Czech Republic</option>
+                      <option value="Denmark">Denmark</option>
+                      <option value="Djibouti">Djibouti</option>
+                      <option value="Dominica">Dominica</option>
+                      <option value="Dominican Republic">Dominican Republic</option>
+                      <option value="Ecuador">Ecuador</option>
+                      <option value="Egypt">Egypt</option>
+                      <option value="El Salvador">El Salvador</option>
+                      <option value="Equatorial Guinea">Equatorial Guinea</option>
+                      <option value="Eritrea">Eritrea</option>
+                      <option value="Estonia">Estonia</option>
+                      <option value="Ethiopia">Ethiopia</option>
+                      <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+                      <option value="Faroe Islands">Faroe Islands</option>
+                      <option value="Fiji">Fiji</option>
+                      <option value="Finland">Finland</option>
+                      <option value="France">France</option>
+                      <option value="French Guiana">French Guiana</option>
+                      <option value="French Polynesia">French Polynesia</option>
+                      <option value="French Southern Territories">French Southern Territories</option>
+                      <option value="Gabon">Gabon</option>
+                      <option value="Gambia">Gambia</option>
+                      <option value="Georgia">Georgia</option>
+                      <option value="Germany">Germany</option>
+                      <option value="Ghana">Ghana</option>
+                      <option value="Gibraltar">Gibraltar</option>
+                      <option value="Greece">Greece</option>
+                      <option value="Greenland">Greenland</option>
+                      <option value="Grenada">Grenada</option>
+                      <option value="Guadeloupe">Guadeloupe</option>
+                      <option value="Guam">Guam</option>
+                      <option value="Guatemala">Guatemala</option>
+                      <option value="Guernsey">Guernsey</option>
+                      <option value="Guinea">Guinea</option>
+                      <option value="Guinea-Bissau">Guinea-Bissau</option>
+                      <option value="Guyana">Guyana</option>
+                      <option value="Haiti">Haiti</option>
+                      <option value="Heard Island and McDonald Islands">Heard Island and McDonald Islands</option>
+                      <option value="Holy See">Holy See</option>
+                      <option value="Honduras">Honduras</option>
+                      <option value="Hong Kong">Hong Kong</option>
+                      <option value="Hungary">Hungary</option>
+                      <option value="Iceland">Iceland</option>
+                      <option value="India">India</option>
+                      <option value="Indonesia">Indonesia</option>
+                      <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                      <option value="Iran (Islamic Republic of)">Iran (Islamic Republic of)</option>
+                      <option value="Iraq">Iraq</option>
+                      <option value="Ireland">Ireland</option>
+                      <option value="Isle of Man">Isle of Man</option>
+                      <option value="Israel">Israel</option>
+                      <option value="Italy">Italy</option>
+                      <option value="Jamaica">Jamaica</option>
+                      <option value="Japan">Japan</option>
+                      <option value="Jersey">Jersey</option>
+                      <option value="Jordan">Jordan</option>
+                      <option value="Kazakhstan">Kazakhstan</option>
+                      <option value="Kenya">Kenya</option>
+                      <option value="Kiribati">Kiribati</option>
+                      <option value="Kuwait">Kuwait</option>
+                      <option value="Kyrgyzstan">Kyrgyzstan</option>
+                      <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+                      <option value="Latvia">Latvia</option>
+                      <option value="Lebanon">Lebanon</option>
+                      <option value="Lesotho">Lesotho</option>
+                      <option value="Liberia">Liberia</option>
+                      <option value="Libya">Libya</option>
+                      <option value="Liechtenstein">Liechtenstein</option>
+                      <option value="Lithuania">Lithuania</option>
+                      <option value="Luxembourg">Luxembourg</option>
+                      <option value="Macao">Macao</option>
+                      <option value="Macedonia (the former Yugoslav Republic of)">Macedonia (the former Yugoslav Republic of)
+                      </option>
+                      <option value="Madagascar">Madagascar</option>
+                      <option value="Malawi">Malawi</option>
+                      <option value="Malaysia">Malaysia</option>
+                      <option value="Maldives">Maldives</option>
+                      <option value="Mali">Mali</option>
+                      <option value="Malta">Malta</option>
+                      <option value="Marshall Islands">Marshall Islands</option>
+                      <option value="Martinique">Martinique</option>
+                      <option value="Mauritania">Mauritania</option>
+                      <option value="Mauritius">Mauritius</option>
+                      <option value="Mayotte">Mayotte</option>
+                      <option value="Mexico">Mexico</option>
+                      <option value="Micronesia (Federated States of)">Micronesia (Federated States of)</option>
+                      <option value="Moldova (Republic of)">Moldova (Republic of)</option>
+                      <option value="Monaco">Monaco</option>
+                      <option value="Mongolia">Mongolia</option>
+                      <option value="Montenegro">Montenegro</option>
+                      <option value="Montserrat">Montserrat</option>
+                      <option value="Morocco">Morocco</option>
+                      <option value="Mozambique">Mozambique</option>
+                      <option value="Myanmar">Myanmar</option>
+                      <option value="Namibia">Namibia</option>
+                      <option value="Nauru">Nauru</option>
+                      <option value="Nepal">Nepal</option>
+                      <option value="Netherlands">Netherlands</option>
+                      <option value="New Caledonia">New Caledonia</option>
+                      <option value="New Zealand">New Zealand</option>
+                      <option value="Nicaragua">Nicaragua</option>
+                      <option value="Niger">Niger</option>
+                      <option value="Nigeria">Nigeria</option>
+                      <option value="Niue">Niue</option>
+                      <option value="Norfolk Island">Norfolk Island</option>
+                      <option value="Korea (Democratic People's Republic of)">Korea (Democratic People's Republic of)</option>
+                      <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                      <option value="Norway">Norway</option>
+                      <option value="Oman">Oman</option>
+                      <option value="Pakistan">Pakistan</option>
+                      <option value="Palau">Palau</option>
+                      <option value="Palestine, State of">Palestine, State of</option>
+                      <option value="Panama">Panama</option>
+                      <option value="Papua New Guinea">Papua New Guinea</option>
+                      <option value="Paraguay">Paraguay</option>
+                      <option value="Peru">Peru</option>
+                      <option value="Philippines">Philippines</option>
+                      <option value="Pitcairn">Pitcairn</option>
+                      <option value="Poland">Poland</option>
+                      <option value="Portugal">Portugal</option>
+                      <option value="Puerto Rico">Puerto Rico</option>
+                      <option value="Qatar">Qatar</option>
+                      <option value="Republic of Kosovo">Republic of Kosovo</option>
+                      <option value="Réunion">Réunion</option>
+                      <option value="Romania">Romania</option>
+                      <option value="Russian Federation">Russian Federation</option>
+                      <option value="Rwanda">Rwanda</option>
+                      <option value="Saint Barthélemy">Saint Barthélemy</option>
+                      <option value="Saint Helena, Ascension and Tristan da Cunha">Saint Helena, Ascension and Tristan da Cunha
+                      </option>
+                      <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                      <option value="Saint Lucia">Saint Lucia</option>
+                      <option value="Saint Martin (French part)">Saint Martin (French part)</option>
+                      <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+                      <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                      <option value="Samoa">Samoa</option>
+                      <option value="San Marino">San Marino</option>
+                      <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                      <option value="Saudi Arabia">Saudi Arabia</option>
+                      <option value="Senegal">Senegal</option>
+                      <option value="Serbia">Serbia</option>
+                      <option value="Seychelles">Seychelles</option>
+                      <option value="Sierra Leone">Sierra Leone</option>
+                      <option value="Singapore">Singapore</option>
+                      <option value="Sint Maarten (Dutch part)">Sint Maarten (Dutch part)</option>
+                      <option value="Slovakia">Slovakia</option>
+                      <option value="Slovenia">Slovenia</option>
+                      <option value="Solomon Islands">Solomon Islands</option>
+                      <option value="Somalia">Somalia</option>
+                      <option value="South Africa">South Africa</option>
+                      <option value="South Georgia and the South Sandwich Islands">South Georgia and the South Sandwich Islands
+                      </option>
+                      <option value="Korea (Republic of)">Korea (Republic of)</option>
+                      <option value="South Sudan">South Sudan</option>
+                      <option value="Spain">Spain</option>
+                      <option value="Sri Lanka">Sri Lanka</option>
+                      <option value="Sudan">Sudan</option>
+                      <option value="Suriname">Suriname</option>
+                      <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+                      <option value="Swaziland">Swaziland</option>
+                      <option value="Sweden">Sweden</option>
+                      <option value="Switzerland">Switzerland</option>
+                      <option value="Syrian Arab Republic">Syrian Arab Republic</option>
+                      <option value="Taiwan">Taiwan</option>
+                      <option value="Tajikistan">Tajikistan</option>
+                      <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+                      <option value="Thailand">Thailand</option>
+                      <option value="Timor-Leste">Timor-Leste</option>
+                      <option value="Togo">Togo</option>
+                      <option value="Tokelau">Tokelau</option>
+                      <option value="Tonga">Tonga</option>
+                      <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                      <option value="Tunisia">Tunisia</option>
+                      <option value="Turkey">Turkey</option>
+                      <option value="Turkmenistan">Turkmenistan</option>
+                      <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+                      <option value="Tuvalu">Tuvalu</option>
+                      <option value="Uganda">Uganda</option>
+                      <option value="Ukraine">Ukraine</option>
+                      <option value="United Arab Emirates">United Arab Emirates</option>
+                      <option value="United Kingdom of Great Britain and Northern Ireland">United Kingdom of Great Britain and
+                        Northern Ireland</option>
+                      <option value="United States of America">United States of America</option>
+                      <option value="Uruguay">Uruguay</option>
+                      <option value="Uzbekistan">Uzbekistan</option>
+                      <option value="Vanuatu">Vanuatu</option>
+                      <option value="Venezuela (Bolivarian Republic of)">Venezuela (Bolivarian Republic of)</option>
+                      <option value="Viet Nam">Viet Nam</option>
+                      <option value="Wallis and Futuna">Wallis and Futuna</option>
+                      <option value="Western Sahara">Western Sahara</option>
+                      <option value="Yemen">Yemen</option>
+                      <option value="Zambia">Zambia</option>
+                      <option value="Zimbabwe">Zimbabwe</option>
+                    </select>
+                    <span class="focus"></span>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="highlight-green">
+                <ul>
+                  <li>University Entrance, or to meet the requirements of another admission type
+                  </li>
+                  <li>Check your admission type - <a href="#">Check your admission type </a></li>
+                </ul>
+              </div>
+        
+              <div class="accordion-green-title">
+                <h4 class="toggle-slide active"><a href="javascript:;">Prerequisites for core courses
+                  <i class="icon-caret-right-thin"></i></a></h4>
+                <div class="toggle-block active">
+                 <p>PHYS 114 and PHYS 115 are core courses. Depending on your secondary school qualification,
+                  you will need to meet one of the following prerequisites:</p>
+        
+                  <div class="accordion">
+                    <h5 class="toggle-slide active"><a href="javascript:;">NCEA:<i class="icon-caret-right-thin"></i></a></h5>
+                    <div class="toggle-block active">
+                      <div class="highlight-green">
+                       <p> 14 NCEA Level 3 credits in Physics, and 14 NCEA Level 3 credits in Mathematics including:</p>
+        
+                       <ul class="mb1">
+                          <li>3.6 Differentiation (91578)</li>
+                          <li>3.7 Integration (91579)</li>
+                       </ul>
+        
+                 <p>Note: 18 NCEA Level 3 standards in both Mathematics and Physics are strongly recommended.</p>
+        
+                 <p><strong>Or one of the following:</strong></p>
+                 <ul class="mb1">
+                      <li>
+                            1 externally assessed standard with Excellence in both NCEA Level 3 Mathematics and
+                             Physics
+                      </li>
+                 </ul>
+                    <p class="mb1"><strong>or</strong></p>
+        
+                       <ul>
+                          <li>2 externally assessed standards with Merit in both NCEA Level 3 Mathematics and Physics</li>
+                          <li>2 externally assessed standards with Excellence in NCEA Level 3 Calculus</li>
+                          <li>An equivalent background in Mathematics or Physics.</li>
+                       </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion">
+                    <h5 class="toggle-slide active"><a href="javascript:;">Cambridge International examinations:<i class="icon-caret-right-thin"></i></a></h5>
+                    <div class="toggle-block active">
+                      <div class="highlight-green">
+                       <p>
+                        A minimum of D at A level or A at AS level (or better) in both Physics and Mathematics in the A
+                        level Cambridge International Examinations.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion">
+                    <h5 class="toggle-slide active"><a href="javascript:;">International Baccalaureate:<i class="icon-caret-right-thin"></i></a></h5>
+                    <div class="toggle-block active">
+                      <div class="highlight-green">
+                       <p>A minimum of 4 at HL or 6 at SL (or better) in the International Baccalaureate grade scale in both Physics and Mathematics.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <h4>Achieving outstanding results
+              </h3>
+              <p>If you achieved outstanding high school or scholarship results in a physics and mathematics topic, you may be able to enrol directly in some 200-level physics courses. Contact the School of Chemical and Physical Sciences (scps@vuw.ac.nz) in mid-February or as soon as you get your results to find out if this applies to you.
+              </p>
+        
+              <h4>Pathways to Physics
+              </h4>
+              <p>If you don’t meet the requirements, there are physics and mathematics courses that you can take to gain entry to PHYS 114 and PHYS 115. Contact the Faculty of Science Student and Academic Services Office (science-faculty@vuw.ac.nz) to find out more.</p>
+        
+        
+        
+        
+        
+            </div>
+        
+          </div>
+        
+        
+        
+          <!-- <script>
+            new Vue( {
+              el: '#bsc-plan',
+              data: {
+                message: 'Hello Vue!',
+                loaded: false,
+                y1t1: 'core,phys114|core,math151|elective,writ101|elective,engr122',
+                timetable: [ {
+                      year: 'one',
+                      trimesters: [
+                        {
+                          trimester: 'one',
+                          courses: ["core,phys114","core,math151","elective,writ101","elective,engr122"]
+                        },
+                        {
+                          trimester: 'two',
+                          courses: ["core,phys115","core,Math142","elective,quan111","elective,engr122"]
+                        }
+                      ]
+                    }, {
+                      year: 'two',
+                      trimesters: [ {
+                          trimester: 'one',
+                          courses: ["core,phys241","core,phys243","elective,quan111","elective,engr122"]
+                        },
+                        {
+                          trimester: 'two',
+                          courses: ["core,math243","core,phys242","elective,quan111","elective,engr122"]
+                        }
+                      ]
+                    },
+                    {
+                      year: 'three',
+                      trimesters: [ {
+                          trimester: 'one',
+                          courses: ["core,phys305","core,phys307","elective,quan111","elective,engr122"]
+                        },
+                        {
+                          trimester: 'two',
+                          courses: ["core,phys304","core,phys309","elective,quan111","elective,engr122"]
+                        }
+                      ]
+                    }
+                  ]
+              },
+              components: {
+                "course-plan": coursePlan,
+              }
+            } )
+          </script> -->
+        
+        
+        </div>
+        <div class="courseplan spy isChild1" id="Course plan">
+        
+          <div id="bsc-plan" class="timetable">
+            <div class="course-plan qual-content">
+              <h3 class="toggle-slide dropdown-title "><a href="javascript:;" class="flex space-between">Course plan <i class="icon-caret-right-thin"></i></a></h3>
+              <div class="timetable toggle-block ">
+        
+        
+                <div class="year-row ">
+                 <div class="year"> <h4>Year 1</h4></div>
+               <div class="trimesters">
+                    <div class="trimester ">
+                      <h5 class="toggle-slide"><a href="javascript:;">Trimester one <i class="icon-caret-right-thin"></i></a></h5>
+                      <div class="toggle-block">
+                        <div class="courses flex">
+                          <div class="course ">
+                            <p class="type">core</p>
+                            <p class="title h5">Physics 1A</p>
+        
+        <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/phys/114/2021">
+                                <p class="code">PHYS114</p>
+                              </a>
+                              <p class="points">15 points</p>
+        </div>
+                          </div>
+                          <div class="course ">
+                            <p class="type">core</p>
+                            <p class="title h5">Algebra</p>
+        
+                  <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/math/151/2021">
+                                <p class="code">MATH151</p>
+                              </a>
+                              <p class="points">15 points</p>
+                  </div>
+                          </div>
+                          <div class="course elective ">
+                            <p class="type">elective</p>
+                            <p class="title h5">Writing at University</p>
+                           <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/writ/101/2021">
+                                <p class="code">WRIT101</p>
+                              </a>
+                              <p class="points" >20 points</p>
+                           </div>
+                          </div>
+                          <div class="course elective">
+                             <p class="type">elective</p>
+                            <p class="title h5" >Engineering Mathematics with Calculus</p>
+        
+                  <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/engr/122/2021">
+                                <p class="code">ENGR122</p>
+                              </a>
+                              <p class="points">15 points</p>
+                  </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="trimester ">
+                      <h5 class="toggle-slide"><a href="javascript:;">Trimester two<i class="icon-caret-right-thin"></i></a></h5>
+                      <div class="toggle-block">
+                      <div class="courses flex">
+                          <div class="course ">
+                            <p class="type">core</p>
+                            <p class="title h5">Physics 1B</p>
+        
+                           <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/phys/115/2021">
+                                <p class="code">PHYS115</p>
+                              </a>
+                              <p class="points">15 points</p>
+                           </div>
+                          </div>
+                          <div class="course ">
+                            <p class="type">core</p>
+                            <p class="title h5">Calculus 1B</p>
+        
+                          <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/math/142/2021">
+                                <p class="code">MATH142</p>
+                              </a>
+                              <p class="points">15 points</p>
+                          </div>
+                          </div>
+                          <div class="course elective ">
+                            <p class="type">elective</p>
+                            <p class="title h5">Mathematics for Economics and Finance</p>
+        
+                          <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/quan/111/2021">
+                                <p class="code">QUAN111</p>
+                              </a>
+                              <p class="points">15 points</p>
+                          </div>
+                          </div>
+                          <div class="course elective ">
+                            <p class="type">elective</p>
+                            <p class="title h5">Engineering Mathematics with Calculus</p>
+        
+        <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/engr/122/2021">
+                                <p class="code">ENGR122</p>
+                              </a>
+                              <p class="points">15 points</p>
+        </div>
+                          </div>
+                      </div>
+                      </div>
+                    </div>
+               </div>
+                </div>
+                <div class="year-row ">
+                  <div class="year"><h4>Year 2</h4></div>
+               <div class="trimesters">
+                    <div class="trimester ">
+                      <h5 class="toggle-slide"><a href="javascript:;">Trimester one<i class="icon-caret-right-thin"></i></a></h5>
+                      <div class="toggle-block">
+                       <div class="courses flex">
+                          <div class="course ">
+                            <p class="type">core</p>
+                            <p class="title h5">Quantum Mechanics and Kinetic Theory</p>
+        
+                          <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/phys/241/2021">
+                              <p class="code">PHYS241</p>
+                              </a>
+                              <p class="points">15 points</p>
+                          </div>
+                          </div>
+                          <div class="course ">
+                            <p class="type">core</p>
+                            <p class="title h5">Classical Mechanics and Relativity</p>
+        
+                    <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/phys/243/2021">
+                                <p class="code">PHYS243</p>
+                              </a>
+                              <p class="points">15 points</p>
+                    </div>
+                          </div>
+                          <div class="course elective ">
+                            <p class="type">elective</p>
+                            <p class="title h5">Mathematics for Economics and Finance</p>
+        
+                           <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/quan/111/2021">
+                                <p class="code">QUAN111</p>
+                              </a>
+                              <p class="points">15 points</p>
+                           </div>
+                          </div>
+                          <div class="course elective ">
+                            <p class="type">elective</p>
+                            <p class="title h5">Engineering Mathematics with Calculus</p>
+        
+                           <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/engr/122/2021">
+                                <p class="code">ENGR122</p>
+                              </a>
+                              <p class="points">15 points</p>
+                           </div>
+                          </div>
+                       </div>
+                      </div>
+                    </div>
+                    <div class="trimester ">
+                      <h5 class="toggle-slide"><a href="javascript:;">Trimester two<i class="icon-caret-right-thin"></i></a></h5>
+                      <div class="toggle-block">
+                        <div class="courses flex">
+                          <div class="course ">
+                            <p class="type">core</p>
+                            <p class="title h5">Multivariable Calculus</p>
+        
+                        <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/math/243/2021">
+                                <p class="code">MATH243</p>
+                              </a>
+                              <p class="points">15 points</p>
+                        </div>
+                          </div>
+                          <div class="course ">
+                            <p class="type">core</p>
+                            <p class="title h5">Electromagnetism I</p>
+        
+                  <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/phys/242/2021">
+                                <p class="code">PHYS242</p>
+                              </a>
+                              <p class="points">15 points</p>
+                  </div>
+                          </div>
+                          <div class="course elective ">
+                            <p class="type">elective</p>
+                            <p class="title h5">Mathematics for Economics and Finance</p>
+        
+                       <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/quan/111/2021">
+                                <p class="code">QUAN111</p>
+                              </a>
+                              <p class="points">15 points</p>
+                       </div>
+                          </div>
+                          <div class="course elective ">
+                            <p class="type">elective</p>
+                            <p class="title h5">Engineering Mathematics with Calculus</p>
+        
+                           <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/engr/122/2021">
+                                <p class="code">ENGR122</p>
+                              </a>
+                              <p class="points">15 points</p>
+                           </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+               </div>
+                </div>
+                <div class="year-row ">
+                <div class="year">  <h4>Year 3</h4></div>
+                  <div class="trimesters">
+                    <div class="trimester ">
+                      <h5 class="toggle-slide"><a href="javascript:;">Trimester one<i class="icon-caret-right-thin"></i></a></h5>
+                      <div class="toggle-block">
+                       <div class="courses flex">
+                          <div class="course ">
+                            <p class="type">core</p>
+                            <p class="title h5">Thermal Physics</p>
+        
+                <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/phys/305/2021">
+                                <p class="code">PHYS305</p>
+                              </a>
+                              <p class="points">15 points</p>
+                </div>
+                          </div>
+                          <div class="course ">
+                            <p class="type">core</p>
+                            <p class="title h5">Quantum Physics</p>
+        
+                          <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/phys/307/2021">
+                                <p class="code">PHYS307</p>
+                              </a>
+                              <p class="points">15 points</p>
+                          </div>
+                          </div>
+                          <div class="course elective ">
+                            <p class="type">elective</p>
+                            <p class="title h5">Mathematics for Economics and Finance</p>
+        
+              <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/quan/111/2021">
+                                <p class="code">QUAN111</p>
+                              </a>
+                              <p class="points">15 points</p>
+              </div>
+                          </div>
+                          <div class="course elective ">
+                            <p class="type">elective</p>
+                            <p class="title h5">Engineering Mathematics with Calculus</p>
+        
+                      <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/engr/122/2021">
+                                <p class="code">ENGR122</p>
+                              </a>
+                              <p class="points">15 points</p>
+                      </div>
+                          </div>
+                       </div>
+                      </div>
+                    </div>
+                    <div class="trimester " >
+                      <h5 class="toggle-slide"><a href="javascript:;" >Trimester two<i class="icon-caret-right-thin"></i></a></h5>
+                      <div class="toggle-block">
+                       <div class="courses flex">
+                          <div class="course ">
+                            <p class="type">core</p>
+                            <p class="title h5">Electromagnetism II</p>
+        
+                    <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/phys/304/2021">
+                                <p class="code">PHYS304</p>
+                              </a>
+                              <p class="points">15 points</p>
+                    </div>
+                          </div>
+                          <div class="course ">
+                            <p class="type">core</p>
+                            <p> class="title h5"Solid State and Nuclear Physics</p>
+        
+                <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/phys/309/2021">
+                                <p class="code">PHYS309</p>
+                              </a>
+                              <p class="points">15 points</p>
+                </div>
+                          </div>
+                          <div class="course elective ">
+                            <p class="type">elective</p>
+                            <p class="title h5">Mathematics for Economics and Finance</p>
+        
+                           <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/quan/111/2021">
+                                <p class="code">QUAN111</p>
+                              </a>
+                              <p class="points">15 points</p>
+                           </div>
+                          </div>
+                          <div class="course elective ">
+                            <p class="type">elective</p>
+                            <p class="title h5">Engineering Mathematics with Calculus</p>
+        
+                     <div class="course-foot flex">
+                              <a href="https://www.wgtn.ac.nz/courses/engr/122/2021">
+                                <p class="code">ENGR122</p>
+                              </a>
+                              <p class="points">15 points</p>
+                     </div>
+                          </div>
+                       </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+          <!-- <script>
+            new Vue( {
+              el: '#bsc-plan',
+              data: {
+                message: 'Hello Vue!',
+                loaded: false,
+                y1t1: 'core,phys114|core,math151|elective,writ101|elective,engr122',
+                timetable: [ {
+                      year: 'one',
+                      trimesters: [
+                        {
+                          trimester: 'one',
+                          courses: ["core,phys114","core,math151","elective,writ101","elective,engr122"]
+                        },
+                        {
+                          trimester: 'two',
+                          courses: ["core,phys115","core,Math142","elective,quan111","elective,engr122"]
+                        }
+                      ]
+                    }, {
+                      year: 'two',
+                      trimesters: [ {
+                          trimester: 'one',
+                          courses: ["core,phys241","core,phys243","elective,quan111","elective,engr122"]
+                        },
+                        {
+                          trimester: 'two',
+                          courses: ["core,math243","core,phys242","elective,quan111","elective,engr122"]
+                        }
+                      ]
+                    },
+                    {
+                      year: 'three',
+                      trimesters: [ {
+                          trimester: 'one',
+                          courses: ["core,phys305","core,phys307","elective,quan111","elective,engr122"]
+                        },
+                        {
+                          trimester: 'two',
+                          courses: ["core,phys304","core,phys309","elective,quan111","elective,engr122"]
+                        }
+                      ]
+                    }
+                  ]
+              },
+              components: {
+                "course-plan": coursePlan,
+              }
+            } )
+          </script> -->
+        
+        
+        </div>
+        <!-- <a href="#" class="learn-more">Learn more <i class="icon-caret-right-thin"></i></a> -->
+      </div>
+
+    </div>
+  </section>
+
+  <section class="subject-section" id="">
+    <div class="s-promo two-third angle">
+      <div class="promo-content">
+        <h3>Scientific skills for life</h3>
+        <p>A degree in Physics will help you develop skills for life. You’ll learn how to identify a problem, come up with a theory to explain it, and then test that theory rigorously. You’ll develop your confidence in mathematics and learn to write computer programs. And as making new discoveries is a team effort, you’ll learn to collaborate with others.  </p>
+      </div>
+      <div class="promo-image">
+        <img src="../images/subjects/promo-image.jpg" alt="">
+      </div>
+    </div>
+    <div class="ggrid">
+      <div class="c6">
+        <div class="s-promo single grey light-green-top-left">
+          <h4>Working from home
+          </h4>
+          <p>In an uncertain world, it helps to know that your learning is supported wherever you are. If you’re not able to work on campus, you can access video lectures, live online tutorials, and remote lab sessions.
+          </p>
+          <p>Find out more about <a href="#">studying remotely</a>
+          </p>
+        </div>
+      </div>
+      <div class="c6">
+        <div class="s-promo single grey green-bottom-right">
+          <h4>Improve your writing
+          </h4>
+          <p>Writing is a key part of science. Throughout your degree study, you’ll develop the skills to write for a range of audiences. Whether it’s a lab report for an academic audience or a presentation to a sponsor, you’ll be able to share your discoveries and deliver your message clearly.
+          </p>
+          <p> If you’d like extra help with your writing, we can help: <a href="#">Student learning</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="subject-section  full-width grey-bg" id="">
+    <div class="section-title">
+      <h3>Your course of study</h3>
+    </div>
+    <div class="s-promo two-third video">
+      <div class="promo-content">
+        <h3>Building your degree
+        </h3>
+        <p>At university, you’re in charge of your course of study.
+        </p>
+        <p> Find out how to put your degree together and learn about the differences between majors and minors, conjoint degrees and double majors.
+        </p>
+      </div>
+      <div class="promo-image">
+        <a href="https://www.youtube.com/watch?v=r-vc_XVWLxI&t=1s" data-lity>
+          <div class="video-text">
+            <svg xmlns="http://www.w3.org/2000/svg" width="68" viewBox="0 0 68 68">
+              <g id="Group_1558" data-name="Group 1558" transform="translate(-0.209 0.465)">
+                <circle id="Ellipse_34" data-name="Ellipse 34" cx="34" cy="34" r="34" transform="translate(0.209 -0.465)" fill="#fff" opacity="0.933"/>
+                <path id="Path_4847" data-name="Path 4847" d="M11.355,0,22.709,24.171H0Z" transform="translate(50.312 22.747) rotate(90)" fill="#3e9c4f"/>
+              </g>
+            </svg>
+            <h5>Learning through curiosity</h5>
+          </div>
+          <img src="../images/subjects/promo-image.jpg" alt=""></a>
+      </div>
+    </div>
+
+    <div class="ggrid">
+      <div class="c6">
+        <div class="s-promo single border light-green-bottom-left">
+          <h4>Workload</h4>
+          <p>To achieve an average grade in a course, you should plan to spend a minimum of 10 hours per point. So, for one 15-point course you should allow for 150 hours of work over the trimester. That’s about 10–12 hours per week for each course, including lectures, tutorials, labs, and exam periods.
+          </p>
+          <p>If you are studying full-time, you are likely to take six to eight courses over the year. Plan to balance your study, work, and life with this workload in mind.
+          </p>
+        </div>
+      </div>
+      <div class="c6">
+        <div class="s-promo single border light-green-top-right">
+          <h4>Choosing course</h4>
+          <p>If you are taking a three-year degree, it’s a good idea to look ahead and think about what you might like to study in your second and third years, as your chosen major or majors may have specific prerequisites for advanced-level courses.
+          </p>
+          <p> To add variety and depth to your degree, you might take some courses from outside the sciences.
+          </p>
+          <p>
+          <a href="#">Find out more</a>
+        </p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="subject-section  spy" id="Funding your study">
+    <div class="section-title">
+      <h3>Funding your study</h3>
+    </div>
+
+    <div class="s-promo two-third angle light-green">
+      <div class="promo-content">
+        <h3>Scholarships</h3>
+        <p>Scholarships are awarded to hundreds of students each year and can help with living and accommodation costs at the University’s halls of residence.
+        </p>
+        <p>Take a look at school leaver scholarships, and search our scholarships database to see if there’s one that’s right for you. </p>
+        <ul>
+          <li><a href="#">School leaver scholarships</a></li>
+          <li><a hreflang="#">Scholarships database</a></li>
+        </ul>
+      </div>
+      <div class="promo-image">
+        <img src="../images/subjects/promo-image2.jpg" alt="">
+      </div>
+    </div>
+
+    <div class="ggrid">
+      <div class="c6">
+        <div class="s-promo single border light-green-top-left">
+         <h4> Managing your finances</h4>
+          <p>
+            Get advice to help you control your money so that it doesn’t control you. Take a look at our financial resources
+
+          </p>
+            <ul><li><a href="#">Financial survival</a></li></ul>
+
+          <p>
+            or meet with a student finance advisor for budgeting advice and support.
+
+          </p>
+            <ul><li><a href="#">Meet with a student finance adviser</a></li></ul>
+        </div>
+      </div>
+      <div class="c6">
+        <div class="s-promo single border green-bottom-right">
+          <h4>Work while you study
+          </h4>
+          <p>Most students find that they need to support their study with part time work.
+          </p>
+          <p>At the University, you’ll find opportunities to work in your field of interest while you study for your degree.
+          </p>
+          <ul>
+            <li>
+              <a href="#">  Employment opportunities </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="ggrid">
+      <div class="c8">
+        <div class="s-promo image">
+         <img src="../images/subjects/image-promo-3.jpg" alt="image">
+         <div class="image-text">
+          <h4>Learning through curiosity</h4>
+        </div>
+        </div>
+      </div>
+      <div class="c4">
+        <div class="s-promo single border dark-green-title light-green-top-right">
+          <h4>Stay updated</h4>
+          <p>Fill in the form to discover how you can explore your passions and prepare for an exciting career with our Bachelor of Arts.</p>
+            <a href="#" class="subject-button light mt4">Sign up</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="subject-section spy full-width grey-bg" id="Related subjects">
+    <div class="section-title">
+      <h3>Related subjects</h3>
+    </div>
+    <div class="ggrid related-subjects">
+      <div class="c6 r-subject">
+       <a href="#">
+          <div class="r-text">
+            <h5>Chemistry</h5>
+            <p>Chemistry underlies all the functions of the human body, the buildings we live and work in, the energy we generate and consume, and the air we breathe.</p>
+          </div>
+          <div class="r-image"><img src="../images/subjects/image-promo-3.jpg" alt="image"></div>
+       </a>
+      </div>
+      <div class="c6 r-subject">
+       <a href="#">
+          <div class="r-text">
+            <h5>Chemistry</h5>
+            <p>Chemistry underlies all the functions of the human body, the buildings we live and work in, the energy we generate and consume, and the air we breathe.</p>
+          </div>
+          <div class="r-image"><img src="../images/subjects/image-promo-3.jpg" alt="image"></div>
+       </a>
+      </div>
+      <div class="c6 r-subject">
+       <a href="#">
+          <div class="r-text">
+            <h5>Chemistry</h5>
+            <p>Chemistry underlies all the functions of the human body, the buildings we live and work in, the energy we generate and consume, and the air we breathe.</p>
+          </div>
+          <div class="r-image"><img src="../images/subjects/image-promo-3.jpg" alt="image"></div>
+       </a>
+      </div>
+      <div class="c6 r-subject">
+       <a href="#">
+          <div class="r-text">
+            <h5>Chemistry</h5>
+            <p>Chemistry underlies all the functions of the human body, the buildings we live and work in, the energy we generate and consume, and the air we breathe.</p>
+          </div>
+          <div class="r-image"><img src="../images/subjects/image-promo-3.jpg" alt="image"></div>
+       </a>
+      </div>
+      <div class="c6 r-subject">
+       <a href="#">
+          <div class="r-text">
+            <h5>Chemistry</h5>
+            <p>Chemistry underlies all the functions of the human body, the buildings we live and work in, the energy we generate and consume, and the air we breathe.</p>
+          </div>
+          <div class="r-image"><img src="../images/subjects/image-promo-3.jpg" alt="image"></div>
+       </a>
+      </div>
+      <div class="c6 r-subject">
+       <a href="#">
+          <div class="r-text">
+            <h5>Chemistry</h5>
+            <p>Chemistry underlies all the functions of the human body, the buildings we live and work in, the energy we generate and consume, and the air we breathe.</p>
+          </div>
+          <div class="r-image"><img src="../images/subjects/image-promo-3.jpg" alt="image"></div>
+       </a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="subject-section " id="">
+
+    <div class="s-promo two-third border">
+      <div class="promo-content">
+        <h3>Support for students</h3>
+        <p>Victoria University of Wellington is a welcoming place with great student support. There are all sorts of resources available to help you get the best out of your time at university.</p>
+        <a href="#" class="subject-button light-green">Find out more</a>
+      </div>
+      <div class="promo-image">
+        <img src="../images/subjects/promo-image2.jpg" alt="">
+      </div>
+    </div>
+
+
+  </section>
+
+
+
+
+</div>
+
+
+<script>
+    // build scrollspy menu dynamically
+    // should get in to a core library of helpers
+
+    window.addEventListener('DOMContentLoaded', function (e) {
+
+        var list = document.getElementsByClassName('spy');  // read divs tagged as spy in DOM
+        var nav = document.getElementById('spyList');       // where to inject menu items
+
+        for (var i = 0; i < list.length; i++){
+
+            // var newNode = document.createElement('a');
+            // newNode.innerHTML = list[i].id;
+            // newNode.href = '#' + list[i].id + '-' + i;
+            // list[i].id = list[i].id + '-' + i;
+
+            var newNode = document.createElement('li');
+            newNode.innerHTML = '<a href="#'+ list[i].id.replace(/ /g,'-') + '-' + i +'">'+list[i].id + '</a>';
+            newNode.href = '#' + list[i].id.replace(/ /g,'-') + '-' + i;
+            list[i].id = list[i].id.replace(/ /g,'-') + '-' + i;
+
+            // newNode.classList.add ("list-group-item", "list-group-item-action");
+            if (list[i].classList.contains("isChild")) {
+                newNode.classList.add("isAChild");
+            }
+            if (list[i].classList.contains("isChild1")) {
+                newNode.classList.add("isAChild1");
+            }
+            nav.appendChild(newNode);
+        }
+
+
+        var spy = new Gumshoe('#spyList a', {
+        	nested: true,
+        	nestedClass: 'active-parent',
+        	reflow: true,
+          offset: 80,
+        });
+
+
+        // setTimeout(() => {
+        //   var scroll = new SmoothScroll('a[href*="#"]', {
+        //     offset: 50
+        //   });
+        // }, 1000);
+
+        document
+          .querySelectorAll('#spyList a[href^="#"]')
+          .forEach(link => {
+              link.onclick = function(e) {
+                  e.preventDefault();
+                  let hash = this.getAttribute('href');
+                  document.querySelector(hash).scrollIntoView({
+                    behavior: 'smooth',
+                  });
+              };
+          });
+
+
+        // If sticky add attribute
+        const observer = new IntersectionObserver(
+          ([e]) => e.target.toggleAttribute('stuck', e.intersectionRatio < 1),
+          {threshold: [1]}
+        );
+
+        observer.observe(document.querySelector('.switcher-wrap'));
+
+
+
+        //set spy class when scrolled into view
+        // window.onscroll = function () {
+        //   let isScrolled = false
+        //   const scrollPoint = document.querySelector('.subject-content').offsetTop
+        //   const content = document.querySelector('.subject-content')
+        //   const spy = document.querySelector('.fixed-spy');
+
+        //   function onScroll () {
+        //     if ( window.pageYOffset > scrollPoint && !isScrolled ) {
+        //       content.classList.add("scroll");
+        //       spy.classList.add("sticky");
+        //       isScrolled = true
+        //     } else if (window.pageYOffset <= scrollPoint && isScrolled) {
+        //       content.classList.remove("scroll");
+        //       spy.classList.remove("sticky");
+        //       isScrolled = false
+        //     }
+        //   }
+
+        //   onScroll()  // Makes sure that the class is attached on the first render
+        //   return onScroll
+        // }()
+
+    });
+
+
+
+</script>
+
+
+
+
+
+
+  <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
+
+      <footer role="contentinfo">
+      
+      
+      
+      
+        <section class="footer-secondary dark">
+      
+      
+      
+            <!-- Lineage nope -->
+      
+            <script src="https://d3f5l8ze0o4j2m.cloudfront.net/m87/k33spt.js"></script>
+        <script>
+            (function () {
+                window.onload = function(){
+                    var frameName = new ds07o6pcmkorn({
+                        openElementId: "#shielded"
+                    });
+                    frameName.init();
+                }
+            })();
+        </script>
+      
+        <style>
+            #shielded {
+                width: 50px;
+                height: 50px;
+            }
+            @media only screen and (min-width: 768px) {
+                #shielded {
+                    float: right;
+                }
+            }
+        </style>
+      <div class="centraliser">
+          <div class="site_links wrap block footer-row subjects">
+              <div class="footer-col">
+      
+                  <h4><a href="#">Open days & visits</a></h4>
+      
+              </div>
+              <div class="footer-col">
+                  <h4><a href="#">Course planning</a></h4>
+      
+              </div>
+              <div class="footer-col">
+                  <h4><a href="#">Financing your study</a></h4>
+      
+              </div>
+      
+      
+              <div class="footer-col ">
+                   <h4><a href="#">Student life</a></h4>
+      
+              </div>
+          </div>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+        </section>
+      
+        <script src="https://d3f5l8ze0o4j2m.cloudfront.net/m87/k33spt.js"></script>
+        <script>
+            (function () {
+                window.onload = function(){
+                    var frameName = new ds07o6pcmkorn({
+                        openElementId: "#shielded"
+                    });
+                    frameName.init();
+                }
+            })();
+        </script>
+      
+        <style>
+            #shielded {
+                width: 50px;
+                height: 50px;
+            }
+        </style><section class="footer-primary">
+                <div class="centraliser">
+      
+                    <div class="block">
+      
+                        <!-- Smaller version of logotype -->
+                        <div class="logo">
+                          <a href="https://www.wgtn.ac.nz/" title="Victoria University of Wellington homepage">
+                            <img class="logo" src="https://cms.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/images/new/v2/logo-white-full.svg" alt="Te Heranga Waka – Wellington University logo">
+                          </a>
+                        </div>
+                        <!-- Global contacts -->
+                        <ul class="contacts">
+                            <li>
+                                <a title="Call Victoria about general enquiries" href="tel:+6444721000">+64 4 472 1000</a>
+                            </li>
+                            <li>
+                                <a title="Write Victoria an email" href="mailto:info@vuw.ac.nz">info@vuw.ac.nz</a>
+                            </li>
+                            <li>
+                                Enrolments: <a title="Call Victoria regarding enrolments" href="tel:+64800040404"> 0800 04 04 04</a>
+                            </li>
+                            <li>
+                                Emergency: <a title="Call in case of emergency" href="tel:+6444639999">+64 4 463 9999</a> or ext. 8888 (internal)
+                            </li>
+                        </ul>
+      
+                        <img src="/__data/assets/image/0004/1748434/custom-logo.png" id="shielded" alt="Shielded logo">
+                    </div>
+      
+                    <div class="block small">
+      
+                        <nav role="navigation">
+                            <ul role="menubar" class="minilinks">
+                                <li role="menuitem"><a title="See ..." href="https://www.wgtn.ac.nz/site-info">Site info</a></li>
+                                <li role="menuitem"><a title="See ..." href="https://www.wgtn.ac.nz/site-info/site-map">Site map</a></li>
+                                <li role="menuitem"><a title="See ..." href="https://www.wgtn.ac.nz/site-info/feedback">Feedback</a></li>
+                                <li role="menuitem"><a title="See ..." href="https://www.wgtn.ac.nz/site-info/glossary">Glossary</a></li>
+                            </ul>
+                        </nav>
+      
+                        <small class="copyright">Copyright © Victoria University of Wellington, New Zealand</small>
+      
+                    </div>
+      
+                </div>
+            </section>
+      
+      
+      
+        </footer>
+
+
+
+  <!-- jQuery -->
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+  <!-- toolkit scripts -->
+	<script src="../toolkit.js"></script>
+  <!-- /toolkit scripts -->
+
+
+</body>
+</html>
