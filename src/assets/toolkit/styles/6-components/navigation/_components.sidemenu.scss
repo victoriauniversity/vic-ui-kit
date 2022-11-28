@@ -1114,6 +1114,12 @@ body#hubv4 {
           }
           > .btn-expander {
             margin-right: 0.5rem;
+            padding: 3px 8px;
+            border-radius: 100px;
+            cursor: pointer;
+            height: 32px;
+            width: 32px;
+            text-align: center;
           }
           &.active-menu-item {
             border-color: $miro;
@@ -1138,6 +1144,9 @@ body#hubv4 {
             padding: 0.8rem 0.9rem;
             // transition: all $easing 0.3s;
             flex-direction: column;
+            &:hover {
+              text-decoration: underline;
+            }
             .tereo-title {
               color: $pounamu;
             }
@@ -1195,6 +1204,7 @@ body#hubv4 {
           visibility: hidden;
           border: 1px $miro solid;
           border-top: none;
+          background-image: url(https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg);
 
           .draw-promo {
             max-width: 800px;
@@ -1233,10 +1243,10 @@ body#hubv4 {
             opacity: 1;
             max-width: 100%;
             visibility: visible;
-            background-image: url(https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg);
             background-repeat: no-repeat;
             background-size: 234px;
-            background-position: -90px;
+            background-attachment: fixed;
+            background-position: 350px;
           }
 
           .close-draw {
@@ -1885,8 +1895,9 @@ body#hubv4 {
         > li {
           position: relative;
           overflow: visible;
-          transition: all $easing 0.2s;
+          // transition: all $easing 0.2s;
           border-bottom: 1px transparent solid;
+
           &:before {
             transition: all $easing 0.2s;
             content: "";
@@ -1991,8 +2002,8 @@ body#hubv4 {
           &:not(.sidemenu__label) {
             &.expanded,
             &:hover {
-              border-top-color: $grey-alto;
-              border-bottom-color: $grey-alto;
+              border-top-color: $miro;
+              border-bottom-color: $miro;
               box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.1);
             }
 

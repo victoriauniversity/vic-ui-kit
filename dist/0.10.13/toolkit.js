@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, November 28, 2022, 12:32 PM */
+/** Version: 0.10.13 | Monday, November 28, 2022, 3:09 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14109,11 +14109,60 @@ function initTray() {
     setTimeout(function () {
       $(".tray .search-input").focus();
     }, 500);
-  }); // $('.search-button-inside form').on('focus', (e) => {
-  //   $( this ).toggleClass('focus')
-  //   console.log( $(this) );
-  // })
-  // ****************************************
+  });
+
+  var hideSearchHistory = function hideSearchHistory() {
+    $(".tray .saved-searches").hide();
+  };
+
+  $(".tray .search-input").on("focus", function (e) {
+    $(".tray .saved-searches").show();
+  });
+  $(".tray .search-input").on("focusout", function (e) {
+    setTimeout(function () {
+      hideSearchHistory();
+    }, 100);
+  }); // Init saved searches
+
+  var checkSavedSearches = function checkSavedSearches() {
+    if (localStorage.savedSearches) {
+      var savedSearchesArray = JSON.parse(localStorage.savedSearches);
+      console.log(savedSearchesArray);
+      savedSearchesArray.forEach(function (item) {
+        var div = "<div class='search-item'> " + item.term + " <button title='Remove this search term from history' class='clear-term flat no-icon'> <i class='icons8-delete'></i></button </div>";
+        $(".tray .saved-searches").append($(div));
+      }); // On click of search item
+
+      $(".tray .search-item").on("click", function (e) {
+        console.log(e);
+        var searchText = $(this).text().trim();
+        $(".tray .search-input").val(searchText);
+        $(".tray-search-bar>form").submit();
+        hideSearchHistory();
+      }); // On click of clear search item
+
+      $(".tray .clear-term").on("click", function (e) {
+        console.log(e);
+        e.preventDefault();
+        var searchText = $(this).parent().text().trim();
+        $(this).parent().remove();
+
+        if (!$(".tray .saved-searches .search-item").length) {
+          $(".tray .saved-searches").hide();
+        } else {
+          $(".tray .saved-searches").show();
+        }
+
+        var filtered = savedSearchesArray.filter(function (e) {
+          return e.term !== searchText;
+        });
+        localStorage.setItem("savedSearches", JSON.stringify(filtered));
+        console.log(filtered);
+      });
+    }
+  };
+
+  checkSavedSearches(); // ****************************************
   // ****************************************
   // sidemenu tray
   // const SIDEMENU_TOGGLE_CLASS   = 'sidemenu-toggle';
@@ -14332,7 +14381,7 @@ function initTray() {
       var titleLink = $item.children("a").attr("href");
       var titleText = $item.children("a").text();
       var titleHtml = $item.children("a").html(); // console.log(titleLink, ' ', titleText);
-      //push into traw div
+      //push into draw div
 
       if ($item.children("ul").length) {
         $item.children("ul").clone().appendTo(".draw-nav").attr("data-index", index);
