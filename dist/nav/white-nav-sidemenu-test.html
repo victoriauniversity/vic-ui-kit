@@ -1,4 +1,3 @@
-<!-- Version: 0.10.13 | Monday, November 28, 2022, 12:32 PM -->
 <!doctype html>
 <html lang="">
 <head>
@@ -132,20 +131,22 @@
               <button role="search" class="search-toggle flat" href="javascript:void(0)">
             </div>
           </div> -->
-    
           <div class="header-toggle">
-            <a href="https://puaha.wgtn.ac.nz/" target="_blank" class="button puaha no-icon">Pūaha<i
-                class="icons8-external-link"></i></a>
-            <button role="search" class="search-toggle flat" href="javascript:void(0)">
-              <i class="icons8-search"></i>
-            </button>
-    
-    
-            <!--  Menu toggle -->
-            <button class="tray-toggle flat" role="toggle-menu">
-              <i class="icons8-menu-rounded"></i>
-              <!-- <span class="text-menu-button">MENU</span> -->
-            </button>
+            <div class="header-student-tools">
+              <a title="Open Pūaha (your student portal) in a new tab" href="https://puaha.wgtn.ac.nz/" target="_blank"
+                class="button puaha no-icon">Pūaha<i class="icons8-external-link"></i></a>
+              <a title="Open Nuku (Canvas) in a new tab" href="https://nuku.wgtn.ac.nz/" target="_blank"
+                class="button nuku no-icon">Nuku<i class="icons8-external-link"></i></a>
+            </div>
+            <div class="header-controls">
+              <button role="search" class="search-toggle flat" href="javascript:void(0)">
+                <i class="icons8-search"></i>
+              </button>
+              <!--  Menu toggle -->
+              <button class="tray-toggle flat" role="toggle-menu">
+                <i class="icons8-menu-rounded"></i>
+              </button>
+            </div>
             <div class="tray-tooltip hint">
               <div class="hint-icon"><i class="icons8-info"></i></div>
               <div>
@@ -159,534 +160,411 @@
     
     
     
+       <!--  tray slide out-->
+       <nav class="menu-container main-nav tray tray-closed" aria-label="Main Navigation">
+        <div class="outer-close-tray">
+          <div title="Close the menu" class="close-menu tray-toggle">
+            <i class="icons8-delete"></i>
+            <div class="close-text">
+              Close
+            </div>
+          </div>
+        </div>
+        <div class="tray-content">
+          <div class="tray-inner">
     
-          <!--  tray slide out-->
-          <!--  tray slide out-->
-          <nav class="menu-container main-nav tray tray-closed" aria-label="Main Navigation">
-            <div class="outer-close-tray">
-              <div title="Close the menu" class="close-menu tray-toggle">
-                <i class="icons8-delete"></i>
-                <div class="close-text">
-                  Close
+            <div class="tray-close">
+              <button class="close-tray flat"><span class="icon-cross"></span>Close</button>
+            </div>
+            <div class="tray-tabs">
+              <div class="blip" style="left: 0px; width: 0px;"></div>
+              <div class="tab-background">
+                <div tabindex="0" class="tab t-menu active">
+                  <span>
+                    <i class="icons8-top-menu-2"></i>
+                    Menu
+                  </span>
                 </div>
               </div>
+              <div class="tab-background">
+                <div tabindex="0" class="tab t-saved">
+                  <span>
+                    <i class="icons8-star-2"></i>Saved
+                  </span>
+                </div>
+              </div>
+    
+              <div tabindex="0" title="Close the menu" class="close-menu tray-toggle">
+                <i class="icons8-delete"></i>
+              </div>
+    
             </div>
-            <div class="tray-content">
-              <div class="tray-inner">
     
-                <div class="tray-close">
-                  <button class="close-tray flat"><span class="icon-cross"></span>Close</button>
+            <div class="tray-search-bar search-button-inside form-dark-grey">
+              <form class="" action="https://www.wgtn.ac.nz/search" role="search">
+                <label class="search-label visually-hidden" for="search">
+                  <span>Search</span>
+                </label>
+                <input class="search-input" id="search" type="text" placeholder="Search entire site" name="q"
+                  autocorrect="off">
+                <button class="submit-button flat" type="submit"><span class="icons8-search"></span></button>
+              </form>
+              <button class="save-page no-icon button" data-tooltip><svg fill="#000000"
+                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="35px" height="35px">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"
+                    d="M37 3L13 3 13 47 25 40 37 47z" />
+                </svg></button>
+            </div>
+            <div class="tray-inner-content">
+              <div role="menu" class="tray-main-nav">
+                <div class="mobile-menu-navigation">
+                  <a href="/" title="Go to the homepage" class="home-link menu-navigation no-icon"> <i
+                      class="icons8-home-2"></i>
+                  </a>
+                  <button title="View the main website menu" class="main-menu-link flat menu-navigation no-icon">
+                    <i class="icons8-undo"></i> Main site </button>
+                  <button title="View the menu for the current page"
+                    class="active flat current-menu-link menu-navigation no-icon">
+                    <i class="icons8-undo"></i> Future Students
+                  </button>
                 </div>
-                <div class="tray-tabs">
-                  <div class="blip" style="left: 0px; width: 0px;"></div>
-                  <div class="tab-background">
-                    <div tabindex="0" class="tab t-menu active">
-                      <span>
-                        <i class="icons8-home-2"></i>
-                        Menu
-                      </span>
-                    </div>
-                  </div>
-                  <div class="tab-background">
-                    <div tabindex="0" class="tab t-saved">
-                      <span>
-                        <i class="icons8-star-2"></i>Saved
-                      </span>
-                    </div>
-                  </div>
-    
-                  <div tabindex="0" title="Close the menu" class="close-menu tray-toggle">
-                    <i class="icons8-delete"></i>
-                  </div>
-    
-                </div>
-    
-                <div class="tray-search-bar search-button-inside form-dark-grey">
-                  <button class="save-page no-icon button flat" data-tooltip>Save this page<svg fill="#000000" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 50 50" width="35px" height="35px">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"
-                      d="M37 3L13 3 13 47 25 40 37 47z" />
-                  </svg></button>
-                  <form class="" action="https://www.wgtn.ac.nz/search" role="search">
-                    <label class="search-label visually-hidden" for="search">
-                      <span>Search</span>
-                    </label>
-                    <input class="search-input " id="search" type="text" placeholder="Search entire site" name="q"
-                      autocorrect="off">
-                    <button class="submit-button flat" type="submit"><span class="icons8-search"></span></button>
-                  </form>
-                </div>
-                <div class="tray-inner-content">
-    
-                  <div role="menu" class="tray-main-nav">
-                    <ul class="main-nav-list hub-page">
-                      <div class="tall-blip"></div>
+                <div class="menu-slide-container">
+                  <ul class="main-nav-list hub-page">
+                    <div class="tall-blip"></div>
+                    <div class="sidemenu-top">
                       <a class="home-link" href="/"> <i class="icons8-back"></i> Home</a>
     
-                      <!-- <div class="nav-separator">Main university menu</div>
-                      <li class="main-nav-item homesite">
-                        <svg class="connector" fill="#CCCCCC" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"
-                          width="50px" height="50px">
-                          <path fill="none" stroke="#CCCCCC" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
-                            d="M33 47L45 35 33 23" />
-                          <path fill="none" stroke="#CCCCCC" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
-                            d="M45,35H12c-3.314,0-6-2.686-6-6V3" />
-                        </svg>
-                        <a href="https://www.wgtn.ac.nz" role="nav-item" title="[object Object] page"
-                          class="[object Object] main-nav-link"><span class="tereo-nav-title">Kainga</span>University Home</a>
-                        <span tabindex="0" class="btn-expander mf-heatmap-click no-icon" title="Toggle subpages"
-                          role="button"></span>
-                        <ul>
+                    </div>
     
-    
-                          <li class="main-nav-item">
-                            <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/International students.html"
-                              title="International students page" class="International students main-nav-link"><span
-                                class="tereo-nav-title">Te whirika</span>International students</a>
-                            <i class="icons8-forward"></i>
-                          </li>
-    
-                          <li class="main-nav-item">
-                            <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Current students.html"
-                              title="Current students page" class="Current students main-nav-link"><span
-                                class="tereo-nav-title">Tauira o nāianei</span>Current students</a>
-                            <i class="icons8-forward"></i>
-                          </li>
-    
-                          <li class="main-nav-item">
-                            <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Research.html"
-                              title="Research page" class="Research main-nav-link"><span
-                                class="tereo-nav-title">Rangahau</span>Research</a>
-                            <i class="icons8-forward"></i>
-                          </li>
-    
-    
-                          <li class="main-nav-item">
-                            <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Engage.html" title="Engage page"
-                              class="Engage main-nav-link"><span class="tereo-nav-title">Turipū</span>
-                              Engage</a>
-                            <i class="icons8-forward"></i>
-                          </li>
-                        </ul>
-    
-                      </li>
-                      <div class="nav-separator current">You are here</div> -->
-    
-                      <li class="main-nav-item">
-                        <a href="https://www.wgtn.ac.nz/study" role="nav-item" title="[object Object] page"
-                          class="[object Object] main-nav-link active"><span class="tereo-nav-title">Ngā tauira o āpōpō</span>About
-                          us</a>
-                        <span tabindex="0" class="btn-expander mf-heatmap-click no-icon" title="Toggle subpages"
-                          role="button"></span>
-                        <ul class="tray-main-nav-submenu mobile-tray-menu">
-                          <li class="sidemenu__label"><a href="menu-nav-test/home">Menu Nav Test - Hub</a></li>
-                          <li class="nav-item-parent" data-for="draw-1856598">
-                            <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Mō mātou</span>Our
-                              story</a>
-                            <ul>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events"
-                                  title="News and events">News and events</a>
-                                <ul>
-    
-                                  <li class=""><a
-                                      href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events/news-events"
-                                      title="News and events">News and events
-                                    </a>
-                                  </li>
-                                  <li class=""><a
-                                      href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events/global-civic-university"
-                                      title="A global–civic university">A global–civic university</a>
-                                  </li>
-                                  <li class=""><a
-                                      href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events/hunter-club"
-                                      title="The Hunter Club">The Hunter Club</a>
-                                  </li>
-                                  <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events/history"
-                                      title="History">History</a>
-                                  </li>
-                                  <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events/statistics"
-                                      title="At a glance">At a glance</a>
-                                  </li>
-                                </ul>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/global-civic-university"
-                                  title="A global–civic university">A global–civic university</a>
-                                <ul>
-    
-                                  <li class=""><a
-                                      href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/global-civic-university/reputation"
-                                      title="(( Reputation and rankings ))">(( Reputation and rankings ))</a>
-                                  </li>
-                                  <li class=""><a
-                                      href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/global-civic-university/wellington"
-                                      title="(( Our position ))">(( Our position ))</a>
-                                  </li>
-                                </ul>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/hunter-club"
-                                  title="The Hunter Club">The Hunter Club</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/history"
-                                  title="History">History</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/statistics"
-                                  title="At a glance">At a
-                                  glance</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/victoria-and-the-treaty"
-                                  title="The University and the Treaty">The University and the Treaty</a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li class="nav-item-parent" data-for="draw-1856608">
-                            <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Hautūtanga me mana
-                                whakahaere</span>Leadership and governance</a>
-                            <ul>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/structure"
-                                  title="Our structure">Our
-                                  structure</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/council"
-                                  title="University Council">University Council</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/senior-leadership"
-                                  title="Senior Leadership">Senior Leadership</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/academic"
-                                  title="Academic Office">Academic Office</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/strategy"
-                                  title="Strategy and policy">Strategy and policy</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/strategic-plan"
-                                  title="Strategic plan">Strategic plan</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/copyright"
-                                  title="Copyright at the University">Copyright at the University</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/delegations"
-                                  title="Delegations">Delegations</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/governance/university-publications"
-                                  title="University publications">University publications</a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li class="nav-item-parent" data-for="draw-1856616">
-                            <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Te ao ki
-                                konei</span>Campuses
-                              and
-                              facilities</a>
-                            <ul>
-    
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/campuses"
-                                  title="(( Our campuses and sites ))">(( Our campuses and sites ))</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/marae"
-                                  title="Marae">Marae</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/wellington"
-                                  title="Wellington life">Wellington life</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/sustainability"
-                                  title="Sustainability">Sustainability</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/pasifika-haos"
-                                  title="Pasifika Haos">Pasifika Haos</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/venue-hire"
-                                  title="Venues, conferences, and alcohol events on campus">Venues, conferences, and alcohol
-                                  events on
-                                  campus</a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li class="nav-item-parent" data-for="draw-1856628">
-                            <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Mahi ana i
-                                konei</span>Working
-                              here</a>
-                            <ul>
-                              <li class=""><a
-                                  href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/current-vacancies-broadbean"
-                                  title="Current vacancies">Current vacancies</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/notes-for-applicants"
-                                  title="Notes for applicants">Notes for applicants</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/wellington"
-                                  title="Wellington life">Wellington life</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/values"
-                                  title="Vision, mission and values">Vision, mission and values</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/employment-information"
-                                  title="Benefits of working with us">Benefits of working with us</a>
-                              </li>
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/facilities-for-staff"
-                                  title="Facilities for staff">Facilities for staff</a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li class="nav-item-parent" data-for="draw-1856636">
-                            <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Hoapā</span>Contacts and
-                              directories</a>
-                          </li>
-                          <li class="nav-item-parent" data-for="draw-1940832">
-                            <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Kaimahi</span>Staff</a>
-                            <ul>
-    
-                              <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/staff/test" title="Test">Test</a>
-                              </li>
-                            </ul>
-                          </li>
-                        </ul>
-    
-                      </li>
-    
-                      <!--  
-                      <li class="main-nav-item">
-                        <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/International students.html" title="International students page" class="International students main-nav-link">International students</a>
-                      </li>
-                      
-                      <li class="main-nav-item">
-                        <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Current students.html" title="Current students page" class="Current students main-nav-link">Current students</a>
-                      </li>
-                      
-                      <li class="main-nav-item">
-                        <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Research.html" title="Research page" class="Research main-nav-link">Research</a>
-                      </li>
-                      
-                      <li class="main-nav-item">
-                        <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Engage.html" title="Engage page" class="Engage main-nav-link">Engage</a>
-                      </li>
-                        -->
-    
-                      <!-- <li class="main-nav-item">
-                      <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/International students.html"
-                        title="International students page" class="International students main-nav-link"><span
-                          class="tereo-nav-title">Te whirika</span>International students</a>
-                      <span tabindex="0" class="btn-expander mf-heatmap-click no-icon" title="Toggle subpages"
-                        role="button"></span>
-                    </li>
     
                     <li class="main-nav-item">
-                      <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Current students.html"
-                        title="Current students page" class="Current students main-nav-link"><span
-                          class="tereo-nav-title">Tauira o nāianei</span>Current students</a>
+                      <a href="https://www.wgtn.ac.nz/study" role="nav-item" title="[object Object] page"
+                        class="[object Object] main-nav-link active"><span class="tereo-nav-title">Nga akonga kei te heke
+                          mai</span>Future
+                        students</a>
+    
                       <span tabindex="0" class="btn-expander mf-heatmap-click no-icon" title="Toggle subpages"
                         role="button"></span>
+                      <ul class="tray-main-nav-submenu mobile-tray-menu">
+                        <li class="sidemenu__label"><a href="menu-nav-test/home">Menu Nav Test - Hub</a></li>
+                        <li class="nav-item-parent" data-for="draw-1856598">
+                          <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Ora whare
+                              wananga</span>University life</a>
+                          <ul>
+                            <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events"
+                                title="News and events">
+                                <span class="tereo-menu-title">
+                                  Ngā ratonga āwhina i te tauira
+                                </span>
+                                Student services and support
+                              </a>
+                              <ul>
+    
+                                <li class=""><a
+                                    href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events/news-events"
+                                    title="News and events"> <span class="tereo-menu-title">
+                                      Ngā ratonga āwhina i te tauira
+                                    </span> Student services and support
+                                  </a>
+                                </li>
+                                <li class=""><a
+                                    href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events/global-civic-university"
+                                    title="A global–civic university">A global–civic university</a>
+                                </li>
+                                <li class=""><a
+                                    href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events/hunter-club"
+                                    title="The Hunter Club">The Hunter Club</a>
+                                </li>
+                                <li class=""><a
+                                    href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events/history"
+                                    title="History">History</a>
+                                </li>
+                                <li class=""><a
+                                    href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/news-events/statistics"
+                                    title="At a glance">At a glance</a>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class=""><a
+                                href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/global-civic-university"
+                                title="A global–civic university">A global–civic university</a>
+                              <ul>
+    
+                                <li class=""><a
+                                    href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/global-civic-university/reputation"
+                                    title="(( Reputation and rankings ))">(( Reputation and rankings ))</a>
+                                </li>
+                                <li class=""><a
+                                    href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/global-civic-university/wellington"
+                                    title="(( Our position ))">(( Our position ))</a>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/hunter-club"
+                                title="The Hunter Club">The Hunter Club</a>
+                            </li>
+                            <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/history"
+                                title="History">History</a>
+                            </li>
+                            <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/statistics"
+                                title="At a glance">At a
+                                glance</a>
+                            </li>
+                            <li class=""><a
+                                href="https://cms.wgtn.ac.nz/menu-nav-test/our-story/victoria-and-the-treaty"
+                                title="The University and the Treaty">The University and the Treaty</a>
+                            </li>
+                          </ul>
+                        </li>
+    
+                        <li class="nav-item-parent" data-for="draw-1856616">
+                          <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Nga kaupapa me nga
+                              akoranga</span>Programmes and courses</a>
+                          <ul>
+    
+                            <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/campuses"
+                                title="(( Our campuses and sites ))">(( Our campuses and sites ))</a>
+                            </li>
+                            <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/marae"
+                                title="Marae">Marae</a>
+                            </li>
+                            <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/wellington"
+                                title="Wellington life"> <span class="tereo-menu-title">
+                                  Ngā ratonga āwhina i te tauira
+                                </span> Wellington life</a>
+                            </li>
+                            <li class=""><a
+                                href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/sustainability"
+                                title="Sustainability">Sustainability</a>
+                            </li>
+                            <li class=""><a
+                                href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/pasifika-haos"
+                                title="Pasifika Haos">Pasifika Haos</a>
+                            </li>
+                            <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/campuses-facilities/venue-hire"
+                                title="Venues, conferences, and alcohol events on campus">Venues, conferences, and
+                                alcohol
+                                events on
+                                campus</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nav-item-parent" data-for="draw-1856628">
+                          <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Whakamahere i o
+                              akoranga</span>Planing your studies</a>
+                          <ul>
+                            <li class=""><a
+                                href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/current-vacancies-broadbean"
+                                title="Current vacancies">Current vacancies</a>
+                            </li>
+                            <li class=""><a
+                                href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/notes-for-applicants"
+                                title="Notes for applicants">Notes for applicants</a>
+                            </li>
+                            <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/wellington"
+                                title="Wellington life">Wellington life</a>
+                            </li>
+                            <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/values"
+                                title="Vision, mission and values">Vision, mission and values</a>
+                            </li>
+                            <li class=""><a
+                                href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/employment-information"
+                                title="Benefits of working with us">Benefits of working with us</a>
+                            </li>
+                            <li class=""><a
+                                href="https://cms.wgtn.ac.nz/menu-nav-test/working-here/facilities-for-staff"
+                                title="Facilities for staff">Facilities for staff</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nav-item-parent" data-for="draw-1856636">
+                          <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Whakauru</span>Apply
+                            to
+                            enrol</a>
+                        </li>
+                        <li class="nav-item-parent" data-for="draw-1940832">
+                          <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Te putea i to
+                              ako</span>Financing your study</a>
+                          <ul>
+    
+                            <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/staff/test" title="Test">Test</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="nav-item-parent" data-for="draw-1940832">
+                          <a href="https://cms.wgtn.ac.nz/menu-nav-test"><span class='tereo-title'>Nga huihuinga, nga
+                              haerenga, me nga ra tuwhera</span> Events, visits, and Open Day</a>
+                          <ul>
+    
+                            <li class=""><a href="https://cms.wgtn.ac.nz/menu-nav-test/staff/test" title="Test">Test</a>
+                            </li>
+                          </ul>
+                        </li>
+    
+    
+                      </ul>
+    
                     </li>
     
-                    <li class="main-nav-item">
-                      <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Research.html" title="Research page"
-                        class="Research main-nav-link"><span class="tereo-nav-title">Rangahau</span>Research</a>
-                      <span tabindex="0" class="btn-expander mf-heatmap-click no-icon" title="Toggle subpages"
-                        role="button"></span>
-                    </li>
+                    <!--  
+                  <li class="main-nav-item">
+                    <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/International students.html" title="International students page" class="International students main-nav-link">International students</a>
+                  </li>
+                  
+                  <li class="main-nav-item">
+                    <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Current students.html" title="Current students page" class="Current students main-nav-link">Current students</a>
+                  </li>
+                  
+                  <li class="main-nav-item">
+                    <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Research.html" title="Research page" class="Research main-nav-link">Research</a>
+                  </li>
+                  
+                  <li class="main-nav-item">
+                    <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Engage.html" title="Engage page" class="Engage main-nav-link">Engage</a>
+                  </li>
+                    -->
     
-                    <li class="main-nav-item">
-                      <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Engage.html" title="Engage page"
-                        class="Engage main-nav-link"><span class="tereo-nav-title">Turipū</span>
-                        Engage</a>
-                      <span tabindex="0" class="btn-expander mf-heatmap-click no-icon" title="Toggle subpages"
-                        role="button"></span>
-                    </li> -->
+                    <!-- <li class="main-nav-item">
+                  <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/International students.html"
+                    title="International students page" class="International students main-nav-link"><span
+                      class="tereo-nav-title">Te whirika</span>International students</a>
+                  <span tabindex="0" class="btn-expander mf-heatmap-click no-icon" title="Toggle subpages"
+                    role="button"></span>
+                </li>
     
+                <li class="main-nav-item">
+                  <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Current students.html"
+                    title="Current students page" class="Current students main-nav-link"><span
+                      class="tereo-nav-title">Tauira o nāianei</span>Current students</a>
+                  <span tabindex="0" class="btn-expander mf-heatmap-click no-icon" title="Toggle subpages"
+                    role="button"></span>
+                </li>
     
-                    </ul>
-                  </div>
-                  <div class="saved-menu" style="display: none;">
-                    <div class="saved-header">
-                      <h3 class="">Saved items</h3>
-                    </div>
-                    <div class="saved-items">
-                      <div class="info-message">
-                        <p>Things you favourite or save around the website will appear
-                          here, such as
-                          events, clubs, scholarships and more!</p>
-                      </div>
+                <li class="main-nav-item">
+                  <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Research.html" title="Research page"
+                    class="Research main-nav-link"><span class="tereo-nav-title">Rangahau</span>Research</a>
+                  <span tabindex="0" class="btn-expander mf-heatmap-click no-icon" title="Toggle subpages"
+                    role="button"></span>
+                </li>
     
-                      <div id="saved-app"></div>
-                      <!--
-                    <div class="saved-items-selector">
-                      Show saved items for:
-                      <div class="custom-dropdown">
-                        <div class="selector" tabindex="0" title="Select an option">
-                          <span class="selector-text">
-                            Pick one
-                          </span>
-                          <i class="icons8-expand-arrow selector-icon"></i>
-                        </div>
-    
-                        <ul>
-                          <li tabindex="0" data-name="Scholarships" class="scholarships">Scholarships <span
-                              class="count">(0)</span></li>
-                          <li tabindex="0" data-name="Events" class="events">Events <span class="count">(0)</span></li>
-                          <li tabindex="0" data-name="Prizes" class="prizes">Prizes <span class="count">(0)</span></li>
-                          <li tabindex="0" data-name="Clubs" class="clubs">Clubs <span class="count">(0)</span></li>
-                          <li tabindex="0" data-name="Pages" class="pages">Pages <span class="count">(0)</span></li>
-                        </ul>
-                      </div>
-                    </div>
+                <li class="main-nav-item">
+                  <a role="nav-item" href="https://static.victoria.ac.nz/prototypes/Engage.html" title="Engage page"
+                    class="Engage main-nav-link"><span class="tereo-nav-title">Turipū</span>
+                    Engage</a>
+                  <span tabindex="0" class="btn-expander mf-heatmap-click no-icon" title="Toggle subpages"
+                    role="button"></span>
+                </li> -->
     
     
-                    <div tabindex="0" class='group-title trigger scholarships-title'>
-                      <div><i class='icons8-graduation-scroll'></i><span>Scholarships (<span class='count'>0</span>)</span>
-                      </div><i class='icons8-expand-arrow'></i>
-                    </div>
-                    <ul class='item-list scholarships-list'></ul>
-    
-                    <div tabindex="0" class='group-title trigger events-title'>
-                      <div><i class='icons8-schedule'></i><span>Events (<span class='count'>0</span>)</span>
-                      </div><i class='icons8-expand-arrow'></i>
-                    </div>
-                    <ul class='item-list events-list'></ul>
-    
-                    <div tabindex="0" class='group-title trigger prizes-title'>
-                      <div><i class='icons8-prize'></i><span>Prizes (<span class='count'>0</span>)</span>
-                      </div><i class='icons8-expand-arrow'></i>
-                    </div>
-                    <ul class='item-list prizes-list'></ul>
-    
-                    <div tabindex="0" class='group-title trigger clubs-title'>
-                      <div><i class='icons8-theatre-mask'></i><span>Clubs (<span class='count'>0</span>)</span>
-                      </div><i class='icons8-expand-arrow'></i>
-                    </div>
-                    <ul class='item-list clubs-list'></ul>
-    
-                    <div tabindex="0" class='group-title trigger pages-title'>
-                      <div><i class='icons8-news'></i><span>Pages (<span class='count'>0</span>)</span>
-                      </div><i class='icons8-expand-arrow'></i>
-                    </div>
-                    <ul class='item-list pages-list'></ul> -->
-                    </div>
-                  </div>
-                  <div class="tray-background"></div>
-                  <div role="sub-menu" class="tray-sub-menu">
-    
-                    <ul class="sub-menu-list">
-                       
-                      <li class="sub-menu-item about">
-                        <!-- <i class=""></i> -->
-                        <a href="#" class="sub-nav-link">
-                          <div class="text">
-                            <span class="tereo-nav-title">Mō mātou</span>
-                            About
-                          </div>
-                        </a>
-                      </li>
-                      <!-- 
-                    <li class="sub-menu-item ">
-                      <a href="#" class="sub-nav-link">[object Object]</a>
-                    </li>
-                     -->
-    
-                      
-                      <li class="sub-menu-item library">
-                        <!-- <i class=""></i> -->
-                        <a href="#" class="sub-nav-link">
-                          <div class="text">
-                            <span class="tereo-nav-title">Whare pukapuka</span>
-                            Library
-                          </div>
-                        </a>
-                      </li>
-                      <!-- 
-                    <li class="sub-menu-item ">
-                      <a href="#" class="sub-nav-link">[object Object]</a>
-                    </li>
-                     -->
-    
-                      
-                      <li class="sub-menu-item maps">
-                        <!-- <i class=""></i> -->
-                        <a href="#" class="sub-nav-link">
-                          <div class="text">
-                            <span class="tereo-nav-title">Mapi</span>
-                            Maps
-                          </div>
-                        </a>
-                      </li>
-                      <!-- 
-                    <li class="sub-menu-item ">
-                      <a href="#" class="sub-nav-link">[object Object]</a>
-                    </li>
-                     -->
-    
-                      
-                      <li class="sub-menu-item staff-intranet">
-                        <!-- <i class=""></i> -->
-                        <a href="#" class="sub-nav-link">
-                          <div class="text">
-                            <span class="tereo-nav-title">Kaimahi</span>
-                            Staff intranet
-                          </div>
-                        </a>
-                      </li>
-                      <!-- 
-                    <li class="sub-menu-item ">
-                      <a href="#" class="sub-nav-link">[object Object]</a>
-                    </li>
-                     -->
-    
-                      
-                      <li class="sub-menu-item student-portal">
-                        <!-- <i class=""></i> -->
-                        <a href="#" class="sub-nav-link">
-                          <div class="text">
-                            <span class="tereo-nav-title">Pūaha</span>
-                            Student Portal
-                          </div>
-                        </a>
-                      </li>
-                      <!-- 
-                    <li class="sub-menu-item ">
-                      <a href="#" class="sub-nav-link">[object Object]</a>
-                    </li>
-                     -->
-    
-                      
-                      <li class="sub-menu-item blackboard">
-                        <!-- <i class=""></i> -->
-                        <a href="#" class="sub-nav-link">
-                          <div class="text">
-                            <span class="tereo-nav-title">Papa tuhituhi </span>
-                            Blackboard
-                          </div>
-                        </a>
-                      </li>
-                      <!-- 
-                    <li class="sub-menu-item ">
-                      <a href="#" class="sub-nav-link">[object Object]</a>
-                    </li>
-                     -->
-    
-                      
-                      <li class="sub-menu-item learning-&amp;-teaching">
-                        <!-- <i class=""></i> -->
-                        <a href="#" class="sub-nav-link">
-                          <div class="text">
-                            <span class="tereo-nav-title">Akoranga whakaako</span>
-                            Learning &amp; teaching
-                          </div>
-                        </a>
-                      </li>
-                      <!-- 
-                    <li class="sub-menu-item ">
-                      <a href="#" class="sub-nav-link">[object Object]</a>
-                    </li>
-                     -->
-    
-                       
-    
-                    </ul>
-    
-                  </div>
+                  </ul>
                 </div>
     
               </div>
+              <div class="saved-menu" style="display: none;">
+                <div class="saved-header">
+                  <h3 class="">Saved items</h3>
+                </div>
+                <div class="saved-items">
+                  <div class="info-message">
+                    <p>Things you favourite or save around the website will appear
+                      here, such as
+                      events, clubs, scholarships and more!</p>
+                  </div>
+    
+                  <div id="saved-app"></div>
+    
+                </div>
+              </div>
+              <div class="tray-background"></div>
+              <div role="sub-menu" class="tray-sub-menu">
+    
+                <ul class="sub-menu-list">
+                   
+                  <li class="sub-menu-item about">
+                    <a href="#" target="_blank" class="sub-nav-link">
+                      <div class="text">
+                        <span class="tereo-nav-title">Mō mātou</span>
+                        About
+                      </div>
+                      <i class="icons8-external-link"></i>
+                    </a>
+                  </li>
+    
+                  
+                  <li class="sub-menu-item library">
+                    <a href="#" target="_blank" class="sub-nav-link">
+                      <div class="text">
+                        <span class="tereo-nav-title">Whare pukapuka</span>
+                        Library
+                      </div>
+                      <i class="icons8-external-link"></i>
+                    </a>
+                  </li>
+    
+                  
+                  <li class="sub-menu-item maps">
+                    <a href="#" target="_blank" class="sub-nav-link">
+                      <div class="text">
+                        <span class="tereo-nav-title">Mapi</span>
+                        Maps
+                      </div>
+                      <i class="icons8-external-link"></i>
+                    </a>
+                  </li>
+    
+                  
+                  <li class="sub-menu-item staff-intranet">
+                    <a href="#" target="_blank" class="sub-nav-link">
+                      <div class="text">
+                        <span class="tereo-nav-title">Kaimahi</span>
+                        Staff intranet
+                      </div>
+                      <i class="icons8-external-link"></i>
+                    </a>
+                  </li>
+    
+                  
+                  <li class="sub-menu-item student-portal">
+                    <a href="#" target="_blank" class="sub-nav-link">
+                      <div class="text">
+                        <span class="tereo-nav-title">Pūaha</span>
+                        Student Portal
+                      </div>
+                      <i class="icons8-external-link"></i>
+                    </a>
+                  </li>
+    
+                  
+                  <li class="sub-menu-item blackboard">
+                    <a href="#" target="_blank" class="sub-nav-link">
+                      <div class="text">
+                        <span class="tereo-nav-title">Papa tuhituhi </span>
+                        Blackboard
+                      </div>
+                      <i class="icons8-external-link"></i>
+                    </a>
+                  </li>
+    
+                  
+                  <li class="sub-menu-item learning-&amp;-teaching">
+                    <a href="#" target="_blank" class="sub-nav-link">
+                      <div class="text">
+                        <span class="tereo-nav-title">Akoranga whakaako</span>
+                        Learning &amp; teaching
+                      </div>
+                      <i class="icons8-external-link"></i>
+                    </a>
+                  </li>
+    
+                   
+                </ul>
+    
+              </div>
             </div>
-          </nav>
+    
+          </div>
+        </div>
+      </nav>
     
         </div>
         <div class="gradient-line"></div>

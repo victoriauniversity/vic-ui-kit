@@ -380,7 +380,7 @@ export function initTray() {
 
       // console.log(titleLink, ' ', titleText);
 
-      //push into traw div
+      //push into draw div
       if ($item.children("ul").length) {
         $item
           .children("ul")
