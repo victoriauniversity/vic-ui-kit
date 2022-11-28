@@ -36,10 +36,11 @@
 
 
     {{#if _updated-header-music }}
-      {{> _updated-header-music NavColor=NavColor LogoColor=LogoColor horizontalNav=horizontalNav isIntranet=isIntranet }}
+    {{> _updated-header-test NavColor=NavColor LogoColor=LogoColor horizontalNav=horizontalNav }}
+
     {{else}}
       <!-- Default fallback for header when not specified in the template. -->
-      {{> _header header=header-default }}
+      {{> _updated-header-test NavColor=NavColor LogoColor=LogoColor horizontalNav=horizontalNav }}
     {{/if}}
 
   {{/unless}}

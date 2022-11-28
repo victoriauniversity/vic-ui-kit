@@ -175,21 +175,30 @@ export function initTray() {
 
   function buildTray(index, item) {
     // console.log( 'nav item', $(this).parent().children('a').text() );
-    const nav = $(this);
+    // console.log( 'nav item', $(this).children('ul'));
+    const nav = $(this).children('ul');
+    // console.log($(this));
 
-    let navClassString = $(this).parent().children("a").html();
-    let titleLink = $(this).parent().children("a").attr("href");
+    let navClassString = $(this).children("a").html();
+    let titleLink = $(this).children("a").attr("href");
 
     //push into traw div
-    nav
-      .clone()
-      .appendTo(".draw-nav")
-      .addClass(navClassString)
-      .attr("data-index", index);
-    //add title
-    $(`.draw-nav ul[data-index='${index}']`).prepend(
-      `<h4 class="sub-draw-title"><a href="${titleLink}">${navClassString}</a></h4>`
-    );
+    if(nav.length > 0) {
+      nav
+        .clone()
+        .appendTo(".draw-nav")
+        .addClass(navClassString)
+        .attr("data-index", index);
+      //add title
+      $(`.draw-nav ul[data-index='${index}']`).prepend(
+        `<h4 class="sub-draw-title"><a href="${titleLink}">${navClassString}</a></h4>`
+      );
+    } else {
+      // console.log('no children');
+      // $(`.draw-nav ul[data-index='${index}']`).prepend(
+      //   `<h4 class="sub-draw-title"><a href="${titleLink}">${navClassString}</a></h4>`
+      // );
+    }
   }
 
   let openTimeout;
@@ -372,7 +381,7 @@ export function initTray() {
     // console.log(menu);
 
     //build tray nav content
-    const trayNavItems = $(".sidemenu-homepage > ul > li > ul");
+    const trayNavItems = $(".sidemenu-homepage > ul > .nav-item-parent ");
 
     const listItem = $(".sidemenu-homepage > ul > li:not(.sidemenu__label)");
 
@@ -421,7 +430,7 @@ export function initTray() {
 
       // console.log(titleLink, ' ', titleText);
 
-      //push into traw div
+      //push into draw div
       if ($item.children("ul").length) {
         $item
           .children("ul")

@@ -1,28 +1,29 @@
-
-
 /* ===== THE REAL PAGE BANNERS ============================================== */
-
 
 /** Banner used on homepages. */
 
-$homepage-banner-max-height:         32.5rem;
+$homepage-banner-max-height: 32.5rem;
 $homepage-banner-compact-max-height: 18.75rem;
 $banner-figure-bg: $brand !default;
 
-.banner { overflow: hidden; }
+.banner {
+  overflow: hidden;
+}
 
 //TODO: Refactor and remove what's no longer needed
 .banner-in-page {
   position: relative;
 
-  @include breakpoint( tablet ) {
+  @include breakpoint(tablet) {
     top: -1.5 * $column-padding; //.content-panel > main|aside > .block
     // margin-top: -1.5 * $column-padding; //.content-panel > main|aside > .block
     // margin-bottom: 1.5 * $column-padding; //.content-panel > main|aside > .block
 
     &.bleed {
-      margin-left: calc( -25% - #{$column-padding} * 1.25 );//remember to account for table
-      width: calc( 125% + #{$column-padding} * 1.25 );
+      margin-left: calc(
+        -25% - #{$column-padding} * 1.25
+      ); //remember to account for table
+      width: calc(125% + #{$column-padding} * 1.25);
 
       img {
         z-index: -1;
@@ -31,10 +32,11 @@ $banner-figure-bg: $brand !default;
     }
   }
 
-  figcaption { //TODO: extend .tile-text
+  figcaption {
+    //TODO: extend .tile-text
     background-color: $banner-figure-bg;
 
-    @include breakpoint( tablet ) {
+    @include breakpoint(tablet) {
       position: absolute;
       top: 6rem;
       right: 0;
@@ -54,7 +56,9 @@ $banner-figure-bg: $brand !default;
       color: $white;
     }
 
-    p { margin-bottom: $gap-content; }
+    p {
+      margin-bottom: $gap-content;
+    }
 
     a {
       text-decoration: none;
@@ -62,10 +66,8 @@ $banner-figure-bg: $brand !default;
   }
 }
 
-
 .homepage-banner,
 .study-hub-banner {
-
   &.layout {
     // IE11 fix to turn off flexbox which is causing issues
     @include target-ie {
@@ -73,12 +75,15 @@ $banner-figure-bg: $brand !default;
     }
   }
 
-
-  .banner { position: relative; }
+  .banner {
+    position: relative;
+  }
 
   a[href] {
     @include hoverify() {
-      img { opacity: $base-hover-opacity; }
+      img {
+        opacity: $base-hover-opacity;
+      }
     }
   }
 
@@ -87,12 +92,16 @@ $banner-figure-bg: $brand !default;
     background-color: $green-brand;
 
     h1 {
-      &:not(:last-child) { margin-bottom: .25em; }
+      &:not(:last-child) {
+        margin-bottom: 0.25em;
+      }
 
       @include icon-selector() {
-        margin-left: .5em;
+        margin-left: 0.5em;
 
-        &::before { display: inline; }
+        &::before {
+          display: inline;
+        }
       }
     }
 
@@ -104,16 +113,22 @@ $banner-figure-bg: $brand !default;
       color: $white;
     }
 
-    h3 { line-height: 1.2; }
+    h3 {
+      line-height: 1.2;
+    }
 
-    @include breakpoint( tablet ) {
+    @include breakpoint(tablet) {
       position: absolute;
       right: 0;
       bottom: 40%;
       width: 50%;
 
-      &.wider { width: 50%; }
-      &.bottom { bottom: 0; }
+      &.wider {
+        width: 50%;
+      }
+      &.bottom {
+        bottom: 0;
+      }
 
       &.top {
         top: 0;
@@ -124,15 +139,17 @@ $banner-figure-bg: $brand !default;
     @include bp-tablet {
       width: 85%;
 
-      &.wider { width: 85% !important; }
+      &.wider {
+        width: 85% !important;
+      }
     }
 
-    @include breakpoint( desktop ) {
+    @include breakpoint(desktop) {
       width: 44%;
     }
   }
 
-  @include breakpoint( desktop ) {
+  @include breakpoint(desktop) {
     min-height: $homepage-banner-max-height;
 
     // Banner types
@@ -146,10 +163,12 @@ $banner-figure-bg: $brand !default;
       width: 25%;
     }
 
-    .site a { font-size: 1.125rem; }
+    .site a {
+      font-size: 1.125rem;
+    }
 
     .banner {
-      @include size( 100% );
+      @include size(100%);
       position: absolute;
 
       img {
@@ -157,11 +176,10 @@ $banner-figure-bg: $brand !default;
       }
     }
   }
-
 }
 
 .study-hub-banner {
-  @include breakpoint( desktop ) {
+  @include breakpoint(desktop) {
     //Overwriting extend for page
     .sidebar {
       position: absolute;
@@ -173,17 +191,15 @@ $banner-figure-bg: $brand !default;
 
     .banner {
       img {
-        @include size( 100%, auto );
+        @include size(100%, auto);
         position: absolute;
         right: 0;
       }
     }
   }
-
 }
 
 /* Banner for homepage port 3 up */
-
 
 .home-3-up-banner {
   /* IE */
@@ -212,24 +228,25 @@ $banner-figure-bg: $brand !default;
       position: absolute;
       bottom: 0;
       left: 0;
-      background-color: rgba(30,153,28,0.7);
+      background-color: rgba(30, 153, 28, 0.7);
       padding: 1rem;
       max-width: 50%;
 
-      h1, h2, h3, h4 {
+      h1,
+      h2,
+      h3,
+      h4 {
         color: $white;
       }
     }
     @include hoverify() {
-
-        img {
-          filter: brightness(0.85);
-        }
-
+      img {
+        filter: brightness(0.85);
+      }
     }
   }
 
-  @include breakpoint( $until:desktop ) {
+  @include breakpoint($until: desktop) {
     .primary-banner {
       width: 100%;
 
@@ -245,7 +262,7 @@ $banner-figure-bg: $brand !default;
     }
   }
 
-  @include breakpoint( $until:tablet ) {
+  @include breakpoint($until: tablet) {
     display: flex;
     flex-wrap: wrap;
 
@@ -253,10 +270,10 @@ $banner-figure-bg: $brand !default;
       figure {
         figcaption {
           position: relative;
-          width:100%;
+          width: 100%;
           max-width: 100%;
           background-color: #1e991c;
-          padding: .5rem .5rem .8rem;
+          padding: 0.5rem 0.5rem 0.8rem;
         }
       }
     }
@@ -267,7 +284,6 @@ $banner-figure-bg: $brand !default;
         background-color: #115737;
       }
       figure {
-
         img {
           display: none;
         }
@@ -286,11 +302,7 @@ $banner-figure-bg: $brand !default;
     }
   }
 
-
-
-
   @supports not (-ms-high-contrast: none) {
-
     // display: grid;
     // grid-template-rows: auto auto;
     // grid-template-columns: 1fr 1fr 1fr;
@@ -305,11 +317,8 @@ $banner-figure-bg: $brand !default;
     //   grid-column: 3/5;
     //   width: 100%;
     // }
-
   }
-
 }
-
 
 .home-6-up-banner {
   position: relative;
@@ -349,15 +358,15 @@ $banner-figure-bg: $brand !default;
 
     @include hoverify() {
       img {
-        filter: brightness(.8);
+        filter: brightness(0.8);
       }
     }
 
-    @include breakpoint( $until:desktop ) {
+    @include breakpoint($until: desktop) {
       width: 50%;
     }
 
-    @include breakpoint( $until:tablet ) {
+    @include breakpoint($until: tablet) {
       width: 100%;
 
       &:not(:first-child) {
@@ -371,7 +380,6 @@ $banner-figure-bg: $brand !default;
         display: block;
         width: 100%;
         background-color: #0d4b2f;
-
       }
       &:nth-child(odd) {
         .hero-image__text {
@@ -385,7 +393,6 @@ $banner-figure-bg: $brand !default;
         }
       }
     }
-
   }
 
   .panel-text-banner {
@@ -394,11 +401,13 @@ $banner-figure-bg: $brand !default;
 }
 
 #hubv4 {
+  .homepage-banner.oldBanner {
+    display: none;
+  }
   .banner {
-    position: relative;
+    // position: relative;
     margin-right: auto;
     margin-left: auto;
-    position: relative;
     width: 100%;
     max-width: 88rem;
     display: flex;
@@ -418,7 +427,7 @@ $banner-figure-bg: $brand !default;
         li {
           font-weight: 500;
           font-size: 1.1rem;
-          padding: .75rem .5rem;
+          padding: 0.75rem 0.5rem;
           border-bottom: 1px solid $grey-alto;
 
           &.selected {
@@ -462,8 +471,9 @@ $banner-figure-bg: $brand !default;
         bottom: unset;
       }
 
-
-      h1,h2,h3 {
+      h1,
+      h2,
+      h3 {
         color: $manuka;
       }
     }
