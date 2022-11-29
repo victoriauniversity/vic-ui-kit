@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, November 30, 2022, 8:19 AM */
+/** Version: 0.10.13 | Wednesday, November 30, 2022, 8:31 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15585,17 +15585,18 @@ document.addEventListener("DOMContentLoaded", function (event) {
           target.remove();
         }
       }, 100);
-    } else {
-      // Else normal page (not t&p apps)
-      var target = $("header .menu-bar > a").filter(function (i, el) {
-        return $(el).text() == "Blackboard";
-      });
-
-      if (target[0]) {
-        target.remove();
-      }
     }
-  });
+  }); // Else normal page (not t&p apps)
+
+  if (document.location.pathname.split("/")[1] !== "courses" && document.location.pathname.split("/")[1] !== "explore") {
+    var target = $("header .menu-bar > a").filter(function (i, el) {
+      return $(el).text() == "Blackboard";
+    });
+
+    if (target[0]) {
+      target.remove();
+    }
+  }
 }); // Check toolbar for mode=dev and apply class
 
 if (document.location.href.includes("SQ_DESIGN_NAME=v4") || document.location.href.includes("local.wgtn") || document.location.href.includes("assets/git_bridge/0009/1778031/dist")) {
