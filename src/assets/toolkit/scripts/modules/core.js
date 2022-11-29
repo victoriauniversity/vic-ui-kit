@@ -139,16 +139,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
           target.remove();
         }
       }, 100);
-    } else {
-      // Else normal page (not t&p apps)
-      var target = $("header .menu-bar > a").filter(function (i, el) {
-        return $(el).text() == "Blackboard";
-      });
-      if (target[0]) {
-        target.remove();
-      }
     }
   });
+  // Else normal page (not t&p apps)
+  if (
+    document.location.pathname.split("/")[1] !== "courses" &&
+    document.location.pathname.split("/")[1] !== "explore"
+  ) {
+    var target = $("header .menu-bar > a").filter(function (i, el) {
+      return $(el).text() == "Blackboard";
+    });
+    if (target[0]) {
+      target.remove();
+    }
+  }
 });
 
 // Check toolbar for mode=dev and apply class
