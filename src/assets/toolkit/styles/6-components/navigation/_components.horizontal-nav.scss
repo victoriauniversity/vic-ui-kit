@@ -93,7 +93,6 @@ $box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
 }
 $easing: cubic-bezier(0.22, 1, 0.36, 1);
 body#hubv4 {
-
   &.homepage {
     .show-mega-menu-top .mega-sub-menu #mega-menu > li > a {
       // Homepage specfic font size
@@ -432,6 +431,7 @@ body#hubv4 {
               border: none;
               margin-bottom: 0;
               margin-top: 0.5rem;
+              column-span: all;
 
               a {
                 display: flex;
@@ -561,7 +561,7 @@ body#hubv4 {
 
             &.active-nav-group {
               display: block;
-              column-count: 1;
+              column-count: 2;
               position: relative;
 
               > li:not(.sub-draw-title) {
@@ -569,14 +569,19 @@ body#hubv4 {
                 align-items: center;
                 break-inside: avoid-column;
                 padding: 0;
+                > a {
+                  > .tereo-title {
+                    color: $pounamu;
+                  }
+                }
               }
             }
           }
         }
 
         .draw-promo {
-          padding-right: 2rem;
-          width: 50%;
+          padding-right: 0;
+          width: 35%;
         }
 
         &.no-promo {
