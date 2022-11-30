@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, December 1, 2022, 8:05 AM */
+/** Version: 0.10.13 | Thursday, December 1, 2022, 8:45 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -11733,7 +11733,7 @@ aside .promo h3::before {
 #mega-nav a:focus,
 #mega-nav button:active,
 #mega-nav button:focus {
-  outline: 1px solid #1D2624;
+  outline: 1px solid #DDD;
 }
 
 .main-site-header #mega-menu li.nav-item-parent > a:active, .main-site-header #mega-menu li.nav-item-parent > a:focus,
@@ -17002,7 +17002,10 @@ body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage ul li.nav-item-parent .btn-e
     transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
     overflow: hidden;
     min-width: 300px;
+    -webkit-box-flex: 1;
+            flex: 1 1;
     opacity: 1;
+    padding-right: 5px;
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-promo > div {
     -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
@@ -17054,14 +17057,14 @@ body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage ul li.nav-item-parent .btn-e
             box-shadow: none;
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav {
-    width: 30%;
+    width: 40%;
     padding-right: 1rem;
     margin: 0 1rem;
     border-right: none;
     -webkit-box-flex: 1;
-            flex: auto;
+            flex: 1 1 40%;
     min-width: 300px;
-    max-width: 300px;
+    max-width: 400px;
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav .sub-draw-title {
     margin-bottom: 0.5rem;
@@ -21355,7 +21358,7 @@ body#hubv4 .menu-container .tray-tabs .tab {
 }
 
 body#hubv4 .menu-container .tray-tabs .tab:focus {
-  outline: 1px solid #1D2624;
+  outline: 1px solid #DDD;
   outline-offset: -1px;
 }
 
@@ -21789,7 +21792,7 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu__label {
     display: flex;
     -webkit-box-pack: start;
             justify-content: flex-start;
-    padding: 1rem 5rem 2rem;
+    padding: 1rem 3.5rem 2rem;
     background-color: #FFF;
     -webkit-transform: translateY(-100%);
             transform: translateY(-100%);
@@ -21880,6 +21883,9 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu__label {
     border: none;
     margin-bottom: 0;
     margin-top: 0.5rem;
+    -webkit-column-span: all;
+       -moz-column-span: all;
+            column-span: all;
   }
   body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav ul li.sub-draw-title a {
     display: -webkit-box;
@@ -21995,9 +22001,9 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu__label {
   }
   body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul.active-nav-group {
     display: block;
-    -webkit-column-count: 1;
-       -moz-column-count: 1;
-            column-count: 1;
+    -webkit-column-count: 2;
+       -moz-column-count: 2;
+            column-count: 2;
     position: relative;
   }
   body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul.active-nav-group > li:not(.sub-draw-title) {
@@ -22010,9 +22016,22 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu__label {
             break-inside: avoid-column;
     padding: 0;
   }
+  body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav > ul.active-nav-group > li:not(.sub-draw-title) > a > .tereo-title {
+    color: #0D4C38;
+  }
   body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-promo {
-    padding-right: 2rem;
-    width: 50%;
+    padding-right: 0;
+    width: 35%;
+  }
+  body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-promo .highlight-message {
+    margin-right: 0;
+  }
+  body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-promo .highlight-message .highlight-content {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-promo .highlight-message .highlight-image {
+    width: 40%;
   }
   body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer.no-promo {
     padding-right: 1rem;
