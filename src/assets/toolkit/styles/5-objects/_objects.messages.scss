@@ -222,6 +222,11 @@
     // clip-path: polygon(-0.25% -3px, 93.9% -0.75%, 100.2% 99.28%, 0px 100%);
     // clip-path: polygon(0% 0%, 83% 0, 100% 14%, 100% 100%, 0% 100%);
     // clip-path: polygon(0% 0%, 94.45% -3px, 100% 24.44%, 100% 100%, 0% 100%);
+    // border-radius: $radius;
+    box-shadow:  0 1px 1px rgba(0,0,0,0.15),
+      0 2px 2px rgba(0,0,0,0.15),
+      0 4px 4px rgba(0,0,0,0.15),
+      0 8px 8px rgba(0,0,0,0.15);
 
     .highlight-content {
       background-color: rgb(229, 246, 253);
@@ -237,6 +242,7 @@
       }
     }
     &.green {
+      border-left-color: $pounamu;
       .highlight-content {
         color: $pounamu;
         background-color: $kohuhu;
@@ -255,6 +261,13 @@
             background-color: $pounamu;
           }
         }
+      }
+    }
+    &.plain {
+      border-left: none;
+      .highlight-content {
+        background-color: $off-white;
+        color: $black-brand;
       }
     }
     &.red {
