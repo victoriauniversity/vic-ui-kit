@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, November 30, 2022, 10:00 AM */
+/** Version: 0.10.13 | Thursday, December 1, 2022, 8:05 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -4689,6 +4689,11 @@ blockquote.quote {
   color: #FFF !important;
 }
 
+#hubv4 .highlight-message {
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 2px 2px rgba(0, 0, 0, 0.15), 0 4px 4px rgba(0, 0, 0, 0.15), 0 8px 8px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 2px 2px rgba(0, 0, 0, 0.15), 0 4px 4px rgba(0, 0, 0, 0.15), 0 8px 8px rgba(0, 0, 0, 0.15);
+}
+
 #hubv4 .highlight-message .highlight-content {
   background-color: #e5f6fd;
   color: #014361;
@@ -4701,6 +4706,10 @@ blockquote.quote {
 #hubv4 .highlight-message.primary .highlight-content {
   background-color: #fff;
   border: 1px solid #99B9AF;
+}
+
+#hubv4 .highlight-message.green {
+  border-left-color: #0D4C38;
 }
 
 #hubv4 .highlight-message.green .highlight-content {
@@ -4723,6 +4732,15 @@ blockquote.quote {
           box-shadow: 1.1px 2.2px 2.2px rgba(7, 7, 7, 0.47);
   color: #fff;
   background-color: #0D4C38;
+}
+
+#hubv4 .highlight-message.plain {
+  border-left: none;
+}
+
+#hubv4 .highlight-message.plain .highlight-content {
+  background-color: #f7f7f7;
+  color: #1D2624;
 }
 
 #hubv4 .highlight-message.red .highlight-content {
@@ -16919,6 +16937,18 @@ body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage ul li.nav-item-parent .btn-e
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul > li {
     border-top: 1px solid #EEE;
     padding: 5px 0;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+  body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul > li .tereo-title {
+    color: #0D4C38;
+    display: block;
+    font-weight: 400;
+    margin-right: 0.5rem;
+    margin-bottom: 0.15rem;
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul > li .btn-expander {
     display: -webkit-box;
@@ -16955,8 +16985,8 @@ body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage ul li.nav-item-parent .btn-e
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul.active-nav-group > li {
     display: -webkit-box;
     display: flex;
-    -webkit-box-align: center;
-            align-items: center;
+    -webkit-box-align: start;
+            align-items: flex-start;
     flex-wrap: wrap;
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul.active-nav-group > li .btn-expander:after {
@@ -16966,6 +16996,9 @@ body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage ul li.nav-item-parent .btn-e
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul.active-nav-group > li > a {
     -webkit-box-flex: 1;
             flex: 1 0 70%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul.active-nav-group > li > ul {
     padding: 0.2em 0 0.75em 0;
