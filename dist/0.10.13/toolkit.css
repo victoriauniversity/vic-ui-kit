@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, December 1, 2022, 11:42 AM */
+/** Version: 0.10.13 | Friday, December 2, 2022, 2:06 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -11144,6 +11144,7 @@ aside .promo h3::before {
   width: 65%;
   padding-right: 2.5rem;
   border: none;
+  float: left;
 }
 
 #hubv4 .homepage-intro .intro-text {
@@ -11223,7 +11224,7 @@ aside .promo h3::before {
   width: 35%;
 }
 
-#hubv4 .homepage-intro + .text-promo-panel > div {
+#hubv4 .homepage-intro + .text-promo-panel > div:not(.promo) {
   background-color: unset !important;
   border: unset !important;
 }
@@ -16951,6 +16952,13 @@ body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage ul li.nav-item-parent .btn-e
     font-weight: 400;
     margin-right: 0.5rem;
     margin-bottom: 0.15rem;
+  }
+  body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul > li.active > a {
+    font-weight: 700;
+    border-left: 0.25rem solid #0D4C38;
+  }
+  body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul > li.active > a span {
+    font-weight: 700;
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul > li .btn-expander {
     display: -webkit-box;
@@ -23586,6 +23594,20 @@ body#hubv4 .hub .quote-panel.quote-image .quote figcaption h4 {
   transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
 }
 
+#hubv4 .hub-banner-sidemenu a .banner-body {
+  position: relative;
+}
+
+#hubv4 .hub-banner-sidemenu a .banner-body::after {
+  content: "";
+  display: inline-block;
+  font-family: "VicIcons";
+  position: absolute;
+  font-size: 1.4rem;
+  bottom: 1rem;
+  right: 1rem;
+}
+
 #hubv4 .hub-banner-sidemenu a:hover figure h1, #hubv4 .hub-banner-sidemenu a:hover figure h2, #hubv4 .hub-banner-sidemenu a:active figure h1, #hubv4 .hub-banner-sidemenu a:active figure h2, #hubv4 .hub-banner-sidemenu a:focus figure h1, #hubv4 .hub-banner-sidemenu a:focus figure h2 {
   text-decoration: underline;
 }
@@ -23601,11 +23623,13 @@ body#hubv4 .hub .quote-panel.quote-image .quote figcaption h4 {
 }
 
 #hubv4 .hub-banner-sidemenu .banner-image {
-  height: 100%;
+  background-image: none !important;
 }
 
 #hubv4 .hub-banner-sidemenu .banner-image img {
   width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 #hubv4 .hub-banner-sidemenu .banner-body {
