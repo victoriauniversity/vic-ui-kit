@@ -295,6 +295,20 @@
     }
 
     a {
+
+      .banner-body {
+        position: relative;
+
+        &::after {
+          content: "";
+          display: inline-block;
+          font-family: "VicIcons";
+          position: absolute;
+          font-size: 1.4rem;
+          bottom: 1rem;
+          right: 1rem;
+        }
+      }
       @include hoverify() {
         figure {
             h1,h2 {
@@ -313,11 +327,13 @@
       }
     }
     .banner-image {
-      height: 100%;
+      // height: 100%;
+      background-image: none !important;
       // background-size: cover;
       img {
         // display: none;
         width: 100%;
+        object-fit: cover;
       }
     }
 
@@ -330,6 +346,7 @@
 
     .banner-title {
       margin-bottom: 2rem;
+
 
       h1, h2 {
         color: $manuka;
