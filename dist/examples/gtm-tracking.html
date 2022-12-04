@@ -1,0 +1,673 @@
+<!-- Version: 0.10.13 | Monday, December 5, 2022, 9:00 AM -->
+<!doctype html>
+<html lang="">
+<head>
+
+  <!-- Google Tag Manager --> <script> (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+ '&gtm_auth=KRMIRv_4UUHJZOdVJ8C8JQ&gtm_preview=env-32&gtm_debug=x';f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NL8WSRD'); </script> <!-- End Google Tag Manager -->
+
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Example | Tracking through Google Tag Manager</title>
+
+  <!-- Fav icons compatible with all major browsers and devices -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="mask-icon" href="../images/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="theme-color" content="#ffffff">
+
+  
+
+
+  <!-- icons -->
+<link rel="stylesheet" href="https://www.wgtn.ac.nz/?a=1935407">
+
+
+  <!-- toolkit styles -->
+  <link rel="stylesheet" href="../toolkit.css">
+  <!-- /toolkit styles -->
+
+  <script src="https://polyfill.io/v3/polyfill.min.js"></script>
+
+  <script>
+      /** Allows to add custom scripts that will be executed inside the jQuery's $(document).ready().  */
+      var onDocumentReadyFunctions = [];
+      function runFunctionOnDocumentReady( fn ) { onDocumentReadyFunctions.push( fn ); }
+  </script>
+
+  
+
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) --> <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NL8WSRD&gtm_auth=KRMIRv_4UUHJZOdVJ8C8JQ&gtm_preview=env-32&gtm_debug=x" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <!-- End Google Tag Manager (noscript) -->
+
+  <!-- If 'fabricator=true' is present in page's annotation. -->
+
+
+
+  <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
+
+    <div class="global" id="global-nav">
+    
+    	<div class="menu-toggle horisontal-links">
+    		<a href="javascript:void(0);"><div class="logo-mini">&nbsp;</div></a>
+    		<a href="javascript:void(0);" class="js-toggle-global-nav" role="button" aria-label="Toggle Navigation">
+    
+    			<span class="tcon tcon-menu--xcross" aria-label="toggle menu" style="float:right;">
+    			  <span class="tcon-menu__lines" aria-hidden="true"></span>
+    			  <span class="tcon-visuallyhidden">toggle menu</span>
+    			</span>
+    
+    		</a>
+    		<!-- <div class="mobile logo-mini"></div> -->
+    	</div>
+    
+    	<div class="menu">
+      	<nav>
+      		<div class="search">
+      			<form method="get" action="//wgtn.ac.nz/search">
+      			    <div role="search">
+    					<a href="javascript:void(0);" class="js-toggle-global-search hide-on-mobile">
+    						<span class="tcon tcon-search--xcross " aria-label="toggle search">
+    						  <span class="tcon-search__item" aria-hidden="true"></span>
+    						  <span class="tcon-visuallyhidden">toggle search</span>
+    						</span>
+    					</a>
+      				    <!-- <a href="#" class="icon-search js-toggle-global-search hide-on-mobile"></a> -->
+      			    	<label class="input-wrapper -icon-search" id="global-search">
+    
+      			        	<input type="text" autocomplete="off" name="q" placeholder="Search Victoria for…" required>
+      		  				  <input type="submit" value="Go">
+    
+      			        </label>
+      			    </div>
+      			</form>
+    
+      			<div class="horisontal-links align-center hide-on-desktop">
+      				<a href="#"><span class="icon-home"></span>Home</a>
+      				<a href="#"><span class="icon-phone"></span>Contact</a>
+      			</div>
+      		</div>
+    
+      		<div id="menu">
+      			<a href="#" class="home">
+      				<span class="icon-home"></span>
+      				<span class="hide-on-desktop">Victoria's main site</span>
+      			</a>
+      			<a href="#">Future students</a>
+      			<a href="#">International students</a>
+      			<a href="#">Current students</a>
+            <a href="#">Research</a>
+            <a href="#">About Victoria</a>
+    
+      <!-- 		    <label role="search" class="hide-on-mobile">
+      		    	<a href="#" class="icon-search"></a>
+      		    </label> -->
+      		</div>
+    
+    
+      	</nav>
+    
+    	</div>
+    </div>
+      <header role="banner" class="site-header">
+        <div class="block centraliser">
+      
+          <!-- Logotype -->
+          <div class="logo">
+            <a href="/" title="Victoria University of Wellington homepage">
+              <picture>
+                  <!-- *MUST* be in pixels to avoid inconsistencies between CSS mediaqueries and HTML mediaqueries on Safari (*facepalm*)  -->
+                <source media="(max-width: 1087px)" srcset="../images/new/v2/logo-white-portrait.svg">
+                <img src="../images//new/v2/logo-white-full.svg" alt="Victoria University of Wellington - Te Whare Wānanga o te Ūpoko o te Ika a Māui">
+              </picture>
+            </a>
+          </div>
+      
+          <!-- Introductory block -->
+          <div class="site-intro">
+      
+            <a href="#" title="Example | Tracking through Google Tag Manager homepage">
+              <h1>
+                  <span class="preline">Analytics</span>
+      
+                
+                   GTM tracking 
+                
+                
+              </h1>
+            </a>
+          </div>
+      
+        </div>
+      </header>
+
+  <!-- 'Go up' button -->
+  <a href="javascript:;" id="btn-up" title="Go to the top of the page" class="btn-floating sticky bottom" tabindex="-1"><span class="icon-arrow-up"></span></a>
+
+  <!-- 'Edit page' button -->
+  <a href="/_edit" id="btn-admin" style="display: none;" title="Edit the page in Squiz administration" class="btn-floating top" tabindex="-1"><span class="icon-edit"></span></a>
+
+
+
+	
+
+<!-- Variation 2) -->
+
+<section class="layout centraliser block">
+
+  <!-- Left 'submenu' column -->
+  <div class="sidebar"> <nav class="sidemenu" role="navigation" data-gtm-track>
+
+  <!-- Mobile devices *only* sidemenu control -->
+  <h1 class="sidemenu-toggle"><a href="#" title="Show/Hide Research menu">Research menu</a></h1>
+
+  <ul>
+    <!-- Alt Root (1st) level items under the given Hub -->
+    <li class="sidemenu__label"><a href="#" title="">Engage</a></li>
+    
+    <!-- Root (1st) level items under the given Hub -->
+    <li><a class="sidemenu__link--withIcon" href="#" title="">Staff Support <i class="icons8-right-arrow"></i></a></li>
+
+    <li>
+      <a href="#" title="">Research and ethics integrity</a>
+
+      <!-- 2nd level -->
+      <ul>
+        <li><a href="#" title="">General rules</a></li>
+        <li><a href="#" title="">Staff</a></li>
+        <li><a href="#" title="">Research and ethics integrity manual</a></li>
+        <li><a href="#" title="">Responsibilities</a></li>
+      </ul>
+    </li>
+
+    <li class="has-submenu active expanded">
+      <a href="/research-IA/engage-our-talent.html" title="">New research staff and their specialisation</a>
+      <span class="btn-expander" title="Toggle subpages"></span>
+
+      <!-- 2nd level -->
+      <ul>
+        <li><a href="#" title="">Welcome ceremony</a></li>
+        <li><a href="#" title="">Privacy rules</a></li>
+        <li><a href="#" title="">Research departments</a></li>
+
+        <li class="has-submenu active expanded">
+          <a href="#" title="">Contacts</a>
+          <span class="btn-expander" title="Toggle subpages"></span>
+
+          <!-- 3rd level -->
+          <ul>
+            <li><a href="#" title="">Directorate</a></li>
+            <li class="active"><a href="#" title="">General assistance</a></li>
+            <li><a href="#" title="">Emergency issues</a></li>
+            <li><a href="#" title="">E-mail and phone</a></li>
+            <li><a href="#" title="">Guidelines</a></li>
+          </ul>
+
+        </li>
+
+        <li><a href="#" title="">Organisational structure</a></li>
+        <li><a href="#" title="">Human resources and hiring process</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#" title="">Commercialise your research</a></li>
+    <li><a href="#" title="">Research funding and grants</a></li>
+
+    <li>
+        <a href="#" title="">PBRF</a>
+
+        <!-- 2nd level -->
+        <ul>
+          <li><a href="#" title="">Welcome ceremony</a></li>
+          <li><a href="#" title="">Privacy rules</a></li>
+          <li><a href="#" title="">Research departments</a></li>
+
+          <li>
+            <a href="#" title="">Contacts</a>
+
+              <!-- 3rd level -->
+              <ul>
+                <li><a href="#" title="">Directorate</a></li>
+                <li><a href="#" title="">General assistance</a></li>
+                <li><a href="#" title="">Emergency issues</a></li>
+                <li>
+                  <a href="#" title="">E-mail and phone</a>
+
+                  <!-- 4th level -->
+                  <ul>
+                    <li><a href="#" title="">Department of internal relationships</a></li>
+                    <li><a href="#" title="">Department of seriousness relationships</a></li>
+                    <li><a href="#" title="">Direct assistance services</a></li>
+                    <li><a href="#" title="">Lost and found</a></li>
+                  </ul>
+                </li>
+                <li><a href="#" title="">Guidelines</a></li>
+              </ul>
+
+          </li>
+
+          <li><a href="#" title="">Organisational structure</a></li>
+          <li><a href="#" title="">Human resources and hiring process</a></li>
+        </ul>
+      </li>
+
+    <li>
+      <a href="#" title="">Workshops, resources and support</a>
+
+      <ul>
+        <li><a href="#" title="">Workshop</a></li>
+        <li><a href="#" title="">Resources</a></li>
+        <li><a href="#" title="">Support</a></li>
+        <li><a href="#" title="">Events</a></li>
+        <li><a href="#" title="">Dates</a></li>
+        <li><a href="#" title="">Contacts</a></li>
+        <li><a href="#" title="">Issues resolution</a></li>
+        <li><a href="#" title="">Framework</a></li>
+        <li><a href="#" title="">Best practices</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#" title="">Supervising research students</a></li>
+  </ul>
+</nav> </div>
+
+  <!-- Center 'content' and right 'widget' columns -->
+  <div class="content-panel">
+
+    <!-- Center 'content' column -->
+    <main>
+      <div class="block formatting">
+
+        <h1>GTM Tracking examples</h1>
+
+        <p><em>This page describes the scope and overview of all interactions we can track through Google Tag Manager. If you are interested in the UI Kit's tracking plugin and its API, see the <a href="/components.html#tracking-api-for-gtm">Tracking API for GTM</a> for more.</em></p>
+
+        <div class="flash-message info">
+          <p>
+            If the GTM tracking works correctly, you should be able to see GTM's <a class="link-external" href="//www.analyticsmania.com/post/google-tag-manager-debug-mode/">preview/debug panel</a> with tags firing off.
+          </p>
+        </div>
+
+        <p>
+          <a href="//analytics.google.com/analytics/web/#/report-home/a2769050w145723262p150433667" class="link-external">
+            <strong>Google Analytics (Development only)</strong>
+          </a><br>
+          <small>(to see testing events and views propagating)</small>
+        </p>
+
+        <p>
+          <a href="//tagmanager.google.com/#/container/accounts/1409976535/containers/8504399/workspaces/1" class="link-external">
+            <strong>Google Tag Manager workspace</strong>
+          </a><br>
+          <small>(to configure tags, variables, events and their behaviour)</small>
+        </p>
+
+        <h2>On Page Load</h2>
+        <p>Logs interactions that happen when the page is loaded.</p>
+
+        <h3>Page View (Google Analytics)</h3>
+        <p>
+          Standard page view tracking for Google Analytics.
+        </p>
+
+        <h3>Page Load Time</h3>
+        <p>
+          Measures how long it takes to fully load and render the page. It's more accurate than GA's similar feature, because it does not sample the final results.
+        </p>
+        <p>
+          <strong>Event:</strong> <em>Page Load Time</em> - URL - Time (in seconds)<br>
+          <strong>Example:</strong> Reload this page
+        </p>
+
+        <h2>Automatic interactions</h2>
+        <p>Logs various user-based interactions anywhere on the entire site.</p>
+
+        <h3>Contact link click</h3>
+        <p>
+          Logs event if a link with email or phone is clicked (<em>mailto:</em> or <em>tel:</em> in the URL).
+        </p>
+        <p>
+          <strong>Events:</strong><br>
+          <em>Phone Number Click</em> - Phone number - Page URL<br>
+          <em>Email Click</em> - Email address - Page URL<br>
+          <strong>Example:</strong><br>
+          <a href="tel:08888888">Call us</a> or <a href="mailto:mail.example.com">Mail us</a> now!
+        </p>
+
+        <h3>File download link click</h3>
+        <p>
+          Logs event if a link with downloadable file is clicked. Tracked file extensions include: PDF, XLS, DOC, TXT.
+        </p>
+        <p>
+          <strong>Events:</strong><br>
+          <em>[File type/extension]</em> - Filename - Page URL<br>
+          <strong>Example:</strong><br>
+          <a class="button primary" href="https://wgtn.ac.nz/fca/teaching/publications/ClickersmanualV01.pdf">Download a brochure</a>
+        </p>
+
+        <h3>Outbound link click</h3>
+        <p>
+          Logs event if user clicks on a link with URL outside of the current domain.
+        </p>
+        <p>
+          <strong>Events:</strong><br>
+          <em>[Outbound domain name]</em> - Outbound link URL - Page URL<br>
+          <strong>Example:</strong><br>
+          Try searching in the <a href="//google.com" class="link-external">Google search</a>
+        </p>
+
+        <h3>Form interaction</h3>
+        <p>
+          Tracks if user abandons (e.g. fills in a field, but does not send the form) or submits a form.
+        </p>
+        <p>
+          <strong>Events:</strong><br>
+          <em>Abandonment</em> - Page URL<br>
+          <em>Submission</em> - Page URL<br>
+          <strong>Example:</strong><br>
+          Type in something into the search bar in the header and either abandon it (and refresh/leave the page) or submit the search term.
+        </p>
+
+        <h3>YouTube video interactions</h3>
+        <p>
+          Logs various interactions with an embedded YouTube video.
+        </p>
+        <p>
+          <strong>Events:</strong><br>
+          <em>Started video</em> - Video's title and URL - Play time (in seconds)<br>
+          <em>Paused video</em> - Video's title and URL - Play time (in seconds)<br>
+          <em>Seeking in video</em> - Video's title and URL - Play time (in seconds)<br>
+          <em>Finished video</em> - Video's title and URL - Play time (in seconds)<br>
+          <em>[25%|50%|75%] of video seen</em> - Video's title and URL - Play time (in seconds)<br>
+          <strong>Example:</strong><br>
+          <figure class="media">
+            <div class="embed"><iframe width="1280" height="720" src="https://www.youtube.com/embed/6nD-kAsV-rk?rel=0" frameborder="0" allowfullscreen=""></iframe></div>
+
+            <figcaption>Play to trigger video events tracking</figcaption>
+          </figure>
+        </p>
+
+        <h2>Manually added interactions</h2>
+        <p>
+          Interactions that are component-specific and have been built by us.
+        </p>
+
+        <h3>Expandable side menu clicks</h3>
+        <p>
+          Tracks clicks on the expandable/collapsible link, and standard page links in the left-side menu.
+        </p>
+        <p>
+          <strong>Events:</strong><br>
+          <em>Link Click</em> - Target URL - Page URL<br>
+          <em>Expandable Button Click</em> - Page URL<br>
+          <strong>Example:</strong><br>
+          Interact with the side menu on the left.
+        </p>
+
+        <h3>Custom element interaction</h3>
+        <p>
+          Allows to easily track custom interaction on any given element (promo box, special button, banner, CTAs etc.) by simply adding HTML attribute <em>`data-gtm-track="[action-type]"`</em> (~ click) into the element's source code.
+        </p>
+        <p>
+          <em>
+          Note: In case you want to track and group specific class of interactions, a unique HTML attribute `id` (or `data-gtm-id` in case `id` is already used) should be added to the element. Additionally, further configuration within Google Tag Manager is required to specify event's trigger(s) and tag(s).
+        </em>
+        </p>
+        <p>
+          <strong>Events:</strong><br>
+          <em>[Unique event name]</em> - Target URL - Page URL<br>
+          <strong>Example #1 (Simple click event):</strong><br>
+        </p>
+        </div>
+
+        <div>
+          <div class="centraliser block">
+            <div class="updated-tile-grid">
+              <div class="tiles-wrap four-col image-no-gutter">
+                <ul>
+                  <li class="tile">
+                    <img alt="" src="https://www.wgtn.ac.nz/__data/assets/image/0004/1357429/abstract.png">
+                    <a href="#" data-gtm-track="click" data-gtm-id="promo-box">
+                      <h3 class="">Media contacts</h3>
+                      <div class="sub-text">
+                        <p>If you’re looking for an expert opinion, our Communications team can help you get in touch with the right
+                          person.</p>
+                      </div>
+
+                      <span class="button">Make contact</span>
+
+                    </a>
+                  </li>
+
+                  <li class="tile">
+                    <img alt="" src="https://www.wgtn.ac.nz/__data/assets/image/0004/1357429/abstract.png">
+                    <a href="#" data-gtm-track="click" data-gtm-id="promo-box">
+                      <h3 class="">Faculty of Graduate Research</h3>
+                      <div class="sub-text">
+                        <p>Victoria’s Faculty of Graduate Research is your dedicated point of contact for all enquiries about higher
+                          degrees by research.</p>
+                      </div>
+
+                      <span class="button">Learn more</span>
+
+                    </a>
+                  </li>
+
+                  <li class="tile">
+                    <img alt="" src="https://www.wgtn.ac.nz/__data/assets/image/0004/1357429/abstract.png">
+                    <a href="#" data-gtm-track="click" data-gtm-id="promo-box">
+                      <h3 class="">Research Office</h3>
+                      <div class="sub-text">
+                        <p>Our Research Office teams connect collaborators with researchers and advise on funding and resources to support
+                          effective research output.</p>
+                      </div>
+
+                      <span class="button">Get in touch</span>
+
+                    </a>
+                  </li>
+
+                  <li class="tile">
+                    <img alt="" src="https://www.wgtn.ac.nz/__data/assets/image/0004/1357429/abstract.png">
+                    <a href="#" data-gtm-track="click" data-gtm-id="test-promo-box">
+                      <h3 class="">Viclink</h3>
+                      <div class="sub-text">
+                        <p>Viclink works to benefit businesses, industry and the community by identifying and commercialising new technologies
+                          developed by our researchers.</p>
+                      </div>
+
+                      <span class="button">Learn more</span>
+
+                    </a>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="formatting">
+          <p>
+
+          </p>
+          <strong>Example #2 (Advanced click event with custom data):</strong><br>
+          <p>
+            <a href="#" class="button primary" data-gtm-track="click" data-gtm-id="test-button-advanced" data-gtm-vars='{ "href": "https://www.google.com", "name": "Custom buttonator", "time": 7.34120 }'>Very custom button</a>
+          </p>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+</section>
+
+
+
+
+
+
+  <!-- If 'fabricator=false' is present or attribute is not present at all in the annotation. -->
+
+      <!-- Default fallback for footer when not specified in the template. -->
+      <footer role="contentinfo">
+      
+        <!-- Links and contacts that can vary between sub-sites -->
+        <section class="footer-secondary two-columns">
+          <div class="centraliser">
+      
+            <!-- Sub-site's related or recommended links -->
+            <div class="block">
+      
+              <h2>Useful links</h2>
+              <nav role="navigation">
+                <ul role="menubar">
+                  <li>
+                    <a href="#" role="menuitem" title="Read Deadlines and dates for 2016">Deadlines and dates for 2016</a>
+                  </li>
+                  <li>
+                    <a href="#" role="menuitem" title="Read Organising events">Organising events</a>
+                  </li>
+                  <li>
+                    <a href="#" role="menuitem" title="Read PhD guidelines">PhD guidelines</a>
+                  </li>
+                  <li>
+                    <a href="#" role="menuitem" title="Read Contacts and directories">Contacts and directories</a>
+                  </li>
+                  <li>
+                    <a href="#" role="menuitem" title="Read Deadlines for last year">Deadlines for last year</a>
+                  </li>
+                </ul>
+              </nav>
+      
+            </div>
+      
+            <!-- Sub-site's related links -->
+            <div class="block contacts">
+      
+              <a href="#" title="See more contact information" class="link-more">Other contacts</a>
+              <h2>Useful contacts</h2>
+      
+              <address>
+      
+                <!-- Phone numbers -->
+                <ul class="phones">
+      
+                  <li>
+                    <a href="tel:+64 4 472 1000" title="Call to general enquiries">+64 4 472 1000</a>
+                    general enquiries
+                  </li>
+                  <li>
+                    <a href="tel:64221231210" title="Call to personal advisory">64221231210</a>
+                    personal advisory
+                  </li>
+                </ul>
+      
+                <!-- Mail addresses -->
+                <ul class="mails">
+                  <li>
+                    <a href="mailto:info@vbs.victoria.ac.nz" title="Send an email to info@vbs.victoria.ac.nz">info@vbs.victoria.ac.nz</a>
+                  </li>
+                </ul>
+              </address>
+      
+            </div>
+      
+          </div>
+        </section>
+      
+        <!-- Related links from global site -->
+        <section class="footer-secondary">
+          <div class="centraliser">
+            <div class="block">
+              <h2>Victoria University</h2>
+      
+              <nav role="navigation">
+                <ul role="menubar">
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Faculties</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Contacts and directories</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Campuses</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Study</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Students</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Students</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Staff</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Careers</a></li>
+                  <li role="menuitem"><a href="#" role="menuitem" title="Read about ...">Alumni</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </section>
+      
+        <!-- Meta-links and contacts that are shared between sub-sites -->
+        <section class="footer-primary">
+          <div class="centraliser">
+      
+            <div class="block">
+      
+              <!-- Smaller version of logotype -->
+              <div class="logo">
+                <a href="/" title="Victoria University of Wellington homepage">
+                  <img class="logo"  src="../images/new/v2/logo-white-full.svg" alt="Victoria University of Wellington - Te Whare Wānanga o te Ūpoko o te Ika a Māui">
+                </a>
+              </div>
+      
+              <!-- Global contacts -->
+              <ul class="contacts">
+                <li>
+                  <a title="Call Victoria about general enquiries" href="tel:+6444721000">+64 4 472 1000</a>
+                </li>
+                <li>
+                  <a title="Write Victoria an email" href="mailto:info@wgtn.ac.nz">info@wgtn.ac.nz</a>
+                </li>
+                <li>
+                  Enrolments: <a title="Call Victoria regarding enrolments" href="tel:+64800842867">0800 VICTORIA</a>
+                </li>
+                <li>
+                  Emergency: <a title="Call in case of emergency" href="tel:+6444639999">+64 4 463 9999</a> or ext. 8888 (internal)
+                </li>
+              </ul>
+      
+            </div>
+      
+            <div class="block small">
+      
+              <nav role="navigation">
+                <ul role="menubar" class="minilinks">
+                  <li role="menuitem"><a title="See ..." href="https://www.wgtn.ac.nz/site-info">Site info</a></li>
+                  <li role="menuitem"><a title="See ..." href="https://www.wgtn.ac.nz/site-info/site-map">Site map</a></li>
+                  <li role="menuitem"><a title="See ..." href="https://www.wgtn.ac.nz/site-info/feedback">Feedback</a></li>
+                  <li role="menuitem"><a title="See ..." href="https://www.wgtn.ac.nz/site-info/glossary">Glossary</a></li>
+                </ul>
+              </nav>
+      
+              <small class="copyright">Copyright &copy; Victoria University of Wellington, New Zealand</small>
+      
+            </div>
+      
+          </div>
+        </section>
+      </footer>
+
+
+  <!-- jQuery -->
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+	<!-- toolkit scripts -->
+	<script src="../toolkit.js"></script>
+	<!-- /toolkit scripts -->
+
+  
+
+</body>
+</html>
