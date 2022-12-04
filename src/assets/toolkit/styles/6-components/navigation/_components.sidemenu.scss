@@ -1211,7 +1211,10 @@ body#hubv4 {
             transition: all $easing 0.2s;
             overflow: hidden;
             min-width: 300px;
+            flex: 1 1;
             opacity: 1;
+            padding-right: 5px;
+
             > div {
               transition: all $easing 0.3s;
               max-width: 100%;
@@ -1237,7 +1240,7 @@ body#hubv4 {
 
           &.active {
             padding: 1rem;
-            padding-left: 4.5rem;
+            padding-left: 3.5rem;
             padding-right: 2rem;
             overflow: visible;
             opacity: 1;
@@ -1245,8 +1248,7 @@ body#hubv4 {
             visibility: visible;
             background-repeat: no-repeat;
             background-size: 234px;
-            background-attachment: fixed;
-            background-position: 350px;
+            background-position: -80px -110px;
           }
 
           .close-draw {
@@ -1264,13 +1266,13 @@ body#hubv4 {
           }
 
           .draw-nav {
-            width: 30%;
+            width: 40%;
             padding-right: 1rem;
             margin: 0 1rem;
             border-right: none;
-            flex: auto;
+            flex: 1 1 40%;
             min-width: 300px;
-            max-width: 300px;
+            max-width: 400px;
 
             .sub-draw-title {
               margin-bottom: 0.5rem;
@@ -1301,6 +1303,27 @@ body#hubv4 {
               > li {
                 border-top: 1px solid $grey-gallery;
                 padding: 5px 0;
+                display: flex;
+                flex-direction: column;
+
+                .tereo-title {
+                  color: $pounamu;
+                  display: block;
+                  font-weight: 400;
+                  margin-right: 0.5rem;
+                  margin-bottom: 0.15rem;
+                }
+
+                &.active {
+                  > a {
+                    font-weight: 700;
+                    border-left: .25rem solid $pounamu;
+                    span {
+                      font-weight: 700;
+                    }
+                  }
+                }
+
                 .btn-expander {
                   display: flex;
                   justify-content: center;
@@ -1335,7 +1358,7 @@ body#hubv4 {
                 }
                 > li {
                   display: flex;
-                  align-items: center;
+                  align-items: flex-start;
                   flex-wrap: wrap;
                   .btn-expander {
                     &:after {
@@ -1344,6 +1367,7 @@ body#hubv4 {
                   }
                   > a {
                     flex: 1 0 70%;
+                    flex-direction: column;
                   }
                   &.expanded {
                     > ul {

@@ -132,6 +132,33 @@ $strip-banner-border-color: $brand !default;
         }
       }
 
+      #hubv4 & {
+
+        @include breakpoint( $from: tablet ) {
+          figcaption {
+            h1, p {
+              background-color: rgba(13, 76, 56, .9);
+            }
+          }
+        }
+
+        @include breakpoint( $until: tablet ) {
+          figcaption {
+            position: relative;
+            padding: 0;
+
+            .block {
+              padding: 1.5rem;
+              background-color: $pounamu;
+            }
+
+            h1, p {
+              background-color: transparent;
+            }
+          }
+        }
+      }
+
     }
 
   }
