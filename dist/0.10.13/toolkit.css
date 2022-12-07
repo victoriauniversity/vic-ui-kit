@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, December 5, 2022, 9:00 AM */
+/** Version: 0.10.13 | Thursday, December 8, 2022, 11:46 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -16669,10 +16669,6 @@ body#hubv4 .sidemenu.sidemenu-light > ul, body#hubv4 body:not(#hubv4) .sidemenu-
   font-weight: 500;
 }
 
-body#hubv4 .sidemenu.sidemenu-light > ul > li.active, body#hubv4 body:not(#hubv4) .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage > ul > li.active, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-light.sidemenu-homepage > ul > li.active, body#hubv4 .sidemenu-banner-wrap .sidemenu-light#mega-nav > ul > li.active, body#hubv4 .show-mega-menu-top .sidemenu-light.mega-sub-menu > ul > li.active {
-  border-bottom: 1px solid #CCC;
-}
-
 body#hubv4 .sidemenu.sidemenu-light > ul > li.active > a:hover, body#hubv4 body:not(#hubv4) .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage > ul > li.active > a:hover, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-light.sidemenu-homepage > ul > li.active > a:hover, body#hubv4 .sidemenu-banner-wrap .sidemenu-light#mega-nav > ul > li.active > a:hover, body#hubv4 .show-mega-menu-top .sidemenu-light.mega-sub-menu > ul > li.active > a:hover, body#hubv4 .sidemenu.sidemenu-light > ul > li.active > a:active, body#hubv4 body:not(#hubv4) .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage > ul > li.active > a:active, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-light.sidemenu-homepage > ul > li.active > a:active, body#hubv4 .sidemenu-banner-wrap .sidemenu-light#mega-nav > ul > li.active > a:active, body#hubv4 .show-mega-menu-top .sidemenu-light.mega-sub-menu > ul > li.active > a:active, body#hubv4 .sidemenu.sidemenu-light > ul > li.active > a:focus, body#hubv4 body:not(#hubv4) .sidemenu-banner-wrap .sidemenu-light.sidemenu-homepage > ul > li.active > a:focus, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidemenu-light.sidemenu-homepage > ul > li.active > a:focus, body#hubv4 .sidemenu-banner-wrap .sidemenu-light#mega-nav > ul > li.active > a:focus, body#hubv4 .show-mega-menu-top .sidemenu-light.mega-sub-menu > ul > li.active > a:focus {
   color: #005EA5;
 }
@@ -16729,7 +16725,7 @@ body#hubv4 .sidemenu-banner-wrap #mega-nav > ul {
 }
 
 body#hubv4 .sidemenu-banner-wrap #mega-nav > ul > li {
-  border-bottom: 1px #DDD solid;
+  border-bottom: 1px transparent solid;
   border-top: 1px transparent solid;
   -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
   transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
@@ -16762,7 +16758,7 @@ body#hubv4 .sidemenu-banner-wrap #mega-nav > ul > li > .btn-expander {
 body#hubv4 .sidemenu-banner-wrap #mega-nav > ul > li.active-menu-item {
   z-index: 10;
   position: relative;
-  border-color: transparent;
+  border-color: #99B9AF;
 }
 
 body#hubv4 .sidemenu-banner-wrap #mega-nav > ul > li.active-menu-item:after {
@@ -16793,10 +16789,6 @@ body#hubv4 .sidemenu-banner-wrap #mega-nav > ul > li > a:hover {
 
 body#hubv4 .sidemenu-banner-wrap #mega-nav > ul > li > a .tereo-title {
   color: #0D4C38;
-}
-
-body#hubv4 .sidemenu-banner-wrap #mega-nav > ul > li:last-child > a, body#hubv4 .sidemenu-banner-wrap #mega-nav > ul > li.active {
-  border-bottom: 0;
 }
 
 body#hubv4 .sidemenu-banner-wrap #mega-nav > ul > li.active > a {
@@ -16924,6 +16916,11 @@ body#hubv4 .sidemenu-banner-wrap #mega-nav ul li.nav-item-parent .btn-expander:a
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav .sub-draw-title a {
     display: block;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav .sub-draw-title a:hover, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav .sub-draw-title a:active, body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav .sub-draw-title a:focus {
     text-decoration: underline;
@@ -17044,7 +17041,7 @@ body#hubv4 .sidemenu-banner-wrap .menu-blip {
   position: absolute;
   bottom: -6px;
   background-color: #0D4C38;
-  width: 3px;
+  width: 4px;
   z-index: 99;
   -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
   transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
@@ -21743,7 +21740,9 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu__label {
     display: -webkit-box;
     display: flex;
     font-size: 1.1em;
-    flex-wrap: wrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
   }
   body#hubv4 .show-mega-menu-top .mega-sub-menu .sidemenu-drawer .draw-nav ul li.sub-draw-title a:hover {
     color: #1D2624;

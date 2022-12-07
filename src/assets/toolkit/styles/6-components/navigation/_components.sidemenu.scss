@@ -1014,7 +1014,7 @@ body#hubv4 {
         font-weight: 500;
         > li {
           &.active {
-            border-bottom: 1px solid $grey-silver;
+            // border-bottom: 1px solid $grey-silver;
             > a {
               @include hoverify() {
                 color: $blue-endeavoura;
@@ -1097,11 +1097,13 @@ body#hubv4 {
         font-size: $sidemenu-size;
 
         > li {
-          border-bottom: 1px $grey-alto solid;
+          // border-bottom: 1px $grey-alto solid;
+          border-bottom: 1px transparent solid;
+
           border-top: 1px transparent solid;
           transition: all $easing 0.3s;
           margin-left: 0;
-
+    
           &:after {
             transition: none;
             opacity: 0;
@@ -1125,7 +1127,8 @@ body#hubv4 {
           &.active-menu-item {
             z-index: 10;
             position: relative;
-            border-color: transparent;
+            border-color: $miro;
+
             &:after {
               opacity: 1;
             }
@@ -1156,7 +1159,7 @@ body#hubv4 {
 
           &:last-child > a,
           &.active {
-            border-bottom: 0;
+            // border-bottom: 0;
           }
 
           &.active > a {
@@ -1285,6 +1288,8 @@ body#hubv4 {
 
               a {
                 display: block;
+                display: flex;
+                flex-direction: column;
                 @include hoverify() {
                   text-decoration: underline;
                 }
@@ -1424,7 +1429,7 @@ body#hubv4 {
       position: absolute;
       bottom: -6px;
       background-color: $pounamu;
-      width: 3px;
+      width: 4px;
       z-index: 99;
       transition: all $easing 0.3s;
     }
