@@ -1265,14 +1265,18 @@ body#hubv4 {
             }
           }
 
-          .draw-nav {
+          .draw-promo {
             width: 40%;
+          }
+
+          .draw-nav {
+            width: 60%;
             padding-right: 1rem;
             margin: 0 1rem;
             border-right: none;
             flex: 1 1 40%;
             min-width: 300px;
-            max-width: 400px;
+            // max-width: 400px;
 
             .sub-draw-title {
               margin-bottom: 0.5rem;
@@ -1305,6 +1309,8 @@ body#hubv4 {
                 padding: 5px 0;
                 display: flex;
                 flex-direction: column;
+                break-inside: avoid;
+
 
                 .tereo-title {
                   color: $pounamu;
@@ -1349,6 +1355,11 @@ body#hubv4 {
 
               &.active-nav-group {
                 display: block;
+                column-count: 2;
+
+                .sub-draw-title {
+                  column-span: all;
+                }
 
                 a {
                   padding: 0.4em 0.5em;
