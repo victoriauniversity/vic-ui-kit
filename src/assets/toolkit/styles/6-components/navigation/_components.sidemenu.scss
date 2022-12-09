@@ -1014,7 +1014,7 @@ body#hubv4 {
         font-weight: 500;
         > li {
           &.active {
-            border-bottom: 1px solid $grey-silver;
+            // border-bottom: 1px solid $grey-silver;
             > a {
               @include hoverify() {
                 color: $blue-endeavoura;
@@ -1078,7 +1078,7 @@ body#hubv4 {
     position: relative;
     margin-bottom: 1rem;
 
-    .sidemenu-homepage {
+    #mega-nav {
       @extend .sidemenu;
 
       margin-top: 1rem;
@@ -1097,10 +1097,13 @@ body#hubv4 {
         font-size: $sidemenu-size;
 
         > li {
-          border-bottom: 1px $grey-alto solid;
+          // border-bottom: 1px $grey-alto solid;
+          border-bottom: 1px transparent solid;
+
           border-top: 1px transparent solid;
           transition: all $easing 0.3s;
           margin-left: 0;
+    
           &:after {
             transition: none;
             opacity: 0;
@@ -1122,9 +1125,10 @@ body#hubv4 {
             text-align: center;
           }
           &.active-menu-item {
-            border-color: $miro;
             z-index: 10;
             position: relative;
+            border-color: $miro;
+
             &:after {
               opacity: 1;
             }
@@ -1145,6 +1149,7 @@ body#hubv4 {
             // transition: all $easing 0.3s;
             flex-direction: column;
             &:hover {
+              border-color: transparent;
               text-decoration: underline;
             }
             .tereo-title {
@@ -1154,7 +1159,7 @@ body#hubv4 {
 
           &:last-child > a,
           &.active {
-            border-bottom: 0;
+            // border-bottom: 0;
           }
 
           &.active > a {
@@ -1204,7 +1209,7 @@ body#hubv4 {
           visibility: hidden;
           border: 1px $miro solid;
           border-top: none;
-          background-image: url(https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg);
+          background-image: url(https://www.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg);
 
           .draw-promo {
             max-width: 800px;
@@ -1287,6 +1292,8 @@ body#hubv4 {
 
               a {
                 display: block;
+                display: flex;
+                flex-direction: column;
                 @include hoverify() {
                   text-decoration: underline;
                 }
@@ -1323,7 +1330,7 @@ body#hubv4 {
                 &.active {
                   > a {
                     font-weight: 700;
-                    border-left: .25rem solid $pounamu;
+                    border-left: 0.25rem solid $pounamu;
                     span {
                       font-weight: 700;
                     }
@@ -1380,10 +1387,7 @@ body#hubv4 {
                     flex: 1 0 70%;
                     flex-direction: column;
                   }
-                  &.expanded {
-                    > ul {
-                    }
-                  }
+             
                   > ul {
                     padding: 0.2em 0 0.75em 0;
                     display: none;
@@ -1436,7 +1440,7 @@ body#hubv4 {
       position: absolute;
       bottom: -6px;
       background-color: $pounamu;
-      width: 3px;
+      width: 4px;
       z-index: 99;
       transition: all $easing 0.3s;
     }

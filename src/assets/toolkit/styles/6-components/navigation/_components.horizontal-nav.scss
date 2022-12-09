@@ -93,6 +93,7 @@ $box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
 }
 $easing: cubic-bezier(0.22, 1, 0.36, 1);
 body#hubv4 {
+
   &.homepage {
     .show-mega-menu-top .mega-sub-menu #mega-menu > li > a {
       // Homepage specfic font size
@@ -339,7 +340,7 @@ body#hubv4 {
         position: absolute;
         display: flex;
         justify-content: flex-start;
-        padding: 1rem 3.5rem 2rem;
+        padding: 1rem 5rem 2rem;
         background-color: $white;
         transform: translateY(-100%);
         box-shadow: none;
@@ -431,12 +432,11 @@ body#hubv4 {
               border: none;
               margin-bottom: 0;
               margin-top: 0.5rem;
-              column-span: all;
 
               a {
                 display: flex;
                 font-size: 1.1em;
-                flex-wrap: wrap;
+                flex-direction: column;
                 &:hover {
                   color: $black-brand;
                 }
@@ -561,7 +561,7 @@ body#hubv4 {
 
             &.active-nav-group {
               display: block;
-              column-count: 2;
+              column-count: 1;
               position: relative;
 
               > li:not(.sub-draw-title) {
@@ -569,30 +569,14 @@ body#hubv4 {
                 align-items: center;
                 break-inside: avoid-column;
                 padding: 0;
-                > a {
-                  > .tereo-title {
-                    color: $pounamu;
-                  }
-                }
               }
             }
           }
         }
 
         .draw-promo {
-          padding-right: 0;
-          width: 35%;
-          .highlight-message {
-            margin-right: 0;
-            .highlight-content {
-              padding-top: 0.5rem;
-
-              padding-bottom: 0.5rem;
-            }
-            .highlight-image {
-              width: 40%;
-            }
-          }
+          padding-right: 2rem;
+          width: 50%;
         }
 
         &.no-promo {
@@ -794,7 +778,7 @@ body#hubv4 {
       position: absolute;
       opacity: 0.9;
       right: -20px;
-      background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
+      background-image: url("https://www.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
       background-repeat: no-repeat;
       height: 100%;
       width: 50vw;
@@ -812,9 +796,7 @@ body#hubv4 {
   .hub-banner {
     min-height: 30vh;
     .banner-image {
-      img {
-        // display: none;
-      }
+   
       background-size: cover;
       background-repeat: no-repeat;
     }
