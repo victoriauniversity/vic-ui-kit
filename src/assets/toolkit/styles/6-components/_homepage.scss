@@ -1034,8 +1034,50 @@
       }
     }
 
+    // Quicklinks in Search
+
+    .search-wrap {
+      .quicklinks-wrap {
+        padding: 0;
+        h4 {
+          font-size: 1.2rem;
+          margin-bottom: .75rem;
+        }
+        > .block {
+          padding-left: 0;
+          padding-right: 0;
+          padding-bottom: 0;
+        }
+        background-color: transparent;
+
+        .quicklink-buttons {
+          > .link-circle {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 500;
+            color: $black-brand;
+
+            &:before {
+              padding: 0;
+              background-color: transparent;
+              color: $mahoe;
+            }
+
+            @include hoverify() {
+
+              &:before {
+                transition: all ease-in .3s;
+                transform: translateX(3px);
+              }
+            }
+          }
+        }
+      }
+    }
+
     //? Quicklinks
-    .quicklinks-wrap {
+
+    :not(.search-wrap) > .quicklinks-wrap {
       padding-bottom: 0;
       padding: 20px 0;
       // background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
