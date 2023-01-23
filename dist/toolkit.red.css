@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, December 9, 2022, 2:16 PM */
+/** Version: 0.10.13 | Tuesday, January 24, 2023, 9:41 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -11731,7 +11731,7 @@ aside .promo h3::before {
 
 @media (min-width: 43em) {
   #hubv4 .homepage-intro + .text-promo-panel .media figcaption {
-    width: 100%;
+    width: 100% !important;
     padding: 1.5rem  1rem;
     margin: 0;
     max-width: unset;
@@ -16968,7 +16968,7 @@ body#hubv4 .sidemenu ul a, body#hubv4 body:not(#hubv4) .sidemenu-banner-wrap .si
   display: -webkit-box;
   display: flex;
   align-content: stretch;
-  color: #424242;
+  color: #1D2624;
   line-height: 1.25;
 }
 
@@ -17574,7 +17574,7 @@ body#hubv4 .sidebar .sidebar-blip {
 }
 
 body#hubv4 .sidebar .empty-message a:visited {
-  color: #424242;
+  color: #1D2624;
 }
 
 body#hubv4 .sidebar .language-switcher {
@@ -17673,7 +17673,7 @@ body#hubv4 .sidebar .sidemenu ul li:not(.sidemenu__label) a, body#hubv4 .sidebar
 }
 
 body#hubv4 .sidebar .sidemenu ul li a, body#hubv4 .sidebar body:not(#hubv4) .sidemenu-banner-wrap .sidemenu-homepage ul li a, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage ul li a, body#hubv4 .sidebar .sidemenu-banner-wrap #mega-nav ul li a, body#hubv4 .sidemenu-banner-wrap .sidebar #mega-nav ul li a, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu ul li a, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu ul li a {
-  color: #424242;
+  color: #1D2624;
   padding: 0.8rem 0.9rem;
   text-decoration: none;
   display: -webkit-box;
@@ -17685,7 +17685,8 @@ body#hubv4 .sidebar .sidemenu ul li a, body#hubv4 .sidebar body:not(#hubv4) .sid
 }
 
 body#hubv4 .sidebar .sidemenu ul li a .tereo-childmenu, body#hubv4 .sidebar body:not(#hubv4) .sidemenu-banner-wrap .sidemenu-homepage ul li a .tereo-childmenu, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage ul li a .tereo-childmenu, body#hubv4 .sidebar .sidemenu-banner-wrap #mega-nav ul li a .tereo-childmenu, body#hubv4 .sidemenu-banner-wrap .sidebar #mega-nav ul li a .tereo-childmenu, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu ul li a .tereo-childmenu, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu ul li a .tereo-childmenu {
-  color: #1D2624;
+  color: #0D4C38;
+  font-weight: 500;
 }
 
 body#hubv4 .sidebar .sidemenu ul li a.sidemenu__link--withIcon, body#hubv4 .sidebar body:not(#hubv4) .sidemenu-banner-wrap .sidemenu-homepage ul li a.sidemenu__link--withIcon, body:not(#hubv4) .sidemenu-banner-wrap body#hubv4 .sidebar .sidemenu-homepage ul li a.sidemenu__link--withIcon, body#hubv4 .sidebar .sidemenu-banner-wrap #mega-nav ul li a.sidemenu__link--withIcon, body#hubv4 .sidemenu-banner-wrap .sidebar #mega-nav ul li a.sidemenu__link--withIcon, body#hubv4 .sidebar .show-mega-menu-top .mega-sub-menu ul li a.sidemenu__link--withIcon, body#hubv4 .show-mega-menu-top .sidebar .mega-sub-menu ul li a.sidemenu__link--withIcon {
@@ -21909,7 +21910,7 @@ body#hubv4 {
 }
 
 body#hubv4.homepage .show-mega-menu-top .mega-sub-menu #mega-menu > li > a {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 body#hubv4 .main-site-header {
@@ -22693,6 +22694,10 @@ body#hubv4 .hub .promo-panel {
 
 .tiles-panel.hidden {
   display: none;
+}
+
+#hubv4 .tiles-panel {
+  margin-bottom: 2rem;
 }
 
 .updated-tile-grid li.tile a,
@@ -30285,24 +30290,60 @@ body#hubv4 .hub .promo-panel {
   content: "\f18b";
 }
 
-#hubv4.homepage .quicklinks-wrap {
+#hubv4.homepage .search-wrap .quicklinks-wrap {
+  padding: 0;
+  background-color: transparent;
+}
+
+#hubv4.homepage .search-wrap .quicklinks-wrap h4 {
+  font-size: 1.2rem;
+  margin-bottom: .75rem;
+}
+
+#hubv4.homepage .search-wrap .quicklinks-wrap > .block {
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
+#hubv4.homepage .search-wrap .quicklinks-wrap .quicklink-buttons > .link-circle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1D2624;
+}
+
+#hubv4.homepage .search-wrap .quicklinks-wrap .quicklink-buttons > .link-circle:before {
+  padding: 0;
+  background-color: transparent;
+  color: #669787;
+}
+
+#hubv4.homepage .search-wrap .quicklinks-wrap .quicklink-buttons > .link-circle:hover:before, #hubv4.homepage .search-wrap .quicklinks-wrap .quicklink-buttons > .link-circle:active:before, #hubv4.homepage .search-wrap .quicklinks-wrap .quicklink-buttons > .link-circle:focus:before {
+  -webkit-transition: all ease-in .3s;
+  transition: all ease-in .3s;
+  -webkit-transform: translateX(3px);
+          transform: translateX(3px);
+}
+
+#hubv4.homepage :not(.search-wrap) > .quicklinks-wrap {
   padding-bottom: 0;
   padding: 20px 0;
 }
 
-#hubv4.homepage .quicklinks-wrap .block {
+#hubv4.homepage :not(.search-wrap) > .quicklinks-wrap .block {
   padding-bottom: 10px;
 }
 
 @media (max-width: 42.99em) {
-  #hubv4.homepage .quicklinks-wrap .quicklink-buttons {
+  #hubv4.homepage :not(.search-wrap) > .quicklinks-wrap .quicklink-buttons {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
             flex-direction: column;
   }
 }
 
-#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle {
+#hubv4.homepage :not(.search-wrap) > .quicklinks-wrap .quicklink-buttons a.link-circle {
   background-color: #CCDCD7;
   color: #0D4C38;
   padding: 8px 10px;
@@ -30314,26 +30355,26 @@ body#hubv4 .hub .promo-panel {
   border: 1px #669787 solid;
 }
 
-#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle span {
+#hubv4.homepage :not(.search-wrap) > .quicklinks-wrap .quicklink-buttons a.link-circle span {
   color: #0D4C38;
 }
 
-#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle:hover {
+#hubv4.homepage :not(.search-wrap) > .quicklinks-wrap .quicklink-buttons a.link-circle:hover {
   -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
           box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   background-color: #dbe6e3;
 }
 
-#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle:hover span {
+#hubv4.homepage :not(.search-wrap) > .quicklinks-wrap .quicklink-buttons a.link-circle:hover span {
   text-decoration: none !important;
 }
 
-#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle:hover:active {
+#hubv4.homepage :not(.search-wrap) > .quicklinks-wrap .quicklink-buttons a.link-circle:hover:active {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle:before {
+#hubv4.homepage :not(.search-wrap) > .quicklinks-wrap .quicklink-buttons a.link-circle:before {
   background-color: transparent;
   line-height: 0;
   display: inline-block;
@@ -30355,27 +30396,27 @@ body#hubv4 .hub .promo-panel {
   color: #0D4C38;
 }
 
-#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle:nth-of-type(1):before {
+#hubv4.homepage :not(.search-wrap) > .quicklinks-wrap .quicklink-buttons a.link-circle:nth-of-type(1):before {
   content: "\f1a4";
 }
 
-#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle:nth-of-type(2):before {
+#hubv4.homepage :not(.search-wrap) > .quicklinks-wrap .quicklink-buttons a.link-circle:nth-of-type(2):before {
   content: "\f18b";
 }
 
-#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle:nth-of-type(3):before {
+#hubv4.homepage :not(.search-wrap) > .quicklinks-wrap .quicklink-buttons a.link-circle:nth-of-type(3):before {
   content: "\f1a1";
 }
 
-#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle:nth-of-type(4):before {
+#hubv4.homepage :not(.search-wrap) > .quicklinks-wrap .quicklink-buttons a.link-circle:nth-of-type(4):before {
   content: "\f1d2";
 }
 
-#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle:nth-of-type(5):before {
+#hubv4.homepage :not(.search-wrap) > .quicklinks-wrap .quicklink-buttons a.link-circle:nth-of-type(5):before {
   content: "\f1d1";
 }
 
-#hubv4.homepage .quicklinks-wrap .quicklink-buttons a.link-circle:nth-of-type(6):before {
+#hubv4.homepage :not(.search-wrap) > .quicklinks-wrap .quicklink-buttons a.link-circle:nth-of-type(6):before {
   content: "\f1ac";
 }
 
