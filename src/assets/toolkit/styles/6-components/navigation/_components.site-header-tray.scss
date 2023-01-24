@@ -77,36 +77,30 @@ $tray-width-desktop: 400px;
 
 @keyframes menu-slide-in {
   0% {
-    // transform: translateX(100%);
-    right: -100%;
-  }
-
-  1% {
+    transform: translateX(100vh);
+    // right: -100%;
     visibility: visible;
   }
 
   100% {
-    // transform: translateX(0);
-    right: 0;
+    transform: translateX(0vh);
+    // right: 0;
     visibility: visible;
   }
 }
 
 @keyframes menu-slide-out {
   0% {
-    // transform: translateX(0);
-    right: 0;
+    transform: translateX(0vh);
+    // right: 0;
     visibility: visible;
   }
-
   99% {
     visibility: hidden;
   }
-
   100% {
-    visibility: hidden;
-    // transform: translateX(100%);
-    right: -100%;
+    transform: translateX(100vh);
+    // right: -100%;
   }
 }
 
@@ -318,13 +312,13 @@ body:not(#hubv4) {
           }
 
           &.tray-closed {
-            display: none;
+            // display: none;
             animation: delay-visibility-out 0.3s cubic-bezier(0.77, 0, 0.175, 1)
               forwards;
 
             .tray-content {
               visibility: hidden;
-              animation: menu-slide-out 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+              animation: menu-slide-out 0.6s ease;
             }
           }
         }
@@ -1218,12 +1212,78 @@ body#hubv4 {
     overflow: hidden;
   }
 
+  //! NOT HOMESITE
+  &:not(.homepage) {
+    .homesite-header-image {
+      display: none;
+    }
+    .tray {
+      .main-nav-list {
+        @include breakpoint($until: desktop-medium) {
+          display: none;
+        }
+      }
+
+      .childMenu {
+        display: none !important;
+        float: none;
+        @include breakpoint($until: desktop-medium) {
+          display: block !important;
+        }
+      }
+    }
+  }
+
+  //! IS HOMESITE
+
+  // Hide hub navigation on homepage
+  &.homepage {
+    .main-site-header.header-tray
+      .header-inner
+      .tray-content
+      .tray-main-nav
+      .mobile-menu-navigation {
+      display: none;
+    }
+    .main-site-header {
+      // Header patterns
+      .top-header {
+        .header-content {
+          position: relative;
+          align-self: stretch;
+          .homesite-header-image {
+            display: block;
+            @include breakpoint($until: desktop-medium) {
+              display: none;
+            }
+            top: 0;
+            left: 0;
+            position: absolute;
+            width: 100%;
+            z-index: 1;
+            height: 100%;
+            path {
+              opacity: 0.5;
+            }
+          }
+        }
+      }
+      &.header-tray {
+        .header-inner {
+          .header-logo {
+            border: none;
+          }
+        }
+      }
+    }
+  }
+
   .menu-container {
     //? Not sure if we should use this
     .outer-close-tray {
-      right: 400px;
-      position: absolute;
-      top: 0%;
+      // right: 400px;
+      // position: absolute;
+      // top: 0%;
       display: none;
 
       .tray-toggle {
@@ -1256,6 +1316,7 @@ body#hubv4 {
       display: flex;
       justify-content: flex-end;
       margin-left: 1rem;
+      align-items: center;
       // flex: 0 1 5%;
       position: relative;
       .tray-tooltip {
@@ -1304,14 +1365,78 @@ body#hubv4 {
           margin-top: 10px;
         }
       }
-      .puaha {
-        align-self: center;
-        border-radius: 4px;
-        margin-right: 5px;
+      // Student-related buttons (puaha and nuku)
+      .header-student-tools {
+        display: flex;
+        flex-direction: column;
+        margin-right: 15px;
         @include breakpoint($until: tablet) {
-          display: none;
+          // display: none;
+          margin-right: 5px;
+          a.button {
+            background-color: transparent;
+            padding: 2px 10px;
+            background-color: $kohuhu;
+            font-size: 14px;
+            i {
+              display: none;
+            }
+          }
+        }
+        > a {
+          border-radius: 4px;
+          padding: 3px 12px;
+          font-size: 15px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .puaha {
+          align-self: center;
+          margin-bottom: 5px;
+        }
+        .nuku {
+          // background-color: $pounamu;
+          // color: $manuka;
         }
       }
+      // Toggle buttons (tray and search)
+      .header-controls {
+        display: flex;
+        flex-direction: column;
+        @include breakpoint($until: tablet) {
+          // flex-direction: row;
+        }
+        > button {
+          position: relative;
+          padding: 0;
+          text-decoration: none;
+          border-radius: 5px;
+          background-color: transparent;
+          line-height: 1;
+          padding: 3px 5px;
+          i {
+            color: $black-brand;
+            font-size: 1.8rem;
+
+            &:before {
+              margin: 0;
+              display: inline;
+            }
+          }
+
+          .text-menu-button {
+            font-size: 0.7rem;
+            position: absolute;
+            bottom: -5px;
+            left: 35%;
+            transform: translateX(-50%);
+          }
+        }
+      }
+
+      //! Might not be needed anymore
       .top-header-buttons {
         display: flex;
         > div {
@@ -1364,45 +1489,10 @@ body#hubv4 {
           }
         }
       }
-      // Toggle buttons (tray and search)
-      > button {
-        position: relative;
-        padding: 0;
-        width: 50px;
-        text-decoration: none;
-        border-radius: 50%;
-        background-color: transparent;
-
-        i {
-          color: $black-brand;
-          font-size: 1.8rem;
-
-          &:before {
-            margin: 0;
-            display: inline;
-          }
-        }
-
-        .text-menu-button {
-          font-size: 0.7rem;
-          position: absolute;
-          bottom: -5px;
-          left: 35%;
-          transform: translateX(-50%);
-        }
-      }
 
       // .search-toggle {
       //   display: none;
       // }
-
-      .tray-toggle {
-        position: relative;
-
-        &:hover {
-          background-color: lighten($brand, 10%);
-        }
-      }
 
       @include breakpoint($until: desktop) {
         .search-toggle {
@@ -1436,8 +1526,8 @@ body#hubv4 {
   .main-site-header {
     &.header-tray {
       .header-inner {
-        padding-top: 0.75rem;
-        padding-bottom: 0.75rem;
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
         z-index: 3;
         display: flex;
         align-items: center;
@@ -1516,38 +1606,45 @@ body#hubv4 {
             // right: 20px;
           }
           &.tray-open {
-            display: block;
             // animation: delay-visibility-in 0.2s ease forwards;
+            opacity: 1;
+            transition: opacity ease 0.3s;
 
             .tray-content {
-              transform: translate3d(0, 0, 100%);
-              animation: menu-slide-in 0.3s cubic-bezier(0.77, 0, 0.175, 1)
-                forwards;
+              // transform: translate3d(0, 0, 100%);
+              // transition: transform 0.3s ease;
+              // animation: menu-slide-in 0.5s linear forwards;
+              animation: menu-slide-in 0.3s ease-out 0.1s forwards;
             }
           }
 
           &.tray-closed {
-            display: none;
-
-            animation: delay-visibility-out 0.2s ease forwards;
+            // visibility: hidden;
+            // opacity: 0;
+            animation: delay-visibility-out 0.3s ease forwards;
 
             .tray-content {
               visibility: hidden;
-              animation: menu-slide-out 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+              // animation: menu-slide-out 0.5s linear forwards;
+              animation: menu-slide-out 0.3s ease-out forwards;
             }
           }
         }
 
         .tray-content {
           padding: 1rem;
-          z-index: 150;
+          position: absolute;
+          right: 0;
           height: 100%;
           background-color: $header-bg;
           width: $tray-width-desktop;
           overflow: visible;
-          position: absolute;
-          right: -100%;
-
+          // transform: translateX(100%);
+          will-change: transform;
+          display: flex;
+          flex-direction: column;
+          z-index: 8;
+          transform: translateX(100vh);
           @include breakpoint($until: tablet) {
             margin: 0;
             width: 94%;
@@ -1566,143 +1663,164 @@ body#hubv4 {
           .saved-menu {
             flex: 1 0 40%;
           }
+          @keyframes slide-in-from-left {
+            0% {
+              transform: translateX(-100%);
+              opacity: 0;
+            }
+            50% {
+              transform: translateX(0%);
+            }
+            100% {
+              display: block;
+              position: relative;
+              opacity: 1;
+            }
+          }
+          @keyframes slide-in-from-right {
+            0% {
+              transform: translateX(100%);
+              opacity: 0;
+            }
+            50% {
+              transform: translateX(0%);
+            }
+            100% {
+              display: block;
+              position: relative;
+              opacity: 1;
+            }
+          }
+          @keyframes slide-out {
+            0% {
+            }
+            100% {
+              transform: translateX(100%);
+            }
+          }
 
           .tray-main-nav {
             margin: 15px -15px;
             margin-top: 0;
             flex: 1 0 40%;
-            .main-nav-list {
-              position: relative;
+            .mobile-menu-navigation {
+              display: flex;
+              background-color: #fff;
+              align-items: stretch;
+              @include breakpoint(desktop-medium) {
+                display: none;
+              }
+              button,
+              a {
+                transform: all $easing 0.2s;
+              }
+              button {
+                border-radius: 5px 5px 0 0;
+                border-radius: 0;
+                display: none;
+                @include breakpoint($until: desktop-medium) {
+                  display: block;
+                  flex: 1;
+                  text-align: left;
+                }
+              }
+              .main-menu-link {
+                text-decoration: none;
+                color: $pounamu;
+                &:hover {
+                  background-color: $mahoe;
+                  color: $manuka;
+                }
+              }
+              .home-link {
+                background-color: $pounamu;
+                color: $manuka;
+                padding: 0 0.5rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &:hover {
+                  background-color: $mahoe;
+                }
+              }
+              .current-menu-link {
+                display: none;
+                background-color: $mahoe;
+                color: $manuka;
+                text-decoration: none;
+                &:hover {
+                  background-color: $pounamu;
+                }
+              }
+            }
+            &.show-main-menu {
+              .mobile-menu-navigation {
+                .current-menu-link {
+                  display: block;
 
-              &.childMenu {
-                display: none !important;
-                float: none;
-
-                .sidemenu-toggle {
-                  // display: none;
-                  a {
-                    // pointer-events: none;
+                  i {
+                    &:before {
+                      transform: rotateZ(180deg);
+                    }
                   }
                 }
-                .sidemenu__label {
-                  // display: flex;
+                .main-menu-link {
+                  display: none;
+                  // background-color: $white;
+                  text-decoration: none;
+                  background-color: $mahoe;
+                  color: $manuka;
                 }
               }
               @include breakpoint($until: desktop-medium) {
-                //! Child menu in tray view
-                &.childMenu {
-                  display: block !important;
-                  .sidemenu {
-                    border-bottom: 1px $grey-gallery solid;
-                    // border-left: 4px $pounamu solid;
-                  }
-                  @include breakpoint(desktop-medium) {
-                    display: block !important;
-                    // display: none !important;
-                  }
-
-                  // #childPageMenu {
-                  //   // !ALL LEVELS
-                  //   li {
-                  //     border-left: none;
-                  //     &:before {
-                  //       top: 5px;
-                  //     }
-                  //     .btn-expander {
-                  //       font-size: 1.2rem;
-                  //     }
-
-                  //     &.expanded {
-                  //       background-color: #fff;
-                  //       border-left: none;
-                  //       > a {
-                  //         font-weight: bold;
-                  //         color: $pounamu;
-                  //       }
-                  //     }
-                  //   }
-                  //   // !FIRST LEVEL
-                  //   > li {
-                  //     // padding-left: 10px;
-                  //     > .btn-expander {
-                  //       border-radius: 100px;
-                  //       clip-path: none;
-                  //       color: $black-tundora;
-                  //       background-color: transparent;
-                  //       text-align: center;
-                  //       flex: none;
-                  //       margin-right: 6px;
-                  //       display: flex;
-                  //       flex-direction: column;
-                  //       justify-content: center;
-                  //       // Important required to override JS custom height on desktop
-                  //       height: auto !important;
-
-                  //       &:focus,
-                  //       &:hover {
-                  //         background-color: $grey-gallery;
-                  //       }
-                  //     }
-                  //     &:before {
-                  //       content: "";
-                  //       position: absolute;
-                  //       width: 0;
-                  //       height: 0;
-                  //       top: 10px;
-                  //       border-top: 10px solid transparent;
-                  //       border-left: 12px solid #0d4c38;
-                  //       border-bottom: 10px solid transparent;
-                  //       opacity: 0;
-                  //       transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
-                  //       left: -13px;
-                  //     }
-                  //     &.expanded {
-                  //       border-top: 1px $mahoe solid;
-                  //     > .btn-expander {
-                  //       color: $pounamu;
-                  //     }
-                  //       &:before {
-                  //         left: 0px;
-                  //         opacity: 1;
-                  //       }
-                  //     }
-                  //     > ul {
-                  //       border-left: 1px $grey-gallery solid;
-                  //       margin-left: 10px;
-                  //       // !SECOND LEVEL
-                  //       > li {
-                  //         > .btn-expander {
-                  //           margin-right: 20px;
-                  //         }
-
-                  //         // !THIRD (BOTTOM) LEVEL
-                  //         > ul {
-                  //           > li {
-                  //             > .btn-expander {
-                  //               margin-right: 30px;
-                  //             }
-                  //           }
-                  //         }
-                  //       }
-                  //     }
-                  //   }
-                  // }
+                .main-nav-list {
+                  display: block;
+                  animation: slide-in-from-left 0.5s ease;
                 }
-                &:not(.childMenu) {
-                  display: none;
+                .childMenu {
+                  // display: none !important;
+                  animation: slide-out 0.5s ease;
                 }
               }
+            }
+            .menu-slide-container {
+              display: flex;
+              overflow: hidden;
+              > ul,
+              > div {
+                position: relative;
+                flex: 1 0 100%;
+              }
+            }
+            @include breakpoint($until: desktop-medium) {
+              //! Child menu in tray view
+              .childMenu {
+                // display: block !important;
+                animation: slide-in-from-right 0.5s ease;
 
-              .sidemenu-toggle {
-                > a {
-                  > .tereo-nav-title,
-                  > .tereo-title {
-                    display: block;
-                    color: $kowhai;
-                  }
+                .sidemenu {
+                  border-bottom: 1px $grey-gallery solid;
+                  // border-left: 4px $pounamu solid;
+                }
+                @include breakpoint(desktop-medium) {
+                  // display: block !important;
+                  // display: none !important;
                 }
               }
+            }
 
+            .sidemenu-toggle {
+              > a {
+                display: flex;
+                flex-direction: column;
+                > .tereo-nav-title,
+                > .tereo-title {
+                  display: block;
+                  color: $kowhai;
+                }
+              }
+            }
+            .main-nav-list {
               .tall-blip {
                 height: 0;
                 width: 3px;
@@ -1737,12 +1855,7 @@ body#hubv4 {
                 > li {
                   border-bottom: none;
                   margin-bottom: 0;
-                  &:not(.homesite) {
-                    // margin-left: 20px;
-                    > a {
-                      padding: 10px 15px 10px 25px;
-                    }
-                  }
+
                   > a {
                     padding: 10px 15px;
                     background-color: #fff;
@@ -1782,6 +1895,12 @@ body#hubv4 {
               flex-wrap: wrap;
               user-select: none;
               box-shadow: 0 3px 15px -7px rgba(0, 0, 0, 0.1);
+
+              &.active {
+                > a {
+                  font-weight: 600;
+                }
+              }
 
               &.homesite {
                 &.expanded {
@@ -1824,7 +1943,7 @@ body#hubv4 {
                       }
                       &:hover {
                         border-color: $pounamu;
-                        z-index: 90;
+                        z-index: 10;
                       }
                     }
                   }
@@ -1880,7 +1999,7 @@ body#hubv4 {
               }
               .tereo-nav-title {
                 display: block;
-                color: $green-brand;
+                color: $pounamu;
                 margin-bottom: 5px;
               }
               // &.expanded {
@@ -1898,11 +2017,11 @@ body#hubv4 {
               &.expanded {
                 // border-left: 5px $green-brand solid;
                 box-shadow: 0 3px 20px -7px rgba(0, 0, 0, 0.2);
-                z-index: 90;
+                z-index: 10;
               }
               &:hover {
                 box-shadow: 12px 3px 20px -7px rgba(0, 0, 0, 0.2);
-                z-index: 90;
+                z-index: 10;
                 border-color: $miro;
               }
 
@@ -2132,56 +2251,54 @@ body#hubv4 {
               }
               ul {
                 li {
-                  &:not(.homesite) {
+                  &:before {
+                    content: "";
+                    position: absolute;
+                    width: 0;
+                    height: 0;
+                    top: 10px;
+                    border-top: 10px solid transparent;
+                    border-left: 12px solid $pounamu;
+                    border-bottom: 10px solid transparent;
+                    opacity: 0;
+                    transition: all $easing 0.3s;
+                    left: -13px;
+                  }
+
+                  &.expanded {
+                    // padding-left: 5px;
                     &:before {
-                      content: "";
-                      position: absolute;
-                      width: 0;
-                      height: 0;
-                      top: 10px;
-                      border-top: 10px solid transparent;
-                      border-left: 12px solid $pounamu;
-                      border-bottom: 10px solid transparent;
-                      opacity: 0;
-                      transition: all $easing 0.3s;
-                      left: -13px;
+                      opacity: 1;
+                      left: 3px;
                     }
+                  }
 
-                    &.expanded {
-                      // padding-left: 5px;
+                  ul {
+                    li {
+                      position: relative;
+                      overflow: visible;
                       &:before {
-                        opacity: 1;
-                        left: 3px;
+                        top: 8px;
+                      }
+                      > a {
+                      }
+                      &.expanded {
+                        > a {
+                          color: $pounamu;
+                        }
+                        &:before {
+                          left: 0;
+                          width: 15px;
+                        }
                       }
                     }
-
-                    ul {
+                    // NESTED CHILD JOINING ARROW ADJUSTMENT
+                    > ul {
+                      border-left: 1px $grey-alto solid;
+                      margin-left: 10px;
                       li {
-                        position: relative;
-                        overflow: visible;
                         &:before {
-                          top: 8px;
-                        }
-                        > a {
-                        }
-                        &.expanded {
-                          > a {
-                            color: $pounamu;
-                          }
-                          &:before {
-                            left: 0;
-                            width: 15px;
-                          }
-                        }
-                      }
-                      // NESTED CHILD JOINING ARROW ADJUSTMENT
-                      > ul {
-                        border-left: 1px $grey-alto solid;
-                        margin-left: 10px;
-                        li {
-                          &:before {
-                            left: -16px;
-                          }
+                          left: -16px;
                         }
                       }
                     }
@@ -2611,8 +2728,6 @@ body#hubv4 {
             transition: all 0.2s ease-in-out;
 
             img {
-              // position: relative;
-              // top: 0;
               transform: matrix(1, 0, 0, 1, 0, 0);
               transition: all 0.2s ease-in-out;
               width: 100%;
@@ -2792,7 +2907,6 @@ body#hubv4 {
             display: inline-flex;
             flex-direction: column;
             &.long-title {
-              display: block;
               h1,
               p,
               .tereo-title {
@@ -2853,51 +2967,89 @@ body#hubv4 {
 
         // @include breakpoint($until:desktop) {
 
-        .search-toggle {
-          height: 50px;
-
-          span {
-            color: $black-tundora;
-          }
-
-          @include hoverify() {
-            span {
-              color: $white;
-            }
-          }
-        }
         // }
       }
 
       &.header-tray {
         .tray-content {
           background-color: #fff;
-          display: flex;
-          flex-direction: column;
-          position: absolute;
-          right: 0;
-          z-index: 8;
-
-          &:after {
-            // content: "";
-            // position: absolute;
-            // right: 0;
-            // top: 10px;
-            // width: 50px;
-            // height: 50px;
-            // border-top: 10px solid transparent;
-            // border-left: 20px solid rgba($color: $black-brand, $alpha: 0.9);
-            // border-bottom: 10px solid transparent;
-          }
 
           .tray-search-bar {
             padding: 20px 15px;
-            padding-bottom: 5px;
             background-color: $grey-gallery;
-            text-align: center;
+            text-align: right;
+            display: flex;
+            border-bottom: 1px $grey-alto solid;
 
+            .save-page {
+              background-color: transparent;
+              outline: none;
+              margin-left: 5px;
+              display: inline-flex;
+              border-radius: 3px;
+              align-items: center;
+              padding: 5px;
+
+              > svg {
+                pointer-events: none;
+                height: 30px;
+                width: 25px;
+                path {
+                  transition: all $easing 0.3s;
+                  fill: #fff;
+                  stroke: #000;
+                }
+              }
+              &:hover {
+                // outline: none;
+                box-shadow: none;
+                > svg {
+                  opacity: 1;
+                }
+              }
+              &.saved {
+                > svg {
+                  opacity: 1;
+                  path {
+                    fill: $moana;
+                  }
+                }
+              }
+            }
             form {
               border-radius: $radius;
+              flex: 1;
+
+              .saved-searches {
+                position: absolute;
+                display: none;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                box-shadow: $shadow;
+                z-index: 88;
+                border: 1px $grey-chalice solid;
+                border-top: none;
+                > div {
+                  padding: 0.2rem 0.5rem;
+                  width: 100%;
+                  text-align: left;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  cursor: pointer;
+                  button {
+                    color: $black-tundora;
+                    &:hover {
+                      color: $red-tamarillo;
+                    }
+                  }
+                  &:hover {
+                    background-color: $grey-gallery;
+                  }
+                }
+              }
 
               .search-input {
                 background-color: #fff;
@@ -2905,6 +3057,11 @@ body#hubv4 {
                 padding: 10px;
                 border: 1px $grey-chalice solid;
                 border-radius: 2px;
+                // &:focus {
+                //   ~ .saved-searches {
+                //     display: block;
+                //   }
+                // }
 
                 &::placeholder {
                   /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -3065,7 +3222,7 @@ body#hubv4 {
             .tereo-title,
             p.tereo-title {
               font-size: 2rem;
-              color: $green-brand;
+              color: $pounamu;
               font-weight: 400;
               font-family: $font-name-brand;
               line-height: 1.08;
@@ -3140,14 +3297,14 @@ body#hubv4 {
   .menu-container .tray-tabs .tab {
     padding: 10px 25px;
     cursor: pointer;
-    transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+    // transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
     user-select: none;
     flex: 1 0 50%;
     text-align: center;
     position: relative;
     // transform: skew(20deg); /* SKEW */
     &:focus {
-      outline: 2px dotted $black-brand;
+      outline: 1px solid $grey-alto;
       outline-offset: -1px;
     }
     span {
@@ -3211,7 +3368,7 @@ body#hubv4 {
 
   .tray {
     .tray-content {
-      background-image: url("/images/MKT0510 - Te Tumu PNG-05.png");
+      background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:src/assets/toolkit/images/patterns/MKT0510%20-%20Te%20Tumu%20PNG-05.png");
     }
 
     .blip {
@@ -3223,6 +3380,10 @@ body#hubv4 {
       bottom: -2px;
       left: -100%;
       transition: all ease-out 0.2s;
+      @include breakpoint($until: desktop-medium) {
+        // No transition on mobile - causes lag
+        transition: none;
+      }
       margin: 0 !important;
     }
   }
@@ -3239,7 +3400,7 @@ body#hubv4 {
   }
 
   // !Hide old nav on mobile (temporary)
-  @include breakpoint($until: desktop) {
+  @include breakpoint($until: desktop-medium) {
     #mega-nav {
       display: none !important;
     }

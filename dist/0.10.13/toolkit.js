@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, November 30, 2022, 8:31 AM */
+/** Version: 0.10.13 | Wednesday, January 25, 2023, 10:57 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14109,11 +14109,60 @@ function initTray() {
     setTimeout(function () {
       $(".tray .search-input").focus();
     }, 500);
-  }); // $('.search-button-inside form').on('focus', (e) => {
-  //   $( this ).toggleClass('focus')
-  //   console.log( $(this) );
-  // })
-  // ****************************************
+  });
+
+  var hideSearchHistory = function hideSearchHistory() {
+    $(".tray .saved-searches").hide();
+  };
+
+  $(".tray .search-input").on("focus", function (e) {
+    $(".tray .saved-searches").show();
+  });
+  $(".tray .search-input").on("focusout", function (e) {
+    setTimeout(function () {
+      hideSearchHistory();
+    }, 100);
+  }); // Init saved searches
+
+  var checkSavedSearches = function checkSavedSearches() {
+    if (localStorage.savedSearches) {
+      var savedSearchesArray = JSON.parse(localStorage.savedSearches);
+      console.log(savedSearchesArray);
+      savedSearchesArray.forEach(function (item) {
+        var div = "<div class='search-item'> " + item.term + " <button title='Remove this search term from history' class='clear-term flat no-icon'> <i class='icons8-delete'></i></button </div>";
+        $(".tray .saved-searches").append($(div));
+      }); // On click of search item
+
+      $(".tray .search-item").on("click", function (e) {
+        console.log(e);
+        var searchText = $(this).text().trim();
+        $(".tray .search-input").val(searchText);
+        $(".tray-search-bar>form").submit();
+        hideSearchHistory();
+      }); // On click of clear search item
+
+      $(".tray .clear-term").on("click", function (e) {
+        console.log(e);
+        e.preventDefault();
+        var searchText = $(this).parent().text().trim();
+        $(this).parent().remove();
+
+        if (!$(".tray .saved-searches .search-item").length) {
+          $(".tray .saved-searches").hide();
+        } else {
+          $(".tray .saved-searches").show();
+        }
+
+        var filtered = savedSearchesArray.filter(function (e) {
+          return e.term !== searchText;
+        });
+        localStorage.setItem("savedSearches", JSON.stringify(filtered));
+        console.log(filtered);
+      });
+    }
+  };
+
+  checkSavedSearches(); // ****************************************
   // ****************************************
   // sidemenu tray
   // const SIDEMENU_TOGGLE_CLASS   = 'sidemenu-toggle';
@@ -14127,13 +14176,21 @@ function initTray() {
 
   function buildTray(index, item) {
     // console.log( 'nav item', $(this).parent().children('a').text() );
-    var nav = $(this);
-    var navClassString = $(this).parent().children("a").html();
-    var titleLink = $(this).parent().children("a").attr("href"); //push into traw div
+    // console.log( 'nav item', $(this).children('ul'));
+    var nav = $(this).children('ul'); // console.log($(this));
 
-    nav.clone().appendTo(".draw-nav").addClass(navClassString).attr("data-index", index); //add title
+    var navClassString = $(this).children("a").html();
+    var titleLink = $(this).children("a").attr("href"); //push into traw div
 
-    $(".draw-nav ul[data-index='".concat(index, "']")).prepend("<h4 class=\"sub-draw-title\"><a href=\"".concat(titleLink, "\">").concat(navClassString, "</a></h4>"));
+    if (nav.length > 0) {
+      nav.clone().appendTo(".draw-nav").addClass(navClassString).attr("data-index", index); //add title
+
+      $(".draw-nav ul[data-index='".concat(index, "']")).prepend("<h4 class=\"sub-draw-title\"><a href=\"".concat(titleLink, "\">").concat(navClassString, "</a></h4>"));
+    } else {// console.log('no children');
+      // $(`.draw-nav ul[data-index='${index}']`).prepend(
+      //   `<h4 class="sub-draw-title"><a href="${titleLink}">${navClassString}</a></h4>`
+      // );
+    }
   }
 
   var openTimeout;
@@ -14179,7 +14236,7 @@ function initTray() {
           $draw.addClass("active"); // Remove other ones
 
           if ($(listItem).hasClass("has-submenu")) {
-            console.log('np tray print tray');
+            console.log("np tray print tray");
           }
         } else {
           //show tray
@@ -14254,9 +14311,18 @@ function initTray() {
       horizontalMenuExpanded = !horizontalMenuExpanded;
       $(".sidemenu-drawer").removeClass("".concat(loc));
       $(".mega-menu-top-level > li").removeClass("expanded-nav");
-      $blip.css({
-        width: 0
-      }); // $draw.toggleClass('active');
+
+      if ($(".mega-menu-top-level > li.active").length) {
+        $blip.css({
+          left: $(".mega-menu-top-level > li.active").offset().left - $("#mega-menu").offset().left,
+          width: $(".mega-menu-top-level > li.active").innerWidth()
+        });
+      } else {
+        $blip.css({
+          width: 0
+        });
+      } // $draw.toggleClass('active');
+
     } // On click OR mouseover of body, hide the tray if it's open
 
   } // ? ==== HOMEPAGE SIDE-MENU ONLY ====
@@ -14285,7 +14351,7 @@ function initTray() {
     var menu = $(".sidemenu-homepage"); // console.log(menu);
     //build tray nav content
 
-    var trayNavItems = $(".sidemenu-homepage > ul > li > ul");
+    var trayNavItems = $(".sidemenu-homepage > ul > .nav-item-parent ");
     var listItem = $(".sidemenu-homepage > ul > li:not(.sidemenu__label)"); // console.log(trayNavItems);
 
     listItem.each(expandTray);
@@ -14315,7 +14381,7 @@ function initTray() {
       var titleLink = $item.children("a").attr("href");
       var titleText = $item.children("a").text();
       var titleHtml = $item.children("a").html(); // console.log(titleLink, ' ', titleText);
-      //push into traw div
+      //push into draw div
 
       if ($item.children("ul").length) {
         $item.children("ul").clone().appendTo(".draw-nav").attr("data-index", index);
@@ -14467,9 +14533,23 @@ function initTray() {
   }); // On mouse out of horizontal nav
 
   $("#hubv4 .main-site-header #mega-menu > li").on("mouseout", function () {
-    var activeItem = $(".expanded-nav");
+    var activeItem = $(".expanded-nav"); // if (activeItem.length) {
+    //   $blip.css({
+    //     left: activeItem.offset().left - $("#mega-menu").offset().left,
+    //     width: activeItem.innerWidth(),
+    //   });
+    // } else {
+    //   $blip.css({
+    //     width: 0,
+    //   });
+    // }
 
-    if (activeItem.length) {
+    if ($(".mega-menu-top-level > li.active").length) {
+      $blip.css({
+        left: $(".mega-menu-top-level > li.active").offset().left - $("#mega-menu").offset().left,
+        width: $(".mega-menu-top-level > li.active").innerWidth()
+      });
+    } else if (activeItem.length) {
       $blip.css({
         left: activeItem.offset().left - $("#mega-menu").offset().left,
         width: activeItem.innerWidth()
@@ -14479,28 +14559,10 @@ function initTray() {
         width: 0
       });
     }
-  });
-  var notificationCount = 0; // ?Remove default icon injected on all role="button" elements
+  }); // ?Remove default icon injected on all role="button" elements
 
   $(".btn-expander").addClass("no-icon"); // ?Temporary override of toolkit hiding
   // $("#hubv4 .sidemenu  ul > .has-submenu").css("display", "flex");
-
-  var formatAsDate = function formatAsDate(date, locale) {
-    var arr = date.split("");
-    var year = arr.slice(0, 4).join("");
-    var month = arr.slice(4, 6).join("");
-    var day = arr.slice(6, 8).join("");
-
-    if (locale == "us") {
-      var dateString = year + " " + month + " " + day;
-      dateString = new Date(dateString);
-      return dateString;
-    } else {
-      var dateString = year + " " + month + " " + day;
-      dateString = new Date(dateString).toLocaleDateString("en-UK");
-      return dateString;
-    }
-  };
 
   var resizeTallBlip = function resizeTallBlip(el, hide) {
     if (hide) {
@@ -14591,8 +14653,7 @@ function initTray() {
 
   if ($(".childMenu")) {
     var childMenuClone = $(".childMenu").clone();
-    childMenuClone.appendTo(".tray-main-nav");
-    $(".tray .childMenu").addClass("main-nav-list"); // Open sidemenu by default
+    childMenuClone.appendTo(".menu-slide-container"); // Open sidemenu by default
     // $(".tray #childPageMenu").show();
 
     $(".tray .sidemenu-toggle").toggleClass("expanded"); // $(".tray .sidemenu").toggleClass("expanded");
@@ -14606,13 +14667,26 @@ function initTray() {
       $(this).parent().toggleClass("expanded");
       $(this).parent().next().slideToggle("fast");
     });
-  } // Open on initial load
+  } //! Mobile menu navigation
+  // ? Hide child menu, show main menu
+
+
+  $("#hubv4 .tray .mobile-menu-navigation button.main-menu-link").on("click", function (e) {
+    // $(".tray .childMenu").removeClass("slide-in");
+    // $(".tray .childMenu").addClass("slide-out");
+    // $(".main-nav-list").addClass("slide-in");
+    $(".tray-main-nav").addClass("show-main-menu");
+  }); // ? Hide main nav, show child mobile menu
+
+  $("#hubv4 .tray .mobile-menu-navigation button.current-menu-link").on("click", function (e) {
+    $(".tray-main-nav").removeClass("show-main-menu"); // $(".main-nav-list").hide();
+    // $(".tray .childMenu").addClass("slide-in");
+  }); // Open on initial load
   // if ($(".tray .main-nav-item > a.active")) {
   //   $(".tray .main-nav-item > a.active").parent().toggleClass("active");
   //   $(".tray .main-nav-item > a.active").parent().toggleClass("expanded");
   //   $(".tray .main-nav-item > a.active").parent().find(">ul").slideToggle();
   // }
-
 
   var expandItem = function expandItem(target) {
     target = $(target); // Close any items already open
@@ -14678,9 +14752,17 @@ function initTray() {
   if (window.location.search.includes("responsive=true")) {
     $(".tray").addClass("responsive-preview");
     toggleTray();
-  } // accesibility fix - tabbing currently doesn't go to expanded tray as it's outside the nav DIV
-  // TODO make work with horizontal NAV --- Monty or Jake
+  } // Set initial position of tall blip (in tray)
 
+
+  setTimeout(function () {
+    var activeItem = $(".main-nav-list > li.active");
+
+    if (activeItem.length) {
+      resizeTallBlip(activeItem);
+    }
+  }, 500); // accesibility fix - tabbing currently doesn't go to expanded tray as it's outside the nav DIV
+  // TODO make work with horizontal NAV --- Monty or Jake
 
   var tabLinks = document.querySelectorAll("#mega-menu > li.has-submenu > .btn-expander"); // tabLinks.forEach((link, index) => {
   //   // console.log(link, index);
@@ -15585,16 +15667,33 @@ document.addEventListener("DOMContentLoaded", function (event) {
           target.remove();
         }
       }, 100);
-    }
-  }); // Else normal page (not t&p apps)
+    } else {
+      // Else normal page (not t&p apps)
+      var target = $("header .menu-bar > a").filter(function (i, el) {
+        return $(el).text() == "Blackboard";
+      });
 
-  if (document.location.pathname.split("/")[1] !== "courses" && document.location.pathname.split("/")[1] !== "explore") {
+      if (target[0]) {
+        target.remove();
+      }
+    }
+  }); // Check toolbar to ensure myTools has been updated to Puaha
+
+  if (document.location.pathname.split("/")[1] == "courses" || document.location.pathname.split("/")[1] == "explore") {
+    return; // do nothing
+  } else {
+    // Add Nuku link (main site)
+    var $nukuLink = $("<a title='Nuku' href='https://nuku.wgtn.ac.nz/' target='_blank'>Nuku</a>");
     var target = $("header .menu-bar > a").filter(function (i, el) {
       return $(el).text() == "Blackboard";
+    }); // Make sure it's not already added
+
+    var checkIfAlreadyExists = $("header .menu-bar > a").filter(function (i, el) {
+      return $(el).text() == "Nuku";
     });
 
-    if (target[0]) {
-      target.remove();
+    if (target[0] && checkIfAlreadyExists.length < 1) {
+      $nukuLink.insertAfter(target[0]);
     }
   }
 }); // Check toolbar for mode=dev and apply class
@@ -15778,97 +15877,10 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
       clickedEl.parent().find(">ul").animate({
         height: "toggle"
       }, "fast");
-    } // function apply(topLevel, clickedEl) {
-    //   if (clickedEl && !clickedEl.parent().hasClass("expanded")) {
-    //     var expandedLi = $(".sidebar > nav > ul > li.expanded");
-    //     if (topLevel) {
-    //       //? REMOVE OTHER ITEMS THAT ARE EXPANDED
-    //       // expandedLi.find(">ul").css("max-height", "0px");
-    //       expandedLi.find(">ul").animate(
-    //         {
-    //           maxHeight: 0,
-    //         },
-    //         300,
-    //         function () {
-    //           // Animation complete.
-    //         }
-    //       );
-    //       $(".sidebar > nav > ul li.has-submenu.expanded")
-    //         .not(submenuContainer)
-    //         .removeClass("expanded");
-    //       //? ADD EXPANDED CLASS TO CLICK EL
-    //       submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
-    //       var expandedLi = $(".sidebar > nav > ul > li.expanded");
-    //       expandedLi.find(">ul").show();
-    //       //? CALC HEIGHT OF ITEMS (FOR SMOOTH ANIMATION)
-    //       var listHeight = calcHeight(expandedLi.find("> ul > li"));
-    //       // expandedLi.find(">ul").css("max-height", listHeight + "px");
-    //       expandedLi.find(">ul").animate(
-    //         {
-    //           opacity: 1,
-    //           maxHeight: listHeight,
-    //         },
-    //         300,
-    //         "swing",
-    //         function () {
-    //           // Animation complete.
-    //           console.log("animation complete");
-    //         }
-    //       );
-    //     } else {
-    //       console.log("===== INNER EXPANDER CLICKED ====");
-    //       //? INNER EXPANDER HAS BEEN CLICKED, ADJUST HEIGHT AGAIN
-    //       submenuContainer.addClass(SIDEMENU_EXPANDED_CLASS);
-    //       var listHeight = calcHeight(expandedLi.find("> ul li"));
-    //       // expandedLi.find(">ul").css("max-height", listHeight + "px");
-    //       expandedLi.find(">ul").animate(
-    //         {
-    //           maxHeight: listHeight,
-    //         },
-    //         300,
-    //         function () {
-    //           // Animation complete.
-    //           console.log("animation complete");
-    //         }
-    //       );
-    //     }
-    //   } else {
-    //     //? CLOSE ITEM
-    //     var expandedLi = $(".sidebar > nav > ul > li.expanded");
-    //     submenuContainer.removeClass(SIDEMENU_EXPANDED_CLASS);
-    //     if (topLevel) {
-    //       submenuContainer
-    //         .find(SIDEMENU_EXPANDED_CLASS)
-    //         .removeClass(SIDEMENU_EXPANDED_CLASS);
-    //       // expandedLi.find(">ul").css("max-height", "0px");
-    //       expandedLi.find(">ul").animate(
-    //         {
-    //           maxHeight: 0,
-    //         },
-    //         300,
-    //         function () {
-    //           // Animation complete.
-    //           expandedLi.find(">ul").fadeOut();
-    //         }
-    //       );
-    //     }
-    //   }
-    // }
-    // Init
-    // apply(true, $(".sidebar > nav > ul > li.active > .btn-expander"));
-    // Bind `click` events to all expandable buttons
-    // expandableButtonElement.on("click", (e) => {
-    //   e.preventDefault();
-    //   e.stopPropagation();
-    //   isExpanded = !isExpanded;
-    //   apply();
-    // });
-    //! Click event for expand buttons in SIDEMENU only
+    } //! Click event for expand buttons in SIDEMENU only
 
 
     expandableButtonElement.on("click keyup touchstart", function (e) {
-      console.log(e.which);
-
       if (e.which == 13 || e.which == 1) {
         e.preventDefault();
         e.stopPropagation();
@@ -15919,20 +15931,7 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
       tracker.registerForTracking(expandableButtons, "click", "sidemenu-expander");
     }
 
-    expandableButtons.each(toolkit_initExpandableSubmenu); // Ensure expander height is the same as the link (for long link titles than span across 2+ lines)
-
-    src_default.a.register(toolkit_DESKTOP_AND_LARGER, function () {
-      external_jQuery_default()(".sidemenu > ul > li").each(function (e) {
-        var link = external_jQuery_default()(this).find(">a");
-        var expander = external_jQuery_default()(this).find("> .btn-expander");
-
-        if (link.outerHeight() > 0) {
-          expander.css("height", link.outerHeight());
-        } else {
-          expander.css("height", "100%");
-        }
-      });
-    });
+    expandableButtons.each(toolkit_initExpandableSubmenu);
   };
 
   var toolkit_enhanceSidemenu = function enhanceSidemenu(menuElement) {
@@ -16480,7 +16479,17 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
     // }
 
     toolkit_initFloatingButtons();
-    decodeMailAddresses(); // http://wicky.nilia.ms/enquire.js/
+    decodeMailAddresses(); // !Language switcher
+
+    external_jQuery_default()(".language-switcher button").on("click", function (e) {
+      // Remove active from others
+      external_jQuery_default()(".language-switcher button").removeClass("active"); // Add active to clicked
+
+      external_jQuery_default()(this).addClass("active");
+      var id = e.target.dataset.lang;
+      console.log(id);
+      external_jQuery_default()(".sidemenu").attr("menu-lang", id);
+    }); // http://wicky.nilia.ms/enquire.js/
     // TODO: Refactor and extract to its own library
     // enquire.register( MOBILE_LARGE_AND_SMALLER, () => {
     //   if ( $globalNav.length ) {
@@ -16573,7 +16582,8 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
     external_jQuery_default()("#study-area-tabs li a").click(function () {
       if (external_jQuery_default()(this).parent().hasClass("active")) {
         return;
-      }
+      } //! This is problematic... needs scoping, lots of things have .active class
+
 
       external_jQuery_default()(".active").removeClass("active");
       external_jQuery_default()(this).parent().addClass("active");

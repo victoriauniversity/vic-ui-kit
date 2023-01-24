@@ -30,6 +30,10 @@ $base-study-hub-colour--study: $brand-light;
   + .promo-panel:not(.white-bg) .centraliser { border-top: $border; }
 
   &.hidden { display: none; }
+
+  #hubv4 & {
+    margin-bottom: 2rem;
+  }
 }
 
 
@@ -62,6 +66,15 @@ $base-study-hub-colour--study: $brand-light;
         h4 { color: $blue-hover-shade; }
 
         .sub-text { border-left: $border-width-small solid $blue-hover-shade; }
+
+        #hubv4 & {
+          background-color: $off-white;
+          transition: all .3s ease-in-out;
+          padding-top: 1rem;
+          border-top: none;
+          border-right: none;
+          border-bottom: none;
+        }
       }
 
       h2,
@@ -687,6 +700,17 @@ $base-study-hub-colour--study: $brand-light;
         margin-bottom: $grid-tile-spacing / 2;
       }
 
+    }
+  }
+}
+
+#hubv4 {
+  .updated-tile-grid {
+    .tile {
+      .sub-text {
+        padding-left: 0;
+        border-left: unset;
+      }
     }
   }
 }

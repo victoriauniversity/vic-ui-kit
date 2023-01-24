@@ -99,6 +99,56 @@ $media-portrait-dynamic-width:  25%;
 
     }
   }
+
+  #hubv4 & {
+
+    header {
+      a.link-more {
+        @extend .button;
+
+        text-decoration: none;
+      }
+    }
+    .news {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+
+      margin: 0;
+      width: 100%;
+
+      @include breakpoint( $until: tablet ) {
+        grid-template-columns: 1fr;
+      }
+      > li {
+        border: 1px solid $miro;
+        padding: 1.56rem;
+        width: 100%;
+        background-color: $off-white;
+
+        background-image: url(https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg);
+        background-repeat: no-repeat;
+        background-size: 250px;
+        background-position: -100px;
+
+        time {
+          color: $black-brand;
+          font-weight: 500;
+        }
+
+        h2,h3,h4 {
+
+          a {
+            color: $pounamu;
+          }
+        }
+
+        &::after {
+          content: none;
+        }
+      }
+    }
+  }
 }
 
 /* List of news articles on content page */
@@ -115,6 +165,15 @@ $media-portrait-dynamic-width:  25%;
       p {
         margin-bottom: $gap-small;
       }
+    }
+  }
+}
+
+#hubv4 .news-widget {
+
+  .summary {
+    time {
+      color: $black-emperor;
     }
   }
 }

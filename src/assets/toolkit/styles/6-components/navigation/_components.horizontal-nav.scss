@@ -93,6 +93,13 @@ $box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
 }
 $easing: cubic-bezier(0.22, 1, 0.36, 1);
 body#hubv4 {
+
+  &.homepage {
+    .show-mega-menu-top .mega-sub-menu #mega-menu > li > a {
+      // Homepage specfic font size
+      font-size: 1.2rem;
+    }
+  }
   .main-site-header {
     padding-top: 0;
     position: relative;
@@ -153,6 +160,8 @@ body#hubv4 {
       a {
         .tereo-title {
           display: block;
+          color: $pounamu;
+          // font-weight: 500;
         }
       }
     }
@@ -163,6 +172,20 @@ body#hubv4 {
         &:after {
           // top: 30%;
         }
+        &.nav-item-parent {
+          &.active {
+            // background-color: $pounamu;
+
+            > a {
+              font-weight: 700;
+              // color: $manuka;
+              // text-decoration: underline;
+            }
+            .tereo-title {
+              // color: $kowhai;
+            }
+          }
+        }
         // ! First level (visible straight away)
         > a {
           padding-bottom: 10px;
@@ -172,7 +195,7 @@ body#hubv4 {
           flex-direction: column;
           justify-content: center;
           font-weight: 500;
-          font-size: 1.1rem;
+          font-size: 1rem;
           &:focus {
             outline: 2px $grey-gallery solid;
             outline-offset: -2px;
@@ -222,6 +245,21 @@ body#hubv4 {
             i {
               color: $pounamu;
             }
+          }
+
+          > a {
+            display: block;
+            color: $black-tundora;
+            text-decoration: none;
+            line-height: 1.2;
+            font-size: 18px;
+            position: initial;
+            padding-top: 20px;
+            padding-bottom: 25px;
+            padding-left: 5px;
+            padding-right: 15px;
+            width: 100%;
+            min-height: 65px;
           }
           // ICONS IN NAVBAR
           i {
@@ -279,20 +317,6 @@ body#hubv4 {
             margin-bottom: 6px;
           }
 
-          > a {
-            display: block;
-            color: $black-tundora;
-            text-decoration: none;
-            line-height: 1.2;
-            font-size: 18px;
-            position: initial;
-            padding-top: 20px;
-            padding-bottom: 25px;
-            padding-left: 5px;
-            padding-right: 15px;
-            width: 100%;
-            min-height: 65px;
-          }
           &.expanded-nav {
             &::after {
               transform: rotateZ(0deg);
@@ -330,7 +354,7 @@ body#hubv4 {
           content: "";
           position: absolute;
           width: 200px;
-          background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
+          background-image: url("https://www.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
           background-repeat: no-repeat;
           background-size: 234px;
           background-position: left;
@@ -348,6 +372,21 @@ body#hubv4 {
 
             &.active-nav-group {
               display: block;
+            }
+          }
+          .active {
+            > a {
+              font-weight: 600;
+              display: inline-flex;
+              align-items: center;
+              &:before {
+                content: "";
+                height: 0;
+                margin-right: 5px;
+                border-top: 10px solid transparent;
+                border-left: 12px solid $pounamu;
+                border-bottom: 10px solid transparent;
+              }
             }
           }
         }
@@ -399,7 +438,7 @@ body#hubv4 {
               a {
                 display: flex;
                 font-size: 1.1em;
-                flex-wrap: wrap;
+                flex-direction: column;
                 &:hover {
                   color: $black-brand;
                 }
@@ -463,9 +502,6 @@ body#hubv4 {
               }
 
               &.expanded {
-                > ul {
-                  // padding-left: 5px;
-                }
                 .btn-expander {
                   color: $black-tundora !important;
                   &:hover {
@@ -491,18 +527,6 @@ body#hubv4 {
             > li {
               border-bottom: 1px $grey-gallery solid;
               flex-wrap: wrap;
-
-              &.active > a {
-                padding-left: 0;
-
-                &::before {
-                  margin: -0.2em 0.25em -0.2em 0;
-                  border-width: $border-width-small;
-                  border-color: $sidemenu-text-hover-color;
-                }
-              }
-              &:not(:last-child) {
-              }
               padding: 0.5rem 0;
 
               > ul {
@@ -756,7 +780,7 @@ body#hubv4 {
       position: absolute;
       opacity: 0.9;
       right: -20px;
-      background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
+      background-image: url("https://www.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/downward-lines.svg");
       background-repeat: no-repeat;
       height: 100%;
       width: 50vw;
@@ -774,9 +798,7 @@ body#hubv4 {
   .hub-banner {
     min-height: 30vh;
     .banner-image {
-      img {
-        // display: none;
-      }
+
       background-size: cover;
       background-repeat: no-repeat;
     }
@@ -938,114 +960,114 @@ body#hubv4 {
       position: relative;
     }
 
-    // Quote block
-    .quote-panel.quote-image {
-      background-color: $grey-gallery;
-      svg.quote-open {
-        position: absolute;
-        top: -30px;
-        left: -80px;
-        opacity: 0.3;
-        @include breakpoint($until: desktop) {
-          max-width: 50px;
-          left: -50px;
-        }
-      }
-      .quote {
-        padding: 0;
-        background-color: #fff;
-        box-shadow: $box-shadow-card;
+    // // Quote block
+    // .quote-panel.quote-image {
+    //   background-color: $grey-gallery;
+    //   svg.quote-open {
+    //     position: absolute;
+    //     top: -30px;
+    //     left: -80px;
+    //     opacity: 0.3;
+    //     @include breakpoint($until: desktop) {
+    //       max-width: 50px;
+    //       left: -50px;
+    //     }
+    //   }
+    //   .quote {
+    //     padding: 0;
+    //     background-color: #fff;
+    //     box-shadow: $box-shadow-card;
 
-        position: relative;
-        .image-container {
-          position: relative;
-          clip-path: polygon(-0.25% -3px, 88% -13.74%, 99.5% 100%, 0px 100%);
-          @include breakpoint($until: desktop) {
-            clip-path: initial;
-            flex: 1 0 20%;
-          }
-          &:before {
-            position: absolute;
-            left: 0;
-            content: "";
-            top: 0;
-            height: 100%;
-            width: 100%;
-            background: $green-bottom-gradient;
-            opacity: 0;
-            z-index: 10;
-          }
-        }
-        img {
-          box-shadow: $box-shadow-card;
-          border-radius: 0;
-          height: 100%;
-          width: auto;
-          max-width: 300px;
-          position: relative;
-          @include breakpoint($until: desktop) {
-            max-width: 150px;
-            margin: auto;
-            border-radius: 100px;
-          }
-        }
-        .quote-content {
-          margin-left: 5rem;
+    //     position: relative;
+    //     .image-container {
+    //       position: relative;
+    //       clip-path: polygon(-0.25% -3px, 88% -13.74%, 99.5% 100%, 0px 100%);
+    //       @include breakpoint($until: desktop) {
+    //         clip-path: initial;
+    //         flex: 1 0 20%;
+    //       }
+    //       &:before {
+    //         position: absolute;
+    //         left: 0;
+    //         content: "";
+    //         top: 0;
+    //         height: 100%;
+    //         width: 100%;
+    //         background: $green-bottom-gradient;
+    //         opacity: 0;
+    //         z-index: 10;
+    //       }
+    //     }
+    //     img {
+    //       box-shadow: $box-shadow-card;
+    //       border-radius: 0;
+    //       height: 100%;
+    //       width: auto;
+    //       max-width: 300px;
+    //       position: relative;
+    //       @include breakpoint($until: desktop) {
+    //         max-width: 150px;
+    //         margin: auto;
+    //         border-radius: 100px;
+    //       }
+    //     }
+    //     .quote-content {
+    //       margin-left: 5rem;
 
-          display: block;
-          flex: 1 0 65%;
-          @include breakpoint($until: desktop) {
-            margin-left: 10px;
-            flex: 1 0 50%;
-          }
-          blockquote {
-            padding: 1rem 0;
-            position: relative;
-            width: 100%;
-            @include breakpoint($until: desktop) {
-              font-size: 1em;
-              padding: 10px;
-            }
-            h3 {
-              font-weight: 300;
-              line-height: 1.2;
-              color: $black-tundora !important;
-              @include breakpoint($until: desktop) {
-                font-size: 1em;
-                font-weight: 400;
-                line-height: 1.5;
-                padding: 0;
-              }
-            }
+    //       display: block;
+    //       flex: 1 0 65%;
+    //       @include breakpoint($until: desktop) {
+    //         margin-left: 10px;
+    //         flex: 1 0 50%;
+    //       }
+    //       blockquote {
+    //         padding: 1rem 0;
+    //         position: relative;
+    //         width: 100%;
+    //         @include breakpoint($until: desktop) {
+    //           font-size: 1em;
+    //           padding: 10px;
+    //         }
+    //         h3 {
+    //           font-weight: 300;
+    //           line-height: 1.2;
+    //           color: $black-tundora !important;
+    //           @include breakpoint($until: desktop) {
+    //             font-size: 1em;
+    //             font-weight: 400;
+    //             line-height: 1.5;
+    //             padding: 0;
+    //           }
+    //         }
 
-            &:before,
-            &:after {
-              content: none;
-            }
-          }
-        }
-        figcaption {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
-          margin-right: 2rem;
-          padding-left: 0;
-          margin-left: 2rem;
-          padding-top: 1rem;
-          @include breakpoint($until: desktop) {
-            padding: 10px;
-            margin: 0;
-          }
-          h4 {
-            margin-bottom: 5px;
-            @include breakpoint($until: desktop) {
-              font-size: 1.4em;
-            }
-          }
-          .quoter-info {
-          }
-        }
-      }
-    }
+    //         &:before,
+    //         &:after {
+    //           content: none;
+    //         }
+    //       }
+    //     }
+    //     figcaption {
+    //       display: flex;
+    //       justify-content: space-between;
+    //       align-items: flex-end;
+    //       margin-right: 2rem;
+    //       padding-left: 0;
+    //       margin-left: 2rem;
+    //       padding-top: 1rem;
+    //       @include breakpoint($until: desktop) {
+    //         padding: 10px;
+    //         margin: 0;
+    //       }
+    //       h4 {
+    //         margin-bottom: 5px;
+    //         @include breakpoint($until: desktop) {
+    //           font-size: 1.4em;
+    //         }
+    //       }
+    //       .quoter-info {
+    //       }
+    //     }
+    //   }
+    // }
   }
 }

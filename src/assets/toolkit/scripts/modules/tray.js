@@ -101,12 +101,62 @@ export function initTray() {
       $(".tray .search-input").focus();
     }, 500);
   });
+  var hideSearchHistory = function () {
+    $(".tray .saved-searches").hide();
+  };
+  $(".tray .search-input").on("focus", (e) => {
+    $(".tray .saved-searches").show();
+  });
+  $(".tray .search-input").on("focusout", (e) => {
+    setTimeout(() => {
+      hideSearchHistory();
+    }, 100);
+  });
 
-  // $('.search-button-inside form').on('focus', (e) => {
-  //   $( this ).toggleClass('focus')
-  //   console.log( $(this) );
+  // Init saved searches
+  var checkSavedSearches = function () {
+    if (localStorage.savedSearches) {
+      var savedSearchesArray = JSON.parse(localStorage.savedSearches);
+      console.log(savedSearchesArray);
+      savedSearchesArray.forEach(function (item) {
+        var div =
+          "<div class='search-item'> " +
+          item.term +
+          " <button title='Remove this search term from history' class='clear-term flat no-icon'> <i class='icons8-delete'></i></button </div>";
+        $(".tray .saved-searches").append($(div));
+      });
 
-  // })
+      // On click of search item
+      $(".tray .search-item").on("click", function (e) {
+        console.log(e);
+        var searchText = $(this).text().trim();
+        $(".tray .search-input").val(searchText);
+        $(".tray-search-bar>form").submit();
+        hideSearchHistory();
+      });
+
+      // On click of clear search item
+      $(".tray .clear-term").on("click", function (e) {
+        console.log(e);
+        e.preventDefault();
+        var searchText = $(this).parent().text().trim();
+        $(this).parent().remove();
+
+        if (!$(".tray .saved-searches .search-item").length) {
+          $(".tray .saved-searches").hide();
+        } else {
+          $(".tray .saved-searches").show();
+        }
+
+        var filtered = savedSearchesArray.filter(function (e) {
+          return e.term !== searchText;
+        });
+        localStorage.setItem("savedSearches", JSON.stringify(filtered));
+        console.log(filtered);
+      });
+    }
+  };
+  checkSavedSearches();
 
   // ****************************************
   // ****************************************
@@ -125,21 +175,30 @@ export function initTray() {
 
   function buildTray(index, item) {
     // console.log( 'nav item', $(this).parent().children('a').text() );
-    const nav = $(this);
+    // console.log( 'nav item', $(this).children('ul'));
+    const nav = $(this).children('ul');
+    // console.log($(this));
 
-    let navClassString = $(this).parent().children("a").html();
-    let titleLink = $(this).parent().children("a").attr("href");
+    let navClassString = $(this).children("a").html();
+    let titleLink = $(this).children("a").attr("href");
 
     //push into traw div
-    nav
-      .clone()
-      .appendTo(".draw-nav")
-      .addClass(navClassString)
-      .attr("data-index", index);
-    //add title
-    $(`.draw-nav ul[data-index='${index}']`).prepend(
-      `<h4 class="sub-draw-title"><a href="${titleLink}">${navClassString}</a></h4>`
-    );
+    if(nav.length > 0) {
+      nav
+        .clone()
+        .appendTo(".draw-nav")
+        .addClass(navClassString)
+        .attr("data-index", index);
+      //add title
+      $(`.draw-nav ul[data-index='${index}']`).prepend(
+        `<h4 class="sub-draw-title"><a href="${titleLink}">${navClassString}</a></h4>`
+      );
+    } else {
+      // console.log('no children');
+      // $(`.draw-nav ul[data-index='${index}']`).prepend(
+      //   `<h4 class="sub-draw-title"><a href="${titleLink}">${navClassString}</a></h4>`
+      // );
+    }
   }
 
   let openTimeout;
@@ -149,7 +208,6 @@ export function initTray() {
   //! Sidemenu nav expand logic
   function expandTray(index, listItem) {
     $(listItem).on("mouseenter click keyup", (e) => {
-
       //promo hideshow logic
       var $navItemID = $(`#${$(this).attr("data-for")}`);
       $("[id^=draw]").hide();
@@ -184,15 +242,15 @@ export function initTray() {
           $draw.addClass("active");
           sidemenuExpanded = true;
         }
-      } else if ( $(listItem).hasClass("has-submenu") ) {
+      } else if ($(listItem).hasClass("has-submenu")) {
         // Else we are hovering on the menu item
-        if ($(listItem).parent().hasClass("expanded-draw") ) {
+        if ($(listItem).parent().hasClass("expanded-draw")) {
           // console.log('has class button close tray');
           sidemenuExpanded = true;
           $draw.addClass("active");
           // Remove other ones
-          if( $(listItem).hasClass("has-submenu")) {
-            console.log('np tray print tray');
+          if ($(listItem).hasClass("has-submenu")) {
+            console.log("np tray print tray");
           }
         } else {
           //show tray
@@ -212,7 +270,7 @@ export function initTray() {
         $(".draw-nav > ul").removeClass("active-nav-group");
         matchingNavGroup.toggleClass("active-nav-group");
         // }
-      } else if( !$(listItem).hasClass("has-submenu") ) {
+      } else if (!$(listItem).hasClass("has-submenu")) {
         //no children so close menu
         closeDraw();
       }
@@ -272,9 +330,19 @@ export function initTray() {
       horizontalMenuExpanded = !horizontalMenuExpanded;
       $(".sidemenu-drawer").removeClass(`${loc}`);
       $(".mega-menu-top-level > li").removeClass("expanded-nav");
-      $blip.css({
-        width: 0,
-      });
+
+      if ($(".mega-menu-top-level > li.active").length) {
+        $blip.css({
+          left:
+            $(".mega-menu-top-level > li.active").offset().left -
+            $("#mega-menu").offset().left,
+          width: $(".mega-menu-top-level > li.active").innerWidth(),
+        });
+      } else {
+        $blip.css({
+          width: 0,
+        });
+      }
 
       // $draw.toggleClass('active');
     }
@@ -313,7 +381,7 @@ export function initTray() {
     // console.log(menu);
 
     //build tray nav content
-    const trayNavItems = $(".sidemenu-homepage > ul > li > ul");
+    const trayNavItems = $(".sidemenu-homepage > ul > .nav-item-parent ");
 
     const listItem = $(".sidemenu-homepage > ul > li:not(.sidemenu__label)");
 
@@ -362,7 +430,7 @@ export function initTray() {
 
       // console.log(titleLink, ' ', titleText);
 
-      //push into traw div
+      //push into draw div
       if ($item.children("ul").length) {
         $item
           .children("ul")
@@ -559,7 +627,25 @@ export function initTray() {
   // On mouse out of horizontal nav
   $("#hubv4 .main-site-header #mega-menu > li").on("mouseout", function () {
     var activeItem = $(".expanded-nav");
-    if (activeItem.length) {
+    // if (activeItem.length) {
+    //   $blip.css({
+    //     left: activeItem.offset().left - $("#mega-menu").offset().left,
+    //     width: activeItem.innerWidth(),
+    //   });
+    // } else {
+    //   $blip.css({
+    //     width: 0,
+    //   });
+    // }
+
+    if ($(".mega-menu-top-level > li.active").length) {
+      $blip.css({
+        left:
+          $(".mega-menu-top-level > li.active").offset().left -
+          $("#mega-menu").offset().left,
+        width: $(".mega-menu-top-level > li.active").innerWidth(),
+      });
+    } else if (activeItem.length) {
       $blip.css({
         left: activeItem.offset().left - $("#mega-menu").offset().left,
         width: activeItem.innerWidth(),
@@ -571,30 +657,11 @@ export function initTray() {
     }
   });
 
-  var notificationCount = 0;
-
   // ?Remove default icon injected on all role="button" elements
   $(".btn-expander").addClass("no-icon");
 
   // ?Temporary override of toolkit hiding
   // $("#hubv4 .sidemenu  ul > .has-submenu").css("display", "flex");
-
-  const formatAsDate = function (date, locale) {
-    var arr = date.split("");
-    var year = arr.slice(0, 4).join("");
-    var month = arr.slice(4, 6).join("");
-    var day = arr.slice(6, 8).join("");
-
-    if (locale == "us") {
-      var dateString = year + " " + month + " " + day;
-      dateString = new Date(dateString);
-      return dateString;
-    } else {
-      var dateString = year + " " + month + " " + day;
-      dateString = new Date(dateString).toLocaleDateString("en-UK");
-      return dateString;
-    }
-  };
 
   var resizeTallBlip = function (el, hide) {
     if (hide) {
@@ -697,8 +764,7 @@ export function initTray() {
   // Clone child menu into tray if child page
   if ($(".childMenu")) {
     var childMenuClone = $(".childMenu").clone();
-    childMenuClone.appendTo(".tray-main-nav");
-    $(".tray .childMenu").addClass("main-nav-list");
+    childMenuClone.appendTo(".menu-slide-container");
 
     // Open sidemenu by default
     // $(".tray #childPageMenu").show();
@@ -715,6 +781,29 @@ export function initTray() {
       $(this).parent().next().slideToggle("fast");
     });
   }
+
+  //! Mobile menu navigation
+  // ? Hide child menu, show main menu
+  $("#hubv4 .tray .mobile-menu-navigation button.main-menu-link").on(
+    "click",
+    function (e) {
+      // $(".tray .childMenu").removeClass("slide-in");
+      // $(".tray .childMenu").addClass("slide-out");
+      // $(".main-nav-list").addClass("slide-in");
+
+      $(".tray-main-nav").addClass("show-main-menu");
+    }
+  );
+  // ? Hide main nav, show child mobile menu
+  $("#hubv4 .tray .mobile-menu-navigation button.current-menu-link").on(
+    "click",
+    function (e) {
+      $(".tray-main-nav").removeClass("show-main-menu");
+
+      // $(".main-nav-list").hide();
+      // $(".tray .childMenu").addClass("slide-in");
+    }
+  );
 
   // Open on initial load
   // if ($(".tray .main-nav-item > a.active")) {
@@ -800,7 +889,13 @@ export function initTray() {
     $(".tray").addClass("responsive-preview");
     toggleTray();
   }
-
+  // Set initial position of tall blip (in tray)
+  setTimeout(() => {
+    var activeItem = $(".main-nav-list > li.active");
+    if (activeItem.length) {
+      resizeTallBlip(activeItem);
+    }
+  }, 500);
   // accesibility fix - tabbing currently doesn't go to expanded tray as it's outside the nav DIV
   // TODO make work with horizontal NAV --- Monty or Jake
   const tabLinks = document.querySelectorAll(
@@ -856,6 +951,4 @@ export function initTray() {
   //     }
   //   });
   // }
-
-
 }

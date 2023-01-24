@@ -162,16 +162,25 @@ $cardShadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
 #hubv4 {
   #study-area-tabs {
     text-align: center;
+    position: relative;
 
     .switch {
+      border: 1px solid $miro;
+      position: absolute;
+      top: -3rem;
       display: inline-flex;
       margin: auto;
       width: auto;
       height: auto;
       transform: initial;
       margin-bottom: 2rem;
-      border-radius: 100px;
+      border-radius: 0;
       overflow: hidden;
+      background-color: $manuka;
+      box-shadow: none;
+      left: 50%;
+      transform: translateX(-50%);
+
       &:hover {
         background-color: $grey-gallery;
       }
@@ -187,7 +196,7 @@ $cardShadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
       .switch-label {
         float: none;
         line-height: initial;
-        font-size: 1rem;
+        font-size: 1.22rem;
         width: auto;
         padding: 10px;
         font-weight: 700;
@@ -203,18 +212,26 @@ $cardShadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
           color: $manuka;
         }
         & + .switch-label-on ~ .switch-selection {
-          left: 132px;
+          left: 52%;
         }
       }
     }
     ul {
+      padding-top: 2rem;
       li {
         a {
-          background-color: $grey-alto;
+          background-color: $manuka;
+          @include hoverify() {
+            background-color: $off-white;
+          }
         }
         &.active {
+          &::after {
+            border-color: $pounamu transparent transparent;
+          }
           a {
             background-color: $pounamu;
+
             h4 {
               color: $manuka;
             }
@@ -223,8 +240,62 @@ $cardShadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
       }
     }
   }
+  .updated-tile-grid {
+    .tile {
+      > a {
+        border-left-color: $pounamu;
+        @include hoverify() {
+          border-color: $pounamu ;
+          transition: all .3s ease-in-out;
+
+          h2, h3 {
+            color: $pounamu;
+          }
+
+          * {
+            color: $black-tundora;
+          }
+
+          .icon-arrow-right {
+            color: $kowhai;
+          }
+        }
+      }
+    }
+
+    .tile-strip-grid {
+      .icon-arrow-right {
+        height: 100%;
+        top: 0.75rem;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+      }
+    }
+    .icon-arrow-right {
+      background-color: $pounamu;
+      right: 0;
+      bottom: 0;
+      font-size: 1.2rem;
+      color: $manuka;
+
+      &::before {
+        margin: 0;
+        padding: .5rem;
+        content: "";
+      }
+    }
+  }
   .tiles-panel {
-    background-color: $off-white;
+    background-color: $kohuhu;
+    margin-top: 4rem;
+
+    .tile {
+      h2,h3 {
+        font-size: 1.4rem;
+      }
+    }
+
     .study-area-single {
       // Override icons
       .icon-book::before {
@@ -242,15 +313,22 @@ $cardShadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
         font-smoothing: antialiased;
         content: "\f135";
       }
+
       .study-area-wide-panel {
         box-shadow: $cardShadow;
         border: 1px $grey-chalice solid;
         display: flex;
+        padding-bottom: 0;
         .img-wrap {
           padding: 0;
           float: none;
           width: 100%;
           flex: 1 0 40%;
+
+          img {
+            height: 100%;
+            object-fit: cover;
+          }
         }
         .content-wrap {
           float: none;
@@ -258,6 +336,10 @@ $cardShadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
           width: 100%;
           background-color: #fff;
           padding: 1.5rem 2rem;
+
+          .button {
+            margin-top: 1rem;
+          }
           .text-subjects-wrap {
             display: flex;
             flex-direction: column;

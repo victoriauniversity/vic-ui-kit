@@ -37,6 +37,10 @@
 .separated {
   @include clearfix;
   border-bottom: $border;
+
+  #hubv4 & {
+    border-bottom: none;
+  }
 }
 
 
@@ -187,12 +191,23 @@
     &:first-child {
       // Main content *ONLY*
       > main:last-child {
-        > .block { padding-left: 0; }
+        > .block {
+          padding-left: 0;
+        #hubv4 & {
+          padding-left: 1.5rem;
+        }
+        }
       }
     }
 
     > main:last-child {
-      > .block { padding-right: 0; }
+      > .block {
+        padding-right: 0;
+
+        #hubv4 & {
+          padding-right: 1.5rem;
+        }
+      }
     }
 
     /** 1st Sidebar + 2nd Content panel */

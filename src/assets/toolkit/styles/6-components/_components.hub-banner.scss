@@ -204,7 +204,7 @@
       img {
         height: 100%;
         margin-bottom: 0 !important;
-        max-height: 520px;
+        max-height: 470px;
         object-fit: cover;
         object-position: top;
 
@@ -295,6 +295,20 @@
     }
 
     a {
+
+      .banner-body {
+        // position: relative;
+
+        &::after {
+          content: "";
+          display: inline-block;
+          font-family: "VicIcons";
+          position: absolute;
+          font-size: 1.4rem;
+          bottom: 1rem;
+          right: 1rem;
+        }
+      }
       @include hoverify() {
         figure {
             h1,h2 {
@@ -314,10 +328,15 @@
     }
     .banner-image {
       height: 100%;
+      background-image: none !important;
       // background-size: cover;
       img {
         // display: none;
         width: 100%;
+        object-fit: cover;
+        min-height: 350px;
+        max-height: fit-content;
+        // aspect-ratio: 16/9;
       }
     }
 
@@ -330,6 +349,7 @@
 
     .banner-title {
       margin-bottom: 2rem;
+
 
       h1, h2 {
         color: $manuka;
@@ -395,27 +415,28 @@
     }
 
     &.no-overlay {
-      &:before {
-        bottom: .75rem;
-        left: .75rem;
-        content: "";
-        z-index: 20;
-        border-bottom: 1rem $pounamu solid;
-        border-left: 1rem $pounamu solid;
-        background-color: transparent;
-        position: absolute;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        max-width: calc(100% - 2.25rem);
-        max-height: calc(100% - 2.25rem);
-        width: 150px;
-        height: 150px;
-        transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
-      }
+
 
       figure {
         &:after {
           border-color: $miro;
+        }
+        &:before {
+          bottom: .75rem;
+          left: .75rem;
+          content: "";
+          z-index: 0;
+          border-bottom: 1rem $pounamu solid;
+          border-left: 1rem $pounamu solid;
+          background-color: transparent;
+          position: absolute;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          max-width: calc(100% - 2.25rem);
+          max-height: calc(100% - 2.25rem);
+          width: 150px;
+          height: 150px;
+          transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
         }
       }
     }

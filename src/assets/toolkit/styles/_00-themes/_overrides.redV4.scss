@@ -5,13 +5,14 @@ $brand-light: #DF2F2F   ;
 $brand-lightest: #F6C2C2  ;
 $brand-dark: #831414  ;
 $brand-darkest: #570D0D   ;
+$red-grey: #eee3e3;
 
 #hubv4 {
   // Header
   .main-site-header {
     .button {
-      background-color: #CCDCD7 !important;
-      color: #0D4C38 !important;
+      // background-color: #CCDCD7 !important;
+      // color: #0D4C38 !important;
     }
     .header-content {
       .tereo-title {
@@ -36,11 +37,23 @@ $brand-darkest: #570D0D   ;
         background-color: $brand-lightest !important;
       }
     }
+
+    &.no-overlay {
+      figure:before {
+        border-bottom-color: $brand-lightest !important;
+        border-left-color: $brand-lightest !important;
+      }
+    }
   }
 
   .btn, .button, a.btn {
     background-color: $brand-lightest !important;
     color: $brand-dark !important;
+  }
+
+  //
+  .sidemenu .sidemenu-toggle {
+    background-color: $brand !important;
   }
 
   // footer
@@ -106,6 +119,10 @@ $brand-darkest: #570D0D   ;
     .sidemenu ul li.has-submenu ul li.expanded > a {
       color: $brand !important;
     }
+
+     .sidemenu > ul > li:not(.sidemenu__label).expanded::before {
+      background-color: $brand !important;
+    }
   }
 
 
@@ -143,4 +160,73 @@ $brand-darkest: #570D0D   ;
   figure.quote.quote-template img {
     border-color: $brand-lightest !important;
   }
+
+
+  // Footer
+
+  footer {
+    .footer-secondary {
+      background-color: $red-grey !important;
+      border-color: $grey-chalice !important;
+
+      h2, h3 {
+        color: $brand !important;
+      }
+    }
+    .two-columns .block:last-child::before {
+      border-color: $grey-chalice !important;
+    }
+
+    .footer-primary {
+      background-color: $brand-darkest !important;
+
+      .block + .block {
+        border-top-color: $brand-lightest !important;
+      }
+    }
+  }
+
+  .homepage-intro .intro-text p:first-child {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: $brand !important;
+
+    &:before {
+      border-top-color: $brand !important;
+    }
+  }
+
+ .homepage-intro + .text-promo-panel .media figcaption {
+  background-color: $brand-dark !important;
+ }
+
+  .promo-panel.strip-banner.tall figcaption h1, .promo-panel.strip-banner.tall figcaption p {
+    background-color: $brand !important;
+  }
+
+  .sidemenu-banner-wrap .menu-blip {
+    background-color: $brand !important;
+  }
+
+  // TRAY
+  .main-site-header.white.header-tray .tray-content .tray-search-bar .save-page {
+    background-color: transparent !important;
+  }
+
+  .tray-content  h3 {
+    color: $pounamu;
+  }
+
+  .tray-content .button {
+    background-color:$kohuhu !important;
+    color: $pounamu !important;
+  }
+
+
+
+
+  .sidebar .sidemenu>ul>li:not(.sidemenu__label):hover:before {
+    background-color: $brand-light !important;
+  }
+
 }

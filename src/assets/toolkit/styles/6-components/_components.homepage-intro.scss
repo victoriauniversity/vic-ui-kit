@@ -132,6 +132,8 @@
     padding-right: 2.5rem;
     border: none;
 
+    float: left;
+
     // background-image: url('images/patterns/spiral-pattern-vertical.svg');
     // background-position: left;
     // background-repeat: no-repeat;
@@ -175,10 +177,15 @@
         flex: 1 0;
         max-width: 250px;
         min-width: 130px;
+        // background-image: url('images/patterns/te-tumu/pattern-green.svg');
+        // background-repeat: no-repeat;
+        // background-size: 170%;
+        // background-position: -35px 0px;
+        border-top: .5rem solid $miro;
         width: unset;
         padding: 1rem;
         padding-top: .5rem;
-        background-color: $grey-gallery;
+        background-color: $off-white;
         display: flex;
         flex-wrap: wrap;
 
@@ -194,15 +201,36 @@
       }
     }
 
+    + .text-promo-panel {
+      .media {
+        figcaption {
+          position: relative;
+        }
+      }
+    }
+
     @include breakpoint( $until: 900px ) {
       width: 100%;
     }
+
+
+
   }
 }
 
-#hubv4 .text-promo-panel {
+#hubv4 .homepage-intro + .text-promo-panel {
   margin-top: 1rem;
   width: 35%;
+
+  h1, h2, h3, h4, p {
+    margin-bottom: 1.2rem;
+  }
+
+  // utility to escape general use of .text-promo-panel class.. not ideal
+  > div:not(.promo) {
+    background-color: unset !important;
+    border: unset !important;
+  }
 
 .media {
 
@@ -245,19 +273,20 @@
     .media {
 
       figcaption {
-        width: 70% !important;
+        width: 100% !important;
         padding: 1.5rem  1rem;
         margin: 0;
 
         max-width: unset;
         left: unset !important;
-        top: unset !important;
-        bottom: -1.5rem !important;
-        right: -1.5rem;
+        top: -1px !important;
+        bottom: 0 !important;
+        right: 0rem;
 
         h4 {
           margin: 0;
           padding: 0;
+          padding-left: 2rem;
           justify-content: space-between;
 
           i::before {
@@ -293,6 +322,22 @@
       &::before {
         content: none;
       }
+    }
+  }
+
+  &.intro-promo {
+    // background-color: $kohuhu;
+    border: 1px solid $miro;
+    // margin-left: 1rem;
+    &::before {
+      content: none;
+    }
+
+    @include breakpoint(tablet) {
+      width: calc(35% - 1rem);
+    }
+    @include breakpoint( $until: 900px ) {
+      width: 100%;
     }
   }
 

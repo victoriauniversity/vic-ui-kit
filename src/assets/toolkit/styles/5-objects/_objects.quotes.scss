@@ -5,7 +5,16 @@
 $quote-color: $brand !default;
 $quote-border-color: $brand !default;
 $quote-text-color: $heading-color !default;
+$box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+  rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 
+  $green-bottom-gradient: linear-gradient(
+    180deg,
+    #fff 0%,
+    #3b7b07 90%,
+    $green-brand 100%
+  )
+  0% 0%;
 
 // Just a quote style
 blockquote.quote { font-style: italic; }
@@ -165,6 +174,172 @@ blockquote.quote { font-style: italic; }
       border: 3px solid $miro;
     }
   }
+
+      // Quote block
+      .quote-panel.quote-image {
+        padding: 1.5rem;
+        background-color: $grey-gallery;
+        &.quote-white {
+          background-color: #fff;
+        }
+        svg.quote-open {
+          position: absolute;
+          top: -30px;
+          left: -80px;
+          opacity: 0.3;
+          @include breakpoint($until: desktop) {
+            max-width: 50px;
+            left: -50px;
+          }
+        }
+        .quote {
+          padding: 0;
+          background-color: #fff;
+          box-shadow: $box-shadow-card;
+          margin-bottom: 1rem;
+
+          &::after {
+            content: none;
+          }
+
+          @include breakpoint($until: tablet) {
+            flex-direction: column;
+
+          }
+
+          position: relative;
+          .image-container {
+            position: relative;
+            clip-path: polygon(-0.25% -3px, 88% -13.74%, 99.5% 100%, 0px 100%);
+            @include breakpoint($until: desktop) {
+              clip-path: initial;
+              flex: 1 0 20%;
+            }
+            &:before {
+              position: absolute;
+              left: 0;
+              content: "";
+              top: 0;
+              height: 100%;
+              width: 100%;
+              background: $green-bottom-gradient;
+              opacity: 0;
+              z-index: 10;
+            }
+          }
+          img {
+            box-shadow: $box-shadow-card;
+            border-radius: 0;
+            height: 100%;
+            width: auto;
+            max-width: 300px;
+            margin-bottom: 0;
+            position: relative;
+
+            @include breakpoint($until: desktop) {
+              max-width: 150px;
+              margin: auto;
+              // border-radius: 100px;
+              margin-right: 1rem;
+            }
+
+            @include breakpoint($until: tablet) {
+              margin: 0;
+            }
+
+          }
+          .quote-content {
+            margin-left: 2rem;
+            padding-bottom: 1rem;
+
+            display: block;
+            flex: 1 0 65%;
+            @include breakpoint($until: desktop) {
+              margin-left: 10px;
+              flex: 1 0 50%;
+            }
+            @include breakpoint($until: tablet) {
+              width: 100%;
+              margin: 0;
+              padding: 1rem;
+            }
+            blockquote {
+              padding: 1rem 0;
+              position: relative;
+              width: 100%;
+              @include breakpoint($until: desktop) {
+                font-size: 1.2rem;
+                padding: 10px;
+              }
+              h3 {
+                font-weight: 300;
+                line-height: 1.2;
+                color: $black-tundora !important;
+                @include breakpoint($until: desktop) {
+                  font-size: 1em;
+                  font-weight: 400;
+                  line-height: 1.5;
+                  padding: 0;
+                }
+                      // Starting quote icon
+                @include extend-icon-before( quote-down ) {
+                  top: -.1em;
+                  margin-left: _em( $bleed-third );
+                };
+
+                // Ending quote icon
+                @include extend-icon-after( quote-up ) {
+                  margin-right: _em( $bleed-third );
+                };
+
+                &::before,
+                &::after {
+                  display: inline;
+                  font-style: normal;
+                  font-size: 120%;
+                  line-height: 1;
+                  color: $miro;
+                }
+              }
+
+              &:before,
+              &:after {
+                content: none;
+              }
+            }
+          }
+          figcaption {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-right: 2rem;
+            padding-left: 0;
+            margin-left: 2rem;
+            padding-top: 1rem;
+            @include breakpoint($until: desktop) {
+              padding: 10px;
+              margin: 0;
+            }
+            @include breakpoint($until: tablet) {
+              flex-wrap: wrap;
+              width: 100%;
+
+              .button {
+              }
+            }
+            h4 {
+              margin-bottom: 5px;
+              @include breakpoint($until: desktop) {
+                font-size: 1.4em;
+              }
+            }
+            .quoter-info {
+            }
+          }
+        }
+
+      }
+
 }
 
 // hub page Quote panel
