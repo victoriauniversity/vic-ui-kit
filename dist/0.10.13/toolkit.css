@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, January 24, 2023, 9:41 AM */
+/** Version: 0.10.13 | Wednesday, January 25, 2023, 10:57 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -4205,6 +4205,14 @@ blockquote.quote {
   content: none;
 }
 
+@media (max-width: 42.99em) {
+  #hubv4 .quote-panel.quote-image .quote {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+}
+
 #hubv4 .quote-panel.quote-image .quote .image-container {
   position: relative;
   -webkit-clip-path: polygon(-0.25% -3px, 88% -13.74%, 99.5% 100%, 0px 100%);
@@ -4252,8 +4260,15 @@ blockquote.quote {
   }
 }
 
+@media (max-width: 42.99em) {
+  #hubv4 .quote-panel.quote-image .quote img {
+    margin: 0;
+  }
+}
+
 #hubv4 .quote-panel.quote-image .quote .quote-content {
   margin-left: 2rem;
+  padding-bottom: 1rem;
   display: block;
   -webkit-box-flex: 1;
           flex: 1 0 65%;
@@ -4264,6 +4279,14 @@ blockquote.quote {
     margin-left: 10px;
     -webkit-box-flex: 1;
             flex: 1 0 50%;
+  }
+}
+
+@media (max-width: 42.99em) {
+  #hubv4 .quote-panel.quote-image .quote .quote-content {
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
   }
 }
 
@@ -4381,6 +4404,13 @@ blockquote.quote {
   #hubv4 .quote-panel.quote-image .quote figcaption {
     padding: 10px;
     margin: 0;
+  }
+}
+
+@media (max-width: 42.99em) {
+  #hubv4 .quote-panel.quote-image .quote figcaption {
+    flex-wrap: wrap;
+    width: 100%;
   }
 }
 
@@ -21797,6 +21827,7 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu {
 
 body#hubv4 .show-mega-menu-top .mega-sub-menu li a .tereo-title {
   display: block;
+  color: #0D4C38;
 }
 
 body#hubv4 .show-mega-menu-top .mega-sub-menu #mega-menu {
@@ -31562,7 +31593,8 @@ https://gist.github.com/jacurtis/30da4bf9a6c9b9b5cc0aebac512ca7c9
   color: #005EA5;
 }
 
-.dialog .filter .btn {
+.dialog .filter .btn,
+#hubv4 .dialog .filter .btn {
   display: none;
 }
 
