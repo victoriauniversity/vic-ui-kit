@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, January 25, 2023, 10:57 AM */
+/** Version: 0.10.13 | Wednesday, January 25, 2023, 11:28 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15677,23 +15677,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
         target.remove();
       }
     }
-  }); // Check toolbar to ensure myTools has been updated to Puaha
+  }); // Else normal page (not t&p apps)
 
-  if (document.location.pathname.split("/")[1] == "courses" || document.location.pathname.split("/")[1] == "explore") {
-    return; // do nothing
-  } else {
-    // Add Nuku link (main site)
-    var $nukuLink = $("<a title='Nuku' href='https://nuku.wgtn.ac.nz/' target='_blank'>Nuku</a>");
+  if (document.location.pathname.split("/")[1] !== "courses" && document.location.pathname.split("/")[1] !== "explore") {
     var target = $("header .menu-bar > a").filter(function (i, el) {
       return $(el).text() == "Blackboard";
-    }); // Make sure it's not already added
-
-    var checkIfAlreadyExists = $("header .menu-bar > a").filter(function (i, el) {
-      return $(el).text() == "Nuku";
     });
 
-    if (target[0] && checkIfAlreadyExists.length < 1) {
-      $nukuLink.insertAfter(target[0]);
+    if (target[0]) {
+      target.remove();
     }
   }
 }); // Check toolbar for mode=dev and apply class
