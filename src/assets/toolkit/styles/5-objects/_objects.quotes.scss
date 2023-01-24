@@ -202,6 +202,11 @@ blockquote.quote { font-style: italic; }
             content: none;
           }
 
+          @include breakpoint($until: tablet) {
+            flex-direction: column;
+
+          }
+
           position: relative;
           .image-container {
             position: relative;
@@ -238,15 +243,25 @@ blockquote.quote { font-style: italic; }
               margin-right: 1rem;
             }
 
+            @include breakpoint($until: tablet) {
+              margin: 0;
+            }
+
           }
           .quote-content {
             margin-left: 2rem;
+            padding-bottom: 1rem;
 
             display: block;
             flex: 1 0 65%;
             @include breakpoint($until: desktop) {
               margin-left: 10px;
               flex: 1 0 50%;
+            }
+            @include breakpoint($until: tablet) {
+              width: 100%;
+              margin: 0;
+              padding: 1rem;
             }
             blockquote {
               padding: 1rem 0;
@@ -305,6 +320,13 @@ blockquote.quote { font-style: italic; }
               padding: 10px;
               margin: 0;
             }
+            @include breakpoint($until: tablet) {
+              flex-wrap: wrap;
+              width: 100%;
+
+              .button {
+              }
+            }
             h4 {
               margin-bottom: 5px;
               @include breakpoint($until: desktop) {
@@ -315,7 +337,9 @@ blockquote.quote { font-style: italic; }
             }
           }
         }
+
       }
+
 }
 
 // hub page Quote panel
