@@ -1271,15 +1271,24 @@ body#hubv4 {
           }
 
           .draw-promo {
-            width: 40%;
+            width: 50%;
+          }
+
+          &.no-promo {
+            .draw-nav {
+              flex: 1 1 50%;
+              .active-nav-group {
+                column-count: 2;
+              }
+            }
           }
 
           .draw-nav {
-            width: 60%;
+            width: 50%;
             padding-right: 1rem;
             margin: 0 1rem;
             border-right: none;
-            flex: 1 1 40%;
+            flex: 0 1 50%;
             min-width: 300px;
             // max-width: 400px;
 
@@ -1362,7 +1371,7 @@ body#hubv4 {
 
               &.active-nav-group {
                 display: block;
-                column-count: 2;
+                column-count: 1;
 
                 .sub-draw-title {
                   column-span: all;

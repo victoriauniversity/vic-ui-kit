@@ -209,13 +209,19 @@ export function initTray() {
   function expandTray(index, listItem) {
     $(listItem).on("mouseenter click keyup", (e) => {
       //promo hideshow logic
+      // console.log($(this).attr("data-for"));
       var $navItemID = $(`#${$(this).attr("data-for")}`);
+      // console.log($navItemID.length);
       $("[id^=draw]").hide();
-      if ($navItemID) {
+
+      if ($navItemID.length) {
         $(".sidemenu-drawer").removeClass("no-promo");
+        // console.warn(' promo....', $navItemID);
       } else {
         $(".sidemenu-drawer").addClass("no-promo");
+        // console.warn('no promo....', $navItemID);
       }
+
       $navItemID.show();
 
       // If clicking on expander arrow
@@ -453,10 +459,10 @@ export function initTray() {
     // ?EXPAND MENU ON HOVER
     menuItems.on("mouseenter click", function (e) {
       let index = $(this).index() - 2;
-      console.log(
-        "🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index",
-        index
-      );
+      // console.log(
+      //   "🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index",
+      //   index
+      // );
 
       const $navItem = $(this);
 
