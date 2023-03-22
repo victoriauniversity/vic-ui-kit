@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, January 26, 2023, 2:02 PM */
+/** Version: 0.10.13 | Wednesday, March 22, 2023, 2:33 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -11904,14 +11904,14 @@ aside .promo h3::before {
     bottom: 0 !important;
     right: 0rem;
   }
-  #hubv4 .homepage-intro + .text-promo-panel .media figcaption h4 {
+  #hubv4 .homepage-intro + .text-promo-panel .media figcaption h3, #hubv4 .homepage-intro + .text-promo-panel .media figcaption h4, #hubv4 .homepage-intro + .text-promo-panel .media figcaption h5 {
     margin: 0;
     padding: 0;
     padding-left: 2rem;
     -webkit-box-pack: justify;
             justify-content: space-between;
   }
-  #hubv4 .homepage-intro + .text-promo-panel .media figcaption h4 i::before {
+  #hubv4 .homepage-intro + .text-promo-panel .media figcaption h3 i::before, #hubv4 .homepage-intro + .text-promo-panel .media figcaption h4 i::before, #hubv4 .homepage-intro + .text-promo-panel .media figcaption h5 i::before {
     content: "";
   }
 }
@@ -17468,6 +17468,7 @@ body#hubv4 .sidemenu-banner-wrap #mega-nav ul li.nav-item-parent .btn-expander:a
     -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
     transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
     min-height: 100%;
+    width: 75%;
     display: -webkit-box;
     display: flex;
     visibility: hidden;
@@ -17535,15 +17536,24 @@ body#hubv4 .sidemenu-banner-wrap #mega-nav ul li.nav-item-parent .btn-expander:a
             box-shadow: none;
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-promo {
-    width: 40%;
+    width: 50%;
+  }
+  body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer.no-promo .draw-nav {
+    -webkit-box-flex: 1;
+            flex: 1 1 50%;
+  }
+  body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer.no-promo .draw-nav .active-nav-group {
+    -webkit-column-count: 2;
+       -moz-column-count: 2;
+            column-count: 2;
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav {
-    width: 60%;
+    width: 50%;
     padding-right: 1rem;
     margin: 0 1rem;
     border-right: none;
-    -webkit-box-flex: 1;
-            flex: 1 1 40%;
+    -webkit-box-flex: 0;
+            flex: 0 1 50%;
     min-width: 300px;
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav .sub-draw-title {
@@ -17627,9 +17637,9 @@ body#hubv4 .sidemenu-banner-wrap #mega-nav ul li.nav-item-parent .btn-expander:a
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul.active-nav-group {
     display: block;
-    -webkit-column-count: 2;
-       -moz-column-count: 2;
-            column-count: 2;
+    -webkit-column-count: 1;
+       -moz-column-count: 1;
+            column-count: 1;
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu-drawer .draw-nav > ul.active-nav-group .sub-draw-title {
     -webkit-column-span: all;
@@ -24152,7 +24162,7 @@ body#hubv4 .hub .promo-panel {
 }
 
 #hubv4 .hub-banner-sidemenu .banner-title {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 #hubv4 .hub-banner-sidemenu .banner-title h1, #hubv4 .hub-banner-sidemenu .banner-title h2 {

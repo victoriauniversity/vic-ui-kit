@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, January 26, 2023, 2:02 PM */
+/** Version: 0.10.13 | Wednesday, March 22, 2023, 2:33 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14202,13 +14202,15 @@ function initTray() {
 
     $(listItem).on("mouseenter click keyup", function (e) {
       //promo hideshow logic
-      var $navItemID = $("#".concat($(_this).attr("data-for")));
+      // console.log($(this).attr("data-for"));
+      var $navItemID = $("#".concat($(_this).attr("data-for"))); // console.log($navItemID.length);
+
       $("[id^=draw]").hide();
 
-      if ($navItemID) {
-        $(".sidemenu-drawer").removeClass("no-promo");
+      if ($navItemID.length) {
+        $(".sidemenu-drawer").removeClass("no-promo"); // console.warn(' promo....', $navItemID);
       } else {
-        $(".sidemenu-drawer").addClass("no-promo");
+        $(".sidemenu-drawer").addClass("no-promo"); // console.warn('no promo....', $navItemID);
       }
 
       $navItemID.show(); // If clicking on expander arrow
@@ -14396,8 +14398,11 @@ function initTray() {
     // ?EXPAND MENU ON HOVER
 
     menuItems.on("mouseenter click", function (e) {
-      var index = $(this).index() - 2;
-      console.log("🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index", index);
+      var index = $(this).index() - 2; // console.log(
+      //   "🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index",
+      //   index
+      // );
+
       var $navItem = $(this);
       e.preventDefault();
       e.stopPropagation();
