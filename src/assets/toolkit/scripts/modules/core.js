@@ -104,10 +104,10 @@ function hideCourseLevies() {
 
     function setLevyText() {
       if (feeLocation.value == "domestic") {
-        let levyText = `You will also pay an annual <a href="https://www.wgtn.ac.nz/students/money/fees/student-services-levy-faqs">Student Services Levy</a>.`;
+        let levyText = `You will also pay an annual <a href="https://www.wgtn.ac.nz/students/money/fees/student-services-levy-faqs">student service fees</a>.`;
         $(".levy-text").html(levyText);
       } else {
-        let levyText = `You will also pay an annual <a href="https://www.wgtn.ac.nz/students/money/fees/student-services-levy-faqs">Student Services Levy</a>.`;
+        let levyText = `You will also pay an annual <a href="https://www.wgtn.ac.nz/students/money/fees/student-services-levy-faqs">student service fees</a>.`;
         $(".levy-text").html(levyText);
       }
     }
