@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, January 25, 2024, 1:45 PM */
+/** Version: 0.10.13 | Thursday, January 25, 2024, 1:50 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15622,10 +15622,10 @@ function hideCourseLevies() {
 
     var setLevyText = function setLevyText() {
       if (feeLocation.value == "domestic") {
-        var levyText = "You will also pay an annual <a href=\"https://www.wgtn.ac.nz/students/money/fees/student-services-levy-faqs\">student service fees</a>.";
+        var levyText = "You will also pay annual <a href=\"https://www.wgtn.ac.nz/students/money/fees/student-services-levy-faqs\">student service fees</a>.";
         $(".levy-text").html(levyText);
       } else {
-        var _levyText = "You will also pay an annual <a href=\"https://www.wgtn.ac.nz/students/money/fees/student-services-levy-faqs\">student service fees</a>.";
+        var _levyText = "You will also pay annual <a href=\"https://www.wgtn.ac.nz/students/money/fees/student-services-levy-faqs\">student service fees</a>.";
         $(".levy-text").html(_levyText);
       }
     };
