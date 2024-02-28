@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, January 30, 2024, 11:48 AM */
+/** Version: 0.10.13 | Wednesday, February 28, 2024, 3:02 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -1583,7 +1583,8 @@ h6,
 .h3,
 .h4,
 .h5,
-.h6 {
+.h6,
+.tereo-h1 {
   font-family: "National", "Helvetica Neue", "Segoe WP", "Helvetica", "Arial";
   font-weight: 600;
   color: #115737;
@@ -2529,6 +2530,7 @@ body#hubv4 h5,
 body#hubv4 a,
 body#hubv4 li,
 body#hubv4 ul,
+body#hubv4 .tereo-h1, body#hubv4 p,
 body#hubv4 button {
   font-family: "Inter", sans-serif;
 }
@@ -2540,9 +2542,16 @@ body#hubv4:not(.hub-page) .content-panel main h1 {
           align-items: center;
 }
 
+body#hubv4 .tereo-h1 {
+  display: block;
+  color: #424242;
+  margin-bottom: .25rem;
+}
+
 body#hubv4 .formatting h1,
 body#hubv4 h1,
-body#hubv4 h2 {
+body#hubv4 h2,
+body#hubv4 .tereo-h1 {
   font-weight: 700;
 }
 
@@ -2554,7 +2563,7 @@ body#hubv4 aside > .formatting h3 {
   font-size: 1.2rem;
 }
 
-body#hubv4 .content-panel main h1, body#hubv4 .content-panel main .h1 {
+body#hubv4 .content-panel main h1, body#hubv4 .content-panel main .h1, body#hubv4 .content-panel main .tereo-h1 {
   font-size: 2.4rem;
 }
 
@@ -15418,6 +15427,8 @@ footer .footer-secondary.dark .footer-num {
 }
 
 #hubv4 nav .breadcrumbs.block {
+  padding-top: .5rem;
+  padding-bottom: .25rem;
   margin-bottom: 0;
   padding-right: 0.75rem;
   padding-left: 0.75rem;
@@ -15437,6 +15448,7 @@ footer .footer-secondary.dark .footer-num {
   display: -webkit-box;
   display: flex;
   font-size: 90%;
+  font-size: .9rem;
   -webkit-box-align: center;
           align-items: center;
   padding: 0.5em 1em;
@@ -19545,7 +19557,7 @@ body#hubv4.homepage .main-site-header.header-tray .header-inner .tray-content .t
 
 body#hubv4.homepage .main-site-header .top-header .header-content {
   position: relative;
-  align-self: stretch;
+  align-self: center;
 }
 
 body#hubv4.homepage .main-site-header .top-header .header-content .homesite-header-image {
