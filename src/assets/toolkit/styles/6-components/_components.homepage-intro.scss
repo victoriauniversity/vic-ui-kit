@@ -222,6 +222,24 @@
   margin-top: 1rem;
   width: 35%;
 
+  @include breakpoint( $until: tablet ) {
+    display: flex;
+    flex-direction: column;
+
+    &.text-promo-panel {
+      width: auto !important;
+      // padding: 1rem;
+      margin: 1rem;
+    }
+  }
+
+  @include breakpoint($until:desktop) {
+    &.text-promo-panel {
+      width: auto !important;
+      margin: 1rem;
+    }
+  }
+
   h1, h2, h3, h4, p {
     margin-bottom: 1.2rem;
   }

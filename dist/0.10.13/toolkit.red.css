@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, March 20, 2024, 11:33 AM */
+/** Version: 0.10.13 | Thursday, March 21, 2024, 12:10 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -3861,6 +3861,10 @@ main:first-child > .formatting.block:first-child > img:first-child {
 #hubv4 .sector, #hubv4
 .separated {
   border-bottom: none;
+}
+
+#hubv4 header + .layout .content-panel {
+  margin-top: 1.5rem;
 }
 
 /** LAYOUT - Contains all the content's columns and layout combinations */
@@ -11865,6 +11869,27 @@ aside .promo h3::before {
   width: 35%;
 }
 
+@media (max-width: 42.99em) {
+  #hubv4 .homepage-intro + .text-promo-panel {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+  #hubv4 .homepage-intro + .text-promo-panel.text-promo-panel {
+    width: auto !important;
+    margin: 1rem;
+  }
+}
+
+@media (max-width: 60.99em) {
+  #hubv4 .homepage-intro + .text-promo-panel.text-promo-panel {
+    width: auto !important;
+    margin: 1rem;
+  }
+}
+
 #hubv4 .homepage-intro + .text-promo-panel h1, #hubv4 .homepage-intro + .text-promo-panel h2, #hubv4 .homepage-intro + .text-promo-panel h3, #hubv4 .homepage-intro + .text-promo-panel h4, #hubv4 .homepage-intro + .text-promo-panel p {
   margin-bottom: 1.2rem;
 }
@@ -14044,6 +14069,35 @@ address.contact > img {
 
 .degrees-quals.tile-filter-tags .tile.hide-filter {
   display: none;
+}
+
+#hubv4 .degrees-quals.tile-filter-tags .quals-filter {
+  display: -webkit-box;
+  display: flex;
+  -webkit-column-gap: .5rem;
+     -moz-column-gap: .5rem;
+          column-gap: .5rem;
+  flex-wrap: wrap;
+}
+
+#hubv4 .degrees-quals.tile-filter-tags .quals-filter .tag {
+  background-color: #FEF9F0;
+  border-color: #CCDCD7;
+  color: #0D4C38;
+  line-height: 1.2;
+  padding: 0.45rem 0.6rem;
+}
+
+#hubv4 .degrees-quals.tile-filter-tags .quals-filter .tag.tag-active {
+  border-color: #0D4C38;
+  background-color: white;
+  -webkit-filter: drop-shadow(2px 2px 2px rgba(28, 26, 26, 0.25));
+          filter: drop-shadow(2px 2px 2px rgba(28, 26, 26, 0.25));
+}
+
+#hubv4 .degrees-quals.tile-filter-tags .quals-filter label {
+  width: 100%;
+  font-weight: 600;
 }
 
 /* Styles for parallax/carousel implementation */
