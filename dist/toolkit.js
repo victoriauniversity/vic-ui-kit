@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, April 17, 2024, 11:39 AM */
+/** Version: 0.10.13 | Thursday, May 2, 2024, 2:35 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14408,8 +14408,9 @@ function initTray() {
       e.stopPropagation();
       var $navItemId = $("#" + $navItem.attr("data-for"));
       $("[id^=draw]").hide();
+      console.log($navItemId.length);
 
-      if ($navItemId) {
+      if ($navItemId.length) {
         $(".sidemenu-drawer").removeClass("no-promo");
       } else {
         $(".sidemenu-drawer").addClass("no-promo");
