@@ -472,7 +472,7 @@ export function initTray() {
       var $navItemId = $("#" + $navItem.attr("data-for"));
       $("[id^=draw]").hide();
 
-      console.log($navItemId.length);
+      // console.log($navItemId.length);
 
       if ($navItemId.length) {
         $(".sidemenu-drawer").removeClass("no-promo");
