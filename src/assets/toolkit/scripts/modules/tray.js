@@ -463,7 +463,7 @@ export function initTray() {
       //   "🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index",
       //   index
       // );
-
+// console.log('blah');
       const $navItem = $(this);
 
       e.preventDefault();
@@ -501,6 +501,9 @@ export function initTray() {
         );
         $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
         $(".draw-nav > ul").removeClass("active-nav-group");
+
+        // console.log(menuItems.find(">a"));
+        // console.log('testing');
 
         menuItems.find(">a").attr("tabIndex", 0);
       } else {
