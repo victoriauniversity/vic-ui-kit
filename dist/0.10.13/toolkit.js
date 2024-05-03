@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Thursday, May 2, 2024, 2:58 PM */
+/** Version: 0.10.13 | Friday, May 3, 2024, 2:41 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14402,6 +14402,7 @@ function initTray() {
       //   "🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index",
       //   index
       // );
+      // console.log('blah');
 
       var $navItem = $(this);
       e.preventDefault();
@@ -14433,7 +14434,9 @@ function initTray() {
         $navItem.removeClass("expanded-nav");
         $(".sidemenu-drawer .active-nav-group .sub-draw-title > a").attr("tabIndex", -1);
         $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
-        $(".draw-nav > ul").removeClass("active-nav-group");
+        $(".draw-nav > ul").removeClass("active-nav-group"); // console.log(menuItems.find(">a"));
+        // console.log('testing');
+
         menuItems.find(">a").attr("tabIndex", 0);
       } else {
         // Else if nav item is NOT expanded... open it
