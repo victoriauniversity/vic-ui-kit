@@ -463,7 +463,7 @@ export function initTray() {
       //   "🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index",
       //   index
       // );
-
+// console.log('blah');
       const $navItem = $(this);
 
       e.preventDefault();
@@ -472,7 +472,9 @@ export function initTray() {
       var $navItemId = $("#" + $navItem.attr("data-for"));
       $("[id^=draw]").hide();
 
-      if ($navItemId) {
+      // console.log($navItemId.length);
+
+      if ($navItemId.length) {
         $(".sidemenu-drawer").removeClass("no-promo");
       } else {
         $(".sidemenu-drawer").addClass("no-promo");
@@ -499,6 +501,9 @@ export function initTray() {
         );
         $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
         $(".draw-nav > ul").removeClass("active-nav-group");
+
+        // console.log(menuItems.find(">a"));
+        // console.log('testing');
 
         menuItems.find(">a").attr("tabIndex", 0);
       } else {

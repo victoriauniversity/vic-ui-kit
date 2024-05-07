@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, April 17, 2024, 11:39 AM */
+/** Version: 0.10.13 | Friday, May 3, 2024, 2:41 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14402,14 +14402,15 @@ function initTray() {
       //   "🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index",
       //   index
       // );
+      // console.log('blah');
 
       var $navItem = $(this);
       e.preventDefault();
       e.stopPropagation();
       var $navItemId = $("#" + $navItem.attr("data-for"));
-      $("[id^=draw]").hide();
+      $("[id^=draw]").hide(); // console.log($navItemId.length);
 
-      if ($navItemId) {
+      if ($navItemId.length) {
         $(".sidemenu-drawer").removeClass("no-promo");
       } else {
         $(".sidemenu-drawer").addClass("no-promo");
@@ -14433,7 +14434,9 @@ function initTray() {
         $navItem.removeClass("expanded-nav");
         $(".sidemenu-drawer .active-nav-group .sub-draw-title > a").attr("tabIndex", -1);
         $(".sidemenu-drawer").removeClass("horizontal-drawer-expanded");
-        $(".draw-nav > ul").removeClass("active-nav-group");
+        $(".draw-nav > ul").removeClass("active-nav-group"); // console.log(menuItems.find(">a"));
+        // console.log('testing');
+
         menuItems.find(">a").attr("tabIndex", 0);
       } else {
         // Else if nav item is NOT expanded... open it

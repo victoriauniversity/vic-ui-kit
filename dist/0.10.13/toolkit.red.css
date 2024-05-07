@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, April 17, 2024, 11:39 AM */
+/** Version: 0.10.13 | Friday, May 3, 2024, 2:41 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -5845,17 +5845,13 @@ ul.meta--labelled .meta-item:last-child {
   color: #005EA5;
 }
 
-#hubv4 .link_block:hover {
+#hubv4 .link_block:hover, #hubv4 .link_block:active, #hubv4 .link_block:focus {
   outline: 2px #CCDCD7 solid;
   background-color: #F1F6F0;
 }
 
-#hubv4 .link_block:hover h3 {
-  color: #005EA5;
-}
-
 #hubv4 .link_block h3 {
-  text-decoration: none;
+  color: #0D4C38;
 }
 
 /* ===== PAGINATION =================================================== */
@@ -18030,9 +18026,9 @@ body#hubv4 .sidebar .sidemenu ul li.has-submenu.expanded ul li.active:before, bo
   width: 0;
   height: 0;
   left: 3px;
-  top: 8px;
+  top: 12px;
   border-top: 10px solid transparent;
-  border-left: 12px solid #0D4C38;
+  border-left: 8px solid #0D4C38;
   border-bottom: 10px solid transparent;
 }
 
@@ -22276,7 +22272,7 @@ body#hubv4 .show-mega-menu-top .mega-sub-menu #mega-menu > li > a {
 }
 
 body#hubv4 .show-mega-menu-top .mega-sub-menu #mega-menu > li > a:focus {
-  outline: 2px #EEE solid;
+  outline: 2px #CCDCD7 solid;
   outline-offset: -2px;
 }
 
@@ -28142,8 +28138,8 @@ body#hubv4 .hub .promo-panel {
   left: 5rem;
 }
 
-.qualification,
-.card {
+.subject-page .qualification,
+.subject-page .card {
   margin: 1.5rem 0;
   border-left: 8px solid #669787;
   position: relative;
@@ -28153,80 +28149,80 @@ body#hubv4 .hub .promo-panel {
           box-shadow: 0 1px 1px rgba(87, 87, 87, 0.15), 0 2px 2px rgba(87, 87, 87, 0.15), 0 4px 4px rgba(87, 87, 87, 0.15), 0 8px 8px rgba(87, 87, 87, 0.15);
 }
 
-.qualification .qual-content,
-.card .qual-content {
+.subject-page .qualification .qual-content,
+.subject-page .card .qual-content {
   margin-bottom: 1rem;
   border-bottom: 1px solid #DDD;
 }
 
-.qualification .qual-content .toggle-block,
-.card .qual-content .toggle-block {
+.subject-page .qualification .qual-content .toggle-block,
+.subject-page .card .qual-content .toggle-block {
   display: none;
 }
 
-.qualification .qual-content .toggle-block.active,
-.card .qual-content .toggle-block.active {
+.subject-page .qualification .qual-content .toggle-block.active,
+.subject-page .card .qual-content .toggle-block.active {
   display: block;
   margin-bottom: 1.5rem;
 }
 
-.qualification .major,
-.card .major {
+.subject-page .qualification .major,
+.subject-page .card .major {
   margin: 1rem 0;
 }
 
-.qualification .qual-title,
-.card .qual-title {
+.subject-page .qualification .qual-title,
+.subject-page .card .qual-title {
   margin-bottom: 1rem;
   -webkit-box-align: baseline;
           align-items: baseline;
 }
 
-.qualification .qual-title .code,
-.card .qual-title .code {
+.subject-page .qualification .qual-title .code,
+.subject-page .card .qual-title .code {
   font-size: 1.3rem;
   color: #669787;
 }
 
-.qualification .qual-title .course-major,
-.card .qual-title .course-major {
+.subject-page .qualification .qual-title .course-major,
+.subject-page .card .qual-title .course-major {
   margin-left: 1rem;
   color: #424242;
 }
 
-.qualification .qual-title h2,
-.qualification .qual-title h3,
-.card .qual-title h2,
-.card .qual-title h3 {
+.subject-page .qualification .qual-title h2,
+.subject-page .qualification .qual-title h3,
+.subject-page .card .qual-title h2,
+.subject-page .card .qual-title h3 {
   margin-bottom: 0;
 }
 
-.qualification .qual-row,
-.card .qual-row {
+.subject-page .qualification .qual-row,
+.subject-page .card .qual-row {
   display: -webkit-box;
   display: flex;
   padding: 0.5rem 0;
   border-top: 1px solid #EEE;
 }
 
-.qualification .qual-row > .qual-meta-item,
-.card .qual-row > .qual-meta-item {
+.subject-page .qualification .qual-row > .qual-meta-item,
+.subject-page .card .qual-row > .qual-meta-item {
   -webkit-box-flex: 1;
           flex: 1 1 50%;
   display: -webkit-box;
   display: flex;
 }
 
-.qualification .qual-row > .qual-meta-item .meta-title,
-.card .qual-row > .qual-meta-item .meta-title {
+.subject-page .qualification .qual-row > .qual-meta-item .meta-title,
+.subject-page .card .qual-row > .qual-meta-item .meta-title {
   -webkit-box-flex: 0;
           flex: 0 0 7rem;
   margin-right: 1rem;
   color: #0D4C38;
 }
 
-.qualification .learn-more,
-.card .learn-more {
+.subject-page .qualification .learn-more,
+.subject-page .card .learn-more {
   color: #FFF;
   background-color: #3E9C4F;
   padding: 0.5rem 1rem;
@@ -28234,16 +28230,16 @@ body#hubv4 .hub .promo-panel {
   right: 2.5rem;
 }
 
-.qualification .learn-more:hover, .qualification .learn-more:active, .qualification .learn-more:focus,
-.card .learn-more:hover,
-.card .learn-more:active,
-.card .learn-more:focus {
+.subject-page .qualification .learn-more:hover, .subject-page .qualification .learn-more:active, .subject-page .qualification .learn-more:focus,
+.subject-page .card .learn-more:hover,
+.subject-page .card .learn-more:active,
+.subject-page .card .learn-more:focus {
   text-decoration: underline;
 }
 
-.qualification .learn-more:before, .qualification .learn-more:after,
-.card .learn-more:before,
-.card .learn-more:after {
+.subject-page .qualification .learn-more:before, .subject-page .qualification .learn-more:after,
+.subject-page .card .learn-more:before,
+.subject-page .card .learn-more:after {
   background: inherit;
   content: "";
   display: block;
@@ -28256,8 +28252,8 @@ body#hubv4 .hub .promo-panel {
   -webkit-backface-visibility: hidden;
 }
 
-.qualification .learn-more:before,
-.card .learn-more:before {
+.subject-page .qualification .learn-more:before,
+.subject-page .card .learn-more:before {
   left: 0;
   -webkit-transform: skewX(-15deg);
           transform: skewX(-15deg);
@@ -28265,8 +28261,8 @@ body#hubv4 .hub .promo-panel {
           transform-origin: 100% 0;
 }
 
-.qualification .learn-more:after,
-.card .learn-more:after {
+.subject-page .qualification .learn-more:after,
+.subject-page .card .learn-more:after {
   right: -10px;
   -webkit-transform: skewX(-15deg);
           transform: skewX(-15deg);
@@ -28274,13 +28270,13 @@ body#hubv4 .hub .promo-panel {
           transform-origin: 100%;
 }
 
-.qualification ul li,
-.card ul li {
+.subject-page .qualification ul li,
+.subject-page .card ul li {
   padding: 0.3rem 0;
 }
 
-.qualification ul li::before,
-.card ul li::before {
+.subject-page .qualification ul li::before,
+.subject-page .card ul li::before {
   color: #669787;
   position: relative;
   display: inline-block;
@@ -28293,20 +28289,20 @@ body#hubv4 .hub .promo-panel {
   top: -2px;
 }
 
-.qualification ul li a,
-.card ul li a {
+.subject-page .qualification ul li a,
+.subject-page .card ul li a {
   text-decoration: underline;
 }
 
-.qualification ul li a:hover, .qualification ul li a:active, .qualification ul li a:focus,
-.card ul li a:hover,
-.card ul li a:active,
-.card ul li a:focus {
+.subject-page .qualification ul li a:hover, .subject-page .qualification ul li a:active, .subject-page .qualification ul li a:focus,
+.subject-page .card ul li a:hover,
+.subject-page .card ul li a:active,
+.subject-page .card ul li a:focus {
   text-decoration: none;
 }
 
-.qualification ul li a::before,
-.card ul li a::before {
+.subject-page .qualification ul li a::before,
+.subject-page .card ul li a::before {
   content: "";
   display: none;
 }
@@ -29196,6 +29192,9 @@ body#hubv4 .hub .promo-panel {
   -webkit-box-align: center;
           align-items: center;
   max-height: 550px;
+  z-index: 0;
+  max-width: 1800px;
+  margin: 0 auto;
 }
 
 .block-banner img {
@@ -29393,7 +29392,7 @@ body#hubv4 .hub .promo-panel {
 
 /* Block video banner */
 .block-banner.video {
-  margin: 1.5rem 0;
+  margin: 1.5rem auto;
   grid-template-rows: 50px minmax(mincontent, maxcontent) 50px;
   grid-template-columns: 1fr 1fr 0.35fr 1fr 1fr 1fr 1fr 1fr 0.1fr 0.1fr;
 }
@@ -30343,8 +30342,8 @@ body#hubv4 .hub .promo-panel {
 }
 
 #hubv4 footer h2 .button.primary, #hubv4 footer h2 .news-row header a.primary.link-more, #hubv4 .news-row header footer h2 a.primary.link-more {
-  background-color: #FCE500;
-  color: #0D4C38;
+  background-color: #0D4C38;
+  color: #FEF9F0;
 }
 
 #hubv4 footer h2 .button.primary:hover, #hubv4 footer h2 .news-row header a.primary.link-more:hover, #hubv4 .news-row header footer h2 a.primary.link-more:hover, #hubv4 footer h2 .button.primary:active, #hubv4 footer h2 .news-row header a.primary.link-more:active, #hubv4 .news-row header footer h2 a.primary.link-more:active, #hubv4 footer h2 .button.primary:focus, #hubv4 footer h2 .news-row header a.primary.link-more:focus, #hubv4 .news-row header footer h2 a.primary.link-more:focus {
