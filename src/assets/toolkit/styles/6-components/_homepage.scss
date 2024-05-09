@@ -460,6 +460,11 @@
 
       .secondary-banner {
         background-color: #fff;
+        img {
+          max-height: 250px;
+          object-fit: fill;
+          object-position: center;
+        }
       }
       // }
     }
@@ -1178,7 +1183,8 @@
         border-radius: 0;
 
         h2 {
-          color: #fff;
+          color: $manuka;
+          font-size: 1.6rem;
         }
 
         ul {
@@ -1186,13 +1192,20 @@
             a {
               color: #fff;
               display: flex;
+              position: relative;
+              padding-left: 1.5rem;
               &:before {
+                position: absolute;
+                top: 0;
+                left: 0;
                 content: "";
-                border-left: 16px $kowhai solid;
-                border-top: 14px transparent solid;
+                border-left: 12px $kowhai solid;
+                border-top: 15px transparent solid;
                 border-bottom: 15px transparent solid;
                 display: block;
                 margin-right: 10px;
+
+                transform: scale(.8);
               }
             }
           }
@@ -1201,6 +1214,9 @@
       #panels {
         .panel {
           // When whole block is linked
+          h3 {
+            font-size: 1.3rem;
+          }
           > a {
             @include breakpoint($until: tablet) {
               display: flex;

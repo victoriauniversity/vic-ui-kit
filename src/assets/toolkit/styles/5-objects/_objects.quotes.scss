@@ -179,8 +179,53 @@ blockquote.quote { font-style: italic; }
       .quote-panel.quote-image {
         padding: 1.5rem;
         background-color: $grey-gallery;
+
         &.quote-white {
           background-color: #fff;
+        }
+        &.quote-green {
+          background-color: $pounamu;
+
+          .quote {
+            background-color: transparent;
+            box-shadow: none;
+            img {
+              border-radius: 50%;
+            }
+
+            .quote-content {
+
+                h4 {
+                  color: $kowhai !important;
+                }
+                p {
+                  color: $kohuhu;
+                }
+
+              blockquote {
+                h3 {
+                  color: $manuka !important;
+                  font-weight: 500;
+
+                  &:before,
+                  &:after {
+                    color: $kowhai;
+                    display: block;
+                    font-size: 140%;
+                  }
+                  &:after {
+                   margin-left: auto;
+                   margin-right: 1rem;
+                  }
+                  &:before {
+                    margin-bottom: .5rem;
+                  }
+                }
+              }
+            }
+          }
+
+
         }
         svg.quote-open {
           position: absolute;
@@ -193,10 +238,42 @@ blockquote.quote { font-style: italic; }
           }
         }
         .quote {
-          padding: 0;
-          background-color: #fff;
-          box-shadow: $box-shadow-card;
-          margin-bottom: 1rem;
+          background-color: transparent;
+          box-shadow: none;
+          img {
+            border-radius: 50%;
+          }
+
+          .quote-content {
+
+              h4 {
+
+              }
+              p {
+
+              }
+
+            blockquote {
+              h3 {
+
+                font-weight: 500;
+
+                &:before,
+                &:after {
+                  // color: $kowhai;
+                  display: block;
+                  font-size: 140%;
+                }
+                &:after {
+                 margin-left: auto;
+                 margin-right: 1rem;
+                }
+                &:before {
+                  margin-bottom: .5rem;
+                }
+              }
+            }
+          }
 
           &::after {
             content: none;
@@ -208,6 +285,7 @@ blockquote.quote { font-style: italic; }
           }
 
           position: relative;
+
           .image-container {
             position: relative;
             clip-path: polygon(-0.25% -3px, 88% -13.74%, 99.5% 100%, 0px 100%);
@@ -228,8 +306,8 @@ blockquote.quote { font-style: italic; }
             }
           }
           img {
-            box-shadow: $box-shadow-card;
-            border-radius: 0;
+            // box-shadow: $box-shadow-card;
+            border-radius: 50%;
             height: 100%;
             width: auto;
             max-width: 300px;
@@ -272,7 +350,7 @@ blockquote.quote { font-style: italic; }
                 padding: 10px;
               }
               h3 {
-                font-weight: 300;
+                font-weight: 500;
                 line-height: 1.2;
                 color: $black-tundora !important;
                 @include breakpoint($until: desktop) {
@@ -292,13 +370,18 @@ blockquote.quote { font-style: italic; }
                   margin-right: _em( $bleed-third );
                 };
 
-                &::before,
-                &::after {
-                  display: inline;
-                  font-style: normal;
-                  font-size: 120%;
-                  line-height: 1;
-                  color: $miro;
+                &:before,
+                &:after {
+                  color: $pounamu;
+                  display: block;
+                  font-size: 140%;
+                }
+                &:after {
+                 margin-left: auto;
+                 margin-right: 1rem;
+                }
+                &:before {
+                  margin-bottom: .5rem;
                 }
               }
 
@@ -309,13 +392,24 @@ blockquote.quote { font-style: italic; }
             }
           }
           figcaption {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
             margin-right: 2rem;
             padding-left: 0;
             margin-left: 2rem;
             padding-top: 1rem;
+            justify-items: start;
+            align-items: start;
+
+            p {
+              grid-column: 1/2;
+              font-size: 1.1rem;
+            }
+
+            a.button {
+              grid-column: 3/4;
+              grid-row: 1/3;
+            }
             @include breakpoint($until: desktop) {
               padding: 10px;
               margin: 0;
@@ -323,6 +417,7 @@ blockquote.quote { font-style: italic; }
             @include breakpoint($until: tablet) {
               flex-wrap: wrap;
               width: 100%;
+              grid-template-columns: 2fr 1fr;
 
               .button {
               }
