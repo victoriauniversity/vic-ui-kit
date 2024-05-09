@@ -397,7 +397,7 @@
       position: relative;
 
       &:after {
-        content: "";
+        content: none;
         position: absolute;
         display: inline-block;
         font-family: "VicIcons";
@@ -423,7 +423,7 @@
 
     ul {
       margin-top: .5rem;
-      display: none;
+      // display: none;
       &.active {
         display: block;
       }
@@ -434,6 +434,16 @@
 
         a {
           font-size: 1.1rem;
+        }
+      }
+    }
+
+    @include breakpoint( $until: tablet ) {
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        li {
+          flex: 1 1 50%;
         }
       }
     }
@@ -464,6 +474,7 @@
     }
   }
 
+
   @include breakpoint( tablet ) {
 
     flex-direction: row;
@@ -490,6 +501,7 @@
         display: flex !important;
         flex-wrap: wrap;
         li {
+          flex: 1 1 33%;
           border-bottom: none;
           padding: .8rem;
           a {
@@ -500,6 +512,23 @@
 
     }
   }
+
+  @include breakpoint( $until: desktop ) {
+    .quicklinks {
+
+      margin-top: 1.5rem !important;
+    }
+  }
+
+  @include breakpoint( $until: tablet ) {
+    .quicklinks {
+
+      h2 {
+
+      }
+    }
+  }
+
 
   @include breakpoint( desktop ) {
     flex-wrap: nowrap;
