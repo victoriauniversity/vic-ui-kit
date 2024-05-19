@@ -142,7 +142,7 @@
 
     .intro-text {
       margin-bottom: 2rem;
-      p {
+      p, ul, li {
         font-size: 1.25rem;
       }
       p:first-child {
@@ -240,6 +240,17 @@
     }
   }
 
+  @include breakpoint($until:tablet) {
+    &.text-promo-panel {
+      width: auto !important;
+      margin: 0;
+
+      .block {
+        padding: 0;
+      }
+    }
+  }
+
   h1, h2, h3, h4, p {
     margin-bottom: 1.2rem;
   }
@@ -254,7 +265,7 @@
 
     &::before {
       position: absolute;
-      content: "";
+      // content: "";
       height: 100%;
       width: 40px;
       background-image: url('images/patterns/spiral-pattern-vertical.svg');
@@ -279,7 +290,7 @@
     }
 
     figcaption {
-      background-color: $mahoe;
+      background-color: $kohuhu;
     }
 
     img {
@@ -304,7 +315,7 @@
         h3, h4, h5 {
           margin: 0;
           padding: 0;
-          padding-left: 2rem;
+          // padding-left: 2rem;
           justify-content: space-between;
 
           i::before {

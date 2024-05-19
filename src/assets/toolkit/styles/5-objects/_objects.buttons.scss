@@ -242,6 +242,21 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
     display: inline-block;
   }
 
+  @include breakpoint($until: tablet) {
+    .button + .button {
+      margin-bottom: 0.5rem;
+    }
+
+    a.button {
+      display: flex !important;
+      align-items: center;
+      text-decoration: none;
+      // &::after {
+      //   display: inline;
+      // }
+    }
+  }
+
   .btn,
   .button,
   a.btn {
@@ -308,7 +323,7 @@ $easing: cubic-bezier(0.22, 1, 0.36, 1);
         outline: 1px $grey-alto solid;
       }
     }
-  
+
     &.text {
       background-color: transparent;
       color: #005ea5;
