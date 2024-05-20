@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, May 20, 2024, 12:26 PM */
+/** Version: 0.10.13 | Monday, May 20, 2024, 1:55 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -11480,15 +11480,19 @@ aside .promo h3::before {
   margin-left: 0.5em;
 }
 
-#hubv4 :not(.intro-promo).text-promo-panel {
+#hubv4 :not(.intro-promo):not(.video).text-promo-panel {
   padding: 1.5rem;
   border: none;
 }
 
-#hubv4 :not(.intro-promo).text-promo-panel > div {
+#hubv4 :not(.intro-promo):not(.video).text-promo-panel > div {
   border: 1px solid #669787;
   border-radius: 0.125rem;
   border-left: 0.5rem solid #669787;
+}
+
+#hubv4 .text-promo-panel.video .media.featured figcaption {
+  background-color: #CCDCD7;
 }
 
 #hubv4 .formatting .promo-panel figure {
@@ -11687,6 +11691,12 @@ aside .promo h3::before {
   padding-right: 2.5rem;
   border: none;
   float: left;
+}
+
+@media (max-width: 60.99em) {
+  #hubv4 .homepage-intro {
+    margin-top: 0;
+  }
 }
 
 #hubv4 .homepage-intro .intro-text {
@@ -17693,6 +17703,13 @@ body#hubv4 .sidemenu-banner-wrap #mega-nav ul li.nav-item-parent .btn-expander:a
   }
   body#hubv4 .sidemenu-banner-wrap .sidemenu-homepage .sidemenu__label {
     display: none;
+  }
+  body#hubv4 .sidemenu-banner-wrap .hub-banner-sidemenu .banner-image {
+    height: auto;
+  }
+  body#hubv4 .sidemenu-banner-wrap .hub-banner-sidemenu .banner-body {
+    margin-top: 0;
+    max-width: 100%;
   }
 }
 
