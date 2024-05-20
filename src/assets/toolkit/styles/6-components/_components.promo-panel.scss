@@ -636,6 +636,80 @@ $promo-fig-bg--title-image: $brand !default;
 $box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
   rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 #hubv4 {
+  .panels {
+    .panel {
+      background-color: $off-white;
+      padding: 0;
+
+      a {
+        transition: all cubic-bezier(.22,1,.36,1) .3s;
+        display: block;
+        @include hoverify() {
+          background-color: #fff;
+          outline: 2px #ccdcd7 solid;
+
+          h3, h4 {
+            text-decoration: underline;
+          }
+        }
+        height: 100%;
+
+        >div {
+          padding: .5rem 1rem;
+        }
+      }
+
+      img {
+        border-bottom: .25rem solid $miro ;
+      }
+
+      p {
+        color: $black-tundora;
+      }
+
+      h3,
+      h4 {
+        font-size: 1.3rem;
+        color: $pounamu;
+      }
+
+      @include breakpoint($from:tablet, $until:desktop) {
+        a {
+          display: flex;
+
+          img {
+            border-right: .25rem solid $miro;
+            border-bottom: none;
+            margin-right: .25rem;
+            margin-bottom: 0;
+            object-fit: cover;
+
+          }
+          h3, h4 {
+            margin-bottom: .5rem;
+          }
+        }
+      }
+
+      @include breakpoint($until:tablet) {
+        a {
+          display: flex;
+          flex-direction: column;
+
+          img {
+            width: 100%;
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            object-position: top;
+            margin-bottom: .5rem;
+            aspect-ratio: 16/9;
+          }
+        }
+      }
+    }
+  }
+
   :not(.intro-promo):not(.video).text-promo-panel {
     padding: 1.5rem;
     border: none;
@@ -643,7 +717,7 @@ $box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
       // background-color: $manuka;
       border: 1px solid $mahoe;
       border-radius: $radius-small;
-      border-left: .5rem solid $mahoe;
+      border-left: 0.5rem solid $mahoe;
     }
   }
 
@@ -668,9 +742,9 @@ $box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     figure {
       // box-shadow: $box-shadow-card;
 
-
       > a {
-        h3,h4 {
+        h3,
+        h4 {
           color: $pounamu;
         }
         img {
@@ -696,11 +770,13 @@ $box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
       figure {
         > img {
           margin-bottom: 0;
-          & + figcaption{
+          & + figcaption {
             padding: 1.5rem;
             margin-top: 0;
 
-            h1, h2, h3 {
+            h1,
+            h2,
+            h3 {
               margin-top: 0;
             }
           }
@@ -708,7 +784,9 @@ $box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
 
         > figcaption {
           padding: 1.5rem;
-          h1, h2, h3 {
+          h1,
+          h2,
+          h3 {
             margin-top: 0;
           }
         }
