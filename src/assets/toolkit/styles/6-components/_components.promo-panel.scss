@@ -636,7 +636,7 @@ $promo-fig-bg--title-image: $brand !default;
 $box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
   rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 #hubv4 {
-  :not(.intro-promo).text-promo-panel {
+  :not(.intro-promo):not(.video).text-promo-panel {
     padding: 1.5rem;
     border: none;
     > div {
@@ -644,6 +644,12 @@ $box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
       border: 1px solid $mahoe;
       border-radius: $radius-small;
       border-left: .5rem solid $mahoe;
+    }
+  }
+
+  .text-promo-panel.video {
+    .media.featured figcaption {
+      background-color: $kohuhu;
     }
   }
 
