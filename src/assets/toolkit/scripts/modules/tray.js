@@ -312,7 +312,7 @@ export function initTray() {
     let loc = location || "expanded-draw";
     $(".sidemenu-drawer").attr("tabIndex", -1);
 
-    if ($("#banner-nav").length > 0) {
+    if ($(".sidemenu-banner-wrap").length > 0) {
       loc = "expanded-draw";
     } else {
       loc = "horizontal-drawer-expanded";
@@ -557,8 +557,8 @@ export function initTray() {
         );
       }
       // If banner nav is active
-      if ($("#banner-nav").length > 0) {
-        $("#banner-nav").on("mouseleave", function (e) {
+      if ($(".sidemenu-banner-wrap").length > 0) {
+        $(".sidemenu-banner-wrap").on("mouseleave", function (e) {
           clearTimeout(openTimeout);
           // Hide menu if mouseout for x seconds
           openTimeout = setTimeout(function () {
@@ -566,7 +566,7 @@ export function initTray() {
           }, 300);
         });
         // If hover back in while timeout is active, cancel it so it doesn't hide
-        $("#banner-nav").on("mouseenter", function (e) {
+        $(".sidemenu-banner-wrap").on("mouseenter", function (e) {
           clearTimeout(openTimeout);
         });
       } else {
