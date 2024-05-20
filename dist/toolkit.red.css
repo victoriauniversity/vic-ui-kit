@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Tuesday, May 21, 2024, 9:47 AM */
+/** Version: 0.10.13 | Tuesday, May 21, 2024, 11:20 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -3892,6 +3892,10 @@ main:first-child > .formatting.block:first-child > img:first-child {
 }
 
 /*= ANY MEDIA ================================================================*/
+#hubv4 figure {
+  background-color: #f7f7f7;
+}
+
 .formatting .grid figure {
   margin-bottom: 1.5rem;
 }
@@ -6249,12 +6253,16 @@ ul.meta--labelled .meta-item:last-child {
 
 #hubv4 section.grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
   gap: 10px;
   margin: 0;
   margin-bottom: 1.5rem;
   width: 100%;
   padding-right: 3px;
+}
+
+#hubv4 section.grid::after {
+  content: none;
 }
 
 @media (max-width: 42.99em) {
@@ -11743,6 +11751,84 @@ aside .promo h3::before {
   margin-left: 0.5em;
 }
 
+#hubv4 .panels .panel {
+  background-color: #f7f7f7;
+  padding: 0;
+}
+
+#hubv4 .panels .panel a {
+  -webkit-transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+  transition: all cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+  display: block;
+  height: 100%;
+}
+
+#hubv4 .panels .panel a:hover, #hubv4 .panels .panel a:active, #hubv4 .panels .panel a:focus {
+  background-color: #fff;
+  outline: 2px #ccdcd7 solid;
+}
+
+#hubv4 .panels .panel a:hover h3, #hubv4 .panels .panel a:hover h4, #hubv4 .panels .panel a:active h3, #hubv4 .panels .panel a:active h4, #hubv4 .panels .panel a:focus h3, #hubv4 .panels .panel a:focus h4 {
+  text-decoration: underline;
+}
+
+#hubv4 .panels .panel a > div {
+  padding: .5rem 1rem;
+}
+
+#hubv4 .panels .panel img {
+  border-bottom: 0.25rem solid #99B9AF;
+}
+
+#hubv4 .panels .panel p {
+  color: #424242;
+}
+
+#hubv4 .panels .panel h3,
+#hubv4 .panels .panel h4 {
+  font-size: 1.3rem;
+  color: #0D4C38;
+}
+
+@media (min-width: 43em) and (max-width: 60.99em) {
+  #hubv4 .panels .panel a {
+    display: -webkit-box;
+    display: flex;
+  }
+  #hubv4 .panels .panel a img {
+    border-right: 0.25rem solid #99B9AF;
+    border-bottom: none;
+    margin-right: .25rem;
+    margin-bottom: 0;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  #hubv4 .panels .panel a h3, #hubv4 .panels .panel a h4 {
+    margin-bottom: .5rem;
+  }
+}
+
+@media (max-width: 42.99em) {
+  #hubv4 .panels .panel a {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+  #hubv4 .panels .panel a img {
+    width: 100%;
+    max-width: 100%;
+    max-height: 200px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: top;
+       object-position: top;
+    margin-bottom: .5rem;
+    aspect-ratio: 16/9;
+  }
+}
+
 #hubv4 :not(.intro-promo):not(.video).text-promo-panel {
   padding: 1.5rem;
   border: none;
@@ -11794,13 +11880,17 @@ aside .promo h3::before {
     padding: 1.5rem;
     margin-top: 0;
   }
-  #hubv4 .promo-panel figure > img + figcaption h1, #hubv4 .promo-panel figure > img + figcaption h2, #hubv4 .promo-panel figure > img + figcaption h3 {
+  #hubv4 .promo-panel figure > img + figcaption h1,
+  #hubv4 .promo-panel figure > img + figcaption h2,
+  #hubv4 .promo-panel figure > img + figcaption h3 {
     margin-top: 0;
   }
   #hubv4 .promo-panel figure > figcaption {
     padding: 1.5rem;
   }
-  #hubv4 .promo-panel figure > figcaption h1, #hubv4 .promo-panel figure > figcaption h2, #hubv4 .promo-panel figure > figcaption h3 {
+  #hubv4 .promo-panel figure > figcaption h1,
+  #hubv4 .promo-panel figure > figcaption h2,
+  #hubv4 .promo-panel figure > figcaption h3 {
     margin-top: 0;
   }
 }
