@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, May 20, 2024, 3:33 PM */
+/** Version: 0.10.13 | Tuesday, May 21, 2024, 9:47 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -1039,6 +1039,14 @@
 
 #hubv4 .quote-panel.quote-image blockquote h3:before, #hubv4 .quote-panel.quote-image blockquote h3:after {
   color: #AF1B1B !important;
+}
+
+#hubv4 .quote:not(.full) {
+  border-left-color: #F6C2C2;
+}
+
+#hubv4 .formatting figure > a img {
+  border-bottom-color: #F6C2C2;
 }
 
 #hubv4 footer .footer-secondary {
@@ -4579,6 +4587,7 @@ blockquote.quote {
   #hubv4 .quote-panel.quote-image .quote img {
     max-width: 150px;
     margin: auto;
+    height: auto;
     margin-right: 1rem;
   }
 }
@@ -4750,7 +4759,12 @@ blockquote.quote {
   #hubv4 .quote-panel.quote-image .quote figcaption {
     flex-wrap: wrap;
     width: 100%;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
   }
 }
 
@@ -6884,6 +6898,7 @@ aside .highlight h3::before {
   padding: 1rem;
   z-index: 0;
   border-left-color: #99B9AF;
+  background-color: #f7f7f7;
 }
 
 #hubv4 .media img {
