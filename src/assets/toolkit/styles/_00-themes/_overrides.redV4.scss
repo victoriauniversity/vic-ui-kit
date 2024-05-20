@@ -84,7 +84,10 @@ $red-grey: #eee3e3;
 
   // Sidebar menu
   .layout .sidebar {
-    .sidemenu > ul > .sidemenu__label > a .tereo-title {
+
+
+
+    .sidemenu > ul > .sidemenu__label > a .tereo-title, .tereo-childmenu {
       color: $brand !important;
     }
     .sidemenu ul li.active > a {
@@ -243,6 +246,26 @@ $red-grey: #eee3e3;
 
   .sidebar .sidemenu>ul>li:not(.sidemenu__label):hover:before {
     background-color: $brand-light !important;
+  }
+
+  .tiles-panel {
+    background-color: $off-white !important;
+
+    .tile {
+      a {
+        border-color: $brand !important;
+
+        p {
+          text-decoration: none !important;
+        }
+
+        @include hoverify() {
+          h3, h4 {
+            color: $brand !important;
+          }
+        }
+      }
+    }
   }
 
 }
