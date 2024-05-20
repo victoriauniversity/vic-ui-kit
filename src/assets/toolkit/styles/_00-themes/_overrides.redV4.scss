@@ -27,6 +27,29 @@ $red-grey: #eee3e3;
     .header-toggle .header-student-tools .portal-links a {
       color: $brand !important;
     }
+
+    .tereo-title {
+      color: $brand !important;
+    }
+
+    .nav-item-parent {
+      &::after {
+        color: $brand !important;
+      }
+    }
+
+    .sidemenu-drawer.horizontal-drawer-expanded {
+      border-bottom-color: $brand !important;
+    }
+
+
+  }
+
+
+  .formatting figure>a  {
+    h3, h4 {
+      color: $brand !important;
+    }
   }
 
   // hub-banner-sidemenu
@@ -56,7 +79,7 @@ $red-grey: #eee3e3;
   }
 
   //
-  .sidemenu .sidemenu-toggle {
+  .layout .sidemenu .sidemenu-toggle {
     background-color: $brand !important;
   }
 
@@ -77,13 +100,25 @@ $red-grey: #eee3e3;
     }
   }
 
+  // LOGO
+  header > div.top-header > div > div.logo.header-logo > a > picture > img {
+    filter: grayscale(1);
+  }
+
   // Sidebar menu
-  .sidebar {
-    .sidemenu > ul > .sidemenu__label > a .tereo-title {
+  .layout .sidebar {
+
+
+
+
+    .sidemenu > ul > .sidemenu__label > a .tereo-title, .tereo-childmenu {
       color: $brand !important;
     }
     .sidemenu ul li.active > a {
       color: $brand !important;
+    }
+    .sidemenu ul li.active.has-submenu > a > .tereo-childmenu {
+      color: $manuka !important;
     }
     .sidemenu ul li.active {
       border-left-color: $brand !important;
@@ -127,6 +162,28 @@ $red-grey: #eee3e3;
      .sidemenu > ul > li:not(.sidemenu__label).expanded::before {
       background-color: $brand !important;
     }
+
+    .sidemenu>ul>li.expanded>a .tereo-childmenu {
+      color: $manuka !important;
+    }
+
+    .sidemenu ul li a .tereo-childmenu {
+      color: $brand !important;
+    }
+
+    .sidemenu>ul>li.active:before {
+      background-color: $brand !important;
+    }
+
+    .sidemenu ul li.active.has-submenu>a>.tereo-childmenu {
+      color: $brand !important;
+    }
+
+    .sidemenu ul li.active.has-submenu.expanded>a>.tereo-childmenu {
+      color: $manuka !important;
+
+    }
+
   }
 
 
@@ -163,6 +220,13 @@ $red-grey: #eee3e3;
   }
   figure.quote.quote-template img {
     border-color: $brand-lightest !important;
+  }
+
+  .quote-panel.quote-image  blockquote h3 {
+    &:before,
+    &:after {
+      color: $brand !important;
+    }
   }
 
 
@@ -231,6 +295,26 @@ $red-grey: #eee3e3;
 
   .sidebar .sidemenu>ul>li:not(.sidemenu__label):hover:before {
     background-color: $brand-light !important;
+  }
+
+  .tiles-panel {
+    background-color: $off-white !important;
+
+    .tile {
+      a {
+        border-color: $brand !important;
+
+        p {
+          text-decoration: none !important;
+        }
+
+        @include hoverify() {
+          h3, h4 {
+            color: $brand !important;
+          }
+        }
+      }
+    }
   }
 
 }
