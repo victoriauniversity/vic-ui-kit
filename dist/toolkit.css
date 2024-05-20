@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, May 20, 2024, 3:33 PM */
+/** Version: 0.10.13 | Tuesday, May 21, 2024, 9:42 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -4502,7 +4502,12 @@ blockquote.quote {
   #hubv4 .quote-panel.quote-image .quote figcaption {
     flex-wrap: wrap;
     width: 100%;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
   }
 }
 
@@ -6636,6 +6641,7 @@ aside .highlight h3::before {
   padding: 1rem;
   z-index: 0;
   border-left-color: #99B9AF;
+  background-color: #f7f7f7;
 }
 
 #hubv4 .media img {

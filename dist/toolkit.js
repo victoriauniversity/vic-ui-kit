@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, May 20, 2024, 3:33 PM */
+/** Version: 0.10.13 | Tuesday, May 21, 2024, 9:42 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14744,13 +14744,16 @@ function initTray() {
   //   }
   // );
   // Hint
-
-  if (localStorage.getItem("newMenuNotice") !== "true" || !localStorage.getItem("newMenuNotice")) {
-    setTimeout(function () {
-      $(".hint").css("display", "flex").hide().fadeIn();
-    }, 1500);
-  } else {} // Clear
-
+  // if (
+  //   localStorage.getItem("newMenuNotice") !== "true" ||
+  //   !localStorage.getItem("newMenuNotice")
+  // ) {
+  //   setTimeout(() => {
+  //     $(".hint").css("display", "flex").hide().fadeIn();
+  //   }, 1500);
+  // } else {
+  // }
+  // Clear
 
   $(".hint .acknowledgement").on("click", function () {
     localStorage.setItem("newMenuNotice", true);
