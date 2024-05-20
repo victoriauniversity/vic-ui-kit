@@ -75,12 +75,17 @@
   // Grids
   section.grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    // grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
     gap: 10px;
     margin: 0;
     margin-bottom: 1.5rem;
     width: 100%;
     padding-right: 3px;
+
+    &::after {
+      content: none;
+    }
     // @include breakpoint($until: desktop) {
     //   grid-template-columns: repeat(2, 1fr);
     // }
