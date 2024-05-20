@@ -880,15 +880,15 @@ export function initTray() {
   // );
 
   // Hint
-  if (
-    localStorage.getItem("newMenuNotice") !== "true" ||
-    !localStorage.getItem("newMenuNotice")
-  ) {
-    setTimeout(() => {
-      $(".hint").css("display", "flex").hide().fadeIn();
-    }, 1500);
-  } else {
-  }
+  // if (
+  //   localStorage.getItem("newMenuNotice") !== "true" ||
+  //   !localStorage.getItem("newMenuNotice")
+  // ) {
+  //   setTimeout(() => {
+  //     $(".hint").css("display", "flex").hide().fadeIn();
+  //   }, 1500);
+  // } else {
+  // }
 
   // Clear
   $(".hint .acknowledgement").on("click", function () {
