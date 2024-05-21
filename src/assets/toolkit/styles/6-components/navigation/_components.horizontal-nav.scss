@@ -378,15 +378,26 @@ body#hubv4 {
           .active {
             > a {
               font-weight: 600;
-              display: inline-flex;
-              align-items: center;
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              position: relative;
+              padding-left: .75rem;
+              border-left: 4px solid $pounamu;
               &:before {
-                content: "";
-                height: 0;
-                margin-right: 5px;
-                border-top: 10px solid transparent;
-                border-left: 12px solid $pounamu;
-                border-bottom: 10px solid transparent;
+                // position: absolute;
+                // left: 0;
+                // top: 50%;
+                // transform: translateY(-50%);
+                // content: "";
+                // height: 80%;
+                // width: 4px;
+                // background-color: $pounamu;
+
+                // margin-right: 5px;
+                // border-top: 10px solid transparent;
+                // border-left: 12px solid $pounamu;
+                // border-bottom: 10px solid transparent;
               }
             }
           }
