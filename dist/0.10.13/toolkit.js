@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, May 21, 2024, 3:01 PM */
+/** Version: 0.10.13 | Wednesday, May 22, 2024, 8:58 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -16704,6 +16704,16 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
       onDocumentReadyFunctions.forEach(function (singleFunction) {
         singleFunction();
       });
+    }
+  });
+  document.addEventListener("DOMContentLoaded", function (event) {
+    // update apply button title from apple to apply now
+    var applyButtons = document.querySelectorAll('.header-student-tools .button');
+
+    if (applyButtons.length) {
+      applyButtons.forEach(function (button) {
+        button.setAttribute("title", "Apply to study");
+      }); // console.log('test apply ', applyButtons);
     }
   });
   /* Research hub content page tile accordian */
