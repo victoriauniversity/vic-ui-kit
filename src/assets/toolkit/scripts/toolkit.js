@@ -1021,7 +1021,23 @@ if ($("body").attr("id") == "hubv4") {
         singleFunction();
       });
     }
+
+
+
   });
+
+
+  document.addEventListener("DOMContentLoaded", function(event) {
+    // update apply button title from apple to apply now
+    var applyButtons = document.querySelectorAll('.header-student-tools .button');
+    if (applyButtons.length) {
+      applyButtons.forEach(function(button) {
+        button.setAttribute("title", "Apply to study");
+      })
+      // console.log('test apply ', applyButtons);
+    }
+});
+
 
   /* Research hub content page tile accordian */
   $(".tile-accordion.content-page .tile .toggle").on("click", function (evt) {
