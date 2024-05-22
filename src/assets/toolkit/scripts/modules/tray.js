@@ -18,14 +18,14 @@ export function initTray() {
   }
 
   // Change URLs of all links in sidebar on #hubv4 design
-  if ($("body#hubv4")) {
-    $("body#hubv4 a").each(function () {
-      var href = $(this).attr("href");
-      if (href && href.includes("cms.wgtn.ac.nz")) {
-        $(this).attr("href", href + "?SQ_DESIGN_NAME=v4&mode=dev");
-      }
-    });
-  }
+  // if ($("body#hubv4")) {
+  //   $("body#hubv4 a").each(function () {
+  //     var href = $(this).attr("href");
+  //     if (href && href.includes("cms.wgtn.ac.nz")) {
+  //       $(this).attr("href", href + "?SQ_DESIGN_NAME=v4&mode=dev");
+  //     }
+  //   });
+  // }
 
   $("body").on("click keyup", (e) => {
     // Close tray if clicked away from or escpae buttons
