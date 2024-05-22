@@ -337,12 +337,12 @@ export function initTray() {
       $(".sidemenu-drawer").removeClass(`${loc}`);
       $(".mega-menu-top-level > li").removeClass("expanded-nav");
 
-      if ($(".mega-menu-top-level > li.active").length) {
+      if ($(".mega-menu-top-level > li.expanded-nav").length) {
         $blip.css({
           left:
-            $(".mega-menu-top-level > li.active").offset().left -
+            $(".mega-menu-top-level > li.expanded-nav").offset().left -
             $("#mega-menu").offset().left,
-          width: $(".mega-menu-top-level > li.active").innerWidth(),
+          width: $(".mega-menu-top-level > li.expanded-nav").innerWidth(),
         });
       } else {
         $blip.css({
@@ -638,6 +638,7 @@ export function initTray() {
   // On mouse out of horizontal nav
   $("#hubv4 .main-site-header #mega-menu > li").on("mouseout", function () {
     var activeItem = $(".expanded-nav");
+    // console.log('mouse out blip');
     // if (activeItem.length) {
     //   $blip.css({
     //     left: activeItem.offset().left - $("#mega-menu").offset().left,
@@ -649,12 +650,13 @@ export function initTray() {
     //   });
     // }
 
-    if ($(".mega-menu-top-level > li.active").length) {
+    if ($(".mega-menu-top-level > li.expanded-nav").length) {
+      // console.log('this is active');
       $blip.css({
         left:
-          $(".mega-menu-top-level > li.active").offset().left -
+          $(".mega-menu-top-level > li.expanded-nav").offset().left -
           $("#mega-menu").offset().left,
-        width: $(".mega-menu-top-level > li.active").innerWidth(),
+        width: $(".mega-menu-top-level > li.expanded-nav").innerWidth(),
       });
     } else if (activeItem.length) {
       $blip.css({
@@ -662,10 +664,12 @@ export function initTray() {
         width: activeItem.innerWidth(),
       });
     } else {
+      // console.log('not active');
       $blip.css({
         width: 0,
       });
     }
+
   });
 
   // ?Remove default icon injected on all role="button" elements
