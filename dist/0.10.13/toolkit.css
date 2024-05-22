@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, May 22, 2024, 3:35 PM */
+/** Version: 0.10.13 | Thursday, May 23, 2024, 10:39 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -3404,11 +3404,26 @@ input.button {
   cursor: not-allowed;
 }
 
+#hubv4 .button:not(.flat):not(.no-icon), #hubv4 .news-row header a.link-more:not(.flat):not(.no-icon) {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 #hubv4 .button:not(.flat):not(.no-icon)::after, #hubv4 .news-row header a.link-more:not(.flat):not(.no-icon)::after {
   content: "\f156";
   font-family: "Favorites";
   vertical-align: -1px;
   display: inline-block;
+}
+
+#hubv4 main .button + .button, #hubv4 main .news-row header a.link-more + .button, #hubv4 .news-row header main a.link-more + .button, #hubv4 main .news-row header .button + a.link-more, #hubv4 .news-row header main .button + a.link-more, #hubv4 main .news-row header a.link-more + a.link-more, #hubv4 .news-row header main a.link-more + a.link-more {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 @media (max-width: 42.99em) {
@@ -20380,7 +20395,7 @@ body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-
   margin: 15px -15px;
   margin-top: 0;
   -webkit-box-flex: 1;
-          flex: 1 0 40%;
+          flex: 1 0;
 }
 
 body#hubv4 .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .mobile-menu-navigation {
