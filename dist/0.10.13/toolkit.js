@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, May 22, 2024, 8:58 AM */
+/** Version: 0.10.13 | Wednesday, May 22, 2024, 3:35 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14038,17 +14038,15 @@ function initTray() {
     pageTitleEl.parent().addClass("long-title");
     pageTitleEl.addClass("long-title");
   } // Change URLs of all links in sidebar on #hubv4 design
+  // if ($("body#hubv4")) {
+  //   $("body#hubv4 a").each(function () {
+  //     var href = $(this).attr("href");
+  //     if (href && href.includes("cms.wgtn.ac.nz")) {
+  //       $(this).attr("href", href + "?SQ_DESIGN_NAME=v4&mode=dev");
+  //     }
+  //   });
+  // }
 
-
-  if ($("body#hubv4")) {
-    $("body#hubv4 a").each(function () {
-      var href = $(this).attr("href");
-
-      if (href && href.includes("cms.wgtn.ac.nz")) {
-        $(this).attr("href", href + "?SQ_DESIGN_NAME=v4&mode=dev");
-      }
-    });
-  }
 
   $("body").on("click keyup", function (e) {
     // Close tray if clicked away from or escpae buttons
@@ -14314,10 +14312,10 @@ function initTray() {
       $(".sidemenu-drawer").removeClass("".concat(loc));
       $(".mega-menu-top-level > li").removeClass("expanded-nav");
 
-      if ($(".mega-menu-top-level > li.active").length) {
+      if ($(".mega-menu-top-level > li.expanded-nav").length) {
         $blip.css({
-          left: $(".mega-menu-top-level > li.active").offset().left - $("#mega-menu").offset().left,
-          width: $(".mega-menu-top-level > li.active").innerWidth()
+          left: $(".mega-menu-top-level > li.expanded-nav").offset().left - $("#mega-menu").offset().left,
+          width: $(".mega-menu-top-level > li.expanded-nav").innerWidth()
         });
       } else {
         $blip.css({
@@ -14541,7 +14539,8 @@ function initTray() {
   }); // On mouse out of horizontal nav
 
   $("#hubv4 .main-site-header #mega-menu > li").on("mouseout", function () {
-    var activeItem = $(".expanded-nav"); // if (activeItem.length) {
+    var activeItem = $(".expanded-nav"); // console.log('mouse out blip');
+    // if (activeItem.length) {
     //   $blip.css({
     //     left: activeItem.offset().left - $("#mega-menu").offset().left,
     //     width: activeItem.innerWidth(),
@@ -14552,10 +14551,11 @@ function initTray() {
     //   });
     // }
 
-    if ($(".mega-menu-top-level > li.active").length) {
+    if ($(".mega-menu-top-level > li.expanded-nav").length) {
+      // console.log('this is active');
       $blip.css({
-        left: $(".mega-menu-top-level > li.active").offset().left - $("#mega-menu").offset().left,
-        width: $(".mega-menu-top-level > li.active").innerWidth()
+        left: $(".mega-menu-top-level > li.expanded-nav").offset().left - $("#mega-menu").offset().left,
+        width: $(".mega-menu-top-level > li.expanded-nav").innerWidth()
       });
     } else if (activeItem.length) {
       $blip.css({
@@ -14563,6 +14563,7 @@ function initTray() {
         width: activeItem.innerWidth()
       });
     } else {
+      // console.log('not active');
       $blip.css({
         width: 0
       });

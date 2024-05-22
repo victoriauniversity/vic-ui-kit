@@ -249,7 +249,7 @@
       margin: auto;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+      // grid-template-rows: 1fr 1fr;
       gap: 0px 0px;
       grid-template-areas:
         "box1 box1 box2"
@@ -290,7 +290,7 @@
       }
       .secondary-banner {
         display: grid;
-        align-items: center;
+        // align-items: center;
       }
 
       // Box
@@ -423,6 +423,12 @@
           padding-right: 0;
         }
         figure {
+          img {
+            @include breakpoint(desktop) {
+              aspect-ratio: 16 / 11;
+              object-fit: cover;
+            }
+          }
           &:after {
             border-color: $pounamu;
           }
@@ -927,7 +933,7 @@
   &.homepage {
     .promo-panel.pattern {
       background-color: $kohuhu;
-      background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/te-tumu/herenga-export.svg");
+      background-image: url("https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/images/patterns/te-tumu/herenga-export.svg");
 
       background-repeat: no-repeat;
       background-size: cover;
@@ -979,7 +985,7 @@
       // background-repeat: no-repeat;
       // background-position: bottom left;
       // background-size: 10%;
-      background-image: url("https://cms.wgtn.ac.nz/_nocache?a=1778031:dist/images/patterns/pattern-05.svg");
+      background-image: url("https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/images/patterns/pattern-05.svg");
       background-repeat: no-repeat;
       background-size: 250px;
       background-position: -100px;
@@ -1047,7 +1053,7 @@
         padding: 0;
         h4 {
           font-size: 1.2rem;
-          margin-bottom: .75rem;
+          margin-bottom: 0.75rem;
         }
         > .block {
           padding-left: 0;
@@ -1070,9 +1076,8 @@
             }
 
             @include hoverify() {
-
               &:before {
-                transition: all ease-in .3s;
+                transition: all ease-in 0.3s;
                 transform: translateX(3px);
               }
             }
@@ -1205,7 +1210,7 @@
                 display: block;
                 margin-right: 10px;
 
-                transform: scale(.8);
+                transform: scale(0.8);
               }
             }
           }
