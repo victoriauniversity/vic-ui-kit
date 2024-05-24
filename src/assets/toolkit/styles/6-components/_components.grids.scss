@@ -76,12 +76,25 @@
   section.grid {
     display: grid;
     // grid-template-columns: repeat(3, 1fr);
-    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
     gap: 10px;
     margin: 0;
     margin-bottom: 1.5rem;
     width: 100%;
     padding-right: 3px;
+
+    &.col3 {
+      grid-template-columns: repeat(3, 1fr);
+      @include breakpoint($until: tablet) {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+    &.col2 {
+      grid-template-columns: repeat(2, 1fr);
+      @include breakpoint($until: tablet) {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
 
     &::after {
       content: none;
@@ -97,8 +110,16 @@
       clear: none;
       width: 100%;
     }
-    figcaption {
+    :not(.promos) figcaption {
       padding: 1rem;
+      // background-color: $off-white;
+    }
+
+    figure {
+     img + figcaption {
+        // background-color: $off-white;
+
+      }
     }
   }
 }
