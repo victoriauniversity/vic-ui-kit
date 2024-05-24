@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, May 24, 2024, 11:05 AM */
+/** Version: 0.10.13 | Friday, May 24, 2024, 3:07 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -6266,12 +6266,32 @@ ul.meta--labelled .meta-item:last-child {
 
 #hubv4 section.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
   gap: 10px;
   margin: 0;
   margin-bottom: 1.5rem;
   width: 100%;
   padding-right: 3px;
+}
+
+#hubv4 section.grid.col3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 42.99em) {
+  #hubv4 section.grid.col3 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+#hubv4 section.grid.col2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 42.99em) {
+  #hubv4 section.grid.col2 {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 #hubv4 section.grid::after {
@@ -6290,7 +6310,7 @@ ul.meta--labelled .meta-item:last-child {
   width: 100%;
 }
 
-#hubv4 section.grid figcaption {
+#hubv4 section.grid :not(.promos) figcaption {
   padding: 1rem;
 }
 
@@ -8126,7 +8146,7 @@ aside .promo h3::before {
 
 #hubv2.intranet-home .intranet-news-container .lg.no-img .news-img,
 #hubv4.intranet-home .intranet-news-container .lg.no-img .news-img {
-  background: url("https://cms.wgtn.ac.nz/__data/assets/image/0003/1939404/triangles.png");
+  background: url("https://www.wgtn.ac.nz/__data/assets/image/0003/1939404/triangles.png");
   background-position: right;
   background-size: contain;
   background-repeat: no-repeat;
