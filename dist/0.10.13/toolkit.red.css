@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Thursday, May 30, 2024, 9:09 AM */
+/** Version: 0.10.13 | Tuesday, June 4, 2024, 1:48 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -25748,6 +25748,48 @@ body#hubv4 .hub .promo-panel {
   }
 }
 
+#hubv4 .accordion .accordion-title, #hubv4
+.accordion-header .accordion-title {
+  color: #0D4C38;
+  position: relative;
+}
+
+#hubv4 .accordion .accordion-title::marker, #hubv4
+.accordion-header .accordion-title::marker {
+  display: none;
+  content: " ";
+  position: absolute;
+  right: 0;
+  top: .5rem;
+}
+
+#hubv4 .accordion .accordion-title::after, #hubv4
+.accordion-header .accordion-title::after {
+  position: absolute;
+  right: 0;
+  top: .5rem;
+  content: "+";
+  font-size: 1.5rem;
+}
+
+#hubv4 .accordion details[open] .accordion-title::marker, #hubv4
+.accordion-header details[open] .accordion-title::marker {
+  display: none;
+  content: " ";
+}
+
+#hubv4 .accordion details[open] .accordion-title::after, #hubv4
+.accordion-header details[open] .accordion-title::after {
+  content: "-";
+}
+
+#hubv4 .accordion details, #hubv4
+.accordion-header details {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid #EEE;
+}
+
 .accordion details,
 .accordion-header details {
   /* Fallback for IE11 */
@@ -33061,6 +33103,14 @@ ul.no-list li {
 
 .a-z_paging ul.static_pagination li:not(.current) {
   background-color: #3363B3;
+}
+
+#hubv4 .a-z_paging ul.static_pagination li:not(.current) {
+  background-color: #0D4C38;
+}
+
+#hubv4 .a-z_paging ul.static_pagination li:not(.current) span {
+  color: #FEF9F0;
 }
 
 .a-z_paging ul.static_pagination li:not(.current) span {
