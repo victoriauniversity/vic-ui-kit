@@ -11,6 +11,57 @@
 // TODO: At a later date, remove .accordion-header, because .accordion will be the only class name used after all the pages have been recached
 .accordion,
 .accordion-header {
+
+  #hubv4 & {
+    .accordion-title {
+      color: $pounamu;
+      position: relative;
+      padding-left: 0;
+
+      &::marker {
+        // color: $pounamu;
+        display: none;
+        content: " ";
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      &::after {
+        position: absolute;
+        right: 0;
+        top: .5rem;
+        content: "+";
+        font-size: 1.5rem;
+      }
+
+    }
+
+    details[open] {
+      .accordion-title {
+
+
+
+        &::marker {
+          // color: $pounamu;
+          display: none;
+          content: " "
+        }
+
+        &::after {
+          content: "-";
+        }
+
+      }
+    }
+
+    details {
+      padding-top: .5rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid $grey-gallery;
+    }
+  }
+
   details {
     /* Fallback for IE11 */
     list-style-type: none !important;
