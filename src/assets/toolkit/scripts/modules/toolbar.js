@@ -170,16 +170,16 @@ const toolbarApi = window.toolkitToolbar || {};
       <symbol id="icon-healix" data-name="healix" viewBox="0 0 915.58 915"><defs><style>.cls-111{fill:#223f3b;}</style></defs><title>healix-mytools</title><path class="cls-111" d="M915.58,0H779.16l5.92,355.43v56.46l-5.92,502.85H915.58l-5.92-502.85V355.43Z" transform="translate(0)"/><path class="cls-111" d="M352.28,0H215.86l5.92,355.53v56.48L215.86,915H352.28l-5.92-502.99V355.53Z" transform="translate(0)"/><path class="cls-111" d="M783.95,510.34C750.62,474.8,683.2,422.18,648.94,402.76c36.44-44.52,52.4-88.09,52.4-88.09L669.03,300.4s-20.19,38.13-70.9,74.29c-110.48-53.06-212.35-74.84-339.22-72.5C192.19,303.41,35.02,331.87,3.56,409.53c-7.16,17.68-3.38,38.92,10.08,59,28.89,43.08,107.94,90.36,244.33,92.85,94.56,1.74,183.94-17.61,259.67-54.97a413.148,413.148,0,0,0,77.67-49.9C749.13,588.53,778.29,813.76,779.15,914.74c1.2-3.69,4.79-404.41,4.79-404.41ZM280.97,472.56c-76.83-.41-176.85-18.25-207.14-48.34-4.49-4.46-7.09-8.72-7.15-12.72-.38-24.29,64.62-69.67,217.52-72.06,100.47-1.57,178.09,23.52,252.7,72.53-5.3,2.67-117.67,61.33-255.94,60.59Z" transform="translate(0)"/></symbol>
       <symbol id="icon-hokai" data-name="hokai" viewBox="0 0 756.5 155.3">
       <defs>
-        <clipPath id="clippath">
-          <rect width="756.5" height="155.3" style="fill: none; stroke-width: 0px;"/>
-        </clipPath>
-      </defs>
-      <g style="clip-path: url(#clippath);">
-        <g>
-          <path d="M36,77.6l30.4-35.5,30.4,35.6-30.4,35.4-30.4-35.5ZM66.4,0L0,77.6l66.4,77.6,81-105.1,12.7,16.6,12.1-15.7-24.8-32.4-35,40.8L66.4,0Z" style="fill: #db0045; stroke-width: 0px;"/>
-          <path d="M180.5,61.8l-33.1,43.3-12-15.7-13.9,17.9,25.9,31,45.2-60.7-12.1-15.8Z" style="fill: #a7004a; stroke-width: 0px;"/>
-        </g>
-      </g>
+    <clipPath id="clippath">
+      <rect width="756.5" height="155.3" style="fill: none; stroke-width: 0px;"/>
+    </clipPath>
+  </defs>
+  <g style="clip-path: url(#clippath);">
+    <g>
+      <path d="M36,77.6l30.4-35.5,30.4,35.6-30.4,35.4-30.4-35.5ZM66.4,0L0,77.6l66.4,77.6,81-105.1,12.7,16.6,12.1-15.7-24.8-32.4-35,40.8L66.4,0Z" style="fill: #db0045; stroke-width: 0px;"/>
+      <path d="M180.5,61.8l-33.1,43.3-12-15.7-13.9,17.9,25.9,31,45.2-60.7-12.1-15.8Z" style="fill: #a7004a; stroke-width: 0px;"/>
+    </g>
+  </g>
     </symbol>
 
     </defs>
