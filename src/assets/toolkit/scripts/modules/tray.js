@@ -68,8 +68,25 @@ export function initTray() {
 
   // tray functionality
   function toggleTray() {
-    $(".tray").toggleClass("tray-closed", "normal");
-    $(".tray").toggleClass("tray-open", "normal");
+    // $(".tray").toggleClass("tray-open", "normal");
+    // $(".tray").toggleClass("tray-closed", "normal");
+
+    // Fix to prevent fadeout on page load. Needs more of a rework but fixes the issue for now.
+    if($(".tray").hasClass('tray-closed')) {
+      $(".tray").removeClass("tray-closed");
+      $(".tray").removeClass("slide-out");
+      $(".tray").addClass("tray-open");
+      // $(".tray").fadeIn();
+    } else {
+      // $(".tray").toggleClass("tray-open");
+      // $(".tray").toggleClass("tray-closed");
+      // $(".tray").fadeOut("slow");
+      $(".tray").removeClass("tray-open");
+      $(".tray").addClass("slide-out");
+      $(".tray").addClass("tray-closed");
+
+    }
+
     setTabsBlipInitialPosition();
 
     $("body").toggleClass("noscroll");
