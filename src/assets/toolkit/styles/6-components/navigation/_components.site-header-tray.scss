@@ -1652,7 +1652,14 @@ body#hubv4 {
           &.tray-closed {
             // visibility: hidden;
             // opacity: 0;
-            animation: delay-visibility-out 0.3s ease forwards;
+            display: none;
+            // animation: delay-visibility-out 0.3s ease forwards;
+
+            // clunky fix to fadeou on page load..see toggleTray() in tray.js
+            &.slide-out {
+              display: block;
+              animation: delay-visibility-out 0.3s ease forwards;
+            }
 
             .tray-content {
               visibility: hidden;

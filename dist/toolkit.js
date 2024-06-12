@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, June 11, 2024, 1:51 PM */
+/** Version: 0.10.13 | Wednesday, June 12, 2024, 3:26 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14081,8 +14081,22 @@ function initTray() {
 
 
   function toggleTray() {
-    $(".tray").toggleClass("tray-closed", "normal");
-    $(".tray").toggleClass("tray-open", "normal");
+    // $(".tray").toggleClass("tray-open", "normal");
+    // $(".tray").toggleClass("tray-closed", "normal");
+    // Fix to prevent fadeout on page load. Needs more of a rework but fixes the issue for now.
+    if ($(".tray").hasClass('tray-closed')) {
+      $(".tray").removeClass("tray-closed");
+      $(".tray").removeClass("slide-out");
+      $(".tray").addClass("tray-open"); // $(".tray").fadeIn();
+    } else {
+      // $(".tray").toggleClass("tray-open");
+      // $(".tray").toggleClass("tray-closed");
+      // $(".tray").fadeOut("slow");
+      $(".tray").removeClass("tray-open");
+      $(".tray").addClass("slide-out");
+      $(".tray").addClass("tray-closed");
+    }
+
     setTabsBlipInitialPosition();
     $("body").toggleClass("noscroll");
   }
