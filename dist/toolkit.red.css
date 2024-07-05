@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, June 14, 2024, 8:35 AM */
+/** Version: 0.10.13 | Friday, July 5, 2024, 2:07 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -1911,6 +1911,18 @@ ol {
 .flex {
   display: -webkit-box;
   display: flex;
+}
+
+.flex.s-gap {
+  gap: .25rem;
+}
+
+.flex.gap {
+  gap: .5rem;
+}
+
+.flex.l-gap {
+  gap: 1rem;
 }
 
 .flex.space-between {
@@ -27927,11 +27939,19 @@ body#hubv4 .hub .promo-panel {
   border-radius: 20px;
 }
 
-.fixed-spy .fixed-cta li {
-  background-color: #0D4C38;
-  margin-bottom: 4px;
-  -webkit-box-shadow: 0 1px 1px rgba(87, 87, 87, 0.15), 0 2px 2px rgba(87, 87, 87, 0.15);
-          box-shadow: 0 1px 1px rgba(87, 87, 87, 0.15), 0 2px 2px rgba(87, 87, 87, 0.15);
+.fixed-spy .fixed-cta ul {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  gap: .25rem;
+}
+
+#hubv4 .fixed-spy .fixed-cta .button, #hubv4 .fixed-spy .fixed-cta .news-row header a.link-more, #hubv4 .news-row header .fixed-spy .fixed-cta a.link-more {
+  width: 100%;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
 }
 
 .fixed-spy .fixed-cta li a {
@@ -27957,6 +27977,7 @@ body#hubv4 .hub .promo-panel {
   display: block;
   color: #0D4C38;
   position: relative;
+  display: none;
 }
 
 .fixed-spy .fixed-cta li a i::before {
@@ -28959,7 +28980,7 @@ body#hubv4 .hub .promo-panel {
 .subject-content .highlight-green {
   margin: 1rem 0;
   padding: 1rem;
-  background-color: #F1F6F0;
+  background-color: #CCDCD7;
 }
 
 .subject-content .highlight-green ul {
@@ -29018,6 +29039,40 @@ body#hubv4 .hub .promo-panel {
   position: relative;
   padding: 2rem 1rem;
   border: 1px solid #CCC;
+}
+
+.v2 .s-highlight {
+  background-color: #f7f7f7;
+  border: none;
+}
+
+.v2 .s-highlight::before, .v2 .s-highlight::after {
+  display: none;
+}
+
+.s-highlight.green {
+  background-color: #0D4C38;
+}
+
+.s-highlight.green.image p,
+.s-highlight.green.image h2,
+.s-highlight.green.image h3,
+.s-highlight.green.image h4,
+.s-highlight.green.image h5,
+.s-highlight.green.image .large {
+  color: #FEF9F0;
+}
+
+.s-highlight.green p,
+.s-highlight.green h2,
+.s-highlight.green h3,
+.s-highlight.green h4,
+.s-highlight.green h5 {
+  color: #FEF9F0;
+}
+
+.s-highlight.light-green {
+  background-color: #CCDCD7;
 }
 
 .s-highlight::before, .s-highlight::after {
