@@ -35,13 +35,52 @@
     [right-end] 1rem [fullWidth-end];
 
   @include breakpoint($until: desktop) {
-
   }
 
-  .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: $pounamu;
+  }
 }
 
+.sq-update {
+  .subject-content {
+    // Less right col width
+    grid-template-columns:
+      [fullWidth-start] 1rem
+      [left-start] minmax(250px, 300px)
+      [article-start right-start] 1.5fr
+      [article-end left-end] 0.1fr
+      [right-end] 1rem [fullWidth-end];
+
+    @include breakpoint($from: desktop-large) {
+      grid-template-columns:
+      [fullWidth-start] 1rem
+      [left-start] minmax(250px, 300px)
+      [article-start right-start] 1.5fr
+      [article-end left-end] 0.2fr
+      [right-end] 1rem [fullWidth-end];
+    }
+
+    @include bp-tablet() {
+      grid-template-columns:
+      [fullWidth-start] 1rem
+      [left-start] minmax(10px, 200px)
+      [article-start right-start] 1.5fr
+      [article-end left-end] 0.2fr
+      [right-end] 1rem [fullWidth-end];
+    }
+  }
 }
 
 .subject-content > * {
@@ -49,17 +88,14 @@
 
   @include breakpoint($until: desktop) {
     grid-column: right;
-
   }
 
   @media (max-width: 900px) {
     grid-column: left/right;
     // background-color: red;
-
   }
   @include breakpoint($from: tablet) {
   }
-
 }
 
 .subject-section {
@@ -81,11 +117,11 @@
   // grid-template-columns: minmax(20ch, 80ch)
   // grid-template-columns: 0.5fr 1.5fr 0.5fr;
   grid-template-columns:
-  [fullWidth-start] 1rem
-  [left-start] 0.5fr
-  [article-start right-start] 1.5fr
-  [article-end left-end] 0.5fr
-  [right-end] 1rem [fullWidth-end];
+    [fullWidth-start] 1rem
+    [left-start] 0.5fr
+    [article-start right-start] 1.5fr
+    [article-end left-end] 0.5fr
+    [right-end] 1rem [fullWidth-end];
 
   justify-content: center;
   grid-column: fullWidth;
@@ -103,7 +139,6 @@
       grid-column: left/right;
     }
   }
-
 }
 
 @supports (grid-template-columns: subgrid) {
@@ -126,7 +161,6 @@
       & > * {
         grid-column: left/right;
       }
-
     }
   }
   .fullWidth-center {
@@ -145,6 +179,8 @@
   // grid-column: unset;
 }
 
+
+
 .fixed-spy {
   // width: 17%;
   // margin-left: 1rem;
@@ -156,6 +192,10 @@
 
   grid-column: 2/3;
   grid-row: 1/3;
+
+  .sq-update & {
+    margin-top: 1.5rem;
+  }
 
   .spy-inner-wrap {
     position: sticky;
@@ -192,9 +232,7 @@
     }
   }
   @media (max-width: 480px) {
-
     .subject-content & {
-
       .spy-inner-wrap {
         flex-direction: column;
         column-gap: 1.5rem;
@@ -206,10 +244,7 @@
       }
     }
   }
-
 }
-
-
 
 // .subject-content {
 //   display: grid;
