@@ -414,6 +414,10 @@
       background-color: $grey-light;
     }
 
+    &.light-green {
+      background-color: $kohuhu;
+    }
+
     &.light-green-top-left {
       &::after {
         content: "";
@@ -423,7 +427,12 @@
         height: 100px;
         left: 0;
         top: 0;
-        clip-path: polygon(0px 0px, 100% 0px, 0% 100%, 0% 100%);
+        // clip-path: polygon(0px 0px, 100% 0px, 0% 100%, 0% 100%);
+        height: 50px;
+        z-index: -1;
+        width: 50px;
+        left: -.5rem;
+        top: -.5rem;
       }
     }
     &.light-green-bottom-left {
@@ -435,7 +444,12 @@
         width: 150px;
         left: -1px;
         bottom: -1px;
-        clip-path: polygon(0px 0px, 100% 100%, 0% 100%, 0% 100%);
+        // clip-path: polygon(0px 0px, 100% 100%, 0% 100%, 0% 100%);
+        width: 50px;
+        height: 50px;
+        left: -.5rem;
+        bottom: -.5rem;
+        clip-path: polygon(0% 0%, 17% 0, 17% 83%, 100% 83%, 100% 100%, 17% 100%, 0 100%);
       }
     }
     &.light-green-top-right {
@@ -447,7 +461,13 @@
         width: 150px;
         right: -1px;
         top: -1px;
-        clip-path: polygon(0px 0px, 100% 0%, 100% 100%, 0% 0%);
+        // clip-path: polygon(0px 0px, 100% 0%, 100% 100%, 0% 0%);
+        width: 50px;
+        height: 50px;
+        right: -.5rem;
+        top: -.5rem;
+        clip-path: polygon(0% 0%, 17% 0, 17% 83%, 100% 83%, 100% 100%, 17% 100%, 0 100%);
+        transform: rotate(180deg);
       }
     }
     &.green-bottom-right {
@@ -456,10 +476,12 @@
         position: absolute;
         width: 25px;
         background-color: $pounamu;
-        height: 100px;
-        right: 0px;
-        bottom: 0px;
-        clip-path: polygon(25px 0px, 100% 0px, 100% 100%, 0% 100%);
+        height: 50px;
+        right: -.5rem;
+        bottom: -.5rem;
+        // clip-path: polygon(25px 0px, 100% 0px, 100% 100%, 0% 100%);
+        width: 50px;
+        z-index: -1;
       }
     }
 
@@ -476,18 +498,81 @@
 }
 
 .related-subjects {
+  gap: 1rem !important;
+
   .r-subject {
-    background-color: $white;
-    border-left: 5px solid $miro;
+    background-color: $kohuhu;
+    // border-left: 5px solid $miro;
+    border-radius: .25rem;
+    padding: 1rem;
+    position: relative;
+
+    @include hoverify() {
+        i {
+          right: .25rem;
+        }
+
+        box-shadow: $box-shadow;
+
+      }
+
+      // &:focus-visible {
+      //   outline: none;
+      //   a {
+      //   }
+      // }
+
+      &:focus-within {
+        a {
+          text-decoration: underline;
+        }
+      i {
+        right: .25rem;
+      }
+
+      box-shadow: $box-shadow;
+
+    }
+
+    transition: all 0.2s ease-in-out;
+
+    i {
+      transition: all 0.2s ease-in-out;
+      position: absolute;
+      right: .35rem;
+      bottom: .35rem;
+      color: $pounamu;
+
+    }
 
     a {
       display: flex;
-      color: $black-tundora;
+      color: $pounamu;
       font-size: 0.9rem;
+      // z-index: 2;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+      }
     }
 
     .r-text {
-      padding: 1.5rem 0 1.5rem 1.5rem;
+      // padding: 1.5rem 0 1.5rem 1.5rem;
+      h3,h4,h5 {
+        margin-bottom: .75rem;
+      }
+
+      p {
+        margin-bottom: 0;
+        font-size: .95rem;
+      }
     }
 
     .r-image {
@@ -498,6 +583,8 @@
         object-fit: cover;
         height: 100%;
         object-position: center;
+
+        display: none;
       }
     }
 
@@ -508,6 +595,33 @@
 
       img {
         opacity: 0.9;
+      }
+    }
+  }
+}
+
+.sq-highlight {
+  background-color: $grey-light;
+  padding: 1.5rem 1rem;
+  margin-bottom: 2rem;
+  border: 1px solid $grey-gallery;
+
+  &>:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  &.green {
+    background-color: $kohuhu;
+    border: 1px solid $miro;
+
+    .button {
+      &:not(.primary) {
+        background-color: $manuka !important;
+        color: $pounamu !important;
+
+        @include hoverify() {
+          background-color: lighten($manuka, 10%) !important;
+        }
       }
     }
   }
