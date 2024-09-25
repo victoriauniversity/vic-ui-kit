@@ -1,3 +1,24 @@
+.subject-page {
+  .subject-section {
+
+    ul{
+      padding-left: 2.5rem;
+      li {
+        // padding: .5rem;
+        margin-bottom: .25rem;
+        padding-left: .25rem;
+        list-style-type: disc;
+
+        &::marker {
+          // position: absolute;
+          color: $pounamu;
+          // font-size: 175%;
+        }
+      }
+    }
+  }
+}
+
 .subject-section {
   h1,
   h2,
@@ -32,21 +53,21 @@
 
     li {
       a {
-        color: $blue-endeavoura;
+        color: $pounamu;
         text-decoration: underline;
 
-        &::before {
-          position: relative;
-          display: inline-block;
-          content: "▪";
-          font-family: "VicIcons";
-          margin: 0 0.5em 0 0;
-          width: 1em;
-          text-align: center;
-          line-height: 1;
-          top: -2px;
-          color: $pounamu;
-        }
+        // &::before {
+        //   position: relative;
+        //   display: inline-block;
+        //   content: "▪";
+        //   font-family: "VicIcons";
+        //   margin: 0 0.5em 0 0;
+        //   width: 1em;
+        //   text-align: center;
+        //   line-height: 1;
+        //   top: -2px;
+        //   color: $pounamu;
+        // }
 
         @include hoverify() {
           text-decoration: none;
@@ -185,6 +206,14 @@
           font-weight: 500;
         }
 
+        @include hoverify {
+          background-color: $kohuhu;
+          a {
+            text-decoration: underline;
+          }
+        }
+
+
         &.active {
           background-color: $pounamu;
           // clip-path: polygon(0px 0px, 80% 0px, 100% 100%, 0% 100%);
@@ -194,11 +223,6 @@
           }
         }
 
-        @include hoverify {
-          a {
-            text-decoration: underline;
-          }
-        }
 
         &:not(:last-child) {
           border-bottom: 1px solid $grey-alto;
