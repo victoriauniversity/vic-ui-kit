@@ -1,0 +1,109 @@
+@keyframes accordion-fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.sq-video {
+  &.single {
+    figure {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      img {
+        margin-bottom: 0;
+        grid-column: 1/2;
+        grid-row: 1/2;
+      }
+      .video-link {
+        grid-column: 1/2;
+        grid-row: 1/2;
+        position: relative;
+
+        svg {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        &::after {
+          // @include card-link;
+        }
+      }
+        &::after {
+          content: "";
+          position: absolute;
+          width: 25px;
+          background-color: $pounamu;
+          height: 50px;
+          right: -0.5rem;
+          bottom: -0.5rem;
+          // clip-path: polygon(25px 0px, 100% 0px, 100% 100%, 0% 100%);
+          width: 50px;
+          z-index: -1;
+        }
+    }
+
+    figcaption {
+      background-color: $pounamu;
+      color: $manuka;
+      width: fit-content;
+      padding: 1rem;
+
+      &.transcript {
+        summary {
+          padding-right: 2rem;
+          position: relative;
+          @include hoverify() {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+          &::marker {
+            // color: $pounamu;
+            display: none;
+            content: " ";
+            position: absolute;
+            right: 0;
+            top: 0;
+          }
+
+          &::after {
+            transform: translateY(-50%);
+            position: absolute;
+            right: 0;
+            top: 50%;
+            content: "+";
+            font-size: 1.5rem;
+            font-weight: bold;
+          }
+
+          & + * {
+            padding-top: 1rem;
+          }
+        }
+
+        details[open] {
+          summary {
+            &::marker {
+              // color: $pounamu;
+              display: none;
+              content: " ";
+            }
+
+            &::after {
+              font-weight: bold;
+              content: "-";
+            }
+          }
+
+          div {
+             animation: accordion-fade .5s ease-in;
+          }
+        }
+      }
+    }
+  }
+}
