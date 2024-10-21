@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, October 22, 2024, 9:53 AM */
+/** Version: 0.10.13 | Tuesday, October 22, 2024, 10:29 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15720,7 +15720,35 @@ document.addEventListener("DOMContentLoaded", function (event) {
       target.remove();
     }
   }
-}); // Fix for new courses on explore pages on safari
+});
+
+function updateExploreCourseLinks() {
+  var links = document.getElementsByTagName('a');
+  var coursePattern = /\/courses\/([a-zA-Z]{4})\/(\d{3})(\/\d{4})?/;
+  console.log(links);
+  Array.from(links).forEach(function (link) {
+    var href = link.href; // Check if the link matches our pattern
+
+    var match = href.match(coursePattern);
+    console.log(match);
+
+    if (match) {
+      // If there's no year and course code + number add year
+      if (!match[3] && match[1] && match[2]) {
+        // Split the URL at the course number
+        var basePart = href.split(match[2])[0] + match[2];
+        var queryPart = href.split(match[2])[1] || '';
+        console.log(basePart);
+        console.log(queryPart); // Remove any leading slash from queryPart
+
+        var cleanQueryPart = queryPart.replace(/^\//, ''); // Update link
+
+        link.href = "".concat(basePart, "/2025").concat(cleanQueryPart ? '/' + cleanQueryPart : '');
+      }
+    }
+  });
+} // Fix for new courses on explore pages on safari
+
 
 document.addEventListener('DOMContentLoaded', function () {
   // IF sarafi
@@ -15732,29 +15760,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     waitForElm(".title").then(function () {
       setTimeout(function () {
-        var links = document.getElementsByTagName('a');
-        var coursePattern = /\/courses\/([a-zA-Z]{4})\/(\d{3})(\/\d{4})?/;
-        console.log(links);
-        Array.from(links).forEach(function (link) {
-          var href = link.href; // Check if the link matches our pattern
+        updateExploreCourseLinks(); // Handle SPA pages
 
-          var match = href.match(coursePattern);
-          console.log(match);
-
-          if (match) {
-            // If there's no year and course code + number add year
-            if (!match[3] && match[1] && match[2]) {
-              // Split the URL at the course number
-              var basePart = href.split(match[2])[0] + match[2];
-              var queryPart = href.split(match[2])[1] || '';
-              console.log(basePart);
-              console.log(queryPart); // Remove any leading slash from queryPart
-
-              var cleanQueryPart = queryPart.replace(/^\//, ''); // Update link
-
-              link.href = "".concat(basePart, "/2025").concat(cleanQueryPart ? '/' + cleanQueryPart : '');
-            }
-          }
+        document.querySelectorAll('.menu-tabbed li').forEach(function (li) {
+          li.addEventListener('click', function () {
+            setTimeout(function () {
+              updateExploreCourseLinks();
+            }, 500);
+          });
         });
       }, 1000);
     });
