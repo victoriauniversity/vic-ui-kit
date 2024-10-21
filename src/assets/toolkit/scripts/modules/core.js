@@ -167,7 +167,7 @@ function updateExploreCourseLinks() {
   const links = document.getElementsByTagName('a');
   const coursePattern = /\/courses\/([a-zA-Z]{4})\/(\d{3})(\/\d{4})?/;
 
-  console.log(links);
+  // console.log(links);
 
   Array.from( links ).forEach((link) => {
     const href = link.href;
@@ -207,7 +207,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
     // console.log( 'do something safari' );
 
     // wait for app to load and links are rendered
-    waitForElm(".title").then(function () {
+    waitForElm( '.site-header' ).then(function () {
       setTimeout(() => {
         updateExploreCourseLinks();
     // Handle SPA pages
