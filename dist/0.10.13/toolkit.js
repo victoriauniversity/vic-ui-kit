@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, October 15, 2024, 10:56 AM */
+/** Version: 0.10.13 | Tuesday, October 22, 2024, 8:37 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -82,7 +82,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 22);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -13035,6 +13035,12 @@ if (document.querySelectorAll('#search-tab-js').length > 0) {
 
 /***/ }),
 /* 21 */
+/***/ (function(module, exports) {
+
+console.log('gallery trest');
+
+/***/ }),
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15714,6 +15720,40 @@ document.addEventListener("DOMContentLoaded", function (event) {
       target.remove();
     }
   }
+}); // Fix for new courses on explore pages on safari
+
+document.addEventListener('DOMContentLoaded', function () {
+  // IF sarafi
+  // and an explore page
+  var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent); // eslint-disable-next-line no-undef, eqeqeq
+
+  if (isSafari && document.location.pathname.split('/')[1] === 'explore') {
+    console.log('do something safari');
+    var links = document.getElementsByTagName('a');
+    var coursePattern = /\/courses\/([a-zA-Z]{4})\/(\d{3})(\/\d{4})?/;
+    console.log(links);
+    Array.from(links).forEach(function (link) {
+      var href = link.href; // Check if the link matches our pattern
+
+      var match = href.match(coursePattern);
+      console.log(match);
+
+      if (match) {
+        // If there's no year and course code + number add year
+        if (!match[3] && match[1] && match[2]) {
+          // Split the URL at the course number
+          var basePart = href.split(match[2])[0] + match[2];
+          var queryPart = href.split(match[2])[1] || '';
+          console.log(basePart);
+          console.log(queryPart); // Remove any leading slash from queryPart
+
+          var cleanQueryPart = queryPart.replace(/^\//, ''); // Update link
+
+          link.href = "".concat(basePart, "/2025").concat(cleanQueryPart ? '/' + cleanQueryPart : '');
+        }
+      }
+    });
+  }
 }); // Check toolbar for mode=dev and apply class
 
 if (document.location.href.includes("SQ_DESIGN_NAME=v4") || document.location.href.includes("local.wgtn") || document.location.href.includes("assets/git_bridge/0009/1778031/dist")) {
@@ -15828,6 +15868,8 @@ __webpack_require__(19); // TODO: set up multiple entry points for webpack bundl
 
 
 __webpack_require__(20);
+
+__webpack_require__(21);
 
 external_jQuery_default()(".select").select2();
 
