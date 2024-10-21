@@ -163,6 +163,40 @@ document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 
+function updateExploreCourseLinks() {
+  const links = document.getElementsByTagName('a');
+  const coursePattern = /\/courses\/([a-zA-Z]{4})\/(\d{3})(\/\d{4})?/;
+
+  console.log(links);
+
+  Array.from( links ).forEach((link) => {
+    const href = link.href;
+
+    // Check if the link matches our pattern
+    const match = href.match(coursePattern);
+    console.log(match);
+
+    if ( match ) {
+    // If there's no year and course code + number add year
+      if (!match[3] && match[1] && match[2]) {
+      // Split the URL at the course number
+        const basePart = href.split(match[2])[0] + match[2];
+        const queryPart = href.split(match[2])[1] || '';
+
+        console.log( basePart );
+        console.log( queryPart );
+
+
+        // Remove any leading slash from queryPart
+        const cleanQueryPart = queryPart.replace(/^\//, '');
+
+        // Update link
+        link.href = `${basePart}/2025${cleanQueryPart ? '/' + cleanQueryPart : ''}`;
+      }
+    }
+  });
+}
+
 // Fix for new courses on explore pages on safari
 document.addEventListener( 'DOMContentLoaded', () => {
   // IF sarafi
@@ -174,40 +208,16 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
     // wait for app to load and links are rendered
     waitForElm(".title").then(function () {
-
       setTimeout(() => {
-
-        const links = document.getElementsByTagName('a');
-        const coursePattern = /\/courses\/([a-zA-Z]{4})\/(\d{3})(\/\d{4})?/;
-
-        console.log(links);
-
-        Array.from( links ).forEach((link) => {
-        const href = link.href;
-
-        // Check if the link matches our pattern
-        const match = href.match(coursePattern);
-        console.log(match);
-
-        if ( match ) {
-        // If there's no year and course code + number add year
-          if (!match[3] && match[1] && match[2]) {
-            // Split the URL at the course number
-            const basePart = href.split(match[2])[0] + match[2];
-            const queryPart = href.split(match[2])[1] || '';
-
-            console.log( basePart );
-            console.log( queryPart );
-
-
-            // Remove any leading slash from queryPart
-            const cleanQueryPart = queryPart.replace(/^\//, '');
-
-            // Update link
-            link.href = `${basePart}/2025${cleanQueryPart ? '/' + cleanQueryPart : ''}`;
-          }
-        }
-      });
+        updateExploreCourseLinks();
+    // Handle SPA pages
+        document.querySelectorAll('.menu-tabbed li').forEach((li) => {
+          li.addEventListener( 'click', () => {
+            setTimeout(() => {
+              updateExploreCourseLinks();
+            }, 500);
+          })
+        });
 
       }, 1000 );
 
