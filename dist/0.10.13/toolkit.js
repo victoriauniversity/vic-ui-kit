@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, October 22, 2024, 10:47 AM */
+/** Version: 0.10.13 | Tuesday, October 22, 2024, 12:47 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15724,8 +15724,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 function updateExploreCourseLinks() {
   var links = document.getElementsByTagName('a');
-  var coursePattern = /\/courses\/([a-zA-Z]{4})\/(\d{3})(\/\d{4})?/;
-  console.log(links);
+  var coursePattern = /\/courses\/([a-zA-Z]{4})\/(\d{3})(\/\d{4})?/; // console.log(links);
+
   Array.from(links).forEach(function (link) {
     var href = link.href; // Check if the link matches our pattern
 
@@ -15757,7 +15757,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (isSafari && document.location.pathname.split('/')[1] === 'explore') {
     // console.log( 'do something safari' );
     // wait for app to load and links are rendered
-    waitForElm(".title").then(function () {
+    waitForElm('.site-header').then(function () {
       setTimeout(function () {
         updateExploreCourseLinks(); // Handle SPA pages
 
