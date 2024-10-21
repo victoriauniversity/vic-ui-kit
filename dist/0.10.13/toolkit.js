@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, October 22, 2024, 10:29 AM */
+/** Version: 0.10.13 | Tuesday, October 22, 2024, 10:47 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15729,17 +15729,16 @@ function updateExploreCourseLinks() {
   Array.from(links).forEach(function (link) {
     var href = link.href; // Check if the link matches our pattern
 
-    var match = href.match(coursePattern);
-    console.log(match);
+    var match = href.match(coursePattern); // console.log(match);
 
     if (match) {
       // If there's no year and course code + number add year
       if (!match[3] && match[1] && match[2]) {
         // Split the URL at the course number
         var basePart = href.split(match[2])[0] + match[2];
-        var queryPart = href.split(match[2])[1] || '';
-        console.log(basePart);
-        console.log(queryPart); // Remove any leading slash from queryPart
+        var queryPart = href.split(match[2])[1] || ''; // console.log( basePart );
+        // console.log( queryPart );
+        // Remove any leading slash from queryPart
 
         var cleanQueryPart = queryPart.replace(/^\//, ''); // Update link
 
@@ -15756,13 +15755,13 @@ document.addEventListener('DOMContentLoaded', function () {
   var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent); // eslint-disable-next-line no-undef, eqeqeq
 
   if (isSafari && document.location.pathname.split('/')[1] === 'explore') {
-    console.log('do something safari'); // wait for app to load and links are rendered
-
+    // console.log( 'do something safari' );
+    // wait for app to load and links are rendered
     waitForElm(".title").then(function () {
       setTimeout(function () {
         updateExploreCourseLinks(); // Handle SPA pages
 
-        document.querySelectorAll('.menu-tabbed li').forEach(function (li) {
+        document.querySelectorAll('.menu-tabbed li, .two-btn-nav .btn').forEach(function (li) {
           li.addEventListener('click', function () {
             setTimeout(function () {
               updateExploreCourseLinks();

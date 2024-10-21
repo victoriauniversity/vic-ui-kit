@@ -174,7 +174,7 @@ function updateExploreCourseLinks() {
 
     // Check if the link matches our pattern
     const match = href.match(coursePattern);
-    console.log(match);
+    // console.log(match);
 
     if ( match ) {
     // If there's no year and course code + number add year
@@ -183,8 +183,8 @@ function updateExploreCourseLinks() {
         const basePart = href.split(match[2])[0] + match[2];
         const queryPart = href.split(match[2])[1] || '';
 
-        console.log( basePart );
-        console.log( queryPart );
+        // console.log( basePart );
+        // console.log( queryPart );
 
 
         // Remove any leading slash from queryPart
@@ -204,14 +204,14 @@ document.addEventListener( 'DOMContentLoaded', () => {
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   // eslint-disable-next-line no-undef, eqeqeq
   if ( isSafari && document.location.pathname.split( '/' )[1] === 'explore' ) {
-    console.log( 'do something safari' );
+    // console.log( 'do something safari' );
 
     // wait for app to load and links are rendered
     waitForElm(".title").then(function () {
       setTimeout(() => {
         updateExploreCourseLinks();
     // Handle SPA pages
-        document.querySelectorAll('.menu-tabbed li').forEach((li) => {
+        document.querySelectorAll('.menu-tabbed li, .two-btn-nav .btn').forEach((li) => {
           li.addEventListener( 'click', () => {
             setTimeout(() => {
               updateExploreCourseLinks();
