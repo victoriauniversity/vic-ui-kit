@@ -163,6 +163,52 @@ document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 
+// Fix for new courses on explore pages on safari
+document.addEventListener( 'DOMContentLoaded', () => {
+  // IF sarafi
+  // and an explore page
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  // eslint-disable-next-line no-undef, eqeqeq
+  if ( isSafari && document.location.pathname.split( '/' )[1] === 'explore' ) {
+    console.log( 'do something safari' );
+
+    const links = document.getElementsByTagName('a');
+    const coursePattern = /\/courses\/([a-zA-Z]{4})\/(\d{3})(\/\d{4})?/;
+
+    console.log(links);
+
+    Array.from( links ).forEach((link) => {
+      const href = link.href;
+
+      // Check if the link matches our pattern
+      const match = href.match(coursePattern);
+      console.log(match);
+
+      if ( match ) {
+        // If there's no year and course code + number add year
+        if (!match[3] && match[1] && match[2]) {
+          // Split the URL at the course number
+          const basePart = href.split(match[2])[0] + match[2];
+          const queryPart = href.split(match[2])[1] || '';
+
+          console.log( basePart );
+          console.log( queryPart );
+
+
+          // Remove any leading slash from queryPart
+          const cleanQueryPart = queryPart.replace(/^\//, '');
+
+          // Update link
+          link.href = `${basePart}/2025${cleanQueryPart ? '/' + cleanQueryPart : ''}`;
+        }
+      }
+  });
+
+
+
+  }
+});
+
 // Check toolbar for mode=dev and apply class
 if (
   document.location.href.includes("SQ_DESIGN_NAME=v4") ||
