@@ -172,39 +172,46 @@ document.addEventListener( 'DOMContentLoaded', () => {
   if ( isSafari && document.location.pathname.split( '/' )[1] === 'explore' ) {
     console.log( 'do something safari' );
 
-    const links = document.getElementsByTagName('a');
-    const coursePattern = /\/courses\/([a-zA-Z]{4})\/(\d{3})(\/\d{4})?/;
+    // wait for app to load and links are rendered
+    waitForElm(".title").then(function () {
 
-    console.log(links);
+      setTimeout(() => {
 
-    Array.from( links ).forEach((link) => {
-      const href = link.href;
+        const links = document.getElementsByTagName('a');
+        const coursePattern = /\/courses\/([a-zA-Z]{4})\/(\d{3})(\/\d{4})?/;
 
-      // Check if the link matches our pattern
-      const match = href.match(coursePattern);
-      console.log(match);
+        console.log(links);
 
-      if ( match ) {
+        Array.from( links ).forEach((link) => {
+        const href = link.href;
+
+        // Check if the link matches our pattern
+        const match = href.match(coursePattern);
+        console.log(match);
+
+        if ( match ) {
         // If there's no year and course code + number add year
-        if (!match[3] && match[1] && match[2]) {
-          // Split the URL at the course number
-          const basePart = href.split(match[2])[0] + match[2];
-          const queryPart = href.split(match[2])[1] || '';
+          if (!match[3] && match[1] && match[2]) {
+            // Split the URL at the course number
+            const basePart = href.split(match[2])[0] + match[2];
+            const queryPart = href.split(match[2])[1] || '';
 
-          console.log( basePart );
-          console.log( queryPart );
+            console.log( basePart );
+            console.log( queryPart );
 
 
-          // Remove any leading slash from queryPart
-          const cleanQueryPart = queryPart.replace(/^\//, '');
+            // Remove any leading slash from queryPart
+            const cleanQueryPart = queryPart.replace(/^\//, '');
 
-          // Update link
-          link.href = `${basePart}/2025${cleanQueryPart ? '/' + cleanQueryPart : ''}`;
+            // Update link
+            link.href = `${basePart}/2025${cleanQueryPart ? '/' + cleanQueryPart : ''}`;
+          }
         }
-      }
-  });
+      });
 
+      }, 1000 );
 
+    });
 
   }
 });

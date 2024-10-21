@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, October 22, 2024, 8:37 AM */
+/** Version: 0.10.13 | Tuesday, October 22, 2024, 9:53 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15728,30 +15728,35 @@ document.addEventListener('DOMContentLoaded', function () {
   var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent); // eslint-disable-next-line no-undef, eqeqeq
 
   if (isSafari && document.location.pathname.split('/')[1] === 'explore') {
-    console.log('do something safari');
-    var links = document.getElementsByTagName('a');
-    var coursePattern = /\/courses\/([a-zA-Z]{4})\/(\d{3})(\/\d{4})?/;
-    console.log(links);
-    Array.from(links).forEach(function (link) {
-      var href = link.href; // Check if the link matches our pattern
+    console.log('do something safari'); // wait for app to load and links are rendered
 
-      var match = href.match(coursePattern);
-      console.log(match);
+    waitForElm(".title").then(function () {
+      setTimeout(function () {
+        var links = document.getElementsByTagName('a');
+        var coursePattern = /\/courses\/([a-zA-Z]{4})\/(\d{3})(\/\d{4})?/;
+        console.log(links);
+        Array.from(links).forEach(function (link) {
+          var href = link.href; // Check if the link matches our pattern
 
-      if (match) {
-        // If there's no year and course code + number add year
-        if (!match[3] && match[1] && match[2]) {
-          // Split the URL at the course number
-          var basePart = href.split(match[2])[0] + match[2];
-          var queryPart = href.split(match[2])[1] || '';
-          console.log(basePart);
-          console.log(queryPart); // Remove any leading slash from queryPart
+          var match = href.match(coursePattern);
+          console.log(match);
 
-          var cleanQueryPart = queryPart.replace(/^\//, ''); // Update link
+          if (match) {
+            // If there's no year and course code + number add year
+            if (!match[3] && match[1] && match[2]) {
+              // Split the URL at the course number
+              var basePart = href.split(match[2])[0] + match[2];
+              var queryPart = href.split(match[2])[1] || '';
+              console.log(basePart);
+              console.log(queryPart); // Remove any leading slash from queryPart
 
-          link.href = "".concat(basePart, "/2025").concat(cleanQueryPart ? '/' + cleanQueryPart : '');
-        }
-      }
+              var cleanQueryPart = queryPart.replace(/^\//, ''); // Update link
+
+              link.href = "".concat(basePart, "/2025").concat(cleanQueryPart ? '/' + cleanQueryPart : '');
+            }
+          }
+        });
+      }, 1000);
     });
   }
 }); // Check toolbar for mode=dev and apply class
