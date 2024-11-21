@@ -469,6 +469,12 @@
           max-height: 250px;
           object-fit: fill;
           object-position: center;
+
+          @include breakpoint($until: desktop-medium) {
+            max-height: none;
+            aspect-ratio: 16 / 8;
+            object-fit: cover;
+          }
         }
       }
       // }
