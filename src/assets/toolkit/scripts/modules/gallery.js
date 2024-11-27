@@ -1,4 +1,4 @@
 
 
 
-console.log('gallery trest');
+// console.log('gallery trest');
