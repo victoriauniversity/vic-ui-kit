@@ -474,13 +474,8 @@ export function initTray() {
     // console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded);
 
     // ?EXPAND MENU ON HOVER
-    menuItems.on("mouseenter click", function (e) {
+    menuItems.on("mouseenter", function(e) {
       let index = $(this).index() - 2;
-      // console.log(
-      //   "🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index",
-      //   index
-      // );
-// console.log('blah');
       const $navItem = $(this);
 
       e.preventDefault();
@@ -489,7 +484,33 @@ export function initTray() {
       var $navItemId = $("#" + $navItem.attr("data-for"));
       $("[id^=draw]").hide();
 
-      // console.log($navItemId.length);
+      if ($navItemId.length) {
+        $(".sidemenu-drawer").removeClass("no-promo");
+      } else {
+        $(".sidemenu-drawer").addClass("no-promo");
+      }
+      $navItemId.show();
+
+      // If menu is already open, don't delay expanding the menu
+      if (horizontalMenuExpanded) {
+        expandHorizontalMenu(index, $navItem, e.type);
+      } else {
+        openTimeout = setTimeout(function() {
+          expandHorizontalMenu(index, $navItem, e.type);
+        }, 200);
+      }
+    });
+
+    // Separate focus handler
+    menuItems.on("focus", "> a", function(e) {
+      let index = $(this).parent().index() - 2;
+      const $navItem = $(this).parent();
+
+      // e.preventDefault();
+      // e.stopPropagation();
+
+      var $navItemId = $("#" + $navItem.attr("data-for"));
+      $("[id^=draw]").hide();
 
       if ($navItemId.length) {
         $(".sidemenu-drawer").removeClass("no-promo");
@@ -498,15 +519,10 @@ export function initTray() {
       }
       $navItemId.show();
 
-      // If menu is already open, don't delay expanding the menu, else do!
-      if (horizontalMenuExpanded || e.type == "click") {
-        expandHorizontalMenu(index, $navItem, e.type);
-      } else {
-        openTimeout = setTimeout(function () {
-          expandHorizontalMenu(index, $navItem, e.type);
-        }, 200);
-      }
+      // Immediately expand menu on focus, no delay
+      expandHorizontalMenu(index, $navItem, 'focus');
     });
+
     var expandHorizontalMenu = function (index, $navItem, eventType) {
       if ($navItem.hasClass("expanded-nav") && eventType == "click") {
         // If nav item is already expanded... close it
@@ -563,6 +579,33 @@ export function initTray() {
 
       // console.log('horizontalMenuExpanded',horizontalMenuExpanded);
     };
+
+    // Add keyboard navigation
+    menuItems.on("keydown", function(e) {
+      const $current = $(this);
+
+      switch(e.keyCode) {
+        case 37: // Left arrow
+          e.preventDefault();
+          $current.prev().find(">a").focus();
+          break;
+        case 39: // Right arrow
+          e.preventDefault();
+          $current.next().find(">a").focus();
+          break;
+        case 40: // Down arrow
+          e.preventDefault();
+          if (horizontalMenuExpanded) {
+            // Focus first item in submenu
+            $(".active-nav-group").find("a").first().focus();
+          }
+          break;
+        case 27: // Escape
+          e.preventDefault();
+          closeDraw();
+          break;
+      }
+    });
 
     // ?CLOSE ON MENU MOUSE OUT
     enquire.register(DESKTOP_AND_LARGER, () => {
