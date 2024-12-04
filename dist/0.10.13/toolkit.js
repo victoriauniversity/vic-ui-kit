@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, November 29, 2024, 3:00 PM */
+/** Version: 0.10.13 | Wednesday, December 4, 2024, 1:58 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -14415,18 +14415,13 @@ function initTray() {
     }); // console.log('testing horizontalMenuExpanded  ----   ', horizontalMenuExpanded);
     // ?EXPAND MENU ON HOVER
 
-    menuItems.on("mouseenter click", function (e) {
-      var index = $(this).index() - 2; // console.log(
-      //   "🚀 ~ file: tray.js ~ line 254 ~ menuItemsWithSub.on ~ index",
-      //   index
-      // );
-      // console.log('blah');
-
+    menuItems.on("mouseenter", function (e) {
+      var index = $(this).index() - 2;
       var $navItem = $(this);
       e.preventDefault();
       e.stopPropagation();
       var $navItemId = $("#" + $navItem.attr("data-for"));
-      $("[id^=draw]").hide(); // console.log($navItemId.length);
+      $("[id^=draw]").hide();
 
       if ($navItemId.length) {
         $(".sidemenu-drawer").removeClass("no-promo");
@@ -14434,15 +14429,34 @@ function initTray() {
         $(".sidemenu-drawer").addClass("no-promo");
       }
 
-      $navItemId.show(); // If menu is already open, don't delay expanding the menu, else do!
+      $navItemId.show(); // If menu is already open, don't delay expanding the menu
 
-      if (horizontalMenuExpanded || e.type == "click") {
+      if (horizontalMenuExpanded) {
         expandHorizontalMenu(index, $navItem, e.type);
       } else {
         openTimeout = setTimeout(function () {
           expandHorizontalMenu(index, $navItem, e.type);
         }, 200);
       }
+    }); // Separate focus handler
+
+    menuItems.on("focus", "> a", function (e) {
+      var index = $(this).parent().index() - 2;
+      var $navItem = $(this).parent(); // e.preventDefault();
+      // e.stopPropagation();
+
+      var $navItemId = $("#" + $navItem.attr("data-for"));
+      $("[id^=draw]").hide();
+
+      if ($navItemId.length) {
+        $(".sidemenu-drawer").removeClass("no-promo");
+      } else {
+        $(".sidemenu-drawer").addClass("no-promo");
+      }
+
+      $navItemId.show(); // Immediately expand menu on focus, no delay
+
+      expandHorizontalMenu(index, $navItem, 'focus');
     });
 
     var expandHorizontalMenu = function expandHorizontalMenu(index, $navItem, eventType) {
@@ -14484,8 +14498,43 @@ function initTray() {
       $(".sidemenu-drawer .sub-draw-title > a").attr("tabIndex", 1);
       $(matchingNavGroup).find(".sub-draw-title > a").attr("tabIndex", 0);
       $navItem.find(">a").attr("tabIndex", 0); // console.log('horizontalMenuExpanded',horizontalMenuExpanded);
-    }; // ?CLOSE ON MENU MOUSE OUT
+    }; // Add keyboard navigation
 
+
+    menuItems.on("keydown", function (e) {
+      var $current = $(this);
+
+      switch (e.keyCode) {
+        case 37:
+          // Left arrow
+          e.preventDefault();
+          $current.prev().find(">a").focus();
+          break;
+
+        case 39:
+          // Right arrow
+          e.preventDefault();
+          $current.next().find(">a").focus();
+          break;
+
+        case 40:
+          // Down arrow
+          e.preventDefault();
+
+          if (horizontalMenuExpanded) {
+            // Focus first item in submenu
+            $(".active-nav-group").find("a").first().focus();
+          }
+
+          break;
+
+        case 27:
+          // Escape
+          e.preventDefault();
+          closeDraw();
+          break;
+      }
+    }); // ?CLOSE ON MENU MOUSE OUT
 
     src_default.a.register(DESKTOP_AND_LARGER, function () {
       // Clear tabindex to avoid tabbing to invisible stuff
