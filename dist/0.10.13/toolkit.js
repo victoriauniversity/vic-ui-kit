@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Wednesday, December 4, 2024, 1:58 PM */
+/** Version: 0.10.13 | Monday, February 3, 2025, 1:22 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15716,15 +15716,42 @@ function hideCourseLevies() {
     // let totalLevy = document.querySelector('.cost-items > div:nth-child(6)');
     $(".clear-cart-wrap").first().before('<p style="margin-top: .5rem; font-size: .9rem;" class="levy-text"></p>');
     var feeLocation = document.querySelector("#fees-type");
-    removeLevies();
-    document.querySelector(".fees-est").addEventListener("DOMNodeInserted", function (event) {
-      feeLocation = document.querySelector("#fees-type"); // console.log('content change', event.target);
+    removeLevies(); // document.querySelector(".fees-est").addEventListener(
+    //   "DOMNodeInserted",
+    //   function (event) {
+    //     feeLocation = document.querySelector("#fees-type");
+    //     // console.log('content change', event.target);
+    //     if (
+    //       document.querySelector(".fees-est .cost-items > div:nth-child(3)")
+    //     ) {
+    //       removeLevies();
+    //       updateLocation();
+    //     }
+    //   },
+    //   false
+    // );
+    // DOMNodeInserted has been deprecated, work around using this instead
 
-      if (document.querySelector(".fees-est .cost-items > div:nth-child(3)")) {
-        removeLevies();
-        updateLocation();
-      }
-    }, false);
+    var timeoutId;
+    var observer = new MutationObserver(function (mutations) {
+      // console.log("mutation");
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(function () {
+        var thirdItem = document.querySelector(".fees-est .cost-items > div:nth-child(3)");
+
+        if (thirdItem) {
+          feeLocation = document.querySelector("#fees-type");
+          console.log('content change');
+          removeLevies();
+          updateLocation();
+        }
+      }, 100); // Wait 100ms after changes stop
+    });
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true
+    });
     updateLocation();
     setLevyText();
   }
