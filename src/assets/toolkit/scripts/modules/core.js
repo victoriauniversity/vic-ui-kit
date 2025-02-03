@@ -109,13 +109,13 @@ function hideCourseLevies() {
         timeoutId = setTimeout(() => {
             const thirdItem = document.querySelector(".fees-est .cost-items > div:nth-child(3)");
             if (thirdItem) {
-                feeLocation = document.querySelector("#fees-type");
+                // feeLocation = document.querySelector("#fees-type");
                 console.log('content change');
 
                 removeLevies();
                 updateLocation();
             }
-        }, 100); // Wait 100ms after changes stop
+        }, 100); // debounce
     });
 
     observer.observe(document.body, {
