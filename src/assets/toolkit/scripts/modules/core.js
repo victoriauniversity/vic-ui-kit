@@ -85,20 +85,44 @@ function hideCourseLevies() {
 
     removeLevies();
 
-    document.querySelector(".fees-est").addEventListener(
-      "DOMNodeInserted",
-      function (event) {
-        feeLocation = document.querySelector("#fees-type");
-        // console.log('content change', event.target);
-        if (
-          document.querySelector(".fees-est .cost-items > div:nth-child(3)")
-        ) {
-          removeLevies();
-          updateLocation();
-        }
-      },
-      false
-    );
+    // document.querySelector(".fees-est").addEventListener(
+    //   "DOMNodeInserted",
+    //   function (event) {
+    //     feeLocation = document.querySelector("#fees-type");
+    //     // console.log('content change', event.target);
+    //     if (
+    //       document.querySelector(".fees-est .cost-items > div:nth-child(3)")
+    //     ) {
+    //       removeLevies();
+    //       updateLocation();
+    //     }
+    //   },
+    //   false
+    // );
+
+    // DOMNodeInserted has been deprecated, work around using this instead
+    let timeoutId;
+    const observer = new MutationObserver((mutations) => {
+      // console.log("mutation");
+
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            const thirdItem = document.querySelector(".fees-est .cost-items > div:nth-child(3)");
+            if (thirdItem) {
+                feeLocation = document.querySelector("#fees-type");
+                console.log('content change');
+
+                removeLevies();
+                updateLocation();
+            }
+        }, 100); // Wait 100ms after changes stop
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true
+    });
 
     updateLocation();
 
