@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Monday, February 3, 2025, 2:02 PM */
+/** Version: 0.10.13 | Tuesday, February 4, 2025, 2:41 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15822,6 +15822,16 @@ function updateExploreCourseLinks() {
       }
     }
   });
+}
+
+function removeExplorePageFeesFreeText() {
+  var feesElement = Array.from(document.querySelectorAll('#fees p')).find(function (p) {
+    return p.textContent.includes('Tertiary education is fees-free');
+  });
+
+  if (feesElement) {
+    feesElement.remove();
+  }
 } // Fix for new courses on explore pages on safari
 
 
@@ -15841,6 +15851,24 @@ document.addEventListener('DOMContentLoaded', function () {
           li.addEventListener('click', function () {
             setTimeout(function () {
               updateExploreCourseLinks();
+            }, 500);
+          });
+        });
+      }, 1000);
+    });
+  }
+
+  if (document.location.pathname.split('/')[1] === 'explore') {
+    // console.log( 'explore remove fees free section ' );
+    // wait for app to load and links are rendered
+    waitForElm('.site-header').then(function () {
+      setTimeout(function () {
+        removeExplorePageFeesFreeText(); // Handle SPA pages
+
+        document.querySelectorAll('.menu-tabbed li, .two-btn-nav .btn').forEach(function (li) {
+          li.addEventListener('click', function () {
+            setTimeout(function () {
+              removeExplorePageFeesFreeText();
             }, 500);
           });
         });
