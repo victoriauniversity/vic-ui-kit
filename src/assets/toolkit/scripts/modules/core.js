@@ -221,6 +221,13 @@ function updateExploreCourseLinks() {
   });
 }
 
+function removeExplorePageFeesFreeText() {
+  const feesElement = Array.from(document.querySelectorAll('#fees p')).find(p => p.textContent.includes('Tertiary education is fees-free'));
+  if (feesElement) {
+    feesElement.remove();
+  }
+}
+
 // Fix for new courses on explore pages on safari
 document.addEventListener( 'DOMContentLoaded', () => {
   // IF sarafi
@@ -247,6 +254,26 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
     });
 
+  }
+
+  if ( document.location.pathname.split( '/' )[1] === 'explore' ) {
+    // console.log( 'explore remove fees free section ' );
+        // wait for app to load and links are rendered
+        waitForElm( '.site-header' ).then(function () {
+          setTimeout(() => {
+            removeExplorePageFeesFreeText();
+        // Handle SPA pages
+            document.querySelectorAll('.menu-tabbed li, .two-btn-nav .btn').forEach((li) => {
+              li.addEventListener( 'click', () => {
+                setTimeout(() => {
+                  removeExplorePageFeesFreeText();
+                }, 500);
+              })
+            });
+
+          }, 1000 );
+
+        });
   }
 });
 
