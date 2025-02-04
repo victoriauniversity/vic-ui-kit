@@ -259,7 +259,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
   if ( document.location.pathname.split( '/' )[1] === 'explore' ) {
     // console.log( 'explore remove fees free section ' );
         // wait for app to load and links are rendered
-        waitForElm( '.site-header' ).then(function () {
+        waitForElm( '#fees' ).then(function () {
           setTimeout(() => {
             removeExplorePageFeesFreeText();
         // Handle SPA pages
@@ -267,7 +267,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
               li.addEventListener( 'click', () => {
                 setTimeout(() => {
                   removeExplorePageFeesFreeText();
-                }, 500);
+                }, 600);
               })
             });
 

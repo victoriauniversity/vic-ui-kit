@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, February 4, 2025, 2:41 PM */
+/** Version: 0.10.13 | Tuesday, February 4, 2025, 2:53 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -15861,7 +15861,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.location.pathname.split('/')[1] === 'explore') {
     // console.log( 'explore remove fees free section ' );
     // wait for app to load and links are rendered
-    waitForElm('.site-header').then(function () {
+    waitForElm('#fees').then(function () {
       setTimeout(function () {
         removeExplorePageFeesFreeText(); // Handle SPA pages
 
@@ -15869,7 +15869,7 @@ document.addEventListener('DOMContentLoaded', function () {
           li.addEventListener('click', function () {
             setTimeout(function () {
               removeExplorePageFeesFreeText();
-            }, 500);
+            }, 600);
           });
         });
       }, 1000);
