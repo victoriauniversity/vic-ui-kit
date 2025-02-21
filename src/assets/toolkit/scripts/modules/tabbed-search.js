@@ -96,8 +96,8 @@ if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
 
     //disable click if not results
     if ( fullyMatching === 0 ) {
-      $sectab.find( 'a' ).off('click');
-      $sectab.addClass( 'disabled-tab' );
+      // $sectab.find( 'a' ).off('click');
+      // $sectab.addClass( 'disabled-tab' );
     }
   });
 
