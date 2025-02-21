@@ -43,7 +43,17 @@ if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
 
     $tab.on( 'click', () => {
 
-      // console.log( $tab );
+      // enrich search tabs, make them update input to maintain correct tab location
+      let tabQuery = $tab.text().replace(/\([^)]*\)\s*/g, '').toLowerCase().trim();
+      // console.log(tabQuery);
+
+      if (tabQuery === 'website') {
+        tabQuery = 'web';
+      }
+
+      $('#search-form input[name="tab"]').remove();
+      $('#search-form').append(`<input type="hidden" name="tab" value="${tabQuery}">`);
+
       if ( !$tab.parent().hasClass( 'active' ) ) {
         // not active tab add class and remove from current
         tabs.parents().removeClass( 'active' );
@@ -140,6 +150,10 @@ if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
       break;
     case 'qualifications':
       window.sessionStorage.setItem( 'tabState', 'wgtn-meta-qualifications' );
+      tabState = window.sessionStorage.tabState;
+      break;
+    case 'courses-new':
+      window.sessionStorage.setItem( 'tabState', 'sqc-all-courses' );
       tabState = window.sessionStorage.tabState;
       break;
 
