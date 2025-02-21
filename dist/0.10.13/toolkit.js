@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, February 4, 2025, 2:53 PM */
+/** Version: 0.10.13 | Friday, February 21, 2025, 2:51 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -12881,7 +12881,16 @@ if (document.querySelectorAll('#search-tab-js').length > 0) {
     // element == this
     var $tab = $(tab);
     $tab.on('click', function () {
-      // console.log( $tab );
+      // enrich search tabs, make them update input to maintain correct tab location
+      var tabQuery = $tab.text().replace(/\([^)]*\)\s*/g, '').toLowerCase().trim(); // console.log(tabQuery);
+
+      if (tabQuery === 'website') {
+        tabQuery = 'web';
+      }
+
+      $('#search-form input[name="tab"]').remove();
+      $('#search-form').append("<input type=\"hidden\" name=\"tab\" value=\"".concat(tabQuery, "\">"));
+
       if (!$tab.parent().hasClass('active')) {
         // not active tab add class and remove from current
         tabs.parents().removeClass('active');
@@ -12965,6 +12974,11 @@ if (document.querySelectorAll('#search-tab-js').length > 0) {
 
     case 'qualifications':
       window.sessionStorage.setItem('tabState', 'wgtn-meta-qualifications');
+      tabState = window.sessionStorage.tabState;
+      break;
+
+    case 'courses-new':
+      window.sessionStorage.setItem('tabState', 'sqc-all-courses');
       tabState = window.sessionStorage.tabState;
       break;
 
