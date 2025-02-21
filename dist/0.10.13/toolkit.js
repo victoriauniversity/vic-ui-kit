@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, February 21, 2025, 2:51 PM */
+/** Version: 0.10.13 | Friday, February 21, 2025, 3:19 PM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -12920,9 +12920,8 @@ if (document.querySelectorAll('#search-tab-js').length > 0) {
     var fullyMatching = parseInt($sectab.data('matching'), 10);
     var currStart = $sectab.data('currstart'); //disable click if not results
 
-    if (fullyMatching === 0) {
-      $sectab.find('a').off('click');
-      $sectab.addClass('disabled-tab');
+    if (fullyMatching === 0) {// $sectab.find( 'a' ).off('click');
+      // $sectab.addClass( 'disabled-tab' );
     }
   }); //ie11 urlsearchparam polyfill
 
