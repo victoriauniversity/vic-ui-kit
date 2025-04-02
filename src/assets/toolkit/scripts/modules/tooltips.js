@@ -4,10 +4,10 @@ import { isElementHidden, removeAttribute, isAppleMobileDevice } from '../utils/
 
 if ( 'NodeList' in window && !NodeList.prototype.forEach ) {
   console.info( 'polyfill for IE11' );
-  NodeList.prototype.forEach = function (callback, thisArg) {
+  NodeList.prototype.forEach = function ( callback, thisArg ) {
     thisArg = thisArg || window;
-    for (var i = 0; i < this.length; i++) {
-      callback.call(thisArg, this[i], i, this);
+    for ( var i = 0; i < this.length; i++ ) {
+      callback.call( thisArg, this[i], i, this );
     }
   };
 }
@@ -81,6 +81,9 @@ const tooltipsApi = window.toolkitTooltips || {};
     tooltipElement.setAttribute( 'class', 'tooltip' );
     tooltipElement.setAttribute( 'role', 'tooltip' );
     tooltipElement.setAttribute( 'hidden', '' );
+    // Add these new attributes for better screen reader support
+    tooltipElement.setAttribute( 'aria-live', 'polite' );
+    tooltipElement.setAttribute( 'aria-atomic', 'true' );
 
     document.body.appendChild( tooltipElement );
     globalTooltipElement = tooltipElement;
@@ -129,13 +132,25 @@ const tooltipsApi = window.toolkitTooltips || {};
     } = {}) {
       this.sourceElement = sourceElement;
 
-      this.content = content || sourceElement.getAttribute( attributeNameContent );
+      // Store and remove title attribute immediately if it exists
+
+      const titleContent = sourceElement.getAttribute( 'title' );
+      // console.log(titleContent, sourceElement);
+      if ( titleContent ) {
+        sourceElement.setAttribute( 'data-original-title', titleContent );
+        sourceElement.removeAttribute( 'title' );
+      }
+
+      // Use provided content, or stored title, or look for other attribute
+      this.content = content ||
+                     titleContent ||
+                     sourceElement.getAttribute( attributeNameContent );
       this.triggerType = trigger;
 
       if ( this.content ) {
         this.init();
       } else {
-        console.warn( 'There is no available content to show in the tooltip for element. The tooltip will not be created. ', this.sourceElement, this.content );
+        console.warn( 'There is no available content to show in the tooltip for element. The tooltip will not be created.', this.sourceElement );
       }
 
       this.bindEvents();
@@ -149,11 +164,17 @@ const tooltipsApi = window.toolkitTooltips || {};
 
     /** Removes the tooltip and cleans up. */
     destroy() {
+      // Restore original title if it exists
+      const originalTitle = this.sourceElement.getAttribute( 'data-original-title' );
+      if ( originalTitle ) {
+        this.sourceElement.setAttribute( 'title', originalTitle );
+        this.sourceElement.removeAttribute( 'data-original-title' );
+      }
+
       // Remove this instance from the list of tooltips
       const tooltipIndex = tooltipsList.indexOf( this );
       if ( tooltipIndex > -1 ) {
         tooltipsList.splice( tooltipIndex, 1 );
-        // TODO: + Unbind all events
       }
 
       if ( tooltipsList.length === 0 ) removeTooltipElement();
@@ -165,7 +186,9 @@ const tooltipsApi = window.toolkitTooltips || {};
       if ( isAppleMobileDevice()) document.body.style.cursor = 'pointer';
 
       removeAttribute( this.sourceElement, 'title' ); // Remove title attribute to prevent default system behavior
-      this.sourceElement.setAttribute( 'aria-describedby', VALUE_ID ); // Accessibility
+      this.sourceElement.setAttribute( 'aria-describedby', VALUE_ID );
+      // Accessibility
+      this.sourceElement.setAttribute( 'aria-expanded', 'true' );
 
       removeAttribute( globalTooltipElement, 'hidden' ); // Accessibility
       globalTooltipElement.style.opacity = 0;
@@ -184,6 +207,7 @@ const tooltipsApi = window.toolkitTooltips || {};
 
       this.sourceElement.setAttribute( ATTRIBUTE_NAME_CONTENT, this.content );
       removeAttribute( this.sourceElement, 'aria-describedby' );
+      this.sourceElement.setAttribute( 'aria-expanded', 'false' );
 
       globalTooltipElement.setAttribute( 'hidden', '' ); // Accessibility
 
@@ -260,6 +284,11 @@ const tooltipsApi = window.toolkitTooltips || {};
 
     enhanceAccessibility() {
       this.sourceElement.setAttribute( 'tabindex', 0 );
+      this.sourceElement.setAttribute( 'aria-expanded', 'false' );
+
+      if ( this.sourceElement.tagName !== 'BUTTON' && this.sourceElement.tagName !== 'A' ) {
+        this.sourceElement.setAttribute( 'role', 'button' );
+      }
     }
 
 
