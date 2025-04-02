@@ -171,6 +171,9 @@ const tooltipsApi = window.toolkitTooltips || {};
         this.sourceElement.removeAttribute( 'data-original-title' );
       }
 
+      // Remove window event listener
+      window.removeEventListener( 'keydown', this.hideTooltipOnEscKey.bind( this ));
+
       // Remove this instance from the list of tooltips
       const tooltipIndex = tooltipsList.indexOf( this );
       if ( tooltipIndex > -1 ) {
@@ -258,13 +261,17 @@ const tooltipsApi = window.toolkitTooltips || {};
 
 
     bindEvents() {
+      // Add ESC key handler at window level
+      window.addEventListener( 'keydown', this.hideTooltipOnEscKey.bind( this ));
+
       if ( this.triggerType === TRIGGER_TYPE.CLICK ) {
         this.sourceElement.addEventListener( 'click', this.toggleTooltip.bind( this ));
       } else if ( this.triggerType === TRIGGER_TYPE.HOVER ) {
         this.bindMouseHovering();
         this.bindAccessibilityFeatures();
       } else {
-        console.error( 'Unsupported type of trigger `%s`. The tooltip will not be shown for your element', this.triggerType, this.sourceElement );
+        console.error( 'Unsupported type of trigger `%s`. The tooltip will not be shown for your element',
+          this.triggerType, this.sourceElement );
       }
     }
 
@@ -302,7 +309,10 @@ const tooltipsApi = window.toolkitTooltips || {};
     hideTooltipOnEscKey( $event ) {
       const KEY_ESC_ID = 27;
 
-      if ( $event.which === KEY_ESC_ID ) {
+      if ( $event.which === KEY_ESC_ID && !isElementHidden( globalTooltipElement )) {
+        if ( outsideClickListenerFn ) {
+          window.removeEventListener( 'click', outsideClickListenerFn );
+        }
         this.hideTooltip();
         $event.preventDefault();
         return false;
