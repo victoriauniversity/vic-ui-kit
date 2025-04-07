@@ -96,13 +96,14 @@
       &::after {
         all: unset;
       }
-      font-weight: 600;
-      color: #005EA5;
-      text-decoration: underline;
+      font-weight: 600 !important;
+      color: #005EA5 !important;
+      text-decoration: underline !important;
     }
 
     @include hoverify() {
       opacity: .8;
+      cursor: pointer;
 
       a {
         text-decoration: none;
@@ -111,9 +112,9 @@
 
     &.active {
       a,button {
-        position: relative;
-        color: $black-tundora;
-        text-decoration: none;
+        position: relative !important;
+        color: $black-tundora !important;
+        text-decoration: none !important;
 
         @include hoverify() {
           outline: -webkit-focus-ring-color auto 1px;
