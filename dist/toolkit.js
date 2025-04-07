@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, February 21, 2025, 3:19 PM */
+/** Version: 0.10.13 | Tuesday, April 8, 2025, 11:13 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -12855,11 +12855,37 @@ var tabState = window.sessionStorage.tabState; // console.log( 'tabstate== ', ta
 // Only execute if tabs exist
 
 if (document.querySelectorAll('#search-tab-js').length > 0) {
-  var defaultActive = $('.p-search__tabs .active a').data('tab');
-  var tabs = $('.p-search__tab a'); // console.log( defaultActive );
+  var defaultActive = $('.p-search__tabs .active a, .p-search__tabs .active button').data('tab');
+  var tabs = $('.p-search__tab > a, .p-search__tab > button'); // console.log( defaultActive );
 
   var $resultSections = $('.search-results'); // console.log( $resultSections );
+  // Initialize ARIA attributes
 
+  $('.p-search__tabs').attr({
+    'role': 'tablist',
+    'aria-label': 'Search categories'
+  }); // Set up each tab with proper ARIA attributes
+
+  tabs.each(function (index, tab) {
+    var $tab = $(tab);
+    var tabId = "tab-".concat(index);
+    var panelId = "panel-".concat(index);
+    var $panel = $(".search-results[data-content=\"".concat($tab.data('tab'), "\"]"));
+    var isActive = $tab.parent().hasClass('active');
+    $tab.attr({
+      'role': 'tab',
+      'id': tabId,
+      'aria-selected': isActive ? 'true' : 'false',
+      'aria-controls': panelId,
+      'tabindex': isActive ? '0' : '-1'
+    });
+    $panel.attr({
+      'role': 'tabpanel',
+      'id': panelId,
+      'aria-labelledby': tabId,
+      'tabindex': '0'
+    });
+  });
   /* Sets default vault based on default active tab */
 
   $resultSections.each(function (index, section) {
@@ -12871,17 +12897,58 @@ if (document.querySelectorAll('#search-tab-js').length > 0) {
     if (sectionData == defaultActive) {
       // console.log( 'match ' + sectionData, defaultActive );
       $section.addClass('search-active');
+      $section.attr('aria-hidden', 'false');
     } else {
       $section.addClass('search-inactive');
+      $section.attr('aria-hidden', 'true');
     }
   });
-  /* Tab click */
+  /* Tab click and keyboard navigation */
 
   tabs.each(function (_index, tab) {
     // element == this
     var $tab = $(tab);
-    $tab.on('click', function () {
-      // enrich search tabs, make them update input to maintain correct tab location
+    var isButton = $tab.is('button');
+    var tabContent = $tab.data('tab');
+    var $resultsContainer = $(".search-results[data-content=\"".concat(tabContent, "\"]"));
+    $tab.on('click keydown', function (e) {
+      // Handle keyboard navigation
+      if (e.type === 'keydown') {
+        var key = e.key; // For links: handle both Enter/Space and arrow keys
+        // For buttons: only handle arrow keys (Enter/Space handled automatically)
+
+        if (!isButton && key !== 'Enter' && key !== ' ') {
+          if (key === 'ArrowRight' || key === 'ArrowLeft') {
+            e.preventDefault();
+            var currentIndex = tabs.index($tab);
+            var nextIndex = key === 'ArrowRight' ? currentIndex + 1 : currentIndex - 1;
+            var $nextTab = tabs.eq(nextIndex >= tabs.length ? 0 : nextIndex < 0 ? tabs.length - 1 : nextIndex);
+            $nextTab.focus().trigger('click');
+          }
+
+          return;
+        } else if (isButton && key !== 'ArrowRight' && key !== 'ArrowLeft') {
+          // Let the button handle its own Enter/Space events
+          return;
+        } // Handle arrow navigation for buttons
+
+
+        if (isButton && (key === 'ArrowRight' || key === 'ArrowLeft')) {
+          e.preventDefault();
+
+          var _currentIndex = tabs.index($tab);
+
+          var _nextIndex = key === 'ArrowRight' ? _currentIndex + 1 : _currentIndex - 1;
+
+          var _$nextTab = tabs.eq(_nextIndex >= tabs.length ? 0 : _nextIndex < 0 ? tabs.length - 1 : _nextIndex);
+
+          _$nextTab.focus().trigger('click');
+
+          return;
+        }
+      } // enrich search tabs, make them update input to maintain correct tab location
+
+
       var tabQuery = $tab.text().replace(/\([^)]*\)\s*/g, '').toLowerCase().trim(); // console.log(tabQuery);
 
       if (tabQuery === 'website') {
@@ -12892,16 +12959,28 @@ if (document.querySelectorAll('#search-tab-js').length > 0) {
       $('#search-form').append("<input type=\"hidden\" name=\"tab\" value=\"".concat(tabQuery, "\">"));
 
       if (!$tab.parent().hasClass('active')) {
-        // not active tab add class and remove from current
+        // Update ARIA attributes for all tabs
+        tabs.each(function (_, t) {
+          var $t = $(t);
+          $t.attr({
+            'aria-selected': 'false',
+            'tabindex': '-1'
+          }).removeClass('active');
+        }); // Update ARIA attributes for current tab
+
+        $tab.attr({
+          'aria-selected': 'true',
+          'tabindex': '0'
+        }).addClass('active'); // Update ARIA attributes for panels
+
+        $resultSections.each(function (_, panel) {
+          var $panel = $(panel);
+          $panel.attr('aria-hidden', 'true');
+        });
+        $resultsContainer.attr('aria-hidden', 'false'); // Update visual state
+
         tabs.parents().removeClass('active');
-        $tab.parent().addClass('active'); // set matching content to show
-        // console.log( $tab.data( 'tab' ));
-        // Match tab with content
-
-        var tabContent = $tab.data('tab');
-        var $resultsContainer = $(".search-results[data-content=\"".concat(tabContent, "\"]")); // console.log( $resultsContainer );
-        // Toggle active state
-
+        $tab.parent().addClass('active');
         $resultSections.removeClass('search-active').addClass('search-inactive');
         $resultsContainer.toggleClass('search-active').toggleClass('search-inactive');
         /* Set active tab state */
@@ -13636,7 +13715,10 @@ var tooltipsApi = window.toolkitTooltips || {};
     tooltipElement.setAttribute('id', VALUE_ID);
     tooltipElement.setAttribute('class', 'tooltip');
     tooltipElement.setAttribute('role', 'tooltip');
-    tooltipElement.setAttribute('hidden', '');
+    tooltipElement.setAttribute('hidden', ''); // Add these new attributes for better screen reader support
+
+    tooltipElement.setAttribute('aria-live', 'polite');
+    tooltipElement.setAttribute('aria-atomic', 'true');
     document.body.appendChild(tooltipElement);
     globalTooltipElement = tooltipElement;
   }
@@ -13685,14 +13767,23 @@ var tooltipsApi = window.toolkitTooltips || {};
 
       _classCallCheck(this, Tooltip);
 
-      this.sourceElement = sourceElement;
-      this.content = content || sourceElement.getAttribute(attributeNameContent);
+      this.sourceElement = sourceElement; // Store and remove title attribute immediately if it exists
+
+      var titleContent = sourceElement.getAttribute('title'); // console.log(titleContent, sourceElement);
+
+      if (titleContent) {
+        sourceElement.setAttribute('data-original-title', titleContent);
+        sourceElement.removeAttribute('title');
+      } // Use provided content, or stored title, or look for other attribute
+
+
+      this.content = content || titleContent || sourceElement.getAttribute(attributeNameContent);
       this.triggerType = trigger;
 
       if (this.content) {
         this.init();
       } else {
-        console.warn('There is no available content to show in the tooltip for element. The tooltip will not be created. ', this.sourceElement, this.content);
+        console.warn('There is no available content to show in the tooltip for element. The tooltip will not be created.', this.sourceElement);
       }
 
       this.bindEvents();
@@ -13706,11 +13797,21 @@ var tooltipsApi = window.toolkitTooltips || {};
     _createClass(Tooltip, [{
       key: "destroy",
       value: function destroy() {
-        // Remove this instance from the list of tooltips
+        // Restore original title if it exists
+        var originalTitle = this.sourceElement.getAttribute('data-original-title');
+
+        if (originalTitle) {
+          this.sourceElement.setAttribute('title', originalTitle);
+          this.sourceElement.removeAttribute('data-original-title');
+        } // Remove window event listener
+
+
+        window.removeEventListener('keydown', this.hideTooltipOnEscKey.bind(this)); // Remove this instance from the list of tooltips
+
         var tooltipIndex = tooltipsList.indexOf(this);
 
         if (tooltipIndex > -1) {
-          tooltipsList.splice(tooltipIndex, 1); // TODO: + Unbind all events
+          tooltipsList.splice(tooltipIndex, 1);
         }
 
         if (tooltipsList.length === 0) removeTooltipElement();
@@ -13724,6 +13825,7 @@ var tooltipsApi = window.toolkitTooltips || {};
 
         this.sourceElement.setAttribute('aria-describedby', VALUE_ID); // Accessibility
 
+        this.sourceElement.setAttribute('aria-expanded', 'true');
         removeAttribute(globalTooltipElement, 'hidden'); // Accessibility
 
         globalTooltipElement.style.opacity = 0; // FIXME: SHOULD support HTML-based content too!
@@ -13740,6 +13842,7 @@ var tooltipsApi = window.toolkitTooltips || {};
 
         this.sourceElement.setAttribute(ATTRIBUTE_NAME_CONTENT, this.content);
         removeAttribute(this.sourceElement, 'aria-describedby');
+        this.sourceElement.setAttribute('aria-expanded', 'false');
         globalTooltipElement.setAttribute('hidden', ''); // Accessibility
         // Mobile Safari *ONLY* quirk: https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
 
@@ -13785,6 +13888,9 @@ var tooltipsApi = window.toolkitTooltips || {};
     }, {
       key: "bindEvents",
       value: function bindEvents() {
+        // Add ESC key handler at window level
+        window.addEventListener('keydown', this.hideTooltipOnEscKey.bind(this));
+
         if (this.triggerType === TRIGGER_TYPE.CLICK) {
           this.sourceElement.addEventListener('click', this.toggleTooltip.bind(this));
         } else if (this.triggerType === TRIGGER_TYPE.HOVER) {
@@ -13811,6 +13917,11 @@ var tooltipsApi = window.toolkitTooltips || {};
       key: "enhanceAccessibility",
       value: function enhanceAccessibility() {
         this.sourceElement.setAttribute('tabindex', 0);
+        this.sourceElement.setAttribute('aria-expanded', 'false');
+
+        if (this.sourceElement.tagName !== 'BUTTON' && this.sourceElement.tagName !== 'A') {
+          this.sourceElement.setAttribute('role', 'button');
+        }
       }
     }, {
       key: "handleClickOutsideTooltip",
@@ -13825,7 +13936,11 @@ var tooltipsApi = window.toolkitTooltips || {};
       value: function hideTooltipOnEscKey($event) {
         var KEY_ESC_ID = 27;
 
-        if ($event.which === KEY_ESC_ID) {
+        if ($event.which === KEY_ESC_ID && !isElementHidden(globalTooltipElement)) {
+          if (outsideClickListenerFn) {
+            window.removeEventListener('click', outsideClickListenerFn);
+          }
+
           this.hideTooltip();
           $event.preventDefault();
           return false;
@@ -17113,10 +17228,9 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
   }); // Apply style to page save icon if page is in local storage
 
   if (saveButton) {
-    var toolkit_localSavedPages = JSON.parse(localStorage.getItem("savedPages"));
-    console.log(toolkit_localSavedPages);
+    var toolkit_localSavedPages = JSON.parse(localStorage.getItem("savedPages")); // console.log('test',localSavedPages);
 
-    if (toolkit_localSavedPages.filter(function (e) {
+    if (toolkit_localSavedPages && toolkit_localSavedPages.filter(function (e) {
       return e.url === window.location.href;
     }).length > 0) {
       saveButton.addClass("saved");

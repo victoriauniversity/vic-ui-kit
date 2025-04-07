@@ -76,6 +76,27 @@
       text-align: inherit;
     }
   }
+
+  .p-search & {
+
+    @include breakpoint($until: tablet) {
+      display: flex !important;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      p {
+        order: 0;
+        flex: 1 1 100% !important;
+        margin-bottom: .5rem !important;
+      }
+
+      .button.previous {
+        order: 1;
+      }
+      .button.next {
+        order: 2;
+      }
+    }
+  }
 }
 
 .pagination--alpha {
@@ -92,11 +113,11 @@
 
 .pagination__list {
   margin: 0 !important; //TODO - fix specificity across the board..
-  
+
   li {
     display: inline-block;
     list-style: none;
-    
+
     @include breakpoint(desktop) {
       margin: $gap-small 0 !important; //TODO - fix specificity across the board..
     }

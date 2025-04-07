@@ -85,7 +85,17 @@
     padding-right: 1rem;
     font-size: 1.25rem;
 
-    a {
+    a, button {
+      font-weight: 600;
+      color: #005EA5;
+      text-decoration: underline;
+    }
+
+    button {
+      all: unset;
+      &::after {
+        all: unset;
+      }
       font-weight: 600;
       color: #005EA5;
       text-decoration: underline;
@@ -100,10 +110,14 @@
     }
 
     &.active {
-      a {
+      a,button {
         position: relative;
         color: $black-tundora;
         text-decoration: none;
+
+        @include hoverify() {
+          outline: -webkit-focus-ring-color auto 1px;
+        }
 
         &:after {
           position: absolute;
