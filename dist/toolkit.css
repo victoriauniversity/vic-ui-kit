@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Friday, February 21, 2025, 3:19 PM */
+/** Version: 0.10.13 | Tuesday, April 8, 2025, 11:13 AM */
 @charset "UTF-8";
 /*============================================================================*\
 | VICTORIA UI TOOLKIT STYLES
@@ -5914,6 +5914,31 @@ ul.meta--labelled .meta-item:last-child {
   .pagination .pages {
     padding: initial;
     text-align: inherit;
+  }
+}
+
+@media (max-width: 42.99em) {
+  .p-search .pagination {
+    display: -webkit-box !important;
+    display: flex !important;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+            justify-content: space-between;
+  }
+  .p-search .pagination p {
+    -webkit-box-ordinal-group: 1;
+            order: 0;
+    -webkit-box-flex: 1 !important;
+            flex: 1 1 100% !important;
+    margin-bottom: .5rem !important;
+  }
+  .p-search .pagination .button.previous, .p-search .pagination #hubv4 .news-row header a.previous.link-more, #hubv4 .news-row header .p-search .pagination a.previous.link-more {
+    -webkit-box-ordinal-group: 2;
+            order: 1;
+  }
+  .p-search .pagination .button.next, .p-search .pagination #hubv4 .news-row header a.next.link-more, #hubv4 .news-row header .p-search .pagination a.next.link-more {
+    -webkit-box-ordinal-group: 3;
+            order: 2;
   }
 }
 
@@ -31829,10 +31854,21 @@ body#hubv4 .hub .promo-panel {
   font-size: 1.25rem;
 }
 
-.p-search__tabs .p-search__tab a {
+.p-search__tabs .p-search__tab a, .p-search__tabs .p-search__tab button {
   font-weight: 600;
   color: #005EA5;
   text-decoration: underline;
+}
+
+.p-search__tabs .p-search__tab button {
+  all: unset;
+  font-weight: 600;
+  color: #005EA5;
+  text-decoration: underline;
+}
+
+.p-search__tabs .p-search__tab button::after {
+  all: unset;
 }
 
 .p-search__tabs .p-search__tab:hover, .p-search__tabs .p-search__tab:active, .p-search__tabs .p-search__tab:focus {
@@ -31843,13 +31879,17 @@ body#hubv4 .hub .promo-panel {
   text-decoration: none;
 }
 
-.p-search__tabs .p-search__tab.active a {
+.p-search__tabs .p-search__tab.active a, .p-search__tabs .p-search__tab.active button {
   position: relative;
   color: #424242;
   text-decoration: none;
 }
 
-.p-search__tabs .p-search__tab.active a:after {
+.p-search__tabs .p-search__tab.active a:hover, .p-search__tabs .p-search__tab.active a:active, .p-search__tabs .p-search__tab.active a:focus, .p-search__tabs .p-search__tab.active button:hover, .p-search__tabs .p-search__tab.active button:active, .p-search__tabs .p-search__tab.active button:focus {
+  outline: -webkit-focus-ring-color auto 1px;
+}
+
+.p-search__tabs .p-search__tab.active a:after, .p-search__tabs .p-search__tab.active button:after {
   position: absolute;
   bottom: -10px;
   left: 50%;
@@ -32236,6 +32276,17 @@ body#hubv4 .hub .promo-panel {
 
 .u-emphasis {
   text-transform: uppercase;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 /*
@@ -33701,6 +33752,10 @@ body:not(#hubv4) .layout .highlight_secondary {
 
 #hubv4 .hide-on-v4 {
   display: none !important;
+}
+
+#hubv4 ._hj-widget-container button::after {
+  all: unset;
 }
 
 /*= TRUMP OVERRIDES ===============================*/
