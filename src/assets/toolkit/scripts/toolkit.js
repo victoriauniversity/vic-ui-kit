@@ -1362,8 +1362,8 @@ if ($("body").attr("id") == "hubv4") {
   // Apply style to page save icon if page is in local storage
   if (saveButton) {
     var localSavedPages = JSON.parse(localStorage.getItem("savedPages"));
-    console.log(localSavedPages);
-    if (
+    // console.log('test',localSavedPages);
+    if ( localSavedPages &&
       localSavedPages.filter((e) => e.url === window.location.href).length > 0
     ) {
       saveButton.addClass("saved");
