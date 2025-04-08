@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, April 8, 2025, 11:45 AM */
+/** Version: 0.10.13 | Wednesday, April 9, 2025, 9:12 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -13069,13 +13069,14 @@ if (document.querySelectorAll('#search-tab-js').length > 0) {
     // console.log('tabstate exists in local storage');
     // get tabs
     tabs.each(function (index, tab) {
+      // console.log(tab);
       var $tab = $(tab);
       var tabData = $(tab).data('tab'); // match against sessionStorage
 
       if (tabData === tabState) {
         // console.log( 'tab should be set to --- ', tabState );
         // set content state
-        $(".p-search__tab a[data-tab=\"".concat(tabState, "\"]")).trigger('click');
+        $(".p-search__tab [data-tab=\"".concat(tabState, "\"]")).trigger('click');
       } else {// console.warn('No tab found');
       }
     });
