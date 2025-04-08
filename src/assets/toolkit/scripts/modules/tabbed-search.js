@@ -248,6 +248,8 @@ if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
     // get tabs
     tabs.each(( index, tab ) => {
 
+      // console.log(tab);
+
       const $tab = $( tab );
       const tabData = $( tab ).data( 'tab' );
 
@@ -256,7 +258,7 @@ if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
         // console.log( 'tab should be set to --- ', tabState );
         // set content state
 
-        $( `.p-search__tab a[data-tab="${tabState}"]` ).trigger( 'click' );
+        $( `.p-search__tab [data-tab="${tabState}"]` ).trigger( 'click' );
 
       } else {
         // console.warn('No tab found');
