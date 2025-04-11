@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Wednesday, April 9, 2025, 9:12 AM */
+/** Version: 0.10.13 | Friday, April 11, 2025, 1:25 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -19714,7 +19714,7 @@ body:not(#hubv4) .main-site-header.white .logo {
 }
 
 body:not(#hubv4) .main-site-header.white .header-inner .header-content h1,
-body:not(#hubv4) .main-site-header.white .header-inner .header-content p {
+body:not(#hubv4) .main-site-header.white .header-inner .header-content p.nav-title, body:not(#hubv4) .main-site-header.white .header-inner .header-content span.nav-title {
   color: #0D4C38;
   font-weight: 600;
   letter-spacing: 0.4px;
@@ -19724,7 +19724,7 @@ body:not(#hubv4) .main-site-header.white .header-inner .header-content p {
 }
 
 body:not(#hubv4) .main-site-header.white .header-inner .header-content .tereo-title,
-body:not(#hubv4) .main-site-header.white .header-inner .header-content p.tereo-title {
+body:not(#hubv4) .main-site-header.white .header-inner .header-content p.tereo-title, body:not(#hubv4) .main-site-header.white .header-inner .header-content span.tereo-title {
   color: #424242;
   font-size: 1.5rem;
   font-family: "National";
@@ -21642,8 +21642,10 @@ body#hubv4 .main-site-header.header-tray .header-inner.intranet .header-toggle {
   }
   body#hubv4 .main-site-header.header-tray .header-inner .header-content > a .tereo-title,
   body#hubv4 .main-site-header.header-tray .header-inner .header-content > a h2,
-  body#hubv4 .main-site-header.header-tray .header-inner .header-content > a h1 {
-    font-size: 1.1em;
+  body#hubv4 .main-site-header.header-tray .header-inner .header-content > a h1,
+  body#hubv4 .main-site-header.header-tray .header-inner .header-content > a span.nav-title,
+  body#hubv4 .main-site-header.header-tray .header-inner .header-content > a .nav-title {
+    font-size: 1.1rem;
     text-align: center;
     -webkit-box-flex: 1;
             flex: 1 0 40%;
@@ -21657,9 +21659,11 @@ body#hubv4 .main-site-header.header-tray .header-inner.intranet .header-toggle {
   }
   body#hubv4 .main-site-header.header-tray .header-inner .header-content.long-title > a.long-title h2,
   body#hubv4 .main-site-header.header-tray .header-inner .header-content.long-title > a.long-title h1,
-  body#hubv4 .main-site-header.header-tray .header-inner .header-content.long-title > a.long-title .tereo-title {
-    border-right: none;
-    font-size: 1.1em;
+  body#hubv4 .main-site-header.header-tray .header-inner .header-content.long-title > a.long-title .tereo-title,
+  body#hubv4 .main-site-header.header-tray .header-inner .header-content.long-title > a.long-title .nav-title,
+  body#hubv4 .main-site-header.header-tray .header-inner .header-content.long-title > a.long-title span.nav-title {
+    border-right: none !important;
+    font-size: 1.1em !important;
   }
 }
 
@@ -21925,7 +21929,8 @@ body#hubv4 .main-site-header.white .header-inner .header-content > a {
 
 body#hubv4 .main-site-header.white .header-inner .header-content > a.long-title h1,
 body#hubv4 .main-site-header.white .header-inner .header-content > a.long-title p,
-body#hubv4 .main-site-header.white .header-inner .header-content > a.long-title .tereo-title {
+body#hubv4 .main-site-header.white .header-inner .header-content > a.long-title .tereo-title,
+body#hubv4 .main-site-header.white .header-inner .header-content > a.long-title .nav-title {
   font-size: 1.5em;
 }
 
@@ -21935,12 +21940,15 @@ body#hubv4 .main-site-header.white .header-inner .header-content > a.long-title 
 
 body#hubv4 .main-site-header.white .header-inner .header-content > a:hover h1,
 body#hubv4 .main-site-header.white .header-inner .header-content > a:hover h2,
-body#hubv4 .main-site-header.white .header-inner .header-content > a:hover p {
+body#hubv4 .main-site-header.white .header-inner .header-content > a:hover p, body#hubv4 .main-site-header.white .header-inner .header-content > a:hover span {
   text-decoration: underline;
 }
 
 body#hubv4 .main-site-header.white .header-inner h1,
-body#hubv4 .main-site-header.white .header-inner h2 {
+body#hubv4 .main-site-header.white .header-inner h2,
+body#hubv4 .main-site-header.white .header-inner .nav-title,
+body#hubv4 .main-site-header.white .header-inner span.nav-title,
+body#hubv4 .main-site-header.white .header-inner .tereo-title {
   font-weight: 600;
   letter-spacing: 0.4px;
   font-size: 1.8em;
@@ -21951,7 +21959,8 @@ body#hubv4 .main-site-header.white .header-inner h2 {
 }
 
 body#hubv4 .main-site-header.white .header-inner .tereo-title,
-body#hubv4 .main-site-header.white .header-inner p.tereo-title {
+body#hubv4 .main-site-header.white .header-inner p.tereo-title,
+body#hubv4 .main-site-header.white .header-inner span.tereo-title {
   font-weight: 600;
   display: -webkit-inline-box;
   display: inline-flex;
@@ -22273,11 +22282,11 @@ body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subj
 
 body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:hover h1,
 body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:hover h2,
-body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:hover p, body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:active h1,
+body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:hover p, body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:hover span, body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:active h1,
 body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:active h2,
-body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:active p, body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:focus h1,
+body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:active p, body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:active span, body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:focus h1,
 body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:focus h2,
-body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:focus p {
+body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:focus p, body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title:focus span {
   text-decoration: underline !important;
 }
 
@@ -22298,7 +22307,7 @@ body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subj
 }
 
 body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title h1,
-body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title p {
+body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title p, body#hubv4 .main-site-header.subjects-header .header-inner .header-content .subject-title span.nav-title {
   font-size: 2rem;
   color: #424242;
   font-family: "National";
