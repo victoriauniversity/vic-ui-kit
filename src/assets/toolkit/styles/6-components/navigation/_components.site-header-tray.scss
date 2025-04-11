@@ -789,7 +789,7 @@ body:not(#hubv4) {
       .header-inner {
         .header-content {
           h1,
-          p {
+          p.nav-title, span.nav-title {
             color: $green-brand;
             font-weight: 600;
             letter-spacing: 0.4px;
@@ -799,7 +799,7 @@ body:not(#hubv4) {
           }
 
           .tereo-title,
-          p.tereo-title {
+          p.tereo-title, span.tereo-title {
             color: $black-tundora;
             font-size: 1.5rem;
             font-family: $font-name-brand;
@@ -2646,8 +2646,10 @@ body#hubv4 {
 
               .tereo-title,
               h2,
-              h1 {
-                font-size: 1.1em;
+              h1,
+              span.nav-title,
+              .nav-title {
+                font-size: 1.1rem;
                 text-align: center;
                 flex: 1 0 40%;
                 justify-content: center;
@@ -2663,9 +2665,11 @@ body#hubv4 {
                 &.long-title {
                   h2,
                   h1,
-                  .tereo-title {
-                    border-right: none;
-                    font-size: 1.1em;
+                  .tereo-title,
+                  .nav-title,
+                  span.nav-title {
+                    border-right: none !important;
+                    font-size: 1.1em !important;
                   }
                 }
               }
@@ -2949,7 +2953,8 @@ body#hubv4 {
             &.long-title {
               h1,
               p,
-              .tereo-title {
+              .tereo-title,
+              .nav-title {
                 font-size: 1.5em;
               }
               .tereo-title {
@@ -2959,14 +2964,17 @@ body#hubv4 {
             &:hover {
               h1,
               h2,
-              p {
+              p, span {
                 text-decoration: underline;
               }
             }
           }
         }
         h1,
-        h2 {
+        h2,
+        .nav-title,
+        span.nav-title,
+        .tereo-title {
           font-weight: 600;
           letter-spacing: 0.4px;
           font-size: 1.8em;
@@ -2976,7 +2984,8 @@ body#hubv4 {
         }
 
         .tereo-title,
-        p.tereo-title {
+        p.tereo-title,
+        span.tereo-title {
           font-weight: 600;
           display: inline-flex;
           color: $green-brand;
@@ -3250,7 +3259,7 @@ body#hubv4 {
             @include hoverify {
               h1,
               h2,
-              p {
+              p, span {
                 text-decoration: underline !important;
               }
             }
@@ -3269,7 +3278,7 @@ body#hubv4 {
             }
 
             h1,
-            p {
+            p, span.nav-title {
               font-size: 2rem;
               color: $black-tundora;
               font-family: $font-name-brand;
