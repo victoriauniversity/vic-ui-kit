@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/** Version: 0.10.13 | Monday, May 5, 2025, 1:47 PM */
+/** Version: 0.10.13 | Monday, May 5, 2025, 2:03 PM */
 @charset "UTF-8";
 /*============================================================================*\
 | RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
@@ -20183,6 +20183,27 @@ body#hubv4:not(.homepage) .tray .childMenu {
   }
 }
 
+body#hubv4:not(.course-page) .homesite-header-image {
+  display: none;
+}
+
+@media (max-width: 74.99em) {
+  body#hubv4:not(.course-page) .tray .main-nav-list {
+    display: none;
+  }
+}
+
+body#hubv4:not(.course-page) .tray .childMenu {
+  display: none !important;
+  float: none;
+}
+
+@media (max-width: 74.99em) {
+  body#hubv4:not(.course-page) .tray .childMenu {
+    display: block !important;
+  }
+}
+
 body#hubv4.homepage .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .mobile-menu-navigation {
   display: none;
 }
@@ -20213,6 +20234,39 @@ body#hubv4.homepage .main-site-header .top-header .header-content .homesite-head
 }
 
 body#hubv4.homepage .main-site-header.header-tray .header-inner .header-logo {
+  border: none;
+}
+
+body#hubv4.course-page .main-site-header.header-tray .header-inner .tray-content .tray-main-nav .mobile-menu-navigation {
+  display: none;
+}
+
+body#hubv4.course-page .main-site-header .top-header .header-content {
+  position: relative;
+  align-self: center;
+}
+
+body#hubv4.course-page .main-site-header .top-header .header-content .homesite-header-image {
+  display: block;
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  height: 100%;
+}
+
+@media (max-width: 74.99em) {
+  body#hubv4.course-page .main-site-header .top-header .header-content .homesite-header-image {
+    display: none;
+  }
+}
+
+body#hubv4.course-page .main-site-header .top-header .header-content .homesite-header-image path {
+  opacity: 0.5;
+}
+
+body#hubv4.course-page .main-site-header.header-tray .header-inner .header-logo {
   border: none;
 }
 
