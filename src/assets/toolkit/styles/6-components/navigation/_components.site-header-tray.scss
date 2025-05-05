@@ -1234,72 +1234,10 @@ body#hubv4 {
     }
   }
 
-  &:not(.course-page) {
-    .homesite-header-image {
-      display: none;
-    }
-    .tray {
-      .main-nav-list {
-        @include breakpoint($until: desktop-medium) {
-          display: none;
-        }
-      }
-
-      .childMenu {
-        display: none !important;
-        float: none;
-        @include breakpoint($until: desktop-medium) {
-          display: block !important;
-        }
-      }
-    }
-  }
-
   //! IS HOMESITE
 
   // Hide hub navigation on homepage
   &.homepage {
-    .main-site-header.header-tray
-      .header-inner
-      .tray-content
-      .tray-main-nav
-      .mobile-menu-navigation {
-      display: none;
-    }
-    .main-site-header {
-      // Header patterns
-      .top-header {
-        .header-content {
-          position: relative;
-          align-self: center;
-          .homesite-header-image {
-            display: block;
-            @include breakpoint($until: desktop-medium) {
-              display: none;
-            }
-            top: 0;
-            left: 0;
-            position: absolute;
-            width: 100%;
-            z-index: 1;
-            height: 100%;
-            path {
-              opacity: 0.5;
-            }
-          }
-        }
-      }
-      &.header-tray {
-        .header-inner {
-          .header-logo {
-            border: none;
-          }
-        }
-      }
-    }
-  }
-
-  &.course-page {
     .main-site-header.header-tray
       .header-inner
       .tray-content
