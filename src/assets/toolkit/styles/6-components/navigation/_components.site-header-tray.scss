@@ -1234,6 +1234,29 @@ body#hubv4 {
     }
   }
 
+  // course page hide child nav
+  &.course-page {
+    .tray {
+      .mobile-menu-navigation {
+        display: none !important;
+      }
+      .main-nav-list {
+        display: block !important;
+        @include breakpoint($until: desktop-medium) {
+          display: block !important;
+        }
+      }
+
+      .childMenu {
+        display: none !important;
+        float: none;
+        @include breakpoint($until: desktop-medium) {
+          display: none !important;
+        }
+      }
+    }
+  }
+
   //! IS HOMESITE
 
   // Hide hub navigation on homepage
