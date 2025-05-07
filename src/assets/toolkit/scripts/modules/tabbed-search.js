@@ -213,7 +213,7 @@ if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
       tabState = window.sessionStorage.tabState;
       break;
     case 'courses':
-      window.sessionStorage.setItem( 'tabState', 'wgtn_courses' );
+      window.sessionStorage.setItem( 'tabState', 'sqc-all-courses' );
       tabState = window.sessionStorage.tabState;
       break;
     case 'subjects':
