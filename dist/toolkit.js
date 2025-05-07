@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Tuesday, May 6, 2025, 9:27 AM */
+/** Version: 0.10.13 | Thursday, May 8, 2025, 9:32 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -13031,7 +13031,7 @@ if (document.querySelectorAll('#search-tab-js').length > 0) {
       break;
 
     case 'courses':
-      window.sessionStorage.setItem('tabState', 'wgtn_courses');
+      window.sessionStorage.setItem('tabState', 'sqc-all-courses');
       tabState = window.sessionStorage.tabState;
       break;
 
