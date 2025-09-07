@@ -233,7 +233,7 @@ if ( document.querySelectorAll( '#search-tab-js' ).length > 0 ) {
       tabState = window.sessionStorage.tabState;
       break;
     case 'courses-new':
-      window.sessionStorage.setItem( 'tabState', 'sqc-all-courses' );
+      window.sessionStorage.setItem( 'tabState', 'sqc-all-courses-test' );
       tabState = window.sessionStorage.tabState;
       break;
 
