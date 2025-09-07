@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Friday, June 6, 2025, 9:45 AM */
+/** Version: 0.10.13 | Monday, September 8, 2025, 10:35 AM */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -13056,7 +13056,7 @@ if (document.querySelectorAll('#search-tab-js').length > 0) {
       break;
 
     case 'courses-new':
-      window.sessionStorage.setItem('tabState', 'sqc-all-courses');
+      window.sessionStorage.setItem('tabState', 'sqc-all-courses-test');
       tabState = window.sessionStorage.tabState;
       break;
 
