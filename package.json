@@ -1,26 +1,28 @@
 {
-  "name": "victoria-ui-kit",
-  "version": "0.10.13",
-  "description": "Style Guide and UI pattern library providing base CSS, JavaScript and HTML markup required to build websites and applications affiliated with Victoria University of Wellington.",
-  "homepage": "https://static.victoria.ac.nz/",
-  "scripts": {
-    "prestart": "npm install",
-    "prebuild": "npm install",
-    "release-stage": "npm run prestart && gulp release:stage",
-    "release-prod": "npm run prestart && gulp release:prod --prod",
-    "start": "gulp",
-    "serve": "gulp serve",
-    "build": "gulp build",
-    "test": "jest",
-    "version": "gulp version:release",
-    "version-major": "gulp version:major",
-    "version-premajor": "gulp version:premajor",
-    "version-minor": "gulp version:minor",
-    "version-preminor": "gulp version:preminor",
-    "version-patch": "gulp version:patch",
-    "version-prerelease": "gulp version:prerelease"
+  "name": "vic-ui-kit",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./style.css": "./dist/style.css"
   },
   "license": "UNLICENSED",
+  "author": "Victoria University of Wellington Web Team",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/victoriauniversity/vic-ui-kit"
+  },
+  "bugs": {
+    "url": "https://github.com/victoriauniversity/vic-ui-kit/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "keywords": [
     "toolkit",
     "styleguide",
@@ -41,77 +43,50 @@
     "kit",
     "UI"
   ],
-  "author": "Victoria University of Wellington Web Team",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/victoriauniversity/vic-ui-kit"
-  },
-  "bugs": {
-    "url": "https://github.com/victoriauniversity/vic-ui-kit/issues"
-  },
-  "engines": {
-    "node": "^11.6.0",
-    "npm": "^6.9.0"
-  },
+"scripts": {
+  "dev": "vite",
+  "build": "tsc && vite build",
+  "preview": "vite preview",
+  "lint": "npm run lint:js && npm run lint:scss",
+  "lint:js": "eslint \"src/**/*.{js,ts}\" --max-warnings 0",
+  "lint:scss": "stylelint \"src/**/*.scss\" --fix",
+  "format": "prettier --write \"src/**/*.{js,ts,scss,html,md,json}\"",
+  "storybook": "storybook dev -p 6006",
+  "build-storybook": "storybook build",
+  "type-check": "tsc --noEmit"
+},
   "devDependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
-    "ansi-colors": "^3.2.4",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "*",
-    "babel-loader": "^8.0.6",
-    "bourbon-neat": "^3.0.1",
-    "browser-sync": "^2.26.5",
-    "del": "^4.1.1",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.17.2",
-    "eyeglass": "~2.4.1",
-    "fabricator-assemble": "^1.4.0",
-    "fancy-log": "^1.3.3",
-    "gulp": "v4.0.2",
-    "gulp-autoprefixer": "^6.1.0",
-    "gulp-bump": "^3.1.3",
-    "gulp-csso": "^3.0.1",
-    "gulp-exec": "^3.0.2",
-    "gulp-git": "^2.9.0",
-    "gulp-header": "^2.0.7",
-    "gulp-if": "^2.0.2",
-    "gulp-imagemin": "^5.0.3",
-    "gulp-rename": "^1.4.0",
-    "gulp-rev": "^9.0.0",
-    "gulp-rev-all": "^1.0.0",
-    "gulp-sass": "^4.0.2",
-    "gulp-sourcemaps": "^2.6.5",
-    "handlebars-helpers": "^0.10.0",
-    "imports-loader": "^0.8.0",
-    "jest": "*",
-    "jquery": "^3.4.1",
-    "jsonfile": "^5.0.0",
-    "little-loader": "^0.2.0",
-    "lity": "^2.3.1",
-    "micromodal": "^0.4.0",
-    "minimist": "^1.2.0",
-    "pump": "^3.0.0",
-    "q": "^1.5.1",
-    "require-dir": "^1.2.0",
-    "sass-mq": "^5.0.0",
-    "script-loader": "^0.7.2",
-    "semver": "^6.0.0",
-    "shufflejs": "^5.2.1",
-    "stylelint": "~10.0.1",
-    "stylelint-config-sass-guidelines": "~6.0.0",
-    "stylelint-order": "~3.0.0",
-    "stylelint-scss": "~3.6.1",
-    "uglifyjs-webpack-plugin": "^2.1.2",
-    "webpack": "^4.31.0",
-    "whatwg-fetch": "^3.0.0"
+    "@chromatic-com/storybook": "^5.1.2",
+    "@eslint/eslintrc": "^3.3.5",
+    "@storybook/addon-a11y": "^10.3.6",
+    "@storybook/addon-docs": "^10.3.6",
+    "@storybook/addon-vitest": "^10.3.6",
+    "@storybook/html-vite": "^10.3.6",
+    "@vitest/browser-playwright": "^4.1.5",
+    "@vitest/coverage-v8": "^4.1.5",
+    "autoprefixer": "^10.5.0",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "playwright": "^1.59.1",
+    "postcss": "^8.5.14",
+    "prettier": "^3.8.3",
+    "sass-embedded": "^1.99.0",
+    "storybook": "^10.3.6",
+    "stylelint": "^17.11.0",
+    "stylelint-config-sass-guidelines": "^13.0.0",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "stylelint-order": "^8.1.1",
+    "stylelint-scss": "^7.1.0",
+    "vite": "^8.0.11",
+    "vitest": "^4.1.5"
   },
   "dependencies": {
     "cookies-js": "^1.2.3",
-    "enquire.js": "^2.1.6",
-    "headroom.js": "^0.9.4",
-    "picturefill": "^3.0.3",
-    "select2": "^4.0.13"
+    "focus-trap": "^8.2.0",
+    "headroom.js": "^0.12.0",
+    "micromodal": "^0.6.1",
+    "select2": "^4.1.0-rc.0"
   }
 }
