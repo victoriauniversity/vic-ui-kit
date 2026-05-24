@@ -517,6 +517,9 @@ if ($("body").attr("id") == "hubv4") {
     // Correctly ordered and prepared to be rendered
     const widgetsMoved = [];
 
+    // Counter WIDGET_LINKS_CLASSNAME
+    let linksInsertedCount = 0;
+
     let error;
 
     widgetsToMove.each(function moveWidgetToSidebar() {
@@ -548,8 +551,9 @@ if ($("body").attr("id") == "hubv4") {
       }
 
       if (widgetElement.hasClass(WIDGET_LINKS_CLASSNAME)) {
-        // A) Staff profile - add to the top!
-        widgetsMoved.unshift(widgetElement);
+        // A) Staff profile - add to the top, keeping original order
+        widgetsMoved.splice(linksInsertedCount, 0, widgetElement);
+        linksInsertedCount++;
       } else {
         // B) Others (downloads, publications etc.) - Add to the last positions
         widgetsMoved.push(widgetElement);
