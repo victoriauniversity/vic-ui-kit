@@ -1,0 +1,38 @@
+@use "../0-core/mixins/mixins.layout";
+@use "../6-components/victorious/vict-general";
+
+.theme-victorious {
+
+  p {
+    color: #040404 !important;
+  }
+
+
+  .article-item {
+    .article-summary {
+      .article-tag {
+        font-family: vict-general.$proxima;
+      }
+      p {
+        font-family: vict-general.$quilty;
+        font-weight: normal;
+      }
+      h4 {
+        font-family: vict-general.$proxima;
+        font-weight: 600;
+      }
+    }
+  }
+
+
+
+  @include mixins.target-ie {
+    .layout {
+      margin-top: 5rem;
+    }
+  }
+
+  footer {
+    overflow: unset;
+  }
+}

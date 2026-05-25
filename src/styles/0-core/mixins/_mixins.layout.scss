@@ -1,0 +1,220 @@
+@use "../functions/functions.validators";
+@use "../variables/variables.layout" as variables2;
+@use "../variables/variables.responsive";
+@use "mixins.responsive";
+
+/*============================================================================*\
+| LAYOUT-RELATED MIXINS
+\*============================================================================*/
+
+////
+/// @group layout
+
+
+
+
+
+
+
+/*= SIZING ===================================================================*/
+
+
+/// Sets the `width` and `height` of the element in one statement.
+///
+/// @argument {number (with unit) | string} $width
+///
+/// @argument {number (with unit) | string} $height [$width]
+///
+/// @example scss
+///   .first-element {
+///     @include size(2em);
+///   }
+///
+///   // CSS Output
+///   .first-element {
+///     width: 2em;
+///     height: 2em;
+///   }
+///
+/// @example scss
+///   .second-element {
+///     @include size(auto, 10em);
+///   }
+///
+///   // CSS Output
+///   .second-element {
+///     width: auto;
+///     height: 10em;
+///   }
+///
+/// @require {function} _is-size
+
+@mixin size(
+  $width,
+  $height: $width
+) {
+  @if functions.is-size($height) {
+    height: $height;
+  } @else {
+    @error '`#{$height}` is not a valid length for the `$height` argument ' +
+      'in the `size` mixin.';
+  }
+
+  @if functions.is-size($width) {
+    width: $width;
+  } @else {
+    @error '`#{$width}` is not a valid length for the `$width` argument ' +
+      'in the `size` mixin.';
+  }
+}
+
+
+
+
+
+/*= BASE STYLES ==============================================================*/
+
+
+/// Generates a basic elements-only boilerplate for standardised layouts.
+///
+/// @require {mixin} bp-mobile
+/// @require {mixin} bp-mobile-large
+/// @require {mixin} bp-tablet
+/// @require {mixin} bp-desktop
+/// @require {mixin} bp-desktop-large
+
+@mixin add-base-layout() {
+  html {
+    height: 100%;
+
+    // Scale the ratio based on properties from `_variables.responsive.scss`
+    @if ( variables.$mobile-layout-percentage != '100%' ) {
+      @include mixins.bp-mobile() {
+        font-size: variables.$mobile-layout-percentage;
+      }
+    }
+
+    @if ( variables.$mobile-large-layout-percentage != '100%' ) {
+      @include mixins.bp-mobile-large {
+        font-size: variables.$mobile-large-layout-percentage;
+      }
+    }
+
+    @if ( variables.$tablet-layout-percentage != '100%' ) {
+      @include mixins.bp-tablet {
+        font-size: variables.$tablet-layout-percentage;
+      }
+    }
+
+    @if ( variables.$desktop-layout-percentage != '100%' ) {
+      @include mixins.bp-desktop {
+        font-size: variables.$desktop-layout-percentage;
+      }
+    }
+
+    @if ( variables.$desktop-layout-percentage != '100%' ) {
+      @include mixins.bp-desktop-large {
+        font-size: variables.$desktop-large-layout-percentage;
+      }
+    }
+
+    // Sticky footer
+    @if ( variables2.$layout-sticky-footer ) {
+      body {
+        display:        flex;
+        min-height:     100%;
+        flex-direction: column;
+
+        > footer { overflow: hidden; } // IE11+ extra margin after flex-box fix
+      }
+    }
+
+  }
+}
+
+
+
+
+
+/*= SPACING ==================================================================*/
+
+
+/// Sets 'top' and 'bottom' paddings on the object.
+///
+/// @argument {number (with unit)} [$gap-vertical] $vertical-padding
+///
+@mixin paddings-vertical ( $vertical-padding: variables2.$gap-vertical ) {
+  padding-top:    $vertical-padding;
+  padding-bottom: $vertical-padding;
+}
+
+
+/// Sets 'left' and 'right' paddings on the object.
+///
+/// @argument {number (with unit)} [$gap-horizontal] $horizontal-padding
+///
+@mixin paddings-horizontal ( $horizontal-padding: variables2.$gap-horizontal ) {
+  padding-right: $horizontal-padding;
+  padding-left:  $horizontal-padding;
+}
+
+
+/// Sets all paddings on the object.
+///
+/// @argument {number (with unit)} [$gap] $padding
+///
+@mixin padding( $padding: variables2.$gap ) {
+  padding: $padding;
+}
+
+
+/// Sets 'top' and 'bottom' margins on the object.
+///
+/// @argument {number (with unit)} [$gap-vertical] $vertical-margin
+///
+@mixin margins-vertical ( $vertical-margin: variables2.$gap-vertical ) {
+  margin-top:    $vertical-margin;
+  margin-bottom: $vertical-margin;
+}
+
+
+/// Sets 'left' and 'right' margins on the object.
+///
+/// @argument {number (with unit)} [$gap-horizontal] $horizontal-margin
+///
+@mixin margins-horizontal ( $horizontal-margin: variables2.$gap-horizontal ) {
+  margin-right: $horizontal-margin;
+  margin-left:  $horizontal-margin;
+}
+
+
+/// Sets all margins on the object.
+///
+/// @argument {number (with unit)} [$gap] $margin
+///
+@mixin margin( $margin: variables2.$gap ) {
+  margin: $margin;
+}
+
+
+/// Sets a negative offset to the horizontal margins to compensate parent
+/// object's paddings.
+///
+/// @argument {number (with unit)} [$bleed-horizontal] $bleed
+///
+@mixin bleed-horizontal( $bleed: variables2.$bleed-horizontal ) {
+  margin-left:   variables2.$bleed-horizontal;
+  width:         calc( 100% + #{ -2 * $bleed } );
+}
+
+/* Target IE only
+  Usage:
+  @include target-ie {
+    color: cyan;
+  }
+*/
+@mixin target-ie {
+  @media all and ( -ms-high-contrast: none ), ( -ms-high-contrast: active ) {
+    @content;
+  }
+}

@@ -1,0 +1,70 @@
+@use "../functions/functions.builders";
+@use "variables.colors";
+
+/*============================================================================*\
+| BACKGROUNDS
+\*============================================================================*/
+
+////
+/// Solid, opaque and gradient backgrounds.
+///
+/// @group backgrounds
+
+
+
+
+
+/*= SEMI-OPAQUE ==============================================================*/
+
+
+/// @type {rgba} - Makes the background layer `n`% darker.
+$background-opaque-dark:    rgba( variables.$black, variables.$dark-ratio ) !default;
+$background-opaque-darker:  rgba( variables.$black, variables.$darker-ratio ) !default;
+$background-opaque-darkest: rgba( variables.$black, variables.$darkest-ratio ) !default;
+
+
+/// @type {rgba} - Makes the background layer `n`% lighter.
+$background-opaque-light:    rgba( variables.$white, variables.$light-ratio ) !default;
+$background-opaque-lighter:  rgba( variables.$white, variables.$lighter-ratio ) !default;
+$background-opaque-lightest: rgba( variables.$white, variables.$lighter-ratio ) !default;
+
+// Full-screen overlays
+/// @type {rgba} - Makes the background only slightly see through (useful for modals).
+$background-overlay-darken:   rgba( variables.$black, .4 ) !default;
+$background-overlay-dark:     rgba( variables.$black, .75 ) !default;
+$background-overlay-darkest:  rgba( variables.$black, .9 ) !default;
+
+$background-overlay-lighten:  rgba( variables.$white, .4 ) !default;
+$background-overlay-light:    rgba( variables.$white, .75 ) !default;
+$background-overlay-lightest: rgba( variables.$white, .9 ) !default;
+
+
+
+
+
+/*= SOLID ====================================================================*/
+
+
+/// @type {color} - Background colours variations.
+$background-light:              variables.$grey-gallery !default;
+
+$background-info-light:         variables.$blue-humming-bird !default;
+$background-info-light-darker:  functions.shade( $background-info-light, variables.$dark-percentage ) !default;
+
+$background-brand-dark:         variables.$black-brand !default;
+$background-brand-dark-lighter: functions.tint( $background-brand-dark, variables.$light-percentage ) !default;
+
+$background-brand:              variables.$green-brand !default;
+$background-brand-darker:       functions.shade( $background-brand, variables.$darker-percentage ) !default;
+
+$background-success:            variables.$green-tara !default;
+$background-warning:            variables.$yellow-pearl-lusta !default;
+$background-danger:             variables.$red-oyster-pink !default;
+$background-highlight-light:    variables.$green-nebula !default;
+
+
+// Flash-messages
+$info-new: variables.$blue-callypso;
+$color-info-new: variables.$manuka;
+
+

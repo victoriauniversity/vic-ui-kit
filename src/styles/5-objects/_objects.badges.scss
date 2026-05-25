@@ -1,0 +1,119 @@
+@use "sass:color";
+@use "../0-core/functions/functions.builders";
+@use "../0-core/variables/variables.backgrounds" as variables5;
+@use "../0-core/variables/variables.box-appearance" as variables4;
+@use "../0-core/variables/variables.colors";
+@use "../0-core/variables/variables.layout" as variables3;
+@use "../0-core/variables/variables.typography" as variables2;
+
+/*============================================================================*\
+| BADGES & LABELS
+\*============================================================================*/
+
+////
+/// Small atomic tags that can be added to any element.
+///
+/// @group atoms
+
+
+// File extensions colour variations
+$color-bg-pdf:   variables.$red-oyster-pink;
+$color-bg-word:  color.adjust( variables.$blue-callypso, $lightness: 58% );
+$color-bg-excel: color.adjust( variables.$green-killarney, $lightness: 60% );
+$color-bg-mp3:   color.adjust( variables.$yellow-cinamon, $lightness: 65% );
+$color-bg-ppt:   color.adjust( variables.$orange-charcoal, $lightness: 50% );
+$color-bg-file:  variables.$grey-alto;
+
+$color-text-pdf:   variables.$red-tamarillo;
+$color-text-word:  variables.$blue-callypso;
+$color-text-excel: variables.$green-killarney;
+$color-text-mp3:   variables.$yellow-cinamon;
+$color-text-file:  variables2.$text-weaker-color;
+$color-text-ppt:   variables.$orange-charcoal;
+
+
+.label {
+  overflow: hidden;
+  position: relative;
+  top: -.1em;
+  display: inline-block;
+  margin-right: variables3.$gap-third;
+  vertical-align: middle;
+  line-height: 1;
+  border-radius: variables4.$radius-small;
+  font-size: 80%;
+  text-transform: uppercase;
+  background: variables5.$background-light;
+  color: variables2.$text-color;
+  white-space: nowrap;
+
+  > i,
+  > span {
+    display: inline-block;
+    padding: .3em .5em;
+  }
+
+  > i {
+    float: left;
+    font-style: inherit;
+    color: variables.$white;
+  }
+
+  /** File types/extensions */
+  &.file { // generic file (default)
+    > i {
+      background: $color-bg-file;
+      color:      $color-text-file;
+    }
+  }
+
+  &.file-pdf {
+    > i {
+      background: $color-bg-pdf;
+      color:      $color-text-pdf;
+    }
+  }
+
+  &.file-excel {
+    > i {
+      background: $color-bg-excel;
+      color:      $color-text-excel;
+    }
+  }
+
+  &.file-word {
+    > i {
+      background: $color-bg-word;
+      color:      $color-text-word;
+    }
+  }
+
+  &.file-mp3 {
+    > i {
+      background: $color-bg-mp3;
+      color:      $color-text-mp3;
+    }
+  }
+
+  &.file-ppt {
+    > i {
+      background: $color-bg-ppt;
+      color:      $color-text-ppt;
+    }
+  }
+
+
+  /** Variations */
+
+  // Inside standard paragraphs, labels should be placed on the *end* of
+  // the bearing element.
+  .formatting p & {
+    margin-right:  functions.em( variables3.$gap-small );
+    margin-left:   functions.em( variables3.$gap-small );
+  }
+
+  .reset-formatting p & {
+    margin-right:  variables3.$gap-third;
+    margin-left:   initial;
+  }
+}

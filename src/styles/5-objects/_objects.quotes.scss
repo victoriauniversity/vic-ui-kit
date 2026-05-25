@@ -1,0 +1,751 @@
+@use "../0-core/functions/functions.builders";
+@use "../0-core/mixins/mixins.decorations";
+@use "../0-core/mixins/mixins.icons" as mixins2;
+@use "../0-core/mixins/mixins.layout" as mixins4;
+@use "../0-core/mixins/mixins.responsive" as mixins3;
+@use "../0-core/variables/variables.box-appearance" as variables3;
+@use "../0-core/variables/variables.colors" as variables2;
+@use "../0-core/variables/variables.layout" as variables4;
+@use "../0-core/variables/variables.typography";
+@use "../1-settings/settings._defaults";
+@use "../2-project/project.variables";
+
+/*=========================================
+=     QUOTES, CITATION, BIBLIOGRAPHY      =
+=========================================*/
+
+$quote-color: settings.$brand !default;
+$quote-border-color: settings.$brand !default;
+$quote-text-color: variables.$heading-color !default;
+$box-shadow-card: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+  rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+
+  $green-bottom-gradient: linear-gradient(
+    180deg,
+    #fff 0%,
+    #3b7b07 90%,
+    variables2.$green-brand 100%
+  )
+  0% 0%;
+
+// Just a quote style
+blockquote.quote { font-style: italic; }
+
+// Quote with source
+.quote {
+  margin-bottom: project.$base-spacing;
+
+  /** Inline (related) block /w source */
+
+  blockquote {
+    margin-bottom: .35em;
+    font-size: variables.$text-size-5;
+    font-style: normal;
+  }
+
+  figcaption {
+    @include mixins.bullet-line;
+    position: relative;
+  }
+
+  &:not(.full) {
+    margin-left: .85rem;
+    padding: 0 0 0 1rem;
+    padding: 1rem;
+    border-left: variables3.$border-strip-highlight;
+
+    figcaption strong { font-weight: variables.$weight-medium; }
+  }
+
+
+  /** Full block quotation /w source */
+
+  &.full {
+    // Citation itself
+    blockquote,
+    q {
+      font-size: variables.$text-size-5;
+
+      // Starting quote icon
+      @include mixins2.extend-icon-before( quote-down ) {
+        top: -.1em;
+        margin-left: functions.em( variables4.$bleed-third );
+      };
+
+      // Ending quote icon
+      @include mixins2.extend-icon-after( quote-up ) {
+        margin-right: functions.em( variables4.$bleed-third );
+      };
+
+      &::before,
+      &::after {
+        display: inline;
+        font-style: normal;
+        font-size: 130%;
+        line-height: 1;
+        color: variables2.$grey-silver;
+      }
+    }
+
+    // Source, author, URL
+    figcaption {
+      font-weight: variables.$weight-medium;
+      font-size: 1.15em; // TODO: Review size
+      color: variables2.$green-brand;
+    }
+
+    &.quote-template {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      blockquote {
+        flex: 1 1;
+        padding-right: .5rem;
+      }
+
+      .quote-author-image {
+        width: 100px;
+        border-radius: 50%;
+        margin-bottom: .5rem;
+      }
+
+      figcaption {
+        flex: 1 0 100%;
+        margin-top: .5rem;
+        font-weight: 400;
+        p {
+          display: inline;
+        }
+      }
+
+      .button {
+        margin-left: 2.0625rem;
+        margin-top: .5rem;
+      }
+
+      @include mixins3.bp-mobile() {
+        .quote-author-image {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+#hubv4 {
+  figure.quote.quote-template {
+    box-shadow: none;
+    padding: 1rem;
+    margin: 1rem 0;
+    // background-color: $kohuhu;
+
+    img {
+      width: 120px;
+    }
+
+    blockquote {
+      &::after,
+      &::before {
+        color: variables2.$mahoe;
+      }
+    }
+
+    figcaption {
+      margin-top: 0;
+      padding: 1rem;
+
+      &::before {
+        top: 0;
+        margin: 0 0.75rem 0 -1.75rem;
+        display: block;
+        margin-bottom: 0.8rem;
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 9px solid transparent;
+        border-top: 10px solid variables2.$mahoe;
+        margin-left: 2px;
+      }
+      p > strong {
+        color: variables2.$pounamu;
+      }
+
+      p {
+        display: block;
+        margin-bottom: 0;
+
+        &:not(:first-child) {
+          font-size: 1rem;
+        }
+      }
+    }
+
+
+    img {
+      border: 3px solid variables2.$miro;
+    }
+  }
+
+      // Quote block
+      .quote-panel.quote-image {
+        padding: 1.5rem;
+        background-color: variables2.$grey-gallery;
+
+        &.quote-white {
+          background-color: #fff;
+        }
+        &.quote-green {
+          background-color: variables2.$pounamu;
+
+          .quote {
+            background-color: transparent;
+            box-shadow: none;
+            img {
+              border-radius: 50%;
+            }
+
+            .quote-content {
+
+                h4 {
+                  color: variables2.$kowhai !important;
+                }
+                p {
+                  color: variables2.$kohuhu;
+                }
+
+              blockquote {
+                h3 {
+                  color: variables2.$manuka !important;
+                  font-weight: 500;
+
+                  &:before,
+                  &:after {
+                    color: variables2.$kowhai;
+                    display: block;
+                    font-size: 140%;
+                  }
+                  &:after {
+                   margin-left: auto;
+                   margin-right: 1rem;
+                  }
+                  &:before {
+                    margin-bottom: .5rem;
+                  }
+                }
+              }
+            }
+          }
+
+
+        }
+        svg.quote-open {
+          position: absolute;
+          top: -30px;
+          left: -80px;
+          opacity: 0.3;
+          @include mixins3.breakpoint($until: desktop) {
+            max-width: 50px;
+            left: -50px;
+          }
+        }
+        .quote {
+          background-color: transparent;
+          box-shadow: none;
+          img {
+            border-radius: 50%;
+          }
+
+          .quote-content {
+
+              h4 {
+
+              }
+              p {
+
+              }
+
+            blockquote {
+              h3 {
+
+                font-weight: 500;
+
+                &:before,
+                &:after {
+                  // color: $kowhai;
+                  display: block;
+                  font-size: 140%;
+                }
+                &:after {
+                 margin-left: auto;
+                 margin-right: 1rem;
+                }
+                &:before {
+                  margin-bottom: .5rem;
+                }
+              }
+            }
+          }
+
+          &::after {
+            content: none;
+          }
+
+          @include mixins3.breakpoint($until: tablet) {
+            flex-direction: column;
+
+          }
+
+          position: relative;
+
+          .image-container {
+            position: relative;
+            clip-path: polygon(-0.25% -3px, 88% -13.74%, 99.5% 100%, 0px 100%);
+            @include mixins3.breakpoint($until: desktop) {
+              clip-path: initial;
+              flex: 1 0 20%;
+            }
+            &:before {
+              position: absolute;
+              left: 0;
+              content: "";
+              top: 0;
+              height: 100%;
+              width: 100%;
+              background: $green-bottom-gradient;
+              opacity: 0;
+              z-index: 10;
+            }
+          }
+          img {
+            // box-shadow: $box-shadow-card;
+            border-radius: 50%;
+            height: 100%;
+            width: auto;
+            max-width: 300px;
+            margin-bottom: 0;
+            position: relative;
+
+            @include mixins3.breakpoint($until: desktop) {
+              max-width: 150px;
+              margin: auto;
+              // border-radius: 100px;
+              height: auto;
+              margin-right: 1rem;
+            }
+
+            @include mixins3.breakpoint($until: tablet) {
+              margin: 0;
+            }
+
+          }
+          .quote-content {
+            margin-left: 2rem;
+            padding-bottom: 1rem;
+
+            display: block;
+            flex: 1 0 65%;
+            @include mixins3.breakpoint($until: desktop) {
+              margin-left: 10px;
+              flex: 1 0 50%;
+            }
+            @include mixins3.breakpoint($until: tablet) {
+              width: 100%;
+              margin: 0;
+              padding: 1rem;
+            }
+            blockquote {
+              padding: 1rem 0;
+              position: relative;
+              width: 100%;
+              @include mixins3.breakpoint($until: desktop) {
+                font-size: 1.2rem;
+                padding: 10px;
+              }
+              h3 {
+                font-weight: 500;
+                line-height: 1.2;
+                color: variables2.$black-tundora !important;
+                @include mixins3.breakpoint($until: desktop) {
+                  font-size: 1em;
+                  font-weight: 400;
+                  line-height: 1.5;
+                  padding: 0;
+                }
+                      // Starting quote icon
+                @include mixins2.extend-icon-before( quote-down ) {
+                  top: -.1em;
+                  margin-left: functions.em( variables4.$bleed-third );
+                };
+
+                // Ending quote icon
+                @include mixins2.extend-icon-after( quote-up ) {
+                  margin-right: functions.em( variables4.$bleed-third );
+                };
+
+                &:before,
+                &:after {
+                  color: variables2.$pounamu;
+                  display: block;
+                  font-size: 140%;
+                }
+                &:after {
+                 margin-left: auto;
+                 margin-right: 1rem;
+                }
+                &:before {
+                  margin-bottom: .5rem;
+                }
+              }
+
+              &:before,
+              &:after {
+                content: none;
+              }
+            }
+          }
+          figcaption {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            margin-right: 2rem;
+            padding-left: 0;
+            margin-left: 2rem;
+            padding-top: 1rem;
+            justify-items: start;
+            align-items: start;
+
+            p {
+              grid-column: 1/2;
+              font-size: 1.1rem;
+            }
+
+            a.button {
+              grid-column: 3/4;
+              grid-row: 1/3;
+            }
+            @include mixins3.breakpoint($until: desktop) {
+              padding: 10px;
+              margin: 0;
+            }
+            @include mixins3.breakpoint($until: tablet) {
+              flex-wrap: wrap;
+              width: 100%;
+              grid-template-columns: 1fr;
+              display: flex;
+              flex-direction: column;
+
+              .button {
+              }
+            }
+            h4 {
+              margin-bottom: 5px;
+              @include mixins3.breakpoint($until: desktop) {
+                font-size: 1.4em;
+              }
+            }
+            .quoter-info {
+            }
+          }
+        }
+
+      }
+
+}
+
+// hub page Quote panel
+.quote-panel {
+  background-color: variables2.$grey-gallery;
+
+  .quote {
+    margin-bottom: 0;
+    padding: 1.875rem;
+    border-left: 5px solid $quote-border-color;
+
+    blockquote {
+      color: variables2.$green-brand;
+
+      h3 {
+        color: $quote-text-color !important;
+      }
+
+      &::before,
+      &::after {
+        color: $quote-color;
+      }
+    }
+
+    figcaption {
+      text-align: right;
+      color: variables2.$black-tundora;
+      font-size: variables.$text-size-5;
+
+      &::before { display: none; }
+    }
+  }
+
+  &.quote-image {
+    .quote {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      border-left: none;
+
+      img {
+        height: 180px;
+        width: 180px;
+        border-radius: 50%;
+
+        flex: 1 0 auto;
+      }
+
+      .quote-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        blockquote {
+          width: 60%;
+          position: relative;
+
+          h3,
+          h4 {
+            padding: 0 1em;
+          }
+
+          &:before,
+          &:after {
+            position: absolute;
+          }
+
+          &:before {
+            top: 0;
+            left: 0;
+          }
+
+          &:after {
+            bottom: 0;
+            right: 0;
+            top: unset;
+          }
+        }
+
+        figcaption {
+          text-align: inherit;
+          font-size: inherit;
+
+          h4,
+          h5,
+          p {
+            margin-bottom: 0.5em;
+          }
+        }
+      }
+
+
+      @include mixins3.breakpoint( $until: desktop ) {
+        .quote-content {
+          justify-content: flex-start;
+          flex-wrap: wrap;
+
+          blockquote {
+            width: 100%;
+          }
+
+          figcaption {
+            padding-left: 2em;
+            margin-top: 1.5em;
+          }
+        }
+
+      }
+
+      @include mixins3.breakpoint( $until: tablet ) {
+        flex-wrap: wrap;
+
+        img {
+          @include mixins4.size( 120px );
+          flex: 0 1 auto;
+          margin-bottom: variables4.$gap-vertical;
+        }
+      }
+
+      @include mixins3.breakpoint( desktop ) {
+        img { margin-right: variables4.$gap-horizontal; }
+      }
+    }
+
+
+    &.quote-white {
+      background-color: #fff;
+      margin-bottom: 1.6em;
+
+      .quote {
+        justify-content: center;
+        position: relative;
+        padding-bottom: 2em;
+
+        &:after {
+          position: absolute;
+
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+
+          content: "";
+          height: 2px;
+          width: 70%;
+          background-color: variables2.$green-brand;
+        }
+
+        img {
+          flex: 0 1 auto;
+        }
+
+        .quote-content {
+          width: 70%;
+
+          blockquote {
+
+          }
+
+          figcaption {
+            text-align: inherit;
+            font-size: inherit;
+
+            h4,
+            h5,
+            p {
+              margin-bottom: 0.5em;
+            }
+          }
+
+          @include mixins3.breakpoint( $until: tablet ) {
+            width: 100%;
+          }
+        }
+
+      }
+    }
+
+  }
+}
+
+// Reset .formatting styles
+.formatting .quote-flex {
+  h1, h2, h3, h4, h5, h6,
+  p,
+  .button {
+    margin: 0;
+  }
+}
+
+.quote-flex {
+  display: flex;
+  margin-bottom: 1.6rem;
+  flex-wrap: wrap;
+
+  .quote-author,
+  .quote-text {
+    padding: 1rem;
+  }
+
+  .quote-author {
+    flex-basis: 25%;
+    flex-grow: 1;
+    min-width: 200px;
+    text-align: center;
+    color: variables2.$black-emperor;
+
+    .quote-author-image {
+      margin-bottom: 1.25rem;
+      width: 100px;
+      height: auto;
+      border-radius: 50%;
+    }
+
+    .quote-author-title {
+      margin-bottom: .25rem;
+    }
+
+    .button {
+      margin-top: 1rem;
+    }
+  }
+
+  .quote-text {
+    flex-basis: 75%;
+    flex-grow: 1;
+    align-self: center;
+  }
+
+  &.text-right {
+    flex-direction: row-reverse;
+  }
+
+  &.full,
+  &.inlinequote {
+    .quote-author,
+    .quote-text {
+      flex-basis: 100%;
+    }
+
+    .quote-author {
+      text-align: left;
+
+      .quote-author-title::before {
+        display: inline-block;
+        content: '—';
+        margin-right: .5rem;
+      }
+    }
+
+    .quote-text {
+      font-size: variables.$text-size-5;
+    }
+  }
+
+  &.inlinequote {
+    border-left: variables3.$border-strip-highlight;
+  }
+}
+
+.centraliser + .block > .quote-flex:not(.text-right) {
+  @include mixins3.breakpoint( tablet ) {
+    .quote-author {
+      text-align: left;
+    }
+    .quote-text {
+      text-align: right;
+    }
+  }
+  @include mixins3.breakpoint( $from: tablet ) {
+    .quote-author {
+      padding-left: 2rem;
+    }
+    .quote-text {
+      padding-right: 2rem;
+      border-right: 4px solid #D1E0DA;
+    }
+  }
+}
+
+.centraliser + .block > .quote-flex.text-right {
+  @include mixins3.breakpoint( tablet ) {
+    .quote-author {
+      text-align: right;
+    }
+    .quote-text {
+      text-align: left;
+    }
+  }
+  @include mixins3.breakpoint( $from: tablet ) {
+    .quote-author {
+      padding-right: 2rem;
+    }
+    .quote-text {
+      padding-left: 2rem;
+      border-left: variables3.$border-strip-highlight;
+    }
+  }
+}

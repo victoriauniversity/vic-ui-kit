@@ -1,0 +1,81 @@
+@use "../../0-core/mixins/mixins.responsive";
+@use "vict-general";
+
+.articles-row {
+  margin-top: 3rem;
+
+  &.border-top {
+    border-top: 1px solid vict-general.$black-victorious;
+    padding-top: 4rem;
+    margin-top: 0;
+  }
+
+  .articles-row-title {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    h3 {
+      // text-align: center;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      a {
+        color: vict-general.$black-victorious;
+      }
+    }
+    a {
+      color: vict-general.$black-victorious;
+    }
+  }
+
+  .articles {
+    margin: 0 2rem;
+    flex-wrap: wrap;
+
+    .article-item {
+      flex: 1 1;
+      min-width: 200px;
+      &:not(:last-child) {
+        padding-right: 1.2rem;
+      }
+    }
+    @include mixins.breakpoint($until: desktop) {
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .article-item {
+        flex: 1 1;
+        width: 100%;
+
+        .article-summary {
+          p {
+            display: none;
+          }
+        }
+      }
+
+      @supports not (-ms-high-contrast: none) {
+        /* Non-IE styles here */
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: 1rem;
+
+        .article-item {
+          padding-right: 0 !important;
+        }
+      }
+    }
+  }
+
+  .vic-button {
+    margin: 0.5rem auto;
+  }
+
+  .victorious-article & {
+  }
+
+  @include mixins.breakpoint($until: tablet) {
+    margin-top: 0rem;
+  }
+}

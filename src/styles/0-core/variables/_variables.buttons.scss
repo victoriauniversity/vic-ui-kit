@@ -1,0 +1,56 @@
+@use "variables.box-appearance";
+@use "variables.colors" as variables3;
+@use "variables.typography" as variables2;
+
+/*============================================================================*\
+| BUTTONS' PROPERTIES
+\*============================================================================*/
+
+////
+/// Variables and properties to style buttons.
+///
+/// @group buttons
+
+
+
+/*= GENERAL APPEARANCE =======================================================*/
+
+
+/// @prop {size (rem)} [$radius-small] - Button's corner radius.
+$button-corner-radius:       variables.$radius-small !default;
+
+/// @prop {font-weight} [$weight-semibold] - Thickness of the button's text.
+$button-text-weight:         variables2.$weight-semibold !default;
+
+/// @prop {font-family} [$heading-family] - Button's text font family stack.
+$button-text-family:         variables2.$heading-family !default;
+
+/// @prop {size (rem)} [.125rem]
+///   - Width of the border around the button, if applied.
+$button-border-width:        .125rem !default;
+
+
+
+
+
+/*= TYPE VARIATIONS ==========================================================*/
+
+
+// Default button
+$button-color:               variables3.$grey-alto !default;
+$button-hover-color:         variables3.$grey-silver !default;
+
+// Primary button
+$button-primary-color:       variables3.$blue-azure !default;
+$button-primary-hover-color: variables3.$blue-st-tropaz !default;
+
+// Negative button
+$button-danger-color:        variables3.$red-roof-terratcotta !default;
+$button-danger-hover-color:  variables3.$red-tamarillo !default;
+
+// Disabled button
+$button-disabled-text-color: variables3.$grey-silver-chalice !default; // No hover - cannot be clicked
+
+
+
+

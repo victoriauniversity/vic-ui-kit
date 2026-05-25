@@ -1,0 +1,107 @@
+@use "../0-core/mixins/mixins.decorations" as mixins3;
+@use "../0-core/mixins/mixins.generic";
+@use "../0-core/mixins/mixins.responsive" as mixins2;
+@use "../0-core/variables/variables.box-appearance";
+@use "../0-core/variables/variables.layout" as variables2;
+@use "../0-core/variables/variables.typography" as variables3;
+
+/*==========================================
+=              CONTENT LISTS               =
+==========================================*/
+
+ul.complex-list {
+  // .formatting resets //TODO: Can it be refactored (or ideally removed)?
+  padding-left: 0;
+  width: 100%;
+
+  > li {
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+  // End of resets
+
+  > li {
+    @include mixins.clearfix;
+    display: table; // Fallback for non-flex browsers
+    display: flex;
+    align-items: center;
+    padding: .8rem .1rem;
+    width: 100%;
+    line-height: 1.2;
+    border-bottom: variables.$border;
+  }
+
+  .caption,
+  .description {
+    vertical-align: middle; // Fallback for non-flex browsers
+  }
+
+  .caption {
+    float: left;
+    padding-right: variables2.$gap-horizontal;
+    width: 75%;
+
+    > span {
+      margin-right: variables2.$gap-small;
+      color: variables3.$text-weakest-color;
+    }
+  }
+
+  .description {
+    float: left;
+    width: 25%;
+
+    > em {
+      font-style: normal;
+      color: variables3.$text-weaker-color;
+      font-size: variables3.$text-size-smaller;
+    }
+  }
+
+  @include mixins2.breakpoint( $until: tablet ) {
+    > li { display: block; }
+
+    .caption,
+    .description {
+      display: block;
+      width: 100%;
+    }
+
+    .caption {
+      margin-bottom: variables2.$gap-half;
+      padding-right: 0;
+    }
+  }
+}
+
+// Basic list
+
+$widgetbar-heading-font-size: variables3.$h4-size;
+
+.list {
+  h2 {
+    @include mixins3.separator-strip;
+    font-size: $widgetbar-heading-font-size;
+  }
+
+  &.publications {
+    li {
+
+      > * { margin-bottom: .3em; }
+
+      a { display: inline-block; }
+
+      .label { margin-left: .5em; }
+
+      .pub-author {
+        font-size: variables3.$text-size-smaller;
+        line-height: 1.2;
+      }
+    }
+
+    aside & {
+      li { padding: .53rem .1em; }
+    }
+  }
+}

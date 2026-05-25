@@ -43,25 +43,28 @@
     "kit",
     "UI"
   ],
-"scripts": {
-  "dev": "vite",
-  "build": "tsc && vite build",
-  "preview": "vite preview",
-  "lint": "npm run lint:js && npm run lint:scss",
-  "lint:js": "eslint \"src/**/*.{js,ts}\" --max-warnings 0",
-  "lint:scss": "stylelint \"src/**/*.scss\" --fix",
-  "format": "prettier --write \"src/**/*.{js,ts,scss,html,md,json}\"",
-  "storybook": "storybook dev -p 6006",
-  "build-storybook": "storybook build",
-  "type-check": "tsc --noEmit"
-},
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "npm run lint:js && npm run lint:scss",
+    "lint:js": "eslint \"src/**/*.{js,ts}\" --max-warnings 0",
+    "lint:scss": "stylelint \"src/**/*.scss\" --fix",
+    "format": "prettier --write \"src/**/*.{js,ts,scss,html,md,json}\"",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "type-check": "tsc --noEmit"
+  },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.1.2",
     "@eslint/eslintrc": "^3.3.5",
     "@storybook/addon-a11y": "^10.3.6",
     "@storybook/addon-docs": "^10.3.6",
     "@storybook/addon-vitest": "^10.3.6",
-    "@storybook/html-vite": "^10.3.6",
+    "@storybook/builder-vite": "^10.4.0",
+    "@storybook/html": "^10.4.0",
+    "@storybook/html-vite": "^10.4.0",
+    "@types/node": "^25.8.0",
     "@vitest/browser-playwright": "^4.1.5",
     "@vitest/coverage-v8": "^4.1.5",
     "autoprefixer": "^10.5.0",
@@ -69,9 +72,14 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
+    "jquery": "^4.0.0",
+    "little-loader": "^0.2.0",
+    "lity": "^2",
     "playwright": "^1.59.1",
     "postcss": "^8.5.14",
     "prettier": "^3.8.3",
+    "q": "^1.5.1",
+    "sass": "^1.99.0",
     "sass-embedded": "^1.99.0",
     "storybook": "^10.3.6",
     "stylelint": "^17.11.0",
@@ -80,13 +88,21 @@
     "stylelint-order": "^8.1.1",
     "stylelint-scss": "^7.1.0",
     "vite": "^8.0.11",
-    "vitest": "^4.1.5"
+    "vitest": "^4.1.5",
+    "whatwg-fetch": "^3.0.0"
   },
   "dependencies": {
+    "bourbon-neat": "^4.0.0",
     "cookies-js": "^1.2.3",
+    "enquire.js": "^2.1.6",
     "focus-trap": "^8.2.0",
     "headroom.js": "^0.12.0",
     "micromodal": "^0.6.1",
+    "picturefill": "^3",
+    "sass-mq": "^7.0.0",
     "select2": "^4.1.0-rc.0"
+  },
+  "resolutions": {
+    "rollup": "2.74.1"
   }
 }

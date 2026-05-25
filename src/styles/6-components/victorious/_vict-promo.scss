@@ -1,0 +1,65 @@
+@use "../../0-core/mixins/mixins.layout";
+@use "../../0-core/mixins/mixins.responsive" as mixins2;
+
+/* Victorious promo
+
+2 image or one.. */
+
+.vict-promo {
+
+  .promo-title {
+    margin-bottom: 2rem;
+    &.center {
+      text-align: center;
+    }
+
+    .article-tag {
+      margin-bottom: 2rem;
+      &::after {
+        width: 25%;
+      }
+    }
+
+    .promo-sub-title {
+      font-size: 2rem;
+    }
+    .promo-title {
+      font-size: 3rem;
+    }
+
+    .promo-sub-title,
+    .promo-title {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .promo-image {
+    justify-content: center;
+    margin: 0 auto;
+    width: 70%;
+
+    figure {
+      flex: 0 0 50%;
+      padding: 0 2rem;
+
+      img {
+        height: 100%;
+        object-fit: cover;
+
+        @include mixins.target-ie {
+          height: unset;
+        }
+      }
+    }
+  }
+
+  @include mixins2.breakpoint($until:tablet) {
+    .promo-image {
+      width: 100%;
+
+      figure {
+        padding: 0 1.5rem;
+      }
+    }
+  }
+}

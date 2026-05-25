@@ -1,0 +1,57 @@
+@use "../0-core/mixins/mixins.generic";
+@use "../0-core/variables/variables.layout" as variables2;
+@use "../0-core/variables/variables.media";
+
+/*============================================================================*\
+| MEDIA ELEMENTS
+\*============================================================================*/
+
+////
+/// Styles and properties applied globally to all media (videos, images...).
+///
+/// @group media
+
+
+
+
+
+/*= IMAGERY ==================================================================*/
+
+
+img {
+  vertical-align: middle;
+}
+
+a > img {
+  @include mixins.hoverify() {
+    opacity: variables.$image-hover-opacity;
+  }
+}
+
+figure {
+  @include mixins.hoverify() {
+    img { filter: none; }
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+.formatting {
+  figure {
+    img + figcaption {
+      margin-top: variables2.$gap-half;
+    }
+  }
+}
+
+.reset-formatting {
+  figure {
+    img + figcaption {
+      margin-top: initial;
+    }
+  }
+}

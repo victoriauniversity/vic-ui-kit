@@ -1,0 +1,201 @@
+@use "sass:list";
+@use "../../1-settings/settings._defaults";
+@use "../functions/functions.builders";
+@use "../variables/variables._defaults" as variables2;
+@use "../variables/variables.typography";
+@use "mixins.generic";
+@use "mixins.responsive" as mixins2;
+
+/*============================================================================*\
+| TYPOGRAPHY AND FONTS MIXINS
+\*============================================================================*/
+
+////
+/// @group typography
+
+
+
+
+
+/*= FONT IMPORTS =============================================================*/
+
+
+/// @access public
+///
+/// @prop {String} $font-family - Name of the font family.
+/// @prop {String} $file-path -
+///   Relative path to the font source files (without extensions).
+/// @prop {Number} $font-weight [$weight-normal]
+/// @prop {String} $font-style [normal]
+/// @prop {Map} $file-formats [$font-supported-formats] -
+///   List of allowed extensions/version of the font to import.
+///
+/// @content Extending properties of the newly defined font family.
+///
+/// @output New font family imported into the stylesheet.
+///
+/// @require {function} _font-source-declaration
+
+@mixin font-face(
+  $font-family,
+  $file-path,
+  $font-weight:  variables.$weight-normal,
+  $font-style:   normal,
+  $file-formats: variables2.$font-supported-formats
+) {
+  @font-face {
+    @content;
+    font-family: $font-family;
+    font-style: $font-style;
+    font-weight: $font-weight;
+    src: functions.font-source-declaration( $font-family, $file-path, false, $file-formats );
+  }
+}
+
+
+/// @access public
+///
+/// @prop {Map} $fonts-map [$fonts] -
+///   List of all fonts to be imported.
+///   Item's format: `$filename: ( $font-family-name, $font-weight )`.
+///
+/// @output New font families imported based on the given list.
+///
+/// @require {mixin} font-face
+
+@mixin import-fonts( $fonts-map: variables2.$fonts ) {
+  @each $filename, $font-properties in $fonts-map {
+    $font-family: list.nth( $font-properties, 1 );
+    $file-path:   '#{settings.$path-fonts}/#{$filename}';
+    $font-weight: list.nth( $font-properties, 2 );
+
+    @include font-face( $font-family, $file-path, $font-weight );
+  }
+}
+
+
+
+
+
+/*= LINKS ====================================================================*/
+
+
+/// Decorates text as if it was a text link.
+///
+/// @prop {boolean} $visited [false] - Apply styles for a visited link too.
+///
+/// @access public
+///
+/// @require {mixin} hoverify
+@mixin linkify-text( $visited: false ) {
+  color:           variables.$link-color;
+  text-decoration: variables.$link-decoration;
+
+  @if ( $visited == true ) {
+    // Improves accessibility
+    &:visited { color: variables.$link-visited-color; }
+  }
+
+  @include mixins.hoverify() {
+    color:           variables.$link-hover-color;
+    text-decoration: variables.$link-hover-decoration;
+  }
+}
+
+
+@mixin link-underline() {
+  text-decoration: variables.$link-decoration;
+
+  @include mixins.hoverify() {
+    text-decoration: variables.$link-hover-decoration;
+  }
+}
+
+
+
+
+/*= BASE STYLES ==============================================================*/
+
+
+/// Adds typographical element-based boilerplate styles.
+///
+/// @access public
+@mixin add-base-typography() {
+  body {
+    font-family: variables.$text-family;
+    line-height: variables.$text-line-height;
+    color:       variables.$text-color;
+
+    // Make fonts consistent and nice across browsers
+    -webkit-font-smoothing:  antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    @include mixins2.breakpoint( desktop ) {
+      text-rendering: optimizeLegibility; // Make text nice on desktop devices *only*! See https://css-tricks.com/almanac/properties/t/text-rendering/
+    }
+  }
+
+  h1 { margin: 0; }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6,
+  .tereo-h1 {
+    font-family:    variables.$heading-family;
+    font-weight:    variables.$heading-weight;
+    color:          variables.$heading-color;
+    line-height:    variables.$heading-line-height;
+    letter-spacing: variables.$heading-letter-spacing;
+
+    // update this after launch..
+    // #hubv4 & {
+    //   color:  $pounamu;
+    // }
+  }
+
+  h1, .h1 { font-size: variables.$h1-size; }
+  h2, .h2 { font-size: variables.$h2-size; }
+  h3, .h3 { font-size: variables.$h3-size; }
+  h4, .h4 { font-size: variables.$h4-size; }
+  h5, .h5 { font-size: variables.$h5-size; }
+  h6, .h6 { font-size: variables.$h6-size; }
+
+  p { line-height: variables.$text-line-height; }
+
+  ul { list-style: none; }
+  ol { list-style: decimal; }
+}
+
+
+
+
+
+/*= COMPATIBILITY HACKS ======================================================*/
+
+
+/// @access public
+///
+/// Way to force `text-decoration: none;` on the inline-block element
+/// within parental element that applies `text-decoration: underline;`.
+/// Fully compatible with IE8-11.
+///
+/// @prop {after|before} $pseudo [before] - Pseudoelement which should have the ///   `text-decoration` removed.
+///
+/// @link https://stackoverflow.com/a/21902566
+@mixin ie-remove-underline( $pseudo: before ) {
+  &::#{$pseudo} { text-decoration: underline; }
+  &::#{$pseudo} { text-decoration: none; }
+}
+
+
+
+

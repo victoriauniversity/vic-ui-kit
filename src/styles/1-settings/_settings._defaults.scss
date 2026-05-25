@@ -1,0 +1,48 @@
+@use "../0-core/variables/variables._defaults" as variables3;
+@use "../0-core/variables/variables.colors" as variables2;
+@use "../0-core/variables/variables.typography";
+
+/*============================================================================*\
+| PROJECT'S SETTINGS
+\*============================================================================*/
+
+////
+/// Allows to configure project-specific settings that can override `core
+/// utilities`' defaults (located in
+/// `0-core/variables/_variables._defaults.scss`).
+///
+/// @group settings
+
+
+
+
+
+/*= PATHS ====================================================================*/
+
+
+// Relative from the project's root
+$path-fonts:  './fonts';
+$path-images: './images';
+
+
+
+
+
+/*= FONT DEFINITIONS =========================================================*/
+
+
+// Item's format: $filename: ( $font-family-name, $font-weight )
+variables3.$fonts: (
+  NationalWebLF-Regular:   ( variables.$font-name-brand, variables.$weight-normal ),
+  NationalWebLF-Semibold:  ( variables.$font-name-brand, variables.$weight-semibold ),
+  NationalWebLF-Extrabold: ( variables.$font-name-brand, variables.$weight-extrabold ),
+  vicicons:               ( variables.$font-name-icons, variables.$weight-normal ),
+);
+
+/*= COLORS / THEME ===================================================================*/
+$brand-light: variables2.$green-light-brand !default;
+$brand-opaque: variables2.$green-nebula !default;
+$brand-lighter: variables2.$green-brand-weaker !default;
+$brand: variables2.$green-brand !default;
+$brand-darker: variables2.$green-bottle !default;
+$brand-dark: variables2.$black-brand !default;

@@ -1,0 +1,63 @@
+/*============================================================================*\
+| ANIMATION & TRANSITION MIXINS
+\*============================================================================*/
+
+////
+/// @group animations
+
+
+
+@mixin keyframe-slide-down( $animation-name: 'slideDown' ) {
+  @keyframes #{$animation-name} {
+    0% {
+      transform: translateY( -100% );
+    }
+
+    100% {
+      transform: translateY( 0 );
+    }
+  }
+}
+
+@mixin keyframe-slide-up( $animation-name: 'slideUp' ) {
+  @keyframes #{$animation-name} {
+    0% {
+      transform: translateY( 0 );
+    }
+
+    100% {
+      transform: translateY( -100% );
+    }
+  }
+}
+
+
+@mixin slideOutUp {
+  animation-name: slideOutUp;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  @keyframes slideOutUp {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    
+    15% {
+      transform: translate3d(0, 0, 0) scale(1.02) perspective(1px) ;
+      -webkit-font-smoothing: antialiased;  
+      backface-visibility: hidden;   
+      transform-style: preserve-3d;
+      
+    }
+
+    50% {
+      transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px) ;
+    }
+    
+    100% {
+      transform: translate3d(0, -1%, 0) scale(1.02) perspective(1px) ;
+      -webkit-font-smoothing: antialiased;
+      backface-visibility: hidden;   
+      transform-style: preserve-3d;
+    }
+  }
+}

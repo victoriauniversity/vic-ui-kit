@@ -1,0 +1,96 @@
+@use "../../0-core/mixins/mixins.decorations" as mixins4;
+@use "../../0-core/mixins/mixins.generic" as mixins3;
+@use "../../0-core/mixins/mixins.icons" as mixins2;
+@use "../../0-core/mixins/mixins.responsive";
+@use "../../0-core/variables/variables.colors" as variables2;
+@use "../../0-core/variables/variables.layout";
+@use "../../1-settings/settings._defaults";
+@use "../../2-project/project.mixins" as project2;
+@use "../../2-project/project.variables";
+
+$sitemenu-background:          settings.$brand !default;
+
+.site {
+  z-index:    variables.$z-index-lower;
+  overflow:   hidden;
+  background: $sitemenu-background;
+
+  [lang='mi'] { opacity: .5; }
+
+  //TODO: Remove after productin
+  .icon-right-open {
+    float: right;
+    margin: 0 -.6em;
+  }
+
+  @include mixins.breakpoint( $until: tablet ) {
+    > ul > li {
+
+      @for $i from 0 through 5 {
+        &:nth-child(#{$i + 1}) {
+          padding-left: #{$i * project.$base-spacing / 2 };
+        }
+      }
+    }
+
+    > ul > li:last-child > a {
+      display: none;
+    }
+
+    .layout & { display: none; }
+  }
+
+  @include mixins.breakpoint( tablet ) {
+    > ul > li {
+      display: none;
+
+      // Previous page, current page and its children
+      &:last-child {
+        display: block;
+
+        // Previous page
+        > a {
+          @include mixins2.extend-icon-before( arrow-up ) ;
+          color: variables2.$grey-silver;
+          font-size: 90%;
+
+          @include mixins3.hoverify { color: variables2.$white; }
+        }
+
+        // The parent + children
+        //TODO: Refactor!
+        > ul > li {
+          // Parent
+          > a {
+            &.selected { padding-left: 11.5em; }
+          }
+
+          // Children
+          li { padding-left: project.$base-spacing / 2; }
+        }
+      }
+    }
+  }
+
+  &--container { position:relative; }  //TODO: Refactor!
+
+  a { @include project2.menu-item; }
+
+  .has-subpages {
+    a {
+      // triangle icon on the edge of the menu button
+      @include mixins2.base-icon( after );
+
+      padding-right: 2.2rem;
+
+      &::after {
+        @include mixins4.triangle( right, .35em, .7em, variables2.$white );
+        position: absolute;
+        top: 50%;
+        right: 0;
+        margin-top: -.25em;
+        margin-right: 1rem;
+      }
+    }
+  }
+}

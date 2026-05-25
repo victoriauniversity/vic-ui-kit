@@ -1,0 +1,144 @@
+@use "../0-core/mixins/mixins.generic";
+@use "../0-core/mixins/mixins.responsive" as mixins2;
+@use "../0-core/variables/variables.backgrounds";
+@use "../0-core/variables/variables.colors" as variables2;
+@use "../0-core/variables/variables.typography" as variables3;
+@use "components.highlights";
+
+/** Promotional full-width boxes (~ fully clickable highlights). */
+
+.promo {
+  clear: both;
+  display: block;
+
+  > a {
+    display: block;
+    padding: components.$highlights-padding;
+
+    h2,
+    h3 {
+      text-decoration: none;
+    }
+
+    @include mixins.hoverify() {
+      h2,
+      h3 {
+        text-decoration: underline;
+        color: inherit;
+      }
+    }
+  }
+
+  // Promo inside right-side widgetbar
+  aside & {
+    h2,
+    h3 {
+      &::before { display: none; }
+    }
+  }
+
+  // 'Find out more' at the end of the promo
+  b,
+  strong {
+    display: block;
+  }
+
+  &.intro-promo { margin: 1.5em 0; }
+
+
+  /** Promo types */
+
+  &.primary {
+    background-color: variables.$background-brand-dark;
+
+    > a {
+      h2,
+      p {
+        color: variables2.$white;
+      }
+    }
+
+    @include mixins.hoverify {
+      background-color: variables.$background-brand-dark-lighter;
+    }
+  }
+
+  &.secondary {
+    background-color: variables.$background-info-light;
+
+    > a {
+      h2,
+      p {
+        color: variables3.$link-color;
+      }
+    }
+
+    @include mixins.hoverify {
+      background-color: variables.$background-info-light-darker;
+    }
+  }
+
+  &.themed {
+    background-color: variables.$background-brand;
+
+    a {
+      h1,
+      h2,
+      h3,
+      p {
+        margin-bottom: 0;
+        color: variables2.$white;
+      }
+    }
+
+    @include mixins2.breakpoint( $until: desktop ) {
+      h2,
+      h3 {
+        overflow-wrap: break-word;
+      }
+    }
+  }
+
+  #hubv4 & {
+    &.primary {
+      background-color: variables2.$pounamu;
+      > a {
+        h2,
+        p {
+          color: variables2.$manuka;
+        }
+      }
+
+      @include mixins.hoverify {
+        // background-color: $background-brand-dark-lighter;
+      }
+    }
+
+    &.secondary {
+      background-color: variables2.$off-white;
+      border: 1px solid variables2.$mahoe;
+
+      > a {
+        p {
+          color: variables2.$black-brand;
+        }
+        h2,h3 {
+          color: variables2.$pounamu;
+        }
+      }
+
+      @include mixins.hoverify {
+        background-color: variables2.$kohuhu;
+      }
+    }
+  }
+
+}
+
+#hubv4 {
+  .promo.highlight {
+    > a {
+      padding: 0;
+    }
+  }
+}

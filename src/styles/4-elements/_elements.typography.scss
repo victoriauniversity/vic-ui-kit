@@ -1,0 +1,45 @@
+@use "../0-core/variables/variables.box-appearance" as variables3;
+@use "../0-core/variables/variables.colors" as variables2;
+@use "../0-core/variables/variables.typography";
+
+/*============================================================================*\
+| TYPOGRAPHY OF ELEMENTS
+\*============================================================================*/
+
+////
+/// A typography applied to HTML elements.
+///
+/// @group typography
+
+
+
+
+
+h1 { font-weight: variables.$superheading-weight; }
+
+dl {
+  dt { font-weight: variables.$weight-bold; }
+}
+
+time { color: variables2.$grey; }
+
+a {
+  cursor: pointer;
+  color:           variables.$link-color;
+  text-decoration: none;
+
+  > span {
+    &::before,
+    &::after {
+      text-decoration: none;
+    }
+  }
+}
+
+hr {
+  clear: both;
+  border: 0;
+  border-bottom: variables3.$border;
+}
+
+

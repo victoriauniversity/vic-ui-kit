@@ -1,0 +1,143 @@
+@use "../0-core/mixins/mixins.generic" as mixins2;
+@use "../0-core/mixins/mixins.responsive";
+@use "../0-core/variables/variables.box-appearance" as variables2;
+@use "../0-core/variables/variables.colors" as variables3;
+@use "../0-core/variables/variables.layout";
+
+/*============================================================================*\
+| BOX-LIKE MOLECULES
+\*============================================================================*/
+
+////
+/// Boxes with various layouts.
+///
+/// @group molecules
+
+/*= FACTS BOX ================================================================*/
+
+// for info message fact row research hub
+//TODO: remove a dependency on .flash-message and .info
+.flash-message.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 2em 1.2em;
+
+  > h2 {
+    margin-bottom: 0;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  > * {
+    &:first-child {
+      flex: 0 0 20%;
+    }
+
+    &:not(:first-child) {
+      flex: 0 0 23%;
+    }
+  }
+
+  @include mixins.breakpoint($until: desktop) {
+    flex-wrap: wrap;
+
+    > * {
+      &:first-child {
+        flex-basis: 100%;
+        margin-bottom: 0.5em;
+      }
+
+      &:not(:first-child) {
+        flex-basis: 31%;
+      }
+    }
+  }
+
+  @include mixins.breakpoint($until: tablet) {
+    > *:not(:first-child) {
+      flex-basis: 100%;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  .info-col {
+    @include mixins.breakpoint($until: tablet) {
+      padding-bottom: variables.$gap-third;
+      border-bottom: variables2.$border-width-thin solid variables3.$blue-callypso;
+    }
+
+    h4,
+    h5 {
+      margin-bottom: variables.$gap-small;
+      color: inherit;
+    }
+  }
+
+  #hubv4 & {
+    > h2 {
+      margin-bottom: 1rem;
+    }
+    .info-col {
+      h4, h5 {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+
+.content-panel > main .flash-message.info-row {
+  flex-wrap: wrap;
+
+  > * {
+    &:first-child {
+      flex-basis: 100%;
+      margin-bottom: 0.5em;
+    }
+
+    &:not(:first-child) {
+      flex-basis: 31%;
+    }
+  }
+
+  @include mixins.breakpoint($until: tablet) {
+    > *:not(:first-child) {
+      flex-basis: 100%;
+      margin-bottom: 0.5em;
+    }
+  }
+}
+//! ==== NEW DESIGN ====
+
+#hubv4 {
+  .link_block {
+    background-color: variables3.$grey-light;
+    transition: all ease 0.2s;
+    outline: 2px transparent solid;
+
+    .link_block_body {
+      padding: 1rem;
+    }
+    &:visited {
+      h3 {
+        color: variables3.$blue-endeavoura;
+      }
+    }
+
+    @include mixins2.hoverify() {
+
+      outline: 2px variables3.$kohuhu solid;
+      background-color: variables3.$green-brand-light;
+      h3 {
+        // color: $blue-endeavoura;
+      }
+    }
+    &:hover {
+    }
+    h3 {
+      // text-decoration: none;
+      color: variables3.$pounamu;
+    }
+  }
+}

@@ -1,0 +1,136 @@
+@use "../0-core/mixins/mixins.generic";
+@use "../0-core/mixins/mixins.layout" as mixins2;
+@use "../0-core/variables/variables.colors";
+@use "../0-core/variables/variables.typography" as variables2;
+
+// ========================================
+// ======== Accordion
+// ========================================
+//_components.accordion.scss
+
+@keyframes accordion-fade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+// TODO: At a later date, remove .accordion-header, because .accordion will be the only class name used after all the pages have been recached
+.accordion,
+.accordion-header {
+
+  #hubv4 & {
+    .accordion-title {
+      color: variables.$pounamu;
+      position: relative;
+      padding-left: 0;
+
+      &::marker {
+        // color: $pounamu;
+        display: none;
+        content: " ";
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      &::after {
+        position: absolute;
+        right: 0;
+        top: .5rem;
+        content: "+";
+        font-size: 1.5rem;
+      }
+
+    }
+
+    details[open] {
+      .accordion-title {
+
+
+
+        &::marker {
+          // color: $pounamu;
+          display: none;
+          content: " "
+        }
+
+        &::after {
+          content: "-";
+        }
+
+      }
+    }
+
+    details {
+      padding-top: .5rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid variables.$grey-gallery;
+    }
+  }
+
+  details {
+    /* Fallback for IE11 */
+    list-style-type: none !important;
+  }
+
+  details[open] .block * {
+    animation: accordion-fade .5s ease-in;
+  }
+
+  .accordion-title::marker {
+    color: variables.$blue-endeavoura;
+  }
+
+  .accordion-title:hover::marker,
+  .accordion-title:focus::marker {
+    color: #2B8CC4;
+  }
+
+
+  .accordion-title {
+    padding: .5rem 1rem;
+    font-size: 1.2rem;
+    font-weight: variables2.$heading-weight;
+    color: variables2.$link-color;
+    text-decoration: variables2.$link-decoration;
+    cursor: pointer;
+
+    @include mixins.hoverify() {
+      color:           variables2.$link-hover-color;
+      text-decoration: variables2.$link-hover-decoration;
+    }
+
+    &:visited {
+        color: variables2.$link-visited-color;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      display: inline-block;
+    }
+
+    @include mixins2.target-ie {
+      cursor: auto;
+    }
+  }
+
+  .accordion-title:hover,
+  .accordion-title:focus {
+    color: #2B8CC4;
+
+    @include mixins2.target-ie {
+      color: variables.$blue-endeavoura;
+    }
+  }
+
+  .block {
+    background-color: variables.$white;
+  }
+}
+
+.accordion-new {
+
+}

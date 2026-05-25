@@ -1,0 +1,194 @@
+@use "../0-core/mixins/mixins.generic";
+@use "../0-core/mixins/mixins.responsive" as mixins2;
+@use "../0-core/variables/variables.colors" as variables2;
+@use "../0-core/variables/variables.layout";
+@use "../0-core/variables/variables.typography" as variables3;
+
+/*=========================================
+=          _COMPONENTS.FORMS           =
+=========================================*/
+
+
+/* ===== FORMS & INPUTS ============================== */
+
+
+.form {
+  clear: both;
+  padding: variables.$gap-box;
+  background-color: variables2.$grey-gallery;
+
+  // Single combination of label, input and add-ons
+  .group {
+    @include mixins.clearfix;
+    margin-bottom: .5em;
+
+    .error-text {
+      color: variables2.$red-roof-terratcotta;
+    }
+
+    &.group--solo {
+      margin-bottom: 0;
+      text-align: center;
+    }
+  }
+
+  label {
+    display: inline-block;
+    padding-right: .7rem;
+    width: 25%;
+
+    vertical-align: top;
+    font-weight: variables3.$weight-bold;
+    line-height: 1.3;
+
+    em {
+      font-weight: variables3.$weight-normal;
+    }
+  }
+
+  input:not([type="submit"]):not([type="checkbox"]),
+  textarea {
+    padding: .4rem .6rem;
+    border: 2px solid variables2.$grey-silver;
+
+    &.error {
+      border: 2px solid variables2.$red-roof-terratcotta;
+      background-color: variables2.$red-oyster-pink;
+    }
+
+    &:focus {
+      outline: none;
+      border: 2px solid variables2.$blue-azure;
+    }
+
+    &.field__input--wide {
+      @include mixins2.breakpoint(desktop) {
+        width: 300px;
+      }
+    }
+  }
+
+  textarea {
+    width: 50%;
+  }
+
+  &.course-search-bar {
+    flex: 1 0 auto;
+    margin: 1.5rem;
+
+    .group {
+      display: flex;
+      margin-bottom: 0;
+    }
+
+    input[type=text] {
+      width: 80%;
+    }
+  }
+}
+
+.form-flex {
+  padding: variables.$gap-box;
+  background-color: variables2.$grey-gallery;
+
+  &.form {
+    label {
+      margin-bottom: .2rem;
+      width: 100%;
+    }
+  }
+
+  &.max-width {
+    max-width: 600px;
+  }
+
+  fieldset {
+    margin: 2rem 0;
+    padding: 2rem 1rem;
+    border: 1px solid variables2.$grey-silver;
+  }
+
+  legend {
+    padding: .2rem .5rem;
+    color: variables2.$black-tundora;
+    border: 1px solid variables2.$grey-silver;
+  }
+
+  .group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: .8em;
+    width: 100%;
+    flex-wrap: wrap;
+
+    .field + .icon-button,
+    input:not([type="submit"]) + .icon-button,
+    input:not([type="submit"]) + label + .icon-button,
+    textarea + .icon-button,
+    select + .icon-button {
+      margin-left: 1rem;
+    }
+
+    .field,
+    input:not([type="submit"]):not([type="checkbox"]),
+    textarea {
+      flex: 1 1 0;
+    }
+
+    input[type="checkbox"] + label {
+      margin-left: 1rem;
+      flex-grow: 1;
+    }
+
+    .error-text {
+      width: 100%;
+      color: variables2.$red-roof-terratcotta;
+    }
+  }
+
+  .field,
+  input:not([type="submit"]):not([type="checkbox"]),
+  textarea {
+    padding: .4rem .6rem;
+    border: 2px solid variables2.$grey-silver;
+
+    &.error {
+      border: 2px solid variables2.$red-roof-terratcotta;
+      background-color: variables2.$red-oyster-pink;
+    }
+
+    &:focus {
+      outline: none;
+      border: 2px solid variables2.$blue-azure;
+    }
+
+    &:disabled {
+      color: variables2.$grey-dusty;
+      background-color: variables2.$grey-alto;
+    }
+  }
+
+  input:disabled {
+    color: rgba(0, 0, 0, .247);
+    background-color: rgb(218, 218, 218);
+  }
+}
+
+.group--vspace {
+  margin:variables.$gap 0;
+}
+
+.group__list {
+  display: inline-block;
+
+  li {
+    @include mixins2.breakpoint(tablet) {
+      display: inline-block;
+    }
+
+    label {
+      vertical-align: middle;
+    }
+  }
+}

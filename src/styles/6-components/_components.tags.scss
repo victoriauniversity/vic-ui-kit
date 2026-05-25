@@ -1,0 +1,125 @@
+@use "../0-core/functions/functions.builders";
+@use "../0-core/mixins/mixins.generic";
+@use "../0-core/variables/variables.box-appearance" as variables2;
+@use "../0-core/variables/variables.colors";
+@use "../0-core/variables/variables.typography" as variables3;
+
+/** Standard tags (filtering, tag cloud etc.) */
+
+//TODO: Review
+$tag-background-color:        #DBE6F3 !default;
+$tag-font-color:              variables.$blue-callypso;
+
+$tag-background-color-red:    variables.$red-oyster-pink;
+$tag-font-color-red:          variables.$red-tamarillo;
+
+$tag-background-color-yellow: variables.$yellow-pearl-lusta;
+$tag-font-color-yellow:       variables.$yellow-cinamon;
+
+$tag-background-color-green:  variables.$green-tara;
+$tag-font-color-green:        variables.$green-killarney;
+
+$tag-background-color-grey:   variables.$grey-gallery;
+$tag-font-color-grey:         variables.$grey-dove;
+
+.tags { margin-bottom: 1.2rem; }
+
+.tag {
+  display: inline-block;
+  margin: 0 0 .3rem;
+  padding: .15rem .6rem;
+  white-space: nowrap;
+  border-radius: variables2.$radius-small;
+  background-color: $tag-background-color;
+  color: $tag-font-color;
+
+  aside & { font-size: variables3.$text-size-tiny; }
+
+  // 'x' button
+  .close {
+    display: inline-block;
+    margin-left: .5rem;
+    font-weight: variables3.$weight-bold;
+  }
+
+  // Tag colors
+  &.tag-green {
+    background-color: $tag-background-color-green;
+    color: $tag-font-color-green;
+  }
+
+  &.tag-red {
+    background-color: $tag-background-color-red;
+    color: $tag-font-color-red;
+  }
+
+  &.tag-yellow {
+    background-color: $tag-background-color-yellow;
+    color: $tag-font-color-yellow;
+  }
+
+  &.tag-grey {
+    background-color: $tag-background-color-grey;
+    color: $tag-font-color-grey;
+  }
+
+  // Selected tag
+  &.active {
+    background-color: variables.$green-brand;
+    color: variables.$white;
+  }
+}
+
+a {
+  &.tag,
+  > .tag {
+    cursor: pointer;
+    border: 1px solid $tag-font-color;
+
+    &.tag-green { border-color: $tag-font-color-green; }
+    &.tag-red { border-color: $tag-font-color-red; }
+    &.tag-yellow { border-color: $tag-font-color-yellow; }
+    &.tag-grey { border-color: $tag-font-color-grey; }
+
+    @include mixins.hoverify() {
+      text-decoration: underline;
+      background-color: functions.tint( $tag-background-color, 40% );
+
+      &.tag-green {
+        background-color: functions.tint( $tag-background-color-green, 40% );
+      }
+
+      &.tag-red {
+        background-color: functions.tint( $tag-background-color-red, 40% );
+      }
+
+      &.tag-yellow {
+        background-color: functions.tint( $tag-background-color-yellow, 40% );
+      }
+
+      &.tag-grey {
+        background-color: functions.tint( $tag-background-color-grey, 40% );
+      }
+    }
+
+    &.active {
+      @include mixins.hoverify() {
+        background-color: variables.$green-bottle;
+        text-decoration: none;
+      }
+    }
+
+  }
+}
+// styling for active filter on faculty and schools postgrad quals
+.quals-filter {
+  a.tag {
+    border: 0;
+
+    &.tag-active {
+      border: 1px solid $tag-font-color;
+      background-color: functions.tint( $tag-background-color, 40% );
+      color: $tag-font-color;
+    }
+  }
+}

@@ -1,0 +1,145 @@
+@use "../../0-core/mixins/mixins.responsive";
+@use "vict-general";
+
+/* Article grid
+  USed in Victorious
+*/
+
+.article-item {
+  margin-bottom: 1rem;
+  img {
+    margin-bottom: .5rem;
+  }
+  a {
+    color: vict-general.$black-victorious;
+  }
+  .article-tag {
+    display: block;
+    margin-bottom: .5rem;
+    text-transform: uppercase;
+      font-size: .85em;
+  }
+  h4 {
+    margin-bottom: .5rem;
+    font-family: proxima-nova, sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+  }
+}
+
+.articles-grid {
+  display: flex;
+  padding-bottom: 2rem;
+  flex-direction: column;
+  border-bottom: 1px solid vict-general.$black-victorious;
+
+  .article-1-up {
+    margin-bottom: 1rem;
+
+    h4 {
+      font-size: 2rem;
+      font-family: pt-serif, serif;
+    }
+  }
+
+  .article-3-up {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    > .article-item {
+      flex: 0 0 48%;
+      margin-bottom: 1rem;
+
+      // &:not(:nth-child(3n) ) {
+      //   margin-right: 1rem;
+      // }
+    }
+  }
+
+  .article-2-up {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    > .article-item {
+      flex: 0 0 48%;
+      margin-bottom: 1rem;
+    }
+  }
+
+  @include mixins.breakpoint($from:tablet) {
+    flex-direction: row;
+
+    &.col-2 {
+      > div {
+        flex: 1 0 50%;
+
+        &:first-child {
+          padding-right: 1rem;
+        }
+      }
+    }
+
+    .article-3-up {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      > .article-item {
+        flex: 1 0 31%;
+        margin-bottom: 1rem;
+        min-width: 210px;
+        padding-right: 1rem;
+
+        // &:not(:nth-child(3n) ) {
+        //   margin-right: 1rem;
+        // }
+      }
+    }
+  }
+
+  @supports not (-ms-high-contrast: none) {
+    /* Non-IE styles here */
+    // display: grid;
+    // grid-template-columns: 1fr 1fr 1fr 1fr;
+    // grid-gap: 1rem;
+    // grid-template-rows: auto auto;
+
+  }
+
+}
+
+.article-results {
+  display: flex;
+  flex-wrap: wrap;
+
+  .article-item {
+    flex: 0 0 20%;
+    padding: 0 .5rem;
+
+
+    @include mixins.breakpoint($from:tablet) {
+      &:first-child {
+        flex: 0 0 60%;
+
+        h4 {
+          font-size: 2rem;
+        }
+      }
+      }
+
+    @include mixins.bp-tablet {
+      flex: 0 0 33%;
+    }
+
+  }
+  @include mixins.breakpoint($until:tablet) {
+    justify-content: space-between;
+    .article-item {
+      flex: 0 0 47%;
+    }
+
+  }
+}

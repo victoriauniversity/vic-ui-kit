@@ -1,0 +1,380 @@
+@use "sass:color";
+@use "../0-core/functions/functions.builders";
+@use "../0-core/mixins/mixins.generic";
+@use "../0-core/mixins/mixins.icons" as mixins4;
+@use "../0-core/mixins/mixins.layout" as mixins3;
+@use "../0-core/mixins/mixins.responsive" as mixins5;
+@use "../0-core/mixins/mixins.typography" as mixins2;
+@use "../0-core/variables/variables.box-appearance" as variables5;
+@use "../0-core/variables/variables.buttons" as variables2;
+@use "../0-core/variables/variables.colors" as variables4;
+@use "../0-core/variables/variables.layout";
+@use "../0-core/variables/variables.typography" as variables3;
+@use "../2-project/project.mixins";
+
+/*============================================================================*\
+| ATOMIC BUTTONS
+\*============================================================================*/
+
+////
+/// Atomic button components that can be re-used anywhere.
+///
+/// @group buttons
+
+button,
+.button {
+  display: inline-block;
+  padding: functions.em(variables.$gap-small) functions.em(variables.$gap-half);
+  font-family: variables2.$button-text-family;
+  font-weight: variables2.$button-text-weight;
+  line-height: variables3.$text-line-height;
+  border-radius: variables2.$button-corner-radius;
+
+  // Add pointer cursor to all buttons
+  cursor: pointer;
+
+  // Remove border attribute added by browsers
+  border: 0;
+
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+
+  // Default button
+  color: variables3.$text-color;
+  background-color: variables2.$button-color;
+
+  // Disable the negative effects of a standard link
+  .formatting & {
+    color: inherit;
+    text-decoration: none;
+
+    @include mixins.hoverify() {
+      color: inherit;
+    }
+  }
+
+  .reset-formatting & {
+    color: variables3.$text-color;
+    text-decoration: initial;
+
+    @include mixins.hoverify() {
+      color: variables3.$text-color;
+    }
+  }
+
+  @include mixins.hoverify() {
+    color: variables3.$text-color;
+    background: variables2.$button-hover-color;
+  }
+
+  // Flat (looking like a link)
+  &.flat {
+    @include mixins2.linkify-text;
+    background-color: transparent;
+  }
+
+  // Primary/Call-to-action button
+  &.primary {
+    background-color: variables2.$button-primary-color;
+    color: variables4.$white;
+
+    @include mixins.hoverify() {
+      color: variables4.$white;
+      background: variables2.$button-primary-hover-color;
+    }
+  }
+
+  // Secondary button: transparent with border outline
+  &.flat-border {
+    background: transparent;
+    border: variables2.$button-border-width solid variables4.$black-tundora;
+    color: variables4.$black-tundora;
+
+    &.primary {
+      border: variables2.$button-border-width solid variables2.$button-primary-color;
+      color: variables2.$button-primary-color;
+
+      @include mixins.hoverify() {
+        color: variables4.$white;
+        background: variables2.$button-primary-color;
+      }
+    }
+
+    @include mixins.hoverify() {
+      color: variables4.$white;
+      background: variables4.$black-tundora;
+    }
+  }
+
+  // Critical/Destructive operations button
+  &.danger {
+    background-color: variables2.$button-danger-color;
+    color: variables4.$white;
+
+    @include mixins.hoverify() {
+      background: variables2.$button-danger-hover-color;
+      color: variables4.$white;
+    }
+  }
+
+  &.danger-hover {
+    @include mixins.hoverify() {
+      background: variables2.$button-danger-color;
+      color: variables4.$white;
+    }
+  }
+
+  // Disabled/Cannot be used button
+  &[disabled],
+  &.disabled {
+    background: variables2.$button-color;
+    color: variables2.$button-disabled-text-color;
+    cursor: default;
+
+    @include mixins.hoverify() {
+      color: variables2.$button-disabled-text-color;
+    }
+  }
+
+  // Button sizing
+  &.large {
+    font-size: variables3.$text-size-huge;
+  }
+  &.extra-large {
+    font-size: variables3.$text-size-massive;
+  }
+
+  // -> Arrow icon for all buttons that are not `.flat` nor `.no-icon`
+  &:not(.flat):not(.no-icon) {
+    @include project.icon-arrow-right;
+
+    &::after {
+      display: inline;
+    }
+  }
+
+  &.muted:not(.primary) {
+    color: variables3.$text-weakest-color;
+  }
+}
+
+// Resets for special button variations
+input.button {
+  border: 0;
+  cursor: pointer;
+}
+
+/*= SPECIALISED BUTTONS ======================================================*/
+
+/** Fixed rounded buttons floating on the edges of the screen */
+
+$btn-floating-size: 3.8rem;
+
+.btn-floating {
+  @include mixins3.size($btn-floating-size);
+  z-index: variables.$z-index-top;
+  position: fixed;
+  right: 0;
+  display: block;
+  margin: variables.$gap-larger 2%;
+  padding: variables.$gap-half;
+
+  text-align: center;
+  color: variables4.$grey;
+  box-shadow: variables5.$shadow;
+  background-color: variables4.$grey-gallery;
+  border-radius: $btn-floating-size;
+  font-size: variables3.$text-size-smaller;
+
+  @include mixins.hoverify() {
+    background-color: variables4.$grey-alto;
+    color: variables3.$link-hover-color;
+  }
+
+  @include mixins4.icon-selector {
+    font-size: variables3.$text-size-massive;
+
+    &::before {
+      margin-right: 0;
+    }
+  }
+
+  // Placement location
+  &.top {
+    top: 0;
+  }
+  &.bottom {
+    bottom: 0;
+  }
+
+  // Only shows up when the main heading strip is sticking to the top (e.g. 'go to top' button)
+  &.sticky {
+    transition: all 0.3s ease-in;
+    opacity: 0;
+  }
+
+  .global.no-top ~ &.sticky {
+    opacity: 1;
+  }
+}
+
+/*= BUTTON CONTAINERS ========================================================*/
+
+//TODO: Rename to something more generic - e.g. `button-panel right`
+.button-right {
+  text-align: right;
+}
+
+.button-list {
+  .button {
+    margin: variables.$gap-small variables.$gap-tiny;
+  }
+  .disabled {
+    background: transparent;
+  }
+
+  //TODO: @deprecated - Use .disabled instead and remove if possible
+  span {
+    &.button {
+      background-color: inherit;
+
+      @include mixins.hoverify() {
+        background-color: inherit;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+//! ==== NEW DESIGN ====
+$easing: cubic-bezier(0.22, 1, 0.36, 1);
+#hubv4 {
+  // button:not(.flat):not(.no-icon)::after,
+
+  .button:not(.flat):not(.no-icon) {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    justify-content: center;
+  }
+
+  .button:not(.flat):not(.no-icon)::after {
+    content: "\f156";
+    font-family: "Favorites";
+    vertical-align: -1px;
+    display: inline-block;
+  }
+
+  main {
+    .button + .button {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  @include mixins5.breakpoint($until: tablet) {
+    .button + .button {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    a.button {
+
+    }
+  }
+
+  .btn,
+  .button,
+  a.btn {
+    border-radius: 0;
+    display: inline-block;
+    font-weight: 600;
+    line-height: 1.6;
+    cursor: pointer;
+    border: 0;
+    -webkit-transition: color 0.15s ease-in-out,
+      background-color 0.15s ease-in-out;
+    transition: all ease 0.2s;
+    background-color: variables4.$kohuhu;
+    color: variables4.$pounamu;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+
+    &:hover {
+      text-decoration: none;
+      background-color: color.adjust($color: variables4.$kohuhu, $lightness: 10);
+      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    }
+    &:active {
+      box-shadow: none;
+    }
+
+    &.rounded {
+      border-radius: 100px;
+    }
+    &.accent {
+      background-color: variables4.$kowhai;
+      color: #222;
+    }
+    &.raised {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    }
+    &.primary {
+      background-color: variables4.$pounamu;
+      color: variables4.$manuka;
+      &:hover {
+        background-color: variables4.$mahoe;
+        background-color: color.adjust($color: variables4.$pounamu, $lightness: 6);
+      }
+      &:active,
+      &:focus {
+        background-color: variables4.$mahoe;
+        background-color: color.adjust($color: variables4.$pounamu, $lightness: 6);
+      }
+    }
+    &.fade {
+      background-color: #f1f6f0;
+      color: variables4.$green-brand-bright;
+      &:hover {
+        background-color: #c0cfbc;
+        color: variables4.$green-brand-bright;
+      }
+    }
+    &.flat {
+      background-color: transparent;
+      outline: 1px transparent solid;
+      &:hover {
+        box-shadow: none;
+        outline: 1px variables4.$grey-alto solid;
+      }
+    }
+
+    &.text {
+      background-color: transparent;
+      color: #005ea5;
+      border: none;
+      text-decoration: underline;
+      &:hover {
+        background-color: #eee;
+      }
+      &:active,
+      &:focus {
+        background-color: #eee;
+      }
+    }
+    &.secondary {
+      color: #232323;
+      &:hover {
+        background-color: #eee;
+        color: #232323;
+      }
+    }
+
+    // Remove icon for submit buttons...
+    &.submit-button {
+      &:after {
+        content: none !important;
+      }
+    }
+  }
+}

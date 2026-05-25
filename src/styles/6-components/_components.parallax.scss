@@ -1,0 +1,157 @@
+@use "../0-core/mixins/mixins.responsive";
+@use "../0-core/variables/variables.colors";
+
+/* Styles for parallax/carousel implementation */
+
+.animate-scroll {
+  overflow: hidden;
+  // background-image: url(images/new/v2/bg.png);
+
+  // scroll-snap-type: y mandatory;
+  // overflow-y: scroll;
+  // height: 80vh;
+
+  > section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 80px;
+
+    // scroll-snap-align: start;
+
+    min-height: 100vh;
+    align-items: center;
+
+    // padding-top: calc(100vh - 50%);
+    // padding-bottom: calc(100vh - 50%);
+
+    // margin-bottom: 100px;
+
+    > div {
+      padding: 1rem;
+
+      img {
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+
+
+    @include mixins.breakpoint(tablet) {
+      > .animate-scroll--image {
+        width: 40%;
+      }
+      > .animate-scroll--text {
+        width: 60%;
+      }
+    }
+
+    @include mixins.breakpoint(desktop) {
+      justify-content: space-evenly;
+      flex-direction: row;
+    }
+  }
+
+  &.horizontal {
+    position: relative;
+    display: block;
+    width: 100%;
+
+    section {
+      width: 100%;
+      padding-left: 0;
+      min-height: 550px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+
+      .animate-scroll--image {
+        padding-left: 1.5rem;
+        width: 40%;
+      }
+      .animate-scroll--text {
+        width: 60%;
+        padding-left: 1rem;
+        padding-right: 1.5rem;
+      }
+
+      @include mixins.breakpoint($until:tablet) {
+        flex-direction: column;
+        .animate-scroll--image {
+          padding-left: 1rem;
+          padding-right: 1rem;
+          width: 100%;
+        }
+        .animate-scroll--text {
+          width: 100%;
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+        }
+      }
+    }
+
+    .owl-nav {
+      position: absolute;
+      top: 45%;
+      width: 100%;
+
+      button {
+        position: absolute;
+        height: 40px;
+        width: 40px;
+
+        &:focus {
+          outline: none;
+
+          span {
+            outline: -webkit-focus-ring-color auto 5px;
+          }
+        }
+
+        &:after {
+          content: none;
+        }
+
+        span {
+          font-size: 350%;
+          color: variables.$green-brand;
+        }
+
+        &.owl-next {
+          right: 0;
+        }
+        &.owl-prev {
+          left: 0;
+        }
+      }
+    }
+
+    .owl-dots {
+      display: flex;
+      justify-content: center;
+
+      .owl-dot {
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        border: 1px solid variables.$green-brand;
+        margin: 0 5px;
+
+        &.active {
+          background-color: variables.$green-brand;
+        }
+
+        span {
+        }
+
+        &:after {
+          content: none;
+        }
+      }
+    }
+  }
+}
+

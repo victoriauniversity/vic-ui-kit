@@ -1,0 +1,101 @@
+/*============================================================================*\
+| RE-USABLE SCSS - VARIABLES, MIXINS AND FUNCTIONS
+\*============================================================================*/
+
+////
+/// A collection of re-usable SCSS utility variables, mixins and functions for
+/// Victoria University web apps.
+///
+/// Comment out any unused components to speed up the compilation process.
+///
+/// **NOTE**: SASS rules adhere to https://sass-guidelin.es/
+
+
+
+
+
+/*= FUNCTIONS ================================================================*/
+
+
+@use "sass:meta";
+@use 'functions/functions.validators';
+@use 'functions/functions.builders' as functions2;
+
+
+
+
+
+/*= VARIABLES ================================================================*/
+
+
+// 1st - Settings: Recommended to be reviewed & overriden in every project
+@use 'variables/variables._defaults';
+
+// 2nd - Pre-defined: Can be used in other variables
+@use 'variables/variables.sizing' as variables2;
+@use 'variables/variables.colors' as variables3;
+@use 'variables/variables.animations' as variables4;
+@use 'variables/variables.responsive' as variables5;
+@use 'variables/variables.characters' as variables6;
+@use 'variables/variables.icons' as variables7;
+
+// 3rd - Derived of other variables
+@use 'variables/variables.backgrounds' as variables8;
+@use 'variables/variables.typography' as variables9;
+@use 'variables/variables.box-appearance' as variables10;
+@use 'variables/variables.layout' as variables11;
+
+// 4th - Component-related: Derived from 2nd or 3rd level variables
+@use 'variables/variables.grid' as variables12;
+@use 'variables/variables.media' as variables13;
+@use 'variables/variables.tables' as variables14;
+@use 'variables/variables.buttons' as variables15;
+@use 'variables/variables.lists' as variables16;
+
+
+
+
+
+/*= MIXINS ===================================================================*/
+
+@use 'mixins/mixins.generic';
+
+@use 'mixins/mixins.layout' as mixins2;
+@use 'mixins/mixins.typography' as mixins3;
+@use 'mixins/mixins.forms' as mixins4;
+@use 'mixins/mixins.responsive' as mixins5;
+@use 'mixins/mixins.icons' as mixins6;
+@use 'mixins/mixins.grid' as mixins7;
+@use 'mixins/mixins.animations' as mixins8;
+
+@use 'mixins/mixins.media' as mixins9;
+@use 'mixins/mixins.decorations' as mixins10;
+
+
+
+
+
+
+
+/*= IMPORTS ================================================================*/
+
+
+/// @link https://neat.bourbon.io/docs/2.1.0/
+// @import 'neat';
+
+/// @link https://github.com/sass-mq/sass-mq#how-to-use-it
+// @use 'mq';
+// @import '../../../../../node_modules/select2/dist/css/select2.min.css';
+
+
+
+
+
+/*= BASE STYLES INITIALISATIONS ==============================================*/
+
+
+@include meta.load-css('mixins/mixins.initialisations');
+
+
+
+

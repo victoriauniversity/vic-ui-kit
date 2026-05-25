@@ -1,0 +1,35 @@
+/*============================================================================*\
+| VICTORIA UI TOOLKIT STYLES
+\*============================================================================*/
+
+////
+/// Imports all the dependencies in correct order.
+///
+/// Architecture (lowest to highest specificity) and structure:
+///
+/// 0) CORE     - Fully re-usable SCSS utilitiy variables, mixins and functions.
+/// 1) SETTINGS - Variable overrides of utility SCSS suitable for this project.
+/// 2) PROJECT  - Project-specific SCSS utility variables, mixins and functions.
+/// 3) GENERIC  - Generic definitions applying to everything, such as resets,
+///               normalisations, font sets definitions and others.
+/// 4) ELEMENTS - HTML element definitions (no classes or IDs specified).
+/// 5) OBJECTS  - Simple atomic elements - buttons, inputs, basic typography.
+/// 6) COMPONENTS - More complex structures built from `OBJECTS` and `ELEMENTS`.
+/// 7) TRUMPS   - Overrides properties of any previously used element or
+//                external CSS-only libraries.
+
+
+
+/*= CORE VICTORIA UTILITIES ==================================================*/
+@use '1-settings/settings.__core-overrides';
+@use '0-core/core.vic-utilities';
+
+
+@use '1-settings/settings._defaults' as settings2; /*= IMPORTS AND CONFIG ============================*/
+@use '2-project/' as project2;                    /*= PROJECT-ONLY UTILITIES ========================*/
+@use '3-generic/' as generic3;                    /*= GENERIC =======================================*/
+@use '4-elements/' as elements4;                   /*= ELEMENTS (ATOMS SPECIFIED BY HTML ELEMENT) ====*/
+@use '5-objects/' as objects5;                    /*= OBJECTS (ATOMS SPECIFIED BY CLASS) ============*/
+@use '6-components/' as components6;                 /*= COMPONENTS - MOLECULES ========================*/
+@use '7-patterns/' as patterns7;                 /*= PATTERNS - SINGLE USE COMPONENTS ==============*/
+@use '8-trumps/' as trumps8;                     /*= TRUMP OVERRIDES ===============================*/

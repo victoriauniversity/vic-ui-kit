@@ -1,0 +1,172 @@
+@use "../0-core/mixins/mixins.responsive";
+@use "../0-core/variables/variables._defaults";
+@use "../0-core/variables/variables.box-appearance" as variables3;
+@use "../0-core/variables/variables.colors" as variables4;
+@use "../0-core/variables/variables.layout" as variables2;
+@use "../1-settings/settings._defaults";
+
+$strip-banner-text-bg: settings.$brand !default;
+$strip-banner-border-color: settings.$brand !default;
+
+.promo-panel {
+  &.strip-banner {
+    figure figcaption {
+      padding: 0;
+      max-width: variables.$centered-max-width;
+    }
+
+    figcaption {
+      > div {
+        display: flex;
+        align-items: center;
+      }
+
+      .block {
+        padding: variables2.$gap;
+        text-align: left;
+
+        h1 {
+          margin-bottom: 0;
+          font-size: 3em;
+
+          // IE 10+ fix bg not covering text
+          @media screen and ( -ms-high-contrast: active ), ( -ms-high-contrast: none ) {
+            float: left;
+          }
+        }
+
+        p { font-size: 1.45em; }
+
+        > * {
+          background-color: rgba( $strip-banner-text-bg, .9 );
+        }
+      }
+    }
+
+
+    .block {
+      &:last-child {
+        float: right;
+        width: 100 / 3 * 1%;
+      }
+
+      &:first-child {
+        float: left;
+        padding-bottom: 0;
+        width: 100 / 3 * 2%;
+      }
+    }
+
+
+    @include mixins.breakpoint( $until: tablet ) {
+      border-top: 0;
+
+      figcaption {
+        > div {
+          flex-direction: column;
+        }
+      }
+
+      .block {
+        &:first-child {
+          padding-bottom: 0;
+          width: 100 / 3 * 3%;
+
+          h1 { display: block; }
+        }
+
+        &:last-child { width: 100 / 3 * 3%; }
+      }
+    }
+
+    @include mixins.breakpoint( $until: desktop ) {
+      height: 100%;
+
+      figure {
+        figcaption {
+          h1 { margin-top: 0; }
+
+          .block:first-child {
+            padding-bottom: .5em;
+            width: 100 / 3 * 3%;
+          }
+        }
+      }
+    }
+
+    @include mixins.breakpoint( desktop ) {
+      border-bottom: variables3.$border-width-thick solid $strip-banner-border-color;
+
+      figure {
+        display: block;
+
+        figcaption {
+          margin-top:    10%;
+          margin-bottom: 1em;
+        }
+      }
+    }
+
+    @include mixins.bp-desktop {
+      figure {
+        figcaption { margin-top: 4%; }
+      }
+    }
+
+    @include mixins.bp-tablet {
+      figure { padding-bottom: 1rem; }
+      img { height: 100%; }
+    }
+
+    &.tall {
+      > figure {
+        min-height: 380px;
+
+        figcaption {
+          position: absolute;
+          bottom: 0;
+          margin-bottom: 9px;
+          max-width: 100%;
+
+          > div {
+            max-width: 88rem;
+            margin: 0 auto;
+          }
+        }
+
+        @include mixins.bp-desktop-large {
+          min-height: 440px;
+        }
+      }
+
+      #hubv4 & {
+
+        @include mixins.breakpoint( $from: tablet ) {
+          figcaption {
+            h1, p {
+              background-color: rgba(13, 76, 56, .9);
+            }
+          }
+        }
+
+        @include mixins.breakpoint( $until: tablet ) {
+          figcaption {
+            position: relative;
+            padding: 0;
+
+            .block {
+              padding: 1.5rem;
+              background-color: variables4.$pounamu;
+            }
+
+            h1, p {
+              background-color: transparent;
+            }
+          }
+        }
+      }
+
+    }
+
+  }
+}
