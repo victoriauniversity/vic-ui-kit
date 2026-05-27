@@ -26,7 +26,6 @@ export default defineConfig(({ mode }) => {
         input: [
           resolve(__dirname, 'src/scripts/toolkit.js'),
           resolve(__dirname, 'src/scripts/toolkit-new.js'),
-          resolve(__dirname, 'src/assets/*'),
         ],
         output: {
           globals: {
