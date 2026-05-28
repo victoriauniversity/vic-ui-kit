@@ -1,4 +1,3 @@
-// Настройка метаданных компонента
 export default {
     title: 'Components/Button',
     tags: ['autodocs'],

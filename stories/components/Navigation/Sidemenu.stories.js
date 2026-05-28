@@ -1,0 +1,150 @@
+export default {
+  title: 'Components/Navigation/Sidemenu',
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+### Description
+Left-hand side navigation menu that can accommodate up to 4 levels of structural depth.
+
+### Requirements
+- To enable dynamic expanding/collapsing of nested sub-menus, the framework logic requires tracking expander triggers. This is simulated natively within the story lifecycle context.
+
+### HTML Attributes
+- \`data-gtm-track\` (optional): If specified, streams diagnostic analytical payloads regarding menu actions and panel expansions.
+        `,
+      },
+    },
+  },
+  argTypes: {
+    gtmTrack: { 
+      control: 'boolean', 
+      name: 'Enable GTM Tracking (data-gtm-track)',
+    },
+    mobileToggleLabel: { control: 'text', name: 'Mobile Toggle Title' },
+  },
+  args: {
+    gtmTrack: true,
+    mobileToggleLabel: 'Research menu',
+  },
+  render: (args) => {
+    return `
+    <nav class="sidemenu" role="navigation" data-gtm-track>
+      <!-- Mobile devices *only* sidemenu control -->
+      <h1 class="sidemenu-toggle"><a href="#" title="Show/Hide Research menu">Research menu</a></h1>
+
+      <ul>
+        <!-- Alt Root (1st) level items under the given Hub -->
+        <li class="sidemenu__label"><a href="#" title="">Engage</a></li>
+        
+        <!-- Root (1st) level items under the given Hub -->
+        <li><a class="sidemenu__link--withIcon" href="#" title="">Staff Support <i class="icons8-right-arrow"></i></a></li>
+
+        <li>
+          <a href="#" title="">Research and ethics integrity</a>
+
+          <!-- 2nd level -->
+          <ul>
+            <li><a href="#" title="">General rules</a></li>
+            <li><a href="#" title="">Staff</a></li>
+            <li><a href="#" title="">Research and ethics integrity manual</a></li>
+            <li><a href="#" title="">Responsibilities</a></li>
+          </ul>
+        </li>
+
+        <li class="has-submenu active expanded">
+          <a href="/research-IA/engage-our-talent.html" title="">New research staff and their specialisation</a>
+          <span class="btn-expander" title="Toggle subpages"></span>
+
+          <!-- 2nd level -->
+          <ul>
+            <li><a href="#" title="">Welcome ceremony</a></li>
+            <li><a href="#" title="">Privacy rules</a></li>
+            <li><a href="#" title="">Research departments</a></li>
+
+            <li class="has-submenu active expanded">
+              <a href="#" title="">Contacts</a>
+              <span class="btn-expander" title="Toggle subpages"></span>
+
+              <!-- 3rd level -->
+              <ul>
+                <li><a href="#" title="">Directorate</a></li>
+                <li class="active"><a href="#" title="">General assistance</a></li>
+                <li><a href="#" title="">Emergency issues</a></li>
+                <li><a href="#" title="">E-mail and phone</a></li>
+                <li><a href="#" title="">Guidelines</a></li>
+              </ul>
+
+            </li>
+
+            <li><a href="#" title="">Organisational structure</a></li>
+            <li><a href="#" title="">Human resources and hiring process</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#" title="">Commercialise your research</a></li>
+        <li><a href="#" title="">Research funding and grants</a></li>
+
+        <li>
+            <a href="#" title="">PBRF</a>
+
+            <!-- 2nd level -->
+            <ul>
+              <li><a href="#" title="">Welcome ceremony</a></li>
+              <li><a href="#" title="">Privacy rules</a></li>
+              <li><a href="#" title="">Research departments</a></li>
+
+              <li>
+                <a href="#" title="">Contacts</a>
+
+                  <!-- 3rd level -->
+                  <ul>
+                    <li><a href="#" title="">Directorate</a></li>
+                    <li><a href="#" title="">General assistance</a></li>
+                    <li><a href="#" title="">Emergency issues</a></li>
+                    <li>
+                      <a href="#" title="">E-mail and phone</a>
+
+                      <!-- 4th level -->
+                      <ul>
+                        <li><a href="#" title="">Department of internal relationships</a></li>
+                        <li><a href="#" title="">Department of seriousness relationships</a></li>
+                        <li><a href="#" title="">Direct assistance services</a></li>
+                        <li><a href="#" title="">Lost and found</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#" title="">Guidelines</a></li>
+                  </ul>
+
+              </li>
+
+              <li><a href="#" title="">Organisational structure</a></li>
+              <li><a href="#" title="">Human resources and hiring process</a></li>
+            </ul>
+          </li>
+
+        <li>
+          <a href="#" title="">Workshops, resources and support</a>
+
+          <ul>
+            <li><a href="#" title="">Workshop</a></li>
+            <li><a href="#" title="">Resources</a></li>
+            <li><a href="#" title="">Support</a></li>
+            <li><a href="#" title="">Events</a></li>
+            <li><a href="#" title="">Dates</a></li>
+            <li><a href="#" title="">Contacts</a></li>
+            <li><a href="#" title="">Issues resolution</a></li>
+            <li><a href="#" title="">Framework</a></li>
+            <li><a href="#" title="">Best practices</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#" title="">Supervising research students</a></li>
+      </ul>
+    </nav>
+    `;
+  },
+};
+
+export const Sidemenu = {};

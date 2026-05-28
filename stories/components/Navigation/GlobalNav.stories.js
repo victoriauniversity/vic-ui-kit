@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Nav/GlobalNav',
+  title: 'Components/Navigation/GlobalNav',
   tags: ['autodocs'],
   parameters: {
     docs: {
@@ -146,3 +146,5 @@ export default {
     },
   ],
 };
+
+export const GlobalNav = {};
