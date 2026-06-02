@@ -21,6 +21,7 @@ const config = {
     name: getAbsolutePath("@storybook/html-vite"),
     options: {},
   },
+  staticDirs: ['../dist'],
 };
 
 export default config;

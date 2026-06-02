@@ -11,7 +11,7 @@ export default {
 Strip tiles with built-in accordion panels to expand contextual links and deep-nested directory content.
 
 ### Status Warning
-⚠️ **NOT USED ANYWHERE** — Retain, refactor, and fix style properties before using in production environments.
+**NOT USED ANYWHERE** — Retain, refactor, and fix style properties before using in production environments.
         `,
       },
     },

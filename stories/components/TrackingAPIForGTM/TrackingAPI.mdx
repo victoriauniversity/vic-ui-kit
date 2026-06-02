@@ -1,0 +1,183 @@
+import { Canvas, Meta, Story, Source } from '@storybook/addon-docs/blocks';
+import * as TrackingAPIStories from './TrackingAPI.stories.js';
+
+<Meta title="Components/Tracking API Docs" of={TrackingAPIStories} />
+
+# Google Tag Manager Tracking API
+
+To start using Toolkit's Tracking API for Google Tag Manager, make sure that the following scripts are imported to the page, in the following order:
+
+1. **Google Tag Manager script** snippets in the `<head>` and `<body>` elements.
+2. **jQuery v1.10** and newer.
+3. **toolkit.js** (bundle with all UI toolkit's scripts) or **toolkit.tracking.js** (standalone library for GTM tracking only).
+4. Your custom tracking API calls.
+
+---
+
+### CDN Integration Setup
+
+An example with the standalone tracking library loaded from our CDN:
+
+```html
+<head>
+  <!-- Google Tag Manager scripts *MUST BE* as high as possible in the <head> and <body>! -->
+  <script
+    src="https://jquery.com"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+
+  <script src="https://victoria.ac.nz" type="text/javascript"></script>
+
+  <script>
+    /** Dynamic code to work with Tracking API */
+  </script>
+</head>
+```
+
+---
+
+## Declarative HTML Tracking
+
+When the DOM has been fully initialised, the imported script automatically subscribes any HTML element on a page with the attribute `data-gtm-track` to be tracked and (optionally) sends custom information to Google Tag Manager.
+
+* **`data-gtm-track`**: Receives a *type of interaction* as a value (e.g., `click`). All standard event types specified by MDN are supported.
+* **`id` / `data-gtm-id`**: Defines a unique identifier for a group of related interactions.
+* **`data-gtm-vars`**: Passes a valid Object in a String format using single quotes to accommodate JSON requirements.
+
+### Live Declarative Example
+
+Below is an interactive link that pushes data to GTM on a click event. *Open your browser's developer console to watch the data payload fire.*
+
+<Canvas>
+  <Story name="Declarative Example">
+    {() => {
+      return `
+        <div style="padding: 10px;">
+          <a id="logo" 
+             href="javascript:void(0);" 
+             title="Link to the example page" 
+             data-gtm-track="click" 
+             data-gtm-id="main-logo" 
+             data-gtm-vars='{ "width": "153px", "height": "1003px", "loadingTime": 13.342 }'
+             style="color: #0076d6; font-weight: bold; text-decoration: underline; cursor: pointer;">
+            Link that triggers custom event
+          </a>
+        </div>
+      `;
+    }}
+  </Story>
+</Canvas>
+
+---
+
+## API Architecture Reference
+
+### Constructors & Configurators
+
+*   **`global toolkitTracker( options: Object)`**
+    *   Constructor that overrides base settings.
+    *   Returns object with public methods.
+    *   Recommended for non-ES6 systems.
+    *   Recommended for legacy JS environments.
+*   **`module trackerConfig( options: Object)`**
+    *   Import and invoke this module.
+    *   Overrides settings in ES6 environments.
+*   **`module tracker: Object`**
+    *   Import this explicit module object.
+    *   Accesses public tracking API methods.
+    *   Designed for ES6 JS environments.
+
+### Public API Methods
+
+*   **`shouldTrackElement( element: DOMElement )`**
+    *   Returns true if target exists.
+    *   Checks for `data-gtm-track` attribute.
+    *   Returns false if attribute missing.
+    *   Enables custom tracking toggles via CMS.
+*   **`trackEvent( eventId: String, trackingSource: Object|Event, customData: Object )`**
+    *   Sends tracking payloads to GTM.
+    *   Extracts attributes from an Event source.
+    *   Extracts configurations using interaction presets.
+    *   Pushes non-Event objects unchanged.
+    *   Extends payloads using `customData` parameters.
+*   **`registerForTracking( elements: DOMElement[], eventType: String = 'auto', eventId: String = 'id')`**
+    *   Subscribes elements to user interactions.
+    *   Pushes messages to Tag Manager.
+    *   Defaults `eventType` fallback to `data-gtm-track`.
+    *   Defaults `eventId` fallback to `data-gtm-id`.
+    *   Supports all native MDN events.
+
+### Configuration Object (`options`)
+
+*   **`autoRegister: boolean (default: true)`**
+    *   Enables automatic layout page scraping.
+    *   Subscribes all `data-gtm-track` elements.
+    *   Triggers automatically after DOM initialisation.
+    *   Must define prior to `document.onLoad`.
+
+### Types of Interaction Presets
+
+*   **`auto (default)`**
+    *   Bypasses background automated compilation queues.
+    *   Does not push data layers.
+*   **`click`**
+    *   Fires immediately upon click events.
+    *   Sends `event` string GTM backend identifier.
+    *   Sends `custom.selector` targeted DOM object reference.
+    *   Sends `custom.eventType` click parameter mapping.
+    *   Sends `custom.href` destination link fallback string.
+    *   Sends `custom.text` text content label.
+*   **`any other event type`**
+    *   Supports standard MDN browser event listeners.
+    *   Sends `event` tracking layout ID key.
+    *   Sends `custom.eventType` native interaction name.
+
+Example: Do not automatically register elements with 'data-gtm-track' and define your own behaviour on pre-ES6 or legacy JS system.
+
+---
+
+## Programmatic API Usage (Legacy Environments)
+
+This example disables the automatic scraper via `{ autoRegister: false }` and manually registers components using jQuery selections inside a programmatic workflow loop.
+
+<Canvas>
+  <Story name="Programmatic Execution">
+    {() => {
+      // Execute tracking logic immediately upon Storybook rendering this block context
+      setTimeout(() => {
+        if (window.toolkitTracker && window.jQuery) {
+          const $ = window.jQuery;
+          const tracker = window.toolkitTracker({ autoRegister: false });
+          const logoElement = $('#programmatic-logo');
+          
+          if (tracker.shouldTrackElement(logoElement)) {
+            tracker.registerForTracking(logoElement.toArray(), 'click', 'manual-logo-event');
+          }
+        }
+      }, 50);
+      return `
+        <div style="padding: 10px;">
+          <button id="programmatic-logo" 
+                  data-gtm-track="click"
+                  style="padding: 8px 16px; background-color: #333; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Programmatic API Trigger Button
+          </button>
+        </div>
+      `;
+    }}
+  </Story>
+</Canvas>
+
+### Integration Code Block
+
+```html
+<!-- Native markup implementation logic -->
+<script>
+  var tracker = toolkitTracker({ autoRegister: false });
+
+  var logoElement = \$( '#logo' );
+  if ( tracker.shouldTrackElement( logoElement )) {
+    tracker.registerForTracking( logoElement, 'click' );
+  }
+</script>
+```
