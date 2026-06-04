@@ -1,14 +1,21 @@
 import { defineConfig, loadEnv } from 'vite'
 import { resolve } from 'path';
+import { cpSync } from 'fs';
 
 export default defineConfig(({ mode }) => {
 
   const env = loadEnv(mode, process.cwd(), '')
 
-  console.log(env);
-
   return {
-    plugins: [],
+    plugins: [
+      {
+        name: 'copy-assets',
+        apply: 'build',
+        writeBundle() {
+          cpSync('src/assets', 'dist/assets', { recursive: true });
+        }
+      }
+    ],
     build: {
       outDir: 'dist',
       emptyOutDir: true,
