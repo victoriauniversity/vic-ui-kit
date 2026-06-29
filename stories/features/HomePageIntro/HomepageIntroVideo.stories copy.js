@@ -1,7 +1,7 @@
 import { socialIcons } from '../../../.storybook/assets-config.js'; // eslint-disable-line import/extensions
 
 export default {
-  title: 'Features/Homepage/HomepageIntro',
+  title: 'Features/Homepage/Homepage Intro Video',
   tags: [ 'autodocs' ],
   parameters: {
     docs: {
@@ -16,7 +16,7 @@ A full-width layout sector featuring a promotional introduction text block, loca
 };
 
 // Component Template Generator Function
-export const Template = () => `
+const Template = () => `
     <div class="sector">
         <div class="centraliser">
             <div class="homepage-intro block formatting">
