@@ -595,9 +595,13 @@ const toolbarApi = window.toolkitToolbar || {};
     _titleBasedFilteringRule( element ) {
       if ( !this._searchValue ) return true;
 
-      const itemTitle = element.querySelector( '.title' ).textContent.toLowerCase().trim();
+      const cleanString = (str) => 
+        str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
 
-      return ( itemTitle.indexOf( this._searchValue ) !== -1 );
+      const itemTitle = cleanString(element.querySelector( '.title' ).textContent);
+      const search = cleanString(this._searchValue);
+
+      return ( itemTitle.indexOf( search ) !== -1 );
     }
 
 
