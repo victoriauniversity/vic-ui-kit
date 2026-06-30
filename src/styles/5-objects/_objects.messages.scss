@@ -1,0 +1,288 @@
+@use "../0-core/mixins/mixins.generic";
+@use "../0-core/mixins/mixins.icons" as mixins2;
+@use "../0-core/variables/variables.backgrounds" as variables4;
+@use "../0-core/variables/variables.box-appearance" as variables3;
+@use "../0-core/variables/variables.colors" as variables2;
+@use "../0-core/variables/variables.layout";
+@use "../2-project/project.variables";
+
+/*============================================================================*\
+| MESSAGES
+\*============================================================================*/
+
+////
+/// Atomic properties for messages (notifications, popups etc.)
+///
+/// @group messages
+
+/*= FLASH MESSAGES ===========================================================*/
+
+// Inside a con
+.flash-message {
+  margin-top: variables.$gap-content;
+  margin-bottom: variables.$gap-content;
+  padding: project.$column-padding;
+  color: variables2.$white;
+  border-left: variables3.$border-width-medium solid variables4.$background-opaque-darkest;
+
+  > * {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  // Keep links the same colour as the text
+  a[href] {
+    color: inherit;
+
+    @include mixins.hoverify() {
+      color: inherit;
+    }
+  }
+
+  .formatting & a[href]:visited {
+    color: inherit !important;
+  }
+
+  // Message types
+  &.error {
+    background-color: variables4.$background-danger;
+
+    > * {
+      color: variables2.$color-danger;
+    }
+
+    > h2 {
+      @include mixins2.extend-icon-before(attention);
+    }
+  }
+
+  &.warning {
+    background-color: variables4.$background-warning;
+
+    > * {
+      color: variables2.$color-warning;
+    }
+
+    > h2 {
+      @include mixins2.extend-icon-before(megaphone);
+    }
+  }
+
+  &.info {
+    background-color: variables4.$background-info-light;
+
+    > * {
+      color: variables2.$color-info;
+    }
+
+    > h2 {
+      @include mixins2.extend-icon-before(info);
+    }
+  }
+
+  &.success {
+    background-color: variables4.$background-success;
+
+    > * {
+      color: variables2.$color-success;
+    }
+
+    > h2 {
+      @include mixins2.extend-icon-before(check);
+    }
+  }
+
+  #hubv4 & {
+  //   box-shadow:  0 1px 1px rgba(0,0,0,0.15),
+  //   0 2px 2px rgba(0,0,0,0.15),
+  //   0 4px 4px rgba(0,0,0,0.15),
+  //   0 8px 8px rgba(0,0,0,0.15);
+  //   border-radius: $radius;
+  //   border-left: none;
+
+  //   &.no-icon {
+  //     h2::before {
+  //       content: none;
+  //     }
+  //   }
+
+  //   &.info {
+  //     background-color: $info-new;
+  //     border-left: none;
+
+  //     > * {
+  //       color: $color-info-new;
+  //     }
+  //   }
+  //   &.brand {
+  //     background-color: $pounamu;
+  //     border-left: none;
+
+  //     > * {
+  //       color: $manuka;
+  //     }
+  //   }
+
+    &.plain {
+      background-color: variables2.$off-white;
+      border: 1px solid variables2.$mahoe;
+      border-left: .5rem solid variables2.$pounamu;
+
+      > * {
+        color: variables2.$black-brand;
+      }
+
+      h2,h3,h4 {
+        color: variables2.$pounamu;
+      }
+    }
+
+  //   &.warning {
+  //     background-color: $yellow-strong;
+
+  //     > * {
+  //       color: $black-tundora;
+  //     }
+  //   }
+  //   &.success {
+  //     background-color: $green-killarney;
+
+  //     > * {
+  //       color: $manuka;
+  //     }
+  //   }
+
+  //   &.error {
+  //     background-color: $message-red;
+  //     > * {
+  //       color: $manuka;
+  //     }
+
+  //   }
+
+  }
+}
+
+.highlight-message {
+  display: flex;
+
+  border-left: 5px solid variables2.$green-brand;
+  margin-bottom: 1.5rem;
+
+  &.red {
+    border-left-color: variables2.$red-tamarillo;
+    h3 {
+      color: variables2.$red-tamarillo;
+    }
+  }
+
+  .highlight-image {
+    width: 30%;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .highlight-content {
+    flex: 1 1 70%;
+    padding: 1rem;
+    background-color: variables2.$grey-gallery;
+    > * {
+      margin: 0.5rem 0;
+    }
+
+    a {
+      display: inline;
+      color: variables2.$blue-endeavoura;
+    }
+  }
+
+  .draw-promo & {
+    .highlight-content {
+      flex: 1 1 70%;
+      padding: 1rem;
+      background-color: variables2.$grey-light;
+      > * {
+        margin: 0.5rem 0;
+      }
+
+      a {
+        display: inline;
+        color: variables2.$blue-endeavoura !important;
+      }
+    }
+
+    .button {
+      margin: 0.5rem 0;
+      display: inline-block;
+      &.primary {
+        color: variables2.$white !important;
+      }
+    }
+  }
+}
+//! ==== NEW DESIGN ====
+
+#hubv4 {
+  .highlight-message {
+    // clip-path: polygon(-0.25% -3px, 93.9% -0.75%, 100.2% 99.28%, 0px 100%);
+    // clip-path: polygon(0% 0%, 83% 0, 100% 14%, 100% 100%, 0% 100%);
+    // clip-path: polygon(0% 0%, 94.45% -3px, 100% 24.44%, 100% 100%, 0% 100%);
+    // border-radius: $radius;
+    box-shadow:  0 1px 1px rgba(0,0,0,0.15),
+      0 2px 2px rgba(0,0,0,0.15),
+      0 4px 4px rgba(0,0,0,0.15),
+      0 8px 8px rgba(0,0,0,0.15);
+
+    .highlight-content {
+      background-color: rgb(229, 246, 253);
+      color: rgb(1, 67, 97);
+    }
+    &.primary {
+      // border-color: $miro;
+      border: none;
+
+      .highlight-content {
+        background-color: #fff;
+        border: 1px solid variables2.$miro;
+      }
+    }
+    &.green {
+      border-left-color: variables2.$pounamu;
+      .highlight-content {
+        color: variables2.$pounamu;
+        background-color: variables2.$kohuhu;
+
+        a.button.primary {
+          background-color: variables2.$mahoe;
+          color: variables2.$manuka !important;
+          margin-top: 0.5rem;
+          border-radius: 0;
+          // border: 1px $miro solid;
+          transition: all ease 0.2s;
+          display: inline-block;
+          &:hover {
+            box-shadow: 1.1px 2.2px 2.2px rgba(7, 7, 7, 0.47);
+            color: #fff;
+            background-color: variables2.$pounamu;
+          }
+        }
+      }
+    }
+    &.plain {
+      border-left: none;
+      .highlight-content {
+        background-color: variables2.$off-white;
+        color: variables2.$black-brand;
+      }
+    }
+    &.red {
+      .highlight-content {
+        color: rgb(95, 33, 32);
+        background-color: rgb(253, 237, 237);
+      }
+    }
+  }
+}

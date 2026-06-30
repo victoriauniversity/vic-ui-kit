@@ -1,0 +1,101 @@
+@use "../0-core/mixins/mixins.layout";
+@use "../0-core/mixins/mixins.responsive" as mixins2;
+@use "../0-core/variables/variables.colors" as variables2;
+@use "../0-core/variables/variables.layout";
+@use "../2-project/project.variables";
+
+/*============================================================================*\
+| MEDIA-RELATED OBJECTS
+\*============================================================================*/
+
+////
+/// Specification of media-related atomic objects (images, videos, figures).
+///
+/// @group media
+
+
+
+
+
+/*= IMAGERY ==================================================================*/
+
+
+// Default container - persist images sizing and positioning.
+// Use *ONLY* as a fall-back solution!
+.images {
+  margin-bottom: project.$base-spacing;
+
+  img {
+    @include mixins.size( auto );
+    display: inline-block;
+    margin: 0 variables.$gap-small variables.$gap-small 0;
+  }
+}
+
+img {
+  .a { fill: variables2.$white; } // Make logos white by default
+}
+
+
+
+// Make an image full width when it's placed as a 1st element in the .formatting with .block padding
+img:first-child {
+  main:first-child > .formatting.block:first-child > & {
+    margin-top: variables.$bleed-vertical;
+  }
+
+  .formatting.block > & {
+    @include mixins.bleed-horizontal;
+  }
+}
+
+
+@include mixins2.breakpoint( tablet ) {
+  .formatting {
+    // Inline and floats on devices bigger than 'tablet'
+    .inline,
+    p > img,
+    p > img ~ img {
+      clear: right;
+      float: right;
+      margin-left: variables.$gap-horizontal;
+      width: project.$media-inline-width;
+    }
+  }
+}
+
+@include mixins2.breakpoint( tablet ) {
+  .reset-formatting {
+    // Inline and floats on devices bigger than 'tablet'
+    .inline,
+    p > img,
+    p > img ~ img {
+      clear: initial;
+      float: initial;
+      margin-left: initial;
+      width: initial;
+    }
+  }
+}
+
+
+
+/*= ANY MEDIA ================================================================*/
+#hubv4 :not(.promos) figure {
+  // background-color: $off-white;
+}
+
+figure {
+
+  #hubv4 & {
+  }
+  .formatting .grid & {
+    margin-bottom: variables.$gap-vertical;
+  }
+}
+
+figure {
+  .reset-formatting .grid & {
+    margin-bottom: initial;
+  }
+}

@@ -1,0 +1,590 @@
+@use "../0-core/functions/functions.builders";
+@use "../0-core/mixins/mixins.decorations" as mixins5;
+@use "../0-core/mixins/mixins.generic";
+@use "../0-core/mixins/mixins.layout" as mixins3;
+@use "../0-core/mixins/mixins.responsive" as mixins4;
+@use "../0-core/mixins/mixins.typography" as mixins2;
+@use "../0-core/variables/variables.characters";
+@use "../0-core/variables/variables.colors" as variables4;
+@use "../0-core/variables/variables.layout" as variables2;
+@use "../0-core/variables/variables.typography" as variables3;
+@use "../2-project/project.variables";
+
+/*============================================================================*\
+| STANDARD FORMATTING OBJECTS
+\*============================================================================*/
+
+////
+/// Formatting of *any* user-created content.
+///
+/// **Note**: Whenever you need to display user-formatted content, simply apply
+/// 'formatting' class to the containing element.
+///
+/// @group typography
+
+$subtitle-separator-character: variables.$character-middle-dot;
+
+.formatting {
+  article {
+    margin-bottom: variables2.$gap-content;
+  }
+
+  p {
+    margin-bottom: variables2.$gap-content;
+    color: variables3.$text-color;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Links
+
+  a {
+    @include mixins.hoverify() {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: variables3.$link-hover-color;
+        text-decoration: variables3.$link-hover-decoration;
+      }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: variables3.$link-color;
+      text-decoration: variables3.$link-decoration;
+    }
+
+    &:visited {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: variables3.$link-visited-color;
+      }
+    }
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  ul,
+  ol,
+  table,
+  figcaption {
+    a {
+      &:not(.button):visited {
+        color: variables3.$link-visited-color;
+      }
+      @include mixins2.linkify-text; // *MUST* come after :visited
+    }
+  }
+
+  // Headings
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: variables2.$gap-content;
+
+    // Notes within headings
+    > em {
+      margin-left: functions.em(variables2.$gap-small);
+      font-style: normal;
+      color: variables3.$text-weakest-color;
+    }
+  }
+
+  // Top margins for formatted headings to improve block separation and readability
+  h2:not(:first-child) {
+    margin-top: variables2.$gap-content * 1.75;
+  }
+  h3:not(:first-child) {
+    margin-top: variables2.$gap-content * 1.65;
+  }
+  h4:not(:first-child) {
+    margin-top: variables2.$gap-content * 1.5;
+  }
+
+  // Subtitle
+  .subtitle {
+    display: inline-block;
+    margin-bottom: variables2.$gap-content;
+    color: variables3.$text-weaker-color;
+    line-height: variables3.$text-stacked-line-height;
+
+    // Secondary information of lower importance
+    strong + span {
+      @include mixins.before($text: $subtitle-separator-character) {
+        margin-right: functions.em(variables2.$gap-third);
+        margin-left: functions.em(variables2.$gap-small);
+        font-weight: variables3.$weight-bold;
+      }
+    }
+  }
+
+  // Subheading under the main title
+  h1 + .subtitle {
+    // Bleeding for the places in Squiz where the HTML structure cannot be implemented
+    margin-top: variables2.$bleed-content - variables2.$bleed-half;
+    font-size: variables3.$text-size-5; // Match .intro
+  }
+
+  // Header section that restarts the vertical alignment
+  > header {
+    margin-bottom: variables2.$gap-content;
+
+    > h1 {
+      margin-bottom: variables2.$gap-half;
+    }
+    > h1 + .subtitle {
+      margin-top: 0;
+    } // Reset negative bleeding if the header is in place
+  }
+
+  // An abstract / page detail / introduction / summary
+
+  .intro {
+    margin-top: variables2.$gap-vertical;
+    font-size: variables3.$text-size-5;
+    font-weight: variables3.$weight-semibold;
+    color: variables4.$black-tundora;
+  }
+
+  // Formatted imagery
+
+  .inline {
+    clear: right;
+  }
+
+  // Default image - full width
+  .inline,
+  .portrait,
+  > img,
+  p > img,
+  p > img ~ img {
+    @include mixins3.size(100%, auto);
+    margin-bottom: variables2.$gap-half;
+  }
+
+  // Portrait size inline media
+  .portrait {
+    float: right;
+    margin-left: variables2.$gap-horizontal;
+    width: project.$media-inline-portrait-width;
+  }
+
+  // Lists
+
+  ul,
+  ol {
+    margin-bottom: variables2.$gap-content + variables2.$gap-third; // Increase the gap
+    padding-left: variables2.$gap-horizontal;
+
+    li {
+      margin-bottom: functions.em(variables2.$gap-third);
+      padding-left: functions.em(variables2.$gap-small);
+      list-style-position: outside;
+    }
+
+    ul,
+    ol {
+      margin: variables2.$gap-third 0 variables2.$gap-half;
+    }
+  }
+
+  ul {
+    li {
+      list-style-type: square;
+    }
+    ul li {
+      list-style-type: circle;
+    }
+  }
+
+  @include mixins4.breakpoint(tablet) {
+    // Add bottom padding to visually separate content from footer
+    .layout main > &,
+    .layout aside > & {
+      &:last-child {
+        padding-bottom: variables2.$gap-double;
+      }
+    }
+  }
+
+  // Separators positioning
+  hr {
+    margin: variables2.$gap-larger 0;
+  }
+}
+
+.reset-formatting {
+  article {
+    margin-bottom: initial;
+  }
+
+  p {
+    margin-bottom: initial;
+    color: inherit;
+    &:last-child {
+      margin-bottom: initial;
+    }
+  }
+
+  // Links
+
+  a {
+    @include mixins.hoverify() {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: inherit;
+        text-decoration: initial;
+      }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: inherit;
+      text-decoration: initial;
+    }
+
+    &:visited {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: inherit;
+      }
+    }
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  ul,
+  ol,
+  table,
+  figcaption {
+    a {
+      &:not(.button):visited {
+        color: inherit;
+      }
+      @include mixins2.linkify-text; // *MUST* come after :visited
+    }
+  }
+
+  // Headings
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: initial;
+
+    // Notes within headings
+    > em {
+      margin-left: initial;
+      font-style: inherit;
+      color: inherit;
+    }
+  }
+
+  // Top margins for formatted headings to improve block separation and readability
+  h2:not(:first-child) {
+    margin-top: initial;
+  }
+  h3:not(:first-child) {
+    margin-top: initial;
+  }
+  h4:not(:first-child) {
+    margin-top: initial;
+  }
+
+  // Subtitle
+  .subtitle {
+    display: initial;
+    margin-bottom: initial;
+    color: inherit;
+    line-height: inherit;
+
+    // Secondary information of lower importance
+    // strong + span {
+    strong + span::before {
+      // @include before( $text: $subtitle-separator-character ) {
+      //   margin-right: _em( $gap-third );
+      //   margin-left:  _em( $gap-small );
+      //   font-weight:  $weight-bold;
+      // }
+      position: initial;
+      display: inline;
+      content: initial;
+      margin-right: initial;
+      margin-left: initial;
+      font-weight: inherit;
+    }
+  }
+
+  // Subheading under the main title
+  h1 + .subtitle {
+    // Bleeding for the places in Squiz where the HTML structure cannot be implemented
+    margin-top: initial;
+    font-size: inherit; // Match .intro
+  }
+
+  // Header section that restarts the vertical alignment
+  > header {
+    margin-bottom: initial;
+
+    > h1 {
+      margin-bottom: initial;
+    }
+    > h1 + .subtitle {
+      margin-top: initial;
+    } // Reset negative bleeding if the header is in place
+  }
+
+  // An abstract / page detail / introduction / summary
+
+  .intro {
+    margin-top: initial;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+  }
+
+  // Formatted imagery
+
+  .inline {
+    clear: initial;
+  }
+
+  // Default image - full width
+  .inline,
+  .portrait,
+  > img,
+  p > img,
+  p > img ~ img {
+    // @include size( 100%, auto );
+    height: initial;
+    width: initial;
+    margin-bottom: initial;
+  }
+
+  // Portrait size inline media
+  .portrait {
+    float: initial;
+    margin-left: initial;
+    width: initial;
+  }
+
+  // Lists
+
+  ul,
+  ol {
+    margin-bottom: initial; // Increase the gap
+    padding-left: initial;
+
+    li {
+      margin-bottom: initial;
+      padding-left: initial;
+      list-style-position: inherit;
+    }
+
+    ul,
+    ol {
+      margin: initial;
+    }
+  }
+
+  ul {
+    li {
+      list-style-type: inherit;
+    }
+    ul li {
+      list-style-type: inherit;
+    }
+  }
+
+  @include mixins4.breakpoint(tablet) {
+    // Add bottom padding to visually separate content from footer
+    .layout main > &,
+    .layout aside > & {
+      &:last-child {
+        padding-bottom: initial;
+      }
+    }
+  }
+
+  // Separators positioning
+  hr {
+    margin: initial;
+  }
+}
+
+/*= WIDGET-BAR CONTENT FORMATTING DIFFERENCES ================================*/
+
+$widgetbar-h2-font-size: variables3.$h4-size;
+$widgetbar-h3-font-size: variables3.$h5-size;
+$widgetbar-h4-font-size: variables3.$h6-size;
+
+aside > .formatting {
+  > article:not(:last-child) {
+    margin-bottom: variables2.$gap-larger;
+  }
+
+  // Heading
+  h2 {
+    font-size: $widgetbar-h2-font-size;
+
+    // Pre-heading delimiting line
+    @include mixins5.separator-strip() {
+      margin-bottom: functions.em(variables2.$gap-tiny);
+    }
+  }
+
+  // Subheadings
+  h3,
+  h4 {
+    color: variables3.$text-weaker-color;
+    margin-bottom: variables2.$gap-third;
+
+    &:not(:first-child) {
+      margin-top: variables2.$gap-half;
+    }
+  }
+
+  h3 {
+    font-size: $widgetbar-h3-font-size;
+  }
+  h4 {
+    font-size: $widgetbar-h4-font-size;
+  }
+}
+
+/*= SPECIAL LINKS ============================================================*/
+
+// 'See more' link
+a.link-more {
+  @include mixins2.linkify-text;
+  float: right;
+  order: variables2.$order-last;
+}
+
+/*= TYPOGRAPHICAL UTILITIES ==================================================*/
+
+// Breaks the page and forcefully clears the floating
+.break {
+  overflow: hidden;
+  visibility: hidden;
+  display: block;
+  width: 100%;
+
+  .formatting > & {
+    margin-bottom: variables2.$gap-content;
+  }
+}
+
+//! ==== NEW DESIGN ====
+
+body#hubv4 {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  a,
+  li,
+  ul,
+  .tereo-h1,p,
+  button {
+    font-family: "Inter", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    // color: $pounamu;
+  }
+
+  // Flex h1 of page on non-hub pages. For save page icon alignment
+  &:not(.hub-page) {
+    .content-panel {
+      main {
+        h1 {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+
+  .tereo-h1 {
+    display: block;
+    color: variables4.$black-tundora;
+    margin-bottom: .25rem;
+  }
+
+  .formatting h1,
+  h1,
+  h2,
+  .tereo-h1 {
+    font-weight: 700;
+  }
+  aside > .formatting {
+    h2 {
+      font-size: 1.4rem;
+    }
+    h3 {
+      font-size: 1.2rem;
+    }
+  }
+  .content-panel {
+    main {
+      h1, .h1, .tereo-h1 {
+        font-size: 2.4rem;
+      }
+      h2, .h2 {
+        font-size: 1.8rem;
+      }
+      h3, .h3 {
+        font-size: 1.6rem;
+      }
+    }
+  }
+}

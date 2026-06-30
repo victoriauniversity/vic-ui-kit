@@ -1,0 +1,131 @@
+@use "../0-core/mixins/mixins.generic";
+@use "../0-core/mixins/mixins.icons" as mixins2;
+@use "../0-core/mixins/mixins.responsive" as mixins3;
+@use "../0-core/variables/variables.colors";
+@use "../0-core/variables/variables.layout" as variables2;
+@use "../2-project/project.variables";
+
+
+/* ===== PAGINATION =================================================== */
+
+
+.pagination {
+  @include mixins.clearfix;
+
+  display:    flex;
+  text-align: right;
+
+  // Placed on the very BEGINNING of the section
+  &:last-child {
+    padding-top: project.$base-spacing;
+    border-top: 1px solid variables.$grey-alto;
+  }
+
+  .button {
+    margin-bottom: .4rem;
+    background-color: variables.$grey-alto;
+    color: variables.$black;
+
+    &:hover { background-color: variables.$grey; }
+
+    // Currently visited page
+    &.active {
+      background-color: variables.$grey;
+      color: variables.$white;
+    }
+
+    > .icon { display: none; }
+  }
+
+  // 'Previous page' button/link
+  .previous {
+    margin-right: variables2.$gap-small;
+    @include mixins2.extend-icon-before( arrow-left );
+  }
+
+  // 'Next page' button/link
+  .next {
+    order: 3;
+    margin-left: variables2.$gap-small;
+
+    @include mixins2.extend-icon-after( arrow-right );
+  }
+
+  .previous,
+  .next {
+    display: inline-block;
+    white-space: nowrap;
+    align-self: flex-start;
+  }
+
+  .pages {
+    flex-grow: 1;
+    order: 2;
+    padding: 0 variables2.$gap-half;
+    text-align: center;
+
+    // '...'
+    > .icon { margin: 0 variables2.$gap-third; }
+  }
+
+  @include mixins3.bp-mobile {
+    display: block;
+    text-align: center;
+
+    .previous,
+    .next {
+      float: none;
+    }
+
+    .pages {
+      padding: initial;
+      text-align: inherit;
+    }
+  }
+
+  .p-search & {
+
+    @include mixins3.breakpoint($until: tablet) {
+      display: flex !important;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      p {
+        order: 0;
+        flex: 1 1 100% !important;
+        margin-bottom: .5rem !important;
+      }
+
+      .button.previous {
+        order: 1;
+      }
+      .button.next {
+        order: 2;
+      }
+    }
+  }
+}
+
+.pagination--alpha {
+  padding: variables2.$gap variables2.$gap-half;
+  background: variables.$grey-alto;
+
+  .button {
+    background: variables.$white;
+    @include mixins3.breakpoint(desktop) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.pagination__list {
+  margin: 0 !important; //TODO - fix specificity across the board..
+
+  li {
+    display: inline-block;
+    list-style: none;
+
+    @include mixins3.breakpoint(desktop) {
+      margin: variables2.$gap-small 0 !important; //TODO - fix specificity across the board..
+    }
+  }
+}

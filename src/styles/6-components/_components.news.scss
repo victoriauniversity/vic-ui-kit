@@ -1,0 +1,187 @@
+@use "../0-core/mixins/mixins.generic" as mixins2;
+@use "../0-core/mixins/mixins.layout" as mixins3;
+@use "../0-core/mixins/mixins.responsive";
+@use "../0-core/variables/variables.box-appearance" as variables2;
+@use "../0-core/variables/variables.colors" as variables3;
+@use "../0-core/variables/variables.layout";
+@use "../2-project/project.variables";
+
+/** News overview (list of articles) */
+
+$media-landscape-dynamic-width: 35%;
+$media-portrait-dynamic-width:  25%;
+
+.news {
+  time { display: block; }
+
+  .media {
+    .embed,
+    img {
+      margin-bottom: 0; // Reset
+    }
+  }
+
+  @include mixins.breakpoint( tablet ) {
+    // Has got `media` or another add-on
+    .summary { overflow: hidden; }
+
+    .media {
+      float: right;
+      margin-left: project.$column-padding;
+      width: $media-landscape-dynamic-width;
+
+      // Image with portrait-like width to height ratio
+      &.portrait {
+        float: right;
+        width: $media-portrait-dynamic-width;
+        text-align: right;
+      }
+    }
+  }
+
+  @include mixins.breakpoint( $until: tablet ) {
+    .media { margin-bottom: 1em; }
+  }
+}
+
+// news section for horizontal grid
+.news-row {
+  header {
+    margin: variables.$gap-vertical 0;
+
+    h2 { flex-grow: 1; }
+
+    .link-more {
+      margin-left: variables.$gap-horizontal;
+      white-space: nowrap;
+    }
+
+    @include mixins.breakpoint( tablet ) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .news {
+    padding-left: 0;
+
+    article { margin-bottom: variables.$gap-content; }
+
+    li {
+      @include mixins2.clearfix;
+      margin-bottom: 0;
+      border-bottom: variables2.$border;
+      list-style: none;
+    }
+
+    @include mixins.breakpoint( $until: desktop ) {
+      li {
+        padding: 0;
+        margin-bottom: variables.$gap-vertical;
+      }
+    }
+
+    @include mixins.breakpoint( desktop ) {
+      @include mixins3.bleed-horizontal;
+      display: flex;
+      flex-wrap: wrap;
+
+      li {
+        position: relative;
+        padding: variables.$gap-half variables.$gap-vertical;
+        width: ( 100% / 3 );
+        border-bottom: 0;
+
+        // Vertical separator
+        //FIXME: Overkill, simplify using available mixins
+        &:not(:nth-child( 3n )) {
+          @include mixins2.after( $display: block, $position: absolute ) {
+            @include mixins3.size( 1px, 75% );
+            top: 50%;
+            right: 0;
+            background-color: variables3.$grey-alto;
+            transform: translateY( -50% );
+          }
+        }
+      }
+
+    }
+  }
+
+  #hubv4 & {
+
+    header {
+      a.link-more {
+        @extend .button !optional;
+
+        text-decoration: none;
+      }
+    }
+    .news {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+
+      margin: 0;
+      width: 100%;
+
+      @include mixins.breakpoint( $until: tablet ) {
+        grid-template-columns: 1fr;
+      }
+      > li {
+        border: 1px solid variables3.$miro;
+        padding: 1.56rem;
+        width: 100%;
+        background-color: variables3.$off-white;
+
+        background-image: url(https://www.wgtn.ac.nz/__data/assets/git_bridge/0005/1778018/dist/images/patterns/pattern-05.svg);
+        background-repeat: no-repeat;
+        background-size: 250px;
+        background-position: -100px;
+
+        time {
+          color: variables3.$black-brand;
+          font-weight: 500;
+        }
+
+        h2,h3,h4 {
+
+          a {
+            color: variables3.$pounamu;
+          }
+        }
+
+        &::after {
+          content: none;
+        }
+      }
+    }
+  }
+}
+
+/* List of news articles on content page */
+
+.content-panel {
+  article.news-commentary {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: variables2.$border;
+
+    > .summary {
+      h3,
+      h4,
+      p {
+        margin-bottom: variables.$gap-small;
+      }
+    }
+  }
+}
+
+#hubv4 .news-widget {
+
+  .summary {
+    time {
+      color: variables3.$black-emperor;
+    }
+  }
+}

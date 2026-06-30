@@ -1,0 +1,46 @@
+@use "../0-core/variables/variables.tables";
+@use "../0-core/variables/variables.typography" as variables2;
+
+/*============================================================================*\
+| TABLE-RELATED ELEMENTS
+\*============================================================================*/
+
+////
+/// High-level definitions of table HTML elements.
+///
+/// @group tables
+
+
+
+
+
+table {
+  width: 100%;
+
+  th,
+  td {
+    padding:    variables.$table-cell-padding;
+    text-align: left;
+  }
+
+  th {
+    background-color: variables.$table-heading-background;
+    font-weight:      variables2.$weight-bold;
+
+    strong,
+    b {
+      font-weight: inherit;
+    }
+  }
+
+  td { border-bottom: variables.$table-border; }
+
+  img {
+    display: inline-block;
+    width: auto;
+  }
+}
+
+
+
+

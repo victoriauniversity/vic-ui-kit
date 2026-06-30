@@ -1,0 +1,274 @@
+@use "../../0-core/functions/functions.builders";
+@use "../../0-core/mixins/mixins.icons" as mixins2;
+@use "../../0-core/mixins/mixins.responsive" as mixins3;
+@use "../../0-core/mixins/mixins.typography";
+@use "../../0-core/variables/variables.colors" as variables3;
+@use "../../0-core/variables/variables.layout" as variables2;
+@use "../../0-core/variables/variables.typography";
+@use "../../2-project/project.variables";
+
+/*============================================================================*\
+| NAVIGATION - BREADCRUMBS
+\*============================================================================*/
+
+////
+/// Breadcrumb-like main navigational component.
+///
+/// @group navigation
+
+$breadcrumbs-size: project.$navigation-primary-item-size;
+$breadcrumbs-separator-color: project.$icon-weakest-color;
+
+$breadcrumbs-ellipsis-max-width: 18rem;
+
+.breadcrumbs {
+  font-family: variables.$heading-family;
+  font-size: $breadcrumbs-size;
+  letter-spacing: project.$navigation-letter-spacing;
+
+  a {
+    @include mixins.link-underline;
+  }
+
+  // Breadcrumb item (current page and links)
+  > li {
+    display: inline;
+
+    // First item? => Home with icon
+    &:first-child a {
+      @include mixins2.extend-icon-before(home) {
+        margin-right: functions.em(variables2.$gap-small);
+        vertical-align: 0;
+        font-size: variables.$text-size-tiny;
+        text-decoration: none;
+      }
+    }
+
+    // Separator
+    @include mixins2.extend-icon-after(triangle-right) {
+      margin: 0 functions.em(variables2.$gap-small);
+      font-size: variables.$text-size-tiny;
+      color: $breadcrumbs-separator-color;
+    }
+
+    // Active page
+    &:last-child {
+      font-weight: variables.$weight-semibold;
+      color: variables.$text-weaker-color;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  @include mixins3.breakpoint($until: desktop) {
+    > li {
+      white-space: nowrap;
+    }
+
+    > li,
+    a {
+      display: inline-block;
+    }
+
+    a,
+    li:last-child {
+      overflow: hidden;
+      vertical-align: middle;
+      text-overflow: ellipsis;
+      max-width: $breadcrumbs-ellipsis-max-width;
+      white-space: nowrap;
+    }
+  }
+
+  // If used within content panel, drop bottom padding to avoid double margins
+  .content-panel & {
+    padding-bottom: 0;
+  }
+
+  .breadcrumbs-full & {
+    padding: 1rem 1.5rem;
+
+    li {
+      font-size: 90%;
+    }
+  }
+}
+
+.breadcrumbs-full {
+  width: 100%;
+
+  .breadcrumbs {
+    display: flex;
+    > li {
+      display: flex;
+      align-items: center;
+      &:after {
+        content: "";
+      }
+    }
+
+    a {
+      &:before {
+        top: 2px;
+      }
+    }
+  }
+}
+
+//! ==== NEW DESIGN ====
+
+/// @group navigation
+
+$breadcrumbs-size: project.$navigation-primary-item-size;
+$breadcrumbs-separator-color: variables3.$kohuhu;
+
+$breadcrumbs-last-child: variables3.$kohuhu;
+
+$breadcrumbs-ellipsis-max-width: 18rem;
+
+// Adjust breadcrumbs for intranet
+#hubv4 {
+  &.intranet-home {
+    nav {
+      .breadcrumbs {
+        padding: 1rem;
+      }
+    }
+  }
+
+  nav {
+    .breadcrumbs {
+      font-family: "Inter", sans-serif;
+      font-size: $breadcrumbs-size;
+      letter-spacing: project.$navigation-letter-spacing;
+      margin-bottom: 0;
+      display: flex;
+      overflow: hidden;
+      flex-wrap: wrap;
+      @include mixins3.breakpoint($until: desktop) {
+        margin: 1rem .75rem;
+        margin-top: 0;
+      }
+      &.block {
+        padding-top: .25rem;
+        padding-bottom: .25rem;
+        margin-bottom: 0;
+        padding-right: 0.75rem;
+        padding-left: 0.75rem;
+      }
+
+      a {
+        color: variables3.$pounamu;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      // Breadcrumb item (current page and links)
+      > li {
+        background-color: variables3.$off-white;
+        display: flex;
+        font-size: 90%;
+        font-size: .9rem;
+        align-items: center;
+        padding: 0.5em 1em;
+        position: relative;
+        padding-left: 1.5em;
+        @include mixins3.breakpoint($until: desktop) {
+          padding: 0.5em 0.5em;
+        }
+
+        &:nth-last-child(2) {
+          &:before {
+            display: none;
+          }
+        }
+
+        &:after {
+          content: "\f156";
+          font-family: "Favorites";
+          font-style: normal;
+          font-weight: normal;
+          font-variant: normal;
+          position: relative;
+          line-height: 1;
+          right: -20px;
+          font-size: 20px;
+          text-decoration: inherit;
+          text-rendering: optimizeLegibility;
+          text-transform: none;
+          color: variables3.$pounamu;
+          margin: 0 0.3125em;
+          @include mixins3.breakpoint($until: desktop) {
+            font-size: 15px;
+            right: -5px;
+          }
+        }
+
+        // First item? => Home with icon
+        &:first-child a {
+          @include mixins2.extend-icon-before(home) {
+            margin-right: functions.em(variables2.$gap-small);
+            vertical-align: 0;
+            font-size: variables.$text-size-tiny;
+            text-decoration: none;
+          }
+        }
+
+        // Active page
+        &:last-child {
+          font-weight: variables.$weight-semibold;
+          padding-right: 1.5em;
+
+          &:after {
+            content: "";
+            position: absolute;
+            right: -20px;
+            display: block;
+            margin: 0;
+            height: 100%;
+            background-color: variables3.$off-white;
+            top: 0;
+            width: 20px;
+            clip-path: polygon(100% 45%, 0% 0%, 0% 100%);
+            @include mixins3.breakpoint($until: desktop) {
+              // display: none;
+            }
+          }
+        }
+      }
+
+      @include mixins3.breakpoint($until: desktop) {
+        > li {
+          white-space: nowrap;
+        }
+
+        a,
+        li:last-child {
+          overflow: hidden;
+          overflow: visible;
+          white-space: initial;
+          text-overflow: initial;
+          max-width: initial;
+          // vertical-align: middle;
+          // text-overflow: ellipsis;
+          // max-width: $breadcrumbs-ellipsis-max-width;
+          // white-space: nowrap;
+        }
+      }
+
+      // If used within content panel, drop bottom padding to avoid double margins
+      .content-panel & {
+        padding-bottom: 0;
+      }
+    }
+    &.breadcrumbs-full {
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+    }
+  }
+}

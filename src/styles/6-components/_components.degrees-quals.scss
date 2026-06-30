@@ -1,0 +1,160 @@
+@use "sass:color";
+@use "../0-core/mixins/mixins.grid" as mixins2;
+@use "../0-core/mixins/mixins.responsive";
+@use "../0-core/variables/variables.colors";
+@use "../0-core/variables/variables.layout" as variables2;
+@use "../2-project/project.variables";
+
+// ========================================
+// ======== Degrees & Qualifications block on homepages
+// ========================================
+
+//---- Settings ---
+$sub-title-color: rgba( variables.$white, .75 );
+
+
+.degrees-quals {
+  h1 { margin: 1em 0 .7em; }
+
+  &.tile-grid {
+    margin-bottom: project.$base-spacing;
+
+    .tiles-wrap {
+      li.tile {
+        margin-bottom: .5rem;
+        height: auto;
+
+        .tile-text {
+          position: relative;
+
+          a { padding: 1em; }
+
+          .tile-title {
+            margin-bottom: 1em;
+            padding: 0;
+          }
+
+          .sub-title {
+            margin: 0;
+            color: $sub-title-color;
+          }
+
+          .title-break {
+            margin-bottom: .5em;
+            width: 30px;
+            border-top: 2px solid $sub-title-color;
+          }
+
+          @include mixins.breakpoint( desktop ) {
+            min-height: 140px;
+          }
+        }
+
+      }
+    }
+  }
+
+
+  // -------------------------
+  // -------------------------
+  // Overrides and unquie styles on the tile-grid for degrees-qual only
+  // -------------------------
+  &.ui-update.tile-grid {
+    margin-bottom: project.$base-spacing;
+
+    .tiles-wrap {
+      li.tile {
+        margin-bottom: .5rem;
+
+        .tile-text {
+          position: relative;
+          width: 100%;
+          min-height: auto;
+          background-color: variables.$grey-alto;
+
+          a { padding: 1em; }
+
+          // TODO: Refactor & Lower the depth
+          .tile-title {
+            margin-bottom: 0;
+            padding: 0;
+
+            h2 { color: variables.$green-brand; }
+            i { color: variables.$black-emperor; }
+          }
+
+          .sub-title {
+            margin: 0;
+            color: variables.$black-emperor;
+          }
+
+          .title-break {
+            margin-bottom: .15em;
+            width: 30px;
+            border-top: 2px solid variables.$grey;
+          }
+
+          @include mixins.breakpoint( tablet ) {
+            min-height: 7.5rem;
+          }
+        }
+
+        @include mixins.breakpoint( desktop ) {
+          clear: none; // Reset to prevent inheritance issues
+          margin: 0; // Reset to prevent inheritance issues
+          @include mixins2.column( 2, variables2.$gap-half );
+          margin-bottom: variables2.$gap-half;
+          max-height: auto;
+        }
+      }
+    }
+  }
+
+  &.tile-filter-tags {
+
+
+
+    .quals-filter {
+      margin-bottom: variables2.$gap-content;
+
+      label { font-size: 1.2em; }
+    }
+
+    .tile {
+      &.is-not-matching {
+        display: none;
+      }
+      &.hide-filter {
+        display: none;
+      }
+    }
+
+    #hubv4 & {
+      .quals-filter {
+        display: flex;
+        column-gap: .5rem;
+        flex-wrap: wrap;
+
+        .tag {
+          background-color: variables.$manuka;
+          border-color: variables.$kohuhu;
+          color: variables.$pounamu;
+          line-height: 1.2;
+          padding: 0.45rem 0.6rem;
+
+          &.tag-active {
+            border-color: variables.$pounamu;
+            background-color: color.adjust(variables.$kohuhu, $lightness: 90%);
+            filter: drop-shadow(2px 2px 2px rgba(28, 26, 26, .25));
+            // border-width: 2px;
+          }
+        }
+
+        label {
+          width: 100%;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

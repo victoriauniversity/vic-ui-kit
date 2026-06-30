@@ -1,0 +1,412 @@
+@use "../0-core/mixins/mixins.decorations";
+@use "../0-core/mixins/mixins.layout" as mixins3;
+@use "../0-core/mixins/mixins.responsive" as mixins2;
+@use "../0-core/variables/variables.backgrounds" as variables3;
+@use "../0-core/variables/variables.box-appearance" as variables2;
+@use "../0-core/variables/variables.colors" as variables4;
+@use "../0-core/variables/variables.grid" as *;
+@use "../0-core/variables/variables.layout";
+@use "components.staff-profiles";
+
+@use "bourbon-neat" as *;
+
+$card-padding: variables.$gap-larger;
+$card-shadow: variables2.$shadow-shallow;
+
+$card-background-color: variables3.$background-light;
+
+.card-panel {
+  display: flex;
+  justify-content: space-between;
+  padding: variables.$gap-vertical / 2 0;
+  flex-wrap: wrap;
+
+  .card {
+    flex: 0 1 auto;
+    margin-bottom: variables.$gap-vertical;
+    padding: $card-padding;
+    width: calc(50% - #{variables.$gap-vertical / 2});
+    background-color: variables4.$grey-gallery;
+    box-shadow: $card-shadow;
+
+
+    > h1,
+    > h2,
+    > h3,
+    > h4 {
+      &:first-child {
+        position: relative;
+
+        @include mixins.separator-strip(3.125rem, variables2.$border-width-thick, after) {
+          margin-top: variables.$gap-half;
+        }
+      }
+    }
+
+    &:nth-last-child(2),
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .card-panel--stacked & {
+      @include grid-column(12, $neat-grid); //full width..
+    }
+  }
+
+  .contact-card {
+    padding: $card-padding;
+    width: 100%;
+    background-color: variables4.$grey-gallery;
+    box-shadow: $card-shadow;
+
+    .contact-card-details {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5em;
+      padding: 0 0 1em;
+
+      > * {
+        padding-right: 2.5em;
+        width: 50%;
+
+        @include mixins2.breakpoint($until: desktop) {
+          padding-right: 0;
+        }
+      }
+
+      .contact-title {
+        h3 {
+          color: variables4.$black-tundora;
+        }
+      }
+
+      .contact-info {
+        // TODO: Refactor & flatten the depth!
+        ul {
+          li {
+            list-style: none;
+
+            span,
+            a {
+              color: variables4.$black-tundora;
+              font-size: 1.3em;
+              font-style: normal;
+            }
+          }
+        }
+      }
+
+      @include mixins2.breakpoint($until: tablet) {
+        margin-bottom: 0;
+        flex-direction: column;
+
+        > * {
+          width: 100%;
+
+          &:first-child {
+            margin-bottom: 1em;
+          }
+
+          ul {
+            padding-left: 0;
+          }
+        }
+      }
+    }
+
+    // embed wrapper automatically applied to iframes
+    .embed {
+      margin: 0 variables.$bleed-larger variables.$bleed-larger;
+      padding: 0;
+      height: auto;
+
+      iframe {
+        position: static;
+        display: block;
+      }
+    }
+  }
+
+  &.icon-cards {
+    .card {
+      text-align: center;
+
+      i {
+        padding-left: 0.5em;
+        font-size: 5rem;
+        color: variables4.$green-brand;
+      }
+
+      p {
+        text-align: left;
+      }
+    }
+  }
+
+  @include mixins2.breakpoint($until: tablet) {
+    flex-direction: column;
+
+    .card {
+      width: 100%;
+
+      .button + .button {
+        margin-top: variables.$gap-half;
+      }
+
+      &:nth-last-child(2) {
+        margin-bottom: 1.5em;
+      }
+    }
+  }
+
+  &.calendar-cards {
+    .card-filter {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 1rem;
+
+      > div {
+        &:first-child {
+          margin-right: 1rem;
+        }
+      }
+
+      input {
+        padding: 0.5rem;
+        margin-left: 1rem;
+      }
+
+      .tags {
+        display: inline-block;
+        margin-bottom: 0;
+        margin-left: 1rem;
+
+        .tag {
+          cursor: pointer;
+          &:not(.selected) {
+            span {
+              display: none;
+            }
+          }
+        }
+      }
+
+      @include mixins2.breakpoint($until: tablet) {
+        flex-wrap: wrap;
+
+        > div {
+          &:first-child {
+            margin-bottom: 1rem;
+          }
+        }
+      }
+    }
+
+    .card {
+      width: 100%;
+      margin-bottom: 1rem;
+
+      p,
+      h3,
+      h4,
+      h5 {
+        margin: 0;
+      }
+
+      > div {
+        margin-bottom: 0.8rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      .title,
+      .date {
+        display: flex;
+
+        > div {
+          &:first-child {
+            // width: 15%;
+            margin-right: 2.5rem;
+          }
+
+          &:not(:first-child) {
+            margin-right: 2.5rem;
+          }
+
+          // display: flex;
+          // flex-direction: column;
+          // justify-content: space-between;
+        }
+      }
+
+      time {
+        font-weight: bold;
+        color: variables4.$black-tundora;
+        font-size: 0.95rem;
+      }
+
+      .update {
+        background-color: variables4.$white;
+        padding: 1rem;
+        display: flex;
+
+        .sub-head {
+          font-size: 0.95rem;
+          margin-bottom: 0.5rem;
+
+          strong {
+            color: variables4.$black-tundora;
+          }
+        }
+
+        > div {
+          margin-right: 1rem;
+          padding-left: 0.8rem;
+
+          border-left: 4px solid variables4.$green-brand;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+
+        .content {
+          @include mixins2.breakpoint($until: tablet) {
+            overflow-x: scroll;
+          }
+
+          p + table {
+            margin-top: 1rem;
+          }
+
+          hr {
+            margin: 1.25rem 0;
+          }
+        }
+      }
+
+      strong {
+        color: variables4.$grey-dove;
+      }
+
+      @include mixins2.breakpoint($until: tablet) {
+        .title,
+        .date {
+          display: flex;
+          flex-wrap: wrap;
+
+          > div {
+            &:first-child {
+              width: auto;
+              margin-right: 2rem;
+            }
+          }
+        }
+
+        .update {
+          flex-direction: column;
+
+          > div {
+            &:first-child {
+              margin-bottom: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// For content pages
+.contact-card-highlight {
+  box-shadow: $card-shadow;
+  margin-top: 2em;
+  padding: 1.5em;
+  background-color: variables4.$grey-gallery;
+
+  > h2,
+  > h3,
+  > h4 {
+    position: relative;
+    padding-bottom: 0.5em;
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 5px;
+      bottom: 0;
+      left: 0;
+      background-color: #115737;
+    }
+  }
+
+  .contact-info-block {
+    > ul {
+      padding: 0;
+      margin: 0;
+
+      > li {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        &:not(:first-child) {
+          margin-top: 1em;
+        }
+
+        img {
+          margin-right: 1em;
+
+          @include mixins3.size(components.$portrait-width, auto);
+
+          @include mixins2.breakpoint($until: desktop) {
+            width: 20%;
+          }
+        }
+
+        .details {
+          h3,
+          h4,
+          h5 {
+            margin-bottom: 0.4em;
+          }
+
+          h5 {
+            color: #444;
+          }
+
+          address {
+            font-style: normal;
+          }
+        }
+      }
+    }
+  }
+
+  &.card-green {
+    background-color: #f4f4e9;
+    box-shadow: none;
+
+    .contact-info-block {
+      .tag,
+      address {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+//! ==== NEW DESIGN ====
+
+#hubv4 {
+  .card-panel .card {
+    background-color: variables4.$off-white;
+    border-radius: .25rem;
+  }
+}

@@ -1,0 +1,136 @@
+@use "../../0-core/mixins/mixins.generic";
+@use "../../0-core/mixins/mixins.responsive" as mixins2;
+@use "../../0-core/variables/variables.colors";
+
+/* Container Templates
+
+*** Content page
+**  Multiple videos template
+*/
+
+.video-section {
+  .videos {
+    display: flex;
+    flex-wrap: wrap;
+
+    > figure {
+      flex: 1 1 auto;
+      margin-bottom: 1rem;
+      max-width: calc(33% - .8rem);
+
+      &:not(:last-child) {
+        margin-right: 0.8rem;
+      }
+
+      a {
+        @include mixins.hoverify() {
+
+          .image-wrap {
+
+            &:before {
+              background: none;
+            }
+          }
+        }
+      }
+
+      .image-wrap {
+        position: relative;
+        margin-bottom: 0.8rem;
+        overflow: hidden;
+
+        // @include before(inline-block, '' , absolute) {
+        //   background-color: rgba(0,0,0,.3);
+        //   top: 0;
+        //   bottom: 0;
+        //   left: 0;
+        //   right: 0;
+        //   transition: all 200ms ease-in-out;
+        // }
+        .embed {
+          margin: 0;
+        }
+
+        img {
+          margin-bottom: 0;
+        }
+
+        .play-now {
+          background-color: variables.$green-brand;
+          padding: .5rem;
+          color: variables.$white;
+
+          h4, h5 {
+            color: variables.$white;
+            margin-bottom: 0;
+          }
+
+          i {
+            margin-left: 0.5rem;
+          }
+        }
+      }
+
+      @include mixins2.breakpoint( $until: tablet ) {
+        max-width: calc(50% - .8rem);
+      }
+    }
+
+    &.three-across {
+
+      > figure {
+        // @include breakpoint( $until: tablet ) {
+        //  &:first-child {
+        //     margin-right: 0;
+        //     margin-bottom: 1.2rem;
+        //     flex-basis: 100%;
+        //   }
+        // }
+      }
+    }
+
+    &.two-across {
+      > figure {
+        max-width: calc(50% - .8rem);
+      }
+    }
+  }
+
+  #hubv4 & {
+    .videos {
+
+      .play-now {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-color: variables.$mahoe;
+
+        h3, h4, h5 {
+          text-decoration: none;
+          font-size: 1rem;
+          color: variables.$manuka;
+          font-weight: 500;
+        }
+
+        i::before {
+          border-radius: 50%;
+          border: 1px solid variables.$manuka;
+          padding: .1rem;
+        }
+      }
+
+      .image-wrap {
+        margin-bottom: 0;
+      }
+
+      figcaption {
+        padding: 1.5rem 1rem;
+
+        h3,h4,h5 {
+          margin-bottom: 0;
+          color: variables.$pounamu;
+        }
+      }
+    }
+  }
+}

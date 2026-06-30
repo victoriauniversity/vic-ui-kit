@@ -1,0 +1,148 @@
+@use "../0-core/mixins/mixins.decorations" as mixins4;
+@use "../0-core/mixins/mixins.generic";
+@use "../0-core/mixins/mixins.layout" as mixins3;
+@use "../0-core/mixins/mixins.responsive" as mixins2;
+@use "../0-core/variables/variables.box-appearance" as variables3;
+@use "../0-core/variables/variables.colors";
+@use "../0-core/variables/variables.layout" as variables2;
+
+/** General fixed popup. */
+
+$popup-width:              24rem;
+$popup-button-close-color: variables.$black-tundora;
+
+/* Positions popup within a page. */
+.popup-positioner {
+  z-index: variables2.$z-index-max;
+  position: fixed;
+  bottom: 0;
+  display: none;
+  margin: 0 0 2.5em 5%;
+  width: $popup-width;
+
+  &.shown { display: block; }
+}
+
+.popup {
+  display: none;
+  padding: variables2.$gap;
+  background-color: variables.$grey-gallery;
+  box-shadow: variables3.$shadow;
+
+  .shown &,
+  &.shown {
+    display: block;
+  }
+
+  > header {
+    //.caption {}
+
+    // 'x' button
+    .btn-close {
+      float: right;
+      display: block;
+      margin: .1em .25em;
+      padding: 0 .35em;
+      color: $popup-button-close-color;
+      opacity: .4;
+      font-size: 170%;
+      line-height: 1;
+
+      @include mixins.hoverify { opacity: 1; }
+    }
+
+    &:not(:last-child) { margin-bottom: variables2.$gap-content; }
+  }
+
+  .body {
+    // Remove the icon
+    .button:not(.primary)::after { display: none; }
+  }
+
+  .btn-holder {
+    .btn { margin: 0; }
+  }
+}
+
+@include mixins2.breakpoint( $until: tablet ) {
+  .popup-positioner {
+    top: 0;
+    bottom: auto;
+    margin: 0;
+    width: 100%;
+  }
+
+  .popup { margin: 0; }
+}
+
+
+
+/** TOOLTIPS */
+
+$tooltip-bg:            variables.$black-brand;
+$tooltip-caret-size:    20px;
+
+// inline tooltip - no class to make life easier for content editors
+.inline-tooltip[data-tooltip] {
+  cursor: default;
+  border-bottom: 1px dashed currentColor;
+  text-decoration: none !important;
+}
+
+.tooltip {
+  z-index: variables2.$z-index-max;
+  position: absolute;
+  padding: variables2.$gap-half;
+  max-width: 400px;
+  font-size: 90%;
+  text-align: center;
+  color: variables.$white;
+  background: $tooltip-bg;
+  transition: opacity .2s ease-in-out;
+
+  &[hidden] { opacity: 0; }
+
+  /* Tooltip's `tip` */
+
+  // Bottom position (default)
+  @include mixins.after( $position: absolute ) {
+    @include mixins3.size ( 0 );
+    left: 50%;
+    margin-left: -1 * $tooltip-caret-size;
+  }
+
+  // Positions
+  &.bottom {
+    &::after {
+      @include mixins4.triangle( 'down', $tooltip-caret-size, $tooltip-caret-size / 2, $tooltip-bg );
+      top: auto;
+      bottom: -1 / 2 * $tooltip-caret-size + 1;
+    }
+  }
+
+  &.top {
+    &::after {
+      @include mixins4.triangle( 'up', $tooltip-caret-size, $tooltip-caret-size / 2, $tooltip-bg );
+      top: -1 / 2 * $tooltip-caret-size + 1;
+      bottom: auto;
+    }
+  }
+
+  &.left {
+    &::after {
+      left: 10px;
+      margin: 0;
+    }
+  }
+
+  &.right {
+    &::after {
+      right: 10px;
+      left: auto;
+      margin: 0;
+    }
+  }
+}
+
+// Tooltip, that can be popped up by clicking on the trigger element
+.tooltip-popup { cursor: pointer; }

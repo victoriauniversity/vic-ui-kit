@@ -1,0 +1,300 @@
+@use "../0-core/mixins/mixins.generic" as mixins2;
+@use "../0-core/mixins/mixins.grid" as mixins4;
+@use "../0-core/mixins/mixins.layout";
+@use "../0-core/mixins/mixins.responsive" as mixins3;
+@use "../0-core/variables/variables._defaults";
+@use "../0-core/variables/variables.backgrounds" as variables5;
+@use "../0-core/variables/variables.box-appearance" as variables2;
+@use "../0-core/variables/variables.layout" as variables3;
+@use "../0-core/variables/variables.responsive" as variables4;
+
+/*============================================================================*\
+| LAYOUTS, CONTAINERS AND BLOCKS
+\*============================================================================*/
+
+////
+/// Contains basic building such as containers, layouts, columns, grids and
+/// sub-grids.
+///
+/// **Note**: It's *highly recommended* to understand how to build structures
+/// with these atomic elements before development of new objects and components.
+///
+/// @group layout
+
+
+
+
+
+/*= BASIC BUILDING BLOCKS ====================================================*/
+
+
+/** BLOCK - Universal building block with standard paddings. */
+.block { @include mixins.padding; }
+
+
+/** CENTRALISER - Restricts the width of the content to allowed centered maximum and aligns to center. */
+.centraliser {
+  @include mixins2.clearfix;
+  @include mixins.margins-horizontal( auto );
+  position: relative;
+  width: 100%;
+  max-width: variables.$centered-max-width;
+}
+
+
+/** SECTOR - Single page section container with unlimited width and no paddings/margins. Can be used to group related components within a layout. */
+.sector,
+.separated {
+  @include mixins2.clearfix;
+  border-bottom: variables2.$border;
+
+  #hubv4 & {
+    border-bottom: none;
+  }
+}
+
+#hubv4 header + .layout {
+  .content-panel {
+    // margin-top: 1.5rem;
+  }
+}
+
+
+
+/** LAYOUT - Contains all the content's columns and layout combinations */
+.layout {
+  width: 100%;
+
+  &.block {
+    @include mixins.paddings-vertical( 0 );
+    @include mixins.paddings-horizontal( variables3.$gap-half );
+  }
+
+  // Sticky footer - stretch content to maximum
+  body > & {
+    display: block;
+    flex: 1 1 auto; // = 1 (1 1 auto is *required* for IE-based browsers!)
+  }
+
+  /* IE10+ fix for tablet and smaller where layout has white space below */
+  @include mixins3.breakpoint( $until: desktop, $and: '( -ms-high-contrast: none ), ( -ms-high-contrast: active )' ) {
+    height: 100%;
+  }
+
+  @include mixins3.breakpoint( $until: desktop ) {
+    &.block {
+      @include mixins.paddings-horizontal( 0 );
+    }
+  }
+}
+
+
+
+
+
+/*= 3/2/1-COLUMN MAIN LAYOUTS ================================================*/
+
+
+/// Defines various layout configurations
+///
+/// @example html
+///   <!-- 1-column -->
+///   <div class="layout">
+///     <div class="content-panel"></div>
+///   </div>
+///
+///   <!-- 2-columns -->
+///   <div class="layout">
+///     <div class="sidebar"></div>
+///     <div class="content-panel"></div>
+///   </div>
+///
+///   <!-- 2-columns -->
+///   <div class="layout">
+///     <div class="content-panel">
+///       <main></main>
+///       <aside></aside>
+///     </div>
+///   </div>
+///
+///   <!-- 3-columns -->
+///   <div class="layout">
+///     <div class="sidebar"></div>
+///     <div class="content-panel">
+///       <main></main>
+///       <aside></aside>
+///     </div>
+///   </div>
+
+
+// Main content panel - can contain Content only column and Widget bar (optional).
+.content-panel {
+  @include mixins2.clearfix;
+  position: relative;
+  width: 100%;
+
+  > img { width: 100%; }
+
+  > main,
+  > aside {
+    vertical-align: top;
+  }
+
+  @include mixins3.breakpoint( tablet ) {
+    /** 1st Content bar + 2nd widgets bar */
+    $widgetbar-width: 25%; // Out of the content-panel
+    $content-width:   100% - $widgetbar-width;
+
+    /** Main content *ONLY* */
+    > main:last-child {
+      overflow-x: hidden; // Don't allow the content to stretch behind the limits and create a vertical scrollbar
+      width: 100%;
+    }
+
+    /** Main content + widgetbar */
+    > main:not(:last-child) {
+      float: left;
+      width: $content-width;
+    }
+
+    > aside {
+      float: left;
+      width: $widgetbar-width;
+    }
+  }
+
+  #hubv4 & {
+    > img {
+      margin-bottom: 2rem;
+
+      @include mixins3.breakpoint($from: desktop-medium) {
+        padding-left: 1.5rem;
+      }
+    }
+  }
+}
+
+.sidebar {
+  z-index:  variables3.$z-index-lower;
+  position: relative;
+}
+
+@include mixins3.breakpoint( desktop ) {
+  /** 1st Left sidebar + Main content panel 2nd*/
+  $sidebar-fallback-width:       20%;
+  $sidebar-max-width:            17rem; // Stops expanding at this level
+  $sidebar-min-width:            13rem;   // Doesn't get (roughly) below this level
+  $content-panel-fallback-width: 100% - $sidebar-fallback-width;
+  $content-panel-min-width:      variables4.$desktop-min-width-rem - $sidebar-min-width - 2 * variables3.$gap-half;
+
+  body > .layout {
+    display: flex;
+
+    //Content collapse fix for IE
+    @media all and ( -ms-high-contrast: none ), ( -ms-high-contrast: active ) {
+      height: 100%;
+    }
+  }
+
+  .sidebar {
+    float: left;
+    flex:  0 1 $sidebar-max-width;
+    width: $sidebar-fallback-width;
+  }
+
+  .content-panel {
+    /** Content panel *ONLY* */
+    &:first-child {
+      // Main content *ONLY*
+      > main:last-child {
+        > .block {
+          padding-left: 0;
+        #hubv4 & {
+          padding-left: 1.5rem;
+        }
+        }
+      }
+    }
+
+    > main:last-child {
+      > .block {
+        padding-right: 0;
+
+        #hubv4 & {
+          padding-right: 1.5rem;
+        }
+      }
+    }
+
+    /** 1st Sidebar + 2nd Content panel */
+    &:not(:first-child) {
+      float: left;
+      flex:  1 0 $content-panel-min-width;
+      width: $content-panel-fallback-width;
+    }
+
+    > aside {
+      > .block { padding-right: 0; }
+    }
+  }
+}
+
+
+
+
+
+/*= COLUMN-BASED LAYOUTS =====================================================*/
+
+
+@include mixins3.breakpoint( desktop ) {
+  .two-columns {
+    // Columns split by a divider line
+    &.divider-line {
+      position: relative;
+
+      @include mixins2.before( $position: absolute ) {
+        @include mixins.size( 0, 100% );
+        top: 0;
+        left: calc( 50% - #{ variables2.$border-width-thick / 2 } );
+        border-left: variables2.$border-width-thick solid variables2.$border-color-light;
+      }
+    }
+
+    .column {
+      @include mixins4.column( 2, variables3.$gap-larger );
+    }
+  }
+}
+
+
+
+
+
+/*= BLOCK CONTAINERS =========================================================*/
+
+
+// A panel should hold boxes with white background and shadows.
+.panel {
+  padding:          variables3.$gap-larger variables3.$gap;
+  background-color: variables5.$background-light;
+}
+
+
+
+
+
+/*= SITE BEHAVIOUR CONTROL ===================================================*/
+
+
+// When attached to <body> or <html>, it completely disables scrolling from the viewport.
+.unscrollable {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+
+
+

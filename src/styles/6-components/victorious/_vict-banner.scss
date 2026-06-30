@@ -1,0 +1,250 @@
+@use "../../0-core/mixins/mixins.responsive";
+@use "../../0-core/variables/variables.colors";
+@use "vict-general";
+
+.vict-banner {
+
+  h1,
+  h2,
+  h3 {
+    font-family: vict-general.$quilty;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+  }
+
+  .vict-banner-sub-heading {
+    font-size: 1.81585rem;
+  }
+
+  .vict-banner-title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  &.full {
+    overflow: hidden;
+
+    // @include breakpoint($from:tablet) {
+      figure {
+        position: relative;
+        figcaption {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+          width: 70%;
+
+          .vict-banner-title-tag {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: .3rem;
+            font-family: proxima-nova, sans-serif !important;
+
+            &:after {
+              width: 40%;
+              position: absolute;
+              height: 1px;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%);
+              content: "";
+              background-color: variables.$white;
+            }
+          }
+
+          .vict-banner-sub-heading {
+            margin-bottom: 1rem;
+          }
+        }
+        @include mixins.breakpoint($until:tablet) {
+
+          img {
+            transform: unset !important;
+          }
+          figcaption {
+            width: 100%;
+            position: initial;
+            transform: unset !important;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid  vict-general.$black-victorious;
+
+            .vict-banner-title-tag {
+              font-size: 1rem;
+              color: vict-general.$black-victorious !important;
+
+              &:after {
+                background-color: vict-general.$black-victorious !important;
+              }
+            }
+
+            .vict-banner-sub-heading {
+              font-size: 1.3rem;
+              color: vict-general.$black-victorious !important;
+            }
+
+            .vict-banner-title {
+              font-size: 1.8rem;
+              color: vict-general.$black-victorious !important;
+            }
+
+            p {
+              color: vict-general.$black-victorious !important;
+              padding: 0 .1rem;
+            }
+          }
+        }
+
+      }
+    // }
+  }
+
+  &.split {
+    display: flex;
+    margin-top: 1rem;
+    overflow-y: hidden;
+    // align-items: flex-start;
+
+    .banner-content,
+    .banner-image {
+      flex: 1 1 50%;
+    }
+
+    .banner-content {
+      position: relative;
+      transition: all .2s ease;
+      padding: 3rem 1.5rem 0 0;
+
+      .meta {
+        margin-bottom: 2rem;
+        border-top: 1px solid vict-general.$black-victorious;
+        width: 70%;
+        padding-top: .5rem;
+
+        p {
+          text-transform: uppercase;
+          font-size: .8rem;
+          font-family: vict-general.$proxima;
+        }
+      }
+
+      .banner-titles {
+
+        .vict-banner-title {
+          // overflow: overlay;
+          // margin-right: -14rem;
+          padding-bottom: 1.5rem;
+          min-height: 100%;
+          margin-bottom: 0;
+
+          + .vict-banner-sub-heading {
+            margin-bottom: 2.5rem;
+          }
+        }
+
+        .vict-banner-sub-heading {
+          margin-bottom: 1rem;
+          font-size: 1.81585rem;
+        }
+
+        p {
+          margin-bottom: .5rem;
+          width: 80%;
+          font-family: vict-general.$quilty;
+        }
+      }
+    }
+
+    .banner-image {
+      img {
+        max-height: 90vh;
+        object-fit: contain;
+      }
+    }
+
+    @include mixins.breakpoint($until:tablet) {
+      flex-direction: column-reverse;
+
+      .banner-content,
+      .banner-image {
+        flex: 1 1;
+      }
+      .banner-content {
+        padding: 0 0 0 0;
+
+        .meta {
+          margin-bottom: 2rem;
+          border-top: 1px solid vict-general.$black-victorious;
+          width: 70%;
+          padding-top: .5rem;
+
+          p {
+            text-transform: uppercase;
+            font-size: .8rem;
+          }
+        }
+
+        .banner-titles {
+          h1 {
+            padding-bottom: 1rem;
+            overflow: hidden;
+            margin-right: 0;
+            padding-bottom: 2rem;
+            min-height: unset;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            font-size: 3rem;
+          }
+
+          h3 {
+            margin-bottom: .5rem;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+          }
+
+          p {
+            &:last-child {
+              padding-bottom: .75rem;
+              border-bottom: 1px solid vict-general.$black-victorious;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  @include mixins.breakpoint($until:tablet) {
+
+  }
+
+
+  figure {
+    figcaption {
+      p,
+      h1,
+      h2,
+      h3 {
+        color: variables.$white !important;
+      }
+    }
+  }
+  &.dark {
+    figure {
+      figcaption {
+        p,
+        h1,
+        h2,
+        h3 {
+          color: vict-general.$black-victorious !important;
+        }
+
+        .vict-banner-title-tag {
+          &:after {
+            background-color: vict-general.$black-victorious;
+          }
+        }
+      }
+    }
+  }
+}

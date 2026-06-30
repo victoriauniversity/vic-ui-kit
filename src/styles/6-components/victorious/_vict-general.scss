@@ -1,0 +1,136 @@
+@use "../../0-core/mixins/mixins.generic";
+@use "../../0-core/variables/variables.colors";
+
+$black-victorious: #040404;
+$ptserif: pt-serif, serif !important;
+
+@font-face {
+  font-family: Feijoa;
+  src: url("fonts/victorious/FeijoaBold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: 'Quilty';
+  src: url("fonts/victorious/quilty/Quilty-Bold.woff2") format('woff2'),
+  url("fonts/victorious/quilty/Quilty-Bold.woff") format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Quilty';
+  src: url("fonts/victorious/quilty/Quilty-Regular.woff2") format('woff2'),
+  url("fonts/victorious/quilty/Quilty-Regular.woff") format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+$proxima: 'Inter', sans-serif !important;
+$feijoa: 'Inter', pt-serif, serif !important;
+$quilty: 'Inter', serif !important;
+
+.theme-victorious {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: $black-victorious;
+    font-family: $quilty;
+    letter-spacing: 1px;
+    line-height: 1.2;
+  }
+
+  .vict-banner h1,
+  .vict-banner h2,
+  .vict-banner h3,
+  .vict-banner h4,
+  .vict-banner h5 {
+    font-family: $quilty;
+  }
+
+  p,
+  span {
+    // font-family: pt-serif, serif;
+    font-family: $quilty;
+    font-weight: normal;
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+
+  ul,li {
+    font-family: 'Inter' !important;
+  }
+
+  p a {
+    text-decoration: underline;
+  }
+}
+
+.title-underline {
+  position: relative;
+  padding-bottom: .5rem;
+
+  &:after {
+    width: 40%;
+    position: absolute;
+    height: 1px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    content: "";
+    background-color: variables.$black;
+  }
+}
+
+.article-tag {
+  display: block;
+  margin-bottom: .5rem;
+  font-family: proxima-nova, sans-serif !important;
+  text-transform: uppercase;
+}
+
+.vic-button {
+  font-family: proxima-nova, sans-serif;
+}
+
+.vict-caption {
+  font-style: italic;
+}
+
+.vic-button {
+  display: inline-block;
+  color: $black-victorious;
+  padding: .5rem 1rem;
+  border: 1px solid $black-victorious;
+  text-transform: uppercase;
+
+  @include mixins.hoverify() {
+    color: variables.$white;
+    background-color: $black-victorious;
+    transition: .3s ease-in-out;
+  }
+}
+
+#progress {
+  position: fixed;
+  top: 0;
+  height: .5%;
+  background: #444;
+  z-index: 200;
+}
+
+.article-item {
+  @include mixins.hoverify() {
+    img {
+      opacity: .9;
+    }
+
+    h4 {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,0 +1,158 @@
+@use "../0-core/functions/functions.builders";
+@use "../0-core/mixins/mixins.decorations" as mixins4;
+@use "../0-core/mixins/mixins.generic" as mixins5;
+@use "../0-core/mixins/mixins.icons";
+@use "../0-core/mixins/mixins.layout" as mixins3;
+@use "../0-core/mixins/mixins.typography" as mixins2;
+@use "../0-core/variables/variables.box-appearance" as variables4;
+@use "../0-core/variables/variables.colors" as variables3;
+@use "../0-core/variables/variables.icons";
+@use "../0-core/variables/variables.layout" as variables2;
+@use "../0-core/variables/variables.typography" as variables5;
+
+/*============================================================================*\
+| ICONS
+\*============================================================================*/
+
+////
+/// Defines all icons and their generic properties.
+///
+/// @group icons
+
+
+
+/*= INITIALISATIONS ==========================================================*/
+
+
+@include mixins.icon-selector {
+  @include mixins.base-icon;
+  font-size: 100%;
+  font-style: normal;
+
+  a & {
+    @include mixins2.ie-remove-underline;
+  }
+}
+
+// list of .icon-[name]
+@include mixins.generate-icon-classes;
+
+
+
+
+
+/*= ICONS WITH UNUSUAL STYLING ============================================== */
+
+
+.icon-arrow-right::before {
+  margin-right: 0;
+  margin-left:  variables.$icon-margin;
+}
+
+
+
+
+
+/*= CUSTOM-BUILT ICONS ====================================================== */
+
+
+// Social media icons
+
+.small-icon {
+  &::before,
+  &::after {
+    font-size: 65%;
+  }
+}
+
+
+// Icon placement
+
+.hanging-icon { float: left; } //TODO: Use utility class instead ('.float-left')
+
+
+// Social media icons
+
+$social-icon-size: 2.5rem;
+
+.social-icon {
+  img {
+    @include mixins3.size( $social-icon-size );
+    margin-right: variables2.$gap-small;
+  }
+}
+
+
+// Scaleable 'play' icon
+
+$icon-play-width:          4em;
+$icon-play-height:         2.5em;
+$icon-play-rectangle-size: 1.2em;
+$icon-play-triangle-ratio: 1.1; // Ratio between width and height of the triangle
+
+
+.play-button, // TODO: .play-button! @deprecated - remove!
+.icon-square-play {
+  // Outer rectangle
+  @include mixins3.size( $icon-play-width, $icon-play-height );
+  position: relative;
+  margin-top: variables2.$gap-half;
+  background-color: variables3.$white;
+  border-radius: functions.em( variables4.$radius-huge );
+  text-align: center;
+
+  // Inner triangle
+  @include mixins5.after( $display: inline-block, $position: relative ) {
+    @include mixins4.triangle( 'right', $icon-play-rectangle-size * $icon-play-triangle-ratio, $icon-play-rectangle-size, variables3.$green-brand );
+    margin: .65em auto 0;
+  }
+
+  &.play-button--green {
+    background-color: variables3.$green-brand;
+
+    &:after {
+      @include mixins4.triangle( 'right', $icon-play-rectangle-size * $icon-play-triangle-ratio, $icon-play-rectangle-size, variables3.$white );
+    }
+  }
+}
+
+
+
+
+
+/*===== ALIASES ============================================================= */
+
+
+// Can be appended into outer element without need to use inner element with .icon-[name]. Useful for generic items that should always have a specific icon.
+
+.link-external {
+  @include mixins.extend-icon-after( external ) {
+    margin-left: functions.em( variables2.$gap-small );
+  }
+}
+
+.link-restricted {
+  @include mixins.extend-icon-after( lock ) {
+    margin-left: functions.em( variables2.$gap-small );
+    vertical-align: 7.5%;
+    text-decoration: none !important;
+  }
+}
+
+.link-download {
+  @include mixins.extend-icon-before( download ) {
+    font-size: variables5.$text-size-smaller;
+  }
+}
+
+.link-more {
+  @include mixins.extend-icon-after( caret-right ) {
+    margin-right: 0;
+    margin-left:  functions.em( variables2.$gap-small );
+    font-size:    variables5.$text-size-larger;
+  }
+}
+
+.link-audio {
+  @include mixins.extend-icon-before( audio );
+}

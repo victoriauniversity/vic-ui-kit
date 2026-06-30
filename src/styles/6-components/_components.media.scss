@@ -1,0 +1,308 @@
+@use "../0-core/mixins/mixins.generic" as mixins3;
+@use "../0-core/mixins/mixins.layout" as mixins2;
+@use "../0-core/mixins/mixins.responsive";
+@use "../0-core/variables/variables.backgrounds" as variables4;
+@use "../0-core/variables/variables.box-appearance";
+@use "../0-core/variables/variables.colors" as variables2;
+@use "../0-core/variables/variables.layout" as variables3;
+@use "../1-settings/settings._defaults";
+@use "../2-project/project.variables";
+
+$media-featured-bg: settings.$brand !default;
+
+/** Embedded media (images, videos, galleries etc.) */
+.media {
+
+  // Floats a medium into right on devices with higher resolution
+  &.inline {
+
+    @include mixins.breakpoint( tablet ) {
+      float: right;
+      margin: 0 0 0 project.$base-spacing;
+      width: project.$media-inline-width;
+
+      figcaption {
+        font-size: 90%;
+        border-left-width: variables.$border-width-medium;
+      }
+    }
+  }
+
+  img,
+  iframe,
+  .table-container,
+  .embed {
+    @include mixins2.size( 100%, auto );
+    float: none;
+    display: block;
+    margin-bottom: .5em;
+
+    &:last-child { margin-bottom: project.$base-spacing; }
+  }
+
+  figcaption {
+    display: block;
+    margin-bottom: project.$base-spacing;
+    padding: .2em 0 .2em .8em;
+    border-left: variables.$border-strip-highlight;
+    color: variables2.$black-emperor;
+  }
+
+  .formatting .grid &.featured img {
+    margin-bottom: 0;
+  }
+
+  //TODO: Remove?
+  &.featured {
+    position: relative;
+
+    img { margin-bottom: 0; }
+
+    a {
+      @include mixins3.before( $display: block, $position: absolute ) {
+        z-index: variables3.$z-index-lower;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: variables4.$background-overlay-darken;
+        transition: background-color 200ms ease-in-out;
+      }
+
+      @include mixins3.hoverify {
+        &::before {
+          background-color: rgba( variables2.$black, .2 );
+        }
+      }
+    }
+
+    //TODO: extend .tile-text
+    figcaption {
+      z-index: variables3.$z-index-lower;
+      background-color: $media-featured-bg;
+      border-left: 0;
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p {
+        display: flex;
+        align-items: center;
+        padding: .5em;
+        color: variables2.$white;
+      }
+
+      p { margin-bottom: 1.3em; }
+
+      @include mixins.breakpoint( tablet ) {
+        position: absolute;
+        top: project.$base-spacing;
+        left: project.$base-spacing;
+        width: 66%;
+        max-width: 20rem;
+      }
+    }
+  }
+
+  #hubv4 & {
+    &.featured {
+      a::before {
+        z-index: 0;
+      }
+    }
+    figcaption {
+      margin-top: 0;
+      padding: 1rem;
+      z-index: 0;
+      border-left-color: variables2.$miro;
+      background-color: variables2.$off-white;
+    }
+
+      img {
+        margin-bottom: 0;
+      }
+  }
+}
+
+
+// To wrap iframed media dynamically
+.embed {
+  @include mixins3.clearfix;
+  position: relative;
+  margin-bottom: project.$base-spacing;
+  padding: 0 0 56.25%; //16:9 ratio magic; use different wrapper for other ratio embeds?
+  height: 0;
+
+  iframe {
+    @include mixins2.size( 100%, 100% );
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  @include mixins.breakpoint( tablet ) {
+    &.inline { padding-bottom: 22.5%; }
+  }
+}
+
+
+/** Simple gallery (images + breadcrumbs) */
+
+$gallery-image-height: 13.75rem;
+
+
+@include mixins.breakpoint( tablet ) {
+  .gallery {
+    @include mixins3.clearfix;
+    margin-bottom: project.$base-spacing;
+
+    img {
+      @include mixins2.size( auto, $gallery-image-height );
+    }
+
+    figcaption {
+      margin-bottom: 0;
+      font-size: 85%;
+      border-left-width: 3px;
+    }
+
+    .media {
+      display: inline-block;
+      margin-right: 1.2rem;
+      margin-bottom: 1.2rem;
+      width: min-content; // Not supported in IE and older browsers!
+      vertical-align: top;
+    }
+  }
+}
+
+// Using only image list with floats
+.gallery-container {
+  margin: 1em 0;
+
+  @include mixins3.hoverify() {
+    h2,
+    h3,
+    h4 {
+      text-decoration: underline !important; //TODO: Remove !important
+    }
+  }
+
+  img { max-width: 100%; }
+
+  .gallery {
+    position: relative;
+
+    .gallery-title {
+      z-index: variables3.$z-index-top;
+      position: absolute;
+      top: 1.5em;
+      padding-right: 3em;
+      max-width: 55%;
+      background-color: rgba( variables2.$green-brand, .9 );
+
+      h2,
+      h3,
+      h4 {
+        margin-bottom: .5em;
+        color: variables2.$white;
+        text-decoration: none;
+      }
+
+      h4 { opacity: .9; }
+
+      @include mixins.breakpoint( $until: desktop ) {
+        max-width: 85%;
+      }
+    }
+
+    &.thumbnails {
+      .gallery-images {
+        @include mixins3.clearfix();
+
+        img {
+          //TODO: Refactor heavily (use flex etc.)
+          @include mixins2.size( 24%, auto );
+          float: left;
+
+          &:first-child {
+            @include mixins2.size( 50%, auto );
+            margin-right: 1%;
+          }
+
+          &:nth-child( n+6 ) {
+            display: none;
+          }
+
+          &:nth-child( 2 ),
+          &:nth-child( 3 ) {
+            margin-bottom: 1%;
+          }
+
+          &:nth-child( 2 ),
+          &:nth-child( 4 ) {
+            margin-right: 1%;
+          }
+        }
+
+        //TODO: Refactor the depth and flatten!
+        @include mixins.breakpoint( $until: tablet ) {
+          img {
+            margin-right: 0;
+            margin-bottom: 0;
+
+            &:first-child {
+              margin-bottom: 1%;
+              width: 100%;
+            }
+
+            &:nth-child( n+2 ):nth-child( -n+4 ) {
+              margin-right: 1.33%;
+            }
+
+            &:nth-child( 2 ),
+            &:nth-child( 3 ) {
+              margin-bottom: 0;
+            }
+          }
+        }
+
+      }
+    }
+
+    &.single-feature {
+      .gallery-title {
+        max-width: 45%;
+
+        @include mixins.breakpoint( $until: desktop ) {
+          max-width: 85%;
+        }
+      }
+
+      .gallery-images {
+        img {
+          height: auto;
+
+          &:not(:first-child) { display: none; }
+        }
+      }
+    }
+
+  }
+}
+
+//TODO: Refactor! Static files has to be part of the UI library!
+// Image gallery mobile and tablet nav icons fix -- move to gallery assest
+@media (-webkit-min-device-pixel-ratio: 1.1), (-webkit-min-device-pixel-ratio: 1.09375), (min-resolution: 105dpi), (min-resolution: 1.1dppx) {
+
+  .pswp--svg .pswp__button, .pswp--svg .pswp__button--arrow--left:before, .pswp--svg .pswp__button--arrow--right:before {
+    background-image: url(http://www.wgtn.ac.nz/__data/assets/image/0014/302351/default-skin.png) !important;
+  }
+
+  .pswp__button.pswp__button--fs {
+    display: none !important;
+  }
+}

@@ -1,0 +1,182 @@
+@use "../0-core/mixins/mixins.responsive";
+
+
+// flex-grid
+
+.flex {
+  display: flex;
+
+  &.s-gap {
+    gap: .25rem;
+  }
+
+  &.gap {
+    gap: .5rem;
+  }
+
+  &.l-gap {
+    gap: 1rem;
+  }
+
+  &.space-between {
+    justify-content: space-between;
+  }
+
+  &.align-items-center {
+    align-items: center;
+  }
+}
+
+.grid-flex,
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 1rem;
+
+  // content fix
+  pre {
+    white-space: initial;
+  }
+
+  > * {
+    margin-bottom: 1rem;
+  }
+
+  // Desktop
+  @include mixins.breakpoint ( $from: desktop ) {
+    &.col-4 > * {
+      // margin-right: 1rem;
+      // flex: 0 1 ;
+      width: calc( 25% - 1rem );
+    }
+    &.col-4 > *:nth-child(4n+4) {
+       margin-right: 0;
+    }
+    &.col-3 > * {
+      // margin-right: 1rem;
+      // margin-bottom: 1rem;
+      // flex: 1 1 ;
+      width: calc( 33.3% - 1rem );
+    }
+    &.col-3 > *:nth-child(3n+3) {
+       margin-right: 0;
+    }
+
+    &.col-2 > *,
+    &.columns2 > * {
+      // flex: 0 1 ;
+      //ie fix
+      width: calc( 50% - 1rem );
+      // margin-right: 1rem;
+      // margin-bottom: 1rem;
+    }
+
+    &.col-2 > *:nth-child(2n+2) {
+      margin-right: 0;
+    }
+
+  }
+  // Tablet
+  @include mixins.bp-tablet {
+    &.col-4 > *,
+    &.col-3 > *,
+    &.col-2 > *,
+    &.columns2 > * {
+      flex: 0 1 ;
+      //ie fix
+      flex-basis: calc( 50% - 1rem );
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    &.col-4 > *:nth-child(2n+2),
+    &.col-3 > *:nth-child(2n+2),
+    &.col-2 > *:nth-child(2n+2),
+    &.columns2 > *:nth-child(2n+2) {
+      margin-right: 0;
+    }
+  }
+
+}
+
+// Simple css based grid
+
+// creates grid row
+.ggrid {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(12, 1fr);
+  margin: 0 auto;
+  width: 100%;
+
+  > * {
+    width: auto !important;
+  }
+
+  &.dynamic-fill {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+  }
+
+  &.dynamic {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+  }
+
+  &.col-2 {
+    grid-template-columns: 1fr 1fr;
+
+    @include mixins.breakpoint( $until: tablet ) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &.col-3 {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+    @include mixins.breakpoint( $until:desktop ) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include mixins.breakpoint( $until: tablet ) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .c1, .c2, .c3, .c4, .c5, .c6,
+  .c7, .c8, .c9, .c10, .c11, .c12 {
+      grid-column-end: span 12;
+  }
+
+  .nested {
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: repeat(12, 1fr);
+  }
+
+  .merge-two-rows { grid-row-end: span 2 }
+  .merge-three-rows { grid-row-end: span 3 }
+  .merge-four-rows { grid-row-end: span 4 }
+  .merge-five-rows { grid-row-end: span 5 }
+  .merge-six-rows { grid-row-end: span 6 }
+
+  @include mixins.breakpoint( $from: 800px ) {
+      .c1 { grid-column-end: span 1 }
+      .c2 { grid-column-end: span 2 }
+      .c3 { grid-column-end: span 3 }
+      .c4 { grid-column-end: span 4 }
+      .c5 { grid-column-end: span 5 }
+      .c6 { grid-column-end: span 6 }
+      .c7 { grid-column-end: span 7 }
+      .c8 { grid-column-end: span 8 }
+      .c9 { grid-column-end: span 9 }
+      .c10 { grid-column-end: span 10 }
+      .c11 { grid-column-end: span 11 }
+  }
+
+
+  &.align-end {
+    align-items: flex-end;
+  }
+
+  &.align-start {
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,603 @@
+@use "../../0-core/mixins/mixins.generic";
+@use "../../0-core/mixins/mixins.grid" as mixins4;
+@use "../../0-core/mixins/mixins.icons" as mixins3;
+@use "../../0-core/mixins/mixins.layout" as mixins5;
+@use "../../0-core/mixins/mixins.responsive" as mixins2;
+@use "../../0-core/variables/variables.colors";
+@use "../../0-core/variables/variables.typography" as variables2;
+@use "../../2-project/project.variables";
+
+/*==================================================
+=                     FOOTERS                      =
+==================================================*/
+
+
+/** PRIMARY FOOTER (dark one), usually placed on the very end of
+    the page. 1 *MUST BE* used on a single page. */
+
+$footer-logo-width:         20% !default;
+$footer-logo-max-width:     15.5rem;
+$footer-primary-background: variables.$black-brand !default;
+$footer-primary-color:      variables.$grey-silver !default;
+$footer-primary-separator:  1px solid variables.$black-emperor !default;
+
+
+.footer-primary .block {
+  @include mixins.clearfix;
+
+  @include mixins2.breakpoint( tablet ) {
+    display: flex;
+  }
+}
+
+
+
+.footer-primary,
+.page-sub-nav { // TODO: Refactor!
+  background-color: $footer-primary-background;
+  color:            $footer-primary-color;
+
+  //TODO: Should be refactored to include underlines (currently, it's not clear these are links)
+  ul {
+    &,
+    > li {
+      display: inline-block;
+    }
+
+    > li { margin: 0 .35em; }
+
+    a {
+      text-decoration: none;
+      border-bottom: 0;
+      color: inherit;
+
+      @include mixins.hoverify() {
+        text-decoration: underline;
+
+        img { text-decoration: none; }
+      }
+    }
+  }
+
+  .block {
+    + .block {
+      @include mixins.clearfix();
+      border-top: $footer-primary-separator;
+    }
+
+    &.small { padding-top: 1em; }
+  }
+
+  // Logo & Contact info
+  .logo {
+    float: left;
+    width: 25%;
+    align-self: center;
+    vertical-align: middle;
+
+    img {
+      display: inline-block;
+      width: 100%;
+      max-width: $footer-logo-max-width;
+      vertical-align: middle;
+    }
+  }
+
+  .contacts {
+    float: left;
+    padding: .5em 0 .5em 3.5em;
+    width: 75%;
+    vertical-align: middle;
+
+    > li:last-child { margin-right: 0; }
+    > li:first-child { margin-left: 0; }
+
+    a {
+      color: variables.$white;
+      font-weight: variables2.$weight-bold;
+    }
+  }
+
+
+  // Foot-note like mini-menu + copyright at the end of the footer
+  .small > * { font-size: .9em; }
+
+  .copyright {
+    float: right;
+    display: block;
+    flex-grow: 1;
+    text-align: right;
+  }
+
+  .minilinks {
+    float: left;
+
+    > li {
+      &:first-child { margin-left: 0; }
+    }
+
+    a {
+      text-decoration: underline;
+
+      @include mixins.hoverify { text-decoration: none; }
+    }
+  }
+
+  @include mixins2.breakpoint( $until: tablet ) {
+    text-align: center;
+
+    .contacts,
+    .logo {
+      // Re-use this
+      float: none;
+      display: block;
+      width: 100%;
+    }
+
+    .contacts { padding-left: 0; }
+
+    .copyright,
+    .minilinks {
+      float: none;
+    }
+
+    .copyright {
+      margin-top: .75em;
+      text-align: inherit;
+    }
+
+    .logo { margin-bottom: .5em; }
+  }
+}
+
+
+/** SECONDARY FOOTER (light one), usually before the primary footer. 0-many CAN be used on a single page. */
+
+$footer-secondary-background: variables.$grey-alto !default;
+$footer-secondary-separator:  1px solid variables.$grey-silver !default;
+$footer-secondary-color:      variables2.$text-color !default;
+$footer-heading-margin-bottom: .75em;
+
+.footer-secondary {
+  background-color: $footer-secondary-background;
+
+  h2 {
+    line-height: 1.3;
+    font-size: variables2.$h5-size; // ~ stadard <h4>'s size
+  }
+
+  nav ul {
+    a {
+      font-family: variables2.$heading-family;
+      font-size: 1.125em;
+      border-color: $footer-secondary-color;
+      text-decoration: underline;
+
+      @include mixins.hoverify() {
+        border-bottom: 0;
+        text-decoration: none;
+      }
+    }
+  }
+
+  ul {
+    a { color: inherit; }
+  }
+
+  + .footer-secondary,
+  .block + .block {
+    border-top: $footer-secondary-separator;
+  }
+
+  // One block alone
+  &:not(.two-columns) {
+    h2 {
+      float: left;
+      margin-right: 2em;
+    }
+
+    // Stretches all the links to rest of the available width
+    nav ul {
+      display: flex;
+      align-items: stretch;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      flex-direction: row;
+
+      > li { margin-right: 1.5em; }
+    }
+
+    .contacts {
+      ul {
+        &,
+        > li {
+          display: inline-block;
+          margin-right: .75em;
+        }
+      }
+    }
+  }
+
+  .contacts {
+    address {
+      font-style: inherit;
+      color: variables.$black-emperor;
+
+      a {
+        margin-right: .35em;
+        color: $footer-secondary-color;
+        font-weight: variables2.$weight-medium;
+        border-bottom: 0;
+        text-decoration: underline;
+
+        @include mixins.hoverify() { text-decoration: none; }
+      }
+
+      ul {
+
+        // Icons setup
+        &::before {
+          position: absolute;
+          top: 2px;
+          margin-left: -1.6rem;
+          line-height: 1.4;
+          font-size: 115%;
+        }
+      }
+    }
+  }
+
+  // Contact-types
+  .phones,
+  .mails {
+    position: relative;
+    padding-left: 1.6rem;
+  }
+
+  .phones {
+    @include mixins3.extend-icon-before( phone );
+  }
+
+  .mails {
+    @include mixins3.extend-icon-before( mail );
+  }
+
+
+  // Two blocks next to each other
+  &.two-columns {
+    h2 { margin-bottom: $footer-heading-margin-bottom; }
+
+    .block {
+      @include mixins4.column( 2 );
+
+      &:first-child {
+        padding-right: project.$base-spacing;
+        //width: 10000px; // Correct widths hack
+      }
+    }
+
+    // Turn links list into 2-columns to conserve space
+    nav ul {
+      overflow: hidden;
+
+      li {
+        float: left;
+        display: block;
+        margin-right: 2%;
+        width: 48%;
+      }
+    }
+
+    ul {
+      margin-bottom: .8em;
+
+      > li { margin: 0 0 .35em; }
+
+      &:last-child { margin-bottom: 0; }
+    }
+
+    &.footer-connect {
+      h4 {
+        margin-bottom: .5rem;
+        color: variables.$black-tundora;
+      }
+
+      .centraliser {
+        display: flex;
+        align-items: center;
+      }
+
+      .social {
+        text-align: center;
+
+        .social-icon {
+          img,
+          svg {
+            margin-right: .5rem;
+            height: 3rem;
+            width: 3rem;
+            fill: #424242;
+            padding: .5rem;
+
+            @include mixins.hoverify {
+              background-color: #eee;
+              border-radius: 12px;
+            }
+
+          }
+        }
+      }
+
+      nav {
+        a {
+          color: variables.$blue-endeavoura;
+        }
+
+        ul {
+          display: flex;
+          flex-wrap: wrap;
+          li {
+            margin-right: 1.5rem;
+            width: auto;
+          }
+        }
+      }
+
+      @include mixins2.breakpoint( $until: tablet ) {
+        .centraliser {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+
+  &.footer-apply {
+    background-color: variables.$grey-gallery;
+    border-top: solid 1px #ddd;
+    .flex-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      h3 {
+        margin-right: 2rem;
+        color: variables.$black-tundora;
+      }
+    }
+  }
+
+  @include mixins2.breakpoint( tablet ) {
+
+    &.two-columns {
+      .block {
+
+        &:last-child {
+          padding-left: project.$base-spacing;
+          border-top: 0;
+
+          // FIXME: Turn into a re-usable mixin
+          @include mixins.before( $position: absolute ) {
+            @include mixins5.size( 0, 100% );
+            top: 0;
+            left: calc( 50% - #{ 1px / 2 } );
+            border-left: $footer-secondary-separator;
+          }
+        }
+      }
+    }
+  }
+
+  @include mixins2.breakpoint( $until: tablet ) {
+    &:not( .two-columns ) {
+      h2 {
+        float: none;
+        margin-bottom: $footer-heading-margin-bottom;
+      }
+    }
+
+    &.two-columns {
+      .block {
+        //TODO: Reuse
+        float: none;
+        display: block;
+        width: 100%;
+
+        &:first-child { width: auto; }
+
+        &:last-child {
+          padding-top: project.$base-spacing;
+          border-top: $footer-secondary-separator;
+        }
+      }
+
+      nav ul {
+        > li {
+          float: none;
+          width: auto;
+        }
+      }
+    }
+  }
+}
+
+/* FOOTER PORT FOR HOMEPAGE AND INTRANET */
+
+
+footer {
+  .footer-secondary {
+    .site_links {
+      display: flex;
+      flex-wrap: wrap;
+
+      .cols {
+        width: calc(20% - 1rem);
+        margin-right: 1rem;
+      }
+
+      h2 {
+        float: none;
+        margin: .5rem 0 .2rem;
+
+        a {
+          &:not(.button) {
+            color: variables.$black-tundora;
+          }
+        }
+      }
+
+      .button {
+        margin-bottom: 0.7rem;
+        line-break: anywhere;
+      }
+
+      a {
+        @include mixins.hoverify() {
+          text-decoration: underline;
+        }
+      }
+
+      .link_list {
+        a {
+          font-size: .9rem;
+        }
+
+        .social_logo {
+          width: 30px;
+          margin-right: 0.1rem;
+          margin-bottom: 0.2rem;
+        }
+      }
+      @include mixins2.breakpoint( $until: tablet ) {
+        // display: grid;
+        // grid-template-columns: 1fr 1fr 1fr;
+        display: block;
+        columns: 3;
+        .link_list {
+          display: none;
+        }
+        .cols {
+          // width: calc(33% - 1rem);
+          width: auto;
+          margin-right: 1rem;
+        }
+      }
+    }
+    &.dark {
+
+        background:variables.$grey-dark;
+        background-image:url( 'https://www.wgtn.ac.nz/__data/assets/image/0003/1940052/footer-pattern@2x.png'), url( 'https://www.wgtn.ac.nz/__data/assets/image/0003/1940052/footer-pattern@2x.png');;
+        background-position:left top, right bottom;
+        background-repeat:no-repeat;
+        background-size:13%;
+        padding:3% 0;
+
+
+      a, li{
+        color: variables.$white;
+        font-size: .9rem;
+      }
+
+      h4,
+      h4 a {
+        font-size: 1.22rem;
+      }
+
+      h4 {
+        margin-bottom: .5rem;
+        color: variables.$white;
+      }
+
+      .footer-row {
+        display: grid;
+        grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
+        grid-auto-rows: minmax(50px, auto);
+        gap: 2rem;
+
+        &.subjects {
+          gap: 4rem;
+          display: flex;
+          justify-content: center;
+        }
+      }
+
+      h2 {
+        margin: .5rem 0 .2rem;
+
+        a {
+          &:not(.button) {
+            color: variables.$white;
+          }
+        }
+      }
+      .footer-num {
+        text-decoration: underline;
+      }
+
+      .lrg-offset{
+        // width:26%;
+      }
+
+      .sml-offset{
+        // width:15%;
+      }
+
+      @include mixins2.breakpoint( $until: tablet ) {
+        background-size: 25%;
+        .footer-row {;
+          gap: 1rem;
+          grid-template-columns: repeat( auto-fit, minmax(150px, 1fr) );
+          .link_list {
+            display: block;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+
+#hubv4 footer {
+  .footer-apply.int-footer-apply {
+    background-color: variables.$mahoe;
+
+    h3 {
+      color: variables.$manuka;
+    }
+  }
+
+
+
+  .footer-connect.int-footer-contact {
+    background-color: variables.$miro;
+    border-color: variables.$mahoe;
+  }
+
+  .two-columns .block:last-child::before {
+    border-color: variables.$mahoe;
+  }
+
+  .footer-secondary {
+    border-color: variables.$mahoe;
+
+    nav {
+      ul {
+        a {
+          color: variables.$black-brand;
+        }
+      }
+    }
+
+    .link-more {
+      float: right;
+    }
+  }
+
+  .footer-connect.int-footer-contact .social .social-icon svg {
+    fill: variables.$pounamu;
+  }
+
+  .footer-secondary.two-columns.footer-connect h4 {
+    color: variables.$black-brand;
+  }
+}

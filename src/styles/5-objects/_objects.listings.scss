@@ -1,0 +1,121 @@
+@use "../0-core/mixins/mixins.generic" as mixins2;
+@use "../0-core/mixins/mixins.responsive";
+@use "../0-core/variables/variables.box-appearance" as variables3;
+@use "../0-core/variables/variables.colors" as variables2;
+@use "../0-core/variables/variables.layout";
+
+/*============================================================================*\
+| GENERIC LISTINGS
+\*============================================================================*/
+
+////
+/// Definitions of listings of things (e.g. list of articles, images etc.).
+///
+/// @group lists
+
+
+
+
+
+/*= ARTICLES LISTING =========================================================*/
+
+
+/** Generic holder for list of all article-like overviews. */
+$article-item-max-width: 49.5rem; // This is a maximum treshold for a good readability
+
+.articles-container {
+
+  .formatting & {
+    // Set resets if used within .formatting
+    > ul,
+    > ul > li {
+      padding-left: 0;
+      list-style-type: none;
+    }
+
+    article { margin-bottom: 0; }
+
+    &:not(:last-child) {
+      margin-bottom: variables.$gap-double;
+    }
+  }
+
+
+  // Add shadows & background when inside highlighted panel
+  .panel & {
+    background-color: variables2.$white;
+    box-shadow: variables3.$shadow-shallowest;
+  }
+
+
+  @include mixins.breakpoint( tablet ) {
+    margin: 0 auto;
+    // max-width: $article-item-max-width;
+  }
+
+  > header {
+    display: flex;
+    align-items: center;
+    margin: 0 0 variables.$gap-vertical;
+
+    h2 { flex-grow: 1; }
+  }
+
+  > ul {
+    @include mixins2.clearfix;
+
+    // Items
+    > li {
+      @include mixins2.clearfix();
+
+      &:not(:last-child) {
+        margin-bottom:  variables.$gap-vertical;
+        padding-bottom: variables.$gap-vertical;
+        border-bottom:  variables3.$border; // Items separator
+      }
+    }
+  }
+
+  // Item's overview
+  // TODO: Move to components/molecules
+  .summary {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin-bottom: variables.$gap-small;
+    }
+
+    time,
+    p {
+      margin-bottom: variables.$gap-half;
+    }
+
+    p:last-child { margin-bottom: 0; }
+  }
+
+  .media {
+    img,
+    iframe {
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+
+
+
+/*= TEXTS LISTING ============================================================*/
+
+
+.grid {
+  // Remove the gap to conserve the continuity of the list (especially on mobile devices).
+  > ul { margin-bottom: 0; }
+}
+
+
+
+
+

@@ -1,0 +1,36 @@
+<style>
+    .prismjs .token.tag {
+        all: unset;
+        display: inline-block;
+        padding: 0;
+        background-color: transparent;
+    }
+</style>
+
+<!-- University Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+
+<!-- 1. jQuery Prerequisite (Required by tracking plugin) -->
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+<!-- 2. Toolkit Standalone Tracking Library -->
+<script src="https://static.victoria.ac.nz/toolkit.tracking.min.js" type="text/javascript"></script>
+
+<!-- 3. GTM Mock Fallback Layer (Prevents runtime errors if a real GTM container isn't present in Storybook) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  
+  // Custom consolelogger helper to visually see events firing in your story canvas console
+  const nativePush = window.dataLayer.push;
+  window.dataLayer.push = function(...args) {
+    console.log('%c[GTM Event Pushed]', 'background: #4caf50; color: #fff; padding: 2px 5px; border-radius: 3px;', args[0]);
+    return nativePush.apply(this, args);
+  };
+</script>
+<script type="module" src="/toolkit.min.js"></script>
+<script type="module" src="./dist/toolkit-new.min.js"></script>

@@ -1,0 +1,34 @@
+export default {
+  title: 'Features/Search/Search Bar',
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+### Search Bar Component
+Search bar widget. For use on high level hub pages.
+        `,
+      },
+    },
+  },
+};
+
+export const DefaultSearchBar = {
+    render: () => `
+     <div class="centraliser">
+		<div class="block">
+			<div class="search-panel">
+				<form class="form wide-search-bar" method="GET" action="https://www.wgtn.ac.nz/research/researchers">
+					<h1 style="margin-bottom: 0.5rem">Find an expert</h1>
+					<div class="group required">
+						<input type="text" name="search" id="search" class="panel-search-input" placeholder="Find an expert..">
+						<input type="submit" class="button large primary" value="Search">
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+    `
+}

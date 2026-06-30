@@ -1,0 +1,427 @@
+@use "sass:color";
+@use "../0-core/mixins/mixins.generic" as mixins3;
+@use "../0-core/mixins/mixins.layout" as mixins2;
+@use "../0-core/mixins/mixins.responsive";
+@use "../0-core/variables/variables.colors";
+@use "../0-core/variables/variables.layout" as variables2;
+
+.p-search {
+  display: flex;
+  flex-direction: column-reverse;
+
+  @include mixins.breakpoint(desktop) {
+    align-items: start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  &.p-search__grey {
+    background-color: #eee;
+  }
+
+  &.search-results {
+    width: 100%;
+
+    &.search-active {
+      display: flex;
+
+      @include mixins.breakpoint( $until: tablet) {
+        @include mixins2.target-ie {
+          display: block !important;
+        }
+      }
+
+    }
+
+    &.search-inactive {
+      display: none;
+    }
+
+    .promo-panel {
+      // move curated rsults to top on mobile and tablet
+      order: 1;
+      @include mixins.breakpoint($from:desktop){
+        order: unset;
+      }
+    }
+  }
+
+  .animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+
+  @-webkit-keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+  }
+
+}
+
+.p-search__tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+
+  .p-search__tab {
+    position: relative;
+    margin-right: 1rem;
+    padding-right: 1rem;
+    font-size: 1.25rem;
+
+    a, button {
+      font-weight: 600;
+      color: #005EA5;
+      text-decoration: underline;
+    }
+
+    button {
+      all: unset;
+      &::after {
+        all: unset;
+      }
+      font-weight: 600 !important;
+      color: #005EA5 !important;
+      text-decoration: underline !important;
+    }
+
+    @include mixins3.hoverify() {
+      opacity: .8;
+      cursor: pointer;
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    &.active {
+      a,button {
+        position: relative !important;
+        color: variables.$black-tundora !important;
+        text-decoration: none !important;
+
+        @include mixins3.hoverify() {
+          outline: -webkit-focus-ring-color auto 1px;
+        }
+
+        &:after {
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          content: '';
+          width: 80%;
+          height: 4px;
+          background-color: variables.$black-tundora;
+        }
+      }
+
+      @include mixins3.hoverify() {
+        opacity: 1;
+      }
+    }
+
+    &.disabled-tab {
+      a {
+        color: variables.$grey;
+        text-decoration: none;
+        cursor: not-allowed;
+      }
+    }
+
+
+    &:not(:last-child) {
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        content: '|';
+        color: variables.$grey;
+      }
+    }
+  }
+}
+
+.p-search__main {
+  flex: 1 0 100%;
+
+  @include mixins.breakpoint(desktop) {
+    max-width: 42rem;
+  }
+
+  @include mixins.breakpoint(1200px) {
+    max-width: 52rem;
+  }
+
+  @include mixins.breakpoint(desktop-large) {
+    max-width: 60rem;
+  }
+}
+
+.p-search__aside {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  padding-bottom: variables2.$gap;
+  // background-color: $grey-gallery;
+  border-top: 5px solid variables.$grey-chalice;
+  // box-shadow: $card-shadow;
+
+  .p-search-term {
+
+  }
+
+  .p-search-filter {
+
+    h3, h4, h5 {
+      color: variables.$black-tundora;
+    }
+
+    > h3 {
+      display: inline-block;
+      margin-right: 1.5rem;
+      margin-bottom: 0;
+
+      span {
+        display: none;
+      }
+    }
+
+    .search-filter-remove {
+      position: relative;
+      margin-left: .5rem;
+
+      svg {
+        position: absolute;
+        top: -7px;
+        width: 15px;
+        fill: #005EA5;
+      }
+    }
+
+    .p-search-filter-group {
+      margin-top: 1.5rem;
+      ul {
+        padding-left: 0;
+      }
+    }
+
+    .tag {
+      @include mixins3.hoverify() {
+        span.icon-check {
+          &::before {
+            content: "";
+          }
+        }
+      }
+    }
+  }
+
+  .search-facets {
+    h5 {
+      display: flex;
+      justify-content: space-between;
+
+      span {
+        margin-right: 1rem;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .facet_links {
+    margin-bottom: .8rem;
+    > a {
+      white-space: normal;
+    }
+  }
+
+  @include mixins.breakpoint(desktop) {
+    flex-grow: 1;
+    margin-left: 2rem;
+    width: 10%;
+  }
+
+  @include mixins.breakpoint(desktop-large) {
+    max-width: 350px;
+
+    @include mixins2.target-ie {
+      max-width: none;
+    }
+  }
+
+  @include mixins.breakpoint($until: desktop) {
+    .p-search-filter {
+
+      > h3 {
+        span {
+          display: inline;
+        }
+      }
+
+      > a {
+        margin-left: 2rem;
+      }
+    }
+
+    .p-search-filter-group {
+      display: none;
+    }
+  }
+}
+
+/* Pattern for search input with button inner
+        <div class="search-button-inside form-dark-grey">
+          <form class="" action="https://www.wgtn.ac.nz/search" role="search">
+            <label class="search-label visually-hidden" for="search">
+                <span>Search</span>
+            </label>
+            <input class="search-input" id="search" type="text" placeholder="Search" name="q" autocorrect="off">
+            <button class="submit-button" type="submit"><span class="icon-search"></span></button>
+          </form>
+        </div>
+*/
+.search-button-inside {
+
+  form {
+    display: flex;
+    position: relative;
+    justify-content: stretch;
+    align-items: center;
+    border-radius: 2px;
+
+    .search-input {
+      flex: 1;
+      width: 100%;
+      padding: .5rem 70px .5rem .5rem;
+      border-radius: 2px;
+      border-style: initial;
+    }
+
+    .submit-button {
+      background-color: transparent;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50px;
+      &::after {
+        content: none;
+      }
+    }
+  }
+
+  .search-label span,
+  .search-label {
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+  }
+
+  &.form-dark-grey {
+    form {
+
+      ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: color.adjust(variables.$white, $lightness: -20%);
+        opacity: 1; /* Firefox */
+      }
+
+      .search-input {
+        background-color: variables.$black-tundora;
+        border: 1px solid variables.$white;
+        color: variables.$white;
+
+      }
+
+      .submit-button {
+        span {
+          color: variables.$white;
+        }
+      }
+    }
+  }
+
+  &.form-light {
+    form {
+      .search-input {
+        border: 1px solid color.adjust(variables.$black-mine-shaft, $lightness: 50%);
+        border-radius: 3px;
+      }
+    }
+  }
+
+  &.form-black-white-outline {
+    form {
+      transition: .3s ease-in;
+
+      ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: color.adjust(variables.$white, $lightness: -5%);
+        opacity: 1; /* Firefox */
+      }
+
+      .search-input {
+        background-color: variables.$black-brand;
+        border: 1px solid variables.$white;
+        color: variables.$white;
+
+      }
+
+      .submit-button {
+        span {
+          color: variables.$white;
+        }
+      }
+
+      .search-input {
+        &:focus,
+        &:active {
+          background-color: variables.$white;
+          border: 1px solid variables.$white;
+          outline: 1px solid variables.$white;
+          color: variables.$black-tundora;
+
+          &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: color.adjust(variables.$black-tundora, $lightness: -20%);
+            opacity: 1; /* Firefox */
+          }
+
+          + .submit-button {
+            span {
+              color: variables.$black-tundora;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

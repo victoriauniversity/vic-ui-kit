@@ -1,0 +1,343 @@
+@use "../0-core/mixins/mixins.decorations" as mixins7;
+@use "../0-core/mixins/mixins.generic";
+@use "../0-core/mixins/mixins.grid" as mixins4;
+@use "../0-core/mixins/mixins.icons" as mixins6;
+@use "../0-core/mixins/mixins.layout" as mixins3;
+@use "../0-core/mixins/mixins.media" as mixins2;
+@use "../0-core/mixins/mixins.responsive" as mixins5;
+@use "../0-core/variables/variables.box-appearance" as variables2;
+@use "../0-core/variables/variables.colors" as variables3;
+@use "../0-core/variables/variables.layout";
+@use "../0-core/variables/variables.typography" as variables4;
+@use "../2-project/project.variables";
+
+@use "bourbon-neat" as *;
+
+// Study areas homepage
+// - The generic tile grid
+// - Used for both Study-areas and Degrees & Qualifactions block
+
+$tile-height:            15.5rem;
+
+$simple-grid-spacing:    variables.$gap-half;
+
+$four-grid-tile-margin:  1%;
+$three-grid-tile-margin: 1%;
+$two-grid-tile-margin:   1.3%;
+
+
+.tile-grid {
+  @include grid-container;
+
+  .tiles-wrap {
+    margin-top: 1rem;
+
+    > ul {
+      @include mixins.clearfix;
+      display: block;
+    }
+
+    li.tile {
+      overflow: hidden;
+      position: relative;
+      margin-bottom: variables.$gap-half;
+      height: $tile-height;
+
+      .tiles-panel & { box-shadow: variables2.$shadow-shallowest; }
+
+      // Background image
+      .img-helper + img {
+        @include mixins2.background-image-cover( vertical );
+      }
+
+      &.is-matching { filter: saturate( 200% ); }
+      &.is-not-matching { filter: saturate( 0% ); }
+
+      // All the text for the tile including the hidden text
+      .tile-text {
+        @include mixins3.size( 100%, auto );
+        z-index: variables.$z-index-middle;
+        position: absolute;
+        top: 0;
+        display: block;
+        background-color: variables3.$green-brand;
+      }
+
+      .tile-title {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+
+        h2 {
+          float: left;
+          width: 95%;
+        }
+
+        i {
+          display: flex;
+          align-items: center;
+          margin-left: variables.$gap-third;
+          width: 5%;
+          color: variables3.$white;
+          font-size: 220%;
+
+          &::before { margin: 0; }
+        }
+      }
+
+      h2,
+      h4,
+      p {
+        margin: 0;
+        padding: 0;
+        color: variables3.$white;
+      }
+
+      a {
+        display: block;
+
+        // This will get refactored in a typography update
+        // TODO: Remove later!
+        &:hover {
+          opacity: 1;
+          border: 0;
+        }
+
+        h2 { font-size: variables4.$h4-size; }
+      }
+
+      // The hidden subjects span which is displayed on hover
+      h4 {
+        margin-bottom: variables.$gap-third;
+        color: variables3.$grey-alto;
+        font-size: variables4.$h5-size;
+
+        &::before {
+          vertical-align: 0;
+          font-size: variables4.$text-size-tiny;
+        }
+      }
+
+      //TODO: Behaves like other .tile = MERGE!
+      @include mixins5.bp-desktop-large {
+        @include mixins4.column( 4, $simple-grid-spacing );
+      }
+
+      @include mixins5.bp-desktop {
+        @include mixins4.column( 3, $simple-grid-spacing );
+      }
+
+      @include mixins5.bp-tablet {
+        @include mixins4.column( 2, $simple-grid-spacing );
+      }
+
+      @include mixins5.breakpoint( $until: tablet ) {
+        .tile-title {
+          padding-bottom: 1rem;
+        }
+
+        .img-helper + img { max-height: none; }
+
+        h4 {
+          display: inline-block;
+          margin-right: .5em;
+          font-size: 1.1em;
+        }
+
+        p { display: inline-block; }
+      }
+    }
+  }
+
+  &.hidden { display: none; }
+
+  .tile-text {
+    p { font-size: .875rem; }
+  }
+}
+
+// Styles specific to the Study-areas block
+.study-areas,
+.study-area-single {
+  h1 { margin-bottom: .7em; }
+}
+
+.study-areas {
+  .pg-filter {
+    padding: 1em 1em 1em .5em;
+    font-size: 1.2em;
+  }
+
+  //This operate the PG only check box the markup needs to have the tiles as general siblings of teh check box
+  // ie dont wrap the checkbox in a div container
+  input[type=checkbox]:checked {
+    .tiles-wrap {
+      .tile[data-pg=only] { display: block; }
+      li.tile { display: none; }
+    }
+  }
+
+  .tiles-wrap {
+    li.tile {
+      img {
+        width: 100%;
+
+        @include mixins5.bp-tablet {
+          vertical-align: middle;
+        }
+      }
+
+      span {
+        display: block;
+        padding: 0 1em 1em;
+        @include mixins5.breakpoint( desktop ) {
+          display: none;
+        }
+      }
+
+      @include mixins.hoverify {
+        @include mixins5.breakpoint( desktop ) {
+          .tile-text {
+            height: 100%;
+
+            > a { height: 100%; }
+          }
+
+          span {
+            display: block;
+          }
+        }
+      }
+
+    }
+  }
+
+}
+
+/** In-page navigational tabs */
+$tab-caret-size: 1.6rem;
+
+.study-area-tabs {
+  margin-bottom: variables.$gap-larger;
+
+  ul {
+    @include mixins.clearfix;
+    margin: 0 auto;
+    max-width: project.$base-max-content-height;
+
+    li {
+      @include mixins4.column( 2 );
+
+      a {
+        display: flex;
+        align-items: center;
+        padding: 1em;
+        background-color: variables3.$grey-alto;
+        text-align: center;
+
+        &:hover { background-color: variables3.$grey-silver; }
+
+        @include mixins6.icon-selector() {
+          font-weight: variables4.$weight-normal;
+          line-height: 0;
+        }
+
+        // Icon size modificators
+        // TODO: Make more generic
+        .icon-book-open { font-size: variables4.$text-size-smaller; }
+
+        h4 {
+          font-size: variables4.$h5-size;
+          margin: 0 auto; // helps center the text on mobile
+          color: variables3.$black-mine-shaft;
+        }
+
+        @include mixins5.breakpoint( $until: tablet ) {
+          height:  3.75rem;
+        }
+      }
+
+      &.active {
+        position: relative;
+
+        a {
+          background-color: variables3.$green-brand;
+
+          &:hover {
+            opacity: 1;
+            cursor: default;
+          }
+
+          h4 { color: variables3.$white; }
+        }
+
+        // Caret
+        @include mixins.after ( $display: block, $position: absolute ) {
+          @include mixins3.size( 0 );
+          @include mixins7.triangle( down, $tab-caret-size, $tab-caret-size / 3, variables3.$green-brand );
+          left: 50%;
+          margin-left: -1 * $tab-caret-size / 2;
+        }
+      }
+
+    }
+  }
+}
+
+// Study areas undergrad postgrad switcher
+.switch {
+  @include mixins3.size( 240px, 26px );
+  position: relative;
+  margin: 0 auto 20px;
+  transform: scale( 1.4 ); //TODO: Do not scale, use font-size approach and relative units!
+  background: variables3.$grey-alto;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 3px rgba( variables3.$black, .3 ), 0 1px rgba( variables3.$white, .1 );
+
+  .switch-label {
+    z-index: variables.$z-index-middle;
+    position: relative;
+    float: left;
+    width: 116px;
+    line-height: 26px;
+    font-size: 11px;
+    color: rgba( variables3.$black-mine-shaft, .9 );
+    text-align: center;
+    cursor: pointer;
+
+    &:active { font-weight: variables4.$weight-bold; }
+  }
+
+  .switch-label-off { padding-left: 2px; }
+  .switch-label-on { margin-left: 3px; }
+
+  input[type=radio] {
+    position: absolute;
+    left: -9999px; // TODO: Bad pattern, replace!
+    clip: rect( 0, 0, 0, 0 );
+  }
+
+  .switch-input:checked {
+    + .switch-label {
+      font-weight: variables4.$weight-bold;
+      color: variables3.$white;
+      transition: .15s ease-out;
+    }
+
+    + .switch-label-on ~ .switch-selection {
+      left: 120px;
+    }
+  }
+
+  .switch-selection {
+    @include mixins3.size( 118px, 22px );
+    z-index: variables.$z-index-lower;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    display: block;
+    background: #115737;
+    border-radius: 3px;
+    transition: left .15s ease-out;
+  }
+}

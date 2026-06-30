@@ -1,0 +1,19 @@
+@use "../0-core/functions/functions.builders";
+@use "../0-core/mixins/mixins.generic";
+@use "../0-core/variables/variables.layout";
+@use "../0-core/variables/variables.typography" as variables2;
+@use "objects.typography";
+
+.c-stack-figlist {
+  li {
+    display: inline-block;
+
+    &:not(:last-child) {
+      @include mixins.after( $text: objects.$subtitle-separator-character ) {
+        margin-right:  functions.em( variables.$gap-tiny );
+        margin-left: functions.em( variables.$gap-small );
+        font-weight:  variables2.$weight-bold;
+      }
+    }
+  }
+}

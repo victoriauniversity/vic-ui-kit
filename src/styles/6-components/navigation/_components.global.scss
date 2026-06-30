@@ -1,0 +1,375 @@
+@use "../../0-core/mixins/mixins.animations" as mixins5;
+@use "../../0-core/mixins/mixins.generic" as mixins2;
+@use "../../0-core/mixins/mixins.grid" as mixins3;
+@use "../../0-core/mixins/mixins.icons" as mixins4;
+@use "../../0-core/mixins/mixins.layout" as mixins6;
+@use "../../0-core/mixins/mixins.responsive";
+@use "../../0-core/variables/variables._defaults" as variables4;
+@use "../../0-core/variables/variables.backgrounds" as variables6;
+@use "../../0-core/variables/variables.box-appearance" as variables5;
+@use "../../0-core/variables/variables.colors";
+@use "../../0-core/variables/variables.layout" as variables3;
+@use "../../0-core/variables/variables.typography" as variables2;
+@use "../../2-project/project.mixins" as project2;
+@use "../../2-project/project.variables";
+
+// Top menu panel
+$global-panel-color:       variables.$grey-silver;
+$global-panel-hover-color: #BBB;
+$global-panel-text-color:  variables2.$text-color;
+
+//gradient (expected transparent -> bgcolor) on an element hinting it overlays something
+$overlay-hint-size:      3rem;
+$overlay-hint-offset:    .4rem; // Can be a negative number as long as ($OH-size + $OH-offset) > 0
+$overlay-padding-offset: 3.8rem;
+
+
+@include mixins.breakpoint( $until: tablet ) {
+  .hide-on-mobile { display: none !important; }
+}
+
+@include mixins.breakpoint( tablet ) {
+  .hide-on-desktop { display: none !important; }
+}
+
+.menu-toggle {
+  @include mixins2.clearfix;
+  z-index:       variables3.$z-index-lower;
+  position:      relative;
+  background:    variables.$black-brand;
+  border-bottom: 1px solid rgba( variables.$black, .15 );
+}
+
+.global {
+  width: 100%;
+  font-weight: variables2.$weight-normal;
+
+  @include mixins.breakpoint( tablet ) {
+    background-color: $global-panel-color;
+  }
+
+  .menu a {
+    font-family: variables2.$heading-family;
+    line-height: 1.85;
+
+    &.home,
+    &.back {
+      line-height: 1.7;
+    }
+
+    &.home > span {
+      margin-top: .05rem;
+    }
+  }
+
+  // Top panel for mobile devices *only*!
+  .horisontal-links {
+    @include mixins2.clearfix;
+    display: flex;
+    align-items: stretch;
+
+    &.menu-toggle > a {
+      padding-top: variables3.$gap-third * 2;
+      padding-bottom: variables3.$gap-third * 2;
+    }
+
+    > a {
+      @include mixins3.column( 2 );
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: variables3.$gap-half;
+      border-bottom: 0;
+
+      &:not(:first-child) { justify-content: flex-end; }
+    }
+
+    &.align-center > a { justify-content: center; }
+  }
+
+  @include mixins4.icon-selector() {
+    &::before {
+      margin-right: 0;
+      margin-left: 0;
+
+      @include mixins.breakpoint( $until: tablet ) {
+        margin-right: .5rem;
+        line-height: 1;
+      }
+    }
+  }
+
+  [role=search] {
+    @include mixins2.clearfix();
+    position: relative;
+    display: block;
+    width: 100%;
+
+    .input-wrapper {
+      @include mixins2.clearfix();
+      position: relative;
+      display: block;
+
+      input {
+        float: left;
+        padding: .45rem project.$base-spacing / 2;
+        background: rgba( #000, .15 );
+        border: 0;
+        color: variables.$white;
+
+        &[type=text],
+        &[type=submit] {
+          display: none;
+        }
+
+        &[type=text] {
+          width: calc( 100% - 4rem );
+        }
+
+        &[type=submit] {
+          width: 4rem;
+          border-left: 1px solid rgba( #000, .15 );
+        }
+      }
+    }
+
+    @include mixins.breakpoint( $until: tablet ) {
+      z-index: variables3.$z-index-top;
+      padding: variables3.$gap-half;
+      border-bottom: 1px solid rgba( variables.$black, .15 );
+
+      .input-wrapper input {
+        padding-top: variables3.$gap-content / 2;
+        padding-bottom: variables3.$gap-content / 2;
+
+        &[type=text] {
+          &::placeholder {
+            color: variables.$grey-chalice;
+          }
+        }
+      }
+    }
+
+    @include mixins.breakpoint( tablet ) {
+      .input-wrapper {
+        padding-right: 2.5rem;
+        padding-left: $overlay-hint-size + $overlay-hint-offset;
+        background: linear-gradient( to right,
+        rgba( $global-panel-color, 0 ) 0,
+        rgba( $global-panel-color, 1 ) $overlay-hint-size );
+
+        will-change: transform;
+        transition: transform project.$transition-timeout ease-in-out;
+        transform: translateX( 100% );
+
+        input {
+          height: 2.4rem;
+          background:  $global-panel-hover-color;
+          color:       $global-panel-text-color;
+        }
+
+        &.is-open {
+          transform: translateX( 0 );
+
+          input {
+            &[type=text], //TODO: Nesting too deep, REFACTOR!
+            &[type=submit] {
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  @include mixins.breakpoint( $until: desktop ) {
+    padding: 0;
+  }
+
+  @include mixins.breakpoint( $until: tablet ) {
+    .button-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+
+      a {
+        display: block;
+        margin: 2px 0;
+        padding: 0 .8rem;
+        border: 0;
+        border-left: 1px solid rgba( variables.$white, .15 );
+        text-align: right;
+      }
+    }
+
+    [role=search] .input-wrapper input {
+      &[type=text],
+      &[type=submit] {
+        display: inline-block;
+      }
+    }
+
+    .menu {
+      overflow: hidden;
+      height: 0;
+      will-change: transform;
+      transition: transform project.$transition-timeout ease-in-out;
+      transform: translateY( -100vh );
+      background: variables.$green-brand;
+
+      .horisontal-links > a + a {
+        border-left: 1px solid rgba( #000, .15 );
+      }
+    }
+
+    &.is-open {
+      background: variables.$black-brand;
+
+      .menu {
+        overflow-y: auto;
+        height: auto;
+        max-height: 75vh;
+        transform: translateY( 0 );
+      }
+
+      .search {
+        font-size: variables2.$text-size-huge;
+      }
+    }
+
+    a {
+      @include project2.menu-item();
+      display: block;
+    }
+
+    .mobile { display: block; }
+  }
+
+  @include mixins.breakpoint( tablet ) {
+    .mobile,
+    .site,
+    .menu-toggle {
+      display: none;
+    }
+
+    nav {
+      @include mixins2.clearfix;
+      position: relative;
+      margin: 0 auto;
+      max-width: variables4.$centered-max-width;
+
+      .search {
+        z-index: variables3.$z-index-lower;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+
+        // Search icon
+        a {
+          z-index: variables3.$z-index-lower;
+          position: absolute;
+          right: 0;
+          padding-right: 0;
+          padding-left: 0;
+          width: 2.5rem;
+          text-align: center;
+        }
+
+        // Transformation search icon
+        .tcon {
+          margin-top: .3rem;
+          font-size: 80%;
+        }
+      }
+
+      a {
+        float: left;
+        display: block;
+        padding: project.$base-spacing / 5 project.$base-spacing / 2;
+        border-bottom: 0;
+        color: $global-panel-text-color;
+        opacity: .8;
+        font-size: .9375rem;
+
+        &.selected,
+        &:hover,
+        &:focus {
+          background: $global-panel-hover-color;
+
+          span:not(.tcon-transform) .tcon-search__item::after {
+            transition: none;
+            background: $global-panel-hover-color;
+          }
+        }
+
+        + a { border-left: 1px solid rgba( #000, .15 ); }
+      }
+
+      label { float: right; }
+    }
+
+  }
+}
+
+
+
+
+
+/*= STICKY TOP HEADER ========================================================*/
+
+
+@include mixins5.keyframe-slide-up;
+@include mixins5.keyframe-slide-down;
+
+
+@include mixins.breakpoint( $until: tablet ) {
+  .global {
+    &.sticky {
+      z-index: variables3.$z-index-top;
+      position: unset;
+      background: variables.$black-brand;
+      will-change: transform;
+      animation-fill-mode: both;
+      animation-duration: .25s;
+
+      &.no-top,
+      &.is-open {
+        box-shadow: variables5.$shadow-shallow;
+      }
+
+      + .site-header {
+        //padding-top: 3.65rem; // Approximate height of the header + menu
+      }
+
+      &.is-open {
+        + .site-header {
+          @include mixins2.after() {
+            @include mixins6.size( 100% );
+            z-index: variables3.$z-index-top - 1;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: variables6.$background-overlay-dark;
+          };
+        }
+      }
+
+      &.slide-down {
+        animation-name: slideDown;
+      }
+
+      &.slide-up {
+        animation-name: slideUp;
+      }
+    }
+  }
+}
+
+
+

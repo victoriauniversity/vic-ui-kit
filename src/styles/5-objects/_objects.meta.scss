@@ -1,0 +1,119 @@
+@use "../0-core/functions/functions.builders";
+@use "../0-core/mixins/mixins.generic" as mixins2;
+@use "../0-core/mixins/mixins.icons";
+@use "../0-core/mixins/mixins.responsive" as mixins3;
+@use "../0-core/variables/variables.colors";
+@use "../0-core/variables/variables.layout" as variables3;
+@use "../0-core/variables/variables.typography" as variables2;
+@use "../1-settings/settings._defaults";
+
+$meta-label-color: variables.$grey !default;
+$meta-bg: settings.$brand-opaque !default;
+
+// List of quick (meta) information
+ul.meta {
+  display: flex;
+  flex-wrap: wrap;
+
+  @include mixins.icon-selector() {
+    color: variables2.$text-weakest-color;
+
+    &::before { display: inline; } // Prevent icon wrapping
+  };
+
+  &,
+  > li {
+    padding-left: 0; // Reset
+  }
+
+  > li {
+    display: block;
+    margin-bottom: variables3.$gap-small;
+    word-wrap: break-word;
+    line-height: 1.35;
+
+    h4:first-child { margin-top: variables3.$gap-half; }
+  }
+
+  .highlight {
+    margin-right: variables3.$gap-small;
+    padding: 0; // Reset
+
+    @include mixins.icon-selector() {
+      color: inherit;
+
+      &::before {
+        display: inline-block;
+        margin-right: .35em;
+      }
+    };
+
+    > a, > span {
+      display: block;
+      padding: .2rem .5rem;
+      background-color: functions.tint( $meta-bg, variables.$lighter-percentage ); //TODO: Can it be replaced by some of the pre-defined colour?
+      color: variables2.$heading-color;
+      text-decoration: none;
+    }
+    > a {
+      @include mixins2.hoverify {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.meta-item {
+  display: inline-block;
+
+  ul.meta--labelled & {
+    margin-right: variables3.$gap-double;
+    margin-bottom: 25px;
+    padding: 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @include mixins3.breakpoint($until: desktop) {
+      display: block;
+    }
+  }
+
+  ul.meta--grid & {
+    @include mixins3.breakpoint(desktop) {
+      margin-right: 0;
+      padding-right: 15px;
+      width: 24%;
+      vertical-align: top;
+    }
+  }
+}
+
+.meta-label {
+  color: $meta-label-color;
+
+  @include mixins3.breakpoint($until: tablet) {
+    position: relative;
+    top: 5px;
+    float:left;
+  }
+
+  .meta--labelled & {
+    margin-bottom: 0;
+  }
+}
+
+.meta-labelText {
+  @include mixins3.breakpoint($until: tablet) {
+    // display: none;
+  }
+}
+
+.meta-data {
+  font-size: variables2.$h5-size;
+
+  .meta--labelled & {
+    //margin-top: $gap-half;
+  }
+}
