@@ -52,7 +52,7 @@ export const Template = () => `
                 <div class="block formatting centraliser">
                   <figure class="media featured">
                     <a data-lity="" href="http://www.youtube.com/watch?v=k1-243Uv5cw" target="_blank">
-                      <img alt="The colour of crime" src="https://placehold.co">
+                      <img alt="The colour of crime" src="https://www.wgtn.ac.nz/__data/assets/image/0011/366851/varieties/ls_small.jpg">
                       <figcaption class="outside">
                         <h4>The colour of crime <i class="icon-triangle-right"></i></h4>
                       </figcaption>
