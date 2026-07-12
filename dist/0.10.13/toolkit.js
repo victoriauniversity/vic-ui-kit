@@ -1,4 +1,4 @@
-/** Version: 0.10.13 | Sunday, 12 July 2026, 9:47 pm */
+/** Version: 0.10.13 | Sunday, 12 July 2026, 10:41 pm */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -17744,6 +17744,9 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
 
     // Correctly ordered and prepared to be rendered
     var widgetsMoved = [];
+
+    // Counter WIDGET_LINKS_CLASSNAME
+    var linksInsertedCount = 0;
     var error;
     widgetsToMove.each(function moveWidgetToSidebar() {
       var widgetElement = external_jQuery_default()(this);
@@ -17759,8 +17762,9 @@ if (external_jQuery_default()("body").attr("id") == "hubv4") {
         return;
       }
       if (widgetElement.hasClass(_WIDGET_LINKS_CLASSNAME)) {
-        // A) Staff profile - add to the top!
-        widgetsMoved.unshift(widgetElement);
+        // A) Staff profile - add to the top, keeping original order
+        widgetsMoved.splice(linksInsertedCount, 0, widgetElement);
+        linksInsertedCount++;
       } else {
         // B) Others (downloads, publications etc.) - Add to the last positions
         widgetsMoved.push(widgetElement);
